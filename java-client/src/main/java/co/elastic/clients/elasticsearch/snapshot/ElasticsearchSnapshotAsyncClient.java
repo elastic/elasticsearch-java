@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -34,10 +40,22 @@ import javax.annotation.Nullable;
 /**
  * Client for the snapshot namespace.
  */
-public class ElasticsearchSnapshotAsyncClient extends ApiClient {
+public class ElasticsearchSnapshotAsyncClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchSnapshotAsyncClient> {
 
-	public ElasticsearchSnapshotAsyncClient(Transport transport) {
-		super(transport);
+	public ElasticsearchSnapshotAsyncClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchSnapshotAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSnapshotAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSnapshotAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.cleanup_repository
@@ -51,24 +69,27 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<CleanupRepositoryResponse> cleanupRepository(CleanupRepositoryRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, CleanupRepositoryRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse>) CleanupRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Removes stale data from repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CleanupRepositoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CleanupRepositoryResponse> cleanupRepository(
-			Function<CleanupRepositoryRequest.Builder, ObjectBuilder<CleanupRepositoryRequest>> fn) throws IOException {
+			Function<CleanupRepositoryRequest.Builder, ObjectBuilder<CleanupRepositoryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return cleanupRepository(fn.apply(new CleanupRepositoryRequest.Builder()).build());
 	}
 
@@ -83,8 +104,12 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CloneSnapshotResponse> clone(CloneSnapshotRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, CloneSnapshotRequest.ENDPOINT);
+	public CompletableFuture<CloneSnapshotResponse> clone(CloneSnapshotRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse>) CloneSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -92,16 +117,16 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 * repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CloneSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CloneSnapshotResponse> clone(
-			Function<CloneSnapshotRequest.Builder, ObjectBuilder<CloneSnapshotRequest>> fn) throws IOException {
+			Function<CloneSnapshotRequest.Builder, ObjectBuilder<CloneSnapshotRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return clone(fn.apply(new CloneSnapshotRequest.Builder()).build());
 	}
 
@@ -115,24 +140,28 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CreateSnapshotResponse> create(CreateSnapshotRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, CreateSnapshotRequest.ENDPOINT);
+	public CompletableFuture<CreateSnapshotResponse> create(CreateSnapshotRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse>) CreateSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates a snapshot in a repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CreateSnapshotResponse> create(
-			Function<CreateSnapshotRequest.Builder, ObjectBuilder<CreateSnapshotRequest>> fn) throws IOException {
+			Function<CreateSnapshotRequest.Builder, ObjectBuilder<CreateSnapshotRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return create(fn.apply(new CreateSnapshotRequest.Builder()).build());
 	}
 
@@ -147,24 +176,27 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<CreateRepositoryResponse> createRepository(CreateRepositoryRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, CreateRepositoryRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse>) CreateRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates a repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateRepositoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CreateRepositoryResponse> createRepository(
-			Function<CreateRepositoryRequest.Builder, ObjectBuilder<CreateRepositoryRequest>> fn) throws IOException {
+			Function<CreateRepositoryRequest.Builder, ObjectBuilder<CreateRepositoryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return createRepository(fn.apply(new CreateRepositoryRequest.Builder()).build());
 	}
 
@@ -178,24 +210,28 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteSnapshotResponse> delete(DeleteSnapshotRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteSnapshotRequest.ENDPOINT);
+	public CompletableFuture<DeleteSnapshotResponse> delete(DeleteSnapshotRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse>) DeleteSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes one or more snapshots.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteSnapshotResponse> delete(
-			Function<DeleteSnapshotRequest.Builder, ObjectBuilder<DeleteSnapshotRequest>> fn) throws IOException {
+			Function<DeleteSnapshotRequest.Builder, ObjectBuilder<DeleteSnapshotRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return delete(fn.apply(new DeleteSnapshotRequest.Builder()).build());
 	}
 
@@ -210,24 +246,27 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<DeleteRepositoryResponse> deleteRepository(DeleteRepositoryRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, DeleteRepositoryRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse>) DeleteRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes a repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteRepositoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteRepositoryResponse> deleteRepository(
-			Function<DeleteRepositoryRequest.Builder, ObjectBuilder<DeleteRepositoryRequest>> fn) throws IOException {
+			Function<DeleteRepositoryRequest.Builder, ObjectBuilder<DeleteRepositoryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteRepository(fn.apply(new DeleteRepositoryRequest.Builder()).build());
 	}
 
@@ -241,24 +280,28 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetSnapshotResponse> get(GetSnapshotRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetSnapshotRequest.ENDPOINT);
+	public CompletableFuture<GetSnapshotResponse> get(GetSnapshotRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse>) GetSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about a snapshot.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetSnapshotResponse> get(
-			Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn) throws IOException {
+			Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return get(fn.apply(new GetSnapshotRequest.Builder()).build());
 	}
 
@@ -272,24 +315,28 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRepositoryResponse> getRepository(GetRepositoryRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetRepositoryRequest.ENDPOINT);
+	public CompletableFuture<GetRepositoryResponse> getRepository(GetRepositoryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse>) GetRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about a repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRepositoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetRepositoryResponse> getRepository(
-			Function<GetRepositoryRequest.Builder, ObjectBuilder<GetRepositoryRequest>> fn) throws IOException {
+			Function<GetRepositoryRequest.Builder, ObjectBuilder<GetRepositoryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getRepository(fn.apply(new GetRepositoryRequest.Builder()).build());
 	}
 
@@ -301,9 +348,9 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRepositoryResponse> getRepository() throws IOException {
+	public CompletableFuture<GetRepositoryResponse> getRepository() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetRepositoryRequest.Builder().build(),
-				GetRepositoryRequest.ENDPOINT);
+				GetRepositoryRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.restore
@@ -316,24 +363,28 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RestoreResponse> restore(RestoreRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, RestoreRequest.ENDPOINT);
+	public CompletableFuture<RestoreResponse> restore(RestoreRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RestoreRequest, RestoreResponse, ErrorResponse> endpoint = (JsonEndpoint<RestoreRequest, RestoreResponse, ErrorResponse>) RestoreRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Restores a snapshot.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RestoreRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RestoreResponse> restore(
-			Function<RestoreRequest.Builder, ObjectBuilder<RestoreRequest>> fn) throws IOException {
+			Function<RestoreRequest.Builder, ObjectBuilder<RestoreRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return restore(fn.apply(new RestoreRequest.Builder()).build());
 	}
 
@@ -347,25 +398,29 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StatusResponse> status(StatusRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, StatusRequest.ENDPOINT);
+	public CompletableFuture<SnapshotStatusResponse> status(SnapshotStatusRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse> endpoint = (JsonEndpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse>) SnapshotStatusRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about the status of a snapshot.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SnapshotStatusRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<StatusResponse> status(
-			Function<StatusRequest.Builder, ObjectBuilder<StatusRequest>> fn) throws IOException {
-		return status(fn.apply(new StatusRequest.Builder()).build());
+	public final CompletableFuture<SnapshotStatusResponse> status(
+			Function<SnapshotStatusRequest.Builder, ObjectBuilder<SnapshotStatusRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return status(fn.apply(new SnapshotStatusRequest.Builder()).build());
 	}
 
 	/**
@@ -376,8 +431,9 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StatusResponse> status() throws IOException {
-		return this.transport.performRequestAsync(new StatusRequest.Builder().build(), StatusRequest.ENDPOINT);
+	public CompletableFuture<SnapshotStatusResponse> status() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new SnapshotStatusRequest.Builder().build(),
+				SnapshotStatusRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.verify_repository
@@ -391,24 +447,27 @@ public class ElasticsearchSnapshotAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<VerifyRepositoryResponse> verifyRepository(VerifyRepositoryRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, VerifyRepositoryRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse>) VerifyRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Verifies a repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link VerifyRepositoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<VerifyRepositoryResponse> verifyRepository(
-			Function<VerifyRepositoryRequest.Builder, ObjectBuilder<VerifyRepositoryRequest>> fn) throws IOException {
+			Function<VerifyRepositoryRequest.Builder, ObjectBuilder<VerifyRepositoryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return verifyRepository(fn.apply(new VerifyRepositoryRequest.Builder()).build());
 	}
 

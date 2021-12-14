@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,19 +45,27 @@ import javax.annotation.Nullable;
 
 // typedef: ingest.get_pipeline.Request
 
-public final class GetPipelineRequest extends RequestBase {
+/**
+ * Returns a pipeline.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/get_pipeline/GetPipelineRequest.ts#L24-L39">API
+ *      specification</a>
+ */
+
+public class GetPipelineRequest extends RequestBase {
 	@Nullable
 	private final String id;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	@Nullable
 	private final Boolean summary;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPipelineRequest(Builder builder) {
+	private GetPipelineRequest(Builder builder) {
 
 		this.id = builder.id;
 		this.masterTimeout = builder.masterTimeout;
@@ -63,8 +73,8 @@ public final class GetPipelineRequest extends RequestBase {
 
 	}
 
-	public GetPipelineRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPipelineRequest of(Function<Builder, ObjectBuilder<GetPipelineRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -73,7 +83,7 @@ public final class GetPipelineRequest extends RequestBase {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -83,7 +93,7 @@ public final class GetPipelineRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -93,7 +103,7 @@ public final class GetPipelineRequest extends RequestBase {
 	 * API name: {@code summary}
 	 */
 	@Nullable
-	public Boolean summary() {
+	public final Boolean summary() {
 		return this.summary;
 	}
 
@@ -102,12 +112,13 @@ public final class GetPipelineRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetPipelineRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetPipelineRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineRequest> {
 		@Nullable
 		private String id;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
 		private Boolean summary;
@@ -117,7 +128,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -127,9 +138,18 @@ public final class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -137,7 +157,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code summary}
 		 */
-		public Builder summary(@Nullable Boolean value) {
+		public final Builder summary(@Nullable Boolean value) {
 			this.summary = value;
 			return this;
 		}
@@ -149,6 +169,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetPipelineRequest build() {
+			_checkSingleUse();
 
 			return new GetPipelineRequest(this);
 		}
@@ -159,7 +180,9 @@ public final class GetPipelineRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ingest.get_pipeline}".
 	 */
-	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ingest.get_pipeline",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -197,7 +220,7 @@ public final class GetPipelineRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.summary != null) {
 					params.put("summary", String.valueOf(request.summary));

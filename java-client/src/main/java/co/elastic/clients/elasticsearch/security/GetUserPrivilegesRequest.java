@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,7 +43,15 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_user_privileges.Request
 
-public final class GetUserPrivilegesRequest extends RequestBase {
+/**
+ * Retrieves security privileges for the logged in user.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_user_privileges/SecurityGetUserPrivilegesRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
+public class GetUserPrivilegesRequest extends RequestBase {
 	@Nullable
 	private final String application;
 
@@ -51,15 +60,15 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetUserPrivilegesRequest(Builder builder) {
+	private GetUserPrivilegesRequest(Builder builder) {
 
 		this.application = builder.application;
 		this.priviledge = builder.priviledge;
 
 	}
 
-	public GetUserPrivilegesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetUserPrivilegesRequest of(Function<Builder, ObjectBuilder<GetUserPrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,7 +79,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 	 * API name: {@code application}
 	 */
 	@Nullable
-	public String application() {
+	public final String application() {
 		return this.application;
 	}
 
@@ -81,7 +90,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 	 * API name: {@code priviledge}
 	 */
 	@Nullable
-	public String priviledge() {
+	public final String priviledge() {
 		return this.priviledge;
 	}
 
@@ -90,7 +99,8 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetUserPrivilegesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetUserPrivilegesRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUserPrivilegesRequest> {
 		@Nullable
 		private String application;
 
@@ -104,7 +114,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code application}
 		 */
-		public Builder application(@Nullable String value) {
+		public final Builder application(@Nullable String value) {
 			this.application = value;
 			return this;
 		}
@@ -115,7 +125,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code priviledge}
 		 */
-		public Builder priviledge(@Nullable String value) {
+		public final Builder priviledge(@Nullable String value) {
 			this.priviledge = value;
 			return this;
 		}
@@ -127,6 +137,7 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetUserPrivilegesRequest build() {
+			_checkSingleUse();
 
 			return new GetUserPrivilegesRequest(this);
 		}
@@ -137,7 +148,9 @@ public final class GetUserPrivilegesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_user_privileges}".
 	 */
-	public static final Endpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_user_privileges",
+
 			// Request method
 			request -> {
 				return "GET";

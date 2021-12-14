@@ -23,63 +23,67 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.AggregateMetricDoubleProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/complex.ts#L58-L62">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AggregateMetricDoubleProperty extends PropertyBase implements PropertyVariant {
+public class AggregateMetricDoubleProperty extends PropertyBase implements PropertyVariant {
 	private final String defaultMetric;
 
 	private final List<String> metrics;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AggregateMetricDoubleProperty(Builder builder) {
+	private AggregateMetricDoubleProperty(Builder builder) {
 		super(builder);
 
-		this.defaultMetric = Objects.requireNonNull(builder.defaultMetric, "default_metric");
-		this.metrics = ModelTypeHelper.unmodifiableNonNull(builder.metrics, "metrics");
+		this.defaultMetric = ApiTypeHelper.requireNonNull(builder.defaultMetric, this, "defaultMetric");
+		this.metrics = ApiTypeHelper.unmodifiableRequired(builder.metrics, this, "metrics");
 
 	}
 
-	public AggregateMetricDoubleProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AggregateMetricDoubleProperty of(Function<Builder, ObjectBuilder<AggregateMetricDoubleProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "aggregate_metric_double";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.AggregateMetricDouble;
 	}
 
 	/**
 	 * Required - API name: {@code default_metric}
 	 */
-	public String defaultMetric() {
+	public final String defaultMetric() {
 		return this.defaultMetric;
 	}
 
 	/**
 	 * Required - API name: {@code metrics}
 	 */
-	public List<String> metrics() {
+	public final List<String> metrics() {
 		return this.metrics;
 	}
 
@@ -87,17 +91,19 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 
 		generator.write("type", "aggregate_metric_double");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("default_metric");
 		generator.write(this.defaultMetric);
 
-		generator.writeKey("metrics");
-		generator.writeStartArray();
-		for (String item0 : this.metrics) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.metrics)) {
+			generator.writeKey("metrics");
+			generator.writeStartArray();
+			for (String item0 : this.metrics) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -106,6 +112,7 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 	/**
 	 * Builder for {@link AggregateMetricDoubleProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AggregateMetricDoubleProperty> {
@@ -116,35 +123,28 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 		/**
 		 * Required - API name: {@code default_metric}
 		 */
-		public Builder defaultMetric(String value) {
+		public final Builder defaultMetric(String value) {
 			this.defaultMetric = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metrics</code>.
 		 */
-		public Builder metrics(List<String> value) {
-			this.metrics = value;
+		public final Builder metrics(List<String> list) {
+			this.metrics = _listAddAll(this.metrics, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code metrics}
+		 * <p>
+		 * Adds one or more values to <code>metrics</code>.
 		 */
-		public Builder metrics(String... value) {
-			this.metrics = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
-		 */
-		public Builder addMetrics(String value) {
-			if (this.metrics == null) {
-				this.metrics = new ArrayList<>();
-			}
-			this.metrics.add(value);
+		public final Builder metrics(String value, String... values) {
+			this.metrics = _listAdd(this.metrics, value, values);
 			return this;
 		}
 
@@ -160,6 +160,7 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 		 *             if some of the required fields are null.
 		 */
 		public AggregateMetricDoubleProperty build() {
+			_checkSingleUse();
 
 			return new AggregateMetricDoubleProperty(this);
 		}
@@ -170,12 +171,11 @@ public final class AggregateMetricDoubleProperty extends PropertyBase implements
 	/**
 	 * Json deserializer for {@link AggregateMetricDoubleProperty}
 	 */
-	public static final JsonpDeserializer<AggregateMetricDoubleProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, AggregateMetricDoubleProperty::setupAggregateMetricDoublePropertyDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<AggregateMetricDoubleProperty> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AggregateMetricDoubleProperty::setupAggregateMetricDoublePropertyDeserializer);
 
 	protected static void setupAggregateMetricDoublePropertyDeserializer(
-			DelegatingDeserializer<AggregateMetricDoubleProperty.Builder> op) {
+			ObjectDeserializer<AggregateMetricDoubleProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::defaultMetric, JsonpDeserializer.stringDeserializer(), "default_metric");
 		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

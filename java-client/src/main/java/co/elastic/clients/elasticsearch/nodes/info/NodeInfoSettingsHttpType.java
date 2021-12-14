@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsHttpType
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L181-L184">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoSettingsHttpType implements JsonpSerializable {
+public class NodeInfoSettingsHttpType implements JsonpSerializable {
 	private final String default_;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSettingsHttpType(Builder builder) {
+	private NodeInfoSettingsHttpType(Builder builder) {
 
-		this.default_ = Objects.requireNonNull(builder.default_, "default");
+		this.default_ = ApiTypeHelper.requireNonNull(builder.default_, this, "default_");
 
 	}
 
-	public NodeInfoSettingsHttpType(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSettingsHttpType of(Function<Builder, ObjectBuilder<NodeInfoSettingsHttpType>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code default}
 	 */
-	public String default_() {
+	public final String default_() {
 		return this.default_;
 	}
 
@@ -82,13 +90,14 @@ public final class NodeInfoSettingsHttpType implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsHttpType}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSettingsHttpType> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsHttpType> {
 		private String default_;
 
 		/**
 		 * Required - API name: {@code default}
 		 */
-		public Builder default_(String value) {
+		public final Builder default_(String value) {
 			this.default_ = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class NodeInfoSettingsHttpType implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSettingsHttpType build() {
+			_checkSingleUse();
 
 			return new NodeInfoSettingsHttpType(this);
 		}
@@ -111,12 +121,14 @@ public final class NodeInfoSettingsHttpType implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoSettingsHttpType}
 	 */
 	public static final JsonpDeserializer<NodeInfoSettingsHttpType> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsHttpType::setupNodeInfoSettingsHttpTypeDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoSettingsHttpType::setupNodeInfoSettingsHttpTypeDeserializer);
 
 	protected static void setupNodeInfoSettingsHttpTypeDeserializer(
-			DelegatingDeserializer<NodeInfoSettingsHttpType.Builder> op) {
+			ObjectDeserializer<NodeInfoSettingsHttpType.Builder> op) {
 
 		op.add(Builder::default_, JsonpDeserializer.stringDeserializer(), "default");
+
+		op.shortcutProperty("default");
 
 	}
 

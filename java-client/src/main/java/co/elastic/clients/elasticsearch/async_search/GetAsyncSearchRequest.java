@@ -23,17 +23,19 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -43,31 +45,36 @@ import javax.annotation.Nullable;
 
 // typedef: async_search.get.Request
 
-public final class GetAsyncSearchRequest extends RequestBase {
+/**
+ * Retrieves the results of a previously submitted async search request given
+ * its ID.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/get/AsyncSearchGetRequest.ts#L24-L38">API
+ *      specification</a>
+ */
+
+public class GetAsyncSearchRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final String keepAlive;
+	private final Time keepAlive;
 
 	@Nullable
-	private final Boolean typedKeys;
-
-	@Nullable
-	private final String waitForCompletionTimeout;
+	private final Time waitForCompletionTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetAsyncSearchRequest(Builder builder) {
+	private GetAsyncSearchRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
-		this.typedKeys = builder.typedKeys;
 		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 
 	}
 
-	public GetAsyncSearchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetAsyncSearchRequest of(Function<Builder, ObjectBuilder<GetAsyncSearchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,7 +82,7 @@ public final class GetAsyncSearchRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -86,19 +93,8 @@ public final class GetAsyncSearchRequest extends RequestBase {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public String keepAlive() {
+	public final Time keepAlive() {
 		return this.keepAlive;
-	}
-
-	/**
-	 * Specify whether aggregation and suggester names should be prefixed by their
-	 * respective types in the response
-	 * <p>
-	 * API name: {@code typed_keys}
-	 */
-	@Nullable
-	public Boolean typedKeys() {
-		return this.typedKeys;
 	}
 
 	/**
@@ -107,7 +103,7 @@ public final class GetAsyncSearchRequest extends RequestBase {
 	 * API name: {@code wait_for_completion_timeout}
 	 */
 	@Nullable
-	public String waitForCompletionTimeout() {
+	public final Time waitForCompletionTimeout() {
 		return this.waitForCompletionTimeout;
 	}
 
@@ -116,24 +112,22 @@ public final class GetAsyncSearchRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetAsyncSearchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetAsyncSearchRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAsyncSearchRequest> {
 		private String id;
 
 		@Nullable
-		private String keepAlive;
+		private Time keepAlive;
 
 		@Nullable
-		private Boolean typedKeys;
-
-		@Nullable
-		private String waitForCompletionTimeout;
+		private Time waitForCompletionTimeout;
 
 		/**
 		 * Required - The async search ID
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -144,19 +138,28 @@ public final class GetAsyncSearchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable Time value) {
 			this.keepAlive = value;
 			return this;
 		}
 
 		/**
-		 * Specify whether aggregation and suggester names should be prefixed by their
-		 * respective types in the response
+		 * Specify the time interval in which the results (partial or final) for this
+		 * search will be available
 		 * <p>
-		 * API name: {@code typed_keys}
+		 * API name: {@code keep_alive}
 		 */
-		public Builder typedKeys(@Nullable Boolean value) {
-			this.typedKeys = value;
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Specify the time that the request should block waiting for the final response
+		 * <p>
+		 * API name: {@code wait_for_completion_timeout}
+		 */
+		public final Builder waitForCompletionTimeout(@Nullable Time value) {
+			this.waitForCompletionTimeout = value;
 			return this;
 		}
 
@@ -165,9 +168,8 @@ public final class GetAsyncSearchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion_timeout}
 		 */
-		public Builder waitForCompletionTimeout(@Nullable String value) {
-			this.waitForCompletionTimeout = value;
-			return this;
+		public final Builder waitForCompletionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.waitForCompletionTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -177,6 +179,7 @@ public final class GetAsyncSearchRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetAsyncSearchRequest build() {
+			_checkSingleUse();
 
 			return new GetAsyncSearchRequest(this);
 		}
@@ -187,7 +190,8 @@ public final class GetAsyncSearchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code async_search.get}".
 	 */
-	private static final SimpleEndpoint<GetAsyncSearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<GetAsyncSearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/async_search.get",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -216,25 +220,23 @@ public final class GetAsyncSearchRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("typed_keys", "true");
 				if (request.keepAlive != null) {
-					params.put("keep_alive", request.keepAlive);
-				}
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
+					params.put("keep_alive", request.keepAlive._toJsonString());
 				}
 				if (request.waitForCompletionTimeout != null) {
-					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout);
+					params.put("wait_for_completion_timeout", request.waitForCompletionTimeout._toJsonString());
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, GetAsyncSearchResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code async_search.get}" endpoint.
 	 */
-	public static <TDocument> Endpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ElasticsearchError> createGetEndpoint(
+	public static <TDocument> Endpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ErrorResponse> createGetEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				GetAsyncSearchResponse.createGetAsyncSearchResponseDeserializer(tDocumentDeserializer));
 	}
 }

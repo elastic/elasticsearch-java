@@ -23,50 +23,59 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcess
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L244-L247">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterProcess implements JsonpSerializable {
+public class ClusterProcess implements JsonpSerializable {
 	private final ClusterProcessCpu cpu;
 
 	private final ClusterProcessOpenFileDescriptors openFileDescriptors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterProcess(Builder builder) {
+	private ClusterProcess(Builder builder) {
 
-		this.cpu = Objects.requireNonNull(builder.cpu, "cpu");
-		this.openFileDescriptors = Objects.requireNonNull(builder.openFileDescriptors, "open_file_descriptors");
+		this.cpu = ApiTypeHelper.requireNonNull(builder.cpu, this, "cpu");
+		this.openFileDescriptors = ApiTypeHelper.requireNonNull(builder.openFileDescriptors, this,
+				"openFileDescriptors");
 
 	}
 
-	public ClusterProcess(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterProcess of(Function<Builder, ObjectBuilder<ClusterProcess>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cpu}
 	 */
-	public ClusterProcessCpu cpu() {
+	public final ClusterProcessCpu cpu() {
 		return this.cpu;
 	}
 
 	/**
 	 * Required - API name: {@code open_file_descriptors}
 	 */
-	public ClusterProcessOpenFileDescriptors openFileDescriptors() {
+	public final ClusterProcessOpenFileDescriptors openFileDescriptors() {
 		return this.openFileDescriptors;
 	}
 
@@ -94,7 +103,8 @@ public final class ClusterProcess implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcess}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterProcess> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcess> {
 		private ClusterProcessCpu cpu;
 
 		private ClusterProcessOpenFileDescriptors openFileDescriptors;
@@ -102,7 +112,7 @@ public final class ClusterProcess implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public Builder cpu(ClusterProcessCpu value) {
+		public final Builder cpu(ClusterProcessCpu value) {
 			this.cpu = value;
 			return this;
 		}
@@ -110,14 +120,14 @@ public final class ClusterProcess implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public Builder cpu(Function<ClusterProcessCpu.Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
+		public final Builder cpu(Function<ClusterProcessCpu.Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
 			return this.cpu(fn.apply(new ClusterProcessCpu.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code open_file_descriptors}
 		 */
-		public Builder openFileDescriptors(ClusterProcessOpenFileDescriptors value) {
+		public final Builder openFileDescriptors(ClusterProcessOpenFileDescriptors value) {
 			this.openFileDescriptors = value;
 			return this;
 		}
@@ -125,7 +135,7 @@ public final class ClusterProcess implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code open_file_descriptors}
 		 */
-		public Builder openFileDescriptors(
+		public final Builder openFileDescriptors(
 				Function<ClusterProcessOpenFileDescriptors.Builder, ObjectBuilder<ClusterProcessOpenFileDescriptors>> fn) {
 			return this.openFileDescriptors(fn.apply(new ClusterProcessOpenFileDescriptors.Builder()).build());
 		}
@@ -137,6 +147,7 @@ public final class ClusterProcess implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterProcess build() {
+			_checkSingleUse();
 
 			return new ClusterProcess(this);
 		}
@@ -148,9 +159,9 @@ public final class ClusterProcess implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterProcess}
 	 */
 	public static final JsonpDeserializer<ClusterProcess> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ClusterProcess::setupClusterProcessDeserializer, Builder::build);
+			ClusterProcess::setupClusterProcessDeserializer);
 
-	protected static void setupClusterProcessDeserializer(DelegatingDeserializer<ClusterProcess.Builder> op) {
+	protected static void setupClusterProcessDeserializer(ObjectDeserializer<ClusterProcess.Builder> op) {
 
 		op.add(Builder::cpu, ClusterProcessCpu._DESERIALIZER, "cpu");
 		op.add(Builder::openFileDescriptors, ClusterProcessOpenFileDescriptors._DESERIALIZER, "open_file_descriptors");

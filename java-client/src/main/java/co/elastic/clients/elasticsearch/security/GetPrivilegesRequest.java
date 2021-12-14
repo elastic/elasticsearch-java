@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,7 +42,15 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_privileges.Request
 
-public final class GetPrivilegesRequest extends RequestBase {
+/**
+ * Retrieves application privileges.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_privileges/SecurityGetPrivilegesRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
+public class GetPrivilegesRequest extends RequestBase {
 	@Nullable
 	private final String application;
 
@@ -50,15 +59,15 @@ public final class GetPrivilegesRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPrivilegesRequest(Builder builder) {
+	private GetPrivilegesRequest(Builder builder) {
 
 		this.application = builder.application;
 		this.name = builder.name;
 
 	}
 
-	public GetPrivilegesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPrivilegesRequest of(Function<Builder, ObjectBuilder<GetPrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +76,7 @@ public final class GetPrivilegesRequest extends RequestBase {
 	 * API name: {@code application}
 	 */
 	@Nullable
-	public String application() {
+	public final String application() {
 		return this.application;
 	}
 
@@ -77,7 +86,7 @@ public final class GetPrivilegesRequest extends RequestBase {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -86,7 +95,8 @@ public final class GetPrivilegesRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetPrivilegesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetPrivilegesRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPrivilegesRequest> {
 		@Nullable
 		private String application;
 
@@ -98,7 +108,7 @@ public final class GetPrivilegesRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code application}
 		 */
-		public Builder application(@Nullable String value) {
+		public final Builder application(@Nullable String value) {
 			this.application = value;
 			return this;
 		}
@@ -108,7 +118,7 @@ public final class GetPrivilegesRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -120,6 +130,7 @@ public final class GetPrivilegesRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetPrivilegesRequest build() {
+			_checkSingleUse();
 
 			return new GetPrivilegesRequest(this);
 		}
@@ -130,7 +141,9 @@ public final class GetPrivilegesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_privileges}".
 	 */
-	public static final Endpoint<GetPrivilegesRequest, GetPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetPrivilegesRequest, GetPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_privileges",
+
 			// Request method
 			request -> {
 				return "GET";

@@ -23,28 +23,33 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Execution.ts#L59-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ExecutionResult implements JsonpSerializable {
+public class ExecutionResult implements JsonpSerializable {
 	private final List<ExecutionResultAction> actions;
 
 	private final ExecutionResultCondition condition;
@@ -57,52 +62,52 @@ public final class ExecutionResult implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecutionResult(Builder builder) {
+	private ExecutionResult(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
-		this.condition = Objects.requireNonNull(builder.condition, "condition");
-		this.executionDuration = Objects.requireNonNull(builder.executionDuration, "execution_duration");
-		this.executionTime = Objects.requireNonNull(builder.executionTime, "execution_time");
-		this.input = Objects.requireNonNull(builder.input, "input");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
+		this.executionDuration = ApiTypeHelper.requireNonNull(builder.executionDuration, this, "executionDuration");
+		this.executionTime = ApiTypeHelper.requireNonNull(builder.executionTime, this, "executionTime");
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 
 	}
 
-	public ExecutionResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecutionResult of(Function<Builder, ObjectBuilder<ExecutionResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code actions}
 	 */
-	public List<ExecutionResultAction> actions() {
+	public final List<ExecutionResultAction> actions() {
 		return this.actions;
 	}
 
 	/**
 	 * Required - API name: {@code condition}
 	 */
-	public ExecutionResultCondition condition() {
+	public final ExecutionResultCondition condition() {
 		return this.condition;
 	}
 
 	/**
 	 * Required - API name: {@code execution_duration}
 	 */
-	public int executionDuration() {
+	public final int executionDuration() {
 		return this.executionDuration;
 	}
 
 	/**
 	 * Required - API name: {@code execution_time}
 	 */
-	public String executionTime() {
+	public final String executionTime() {
 		return this.executionTime;
 	}
 
 	/**
 	 * Required - API name: {@code input}
 	 */
-	public ExecutionResultInput input() {
+	public final ExecutionResultInput input() {
 		return this.input;
 	}
 
@@ -117,14 +122,16 @@ public final class ExecutionResult implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("actions");
-		generator.writeStartArray();
-		for (ExecutionResultAction item0 : this.actions) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.actions)) {
+			generator.writeKey("actions");
+			generator.writeStartArray();
+			for (ExecutionResultAction item0 : this.actions) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("condition");
 		this.condition.serialize(generator, mapper);
 
@@ -144,7 +151,8 @@ public final class ExecutionResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionResult}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecutionResult> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionResult> {
 		private List<ExecutionResultAction> actions;
 
 		private ExecutionResultCondition condition;
@@ -157,49 +165,37 @@ public final class ExecutionResult implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 */
-		public Builder actions(List<ExecutionResultAction> value) {
-			this.actions = value;
+		public final Builder actions(List<ExecutionResultAction> list) {
+			this.actions = _listAddAll(this.actions, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
 		 */
-		public Builder actions(ExecutionResultAction... value) {
-			this.actions = Arrays.asList(value);
+		public final Builder actions(ExecutionResultAction value, ExecutionResultAction... values) {
+			this.actions = _listAdd(this.actions, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds a value to <code>actions</code> using a builder lambda.
 		 */
-		public Builder addActions(ExecutionResultAction value) {
-			if (this.actions == null) {
-				this.actions = new ArrayList<>();
-			}
-			this.actions.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #actions(List)} to a singleton list.
-		 */
-		public Builder actions(Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>> fn) {
-			return this.actions(fn.apply(new ExecutionResultAction.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
-		 */
-		public Builder addActions(Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>> fn) {
-			return this.addActions(fn.apply(new ExecutionResultAction.Builder()).build());
+		public final Builder actions(Function<ExecutionResultAction.Builder, ObjectBuilder<ExecutionResultAction>> fn) {
+			return actions(fn.apply(new ExecutionResultAction.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public Builder condition(ExecutionResultCondition value) {
+		public final Builder condition(ExecutionResultCondition value) {
 			this.condition = value;
 			return this;
 		}
@@ -207,7 +203,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public Builder condition(
+		public final Builder condition(
 				Function<ExecutionResultCondition.Builder, ObjectBuilder<ExecutionResultCondition>> fn) {
 			return this.condition(fn.apply(new ExecutionResultCondition.Builder()).build());
 		}
@@ -215,7 +211,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code execution_duration}
 		 */
-		public Builder executionDuration(int value) {
+		public final Builder executionDuration(int value) {
 			this.executionDuration = value;
 			return this;
 		}
@@ -223,7 +219,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code execution_time}
 		 */
-		public Builder executionTime(String value) {
+		public final Builder executionTime(String value) {
 			this.executionTime = value;
 			return this;
 		}
@@ -231,7 +227,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public Builder input(ExecutionResultInput value) {
+		public final Builder input(ExecutionResultInput value) {
 			this.input = value;
 			return this;
 		}
@@ -239,7 +235,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public Builder input(Function<ExecutionResultInput.Builder, ObjectBuilder<ExecutionResultInput>> fn) {
+		public final Builder input(Function<ExecutionResultInput.Builder, ObjectBuilder<ExecutionResultInput>> fn) {
 			return this.input(fn.apply(new ExecutionResultInput.Builder()).build());
 		}
 
@@ -250,6 +246,7 @@ public final class ExecutionResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecutionResult build() {
+			_checkSingleUse();
 
 			return new ExecutionResult(this);
 		}
@@ -261,9 +258,9 @@ public final class ExecutionResult implements JsonpSerializable {
 	 * Json deserializer for {@link ExecutionResult}
 	 */
 	public static final JsonpDeserializer<ExecutionResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExecutionResult::setupExecutionResultDeserializer, Builder::build);
+			ExecutionResult::setupExecutionResultDeserializer);
 
-	protected static void setupExecutionResultDeserializer(DelegatingDeserializer<ExecutionResult.Builder> op) {
+	protected static void setupExecutionResultDeserializer(ObjectDeserializer<ExecutionResult.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(ExecutionResultAction._DESERIALIZER), "actions");
 		op.add(Builder::condition, ExecutionResultCondition._DESERIALIZER, "condition");

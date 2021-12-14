@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.searchable_snapshots;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -33,10 +39,22 @@ import javax.annotation.Nullable;
 /**
  * Client for the searchable_snapshots namespace.
  */
-public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
+public class ElasticsearchSearchableSnapshotsClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchSearchableSnapshotsClient> {
 
-	public ElasticsearchSearchableSnapshotsClient(Transport transport) {
-		super(transport);
+	public ElasticsearchSearchableSnapshotsClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchSearchableSnapshotsClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSearchableSnapshotsClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSearchableSnapshotsClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: searchable_snapshots.clear_cache
@@ -49,24 +67,26 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException {
-		return this.transport.performRequest(request, ClearCacheRequest.ENDPOINT);
+	public ClearCacheResponse clearCache(ClearCacheRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse>) ClearCacheRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Clear the cache of searchable snapshots.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearCacheRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ClearCacheResponse clearCache(Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
@@ -78,8 +98,9 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ClearCacheResponse clearCache() throws IOException {
-		return this.transport.performRequest(new ClearCacheRequest.Builder().build(), ClearCacheRequest.ENDPOINT);
+	public ClearCacheResponse clearCache() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new ClearCacheRequest.Builder().build(), ClearCacheRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: searchable_snapshots.mount
@@ -92,24 +113,26 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public MountResponse mount(MountRequest request) throws IOException {
-		return this.transport.performRequest(request, MountRequest.ENDPOINT);
+	public MountResponse mount(MountRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MountRequest, MountResponse, ErrorResponse> endpoint = (JsonEndpoint<MountRequest, MountResponse, ErrorResponse>) MountRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Mount a snapshot as a searchable index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MountRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-api-mount-snapshot.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final MountResponse mount(Function<MountRequest.Builder, ObjectBuilder<MountRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return mount(fn.apply(new MountRequest.Builder()).build());
 	}
 
@@ -123,17 +146,20 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SearchableSnapshotsStatsResponse stats(SearchableSnapshotsStatsRequest request) throws IOException {
-		return this.transport.performRequest(request, SearchableSnapshotsStatsRequest.ENDPOINT);
+	public SearchableSnapshotsStatsResponse stats(SearchableSnapshotsStatsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchableSnapshotsStatsRequest, SearchableSnapshotsStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<SearchableSnapshotsStatsRequest, SearchableSnapshotsStatsResponse, ErrorResponse>) SearchableSnapshotsStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Retrieve shard-level statistics about searchable snapshots.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SearchableSnapshotsStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
 	 *      on elastic.co</a>
@@ -141,7 +167,7 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 
 	public final SearchableSnapshotsStatsResponse stats(
 			Function<SearchableSnapshotsStatsRequest.Builder, ObjectBuilder<SearchableSnapshotsStatsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return stats(fn.apply(new SearchableSnapshotsStatsRequest.Builder()).build());
 	}
 
@@ -153,9 +179,9 @@ public class ElasticsearchSearchableSnapshotsClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SearchableSnapshotsStatsResponse stats() throws IOException {
+	public SearchableSnapshotsStatsResponse stats() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new SearchableSnapshotsStatsRequest.Builder().build(),
-				SearchableSnapshotsStatsRequest.ENDPOINT);
+				SearchableSnapshotsStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
 }

@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -34,10 +40,22 @@ import javax.annotation.Nullable;
 /**
  * Client for the security namespace.
  */
-public class ElasticsearchSecurityAsyncClient extends ApiClient {
+public class ElasticsearchSecurityAsyncClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchSecurityAsyncClient> {
 
-	public ElasticsearchSecurityAsyncClient(Transport transport) {
-		super(transport);
+	public ElasticsearchSecurityAsyncClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchSecurityAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSecurityAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSecurityAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: security.authenticate
@@ -50,8 +68,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-authenticate.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<AuthenticateResponse> authenticate() throws IOException {
-		return this.transport.performRequestAsync(AuthenticateRequest._INSTANCE, AuthenticateRequest.ENDPOINT);
+	public CompletableFuture<AuthenticateResponse> authenticate() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(AuthenticateRequest._INSTANCE, AuthenticateRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.change_password
@@ -64,24 +83,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ChangePasswordResponse> changePassword(ChangePasswordRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ChangePasswordRequest.ENDPOINT);
+	public CompletableFuture<ChangePasswordResponse> changePassword(ChangePasswordRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ChangePasswordRequest, ChangePasswordResponse, ErrorResponse> endpoint = (JsonEndpoint<ChangePasswordRequest, ChangePasswordResponse, ErrorResponse>) ChangePasswordRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Changes the passwords of users in the native realm and built-in users.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ChangePasswordRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-change-password.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ChangePasswordResponse> changePassword(
-			Function<ChangePasswordRequest.Builder, ObjectBuilder<ChangePasswordRequest>> fn) throws IOException {
+			Function<ChangePasswordRequest.Builder, ObjectBuilder<ChangePasswordRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return changePassword(fn.apply(new ChangePasswordRequest.Builder()).build());
 	}
 
@@ -93,9 +116,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ChangePasswordResponse> changePassword() throws IOException {
+	public CompletableFuture<ChangePasswordResponse> changePassword() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new ChangePasswordRequest.Builder().build(),
-				ChangePasswordRequest.ENDPOINT);
+				ChangePasswordRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.clear_api_key_cache
@@ -109,24 +132,27 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<ClearApiKeyCacheResponse> clearApiKeyCache(ClearApiKeyCacheRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, ClearApiKeyCacheRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClearApiKeyCacheRequest, ClearApiKeyCacheResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearApiKeyCacheRequest, ClearApiKeyCacheResponse, ErrorResponse>) ClearApiKeyCacheRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Clear a subset or all entries from the API key cache.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearApiKeyCacheRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-api-key-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClearApiKeyCacheResponse> clearApiKeyCache(
-			Function<ClearApiKeyCacheRequest.Builder, ObjectBuilder<ClearApiKeyCacheRequest>> fn) throws IOException {
+			Function<ClearApiKeyCacheRequest.Builder, ObjectBuilder<ClearApiKeyCacheRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return clearApiKeyCache(fn.apply(new ClearApiKeyCacheRequest.Builder()).build());
 	}
 
@@ -141,17 +167,19 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<ClearCachedPrivilegesResponse> clearCachedPrivileges(ClearCachedPrivilegesRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, ClearCachedPrivilegesRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClearCachedPrivilegesRequest, ClearCachedPrivilegesResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearCachedPrivilegesRequest, ClearCachedPrivilegesResponse, ErrorResponse>) ClearCachedPrivilegesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Evicts application privileges from the native application privileges cache.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearCachedPrivilegesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-privilege-cache.html">Documentation
 	 *      on elastic.co</a>
@@ -159,7 +187,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public final CompletableFuture<ClearCachedPrivilegesResponse> clearCachedPrivileges(
 			Function<ClearCachedPrivilegesRequest.Builder, ObjectBuilder<ClearCachedPrivilegesRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return clearCachedPrivileges(fn.apply(new ClearCachedPrivilegesRequest.Builder()).build());
 	}
 
@@ -175,8 +203,11 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<ClearCachedRealmsResponse> clearCachedRealms(ClearCachedRealmsRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, ClearCachedRealmsRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClearCachedRealmsRequest, ClearCachedRealmsResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearCachedRealmsRequest, ClearCachedRealmsResponse, ErrorResponse>) ClearCachedRealmsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -184,16 +215,16 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 * specific users.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearCachedRealmsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClearCachedRealmsResponse> clearCachedRealms(
-			Function<ClearCachedRealmsRequest.Builder, ObjectBuilder<ClearCachedRealmsRequest>> fn) throws IOException {
+			Function<ClearCachedRealmsRequest.Builder, ObjectBuilder<ClearCachedRealmsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return clearCachedRealms(fn.apply(new ClearCachedRealmsRequest.Builder()).build());
 	}
 
@@ -208,24 +239,27 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<ClearCachedRolesResponse> clearCachedRoles(ClearCachedRolesRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, ClearCachedRolesRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClearCachedRolesRequest, ClearCachedRolesResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearCachedRolesRequest, ClearCachedRolesResponse, ErrorResponse>) ClearCachedRolesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Evicts roles from the native role cache.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearCachedRolesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-role-cache.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClearCachedRolesResponse> clearCachedRoles(
-			Function<ClearCachedRolesRequest.Builder, ObjectBuilder<ClearCachedRolesRequest>> fn) throws IOException {
+			Function<ClearCachedRolesRequest.Builder, ObjectBuilder<ClearCachedRolesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return clearCachedRoles(fn.apply(new ClearCachedRolesRequest.Builder()).build());
 	}
 
@@ -240,17 +274,19 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<ClearCachedServiceTokensResponse> clearCachedServiceTokens(
-			ClearCachedServiceTokensRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ClearCachedServiceTokensRequest.ENDPOINT);
+			ClearCachedServiceTokensRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClearCachedServiceTokensRequest, ClearCachedServiceTokensResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearCachedServiceTokensRequest, ClearCachedServiceTokensResponse, ErrorResponse>) ClearCachedServiceTokensRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Evicts tokens from the service account token caches.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearCachedServiceTokensRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-clear-service-token-caches.html">Documentation
 	 *      on elastic.co</a>
@@ -258,7 +294,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public final CompletableFuture<ClearCachedServiceTokensResponse> clearCachedServiceTokens(
 			Function<ClearCachedServiceTokensRequest.Builder, ObjectBuilder<ClearCachedServiceTokensRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return clearCachedServiceTokens(fn.apply(new ClearCachedServiceTokensRequest.Builder()).build());
 	}
 
@@ -272,24 +308,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CreateApiKeyResponse> createApiKey(CreateApiKeyRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, CreateApiKeyRequest.ENDPOINT);
+	public CompletableFuture<CreateApiKeyResponse> createApiKey(CreateApiKeyRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateApiKeyRequest, CreateApiKeyResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateApiKeyRequest, CreateApiKeyResponse, ErrorResponse>) CreateApiKeyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates an API key for access without requiring basic authentication.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateApiKeyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CreateApiKeyResponse> createApiKey(
-			Function<CreateApiKeyRequest.Builder, ObjectBuilder<CreateApiKeyRequest>> fn) throws IOException {
+			Function<CreateApiKeyRequest.Builder, ObjectBuilder<CreateApiKeyRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return createApiKey(fn.apply(new CreateApiKeyRequest.Builder()).build());
 	}
 
@@ -301,9 +341,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CreateApiKeyResponse> createApiKey() throws IOException {
+	public CompletableFuture<CreateApiKeyResponse> createApiKey() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new CreateApiKeyRequest.Builder().build(),
-				CreateApiKeyRequest.ENDPOINT);
+				CreateApiKeyRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.create_service_token
@@ -318,8 +358,11 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<CreateServiceTokenResponse> createServiceToken(CreateServiceTokenRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, CreateServiceTokenRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ErrorResponse>) CreateServiceTokenRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -327,9 +370,8 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 * authentication.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateServiceTokenRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-service-token.html">Documentation
 	 *      on elastic.co</a>
@@ -337,7 +379,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public final CompletableFuture<CreateServiceTokenResponse> createServiceToken(
 			Function<CreateServiceTokenRequest.Builder, ObjectBuilder<CreateServiceTokenRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return createServiceToken(fn.apply(new CreateServiceTokenRequest.Builder()).build());
 	}
 
@@ -352,24 +394,27 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<DeletePrivilegesResponse> deletePrivileges(DeletePrivilegesRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, DeletePrivilegesRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeletePrivilegesRequest, DeletePrivilegesResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePrivilegesRequest, DeletePrivilegesResponse, ErrorResponse>) DeletePrivilegesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Removes application privileges.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeletePrivilegesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-privilege.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeletePrivilegesResponse> deletePrivileges(
-			Function<DeletePrivilegesRequest.Builder, ObjectBuilder<DeletePrivilegesRequest>> fn) throws IOException {
+			Function<DeletePrivilegesRequest.Builder, ObjectBuilder<DeletePrivilegesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deletePrivileges(fn.apply(new DeletePrivilegesRequest.Builder()).build());
 	}
 
@@ -383,24 +428,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteRoleResponse> deleteRole(DeleteRoleRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteRoleRequest.ENDPOINT);
+	public CompletableFuture<DeleteRoleResponse> deleteRole(DeleteRoleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteRoleRequest, DeleteRoleResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteRoleRequest, DeleteRoleResponse, ErrorResponse>) DeleteRoleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Removes roles in the native realm.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteRoleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteRoleResponse> deleteRole(
-			Function<DeleteRoleRequest.Builder, ObjectBuilder<DeleteRoleRequest>> fn) throws IOException {
+			Function<DeleteRoleRequest.Builder, ObjectBuilder<DeleteRoleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteRole(fn.apply(new DeleteRoleRequest.Builder()).build());
 	}
 
@@ -415,24 +464,27 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<DeleteRoleMappingResponse> deleteRoleMapping(DeleteRoleMappingRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, DeleteRoleMappingRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteRoleMappingRequest, DeleteRoleMappingResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteRoleMappingRequest, DeleteRoleMappingResponse, ErrorResponse>) DeleteRoleMappingRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Removes role mappings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteRoleMappingRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-role-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteRoleMappingResponse> deleteRoleMapping(
-			Function<DeleteRoleMappingRequest.Builder, ObjectBuilder<DeleteRoleMappingRequest>> fn) throws IOException {
+			Function<DeleteRoleMappingRequest.Builder, ObjectBuilder<DeleteRoleMappingRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteRoleMapping(fn.apply(new DeleteRoleMappingRequest.Builder()).build());
 	}
 
@@ -447,17 +499,19 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<DeleteServiceTokenResponse> deleteServiceToken(DeleteServiceTokenRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, DeleteServiceTokenRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteServiceTokenRequest, DeleteServiceTokenResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteServiceTokenRequest, DeleteServiceTokenResponse, ErrorResponse>) DeleteServiceTokenRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes a service account token.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteServiceTokenRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-service-token.html">Documentation
 	 *      on elastic.co</a>
@@ -465,7 +519,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public final CompletableFuture<DeleteServiceTokenResponse> deleteServiceToken(
 			Function<DeleteServiceTokenRequest.Builder, ObjectBuilder<DeleteServiceTokenRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteServiceToken(fn.apply(new DeleteServiceTokenRequest.Builder()).build());
 	}
 
@@ -479,24 +533,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteUserResponse> deleteUser(DeleteUserRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteUserRequest.ENDPOINT);
+	public CompletableFuture<DeleteUserResponse> deleteUser(DeleteUserRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteUserRequest, DeleteUserResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteUserRequest, DeleteUserResponse, ErrorResponse>) DeleteUserRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes users from the native realm.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteUserRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-delete-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteUserResponse> deleteUser(
-			Function<DeleteUserRequest.Builder, ObjectBuilder<DeleteUserRequest>> fn) throws IOException {
+			Function<DeleteUserRequest.Builder, ObjectBuilder<DeleteUserRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteUser(fn.apply(new DeleteUserRequest.Builder()).build());
 	}
 
@@ -510,24 +568,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DisableUserResponse> disableUser(DisableUserRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DisableUserRequest.ENDPOINT);
+	public CompletableFuture<DisableUserResponse> disableUser(DisableUserRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DisableUserRequest, DisableUserResponse, ErrorResponse> endpoint = (JsonEndpoint<DisableUserRequest, DisableUserResponse, ErrorResponse>) DisableUserRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Disables users in the native realm.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DisableUserRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-disable-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DisableUserResponse> disableUser(
-			Function<DisableUserRequest.Builder, ObjectBuilder<DisableUserRequest>> fn) throws IOException {
+			Function<DisableUserRequest.Builder, ObjectBuilder<DisableUserRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return disableUser(fn.apply(new DisableUserRequest.Builder()).build());
 	}
 
@@ -541,24 +603,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<EnableUserResponse> enableUser(EnableUserRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, EnableUserRequest.ENDPOINT);
+	public CompletableFuture<EnableUserResponse> enableUser(EnableUserRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EnableUserRequest, EnableUserResponse, ErrorResponse> endpoint = (JsonEndpoint<EnableUserRequest, EnableUserResponse, ErrorResponse>) EnableUserRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Enables users in the native realm.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link EnableUserRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-enable-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<EnableUserResponse> enableUser(
-			Function<EnableUserRequest.Builder, ObjectBuilder<EnableUserRequest>> fn) throws IOException {
+			Function<EnableUserRequest.Builder, ObjectBuilder<EnableUserRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return enableUser(fn.apply(new EnableUserRequest.Builder()).build());
 	}
 
@@ -572,24 +638,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetApiKeyResponse> getApiKey(GetApiKeyRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetApiKeyRequest.ENDPOINT);
+	public CompletableFuture<GetApiKeyResponse> getApiKey(GetApiKeyRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetApiKeyRequest, GetApiKeyResponse, ErrorResponse> endpoint = (JsonEndpoint<GetApiKeyRequest, GetApiKeyResponse, ErrorResponse>) GetApiKeyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Retrieves information for one or more API keys.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetApiKeyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetApiKeyResponse> getApiKey(
-			Function<GetApiKeyRequest.Builder, ObjectBuilder<GetApiKeyRequest>> fn) throws IOException {
+			Function<GetApiKeyRequest.Builder, ObjectBuilder<GetApiKeyRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getApiKey(fn.apply(new GetApiKeyRequest.Builder()).build());
 	}
 
@@ -601,8 +671,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetApiKeyResponse> getApiKey() throws IOException {
-		return this.transport.performRequestAsync(new GetApiKeyRequest.Builder().build(), GetApiKeyRequest.ENDPOINT);
+	public CompletableFuture<GetApiKeyResponse> getApiKey() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new GetApiKeyRequest.Builder().build(), GetApiKeyRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_builtin_privileges
@@ -615,9 +686,10 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-builtin-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetBuiltinPrivilegesResponse> getBuiltinPrivileges() throws IOException {
+	public CompletableFuture<GetBuiltinPrivilegesResponse> getBuiltinPrivileges()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetBuiltinPrivilegesRequest._INSTANCE,
-				GetBuiltinPrivilegesRequest.ENDPOINT);
+				GetBuiltinPrivilegesRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_privileges
@@ -630,24 +702,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetPrivilegesResponse> getPrivileges(GetPrivilegesRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetPrivilegesRequest.ENDPOINT);
+	public CompletableFuture<GetPrivilegesResponse> getPrivileges(GetPrivilegesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetPrivilegesRequest, GetPrivilegesResponse, ErrorResponse> endpoint = (JsonEndpoint<GetPrivilegesRequest, GetPrivilegesResponse, ErrorResponse>) GetPrivilegesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Retrieves application privileges.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetPrivilegesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetPrivilegesResponse> getPrivileges(
-			Function<GetPrivilegesRequest.Builder, ObjectBuilder<GetPrivilegesRequest>> fn) throws IOException {
+			Function<GetPrivilegesRequest.Builder, ObjectBuilder<GetPrivilegesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getPrivileges(fn.apply(new GetPrivilegesRequest.Builder()).build());
 	}
 
@@ -659,9 +735,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetPrivilegesResponse> getPrivileges() throws IOException {
+	public CompletableFuture<GetPrivilegesResponse> getPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetPrivilegesRequest.Builder().build(),
-				GetPrivilegesRequest.ENDPOINT);
+				GetPrivilegesRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_role
@@ -674,24 +750,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRoleResponse> getRole(GetRoleRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetRoleRequest.ENDPOINT);
+	public CompletableFuture<GetRoleResponse> getRole(GetRoleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRoleRequest, GetRoleResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRoleRequest, GetRoleResponse, ErrorResponse>) GetRoleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Retrieves roles in the native realm.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRoleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetRoleResponse> getRole(
-			Function<GetRoleRequest.Builder, ObjectBuilder<GetRoleRequest>> fn) throws IOException {
+			Function<GetRoleRequest.Builder, ObjectBuilder<GetRoleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getRole(fn.apply(new GetRoleRequest.Builder()).build());
 	}
 
@@ -703,8 +783,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRoleResponse> getRole() throws IOException {
-		return this.transport.performRequestAsync(new GetRoleRequest.Builder().build(), GetRoleRequest.ENDPOINT);
+	public CompletableFuture<GetRoleResponse> getRole() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new GetRoleRequest.Builder().build(), GetRoleRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_role_mapping
@@ -717,24 +798,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRoleMappingResponse> getRoleMapping(GetRoleMappingRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetRoleMappingRequest.ENDPOINT);
+	public CompletableFuture<GetRoleMappingResponse> getRoleMapping(GetRoleMappingRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRoleMappingRequest, GetRoleMappingResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRoleMappingRequest, GetRoleMappingResponse, ErrorResponse>) GetRoleMappingRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Retrieves role mappings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRoleMappingRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-role-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetRoleMappingResponse> getRoleMapping(
-			Function<GetRoleMappingRequest.Builder, ObjectBuilder<GetRoleMappingRequest>> fn) throws IOException {
+			Function<GetRoleMappingRequest.Builder, ObjectBuilder<GetRoleMappingRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getRoleMapping(fn.apply(new GetRoleMappingRequest.Builder()).build());
 	}
 
@@ -746,9 +831,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRoleMappingResponse> getRoleMapping() throws IOException {
+	public CompletableFuture<GetRoleMappingResponse> getRoleMapping() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetRoleMappingRequest.Builder().build(),
-				GetRoleMappingRequest.ENDPOINT);
+				GetRoleMappingRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_service_accounts
@@ -762,17 +847,19 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetServiceAccountsResponse> getServiceAccounts(GetServiceAccountsRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, GetServiceAccountsRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetServiceAccountsRequest, GetServiceAccountsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetServiceAccountsRequest, GetServiceAccountsResponse, ErrorResponse>) GetServiceAccountsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Retrieves information about service accounts.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetServiceAccountsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-accounts.html">Documentation
 	 *      on elastic.co</a>
@@ -780,7 +867,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public final CompletableFuture<GetServiceAccountsResponse> getServiceAccounts(
 			Function<GetServiceAccountsRequest.Builder, ObjectBuilder<GetServiceAccountsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getServiceAccounts(fn.apply(new GetServiceAccountsRequest.Builder()).build());
 	}
 
@@ -792,9 +879,10 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetServiceAccountsResponse> getServiceAccounts() throws IOException {
+	public CompletableFuture<GetServiceAccountsResponse> getServiceAccounts()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetServiceAccountsRequest.Builder().build(),
-				GetServiceAccountsRequest.ENDPOINT);
+				GetServiceAccountsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_service_credentials
@@ -808,17 +896,19 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetServiceCredentialsResponse> getServiceCredentials(GetServiceCredentialsRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, GetServiceCredentialsRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetServiceCredentialsRequest, GetServiceCredentialsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetServiceCredentialsRequest, GetServiceCredentialsResponse, ErrorResponse>) GetServiceCredentialsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Retrieves information of all service credentials for a service account.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetServiceCredentialsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-service-credentials.html">Documentation
 	 *      on elastic.co</a>
@@ -826,7 +916,7 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 
 	public final CompletableFuture<GetServiceCredentialsResponse> getServiceCredentials(
 			Function<GetServiceCredentialsRequest.Builder, ObjectBuilder<GetServiceCredentialsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getServiceCredentials(fn.apply(new GetServiceCredentialsRequest.Builder()).build());
 	}
 
@@ -840,24 +930,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTokenResponse> getToken(GetTokenRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetTokenRequest.ENDPOINT);
+	public CompletableFuture<GetTokenResponse> getToken(GetTokenRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetTokenRequest, GetTokenResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTokenRequest, GetTokenResponse, ErrorResponse>) GetTokenRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates a bearer token for access without requiring basic authentication.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetTokenRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetTokenResponse> getToken(
-			Function<GetTokenRequest.Builder, ObjectBuilder<GetTokenRequest>> fn) throws IOException {
+			Function<GetTokenRequest.Builder, ObjectBuilder<GetTokenRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getToken(fn.apply(new GetTokenRequest.Builder()).build());
 	}
 
@@ -869,8 +963,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTokenResponse> getToken() throws IOException {
-		return this.transport.performRequestAsync(new GetTokenRequest.Builder().build(), GetTokenRequest.ENDPOINT);
+	public CompletableFuture<GetTokenResponse> getToken() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new GetTokenRequest.Builder().build(), GetTokenRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_user
@@ -883,24 +978,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetUserResponse> getUser(GetUserRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetUserRequest.ENDPOINT);
+	public CompletableFuture<GetUserResponse> getUser(GetUserRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetUserRequest, GetUserResponse, ErrorResponse> endpoint = (JsonEndpoint<GetUserRequest, GetUserResponse, ErrorResponse>) GetUserRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Retrieves information about users in the native realm and built-in users.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetUserRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetUserResponse> getUser(
-			Function<GetUserRequest.Builder, ObjectBuilder<GetUserRequest>> fn) throws IOException {
+			Function<GetUserRequest.Builder, ObjectBuilder<GetUserRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getUser(fn.apply(new GetUserRequest.Builder()).build());
 	}
 
@@ -912,8 +1011,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetUserResponse> getUser() throws IOException {
-		return this.transport.performRequestAsync(new GetUserRequest.Builder().build(), GetUserRequest.ENDPOINT);
+	public CompletableFuture<GetUserResponse> getUser() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new GetUserRequest.Builder().build(), GetUserRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_user_privileges
@@ -927,24 +1027,27 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges(GetUserPrivilegesRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, GetUserPrivilegesRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse> endpoint = (JsonEndpoint<GetUserPrivilegesRequest, GetUserPrivilegesResponse, ErrorResponse>) GetUserPrivilegesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Retrieves security privileges for the logged in user.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetUserPrivilegesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges(
-			Function<GetUserPrivilegesRequest.Builder, ObjectBuilder<GetUserPrivilegesRequest>> fn) throws IOException {
+			Function<GetUserPrivilegesRequest.Builder, ObjectBuilder<GetUserPrivilegesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getUserPrivileges(fn.apply(new GetUserPrivilegesRequest.Builder()).build());
 	}
 
@@ -956,9 +1059,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges() throws IOException {
+	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetUserPrivilegesRequest.Builder().build(),
-				GetUserPrivilegesRequest.ENDPOINT);
+				GetUserPrivilegesRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.grant_api_key
@@ -971,24 +1074,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GrantApiKeyResponse> grantApiKey(GrantApiKeyRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GrantApiKeyRequest.ENDPOINT);
+	public CompletableFuture<GrantApiKeyResponse> grantApiKey(GrantApiKeyRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GrantApiKeyRequest, GrantApiKeyResponse, ErrorResponse> endpoint = (JsonEndpoint<GrantApiKeyRequest, GrantApiKeyResponse, ErrorResponse>) GrantApiKeyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates an API key on behalf of another user.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GrantApiKeyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-grant-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GrantApiKeyResponse> grantApiKey(
-			Function<GrantApiKeyRequest.Builder, ObjectBuilder<GrantApiKeyRequest>> fn) throws IOException {
+			Function<GrantApiKeyRequest.Builder, ObjectBuilder<GrantApiKeyRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return grantApiKey(fn.apply(new GrantApiKeyRequest.Builder()).build());
 	}
 
@@ -1002,24 +1109,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HasPrivilegesResponse> hasPrivileges(HasPrivilegesRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, HasPrivilegesRequest.ENDPOINT);
+	public CompletableFuture<HasPrivilegesResponse> hasPrivileges(HasPrivilegesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<HasPrivilegesRequest, HasPrivilegesResponse, ErrorResponse> endpoint = (JsonEndpoint<HasPrivilegesRequest, HasPrivilegesResponse, ErrorResponse>) HasPrivilegesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Determines whether the specified user has a specified list of privileges.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link HasPrivilegesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<HasPrivilegesResponse> hasPrivileges(
-			Function<HasPrivilegesRequest.Builder, ObjectBuilder<HasPrivilegesRequest>> fn) throws IOException {
+			Function<HasPrivilegesRequest.Builder, ObjectBuilder<HasPrivilegesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return hasPrivileges(fn.apply(new HasPrivilegesRequest.Builder()).build());
 	}
 
@@ -1031,9 +1142,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HasPrivilegesResponse> hasPrivileges() throws IOException {
+	public CompletableFuture<HasPrivilegesResponse> hasPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new HasPrivilegesRequest.Builder().build(),
-				HasPrivilegesRequest.ENDPOINT);
+				HasPrivilegesRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.invalidate_api_key
@@ -1047,24 +1158,27 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<InvalidateApiKeyResponse> invalidateApiKey(InvalidateApiKeyRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, InvalidateApiKeyRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<InvalidateApiKeyRequest, InvalidateApiKeyResponse, ErrorResponse> endpoint = (JsonEndpoint<InvalidateApiKeyRequest, InvalidateApiKeyResponse, ErrorResponse>) InvalidateApiKeyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Invalidates one or more API keys.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link InvalidateApiKeyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-api-key.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<InvalidateApiKeyResponse> invalidateApiKey(
-			Function<InvalidateApiKeyRequest.Builder, ObjectBuilder<InvalidateApiKeyRequest>> fn) throws IOException {
+			Function<InvalidateApiKeyRequest.Builder, ObjectBuilder<InvalidateApiKeyRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return invalidateApiKey(fn.apply(new InvalidateApiKeyRequest.Builder()).build());
 	}
 
@@ -1076,9 +1190,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<InvalidateApiKeyResponse> invalidateApiKey() throws IOException {
+	public CompletableFuture<InvalidateApiKeyResponse> invalidateApiKey() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new InvalidateApiKeyRequest.Builder().build(),
-				InvalidateApiKeyRequest.ENDPOINT);
+				InvalidateApiKeyRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.invalidate_token
@@ -1092,24 +1206,27 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<InvalidateTokenResponse> invalidateToken(InvalidateTokenRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, InvalidateTokenRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<InvalidateTokenRequest, InvalidateTokenResponse, ErrorResponse> endpoint = (JsonEndpoint<InvalidateTokenRequest, InvalidateTokenResponse, ErrorResponse>) InvalidateTokenRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Invalidates one or more access tokens or refresh tokens.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link InvalidateTokenRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-invalidate-token.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<InvalidateTokenResponse> invalidateToken(
-			Function<InvalidateTokenRequest.Builder, ObjectBuilder<InvalidateTokenRequest>> fn) throws IOException {
+			Function<InvalidateTokenRequest.Builder, ObjectBuilder<InvalidateTokenRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return invalidateToken(fn.apply(new InvalidateTokenRequest.Builder()).build());
 	}
 
@@ -1121,9 +1238,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<InvalidateTokenResponse> invalidateToken() throws IOException {
+	public CompletableFuture<InvalidateTokenResponse> invalidateToken() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new InvalidateTokenRequest.Builder().build(),
-				InvalidateTokenRequest.ENDPOINT);
+				InvalidateTokenRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.put_privileges
@@ -1136,24 +1253,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutPrivilegesResponse> putPrivileges(PutPrivilegesRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PutPrivilegesRequest.ENDPOINT);
+	public CompletableFuture<PutPrivilegesResponse> putPrivileges(PutPrivilegesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutPrivilegesRequest, PutPrivilegesResponse, ErrorResponse> endpoint = (JsonEndpoint<PutPrivilegesRequest, PutPrivilegesResponse, ErrorResponse>) PutPrivilegesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Adds or updates application privileges.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutPrivilegesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-privileges.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutPrivilegesResponse> putPrivileges(
-			Function<PutPrivilegesRequest.Builder, ObjectBuilder<PutPrivilegesRequest>> fn) throws IOException {
+			Function<PutPrivilegesRequest.Builder, ObjectBuilder<PutPrivilegesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putPrivileges(fn.apply(new PutPrivilegesRequest.Builder()).build());
 	}
 
@@ -1165,9 +1286,9 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutPrivilegesResponse> putPrivileges() throws IOException {
+	public CompletableFuture<PutPrivilegesResponse> putPrivileges() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new PutPrivilegesRequest.Builder().build(),
-				PutPrivilegesRequest.ENDPOINT);
+				PutPrivilegesRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: security.put_role
@@ -1180,24 +1301,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutRoleResponse> putRole(PutRoleRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PutRoleRequest.ENDPOINT);
+	public CompletableFuture<PutRoleResponse> putRole(PutRoleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutRoleRequest, PutRoleResponse, ErrorResponse> endpoint = (JsonEndpoint<PutRoleRequest, PutRoleResponse, ErrorResponse>) PutRoleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Adds and updates roles in the native realm.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutRoleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutRoleResponse> putRole(
-			Function<PutRoleRequest.Builder, ObjectBuilder<PutRoleRequest>> fn) throws IOException {
+			Function<PutRoleRequest.Builder, ObjectBuilder<PutRoleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putRole(fn.apply(new PutRoleRequest.Builder()).build());
 	}
 
@@ -1211,24 +1336,28 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutRoleMappingResponse> putRoleMapping(PutRoleMappingRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PutRoleMappingRequest.ENDPOINT);
+	public CompletableFuture<PutRoleMappingResponse> putRoleMapping(PutRoleMappingRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutRoleMappingRequest, PutRoleMappingResponse, ErrorResponse> endpoint = (JsonEndpoint<PutRoleMappingRequest, PutRoleMappingResponse, ErrorResponse>) PutRoleMappingRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates and updates role mappings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutRoleMappingRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-role-mapping.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutRoleMappingResponse> putRoleMapping(
-			Function<PutRoleMappingRequest.Builder, ObjectBuilder<PutRoleMappingRequest>> fn) throws IOException {
+			Function<PutRoleMappingRequest.Builder, ObjectBuilder<PutRoleMappingRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putRoleMapping(fn.apply(new PutRoleMappingRequest.Builder()).build());
 	}
 
@@ -1243,8 +1372,12 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutUserResponse> putUser(PutUserRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PutUserRequest.ENDPOINT);
+	public CompletableFuture<PutUserResponse> putUser(PutUserRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutUserRequest, PutUserResponse, ErrorResponse> endpoint = (JsonEndpoint<PutUserRequest, PutUserResponse, ErrorResponse>) PutUserRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1252,16 +1385,16 @@ public class ElasticsearchSecurityAsyncClient extends ApiClient {
 	 * to as native users.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutUserRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-put-user.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutUserResponse> putUser(
-			Function<PutUserRequest.Builder, ObjectBuilder<PutUserRequest>> fn) throws IOException {
+			Function<PutUserRequest.Builder, ObjectBuilder<PutUserRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putUser(fn.apply(new PutUserRequest.Builder()).build());
 	}
 

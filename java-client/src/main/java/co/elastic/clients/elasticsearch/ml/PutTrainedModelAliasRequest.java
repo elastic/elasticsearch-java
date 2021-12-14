@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,27 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model_alias.Request
 
-public final class PutTrainedModelAliasRequest extends RequestBase {
+/**
+ * Creates or updates a trained model alias. A trained model alias is a logical
+ * name used to reference a single trained model. You can use aliases instead of
+ * trained model identifiers to make it easier to reference your models. For
+ * example, you can use aliases in inference aggregations and processors. An
+ * alias must be unique and refer to only a single trained model. However, you
+ * can have multiple aliases for each trained model. If you use this API to
+ * update an alias such that it references a different trained model ID and the
+ * model uses a different type of data frame analytics, an error occurs. For
+ * example, this situation occurs if you have a trained model for regression
+ * analysis and a trained model for classification analysis; you cannot reassign
+ * an alias from one type of trained model to another. If you use this API to
+ * update an alias and there are very few input fields in common between the old
+ * and new trained models for the model alias, the API returns a warning.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model_alias/MlPutTrainedModelAliasRequest.ts#L23-L65">API
+ *      specification</a>
+ */
+
+public class PutTrainedModelAliasRequest extends RequestBase {
 	private final String modelAlias;
 
 	private final String modelId;
@@ -53,16 +75,16 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutTrainedModelAliasRequest(Builder builder) {
+	private PutTrainedModelAliasRequest(Builder builder) {
 
-		this.modelAlias = Objects.requireNonNull(builder.modelAlias, "model_alias");
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
+		this.modelAlias = ApiTypeHelper.requireNonNull(builder.modelAlias, this, "modelAlias");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.reassign = builder.reassign;
 
 	}
 
-	public PutTrainedModelAliasRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutTrainedModelAliasRequest of(Function<Builder, ObjectBuilder<PutTrainedModelAliasRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,7 +92,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code model_alias}
 	 */
-	public String modelAlias() {
+	public final String modelAlias() {
 		return this.modelAlias;
 	}
 
@@ -79,7 +101,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	public String modelId() {
+	public final String modelId() {
 		return this.modelId;
 	}
 
@@ -91,7 +113,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	 * API name: {@code reassign}
 	 */
 	@Nullable
-	public Boolean reassign() {
+	public final Boolean reassign() {
 		return this.reassign;
 	}
 
@@ -100,7 +122,8 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	/**
 	 * Builder for {@link PutTrainedModelAliasRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutTrainedModelAliasRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTrainedModelAliasRequest> {
 		private String modelAlias;
 
 		private String modelId;
@@ -113,7 +136,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code model_alias}
 		 */
-		public Builder modelAlias(String value) {
+		public final Builder modelAlias(String value) {
 			this.modelAlias = value;
 			return this;
 		}
@@ -123,7 +146,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public Builder modelId(String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -135,7 +158,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code reassign}
 		 */
-		public Builder reassign(@Nullable Boolean value) {
+		public final Builder reassign(@Nullable Boolean value) {
 			this.reassign = value;
 			return this;
 		}
@@ -147,6 +170,7 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutTrainedModelAliasRequest build() {
+			_checkSingleUse();
 
 			return new PutTrainedModelAliasRequest(this);
 		}
@@ -157,7 +181,9 @@ public final class PutTrainedModelAliasRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.put_trained_model_alias}".
 	 */
-	public static final Endpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_trained_model_alias",
+
 			// Request method
 			request -> {
 				return "PUT";

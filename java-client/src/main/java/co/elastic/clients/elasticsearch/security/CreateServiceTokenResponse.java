@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.create_service_token.Token;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,36 +40,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_service_token/CreateServiceTokenResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CreateServiceTokenResponse implements JsonpSerializable {
+public class CreateServiceTokenResponse implements JsonpSerializable {
 	private final boolean created;
 
 	private final Token token;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateServiceTokenResponse(Builder builder) {
+	private CreateServiceTokenResponse(Builder builder) {
 
-		this.created = Objects.requireNonNull(builder.created, "created");
-		this.token = Objects.requireNonNull(builder.token, "token");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
 
 	}
 
-	public CreateServiceTokenResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateServiceTokenResponse of(Function<Builder, ObjectBuilder<CreateServiceTokenResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code created}
 	 */
-	public boolean created() {
+	public final boolean created() {
 		return this.created;
 	}
 
 	/**
 	 * Required - API name: {@code token}
 	 */
-	public Token token() {
+	public final Token token() {
 		return this.token;
 	}
 
@@ -96,7 +104,8 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreateServiceTokenResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateServiceTokenResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateServiceTokenResponse> {
 		private Boolean created;
 
 		private Token token;
@@ -104,7 +113,7 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code created}
 		 */
-		public Builder created(boolean value) {
+		public final Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -112,7 +121,7 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code token}
 		 */
-		public Builder token(Token value) {
+		public final Builder token(Token value) {
 			this.token = value;
 			return this;
 		}
@@ -120,7 +129,7 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code token}
 		 */
-		public Builder token(Function<Token.Builder, ObjectBuilder<Token>> fn) {
+		public final Builder token(Function<Token.Builder, ObjectBuilder<Token>> fn) {
 			return this.token(fn.apply(new Token.Builder()).build());
 		}
 
@@ -131,6 +140,7 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CreateServiceTokenResponse build() {
+			_checkSingleUse();
 
 			return new CreateServiceTokenResponse(this);
 		}
@@ -141,11 +151,11 @@ public final class CreateServiceTokenResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link CreateServiceTokenResponse}
 	 */
-	public static final JsonpDeserializer<CreateServiceTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, CreateServiceTokenResponse::setupCreateServiceTokenResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<CreateServiceTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CreateServiceTokenResponse::setupCreateServiceTokenResponseDeserializer);
 
 	protected static void setupCreateServiceTokenResponseDeserializer(
-			DelegatingDeserializer<CreateServiceTokenResponse.Builder> op) {
+			ObjectDeserializer<CreateServiceTokenResponse.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::token, Token._DESERIALIZER, "token");

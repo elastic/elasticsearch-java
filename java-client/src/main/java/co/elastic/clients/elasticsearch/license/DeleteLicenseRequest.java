@@ -23,23 +23,30 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: license.delete.Request
 
-public final class DeleteLicenseRequest extends RequestBase {
+/**
+ * Deletes licensing information for the cluster
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/delete/DeleteLicenseRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class DeleteLicenseRequest extends RequestBase {
 	public DeleteLicenseRequest() {
 	}
 
@@ -53,7 +60,9 @@ public final class DeleteLicenseRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code license.delete}".
 	 */
-	public static final Endpoint<DeleteLicenseRequest, DeleteLicenseResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteLicenseRequest, DeleteLicenseResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/license.delete",
+
 			// Request method
 			request -> {
 				return "DELETE";

@@ -23,20 +23,20 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,37 +47,35 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.delete_repository.Request
 
-public final class DeleteRepositoryRequest extends RequestBase {
-	private final List<String> repository;
+/**
+ * Deletes a repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/delete_repository/SnapshotDeleteRepositoryRequest.ts#L24-L38">API
+ *      specification</a>
+ */
+
+public class DeleteRepositoryRequest extends RequestBase {
+	@Nullable
+	private final Time masterTimeout;
+
+	private final List<String> name;
 
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteRepositoryRequest(Builder builder) {
+	private DeleteRepositoryRequest(Builder builder) {
 
-		this.repository = ModelTypeHelper.unmodifiableNonNull(builder.repository, "repository");
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
 
-	public DeleteRepositoryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Name of the snapshot repository to unregister. Wildcard
-	 * (<code>*</code>) patterns are supported.
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	public List<String> repository() {
-		return this.repository;
+	public static DeleteRepositoryRequest of(Function<Builder, ObjectBuilder<DeleteRepositoryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -86,8 +84,18 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - Name of the snapshot repository to unregister. Wildcard
+	 * (<code>*</code>) patterns are supported.
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	public final List<String> name() {
+		return this.name;
 	}
 
 	/**
@@ -96,7 +104,7 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -105,45 +113,23 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteRepositoryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteRepositoryRequest> {
-		private List<String> repository;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRepositoryRequest> {
+		@Nullable
+		private Time masterTimeout;
+
+		private List<String> name;
 
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
-		 * Required - Name of the snapshot repository to unregister. Wildcard
-		 * (<code>*</code>) patterns are supported.
+		 * Explicit operation timeout for connection to master node
 		 * <p>
-		 * API name: {@code repository}
+		 * API name: {@code master_timeout}
 		 */
-		public Builder repository(List<String> value) {
-			this.repository = value;
-			return this;
-		}
-
-		/**
-		 * Required - Name of the snapshot repository to unregister. Wildcard
-		 * (<code>*</code>) patterns are supported.
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(String... value) {
-			this.repository = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #repository(List)}, creating the list if needed.
-		 */
-		public Builder addRepository(String value) {
-			if (this.repository == null) {
-				this.repository = new ArrayList<>();
-			}
-			this.repository.add(value);
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
@@ -152,8 +138,33 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - Name of the snapshot repository to unregister. Wildcard
+		 * (<code>*</code>) patterns are supported.
+		 * <p>
+		 * API name: {@code repository}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
+		 */
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * Required - Name of the snapshot repository to unregister. Wildcard
+		 * (<code>*</code>) patterns are supported.
+		 * <p>
+		 * API name: {@code repository}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -162,9 +173,18 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -174,6 +194,7 @@ public final class DeleteRepositoryRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteRepositoryRequest build() {
+			_checkSingleUse();
 
 			return new DeleteRepositoryRequest(this);
 		}
@@ -184,7 +205,9 @@ public final class DeleteRepositoryRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code snapshot.delete_repository}".
 	 */
-	public static final Endpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/snapshot.delete_repository",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -193,18 +216,17 @@ public final class DeleteRepositoryRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _repository = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _repository;
+				propsSet |= _name;
 
-				if (propsSet == (_repository)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.repository.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -215,10 +237,10 @@ public final class DeleteRepositoryRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

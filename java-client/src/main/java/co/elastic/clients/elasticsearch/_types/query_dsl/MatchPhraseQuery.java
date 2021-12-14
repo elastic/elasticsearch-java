@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -38,8 +38,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MatchPhraseQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L173-L180">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
+public class MatchPhraseQuery extends QueryBase implements QueryVariant {
+	// Single key dictionary
 	private final String field;
 
 	@Nullable
@@ -55,35 +63,33 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MatchPhraseQuery(Builder builder) {
+	private MatchPhraseQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.analyzer = builder.analyzer;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.slop = builder.slop;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
 	}
 
-	public MatchPhraseQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MatchPhraseQuery of(Function<Builder, ObjectBuilder<MatchPhraseQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "match_phrase";
+	public Query.Kind _queryKind() {
+		return Query.Kind.MatchPhrase;
 	}
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -91,14 +97,14 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -106,7 +112,7 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code slop}
 	 */
 	@Nullable
-	public Integer slop() {
+	public final Integer slop() {
 		return this.slop;
 	}
 
@@ -114,7 +120,7 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
-	public ZeroTermsQuery zeroTermsQuery() {
+	public final ZeroTermsQuery zeroTermsQuery() {
 		return this.zeroTermsQuery;
 	}
 
@@ -123,28 +129,25 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
 		if (this.slop != null) {
-
 			generator.writeKey("slop");
 			generator.write(this.slop);
 
 		}
 		if (this.zeroTermsQuery != null) {
-
 			generator.writeKey("zero_terms_query");
 			this.zeroTermsQuery.serialize(generator, mapper);
 		}
 
 		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -152,15 +155,14 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MatchPhraseQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchPhraseQuery> {
 		private String field;
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -179,7 +181,7 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -187,7 +189,7 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -195,7 +197,7 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code slop}
 		 */
-		public Builder slop(@Nullable Integer value) {
+		public final Builder slop(@Nullable Integer value) {
 			this.slop = value;
 			return this;
 		}
@@ -203,7 +205,7 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code zero_terms_query}
 		 */
-		public Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
+		public final Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
 			this.zeroTermsQuery = value;
 			return this;
 		}
@@ -220,6 +222,7 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public MatchPhraseQuery build() {
+			_checkSingleUse();
 
 			return new MatchPhraseQuery(this);
 		}
@@ -231,16 +234,17 @@ public final class MatchPhraseQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link MatchPhraseQuery}
 	 */
 	public static final JsonpDeserializer<MatchPhraseQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MatchPhraseQuery::setupMatchPhraseQueryDeserializer, Builder::build);
+			MatchPhraseQuery::setupMatchPhraseQueryDeserializer);
 
-	protected static void setupMatchPhraseQueryDeserializer(DelegatingDeserializer<MatchPhraseQuery.Builder> op) {
+	protected static void setupMatchPhraseQueryDeserializer(ObjectDeserializer<MatchPhraseQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::slop, JsonpDeserializer.integerDeserializer(), "slop");
 		op.add(Builder::zeroTermsQuery, ZeroTermsQuery._DESERIALIZER, "zero_terms_query");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+		op.shortcutProperty("query");
 
 	}
 

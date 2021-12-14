@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -44,10 +45,15 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models.Request
 
-public final class GetTrainedModelsRequest extends RequestBase {
-	@Nullable
-	private final String modelId;
+/**
+ * Retrieves configuration information for a trained model.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_trained_models/MlGetTrainedModelRequest.ts#L25-L87">API
+ *      specification</a>
+ */
 
+public class GetTrainedModelsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -61,7 +67,10 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	private final Integer from;
 
 	@Nullable
-	private final String include;
+	private final Include include;
+
+	@Nullable
+	private final String modelId;
 
 	@Nullable
 	private final Integer size;
@@ -71,31 +80,21 @@ public final class GetTrainedModelsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTrainedModelsRequest(Builder builder) {
+	private GetTrainedModelsRequest(Builder builder) {
 
-		this.modelId = builder.modelId;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.decompressDefinition = builder.decompressDefinition;
 		this.excludeGenerated = builder.excludeGenerated;
 		this.from = builder.from;
 		this.include = builder.include;
+		this.modelId = builder.modelId;
 		this.size = builder.size;
 		this.tags = builder.tags;
 
 	}
 
-	public GetTrainedModelsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The unique identifier of the trained model.
-	 * <p>
-	 * API name: {@code model_id}
-	 */
-	@Nullable
-	public String modelId() {
-		return this.modelId;
+	public static GetTrainedModelsRequest of(Function<Builder, ObjectBuilder<GetTrainedModelsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,10 +105,13 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * <li>Contains wildcard expressions and there are only partial matches.</li>
 	 * </ul>
 	 * <p>
+	 * If true, it returns an empty array when there are no matches and the subset
+	 * of results when there are partial matches.
+	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -120,7 +122,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * API name: {@code decompress_definition}
 	 */
 	@Nullable
-	public Boolean decompressDefinition() {
+	public final Boolean decompressDefinition() {
 		return this.decompressDefinition;
 	}
 
@@ -132,7 +134,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * API name: {@code exclude_generated}
 	 */
 	@Nullable
-	public Boolean excludeGenerated() {
+	public final Boolean excludeGenerated() {
 		return this.excludeGenerated;
 	}
 
@@ -142,7 +144,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
@@ -152,8 +154,18 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * API name: {@code include}
 	 */
 	@Nullable
-	public String include() {
+	public final Include include() {
 		return this.include;
+	}
+
+	/**
+	 * The unique identifier of the trained model.
+	 * <p>
+	 * API name: {@code model_id}
+	 */
+	@Nullable
+	public final String modelId() {
+		return this.modelId;
 	}
 
 	/**
@@ -162,7 +174,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -174,7 +186,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	 * API name: {@code tags}
 	 */
 	@Nullable
-	public String tags() {
+	public final String tags() {
 		return this.tags;
 	}
 
@@ -183,10 +195,8 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTrainedModelsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetTrainedModelsRequest> {
-		@Nullable
-		private String modelId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrainedModelsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -200,23 +210,16 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		private Integer from;
 
 		@Nullable
-		private String include;
+		private Include include;
+
+		@Nullable
+		private String modelId;
 
 		@Nullable
 		private Integer size;
 
 		@Nullable
 		private String tags;
-
-		/**
-		 * The unique identifier of the trained model.
-		 * <p>
-		 * API name: {@code model_id}
-		 */
-		public Builder modelId(@Nullable String value) {
-			this.modelId = value;
-			return this;
-		}
 
 		/**
 		 * Specifies what to do when the request:
@@ -226,9 +229,12 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * <li>Contains wildcard expressions and there are only partial matches.</li>
 		 * </ul>
 		 * <p>
+		 * If true, it returns an empty array when there are no matches and the subset
+		 * of results when there are partial matches.
+		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -239,7 +245,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code decompress_definition}
 		 */
-		public Builder decompressDefinition(@Nullable Boolean value) {
+		public final Builder decompressDefinition(@Nullable Boolean value) {
 			this.decompressDefinition = value;
 			return this;
 		}
@@ -251,7 +257,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
-		public Builder excludeGenerated(@Nullable Boolean value) {
+		public final Builder excludeGenerated(@Nullable Boolean value) {
 			this.excludeGenerated = value;
 			return this;
 		}
@@ -261,7 +267,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -271,8 +277,18 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include}
 		 */
-		public Builder include(@Nullable String value) {
+		public final Builder include(@Nullable Include value) {
 			this.include = value;
+			return this;
+		}
+
+		/**
+		 * The unique identifier of the trained model.
+		 * <p>
+		 * API name: {@code model_id}
+		 */
+		public final Builder modelId(@Nullable String value) {
+			this.modelId = value;
 			return this;
 		}
 
@@ -281,7 +297,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -293,7 +309,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code tags}
 		 */
-		public Builder tags(@Nullable String value) {
+		public final Builder tags(@Nullable String value) {
 			this.tags = value;
 			return this;
 		}
@@ -305,6 +321,7 @@ public final class GetTrainedModelsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetTrainedModelsRequest build() {
+			_checkSingleUse();
 
 			return new GetTrainedModelsRequest(this);
 		}
@@ -315,7 +332,9 @@ public final class GetTrainedModelsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_trained_models}".
 	 */
-	public static final Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_trained_models",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -352,8 +371,11 @@ public final class GetTrainedModelsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				if (request.include != null) {
+					params.put("include", request.include.jsonValue());
+				}
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.decompressDefinition != null) {
 					params.put("decompress_definition", String.valueOf(request.decompressDefinition));
@@ -364,11 +386,8 @@ public final class GetTrainedModelsRequest extends RequestBase {
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.include != null) {
-					params.put("include", request.include);
-				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.tags != null) {
 					params.put("tags", request.tags);

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.mapping;
 
 import co.elastic.clients.elasticsearch.indices.NumericFielddata;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.BooleanProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L95-L101">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class BooleanProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class BooleanProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Double boost;
 
@@ -55,7 +61,7 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BooleanProperty(Builder builder) {
+	private BooleanProperty(Builder builder) {
 		super(builder);
 
 		this.boost = builder.boost;
@@ -65,23 +71,23 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 
 	}
 
-	public BooleanProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BooleanProperty of(Function<Builder, ObjectBuilder<BooleanProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "boolean";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Boolean;
 	}
 
 	/**
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Double boost() {
+	public final Double boost() {
 		return this.boost;
 	}
 
@@ -89,7 +95,7 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code fielddata}
 	 */
 	@Nullable
-	public NumericFielddata fielddata() {
+	public final NumericFielddata fielddata() {
 		return this.fielddata;
 	}
 
@@ -97,7 +103,7 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -105,7 +111,7 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Boolean nullValue() {
+	public final Boolean nullValue() {
 		return this.nullValue;
 	}
 
@@ -114,25 +120,21 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 		generator.write("type", "boolean");
 		super.serializeInternal(generator, mapper);
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.fielddata != null) {
-
 			generator.writeKey("fielddata");
 			this.fielddata.serialize(generator, mapper);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
@@ -145,6 +147,7 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 	/**
 	 * Builder for {@link BooleanProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BooleanProperty> {
@@ -163,7 +166,7 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code boost}
 		 */
-		public Builder boost(@Nullable Double value) {
+		public final Builder boost(@Nullable Double value) {
 			this.boost = value;
 			return this;
 		}
@@ -171,7 +174,7 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code fielddata}
 		 */
-		public Builder fielddata(@Nullable NumericFielddata value) {
+		public final Builder fielddata(@Nullable NumericFielddata value) {
 			this.fielddata = value;
 			return this;
 		}
@@ -179,14 +182,14 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code fielddata}
 		 */
-		public Builder fielddata(Function<NumericFielddata.Builder, ObjectBuilder<NumericFielddata>> fn) {
+		public final Builder fielddata(Function<NumericFielddata.Builder, ObjectBuilder<NumericFielddata>> fn) {
 			return this.fielddata(fn.apply(new NumericFielddata.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable Boolean value) {
+		public final Builder index(@Nullable Boolean value) {
 			this.index = value;
 			return this;
 		}
@@ -194,7 +197,7 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Boolean value) {
+		public final Builder nullValue(@Nullable Boolean value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -211,6 +214,7 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 		 *             if some of the required fields are null.
 		 */
 		public BooleanProperty build() {
+			_checkSingleUse();
 
 			return new BooleanProperty(this);
 		}
@@ -222,9 +226,9 @@ public final class BooleanProperty extends DocValuesPropertyBase implements Prop
 	 * Json deserializer for {@link BooleanProperty}
 	 */
 	public static final JsonpDeserializer<BooleanProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BooleanProperty::setupBooleanPropertyDeserializer, Builder::build);
+			BooleanProperty::setupBooleanPropertyDeserializer);
 
-	protected static void setupBooleanPropertyDeserializer(DelegatingDeserializer<BooleanProperty.Builder> op) {
+	protected static void setupBooleanPropertyDeserializer(ObjectDeserializer<BooleanProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::fielddata, NumericFielddata._DESERIALIZER, "fielddata");

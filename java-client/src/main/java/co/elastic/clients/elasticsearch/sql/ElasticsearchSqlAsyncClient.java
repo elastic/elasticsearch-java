@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.sql;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -34,10 +40,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the sql namespace.
  */
-public class ElasticsearchSqlAsyncClient extends ApiClient {
+public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchSqlAsyncClient> {
 
-	public ElasticsearchSqlAsyncClient(Transport transport) {
-		super(transport);
+	public ElasticsearchSqlAsyncClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchSqlAsyncClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSqlAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSqlAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: sql.clear_cursor
@@ -50,24 +65,28 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ClearCursorResponse> clearCursor(ClearCursorRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ClearCursorRequest.ENDPOINT);
+	public CompletableFuture<ClearCursorResponse> clearCursor(ClearCursorRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse>) ClearCursorRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Clears the SQL cursor
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearCursorRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-sql-cursor-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ClearCursorResponse> clearCursor(
-			Function<ClearCursorRequest.Builder, ObjectBuilder<ClearCursorRequest>> fn) throws IOException {
+			Function<ClearCursorRequest.Builder, ObjectBuilder<ClearCursorRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return clearCursor(fn.apply(new ClearCursorRequest.Builder()).build());
 	}
 
@@ -81,24 +100,26 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<QueryResponse> query(QueryRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, QueryRequest.ENDPOINT);
+	public CompletableFuture<QueryResponse> query(QueryRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<QueryRequest, QueryResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryRequest, QueryResponse, ErrorResponse>) QueryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Executes a SQL request
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link QueryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-search-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<QueryResponse> query(Function<QueryRequest.Builder, ObjectBuilder<QueryRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return query(fn.apply(new QueryRequest.Builder()).build());
 	}
 
@@ -110,8 +131,9 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<QueryResponse> query() throws IOException {
-		return this.transport.performRequestAsync(new QueryRequest.Builder().build(), QueryRequest.ENDPOINT);
+	public CompletableFuture<QueryResponse> query() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new QueryRequest.Builder().build(), QueryRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: sql.translate
@@ -124,24 +146,28 @@ public class ElasticsearchSqlAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<TranslateResponse> translate(TranslateRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, TranslateRequest.ENDPOINT);
+	public CompletableFuture<TranslateResponse> translate(TranslateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<TranslateRequest, TranslateResponse, ErrorResponse> endpoint = (JsonEndpoint<TranslateRequest, TranslateResponse, ErrorResponse>) TranslateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Translates SQL into Elasticsearch queries
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link TranslateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sql-translate-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<TranslateResponse> translate(
-			Function<TranslateRequest.Builder, ObjectBuilder<TranslateRequest>> fn) throws IOException {
+			Function<TranslateRequest.Builder, ObjectBuilder<TranslateRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return translate(fn.apply(new TranslateRequest.Builder()).build());
 	}
 

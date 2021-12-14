@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -42,7 +43,15 @@ import javax.annotation.Nullable;
 
 // typedef: cat.nodes.Request
 
-public final class NodesRequest extends CatRequestBase {
+/**
+ * Returns basic statistics about performance of cluster nodes.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/nodes/CatNodesRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
+public class NodesRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
@@ -51,15 +60,15 @@ public final class NodesRequest extends CatRequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodesRequest(Builder builder) {
+	private NodesRequest(Builder builder) {
 
 		this.bytes = builder.bytes;
 		this.fullId = builder.fullId;
 
 	}
 
-	public NodesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodesRequest of(Function<Builder, ObjectBuilder<NodesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +77,7 @@ public final class NodesRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -78,7 +87,7 @@ public final class NodesRequest extends CatRequestBase {
 	 * API name: {@code full_id}
 	 */
 	@Nullable
-	public Boolean fullId() {
+	public final Boolean fullId() {
 		return this.fullId;
 	}
 
@@ -87,7 +96,8 @@ public final class NodesRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link NodesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<NodesRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesRequest> {
 		@Nullable
 		private Bytes bytes;
 
@@ -99,7 +109,7 @@ public final class NodesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
@@ -109,7 +119,7 @@ public final class NodesRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code full_id}
 		 */
-		public Builder fullId(@Nullable Boolean value) {
+		public final Builder fullId(@Nullable Boolean value) {
 			this.fullId = value;
 			return this;
 		}
@@ -121,6 +131,7 @@ public final class NodesRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public NodesRequest build() {
+			_checkSingleUse();
 
 			return new NodesRequest(this);
 		}
@@ -131,7 +142,9 @@ public final class NodesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.nodes}".
 	 */
-	public static final Endpoint<NodesRequest, NodesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<NodesRequest, NodesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.nodes",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -147,8 +160,9 @@ public final class NodesRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (request.fullId != null) {
 					params.put("full_id", String.valueOf(request.fullId));

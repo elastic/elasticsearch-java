@@ -23,12 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.DictionaryResponse;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,17 +35,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.get_user.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_user/SecurityGetUserResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetUserResponse extends DictionaryResponse<String, User> {
+public class GetUserResponse extends DictionaryResponse<String, User> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetUserResponse(Builder builder) {
+	private GetUserResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetUserResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetUserResponse of(Function<Builder, ObjectBuilder<GetUserResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +60,7 @@ public final class GetUserResponse extends DictionaryResponse<String, User> {
 	/**
 	 * Builder for {@link GetUserResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, User, Builder>
 			implements
 				ObjectBuilder<GetUserResponse> {
@@ -69,6 +76,7 @@ public final class GetUserResponse extends DictionaryResponse<String, User> {
 		 *             if some of the required fields are null.
 		 */
 		public GetUserResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -82,9 +90,9 @@ public final class GetUserResponse extends DictionaryResponse<String, User> {
 	 * Json deserializer for {@link GetUserResponse}
 	 */
 	public static final JsonpDeserializer<GetUserResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetUserResponse::setupGetUserResponseDeserializer, Builder::build);
+			GetUserResponse::setupGetUserResponseDeserializer);
 
-	protected static void setupGetUserResponseDeserializer(DelegatingDeserializer<GetUserResponse.Builder> op) {
+	protected static void setupGetUserResponseDeserializer(ObjectDeserializer<GetUserResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				User._DESERIALIZER);
 

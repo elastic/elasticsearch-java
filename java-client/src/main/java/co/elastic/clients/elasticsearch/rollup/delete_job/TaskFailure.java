@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.rollup.delete_job;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.TaskFailure
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/delete_job/types.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TaskFailure implements JsonpSerializable {
+public class TaskFailure implements JsonpSerializable {
 	private final String taskId;
 
 	private final String nodeId;
@@ -50,44 +58,44 @@ public final class TaskFailure implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TaskFailure(Builder builder) {
+	private TaskFailure(Builder builder) {
 
-		this.taskId = Objects.requireNonNull(builder.taskId, "task_id");
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.reason = Objects.requireNonNull(builder.reason, "reason");
+		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 
 	}
 
-	public TaskFailure(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TaskFailure of(Function<Builder, ObjectBuilder<TaskFailure>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code task_id}
 	 */
-	public String taskId() {
+	public final String taskId() {
 		return this.taskId;
 	}
 
 	/**
 	 * Required - API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public String status() {
+	public final String status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code reason}
 	 */
-	public TaskFailureReason reason() {
+	public final TaskFailureReason reason() {
 		return this.reason;
 	}
 
@@ -121,7 +129,8 @@ public final class TaskFailure implements JsonpSerializable {
 	/**
 	 * Builder for {@link TaskFailure}.
 	 */
-	public static class Builder implements ObjectBuilder<TaskFailure> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TaskFailure> {
 		private String taskId;
 
 		private String nodeId;
@@ -133,7 +142,7 @@ public final class TaskFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code task_id}
 		 */
-		public Builder taskId(String value) {
+		public final Builder taskId(String value) {
 			this.taskId = value;
 			return this;
 		}
@@ -141,7 +150,7 @@ public final class TaskFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -149,7 +158,7 @@ public final class TaskFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(String value) {
+		public final Builder status(String value) {
 			this.status = value;
 			return this;
 		}
@@ -157,7 +166,7 @@ public final class TaskFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public Builder reason(TaskFailureReason value) {
+		public final Builder reason(TaskFailureReason value) {
 			this.reason = value;
 			return this;
 		}
@@ -165,7 +174,7 @@ public final class TaskFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public Builder reason(Function<TaskFailureReason.Builder, ObjectBuilder<TaskFailureReason>> fn) {
+		public final Builder reason(Function<TaskFailureReason.Builder, ObjectBuilder<TaskFailureReason>> fn) {
 			return this.reason(fn.apply(new TaskFailureReason.Builder()).build());
 		}
 
@@ -176,6 +185,7 @@ public final class TaskFailure implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TaskFailure build() {
+			_checkSingleUse();
 
 			return new TaskFailure(this);
 		}
@@ -187,9 +197,9 @@ public final class TaskFailure implements JsonpSerializable {
 	 * Json deserializer for {@link TaskFailure}
 	 */
 	public static final JsonpDeserializer<TaskFailure> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TaskFailure::setupTaskFailureDeserializer, Builder::build);
+			TaskFailure::setupTaskFailureDeserializer);
 
-	protected static void setupTaskFailureDeserializer(DelegatingDeserializer<TaskFailure.Builder> op) {
+	protected static void setupTaskFailureDeserializer(ObjectDeserializer<TaskFailure.Builder> op) {
 
 		op.add(Builder::taskId, JsonpDeserializer.stringDeserializer(), "task_id");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");

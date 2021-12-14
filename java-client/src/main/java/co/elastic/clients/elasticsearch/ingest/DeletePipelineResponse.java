@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ingest.delete_pipeline.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/delete_pipeline/DeletePipelineResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeletePipelineResponse extends AcknowledgedResponseBase {
+public class DeletePipelineResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeletePipelineResponse(Builder builder) {
+	private DeletePipelineResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeletePipelineResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeletePipelineResponse of(Function<Builder, ObjectBuilder<DeletePipelineResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeletePipelineResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeletePipelineResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeletePipelineResponse> {
@@ -68,6 +75,7 @@ public final class DeletePipelineResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeletePipelineResponse build() {
+			_checkSingleUse();
 
 			return new DeletePipelineResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class DeletePipelineResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeletePipelineResponse}
 	 */
 	public static final JsonpDeserializer<DeletePipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeletePipelineResponse::setupDeletePipelineResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeletePipelineResponse::setupDeletePipelineResponseDeserializer);
 
 	protected static void setupDeletePipelineResponseDeserializer(
-			DelegatingDeserializer<DeletePipelineResponse.Builder> op) {
+			ObjectDeserializer<DeletePipelineResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

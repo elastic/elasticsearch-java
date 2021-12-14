@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -38,36 +39,43 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: nodes._types.Http
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L133-L136">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Http implements JsonpSerializable {
+public class Http implements JsonpSerializable {
 	private final int currentOpen;
 
 	private final long totalOpened;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Http(Builder builder) {
+	private Http(Builder builder) {
 
-		this.currentOpen = Objects.requireNonNull(builder.currentOpen, "current_open");
-		this.totalOpened = Objects.requireNonNull(builder.totalOpened, "total_opened");
+		this.currentOpen = ApiTypeHelper.requireNonNull(builder.currentOpen, this, "currentOpen");
+		this.totalOpened = ApiTypeHelper.requireNonNull(builder.totalOpened, this, "totalOpened");
 
 	}
 
-	public Http(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Http of(Function<Builder, ObjectBuilder<Http>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code current_open}
 	 */
-	public int currentOpen() {
+	public final int currentOpen() {
 		return this.currentOpen;
 	}
 
 	/**
 	 * Required - API name: {@code total_opened}
 	 */
-	public long totalOpened() {
+	public final long totalOpened() {
 		return this.totalOpened;
 	}
 
@@ -95,7 +103,8 @@ public final class Http implements JsonpSerializable {
 	/**
 	 * Builder for {@link Http}.
 	 */
-	public static class Builder implements ObjectBuilder<Http> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Http> {
 		private Integer currentOpen;
 
 		private Long totalOpened;
@@ -103,7 +112,7 @@ public final class Http implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code current_open}
 		 */
-		public Builder currentOpen(int value) {
+		public final Builder currentOpen(int value) {
 			this.currentOpen = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class Http implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_opened}
 		 */
-		public Builder totalOpened(long value) {
+		public final Builder totalOpened(long value) {
 			this.totalOpened = value;
 			return this;
 		}
@@ -123,6 +132,7 @@ public final class Http implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Http build() {
+			_checkSingleUse();
 
 			return new Http(this);
 		}
@@ -134,9 +144,9 @@ public final class Http implements JsonpSerializable {
 	 * Json deserializer for {@link Http}
 	 */
 	public static final JsonpDeserializer<Http> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Http::setupHttpDeserializer, Builder::build);
+			Http::setupHttpDeserializer);
 
-	protected static void setupHttpDeserializer(DelegatingDeserializer<Http.Builder> op) {
+	protected static void setupHttpDeserializer(ObjectDeserializer<Http.Builder> op) {
 
 		op.add(Builder::currentOpen, JsonpDeserializer.integerDeserializer(), "current_open");
 		op.add(Builder::totalOpened, JsonpDeserializer.longDeserializer(), "total_opened");

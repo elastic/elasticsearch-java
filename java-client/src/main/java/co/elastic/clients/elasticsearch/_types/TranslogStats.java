@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -40,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.TranslogStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L237-L245">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TranslogStats implements JsonpSerializable {
+public class TranslogStats implements JsonpSerializable {
 	private final long earliestLastModifiedAge;
 
 	private final long operations;
@@ -60,35 +68,36 @@ public final class TranslogStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TranslogStats(Builder builder) {
+	private TranslogStats(Builder builder) {
 
-		this.earliestLastModifiedAge = Objects.requireNonNull(builder.earliestLastModifiedAge,
-				"earliest_last_modified_age");
-		this.operations = Objects.requireNonNull(builder.operations, "operations");
+		this.earliestLastModifiedAge = ApiTypeHelper.requireNonNull(builder.earliestLastModifiedAge, this,
+				"earliestLastModifiedAge");
+		this.operations = ApiTypeHelper.requireNonNull(builder.operations, this, "operations");
 		this.size = builder.size;
-		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
-		this.uncommittedOperations = Objects.requireNonNull(builder.uncommittedOperations, "uncommitted_operations");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.uncommittedOperations = ApiTypeHelper.requireNonNull(builder.uncommittedOperations, this,
+				"uncommittedOperations");
 		this.uncommittedSize = builder.uncommittedSize;
-		this.uncommittedSizeInBytes = Objects.requireNonNull(builder.uncommittedSizeInBytes,
-				"uncommitted_size_in_bytes");
+		this.uncommittedSizeInBytes = ApiTypeHelper.requireNonNull(builder.uncommittedSizeInBytes, this,
+				"uncommittedSizeInBytes");
 
 	}
 
-	public TranslogStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TranslogStats of(Function<Builder, ObjectBuilder<TranslogStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code earliest_last_modified_age}
 	 */
-	public long earliestLastModifiedAge() {
+	public final long earliestLastModifiedAge() {
 		return this.earliestLastModifiedAge;
 	}
 
 	/**
 	 * Required - API name: {@code operations}
 	 */
-	public long operations() {
+	public final long operations() {
 		return this.operations;
 	}
 
@@ -96,21 +105,21 @@ public final class TranslogStats implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public String size() {
+	public final String size() {
 		return this.size;
 	}
 
 	/**
 	 * Required - API name: {@code size_in_bytes}
 	 */
-	public long sizeInBytes() {
+	public final long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code uncommitted_operations}
 	 */
-	public int uncommittedOperations() {
+	public final int uncommittedOperations() {
 		return this.uncommittedOperations;
 	}
 
@@ -118,14 +127,14 @@ public final class TranslogStats implements JsonpSerializable {
 	 * API name: {@code uncommitted_size}
 	 */
 	@Nullable
-	public String uncommittedSize() {
+	public final String uncommittedSize() {
 		return this.uncommittedSize;
 	}
 
 	/**
 	 * Required - API name: {@code uncommitted_size_in_bytes}
 	 */
-	public long uncommittedSizeInBytes() {
+	public final long uncommittedSizeInBytes() {
 		return this.uncommittedSizeInBytes;
 	}
 
@@ -147,12 +156,10 @@ public final class TranslogStats implements JsonpSerializable {
 		generator.write(this.operations);
 
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-
 		generator.writeKey("size_in_bytes");
 		generator.write(this.sizeInBytes);
 
@@ -160,12 +167,10 @@ public final class TranslogStats implements JsonpSerializable {
 		generator.write(this.uncommittedOperations);
 
 		if (this.uncommittedSize != null) {
-
 			generator.writeKey("uncommitted_size");
 			generator.write(this.uncommittedSize);
 
 		}
-
 		generator.writeKey("uncommitted_size_in_bytes");
 		generator.write(this.uncommittedSizeInBytes);
 
@@ -176,7 +181,8 @@ public final class TranslogStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TranslogStats}.
 	 */
-	public static class Builder implements ObjectBuilder<TranslogStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslogStats> {
 		private Long earliestLastModifiedAge;
 
 		private Long operations;
@@ -196,7 +202,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code earliest_last_modified_age}
 		 */
-		public Builder earliestLastModifiedAge(long value) {
+		public final Builder earliestLastModifiedAge(long value) {
 			this.earliestLastModifiedAge = value;
 			return this;
 		}
@@ -204,7 +210,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code operations}
 		 */
-		public Builder operations(long value) {
+		public final Builder operations(long value) {
 			this.operations = value;
 			return this;
 		}
@@ -212,7 +218,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable String value) {
+		public final Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -220,7 +226,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(long value) {
+		public final Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -228,7 +234,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code uncommitted_operations}
 		 */
-		public Builder uncommittedOperations(int value) {
+		public final Builder uncommittedOperations(int value) {
 			this.uncommittedOperations = value;
 			return this;
 		}
@@ -236,7 +242,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * API name: {@code uncommitted_size}
 		 */
-		public Builder uncommittedSize(@Nullable String value) {
+		public final Builder uncommittedSize(@Nullable String value) {
 			this.uncommittedSize = value;
 			return this;
 		}
@@ -244,7 +250,7 @@ public final class TranslogStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code uncommitted_size_in_bytes}
 		 */
-		public Builder uncommittedSizeInBytes(long value) {
+		public final Builder uncommittedSizeInBytes(long value) {
 			this.uncommittedSizeInBytes = value;
 			return this;
 		}
@@ -256,6 +262,7 @@ public final class TranslogStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TranslogStats build() {
+			_checkSingleUse();
 
 			return new TranslogStats(this);
 		}
@@ -267,9 +274,9 @@ public final class TranslogStats implements JsonpSerializable {
 	 * Json deserializer for {@link TranslogStats}
 	 */
 	public static final JsonpDeserializer<TranslogStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TranslogStats::setupTranslogStatsDeserializer, Builder::build);
+			TranslogStats::setupTranslogStatsDeserializer);
 
-	protected static void setupTranslogStatsDeserializer(DelegatingDeserializer<TranslogStats.Builder> op) {
+	protected static void setupTranslogStatsDeserializer(ObjectDeserializer<TranslogStats.Builder> op) {
 
 		op.add(Builder::earliestLastModifiedAge, JsonpDeserializer.longDeserializer(), "earliest_last_modified_age");
 		op.add(Builder::operations, JsonpDeserializer.longDeserializer(), "operations");

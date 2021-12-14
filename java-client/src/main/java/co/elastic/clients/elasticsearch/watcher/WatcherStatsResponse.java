@@ -25,28 +25,33 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
 import co.elastic.clients.elasticsearch.watcher.stats.WatcherNodeStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/WatcherStatsResponse.ts#L24-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class WatcherStatsResponse implements JsonpSerializable {
+public class WatcherStatsResponse implements JsonpSerializable {
 	private final NodeStatistics nodeStats;
 
 	private final String clusterName;
@@ -57,44 +62,44 @@ public final class WatcherStatsResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatcherStatsResponse(Builder builder) {
+	private WatcherStatsResponse(Builder builder) {
 
-		this.nodeStats = Objects.requireNonNull(builder.nodeStats, "_nodes");
-		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
-		this.manuallyStopped = Objects.requireNonNull(builder.manuallyStopped, "manually_stopped");
-		this.stats = ModelTypeHelper.unmodifiableNonNull(builder.stats, "stats");
+		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.manuallyStopped = ApiTypeHelper.requireNonNull(builder.manuallyStopped, this, "manuallyStopped");
+		this.stats = ApiTypeHelper.unmodifiableRequired(builder.stats, this, "stats");
 
 	}
 
-	public WatcherStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WatcherStatsResponse of(Function<Builder, ObjectBuilder<WatcherStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _nodes}
 	 */
-	public NodeStatistics nodeStats() {
+	public final NodeStatistics nodeStats() {
 		return this.nodeStats;
 	}
 
 	/**
 	 * Required - API name: {@code cluster_name}
 	 */
-	public String clusterName() {
+	public final String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
 	 * Required - API name: {@code manually_stopped}
 	 */
-	public boolean manuallyStopped() {
+	public final boolean manuallyStopped() {
 		return this.manuallyStopped;
 	}
 
 	/**
 	 * Required - API name: {@code stats}
 	 */
-	public List<WatcherNodeStats> stats() {
+	public final List<WatcherNodeStats> stats() {
 		return this.stats;
 	}
 
@@ -118,13 +123,16 @@ public final class WatcherStatsResponse implements JsonpSerializable {
 		generator.writeKey("manually_stopped");
 		generator.write(this.manuallyStopped);
 
-		generator.writeKey("stats");
-		generator.writeStartArray();
-		for (WatcherNodeStats item0 : this.stats) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.stats)) {
+			generator.writeKey("stats");
+			generator.writeStartArray();
+			for (WatcherNodeStats item0 : this.stats) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -133,7 +141,8 @@ public final class WatcherStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<WatcherStatsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherStatsResponse> {
 		private NodeStatistics nodeStats;
 
 		private String clusterName;
@@ -145,7 +154,7 @@ public final class WatcherStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _nodes}
 		 */
-		public Builder nodeStats(NodeStatistics value) {
+		public final Builder nodeStats(NodeStatistics value) {
 			this.nodeStats = value;
 			return this;
 		}
@@ -153,14 +162,14 @@ public final class WatcherStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _nodes}
 		 */
-		public Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+		public final Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
 			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code cluster_name}
 		 */
-		public Builder clusterName(String value) {
+		public final Builder clusterName(String value) {
 			this.clusterName = value;
 			return this;
 		}
@@ -168,50 +177,38 @@ public final class WatcherStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code manually_stopped}
 		 */
-		public Builder manuallyStopped(boolean value) {
+		public final Builder manuallyStopped(boolean value) {
 			this.manuallyStopped = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stats</code>.
 		 */
-		public Builder stats(List<WatcherNodeStats> value) {
-			this.stats = value;
+		public final Builder stats(List<WatcherNodeStats> list) {
+			this.stats = _listAddAll(this.stats, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stats}
+		 * <p>
+		 * Adds one or more values to <code>stats</code>.
 		 */
-		public Builder stats(WatcherNodeStats... value) {
-			this.stats = Arrays.asList(value);
+		public final Builder stats(WatcherNodeStats value, WatcherNodeStats... values) {
+			this.stats = _listAdd(this.stats, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed.
+		 * Required - API name: {@code stats}
+		 * <p>
+		 * Adds a value to <code>stats</code> using a builder lambda.
 		 */
-		public Builder addStats(WatcherNodeStats value) {
-			if (this.stats == null) {
-				this.stats = new ArrayList<>();
-			}
-			this.stats.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #stats(List)} to a singleton list.
-		 */
-		public Builder stats(Function<WatcherNodeStats.Builder, ObjectBuilder<WatcherNodeStats>> fn) {
-			return this.stats(fn.apply(new WatcherNodeStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed.
-		 */
-		public Builder addStats(Function<WatcherNodeStats.Builder, ObjectBuilder<WatcherNodeStats>> fn) {
-			return this.addStats(fn.apply(new WatcherNodeStats.Builder()).build());
+		public final Builder stats(Function<WatcherNodeStats.Builder, ObjectBuilder<WatcherNodeStats>> fn) {
+			return stats(fn.apply(new WatcherNodeStats.Builder()).build());
 		}
 
 		/**
@@ -221,6 +218,7 @@ public final class WatcherStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WatcherStatsResponse build() {
+			_checkSingleUse();
 
 			return new WatcherStatsResponse(this);
 		}
@@ -232,10 +230,9 @@ public final class WatcherStatsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link WatcherStatsResponse}
 	 */
 	public static final JsonpDeserializer<WatcherStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WatcherStatsResponse::setupWatcherStatsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, WatcherStatsResponse::setupWatcherStatsResponseDeserializer);
 
-	protected static void setupWatcherStatsResponseDeserializer(
-			DelegatingDeserializer<WatcherStatsResponse.Builder> op) {
+	protected static void setupWatcherStatsResponseDeserializer(ObjectDeserializer<WatcherStatsResponse.Builder> op) {
 
 		op.add(Builder::nodeStats, NodeStatistics._DESERIALIZER, "_nodes");
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");

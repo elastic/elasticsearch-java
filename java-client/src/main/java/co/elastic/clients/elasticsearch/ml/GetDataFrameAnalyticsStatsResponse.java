@@ -23,49 +23,55 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics_stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_data_frame_analytics_stats/MlGetDataFrameAnalyticsStatsResponse.ts#L24-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializable {
+public class GetDataFrameAnalyticsStatsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<DataframeAnalytics> dataFrameAnalytics;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetDataFrameAnalyticsStatsResponse(Builder builder) {
+	private GetDataFrameAnalyticsStatsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.dataFrameAnalytics = ModelTypeHelper.unmodifiableNonNull(builder.dataFrameAnalytics,
-				"data_frame_analytics");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.dataFrameAnalytics = ApiTypeHelper.unmodifiableRequired(builder.dataFrameAnalytics, this,
+				"dataFrameAnalytics");
 
 	}
 
-	public GetDataFrameAnalyticsStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetDataFrameAnalyticsStatsResponse of(
+			Function<Builder, ObjectBuilder<GetDataFrameAnalyticsStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -75,7 +81,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 	 * <p>
 	 * API name: {@code data_frame_analytics}
 	 */
-	public List<DataframeAnalytics> dataFrameAnalytics() {
+	public final List<DataframeAnalytics> dataFrameAnalytics() {
 		return this.dataFrameAnalytics;
 	}
 
@@ -93,13 +99,16 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("data_frame_analytics");
-		generator.writeStartArray();
-		for (DataframeAnalytics item0 : this.dataFrameAnalytics) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.dataFrameAnalytics)) {
+			generator.writeKey("data_frame_analytics");
+			generator.writeStartArray();
+			for (DataframeAnalytics item0 : this.dataFrameAnalytics) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -108,7 +117,8 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 	/**
 	 * Builder for {@link GetDataFrameAnalyticsStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetDataFrameAnalyticsStatsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataFrameAnalyticsStatsResponse> {
 		private Long count;
 
 		private List<DataframeAnalytics> dataFrameAnalytics;
@@ -116,7 +126,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -126,9 +136,11 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		 * analytics jobs, which are sorted by the id value in ascending order.
 		 * <p>
 		 * API name: {@code data_frame_analytics}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataFrameAnalytics</code>.
 		 */
-		public Builder dataFrameAnalytics(List<DataframeAnalytics> value) {
-			this.dataFrameAnalytics = value;
+		public final Builder dataFrameAnalytics(List<DataframeAnalytics> list) {
+			this.dataFrameAnalytics = _listAddAll(this.dataFrameAnalytics, list);
 			return this;
 		}
 
@@ -137,38 +149,25 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		 * analytics jobs, which are sorted by the id value in ascending order.
 		 * <p>
 		 * API name: {@code data_frame_analytics}
+		 * <p>
+		 * Adds one or more values to <code>dataFrameAnalytics</code>.
 		 */
-		public Builder dataFrameAnalytics(DataframeAnalytics... value) {
-			this.dataFrameAnalytics = Arrays.asList(value);
+		public final Builder dataFrameAnalytics(DataframeAnalytics value, DataframeAnalytics... values) {
+			this.dataFrameAnalytics = _listAdd(this.dataFrameAnalytics, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #dataFrameAnalytics(List)}, creating the list if
-		 * needed.
+		 * Required - An array of objects that contain usage information for data frame
+		 * analytics jobs, which are sorted by the id value in ascending order.
+		 * <p>
+		 * API name: {@code data_frame_analytics}
+		 * <p>
+		 * Adds a value to <code>dataFrameAnalytics</code> using a builder lambda.
 		 */
-		public Builder addDataFrameAnalytics(DataframeAnalytics value) {
-			if (this.dataFrameAnalytics == null) {
-				this.dataFrameAnalytics = new ArrayList<>();
-			}
-			this.dataFrameAnalytics.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #dataFrameAnalytics(List)} to a singleton list.
-		 */
-		public Builder dataFrameAnalytics(Function<DataframeAnalytics.Builder, ObjectBuilder<DataframeAnalytics>> fn) {
-			return this.dataFrameAnalytics(fn.apply(new DataframeAnalytics.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #dataFrameAnalytics(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addDataFrameAnalytics(
+		public final Builder dataFrameAnalytics(
 				Function<DataframeAnalytics.Builder, ObjectBuilder<DataframeAnalytics>> fn) {
-			return this.addDataFrameAnalytics(fn.apply(new DataframeAnalytics.Builder()).build());
+			return dataFrameAnalytics(fn.apply(new DataframeAnalytics.Builder()).build());
 		}
 
 		/**
@@ -178,6 +177,7 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public GetDataFrameAnalyticsStatsResponse build() {
+			_checkSingleUse();
 
 			return new GetDataFrameAnalyticsStatsResponse(this);
 		}
@@ -189,11 +189,11 @@ public final class GetDataFrameAnalyticsStatsResponse implements JsonpSerializab
 	 * Json deserializer for {@link GetDataFrameAnalyticsStatsResponse}
 	 */
 	public static final JsonpDeserializer<GetDataFrameAnalyticsStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetDataFrameAnalyticsStatsResponse::setupGetDataFrameAnalyticsStatsResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new,
+					GetDataFrameAnalyticsStatsResponse::setupGetDataFrameAnalyticsStatsResponseDeserializer);
 
 	protected static void setupGetDataFrameAnalyticsStatsResponseDeserializer(
-			DelegatingDeserializer<GetDataFrameAnalyticsStatsResponse.Builder> op) {
+			ObjectDeserializer<GetDataFrameAnalyticsStatsResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::dataFrameAnalytics, JsonpDeserializer.arrayDeserializer(DataframeAnalytics._DESERIALIZER),

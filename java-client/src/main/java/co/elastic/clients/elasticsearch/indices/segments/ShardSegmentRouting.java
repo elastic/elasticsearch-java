@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.indices.segments;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.ShardSegmentRouting
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/segments/types.ts#L41-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShardSegmentRouting implements JsonpSerializable {
+public class ShardSegmentRouting implements JsonpSerializable {
 	private final String node;
 
 	private final boolean primary;
@@ -49,36 +57,36 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardSegmentRouting(Builder builder) {
+	private ShardSegmentRouting(Builder builder) {
 
-		this.node = Objects.requireNonNull(builder.node, "node");
-		this.primary = Objects.requireNonNull(builder.primary, "primary");
-		this.state = Objects.requireNonNull(builder.state, "state");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 
-	public ShardSegmentRouting(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardSegmentRouting of(Function<Builder, ObjectBuilder<ShardSegmentRouting>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
 	/**
 	 * Required - API name: {@code primary}
 	 */
-	public boolean primary() {
+	public final boolean primary() {
 		return this.primary;
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public String state() {
+	public final String state() {
 		return this.state;
 	}
 
@@ -109,7 +117,8 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardSegmentRouting}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardSegmentRouting> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardSegmentRouting> {
 		private String node;
 
 		private Boolean primary;
@@ -119,7 +128,7 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -127,7 +136,7 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primary}
 		 */
-		public Builder primary(boolean value) {
+		public final Builder primary(boolean value) {
 			this.primary = value;
 			return this;
 		}
@@ -135,7 +144,7 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(String value) {
+		public final Builder state(String value) {
 			this.state = value;
 			return this;
 		}
@@ -147,6 +156,7 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardSegmentRouting build() {
+			_checkSingleUse();
 
 			return new ShardSegmentRouting(this);
 		}
@@ -158,9 +168,9 @@ public final class ShardSegmentRouting implements JsonpSerializable {
 	 * Json deserializer for {@link ShardSegmentRouting}
 	 */
 	public static final JsonpDeserializer<ShardSegmentRouting> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardSegmentRouting::setupShardSegmentRoutingDeserializer, Builder::build);
+			.lazy(Builder::new, ShardSegmentRouting::setupShardSegmentRoutingDeserializer);
 
-	protected static void setupShardSegmentRoutingDeserializer(DelegatingDeserializer<ShardSegmentRouting.Builder> op) {
+	protected static void setupShardSegmentRoutingDeserializer(ObjectDeserializer<ShardSegmentRouting.Builder> op) {
 
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");

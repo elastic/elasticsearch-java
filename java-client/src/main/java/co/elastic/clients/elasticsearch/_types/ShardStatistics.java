@@ -23,34 +23,38 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ShardStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L32-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShardStatistics implements JsonpSerializable {
+public class ShardStatistics implements JsonpSerializable {
 	private final Number failed;
 
 	private final Number successful;
 
 	private final Number total;
 
-	@Nullable
 	private final List<ShardFailure> failures;
 
 	@Nullable
@@ -58,46 +62,45 @@ public final class ShardStatistics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardStatistics(Builder builder) {
+	private ShardStatistics(Builder builder) {
 
-		this.failed = Objects.requireNonNull(builder.failed, "failed");
-		this.successful = Objects.requireNonNull(builder.successful, "successful");
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
 		this.skipped = builder.skipped;
 
 	}
 
-	public ShardStatistics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardStatistics of(Function<Builder, ObjectBuilder<ShardStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code failed}
 	 */
-	public Number failed() {
+	public final Number failed() {
 		return this.failed;
 	}
 
 	/**
 	 * Required - API name: {@code successful}
 	 */
-	public Number successful() {
+	public final Number successful() {
 		return this.successful;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public Number total() {
+	public final Number total() {
 		return this.total;
 	}
 
 	/**
 	 * API name: {@code failures}
 	 */
-	@Nullable
-	public List<ShardFailure> failures() {
+	public final List<ShardFailure> failures() {
 		return this.failures;
 	}
 
@@ -105,7 +108,7 @@ public final class ShardStatistics implements JsonpSerializable {
 	 * API name: {@code skipped}
 	 */
 	@Nullable
-	public Number skipped() {
+	public final Number skipped() {
 		return this.skipped;
 	}
 
@@ -129,8 +132,7 @@ public final class ShardStatistics implements JsonpSerializable {
 		generator.writeKey("total");
 		generator.write(this.total.doubleValue());
 
-		if (this.failures != null) {
-
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (ShardFailure item0 : this.failures) {
@@ -141,7 +143,6 @@ public final class ShardStatistics implements JsonpSerializable {
 
 		}
 		if (this.skipped != null) {
-
 			generator.writeKey("skipped");
 			generator.write(this.skipped.doubleValue());
 
@@ -154,7 +155,8 @@ public final class ShardStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStatistics}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardStatistics> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStatistics> {
 		private Number failed;
 
 		private Number successful;
@@ -170,7 +172,7 @@ public final class ShardStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code failed}
 		 */
-		public Builder failed(Number value) {
+		public final Builder failed(Number value) {
 			this.failed = value;
 			return this;
 		}
@@ -178,7 +180,7 @@ public final class ShardStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code successful}
 		 */
-		public Builder successful(Number value) {
+		public final Builder successful(Number value) {
 			this.successful = value;
 			return this;
 		}
@@ -186,56 +188,44 @@ public final class ShardStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(Number value) {
+		public final Builder total(Number value) {
 			this.total = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 */
-		public Builder failures(@Nullable List<ShardFailure> value) {
-			this.failures = value;
+		public final Builder failures(List<ShardFailure> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public Builder failures(ShardFailure... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(ShardFailure value, ShardFailure... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * API name: {@code failures}
+		 * <p>
+		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
-		public Builder addFailures(ShardFailure value) {
-			if (this.failures == null) {
-				this.failures = new ArrayList<>();
-			}
-			this.failures.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #failures(List)} to a singleton list.
-		 */
-		public Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
-			return this.failures(fn.apply(new ShardFailure.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
-		 */
-		public Builder addFailures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
-			return this.addFailures(fn.apply(new ShardFailure.Builder()).build());
+		public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
+			return failures(fn.apply(new ShardFailure.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code skipped}
 		 */
-		public Builder skipped(@Nullable Number value) {
+		public final Builder skipped(@Nullable Number value) {
 			this.skipped = value;
 			return this;
 		}
@@ -247,6 +237,7 @@ public final class ShardStatistics implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardStatistics build() {
+			_checkSingleUse();
 
 			return new ShardStatistics(this);
 		}
@@ -258,9 +249,9 @@ public final class ShardStatistics implements JsonpSerializable {
 	 * Json deserializer for {@link ShardStatistics}
 	 */
 	public static final JsonpDeserializer<ShardStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardStatistics::setupShardStatisticsDeserializer, Builder::build);
+			ShardStatistics::setupShardStatisticsDeserializer);
 
-	protected static void setupShardStatisticsDeserializer(DelegatingDeserializer<ShardStatistics.Builder> op) {
+	protected static void setupShardStatisticsDeserializer(ObjectDeserializer<ShardStatistics.Builder> op) {
 
 		op.add(Builder::failed, JsonpDeserializer.numberDeserializer(), "failed");
 		op.add(Builder::successful, JsonpDeserializer.numberDeserializer(), "successful");

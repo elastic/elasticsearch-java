@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.LongRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L58-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class LongRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class LongRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public LongRangeProperty(Builder builder) {
+	private LongRangeProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public LongRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LongRangeProperty of(Function<Builder, ObjectBuilder<LongRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "long_range";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.LongRange;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class LongRangeProperty extends RangePropertyBase implements Proper
 	/**
 	 * Builder for {@link LongRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LongRangeProperty> {
@@ -83,6 +90,7 @@ public final class LongRangeProperty extends RangePropertyBase implements Proper
 		 *             if some of the required fields are null.
 		 */
 		public LongRangeProperty build() {
+			_checkSingleUse();
 
 			return new LongRangeProperty(this);
 		}
@@ -94,9 +102,9 @@ public final class LongRangeProperty extends RangePropertyBase implements Proper
 	 * Json deserializer for {@link LongRangeProperty}
 	 */
 	public static final JsonpDeserializer<LongRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LongRangeProperty::setupLongRangePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, LongRangeProperty::setupLongRangePropertyDeserializer);
 
-	protected static void setupLongRangePropertyDeserializer(DelegatingDeserializer<LongRangeProperty.Builder> op) {
+	protected static void setupLongRangePropertyDeserializer(ObjectDeserializer<LongRangeProperty.Builder> op) {
 		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
 		op.ignore("type");

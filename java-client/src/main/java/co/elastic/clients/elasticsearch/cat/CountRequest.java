@@ -23,21 +23,21 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -45,20 +45,28 @@ import javax.annotation.Nullable;
 
 // typedef: cat.count.Request
 
-public final class CountRequest extends CatRequestBase {
-	@Nullable
+/**
+ * Provides quick access to the document count of the entire cluster, or
+ * individual indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/count/CatCountRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class CountRequest extends CatRequestBase {
 	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CountRequest(Builder builder) {
+	private CountRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 
 	}
 
-	public CountRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CountRequest of(Function<Builder, ObjectBuilder<CountRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,8 +74,7 @@ public final class CountRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -76,7 +83,8 @@ public final class CountRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link CountRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CountRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountRequest> {
 		@Nullable
 		private List<String> index;
 
@@ -84,9 +92,11 @@ public final class CountRequest extends CatRequestBase {
 		 * A comma-separated list of index names to limit the returned information
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -94,20 +104,11 @@ public final class CountRequest extends CatRequestBase {
 		 * A comma-separated list of index names to limit the returned information
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -118,6 +119,7 @@ public final class CountRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public CountRequest build() {
+			_checkSingleUse();
 
 			return new CountRequest(this);
 		}
@@ -128,7 +130,9 @@ public final class CountRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.count}".
 	 */
-	public static final Endpoint<CountRequest, CountResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CountRequest, CountResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.count",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -141,7 +145,7 @@ public final class CountRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -164,7 +168,9 @@ public final class CountRequest extends CatRequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, CountResponse._DESERIALIZER);
 }

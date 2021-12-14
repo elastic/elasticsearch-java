@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.shutdown;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -46,20 +45,29 @@ import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.Request
 
-public final class GetNodeRequest extends RequestBase {
-	@Nullable
+/**
+ * Retrieve status of a node or nodes that are currently marked as shutting
+ * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+ * supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/get_node/ShutdownGetNodeRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class GetNodeRequest extends RequestBase {
 	private final List<String> nodeId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetNodeRequest(Builder builder) {
+	private GetNodeRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 
 	}
 
-	public GetNodeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetNodeRequest of(Function<Builder, ObjectBuilder<GetNodeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,8 +75,7 @@ public final class GetNodeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code node_id}
 	 */
-	@Nullable
-	public List<String> nodeId() {
+	public final List<String> nodeId() {
 		return this.nodeId;
 	}
 
@@ -77,7 +84,8 @@ public final class GetNodeRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetNodeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetNodeRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetNodeRequest> {
 		@Nullable
 		private List<String> nodeId;
 
@@ -85,9 +93,11 @@ public final class GetNodeRequest extends RequestBase {
 		 * Which node for which to retrieve the shutdown status
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
 		 */
-		public Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
 			return this;
 		}
 
@@ -95,20 +105,11 @@ public final class GetNodeRequest extends RequestBase {
 		 * Which node for which to retrieve the shutdown status
 		 * <p>
 		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
 		 */
-		public Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -119,6 +120,7 @@ public final class GetNodeRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetNodeRequest build() {
+			_checkSingleUse();
 
 			return new GetNodeRequest(this);
 		}
@@ -129,7 +131,9 @@ public final class GetNodeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code shutdown.get_node}".
 	 */
-	public static final Endpoint<GetNodeRequest, GetNodeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetNodeRequest, GetNodeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/shutdown.get_node",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -142,7 +146,7 @@ public final class GetNodeRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {

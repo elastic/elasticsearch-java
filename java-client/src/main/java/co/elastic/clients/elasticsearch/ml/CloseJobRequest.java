@@ -23,55 +23,96 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.close_job.Request
 
-public final class CloseJobRequest extends RequestBase {
-	private final String jobId;
-
+/**
+ * Closes one or more anomaly detection jobs. A job can be opened and closed
+ * multiple times throughout its lifecycle. A closed job cannot receive data or
+ * perform analysis operations, but you can still explore and navigate results.
+ * When you close a job, it runs housekeeping tasks such as pruning the model
+ * history, flushing buffers, calculating final results and persisting the model
+ * snapshots. Depending upon the size of the job, it could take several minutes
+ * to close and the equivalent time to re-open. After it is closed, the job has
+ * a minimal overhead on the cluster except for maintaining its meta data.
+ * Therefore it is a best practice to close jobs that are no longer required to
+ * process data. If you close an anomaly detection job whose datafeed is
+ * running, the request first tries to stop the datafeed. This behavior is
+ * equivalent to calling stop datafeed API with the same timeout and force
+ * parameters as the close job request. When a datafeed that has a specified end
+ * date stops, it automatically closes its associated job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/close_job/MlCloseJobRequest.ts#L24-L76">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class CloseJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final Boolean allowNoJobs;
-
-	@Nullable
 	private final Boolean force;
 
+	private final String jobId;
+
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CloseJobRequest(Builder builder) {
+	private CloseJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.allowNoMatch = builder.allowNoMatch;
-		this.allowNoJobs = builder.allowNoJobs;
 		this.force = builder.force;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.timeout = builder.timeout;
 
 	}
 
-	public CloseJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CloseJobRequest of(Function<Builder, ObjectBuilder<CloseJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Refer to the description for the <code>allow_no_match</code> query parameter.
+	 * <p>
+	 * API name: {@code allow_no_match}
+	 */
+	@Nullable
+	public final Boolean allowNoMatch() {
+		return this.allowNoMatch;
+	}
+
+	/**
+	 * Refer to the descriptiion for the <code>force</code> query parameter.
+	 * <p>
+	 * API name: {@code force}
+	 */
+	@Nullable
+	public final Boolean force() {
+		return this.force;
 	}
 
 	/**
@@ -84,62 +125,47 @@ public final class CloseJobRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * Specifies what to do when the request: contains wildcard expressions and
-	 * there are no jobs that match; contains the <code>_all</code> string or no
-	 * identifiers and there are no matches; or contains wildcard expressions and
-	 * there are only partial matches. By default, it returns an empty jobs array
-	 * when there are no matches and the subset of results when there are partial
-	 * matches. If <code>false</code>, the request returns a 404 status code when
-	 * there are no matches or only partial matches.
-	 * <p>
-	 * API name: {@code allow_no_match}
-	 */
-	@Nullable
-	public Boolean allowNoMatch() {
-		return this.allowNoMatch;
-	}
-
-	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
-	 * <p>
-	 * API name: {@code allow_no_jobs}
-	 */
-	@Nullable
-	public Boolean allowNoJobs() {
-		return this.allowNoJobs;
-	}
-
-	/**
-	 * Use to close a failed job, or to forcefully close a job which has not
-	 * responded to its initial close request; the request returns without
-	 * performing the associated actions such as flushing buffers and persisting the
-	 * model snapshots. If you want the job to be in a consistent state after the
-	 * close job API returns, do not set to <code>true</code>. This parameter should
-	 * be used only in situations where the job has already failed or where you are
-	 * not interested in results the job might have recently produced or might
-	 * produce in the future.
-	 * <p>
-	 * API name: {@code force}
-	 */
-	@Nullable
-	public Boolean force() {
-		return this.force;
-	}
-
-	/**
-	 * Controls the time to wait until a job has closed.
+	 * Refer to the description for the <code>timeout</code> query parameter.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		if (this.allowNoMatch != null) {
+			generator.writeKey("allow_no_match");
+			generator.write(this.allowNoMatch);
+
+		}
+		if (this.force != null) {
+			generator.writeKey("force");
+			generator.write(this.force);
+
+		}
+		if (this.timeout != null) {
+			generator.writeKey("timeout");
+			this.timeout.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -147,20 +173,38 @@ public final class CloseJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link CloseJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CloseJobRequest> {
-		private String jobId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseJobRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
-		private Boolean allowNoJobs;
-
-		@Nullable
 		private Boolean force;
 
+		private String jobId;
+
 		@Nullable
-		private String timeout;
+		private Time timeout;
+
+		/**
+		 * Refer to the description for the <code>allow_no_match</code> query parameter.
+		 * <p>
+		 * API name: {@code allow_no_match}
+		 */
+		public final Builder allowNoMatch(@Nullable Boolean value) {
+			this.allowNoMatch = value;
+			return this;
+		}
+
+		/**
+		 * Refer to the descriptiion for the <code>force</code> query parameter.
+		 * <p>
+		 * API name: {@code force}
+		 */
+		public final Builder force(@Nullable Boolean value) {
+			this.force = value;
+			return this;
+		}
 
 		/**
 		 * Required - Identifier for the anomaly detection job. It can be a job
@@ -172,63 +216,28 @@ public final class CloseJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
-		 * Specifies what to do when the request: contains wildcard expressions and
-		 * there are no jobs that match; contains the <code>_all</code> string or no
-		 * identifiers and there are no matches; or contains wildcard expressions and
-		 * there are only partial matches. By default, it returns an empty jobs array
-		 * when there are no matches and the subset of results when there are partial
-		 * matches. If <code>false</code>, the request returns a 404 status code when
-		 * there are no matches or only partial matches.
-		 * <p>
-		 * API name: {@code allow_no_match}
-		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
-			this.allowNoMatch = value;
-			return this;
-		}
-
-		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
-		 * <p>
-		 * API name: {@code allow_no_jobs}
-		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
-			this.allowNoJobs = value;
-			return this;
-		}
-
-		/**
-		 * Use to close a failed job, or to forcefully close a job which has not
-		 * responded to its initial close request; the request returns without
-		 * performing the associated actions such as flushing buffers and persisting the
-		 * model snapshots. If you want the job to be in a consistent state after the
-		 * close job API returns, do not set to <code>true</code>. This parameter should
-		 * be used only in situations where the job has already failed or where you are
-		 * not interested in results the job might have recently produced or might
-		 * produce in the future.
-		 * <p>
-		 * API name: {@code force}
-		 */
-		public Builder force(@Nullable Boolean value) {
-			this.force = value;
-			return this;
-		}
-
-		/**
-		 * Controls the time to wait until a job has closed.
+		 * Refer to the description for the <code>timeout</code> query parameter.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>timeout</code> query parameter.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -238,6 +247,7 @@ public final class CloseJobRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public CloseJobRequest build() {
+			_checkSingleUse();
 
 			return new CloseJobRequest(this);
 		}
@@ -246,9 +256,27 @@ public final class CloseJobRequest extends RequestBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
+	 * Json deserializer for {@link CloseJobRequest}
+	 */
+	public static final JsonpDeserializer<CloseJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			CloseJobRequest::setupCloseJobRequestDeserializer);
+
+	protected static void setupCloseJobRequestDeserializer(ObjectDeserializer<CloseJobRequest.Builder> op) {
+
+		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
+		op.add(Builder::force, JsonpDeserializer.booleanDeserializer(), "force");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
+
+	}
+
+	// ---------------------------------------------------------------------------------------------
+
+	/**
 	 * Endpoint "{@code ml.close_job}".
 	 */
-	public static final Endpoint<CloseJobRequest, CloseJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CloseJobRequest, CloseJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.close_job",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -278,20 +306,7 @@ public final class CloseJobRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
-				if (request.allowNoJobs != null) {
-					params.put("allow_no_jobs", String.valueOf(request.allowNoJobs));
-				}
-				if (request.force != null) {
-					params.put("force", String.valueOf(request.force));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
-				}
-				return params;
+				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), false, CloseJobResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, CloseJobResponse._DESERIALIZER);
 }

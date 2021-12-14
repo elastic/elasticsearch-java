@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,8 +36,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.GeoShapeProperty
+
+/**
+ * The <code>geo_shape</code> data type facilitates the indexing of and
+ * searching with arbitrary geo shapes such as rectangles and polygons.
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-shape.html">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/geo.ts#L37-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GeoShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class GeoShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean coerce;
 
@@ -56,7 +67,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoShapeProperty(Builder builder) {
+	private GeoShapeProperty(Builder builder) {
 		super(builder);
 
 		this.coerce = builder.coerce;
@@ -67,23 +78,23 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 
 	}
 
-	public GeoShapeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoShapeProperty of(Function<Builder, ObjectBuilder<GeoShapeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geo_shape";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.GeoShape;
 	}
 
 	/**
 	 * API name: {@code coerce}
 	 */
 	@Nullable
-	public Boolean coerce() {
+	public final Boolean coerce() {
 		return this.coerce;
 	}
 
@@ -91,7 +102,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
-	public Boolean ignoreMalformed() {
+	public final Boolean ignoreMalformed() {
 		return this.ignoreMalformed;
 	}
 
@@ -99,7 +110,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 	 * API name: {@code ignore_z_value}
 	 */
 	@Nullable
-	public Boolean ignoreZValue() {
+	public final Boolean ignoreZValue() {
 		return this.ignoreZValue;
 	}
 
@@ -107,7 +118,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 	 * API name: {@code orientation}
 	 */
 	@Nullable
-	public GeoOrientation orientation() {
+	public final GeoOrientation orientation() {
 		return this.orientation;
 	}
 
@@ -115,7 +126,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 	 * API name: {@code strategy}
 	 */
 	@Nullable
-	public GeoStrategy strategy() {
+	public final GeoStrategy strategy() {
 		return this.strategy;
 	}
 
@@ -124,30 +135,25 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 		generator.write("type", "geo_shape");
 		super.serializeInternal(generator, mapper);
 		if (this.coerce != null) {
-
 			generator.writeKey("coerce");
 			generator.write(this.coerce);
 
 		}
 		if (this.ignoreMalformed != null) {
-
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
 		}
 		if (this.ignoreZValue != null) {
-
 			generator.writeKey("ignore_z_value");
 			generator.write(this.ignoreZValue);
 
 		}
 		if (this.orientation != null) {
-
 			generator.writeKey("orientation");
 			this.orientation.serialize(generator, mapper);
 		}
 		if (this.strategy != null) {
-
 			generator.writeKey("strategy");
 			this.strategy.serialize(generator, mapper);
 		}
@@ -159,6 +165,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 	/**
 	 * Builder for {@link GeoShapeProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoShapeProperty> {
@@ -180,7 +187,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 		/**
 		 * API name: {@code coerce}
 		 */
-		public Builder coerce(@Nullable Boolean value) {
+		public final Builder coerce(@Nullable Boolean value) {
 			this.coerce = value;
 			return this;
 		}
@@ -188,7 +195,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
-		public Builder ignoreMalformed(@Nullable Boolean value) {
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
 			return this;
 		}
@@ -196,7 +203,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 		/**
 		 * API name: {@code ignore_z_value}
 		 */
-		public Builder ignoreZValue(@Nullable Boolean value) {
+		public final Builder ignoreZValue(@Nullable Boolean value) {
 			this.ignoreZValue = value;
 			return this;
 		}
@@ -204,7 +211,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 		/**
 		 * API name: {@code orientation}
 		 */
-		public Builder orientation(@Nullable GeoOrientation value) {
+		public final Builder orientation(@Nullable GeoOrientation value) {
 			this.orientation = value;
 			return this;
 		}
@@ -212,7 +219,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 		/**
 		 * API name: {@code strategy}
 		 */
-		public Builder strategy(@Nullable GeoStrategy value) {
+		public final Builder strategy(@Nullable GeoStrategy value) {
 			this.strategy = value;
 			return this;
 		}
@@ -229,6 +236,7 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 		 *             if some of the required fields are null.
 		 */
 		public GeoShapeProperty build() {
+			_checkSingleUse();
 
 			return new GeoShapeProperty(this);
 		}
@@ -240,9 +248,9 @@ public final class GeoShapeProperty extends DocValuesPropertyBase implements Pro
 	 * Json deserializer for {@link GeoShapeProperty}
 	 */
 	public static final JsonpDeserializer<GeoShapeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoShapeProperty::setupGeoShapePropertyDeserializer, Builder::build);
+			GeoShapeProperty::setupGeoShapePropertyDeserializer);
 
-	protected static void setupGeoShapePropertyDeserializer(DelegatingDeserializer<GeoShapeProperty.Builder> op) {
+	protected static void setupGeoShapePropertyDeserializer(ObjectDeserializer<GeoShapeProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");

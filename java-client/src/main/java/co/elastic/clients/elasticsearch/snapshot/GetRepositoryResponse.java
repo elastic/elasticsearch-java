@@ -23,12 +23,11 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.base.DictionaryResponse;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,17 +35,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: snapshot.get_repository.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/get_repository/SnapshotGetRepositoryResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetRepositoryResponse extends DictionaryResponse<String, Repository> {
+public class GetRepositoryResponse extends DictionaryResponse<String, Repository> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRepositoryResponse(Builder builder) {
+	private GetRepositoryResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetRepositoryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRepositoryResponse of(Function<Builder, ObjectBuilder<GetRepositoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +60,7 @@ public final class GetRepositoryResponse extends DictionaryResponse<String, Repo
 	/**
 	 * Builder for {@link GetRepositoryResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Repository, Builder>
 			implements
 				ObjectBuilder<GetRepositoryResponse> {
@@ -69,6 +76,7 @@ public final class GetRepositoryResponse extends DictionaryResponse<String, Repo
 		 *             if some of the required fields are null.
 		 */
 		public GetRepositoryResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -82,10 +90,9 @@ public final class GetRepositoryResponse extends DictionaryResponse<String, Repo
 	 * Json deserializer for {@link GetRepositoryResponse}
 	 */
 	public static final JsonpDeserializer<GetRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetRepositoryResponse::setupGetRepositoryResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetRepositoryResponse::setupGetRepositoryResponseDeserializer);
 
-	protected static void setupGetRepositoryResponseDeserializer(
-			DelegatingDeserializer<GetRepositoryResponse.Builder> op) {
+	protected static void setupGetRepositoryResponseDeserializer(ObjectDeserializer<GetRepositoryResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				Repository._DESERIALIZER);
 

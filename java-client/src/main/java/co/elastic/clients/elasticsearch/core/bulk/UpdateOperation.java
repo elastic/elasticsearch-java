@@ -23,36 +23,112 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Integer;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _global.bulk.UpdateOperation
-@JsonpDeserializable
-public final class UpdateOperation extends OperationBase implements OperationVariant {
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/types.ts#L80-L83">API
+ *      specification</a>
+ */
+
+public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJsonpSerializable, BulkOperationVariant {
+	private final TDocument document;
+
+	@Nullable
+	private final Boolean requireAlias;
+
+	@Nullable
+	private final Integer retryOnConflict;
+
+	@Nullable
+	private final JsonpSerializer<TDocument> tDocumentSerializer;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateOperation(Builder builder) {
+	private UpdateOperation(Builder<TDocument> builder) {
 		super(builder);
+		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
+
+		this.requireAlias = builder.requireAlias;
+		this.retryOnConflict = builder.retryOnConflict;
+		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public UpdateOperation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static <TDocument> UpdateOperation<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
-	 * {@link Operation} variant type
+	 * BulkOperation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "update";
+	public BulkOperation.Kind _bulkOperationKind() {
+		return BulkOperation.Kind.Update;
+	}
+
+	/**
+	 * Required - API name: {@code document}
+	 */
+	public final TDocument document() {
+		return this.document;
+	}
+
+	@Override
+	public Iterator<?> _serializables() {
+		return Arrays.asList(this, this.document).iterator();
+	}
+
+	/**
+	 * API name: {@code require_alias}
+	 */
+	@Nullable
+	public final Boolean requireAlias() {
+		return this.requireAlias;
+	}
+
+	/**
+	 * API name: {@code retry_on_conflict}
+	 */
+	@Nullable
+	public final Integer retryOnConflict() {
+		return this.retryOnConflict;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
+		if (this.requireAlias != null) {
+			generator.writeKey("require_alias");
+			generator.write(this.requireAlias);
+
+		}
+		if (this.retryOnConflict != null) {
+			generator.writeKey("retry_on_conflict");
+			generator.write(this.retryOnConflict);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,11 +136,56 @@ public final class UpdateOperation extends OperationBase implements OperationVar
 	/**
 	 * Builder for {@link UpdateOperation}.
 	 */
-	public static class Builder extends OperationBase.AbstractBuilder<Builder>
+
+	public static class Builder<TDocument> extends BulkOperationBase.AbstractBuilder<Builder<TDocument>>
 			implements
-				ObjectBuilder<UpdateOperation> {
+				ObjectBuilder<UpdateOperation<TDocument>> {
+		private TDocument document;
+
+		/**
+		 * Required - API name: {@code document}
+		 */
+		public final Builder<TDocument> document(TDocument value) {
+			this.document = value;
+			return this;
+		}
+
+		@Nullable
+		private Boolean requireAlias;
+
+		@Nullable
+		private Integer retryOnConflict;
+
+		@Nullable
+		private JsonpSerializer<TDocument> tDocumentSerializer;
+
+		/**
+		 * API name: {@code require_alias}
+		 */
+		public final Builder<TDocument> requireAlias(@Nullable Boolean value) {
+			this.requireAlias = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code retry_on_conflict}
+		 */
+		public final Builder<TDocument> retryOnConflict(@Nullable Integer value) {
+			this.retryOnConflict = value;
+			return this;
+		}
+
+		/**
+		 * Serializer for TDocument. If not set, an attempt will be made to find a
+		 * serializer from the JSON context.
+		 */
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+			this.tDocumentSerializer = value;
+			return this;
+		}
+
 		@Override
-		protected Builder self() {
+		protected Builder<TDocument> self() {
 			return this;
 		}
 
@@ -74,23 +195,11 @@ public final class UpdateOperation extends OperationBase implements OperationVar
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public UpdateOperation build() {
+		public UpdateOperation<TDocument> build() {
+			_checkSingleUse();
 
-			return new UpdateOperation(this);
+			return new UpdateOperation<TDocument>(this);
 		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link UpdateOperation}
-	 */
-	public static final JsonpDeserializer<UpdateOperation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			UpdateOperation::setupUpdateOperationDeserializer, Builder::build);
-
-	protected static void setupUpdateOperationDeserializer(DelegatingDeserializer<UpdateOperation.Builder> op) {
-		OperationBase.setupOperationBaseDeserializer(op);
-
 	}
 
 }

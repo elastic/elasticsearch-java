@@ -23,20 +23,22 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.VersionType;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -47,28 +49,36 @@ import javax.annotation.Nullable;
 
 // typedef: _global.delete.Request
 
-public final class DeleteRequest extends RequestBase {
+/**
+ * Removes a document from the index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete/DeleteRequest.ts#L35-L56">API
+ *      specification</a>
+ */
+
+public class DeleteRequest extends RequestBase {
 	private final String id;
-
-	private final String index;
-
-	@Nullable
-	private final String type;
 
 	@Nullable
 	private final Long ifPrimaryTerm;
 
 	@Nullable
-	private final Integer ifSeqNo;
+	private final Long ifSeqNo;
+
+	private final String index;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	@Nullable
 	private final String routing;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
+
+	@Nullable
+	private final String type;
 
 	@Nullable
 	private final Long version;
@@ -77,28 +87,28 @@ public final class DeleteRequest extends RequestBase {
 	private final VersionType versionType;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	private final WaitForActiveShards waitForActiveShards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteRequest(Builder builder) {
+	private DeleteRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.type = builder.type;
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
+		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
 
-	public DeleteRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteRequest of(Function<Builder, ObjectBuilder<DeleteRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,27 +116,8 @@ public final class DeleteRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
-	}
-
-	/**
-	 * Required - The name of the index
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
-	}
-
-	/**
-	 * The type of the document
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
 	}
 
 	/**
@@ -136,7 +127,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code if_primary_term}
 	 */
 	@Nullable
-	public Long ifPrimaryTerm() {
+	public final Long ifPrimaryTerm() {
 		return this.ifPrimaryTerm;
 	}
 
@@ -147,8 +138,17 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code if_seq_no}
 	 */
 	@Nullable
-	public Integer ifSeqNo() {
+	public final Long ifSeqNo() {
 		return this.ifSeqNo;
+	}
+
+	/**
+	 * Required - The name of the index
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final String index() {
+		return this.index;
 	}
 
 	/**
@@ -160,7 +160,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -170,7 +170,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -180,8 +180,18 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * The type of the document
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public final String type() {
+		return this.type;
 	}
 
 	/**
@@ -190,7 +200,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -200,7 +210,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -214,7 +224,7 @@ public final class DeleteRequest extends RequestBase {
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final WaitForActiveShards waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -223,28 +233,29 @@ public final class DeleteRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRequest> {
 		private String id;
-
-		private String index;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private Long ifPrimaryTerm;
 
 		@Nullable
-		private Integer ifSeqNo;
+		private Long ifSeqNo;
+
+		private String index;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		@Nullable
 		private String routing;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
+
+		@Nullable
+		private String type;
 
 		@Nullable
 		private Long version;
@@ -253,35 +264,15 @@ public final class DeleteRequest extends RequestBase {
 		private VersionType versionType;
 
 		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+		private WaitForActiveShards waitForActiveShards;
 
 		/**
 		 * Required - The document ID
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Required - The name of the index
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * The type of the document
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -291,7 +282,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code if_primary_term}
 		 */
-		public Builder ifPrimaryTerm(@Nullable Long value) {
+		public final Builder ifPrimaryTerm(@Nullable Long value) {
 			this.ifPrimaryTerm = value;
 			return this;
 		}
@@ -302,8 +293,18 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code if_seq_no}
 		 */
-		public Builder ifSeqNo(@Nullable Integer value) {
+		public final Builder ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the index
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public final Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -315,7 +316,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -325,7 +326,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -335,8 +336,27 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The type of the document
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public final Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -345,7 +365,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -355,7 +375,7 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -369,9 +389,23 @@ public final class DeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
 			this.waitForActiveShards = value;
 			return this;
+		}
+
+		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the delete operation. Defaults to 1, meaning the primary shard only. Set to
+		 * <code>all</code> for all shard copies, otherwise set to any non-negative
+		 * value less than or equal to the total number of copies for the shard (number
+		 * of replicas + 1)
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -381,6 +415,7 @@ public final class DeleteRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteRequest build() {
+			_checkSingleUse();
 
 			return new DeleteRequest(this);
 		}
@@ -391,7 +426,9 @@ public final class DeleteRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code delete}".
 	 */
-	public static final Endpoint<DeleteRequest, DeleteResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteRequest, DeleteResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/delete",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -400,14 +437,14 @@ public final class DeleteRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
 				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _id;
 				propsSet |= _index;
+				propsSet |= _id;
 				if (request.type() != null)
 					propsSet |= _type;
 
@@ -437,6 +474,12 @@ public final class DeleteRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.routing != null) {
+					params.put("routing", request.routing);
+				}
+				if (request.versionType != null) {
+					params.put("version_type", request.versionType.jsonValue());
+				}
 				if (request.ifPrimaryTerm != null) {
 					params.put("if_primary_term", String.valueOf(request.ifPrimaryTerm));
 				}
@@ -444,22 +487,16 @@ public final class DeleteRequest extends RequestBase {
 					params.put("if_seq_no", String.valueOf(request.ifSeqNo));
 				}
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+				if (request.waitForActiveShards != null) {
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
 				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
-				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

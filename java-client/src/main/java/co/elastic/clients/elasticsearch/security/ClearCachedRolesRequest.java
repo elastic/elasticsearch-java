@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -46,19 +45,27 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_cached_roles.Request
 
-public final class ClearCachedRolesRequest extends RequestBase {
+/**
+ * Evicts roles from the native role cache.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/clear_cached_roles/ClearCachedRolesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class ClearCachedRolesRequest extends RequestBase {
 	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCachedRolesRequest(Builder builder) {
+	private ClearCachedRolesRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
-	public ClearCachedRolesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCachedRolesRequest of(Function<Builder, ObjectBuilder<ClearCachedRolesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +73,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public List<String> name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -75,16 +82,19 @@ public final class ClearCachedRolesRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearCachedRolesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearCachedRolesRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCachedRolesRequest> {
 		private List<String> name;
 
 		/**
 		 * Required - Role name
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public Builder name(List<String> value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
 			return this;
 		}
 
@@ -92,20 +102,11 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		 * Required - Role name
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
 		 */
-		public Builder name(String... value) {
-			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -116,6 +117,7 @@ public final class ClearCachedRolesRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ClearCachedRolesRequest build() {
+			_checkSingleUse();
 
 			return new ClearCachedRolesRequest(this);
 		}
@@ -126,7 +128,9 @@ public final class ClearCachedRolesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_cached_roles}".
 	 */
-	public static final Endpoint<ClearCachedRolesRequest, ClearCachedRolesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ClearCachedRolesRequest, ClearCachedRolesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.clear_cached_roles",
+
 			// Request method
 			request -> {
 				return "POST";

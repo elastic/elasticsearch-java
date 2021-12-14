@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: snapshot.delete.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/delete/SnapshotDeleteResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteSnapshotResponse extends AcknowledgedResponseBase {
+public class DeleteSnapshotResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteSnapshotResponse(Builder builder) {
+	private DeleteSnapshotResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteSnapshotResponse of(Function<Builder, ObjectBuilder<DeleteSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteSnapshotResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteSnapshotResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteSnapshotResponse> {
@@ -68,6 +75,7 @@ public final class DeleteSnapshotResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new DeleteSnapshotResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class DeleteSnapshotResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteSnapshotResponse}
 	 */
 	public static final JsonpDeserializer<DeleteSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteSnapshotResponse::setupDeleteSnapshotResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteSnapshotResponse::setupDeleteSnapshotResponseDeserializer);
 
 	protected static void setupDeleteSnapshotResponseDeserializer(
-			DelegatingDeserializer<DeleteSnapshotResponse.Builder> op) {
+			ObjectDeserializer<DeleteSnapshotResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

@@ -23,79 +23,88 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Sql
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L347-L350">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Sql extends Base {
+public class Sql extends Base {
 	private final Map<String, Integer> features;
 
-	private final Map<String, Query> queries;
+	private final Map<String, XpackUsageQuery> queries;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Sql(Builder builder) {
+	private Sql(Builder builder) {
 		super(builder);
 
-		this.features = ModelTypeHelper.unmodifiableNonNull(builder.features, "features");
-		this.queries = ModelTypeHelper.unmodifiableNonNull(builder.queries, "queries");
+		this.features = ApiTypeHelper.unmodifiableRequired(builder.features, this, "features");
+		this.queries = ApiTypeHelper.unmodifiableRequired(builder.queries, this, "queries");
 
 	}
 
-	public Sql(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Sql of(Function<Builder, ObjectBuilder<Sql>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code features}
 	 */
-	public Map<String, Integer> features() {
+	public final Map<String, Integer> features() {
 		return this.features;
 	}
 
 	/**
 	 * Required - API name: {@code queries}
 	 */
-	public Map<String, Query> queries() {
+	public final Map<String, XpackUsageQuery> queries() {
 		return this.queries;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.features)) {
+			generator.writeKey("features");
+			generator.writeStartObject();
+			for (Map.Entry<String, Integer> item0 : this.features.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
 
-		generator.writeKey("features");
-		generator.writeStartObject();
-		for (Map.Entry<String, Integer> item0 : this.features.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("queries");
-		generator.writeStartObject();
-		for (Map.Entry<String, Query> item0 : this.queries.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.queries)) {
+			generator.writeKey("queries");
+			generator.writeStartObject();
+			for (Map.Entry<String, XpackUsageQuery> item0 : this.queries.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -104,61 +113,59 @@ public final class Sql extends Base {
 	/**
 	 * Builder for {@link Sql}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Sql> {
 		private Map<String, Integer> features;
 
-		private Map<String, Query> queries;
+		private Map<String, XpackUsageQuery> queries;
 
 		/**
 		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>features</code>.
 		 */
-		public Builder features(Map<String, Integer> value) {
-			this.features = value;
+		public final Builder features(Map<String, Integer> map) {
+			this.features = _mapPutAll(this.features, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #features(Map)}, creating the map if needed.
+		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds an entry to <code>features</code>.
 		 */
-		public Builder putFeatures(String key, Integer value) {
-			if (this.features == null) {
-				this.features = new HashMap<>();
-			}
-			this.features.put(key, value);
+		public final Builder features(String key, Integer value) {
+			this.features = _mapPut(this.features, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>queries</code>.
 		 */
-		public Builder queries(Map<String, Query> value) {
-			this.queries = value;
+		public final Builder queries(Map<String, XpackUsageQuery> map) {
+			this.queries = _mapPutAll(this.queries, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #queries(Map)}, creating the map if needed.
+		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds an entry to <code>queries</code>.
 		 */
-		public Builder putQueries(String key, Query value) {
-			if (this.queries == null) {
-				this.queries = new HashMap<>();
-			}
-			this.queries.put(key, value);
+		public final Builder queries(String key, XpackUsageQuery value) {
+			this.queries = _mapPut(this.queries, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #queries(Map)} to a singleton map.
+		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds an entry to <code>queries</code> using a builder lambda.
 		 */
-		public Builder queries(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.queries(Collections.singletonMap(key, fn.apply(new Query.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #queries(Map)}, creating the map if needed.
-		 */
-		public Builder putQueries(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.putQueries(key, fn.apply(new Query.Builder()).build());
+		public final Builder queries(String key, Function<XpackUsageQuery.Builder, ObjectBuilder<XpackUsageQuery>> fn) {
+			return queries(key, fn.apply(new XpackUsageQuery.Builder()).build());
 		}
 
 		@Override
@@ -173,6 +180,7 @@ public final class Sql extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Sql build() {
+			_checkSingleUse();
 
 			return new Sql(this);
 		}
@@ -184,13 +192,13 @@ public final class Sql extends Base {
 	 * Json deserializer for {@link Sql}
 	 */
 	public static final JsonpDeserializer<Sql> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Sql::setupSqlDeserializer, Builder::build);
+			Sql::setupSqlDeserializer);
 
-	protected static void setupSqlDeserializer(DelegatingDeserializer<Sql.Builder> op) {
+	protected static void setupSqlDeserializer(ObjectDeserializer<Sql.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::features, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
 				"features");
-		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "queries");
+		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(XpackUsageQuery._DESERIALIZER), "queries");
 
 	}
 

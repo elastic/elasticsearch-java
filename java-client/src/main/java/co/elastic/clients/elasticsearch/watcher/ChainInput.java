@@ -23,52 +23,57 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ChainInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L36-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ChainInput implements InputVariant, JsonpSerializable {
+public class ChainInput implements InputVariant, JsonpSerializable {
 	private final List<Input> inputs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ChainInput(Builder builder) {
+	private ChainInput(Builder builder) {
 
-		this.inputs = ModelTypeHelper.unmodifiableNonNull(builder.inputs, "inputs");
+		this.inputs = ApiTypeHelper.unmodifiableRequired(builder.inputs, this, "inputs");
 
 	}
 
-	public ChainInput(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ChainInput of(Function<Builder, ObjectBuilder<ChainInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Input} variant type
+	 * Input variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "chain";
+	public Input.Kind _inputKind() {
+		return Input.Kind.Chain;
 	}
 
 	/**
 	 * Required - API name: {@code inputs}
 	 */
-	public List<Input> inputs() {
+	public final List<Input> inputs() {
 		return this.inputs;
 	}
 
@@ -83,13 +88,16 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("inputs");
-		generator.writeStartArray();
-		for (Input item0 : this.inputs) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.inputs)) {
+			generator.writeKey("inputs");
+			generator.writeStartArray();
+			for (Input item0 : this.inputs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -98,48 +106,37 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link ChainInput}.
 	 */
-	public static class Builder implements ObjectBuilder<ChainInput> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChainInput> {
 		private List<Input> inputs;
 
 		/**
 		 * Required - API name: {@code inputs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>inputs</code>.
 		 */
-		public Builder inputs(List<Input> value) {
-			this.inputs = value;
+		public final Builder inputs(List<Input> list) {
+			this.inputs = _listAddAll(this.inputs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code inputs}
+		 * <p>
+		 * Adds one or more values to <code>inputs</code>.
 		 */
-		public Builder inputs(Input... value) {
-			this.inputs = Arrays.asList(value);
+		public final Builder inputs(Input value, Input... values) {
+			this.inputs = _listAdd(this.inputs, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #inputs(List)}, creating the list if needed.
+		 * Required - API name: {@code inputs}
+		 * <p>
+		 * Adds a value to <code>inputs</code> using a builder lambda.
 		 */
-		public Builder addInputs(Input value) {
-			if (this.inputs == null) {
-				this.inputs = new ArrayList<>();
-			}
-			this.inputs.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #inputs(List)} to a singleton list.
-		 */
-		public Builder inputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
-			return this.inputs(fn.apply(new Input.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #inputs(List)}, creating the list if needed.
-		 */
-		public Builder addInputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
-			return this.addInputs(fn.apply(new Input.Builder()).build());
+		public final Builder inputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+			return inputs(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
@@ -149,6 +146,7 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ChainInput build() {
+			_checkSingleUse();
 
 			return new ChainInput(this);
 		}
@@ -160,9 +158,9 @@ public final class ChainInput implements InputVariant, JsonpSerializable {
 	 * Json deserializer for {@link ChainInput}
 	 */
 	public static final JsonpDeserializer<ChainInput> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ChainInput::setupChainInputDeserializer, Builder::build);
+			ChainInput::setupChainInputDeserializer);
 
-	protected static void setupChainInputDeserializer(DelegatingDeserializer<ChainInput.Builder> op) {
+	protected static void setupChainInputDeserializer(ObjectDeserializer<ChainInput.Builder> op) {
 
 		op.add(Builder::inputs, JsonpDeserializer.arrayDeserializer(Input._DESERIALIZER), "inputs");
 

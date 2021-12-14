@@ -24,31 +24,34 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.get.SnapshotResponseItem;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/get/SnapshotGetResponse.ts#L25-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetSnapshotResponse implements JsonpSerializable {
-	@Nullable
+public class GetSnapshotResponse implements JsonpSerializable {
 	private final List<SnapshotResponseItem> responses;
 
-	@Nullable
 	private final List<SnapshotInfo> snapshots;
 
 	private final int total;
@@ -57,32 +60,30 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetSnapshotResponse(Builder builder) {
+	private GetSnapshotResponse(Builder builder) {
 
-		this.responses = ModelTypeHelper.unmodifiable(builder.responses);
-		this.snapshots = ModelTypeHelper.unmodifiable(builder.snapshots);
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.remaining = Objects.requireNonNull(builder.remaining, "remaining");
+		this.responses = ApiTypeHelper.unmodifiable(builder.responses);
+		this.snapshots = ApiTypeHelper.unmodifiable(builder.snapshots);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.remaining = ApiTypeHelper.requireNonNull(builder.remaining, this, "remaining");
 
 	}
 
-	public GetSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetSnapshotResponse of(Function<Builder, ObjectBuilder<GetSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code responses}
 	 */
-	@Nullable
-	public List<SnapshotResponseItem> responses() {
+	public final List<SnapshotResponseItem> responses() {
 		return this.responses;
 	}
 
 	/**
 	 * API name: {@code snapshots}
 	 */
-	@Nullable
-	public List<SnapshotInfo> snapshots() {
+	public final List<SnapshotInfo> snapshots() {
 		return this.snapshots;
 	}
 
@@ -92,7 +93,7 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code total}
 	 */
-	public int total() {
+	public final int total() {
 		return this.total;
 	}
 
@@ -103,7 +104,7 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code remaining}
 	 */
-	public int remaining() {
+	public final int remaining() {
 		return this.remaining;
 	}
 
@@ -118,8 +119,7 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.responses != null) {
-
+		if (ApiTypeHelper.isDefined(this.responses)) {
 			generator.writeKey("responses");
 			generator.writeStartArray();
 			for (SnapshotResponseItem item0 : this.responses) {
@@ -129,8 +129,7 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.snapshots != null) {
-
+		if (ApiTypeHelper.isDefined(this.snapshots)) {
 			generator.writeKey("snapshots");
 			generator.writeStartArray();
 			for (SnapshotInfo item0 : this.snapshots) {
@@ -140,7 +139,6 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("total");
 		generator.write(this.total);
 
@@ -154,7 +152,8 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetSnapshotResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetSnapshotResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSnapshotResponse> {
 		@Nullable
 		private List<SnapshotResponseItem> responses;
 
@@ -167,84 +166,60 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 
 		/**
 		 * API name: {@code responses}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>responses</code>.
 		 */
-		public Builder responses(@Nullable List<SnapshotResponseItem> value) {
-			this.responses = value;
+		public final Builder responses(List<SnapshotResponseItem> list) {
+			this.responses = _listAddAll(this.responses, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code responses}
+		 * <p>
+		 * Adds one or more values to <code>responses</code>.
 		 */
-		public Builder responses(SnapshotResponseItem... value) {
-			this.responses = Arrays.asList(value);
+		public final Builder responses(SnapshotResponseItem value, SnapshotResponseItem... values) {
+			this.responses = _listAdd(this.responses, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed.
+		 * API name: {@code responses}
+		 * <p>
+		 * Adds a value to <code>responses</code> using a builder lambda.
 		 */
-		public Builder addResponses(SnapshotResponseItem value) {
-			if (this.responses == null) {
-				this.responses = new ArrayList<>();
-			}
-			this.responses.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #responses(List)} to a singleton list.
-		 */
-		public Builder responses(Function<SnapshotResponseItem.Builder, ObjectBuilder<SnapshotResponseItem>> fn) {
-			return this.responses(fn.apply(new SnapshotResponseItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #responses(List)}, creating the list if needed.
-		 */
-		public Builder addResponses(Function<SnapshotResponseItem.Builder, ObjectBuilder<SnapshotResponseItem>> fn) {
-			return this.addResponses(fn.apply(new SnapshotResponseItem.Builder()).build());
+		public final Builder responses(Function<SnapshotResponseItem.Builder, ObjectBuilder<SnapshotResponseItem>> fn) {
+			return responses(fn.apply(new SnapshotResponseItem.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code snapshots}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>snapshots</code>.
 		 */
-		public Builder snapshots(@Nullable List<SnapshotInfo> value) {
-			this.snapshots = value;
+		public final Builder snapshots(List<SnapshotInfo> list) {
+			this.snapshots = _listAddAll(this.snapshots, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code snapshots}
+		 * <p>
+		 * Adds one or more values to <code>snapshots</code>.
 		 */
-		public Builder snapshots(SnapshotInfo... value) {
-			this.snapshots = Arrays.asList(value);
+		public final Builder snapshots(SnapshotInfo value, SnapshotInfo... values) {
+			this.snapshots = _listAdd(this.snapshots, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
+		 * API name: {@code snapshots}
+		 * <p>
+		 * Adds a value to <code>snapshots</code> using a builder lambda.
 		 */
-		public Builder addSnapshots(SnapshotInfo value) {
-			if (this.snapshots == null) {
-				this.snapshots = new ArrayList<>();
-			}
-			this.snapshots.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #snapshots(List)} to a singleton list.
-		 */
-		public Builder snapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
-			return this.snapshots(fn.apply(new SnapshotInfo.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #snapshots(List)}, creating the list if needed.
-		 */
-		public Builder addSnapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
-			return this.addSnapshots(fn.apply(new SnapshotInfo.Builder()).build());
+		public final Builder snapshots(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
+			return snapshots(fn.apply(new SnapshotInfo.Builder()).build());
 		}
 
 		/**
@@ -253,7 +228,7 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total}
 		 */
-		public Builder total(int value) {
+		public final Builder total(int value) {
 			this.total = value;
 			return this;
 		}
@@ -265,7 +240,7 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code remaining}
 		 */
-		public Builder remaining(int value) {
+		public final Builder remaining(int value) {
 			this.remaining = value;
 			return this;
 		}
@@ -277,6 +252,7 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new GetSnapshotResponse(this);
 		}
@@ -288,9 +264,9 @@ public final class GetSnapshotResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetSnapshotResponse}
 	 */
 	public static final JsonpDeserializer<GetSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetSnapshotResponse::setupGetSnapshotResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetSnapshotResponse::setupGetSnapshotResponseDeserializer);
 
-	protected static void setupGetSnapshotResponseDeserializer(DelegatingDeserializer<GetSnapshotResponse.Builder> op) {
+	protected static void setupGetSnapshotResponseDeserializer(ObjectDeserializer<GetSnapshotResponse.Builder> op) {
 
 		op.add(Builder::responses, JsonpDeserializer.arrayDeserializer(SnapshotResponseItem._DESERIALIZER),
 				"responses");

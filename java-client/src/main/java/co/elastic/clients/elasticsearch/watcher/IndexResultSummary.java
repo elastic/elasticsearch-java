@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.Result;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -41,8 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResultSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L175-L182">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexResultSummary implements JsonpSerializable {
+public class IndexResultSummary implements JsonpSerializable {
 	private final boolean created;
 
 	private final String id;
@@ -58,53 +66,53 @@ public final class IndexResultSummary implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexResultSummary(Builder builder) {
+	private IndexResultSummary(Builder builder) {
 
-		this.created = Objects.requireNonNull(builder.created, "created");
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.result = Objects.requireNonNull(builder.result, "result");
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.type = builder.type;
 
 	}
 
-	public IndexResultSummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexResultSummary of(Function<Builder, ObjectBuilder<IndexResultSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code created}
 	 */
-	public boolean created() {
+	public final boolean created() {
 		return this.created;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code result}
 	 */
-	public Result result() {
+	public final Result result() {
 		return this.result;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public long version() {
+	public final long version() {
 		return this.version;
 	}
 
@@ -112,7 +120,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -138,12 +146,10 @@ public final class IndexResultSummary implements JsonpSerializable {
 
 		generator.writeKey("result");
 		this.result.serialize(generator, mapper);
-
 		generator.writeKey("version");
 		generator.write(this.version);
 
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
@@ -156,7 +162,8 @@ public final class IndexResultSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexResultSummary}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexResultSummary> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexResultSummary> {
 		private Boolean created;
 
 		private String id;
@@ -173,7 +180,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code created}
 		 */
-		public Builder created(boolean value) {
+		public final Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -181,7 +188,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -189,7 +196,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -197,7 +204,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code result}
 		 */
-		public Builder result(Result value) {
+		public final Builder result(Result value) {
 			this.result = value;
 			return this;
 		}
@@ -205,7 +212,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(long value) {
+		public final Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -213,7 +220,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -225,6 +232,7 @@ public final class IndexResultSummary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexResultSummary build() {
+			_checkSingleUse();
 
 			return new IndexResultSummary(this);
 		}
@@ -236,9 +244,9 @@ public final class IndexResultSummary implements JsonpSerializable {
 	 * Json deserializer for {@link IndexResultSummary}
 	 */
 	public static final JsonpDeserializer<IndexResultSummary> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexResultSummary::setupIndexResultSummaryDeserializer, Builder::build);
+			.lazy(Builder::new, IndexResultSummary::setupIndexResultSummaryDeserializer);
 
-	protected static void setupIndexResultSummaryDeserializer(DelegatingDeserializer<IndexResultSummary.Builder> op) {
+	protected static void setupIndexResultSummaryDeserializer(ObjectDeserializer<IndexResultSummary.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");

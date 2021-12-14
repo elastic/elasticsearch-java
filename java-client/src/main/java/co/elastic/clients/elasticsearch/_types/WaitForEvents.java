@@ -23,13 +23,31 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/common.ts#L267-L274">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum WaitForEvents implements StringEnum {
-	Immediate("immediate"), Urgent("urgent"), High("high"), Normal("normal"), Low("low"), Languid("languid");
+public enum WaitForEvents implements JsonEnum {
+	Immediate("immediate"),
+
+	Urgent("urgent"),
+
+	High("high"),
+
+	Normal("normal"),
+
+	Low("low"),
+
+	Languid("languid"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +59,6 @@ public enum WaitForEvents implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<WaitForEvents> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<WaitForEvents> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			WaitForEvents.values());
 }

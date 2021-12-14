@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DateRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L37-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DateRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class DateRangeProperty extends RangePropertyBase implements PropertyVariant {
 	@Nullable
 	private final String format;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DateRangeProperty(Builder builder) {
+	private DateRangeProperty(Builder builder) {
 		super(builder);
 
 		this.format = builder.format;
 
 	}
 
-	public DateRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DateRangeProperty of(Function<Builder, ObjectBuilder<DateRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "date_range";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.DateRange;
 	}
 
 	/**
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -76,7 +82,6 @@ public final class DateRangeProperty extends RangePropertyBase implements Proper
 		generator.write("type", "date_range");
 		super.serializeInternal(generator, mapper);
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
@@ -89,6 +94,7 @@ public final class DateRangeProperty extends RangePropertyBase implements Proper
 	/**
 	 * Builder for {@link DateRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DateRangeProperty> {
@@ -98,7 +104,7 @@ public final class DateRangeProperty extends RangePropertyBase implements Proper
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -115,6 +121,7 @@ public final class DateRangeProperty extends RangePropertyBase implements Proper
 		 *             if some of the required fields are null.
 		 */
 		public DateRangeProperty build() {
+			_checkSingleUse();
 
 			return new DateRangeProperty(this);
 		}
@@ -126,9 +133,9 @@ public final class DateRangeProperty extends RangePropertyBase implements Proper
 	 * Json deserializer for {@link DateRangeProperty}
 	 */
 	public static final JsonpDeserializer<DateRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DateRangeProperty::setupDateRangePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, DateRangeProperty::setupDateRangePropertyDeserializer);
 
-	protected static void setupDateRangePropertyDeserializer(DelegatingDeserializer<DateRangeProperty.Builder> op) {
+	protected static void setupDateRangePropertyDeserializer(ObjectDeserializer<DateRangeProperty.Builder> op) {
 		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 

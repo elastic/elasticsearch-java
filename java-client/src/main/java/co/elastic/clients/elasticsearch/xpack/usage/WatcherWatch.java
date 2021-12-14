@@ -23,78 +23,80 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L361-L366">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class WatcherWatch implements JsonpSerializable {
+public class WatcherWatch implements JsonpSerializable {
 	private final Map<String, Counter> input;
 
-	@Nullable
 	private final Map<String, Counter> condition;
 
-	@Nullable
 	private final Map<String, Counter> action;
 
 	private final WatcherWatchTrigger trigger;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatcherWatch(Builder builder) {
+	private WatcherWatch(Builder builder) {
 
-		this.input = ModelTypeHelper.unmodifiableNonNull(builder.input, "input");
-		this.condition = ModelTypeHelper.unmodifiable(builder.condition);
-		this.action = ModelTypeHelper.unmodifiable(builder.action);
-		this.trigger = Objects.requireNonNull(builder.trigger, "trigger");
+		this.input = ApiTypeHelper.unmodifiableRequired(builder.input, this, "input");
+		this.condition = ApiTypeHelper.unmodifiable(builder.condition);
+		this.action = ApiTypeHelper.unmodifiable(builder.action);
+		this.trigger = ApiTypeHelper.requireNonNull(builder.trigger, this, "trigger");
 
 	}
 
-	public WatcherWatch(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WatcherWatch of(Function<Builder, ObjectBuilder<WatcherWatch>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code input}
 	 */
-	public Map<String, Counter> input() {
+	public final Map<String, Counter> input() {
 		return this.input;
 	}
 
 	/**
 	 * API name: {@code condition}
 	 */
-	@Nullable
-	public Map<String, Counter> condition() {
+	public final Map<String, Counter> condition() {
 		return this.condition;
 	}
 
 	/**
 	 * API name: {@code action}
 	 */
-	@Nullable
-	public Map<String, Counter> action() {
+	public final Map<String, Counter> action() {
 		return this.action;
 	}
 
 	/**
 	 * Required - API name: {@code trigger}
 	 */
-	public WatcherWatchTrigger trigger() {
+	public final WatcherWatchTrigger trigger() {
 		return this.trigger;
 	}
 
@@ -109,17 +111,18 @@ public final class WatcherWatch implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("input");
-		generator.writeStartObject();
-		for (Map.Entry<String, Counter> item0 : this.input.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.input)) {
+			generator.writeKey("input");
+			generator.writeStartObject();
+			for (Map.Entry<String, Counter> item0 : this.input.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		if (this.condition != null) {
-
+		if (ApiTypeHelper.isDefined(this.condition)) {
 			generator.writeKey("condition");
 			generator.writeStartObject();
 			for (Map.Entry<String, Counter> item0 : this.condition.entrySet()) {
@@ -130,8 +133,7 @@ public final class WatcherWatch implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.action != null) {
-
+		if (ApiTypeHelper.isDefined(this.action)) {
 			generator.writeKey("action");
 			generator.writeStartObject();
 			for (Map.Entry<String, Counter> item0 : this.action.entrySet()) {
@@ -142,7 +144,6 @@ public final class WatcherWatch implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("trigger");
 		this.trigger.serialize(generator, mapper);
 
@@ -153,7 +154,8 @@ public final class WatcherWatch implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherWatch}.
 	 */
-	public static class Builder implements ObjectBuilder<WatcherWatch> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherWatch> {
 		private Map<String, Counter> input;
 
 		@Nullable
@@ -166,107 +168,95 @@ public final class WatcherWatch implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code input}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>input</code>.
 		 */
-		public Builder input(Map<String, Counter> value) {
-			this.input = value;
+		public final Builder input(Map<String, Counter> map) {
+			this.input = _mapPutAll(this.input, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #input(Map)}, creating the map if needed.
+		 * Required - API name: {@code input}
+		 * <p>
+		 * Adds an entry to <code>input</code>.
 		 */
-		public Builder putInput(String key, Counter value) {
-			if (this.input == null) {
-				this.input = new HashMap<>();
-			}
-			this.input.put(key, value);
+		public final Builder input(String key, Counter value) {
+			this.input = _mapPut(this.input, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #input(Map)} to a singleton map.
+		 * Required - API name: {@code input}
+		 * <p>
+		 * Adds an entry to <code>input</code> using a builder lambda.
 		 */
-		public Builder input(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this.input(Collections.singletonMap(key, fn.apply(new Counter.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #input(Map)}, creating the map if needed.
-		 */
-		public Builder putInput(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this.putInput(key, fn.apply(new Counter.Builder()).build());
+		public final Builder input(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return input(key, fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code condition}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>condition</code>.
 		 */
-		public Builder condition(@Nullable Map<String, Counter> value) {
-			this.condition = value;
+		public final Builder condition(Map<String, Counter> map) {
+			this.condition = _mapPutAll(this.condition, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #condition(Map)}, creating the map if needed.
+		 * API name: {@code condition}
+		 * <p>
+		 * Adds an entry to <code>condition</code>.
 		 */
-		public Builder putCondition(String key, Counter value) {
-			if (this.condition == null) {
-				this.condition = new HashMap<>();
-			}
-			this.condition.put(key, value);
+		public final Builder condition(String key, Counter value) {
+			this.condition = _mapPut(this.condition, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #condition(Map)} to a singleton map.
+		 * API name: {@code condition}
+		 * <p>
+		 * Adds an entry to <code>condition</code> using a builder lambda.
 		 */
-		public Builder condition(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this.condition(Collections.singletonMap(key, fn.apply(new Counter.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #condition(Map)}, creating the map if needed.
-		 */
-		public Builder putCondition(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this.putCondition(key, fn.apply(new Counter.Builder()).build());
+		public final Builder condition(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return condition(key, fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code action}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>action</code>.
 		 */
-		public Builder action(@Nullable Map<String, Counter> value) {
-			this.action = value;
+		public final Builder action(Map<String, Counter> map) {
+			this.action = _mapPutAll(this.action, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #action(Map)}, creating the map if needed.
+		 * API name: {@code action}
+		 * <p>
+		 * Adds an entry to <code>action</code>.
 		 */
-		public Builder putAction(String key, Counter value) {
-			if (this.action == null) {
-				this.action = new HashMap<>();
-			}
-			this.action.put(key, value);
+		public final Builder action(String key, Counter value) {
+			this.action = _mapPut(this.action, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #action(Map)} to a singleton map.
+		 * API name: {@code action}
+		 * <p>
+		 * Adds an entry to <code>action</code> using a builder lambda.
 		 */
-		public Builder action(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this.action(Collections.singletonMap(key, fn.apply(new Counter.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #action(Map)}, creating the map if needed.
-		 */
-		public Builder putAction(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
-			return this.putAction(key, fn.apply(new Counter.Builder()).build());
+		public final Builder action(String key, Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+			return action(key, fn.apply(new Counter.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code trigger}
 		 */
-		public Builder trigger(WatcherWatchTrigger value) {
+		public final Builder trigger(WatcherWatchTrigger value) {
 			this.trigger = value;
 			return this;
 		}
@@ -274,7 +264,7 @@ public final class WatcherWatch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trigger}
 		 */
-		public Builder trigger(Function<WatcherWatchTrigger.Builder, ObjectBuilder<WatcherWatchTrigger>> fn) {
+		public final Builder trigger(Function<WatcherWatchTrigger.Builder, ObjectBuilder<WatcherWatchTrigger>> fn) {
 			return this.trigger(fn.apply(new WatcherWatchTrigger.Builder()).build());
 		}
 
@@ -285,6 +275,7 @@ public final class WatcherWatch implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WatcherWatch build() {
+			_checkSingleUse();
 
 			return new WatcherWatch(this);
 		}
@@ -296,9 +287,9 @@ public final class WatcherWatch implements JsonpSerializable {
 	 * Json deserializer for {@link WatcherWatch}
 	 */
 	public static final JsonpDeserializer<WatcherWatch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			WatcherWatch::setupWatcherWatchDeserializer, Builder::build);
+			WatcherWatch::setupWatcherWatchDeserializer);
 
-	protected static void setupWatcherWatchDeserializer(DelegatingDeserializer<WatcherWatch.Builder> op) {
+	protected static void setupWatcherWatchDeserializer(ObjectDeserializer<WatcherWatch.Builder> op) {
 
 		op.add(Builder::input, JsonpDeserializer.stringMapDeserializer(Counter._DESERIALIZER), "input");
 		op.add(Builder::condition, JsonpDeserializer.stringMapDeserializer(Counter._DESERIALIZER), "condition");

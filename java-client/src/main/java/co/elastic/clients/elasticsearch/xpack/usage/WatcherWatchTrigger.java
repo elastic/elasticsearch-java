@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.WatcherWatchTrigger
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L368-L371">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class WatcherWatchTrigger implements JsonpSerializable {
+public class WatcherWatchTrigger implements JsonpSerializable {
 	@Nullable
 	private final WatcherWatchTriggerSchedule schedule;
 
@@ -46,29 +54,29 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatcherWatchTrigger(Builder builder) {
+	private WatcherWatchTrigger(Builder builder) {
 
 		this.schedule = builder.schedule;
-		this.all = Objects.requireNonNull(builder.all, "_all");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 
 	}
 
-	public WatcherWatchTrigger(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WatcherWatchTrigger of(Function<Builder, ObjectBuilder<WatcherWatchTrigger>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code schedule}
 	 */
 	@Nullable
-	public WatcherWatchTriggerSchedule schedule() {
+	public final WatcherWatchTriggerSchedule schedule() {
 		return this.schedule;
 	}
 
 	/**
 	 * Required - API name: {@code _all}
 	 */
-	public Counter all() {
+	public final Counter all() {
 		return this.all;
 	}
 
@@ -84,12 +92,10 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.schedule != null) {
-
 			generator.writeKey("schedule");
 			this.schedule.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("_all");
 		this.all.serialize(generator, mapper);
 
@@ -100,7 +106,8 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherWatchTrigger}.
 	 */
-	public static class Builder implements ObjectBuilder<WatcherWatchTrigger> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherWatchTrigger> {
 		@Nullable
 		private WatcherWatchTriggerSchedule schedule;
 
@@ -109,7 +116,7 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 		/**
 		 * API name: {@code schedule}
 		 */
-		public Builder schedule(@Nullable WatcherWatchTriggerSchedule value) {
+		public final Builder schedule(@Nullable WatcherWatchTriggerSchedule value) {
 			this.schedule = value;
 			return this;
 		}
@@ -117,7 +124,7 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 		/**
 		 * API name: {@code schedule}
 		 */
-		public Builder schedule(
+		public final Builder schedule(
 				Function<WatcherWatchTriggerSchedule.Builder, ObjectBuilder<WatcherWatchTriggerSchedule>> fn) {
 			return this.schedule(fn.apply(new WatcherWatchTriggerSchedule.Builder()).build());
 		}
@@ -125,7 +132,7 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public Builder all(Counter value) {
+		public final Builder all(Counter value) {
 			this.all = value;
 			return this;
 		}
@@ -133,7 +140,7 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _all}
 		 */
-		public Builder all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
+		public final Builder all(Function<Counter.Builder, ObjectBuilder<Counter>> fn) {
 			return this.all(fn.apply(new Counter.Builder()).build());
 		}
 
@@ -144,6 +151,7 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WatcherWatchTrigger build() {
+			_checkSingleUse();
 
 			return new WatcherWatchTrigger(this);
 		}
@@ -155,9 +163,9 @@ public final class WatcherWatchTrigger implements JsonpSerializable {
 	 * Json deserializer for {@link WatcherWatchTrigger}
 	 */
 	public static final JsonpDeserializer<WatcherWatchTrigger> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WatcherWatchTrigger::setupWatcherWatchTriggerDeserializer, Builder::build);
+			.lazy(Builder::new, WatcherWatchTrigger::setupWatcherWatchTriggerDeserializer);
 
-	protected static void setupWatcherWatchTriggerDeserializer(DelegatingDeserializer<WatcherWatchTrigger.Builder> op) {
+	protected static void setupWatcherWatchTriggerDeserializer(ObjectDeserializer<WatcherWatchTrigger.Builder> op) {
 
 		op.add(Builder::schedule, WatcherWatchTriggerSchedule._DESERIALIZER, "schedule");
 		op.add(Builder::all, Counter._DESERIALIZER, "_all");

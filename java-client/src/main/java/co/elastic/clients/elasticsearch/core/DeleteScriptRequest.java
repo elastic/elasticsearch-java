@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,27 +45,35 @@ import javax.annotation.Nullable;
 
 // typedef: _global.delete_script.Request
 
-public final class DeleteScriptRequest extends RequestBase {
+/**
+ * Deletes a script.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete_script/DeleteScriptRequest.ts#L24-L37">API
+ *      specification</a>
+ */
+
+public class DeleteScriptRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteScriptRequest(Builder builder) {
+	private DeleteScriptRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
 	}
 
-	public DeleteScriptRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteScriptRequest of(Function<Builder, ObjectBuilder<DeleteScriptRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -70,7 +81,7 @@ public final class DeleteScriptRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -80,7 +91,7 @@ public final class DeleteScriptRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -90,7 +101,7 @@ public final class DeleteScriptRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -99,21 +110,22 @@ public final class DeleteScriptRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteScriptRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteScriptRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteScriptRequest> {
 		private String id;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Required - Script ID
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -123,8 +135,27 @@ public final class DeleteScriptRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
 			return this;
 		}
 
@@ -133,9 +164,8 @@ public final class DeleteScriptRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -145,6 +175,7 @@ public final class DeleteScriptRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteScriptRequest build() {
+			_checkSingleUse();
 
 			return new DeleteScriptRequest(this);
 		}
@@ -155,7 +186,9 @@ public final class DeleteScriptRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code delete_script}".
 	 */
-	public static final Endpoint<DeleteScriptRequest, DeleteScriptResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/delete_script",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -185,10 +218,10 @@ public final class DeleteScriptRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

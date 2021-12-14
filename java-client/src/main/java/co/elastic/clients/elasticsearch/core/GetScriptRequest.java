@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,23 +45,31 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get_script.Request
 
-public final class GetScriptRequest extends RequestBase {
+/**
+ * Returns a script.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script/GetScriptRequest.ts#L24-L37">API
+ *      specification</a>
+ */
+
+public class GetScriptRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetScriptRequest(Builder builder) {
+	private GetScriptRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.masterTimeout = builder.masterTimeout;
 
 	}
 
-	public GetScriptRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetScriptRequest of(Function<Builder, ObjectBuilder<GetScriptRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +77,7 @@ public final class GetScriptRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -76,7 +87,7 @@ public final class GetScriptRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -85,18 +96,19 @@ public final class GetScriptRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetScriptRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetScriptRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptRequest> {
 		private String id;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		/**
 		 * Required - Script ID
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -106,9 +118,18 @@ public final class GetScriptRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -118,6 +139,7 @@ public final class GetScriptRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetScriptRequest build() {
+			_checkSingleUse();
 
 			return new GetScriptRequest(this);
 		}
@@ -128,7 +150,9 @@ public final class GetScriptRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get_script}".
 	 */
-	public static final Endpoint<GetScriptRequest, GetScriptResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/get_script",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -158,7 +182,7 @@ public final class GetScriptRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				return params;
 

@@ -23,20 +23,20 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.InlineScript;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.core.scripts_painless_execute.PainlessContextSetup;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -45,8 +45,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.Request
+
+/**
+ * Allows an arbitrary script to be executed and a result to be returned
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/scripts_painless_execute/ExecutePainlessScriptRequest.ts#L24-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpSerializable {
+public class ScriptsPainlessExecuteRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String context;
 
@@ -58,7 +66,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptsPainlessExecuteRequest(Builder builder) {
+	private ScriptsPainlessExecuteRequest(Builder builder) {
 
 		this.context = builder.context;
 		this.contextSetup = builder.contextSetup;
@@ -66,15 +74,15 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 
 	}
 
-	public ScriptsPainlessExecuteRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScriptsPainlessExecuteRequest of(Function<Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code context}
 	 */
 	@Nullable
-	public String context() {
+	public final String context() {
 		return this.context;
 	}
 
@@ -82,7 +90,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	 * API name: {@code context_setup}
 	 */
 	@Nullable
-	public PainlessContextSetup contextSetup() {
+	public final PainlessContextSetup contextSetup() {
 		return this.contextSetup;
 	}
 
@@ -90,7 +98,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public InlineScript script() {
+	public final InlineScript script() {
 		return this.script;
 	}
 
@@ -106,19 +114,16 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.context != null) {
-
 			generator.writeKey("context");
 			generator.write(this.context);
 
 		}
 		if (this.contextSetup != null) {
-
 			generator.writeKey("context_setup");
 			this.contextSetup.serialize(generator, mapper);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
 			this.script.serialize(generator, mapper);
 
@@ -131,7 +136,8 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	/**
 	 * Builder for {@link ScriptsPainlessExecuteRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ScriptsPainlessExecuteRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptsPainlessExecuteRequest> {
 		@Nullable
 		private String context;
 
@@ -144,7 +150,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		/**
 		 * API name: {@code context}
 		 */
-		public Builder context(@Nullable String value) {
+		public final Builder context(@Nullable String value) {
 			this.context = value;
 			return this;
 		}
@@ -152,7 +158,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		/**
 		 * API name: {@code context_setup}
 		 */
-		public Builder contextSetup(@Nullable PainlessContextSetup value) {
+		public final Builder contextSetup(@Nullable PainlessContextSetup value) {
 			this.contextSetup = value;
 			return this;
 		}
@@ -160,14 +166,15 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		/**
 		 * API name: {@code context_setup}
 		 */
-		public Builder contextSetup(Function<PainlessContextSetup.Builder, ObjectBuilder<PainlessContextSetup>> fn) {
+		public final Builder contextSetup(
+				Function<PainlessContextSetup.Builder, ObjectBuilder<PainlessContextSetup>> fn) {
 			return this.contextSetup(fn.apply(new PainlessContextSetup.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable InlineScript value) {
+		public final Builder script(@Nullable InlineScript value) {
 			this.script = value;
 			return this;
 		}
@@ -175,7 +182,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
+		public final Builder script(Function<InlineScript.Builder, ObjectBuilder<InlineScript>> fn) {
 			return this.script(fn.apply(new InlineScript.Builder()).build());
 		}
 
@@ -186,6 +193,7 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 		 *             if some of the required fields are null.
 		 */
 		public ScriptsPainlessExecuteRequest build() {
+			_checkSingleUse();
 
 			return new ScriptsPainlessExecuteRequest(this);
 		}
@@ -196,12 +204,11 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	/**
 	 * Json deserializer for {@link ScriptsPainlessExecuteRequest}
 	 */
-	public static final JsonpDeserializer<ScriptsPainlessExecuteRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ScriptsPainlessExecuteRequest::setupScriptsPainlessExecuteRequestDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<ScriptsPainlessExecuteRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ScriptsPainlessExecuteRequest::setupScriptsPainlessExecuteRequestDeserializer);
 
 	protected static void setupScriptsPainlessExecuteRequestDeserializer(
-			DelegatingDeserializer<ScriptsPainlessExecuteRequest.Builder> op) {
+			ObjectDeserializer<ScriptsPainlessExecuteRequest.Builder> op) {
 
 		op.add(Builder::context, JsonpDeserializer.stringDeserializer(), "context");
 		op.add(Builder::contextSetup, PainlessContextSetup._DESERIALIZER, "context_setup");
@@ -214,7 +221,9 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 	/**
 	 * Endpoint "{@code scripts_painless_execute}".
 	 */
-	private static final SimpleEndpoint<ScriptsPainlessExecuteRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<ScriptsPainlessExecuteRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+			"es/scripts_painless_execute",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -231,14 +240,14 @@ public final class ScriptsPainlessExecuteRequest extends RequestBase implements 
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, ScriptsPainlessExecuteResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code scripts_painless_execute}" endpoint.
 	 */
-	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ElasticsearchError> createScriptsPainlessExecuteEndpoint(
+	public static <TResult> Endpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> createScriptsPainlessExecuteEndpoint(
 			JsonpDeserializer<TResult> tResultDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				ScriptsPainlessExecuteResponse.createScriptsPainlessExecuteResponseDeserializer(tResultDeserializer));
 	}
 }

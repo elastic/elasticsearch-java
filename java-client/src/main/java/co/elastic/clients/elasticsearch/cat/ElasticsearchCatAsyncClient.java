@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -34,10 +40,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the cat namespace.
  */
-public class ElasticsearchCatAsyncClient extends ApiClient {
+public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchCatAsyncClient> {
 
-	public ElasticsearchCatAsyncClient(Transport transport) {
-		super(transport);
+	public ElasticsearchCatAsyncClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchCatAsyncClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchCatAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchCatAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: cat.aliases
@@ -51,8 +66,12 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AliasesResponse> aliases(AliasesRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, AliasesRequest.ENDPOINT);
+	public CompletableFuture<AliasesResponse> aliases(AliasesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse> endpoint = (JsonEndpoint<AliasesRequest, AliasesResponse, ErrorResponse>) AliasesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -60,16 +79,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 * filter and routing infos.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link AliasesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-alias.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<AliasesResponse> aliases(
-			Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn) throws IOException {
+			Function<AliasesRequest.Builder, ObjectBuilder<AliasesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return aliases(fn.apply(new AliasesRequest.Builder()).build());
 	}
 
@@ -82,8 +101,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AliasesResponse> aliases() throws IOException {
-		return this.transport.performRequestAsync(new AliasesRequest.Builder().build(), AliasesRequest.ENDPOINT);
+	public CompletableFuture<AliasesResponse> aliases() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new AliasesRequest.Builder().build(), AliasesRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.allocation
@@ -97,8 +117,12 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AllocationResponse> allocation(AllocationRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, AllocationRequest.ENDPOINT);
+	public CompletableFuture<AllocationResponse> allocation(AllocationRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<AllocationRequest, AllocationResponse, ErrorResponse> endpoint = (JsonEndpoint<AllocationRequest, AllocationResponse, ErrorResponse>) AllocationRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -106,16 +130,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 * how much disk space they are using.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link AllocationRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-allocation.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<AllocationResponse> allocation(
-			Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn) throws IOException {
+			Function<AllocationRequest.Builder, ObjectBuilder<AllocationRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return allocation(fn.apply(new AllocationRequest.Builder()).build());
 	}
 
@@ -128,8 +152,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AllocationResponse> allocation() throws IOException {
-		return this.transport.performRequestAsync(new AllocationRequest.Builder().build(), AllocationRequest.ENDPOINT);
+	public CompletableFuture<AllocationResponse> allocation() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new AllocationRequest.Builder().build(), AllocationRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.count
@@ -143,8 +168,11 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CountResponse> count(CountRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, CountRequest.ENDPOINT);
+	public CompletableFuture<CountResponse> count(CountRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CountRequest, CountResponse, ErrorResponse> endpoint = (JsonEndpoint<CountRequest, CountResponse, ErrorResponse>) CountRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -152,16 +180,15 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 * individual indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CountRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-count.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<CountResponse> count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return count(fn.apply(new CountRequest.Builder()).build());
 	}
 
@@ -174,8 +201,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CountResponse> count() throws IOException {
-		return this.transport.performRequestAsync(new CountRequest.Builder().build(), CountRequest.ENDPOINT);
+	public CompletableFuture<CountResponse> count() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new CountRequest.Builder().build(), CountRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.fielddata
@@ -189,8 +217,12 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FielddataResponse> fielddata(FielddataRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, FielddataRequest.ENDPOINT);
+	public CompletableFuture<FielddataResponse> fielddata(FielddataRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FielddataRequest, FielddataResponse, ErrorResponse> endpoint = (JsonEndpoint<FielddataRequest, FielddataResponse, ErrorResponse>) FielddataRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -198,16 +230,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 * node in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link FielddataRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-fielddata.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<FielddataResponse> fielddata(
-			Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn) throws IOException {
+			Function<FielddataRequest.Builder, ObjectBuilder<FielddataRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return fielddata(fn.apply(new FielddataRequest.Builder()).build());
 	}
 
@@ -220,8 +252,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FielddataResponse> fielddata() throws IOException {
-		return this.transport.performRequestAsync(new FielddataRequest.Builder().build(), FielddataRequest.ENDPOINT);
+	public CompletableFuture<FielddataResponse> fielddata() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new FielddataRequest.Builder().build(), FielddataRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.health
@@ -234,24 +267,27 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, HealthRequest.ENDPOINT);
+	public CompletableFuture<HealthResponse> health(HealthRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse> endpoint = (JsonEndpoint<HealthRequest, HealthResponse, ErrorResponse>) HealthRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns a concise representation of the cluster health.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link HealthRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-health.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<HealthResponse> health(
-			Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn) throws IOException {
+			Function<HealthRequest.Builder, ObjectBuilder<HealthRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return health(fn.apply(new HealthRequest.Builder()).build());
 	}
 
@@ -263,8 +299,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HealthResponse> health() throws IOException {
-		return this.transport.performRequestAsync(new HealthRequest.Builder().build(), HealthRequest.ENDPOINT);
+	public CompletableFuture<HealthResponse> health() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new HealthRequest.Builder().build(), HealthRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.help
@@ -276,8 +313,8 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<HelpResponse> help() throws IOException {
-		return this.transport.performRequestAsync(HelpRequest._INSTANCE, HelpRequest.ENDPOINT);
+	public CompletableFuture<HelpResponse> help() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(HelpRequest._INSTANCE, HelpRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.indices
@@ -291,8 +328,12 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<IndicesResponse> indices(IndicesRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, IndicesRequest.ENDPOINT);
+	public CompletableFuture<IndicesResponse> indices(IndicesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<IndicesRequest, IndicesResponse, ErrorResponse> endpoint = (JsonEndpoint<IndicesRequest, IndicesResponse, ErrorResponse>) IndicesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -300,16 +341,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 * counts, disk size, ...
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link IndicesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-indices.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<IndicesResponse> indices(
-			Function<IndicesRequest.Builder, ObjectBuilder<IndicesRequest>> fn) throws IOException {
+			Function<IndicesRequest.Builder, ObjectBuilder<IndicesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return indices(fn.apply(new IndicesRequest.Builder()).build());
 	}
 
@@ -322,8 +363,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<IndicesResponse> indices() throws IOException {
-		return this.transport.performRequestAsync(new IndicesRequest.Builder().build(), IndicesRequest.ENDPOINT);
+	public CompletableFuture<IndicesResponse> indices() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new IndicesRequest.Builder().build(), IndicesRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.master
@@ -335,8 +377,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-master.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<MasterResponse> master() throws IOException {
-		return this.transport.performRequestAsync(MasterRequest._INSTANCE, MasterRequest.ENDPOINT);
+	public CompletableFuture<MasterResponse> master() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(MasterRequest._INSTANCE, MasterRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.ml_data_frame_analytics
@@ -350,17 +393,19 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<MlDataFrameAnalyticsResponse> mlDataFrameAnalytics(MlDataFrameAnalyticsRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, MlDataFrameAnalyticsRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MlDataFrameAnalyticsRequest, MlDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<MlDataFrameAnalyticsRequest, MlDataFrameAnalyticsResponse, ErrorResponse>) MlDataFrameAnalyticsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Gets configuration and usage information about data frame analytics jobs.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MlDataFrameAnalyticsRequest}
 	 * @see <a href=
 	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
@@ -368,7 +413,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 
 	public final CompletableFuture<MlDataFrameAnalyticsResponse> mlDataFrameAnalytics(
 			Function<MlDataFrameAnalyticsRequest.Builder, ObjectBuilder<MlDataFrameAnalyticsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return mlDataFrameAnalytics(fn.apply(new MlDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -380,9 +425,10 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<MlDataFrameAnalyticsResponse> mlDataFrameAnalytics() throws IOException {
+	public CompletableFuture<MlDataFrameAnalyticsResponse> mlDataFrameAnalytics()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new MlDataFrameAnalyticsRequest.Builder().build(),
-				MlDataFrameAnalyticsRequest.ENDPOINT);
+				MlDataFrameAnalyticsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.ml_datafeeds
@@ -395,24 +441,28 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<MlDatafeedsResponse> mlDatafeeds(MlDatafeedsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, MlDatafeedsRequest.ENDPOINT);
+	public CompletableFuture<MlDatafeedsResponse> mlDatafeeds(MlDatafeedsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MlDatafeedsRequest, MlDatafeedsResponse, ErrorResponse> endpoint = (JsonEndpoint<MlDatafeedsRequest, MlDatafeedsResponse, ErrorResponse>) MlDatafeedsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Gets configuration and usage information about datafeeds.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MlDatafeedsRequest}
 	 * @see <a href=
 	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<MlDatafeedsResponse> mlDatafeeds(
-			Function<MlDatafeedsRequest.Builder, ObjectBuilder<MlDatafeedsRequest>> fn) throws IOException {
+			Function<MlDatafeedsRequest.Builder, ObjectBuilder<MlDatafeedsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return mlDatafeeds(fn.apply(new MlDatafeedsRequest.Builder()).build());
 	}
 
@@ -424,9 +474,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<MlDatafeedsResponse> mlDatafeeds() throws IOException {
+	public CompletableFuture<MlDatafeedsResponse> mlDatafeeds() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new MlDatafeedsRequest.Builder().build(),
-				MlDatafeedsRequest.ENDPOINT);
+				MlDatafeedsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.ml_jobs
@@ -439,24 +489,27 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<MlJobsResponse> mlJobs(MlJobsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, MlJobsRequest.ENDPOINT);
+	public CompletableFuture<MlJobsResponse> mlJobs(MlJobsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MlJobsRequest, MlJobsResponse, ErrorResponse> endpoint = (JsonEndpoint<MlJobsRequest, MlJobsResponse, ErrorResponse>) MlJobsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Gets configuration and usage information about anomaly detection jobs.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MlJobsRequest}
 	 * @see <a href=
 	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<MlJobsResponse> mlJobs(
-			Function<MlJobsRequest.Builder, ObjectBuilder<MlJobsRequest>> fn) throws IOException {
+			Function<MlJobsRequest.Builder, ObjectBuilder<MlJobsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return mlJobs(fn.apply(new MlJobsRequest.Builder()).build());
 	}
 
@@ -468,8 +521,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<MlJobsResponse> mlJobs() throws IOException {
-		return this.transport.performRequestAsync(new MlJobsRequest.Builder().build(), MlJobsRequest.ENDPOINT);
+	public CompletableFuture<MlJobsResponse> mlJobs() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new MlJobsRequest.Builder().build(), MlJobsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.ml_trained_models
@@ -483,24 +537,27 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<MlTrainedModelsResponse> mlTrainedModels(MlTrainedModelsRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, MlTrainedModelsRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MlTrainedModelsRequest, MlTrainedModelsResponse, ErrorResponse> endpoint = (JsonEndpoint<MlTrainedModelsRequest, MlTrainedModelsResponse, ErrorResponse>) MlTrainedModelsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Gets configuration and usage information about inference trained models.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MlTrainedModelsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<MlTrainedModelsResponse> mlTrainedModels(
-			Function<MlTrainedModelsRequest.Builder, ObjectBuilder<MlTrainedModelsRequest>> fn) throws IOException {
+			Function<MlTrainedModelsRequest.Builder, ObjectBuilder<MlTrainedModelsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return mlTrainedModels(fn.apply(new MlTrainedModelsRequest.Builder()).build());
 	}
 
@@ -512,9 +569,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<MlTrainedModelsResponse> mlTrainedModels() throws IOException {
+	public CompletableFuture<MlTrainedModelsResponse> mlTrainedModels() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new MlTrainedModelsRequest.Builder().build(),
-				MlTrainedModelsRequest.ENDPOINT);
+				MlTrainedModelsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.nodeattrs
@@ -526,8 +583,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodeattrs.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<NodeattrsResponse> nodeattrs() throws IOException {
-		return this.transport.performRequestAsync(NodeattrsRequest._INSTANCE, NodeattrsRequest.ENDPOINT);
+	public CompletableFuture<NodeattrsResponse> nodeattrs() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(NodeattrsRequest._INSTANCE, NodeattrsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.nodes
@@ -540,24 +598,26 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<NodesResponse> nodes(NodesRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, NodesRequest.ENDPOINT);
+	public CompletableFuture<NodesResponse> nodes(NodesRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<NodesRequest, NodesResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesRequest, NodesResponse, ErrorResponse>) NodesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns basic statistics about performance of cluster nodes.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link NodesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-nodes.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<NodesResponse> nodes(Function<NodesRequest.Builder, ObjectBuilder<NodesRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return nodes(fn.apply(new NodesRequest.Builder()).build());
 	}
 
@@ -569,8 +629,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<NodesResponse> nodes() throws IOException {
-		return this.transport.performRequestAsync(new NodesRequest.Builder().build(), NodesRequest.ENDPOINT);
+	public CompletableFuture<NodesResponse> nodes() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new NodesRequest.Builder().build(), NodesRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.pending_tasks
@@ -582,8 +643,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-pending-tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException {
-		return this.transport.performRequestAsync(PendingTasksRequest._INSTANCE, PendingTasksRequest.ENDPOINT);
+	public CompletableFuture<PendingTasksResponse> pendingTasks() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(PendingTasksRequest._INSTANCE, PendingTasksRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.plugins
@@ -595,8 +657,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-plugins.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<PluginsResponse> plugins() throws IOException {
-		return this.transport.performRequestAsync(PluginsRequest._INSTANCE, PluginsRequest.ENDPOINT);
+	public CompletableFuture<PluginsResponse> plugins() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(PluginsRequest._INSTANCE, PluginsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.recovery
@@ -609,24 +672,28 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, RecoveryRequest.ENDPOINT);
+	public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> endpoint = (JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse>) RecoveryRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about index shard recoveries, both on-going completed.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RecoveryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-recovery.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RecoveryResponse> recovery(
-			Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn) throws IOException {
+			Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
@@ -638,8 +705,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RecoveryResponse> recovery() throws IOException {
-		return this.transport.performRequestAsync(new RecoveryRequest.Builder().build(), RecoveryRequest.ENDPOINT);
+	public CompletableFuture<RecoveryResponse> recovery() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new RecoveryRequest.Builder().build(), RecoveryRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.repositories
@@ -651,8 +719,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-repositories.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<RepositoriesResponse> repositories() throws IOException {
-		return this.transport.performRequestAsync(RepositoriesRequest._INSTANCE, RepositoriesRequest.ENDPOINT);
+	public CompletableFuture<RepositoriesResponse> repositories() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(RepositoriesRequest._INSTANCE, RepositoriesRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.segments
@@ -665,24 +734,28 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, SegmentsRequest.ENDPOINT);
+	public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> endpoint = (JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse>) SegmentsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Provides low-level information about the segments in the shards of an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SegmentsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-segments.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<SegmentsResponse> segments(
-			Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn) throws IOException {
+			Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
@@ -694,8 +767,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SegmentsResponse> segments() throws IOException {
-		return this.transport.performRequestAsync(new SegmentsRequest.Builder().build(), SegmentsRequest.ENDPOINT);
+	public CompletableFuture<SegmentsResponse> segments() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new SegmentsRequest.Builder().build(), SegmentsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.shards
@@ -708,24 +782,27 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ShardsResponse> shards(ShardsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ShardsRequest.ENDPOINT);
+	public CompletableFuture<ShardsResponse> shards(ShardsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ShardsRequest, ShardsResponse, ErrorResponse> endpoint = (JsonEndpoint<ShardsRequest, ShardsResponse, ErrorResponse>) ShardsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Provides a detailed view of shard allocation on nodes.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ShardsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-shards.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ShardsResponse> shards(
-			Function<ShardsRequest.Builder, ObjectBuilder<ShardsRequest>> fn) throws IOException {
+			Function<ShardsRequest.Builder, ObjectBuilder<ShardsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return shards(fn.apply(new ShardsRequest.Builder()).build());
 	}
 
@@ -737,8 +814,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ShardsResponse> shards() throws IOException {
-		return this.transport.performRequestAsync(new ShardsRequest.Builder().build(), ShardsRequest.ENDPOINT);
+	public CompletableFuture<ShardsResponse> shards() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new ShardsRequest.Builder().build(), ShardsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.snapshots
@@ -751,24 +829,28 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SnapshotsResponse> snapshots(SnapshotsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, SnapshotsRequest.ENDPOINT);
+	public CompletableFuture<SnapshotsResponse> snapshots(SnapshotsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SnapshotsRequest, SnapshotsResponse, ErrorResponse> endpoint = (JsonEndpoint<SnapshotsRequest, SnapshotsResponse, ErrorResponse>) SnapshotsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns all snapshots in a specific repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SnapshotsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<SnapshotsResponse> snapshots(
-			Function<SnapshotsRequest.Builder, ObjectBuilder<SnapshotsRequest>> fn) throws IOException {
+			Function<SnapshotsRequest.Builder, ObjectBuilder<SnapshotsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return snapshots(fn.apply(new SnapshotsRequest.Builder()).build());
 	}
 
@@ -780,8 +862,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SnapshotsResponse> snapshots() throws IOException {
-		return this.transport.performRequestAsync(new SnapshotsRequest.Builder().build(), SnapshotsRequest.ENDPOINT);
+	public CompletableFuture<SnapshotsResponse> snapshots() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new SnapshotsRequest.Builder().build(), SnapshotsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.tasks
@@ -795,8 +878,11 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<TasksResponse> tasks(TasksRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, TasksRequest.ENDPOINT);
+	public CompletableFuture<TasksResponse> tasks(TasksRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<TasksRequest, TasksResponse, ErrorResponse> endpoint = (JsonEndpoint<TasksRequest, TasksResponse, ErrorResponse>) TasksRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -804,16 +890,15 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 * in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link TasksRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/tasks.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<TasksResponse> tasks(Function<TasksRequest.Builder, ObjectBuilder<TasksRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return tasks(fn.apply(new TasksRequest.Builder()).build());
 	}
 
@@ -826,8 +911,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<TasksResponse> tasks() throws IOException {
-		return this.transport.performRequestAsync(new TasksRequest.Builder().build(), TasksRequest.ENDPOINT);
+	public CompletableFuture<TasksResponse> tasks() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new TasksRequest.Builder().build(), TasksRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.templates
@@ -840,24 +926,28 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<TemplatesResponse> templates(TemplatesRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, TemplatesRequest.ENDPOINT);
+	public CompletableFuture<TemplatesResponse> templates(TemplatesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<TemplatesRequest, TemplatesResponse, ErrorResponse> endpoint = (JsonEndpoint<TemplatesRequest, TemplatesResponse, ErrorResponse>) TemplatesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about existing templates.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link TemplatesRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-templates.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<TemplatesResponse> templates(
-			Function<TemplatesRequest.Builder, ObjectBuilder<TemplatesRequest>> fn) throws IOException {
+			Function<TemplatesRequest.Builder, ObjectBuilder<TemplatesRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return templates(fn.apply(new TemplatesRequest.Builder()).build());
 	}
 
@@ -869,8 +959,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<TemplatesResponse> templates() throws IOException {
-		return this.transport.performRequestAsync(new TemplatesRequest.Builder().build(), TemplatesRequest.ENDPOINT);
+	public CompletableFuture<TemplatesResponse> templates() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new TemplatesRequest.Builder().build(), TemplatesRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.thread_pool
@@ -884,8 +975,12 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ThreadPoolResponse> threadPool(ThreadPoolRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ThreadPoolRequest.ENDPOINT);
+	public CompletableFuture<ThreadPoolResponse> threadPool(ThreadPoolRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse> endpoint = (JsonEndpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse>) ThreadPoolRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -893,16 +988,16 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 * queue and rejected statistics are returned for all thread pools.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ThreadPoolRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-thread-pool.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ThreadPoolResponse> threadPool(
-			Function<ThreadPoolRequest.Builder, ObjectBuilder<ThreadPoolRequest>> fn) throws IOException {
+			Function<ThreadPoolRequest.Builder, ObjectBuilder<ThreadPoolRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return threadPool(fn.apply(new ThreadPoolRequest.Builder()).build());
 	}
 
@@ -915,8 +1010,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ThreadPoolResponse> threadPool() throws IOException {
-		return this.transport.performRequestAsync(new ThreadPoolRequest.Builder().build(), ThreadPoolRequest.ENDPOINT);
+	public CompletableFuture<ThreadPoolResponse> threadPool() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new ThreadPoolRequest.Builder().build(), ThreadPoolRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: cat.transforms
@@ -929,24 +1025,28 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<TransformsResponse> transforms(TransformsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, TransformsRequest.ENDPOINT);
+	public CompletableFuture<TransformsResponse> transforms(TransformsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<TransformsRequest, TransformsResponse, ErrorResponse> endpoint = (JsonEndpoint<TransformsRequest, TransformsResponse, ErrorResponse>) TransformsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Gets configuration and usage information about transforms.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link TransformsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<TransformsResponse> transforms(
-			Function<TransformsRequest.Builder, ObjectBuilder<TransformsRequest>> fn) throws IOException {
+			Function<TransformsRequest.Builder, ObjectBuilder<TransformsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return transforms(fn.apply(new TransformsRequest.Builder()).build());
 	}
 
@@ -958,8 +1058,9 @@ public class ElasticsearchCatAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<TransformsResponse> transforms() throws IOException {
-		return this.transport.performRequestAsync(new TransformsRequest.Builder().build(), TransformsRequest.ENDPOINT);
+	public CompletableFuture<TransformsResponse> transforms() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new TransformsRequest.Builder().build(), TransformsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

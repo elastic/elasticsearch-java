@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: autoscaling.put_autoscaling_policy.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/put_autoscaling_policy/PutAutoscalingPolicyResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutAutoscalingPolicyResponse extends AcknowledgedResponseBase {
+public class PutAutoscalingPolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutAutoscalingPolicyResponse(Builder builder) {
+	private PutAutoscalingPolicyResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutAutoscalingPolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutAutoscalingPolicyResponse of(Function<Builder, ObjectBuilder<PutAutoscalingPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutAutoscalingPolicyResponse extends AcknowledgedResponseBase
 	/**
 	 * Builder for {@link PutAutoscalingPolicyResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutAutoscalingPolicyResponse> {
@@ -68,6 +75,7 @@ public final class PutAutoscalingPolicyResponse extends AcknowledgedResponseBase
 		 *             if some of the required fields are null.
 		 */
 		public PutAutoscalingPolicyResponse build() {
+			_checkSingleUse();
 
 			return new PutAutoscalingPolicyResponse(this);
 		}
@@ -78,11 +86,11 @@ public final class PutAutoscalingPolicyResponse extends AcknowledgedResponseBase
 	/**
 	 * Json deserializer for {@link PutAutoscalingPolicyResponse}
 	 */
-	public static final JsonpDeserializer<PutAutoscalingPolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutAutoscalingPolicyResponse::setupPutAutoscalingPolicyResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<PutAutoscalingPolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutAutoscalingPolicyResponse::setupPutAutoscalingPolicyResponseDeserializer);
 
 	protected static void setupPutAutoscalingPolicyResponseDeserializer(
-			DelegatingDeserializer<PutAutoscalingPolicyResponse.Builder> op) {
+			ObjectDeserializer<PutAutoscalingPolicyResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

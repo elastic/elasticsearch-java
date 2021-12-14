@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.core.reindex_rethrottle;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -44,8 +43,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexTask
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/reindex_rethrottle/types.ts#L44-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ReindexTask implements JsonpSerializable {
+public class ReindexTask implements JsonpSerializable {
 	private final String action;
 
 	private final boolean cancellable;
@@ -68,92 +74,92 @@ public final class ReindexTask implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReindexTask(Builder builder) {
+	private ReindexTask(Builder builder) {
 
-		this.action = Objects.requireNonNull(builder.action, "action");
-		this.cancellable = Objects.requireNonNull(builder.cancellable, "cancellable");
-		this.description = Objects.requireNonNull(builder.description, "description");
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.node = Objects.requireNonNull(builder.node, "node");
-		this.runningTimeInNanos = Objects.requireNonNull(builder.runningTimeInNanos, "running_time_in_nanos");
-		this.startTimeInMillis = Objects.requireNonNull(builder.startTimeInMillis, "start_time_in_millis");
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.type = Objects.requireNonNull(builder.type, "type");
-		this.headers = ModelTypeHelper.unmodifiableNonNull(builder.headers, "headers");
+		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.cancellable = ApiTypeHelper.requireNonNull(builder.cancellable, this, "cancellable");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.runningTimeInNanos = ApiTypeHelper.requireNonNull(builder.runningTimeInNanos, this, "runningTimeInNanos");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
 
 	}
 
-	public ReindexTask(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReindexTask of(Function<Builder, ObjectBuilder<ReindexTask>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code action}
 	 */
-	public String action() {
+	public final String action() {
 		return this.action;
 	}
 
 	/**
 	 * Required - API name: {@code cancellable}
 	 */
-	public boolean cancellable() {
+	public final boolean cancellable() {
 		return this.cancellable;
 	}
 
 	/**
 	 * Required - API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public long id() {
+	public final long id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
 	/**
 	 * Required - API name: {@code running_time_in_nanos}
 	 */
-	public long runningTimeInNanos() {
+	public final long runningTimeInNanos() {
 		return this.runningTimeInNanos;
 	}
 
 	/**
 	 * Required - API name: {@code start_time_in_millis}
 	 */
-	public long startTimeInMillis() {
+	public final long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public ReindexStatus status() {
+	public final ReindexStatus status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
 	/**
 	 * Required - API name: {@code headers}
 	 */
-	public Map<String, List<String>> headers() {
+	public final Map<String, List<String>> headers() {
 		return this.headers;
 	}
 
@@ -195,19 +201,24 @@ public final class ReindexTask implements JsonpSerializable {
 		generator.writeKey("type");
 		generator.write(this.type);
 
-		generator.writeKey("headers");
-		generator.writeStartObject();
-		for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.writeStartArray();
-			for (String item1 : item0.getValue()) {
-				generator.write(item1);
+		if (ApiTypeHelper.isDefined(this.headers)) {
+			generator.writeKey("headers");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -216,7 +227,8 @@ public final class ReindexTask implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReindexTask}.
 	 */
-	public static class Builder implements ObjectBuilder<ReindexTask> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexTask> {
 		private String action;
 
 		private Boolean cancellable;
@@ -240,7 +252,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code action}
 		 */
-		public Builder action(String value) {
+		public final Builder action(String value) {
 			this.action = value;
 			return this;
 		}
@@ -248,7 +260,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cancellable}
 		 */
-		public Builder cancellable(boolean value) {
+		public final Builder cancellable(boolean value) {
 			this.cancellable = value;
 			return this;
 		}
@@ -256,7 +268,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -264,7 +276,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(long value) {
+		public final Builder id(long value) {
 			this.id = value;
 			return this;
 		}
@@ -272,7 +284,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -280,7 +292,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code running_time_in_nanos}
 		 */
-		public Builder runningTimeInNanos(long value) {
+		public final Builder runningTimeInNanos(long value) {
 			this.runningTimeInNanos = value;
 			return this;
 		}
@@ -288,7 +300,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(long value) {
+		public final Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -296,7 +308,7 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(ReindexStatus value) {
+		public final Builder status(ReindexStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -304,34 +316,35 @@ public final class ReindexTask implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(Function<ReindexStatus.Builder, ObjectBuilder<ReindexStatus>> fn) {
+		public final Builder status(Function<ReindexStatus.Builder, ObjectBuilder<ReindexStatus>> fn) {
 			return this.status(fn.apply(new ReindexStatus.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 */
-		public Builder headers(Map<String, List<String>> value) {
-			this.headers = value;
+		public final Builder headers(Map<String, List<String>> map) {
+			this.headers = _mapPutAll(this.headers, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #headers(Map)}, creating the map if needed.
+		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
 		 */
-		public Builder putHeaders(String key, List<String> value) {
-			if (this.headers == null) {
-				this.headers = new HashMap<>();
-			}
-			this.headers.put(key, value);
+		public final Builder headers(String key, List<String> value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return this;
 		}
 
@@ -342,6 +355,7 @@ public final class ReindexTask implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ReindexTask build() {
+			_checkSingleUse();
 
 			return new ReindexTask(this);
 		}
@@ -353,9 +367,9 @@ public final class ReindexTask implements JsonpSerializable {
 	 * Json deserializer for {@link ReindexTask}
 	 */
 	public static final JsonpDeserializer<ReindexTask> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ReindexTask::setupReindexTaskDeserializer, Builder::build);
+			ReindexTask::setupReindexTaskDeserializer);
 
-	protected static void setupReindexTaskDeserializer(DelegatingDeserializer<ReindexTask.Builder> op) {
+	protected static void setupReindexTaskDeserializer(ObjectDeserializer<ReindexTask.Builder> op) {
 
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
 		op.add(Builder::cancellable, JsonpDeserializer.booleanDeserializer(), "cancellable");

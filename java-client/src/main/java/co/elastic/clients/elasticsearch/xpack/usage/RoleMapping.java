@@ -23,50 +23,58 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.RoleMapping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L225-L228">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RoleMapping implements JsonpSerializable {
+public class RoleMapping implements JsonpSerializable {
 	private final int enabled;
 
 	private final int size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RoleMapping(Builder builder) {
+	private RoleMapping(Builder builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
-		this.size = Objects.requireNonNull(builder.size, "size");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
 
 	}
 
-	public RoleMapping(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RoleMapping of(Function<Builder, ObjectBuilder<RoleMapping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public int enabled() {
+	public final int enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * Required - API name: {@code size}
 	 */
-	public int size() {
+	public final int size() {
 		return this.size;
 	}
 
@@ -94,7 +102,8 @@ public final class RoleMapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleMapping}.
 	 */
-	public static class Builder implements ObjectBuilder<RoleMapping> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleMapping> {
 		private Integer enabled;
 
 		private Integer size;
@@ -102,7 +111,7 @@ public final class RoleMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(int value) {
+		public final Builder enabled(int value) {
 			this.enabled = value;
 			return this;
 		}
@@ -110,7 +119,7 @@ public final class RoleMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size}
 		 */
-		public Builder size(int value) {
+		public final Builder size(int value) {
 			this.size = value;
 			return this;
 		}
@@ -122,6 +131,7 @@ public final class RoleMapping implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RoleMapping build() {
+			_checkSingleUse();
 
 			return new RoleMapping(this);
 		}
@@ -133,9 +143,9 @@ public final class RoleMapping implements JsonpSerializable {
 	 * Json deserializer for {@link RoleMapping}
 	 */
 	public static final JsonpDeserializer<RoleMapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RoleMapping::setupRoleMappingDeserializer, Builder::build);
+			RoleMapping::setupRoleMappingDeserializer);
 
-	protected static void setupRoleMappingDeserializer(DelegatingDeserializer<RoleMapping.Builder> op) {
+	protected static void setupRoleMappingDeserializer(ObjectDeserializer<RoleMapping.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.integerDeserializer(), "enabled");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

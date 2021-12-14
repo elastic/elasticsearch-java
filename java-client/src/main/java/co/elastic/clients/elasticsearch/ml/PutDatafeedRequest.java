@@ -23,31 +23,30 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
+import co.elastic.clients.elasticsearch._types.IndicesOptions;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -57,15 +56,39 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_datafeed.Request
+
+/**
+ * Instantiates a datafeed. Datafeeds retrieve data from Elasticsearch for
+ * analysis by an anomaly detection job. You can associate only one datafeed
+ * with each anomaly detection job. The datafeed contains a query that runs at a
+ * defined interval (<code>frequency</code>). If you are concerned about delayed
+ * data, you can add a delay
+ * (<code>query_delay') at each interval. When Elasticsearch security features are enabled, your datafeed remembers which roles the user who created it had at the time of creation and runs the query using those same roles. If you provide secondary authorization headers, those credentials are used instead. You must use Kibana, this API, or the create anomaly detection jobs API to create a datafeed. Do not add a datafeed directly to the </code>.ml-config<code>index. Do not give users</code>write<code>privileges on the</code>.ml-config`
+ * index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_datafeed/MlPutDatafeedRequest.ts#L31-L161">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutDatafeedRequest extends RequestBase implements JsonpSerializable {
-	private final String datafeedId;
+public class PutDatafeedRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, Aggregation> aggregations;
 
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final ChunkingConfig chunkingConfig;
+
+	private final String datafeedId;
+
+	@Nullable
+	private final DelayedDataCheckConfig delayedDataCheckConfig;
+
+	private final List<ExpandWildcard> expandWildcards;
+
+	@Nullable
+	private final Time frequency;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
@@ -73,23 +96,10 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
-	private final Map<String, Aggregation> aggregations;
-
-	@Nullable
-	private final ChunkingConfig chunkingConfig;
-
-	@Nullable
-	private final DelayedDataCheckConfig delayedDataCheckConfig;
-
-	@Nullable
-	private final String frequency;
-
-	@Nullable
 	private final List<String> indices;
 
 	@Nullable
-	private final DatafeedIndicesOptions indicesOptions;
+	private final IndicesOptions indicesOptions;
 
 	@Nullable
 	private final String jobId;
@@ -101,12 +111,10 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	private final Query query;
 
 	@Nullable
-	private final String queryDelay;
+	private final Time queryDelay;
 
-	@Nullable
 	private final Map<String, RuntimeField> runtimeMappings;
 
-	@Nullable
 	private final Map<String, ScriptField> scriptFields;
 
 	@Nullable
@@ -114,185 +122,251 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutDatafeedRequest(Builder builder) {
+	private PutDatafeedRequest(Builder builder) {
 
-		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.chunkingConfig = builder.chunkingConfig;
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
+		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.frequency = builder.frequency;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
-		this.chunkingConfig = builder.chunkingConfig;
-		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
-		this.frequency = builder.frequency;
-		this.indices = ModelTypeHelper.unmodifiable(builder.indices);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indicesOptions = builder.indicesOptions;
 		this.jobId = builder.jobId;
 		this.maxEmptySearches = builder.maxEmptySearches;
 		this.query = builder.query;
 		this.queryDelay = builder.queryDelay;
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
-		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.scrollSize = builder.scrollSize;
 
 	}
 
-	public PutDatafeedRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutDatafeedRequest of(Function<Builder, ObjectBuilder<PutDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the datafeed to create
+	 * If set, the datafeed performs aggregation searches. Support for aggregations
+	 * is limited and should be used only with low cardinality data.
 	 * <p>
-	 * API name: {@code datafeed_id}
-	 */
-	public String datafeedId() {
-		return this.datafeedId;
-	}
-
-	/**
-	 * Ignore if the source indices expressions resolves to no concrete indices
-	 * (default: true)
-	 * <p>
-	 * API name: {@code allow_no_indices}
-	 */
-	@Nullable
-	public Boolean allowNoIndices() {
-		return this.allowNoIndices;
-	}
-
-	/**
-	 * Whether source index expressions should get expanded to open or closed
-	 * indices (default: open)
-	 * <p>
-	 * API name: {@code expand_wildcards}
-	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
-		return this.expandWildcards;
-	}
-
-	/**
-	 * Ignore indices that are marked as throttled (default: true)
-	 * <p>
-	 * API name: {@code ignore_throttled}
-	 */
-	@Nullable
-	public Boolean ignoreThrottled() {
-		return this.ignoreThrottled;
-	}
-
-	/**
-	 * Ignore unavailable indexes (default: false)
-	 * <p>
-	 * API name: {@code ignore_unavailable}
-	 */
-	@Nullable
-	public Boolean ignoreUnavailable() {
-		return this.ignoreUnavailable;
-	}
-
-	/**
 	 * API name: {@code aggregations}
 	 */
-	@Nullable
-	public Map<String, Aggregation> aggregations() {
+	public final Map<String, Aggregation> aggregations() {
 		return this.aggregations;
 	}
 
 	/**
+	 * If true, wildcard indices expressions that resolve into no concrete indices
+	 * are ignored. This includes the <code>_all</code> string or when no indices
+	 * are specified.
+	 * <p>
+	 * API name: {@code allow_no_indices}
+	 */
+	@Nullable
+	public final Boolean allowNoIndices() {
+		return this.allowNoIndices;
+	}
+
+	/**
+	 * Datafeeds might be required to search over long time periods, for several
+	 * months or years. This search is split into time chunks in order to ensure the
+	 * load on Elasticsearch is managed. Chunking configuration controls how the
+	 * size of these time chunks are calculated; it is an advanced configuration
+	 * option.
+	 * <p>
 	 * API name: {@code chunking_config}
 	 */
 	@Nullable
-	public ChunkingConfig chunkingConfig() {
+	public final ChunkingConfig chunkingConfig() {
 		return this.chunkingConfig;
 	}
 
 	/**
+	 * Required - A numerical character string that uniquely identifies the
+	 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+	 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+	 * characters.
+	 * <p>
+	 * API name: {@code datafeed_id}
+	 */
+	public final String datafeedId() {
+		return this.datafeedId;
+	}
+
+	/**
+	 * Specifies whether the datafeed checks for missing data and the size of the
+	 * window. The datafeed can optionally search over indices that have already
+	 * been read in an effort to determine whether any data has subsequently been
+	 * added to the index. If missing data is found, it is a good indication that
+	 * the <code>query_delay</code> is set too low and the data is being indexed
+	 * after the datafeed has passed that moment in time. This check runs only on
+	 * real-time datafeeds.
+	 * <p>
 	 * API name: {@code delayed_data_check_config}
 	 */
 	@Nullable
-	public DelayedDataCheckConfig delayedDataCheckConfig() {
+	public final DelayedDataCheckConfig delayedDataCheckConfig() {
 		return this.delayedDataCheckConfig;
 	}
 
 	/**
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	/**
+	 * The interval at which scheduled queries are made while the datafeed runs in
+	 * real time. The default value is either the bucket span for short bucket
+	 * spans, or, for longer bucket spans, a sensible fraction of the bucket span.
+	 * When <code>frequency</code> is shorter than the bucket span, interim results
+	 * for the last (partial) bucket are written then eventually overwritten by the
+	 * full bucket results. If the datafeed uses aggregations, this value must be
+	 * divisible by the interval of the date histogram aggregation.
+	 * <p>
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public String frequency() {
+	public final Time frequency() {
 		return this.frequency;
 	}
 
 	/**
-	 * API name: {@code indices}
+	 * If true, concrete, expanded, or aliased indices are ignored when frozen.
+	 * <p>
+	 * API name: {@code ignore_throttled}
+	 * 
+	 * @deprecated 7.16.0
+	 */
+	@Deprecated
+	@Nullable
+	public final Boolean ignoreThrottled() {
+		return this.ignoreThrottled;
+	}
+
+	/**
+	 * If true, unavailable indices (missing or closed) are ignored.
+	 * <p>
+	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public List<String> indices() {
+	public final Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * An array of index names. Wildcards are supported. If any of the indices are
+	 * in remote clusters, the machine learning nodes must have the
+	 * <code>remote_cluster_client</code> role.
+	 * <p>
+	 * API name: {@code indices}
+	 */
+	public final List<String> indices() {
 		return this.indices;
 	}
 
 	/**
+	 * Specifies index expansion options that are used during search
+	 * <p>
 	 * API name: {@code indices_options}
 	 */
 	@Nullable
-	public DatafeedIndicesOptions indicesOptions() {
+	public final IndicesOptions indicesOptions() {
 		return this.indicesOptions;
 	}
 
 	/**
+	 * Identifier for the anomaly detection job.
+	 * <p>
 	 * API name: {@code job_id}
 	 */
 	@Nullable
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
+	 * If a real-time datafeed has never seen any data (including during any initial
+	 * training period), it automatically stops and closes the associated job after
+	 * this many real-time searches return no documents. In other words, it stops
+	 * after <code>frequency</code> times <code>max_empty_searches</code> of
+	 * real-time operation. If not set, a datafeed with no end time that sees no
+	 * data remains started until it is explicitly stopped. By default, it is not
+	 * set.
+	 * <p>
 	 * API name: {@code max_empty_searches}
 	 */
 	@Nullable
-	public Integer maxEmptySearches() {
+	public final Integer maxEmptySearches() {
 		return this.maxEmptySearches;
 	}
 
 	/**
+	 * The Elasticsearch query domain-specific language (DSL). This value
+	 * corresponds to the query object in an Elasticsearch search POST body. All the
+	 * options that are supported by Elasticsearch can be used, as this object is
+	 * passed verbatim to Elasticsearch.
+	 * <p>
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
 	/**
+	 * The number of seconds behind real time that data is queried. For example, if
+	 * data from 10:04 a.m. might not be searchable in Elasticsearch until 10:06
+	 * a.m., set this property to 120 seconds. The default value is randomly
+	 * selected between <code>60s</code> and <code>120s</code>. This randomness
+	 * improves the query performance when there are multiple jobs running on the
+	 * same node.
+	 * <p>
 	 * API name: {@code query_delay}
 	 */
 	@Nullable
-	public String queryDelay() {
+	public final Time queryDelay() {
 		return this.queryDelay;
 	}
 
 	/**
+	 * Specifies runtime fields for the datafeed search.
+	 * <p>
 	 * API name: {@code runtime_mappings}
 	 */
-	@Nullable
-	public Map<String, RuntimeField> runtimeMappings() {
+	public final Map<String, RuntimeField> runtimeMappings() {
 		return this.runtimeMappings;
 	}
 
 	/**
+	 * Specifies scripts that evaluate custom expressions and returns script fields
+	 * to the datafeed. The detector configuration objects in a job can contain
+	 * functions that use these script fields.
+	 * <p>
 	 * API name: {@code script_fields}
 	 */
-	@Nullable
-	public Map<String, ScriptField> scriptFields() {
+	public final Map<String, ScriptField> scriptFields() {
 		return this.scriptFields;
 	}
 
 	/**
+	 * The size parameter that is used in Elasticsearch searches when the datafeed
+	 * does not use aggregations. The maximum value is the value of
+	 * <code>index.max_result_window</code>, which is 10,000 by default.
+	 * <p>
 	 * API name: {@code scroll_size}
 	 */
 	@Nullable
-	public Integer scrollSize() {
+	public final Integer scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -307,8 +381,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.aggregations != null) {
-
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -320,25 +393,21 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 
 		}
 		if (this.chunkingConfig != null) {
-
 			generator.writeKey("chunking_config");
 			this.chunkingConfig.serialize(generator, mapper);
 
 		}
 		if (this.delayedDataCheckConfig != null) {
-
 			generator.writeKey("delayed_data_check_config");
 			this.delayedDataCheckConfig.serialize(generator, mapper);
 
 		}
 		if (this.frequency != null) {
-
 			generator.writeKey("frequency");
-			generator.write(this.frequency);
+			this.frequency.serialize(generator, mapper);
 
 		}
-		if (this.indices != null) {
-
+		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
 			for (String item0 : this.indices) {
@@ -349,37 +418,31 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 
 		}
 		if (this.indicesOptions != null) {
-
 			generator.writeKey("indices_options");
 			this.indicesOptions.serialize(generator, mapper);
 
 		}
 		if (this.jobId != null) {
-
 			generator.writeKey("job_id");
 			generator.write(this.jobId);
 
 		}
 		if (this.maxEmptySearches != null) {
-
 			generator.writeKey("max_empty_searches");
 			generator.write(this.maxEmptySearches);
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
 		if (this.queryDelay != null) {
-
 			generator.writeKey("query_delay");
-			generator.write(this.queryDelay);
+			this.queryDelay.serialize(generator, mapper);
 
 		}
-		if (this.runtimeMappings != null) {
-
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -390,8 +453,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 			generator.writeEnd();
 
 		}
-		if (this.scriptFields != null) {
-
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
 			generator.writeKey("script_fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
@@ -403,7 +465,6 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 
 		}
 		if (this.scrollSize != null) {
-
 			generator.writeKey("scroll_size");
 			generator.write(this.scrollSize);
 
@@ -416,14 +477,27 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link PutDatafeedRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutDatafeedRequest> {
-		private String datafeedId;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutDatafeedRequest> {
+		@Nullable
+		private Map<String, Aggregation> aggregations;
 
 		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private ChunkingConfig chunkingConfig;
+
+		private String datafeedId;
+
+		@Nullable
+		private DelayedDataCheckConfig delayedDataCheckConfig;
+
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
+		private Time frequency;
 
 		@Nullable
 		private Boolean ignoreThrottled;
@@ -432,22 +506,10 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private Map<String, Aggregation> aggregations;
-
-		@Nullable
-		private ChunkingConfig chunkingConfig;
-
-		@Nullable
-		private DelayedDataCheckConfig delayedDataCheckConfig;
-
-		@Nullable
-		private String frequency;
-
-		@Nullable
 		private List<String> indices;
 
 		@Nullable
-		private DatafeedIndicesOptions indicesOptions;
+		private IndicesOptions indicesOptions;
 
 		@Nullable
 		private String jobId;
@@ -459,7 +521,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		private Query query;
 
 		@Nullable
-		private String queryDelay;
+		private Time queryDelay;
 
 		@Nullable
 		private Map<String, RuntimeField> runtimeMappings;
@@ -471,303 +533,421 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		private Integer scrollSize;
 
 		/**
-		 * Required - The ID of the datafeed to create
+		 * If set, the datafeed performs aggregation searches. Support for aggregations
+		 * is limited and should be used only with low cardinality data.
 		 * <p>
-		 * API name: {@code datafeed_id}
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
-		public Builder datafeedId(String value) {
-			this.datafeedId = value;
+		public final Builder aggregations(Map<String, Aggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
 		/**
-		 * Ignore if the source indices expressions resolves to no concrete indices
-		 * (default: true)
+		 * If set, the datafeed performs aggregation searches. Support for aggregations
+		 * is limited and should be used only with low cardinality data.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, Aggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * If set, the datafeed performs aggregation searches. Support for aggregations
+		 * is limited and should be used only with low cardinality data.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
+		}
+
+		/**
+		 * If true, wildcard indices expressions that resolve into no concrete indices
+		 * are ignored. This includes the <code>_all</code> string or when no indices
+		 * are specified.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
 
 		/**
-		 * Whether source index expressions should get expanded to open or closed
-		 * indices (default: open)
+		 * Datafeeds might be required to search over long time periods, for several
+		 * months or years. This search is split into time chunks in order to ensure the
+		 * load on Elasticsearch is managed. Chunking configuration controls how the
+		 * size of these time chunks are calculated; it is an advanced configuration
+		 * option.
 		 * <p>
-		 * API name: {@code expand_wildcards}
-		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
-			return this;
-		}
-
-		/**
-		 * Whether source index expressions should get expanded to open or closed
-		 * indices (default: open)
-		 * <p>
-		 * API name: {@code expand_wildcards}
-		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
-			return this;
-		}
-
-		/**
-		 * Ignore indices that are marked as throttled (default: true)
-		 * <p>
-		 * API name: {@code ignore_throttled}
-		 */
-		public Builder ignoreThrottled(@Nullable Boolean value) {
-			this.ignoreThrottled = value;
-			return this;
-		}
-
-		/**
-		 * Ignore unavailable indexes (default: false)
-		 * <p>
-		 * API name: {@code ignore_unavailable}
-		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
-			this.ignoreUnavailable = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code aggregations}
-		 */
-		public Builder aggregations(@Nullable Map<String, Aggregation> value) {
-			this.aggregations = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
-		 */
-		public Builder putAggregations(String key, Aggregation value) {
-			if (this.aggregations == null) {
-				this.aggregations = new HashMap<>();
-			}
-			this.aggregations.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #aggregations(Map)} to a singleton map.
-		 */
-		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
-		 */
-		public Builder putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code chunking_config}
 		 */
-		public Builder chunkingConfig(@Nullable ChunkingConfig value) {
+		public final Builder chunkingConfig(@Nullable ChunkingConfig value) {
 			this.chunkingConfig = value;
 			return this;
 		}
 
 		/**
+		 * Datafeeds might be required to search over long time periods, for several
+		 * months or years. This search is split into time chunks in order to ensure the
+		 * load on Elasticsearch is managed. Chunking configuration controls how the
+		 * size of these time chunks are calculated; it is an advanced configuration
+		 * option.
+		 * <p>
 		 * API name: {@code chunking_config}
 		 */
-		public Builder chunkingConfig(Function<ChunkingConfig.Builder, ObjectBuilder<ChunkingConfig>> fn) {
+		public final Builder chunkingConfig(Function<ChunkingConfig.Builder, ObjectBuilder<ChunkingConfig>> fn) {
 			return this.chunkingConfig(fn.apply(new ChunkingConfig.Builder()).build());
 		}
 
 		/**
+		 * Required - A numerical character string that uniquely identifies the
+		 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+		 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+		 * characters.
+		 * <p>
+		 * API name: {@code datafeed_id}
+		 */
+		public final Builder datafeedId(String value) {
+			this.datafeedId = value;
+			return this;
+		}
+
+		/**
+		 * Specifies whether the datafeed checks for missing data and the size of the
+		 * window. The datafeed can optionally search over indices that have already
+		 * been read in an effort to determine whether any data has subsequently been
+		 * added to the index. If missing data is found, it is a good indication that
+		 * the <code>query_delay</code> is set too low and the data is being indexed
+		 * after the datafeed has passed that moment in time. This check runs only on
+		 * real-time datafeeds.
+		 * <p>
 		 * API name: {@code delayed_data_check_config}
 		 */
-		public Builder delayedDataCheckConfig(@Nullable DelayedDataCheckConfig value) {
+		public final Builder delayedDataCheckConfig(@Nullable DelayedDataCheckConfig value) {
 			this.delayedDataCheckConfig = value;
 			return this;
 		}
 
 		/**
+		 * Specifies whether the datafeed checks for missing data and the size of the
+		 * window. The datafeed can optionally search over indices that have already
+		 * been read in an effort to determine whether any data has subsequently been
+		 * added to the index. If missing data is found, it is a good indication that
+		 * the <code>query_delay</code> is set too low and the data is being indexed
+		 * after the datafeed has passed that moment in time. This check runs only on
+		 * real-time datafeeds.
+		 * <p>
 		 * API name: {@code delayed_data_check_config}
 		 */
-		public Builder delayedDataCheckConfig(
+		public final Builder delayedDataCheckConfig(
 				Function<DelayedDataCheckConfig.Builder, ObjectBuilder<DelayedDataCheckConfig>> fn) {
 			return this.delayedDataCheckConfig(fn.apply(new DelayedDataCheckConfig.Builder()).build());
 		}
 
 		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
+		 * The interval at which scheduled queries are made while the datafeed runs in
+		 * real time. The default value is either the bucket span for short bucket
+		 * spans, or, for longer bucket spans, a sensible fraction of the bucket span.
+		 * When <code>frequency</code> is shorter than the bucket span, interim results
+		 * for the last (partial) bucket are written then eventually overwritten by the
+		 * full bucket results. If the datafeed uses aggregations, this value must be
+		 * divisible by the interval of the date histogram aggregation.
+		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public Builder frequency(@Nullable String value) {
+		public final Builder frequency(@Nullable Time value) {
 			this.frequency = value;
 			return this;
 		}
 
 		/**
+		 * The interval at which scheduled queries are made while the datafeed runs in
+		 * real time. The default value is either the bucket span for short bucket
+		 * spans, or, for longer bucket spans, a sensible fraction of the bucket span.
+		 * When <code>frequency</code> is shorter than the bucket span, interim results
+		 * for the last (partial) bucket are written then eventually overwritten by the
+		 * full bucket results. If the datafeed uses aggregations, this value must be
+		 * divisible by the interval of the date histogram aggregation.
+		 * <p>
+		 * API name: {@code frequency}
+		 */
+		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.frequency(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * If true, concrete, expanded, or aliased indices are ignored when frozen.
+		 * <p>
+		 * API name: {@code ignore_throttled}
+		 * 
+		 * @deprecated 7.16.0
+		 */
+		@Deprecated
+		public final Builder ignoreThrottled(@Nullable Boolean value) {
+			this.ignoreThrottled = value;
+			return this;
+		}
+
+		/**
+		 * If true, unavailable indices (missing or closed) are ignored.
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * An array of index names. Wildcards are supported. If any of the indices are
+		 * in remote clusters, the machine learning nodes must have the
+		 * <code>remote_cluster_client</code> role.
+		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public Builder indices(@Nullable List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
+		 * An array of index names. Wildcards are supported. If any of the indices are
+		 * in remote clusters, the machine learning nodes must have the
+		 * <code>remote_cluster_client</code> role.
+		 * <p>
 		 * API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
-			return this;
-		}
-
-		/**
+		 * Specifies index expansion options that are used during search
+		 * <p>
 		 * API name: {@code indices_options}
 		 */
-		public Builder indicesOptions(@Nullable DatafeedIndicesOptions value) {
+		public final Builder indicesOptions(@Nullable IndicesOptions value) {
 			this.indicesOptions = value;
 			return this;
 		}
 
 		/**
+		 * Specifies index expansion options that are used during search
+		 * <p>
 		 * API name: {@code indices_options}
 		 */
-		public Builder indicesOptions(
-				Function<DatafeedIndicesOptions.Builder, ObjectBuilder<DatafeedIndicesOptions>> fn) {
-			return this.indicesOptions(fn.apply(new DatafeedIndicesOptions.Builder()).build());
+		public final Builder indicesOptions(Function<IndicesOptions.Builder, ObjectBuilder<IndicesOptions>> fn) {
+			return this.indicesOptions(fn.apply(new IndicesOptions.Builder()).build());
 		}
 
 		/**
+		 * Identifier for the anomaly detection job.
+		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(@Nullable String value) {
+		public final Builder jobId(@Nullable String value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
+		 * If a real-time datafeed has never seen any data (including during any initial
+		 * training period), it automatically stops and closes the associated job after
+		 * this many real-time searches return no documents. In other words, it stops
+		 * after <code>frequency</code> times <code>max_empty_searches</code> of
+		 * real-time operation. If not set, a datafeed with no end time that sees no
+		 * data remains started until it is explicitly stopped. By default, it is not
+		 * set.
+		 * <p>
 		 * API name: {@code max_empty_searches}
 		 */
-		public Builder maxEmptySearches(@Nullable Integer value) {
+		public final Builder maxEmptySearches(@Nullable Integer value) {
 			this.maxEmptySearches = value;
 			return this;
 		}
 
 		/**
+		 * The Elasticsearch query domain-specific language (DSL). This value
+		 * corresponds to the query object in an Elasticsearch search POST body. All the
+		 * options that are supported by Elasticsearch can be used, as this object is
+		 * passed verbatim to Elasticsearch.
+		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
 
 		/**
+		 * The Elasticsearch query domain-specific language (DSL). This value
+		 * corresponds to the query object in an Elasticsearch search POST body. All the
+		 * options that are supported by Elasticsearch can be used, as this object is
+		 * passed verbatim to Elasticsearch.
+		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
+		 * The number of seconds behind real time that data is queried. For example, if
+		 * data from 10:04 a.m. might not be searchable in Elasticsearch until 10:06
+		 * a.m., set this property to 120 seconds. The default value is randomly
+		 * selected between <code>60s</code> and <code>120s</code>. This randomness
+		 * improves the query performance when there are multiple jobs running on the
+		 * same node.
+		 * <p>
 		 * API name: {@code query_delay}
 		 */
-		public Builder queryDelay(@Nullable String value) {
+		public final Builder queryDelay(@Nullable Time value) {
 			this.queryDelay = value;
 			return this;
 		}
 
 		/**
+		 * The number of seconds behind real time that data is queried. For example, if
+		 * data from 10:04 a.m. might not be searchable in Elasticsearch until 10:06
+		 * a.m., set this property to 120 seconds. The default value is randomly
+		 * selected between <code>60s</code> and <code>120s</code>. This randomness
+		 * improves the query performance when there are multiple jobs running on the
+		 * same node.
+		 * <p>
+		 * API name: {@code query_delay}
+		 */
+		public final Builder queryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.queryDelay(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Specifies runtime fields for the datafeed search.
+		 * <p>
 		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 */
-		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
-			this.runtimeMappings = value;
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
+		 * Specifies runtime fields for the datafeed search.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
 		 */
-		public Builder putRuntimeMappings(String key, RuntimeField value) {
-			if (this.runtimeMappings == null) {
-				this.runtimeMappings = new HashMap<>();
-			}
-			this.runtimeMappings.put(key, value);
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #runtimeMappings(Map)} to a singleton map.
+		 * Specifies runtime fields for the datafeed search.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
 		 */
-		public Builder runtimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
-		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.putRuntimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
-		}
-
-		/**
+		 * Specifies scripts that evaluate custom expressions and returns script fields
+		 * to the datafeed. The detector configuration objects in a job can contain
+		 * functions that use these script fields.
+		 * <p>
 		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
 		 */
-		public Builder scriptFields(@Nullable Map<String, ScriptField> value) {
-			this.scriptFields = value;
+		public final Builder scriptFields(Map<String, ScriptField> map) {
+			this.scriptFields = _mapPutAll(this.scriptFields, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #scriptFields(Map)}, creating the map if needed.
+		 * Specifies scripts that evaluate custom expressions and returns script fields
+		 * to the datafeed. The detector configuration objects in a job can contain
+		 * functions that use these script fields.
+		 * <p>
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code>.
 		 */
-		public Builder putScriptFields(String key, ScriptField value) {
-			if (this.scriptFields == null) {
-				this.scriptFields = new HashMap<>();
-			}
-			this.scriptFields.put(key, value);
+		public final Builder scriptFields(String key, ScriptField value) {
+			this.scriptFields = _mapPut(this.scriptFields, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #scriptFields(Map)} to a singleton map.
+		 * Specifies scripts that evaluate custom expressions and returns script fields
+		 * to the datafeed. The detector configuration objects in a job can contain
+		 * functions that use these script fields.
+		 * <p>
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code> using a builder lambda.
 		 */
-		public Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
-			return this.scriptFields(Collections.singletonMap(key, fn.apply(new ScriptField.Builder()).build()));
+		public final Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return scriptFields(key, fn.apply(new ScriptField.Builder()).build());
 		}
 
 		/**
-		 * Add a key/value to {@link #scriptFields(Map)}, creating the map if needed.
-		 */
-		public Builder putScriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
-			return this.putScriptFields(key, fn.apply(new ScriptField.Builder()).build());
-		}
-
-		/**
+		 * The size parameter that is used in Elasticsearch searches when the datafeed
+		 * does not use aggregations. The maximum value is the value of
+		 * <code>index.max_result_window</code>, which is 10,000 by default.
+		 * <p>
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(@Nullable Integer value) {
+		public final Builder scrollSize(@Nullable Integer value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -779,6 +959,7 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public PutDatafeedRequest build() {
+			_checkSingleUse();
 
 			return new PutDatafeedRequest(this);
 		}
@@ -790,22 +971,22 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	 * Json deserializer for {@link PutDatafeedRequest}
 	 */
 	public static final JsonpDeserializer<PutDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutDatafeedRequest::setupPutDatafeedRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutDatafeedRequest::setupPutDatafeedRequestDeserializer);
 
-	protected static void setupPutDatafeedRequestDeserializer(DelegatingDeserializer<PutDatafeedRequest.Builder> op) {
+	protected static void setupPutDatafeedRequestDeserializer(ObjectDeserializer<PutDatafeedRequest.Builder> op) {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations");
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
-		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
+		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices",
 				"indexes");
-		op.add(Builder::indicesOptions, DatafeedIndicesOptions._DESERIALIZER, "indices_options");
+		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
-		op.add(Builder::queryDelay, JsonpDeserializer.stringDeserializer(), "query_delay");
+		op.add(Builder::queryDelay, Time._DESERIALIZER, "query_delay");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
 				"runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
@@ -819,7 +1000,9 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code ml.put_datafeed}".
 	 */
-	public static final Endpoint<PutDatafeedRequest, PutDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_datafeed",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -849,18 +1032,18 @@ public final class PutDatafeedRequest extends RequestBase implements JsonpSerial
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.expandWildcards != null) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
-				}
-				if (request.ignoreThrottled != null) {
-					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.ignoreThrottled != null) {
+					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
 				}
 				return params;
 

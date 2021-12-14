@@ -23,24 +23,39 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/Operator.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum Operator implements StringEnum {
-	And("and"), Or("or");
+public enum Operator implements JsonEnum {
+	And("and", "AND"),
+
+	Or("or", "OR"),
+
+	;
 
 	private final String jsonValue;
+	private final String[] aliases;
 
-	Operator(String jsonValue) {
+	Operator(String jsonValue, String... aliases) {
 		this.jsonValue = jsonValue;
+		this.aliases = aliases;
 	}
 
 	public String jsonValue() {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<Operator> _DESERIALIZER = new StringEnum.Deserializer<>(
-			Operator.values());
+	public String[] aliases() {
+		return this.aliases;
+	}
+
+	public static final JsonEnum.Deserializer<Operator> _DESERIALIZER = new JsonEnum.Deserializer<>(Operator.values());
 }

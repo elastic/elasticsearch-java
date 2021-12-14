@@ -23,55 +23,60 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.query_watches.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/query_watches/WatcherQueryWatchesResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class QueryWatchesResponse implements JsonpSerializable {
+public class QueryWatchesResponse implements JsonpSerializable {
 	private final int count;
 
 	private final List<QueryWatch> watches;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryWatchesResponse(Builder builder) {
+	private QueryWatchesResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.watches = ModelTypeHelper.unmodifiableNonNull(builder.watches, "watches");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.watches = ApiTypeHelper.unmodifiableRequired(builder.watches, this, "watches");
 
 	}
 
-	public QueryWatchesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static QueryWatchesResponse of(Function<Builder, ObjectBuilder<QueryWatchesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code watches}
 	 */
-	public List<QueryWatch> watches() {
+	public final List<QueryWatch> watches() {
 		return this.watches;
 	}
 
@@ -89,13 +94,16 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("watches");
-		generator.writeStartArray();
-		for (QueryWatch item0 : this.watches) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.watches)) {
+			generator.writeKey("watches");
+			generator.writeStartArray();
+			for (QueryWatch item0 : this.watches) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +112,8 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryWatchesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<QueryWatchesResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatchesResponse> {
 		private Integer count;
 
 		private List<QueryWatch> watches;
@@ -112,50 +121,38 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code watches}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>watches</code>.
 		 */
-		public Builder watches(List<QueryWatch> value) {
-			this.watches = value;
+		public final Builder watches(List<QueryWatch> list) {
+			this.watches = _listAddAll(this.watches, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code watches}
+		 * <p>
+		 * Adds one or more values to <code>watches</code>.
 		 */
-		public Builder watches(QueryWatch... value) {
-			this.watches = Arrays.asList(value);
+		public final Builder watches(QueryWatch value, QueryWatch... values) {
+			this.watches = _listAdd(this.watches, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #watches(List)}, creating the list if needed.
+		 * Required - API name: {@code watches}
+		 * <p>
+		 * Adds a value to <code>watches</code> using a builder lambda.
 		 */
-		public Builder addWatches(QueryWatch value) {
-			if (this.watches == null) {
-				this.watches = new ArrayList<>();
-			}
-			this.watches.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #watches(List)} to a singleton list.
-		 */
-		public Builder watches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn) {
-			return this.watches(fn.apply(new QueryWatch.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #watches(List)}, creating the list if needed.
-		 */
-		public Builder addWatches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn) {
-			return this.addWatches(fn.apply(new QueryWatch.Builder()).build());
+		public final Builder watches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn) {
+			return watches(fn.apply(new QueryWatch.Builder()).build());
 		}
 
 		/**
@@ -165,6 +162,7 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public QueryWatchesResponse build() {
+			_checkSingleUse();
 
 			return new QueryWatchesResponse(this);
 		}
@@ -176,10 +174,9 @@ public final class QueryWatchesResponse implements JsonpSerializable {
 	 * Json deserializer for {@link QueryWatchesResponse}
 	 */
 	public static final JsonpDeserializer<QueryWatchesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, QueryWatchesResponse::setupQueryWatchesResponseDeserializer, Builder::build);
+			.lazy(Builder::new, QueryWatchesResponse::setupQueryWatchesResponseDeserializer);
 
-	protected static void setupQueryWatchesResponseDeserializer(
-			DelegatingDeserializer<QueryWatchesResponse.Builder> op) {
+	protected static void setupQueryWatchesResponseDeserializer(ObjectDeserializer<QueryWatchesResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::watches, JsonpDeserializer.arrayDeserializer(QueryWatch._DESERIALIZER), "watches");

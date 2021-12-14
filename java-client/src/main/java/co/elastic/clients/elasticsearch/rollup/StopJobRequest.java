@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,27 +46,35 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.stop_job.Request
 
-public final class StopJobRequest extends RequestBase {
+/**
+ * Stops an existing, started rollup job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/stop_job/StopRollupJobRequest.ts#L24-L37">API
+ *      specification</a>
+ */
+
+public class StopJobRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final Boolean waitForCompletion;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StopJobRequest(Builder builder) {
+	private StopJobRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public StopJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopJobRequest of(Function<Builder, ObjectBuilder<StopJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +82,7 @@ public final class StopJobRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -82,7 +93,7 @@ public final class StopJobRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -93,7 +104,7 @@ public final class StopJobRequest extends RequestBase {
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -102,11 +113,12 @@ public final class StopJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link StopJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StopJobRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopJobRequest> {
 		private String id;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -116,7 +128,7 @@ public final class StopJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -127,9 +139,19 @@ public final class StopJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Block for (at maximum) the specified duration while waiting for the job to
+		 * stop. Defaults to 30s.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -138,7 +160,7 @@ public final class StopJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -150,6 +172,7 @@ public final class StopJobRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public StopJobRequest build() {
+			_checkSingleUse();
 
 			return new StopJobRequest(this);
 		}
@@ -160,7 +183,9 @@ public final class StopJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code rollup.stop_job}".
 	 */
-	public static final Endpoint<StopJobRequest, StopJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StopJobRequest, StopJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.stop_job",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -191,11 +216,11 @@ public final class StopJobRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
-				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

@@ -24,22 +24,30 @@
 package co.elastic.clients.elasticsearch.indices.get_mapping;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_mapping.IndexMappingRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_mapping/IndicesGetMappingResponse.ts#L29-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexMappingRecord implements JsonpSerializable {
+public class IndexMappingRecord implements JsonpSerializable {
 	@Nullable
 	private final TypeMapping item;
 
@@ -47,29 +55,29 @@ public final class IndexMappingRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexMappingRecord(Builder builder) {
+	private IndexMappingRecord(Builder builder) {
 
 		this.item = builder.item;
-		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
+		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 
 	}
 
-	public IndexMappingRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexMappingRecord of(Function<Builder, ObjectBuilder<IndexMappingRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code item}
 	 */
 	@Nullable
-	public TypeMapping item() {
+	public final TypeMapping item() {
 		return this.item;
 	}
 
 	/**
 	 * Required - API name: {@code mappings}
 	 */
-	public TypeMapping mappings() {
+	public final TypeMapping mappings() {
 		return this.mappings;
 	}
 
@@ -85,12 +93,10 @@ public final class IndexMappingRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.item != null) {
-
 			generator.writeKey("item");
 			this.item.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("mappings");
 		this.mappings.serialize(generator, mapper);
 
@@ -101,7 +107,8 @@ public final class IndexMappingRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexMappingRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexMappingRecord> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexMappingRecord> {
 		@Nullable
 		private TypeMapping item;
 
@@ -110,7 +117,7 @@ public final class IndexMappingRecord implements JsonpSerializable {
 		/**
 		 * API name: {@code item}
 		 */
-		public Builder item(@Nullable TypeMapping value) {
+		public final Builder item(@Nullable TypeMapping value) {
 			this.item = value;
 			return this;
 		}
@@ -118,14 +125,14 @@ public final class IndexMappingRecord implements JsonpSerializable {
 		/**
 		 * API name: {@code item}
 		 */
-		public Builder item(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+		public final Builder item(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.item(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(TypeMapping value) {
+		public final Builder mappings(TypeMapping value) {
 			this.mappings = value;
 			return this;
 		}
@@ -133,7 +140,7 @@ public final class IndexMappingRecord implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
@@ -144,6 +151,7 @@ public final class IndexMappingRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexMappingRecord build() {
+			_checkSingleUse();
 
 			return new IndexMappingRecord(this);
 		}
@@ -155,9 +163,9 @@ public final class IndexMappingRecord implements JsonpSerializable {
 	 * Json deserializer for {@link IndexMappingRecord}
 	 */
 	public static final JsonpDeserializer<IndexMappingRecord> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexMappingRecord::setupIndexMappingRecordDeserializer, Builder::build);
+			.lazy(Builder::new, IndexMappingRecord::setupIndexMappingRecordDeserializer);
 
-	protected static void setupIndexMappingRecordDeserializer(DelegatingDeserializer<IndexMappingRecord.Builder> op) {
+	protected static void setupIndexMappingRecordDeserializer(ObjectDeserializer<IndexMappingRecord.Builder> op) {
 
 		op.add(Builder::item, TypeMapping._DESERIALIZER, "item");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");

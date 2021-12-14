@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.dangling_indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,39 +46,38 @@ import javax.annotation.Nullable;
 
 // typedef: dangling_indices.delete_dangling_index.Request
 
-public final class DeleteDanglingIndexRequest extends RequestBase {
-	private final String indexUuid;
+/**
+ * Deletes the specified dangling index
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/dangling_indices/delete_dangling_index/DeleteDanglingIndexRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
+public class DeleteDanglingIndexRequest extends RequestBase {
 	private final boolean acceptDataLoss;
 
-	@Nullable
-	private final String masterTimeout;
+	private final String indexUuid;
 
 	@Nullable
-	private final String timeout;
+	private final Time masterTimeout;
+
+	@Nullable
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteDanglingIndexRequest(Builder builder) {
+	private DeleteDanglingIndexRequest(Builder builder) {
 
-		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
-		this.acceptDataLoss = Objects.requireNonNull(builder.acceptDataLoss, "accept_data_loss");
+		this.acceptDataLoss = ApiTypeHelper.requireNonNull(builder.acceptDataLoss, this, "acceptDataLoss");
+		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
 	}
 
-	public DeleteDanglingIndexRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The UUID of the dangling index
-	 * <p>
-	 * API name: {@code index_uuid}
-	 */
-	public String indexUuid() {
-		return this.indexUuid;
+	public static DeleteDanglingIndexRequest of(Function<Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,8 +85,17 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code accept_data_loss}
 	 */
-	public boolean acceptDataLoss() {
+	public final boolean acceptDataLoss() {
 		return this.acceptDataLoss;
+	}
+
+	/**
+	 * Required - The UUID of the dangling index
+	 * <p>
+	 * API name: {@code index_uuid}
+	 */
+	public final String indexUuid() {
+		return this.indexUuid;
 	}
 
 	/**
@@ -93,7 +104,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -103,7 +114,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -112,34 +123,35 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteDanglingIndexRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteDanglingIndexRequest> {
-		private String indexUuid;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteDanglingIndexRequest> {
 		private Boolean acceptDataLoss;
 
-		@Nullable
-		private String masterTimeout;
+		private String indexUuid;
 
 		@Nullable
-		private String timeout;
+		private Time masterTimeout;
 
-		/**
-		 * Required - The UUID of the dangling index
-		 * <p>
-		 * API name: {@code index_uuid}
-		 */
-		public Builder indexUuid(String value) {
-			this.indexUuid = value;
-			return this;
-		}
+		@Nullable
+		private Time timeout;
 
 		/**
 		 * Required - Must be set to true in order to delete the dangling index
 		 * <p>
 		 * API name: {@code accept_data_loss}
 		 */
-		public Builder acceptDataLoss(boolean value) {
+		public final Builder acceptDataLoss(boolean value) {
 			this.acceptDataLoss = value;
+			return this;
+		}
+
+		/**
+		 * Required - The UUID of the dangling index
+		 * <p>
+		 * API name: {@code index_uuid}
+		 */
+		public final Builder indexUuid(String value) {
+			this.indexUuid = value;
 			return this;
 		}
 
@@ -148,8 +160,27 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
 			return this;
 		}
 
@@ -158,9 +189,8 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -170,6 +200,7 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteDanglingIndexRequest build() {
+			_checkSingleUse();
 
 			return new DeleteDanglingIndexRequest(this);
 		}
@@ -180,7 +211,9 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code dangling_indices.delete_dangling_index}".
 	 */
-	public static final Endpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/dangling_indices.delete_dangling_index",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -209,12 +242,12 @@ public final class DeleteDanglingIndexRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
+				params.put("accept_data_loss", String.valueOf(request.acceptDataLoss));
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

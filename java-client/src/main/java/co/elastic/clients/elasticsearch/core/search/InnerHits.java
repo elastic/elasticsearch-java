@@ -24,24 +24,21 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch._types.ScriptField;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.SortOptions;
+import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -49,8 +46,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHits
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/hits.ts#L106-L124">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class InnerHits implements JsonpSerializable {
+public class InnerHits implements JsonpSerializable {
 	@Nullable
 	private final String name;
 
@@ -63,7 +67,6 @@ public final class InnerHits implements JsonpSerializable {
 	@Nullable
 	private final FieldCollapse collapse;
 
-	@Nullable
 	private final List<FieldAndFormat> docvalueFields;
 
 	@Nullable
@@ -75,22 +78,18 @@ public final class InnerHits implements JsonpSerializable {
 	@Nullable
 	private final Boolean ignoreUnmapped;
 
-	@Nullable
 	private final Map<String, ScriptField> scriptFields;
 
 	@Nullable
 	private final Boolean seqNoPrimaryTerm;
 
-	@Nullable
 	private final List<String> fields;
 
-	@Nullable
-	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
+	private final List<SortOptions> sort;
 
 	@Nullable
-	private final JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
+	private final SourceConfig source;
 
-	@Nullable
 	private final List<String> storedField;
 
 	@Nullable
@@ -101,36 +100,36 @@ public final class InnerHits implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InnerHits(Builder builder) {
+	private InnerHits(Builder builder) {
 
 		this.name = builder.name;
 		this.size = builder.size;
 		this.from = builder.from;
 		this.collapse = builder.collapse;
-		this.docvalueFields = ModelTypeHelper.unmodifiable(builder.docvalueFields);
+		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
 		this.explain = builder.explain;
 		this.highlight = builder.highlight;
 		this.ignoreUnmapped = builder.ignoreUnmapped;
-		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
 		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.source = builder.source;
-		this.storedField = ModelTypeHelper.unmodifiable(builder.storedField);
+		this.storedField = ApiTypeHelper.unmodifiable(builder.storedField);
 		this.trackScores = builder.trackScores;
 		this.version = builder.version;
 
 	}
 
-	public InnerHits(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InnerHits of(Function<Builder, ObjectBuilder<InnerHits>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -138,7 +137,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -146,7 +145,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
@@ -154,15 +153,14 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code collapse}
 	 */
 	@Nullable
-	public FieldCollapse collapse() {
+	public final FieldCollapse collapse() {
 		return this.collapse;
 	}
 
 	/**
 	 * API name: {@code docvalue_fields}
 	 */
-	@Nullable
-	public List<FieldAndFormat> docvalueFields() {
+	public final List<FieldAndFormat> docvalueFields() {
 		return this.docvalueFields;
 	}
 
@@ -170,7 +168,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code explain}
 	 */
 	@Nullable
-	public Boolean explain() {
+	public final Boolean explain() {
 		return this.explain;
 	}
 
@@ -178,7 +176,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code highlight}
 	 */
 	@Nullable
-	public Highlight highlight() {
+	public final Highlight highlight() {
 		return this.highlight;
 	}
 
@@ -186,15 +184,14 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
-	public Boolean ignoreUnmapped() {
+	public final Boolean ignoreUnmapped() {
 		return this.ignoreUnmapped;
 	}
 
 	/**
 	 * API name: {@code script_fields}
 	 */
-	@Nullable
-	public Map<String, ScriptField> scriptFields() {
+	public final Map<String, ScriptField> scriptFields() {
 		return this.scriptFields;
 	}
 
@@ -202,23 +199,21 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code seq_no_primary_term}
 	 */
 	@Nullable
-	public Boolean seqNoPrimaryTerm() {
+	public final Boolean seqNoPrimaryTerm() {
 		return this.seqNoPrimaryTerm;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * API name: {@code sort}
 	 */
-	@Nullable
-	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<SortOptions> sort() {
 		return this.sort;
 	}
 
@@ -226,15 +221,14 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source() {
+	public final SourceConfig source() {
 		return this.source;
 	}
 
 	/**
 	 * API name: {@code stored_field}
 	 */
-	@Nullable
-	public List<String> storedField() {
+	public final List<String> storedField() {
 		return this.storedField;
 	}
 
@@ -242,7 +236,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code track_scores}
 	 */
 	@Nullable
-	public Boolean trackScores() {
+	public final Boolean trackScores() {
 		return this.trackScores;
 	}
 
@@ -250,7 +244,7 @@ public final class InnerHits implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Boolean version() {
+	public final Boolean version() {
 		return this.version;
 	}
 
@@ -266,31 +260,26 @@ public final class InnerHits implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
 		if (this.from != null) {
-
 			generator.writeKey("from");
 			generator.write(this.from);
 
 		}
 		if (this.collapse != null) {
-
 			generator.writeKey("collapse");
 			this.collapse.serialize(generator, mapper);
 
 		}
-		if (this.docvalueFields != null) {
-
+		if (ApiTypeHelper.isDefined(this.docvalueFields)) {
 			generator.writeKey("docvalue_fields");
 			generator.writeStartArray();
 			for (FieldAndFormat item0 : this.docvalueFields) {
@@ -301,25 +290,21 @@ public final class InnerHits implements JsonpSerializable {
 
 		}
 		if (this.explain != null) {
-
 			generator.writeKey("explain");
 			generator.write(this.explain);
 
 		}
 		if (this.highlight != null) {
-
 			generator.writeKey("highlight");
 			this.highlight.serialize(generator, mapper);
 
 		}
 		if (this.ignoreUnmapped != null) {
-
 			generator.writeKey("ignore_unmapped");
 			generator.write(this.ignoreUnmapped);
 
 		}
-		if (this.scriptFields != null) {
-
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
 			generator.writeKey("script_fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
@@ -331,13 +316,11 @@ public final class InnerHits implements JsonpSerializable {
 
 		}
 		if (this.seqNoPrimaryTerm != null) {
-
 			generator.writeKey("seq_no_primary_term");
 			generator.write(this.seqNoPrimaryTerm);
 
 		}
-		if (this.fields != null) {
-
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -347,25 +330,22 @@ public final class InnerHits implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.sort != null) {
-
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
-			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
-				generator.write(item0);
+			for (SortOptions item0 : this.sort) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("_source");
-			generator.write(this.source);
+			this.source.serialize(generator, mapper);
 
 		}
-		if (this.storedField != null) {
-
+		if (ApiTypeHelper.isDefined(this.storedField)) {
 			generator.writeKey("stored_field");
 			generator.writeStartArray();
 			for (String item0 : this.storedField) {
@@ -376,13 +356,11 @@ public final class InnerHits implements JsonpSerializable {
 
 		}
 		if (this.trackScores != null) {
-
 			generator.writeKey("track_scores");
 			generator.write(this.trackScores);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
@@ -395,7 +373,8 @@ public final class InnerHits implements JsonpSerializable {
 	/**
 	 * Builder for {@link InnerHits}.
 	 */
-	public static class Builder implements ObjectBuilder<InnerHits> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InnerHits> {
 		@Nullable
 		private String name;
 
@@ -430,10 +409,10 @@ public final class InnerHits implements JsonpSerializable {
 		private List<String> fields;
 
 		@Nullable
-		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
+		private List<SortOptions> sort;
 
 		@Nullable
-		private JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ source;
+		private SourceConfig source;
 
 		@Nullable
 		private List<String> storedField;
@@ -447,7 +426,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -455,7 +434,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -463,7 +442,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -471,7 +450,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code collapse}
 		 */
-		public Builder collapse(@Nullable FieldCollapse value) {
+		public final Builder collapse(@Nullable FieldCollapse value) {
 			this.collapse = value;
 			return this;
 		}
@@ -479,55 +458,43 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code collapse}
 		 */
-		public Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
+		public final Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
 			return this.collapse(fn.apply(new FieldCollapse.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
 		 */
-		public Builder docvalueFields(@Nullable List<FieldAndFormat> value) {
-			this.docvalueFields = value;
+		public final Builder docvalueFields(List<FieldAndFormat> list) {
+			this.docvalueFields = _listAddAll(this.docvalueFields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds one or more values to <code>docvalueFields</code>.
 		 */
-		public Builder docvalueFields(FieldAndFormat... value) {
-			this.docvalueFields = Arrays.asList(value);
+		public final Builder docvalueFields(FieldAndFormat value, FieldAndFormat... values) {
+			this.docvalueFields = _listAdd(this.docvalueFields, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
+		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds a value to <code>docvalueFields</code> using a builder lambda.
 		 */
-		public Builder addDocvalueFields(FieldAndFormat value) {
-			if (this.docvalueFields == null) {
-				this.docvalueFields = new ArrayList<>();
-			}
-			this.docvalueFields.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #docvalueFields(List)} to a singleton list.
-		 */
-		public Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
-			return this.docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #docvalueFields(List)}, creating the list if needed.
-		 */
-		public Builder addDocvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
-			return this.addDocvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
+		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code explain}
 		 */
-		public Builder explain(@Nullable Boolean value) {
+		public final Builder explain(@Nullable Boolean value) {
 			this.explain = value;
 			return this;
 		}
@@ -535,7 +502,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight}
 		 */
-		public Builder highlight(@Nullable Highlight value) {
+		public final Builder highlight(@Nullable Highlight value) {
 			this.highlight = value;
 			return this;
 		}
@@ -543,153 +510,143 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code highlight}
 		 */
-		public Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
+		public final Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
 			return this.highlight(fn.apply(new Highlight.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code ignore_unmapped}
 		 */
-		public Builder ignoreUnmapped(@Nullable Boolean value) {
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
 			this.ignoreUnmapped = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
 		 */
-		public Builder scriptFields(@Nullable Map<String, ScriptField> value) {
-			this.scriptFields = value;
+		public final Builder scriptFields(Map<String, ScriptField> map) {
+			this.scriptFields = _mapPutAll(this.scriptFields, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #scriptFields(Map)}, creating the map if needed.
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code>.
 		 */
-		public Builder putScriptFields(String key, ScriptField value) {
-			if (this.scriptFields == null) {
-				this.scriptFields = new HashMap<>();
-			}
-			this.scriptFields.put(key, value);
+		public final Builder scriptFields(String key, ScriptField value) {
+			this.scriptFields = _mapPut(this.scriptFields, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #scriptFields(Map)} to a singleton map.
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code> using a builder lambda.
 		 */
-		public Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
-			return this.scriptFields(Collections.singletonMap(key, fn.apply(new ScriptField.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #scriptFields(Map)}, creating the map if needed.
-		 */
-		public Builder putScriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
-			return this.putScriptFields(key, fn.apply(new ScriptField.Builder()).build());
+		public final Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return scriptFields(key, fn.apply(new ScriptField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code seq_no_primary_term}
 		 */
-		public Builder seqNoPrimaryTerm(@Nullable Boolean value) {
+		public final Builder seqNoPrimaryTerm(@Nullable Boolean value) {
 			this.seqNoPrimaryTerm = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
-			this.sort = value;
+		public final Builder sort(List<SortOptions> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
-			this.sort = Arrays.asList(value);
+		public final Builder sort(SortOptions value, SortOptions... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
+		 * API name: {@code sort}
+		 * <p>
+		 * Adds a value to <code>sort</code> using a builder lambda.
 		 */
-		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+			return sort(fn.apply(new SortOptions.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code _source}
+		 */
+		public final Builder source(@Nullable SourceConfig value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder source(
-				@Nullable JsonValue /* Union(_global.search._types.SourceFilter | internal.boolean) */ value) {
-			this.source = value;
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code stored_field}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedField</code>.
+		 */
+		public final Builder storedField(List<String> list) {
+			this.storedField = _listAddAll(this.storedField, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stored_field}
+		 * <p>
+		 * Adds one or more values to <code>storedField</code>.
 		 */
-		public Builder storedField(@Nullable List<String> value) {
-			this.storedField = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code stored_field}
-		 */
-		public Builder storedField(String... value) {
-			this.storedField = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #storedField(List)}, creating the list if needed.
-		 */
-		public Builder addStoredField(String value) {
-			if (this.storedField == null) {
-				this.storedField = new ArrayList<>();
-			}
-			this.storedField.add(value);
+		public final Builder storedField(String value, String... values) {
+			this.storedField = _listAdd(this.storedField, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code track_scores}
 		 */
-		public Builder trackScores(@Nullable Boolean value) {
+		public final Builder trackScores(@Nullable Boolean value) {
 			this.trackScores = value;
 			return this;
 		}
@@ -697,7 +654,7 @@ public final class InnerHits implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Boolean value) {
+		public final Builder version(@Nullable Boolean value) {
 			this.version = value;
 			return this;
 		}
@@ -709,6 +666,7 @@ public final class InnerHits implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InnerHits build() {
+			_checkSingleUse();
 
 			return new InnerHits(this);
 		}
@@ -720,9 +678,9 @@ public final class InnerHits implements JsonpSerializable {
 	 * Json deserializer for {@link InnerHits}
 	 */
 	public static final JsonpDeserializer<InnerHits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InnerHits::setupInnerHitsDeserializer, Builder::build);
+			InnerHits::setupInnerHitsDeserializer);
 
-	protected static void setupInnerHitsDeserializer(DelegatingDeserializer<InnerHits.Builder> op) {
+	protected static void setupInnerHitsDeserializer(ObjectDeserializer<InnerHits.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
@@ -737,8 +695,8 @@ public final class InnerHits implements JsonpSerializable {
 				"script_fields");
 		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
+		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::storedField, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_field");
 		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");

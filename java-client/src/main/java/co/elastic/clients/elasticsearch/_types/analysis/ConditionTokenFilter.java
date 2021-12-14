@@ -23,64 +23,68 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ConditionTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L180-L184">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ConditionTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ConditionTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> filter;
 
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ConditionTokenFilter(Builder builder) {
+	private ConditionTokenFilter(Builder builder) {
 		super(builder);
 
-		this.filter = ModelTypeHelper.unmodifiableNonNull(builder.filter, "filter");
-		this.script = Objects.requireNonNull(builder.script, "script");
+		this.filter = ApiTypeHelper.unmodifiableRequired(builder.filter, this, "filter");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
-	public ConditionTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ConditionTokenFilter of(Function<Builder, ObjectBuilder<ConditionTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "condition";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Condition;
 	}
 
 	/**
 	 * Required - API name: {@code filter}
 	 */
-	public List<String> filter() {
+	public final List<String> filter() {
 		return this.filter;
 	}
 
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -88,17 +92,18 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "condition");
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.filter)) {
+			generator.writeKey("filter");
+			generator.writeStartArray();
+			for (String item0 : this.filter) {
+				generator.write(item0);
 
-		generator.writeKey("filter");
-		generator.writeStartArray();
-		for (String item0 : this.filter) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("script");
-		generator.write(this.script);
+		this.script.serialize(generator, mapper);
 
 	}
 
@@ -107,46 +112,47 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Builder for {@link ConditionTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ConditionTokenFilter> {
 		private List<String> filter;
 
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		/**
 		 * Required - API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 */
-		public Builder filter(List<String> value) {
-			this.filter = value;
+		public final Builder filter(List<String> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public Builder filter(String... value) {
-			this.filter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(String value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
-			}
-			this.filter.add(value);
+		public final Builder filter(String value, String... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -161,6 +167,7 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public ConditionTokenFilter build() {
+			_checkSingleUse();
 
 			return new ConditionTokenFilter(this);
 		}
@@ -172,13 +179,12 @@ public final class ConditionTokenFilter extends TokenFilterBase implements Token
 	 * Json deserializer for {@link ConditionTokenFilter}
 	 */
 	public static final JsonpDeserializer<ConditionTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ConditionTokenFilter::setupConditionTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, ConditionTokenFilter::setupConditionTokenFilterDeserializer);
 
-	protected static void setupConditionTokenFilterDeserializer(
-			DelegatingDeserializer<ConditionTokenFilter.Builder> op) {
+	protected static void setupConditionTokenFilterDeserializer(ObjectDeserializer<ConditionTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "filter");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 		op.ignore("type");
 	}

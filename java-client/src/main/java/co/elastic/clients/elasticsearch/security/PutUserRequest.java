@@ -23,27 +23,24 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,20 +49,26 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_user.Request
+
+/**
+ * Adds and updates users in the native realm. These users are commonly referred
+ * to as native users.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_user/SecurityPutUserRequest.ts#L23-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutUserRequest extends RequestBase implements JsonpSerializable {
-	private final String username;
-
-	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
-
+public class PutUserRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String email;
 
 	@Nullable
-	private final String fullName;
+	private final Boolean enabled;
 
 	@Nullable
+	private final String fullName;
+
 	private final Map<String, JsonData> metadata;
 
 	@Nullable
@@ -75,38 +78,77 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	private final String passwordHash;
 
 	@Nullable
+	private final Refresh refresh;
+
 	private final List<String> roles;
 
-	@Nullable
-	private final Boolean enabled;
+	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutUserRequest(Builder builder) {
+	private PutUserRequest(Builder builder) {
 
-		this.username = Objects.requireNonNull(builder.username, "username");
-		this.refresh = builder.refresh;
 		this.email = builder.email;
+		this.enabled = builder.enabled;
 		this.fullName = builder.fullName;
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.password = builder.password;
 		this.passwordHash = builder.passwordHash;
-		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
-		this.enabled = builder.enabled;
+		this.refresh = builder.refresh;
+		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public PutUserRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutUserRequest of(Function<Builder, ObjectBuilder<PutUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The username of the User
-	 * <p>
-	 * API name: {@code username}
+	 * API name: {@code email}
 	 */
-	public String username() {
-		return this.username;
+	@Nullable
+	public final String email() {
+		return this.email;
+	}
+
+	/**
+	 * API name: {@code enabled}
+	 */
+	@Nullable
+	public final Boolean enabled() {
+		return this.enabled;
+	}
+
+	/**
+	 * API name: {@code full_name}
+	 */
+	@Nullable
+	public final String fullName() {
+		return this.fullName;
+	}
+
+	/**
+	 * API name: {@code metadata}
+	 */
+	public final Map<String, JsonData> metadata() {
+		return this.metadata;
+	}
+
+	/**
+	 * API name: {@code password}
+	 */
+	@Nullable
+	public final String password() {
+		return this.password;
+	}
+
+	/**
+	 * API name: {@code password_hash}
+	 */
+	@Nullable
+	public final String passwordHash() {
+		return this.passwordHash;
 	}
 
 	/**
@@ -118,64 +160,24 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
-	}
-
-	/**
-	 * API name: {@code email}
-	 */
-	@Nullable
-	public String email() {
-		return this.email;
-	}
-
-	/**
-	 * API name: {@code full_name}
-	 */
-	@Nullable
-	public String fullName() {
-		return this.fullName;
-	}
-
-	/**
-	 * API name: {@code metadata}
-	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
-		return this.metadata;
-	}
-
-	/**
-	 * API name: {@code password}
-	 */
-	@Nullable
-	public String password() {
-		return this.password;
-	}
-
-	/**
-	 * API name: {@code password_hash}
-	 */
-	@Nullable
-	public String passwordHash() {
-		return this.passwordHash;
 	}
 
 	/**
 	 * API name: {@code roles}
 	 */
-	@Nullable
-	public List<String> roles() {
+	public final List<String> roles() {
 		return this.roles;
 	}
 
 	/**
-	 * API name: {@code enabled}
+	 * Required - The username of the User
+	 * <p>
+	 * API name: {@code username}
 	 */
-	@Nullable
-	public Boolean enabled() {
-		return this.enabled;
+	public final String username() {
+		return this.username;
 	}
 
 	/**
@@ -190,19 +192,21 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.email != null) {
-
 			generator.writeKey("email");
 			generator.write(this.email);
 
 		}
-		if (this.fullName != null) {
+		if (this.enabled != null) {
+			generator.writeKey("enabled");
+			generator.write(this.enabled);
 
+		}
+		if (this.fullName != null) {
 			generator.writeKey("full_name");
 			generator.write(this.fullName);
 
 		}
-		if (this.metadata != null) {
-
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -214,19 +218,16 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.password != null) {
-
 			generator.writeKey("password");
 			generator.write(this.password);
 
 		}
 		if (this.passwordHash != null) {
-
 			generator.writeKey("password_hash");
 			generator.write(this.passwordHash);
 
 		}
-		if (this.roles != null) {
-
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (String item0 : this.roles) {
@@ -234,12 +235,6 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 
 			}
 			generator.writeEnd();
-
-		}
-		if (this.enabled != null) {
-
-			generator.writeKey("enabled");
-			generator.write(this.enabled);
 
 		}
 
@@ -250,14 +245,13 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link PutUserRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutUserRequest> {
-		private String username;
 
-		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutUserRequest> {
 		@Nullable
 		private String email;
+
+		@Nullable
+		private Boolean enabled;
 
 		@Nullable
 		private String fullName;
@@ -272,18 +266,70 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		private String passwordHash;
 
 		@Nullable
-		private List<String> roles;
+		private Refresh refresh;
 
 		@Nullable
-		private Boolean enabled;
+		private List<String> roles;
+
+		private String username;
 
 		/**
-		 * Required - The username of the User
-		 * <p>
-		 * API name: {@code username}
+		 * API name: {@code email}
 		 */
-		public Builder username(String value) {
-			this.username = value;
+		public final Builder email(@Nullable String value) {
+			this.email = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code enabled}
+		 */
+		public final Builder enabled(@Nullable Boolean value) {
+			this.enabled = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code full_name}
+		 */
+		public final Builder fullName(@Nullable String value) {
+			this.fullName = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
+		 */
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code password}
+		 */
+		public final Builder password(@Nullable String value) {
+			this.password = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code password_hash}
+		 */
+		public final Builder passwordHash(@Nullable String value) {
+			this.passwordHash = value;
 			return this;
 		}
 
@@ -295,94 +341,38 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code email}
+		 * API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public Builder email(@Nullable String value) {
-			this.email = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code full_name}
-		 */
-		public Builder fullName(@Nullable String value) {
-			this.fullName = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code metadata}
-		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
-		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
-			return this;
-		}
-
-		/**
-		 * API name: {@code password}
-		 */
-		public Builder password(@Nullable String value) {
-			this.password = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code password_hash}
-		 */
-		public Builder passwordHash(@Nullable String value) {
-			this.passwordHash = value;
+		public final Builder roles(List<String> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public Builder roles(@Nullable List<String> value) {
-			this.roles = value;
+		public final Builder roles(String value, String... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return this;
 		}
 
 		/**
-		 * API name: {@code roles}
+		 * Required - The username of the User
+		 * <p>
+		 * API name: {@code username}
 		 */
-		public Builder roles(String... value) {
-			this.roles = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
-		 */
-		public Builder addRoles(String value) {
-			if (this.roles == null) {
-				this.roles = new ArrayList<>();
-			}
-			this.roles.add(value);
-			return this;
-		}
-
-		/**
-		 * API name: {@code enabled}
-		 */
-		public Builder enabled(@Nullable Boolean value) {
-			this.enabled = value;
+		public final Builder username(String value) {
+			this.username = value;
 			return this;
 		}
 
@@ -393,6 +383,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public PutUserRequest build() {
+			_checkSingleUse();
 
 			return new PutUserRequest(this);
 		}
@@ -404,17 +395,17 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link PutUserRequest}
 	 */
 	public static final JsonpDeserializer<PutUserRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutUserRequest::setupPutUserRequestDeserializer, Builder::build);
+			PutUserRequest::setupPutUserRequestDeserializer);
 
-	protected static void setupPutUserRequestDeserializer(DelegatingDeserializer<PutUserRequest.Builder> op) {
+	protected static void setupPutUserRequestDeserializer(ObjectDeserializer<PutUserRequest.Builder> op) {
 
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
+		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::passwordHash, JsonpDeserializer.stringDeserializer(), "password_hash");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}
 
@@ -423,7 +414,9 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code security.put_user}".
 	 */
-	public static final Endpoint<PutUserRequest, PutUserResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutUserRequest, PutUserResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.put_user",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -454,7 +447,7 @@ public final class PutUserRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.bulk.DeleteOperation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/types.ts#L78-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteOperation extends OperationBase implements OperationVariant {
+public class DeleteOperation extends BulkOperationBase implements BulkOperationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteOperation(Builder builder) {
+	private DeleteOperation(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteOperation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteOperation of(Function<Builder, ObjectBuilder<DeleteOperation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Operation} variant type
+	 * BulkOperation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "delete";
+	public BulkOperation.Kind _bulkOperationKind() {
+		return BulkOperation.Kind.Delete;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,7 +66,8 @@ public final class DeleteOperation extends OperationBase implements OperationVar
 	/**
 	 * Builder for {@link DeleteOperation}.
 	 */
-	public static class Builder extends OperationBase.AbstractBuilder<Builder>
+
+	public static class Builder extends BulkOperationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteOperation> {
 		@Override
@@ -75,6 +82,7 @@ public final class DeleteOperation extends OperationBase implements OperationVar
 		 *             if some of the required fields are null.
 		 */
 		public DeleteOperation build() {
+			_checkSingleUse();
 
 			return new DeleteOperation(this);
 		}
@@ -86,10 +94,10 @@ public final class DeleteOperation extends OperationBase implements OperationVar
 	 * Json deserializer for {@link DeleteOperation}
 	 */
 	public static final JsonpDeserializer<DeleteOperation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DeleteOperation::setupDeleteOperationDeserializer, Builder::build);
+			DeleteOperation::setupDeleteOperationDeserializer);
 
-	protected static void setupDeleteOperationDeserializer(DelegatingDeserializer<DeleteOperation.Builder> op) {
-		OperationBase.setupOperationBaseDeserializer(op);
+	protected static void setupDeleteOperationDeserializer(ObjectDeserializer<DeleteOperation.Builder> op) {
+		BulkOperationBase.setupBulkOperationBaseDeserializer(op);
 
 	}
 

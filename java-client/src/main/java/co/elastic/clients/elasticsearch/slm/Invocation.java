@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Invocation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/_types/SnapshotLifecycle.ts#L132-L135">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Invocation implements JsonpSerializable {
+public class Invocation implements JsonpSerializable {
 	private final String snapshotName;
 
 	private final String time;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Invocation(Builder builder) {
+	private Invocation(Builder builder) {
 
-		this.snapshotName = Objects.requireNonNull(builder.snapshotName, "snapshot_name");
-		this.time = Objects.requireNonNull(builder.time, "time");
+		this.snapshotName = ApiTypeHelper.requireNonNull(builder.snapshotName, this, "snapshotName");
+		this.time = ApiTypeHelper.requireNonNull(builder.time, this, "time");
 
 	}
 
-	public Invocation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Invocation of(Function<Builder, ObjectBuilder<Invocation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code snapshot_name}
 	 */
-	public String snapshotName() {
+	public final String snapshotName() {
 		return this.snapshotName;
 	}
 
 	/**
 	 * Required - API name: {@code time}
 	 */
-	public String time() {
+	public final String time() {
 		return this.time;
 	}
 
@@ -95,7 +103,8 @@ public final class Invocation implements JsonpSerializable {
 	/**
 	 * Builder for {@link Invocation}.
 	 */
-	public static class Builder implements ObjectBuilder<Invocation> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Invocation> {
 		private String snapshotName;
 
 		private String time;
@@ -103,7 +112,7 @@ public final class Invocation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot_name}
 		 */
-		public Builder snapshotName(String value) {
+		public final Builder snapshotName(String value) {
 			this.snapshotName = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class Invocation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time}
 		 */
-		public Builder time(String value) {
+		public final Builder time(String value) {
 			this.time = value;
 			return this;
 		}
@@ -123,6 +132,7 @@ public final class Invocation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Invocation build() {
+			_checkSingleUse();
 
 			return new Invocation(this);
 		}
@@ -134,9 +144,9 @@ public final class Invocation implements JsonpSerializable {
 	 * Json deserializer for {@link Invocation}
 	 */
 	public static final JsonpDeserializer<Invocation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Invocation::setupInvocationDeserializer, Builder::build);
+			Invocation::setupInvocationDeserializer);
 
-	protected static void setupInvocationDeserializer(DelegatingDeserializer<Invocation.Builder> op) {
+	protected static void setupInvocationDeserializer(ObjectDeserializer<Invocation.Builder> op) {
 
 		op.add(Builder::snapshotName, JsonpDeserializer.stringDeserializer(), "snapshot_name");
 		op.add(Builder::time, JsonpDeserializer.stringDeserializer(), "time");

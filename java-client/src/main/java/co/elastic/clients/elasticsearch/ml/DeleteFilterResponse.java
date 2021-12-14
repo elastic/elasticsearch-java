@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.delete_filter.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_filter/MlDeleteFilterResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteFilterResponse extends AcknowledgedResponseBase {
+public class DeleteFilterResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteFilterResponse(Builder builder) {
+	private DeleteFilterResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteFilterResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteFilterResponse of(Function<Builder, ObjectBuilder<DeleteFilterResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteFilterResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteFilterResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteFilterResponse> {
@@ -68,6 +75,7 @@ public final class DeleteFilterResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteFilterResponse build() {
+			_checkSingleUse();
 
 			return new DeleteFilterResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class DeleteFilterResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteFilterResponse}
 	 */
 	public static final JsonpDeserializer<DeleteFilterResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteFilterResponse::setupDeleteFilterResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteFilterResponse::setupDeleteFilterResponseDeserializer);
 
-	protected static void setupDeleteFilterResponseDeserializer(
-			DelegatingDeserializer<DeleteFilterResponse.Builder> op) {
+	protected static void setupDeleteFilterResponseDeserializer(ObjectDeserializer<DeleteFilterResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

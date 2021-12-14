@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.RepositorySettings
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotRepository.ts#L29-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RepositorySettings implements JsonpSerializable {
+public class RepositorySettings implements JsonpSerializable {
 	@Nullable
 	private final String chunkSize;
 
@@ -57,25 +65,25 @@ public final class RepositorySettings implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RepositorySettings(Builder builder) {
+	private RepositorySettings(Builder builder) {
 
 		this.chunkSize = builder.chunkSize;
 		this.compress = builder.compress;
 		this.concurrentStreams = builder.concurrentStreams;
-		this.location = Objects.requireNonNull(builder.location, "location");
+		this.location = ApiTypeHelper.requireNonNull(builder.location, this, "location");
 		this.readOnly = builder.readOnly;
 
 	}
 
-	public RepositorySettings(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RepositorySettings of(Function<Builder, ObjectBuilder<RepositorySettings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code chunk_size}
 	 */
 	@Nullable
-	public String chunkSize() {
+	public final String chunkSize() {
 		return this.chunkSize;
 	}
 
@@ -83,7 +91,7 @@ public final class RepositorySettings implements JsonpSerializable {
 	 * API name: {@code compress}
 	 */
 	@Nullable
-	public Boolean compress() {
+	public final Boolean compress() {
 		return this.compress;
 	}
 
@@ -91,14 +99,14 @@ public final class RepositorySettings implements JsonpSerializable {
 	 * API name: {@code concurrent_streams}
 	 */
 	@Nullable
-	public String concurrentStreams() {
+	public final String concurrentStreams() {
 		return this.concurrentStreams;
 	}
 
 	/**
 	 * Required - API name: {@code location}
 	 */
-	public String location() {
+	public final String location() {
 		return this.location;
 	}
 
@@ -106,7 +114,7 @@ public final class RepositorySettings implements JsonpSerializable {
 	 * API name: {@code read_only}
 	 */
 	@Nullable
-	public Boolean readOnly() {
+	public final Boolean readOnly() {
 		return this.readOnly;
 	}
 
@@ -122,29 +130,24 @@ public final class RepositorySettings implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.chunkSize != null) {
-
 			generator.writeKey("chunk_size");
 			generator.write(this.chunkSize);
 
 		}
 		if (this.compress != null) {
-
 			generator.writeKey("compress");
 			generator.write(this.compress);
 
 		}
 		if (this.concurrentStreams != null) {
-
 			generator.writeKey("concurrent_streams");
 			generator.write(this.concurrentStreams);
 
 		}
-
 		generator.writeKey("location");
 		generator.write(this.location);
 
 		if (this.readOnly != null) {
-
 			generator.writeKey("read_only");
 			generator.write(this.readOnly);
 
@@ -157,7 +160,8 @@ public final class RepositorySettings implements JsonpSerializable {
 	/**
 	 * Builder for {@link RepositorySettings}.
 	 */
-	public static class Builder implements ObjectBuilder<RepositorySettings> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RepositorySettings> {
 		@Nullable
 		private String chunkSize;
 
@@ -175,7 +179,7 @@ public final class RepositorySettings implements JsonpSerializable {
 		/**
 		 * API name: {@code chunk_size}
 		 */
-		public Builder chunkSize(@Nullable String value) {
+		public final Builder chunkSize(@Nullable String value) {
 			this.chunkSize = value;
 			return this;
 		}
@@ -183,7 +187,7 @@ public final class RepositorySettings implements JsonpSerializable {
 		/**
 		 * API name: {@code compress}
 		 */
-		public Builder compress(@Nullable Boolean value) {
+		public final Builder compress(@Nullable Boolean value) {
 			this.compress = value;
 			return this;
 		}
@@ -191,7 +195,7 @@ public final class RepositorySettings implements JsonpSerializable {
 		/**
 		 * API name: {@code concurrent_streams}
 		 */
-		public Builder concurrentStreams(@Nullable String value) {
+		public final Builder concurrentStreams(@Nullable String value) {
 			this.concurrentStreams = value;
 			return this;
 		}
@@ -199,7 +203,7 @@ public final class RepositorySettings implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code location}
 		 */
-		public Builder location(String value) {
+		public final Builder location(String value) {
 			this.location = value;
 			return this;
 		}
@@ -207,7 +211,7 @@ public final class RepositorySettings implements JsonpSerializable {
 		/**
 		 * API name: {@code read_only}
 		 */
-		public Builder readOnly(@Nullable Boolean value) {
+		public final Builder readOnly(@Nullable Boolean value) {
 			this.readOnly = value;
 			return this;
 		}
@@ -219,6 +223,7 @@ public final class RepositorySettings implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RepositorySettings build() {
+			_checkSingleUse();
 
 			return new RepositorySettings(this);
 		}
@@ -230,9 +235,9 @@ public final class RepositorySettings implements JsonpSerializable {
 	 * Json deserializer for {@link RepositorySettings}
 	 */
 	public static final JsonpDeserializer<RepositorySettings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RepositorySettings::setupRepositorySettingsDeserializer, Builder::build);
+			.lazy(Builder::new, RepositorySettings::setupRepositorySettingsDeserializer);
 
-	protected static void setupRepositorySettingsDeserializer(DelegatingDeserializer<RepositorySettings.Builder> op) {
+	protected static void setupRepositorySettingsDeserializer(ObjectDeserializer<RepositorySettings.Builder> op) {
 
 		op.add(Builder::chunkSize, JsonpDeserializer.stringDeserializer(), "chunk_size");
 		op.add(Builder::compress, JsonpDeserializer.booleanDeserializer(), "compress");

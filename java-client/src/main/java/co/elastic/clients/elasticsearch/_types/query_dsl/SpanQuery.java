@@ -23,13 +23,16 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,55 +42,94 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/span.ts#L79-L91">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
+public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, JsonpSerializable {
 
-	public static final String SPAN_CONTAINING = "span_containing";
-	public static final String FIELD_MASKING_SPAN = "field_masking_span";
-	public static final String SPAN_FIRST = "span_first";
-	public static final String SPAN_GAP = "span_gap";
-	public static final String SPAN_MULTI = "span_multi";
-	public static final String SPAN_NEAR = "span_near";
-	public static final String SPAN_NOT = "span_not";
-	public static final String SPAN_OR = "span_or";
-	public static final String SPAN_TERM = "span_term";
-	public static final String SPAN_WITHIN = "span_within";
+	/**
+	 * {@link SpanQuery} variant kinds.
+	 */
+	/**
+	 * {@link SpanQuery} variant kinds.
+	 */
 
-	// Tagged union implementation
+	public enum Kind implements JsonEnum {
+		SpanContaining("span_containing"),
 
-	private final String _type;
+		FieldMaskingSpan("field_masking_span"),
+
+		SpanFirst("span_first"),
+
+		SpanGap("span_gap"),
+
+		SpanMulti("span_multi"),
+
+		SpanNear("span_near"),
+
+		SpanNot("span_not"),
+
+		SpanOr("span_or"),
+
+		SpanTerm("span_term"),
+
+		SpanWithin("span_within"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public SpanQuery(SpanQueryVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._spanQueryKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends SpanQueryVariant> SpanQuery(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private SpanQuery(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public SpanQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SpanQuery of(Function<Builder, ObjectBuilder<SpanQuery>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_containing}?
+	 */
+	public boolean isSpanContaining() {
+		return _kind == Kind.SpanContaining;
 	}
 
 	/**
@@ -98,7 +140,14 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public SpanContainingQuery spanContaining() {
-		return TaggedUnionUtils.get(this, SPAN_CONTAINING);
+		return TaggedUnionUtils.get(this, Kind.SpanContaining);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code field_masking_span}?
+	 */
+	public boolean isFieldMaskingSpan() {
+		return _kind == Kind.FieldMaskingSpan;
 	}
 
 	/**
@@ -109,7 +158,14 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public SpanFieldMaskingQuery fieldMaskingSpan() {
-		return TaggedUnionUtils.get(this, FIELD_MASKING_SPAN);
+		return TaggedUnionUtils.get(this, Kind.FieldMaskingSpan);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_first}?
+	 */
+	public boolean isSpanFirst() {
+		return _kind == Kind.SpanFirst;
 	}
 
 	/**
@@ -119,7 +175,14 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code span_first} kind.
 	 */
 	public SpanFirstQuery spanFirst() {
-		return TaggedUnionUtils.get(this, SPAN_FIRST);
+		return TaggedUnionUtils.get(this, Kind.SpanFirst);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_gap}?
+	 */
+	public boolean isSpanGap() {
+		return _kind == Kind.SpanGap;
 	}
 
 	/**
@@ -129,7 +192,14 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code span_gap} kind.
 	 */
 	public SpanGapQuery spanGap() {
-		return TaggedUnionUtils.get(this, SPAN_GAP);
+		return TaggedUnionUtils.get(this, Kind.SpanGap);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_multi}?
+	 */
+	public boolean isSpanMulti() {
+		return _kind == Kind.SpanMulti;
 	}
 
 	/**
@@ -139,7 +209,14 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code span_multi} kind.
 	 */
 	public SpanMultiTermQuery spanMulti() {
-		return TaggedUnionUtils.get(this, SPAN_MULTI);
+		return TaggedUnionUtils.get(this, Kind.SpanMulti);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_near}?
+	 */
+	public boolean isSpanNear() {
+		return _kind == Kind.SpanNear;
 	}
 
 	/**
@@ -149,7 +226,14 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code span_near} kind.
 	 */
 	public SpanNearQuery spanNear() {
-		return TaggedUnionUtils.get(this, SPAN_NEAR);
+		return TaggedUnionUtils.get(this, Kind.SpanNear);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_not}?
+	 */
+	public boolean isSpanNot() {
+		return _kind == Kind.SpanNot;
 	}
 
 	/**
@@ -159,7 +243,14 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code span_not} kind.
 	 */
 	public SpanNotQuery spanNot() {
-		return TaggedUnionUtils.get(this, SPAN_NOT);
+		return TaggedUnionUtils.get(this, Kind.SpanNot);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_or}?
+	 */
+	public boolean isSpanOr() {
+		return _kind == Kind.SpanOr;
 	}
 
 	/**
@@ -169,7 +260,14 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code span_or} kind.
 	 */
 	public SpanOrQuery spanOr() {
-		return TaggedUnionUtils.get(this, SPAN_OR);
+		return TaggedUnionUtils.get(this, Kind.SpanOr);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_term}?
+	 */
+	public boolean isSpanTerm() {
+		return _kind == Kind.SpanTerm;
 	}
 
 	/**
@@ -179,7 +277,14 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code span_term} kind.
 	 */
 	public SpanTermQuery spanTerm() {
-		return TaggedUnionUtils.get(this, SPAN_TERM);
+		return TaggedUnionUtils.get(this, Kind.SpanTerm);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_within}?
+	 */
+	public boolean isSpanWithin() {
+		return _kind == Kind.SpanWithin;
 	}
 
 	/**
@@ -189,134 +294,140 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code span_within} kind.
 	 */
 	public SpanWithinQuery spanWithin() {
-		return TaggedUnionUtils.get(this, SPAN_WITHIN);
+		return TaggedUnionUtils.get(this, Kind.SpanWithin);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
 		generator.writeEnd();
+
 	}
 
-	public static class Builder implements ObjectBuilder<SpanQuery> {
-		private String _type;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SpanQuery> {
+		private Kind _kind;
 		private Object _value;
 
-		public Builder spanContaining(SpanContainingQuery v) {
-			this._type = SPAN_CONTAINING;
+		public ObjectBuilder<SpanQuery> spanContaining(SpanContainingQuery v) {
+			this._kind = Kind.SpanContaining;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanContaining(Function<SpanContainingQuery.Builder, ObjectBuilder<SpanContainingQuery>> f) {
-			return this.spanContaining(f.apply(new SpanContainingQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> spanContaining(
+				Function<SpanContainingQuery.Builder, ObjectBuilder<SpanContainingQuery>> fn) {
+			return this.spanContaining(fn.apply(new SpanContainingQuery.Builder()).build());
 		}
 
-		public Builder fieldMaskingSpan(SpanFieldMaskingQuery v) {
-			this._type = FIELD_MASKING_SPAN;
+		public ObjectBuilder<SpanQuery> fieldMaskingSpan(SpanFieldMaskingQuery v) {
+			this._kind = Kind.FieldMaskingSpan;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fieldMaskingSpan(
-				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> f) {
-			return this.fieldMaskingSpan(f.apply(new SpanFieldMaskingQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> fieldMaskingSpan(
+				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
+			return this.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
 		}
 
-		public Builder spanFirst(SpanFirstQuery v) {
-			this._type = SPAN_FIRST;
+		public ObjectBuilder<SpanQuery> spanFirst(SpanFirstQuery v) {
+			this._kind = Kind.SpanFirst;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanFirst(Function<SpanFirstQuery.Builder, ObjectBuilder<SpanFirstQuery>> f) {
-			return this.spanFirst(f.apply(new SpanFirstQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> spanFirst(Function<SpanFirstQuery.Builder, ObjectBuilder<SpanFirstQuery>> fn) {
+			return this.spanFirst(fn.apply(new SpanFirstQuery.Builder()).build());
 		}
 
-		public Builder spanGap(SpanGapQuery v) {
-			this._type = SPAN_GAP;
+		public ObjectBuilder<SpanQuery> spanGap(SpanGapQuery v) {
+			this._kind = Kind.SpanGap;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanGap(Function<SpanGapQuery.Builder, ObjectBuilder<SpanGapQuery>> f) {
-			return this.spanGap(f.apply(new SpanGapQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> spanGap(Function<SpanGapQuery.Builder, ObjectBuilder<SpanGapQuery>> fn) {
+			return this.spanGap(fn.apply(new SpanGapQuery.Builder()).build());
 		}
 
-		public Builder spanMulti(SpanMultiTermQuery v) {
-			this._type = SPAN_MULTI;
+		public ObjectBuilder<SpanQuery> spanMulti(SpanMultiTermQuery v) {
+			this._kind = Kind.SpanMulti;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanMulti(Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> f) {
-			return this.spanMulti(f.apply(new SpanMultiTermQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> spanMulti(
+				Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> fn) {
+			return this.spanMulti(fn.apply(new SpanMultiTermQuery.Builder()).build());
 		}
 
-		public Builder spanNear(SpanNearQuery v) {
-			this._type = SPAN_NEAR;
+		public ObjectBuilder<SpanQuery> spanNear(SpanNearQuery v) {
+			this._kind = Kind.SpanNear;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanNear(Function<SpanNearQuery.Builder, ObjectBuilder<SpanNearQuery>> f) {
-			return this.spanNear(f.apply(new SpanNearQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> spanNear(Function<SpanNearQuery.Builder, ObjectBuilder<SpanNearQuery>> fn) {
+			return this.spanNear(fn.apply(new SpanNearQuery.Builder()).build());
 		}
 
-		public Builder spanNot(SpanNotQuery v) {
-			this._type = SPAN_NOT;
+		public ObjectBuilder<SpanQuery> spanNot(SpanNotQuery v) {
+			this._kind = Kind.SpanNot;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanNot(Function<SpanNotQuery.Builder, ObjectBuilder<SpanNotQuery>> f) {
-			return this.spanNot(f.apply(new SpanNotQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> spanNot(Function<SpanNotQuery.Builder, ObjectBuilder<SpanNotQuery>> fn) {
+			return this.spanNot(fn.apply(new SpanNotQuery.Builder()).build());
 		}
 
-		public Builder spanOr(SpanOrQuery v) {
-			this._type = SPAN_OR;
+		public ObjectBuilder<SpanQuery> spanOr(SpanOrQuery v) {
+			this._kind = Kind.SpanOr;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanOr(Function<SpanOrQuery.Builder, ObjectBuilder<SpanOrQuery>> f) {
-			return this.spanOr(f.apply(new SpanOrQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> spanOr(Function<SpanOrQuery.Builder, ObjectBuilder<SpanOrQuery>> fn) {
+			return this.spanOr(fn.apply(new SpanOrQuery.Builder()).build());
 		}
 
-		public Builder spanTerm(SpanTermQuery v) {
-			this._type = SPAN_TERM;
+		public ObjectBuilder<SpanQuery> spanTerm(SpanTermQuery v) {
+			this._kind = Kind.SpanTerm;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanTerm(Function<SpanTermQuery.Builder, ObjectBuilder<SpanTermQuery>> f) {
-			return this.spanTerm(f.apply(new SpanTermQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> spanTerm(Function<SpanTermQuery.Builder, ObjectBuilder<SpanTermQuery>> fn) {
+			return this.spanTerm(fn.apply(new SpanTermQuery.Builder()).build());
 		}
 
-		public Builder spanWithin(SpanWithinQuery v) {
-			this._type = SPAN_WITHIN;
+		public ObjectBuilder<SpanQuery> spanWithin(SpanWithinQuery v) {
+			this._kind = Kind.SpanWithin;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanWithin(Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> f) {
-			return this.spanWithin(f.apply(new SpanWithinQuery.Builder()).build());
+		public ObjectBuilder<SpanQuery> spanWithin(
+				Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> fn) {
+			return this.spanWithin(fn.apply(new SpanWithinQuery.Builder()).build());
 		}
 
 		public SpanQuery build() {
+			_checkSingleUse();
 			return new SpanQuery(this);
 		}
 
 	}
 
-	protected static void setupSpanQueryDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupSpanQueryDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::spanContaining, SpanContainingQuery._DESERIALIZER, "span_containing");
 		op.add(Builder::fieldMaskingSpan, SpanFieldMaskingQuery._DESERIALIZER, "field_masking_span");
@@ -331,6 +442,6 @@ public class SpanQuery implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<SpanQuery> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<SpanQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			SpanQuery::setupSpanQueryDeserializer, Builder::build);
 }

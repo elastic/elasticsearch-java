@@ -24,44 +24,49 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch.core.get_script_context.Context;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_context.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_context/GetScriptContextResponse.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetScriptContextResponse implements JsonpSerializable {
+public class GetScriptContextResponse implements JsonpSerializable {
 	private final List<Context> contexts;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetScriptContextResponse(Builder builder) {
+	private GetScriptContextResponse(Builder builder) {
 
-		this.contexts = ModelTypeHelper.unmodifiableNonNull(builder.contexts, "contexts");
+		this.contexts = ApiTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
 
 	}
 
-	public GetScriptContextResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetScriptContextResponse of(Function<Builder, ObjectBuilder<GetScriptContextResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code contexts}
 	 */
-	public List<Context> contexts() {
+	public final List<Context> contexts() {
 		return this.contexts;
 	}
 
@@ -76,13 +81,16 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("contexts");
-		generator.writeStartArray();
-		for (Context item0 : this.contexts) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.contexts)) {
+			generator.writeKey("contexts");
+			generator.writeStartArray();
+			for (Context item0 : this.contexts) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,48 +99,37 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetScriptContextResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetScriptContextResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptContextResponse> {
 		private List<Context> contexts;
 
 		/**
 		 * Required - API name: {@code contexts}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>contexts</code>.
 		 */
-		public Builder contexts(List<Context> value) {
-			this.contexts = value;
+		public final Builder contexts(List<Context> list) {
+			this.contexts = _listAddAll(this.contexts, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code contexts}
+		 * <p>
+		 * Adds one or more values to <code>contexts</code>.
 		 */
-		public Builder contexts(Context... value) {
-			this.contexts = Arrays.asList(value);
+		public final Builder contexts(Context value, Context... values) {
+			this.contexts = _listAdd(this.contexts, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
+		 * Required - API name: {@code contexts}
+		 * <p>
+		 * Adds a value to <code>contexts</code> using a builder lambda.
 		 */
-		public Builder addContexts(Context value) {
-			if (this.contexts == null) {
-				this.contexts = new ArrayList<>();
-			}
-			this.contexts.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #contexts(List)} to a singleton list.
-		 */
-		public Builder contexts(Function<Context.Builder, ObjectBuilder<Context>> fn) {
-			return this.contexts(fn.apply(new Context.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
-		 */
-		public Builder addContexts(Function<Context.Builder, ObjectBuilder<Context>> fn) {
-			return this.addContexts(fn.apply(new Context.Builder()).build());
+		public final Builder contexts(Function<Context.Builder, ObjectBuilder<Context>> fn) {
+			return contexts(fn.apply(new Context.Builder()).build());
 		}
 
 		/**
@@ -142,6 +139,7 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetScriptContextResponse build() {
+			_checkSingleUse();
 
 			return new GetScriptContextResponse(this);
 		}
@@ -153,10 +151,10 @@ public final class GetScriptContextResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetScriptContextResponse}
 	 */
 	public static final JsonpDeserializer<GetScriptContextResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetScriptContextResponse::setupGetScriptContextResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetScriptContextResponse::setupGetScriptContextResponseDeserializer);
 
 	protected static void setupGetScriptContextResponseDeserializer(
-			DelegatingDeserializer<GetScriptContextResponse.Builder> op) {
+			ObjectDeserializer<GetScriptContextResponse.Builder> op) {
 
 		op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(Context._DESERIALIZER), "contexts");
 

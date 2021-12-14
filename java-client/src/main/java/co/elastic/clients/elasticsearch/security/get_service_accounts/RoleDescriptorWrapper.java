@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.security.get_service_accounts;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.RoleDescriptorWrapper
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_accounts/types.ts#L29-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RoleDescriptorWrapper implements JsonpSerializable {
+public class RoleDescriptorWrapper implements JsonpSerializable {
 	private final RoleDescriptor roleDescriptor;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RoleDescriptorWrapper(Builder builder) {
+	private RoleDescriptorWrapper(Builder builder) {
 
-		this.roleDescriptor = Objects.requireNonNull(builder.roleDescriptor, "role_descriptor");
+		this.roleDescriptor = ApiTypeHelper.requireNonNull(builder.roleDescriptor, this, "roleDescriptor");
 
 	}
 
-	public RoleDescriptorWrapper(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RoleDescriptorWrapper of(Function<Builder, ObjectBuilder<RoleDescriptorWrapper>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code role_descriptor}
 	 */
-	public RoleDescriptor roleDescriptor() {
+	public final RoleDescriptor roleDescriptor() {
 		return this.roleDescriptor;
 	}
 
@@ -81,13 +89,14 @@ public final class RoleDescriptorWrapper implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleDescriptorWrapper}.
 	 */
-	public static class Builder implements ObjectBuilder<RoleDescriptorWrapper> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleDescriptorWrapper> {
 		private RoleDescriptor roleDescriptor;
 
 		/**
 		 * Required - API name: {@code role_descriptor}
 		 */
-		public Builder roleDescriptor(RoleDescriptor value) {
+		public final Builder roleDescriptor(RoleDescriptor value) {
 			this.roleDescriptor = value;
 			return this;
 		}
@@ -95,7 +104,7 @@ public final class RoleDescriptorWrapper implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role_descriptor}
 		 */
-		public Builder roleDescriptor(Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
+		public final Builder roleDescriptor(Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
 			return this.roleDescriptor(fn.apply(new RoleDescriptor.Builder()).build());
 		}
 
@@ -106,6 +115,7 @@ public final class RoleDescriptorWrapper implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RoleDescriptorWrapper build() {
+			_checkSingleUse();
 
 			return new RoleDescriptorWrapper(this);
 		}
@@ -117,10 +127,9 @@ public final class RoleDescriptorWrapper implements JsonpSerializable {
 	 * Json deserializer for {@link RoleDescriptorWrapper}
 	 */
 	public static final JsonpDeserializer<RoleDescriptorWrapper> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RoleDescriptorWrapper::setupRoleDescriptorWrapperDeserializer, Builder::build);
+			.lazy(Builder::new, RoleDescriptorWrapper::setupRoleDescriptorWrapperDeserializer);
 
-	protected static void setupRoleDescriptorWrapperDeserializer(
-			DelegatingDeserializer<RoleDescriptorWrapper.Builder> op) {
+	protected static void setupRoleDescriptorWrapperDeserializer(ObjectDeserializer<RoleDescriptorWrapper.Builder> op) {
 
 		op.add(Builder::roleDescriptor, RoleDescriptor._DESERIALIZER, "role_descriptor");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -32,14 +31,22 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.CompareContextPayloadCondition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Conditions.ts#L41-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CompareContextPayloadCondition implements JsonpSerializable {
+public class CompareContextPayloadCondition implements JsonpSerializable {
 	@Nullable
 	private final JsonData eq;
 
@@ -57,7 +64,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompareContextPayloadCondition(Builder builder) {
+	private CompareContextPayloadCondition(Builder builder) {
 
 		this.eq = builder.eq;
 		this.lt = builder.lt;
@@ -67,15 +74,16 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 
 	}
 
-	public CompareContextPayloadCondition(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CompareContextPayloadCondition of(
+			Function<Builder, ObjectBuilder<CompareContextPayloadCondition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code eq}
 	 */
 	@Nullable
-	public JsonData eq() {
+	public final JsonData eq() {
 		return this.eq;
 	}
 
@@ -83,7 +91,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 	 * API name: {@code lt}
 	 */
 	@Nullable
-	public JsonData lt() {
+	public final JsonData lt() {
 		return this.lt;
 	}
 
@@ -91,7 +99,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 	 * API name: {@code gt}
 	 */
 	@Nullable
-	public JsonData gt() {
+	public final JsonData gt() {
 		return this.gt;
 	}
 
@@ -99,7 +107,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 	 * API name: {@code lte}
 	 */
 	@Nullable
-	public JsonData lte() {
+	public final JsonData lte() {
 		return this.lte;
 	}
 
@@ -107,7 +115,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 	 * API name: {@code gte}
 	 */
 	@Nullable
-	public JsonData gte() {
+	public final JsonData gte() {
 		return this.gte;
 	}
 
@@ -123,31 +131,26 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.eq != null) {
-
 			generator.writeKey("eq");
 			this.eq.serialize(generator, mapper);
 
 		}
 		if (this.lt != null) {
-
 			generator.writeKey("lt");
 			this.lt.serialize(generator, mapper);
 
 		}
 		if (this.gt != null) {
-
 			generator.writeKey("gt");
 			this.gt.serialize(generator, mapper);
 
 		}
 		if (this.lte != null) {
-
 			generator.writeKey("lte");
 			this.lte.serialize(generator, mapper);
 
 		}
 		if (this.gte != null) {
-
 			generator.writeKey("gte");
 			this.gte.serialize(generator, mapper);
 
@@ -160,7 +163,8 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompareContextPayloadCondition}.
 	 */
-	public static class Builder implements ObjectBuilder<CompareContextPayloadCondition> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompareContextPayloadCondition> {
 		@Nullable
 		private JsonData eq;
 
@@ -179,7 +183,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 		/**
 		 * API name: {@code eq}
 		 */
-		public Builder eq(@Nullable JsonData value) {
+		public final Builder eq(@Nullable JsonData value) {
 			this.eq = value;
 			return this;
 		}
@@ -187,7 +191,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 		/**
 		 * API name: {@code lt}
 		 */
-		public Builder lt(@Nullable JsonData value) {
+		public final Builder lt(@Nullable JsonData value) {
 			this.lt = value;
 			return this;
 		}
@@ -195,7 +199,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 		/**
 		 * API name: {@code gt}
 		 */
-		public Builder gt(@Nullable JsonData value) {
+		public final Builder gt(@Nullable JsonData value) {
 			this.gt = value;
 			return this;
 		}
@@ -203,7 +207,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 		/**
 		 * API name: {@code lte}
 		 */
-		public Builder lte(@Nullable JsonData value) {
+		public final Builder lte(@Nullable JsonData value) {
 			this.lte = value;
 			return this;
 		}
@@ -211,7 +215,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 		/**
 		 * API name: {@code gte}
 		 */
-		public Builder gte(@Nullable JsonData value) {
+		public final Builder gte(@Nullable JsonData value) {
 			this.gte = value;
 			return this;
 		}
@@ -223,6 +227,7 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CompareContextPayloadCondition build() {
+			_checkSingleUse();
 
 			return new CompareContextPayloadCondition(this);
 		}
@@ -234,11 +239,10 @@ public final class CompareContextPayloadCondition implements JsonpSerializable {
 	 * Json deserializer for {@link CompareContextPayloadCondition}
 	 */
 	public static final JsonpDeserializer<CompareContextPayloadCondition> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CompareContextPayloadCondition::setupCompareContextPayloadConditionDeserializer,
-					Builder::build);
+			.lazy(Builder::new, CompareContextPayloadCondition::setupCompareContextPayloadConditionDeserializer);
 
 	protected static void setupCompareContextPayloadConditionDeserializer(
-			DelegatingDeserializer<CompareContextPayloadCondition.Builder> op) {
+			ObjectDeserializer<CompareContextPayloadCondition.Builder> op) {
 
 		op.add(Builder::eq, JsonData._DESERIALIZER, "eq");
 		op.add(Builder::lt, JsonData._DESERIALIZER, "lt");

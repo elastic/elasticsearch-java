@@ -23,14 +23,16 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryIndexStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L59-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RecoveryIndexStatus implements JsonpSerializable {
+public class RecoveryIndexStatus implements JsonpSerializable {
 	@Nullable
 	private final RecoveryBytes bytes;
 
@@ -48,61 +57,61 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 	private final RecoveryBytes size;
 
 	@Nullable
-	private final String sourceThrottleTime;
+	private final Time sourceThrottleTime;
 
 	private final String sourceThrottleTimeInMillis;
 
 	@Nullable
-	private final String targetThrottleTime;
+	private final Time targetThrottleTime;
 
 	private final String targetThrottleTimeInMillis;
 
 	private final String totalTimeInMillis;
 
 	@Nullable
-	private final String totalTime;
+	private final Time totalTime;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryIndexStatus(Builder builder) {
+	private RecoveryIndexStatus(Builder builder) {
 
 		this.bytes = builder.bytes;
-		this.files = Objects.requireNonNull(builder.files, "files");
-		this.size = Objects.requireNonNull(builder.size, "size");
+		this.files = ApiTypeHelper.requireNonNull(builder.files, this, "files");
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
 		this.sourceThrottleTime = builder.sourceThrottleTime;
-		this.sourceThrottleTimeInMillis = Objects.requireNonNull(builder.sourceThrottleTimeInMillis,
-				"source_throttle_time_in_millis");
+		this.sourceThrottleTimeInMillis = ApiTypeHelper.requireNonNull(builder.sourceThrottleTimeInMillis, this,
+				"sourceThrottleTimeInMillis");
 		this.targetThrottleTime = builder.targetThrottleTime;
-		this.targetThrottleTimeInMillis = Objects.requireNonNull(builder.targetThrottleTimeInMillis,
-				"target_throttle_time_in_millis");
-		this.totalTimeInMillis = Objects.requireNonNull(builder.totalTimeInMillis, "total_time_in_millis");
+		this.targetThrottleTimeInMillis = ApiTypeHelper.requireNonNull(builder.targetThrottleTimeInMillis, this,
+				"targetThrottleTimeInMillis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 		this.totalTime = builder.totalTime;
 
 	}
 
-	public RecoveryIndexStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryIndexStatus of(Function<Builder, ObjectBuilder<RecoveryIndexStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public RecoveryBytes bytes() {
+	public final RecoveryBytes bytes() {
 		return this.bytes;
 	}
 
 	/**
 	 * Required - API name: {@code files}
 	 */
-	public RecoveryFiles files() {
+	public final RecoveryFiles files() {
 		return this.files;
 	}
 
 	/**
 	 * Required - API name: {@code size}
 	 */
-	public RecoveryBytes size() {
+	public final RecoveryBytes size() {
 		return this.size;
 	}
 
@@ -110,14 +119,14 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 	 * API name: {@code source_throttle_time}
 	 */
 	@Nullable
-	public String sourceThrottleTime() {
+	public final Time sourceThrottleTime() {
 		return this.sourceThrottleTime;
 	}
 
 	/**
 	 * Required - API name: {@code source_throttle_time_in_millis}
 	 */
-	public String sourceThrottleTimeInMillis() {
+	public final String sourceThrottleTimeInMillis() {
 		return this.sourceThrottleTimeInMillis;
 	}
 
@@ -125,21 +134,21 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 	 * API name: {@code target_throttle_time}
 	 */
 	@Nullable
-	public String targetThrottleTime() {
+	public final Time targetThrottleTime() {
 		return this.targetThrottleTime;
 	}
 
 	/**
 	 * Required - API name: {@code target_throttle_time_in_millis}
 	 */
-	public String targetThrottleTimeInMillis() {
+	public final String targetThrottleTimeInMillis() {
 		return this.targetThrottleTimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code total_time_in_millis}
 	 */
-	public String totalTimeInMillis() {
+	public final String totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -147,7 +156,7 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 	 * API name: {@code total_time}
 	 */
 	@Nullable
-	public String totalTime() {
+	public final Time totalTime() {
 		return this.totalTime;
 	}
 
@@ -163,12 +172,10 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.bytes != null) {
-
 			generator.writeKey("bytes");
 			this.bytes.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("files");
 		this.files.serialize(generator, mapper);
 
@@ -176,22 +183,18 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		this.size.serialize(generator, mapper);
 
 		if (this.sourceThrottleTime != null) {
-
 			generator.writeKey("source_throttle_time");
-			generator.write(this.sourceThrottleTime);
+			this.sourceThrottleTime.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("source_throttle_time_in_millis");
 		generator.write(this.sourceThrottleTimeInMillis);
 
 		if (this.targetThrottleTime != null) {
-
 			generator.writeKey("target_throttle_time");
-			generator.write(this.targetThrottleTime);
+			this.targetThrottleTime.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("target_throttle_time_in_millis");
 		generator.write(this.targetThrottleTimeInMillis);
 
@@ -199,9 +202,8 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		generator.write(this.totalTimeInMillis);
 
 		if (this.totalTime != null) {
-
 			generator.writeKey("total_time");
-			generator.write(this.totalTime);
+			this.totalTime.serialize(generator, mapper);
 
 		}
 
@@ -212,7 +214,8 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryIndexStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryIndexStatus> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryIndexStatus> {
 		@Nullable
 		private RecoveryBytes bytes;
 
@@ -221,24 +224,24 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		private RecoveryBytes size;
 
 		@Nullable
-		private String sourceThrottleTime;
+		private Time sourceThrottleTime;
 
 		private String sourceThrottleTimeInMillis;
 
 		@Nullable
-		private String targetThrottleTime;
+		private Time targetThrottleTime;
 
 		private String targetThrottleTimeInMillis;
 
 		private String totalTimeInMillis;
 
 		@Nullable
-		private String totalTime;
+		private Time totalTime;
 
 		/**
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable RecoveryBytes value) {
+		public final Builder bytes(@Nullable RecoveryBytes value) {
 			this.bytes = value;
 			return this;
 		}
@@ -246,14 +249,14 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(Function<RecoveryBytes.Builder, ObjectBuilder<RecoveryBytes>> fn) {
+		public final Builder bytes(Function<RecoveryBytes.Builder, ObjectBuilder<RecoveryBytes>> fn) {
 			return this.bytes(fn.apply(new RecoveryBytes.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code files}
 		 */
-		public Builder files(RecoveryFiles value) {
+		public final Builder files(RecoveryFiles value) {
 			this.files = value;
 			return this;
 		}
@@ -261,14 +264,14 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code files}
 		 */
-		public Builder files(Function<RecoveryFiles.Builder, ObjectBuilder<RecoveryFiles>> fn) {
+		public final Builder files(Function<RecoveryFiles.Builder, ObjectBuilder<RecoveryFiles>> fn) {
 			return this.files(fn.apply(new RecoveryFiles.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code size}
 		 */
-		public Builder size(RecoveryBytes value) {
+		public final Builder size(RecoveryBytes value) {
 			this.size = value;
 			return this;
 		}
@@ -276,22 +279,29 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size}
 		 */
-		public Builder size(Function<RecoveryBytes.Builder, ObjectBuilder<RecoveryBytes>> fn) {
+		public final Builder size(Function<RecoveryBytes.Builder, ObjectBuilder<RecoveryBytes>> fn) {
 			return this.size(fn.apply(new RecoveryBytes.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code source_throttle_time}
 		 */
-		public Builder sourceThrottleTime(@Nullable String value) {
+		public final Builder sourceThrottleTime(@Nullable Time value) {
 			this.sourceThrottleTime = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code source_throttle_time}
+		 */
+		public final Builder sourceThrottleTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.sourceThrottleTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code source_throttle_time_in_millis}
 		 */
-		public Builder sourceThrottleTimeInMillis(String value) {
+		public final Builder sourceThrottleTimeInMillis(String value) {
 			this.sourceThrottleTimeInMillis = value;
 			return this;
 		}
@@ -299,15 +309,22 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code target_throttle_time}
 		 */
-		public Builder targetThrottleTime(@Nullable String value) {
+		public final Builder targetThrottleTime(@Nullable Time value) {
 			this.targetThrottleTime = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code target_throttle_time}
+		 */
+		public final Builder targetThrottleTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.targetThrottleTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code target_throttle_time_in_millis}
 		 */
-		public Builder targetThrottleTimeInMillis(String value) {
+		public final Builder targetThrottleTimeInMillis(String value) {
 			this.targetThrottleTimeInMillis = value;
 			return this;
 		}
@@ -315,7 +332,7 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(String value) {
+		public final Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -323,9 +340,16 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public Builder totalTime(@Nullable String value) {
+		public final Builder totalTime(@Nullable Time value) {
 			this.totalTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code total_time}
+		 */
+		public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -335,6 +359,7 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryIndexStatus build() {
+			_checkSingleUse();
 
 			return new RecoveryIndexStatus(this);
 		}
@@ -346,21 +371,21 @@ public final class RecoveryIndexStatus implements JsonpSerializable {
 	 * Json deserializer for {@link RecoveryIndexStatus}
 	 */
 	public static final JsonpDeserializer<RecoveryIndexStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RecoveryIndexStatus::setupRecoveryIndexStatusDeserializer, Builder::build);
+			.lazy(Builder::new, RecoveryIndexStatus::setupRecoveryIndexStatusDeserializer);
 
-	protected static void setupRecoveryIndexStatusDeserializer(DelegatingDeserializer<RecoveryIndexStatus.Builder> op) {
+	protected static void setupRecoveryIndexStatusDeserializer(ObjectDeserializer<RecoveryIndexStatus.Builder> op) {
 
 		op.add(Builder::bytes, RecoveryBytes._DESERIALIZER, "bytes");
 		op.add(Builder::files, RecoveryFiles._DESERIALIZER, "files");
 		op.add(Builder::size, RecoveryBytes._DESERIALIZER, "size");
-		op.add(Builder::sourceThrottleTime, JsonpDeserializer.stringDeserializer(), "source_throttle_time");
+		op.add(Builder::sourceThrottleTime, Time._DESERIALIZER, "source_throttle_time");
 		op.add(Builder::sourceThrottleTimeInMillis, JsonpDeserializer.stringDeserializer(),
 				"source_throttle_time_in_millis");
-		op.add(Builder::targetThrottleTime, JsonpDeserializer.stringDeserializer(), "target_throttle_time");
+		op.add(Builder::targetThrottleTime, Time._DESERIALIZER, "target_throttle_time");
 		op.add(Builder::targetThrottleTimeInMillis, JsonpDeserializer.stringDeserializer(),
 				"target_throttle_time_in_millis");
 		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
-		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTime, Time._DESERIALIZER, "total_time");
 
 	}
 

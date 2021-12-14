@@ -23,37 +23,43 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteSniffInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L32-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
+public class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
 	private final boolean connected;
 
 	private final int maxConnectionsPerCluster;
 
 	private final long numNodesConnected;
 
-	private final String initialConnectTimeout;
+	private final Time initialConnectTimeout;
 
 	private final boolean skipUnavailable;
 
@@ -61,69 +67,70 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterRemoteSniffInfo(Builder builder) {
+	private ClusterRemoteSniffInfo(Builder builder) {
 
-		this.connected = Objects.requireNonNull(builder.connected, "connected");
-		this.maxConnectionsPerCluster = Objects.requireNonNull(builder.maxConnectionsPerCluster,
-				"max_connections_per_cluster");
-		this.numNodesConnected = Objects.requireNonNull(builder.numNodesConnected, "num_nodes_connected");
-		this.initialConnectTimeout = Objects.requireNonNull(builder.initialConnectTimeout, "initial_connect_timeout");
-		this.skipUnavailable = Objects.requireNonNull(builder.skipUnavailable, "skip_unavailable");
-		this.seeds = ModelTypeHelper.unmodifiableNonNull(builder.seeds, "seeds");
+		this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected");
+		this.maxConnectionsPerCluster = ApiTypeHelper.requireNonNull(builder.maxConnectionsPerCluster, this,
+				"maxConnectionsPerCluster");
+		this.numNodesConnected = ApiTypeHelper.requireNonNull(builder.numNodesConnected, this, "numNodesConnected");
+		this.initialConnectTimeout = ApiTypeHelper.requireNonNull(builder.initialConnectTimeout, this,
+				"initialConnectTimeout");
+		this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
+		this.seeds = ApiTypeHelper.unmodifiableRequired(builder.seeds, this, "seeds");
 
 	}
 
-	public ClusterRemoteSniffInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterRemoteSniffInfo of(Function<Builder, ObjectBuilder<ClusterRemoteSniffInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link ClusterRemoteInfo} variant type
+	 * ClusterRemoteInfo variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "sniff";
+	public ClusterRemoteInfo.Kind _clusterRemoteInfoKind() {
+		return ClusterRemoteInfo.Kind.Sniff;
 	}
 
 	/**
 	 * Required - API name: {@code connected}
 	 */
-	public boolean connected() {
+	public final boolean connected() {
 		return this.connected;
 	}
 
 	/**
 	 * Required - API name: {@code max_connections_per_cluster}
 	 */
-	public int maxConnectionsPerCluster() {
+	public final int maxConnectionsPerCluster() {
 		return this.maxConnectionsPerCluster;
 	}
 
 	/**
 	 * Required - API name: {@code num_nodes_connected}
 	 */
-	public long numNodesConnected() {
+	public final long numNodesConnected() {
 		return this.numNodesConnected;
 	}
 
 	/**
 	 * Required - API name: {@code initial_connect_timeout}
 	 */
-	public String initialConnectTimeout() {
+	public final Time initialConnectTimeout() {
 		return this.initialConnectTimeout;
 	}
 
 	/**
 	 * Required - API name: {@code skip_unavailable}
 	 */
-	public boolean skipUnavailable() {
+	public final boolean skipUnavailable() {
 		return this.skipUnavailable;
 	}
 
 	/**
 	 * Required - API name: {@code seeds}
 	 */
-	public List<String> seeds() {
+	public final List<String> seeds() {
 		return this.seeds;
 	}
 
@@ -150,18 +157,21 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		generator.write(this.numNodesConnected);
 
 		generator.writeKey("initial_connect_timeout");
-		generator.write(this.initialConnectTimeout);
+		this.initialConnectTimeout.serialize(generator, mapper);
 
 		generator.writeKey("skip_unavailable");
 		generator.write(this.skipUnavailable);
 
-		generator.writeKey("seeds");
-		generator.writeStartArray();
-		for (String item0 : this.seeds) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.seeds)) {
+			generator.writeKey("seeds");
+			generator.writeStartArray();
+			for (String item0 : this.seeds) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -170,14 +180,15 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 	/**
 	 * Builder for {@link ClusterRemoteSniffInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterRemoteSniffInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterRemoteSniffInfo> {
 		private Boolean connected;
 
 		private Integer maxConnectionsPerCluster;
 
 		private Long numNodesConnected;
 
-		private String initialConnectTimeout;
+		private Time initialConnectTimeout;
 
 		private Boolean skipUnavailable;
 
@@ -186,7 +197,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code connected}
 		 */
-		public Builder connected(boolean value) {
+		public final Builder connected(boolean value) {
 			this.connected = value;
 			return this;
 		}
@@ -194,7 +205,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code max_connections_per_cluster}
 		 */
-		public Builder maxConnectionsPerCluster(int value) {
+		public final Builder maxConnectionsPerCluster(int value) {
 			this.maxConnectionsPerCluster = value;
 			return this;
 		}
@@ -202,7 +213,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code num_nodes_connected}
 		 */
-		public Builder numNodesConnected(long value) {
+		public final Builder numNodesConnected(long value) {
 			this.numNodesConnected = value;
 			return this;
 		}
@@ -210,43 +221,43 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code initial_connect_timeout}
 		 */
-		public Builder initialConnectTimeout(String value) {
+		public final Builder initialConnectTimeout(Time value) {
 			this.initialConnectTimeout = value;
 			return this;
 		}
 
 		/**
+		 * Required - API name: {@code initial_connect_timeout}
+		 */
+		public final Builder initialConnectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.initialConnectTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code skip_unavailable}
 		 */
-		public Builder skipUnavailable(boolean value) {
+		public final Builder skipUnavailable(boolean value) {
 			this.skipUnavailable = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code seeds}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>seeds</code>.
 		 */
-		public Builder seeds(List<String> value) {
-			this.seeds = value;
+		public final Builder seeds(List<String> list) {
+			this.seeds = _listAddAll(this.seeds, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code seeds}
+		 * <p>
+		 * Adds one or more values to <code>seeds</code>.
 		 */
-		public Builder seeds(String... value) {
-			this.seeds = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #seeds(List)}, creating the list if needed.
-		 */
-		public Builder addSeeds(String value) {
-			if (this.seeds == null) {
-				this.seeds = new ArrayList<>();
-			}
-			this.seeds.add(value);
+		public final Builder seeds(String value, String... values) {
+			this.seeds = _listAdd(this.seeds, value, values);
 			return this;
 		}
 
@@ -257,6 +268,7 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 		 *             if some of the required fields are null.
 		 */
 		public ClusterRemoteSniffInfo build() {
+			_checkSingleUse();
 
 			return new ClusterRemoteSniffInfo(this);
 		}
@@ -268,16 +280,16 @@ public final class ClusterRemoteSniffInfo implements ClusterRemoteInfoVariant, J
 	 * Json deserializer for {@link ClusterRemoteSniffInfo}
 	 */
 	public static final JsonpDeserializer<ClusterRemoteSniffInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterRemoteSniffInfo::setupClusterRemoteSniffInfoDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterRemoteSniffInfo::setupClusterRemoteSniffInfoDeserializer);
 
 	protected static void setupClusterRemoteSniffInfoDeserializer(
-			DelegatingDeserializer<ClusterRemoteSniffInfo.Builder> op) {
+			ObjectDeserializer<ClusterRemoteSniffInfo.Builder> op) {
 
 		op.add(Builder::connected, JsonpDeserializer.booleanDeserializer(), "connected");
 		op.add(Builder::maxConnectionsPerCluster, JsonpDeserializer.integerDeserializer(),
 				"max_connections_per_cluster");
 		op.add(Builder::numNodesConnected, JsonpDeserializer.longDeserializer(), "num_nodes_connected");
-		op.add(Builder::initialConnectTimeout, JsonpDeserializer.stringDeserializer(), "initial_connect_timeout");
+		op.add(Builder::initialConnectTimeout, Time._DESERIALIZER, "initial_connect_timeout");
 		op.add(Builder::skipUnavailable, JsonpDeserializer.booleanDeserializer(), "skip_unavailable");
 		op.add(Builder::seeds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "seeds");
 

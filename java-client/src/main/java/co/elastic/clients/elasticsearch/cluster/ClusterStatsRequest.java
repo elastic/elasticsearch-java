@@ -23,21 +23,21 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,39 +48,35 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.stats.Request
 
-public final class ClusterStatsRequest extends RequestBase {
-	@Nullable
-	private final List<String> nodeId;
+/**
+ * Returns high-level overview of cluster statistics.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/ClusterStatsRequest.ts#L24-L39">API
+ *      specification</a>
+ */
 
+public class ClusterStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
+	private final List<String> nodeId;
+
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterStatsRequest(Builder builder) {
+	private ClusterStatsRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.flatSettings = builder.flatSettings;
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
 
 	}
 
-	public ClusterStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list of node filters used to limit returned information.
-	 * Defaults to all nodes in the cluster.
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	@Nullable
-	public List<String> nodeId() {
-		return this.nodeId;
+	public static ClusterStatsRequest of(Function<Builder, ObjectBuilder<ClusterStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,8 +85,18 @@ public final class ClusterStatsRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
+	}
+
+	/**
+	 * Comma-separated list of node filters used to limit returned information.
+	 * Defaults to all nodes in the cluster.
+	 * <p>
+	 * API name: {@code node_id}
+	 */
+	public final List<String> nodeId() {
+		return this.nodeId;
 	}
 
 	/**
@@ -102,7 +108,7 @@ public final class ClusterStatsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -111,56 +117,50 @@ public final class ClusterStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClusterStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterStatsRequest> {
-		@Nullable
-		private List<String> nodeId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterStatsRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
 		@Nullable
-		private String timeout;
+		private List<String> nodeId;
 
-		/**
-		 * Comma-separated list of node filters used to limit returned information.
-		 * Defaults to all nodes in the cluster.
-		 * <p>
-		 * API name: {@code node_id}
-		 */
-		public Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
-			return this;
-		}
-
-		/**
-		 * Comma-separated list of node filters used to limit returned information.
-		 * Defaults to all nodes in the cluster.
-		 * <p>
-		 * API name: {@code node_id}
-		 */
-		public Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
-			return this;
-		}
+		@Nullable
+		private Time timeout;
 
 		/**
 		 * Return settings in flat format (default: false)
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of node filters used to limit returned information.
+		 * Defaults to all nodes in the cluster.
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of node filters used to limit returned information.
+		 * Defaults to all nodes in the cluster.
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -172,9 +172,21 @@ public final class ClusterStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for each node to respond. If a node does not respond before
+		 * its timeout expires, the response does not include its stats. However, timed
+		 * out nodes are included in the response’s _nodes.failed property. Defaults to
+		 * no timeout.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -184,6 +196,7 @@ public final class ClusterStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterStatsRequest build() {
+			_checkSingleUse();
 
 			return new ClusterStatsRequest(this);
 		}
@@ -194,7 +207,9 @@ public final class ClusterStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.stats}".
 	 */
-	public static final Endpoint<ClusterStatsRequest, ClusterStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ClusterStatsRequest, ClusterStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cluster.stats",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -207,7 +222,7 @@ public final class ClusterStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {
@@ -237,7 +252,7 @@ public final class ClusterStatsRequest extends RequestBase {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

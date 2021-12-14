@@ -23,42 +23,43 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.DefaultOperator;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
-import co.elastic.clients.elasticsearch._types.SuggestMode;
+import co.elastic.clients.elasticsearch._types.SortOptions;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
+import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
+import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.search.FieldCollapse;
 import co.elastic.clients.elasticsearch.core.search.Highlight;
 import co.elastic.clients.elasticsearch.core.search.PointInTimeReference;
 import co.elastic.clients.elasticsearch.core.search.Rescore;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.search.SourceConfig;
+import co.elastic.clients.elasticsearch.core.search.Suggester;
+import co.elastic.clients.elasticsearch.core.search.TrackHits;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -68,10 +69,20 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.search.Request
+
+/**
+ * Returns results matching a query.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/SearchRequest.ts#L50-L233">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SearchRequest extends RequestBase implements JsonpSerializable {
+public class SearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final List<String> index;
+	private final SourceConfig source;
+
+	private final Map<String, Aggregation> aggregations;
 
 	@Nullable
 	private final Boolean allowNoIndices;
@@ -80,10 +91,10 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean allowPartialSearchResults;
 
 	@Nullable
-	private final String analyzer;
+	private final Boolean analyzeWildcard;
 
 	@Nullable
-	private final Boolean analyzeWildcard;
+	private final String analyzer;
 
 	@Nullable
 	private final Long batchedReduceSize;
@@ -92,19 +103,38 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean ccsMinimizeRoundtrips;
 
 	@Nullable
-	private final DefaultOperator defaultOperator;
+	private final FieldCollapse collapse;
+
+	@Nullable
+	private final Operator defaultOperator;
 
 	@Nullable
 	private final String df;
 
+	private final List<FieldAndFormat> docvalueFields;
+
+	private final List<ExpandWildcard> expandWildcards;
+
 	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final Boolean explain;
+
+	private final List<FieldAndFormat> fields;
+
+	@Nullable
+	private final Integer from;
+
+	@Nullable
+	private final Highlight highlight;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
+
+	private final List<String> index;
+
+	private final List<Map<String, Double>> indicesBoost;
 
 	@Nullable
 	private final Boolean lenient;
@@ -116,97 +146,51 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	private final String minCompatibleShardNode;
 
 	@Nullable
-	private final String preference;
-
-	@Nullable
-	private final Long preFilterShardSize;
-
-	@Nullable
-	private final Boolean requestCache;
-
-	@Nullable
-	private final String routing;
-
-	@Nullable
-	private final String scroll;
-
-	@Nullable
-	private final SearchType searchType;
-
-	@Nullable
-	private final String suggestField;
-
-	@Nullable
-	private final SuggestMode suggestMode;
-
-	@Nullable
-	private final Long suggestSize;
-
-	@Nullable
-	private final String suggestText;
-
-	@Nullable
-	private final Boolean typedKeys;
-
-	@Nullable
-	private final List<String> sourceExcludes;
-
-	@Nullable
-	private final List<String> sourceIncludes;
-
-	@Nullable
-	private final String q;
-
-	@Nullable
-	private final Map<String, Aggregation> aggs;
-
-	@Nullable
-	private final Map<String, Aggregation> aggregations;
-
-	@Nullable
-	private final FieldCollapse collapse;
-
-	@Nullable
-	private final Boolean explain;
-
-	@Nullable
-	private final Integer from;
-
-	@Nullable
-	private final Highlight highlight;
-
-	@Nullable
-	private final JsonValue /* Union(_types.integer | internal.boolean) */ trackTotalHits;
-
-	@Nullable
-	private final List<Map<String, Double>> indicesBoost;
-
-	@Nullable
-	private final JsonValue /*
-							 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-							 * _global.search._types.DocValueField)
-							 */ docvalueFields;
-
-	@Nullable
 	private final Double minScore;
+
+	@Nullable
+	private final PointInTimeReference pit;
 
 	@Nullable
 	private final Query postFilter;
 
 	@Nullable
+	private final Long preFilterShardSize;
+
+	@Nullable
+	private final String preference;
+
+	@Nullable
 	private final Boolean profile;
+
+	@Nullable
+	private final String q;
 
 	@Nullable
 	private final Query query;
 
 	@Nullable
+	private final Boolean requestCache;
+
 	private final List<Rescore> rescore;
 
 	@Nullable
+	private final String routing;
+
+	private final Map<String, RuntimeField> runtimeMappings;
+
 	private final Map<String, ScriptField> scriptFields;
 
 	@Nullable
+	private final Time scroll;
+
 	private final List<String> searchAfter;
+
+	@Nullable
+	private final SearchType searchType;
+
+	@Nullable
+	private final Boolean seqNoPrimaryTerm;
 
 	@Nullable
 	private final Integer size;
@@ -214,22 +198,14 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final SlicedScroll slice;
 
-	@Nullable
-	private final List<JsonValue /* _global.search._types.SortCombinations */> sort;
+	private final List<SortOptions> sort;
+
+	private final List<String> stats;
+
+	private final List<String> storedFields;
 
 	@Nullable
-	private final JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
-
-	@Nullable
-	private final List<JsonValue /* Union(_types.DateField | _types.Field) */> fields;
-
-	@Nullable
-	private final JsonValue /*
-							 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer>
-							 * (singleKey = false) | _global.search._types.SuggestContainer)
-							 */ suggest;
+	private final Suggester suggest;
 
 	@Nullable
 	private final Long terminateAfter;
@@ -241,103 +217,90 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	private final Boolean trackScores;
 
 	@Nullable
+	private final TrackHits trackTotalHits;
+
+	@Nullable
 	private final Boolean version;
-
-	@Nullable
-	private final Boolean seqNoPrimaryTerm;
-
-	@Nullable
-	private final List<String> storedFields;
-
-	@Nullable
-	private final PointInTimeReference pit;
-
-	@Nullable
-	private final Map<String, RuntimeField> runtimeMappings;
-
-	@Nullable
-	private final List<String> stats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchRequest(Builder builder) {
+	private SearchRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.source = builder.source;
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.allowPartialSearchResults = builder.allowPartialSearchResults;
-		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
+		this.analyzer = builder.analyzer;
 		this.batchedReduceSize = builder.batchedReduceSize;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
+		this.collapse = builder.collapse;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.explain = builder.explain;
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.from = builder.from;
+		this.highlight = builder.highlight;
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
+		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
 		this.lenient = builder.lenient;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.minCompatibleShardNode = builder.minCompatibleShardNode;
-		this.preference = builder.preference;
-		this.preFilterShardSize = builder.preFilterShardSize;
-		this.requestCache = builder.requestCache;
-		this.routing = builder.routing;
-		this.scroll = builder.scroll;
-		this.searchType = builder.searchType;
-		this.suggestField = builder.suggestField;
-		this.suggestMode = builder.suggestMode;
-		this.suggestSize = builder.suggestSize;
-		this.suggestText = builder.suggestText;
-		this.typedKeys = builder.typedKeys;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.q = builder.q;
-		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
-		this.aggregations = ModelTypeHelper.unmodifiable(builder.aggregations);
-		this.collapse = builder.collapse;
-		this.explain = builder.explain;
-		this.from = builder.from;
-		this.highlight = builder.highlight;
-		this.trackTotalHits = builder.trackTotalHits;
-		this.indicesBoost = ModelTypeHelper.unmodifiable(builder.indicesBoost);
-		this.docvalueFields = builder.docvalueFields;
 		this.minScore = builder.minScore;
+		this.pit = builder.pit;
 		this.postFilter = builder.postFilter;
+		this.preFilterShardSize = builder.preFilterShardSize;
+		this.preference = builder.preference;
 		this.profile = builder.profile;
+		this.q = builder.q;
 		this.query = builder.query;
-		this.rescore = ModelTypeHelper.unmodifiable(builder.rescore);
-		this.scriptFields = ModelTypeHelper.unmodifiable(builder.scriptFields);
-		this.searchAfter = ModelTypeHelper.unmodifiable(builder.searchAfter);
+		this.requestCache = builder.requestCache;
+		this.rescore = ApiTypeHelper.unmodifiable(builder.rescore);
+		this.routing = builder.routing;
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.scriptFields = ApiTypeHelper.unmodifiable(builder.scriptFields);
+		this.scroll = builder.scroll;
+		this.searchAfter = ApiTypeHelper.unmodifiable(builder.searchAfter);
+		this.searchType = builder.searchType;
+		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
 		this.size = builder.size;
 		this.slice = builder.slice;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
-		this.source = builder.source;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.suggest = builder.suggest;
 		this.terminateAfter = builder.terminateAfter;
 		this.timeout = builder.timeout;
 		this.trackScores = builder.trackScores;
+		this.trackTotalHits = builder.trackTotalHits;
 		this.version = builder.version;
-		this.seqNoPrimaryTerm = builder.seqNoPrimaryTerm;
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
-		this.pit = builder.pit;
-		this.runtimeMappings = ModelTypeHelper.unmodifiable(builder.runtimeMappings);
-		this.stats = ModelTypeHelper.unmodifiable(builder.stats);
 
 	}
 
-	public SearchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchRequest of(Function<Builder, ObjectBuilder<SearchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * A comma-separated list of index names to search; use <code>_all</code> or
-	 * empty string to perform the operation on all indices
+	 * Indicates which source fields are returned for matching documents. These
+	 * fields are returned in the hits._source property of the search response.
 	 * <p>
-	 * API name: {@code index}
+	 * API name: {@code _source}
 	 */
 	@Nullable
-	public List<String> index() {
-		return this.index;
+	public final SourceConfig source() {
+		return this.source;
+	}
+
+	/**
+	 * API name: {@code aggregations}
+	 */
+	public final Map<String, Aggregation> aggregations() {
+		return this.aggregations;
 	}
 
 	/**
@@ -348,7 +311,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -359,18 +322,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code allow_partial_search_results}
 	 */
 	@Nullable
-	public Boolean allowPartialSearchResults() {
+	public final Boolean allowPartialSearchResults() {
 		return this.allowPartialSearchResults;
-	}
-
-	/**
-	 * The analyzer to use for the query string
-	 * <p>
-	 * API name: {@code analyzer}
-	 */
-	@Nullable
-	public String analyzer() {
-		return this.analyzer;
 	}
 
 	/**
@@ -380,8 +333,18 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
-	public Boolean analyzeWildcard() {
+	public final Boolean analyzeWildcard() {
 		return this.analyzeWildcard;
+	}
+
+	/**
+	 * The analyzer to use for the query string
+	 * <p>
+	 * API name: {@code analyzer}
+	 */
+	@Nullable
+	public final String analyzer() {
+		return this.analyzer;
 	}
 
 	/**
@@ -393,7 +356,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code batched_reduce_size}
 	 */
 	@Nullable
-	public Long batchedReduceSize() {
+	public final Long batchedReduceSize() {
 		return this.batchedReduceSize;
 	}
 
@@ -404,8 +367,16 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
 	@Nullable
-	public Boolean ccsMinimizeRoundtrips() {
+	public final Boolean ccsMinimizeRoundtrips() {
 		return this.ccsMinimizeRoundtrips;
+	}
+
+	/**
+	 * API name: {@code collapse}
+	 */
+	@Nullable
+	public final FieldCollapse collapse() {
+		return this.collapse;
 	}
 
 	/**
@@ -414,7 +385,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public DefaultOperator defaultOperator() {
+	public final Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -425,8 +396,18 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code df}
 	 */
 	@Nullable
-	public String df() {
+	public final String df() {
 		return this.df;
+	}
+
+	/**
+	 * Array of wildcard (*) patterns. The request returns doc values for field
+	 * names matching these patterns in the hits.fields property of the response.
+	 * <p>
+	 * API name: {@code docvalue_fields}
+	 */
+	public final List<FieldAndFormat> docvalueFields() {
+		return this.docvalueFields;
 	}
 
 	/**
@@ -435,9 +416,49 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
+	}
+
+	/**
+	 * If true, returns detailed information about score computation as part of a
+	 * hit.
+	 * <p>
+	 * API name: {@code explain}
+	 */
+	@Nullable
+	public final Boolean explain() {
+		return this.explain;
+	}
+
+	/**
+	 * Array of wildcard (*) patterns. The request returns values for field names
+	 * matching these patterns in the hits.fields property of the response.
+	 * <p>
+	 * API name: {@code fields}
+	 */
+	public final List<FieldAndFormat> fields() {
+		return this.fields;
+	}
+
+	/**
+	 * Starting document offset. By default, you cannot page through more than
+	 * 10,000 hits using the from and size parameters. To page through more hits,
+	 * use the search_after parameter.
+	 * <p>
+	 * API name: {@code from}
+	 */
+	@Nullable
+	public final Integer from() {
+		return this.from;
+	}
+
+	/**
+	 * API name: {@code highlight}
+	 */
+	@Nullable
+	public final Highlight highlight() {
+		return this.highlight;
 	}
 
 	/**
@@ -447,7 +468,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
-	public Boolean ignoreThrottled() {
+	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
 	}
 
@@ -458,8 +479,27 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * A comma-separated list of index names to search; use <code>_all</code> or
+	 * empty string to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
+	}
+
+	/**
+	 * Boosts the _score of documents from specified indices.
+	 * <p>
+	 * API name: {@code indices_boost}
+	 */
+	public final List<Map<String, Double>> indicesBoost() {
+		return this.indicesBoost;
 	}
 
 	/**
@@ -469,7 +509,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code lenient}
 	 */
 	@Nullable
-	public Boolean lenient() {
+	public final Boolean lenient() {
 		return this.lenient;
 	}
 
@@ -481,7 +521,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code max_concurrent_shard_requests}
 	 */
 	@Nullable
-	public Long maxConcurrentShardRequests() {
+	public final Long maxConcurrentShardRequests() {
 		return this.maxConcurrentShardRequests;
 	}
 
@@ -492,19 +532,38 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code min_compatible_shard_node}
 	 */
 	@Nullable
-	public String minCompatibleShardNode() {
+	public final String minCompatibleShardNode() {
 		return this.minCompatibleShardNode;
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Minimum _score for matching documents. Documents with a lower _score are not
+	 * included in the search results.
 	 * <p>
-	 * API name: {@code preference}
+	 * API name: {@code min_score}
 	 */
 	@Nullable
-	public String preference() {
-		return this.preference;
+	public final Double minScore() {
+		return this.minScore;
+	}
+
+	/**
+	 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
+	 * specify an &lt;index&gt; in the request path.
+	 * <p>
+	 * API name: {@code pit}
+	 */
+	@Nullable
+	public final PointInTimeReference pit() {
+		return this.pit;
+	}
+
+	/**
+	 * API name: {@code post_filter}
+	 */
+	@Nullable
+	public final Query postFilter() {
+		return this.postFilter;
 	}
 
 	/**
@@ -518,8 +577,47 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code pre_filter_shard_size}
 	 */
 	@Nullable
-	public Long preFilterShardSize() {
+	public final Long preFilterShardSize() {
 		return this.preFilterShardSize;
+	}
+
+	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
+	 * API name: {@code preference}
+	 */
+	@Nullable
+	public final String preference() {
+		return this.preference;
+	}
+
+	/**
+	 * API name: {@code profile}
+	 */
+	@Nullable
+	public final Boolean profile() {
+		return this.profile;
+	}
+
+	/**
+	 * Query in the Lucene query string syntax
+	 * <p>
+	 * API name: {@code q}
+	 */
+	@Nullable
+	public final String q() {
+		return this.q;
+	}
+
+	/**
+	 * Defines the search definition using the Query DSL.
+	 * <p>
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public final Query query() {
+		return this.query;
 	}
 
 	/**
@@ -529,8 +627,15 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code request_cache}
 	 */
 	@Nullable
-	public Boolean requestCache() {
+	public final Boolean requestCache() {
 		return this.requestCache;
+	}
+
+	/**
+	 * API name: {@code rescore}
+	 */
+	public final List<Rescore> rescore() {
+		return this.rescore;
 	}
 
 	/**
@@ -539,8 +644,27 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
+	}
+
+	/**
+	 * Defines one or more runtime fields in the search request. These fields take
+	 * precedence over mapped fields with the same name.
+	 * <p>
+	 * API name: {@code runtime_mappings}
+	 */
+	public final Map<String, RuntimeField> runtimeMappings() {
+		return this.runtimeMappings;
+	}
+
+	/**
+	 * Retrieve a script evaluation (based on different fields) for each hit.
+	 * <p>
+	 * API name: {@code script_fields}
+	 */
+	public final Map<String, ScriptField> scriptFields() {
+		return this.scriptFields;
 	}
 
 	/**
@@ -550,8 +674,15 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code scroll}
 	 */
 	@Nullable
-	public String scroll() {
+	public final Time scroll() {
 		return this.scroll;
+	}
+
+	/**
+	 * API name: {@code search_after}
+	 */
+	public final List<String> searchAfter() {
+		return this.searchAfter;
 	}
 
 	/**
@@ -560,244 +691,19 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public SearchType searchType() {
+	public final SearchType searchType() {
 		return this.searchType;
 	}
 
 	/**
-	 * Specifies which field to use for suggestions.
+	 * If true, returns sequence number and primary term of the last modification of
+	 * each hit. See Optimistic concurrency control.
 	 * <p>
-	 * API name: {@code suggest_field}
+	 * API name: {@code seq_no_primary_term}
 	 */
 	@Nullable
-	public String suggestField() {
-		return this.suggestField;
-	}
-
-	/**
-	 * Specify suggest mode
-	 * <p>
-	 * API name: {@code suggest_mode}
-	 */
-	@Nullable
-	public SuggestMode suggestMode() {
-		return this.suggestMode;
-	}
-
-	/**
-	 * How many suggestions to return in response
-	 * <p>
-	 * API name: {@code suggest_size}
-	 */
-	@Nullable
-	public Long suggestSize() {
-		return this.suggestSize;
-	}
-
-	/**
-	 * The source text for which the suggestions should be returned.
-	 * <p>
-	 * API name: {@code suggest_text}
-	 */
-	@Nullable
-	public String suggestText() {
-		return this.suggestText;
-	}
-
-	/**
-	 * Specify whether aggregation and suggester names should be prefixed by their
-	 * respective types in the response
-	 * <p>
-	 * API name: {@code typed_keys}
-	 */
-	@Nullable
-	public Boolean typedKeys() {
-		return this.typedKeys;
-	}
-
-	/**
-	 * A list of fields to exclude from the returned _source field
-	 * <p>
-	 * API name: {@code _source_excludes}
-	 */
-	@Nullable
-	public List<String> sourceExcludes() {
-		return this.sourceExcludes;
-	}
-
-	/**
-	 * A list of fields to extract and return from the _source field
-	 * <p>
-	 * API name: {@code _source_includes}
-	 */
-	@Nullable
-	public List<String> sourceIncludes() {
-		return this.sourceIncludes;
-	}
-
-	/**
-	 * Query in the Lucene query string syntax
-	 * <p>
-	 * API name: {@code q}
-	 */
-	@Nullable
-	public String q() {
-		return this.q;
-	}
-
-	/**
-	 * API name: {@code aggs}
-	 */
-	@Nullable
-	public Map<String, Aggregation> aggs() {
-		return this.aggs;
-	}
-
-	/**
-	 * API name: {@code aggregations}
-	 */
-	@Nullable
-	public Map<String, Aggregation> aggregations() {
-		return this.aggregations;
-	}
-
-	/**
-	 * API name: {@code collapse}
-	 */
-	@Nullable
-	public FieldCollapse collapse() {
-		return this.collapse;
-	}
-
-	/**
-	 * If true, returns detailed information about score computation as part of a
-	 * hit.
-	 * <p>
-	 * API name: {@code explain}
-	 */
-	@Nullable
-	public Boolean explain() {
-		return this.explain;
-	}
-
-	/**
-	 * Starting document offset. By default, you cannot page through more than
-	 * 10,000 hits using the from and size parameters. To page through more hits,
-	 * use the search_after parameter.
-	 * <p>
-	 * API name: {@code from}
-	 */
-	@Nullable
-	public Integer from() {
-		return this.from;
-	}
-
-	/**
-	 * API name: {@code highlight}
-	 */
-	@Nullable
-	public Highlight highlight() {
-		return this.highlight;
-	}
-
-	/**
-	 * Number of hits matching the query to count accurately. If true, the exact
-	 * number of hits is returned at the cost of some performance. If false, the
-	 * response does not include the total number of hits matching the query.
-	 * Defaults to 10,000 hits.
-	 * <p>
-	 * API name: {@code track_total_hits}
-	 */
-	@Nullable
-	public JsonValue /* Union(_types.integer | internal.boolean) */ trackTotalHits() {
-		return this.trackTotalHits;
-	}
-
-	/**
-	 * Boosts the _score of documents from specified indices.
-	 * <p>
-	 * API name: {@code indices_boost}
-	 */
-	@Nullable
-	public List<Map<String, Double>> indicesBoost() {
-		return this.indicesBoost;
-	}
-
-	/**
-	 * Array of wildcard (*) patterns. The request returns doc values for field
-	 * names matching these patterns in the hits.fields property of the response.
-	 * <p>
-	 * API name: {@code docvalue_fields}
-	 */
-	@Nullable
-	public JsonValue /*
-						 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-						 * _global.search._types.DocValueField)
-						 */ docvalueFields() {
-		return this.docvalueFields;
-	}
-
-	/**
-	 * Minimum _score for matching documents. Documents with a lower _score are not
-	 * included in the search results.
-	 * <p>
-	 * API name: {@code min_score}
-	 */
-	@Nullable
-	public Double minScore() {
-		return this.minScore;
-	}
-
-	/**
-	 * API name: {@code post_filter}
-	 */
-	@Nullable
-	public Query postFilter() {
-		return this.postFilter;
-	}
-
-	/**
-	 * API name: {@code profile}
-	 */
-	@Nullable
-	public Boolean profile() {
-		return this.profile;
-	}
-
-	/**
-	 * Defines the search definition using the Query DSL.
-	 * <p>
-	 * API name: {@code query}
-	 */
-	@Nullable
-	public Query query() {
-		return this.query;
-	}
-
-	/**
-	 * API name: {@code rescore}
-	 */
-	@Nullable
-	public List<Rescore> rescore() {
-		return this.rescore;
-	}
-
-	/**
-	 * Retrieve a script evaluation (based on different fields) for each hit.
-	 * <p>
-	 * API name: {@code script_fields}
-	 */
-	@Nullable
-	public Map<String, ScriptField> scriptFields() {
-		return this.scriptFields;
-	}
-
-	/**
-	 * API name: {@code search_after}
-	 */
-	@Nullable
-	public List<String> searchAfter() {
-		return this.searchAfter;
+	public final Boolean seqNoPrimaryTerm() {
+		return this.seqNoPrimaryTerm;
 	}
 
 	/**
@@ -808,7 +714,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -816,50 +722,45 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code slice}
 	 */
 	@Nullable
-	public SlicedScroll slice() {
+	public final SlicedScroll slice() {
 		return this.slice;
 	}
 
 	/**
 	 * API name: {@code sort}
 	 */
-	@Nullable
-	public List<JsonValue /* _global.search._types.SortCombinations */> sort() {
+	public final List<SortOptions> sort() {
 		return this.sort;
 	}
 
 	/**
-	 * Indicates which source fields are returned for matching documents. These
-	 * fields are returned in the hits._source property of the search response.
+	 * Stats groups to associate with the search. Each group maintains a statistics
+	 * aggregation for its associated searches. You can retrieve these stats using
+	 * the indices stats API.
 	 * <p>
-	 * API name: {@code _source}
+	 * API name: {@code stats}
 	 */
-	@Nullable
-	public JsonValue /*
-						 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-						 */ source() {
-		return this.source;
+	public final List<String> stats() {
+		return this.stats;
 	}
 
 	/**
-	 * Array of wildcard (*) patterns. The request returns values for field names
-	 * matching these patterns in the hits.fields property of the response.
+	 * List of stored fields to return as part of a hit. If no fields are specified,
+	 * no stored fields are included in the response. If this field is specified,
+	 * the _source parameter defaults to false. You can pass _source: true to return
+	 * both source fields and stored fields in the search response.
 	 * <p>
-	 * API name: {@code fields}
+	 * API name: {@code stored_fields}
 	 */
-	@Nullable
-	public List<JsonValue /* Union(_types.DateField | _types.Field) */> fields() {
-		return this.fields;
+	public final List<String> storedFields() {
+		return this.storedFields;
 	}
 
 	/**
 	 * API name: {@code suggest}
 	 */
 	@Nullable
-	public JsonValue /*
-						 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer>
-						 * (singleKey = false) | _global.search._types.SuggestContainer)
-						 */ suggest() {
+	public final Suggester suggest() {
 		return this.suggest;
 	}
 
@@ -872,7 +773,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code terminate_after}
 	 */
 	@Nullable
-	public Long terminateAfter() {
+	public final Long terminateAfter() {
 		return this.terminateAfter;
 	}
 
@@ -884,7 +785,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final String timeout() {
 		return this.timeout;
 	}
 
@@ -895,8 +796,21 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code track_scores}
 	 */
 	@Nullable
-	public Boolean trackScores() {
+	public final Boolean trackScores() {
 		return this.trackScores;
+	}
+
+	/**
+	 * Number of hits matching the query to count accurately. If true, the exact
+	 * number of hits is returned at the cost of some performance. If false, the
+	 * response does not include the total number of hits matching the query.
+	 * Defaults to 10,000 hits.
+	 * <p>
+	 * API name: {@code track_total_hits}
+	 */
+	@Nullable
+	public final TrackHits trackTotalHits() {
+		return this.trackTotalHits;
 	}
 
 	/**
@@ -905,66 +819,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Boolean version() {
+	public final Boolean version() {
 		return this.version;
-	}
-
-	/**
-	 * If true, returns sequence number and primary term of the last modification of
-	 * each hit. See Optimistic concurrency control.
-	 * <p>
-	 * API name: {@code seq_no_primary_term}
-	 */
-	@Nullable
-	public Boolean seqNoPrimaryTerm() {
-		return this.seqNoPrimaryTerm;
-	}
-
-	/**
-	 * List of stored fields to return as part of a hit. If no fields are specified,
-	 * no stored fields are included in the response. If this field is specified,
-	 * the _source parameter defaults to false. You can pass _source: true to return
-	 * both source fields and stored fields in the search response.
-	 * <p>
-	 * API name: {@code stored_fields}
-	 */
-	@Nullable
-	public List<String> storedFields() {
-		return this.storedFields;
-	}
-
-	/**
-	 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
-	 * specify an &lt;index&gt; in the request path.
-	 * <p>
-	 * API name: {@code pit}
-	 */
-	@Nullable
-	public PointInTimeReference pit() {
-		return this.pit;
-	}
-
-	/**
-	 * Defines one or more runtime fields in the search request. These fields take
-	 * precedence over mapped fields with the same name.
-	 * <p>
-	 * API name: {@code runtime_mappings}
-	 */
-	@Nullable
-	public Map<String, RuntimeField> runtimeMappings() {
-		return this.runtimeMappings;
-	}
-
-	/**
-	 * Stats groups to associate with the search. Each group maintains a statistics
-	 * aggregation for its associated searches. You can retrieve these stats using
-	 * the indices stats API.
-	 * <p>
-	 * API name: {@code stats}
-	 */
-	@Nullable
-	public List<String> stats() {
-		return this.stats;
 	}
 
 	/**
@@ -978,20 +834,12 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.aggs != null) {
-
-			generator.writeKey("aggs");
-			generator.writeStartObject();
-			for (Map.Entry<String, Aggregation> item0 : this.aggs.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
+		if (this.source != null) {
+			generator.writeKey("_source");
+			this.source.serialize(generator, mapper);
 
 		}
-		if (this.aggregations != null) {
-
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
 			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
@@ -1003,45 +851,56 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 		}
 		if (this.collapse != null) {
-
 			generator.writeKey("collapse");
 			this.collapse.serialize(generator, mapper);
 
 		}
-		if (this.explain != null) {
+		if (ApiTypeHelper.isDefined(this.docvalueFields)) {
+			generator.writeKey("docvalue_fields");
+			generator.writeStartArray();
+			for (FieldAndFormat item0 : this.docvalueFields) {
+				item0.serialize(generator, mapper);
 
+			}
+			generator.writeEnd();
+
+		}
+		if (this.explain != null) {
 			generator.writeKey("explain");
 			generator.write(this.explain);
 
 		}
-		if (this.from != null) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (FieldAndFormat item0 : this.fields) {
+				item0.serialize(generator, mapper);
 
+			}
+			generator.writeEnd();
+
+		}
+		if (this.from != null) {
 			generator.writeKey("from");
 			generator.write(this.from);
 
 		}
 		if (this.highlight != null) {
-
 			generator.writeKey("highlight");
 			this.highlight.serialize(generator, mapper);
 
 		}
-		if (this.trackTotalHits != null) {
-
-			generator.writeKey("track_total_hits");
-			generator.write(this.trackTotalHits);
-
-		}
-		if (this.indicesBoost != null) {
-
+		if (ApiTypeHelper.isDefined(this.indicesBoost)) {
 			generator.writeKey("indices_boost");
 			generator.writeStartArray();
 			for (Map<String, Double> item0 : this.indicesBoost) {
 				generator.writeStartObject();
-				for (Map.Entry<String, Double> item1 : item0.entrySet()) {
-					generator.writeKey(item1.getKey());
-					generator.write(item1.getValue());
+				if (item0 != null) {
+					for (Map.Entry<String, Double> item1 : item0.entrySet()) {
+						generator.writeKey(item1.getKey());
+						generator.write(item1.getValue());
 
+					}
 				}
 				generator.writeEnd();
 
@@ -1049,38 +908,32 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 			generator.writeEnd();
 
 		}
-		if (this.docvalueFields != null) {
-
-			generator.writeKey("docvalue_fields");
-			generator.write(this.docvalueFields);
-
-		}
 		if (this.minScore != null) {
-
 			generator.writeKey("min_score");
 			generator.write(this.minScore);
 
 		}
-		if (this.postFilter != null) {
+		if (this.pit != null) {
+			generator.writeKey("pit");
+			this.pit.serialize(generator, mapper);
 
+		}
+		if (this.postFilter != null) {
 			generator.writeKey("post_filter");
 			this.postFilter.serialize(generator, mapper);
 
 		}
 		if (this.profile != null) {
-
 			generator.writeKey("profile");
 			generator.write(this.profile);
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
-		if (this.rescore != null) {
-
+		if (ApiTypeHelper.isDefined(this.rescore)) {
 			generator.writeKey("rescore");
 			generator.writeStartArray();
 			for (Rescore item0 : this.rescore) {
@@ -1090,124 +943,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 			generator.writeEnd();
 
 		}
-		if (this.scriptFields != null) {
-
-			generator.writeKey("script_fields");
-			generator.writeStartObject();
-			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.searchAfter != null) {
-
-			generator.writeKey("search_after");
-			generator.writeStartArray();
-			for (String item0 : this.searchAfter) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.size != null) {
-
-			generator.writeKey("size");
-			generator.write(this.size);
-
-		}
-		if (this.slice != null) {
-
-			generator.writeKey("slice");
-			this.slice.serialize(generator, mapper);
-
-		}
-		if (this.sort != null) {
-
-			generator.writeKey("sort");
-			generator.writeStartArray();
-			for (JsonValue /* _global.search._types.SortCombinations */ item0 : this.sort) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.source != null) {
-
-			generator.writeKey("_source");
-			generator.write(this.source);
-
-		}
-		if (this.fields != null) {
-
-			generator.writeKey("fields");
-			generator.writeStartArray();
-			for (JsonValue /* Union(_types.DateField | _types.Field) */ item0 : this.fields) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.suggest != null) {
-
-			generator.writeKey("suggest");
-			generator.write(this.suggest);
-
-		}
-		if (this.terminateAfter != null) {
-
-			generator.writeKey("terminate_after");
-			generator.write(this.terminateAfter);
-
-		}
-		if (this.timeout != null) {
-
-			generator.writeKey("timeout");
-			generator.write(this.timeout);
-
-		}
-		if (this.trackScores != null) {
-
-			generator.writeKey("track_scores");
-			generator.write(this.trackScores);
-
-		}
-		if (this.version != null) {
-
-			generator.writeKey("version");
-			generator.write(this.version);
-
-		}
-		if (this.seqNoPrimaryTerm != null) {
-
-			generator.writeKey("seq_no_primary_term");
-			generator.write(this.seqNoPrimaryTerm);
-
-		}
-		if (this.storedFields != null) {
-
-			generator.writeKey("stored_fields");
-			generator.writeStartArray();
-			for (String item0 : this.storedFields) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.pit != null) {
-
-			generator.writeKey("pit");
-			this.pit.serialize(generator, mapper);
-
-		}
-		if (this.runtimeMappings != null) {
-
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
@@ -1218,8 +954,53 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 			generator.writeEnd();
 
 		}
-		if (this.stats != null) {
+		if (ApiTypeHelper.isDefined(this.scriptFields)) {
+			generator.writeKey("script_fields");
+			generator.writeStartObject();
+			for (Map.Entry<String, ScriptField> item0 : this.scriptFields.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.searchAfter)) {
+			generator.writeKey("search_after");
+			generator.writeStartArray();
+			for (String item0 : this.searchAfter) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.seqNoPrimaryTerm != null) {
+			generator.writeKey("seq_no_primary_term");
+			generator.write(this.seqNoPrimaryTerm);
+
+		}
+		if (this.size != null) {
+			generator.writeKey("size");
+			generator.write(this.size);
+
+		}
+		if (this.slice != null) {
+			generator.writeKey("slice");
+			this.slice.serialize(generator, mapper);
+
+		}
+		if (ApiTypeHelper.isDefined(this.sort)) {
+			generator.writeKey("sort");
+			generator.writeStartArray();
+			for (SortOptions item0 : this.sort) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.stats)) {
 			generator.writeKey("stats");
 			generator.writeStartArray();
 			for (String item0 : this.stats) {
@@ -1227,6 +1008,46 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 			}
 			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.storedFields)) {
+			generator.writeKey("stored_fields");
+			generator.writeStartArray();
+			for (String item0 : this.storedFields) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.suggest != null) {
+			generator.writeKey("suggest");
+			this.suggest.serialize(generator, mapper);
+
+		}
+		if (this.terminateAfter != null) {
+			generator.writeKey("terminate_after");
+			generator.write(this.terminateAfter);
+
+		}
+		if (this.timeout != null) {
+			generator.writeKey("timeout");
+			generator.write(this.timeout);
+
+		}
+		if (this.trackScores != null) {
+			generator.writeKey("track_scores");
+			generator.write(this.trackScores);
+
+		}
+		if (this.trackTotalHits != null) {
+			generator.writeKey("track_total_hits");
+			this.trackTotalHits.serialize(generator, mapper);
+
+		}
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
 
 		}
 
@@ -1237,9 +1058,13 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link SearchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchRequest> {
 		@Nullable
-		private List<String> index;
+		private SourceConfig source;
+
+		@Nullable
+		private Map<String, Aggregation> aggregations;
 
 		@Nullable
 		private Boolean allowNoIndices;
@@ -1248,10 +1073,10 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private Boolean allowPartialSearchResults;
 
 		@Nullable
-		private String analyzer;
+		private Boolean analyzeWildcard;
 
 		@Nullable
-		private Boolean analyzeWildcard;
+		private String analyzer;
 
 		@Nullable
 		private Long batchedReduceSize;
@@ -1260,19 +1085,43 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private Boolean ccsMinimizeRoundtrips;
 
 		@Nullable
-		private DefaultOperator defaultOperator;
+		private FieldCollapse collapse;
+
+		@Nullable
+		private Operator defaultOperator;
 
 		@Nullable
 		private String df;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<FieldAndFormat> docvalueFields;
+
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
+		private Boolean explain;
+
+		@Nullable
+		private List<FieldAndFormat> fields;
+
+		@Nullable
+		private Integer from;
+
+		@Nullable
+		private Highlight highlight;
 
 		@Nullable
 		private Boolean ignoreThrottled;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
+
+		@Nullable
+		private List<String> index;
+
+		@Nullable
+		private List<Map<String, Double>> indicesBoost;
 
 		@Nullable
 		private Boolean lenient;
@@ -1284,97 +1133,55 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private String minCompatibleShardNode;
 
 		@Nullable
-		private String preference;
-
-		@Nullable
-		private Long preFilterShardSize;
-
-		@Nullable
-		private Boolean requestCache;
-
-		@Nullable
-		private String routing;
-
-		@Nullable
-		private String scroll;
-
-		@Nullable
-		private SearchType searchType;
-
-		@Nullable
-		private String suggestField;
-
-		@Nullable
-		private SuggestMode suggestMode;
-
-		@Nullable
-		private Long suggestSize;
-
-		@Nullable
-		private String suggestText;
-
-		@Nullable
-		private Boolean typedKeys;
-
-		@Nullable
-		private List<String> sourceExcludes;
-
-		@Nullable
-		private List<String> sourceIncludes;
-
-		@Nullable
-		private String q;
-
-		@Nullable
-		private Map<String, Aggregation> aggs;
-
-		@Nullable
-		private Map<String, Aggregation> aggregations;
-
-		@Nullable
-		private FieldCollapse collapse;
-
-		@Nullable
-		private Boolean explain;
-
-		@Nullable
-		private Integer from;
-
-		@Nullable
-		private Highlight highlight;
-
-		@Nullable
-		private JsonValue /* Union(_types.integer | internal.boolean) */ trackTotalHits;
-
-		@Nullable
-		private List<Map<String, Double>> indicesBoost;
-
-		@Nullable
-		private JsonValue /*
-							 * Union(Array<Union(_global.search._types.DocValueField | _types.Field)> |
-							 * _global.search._types.DocValueField)
-							 */ docvalueFields;
-
-		@Nullable
 		private Double minScore;
+
+		@Nullable
+		private PointInTimeReference pit;
 
 		@Nullable
 		private Query postFilter;
 
 		@Nullable
+		private Long preFilterShardSize;
+
+		@Nullable
+		private String preference;
+
+		@Nullable
 		private Boolean profile;
+
+		@Nullable
+		private String q;
 
 		@Nullable
 		private Query query;
 
 		@Nullable
+		private Boolean requestCache;
+
+		@Nullable
 		private List<Rescore> rescore;
+
+		@Nullable
+		private String routing;
+
+		@Nullable
+		private Map<String, RuntimeField> runtimeMappings;
 
 		@Nullable
 		private Map<String, ScriptField> scriptFields;
 
 		@Nullable
+		private Time scroll;
+
+		@Nullable
 		private List<String> searchAfter;
+
+		@Nullable
+		private SearchType searchType;
+
+		@Nullable
+		private Boolean seqNoPrimaryTerm;
 
 		@Nullable
 		private Integer size;
@@ -1383,21 +1190,16 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private SlicedScroll slice;
 
 		@Nullable
-		private List<JsonValue /* _global.search._types.SortCombinations */> sort;
+		private List<SortOptions> sort;
 
 		@Nullable
-		private JsonValue /*
-							 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-							 */ source;
+		private List<String> stats;
 
 		@Nullable
-		private List<JsonValue /* Union(_types.DateField | _types.Field) */> fields;
+		private List<String> storedFields;
 
 		@Nullable
-		private JsonValue /*
-							 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer>
-							 * (singleKey = false) | _global.search._types.SuggestContainer)
-							 */ suggest;
+		private Suggester suggest;
 
 		@Nullable
 		private Long terminateAfter;
@@ -1409,54 +1211,59 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		private Boolean trackScores;
 
 		@Nullable
+		private TrackHits trackTotalHits;
+
+		@Nullable
 		private Boolean version;
 
-		@Nullable
-		private Boolean seqNoPrimaryTerm;
-
-		@Nullable
-		private List<String> storedFields;
-
-		@Nullable
-		private PointInTimeReference pit;
-
-		@Nullable
-		private Map<String, RuntimeField> runtimeMappings;
-
-		@Nullable
-		private List<String> stats;
-
 		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
+		 * Indicates which source fields are returned for matching documents. These
+		 * fields are returned in the hits._source property of the search response.
 		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code _source}
 		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder source(@Nullable SourceConfig value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
-		 * A comma-separated list of index names to search; use <code>_all</code> or
-		 * empty string to perform the operation on all indices
+		 * Indicates which source fields are returned for matching documents. These
+		 * fields are returned in the hits._source property of the search response.
 		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code _source}
 		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
+			return this.source(fn.apply(new SourceConfig.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(Map<String, Aggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
 		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
+		public final Builder aggregations(String key, Aggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
 			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
@@ -1466,7 +1273,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -1477,18 +1284,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code allow_partial_search_results}
 		 */
-		public Builder allowPartialSearchResults(@Nullable Boolean value) {
+		public final Builder allowPartialSearchResults(@Nullable Boolean value) {
 			this.allowPartialSearchResults = value;
-			return this;
-		}
-
-		/**
-		 * The analyzer to use for the query string
-		 * <p>
-		 * API name: {@code analyzer}
-		 */
-		public Builder analyzer(@Nullable String value) {
-			this.analyzer = value;
 			return this;
 		}
 
@@ -1498,8 +1295,18 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
-		public Builder analyzeWildcard(@Nullable Boolean value) {
+		public final Builder analyzeWildcard(@Nullable Boolean value) {
 			this.analyzeWildcard = value;
+			return this;
+		}
+
+		/**
+		 * The analyzer to use for the query string
+		 * <p>
+		 * API name: {@code analyzer}
+		 */
+		public final Builder analyzer(@Nullable String value) {
+			this.analyzer = value;
 			return this;
 		}
 
@@ -1511,7 +1318,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code batched_reduce_size}
 		 */
-		public Builder batchedReduceSize(@Nullable Long value) {
+		public final Builder batchedReduceSize(@Nullable Long value) {
 			this.batchedReduceSize = value;
 			return this;
 		}
@@ -1522,9 +1329,24 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
-		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
+		public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
 			this.ccsMinimizeRoundtrips = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code collapse}
+		 */
+		public final Builder collapse(@Nullable FieldCollapse value) {
+			this.collapse = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code collapse}
+		 */
+		public final Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
+			return this.collapse(fn.apply(new FieldCollapse.Builder()).build());
 		}
 
 		/**
@@ -1532,7 +1354,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable DefaultOperator value) {
+		public final Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -1543,19 +1365,59 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code df}
 		 */
-		public Builder df(@Nullable String value) {
+		public final Builder df(@Nullable String value) {
 			this.df = value;
 			return this;
 		}
 
 		/**
+		 * Array of wildcard (*) patterns. The request returns doc values for field
+		 * names matching these patterns in the hits.fields property of the response.
+		 * <p>
+		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docvalueFields</code>.
+		 */
+		public final Builder docvalueFields(List<FieldAndFormat> list) {
+			this.docvalueFields = _listAddAll(this.docvalueFields, list);
+			return this;
+		}
+
+		/**
+		 * Array of wildcard (*) patterns. The request returns doc values for field
+		 * names matching these patterns in the hits.fields property of the response.
+		 * <p>
+		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds one or more values to <code>docvalueFields</code>.
+		 */
+		public final Builder docvalueFields(FieldAndFormat value, FieldAndFormat... values) {
+			this.docvalueFields = _listAdd(this.docvalueFields, value, values);
+			return this;
+		}
+
+		/**
+		 * Array of wildcard (*) patterns. The request returns doc values for field
+		 * names matching these patterns in the hits.fields property of the response.
+		 * <p>
+		 * API name: {@code docvalue_fields}
+		 * <p>
+		 * Adds a value to <code>docvalueFields</code> using a builder lambda.
+		 */
+		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
+		}
+
+		/**
 		 * Whether to expand wildcard expression to concrete indices that are open,
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -1564,21 +1426,88 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
+		 * If true, returns detailed information about score computation as part of a
+		 * hit.
+		 * <p>
+		 * API name: {@code explain}
 		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
+		public final Builder explain(@Nullable Boolean value) {
+			this.explain = value;
 			return this;
+		}
+
+		/**
+		 * Array of wildcard (*) patterns. The request returns values for field names
+		 * matching these patterns in the hits.fields property of the response.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
+		 */
+		public final Builder fields(List<FieldAndFormat> list) {
+			this.fields = _listAddAll(this.fields, list);
+			return this;
+		}
+
+		/**
+		 * Array of wildcard (*) patterns. The request returns values for field names
+		 * matching these patterns in the hits.fields property of the response.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
+		 */
+		public final Builder fields(FieldAndFormat value, FieldAndFormat... values) {
+			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
+		/**
+		 * Array of wildcard (*) patterns. The request returns values for field names
+		 * matching these patterns in the hits.fields property of the response.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds a value to <code>fields</code> using a builder lambda.
+		 */
+		public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return fields(fn.apply(new FieldAndFormat.Builder()).build());
+		}
+
+		/**
+		 * Starting document offset. By default, you cannot page through more than
+		 * 10,000 hits using the from and size parameters. To page through more hits,
+		 * use the search_after parameter.
+		 * <p>
+		 * API name: {@code from}
+		 */
+		public final Builder from(@Nullable Integer value) {
+			this.from = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code highlight}
+		 */
+		public final Builder highlight(@Nullable Highlight value) {
+			this.highlight = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code highlight}
+		 */
+		public final Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
+			return this.highlight(fn.apply(new Highlight.Builder()).build());
 		}
 
 		/**
@@ -1587,7 +1516,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
-		public Builder ignoreThrottled(@Nullable Boolean value) {
+		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;
 		}
@@ -1598,8 +1527,58 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to search; use <code>_all</code> or
+		 * empty string to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * Boosts the _score of documents from specified indices.
+		 * <p>
+		 * API name: {@code indices_boost}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indicesBoost</code>.
+		 */
+		public final Builder indicesBoost(List<Map<String, Double>> list) {
+			this.indicesBoost = _listAddAll(this.indicesBoost, list);
+			return this;
+		}
+
+		/**
+		 * Boosts the _score of documents from specified indices.
+		 * <p>
+		 * API name: {@code indices_boost}
+		 * <p>
+		 * Adds one or more values to <code>indicesBoost</code>.
+		 */
+		public final Builder indicesBoost(Map<String, Double> value, Map<String, Double>... values) {
+			this.indicesBoost = _listAdd(this.indicesBoost, value, values);
 			return this;
 		}
 
@@ -1609,7 +1588,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(@Nullable Boolean value) {
+		public final Builder lenient(@Nullable Boolean value) {
 			this.lenient = value;
 			return this;
 		}
@@ -1621,7 +1600,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code max_concurrent_shard_requests}
 		 */
-		public Builder maxConcurrentShardRequests(@Nullable Long value) {
+		public final Builder maxConcurrentShardRequests(@Nullable Long value) {
 			this.maxConcurrentShardRequests = value;
 			return this;
 		}
@@ -1632,20 +1611,56 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code min_compatible_shard_node}
 		 */
-		public Builder minCompatibleShardNode(@Nullable String value) {
+		public final Builder minCompatibleShardNode(@Nullable String value) {
 			this.minCompatibleShardNode = value;
 			return this;
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Minimum _score for matching documents. Documents with a lower _score are not
+		 * included in the search results.
 		 * <p>
-		 * API name: {@code preference}
+		 * API name: {@code min_score}
 		 */
-		public Builder preference(@Nullable String value) {
-			this.preference = value;
+		public final Builder minScore(@Nullable Double value) {
+			this.minScore = value;
 			return this;
+		}
+
+		/**
+		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
+		 * specify an &lt;index&gt; in the request path.
+		 * <p>
+		 * API name: {@code pit}
+		 */
+		public final Builder pit(@Nullable PointInTimeReference value) {
+			this.pit = value;
+			return this;
+		}
+
+		/**
+		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
+		 * specify an &lt;index&gt; in the request path.
+		 * <p>
+		 * API name: {@code pit}
+		 */
+		public final Builder pit(Function<PointInTimeReference.Builder, ObjectBuilder<PointInTimeReference>> fn) {
+			return this.pit(fn.apply(new PointInTimeReference.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code post_filter}
+		 */
+		public final Builder postFilter(@Nullable Query value) {
+			this.postFilter = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code post_filter}
+		 */
+		public final Builder postFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.postFilter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -1658,163 +1673,27 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code pre_filter_shard_size}
 		 */
-		public Builder preFilterShardSize(@Nullable Long value) {
+		public final Builder preFilterShardSize(@Nullable Long value) {
 			this.preFilterShardSize = value;
 			return this;
 		}
 
 		/**
-		 * Specify if request cache should be used for this request or not, defaults to
-		 * index level setting
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
 		 * <p>
-		 * API name: {@code request_cache}
+		 * API name: {@code preference}
 		 */
-		public Builder requestCache(@Nullable Boolean value) {
-			this.requestCache = value;
+		public final Builder preference(@Nullable String value) {
+			this.preference = value;
 			return this;
 		}
 
 		/**
-		 * A comma-separated list of specific routing values
-		 * <p>
-		 * API name: {@code routing}
+		 * API name: {@code profile}
 		 */
-		public Builder routing(@Nullable String value) {
-			this.routing = value;
-			return this;
-		}
-
-		/**
-		 * Specify how long a consistent view of the index should be maintained for
-		 * scrolled search
-		 * <p>
-		 * API name: {@code scroll}
-		 */
-		public Builder scroll(@Nullable String value) {
-			this.scroll = value;
-			return this;
-		}
-
-		/**
-		 * Search operation type
-		 * <p>
-		 * API name: {@code search_type}
-		 */
-		public Builder searchType(@Nullable SearchType value) {
-			this.searchType = value;
-			return this;
-		}
-
-		/**
-		 * Specifies which field to use for suggestions.
-		 * <p>
-		 * API name: {@code suggest_field}
-		 */
-		public Builder suggestField(@Nullable String value) {
-			this.suggestField = value;
-			return this;
-		}
-
-		/**
-		 * Specify suggest mode
-		 * <p>
-		 * API name: {@code suggest_mode}
-		 */
-		public Builder suggestMode(@Nullable SuggestMode value) {
-			this.suggestMode = value;
-			return this;
-		}
-
-		/**
-		 * How many suggestions to return in response
-		 * <p>
-		 * API name: {@code suggest_size}
-		 */
-		public Builder suggestSize(@Nullable Long value) {
-			this.suggestSize = value;
-			return this;
-		}
-
-		/**
-		 * The source text for which the suggestions should be returned.
-		 * <p>
-		 * API name: {@code suggest_text}
-		 */
-		public Builder suggestText(@Nullable String value) {
-			this.suggestText = value;
-			return this;
-		}
-
-		/**
-		 * Specify whether aggregation and suggester names should be prefixed by their
-		 * respective types in the response
-		 * <p>
-		 * API name: {@code typed_keys}
-		 */
-		public Builder typedKeys(@Nullable Boolean value) {
-			this.typedKeys = value;
-			return this;
-		}
-
-		/**
-		 * A list of fields to exclude from the returned _source field
-		 * <p>
-		 * API name: {@code _source_excludes}
-		 */
-		public Builder sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
-			return this;
-		}
-
-		/**
-		 * A list of fields to exclude from the returned _source field
-		 * <p>
-		 * API name: {@code _source_excludes}
-		 */
-		public Builder sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceExcludes(String value) {
-			if (this.sourceExcludes == null) {
-				this.sourceExcludes = new ArrayList<>();
-			}
-			this.sourceExcludes.add(value);
-			return this;
-		}
-
-		/**
-		 * A list of fields to extract and return from the _source field
-		 * <p>
-		 * API name: {@code _source_includes}
-		 */
-		public Builder sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
-			return this;
-		}
-
-		/**
-		 * A list of fields to extract and return from the _source field
-		 * <p>
-		 * API name: {@code _source_includes}
-		 */
-		public Builder sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceIncludes(String value) {
-			if (this.sourceIncludes == null) {
-				this.sourceIncludes = new ArrayList<>();
-			}
-			this.sourceIncludes.add(value);
+		public final Builder profile(@Nullable Boolean value) {
+			this.profile = value;
 			return this;
 		}
 
@@ -1823,219 +1702,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code q}
 		 */
-		public Builder q(@Nullable String value) {
+		public final Builder q(@Nullable String value) {
 			this.q = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code aggs}
-		 */
-		public Builder aggs(@Nullable Map<String, Aggregation> value) {
-			this.aggs = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
-		 */
-		public Builder putAggs(String key, Aggregation value) {
-			if (this.aggs == null) {
-				this.aggs = new HashMap<>();
-			}
-			this.aggs.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #aggs(Map)} to a singleton map.
-		 */
-		public Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
-		 */
-		public Builder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code aggregations}
-		 */
-		public Builder aggregations(@Nullable Map<String, Aggregation> value) {
-			this.aggregations = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
-		 */
-		public Builder putAggregations(String key, Aggregation value) {
-			if (this.aggregations == null) {
-				this.aggregations = new HashMap<>();
-			}
-			this.aggregations.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #aggregations(Map)} to a singleton map.
-		 */
-		public Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggregations(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
-		 */
-		public Builder putAggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.putAggregations(key, fn.apply(new Aggregation.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code collapse}
-		 */
-		public Builder collapse(@Nullable FieldCollapse value) {
-			this.collapse = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code collapse}
-		 */
-		public Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
-			return this.collapse(fn.apply(new FieldCollapse.Builder()).build());
-		}
-
-		/**
-		 * If true, returns detailed information about score computation as part of a
-		 * hit.
-		 * <p>
-		 * API name: {@code explain}
-		 */
-		public Builder explain(@Nullable Boolean value) {
-			this.explain = value;
-			return this;
-		}
-
-		/**
-		 * Starting document offset. By default, you cannot page through more than
-		 * 10,000 hits using the from and size parameters. To page through more hits,
-		 * use the search_after parameter.
-		 * <p>
-		 * API name: {@code from}
-		 */
-		public Builder from(@Nullable Integer value) {
-			this.from = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code highlight}
-		 */
-		public Builder highlight(@Nullable Highlight value) {
-			this.highlight = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code highlight}
-		 */
-		public Builder highlight(Function<Highlight.Builder, ObjectBuilder<Highlight>> fn) {
-			return this.highlight(fn.apply(new Highlight.Builder()).build());
-		}
-
-		/**
-		 * Number of hits matching the query to count accurately. If true, the exact
-		 * number of hits is returned at the cost of some performance. If false, the
-		 * response does not include the total number of hits matching the query.
-		 * Defaults to 10,000 hits.
-		 * <p>
-		 * API name: {@code track_total_hits}
-		 */
-		public Builder trackTotalHits(@Nullable JsonValue /* Union(_types.integer | internal.boolean) */ value) {
-			this.trackTotalHits = value;
-			return this;
-		}
-
-		/**
-		 * Boosts the _score of documents from specified indices.
-		 * <p>
-		 * API name: {@code indices_boost}
-		 */
-		public Builder indicesBoost(@Nullable List<Map<String, Double>> value) {
-			this.indicesBoost = value;
-			return this;
-		}
-
-		/**
-		 * Boosts the _score of documents from specified indices.
-		 * <p>
-		 * API name: {@code indices_boost}
-		 */
-		public Builder indicesBoost(Map<String, Double>... value) {
-			this.indicesBoost = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indicesBoost(List)}, creating the list if needed.
-		 */
-		public Builder addIndicesBoost(Map<String, Double> value) {
-			if (this.indicesBoost == null) {
-				this.indicesBoost = new ArrayList<>();
-			}
-			this.indicesBoost.add(value);
-			return this;
-		}
-
-		/**
-		 * Array of wildcard (*) patterns. The request returns doc values for field
-		 * names matching these patterns in the hits.fields property of the response.
-		 * <p>
-		 * API name: {@code docvalue_fields}
-		 */
-		public Builder docvalueFields(@Nullable JsonValue /*
-															 * Union(Array<Union(_global.search._types.DocValueField |
-															 * _types.Field)> | _global.search._types.DocValueField)
-															 */ value) {
-			this.docvalueFields = value;
-			return this;
-		}
-
-		/**
-		 * Minimum _score for matching documents. Documents with a lower _score are not
-		 * included in the search results.
-		 * <p>
-		 * API name: {@code min_score}
-		 */
-		public Builder minScore(@Nullable Double value) {
-			this.minScore = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code post_filter}
-		 */
-		public Builder postFilter(@Nullable Query value) {
-			this.postFilter = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code post_filter}
-		 */
-		public Builder postFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.postFilter(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code profile}
-		 */
-		public Builder profile(@Nullable Boolean value) {
-			this.profile = value;
 			return this;
 		}
 
@@ -2044,7 +1712,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -2054,110 +1722,193 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
-		 * API name: {@code rescore}
+		 * Specify if request cache should be used for this request or not, defaults to
+		 * index level setting
+		 * <p>
+		 * API name: {@code request_cache}
 		 */
-		public Builder rescore(@Nullable List<Rescore> value) {
-			this.rescore = value;
+		public final Builder requestCache(@Nullable Boolean value) {
+			this.requestCache = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code rescore}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rescore</code>.
 		 */
-		public Builder rescore(Rescore... value) {
-			this.rescore = Arrays.asList(value);
+		public final Builder rescore(List<Rescore> list) {
+			this.rescore = _listAddAll(this.rescore, list);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #rescore(List)}, creating the list if needed.
+		 * API name: {@code rescore}
+		 * <p>
+		 * Adds one or more values to <code>rescore</code>.
 		 */
-		public Builder addRescore(Rescore value) {
-			if (this.rescore == null) {
-				this.rescore = new ArrayList<>();
-			}
-			this.rescore.add(value);
+		public final Builder rescore(Rescore value, Rescore... values) {
+			this.rescore = _listAdd(this.rescore, value, values);
 			return this;
 		}
 
 		/**
-		 * Set {@link #rescore(List)} to a singleton list.
+		 * API name: {@code rescore}
+		 * <p>
+		 * Adds a value to <code>rescore</code> using a builder lambda.
 		 */
-		public Builder rescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
-			return this.rescore(fn.apply(new Rescore.Builder()).build());
+		public final Builder rescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
+			return rescore(fn.apply(new Rescore.Builder()).build());
 		}
 
 		/**
-		 * Add a value to {@link #rescore(List)}, creating the list if needed.
+		 * A comma-separated list of specific routing values
+		 * <p>
+		 * API name: {@code routing}
 		 */
-		public Builder addRescore(Function<Rescore.Builder, ObjectBuilder<Rescore>> fn) {
-			return this.addRescore(fn.apply(new Rescore.Builder()).build());
+		public final Builder routing(@Nullable String value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
+		 * Defines one or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
+			return this;
+		}
+
+		/**
+		 * Defines one or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * Defines one or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
 		 * Retrieve a script evaluation (based on different fields) for each hit.
 		 * <p>
 		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>scriptFields</code>.
 		 */
-		public Builder scriptFields(@Nullable Map<String, ScriptField> value) {
-			this.scriptFields = value;
+		public final Builder scriptFields(Map<String, ScriptField> map) {
+			this.scriptFields = _mapPutAll(this.scriptFields, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #scriptFields(Map)}, creating the map if needed.
+		 * Retrieve a script evaluation (based on different fields) for each hit.
+		 * <p>
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code>.
 		 */
-		public Builder putScriptFields(String key, ScriptField value) {
-			if (this.scriptFields == null) {
-				this.scriptFields = new HashMap<>();
-			}
-			this.scriptFields.put(key, value);
+		public final Builder scriptFields(String key, ScriptField value) {
+			this.scriptFields = _mapPut(this.scriptFields, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #scriptFields(Map)} to a singleton map.
+		 * Retrieve a script evaluation (based on different fields) for each hit.
+		 * <p>
+		 * API name: {@code script_fields}
+		 * <p>
+		 * Adds an entry to <code>scriptFields</code> using a builder lambda.
 		 */
-		public Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
-			return this.scriptFields(Collections.singletonMap(key, fn.apply(new ScriptField.Builder()).build()));
+		public final Builder scriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
+			return scriptFields(key, fn.apply(new ScriptField.Builder()).build());
 		}
 
 		/**
-		 * Add a key/value to {@link #scriptFields(Map)}, creating the map if needed.
+		 * Specify how long a consistent view of the index should be maintained for
+		 * scrolled search
+		 * <p>
+		 * API name: {@code scroll}
 		 */
-		public Builder putScriptFields(String key, Function<ScriptField.Builder, ObjectBuilder<ScriptField>> fn) {
-			return this.putScriptFields(key, fn.apply(new ScriptField.Builder()).build());
+		public final Builder scroll(@Nullable Time value) {
+			this.scroll = value;
+			return this;
+		}
+
+		/**
+		 * Specify how long a consistent view of the index should be maintained for
+		 * scrolled search
+		 * <p>
+		 * API name: {@code scroll}
+		 */
+		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code search_after}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>searchAfter</code>.
 		 */
-		public Builder searchAfter(@Nullable List<String> value) {
-			this.searchAfter = value;
+		public final Builder searchAfter(List<String> list) {
+			this.searchAfter = _listAddAll(this.searchAfter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code search_after}
+		 * <p>
+		 * Adds one or more values to <code>searchAfter</code>.
 		 */
-		public Builder searchAfter(String... value) {
-			this.searchAfter = Arrays.asList(value);
+		public final Builder searchAfter(String value, String... values) {
+			this.searchAfter = _listAdd(this.searchAfter, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #searchAfter(List)}, creating the list if needed.
+		 * Search operation type
+		 * <p>
+		 * API name: {@code search_type}
 		 */
-		public Builder addSearchAfter(String value) {
-			if (this.searchAfter == null) {
-				this.searchAfter = new ArrayList<>();
-			}
-			this.searchAfter.add(value);
+		public final Builder searchType(@Nullable SearchType value) {
+			this.searchType = value;
+			return this;
+		}
+
+		/**
+		 * If true, returns sequence number and primary term of the last modification of
+		 * each hit. See Optimistic concurrency control.
+		 * <p>
+		 * API name: {@code seq_no_primary_term}
+		 */
+		public final Builder seqNoPrimaryTerm(@Nullable Boolean value) {
+			this.seqNoPrimaryTerm = value;
 			return this;
 		}
 
@@ -2168,7 +1919,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -2176,7 +1927,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code slice}
 		 */
-		public Builder slice(@Nullable SlicedScroll value) {
+		public final Builder slice(@Nullable SlicedScroll value) {
 			this.slice = value;
 			return this;
 		}
@@ -2184,94 +1935,110 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code slice}
 		 */
-		public Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
+		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
 			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public Builder sort(@Nullable List<JsonValue /* _global.search._types.SortCombinations */> value) {
-			this.sort = value;
+		public final Builder sort(List<SortOptions> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
-		 */
-		public Builder sort(JsonValue /* _global.search._types.SortCombinations */... value) {
-			this.sort = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
-		 */
-		public Builder addSort(JsonValue /* _global.search._types.SortCombinations */ value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
-			return this;
-		}
-
-		/**
-		 * Indicates which source fields are returned for matching documents. These
-		 * fields are returned in the hits._source property of the search response.
 		 * <p>
-		 * API name: {@code _source}
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public Builder source(
-				@Nullable JsonValue /*
-									 * Union(_global.search._types.SourceFilter | _types.Fields | internal.boolean)
-									 */ value) {
-			this.source = value;
+		public final Builder sort(SortOptions value, SortOptions... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
 		/**
-		 * Array of wildcard (*) patterns. The request returns values for field names
-		 * matching these patterns in the hits.fields property of the response.
+		 * API name: {@code sort}
 		 * <p>
-		 * API name: {@code fields}
+		 * Adds a value to <code>sort</code> using a builder lambda.
 		 */
-		public Builder fields(@Nullable List<JsonValue /* Union(_types.DateField | _types.Field) */> value) {
-			this.fields = value;
-			return this;
+		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
+			return sort(fn.apply(new SortOptions.Builder()).build());
 		}
 
 		/**
-		 * Array of wildcard (*) patterns. The request returns values for field names
-		 * matching these patterns in the hits.fields property of the response.
+		 * Stats groups to associate with the search. Each group maintains a statistics
+		 * aggregation for its associated searches. You can retrieve these stats using
+		 * the indices stats API.
 		 * <p>
-		 * API name: {@code fields}
+		 * API name: {@code stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stats</code>.
 		 */
-		public Builder fields(JsonValue /* Union(_types.DateField | _types.Field) */... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder stats(List<String> list) {
+			this.stats = _listAddAll(this.stats, list);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * Stats groups to associate with the search. Each group maintains a statistics
+		 * aggregation for its associated searches. You can retrieve these stats using
+		 * the indices stats API.
+		 * <p>
+		 * API name: {@code stats}
+		 * <p>
+		 * Adds one or more values to <code>stats</code>.
 		 */
-		public Builder addFields(JsonValue /* Union(_types.DateField | _types.Field) */ value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
+		public final Builder stats(String value, String... values) {
+			this.stats = _listAdd(this.stats, value, values);
+			return this;
+		}
+
+		/**
+		 * List of stored fields to return as part of a hit. If no fields are specified,
+		 * no stored fields are included in the response. If this field is specified,
+		 * the _source parameter defaults to false. You can pass _source: true to return
+		 * both source fields and stored fields in the search response.
+		 * <p>
+		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
+		 */
+		public final Builder storedFields(List<String> list) {
+			this.storedFields = _listAddAll(this.storedFields, list);
+			return this;
+		}
+
+		/**
+		 * List of stored fields to return as part of a hit. If no fields are specified,
+		 * no stored fields are included in the response. If this field is specified,
+		 * the _source parameter defaults to false. You can pass _source: true to return
+		 * both source fields and stored fields in the search response.
+		 * <p>
+		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds one or more values to <code>storedFields</code>.
+		 */
+		public final Builder storedFields(String value, String... values) {
+			this.storedFields = _listAdd(this.storedFields, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code suggest}
 		 */
-		public Builder suggest(
-				@Nullable JsonValue /*
-									 * Union(Dictionary<internal.string, _global.search._types.SuggestContainer>
-									 * (singleKey = false) | _global.search._types.SuggestContainer)
-									 */ value) {
+		public final Builder suggest(@Nullable Suggester value) {
 			this.suggest = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code suggest}
+		 */
+		public final Builder suggest(Function<Suggester.Builder, ObjectBuilder<Suggester>> fn) {
+			return this.suggest(fn.apply(new Suggester.Builder()).build());
 		}
 
 		/**
@@ -2282,7 +2049,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code terminate_after}
 		 */
-		public Builder terminateAfter(@Nullable Long value) {
+		public final Builder terminateAfter(@Nullable Long value) {
 			this.terminateAfter = value;
 			return this;
 		}
@@ -2294,7 +2061,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable String value) {
 			this.timeout = value;
 			return this;
 		}
@@ -2305,9 +2072,34 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code track_scores}
 		 */
-		public Builder trackScores(@Nullable Boolean value) {
+		public final Builder trackScores(@Nullable Boolean value) {
 			this.trackScores = value;
 			return this;
+		}
+
+		/**
+		 * Number of hits matching the query to count accurately. If true, the exact
+		 * number of hits is returned at the cost of some performance. If false, the
+		 * response does not include the total number of hits matching the query.
+		 * Defaults to 10,000 hits.
+		 * <p>
+		 * API name: {@code track_total_hits}
+		 */
+		public final Builder trackTotalHits(@Nullable TrackHits value) {
+			this.trackTotalHits = value;
+			return this;
+		}
+
+		/**
+		 * Number of hits matching the query to count accurately. If true, the exact
+		 * number of hits is returned at the cost of some performance. If false, the
+		 * response does not include the total number of hits matching the query.
+		 * Defaults to 10,000 hits.
+		 * <p>
+		 * API name: {@code track_total_hits}
+		 */
+		public final Builder trackTotalHits(Function<TrackHits.Builder, ObjectBuilder<TrackHits>> fn) {
+			return this.trackTotalHits(fn.apply(new TrackHits.Builder()).build());
 		}
 
 		/**
@@ -2315,148 +2107,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Boolean value) {
+		public final Builder version(@Nullable Boolean value) {
 			this.version = value;
-			return this;
-		}
-
-		/**
-		 * If true, returns sequence number and primary term of the last modification of
-		 * each hit. See Optimistic concurrency control.
-		 * <p>
-		 * API name: {@code seq_no_primary_term}
-		 */
-		public Builder seqNoPrimaryTerm(@Nullable Boolean value) {
-			this.seqNoPrimaryTerm = value;
-			return this;
-		}
-
-		/**
-		 * List of stored fields to return as part of a hit. If no fields are specified,
-		 * no stored fields are included in the response. If this field is specified,
-		 * the _source parameter defaults to false. You can pass _source: true to return
-		 * both source fields and stored fields in the search response.
-		 * <p>
-		 * API name: {@code stored_fields}
-		 */
-		public Builder storedFields(@Nullable List<String> value) {
-			this.storedFields = value;
-			return this;
-		}
-
-		/**
-		 * List of stored fields to return as part of a hit. If no fields are specified,
-		 * no stored fields are included in the response. If this field is specified,
-		 * the _source parameter defaults to false. You can pass _source: true to return
-		 * both source fields and stored fields in the search response.
-		 * <p>
-		 * API name: {@code stored_fields}
-		 */
-		public Builder storedFields(String... value) {
-			this.storedFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
-		 */
-		public Builder addStoredFields(String value) {
-			if (this.storedFields == null) {
-				this.storedFields = new ArrayList<>();
-			}
-			this.storedFields.add(value);
-			return this;
-		}
-
-		/**
-		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
-		 * specify an &lt;index&gt; in the request path.
-		 * <p>
-		 * API name: {@code pit}
-		 */
-		public Builder pit(@Nullable PointInTimeReference value) {
-			this.pit = value;
-			return this;
-		}
-
-		/**
-		 * Limits the search to a point in time (PIT). If you provide a PIT, you cannot
-		 * specify an &lt;index&gt; in the request path.
-		 * <p>
-		 * API name: {@code pit}
-		 */
-		public Builder pit(Function<PointInTimeReference.Builder, ObjectBuilder<PointInTimeReference>> fn) {
-			return this.pit(fn.apply(new PointInTimeReference.Builder()).build());
-		}
-
-		/**
-		 * Defines one or more runtime fields in the search request. These fields take
-		 * precedence over mapped fields with the same name.
-		 * <p>
-		 * API name: {@code runtime_mappings}
-		 */
-		public Builder runtimeMappings(@Nullable Map<String, RuntimeField> value) {
-			this.runtimeMappings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntimeMappings(String key, RuntimeField value) {
-			if (this.runtimeMappings == null) {
-				this.runtimeMappings = new HashMap<>();
-			}
-			this.runtimeMappings.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #runtimeMappings(Map)} to a singleton map.
-		 */
-		public Builder runtimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.runtimeMappings(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #runtimeMappings(Map)}, creating the map if needed.
-		 */
-		public Builder putRuntimeMappings(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.putRuntimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
-		}
-
-		/**
-		 * Stats groups to associate with the search. Each group maintains a statistics
-		 * aggregation for its associated searches. You can retrieve these stats using
-		 * the indices stats API.
-		 * <p>
-		 * API name: {@code stats}
-		 */
-		public Builder stats(@Nullable List<String> value) {
-			this.stats = value;
-			return this;
-		}
-
-		/**
-		 * Stats groups to associate with the search. Each group maintains a statistics
-		 * aggregation for its associated searches. You can retrieve these stats using
-		 * the indices stats API.
-		 * <p>
-		 * API name: {@code stats}
-		 */
-		public Builder stats(String... value) {
-			this.stats = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed.
-		 */
-		public Builder addStats(String value) {
-			if (this.stats == null) {
-				this.stats = new ArrayList<>();
-			}
-			this.stats.add(value);
 			return this;
 		}
 
@@ -2467,6 +2119,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public SearchRequest build() {
+			_checkSingleUse();
 
 			return new SearchRequest(this);
 		}
@@ -2478,50 +2131,49 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link SearchRequest}
 	 */
 	public static final JsonpDeserializer<SearchRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SearchRequest::setupSearchRequestDeserializer, Builder::build);
+			SearchRequest::setupSearchRequestDeserializer);
 
-	protected static void setupSearchRequestDeserializer(DelegatingDeserializer<SearchRequest.Builder> op) {
+	protected static void setupSearchRequestDeserializer(ObjectDeserializer<SearchRequest.Builder> op) {
 
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
-				"aggregations");
+				"aggregations", "aggs");
 		op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
+		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),
+				"docvalue_fields");
 		op.add(Builder::explain, JsonpDeserializer.booleanDeserializer(), "explain");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
-		op.add(Builder::trackTotalHits, JsonpDeserializer.jsonValueDeserializer(), "track_total_hits");
 		op.add(Builder::indicesBoost,
 				JsonpDeserializer.arrayDeserializer(
 						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
 				"indices_boost");
-		op.add(Builder::docvalueFields, JsonpDeserializer.jsonValueDeserializer(), "docvalue_fields");
 		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
+		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
+				"runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
 		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"search_after");
+		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 		op.add(Builder::slice, SlicedScroll._DESERIALIZER, "slice");
-		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()), "sort");
-		op.add(Builder::source, JsonpDeserializer.jsonValueDeserializer(), "_source");
-		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"fields");
-		op.add(Builder::suggest, JsonpDeserializer.jsonValueDeserializer(), "suggest");
+		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
+		op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stats");
+		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"stored_fields");
+		op.add(Builder::suggest, Suggester._DESERIALIZER, "suggest");
 		op.add(Builder::terminateAfter, JsonpDeserializer.longDeserializer(), "terminate_after");
 		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
 		op.add(Builder::trackScores, JsonpDeserializer.booleanDeserializer(), "track_scores");
+		op.add(Builder::trackTotalHits, TrackHits._DESERIALIZER, "track_total_hits");
 		op.add(Builder::version, JsonpDeserializer.booleanDeserializer(), "version");
-		op.add(Builder::seqNoPrimaryTerm, JsonpDeserializer.booleanDeserializer(), "seq_no_primary_term");
-		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"stored_fields");
-		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
-				"runtime_mappings");
-		op.add(Builder::stats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "stats");
 
 	}
 
@@ -2530,7 +2182,8 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code search}".
 	 */
-	private static final SimpleEndpoint<SearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<SearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/search",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -2543,7 +2196,7 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -2565,103 +2218,81 @@ public final class SearchRequest extends RequestBase implements JsonpSerializabl
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.allowPartialSearchResults != null) {
-					params.put("allow_partial_search_results", String.valueOf(request.allowPartialSearchResults));
-				}
-				if (request.analyzer != null) {
-					params.put("analyzer", request.analyzer);
-				}
-				if (request.analyzeWildcard != null) {
-					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
-				}
-				if (request.batchedReduceSize != null) {
-					params.put("batched_reduce_size", String.valueOf(request.batchedReduceSize));
-				}
-				if (request.ccsMinimizeRoundtrips != null) {
-					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
-				}
-				if (request.defaultOperator != null) {
-					params.put("default_operator", request.defaultOperator.toString());
-				}
+				params.put("typed_keys", "true");
 				if (request.df != null) {
 					params.put("df", request.df);
-				}
-				if (request.expandWildcards != null) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
-				}
-				if (request.ignoreThrottled != null) {
-					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
-				}
-				if (request.ignoreUnavailable != null) {
-					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-				}
-				if (request.lenient != null) {
-					params.put("lenient", String.valueOf(request.lenient));
-				}
-				if (request.maxConcurrentShardRequests != null) {
-					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
-				}
-				if (request.minCompatibleShardNode != null) {
-					params.put("min_compatible_shard_node", request.minCompatibleShardNode);
-				}
-				if (request.preference != null) {
-					params.put("preference", request.preference);
 				}
 				if (request.preFilterShardSize != null) {
 					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
 				}
-				if (request.requestCache != null) {
-					params.put("request_cache", String.valueOf(request.requestCache));
+				if (request.minCompatibleShardNode != null) {
+					params.put("min_compatible_shard_node", request.minCompatibleShardNode);
+				}
+				if (request.lenient != null) {
+					params.put("lenient", String.valueOf(request.lenient));
 				}
 				if (request.routing != null) {
 					params.put("routing", request.routing);
 				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.analyzer != null) {
+					params.put("analyzer", request.analyzer);
+				}
+				if (request.ignoreThrottled != null) {
+					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
+				}
+				if (request.maxConcurrentShardRequests != null) {
+					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
+				}
+				if (request.allowPartialSearchResults != null) {
+					params.put("allow_partial_search_results", String.valueOf(request.allowPartialSearchResults));
+				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.preference != null) {
+					params.put("preference", request.preference);
+				}
+				if (request.analyzeWildcard != null) {
+					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
+				}
 				if (request.scroll != null) {
-					params.put("scroll", request.scroll);
+					params.put("scroll", request.scroll._toJsonString());
 				}
 				if (request.searchType != null) {
-					params.put("search_type", request.searchType.toString());
+					params.put("search_type", request.searchType.jsonValue());
 				}
-				if (request.suggestField != null) {
-					params.put("suggest_field", request.suggestField);
-				}
-				if (request.suggestMode != null) {
-					params.put("suggest_mode", request.suggestMode.toString());
-				}
-				if (request.suggestSize != null) {
-					params.put("suggest_size", String.valueOf(request.suggestSize));
-				}
-				if (request.suggestText != null) {
-					params.put("suggest_text", request.suggestText);
-				}
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
-				}
-				if (request.sourceExcludes != null) {
-					params.put("_source_excludes",
-							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.sourceIncludes != null) {
-					params.put("_source_includes",
-							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.ccsMinimizeRoundtrips != null) {
+					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				if (request.q != null) {
 					params.put("q", request.q);
 				}
+				if (request.defaultOperator != null) {
+					params.put("default_operator", request.defaultOperator.jsonValue());
+				}
+				if (request.requestCache != null) {
+					params.put("request_cache", String.valueOf(request.requestCache));
+				}
+				if (request.batchedReduceSize != null) {
+					params.put("batched_reduce_size", String.valueOf(request.batchedReduceSize));
+				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, SearchResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code search}" endpoint.
 	 */
-	public static <TDocument> Endpoint<SearchRequest, SearchResponse<TDocument>, ElasticsearchError> createSearchEndpoint(
+	public static <TDocument> Endpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> createSearchEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT
+		return _ENDPOINT
 				.withResponseDeserializer(SearchResponse.createSearchResponseDeserializer(tDocumentDeserializer));
 	}
 }

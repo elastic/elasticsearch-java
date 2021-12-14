@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_filter.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_filter/MlPutFilterResponse.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutFilterResponse implements JsonpSerializable {
+public class PutFilterResponse implements JsonpSerializable {
 	private final String description;
 
 	private final String filterId;
@@ -52,36 +57,36 @@ public final class PutFilterResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutFilterResponse(Builder builder) {
+	private PutFilterResponse(Builder builder) {
 
-		this.description = Objects.requireNonNull(builder.description, "description");
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
-		this.items = ModelTypeHelper.unmodifiableNonNull(builder.items, "items");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.items = ApiTypeHelper.unmodifiableRequired(builder.items, this, "items");
 
 	}
 
-	public PutFilterResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutFilterResponse of(Function<Builder, ObjectBuilder<PutFilterResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code filter_id}
 	 */
-	public String filterId() {
+	public final String filterId() {
 		return this.filterId;
 	}
 
 	/**
 	 * Required - API name: {@code items}
 	 */
-	public List<String> items() {
+	public final List<String> items() {
 		return this.items;
 	}
 
@@ -102,13 +107,16 @@ public final class PutFilterResponse implements JsonpSerializable {
 		generator.writeKey("filter_id");
 		generator.write(this.filterId);
 
-		generator.writeKey("items");
-		generator.writeStartArray();
-		for (String item0 : this.items) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.items)) {
+			generator.writeKey("items");
+			generator.writeStartArray();
+			for (String item0 : this.items) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -117,7 +125,8 @@ public final class PutFilterResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutFilterResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutFilterResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutFilterResponse> {
 		private String description;
 
 		private String filterId;
@@ -127,7 +136,7 @@ public final class PutFilterResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -135,35 +144,28 @@ public final class PutFilterResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code filter_id}
 		 */
-		public Builder filterId(String value) {
+		public final Builder filterId(String value) {
 			this.filterId = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code items}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>items</code>.
 		 */
-		public Builder items(List<String> value) {
-			this.items = value;
+		public final Builder items(List<String> list) {
+			this.items = _listAddAll(this.items, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code items}
+		 * <p>
+		 * Adds one or more values to <code>items</code>.
 		 */
-		public Builder items(String... value) {
-			this.items = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed.
-		 */
-		public Builder addItems(String value) {
-			if (this.items == null) {
-				this.items = new ArrayList<>();
-			}
-			this.items.add(value);
+		public final Builder items(String value, String... values) {
+			this.items = _listAdd(this.items, value, values);
 			return this;
 		}
 
@@ -174,6 +176,7 @@ public final class PutFilterResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutFilterResponse build() {
+			_checkSingleUse();
 
 			return new PutFilterResponse(this);
 		}
@@ -185,9 +188,9 @@ public final class PutFilterResponse implements JsonpSerializable {
 	 * Json deserializer for {@link PutFilterResponse}
 	 */
 	public static final JsonpDeserializer<PutFilterResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutFilterResponse::setupPutFilterResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutFilterResponse::setupPutFilterResponseDeserializer);
 
-	protected static void setupPutFilterResponseDeserializer(DelegatingDeserializer<PutFilterResponse.Builder> op) {
+	protected static void setupPutFilterResponseDeserializer(ObjectDeserializer<PutFilterResponse.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::filterId, JsonpDeserializer.stringDeserializer(), "filter_id");

@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link DataframeAnalysisFeatureProcessor} variants.
  */
-public interface DataframeAnalysisFeatureProcessorVariant extends UnionVariant {
+public interface DataframeAnalysisFeatureProcessorVariant {
+
+	DataframeAnalysisFeatureProcessor.Kind _dataframeAnalysisFeatureProcessorKind();
 
 	default DataframeAnalysisFeatureProcessor _toDataframeAnalysisFeatureProcessor() {
 		return new DataframeAnalysisFeatureProcessor(this);

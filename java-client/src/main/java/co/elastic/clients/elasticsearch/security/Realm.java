@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,34 +39,41 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.Realm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/RoleMappingRule.ts#L44-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Realm implements FieldRuleVariant, JsonpSerializable {
+public class Realm implements FieldRuleVariant, JsonpSerializable {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Realm(Builder builder) {
+	private Realm(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public Realm(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Realm of(Function<Builder, ObjectBuilder<Realm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link FieldRule} variant type
+	 * FieldRule variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "realm";
+	public FieldRule.Kind _fieldRuleKind() {
+		return FieldRule.Kind.Realm;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -90,13 +98,14 @@ public final class Realm implements FieldRuleVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link Realm}.
 	 */
-	public static class Builder implements ObjectBuilder<Realm> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Realm> {
 		private String name;
 
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -108,6 +117,7 @@ public final class Realm implements FieldRuleVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Realm build() {
+			_checkSingleUse();
 
 			return new Realm(this);
 		}
@@ -119,9 +129,9 @@ public final class Realm implements FieldRuleVariant, JsonpSerializable {
 	 * Json deserializer for {@link Realm}
 	 */
 	public static final JsonpDeserializer<Realm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Realm::setupRealmDeserializer, Builder::build);
+			Realm::setupRealmDeserializer);
 
-	protected static void setupRealmDeserializer(DelegatingDeserializer<Realm.Builder> op) {
+	protected static void setupRealmDeserializer(ObjectDeserializer<Realm.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 

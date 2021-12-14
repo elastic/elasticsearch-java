@@ -24,27 +24,32 @@
 package co.elastic.clients.elasticsearch.snapshot.restore;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.restore.SnapshotRestore
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/restore/SnapshotRestoreResponse.ts#L27-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SnapshotRestore implements JsonpSerializable {
+public class SnapshotRestore implements JsonpSerializable {
 	private final List<String> indices;
 
 	private final String snapshot;
@@ -53,36 +58,36 @@ public final class SnapshotRestore implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SnapshotRestore(Builder builder) {
+	private SnapshotRestore(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public SnapshotRestore(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SnapshotRestore of(Function<Builder, ObjectBuilder<SnapshotRestore>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code snapshot}
 	 */
-	public String snapshot() {
+	public final String snapshot() {
 		return this.snapshot;
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
@@ -97,14 +102,16 @@ public final class SnapshotRestore implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (String item0 : this.indices) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (String item0 : this.indices) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("snapshot");
 		generator.write(this.snapshot);
 
@@ -118,7 +125,8 @@ public final class SnapshotRestore implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotRestore}.
 	 */
-	public static class Builder implements ObjectBuilder<SnapshotRestore> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotRestore> {
 		private List<String> indices;
 
 		private String snapshot;
@@ -127,35 +135,28 @@ public final class SnapshotRestore implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public Builder indices(List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public Builder snapshot(String value) {
+		public final Builder snapshot(String value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -163,7 +164,7 @@ public final class SnapshotRestore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(ShardStatistics value) {
+		public final Builder shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -171,7 +172,7 @@ public final class SnapshotRestore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
@@ -182,6 +183,7 @@ public final class SnapshotRestore implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SnapshotRestore build() {
+			_checkSingleUse();
 
 			return new SnapshotRestore(this);
 		}
@@ -193,9 +195,9 @@ public final class SnapshotRestore implements JsonpSerializable {
 	 * Json deserializer for {@link SnapshotRestore}
 	 */
 	public static final JsonpDeserializer<SnapshotRestore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SnapshotRestore::setupSnapshotRestoreDeserializer, Builder::build);
+			SnapshotRestore::setupSnapshotRestoreDeserializer);
 
-	protected static void setupSnapshotRestoreDeserializer(DelegatingDeserializer<SnapshotRestore.Builder> op) {
+	protected static void setupSnapshotRestoreDeserializer(ObjectDeserializer<SnapshotRestore.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");

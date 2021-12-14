@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,28 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.delete_auto_follow_pattern.Request
 
-public final class DeleteAutoFollowPatternRequest extends RequestBase {
+/**
+ * Deletes auto-follow patterns.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/delete_auto_follow_pattern/DeleteAutoFollowPatternRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class DeleteAutoFollowPatternRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAutoFollowPatternRequest(Builder builder) {
+	private DeleteAutoFollowPatternRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public DeleteAutoFollowPatternRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAutoFollowPatternRequest of(
+			Function<Builder, ObjectBuilder<DeleteAutoFollowPatternRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +72,7 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -70,7 +81,8 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteAutoFollowPatternRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteAutoFollowPatternRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAutoFollowPatternRequest> {
 		private String name;
 
 		/**
@@ -78,7 +90,7 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -90,6 +102,7 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAutoFollowPatternRequest build() {
+			_checkSingleUse();
 
 			return new DeleteAutoFollowPatternRequest(this);
 		}
@@ -100,7 +113,9 @@ public final class DeleteAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.delete_auto_follow_pattern}".
 	 */
-	public static final Endpoint<DeleteAutoFollowPatternRequest, DeleteAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteAutoFollowPatternRequest, DeleteAutoFollowPatternResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.delete_auto_follow_pattern",
+
 			// Request method
 			request -> {
 				return "DELETE";

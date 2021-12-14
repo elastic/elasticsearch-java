@@ -23,27 +23,30 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _spec_utils.BaseNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_spec_utils/BaseNode.ts#L25-L32">API
+ *      specification</a>
+ */
 
 public abstract class BaseNode implements JsonpSerializable {
 	private final Map<String, String> attributes;
@@ -54,64 +57,62 @@ public abstract class BaseNode implements JsonpSerializable {
 
 	private final String name;
 
-	@Nullable
 	private final List<NodeRole> roles;
 
 	private final String transportAddress;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BaseNode(AbstractBuilder<?> builder) {
+	protected BaseNode(AbstractBuilder<?> builder) {
 
-		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
-		this.host = Objects.requireNonNull(builder.host, "host");
-		this.ip = Objects.requireNonNull(builder.ip, "ip");
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
-		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+		this.ip = ApiTypeHelper.requireNonNull(builder.ip, this, "ip");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 
 	}
 
 	/**
 	 * Required - API name: {@code attributes}
 	 */
-	public Map<String, String> attributes() {
+	public final Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
 	 * Required - API name: {@code host}
 	 */
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
 	/**
 	 * Required - API name: {@code ip}
 	 */
-	public String ip() {
+	public final String ip() {
 		return this.ip;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * API name: {@code roles}
 	 */
-	@Nullable
-	public List<NodeRole> roles() {
+	public final List<NodeRole> roles() {
 		return this.roles;
 	}
 
 	/**
 	 * Required - API name: {@code transport_address}
 	 */
-	public String transportAddress() {
+	public final String transportAddress() {
 		return this.transportAddress;
 	}
 
@@ -126,15 +127,17 @@ public abstract class BaseNode implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("attributes");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ApiTypeHelper.isDefined(this.attributes)) {
+			generator.writeKey("attributes");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("host");
 		generator.write(this.host);
 
@@ -144,8 +147,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (this.roles != null) {
-
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (NodeRole item0 : this.roles) {
@@ -154,13 +156,14 @@ public abstract class BaseNode implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("transport_address");
 		generator.write(this.transportAddress);
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private Map<String, String> attributes;
 
 		private String host;
@@ -176,27 +179,28 @@ public abstract class BaseNode implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
-		public BuilderT attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final BuilderT attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
 			return self();
 		}
 
 		/**
-		 * Add a key/value to {@link #attributes(Map)}, creating the map if needed.
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
 		 */
-		public BuilderT putAttributes(String key, String value) {
-			if (this.attributes == null) {
-				this.attributes = new HashMap<>();
-			}
-			this.attributes.put(key, value);
+		public final BuilderT attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code host}
 		 */
-		public BuilderT host(String value) {
+		public final BuilderT host(String value) {
 			this.host = value;
 			return self();
 		}
@@ -204,7 +208,7 @@ public abstract class BaseNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code ip}
 		 */
-		public BuilderT ip(String value) {
+		public final BuilderT ip(String value) {
 			this.ip = value;
 			return self();
 		}
@@ -212,42 +216,35 @@ public abstract class BaseNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public BuilderT name(String value) {
+		public final BuilderT name(String value) {
 			this.name = value;
 			return self();
 		}
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public BuilderT roles(@Nullable List<NodeRole> value) {
-			this.roles = value;
+		public final BuilderT roles(List<NodeRole> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public BuilderT roles(NodeRole... value) {
-			this.roles = Arrays.asList(value);
-			return self();
-		}
-
-		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
-		 */
-		public BuilderT addRoles(NodeRole value) {
-			if (this.roles == null) {
-				this.roles = new ArrayList<>();
-			}
-			this.roles.add(value);
+		public final BuilderT roles(NodeRole value, NodeRole... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code transport_address}
 		 */
-		public BuilderT transportAddress(String value) {
+		public final BuilderT transportAddress(String value) {
 			this.transportAddress = value;
 			return self();
 		}
@@ -258,7 +255,7 @@ public abstract class BaseNode implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseNodeDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::attributes,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "attributes");

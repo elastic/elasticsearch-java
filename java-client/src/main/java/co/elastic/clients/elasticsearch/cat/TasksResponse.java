@@ -30,31 +30,37 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.tasks.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/tasks/CatTasksResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TasksResponse implements JsonpSerializable {
+public class TasksResponse implements JsonpSerializable {
 	private final List<TasksRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TasksResponse(Builder builder) {
+	private TasksResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public TasksResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TasksResponse of(Function<Builder, ObjectBuilder<TasksResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +68,7 @@ public final class TasksResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<TasksRecord> valueBody() {
+	public final List<TasksRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,16 +90,19 @@ public final class TasksResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link TasksResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<TasksResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TasksResponse> {
 		private List<TasksRecord> valueBody;
 
 		/**
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 */
-		public Builder valueBody(List<TasksRecord> value) {
-			this.valueBody = value;
+		public final Builder valueBody(List<TasksRecord> list) {
+			this.valueBody = _listAddAll(this.valueBody, list);
 			return this;
 		}
 
@@ -101,35 +110,23 @@ public final class TasksResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>valueBody</code>.
 		 */
-		public Builder valueBody(TasksRecord... value) {
-			this.valueBody = Arrays.asList(value);
+		public final Builder valueBody(TasksRecord value, TasksRecord... values) {
+			this.valueBody = _listAdd(this.valueBody, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>valueBody</code> using a builder lambda.
 		 */
-		public Builder addValueBody(TasksRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
-			}
-			this.valueBody.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<TasksRecord.Builder, ObjectBuilder<TasksRecord>> fn) {
-			return this.valueBody(fn.apply(new TasksRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<TasksRecord.Builder, ObjectBuilder<TasksRecord>> fn) {
-			return this.addValueBody(fn.apply(new TasksRecord.Builder()).build());
+		public final Builder valueBody(Function<TasksRecord.Builder, ObjectBuilder<TasksRecord>> fn) {
+			return valueBody(fn.apply(new TasksRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +136,7 @@ public final class TasksResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TasksResponse build() {
+			_checkSingleUse();
 
 			return new TasksResponse(this);
 		}
@@ -150,8 +148,8 @@ public final class TasksResponse implements JsonpSerializable {
 		JsonpDeserializer<List<TasksRecord>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(TasksRecord._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

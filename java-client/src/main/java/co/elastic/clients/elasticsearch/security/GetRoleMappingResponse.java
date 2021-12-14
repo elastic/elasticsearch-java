@@ -23,12 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.DictionaryResponse;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,17 +35,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.get_role_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role_mapping/SecurityGetRoleMappingResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetRoleMappingResponse extends DictionaryResponse<String, RoleMapping> {
+public class GetRoleMappingResponse extends DictionaryResponse<String, RoleMapping> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRoleMappingResponse(Builder builder) {
+	private GetRoleMappingResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetRoleMappingResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRoleMappingResponse of(Function<Builder, ObjectBuilder<GetRoleMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +60,7 @@ public final class GetRoleMappingResponse extends DictionaryResponse<String, Rol
 	/**
 	 * Builder for {@link GetRoleMappingResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RoleMapping, Builder>
 			implements
 				ObjectBuilder<GetRoleMappingResponse> {
@@ -69,6 +76,7 @@ public final class GetRoleMappingResponse extends DictionaryResponse<String, Rol
 		 *             if some of the required fields are null.
 		 */
 		public GetRoleMappingResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -82,10 +90,10 @@ public final class GetRoleMappingResponse extends DictionaryResponse<String, Rol
 	 * Json deserializer for {@link GetRoleMappingResponse}
 	 */
 	public static final JsonpDeserializer<GetRoleMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetRoleMappingResponse::setupGetRoleMappingResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetRoleMappingResponse::setupGetRoleMappingResponseDeserializer);
 
 	protected static void setupGetRoleMappingResponseDeserializer(
-			DelegatingDeserializer<GetRoleMappingResponse.Builder> op) {
+			ObjectDeserializer<GetRoleMappingResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				RoleMapping._DESERIALIZER);
 

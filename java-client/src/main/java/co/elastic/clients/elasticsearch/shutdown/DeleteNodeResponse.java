@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: shutdown.delete_node.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/delete_node/ShutdownDeleteNodeResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteNodeResponse extends AcknowledgedResponseBase {
+public class DeleteNodeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteNodeResponse(Builder builder) {
+	private DeleteNodeResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteNodeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteNodeResponse of(Function<Builder, ObjectBuilder<DeleteNodeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteNodeResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteNodeResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteNodeResponse> {
@@ -68,6 +75,7 @@ public final class DeleteNodeResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteNodeResponse build() {
+			_checkSingleUse();
 
 			return new DeleteNodeResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class DeleteNodeResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteNodeResponse}
 	 */
 	public static final JsonpDeserializer<DeleteNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteNodeResponse::setupDeleteNodeResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteNodeResponse::setupDeleteNodeResponseDeserializer);
 
-	protected static void setupDeleteNodeResponseDeserializer(DelegatingDeserializer<DeleteNodeResponse.Builder> op) {
+	protected static void setupDeleteNodeResponseDeserializer(ObjectDeserializer<DeleteNodeResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

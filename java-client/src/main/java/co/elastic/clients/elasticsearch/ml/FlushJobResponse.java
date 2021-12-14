@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.flush_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/flush_job/MlFlushJobResponse.ts#L22-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FlushJobResponse implements JsonpSerializable {
+public class FlushJobResponse implements JsonpSerializable {
 	private final boolean flushed;
 
 	@Nullable
@@ -48,29 +56,32 @@ public final class FlushJobResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FlushJobResponse(Builder builder) {
+	private FlushJobResponse(Builder builder) {
 
-		this.flushed = Objects.requireNonNull(builder.flushed, "flushed");
+		this.flushed = ApiTypeHelper.requireNonNull(builder.flushed, this, "flushed");
 		this.lastFinalizedBucketEnd = builder.lastFinalizedBucketEnd;
 
 	}
 
-	public FlushJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FlushJobResponse of(Function<Builder, ObjectBuilder<FlushJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code flushed}
 	 */
-	public boolean flushed() {
+	public final boolean flushed() {
 		return this.flushed;
 	}
 
 	/**
+	 * Provides the timestamp (in milliseconds since the epoch) of the end of the
+	 * last bucket that was processed.
+	 * <p>
 	 * API name: {@code last_finalized_bucket_end}
 	 */
 	@Nullable
-	public Integer lastFinalizedBucketEnd() {
+	public final Integer lastFinalizedBucketEnd() {
 		return this.lastFinalizedBucketEnd;
 	}
 
@@ -89,7 +100,6 @@ public final class FlushJobResponse implements JsonpSerializable {
 		generator.write(this.flushed);
 
 		if (this.lastFinalizedBucketEnd != null) {
-
 			generator.writeKey("last_finalized_bucket_end");
 			generator.write(this.lastFinalizedBucketEnd);
 
@@ -102,7 +112,8 @@ public final class FlushJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FlushJobResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<FlushJobResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FlushJobResponse> {
 		private Boolean flushed;
 
 		@Nullable
@@ -111,15 +122,18 @@ public final class FlushJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code flushed}
 		 */
-		public Builder flushed(boolean value) {
+		public final Builder flushed(boolean value) {
 			this.flushed = value;
 			return this;
 		}
 
 		/**
+		 * Provides the timestamp (in milliseconds since the epoch) of the end of the
+		 * last bucket that was processed.
+		 * <p>
 		 * API name: {@code last_finalized_bucket_end}
 		 */
-		public Builder lastFinalizedBucketEnd(@Nullable Integer value) {
+		public final Builder lastFinalizedBucketEnd(@Nullable Integer value) {
 			this.lastFinalizedBucketEnd = value;
 			return this;
 		}
@@ -131,6 +145,7 @@ public final class FlushJobResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FlushJobResponse build() {
+			_checkSingleUse();
 
 			return new FlushJobResponse(this);
 		}
@@ -142,9 +157,9 @@ public final class FlushJobResponse implements JsonpSerializable {
 	 * Json deserializer for {@link FlushJobResponse}
 	 */
 	public static final JsonpDeserializer<FlushJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FlushJobResponse::setupFlushJobResponseDeserializer, Builder::build);
+			FlushJobResponse::setupFlushJobResponseDeserializer);
 
-	protected static void setupFlushJobResponseDeserializer(DelegatingDeserializer<FlushJobResponse.Builder> op) {
+	protected static void setupFlushJobResponseDeserializer(ObjectDeserializer<FlushJobResponse.Builder> op) {
 
 		op.add(Builder::flushed, JsonpDeserializer.booleanDeserializer(), "flushed");
 		op.add(Builder::lastFinalizedBucketEnd, JsonpDeserializer.integerDeserializer(), "last_finalized_bucket_end");

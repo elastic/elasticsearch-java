@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.index.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/index/IndexResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexResponse extends WriteResponseBase {
+public class IndexResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexResponse(Builder builder) {
+	private IndexResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public IndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexResponse of(Function<Builder, ObjectBuilder<IndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class IndexResponse extends WriteResponseBase {
 	/**
 	 * Builder for {@link IndexResponse}.
 	 */
+
 	public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IndexResponse> {
@@ -68,6 +75,7 @@ public final class IndexResponse extends WriteResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public IndexResponse build() {
+			_checkSingleUse();
 
 			return new IndexResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class IndexResponse extends WriteResponseBase {
 	 * Json deserializer for {@link IndexResponse}
 	 */
 	public static final JsonpDeserializer<IndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexResponse::setupIndexResponseDeserializer, Builder::build);
+			IndexResponse::setupIndexResponseDeserializer);
 
-	protected static void setupIndexResponseDeserializer(DelegatingDeserializer<IndexResponse.Builder> op) {
+	protected static void setupIndexResponseDeserializer(ObjectDeserializer<IndexResponse.Builder> op) {
 		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 
 	}

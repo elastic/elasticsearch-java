@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -36,35 +36,42 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.AsciiFoldingTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L167-L170">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AsciiFoldingTokenFilter(Builder builder) {
+	private AsciiFoldingTokenFilter(Builder builder) {
 		super(builder);
 
-		this.preserveOriginal = Objects.requireNonNull(builder.preserveOriginal, "preserve_original");
+		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
 
 	}
 
-	public AsciiFoldingTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AsciiFoldingTokenFilter of(Function<Builder, ObjectBuilder<AsciiFoldingTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "asciifolding";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Asciifolding;
 	}
 
 	/**
 	 * Required - API name: {@code preserve_original}
 	 */
-	public boolean preserveOriginal() {
+	public final boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
@@ -72,7 +79,6 @@ public final class AsciiFoldingTokenFilter extends TokenFilterBase implements To
 
 		generator.write("type", "asciifolding");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("preserve_original");
 		generator.write(this.preserveOriginal);
 
@@ -83,6 +89,7 @@ public final class AsciiFoldingTokenFilter extends TokenFilterBase implements To
 	/**
 	 * Builder for {@link AsciiFoldingTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AsciiFoldingTokenFilter> {
@@ -91,7 +98,7 @@ public final class AsciiFoldingTokenFilter extends TokenFilterBase implements To
 		/**
 		 * Required - API name: {@code preserve_original}
 		 */
-		public Builder preserveOriginal(boolean value) {
+		public final Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}
@@ -108,6 +115,7 @@ public final class AsciiFoldingTokenFilter extends TokenFilterBase implements To
 		 *             if some of the required fields are null.
 		 */
 		public AsciiFoldingTokenFilter build() {
+			_checkSingleUse();
 
 			return new AsciiFoldingTokenFilter(this);
 		}
@@ -119,10 +127,10 @@ public final class AsciiFoldingTokenFilter extends TokenFilterBase implements To
 	 * Json deserializer for {@link AsciiFoldingTokenFilter}
 	 */
 	public static final JsonpDeserializer<AsciiFoldingTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AsciiFoldingTokenFilter::setupAsciiFoldingTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, AsciiFoldingTokenFilter::setupAsciiFoldingTokenFilterDeserializer);
 
 	protected static void setupAsciiFoldingTokenFilterDeserializer(
-			DelegatingDeserializer<AsciiFoldingTokenFilter.Builder> op) {
+			ObjectDeserializer<AsciiFoldingTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::preserveOriginal, JsonpDeserializer.booleanDeserializer(), "preserve_original");
 

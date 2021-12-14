@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ConvertProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L145-L150">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ConvertProcessor extends ProcessorBase implements ProcessorVariant {
+public class ConvertProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -51,32 +58,32 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ConvertProcessor(Builder builder) {
+	private ConvertProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public ConvertProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ConvertProcessor of(Function<Builder, ObjectBuilder<ConvertProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "convert";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Convert;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -84,38 +91,35 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public Boolean ignoreMissing() {
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
 	 * Required - API name: {@code target_field}
 	 */
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public ConvertType type() {
+	public final ConvertType type() {
 		return this.type;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.ignoreMissing != null) {
-
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
 
 		}
-
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
 
@@ -129,6 +133,7 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 	/**
 	 * Builder for {@link ConvertProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ConvertProcessor> {
@@ -144,7 +149,7 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -152,7 +157,7 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(@Nullable Boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -160,7 +165,7 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * Required - API name: {@code target_field}
 		 */
-		public Builder targetField(String value) {
+		public final Builder targetField(String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -168,7 +173,7 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(ConvertType value) {
+		public final Builder type(ConvertType value) {
 			this.type = value;
 			return this;
 		}
@@ -185,6 +190,7 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 		 *             if some of the required fields are null.
 		 */
 		public ConvertProcessor build() {
+			_checkSingleUse();
 
 			return new ConvertProcessor(this);
 		}
@@ -196,9 +202,9 @@ public final class ConvertProcessor extends ProcessorBase implements ProcessorVa
 	 * Json deserializer for {@link ConvertProcessor}
 	 */
 	public static final JsonpDeserializer<ConvertProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ConvertProcessor::setupConvertProcessorDeserializer, Builder::build);
+			ConvertProcessor::setupConvertProcessorDeserializer);
 
-	protected static void setupConvertProcessorDeserializer(DelegatingDeserializer<ConvertProcessor.Builder> op) {
+	protected static void setupConvertProcessorDeserializer(ObjectDeserializer<ConvertProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

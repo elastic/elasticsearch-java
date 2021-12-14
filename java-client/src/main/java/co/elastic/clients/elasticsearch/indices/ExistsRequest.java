@@ -23,24 +23,23 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.BooleanEndpoint;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.BooleanEndpoint;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,14 +50,19 @@ import javax.annotation.Nullable;
 
 // typedef: indices.exists.Request
 
-public final class ExistsRequest extends RequestBase {
-	private final List<String> index;
+/**
+ * Returns information about whether a particular index exists.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/exists/IndicesExistsRequest.ts#L23-L40">API
+ *      specification</a>
+ */
 
+public class ExistsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean flatSettings;
@@ -69,34 +73,27 @@ public final class ExistsRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeDefaults;
 
+	private final List<String> index;
+
 	@Nullable
 	private final Boolean local;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExistsRequest(Builder builder) {
+	private ExistsRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.local = builder.local;
 
 	}
 
-	public ExistsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A comma-separated list of index names
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public List<String> index() {
-		return this.index;
+	public static ExistsRequest of(Function<Builder, ObjectBuilder<ExistsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -106,7 +103,7 @@ public final class ExistsRequest extends RequestBase {
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -116,8 +113,7 @@ public final class ExistsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -127,7 +123,7 @@ public final class ExistsRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -137,7 +133,7 @@ public final class ExistsRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
 	}
 
@@ -147,8 +143,17 @@ public final class ExistsRequest extends RequestBase {
 	 * API name: {@code include_defaults}
 	 */
 	@Nullable
-	public Boolean includeDefaults() {
+	public final Boolean includeDefaults() {
 		return this.includeDefaults;
+	}
+
+	/**
+	 * Required - A comma-separated list of index names
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -158,7 +163,7 @@ public final class ExistsRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -167,14 +172,13 @@ public final class ExistsRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExistsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExistsRequest> {
-		private List<String> index;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean flatSettings;
@@ -185,39 +189,10 @@ public final class ExistsRequest extends RequestBase {
 		@Nullable
 		private Boolean includeDefaults;
 
+		private List<String> index;
+
 		@Nullable
 		private Boolean local;
-
-		/**
-		 * Required - A comma-separated list of index names
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Required - A comma-separated list of index names
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Ignore if a wildcard expression resolves to no concrete indices (default:
@@ -225,7 +200,7 @@ public final class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -235,9 +210,11 @@ public final class ExistsRequest extends RequestBase {
 		 * (default: open)
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -246,20 +223,11 @@ public final class ExistsRequest extends RequestBase {
 		 * (default: open)
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -268,7 +236,7 @@ public final class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -278,7 +246,7 @@ public final class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
 			return this;
 		}
@@ -288,8 +256,32 @@ public final class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_defaults}
 		 */
-		public Builder includeDefaults(@Nullable Boolean value) {
+		public final Builder includeDefaults(@Nullable Boolean value) {
 			this.includeDefaults = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of index names
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of index names
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -299,7 +291,7 @@ public final class ExistsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -311,6 +303,7 @@ public final class ExistsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ExistsRequest build() {
+			_checkSingleUse();
 
 			return new ExistsRequest(this);
 		}
@@ -321,7 +314,9 @@ public final class ExistsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.exists}".
 	 */
-	public static final Endpoint<ExistsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<ExistsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/indices.exists",
+
 			// Request method
 			request -> {
 				return "HEAD";
@@ -349,18 +344,18 @@ public final class ExistsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.expandWildcards != null) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
-				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.includeDefaults != null) {
 					params.put("include_defaults", String.valueOf(request.includeDefaults));

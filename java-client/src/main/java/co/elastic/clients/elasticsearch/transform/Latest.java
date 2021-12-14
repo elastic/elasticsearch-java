@@ -23,42 +23,47 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.Latest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/_types/Transform.ts#L44-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Latest implements JsonpSerializable {
+public class Latest implements JsonpSerializable {
 	private final String sort;
 
 	private final List<String> uniqueKey;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Latest(Builder builder) {
+	private Latest(Builder builder) {
 
-		this.sort = Objects.requireNonNull(builder.sort, "sort");
-		this.uniqueKey = ModelTypeHelper.unmodifiableNonNull(builder.uniqueKey, "unique_key");
+		this.sort = ApiTypeHelper.requireNonNull(builder.sort, this, "sort");
+		this.uniqueKey = ApiTypeHelper.unmodifiableRequired(builder.uniqueKey, this, "uniqueKey");
 
 	}
 
-	public Latest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Latest of(Function<Builder, ObjectBuilder<Latest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +72,7 @@ public final class Latest implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code sort}
 	 */
-	public String sort() {
+	public final String sort() {
 		return this.sort;
 	}
 
@@ -77,7 +82,7 @@ public final class Latest implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code unique_key}
 	 */
-	public List<String> uniqueKey() {
+	public final List<String> uniqueKey() {
 		return this.uniqueKey;
 	}
 
@@ -95,13 +100,16 @@ public final class Latest implements JsonpSerializable {
 		generator.writeKey("sort");
 		generator.write(this.sort);
 
-		generator.writeKey("unique_key");
-		generator.writeStartArray();
-		for (String item0 : this.uniqueKey) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.uniqueKey)) {
+			generator.writeKey("unique_key");
+			generator.writeStartArray();
+			for (String item0 : this.uniqueKey) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -110,7 +118,8 @@ public final class Latest implements JsonpSerializable {
 	/**
 	 * Builder for {@link Latest}.
 	 */
-	public static class Builder implements ObjectBuilder<Latest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Latest> {
 		private String sort;
 
 		private List<String> uniqueKey;
@@ -121,7 +130,7 @@ public final class Latest implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public Builder sort(String value) {
+		public final Builder sort(String value) {
 			this.sort = value;
 			return this;
 		}
@@ -131,9 +140,11 @@ public final class Latest implements JsonpSerializable {
 		 * the data.
 		 * <p>
 		 * API name: {@code unique_key}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>uniqueKey</code>.
 		 */
-		public Builder uniqueKey(List<String> value) {
-			this.uniqueKey = value;
+		public final Builder uniqueKey(List<String> list) {
+			this.uniqueKey = _listAddAll(this.uniqueKey, list);
 			return this;
 		}
 
@@ -142,20 +153,11 @@ public final class Latest implements JsonpSerializable {
 		 * the data.
 		 * <p>
 		 * API name: {@code unique_key}
+		 * <p>
+		 * Adds one or more values to <code>uniqueKey</code>.
 		 */
-		public Builder uniqueKey(String... value) {
-			this.uniqueKey = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #uniqueKey(List)}, creating the list if needed.
-		 */
-		public Builder addUniqueKey(String value) {
-			if (this.uniqueKey == null) {
-				this.uniqueKey = new ArrayList<>();
-			}
-			this.uniqueKey.add(value);
+		public final Builder uniqueKey(String value, String... values) {
+			this.uniqueKey = _listAdd(this.uniqueKey, value, values);
 			return this;
 		}
 
@@ -166,6 +168,7 @@ public final class Latest implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Latest build() {
+			_checkSingleUse();
 
 			return new Latest(this);
 		}
@@ -177,9 +180,9 @@ public final class Latest implements JsonpSerializable {
 	 * Json deserializer for {@link Latest}
 	 */
 	public static final JsonpDeserializer<Latest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Latest::setupLatestDeserializer, Builder::build);
+			Latest::setupLatestDeserializer);
 
-	protected static void setupLatestDeserializer(DelegatingDeserializer<Latest.Builder> op) {
+	protected static void setupLatestDeserializer(ObjectDeserializer<Latest.Builder> op) {
 
 		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
 		op.add(Builder::uniqueKey, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

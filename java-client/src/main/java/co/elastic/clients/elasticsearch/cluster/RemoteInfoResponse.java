@@ -23,13 +23,12 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.cluster.remote_info.ClusterRemoteInfo;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,17 +36,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: cluster.remote_info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemoteInfo> {
+public class RemoteInfoResponse extends DictionaryResponse<String, ClusterRemoteInfo> {
 	// ---------------------------------------------------------------------------------------------
 
-	public RemoteInfoResponse(Builder builder) {
+	private RemoteInfoResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public RemoteInfoResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RemoteInfoResponse of(Function<Builder, ObjectBuilder<RemoteInfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +61,7 @@ public final class RemoteInfoResponse extends DictionaryResponse<String, Cluster
 	/**
 	 * Builder for {@link RemoteInfoResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, ClusterRemoteInfo, Builder>
 			implements
 				ObjectBuilder<RemoteInfoResponse> {
@@ -70,6 +77,7 @@ public final class RemoteInfoResponse extends DictionaryResponse<String, Cluster
 		 *             if some of the required fields are null.
 		 */
 		public RemoteInfoResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -83,9 +91,9 @@ public final class RemoteInfoResponse extends DictionaryResponse<String, Cluster
 	 * Json deserializer for {@link RemoteInfoResponse}
 	 */
 	public static final JsonpDeserializer<RemoteInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RemoteInfoResponse::setupRemoteInfoResponseDeserializer, Builder::build);
+			.lazy(Builder::new, RemoteInfoResponse::setupRemoteInfoResponseDeserializer);
 
-	protected static void setupRemoteInfoResponseDeserializer(DelegatingDeserializer<RemoteInfoResponse.Builder> op) {
+	protected static void setupRemoteInfoResponseDeserializer(ObjectDeserializer<RemoteInfoResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				ClusterRemoteInfo._DESERIALIZER);
 

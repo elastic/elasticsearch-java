@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.DoubleRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L42-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DoubleRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class DoubleRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public DoubleRangeProperty(Builder builder) {
+	private DoubleRangeProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public DoubleRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DoubleRangeProperty of(Function<Builder, ObjectBuilder<DoubleRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "double_range";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.DoubleRange;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class DoubleRangeProperty extends RangePropertyBase implements Prop
 	/**
 	 * Builder for {@link DoubleRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DoubleRangeProperty> {
@@ -83,6 +90,7 @@ public final class DoubleRangeProperty extends RangePropertyBase implements Prop
 		 *             if some of the required fields are null.
 		 */
 		public DoubleRangeProperty build() {
+			_checkSingleUse();
 
 			return new DoubleRangeProperty(this);
 		}
@@ -94,9 +102,9 @@ public final class DoubleRangeProperty extends RangePropertyBase implements Prop
 	 * Json deserializer for {@link DoubleRangeProperty}
 	 */
 	public static final JsonpDeserializer<DoubleRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DoubleRangeProperty::setupDoubleRangePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, DoubleRangeProperty::setupDoubleRangePropertyDeserializer);
 
-	protected static void setupDoubleRangePropertyDeserializer(DelegatingDeserializer<DoubleRangeProperty.Builder> op) {
+	protected static void setupDoubleRangePropertyDeserializer(ObjectDeserializer<DoubleRangeProperty.Builder> op) {
 		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
 		op.ignore("type");

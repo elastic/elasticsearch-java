@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexSettings.ts#L283-L287">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum IndexCheckOnStartup implements StringEnum {
-	False("false"), Checksum("checksum"), True("true");
+public enum IndexCheckOnStartup implements JsonEnum {
+	False("false"),
+
+	Checksum("checksum"),
+
+	True("true"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +53,6 @@ public enum IndexCheckOnStartup implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IndexCheckOnStartup> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<IndexCheckOnStartup> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			IndexCheckOnStartup.values());
 }

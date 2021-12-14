@@ -23,66 +23,63 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MatrixAggregation
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/matrix.ts#L26-L29">API
+ *      specification</a>
+ */
+
 public abstract class MatrixAggregation extends AggregationBase {
-	@Nullable
 	private final List<String> fields;
 
-	@Nullable
 	private final Map<String, Double> missing;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MatrixAggregation(AbstractBuilder<?> builder) {
+	protected MatrixAggregation(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.missing = ModelTypeHelper.unmodifiable(builder.missing);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.missing = ApiTypeHelper.unmodifiable(builder.missing);
 
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * API name: {@code missing}
 	 */
-	@Nullable
-	public Map<String, Double> missing() {
+	public final Map<String, Double> missing() {
 		return this.missing;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.fields != null) {
-
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -92,8 +89,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 			generator.writeEnd();
 
 		}
-		if (this.missing != null) {
-
+		if (ApiTypeHelper.isDefined(this.missing)) {
 			generator.writeKey("missing");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.missing.entrySet()) {
@@ -118,47 +114,41 @@ public abstract class MatrixAggregation extends AggregationBase {
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public BuilderT fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final BuilderT fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return self();
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public BuilderT fields(String... value) {
-			this.fields = Arrays.asList(value);
-			return self();
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public BuilderT addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
+		public final BuilderT fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return self();
 		}
 
 		/**
 		 * API name: {@code missing}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>missing</code>.
 		 */
-		public BuilderT missing(@Nullable Map<String, Double> value) {
-			this.missing = value;
+		public final BuilderT missing(Map<String, Double> map) {
+			this.missing = _mapPutAll(this.missing, map);
 			return self();
 		}
 
 		/**
-		 * Add a key/value to {@link #missing(Map)}, creating the map if needed.
+		 * API name: {@code missing}
+		 * <p>
+		 * Adds an entry to <code>missing</code>.
 		 */
-		public BuilderT putMissing(String key, Double value) {
-			if (this.missing == null) {
-				this.missing = new HashMap<>();
-			}
-			this.missing.put(key, value);
+		public final BuilderT missing(String key, Double value) {
+			this.missing = _mapPut(this.missing, key, value);
 			return self();
 		}
 
@@ -166,7 +156,7 @@ public abstract class MatrixAggregation extends AggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMatrixAggregationDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(AbstractBuilder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"fields");

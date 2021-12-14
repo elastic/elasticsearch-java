@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ObjectProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/complex.ts#L45-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ObjectProperty extends CorePropertyBase implements PropertyVariant {
+public class ObjectProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ObjectProperty(Builder builder) {
+	private ObjectProperty(Builder builder) {
 		super(builder);
 
 		this.enabled = builder.enabled;
 
 	}
 
-	public ObjectProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ObjectProperty of(Function<Builder, ObjectBuilder<ObjectProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "object";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Object;
 	}
 
 	/**
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public Boolean enabled() {
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
@@ -76,7 +82,6 @@ public final class ObjectProperty extends CorePropertyBase implements PropertyVa
 		generator.write("type", "object");
 		super.serializeInternal(generator, mapper);
 		if (this.enabled != null) {
-
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
 
@@ -89,6 +94,7 @@ public final class ObjectProperty extends CorePropertyBase implements PropertyVa
 	/**
 	 * Builder for {@link ObjectProperty}.
 	 */
+
 	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ObjectProperty> {
@@ -98,7 +104,7 @@ public final class ObjectProperty extends CorePropertyBase implements PropertyVa
 		/**
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -115,6 +121,7 @@ public final class ObjectProperty extends CorePropertyBase implements PropertyVa
 		 *             if some of the required fields are null.
 		 */
 		public ObjectProperty build() {
+			_checkSingleUse();
 
 			return new ObjectProperty(this);
 		}
@@ -126,9 +133,9 @@ public final class ObjectProperty extends CorePropertyBase implements PropertyVa
 	 * Json deserializer for {@link ObjectProperty}
 	 */
 	public static final JsonpDeserializer<ObjectProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ObjectProperty::setupObjectPropertyDeserializer, Builder::build);
+			ObjectProperty::setupObjectPropertyDeserializer);
 
-	protected static void setupObjectPropertyDeserializer(DelegatingDeserializer<ObjectProperty.Builder> op) {
+	protected static void setupObjectPropertyDeserializer(ObjectDeserializer<ObjectProperty.Builder> op) {
 		CorePropertyBase.setupCorePropertyBaseDeserializer(op);
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 

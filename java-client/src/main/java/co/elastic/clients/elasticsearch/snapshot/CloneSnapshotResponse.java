@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: snapshot.clone.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/clone/SnapshotCloneResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CloneSnapshotResponse extends AcknowledgedResponseBase {
+public class CloneSnapshotResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public CloneSnapshotResponse(Builder builder) {
+	private CloneSnapshotResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public CloneSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CloneSnapshotResponse of(Function<Builder, ObjectBuilder<CloneSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class CloneSnapshotResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link CloneSnapshotResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CloneSnapshotResponse> {
@@ -68,6 +75,7 @@ public final class CloneSnapshotResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public CloneSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new CloneSnapshotResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class CloneSnapshotResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link CloneSnapshotResponse}
 	 */
 	public static final JsonpDeserializer<CloneSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CloneSnapshotResponse::setupCloneSnapshotResponseDeserializer, Builder::build);
+			.lazy(Builder::new, CloneSnapshotResponse::setupCloneSnapshotResponseDeserializer);
 
-	protected static void setupCloneSnapshotResponseDeserializer(
-			DelegatingDeserializer<CloneSnapshotResponse.Builder> op) {
+	protected static void setupCloneSnapshotResponseDeserializer(ObjectDeserializer<CloneSnapshotResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

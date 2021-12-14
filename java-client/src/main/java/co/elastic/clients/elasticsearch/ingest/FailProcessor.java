@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,42 +37,48 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.FailProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L210-L212">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FailProcessor extends ProcessorBase implements ProcessorVariant {
+public class FailProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String message;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FailProcessor(Builder builder) {
+	private FailProcessor(Builder builder) {
 		super(builder);
 
-		this.message = Objects.requireNonNull(builder.message, "message");
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 
 	}
 
-	public FailProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FailProcessor of(Function<Builder, ObjectBuilder<FailProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "fail";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Fail;
 	}
 
 	/**
 	 * Required - API name: {@code message}
 	 */
-	public String message() {
+	public final String message() {
 		return this.message;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("message");
 		generator.write(this.message);
 
@@ -83,13 +89,14 @@ public final class FailProcessor extends ProcessorBase implements ProcessorVaria
 	/**
 	 * Builder for {@link FailProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<FailProcessor> {
 		private String message;
 
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public Builder message(String value) {
+		public final Builder message(String value) {
 			this.message = value;
 			return this;
 		}
@@ -106,6 +113,7 @@ public final class FailProcessor extends ProcessorBase implements ProcessorVaria
 		 *             if some of the required fields are null.
 		 */
 		public FailProcessor build() {
+			_checkSingleUse();
 
 			return new FailProcessor(this);
 		}
@@ -117,9 +125,9 @@ public final class FailProcessor extends ProcessorBase implements ProcessorVaria
 	 * Json deserializer for {@link FailProcessor}
 	 */
 	public static final JsonpDeserializer<FailProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FailProcessor::setupFailProcessorDeserializer, Builder::build);
+			FailProcessor::setupFailProcessorDeserializer);
 
-	protected static void setupFailProcessorDeserializer(DelegatingDeserializer<FailProcessor.Builder> op) {
+	protected static void setupFailProcessorDeserializer(ObjectDeserializer<FailProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::message, JsonpDeserializer.stringDeserializer(), "message");
 

@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: cat.master.Request
 
-public final class MasterRequest extends CatRequestBase {
+/**
+ * Returns information about the master node.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/master/CatMasterRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class MasterRequest extends CatRequestBase {
 	public MasterRequest() {
 	}
 
@@ -52,7 +60,9 @@ public final class MasterRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.master}".
 	 */
-	public static final Endpoint<MasterRequest, MasterResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MasterRequest, MasterResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.master",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -67,7 +77,9 @@ public final class MasterRequest extends CatRequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, MasterResponse._DESERIALIZER);
 }

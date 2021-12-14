@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.search._types.LinearInterpolationSmoothingModel
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L185-L189">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class LinearInterpolationSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
+public class LinearInterpolationSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
 	private final double bigramLambda;
 
 	private final double trigramLambda;
@@ -47,44 +55,45 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LinearInterpolationSmoothingModel(Builder builder) {
+	private LinearInterpolationSmoothingModel(Builder builder) {
 
-		this.bigramLambda = Objects.requireNonNull(builder.bigramLambda, "bigram_lambda");
-		this.trigramLambda = Objects.requireNonNull(builder.trigramLambda, "trigram_lambda");
-		this.unigramLambda = Objects.requireNonNull(builder.unigramLambda, "unigram_lambda");
+		this.bigramLambda = ApiTypeHelper.requireNonNull(builder.bigramLambda, this, "bigramLambda");
+		this.trigramLambda = ApiTypeHelper.requireNonNull(builder.trigramLambda, this, "trigramLambda");
+		this.unigramLambda = ApiTypeHelper.requireNonNull(builder.unigramLambda, this, "unigramLambda");
 
 	}
 
-	public LinearInterpolationSmoothingModel(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LinearInterpolationSmoothingModel of(
+			Function<Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link SmoothingModel} variant type
+	 * SmoothingModel variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "linear_interpolation";
+	public SmoothingModel.Kind _smoothingModelKind() {
+		return SmoothingModel.Kind.LinearInterpolation;
 	}
 
 	/**
 	 * Required - API name: {@code bigram_lambda}
 	 */
-	public double bigramLambda() {
+	public final double bigramLambda() {
 		return this.bigramLambda;
 	}
 
 	/**
 	 * Required - API name: {@code trigram_lambda}
 	 */
-	public double trigramLambda() {
+	public final double trigramLambda() {
 		return this.trigramLambda;
 	}
 
 	/**
 	 * Required - API name: {@code unigram_lambda}
 	 */
-	public double unigramLambda() {
+	public final double unigramLambda() {
 		return this.unigramLambda;
 	}
 
@@ -115,7 +124,8 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 	/**
 	 * Builder for {@link LinearInterpolationSmoothingModel}.
 	 */
-	public static class Builder implements ObjectBuilder<LinearInterpolationSmoothingModel> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LinearInterpolationSmoothingModel> {
 		private Double bigramLambda;
 
 		private Double trigramLambda;
@@ -125,7 +135,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 		/**
 		 * Required - API name: {@code bigram_lambda}
 		 */
-		public Builder bigramLambda(double value) {
+		public final Builder bigramLambda(double value) {
 			this.bigramLambda = value;
 			return this;
 		}
@@ -133,7 +143,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 		/**
 		 * Required - API name: {@code trigram_lambda}
 		 */
-		public Builder trigramLambda(double value) {
+		public final Builder trigramLambda(double value) {
 			this.trigramLambda = value;
 			return this;
 		}
@@ -141,7 +151,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 		/**
 		 * Required - API name: {@code unigram_lambda}
 		 */
-		public Builder unigramLambda(double value) {
+		public final Builder unigramLambda(double value) {
 			this.unigramLambda = value;
 			return this;
 		}
@@ -153,6 +163,7 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 		 *             if some of the required fields are null.
 		 */
 		public LinearInterpolationSmoothingModel build() {
+			_checkSingleUse();
 
 			return new LinearInterpolationSmoothingModel(this);
 		}
@@ -164,11 +175,10 @@ public final class LinearInterpolationSmoothingModel implements SmoothingModelVa
 	 * Json deserializer for {@link LinearInterpolationSmoothingModel}
 	 */
 	public static final JsonpDeserializer<LinearInterpolationSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LinearInterpolationSmoothingModel::setupLinearInterpolationSmoothingModelDeserializer,
-					Builder::build);
+			.lazy(Builder::new, LinearInterpolationSmoothingModel::setupLinearInterpolationSmoothingModelDeserializer);
 
 	protected static void setupLinearInterpolationSmoothingModelDeserializer(
-			DelegatingDeserializer<LinearInterpolationSmoothingModel.Builder> op) {
+			ObjectDeserializer<LinearInterpolationSmoothingModel.Builder> op) {
 
 		op.add(Builder::bigramLambda, JsonpDeserializer.doubleDeserializer(), "bigram_lambda");
 		op.add(Builder::trigramLambda, JsonpDeserializer.doubleDeserializer(), "trigram_lambda");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,10 +32,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FormattableMetricAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L44-L46">API
+ *      specification</a>
+ */
 
 public abstract class FormattableMetricAggregation extends MetricAggregationBase {
 	@Nullable
@@ -44,7 +49,7 @@ public abstract class FormattableMetricAggregation extends MetricAggregationBase
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FormattableMetricAggregation(AbstractBuilder<?> builder) {
+	protected FormattableMetricAggregation(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.format = builder.format;
@@ -55,7 +60,7 @@ public abstract class FormattableMetricAggregation extends MetricAggregationBase
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -63,7 +68,6 @@ public abstract class FormattableMetricAggregation extends MetricAggregationBase
 
 		super.serializeInternal(generator, mapper);
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
@@ -80,7 +84,7 @@ public abstract class FormattableMetricAggregation extends MetricAggregationBase
 		/**
 		 * API name: {@code format}
 		 */
-		public BuilderT format(@Nullable String value) {
+		public final BuilderT format(@Nullable String value) {
 			this.format = value;
 			return self();
 		}
@@ -89,7 +93,7 @@ public abstract class FormattableMetricAggregation extends MetricAggregationBase
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupFormattableMetricAggregationDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
 

@@ -23,13 +23,16 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,50 +42,84 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ConditionContainer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Conditions.ts#L51-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class Condition implements TaggedUnion<Object>, JsonpSerializable {
+public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSerializable {
 
-	public static final String ALWAYS = "always";
-	public static final String ARRAY_COMPARE = "array_compare";
-	public static final String COMPARE = "compare";
-	public static final String NEVER = "never";
-	public static final String SCRIPT = "script";
+	/**
+	 * {@link Condition} variant kinds.
+	 */
+	/**
+	 * {@link Condition} variant kinds.
+	 */
 
-	// Tagged union implementation
+	public enum Kind implements JsonEnum {
+		Always("always"),
 
-	private final String _type;
+		ArrayCompare("array_compare"),
+
+		Compare("compare"),
+
+		Never("never"),
+
+		Script("script"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public Condition(ConditionVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._conditionKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends ConditionVariant> Condition(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Condition(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Condition(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Condition of(Function<Builder, ObjectBuilder<Condition>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code always}?
+	 */
+	public boolean isAlways() {
+		return _kind == Kind.Always;
 	}
 
 	/**
@@ -92,7 +129,14 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code always} kind.
 	 */
 	public AlwaysCondition always() {
-		return TaggedUnionUtils.get(this, ALWAYS);
+		return TaggedUnionUtils.get(this, Kind.Always);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code array_compare}?
+	 */
+	public boolean isArrayCompare() {
+		return _kind == Kind.ArrayCompare;
 	}
 
 	/**
@@ -102,7 +146,14 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code array_compare} kind.
 	 */
 	public ArrayCompareCondition arrayCompare() {
-		return TaggedUnionUtils.get(this, ARRAY_COMPARE);
+		return TaggedUnionUtils.get(this, Kind.ArrayCompare);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code compare}?
+	 */
+	public boolean isCompare() {
+		return _kind == Kind.Compare;
 	}
 
 	/**
@@ -112,7 +163,14 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code compare} kind.
 	 */
 	public CompareCondition compare() {
-		return TaggedUnionUtils.get(this, COMPARE);
+		return TaggedUnionUtils.get(this, Kind.Compare);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code never}?
+	 */
+	public boolean isNever() {
+		return _kind == Kind.Never;
 	}
 
 	/**
@@ -122,7 +180,14 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code never} kind.
 	 */
 	public NeverCondition never() {
-		return TaggedUnionUtils.get(this, NEVER);
+		return TaggedUnionUtils.get(this, Kind.Never);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean isScript() {
+		return _kind == Kind.Script;
 	}
 
 	/**
@@ -132,83 +197,88 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code script} kind.
 	 */
 	public ScriptCondition script() {
-		return TaggedUnionUtils.get(this, SCRIPT);
+		return TaggedUnionUtils.get(this, Kind.Script);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
 		generator.writeEnd();
+
 	}
 
-	public static class Builder implements ObjectBuilder<Condition> {
-		private String _type;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Condition> {
+		private Kind _kind;
 		private Object _value;
 
-		public Builder always(AlwaysCondition v) {
-			this._type = ALWAYS;
+		public ObjectBuilder<Condition> always(AlwaysCondition v) {
+			this._kind = Kind.Always;
 			this._value = v;
 			return this;
 		}
 
-		public Builder always(Function<AlwaysCondition.Builder, ObjectBuilder<AlwaysCondition>> f) {
-			return this.always(f.apply(new AlwaysCondition.Builder()).build());
+		public ObjectBuilder<Condition> always(Function<AlwaysCondition.Builder, ObjectBuilder<AlwaysCondition>> fn) {
+			return this.always(fn.apply(new AlwaysCondition.Builder()).build());
 		}
 
-		public Builder arrayCompare(ArrayCompareCondition v) {
-			this._type = ARRAY_COMPARE;
+		public ObjectBuilder<Condition> arrayCompare(ArrayCompareCondition v) {
+			this._kind = Kind.ArrayCompare;
 			this._value = v;
 			return this;
 		}
 
-		public Builder arrayCompare(Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> f) {
-			return this.arrayCompare(f.apply(new ArrayCompareCondition.Builder()).build());
+		public ObjectBuilder<Condition> arrayCompare(
+				Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> fn) {
+			return this.arrayCompare(fn.apply(new ArrayCompareCondition.Builder()).build());
 		}
 
-		public Builder compare(CompareCondition v) {
-			this._type = COMPARE;
+		public ObjectBuilder<Condition> compare(CompareCondition v) {
+			this._kind = Kind.Compare;
 			this._value = v;
 			return this;
 		}
 
-		public Builder compare(Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> f) {
-			return this.compare(f.apply(new CompareCondition.Builder()).build());
+		public ObjectBuilder<Condition> compare(
+				Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> fn) {
+			return this.compare(fn.apply(new CompareCondition.Builder()).build());
 		}
 
-		public Builder never(NeverCondition v) {
-			this._type = NEVER;
+		public ObjectBuilder<Condition> never(NeverCondition v) {
+			this._kind = Kind.Never;
 			this._value = v;
 			return this;
 		}
 
-		public Builder never(Function<NeverCondition.Builder, ObjectBuilder<NeverCondition>> f) {
-			return this.never(f.apply(new NeverCondition.Builder()).build());
+		public ObjectBuilder<Condition> never(Function<NeverCondition.Builder, ObjectBuilder<NeverCondition>> fn) {
+			return this.never(fn.apply(new NeverCondition.Builder()).build());
 		}
 
-		public Builder script(ScriptCondition v) {
-			this._type = SCRIPT;
+		public ObjectBuilder<Condition> script(ScriptCondition v) {
+			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Function<ScriptCondition.Builder, ObjectBuilder<ScriptCondition>> f) {
-			return this.script(f.apply(new ScriptCondition.Builder()).build());
+		public ObjectBuilder<Condition> script(Function<ScriptCondition.Builder, ObjectBuilder<ScriptCondition>> fn) {
+			return this.script(fn.apply(new ScriptCondition.Builder()).build());
 		}
 
 		public Condition build() {
+			_checkSingleUse();
 			return new Condition(this);
 		}
 
 	}
 
-	protected static void setupConditionDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupConditionDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::always, AlwaysCondition._DESERIALIZER, "always");
 		op.add(Builder::arrayCompare, ArrayCompareCondition._DESERIALIZER, "array_compare");
@@ -218,6 +288,6 @@ public class Condition implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<Condition> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Condition> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Condition::setupConditionDeserializer, Builder::build);
 }

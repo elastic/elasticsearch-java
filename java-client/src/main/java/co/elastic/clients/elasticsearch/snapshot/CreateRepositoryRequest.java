@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -45,47 +47,50 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.create_repository.Request
+
+/**
+ * Creates a repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/create_repository/SnapshotCreateRepositoryRequest.ts#L28-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CreateRepositoryRequest extends RequestBase implements JsonpSerializable {
-	private final String repository;
+public class CreateRepositoryRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Time masterTimeout;
+
+	private final String name;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Repository repository;
+
+	private final RepositorySettings settings;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
+
+	private final String type;
 
 	@Nullable
 	private final Boolean verify;
 
-	private final String type;
-
-	private final RepositorySettings settings;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateRepositoryRequest(Builder builder) {
+	private CreateRepositoryRequest(Builder builder) {
 
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.repository = builder.repository;
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 		this.timeout = builder.timeout;
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.verify = builder.verify;
-		this.type = Objects.requireNonNull(builder.type, "type");
-		this.settings = Objects.requireNonNull(builder.settings, "settings");
 
 	}
 
-	public CreateRepositoryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A repository name
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	public String repository() {
-		return this.repository;
+	public static CreateRepositoryRequest of(Function<Builder, ObjectBuilder<CreateRepositoryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,8 +99,32 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - A repository name
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	public final String name() {
+		return this.name;
+	}
+
+	/**
+	 * API name: {@code repository}
+	 */
+	@Nullable
+	public final Repository repository() {
+		return this.repository;
+	}
+
+	/**
+	 * Required - API name: {@code settings}
+	 */
+	public final RepositorySettings settings() {
+		return this.settings;
 	}
 
 	/**
@@ -104,8 +133,15 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
+	}
+
+	/**
+	 * Required - API name: {@code type}
+	 */
+	public final String type() {
+		return this.type;
 	}
 
 	/**
@@ -114,22 +150,8 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 	 * API name: {@code verify}
 	 */
 	@Nullable
-	public Boolean verify() {
+	public final Boolean verify() {
 		return this.verify;
-	}
-
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public String type() {
-		return this.type;
-	}
-
-	/**
-	 * Required - API name: {@code settings}
-	 */
-	public RepositorySettings settings() {
-		return this.settings;
 	}
 
 	/**
@@ -143,11 +165,16 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("type");
-		generator.write(this.type);
+		if (this.repository != null) {
+			generator.writeKey("repository");
+			this.repository.serialize(generator, mapper);
 
+		}
 		generator.writeKey("settings");
 		this.settings.serialize(generator, mapper);
+
+		generator.writeKey("type");
+		generator.write(this.type);
 
 	}
 
@@ -156,29 +183,33 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link CreateRepositoryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateRepositoryRequest> {
-		private String repository;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateRepositoryRequest> {
+		@Nullable
+		private Time masterTimeout;
+
+		private String name;
 
 		@Nullable
-		private String masterTimeout;
+		private Repository repository;
+
+		private RepositorySettings settings;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
+
+		private String type;
 
 		@Nullable
 		private Boolean verify;
 
-		private String type;
-
-		private RepositorySettings settings;
-
 		/**
-		 * Required - A repository name
+		 * Explicit operation timeout for connection to master node
 		 * <p>
-		 * API name: {@code repository}
+		 * API name: {@code master_timeout}
 		 */
-		public Builder repository(String value) {
-			this.repository = value;
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
@@ -187,8 +218,57 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - A repository name
+		 * <p>
+		 * API name: {@code repository}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code repository}
+		 */
+		public final Builder repository(@Nullable Repository value) {
+			this.repository = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code repository}
+		 */
+		public final Builder repository(Function<Repository.Builder, ObjectBuilder<Repository>> fn) {
+			return this.repository(fn.apply(new Repository.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code settings}
+		 */
+		public final Builder settings(RepositorySettings value) {
+			this.settings = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code settings}
+		 */
+		public final Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
+			return this.settings(fn.apply(new RepositorySettings.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
 			return this;
 		}
 
@@ -197,8 +277,15 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code type}
+		 */
+		public final Builder type(String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -207,32 +294,9 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code verify}
 		 */
-		public Builder verify(@Nullable Boolean value) {
+		public final Builder verify(@Nullable Boolean value) {
 			this.verify = value;
 			return this;
-		}
-
-		/**
-		 * Required - API name: {@code type}
-		 */
-		public Builder type(String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public Builder settings(RepositorySettings value) {
-			this.settings = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public Builder settings(Function<RepositorySettings.Builder, ObjectBuilder<RepositorySettings>> fn) {
-			return this.settings(fn.apply(new RepositorySettings.Builder()).build());
 		}
 
 		/**
@@ -242,6 +306,7 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 		 *             if some of the required fields are null.
 		 */
 		public CreateRepositoryRequest build() {
+			_checkSingleUse();
 
 			return new CreateRepositoryRequest(this);
 		}
@@ -253,13 +318,14 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 	 * Json deserializer for {@link CreateRepositoryRequest}
 	 */
 	public static final JsonpDeserializer<CreateRepositoryRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateRepositoryRequest::setupCreateRepositoryRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CreateRepositoryRequest::setupCreateRepositoryRequestDeserializer);
 
 	protected static void setupCreateRepositoryRequestDeserializer(
-			DelegatingDeserializer<CreateRepositoryRequest.Builder> op) {
+			ObjectDeserializer<CreateRepositoryRequest.Builder> op) {
 
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::repository, Repository._DESERIALIZER, "repository");
 		op.add(Builder::settings, RepositorySettings._DESERIALIZER, "settings");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 
@@ -268,7 +334,9 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code snapshot.create_repository}".
 	 */
-	public static final Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/snapshot.create_repository",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -277,17 +345,17 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 
 			// Request path
 			request -> {
-				final int _repository = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _repository;
+				propsSet |= _name;
 
-				if (propsSet == (_repository)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.repository, buf);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -298,13 +366,13 @@ public final class CreateRepositoryRequest extends RequestBase implements JsonpS
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.verify != null) {
 					params.put("verify", String.valueOf(request.verify));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

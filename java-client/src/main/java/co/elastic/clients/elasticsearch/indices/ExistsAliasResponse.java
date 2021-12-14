@@ -30,11 +30,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: indices.exists_alias.Response
 
-public final class ExistsAliasResponse {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/exists_alias/IndicesExistsAliasResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
+public class ExistsAliasResponse {
 	public ExistsAliasResponse() {
 	}
 

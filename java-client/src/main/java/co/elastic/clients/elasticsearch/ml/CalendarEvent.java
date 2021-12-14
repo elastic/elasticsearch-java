@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.CalendarEvent
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/CalendarEvent.ts#L23-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CalendarEvent implements JsonpSerializable {
+public class CalendarEvent implements JsonpSerializable {
 	@Nullable
 	private final String calendarId;
 
@@ -54,25 +62,27 @@ public final class CalendarEvent implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CalendarEvent(Builder builder) {
+	private CalendarEvent(Builder builder) {
 
 		this.calendarId = builder.calendarId;
 		this.eventId = builder.eventId;
-		this.description = Objects.requireNonNull(builder.description, "description");
-		this.endTime = Objects.requireNonNull(builder.endTime, "end_time");
-		this.startTime = Objects.requireNonNull(builder.startTime, "start_time");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.endTime = ApiTypeHelper.requireNonNull(builder.endTime, this, "endTime");
+		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime");
 
 	}
 
-	public CalendarEvent(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CalendarEvent of(Function<Builder, ObjectBuilder<CalendarEvent>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
+	 * A string that uniquely identifies a calendar.
+	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	@Nullable
-	public String calendarId() {
+	public final String calendarId() {
 		return this.calendarId;
 	}
 
@@ -80,7 +90,7 @@ public final class CalendarEvent implements JsonpSerializable {
 	 * API name: {@code event_id}
 	 */
 	@Nullable
-	public String eventId() {
+	public final String eventId() {
 		return this.eventId;
 	}
 
@@ -89,7 +99,7 @@ public final class CalendarEvent implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -99,7 +109,7 @@ public final class CalendarEvent implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code end_time}
 	 */
-	public String endTime() {
+	public final String endTime() {
 		return this.endTime;
 	}
 
@@ -109,7 +119,7 @@ public final class CalendarEvent implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code start_time}
 	 */
-	public String startTime() {
+	public final String startTime() {
 		return this.startTime;
 	}
 
@@ -125,18 +135,15 @@ public final class CalendarEvent implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.calendarId != null) {
-
 			generator.writeKey("calendar_id");
 			generator.write(this.calendarId);
 
 		}
 		if (this.eventId != null) {
-
 			generator.writeKey("event_id");
 			generator.write(this.eventId);
 
 		}
-
 		generator.writeKey("description");
 		generator.write(this.description);
 
@@ -153,7 +160,8 @@ public final class CalendarEvent implements JsonpSerializable {
 	/**
 	 * Builder for {@link CalendarEvent}.
 	 */
-	public static class Builder implements ObjectBuilder<CalendarEvent> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CalendarEvent> {
 		@Nullable
 		private String calendarId;
 
@@ -167,9 +175,11 @@ public final class CalendarEvent implements JsonpSerializable {
 		private String startTime;
 
 		/**
+		 * A string that uniquely identifies a calendar.
+		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(@Nullable String value) {
+		public final Builder calendarId(@Nullable String value) {
 			this.calendarId = value;
 			return this;
 		}
@@ -177,7 +187,7 @@ public final class CalendarEvent implements JsonpSerializable {
 		/**
 		 * API name: {@code event_id}
 		 */
-		public Builder eventId(@Nullable String value) {
+		public final Builder eventId(@Nullable String value) {
 			this.eventId = value;
 			return this;
 		}
@@ -187,7 +197,7 @@ public final class CalendarEvent implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
@@ -198,7 +208,7 @@ public final class CalendarEvent implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code end_time}
 		 */
-		public Builder endTime(String value) {
+		public final Builder endTime(String value) {
 			this.endTime = value;
 			return this;
 		}
@@ -209,7 +219,7 @@ public final class CalendarEvent implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time}
 		 */
-		public Builder startTime(String value) {
+		public final Builder startTime(String value) {
 			this.startTime = value;
 			return this;
 		}
@@ -221,6 +231,7 @@ public final class CalendarEvent implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CalendarEvent build() {
+			_checkSingleUse();
 
 			return new CalendarEvent(this);
 		}
@@ -232,9 +243,9 @@ public final class CalendarEvent implements JsonpSerializable {
 	 * Json deserializer for {@link CalendarEvent}
 	 */
 	public static final JsonpDeserializer<CalendarEvent> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CalendarEvent::setupCalendarEventDeserializer, Builder::build);
+			CalendarEvent::setupCalendarEventDeserializer);
 
-	protected static void setupCalendarEventDeserializer(DelegatingDeserializer<CalendarEvent.Builder> op) {
+	protected static void setupCalendarEventDeserializer(ObjectDeserializer<CalendarEvent.Builder> op) {
 
 		op.add(Builder::calendarId, JsonpDeserializer.stringDeserializer(), "calendar_id");
 		op.add(Builder::eventId, JsonpDeserializer.stringDeserializer(), "event_id");

@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L111-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankEvalQuery implements JsonpSerializable {
+public class RankEvalQuery implements JsonpSerializable {
 	private final Query query;
 
 	@Nullable
@@ -48,21 +56,21 @@ public final class RankEvalQuery implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalQuery(Builder builder) {
+	private RankEvalQuery(Builder builder) {
 
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.size = builder.size;
 
 	}
 
-	public RankEvalQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalQuery of(Function<Builder, ObjectBuilder<RankEvalQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -70,7 +78,7 @@ public final class RankEvalQuery implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -89,7 +97,6 @@ public final class RankEvalQuery implements JsonpSerializable {
 		this.query.serialize(generator, mapper);
 
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -102,7 +109,8 @@ public final class RankEvalQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalQuery}.
 	 */
-	public static class Builder implements ObjectBuilder<RankEvalQuery> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalQuery> {
 		private Query query;
 
 		@Nullable
@@ -111,7 +119,7 @@ public final class RankEvalQuery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Query value) {
+		public final Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -119,14 +127,14 @@ public final class RankEvalQuery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -138,6 +146,7 @@ public final class RankEvalQuery implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalQuery build() {
+			_checkSingleUse();
 
 			return new RankEvalQuery(this);
 		}
@@ -149,9 +158,9 @@ public final class RankEvalQuery implements JsonpSerializable {
 	 * Json deserializer for {@link RankEvalQuery}
 	 */
 	public static final JsonpDeserializer<RankEvalQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RankEvalQuery::setupRankEvalQueryDeserializer, Builder::build);
+			RankEvalQuery::setupRankEvalQueryDeserializer);
 
-	protected static void setupRankEvalQueryDeserializer(DelegatingDeserializer<RankEvalQuery.Builder> op) {
+	protected static void setupRankEvalQueryDeserializer(ObjectDeserializer<RankEvalQuery.Builder> op) {
 
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

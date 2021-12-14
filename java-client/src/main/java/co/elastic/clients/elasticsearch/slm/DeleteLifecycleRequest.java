@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,27 @@ import javax.annotation.Nullable;
 
 // typedef: slm.delete_lifecycle.Request
 
-public final class DeleteLifecycleRequest extends RequestBase {
+/**
+ * Deletes an existing snapshot lifecycle policy.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/delete_lifecycle/DeleteSnapshotLifecycleRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class DeleteLifecycleRequest extends RequestBase {
 	private final String policyId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteLifecycleRequest(Builder builder) {
+	private DeleteLifecycleRequest(Builder builder) {
 
-		this.policyId = Objects.requireNonNull(builder.policyId, "policy_id");
+		this.policyId = ApiTypeHelper.requireNonNull(builder.policyId, this, "policyId");
 
 	}
 
-	public DeleteLifecycleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteLifecycleRequest of(Function<Builder, ObjectBuilder<DeleteLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +71,7 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code policy_id}
 	 */
-	public String policyId() {
+	public final String policyId() {
 		return this.policyId;
 	}
 
@@ -70,7 +80,8 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteLifecycleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteLifecycleRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteLifecycleRequest> {
 		private String policyId;
 
 		/**
@@ -78,7 +89,7 @@ public final class DeleteLifecycleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code policy_id}
 		 */
-		public Builder policyId(String value) {
+		public final Builder policyId(String value) {
 			this.policyId = value;
 			return this;
 		}
@@ -90,6 +101,7 @@ public final class DeleteLifecycleRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteLifecycleRequest build() {
+			_checkSingleUse();
 
 			return new DeleteLifecycleRequest(this);
 		}
@@ -100,7 +112,9 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code slm.delete_lifecycle}".
 	 */
-	public static final Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/slm.delete_lifecycle",
+
 			// Request method
 			request -> {
 				return "DELETE";

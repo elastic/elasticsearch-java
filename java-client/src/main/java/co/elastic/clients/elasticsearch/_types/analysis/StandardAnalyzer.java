@@ -23,64 +23,71 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StandardAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L95-L99">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
-	private final int maxTokenLength;
+public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
+	@Nullable
+	private final Integer maxTokenLength;
 
 	private final List<String> stopwords;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StandardAnalyzer(Builder builder) {
+	private StandardAnalyzer(Builder builder) {
 
-		this.maxTokenLength = Objects.requireNonNull(builder.maxTokenLength, "max_token_length");
-		this.stopwords = ModelTypeHelper.unmodifiableNonNull(builder.stopwords, "stopwords");
+		this.maxTokenLength = builder.maxTokenLength;
+		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 
 	}
 
-	public StandardAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StandardAnalyzer of(Function<Builder, ObjectBuilder<StandardAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "standard";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.Standard;
 	}
 
 	/**
-	 * Required - API name: {@code max_token_length}
+	 * API name: {@code max_token_length}
 	 */
-	public int maxTokenLength() {
+	@Nullable
+	public final Integer maxTokenLength() {
 		return this.maxTokenLength;
 	}
 
 	/**
-	 * Required - API name: {@code stopwords}
+	 * API name: {@code stopwords}
 	 */
-	public List<String> stopwords() {
+	public final List<String> stopwords() {
 		return this.stopwords;
 	}
 
@@ -97,16 +104,21 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 
 		generator.write("type", "standard");
 
-		generator.writeKey("max_token_length");
-		generator.write(this.maxTokenLength);
-
-		generator.writeKey("stopwords");
-		generator.writeStartArray();
-		for (String item0 : this.stopwords) {
-			generator.write(item0);
+		if (this.maxTokenLength != null) {
+			generator.writeKey("max_token_length");
+			generator.write(this.maxTokenLength);
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.stopwords)) {
+			generator.writeKey("stopwords");
+			generator.writeStartArray();
+			for (String item0 : this.stopwords) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -115,43 +127,39 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	/**
 	 * Builder for {@link StandardAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<StandardAnalyzer> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StandardAnalyzer> {
+		@Nullable
 		private Integer maxTokenLength;
 
+		@Nullable
 		private List<String> stopwords;
 
 		/**
-		 * Required - API name: {@code max_token_length}
+		 * API name: {@code max_token_length}
 		 */
-		public Builder maxTokenLength(int value) {
+		public final Builder maxTokenLength(@Nullable Integer value) {
 			this.maxTokenLength = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
 		 */
-		public Builder stopwords(List<String> value) {
-			this.stopwords = value;
+		public final Builder stopwords(List<String> list) {
+			this.stopwords = _listAddAll(this.stopwords, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds one or more values to <code>stopwords</code>.
 		 */
-		public Builder stopwords(String... value) {
-			this.stopwords = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
-		 */
-		public Builder addStopwords(String value) {
-			if (this.stopwords == null) {
-				this.stopwords = new ArrayList<>();
-			}
-			this.stopwords.add(value);
+		public final Builder stopwords(String value, String... values) {
+			this.stopwords = _listAdd(this.stopwords, value, values);
 			return this;
 		}
 
@@ -162,6 +170,7 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public StandardAnalyzer build() {
+			_checkSingleUse();
 
 			return new StandardAnalyzer(this);
 		}
@@ -173,9 +182,9 @@ public final class StandardAnalyzer implements AnalyzerVariant, JsonpSerializabl
 	 * Json deserializer for {@link StandardAnalyzer}
 	 */
 	public static final JsonpDeserializer<StandardAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StandardAnalyzer::setupStandardAnalyzerDeserializer, Builder::build);
+			StandardAnalyzer::setupStandardAnalyzerDeserializer);
 
-	protected static void setupStandardAnalyzerDeserializer(DelegatingDeserializer<StandardAnalyzer.Builder> op) {
+	protected static void setupStandardAnalyzerDeserializer(ObjectDeserializer<StandardAnalyzer.Builder> op) {
 
 		op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 		op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

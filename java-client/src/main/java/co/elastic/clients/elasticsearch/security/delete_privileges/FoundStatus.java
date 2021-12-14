@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.security.delete_privileges;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.delete_privileges.FoundStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_privileges/types.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FoundStatus implements JsonpSerializable {
+public class FoundStatus implements JsonpSerializable {
 	private final boolean found;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FoundStatus(Builder builder) {
+	private FoundStatus(Builder builder) {
 
-		this.found = Objects.requireNonNull(builder.found, "found");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
 
 	}
 
-	public FoundStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FoundStatus of(Function<Builder, ObjectBuilder<FoundStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code found}
 	 */
-	public boolean found() {
+	public final boolean found() {
 		return this.found;
 	}
 
@@ -81,13 +89,14 @@ public final class FoundStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link FoundStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<FoundStatus> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FoundStatus> {
 		private Boolean found;
 
 		/**
 		 * Required - API name: {@code found}
 		 */
-		public Builder found(boolean value) {
+		public final Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class FoundStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FoundStatus build() {
+			_checkSingleUse();
 
 			return new FoundStatus(this);
 		}
@@ -110,9 +120,9 @@ public final class FoundStatus implements JsonpSerializable {
 	 * Json deserializer for {@link FoundStatus}
 	 */
 	public static final JsonpDeserializer<FoundStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FoundStatus::setupFoundStatusDeserializer, Builder::build);
+			FoundStatus::setupFoundStatusDeserializer);
 
-	protected static void setupFoundStatusDeserializer(DelegatingDeserializer<FoundStatus.Builder> op) {
+	protected static void setupFoundStatusDeserializer(ObjectDeserializer<FoundStatus.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 

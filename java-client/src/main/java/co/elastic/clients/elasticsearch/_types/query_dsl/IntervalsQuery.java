@@ -23,12 +23,14 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
@@ -40,61 +42,103 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsQuery
-@JsonpDeserializable
-public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, QueryVariant, JsonpSerializable {
 
-	public static final String ALL_OF = "all_of";
-	public static final String ANY_OF = "any_of";
-	public static final String FUZZY = "fuzzy";
-	public static final String MATCH = "match";
-	public static final String PREFIX = "prefix";
-	public static final String WILDCARD = "wildcard";
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L116-L125">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class IntervalsQuery extends QueryBase
+		implements
+			TaggedUnion<IntervalsQuery.Kind, Object>,
+			QueryVariant,
+			JsonpSerializable {
 
 	/**
-	 * {@link Query} variant type
+	 * {@link IntervalsQuery} variant kinds.
 	 */
-	@Override
-	public String _variantType() {
-		return "intervals";
+	/**
+	 * {@link IntervalsQuery} variant kinds.
+	 */
+
+	public enum Kind implements JsonEnum {
+		AllOf("all_of"),
+
+		AnyOf("any_of"),
+
+		Fuzzy("fuzzy"),
+
+		Match("match"),
+
+		Prefix("prefix"),
+
+		Wildcard("wildcard"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
 	}
 
-	// Tagged union implementation
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.Intervals;
+	}
 
-	private final String _type;
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
+	// Single key dictionary
 	private final String field;
 
 	private IntervalsQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public IntervalsQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IntervalsQuery of(Function<Builder, ObjectBuilder<IntervalsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
+	}
+
+	/**
+	 * Is this variant instance of kind {@code all_of}?
+	 */
+	public boolean isAllOf() {
+		return _kind == Kind.AllOf;
 	}
 
 	/**
@@ -104,7 +148,14 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	 *             if the current variant is not of the {@code all_of} kind.
 	 */
 	public IntervalsAllOf allOf() {
-		return TaggedUnionUtils.get(this, ALL_OF);
+		return TaggedUnionUtils.get(this, Kind.AllOf);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code any_of}?
+	 */
+	public boolean isAnyOf() {
+		return _kind == Kind.AnyOf;
 	}
 
 	/**
@@ -114,7 +165,14 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	 *             if the current variant is not of the {@code any_of} kind.
 	 */
 	public IntervalsAnyOf anyOf() {
-		return TaggedUnionUtils.get(this, ANY_OF);
+		return TaggedUnionUtils.get(this, Kind.AnyOf);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code fuzzy}?
+	 */
+	public boolean isFuzzy() {
+		return _kind == Kind.Fuzzy;
 	}
 
 	/**
@@ -124,7 +182,14 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	 *             if the current variant is not of the {@code fuzzy} kind.
 	 */
 	public IntervalsFuzzy fuzzy() {
-		return TaggedUnionUtils.get(this, FUZZY);
+		return TaggedUnionUtils.get(this, Kind.Fuzzy);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match}?
+	 */
+	public boolean isMatch() {
+		return _kind == Kind.Match;
 	}
 
 	/**
@@ -134,7 +199,14 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	 *             if the current variant is not of the {@code match} kind.
 	 */
 	public IntervalsMatch match() {
-		return TaggedUnionUtils.get(this, MATCH);
+		return TaggedUnionUtils.get(this, Kind.Match);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code prefix}?
+	 */
+	public boolean isPrefix() {
+		return _kind == Kind.Prefix;
 	}
 
 	/**
@@ -144,7 +216,14 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	 *             if the current variant is not of the {@code prefix} kind.
 	 */
 	public IntervalsPrefix prefix() {
-		return TaggedUnionUtils.get(this, PREFIX);
+		return TaggedUnionUtils.get(this, Kind.Prefix);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code wildcard}?
+	 */
+	public boolean isWildcard() {
+		return _kind == Kind.Wildcard;
 	}
 
 	/**
@@ -154,38 +233,39 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 	 *             if the current variant is not of the {@code wildcard} kind.
 	 */
 	public IntervalsWildcard wildcard() {
-		return TaggedUnionUtils.get(this, WILDCARD);
+		return TaggedUnionUtils.get(this, Kind.Wildcard);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
 		generator.writeEnd();
+
 		generator.writeEnd();
+
 	}
 
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<IntervalsQuery> {
-		private String _type;
+		private Kind _kind;
 		private Object _value;
 
 		private String field;
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -194,73 +274,76 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 		protected Builder self() {
 			return this;
 		}
-		public Builder allOf(IntervalsAllOf v) {
-			this._type = ALL_OF;
+		public ObjectBuilder<IntervalsQuery> allOf(IntervalsAllOf v) {
+			this._kind = Kind.AllOf;
 			this._value = v;
 			return this;
 		}
 
-		public Builder allOf(Function<IntervalsAllOf.Builder, ObjectBuilder<IntervalsAllOf>> f) {
-			return this.allOf(f.apply(new IntervalsAllOf.Builder()).build());
+		public ObjectBuilder<IntervalsQuery> allOf(Function<IntervalsAllOf.Builder, ObjectBuilder<IntervalsAllOf>> fn) {
+			return this.allOf(fn.apply(new IntervalsAllOf.Builder()).build());
 		}
 
-		public Builder anyOf(IntervalsAnyOf v) {
-			this._type = ANY_OF;
+		public ObjectBuilder<IntervalsQuery> anyOf(IntervalsAnyOf v) {
+			this._kind = Kind.AnyOf;
 			this._value = v;
 			return this;
 		}
 
-		public Builder anyOf(Function<IntervalsAnyOf.Builder, ObjectBuilder<IntervalsAnyOf>> f) {
-			return this.anyOf(f.apply(new IntervalsAnyOf.Builder()).build());
+		public ObjectBuilder<IntervalsQuery> anyOf(Function<IntervalsAnyOf.Builder, ObjectBuilder<IntervalsAnyOf>> fn) {
+			return this.anyOf(fn.apply(new IntervalsAnyOf.Builder()).build());
 		}
 
-		public Builder fuzzy(IntervalsFuzzy v) {
-			this._type = FUZZY;
+		public ObjectBuilder<IntervalsQuery> fuzzy(IntervalsFuzzy v) {
+			this._kind = Kind.Fuzzy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fuzzy(Function<IntervalsFuzzy.Builder, ObjectBuilder<IntervalsFuzzy>> f) {
-			return this.fuzzy(f.apply(new IntervalsFuzzy.Builder()).build());
+		public ObjectBuilder<IntervalsQuery> fuzzy(Function<IntervalsFuzzy.Builder, ObjectBuilder<IntervalsFuzzy>> fn) {
+			return this.fuzzy(fn.apply(new IntervalsFuzzy.Builder()).build());
 		}
 
-		public Builder match(IntervalsMatch v) {
-			this._type = MATCH;
+		public ObjectBuilder<IntervalsQuery> match(IntervalsMatch v) {
+			this._kind = Kind.Match;
 			this._value = v;
 			return this;
 		}
 
-		public Builder match(Function<IntervalsMatch.Builder, ObjectBuilder<IntervalsMatch>> f) {
-			return this.match(f.apply(new IntervalsMatch.Builder()).build());
+		public ObjectBuilder<IntervalsQuery> match(Function<IntervalsMatch.Builder, ObjectBuilder<IntervalsMatch>> fn) {
+			return this.match(fn.apply(new IntervalsMatch.Builder()).build());
 		}
 
-		public Builder prefix(IntervalsPrefix v) {
-			this._type = PREFIX;
+		public ObjectBuilder<IntervalsQuery> prefix(IntervalsPrefix v) {
+			this._kind = Kind.Prefix;
 			this._value = v;
 			return this;
 		}
 
-		public Builder prefix(Function<IntervalsPrefix.Builder, ObjectBuilder<IntervalsPrefix>> f) {
-			return this.prefix(f.apply(new IntervalsPrefix.Builder()).build());
+		public ObjectBuilder<IntervalsQuery> prefix(
+				Function<IntervalsPrefix.Builder, ObjectBuilder<IntervalsPrefix>> fn) {
+			return this.prefix(fn.apply(new IntervalsPrefix.Builder()).build());
 		}
 
-		public Builder wildcard(IntervalsWildcard v) {
-			this._type = WILDCARD;
+		public ObjectBuilder<IntervalsQuery> wildcard(IntervalsWildcard v) {
+			this._kind = Kind.Wildcard;
 			this._value = v;
 			return this;
 		}
 
-		public Builder wildcard(Function<IntervalsWildcard.Builder, ObjectBuilder<IntervalsWildcard>> f) {
-			return this.wildcard(f.apply(new IntervalsWildcard.Builder()).build());
+		public ObjectBuilder<IntervalsQuery> wildcard(
+				Function<IntervalsWildcard.Builder, ObjectBuilder<IntervalsWildcard>> fn) {
+			return this.wildcard(fn.apply(new IntervalsWildcard.Builder()).build());
 		}
 
 		public IntervalsQuery build() {
+			_checkSingleUse();
 			return new IntervalsQuery(this);
 		}
 
 	}
 
-	protected static void setupIntervalsQueryDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupIntervalsQueryDeserializer(ObjectDeserializer<Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::allOf, IntervalsAllOf._DESERIALIZER, "all_of");
 		op.add(Builder::anyOf, IntervalsAnyOf._DESERIALIZER, "any_of");
@@ -269,10 +352,10 @@ public class IntervalsQuery extends QueryBase implements TaggedUnion<Object>, Qu
 		op.add(Builder::prefix, IntervalsPrefix._DESERIALIZER, "prefix");
 		op.add(Builder::wildcard, IntervalsWildcard._DESERIALIZER, "wildcard");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
 
 	}
 
-	public static final JsonpDeserializer<IntervalsQuery> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<IntervalsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			IntervalsQuery::setupIntervalsQueryDeserializer, Builder::build);
 }

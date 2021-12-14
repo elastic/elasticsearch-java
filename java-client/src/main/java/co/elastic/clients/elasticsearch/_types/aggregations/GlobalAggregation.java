@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.GlobalAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L195-L195">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GlobalAggregation extends BucketAggregationBase implements AggregationVariant {
+public class GlobalAggregation extends BucketAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public GlobalAggregation(Builder builder) {
+	private GlobalAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public GlobalAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GlobalAggregation of(Function<Builder, ObjectBuilder<GlobalAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "global";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Global;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class GlobalAggregation extends BucketAggregationBase implements Ag
 	/**
 	 * Builder for {@link GlobalAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GlobalAggregation> {
@@ -75,6 +82,7 @@ public final class GlobalAggregation extends BucketAggregationBase implements Ag
 		 *             if some of the required fields are null.
 		 */
 		public GlobalAggregation build() {
+			_checkSingleUse();
 
 			return new GlobalAggregation(this);
 		}
@@ -86,9 +94,9 @@ public final class GlobalAggregation extends BucketAggregationBase implements Ag
 	 * Json deserializer for {@link GlobalAggregation}
 	 */
 	public static final JsonpDeserializer<GlobalAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GlobalAggregation::setupGlobalAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, GlobalAggregation::setupGlobalAggregationDeserializer);
 
-	protected static void setupGlobalAggregationDeserializer(DelegatingDeserializer<GlobalAggregation.Builder> op) {
+	protected static void setupGlobalAggregationDeserializer(ObjectDeserializer<GlobalAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 
 	}

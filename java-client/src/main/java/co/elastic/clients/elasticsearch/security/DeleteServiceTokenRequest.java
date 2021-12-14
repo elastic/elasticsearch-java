@@ -23,17 +23,18 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -44,47 +45,37 @@ import javax.annotation.Nullable;
 
 // typedef: security.delete_service_token.Request
 
-public final class DeleteServiceTokenRequest extends RequestBase {
+/**
+ * Deletes a service account token.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_service_token/DeleteServiceTokenRequest.ts#L23-L37">API
+ *      specification</a>
+ */
+
+public class DeleteServiceTokenRequest extends RequestBase {
+	private final String name;
+
 	private final String namespace;
+
+	@Nullable
+	private final Refresh refresh;
 
 	private final String service;
 
-	private final String name;
-
-	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteServiceTokenRequest(Builder builder) {
+	private DeleteServiceTokenRequest(Builder builder) {
 
-		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
-		this.service = Objects.requireNonNull(builder.service, "service");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
 		this.refresh = builder.refresh;
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 
-	public DeleteServiceTokenRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - An identifier for the namespace
-	 * <p>
-	 * API name: {@code namespace}
-	 */
-	public String namespace() {
-		return this.namespace;
-	}
-
-	/**
-	 * Required - An identifier for the service name
-	 * <p>
-	 * API name: {@code service}
-	 */
-	public String service() {
-		return this.service;
+	public static DeleteServiceTokenRequest of(Function<Builder, ObjectBuilder<DeleteServiceTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,8 +83,17 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
+	}
+
+	/**
+	 * Required - An identifier for the namespace
+	 * <p>
+	 * API name: {@code namespace}
+	 */
+	public final String namespace() {
+		return this.namespace;
 	}
 
 	/**
@@ -105,8 +105,17 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
+	}
+
+	/**
+	 * Required - An identifier for the service name
+	 * <p>
+	 * API name: {@code service}
+	 */
+	public final String service() {
+		return this.service;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -114,43 +123,34 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteServiceTokenRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteServiceTokenRequest> {
-		private String namespace;
 
-		private String service;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteServiceTokenRequest> {
 		private String name;
 
+		private String namespace;
+
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
-		/**
-		 * Required - An identifier for the namespace
-		 * <p>
-		 * API name: {@code namespace}
-		 */
-		public Builder namespace(String value) {
-			this.namespace = value;
-			return this;
-		}
-
-		/**
-		 * Required - An identifier for the service name
-		 * <p>
-		 * API name: {@code service}
-		 */
-		public Builder service(String value) {
-			this.service = value;
-			return this;
-		}
+		private String service;
 
 		/**
 		 * Required - An identifier for the token name
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - An identifier for the namespace
+		 * <p>
+		 * API name: {@code namespace}
+		 */
+		public final Builder namespace(String value) {
+			this.namespace = value;
 			return this;
 		}
 
@@ -162,8 +162,18 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * Required - An identifier for the service name
+		 * <p>
+		 * API name: {@code service}
+		 */
+		public final Builder service(String value) {
+			this.service = value;
 			return this;
 		}
 
@@ -174,6 +184,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteServiceTokenRequest build() {
+			_checkSingleUse();
 
 			return new DeleteServiceTokenRequest(this);
 		}
@@ -184,7 +195,9 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.delete_service_token}".
 	 */
-	public static final Endpoint<DeleteServiceTokenRequest, DeleteServiceTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteServiceTokenRequest, DeleteServiceTokenResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.delete_service_token",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -193,14 +206,14 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _namespace = 1 << 0;
-				final int _service = 1 << 1;
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
 				final int _name = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _namespace;
 				propsSet |= _service;
+				propsSet |= _namespace;
 				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name)) {
@@ -225,7 +238,7 @@ public final class DeleteServiceTokenRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

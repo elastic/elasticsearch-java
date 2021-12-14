@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.IndicesResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.delete.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/delete/IndicesDeleteResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteIndexResponse extends IndicesResponseBase {
+public class DeleteIndexResponse extends IndicesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteIndexResponse(Builder builder) {
+	private DeleteIndexResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteIndexResponse of(Function<Builder, ObjectBuilder<DeleteIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteIndexResponse extends IndicesResponseBase {
 	/**
 	 * Builder for {@link DeleteIndexResponse}.
 	 */
+
 	public static class Builder extends IndicesResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteIndexResponse> {
@@ -68,6 +75,7 @@ public final class DeleteIndexResponse extends IndicesResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteIndexResponse build() {
+			_checkSingleUse();
 
 			return new DeleteIndexResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class DeleteIndexResponse extends IndicesResponseBase {
 	 * Json deserializer for {@link DeleteIndexResponse}
 	 */
 	public static final JsonpDeserializer<DeleteIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteIndexResponse::setupDeleteIndexResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteIndexResponse::setupDeleteIndexResponseDeserializer);
 
-	protected static void setupDeleteIndexResponseDeserializer(DelegatingDeserializer<DeleteIndexResponse.Builder> op) {
+	protected static void setupDeleteIndexResponseDeserializer(ObjectDeserializer<DeleteIndexResponse.Builder> op) {
 		IndicesResponseBase.setupIndicesResponseBaseDeserializer(op);
 
 	}

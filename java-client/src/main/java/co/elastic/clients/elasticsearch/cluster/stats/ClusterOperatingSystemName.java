@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -39,36 +40,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystemName
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L234-L237">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterOperatingSystemName implements JsonpSerializable {
+public class ClusterOperatingSystemName implements JsonpSerializable {
 	private final int count;
 
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterOperatingSystemName(Builder builder) {
+	private ClusterOperatingSystemName(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public ClusterOperatingSystemName(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterOperatingSystemName of(Function<Builder, ObjectBuilder<ClusterOperatingSystemName>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -96,7 +104,8 @@ public final class ClusterOperatingSystemName implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterOperatingSystemName}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterOperatingSystemName> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemName> {
 		private Integer count;
 
 		private String name;
@@ -104,7 +113,7 @@ public final class ClusterOperatingSystemName implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -112,7 +121,7 @@ public final class ClusterOperatingSystemName implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -124,6 +133,7 @@ public final class ClusterOperatingSystemName implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterOperatingSystemName build() {
+			_checkSingleUse();
 
 			return new ClusterOperatingSystemName(this);
 		}
@@ -134,11 +144,11 @@ public final class ClusterOperatingSystemName implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ClusterOperatingSystemName}
 	 */
-	public static final JsonpDeserializer<ClusterOperatingSystemName> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ClusterOperatingSystemName::setupClusterOperatingSystemNameDeserializer, Builder::build);
+	public static final JsonpDeserializer<ClusterOperatingSystemName> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterOperatingSystemName::setupClusterOperatingSystemNameDeserializer);
 
 	protected static void setupClusterOperatingSystemNameDeserializer(
-			DelegatingDeserializer<ClusterOperatingSystemName.Builder> op) {
+			ObjectDeserializer<ClusterOperatingSystemName.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.PercolatorProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L219-L221">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PercolatorProperty extends PropertyBase implements PropertyVariant {
+public class PercolatorProperty extends PropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public PercolatorProperty(Builder builder) {
+	private PercolatorProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public PercolatorProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PercolatorProperty of(Function<Builder, ObjectBuilder<PercolatorProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "percolator";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Percolator;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class PercolatorProperty extends PropertyBase implements PropertyVa
 	/**
 	 * Builder for {@link PercolatorProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PercolatorProperty> {
@@ -83,6 +90,7 @@ public final class PercolatorProperty extends PropertyBase implements PropertyVa
 		 *             if some of the required fields are null.
 		 */
 		public PercolatorProperty build() {
+			_checkSingleUse();
 
 			return new PercolatorProperty(this);
 		}
@@ -94,9 +102,9 @@ public final class PercolatorProperty extends PropertyBase implements PropertyVa
 	 * Json deserializer for {@link PercolatorProperty}
 	 */
 	public static final JsonpDeserializer<PercolatorProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PercolatorProperty::setupPercolatorPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, PercolatorProperty::setupPercolatorPropertyDeserializer);
 
-	protected static void setupPercolatorPropertyDeserializer(DelegatingDeserializer<PercolatorProperty.Builder> op) {
+	protected static void setupPercolatorPropertyDeserializer(ObjectDeserializer<PercolatorProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 
 		op.ignore("type");

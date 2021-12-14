@@ -23,18 +23,19 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -43,20 +44,32 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.put_lifecycle.Request
+
+/**
+ * Creates a lifecycle policy
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/put_lifecycle/PutLifecycleRequest.ts#L24-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
-	private final String policy;
+public class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
+	private final String name;
+
+	@Nullable
+	private final IlmPolicy policy;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutLifecycleRequest(Builder builder) {
+	private PutLifecycleRequest(Builder builder) {
 
-		this.policy = Objects.requireNonNull(builder.policy, "policy");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.policy = builder.policy;
 
 	}
 
-	public PutLifecycleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutLifecycleRequest of(Function<Builder, ObjectBuilder<PutLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +77,15 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code policy}
 	 */
-	public String policy() {
+	public final String name() {
+		return this.name;
+	}
+
+	/**
+	 * API name: {@code policy}
+	 */
+	@Nullable
+	public final IlmPolicy policy() {
 		return this.policy;
 	}
 
@@ -79,6 +100,12 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.policy != null) {
+			generator.writeKey("policy");
+			this.policy.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -86,17 +113,36 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link PutLifecycleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutLifecycleRequest> {
-		private String policy;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutLifecycleRequest> {
+		private String name;
+
+		@Nullable
+		private IlmPolicy policy;
 
 		/**
 		 * Required - The name of the index lifecycle policy
 		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder policy(String value) {
+		public final Builder name(String value) {
+			this.name = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code policy}
+		 */
+		public final Builder policy(@Nullable IlmPolicy value) {
 			this.policy = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code policy}
+		 */
+		public final Builder policy(Function<IlmPolicy.Builder, ObjectBuilder<IlmPolicy>> fn) {
+			return this.policy(fn.apply(new IlmPolicy.Builder()).build());
 		}
 
 		/**
@@ -106,6 +152,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public PutLifecycleRequest build() {
+			_checkSingleUse();
 
 			return new PutLifecycleRequest(this);
 		}
@@ -117,9 +164,11 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * Json deserializer for {@link PutLifecycleRequest}
 	 */
 	public static final JsonpDeserializer<PutLifecycleRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer);
 
-	protected static void setupPutLifecycleRequestDeserializer(DelegatingDeserializer<PutLifecycleRequest.Builder> op) {
+	protected static void setupPutLifecycleRequestDeserializer(ObjectDeserializer<PutLifecycleRequest.Builder> op) {
+
+		op.add(Builder::policy, IlmPolicy._DESERIALIZER, "policy");
 
 	}
 
@@ -128,7 +177,9 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code ilm.put_lifecycle}".
 	 */
-	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.put_lifecycle",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -137,18 +188,18 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 
 			// Request path
 			request -> {
-				final int _policy = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _policy;
+				propsSet |= _name;
 
-				if (propsSet == (_policy)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ilm");
 					buf.append("/policy");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.policy, buf);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

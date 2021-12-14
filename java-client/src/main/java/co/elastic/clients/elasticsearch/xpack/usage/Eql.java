@@ -23,72 +23,79 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Eql
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L303-L306">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Eql extends Base {
+public class Eql extends Base {
 	private final EqlFeatures features;
 
-	private final Map<String, Query> queries;
+	private final Map<String, XpackUsageQuery> queries;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Eql(Builder builder) {
+	private Eql(Builder builder) {
 		super(builder);
 
-		this.features = Objects.requireNonNull(builder.features, "features");
-		this.queries = ModelTypeHelper.unmodifiableNonNull(builder.queries, "queries");
+		this.features = ApiTypeHelper.requireNonNull(builder.features, this, "features");
+		this.queries = ApiTypeHelper.unmodifiableRequired(builder.queries, this, "queries");
 
 	}
 
-	public Eql(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Eql of(Function<Builder, ObjectBuilder<Eql>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code features}
 	 */
-	public EqlFeatures features() {
+	public final EqlFeatures features() {
 		return this.features;
 	}
 
 	/**
 	 * Required - API name: {@code queries}
 	 */
-	public Map<String, Query> queries() {
+	public final Map<String, XpackUsageQuery> queries() {
 		return this.queries;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("features");
 		this.features.serialize(generator, mapper);
 
-		generator.writeKey("queries");
-		generator.writeStartObject();
-		for (Map.Entry<String, Query> item0 : this.queries.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.queries)) {
+			generator.writeKey("queries");
+			generator.writeStartObject();
+			for (Map.Entry<String, XpackUsageQuery> item0 : this.queries.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -97,15 +104,16 @@ public final class Eql extends Base {
 	/**
 	 * Builder for {@link Eql}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Eql> {
 		private EqlFeatures features;
 
-		private Map<String, Query> queries;
+		private Map<String, XpackUsageQuery> queries;
 
 		/**
 		 * Required - API name: {@code features}
 		 */
-		public Builder features(EqlFeatures value) {
+		public final Builder features(EqlFeatures value) {
 			this.features = value;
 			return this;
 		}
@@ -113,41 +121,37 @@ public final class Eql extends Base {
 		/**
 		 * Required - API name: {@code features}
 		 */
-		public Builder features(Function<EqlFeatures.Builder, ObjectBuilder<EqlFeatures>> fn) {
+		public final Builder features(Function<EqlFeatures.Builder, ObjectBuilder<EqlFeatures>> fn) {
 			return this.features(fn.apply(new EqlFeatures.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>queries</code>.
 		 */
-		public Builder queries(Map<String, Query> value) {
-			this.queries = value;
+		public final Builder queries(Map<String, XpackUsageQuery> map) {
+			this.queries = _mapPutAll(this.queries, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #queries(Map)}, creating the map if needed.
+		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds an entry to <code>queries</code>.
 		 */
-		public Builder putQueries(String key, Query value) {
-			if (this.queries == null) {
-				this.queries = new HashMap<>();
-			}
-			this.queries.put(key, value);
+		public final Builder queries(String key, XpackUsageQuery value) {
+			this.queries = _mapPut(this.queries, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #queries(Map)} to a singleton map.
+		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds an entry to <code>queries</code> using a builder lambda.
 		 */
-		public Builder queries(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.queries(Collections.singletonMap(key, fn.apply(new Query.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #queries(Map)}, creating the map if needed.
-		 */
-		public Builder putQueries(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.putQueries(key, fn.apply(new Query.Builder()).build());
+		public final Builder queries(String key, Function<XpackUsageQuery.Builder, ObjectBuilder<XpackUsageQuery>> fn) {
+			return queries(key, fn.apply(new XpackUsageQuery.Builder()).build());
 		}
 
 		@Override
@@ -162,6 +166,7 @@ public final class Eql extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Eql build() {
+			_checkSingleUse();
 
 			return new Eql(this);
 		}
@@ -173,12 +178,12 @@ public final class Eql extends Base {
 	 * Json deserializer for {@link Eql}
 	 */
 	public static final JsonpDeserializer<Eql> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Eql::setupEqlDeserializer, Builder::build);
+			Eql::setupEqlDeserializer);
 
-	protected static void setupEqlDeserializer(DelegatingDeserializer<Eql.Builder> op) {
+	protected static void setupEqlDeserializer(ObjectDeserializer<Eql.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::features, EqlFeatures._DESERIALIZER, "features");
-		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "queries");
+		op.add(Builder::queries, JsonpDeserializer.stringMapDeserializer(XpackUsageQuery._DESERIALIZER), "queries");
 
 	}
 

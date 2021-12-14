@@ -23,17 +23,63 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/languages.ts#L57-L80">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum SnowballLanguage implements StringEnum {
-	Armenian("Armenian"), Basque("Basque"), Catalan("Catalan"), Danish("Danish"), Dutch("Dutch"), English(
-			"English"), Finnish("Finnish"), French("French"), German("German"), German2("German2"), Hungarian(
-					"Hungarian"), Italian("Italian"), Kp("Kp"), Lovins("Lovins"), Norwegian("Norwegian"), Porter(
-							"Porter"), Portuguese("Portuguese"), Romanian("Romanian"), Russian(
-									"Russian"), Spanish("Spanish"), Swedish("Swedish"), Turkish("Turkish");
+public enum SnowballLanguage implements JsonEnum {
+	Armenian("Armenian"),
+
+	Basque("Basque"),
+
+	Catalan("Catalan"),
+
+	Danish("Danish"),
+
+	Dutch("Dutch"),
+
+	English("English"),
+
+	Finnish("Finnish"),
+
+	French("French"),
+
+	German("German"),
+
+	German2("German2"),
+
+	Hungarian("Hungarian"),
+
+	Italian("Italian"),
+
+	Kp("Kp"),
+
+	Lovins("Lovins"),
+
+	Norwegian("Norwegian"),
+
+	Porter("Porter"),
+
+	Portuguese("Portuguese"),
+
+	Romanian("Romanian"),
+
+	Russian("Russian"),
+
+	Spanish("Spanish"),
+
+	Swedish("Swedish"),
+
+	Turkish("Turkish"),
+
+	;
 
 	private final String jsonValue;
 
@@ -45,6 +91,6 @@ public enum SnowballLanguage implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<SnowballLanguage> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<SnowballLanguage> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			SnowballLanguage.values());
 }

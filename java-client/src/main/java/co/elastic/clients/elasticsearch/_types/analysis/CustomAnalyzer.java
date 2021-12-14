@@ -23,32 +23,35 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CustomAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L28-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable {
-	@Nullable
+public class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final List<String> charFilter;
 
-	@Nullable
 	private final List<String> filter;
 
 	@Nullable
@@ -61,41 +64,39 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CustomAnalyzer(Builder builder) {
+	private CustomAnalyzer(Builder builder) {
 
-		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.charFilter = ApiTypeHelper.unmodifiable(builder.charFilter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.positionIncrementGap = builder.positionIncrementGap;
 		this.positionOffsetGap = builder.positionOffsetGap;
-		this.tokenizer = Objects.requireNonNull(builder.tokenizer, "tokenizer");
+		this.tokenizer = ApiTypeHelper.requireNonNull(builder.tokenizer, this, "tokenizer");
 
 	}
 
-	public CustomAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CustomAnalyzer of(Function<Builder, ObjectBuilder<CustomAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "custom";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.Custom;
 	}
 
 	/**
 	 * API name: {@code char_filter}
 	 */
-	@Nullable
-	public List<String> charFilter() {
+	public final List<String> charFilter() {
 		return this.charFilter;
 	}
 
 	/**
 	 * API name: {@code filter}
 	 */
-	@Nullable
-	public List<String> filter() {
+	public final List<String> filter() {
 		return this.filter;
 	}
 
@@ -103,7 +104,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	 * API name: {@code position_increment_gap}
 	 */
 	@Nullable
-	public Integer positionIncrementGap() {
+	public final Integer positionIncrementGap() {
 		return this.positionIncrementGap;
 	}
 
@@ -111,14 +112,14 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	 * API name: {@code position_offset_gap}
 	 */
 	@Nullable
-	public Integer positionOffsetGap() {
+	public final Integer positionOffsetGap() {
 		return this.positionOffsetGap;
 	}
 
 	/**
 	 * Required - API name: {@code tokenizer}
 	 */
-	public String tokenizer() {
+	public final String tokenizer() {
 		return this.tokenizer;
 	}
 
@@ -135,8 +136,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 
 		generator.write("type", "custom");
 
-		if (this.charFilter != null) {
-
+		if (ApiTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (String item0 : this.charFilter) {
@@ -146,8 +146,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 			generator.writeEnd();
 
 		}
-		if (this.filter != null) {
-
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (String item0 : this.filter) {
@@ -158,18 +157,15 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 
 		}
 		if (this.positionIncrementGap != null) {
-
 			generator.writeKey("position_increment_gap");
 			generator.write(this.positionIncrementGap);
 
 		}
 		if (this.positionOffsetGap != null) {
-
 			generator.writeKey("position_offset_gap");
 			generator.write(this.positionOffsetGap);
 
 		}
-
 		generator.writeKey("tokenizer");
 		generator.write(this.tokenizer);
 
@@ -180,7 +176,8 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	/**
 	 * Builder for {@link CustomAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<CustomAnalyzer> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CustomAnalyzer> {
 		@Nullable
 		private List<String> charFilter;
 
@@ -197,62 +194,48 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>charFilter</code>.
 		 */
-		public Builder charFilter(@Nullable List<String> value) {
-			this.charFilter = value;
+		public final Builder charFilter(List<String> list) {
+			this.charFilter = _listAddAll(this.charFilter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds one or more values to <code>charFilter</code>.
 		 */
-		public Builder charFilter(String... value) {
-			this.charFilter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
-		 */
-		public Builder addCharFilter(String value) {
-			if (this.charFilter == null) {
-				this.charFilter = new ArrayList<>();
-			}
-			this.charFilter.add(value);
+		public final Builder charFilter(String value, String... values) {
+			this.charFilter = _listAdd(this.charFilter, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 */
-		public Builder filter(@Nullable List<String> value) {
-			this.filter = value;
+		public final Builder filter(List<String> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public Builder filter(String... value) {
-			this.filter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(String value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
-			}
-			this.filter.add(value);
+		public final Builder filter(String value, String... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code position_increment_gap}
 		 */
-		public Builder positionIncrementGap(@Nullable Integer value) {
+		public final Builder positionIncrementGap(@Nullable Integer value) {
 			this.positionIncrementGap = value;
 			return this;
 		}
@@ -260,7 +243,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		/**
 		 * API name: {@code position_offset_gap}
 		 */
-		public Builder positionOffsetGap(@Nullable Integer value) {
+		public final Builder positionOffsetGap(@Nullable Integer value) {
 			this.positionOffsetGap = value;
 			return this;
 		}
@@ -268,7 +251,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		/**
 		 * Required - API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(String value) {
+		public final Builder tokenizer(String value) {
 			this.tokenizer = value;
 			return this;
 		}
@@ -280,6 +263,7 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public CustomAnalyzer build() {
+			_checkSingleUse();
 
 			return new CustomAnalyzer(this);
 		}
@@ -291,9 +275,9 @@ public final class CustomAnalyzer implements AnalyzerVariant, JsonpSerializable 
 	 * Json deserializer for {@link CustomAnalyzer}
 	 */
 	public static final JsonpDeserializer<CustomAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CustomAnalyzer::setupCustomAnalyzerDeserializer, Builder::build);
+			CustomAnalyzer::setupCustomAnalyzerDeserializer);
 
-	protected static void setupCustomAnalyzerDeserializer(DelegatingDeserializer<CustomAnalyzer.Builder> op) {
+	protected static void setupCustomAnalyzerDeserializer(ObjectDeserializer<CustomAnalyzer.Builder> op) {
 
 		op.add(Builder::charFilter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"char_filter");

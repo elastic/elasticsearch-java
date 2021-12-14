@@ -23,44 +23,49 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_caps;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.RollupCapabilities
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_rollup_caps/types.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RollupCapabilities implements JsonpSerializable {
+public class RollupCapabilities implements JsonpSerializable {
 	private final List<RollupCapabilitySummary> rollupJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupCapabilities(Builder builder) {
+	private RollupCapabilities(Builder builder) {
 
-		this.rollupJobs = ModelTypeHelper.unmodifiableNonNull(builder.rollupJobs, "rollup_jobs");
+		this.rollupJobs = ApiTypeHelper.unmodifiableRequired(builder.rollupJobs, this, "rollupJobs");
 
 	}
 
-	public RollupCapabilities(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RollupCapabilities of(Function<Builder, ObjectBuilder<RollupCapabilities>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code rollup_jobs}
 	 */
-	public List<RollupCapabilitySummary> rollupJobs() {
+	public final List<RollupCapabilitySummary> rollupJobs() {
 		return this.rollupJobs;
 	}
 
@@ -75,13 +80,16 @@ public final class RollupCapabilities implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("rollup_jobs");
-		generator.writeStartArray();
-		for (RollupCapabilitySummary item0 : this.rollupJobs) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.rollupJobs)) {
+			generator.writeKey("rollup_jobs");
+			generator.writeStartArray();
+			for (RollupCapabilitySummary item0 : this.rollupJobs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,50 +98,38 @@ public final class RollupCapabilities implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupCapabilities}.
 	 */
-	public static class Builder implements ObjectBuilder<RollupCapabilities> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupCapabilities> {
 		private List<RollupCapabilitySummary> rollupJobs;
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rollupJobs</code>.
 		 */
-		public Builder rollupJobs(List<RollupCapabilitySummary> value) {
-			this.rollupJobs = value;
+		public final Builder rollupJobs(List<RollupCapabilitySummary> list) {
+			this.rollupJobs = _listAddAll(this.rollupJobs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds one or more values to <code>rollupJobs</code>.
 		 */
-		public Builder rollupJobs(RollupCapabilitySummary... value) {
-			this.rollupJobs = Arrays.asList(value);
+		public final Builder rollupJobs(RollupCapabilitySummary value, RollupCapabilitySummary... values) {
+			this.rollupJobs = _listAdd(this.rollupJobs, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed.
+		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds a value to <code>rollupJobs</code> using a builder lambda.
 		 */
-		public Builder addRollupJobs(RollupCapabilitySummary value) {
-			if (this.rollupJobs == null) {
-				this.rollupJobs = new ArrayList<>();
-			}
-			this.rollupJobs.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #rollupJobs(List)} to a singleton list.
-		 */
-		public Builder rollupJobs(
+		public final Builder rollupJobs(
 				Function<RollupCapabilitySummary.Builder, ObjectBuilder<RollupCapabilitySummary>> fn) {
-			return this.rollupJobs(fn.apply(new RollupCapabilitySummary.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed.
-		 */
-		public Builder addRollupJobs(
-				Function<RollupCapabilitySummary.Builder, ObjectBuilder<RollupCapabilitySummary>> fn) {
-			return this.addRollupJobs(fn.apply(new RollupCapabilitySummary.Builder()).build());
+			return rollupJobs(fn.apply(new RollupCapabilitySummary.Builder()).build());
 		}
 
 		/**
@@ -143,6 +139,7 @@ public final class RollupCapabilities implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RollupCapabilities build() {
+			_checkSingleUse();
 
 			return new RollupCapabilities(this);
 		}
@@ -154,9 +151,9 @@ public final class RollupCapabilities implements JsonpSerializable {
 	 * Json deserializer for {@link RollupCapabilities}
 	 */
 	public static final JsonpDeserializer<RollupCapabilities> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RollupCapabilities::setupRollupCapabilitiesDeserializer, Builder::build);
+			.lazy(Builder::new, RollupCapabilities::setupRollupCapabilitiesDeserializer);
 
-	protected static void setupRollupCapabilitiesDeserializer(DelegatingDeserializer<RollupCapabilities.Builder> op) {
+	protected static void setupRollupCapabilitiesDeserializer(ObjectDeserializer<RollupCapabilities.Builder> op) {
 
 		op.add(Builder::rollupJobs, JsonpDeserializer.arrayDeserializer(RollupCapabilitySummary._DESERIALIZER),
 				"rollup_jobs");

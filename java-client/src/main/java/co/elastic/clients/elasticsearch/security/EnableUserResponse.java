@@ -30,11 +30,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: security.enable_user.Response
 
-public final class EnableUserResponse {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/enable_user/SecurityEnableUserResponse.ts#L20-L22">API
+ *      specification</a>
+ */
+
+public class EnableUserResponse {
 	public EnableUserResponse() {
 	}
 

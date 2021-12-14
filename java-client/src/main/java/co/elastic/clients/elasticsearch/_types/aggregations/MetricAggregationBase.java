@@ -23,7 +23,8 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -40,19 +41,26 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MetricAggregationBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L34-L38">API
+ *      specification</a>
+ */
+
 public abstract class MetricAggregationBase implements JsonpSerializable {
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final String missing;
+	private final FieldValue missing;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MetricAggregationBase(AbstractBuilder<?> builder) {
+	protected MetricAggregationBase(AbstractBuilder<?> builder) {
 
 		this.field = builder.field;
 		this.missing = builder.missing;
@@ -64,7 +72,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -72,7 +80,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public String missing() {
+	public final FieldValue missing() {
 		return this.missing;
 	}
 
@@ -80,7 +88,7 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -96,40 +104,39 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
-			generator.write(this.missing);
+			this.missing.serialize(generator, mapper);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private String field;
 
 		@Nullable
-		private String missing;
+		private FieldValue missing;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		/**
 		 * API name: {@code field}
 		 */
-		public BuilderT field(@Nullable String value) {
+		public final BuilderT field(@Nullable String value) {
 			this.field = value;
 			return self();
 		}
@@ -137,17 +144,31 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		/**
 		 * API name: {@code missing}
 		 */
-		public BuilderT missing(@Nullable String value) {
+		public final BuilderT missing(@Nullable FieldValue value) {
 			this.missing = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final BuilderT missing(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.missing(fn.apply(new FieldValue.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final BuilderT script(@Nullable Script value) {
+			this.script = value;
 			return self();
 		}
 
 		/**
 		 * API name: {@code script}
 		 */
-		public BuilderT script(@Nullable JsonValue /* _types.Script */ value) {
-			this.script = value;
-			return self();
+		public final BuilderT script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		protected abstract BuilderT self();
@@ -156,11 +177,11 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMetricAggregationBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(AbstractBuilder::missing, JsonpDeserializer.stringDeserializer(), "missing");
-		op.add(AbstractBuilder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(AbstractBuilder::missing, FieldValue._DESERIALIZER, "missing");
+		op.add(AbstractBuilder::script, Script._DESERIALIZER, "script");
 
 	}
 

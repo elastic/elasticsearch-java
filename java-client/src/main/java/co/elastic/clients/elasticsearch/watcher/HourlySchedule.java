@@ -23,53 +23,58 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HourlySchedule
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Schedule.ts#L47-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class HourlySchedule implements ScheduleVariant, JsonpSerializable {
+public class HourlySchedule implements ScheduleVariant, JsonpSerializable {
 	private final List<Integer> minute;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HourlySchedule(Builder builder) {
+	private HourlySchedule(Builder builder) {
 
-		this.minute = ModelTypeHelper.unmodifiableNonNull(builder.minute, "minute");
+		this.minute = ApiTypeHelper.unmodifiableRequired(builder.minute, this, "minute");
 
 	}
 
-	public HourlySchedule(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HourlySchedule of(Function<Builder, ObjectBuilder<HourlySchedule>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Schedule} variant type
+	 * Schedule variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "hourly";
+	public Schedule.Kind _scheduleKind() {
+		return Schedule.Kind.Hourly;
 	}
 
 	/**
 	 * Required - API name: {@code minute}
 	 */
-	public List<Integer> minute() {
+	public final List<Integer> minute() {
 		return this.minute;
 	}
 
@@ -84,13 +89,16 @@ public final class HourlySchedule implements ScheduleVariant, JsonpSerializable 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("minute");
-		generator.writeStartArray();
-		for (Integer item0 : this.minute) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.minute)) {
+			generator.writeKey("minute");
+			generator.writeStartArray();
+			for (Integer item0 : this.minute) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -99,33 +107,27 @@ public final class HourlySchedule implements ScheduleVariant, JsonpSerializable 
 	/**
 	 * Builder for {@link HourlySchedule}.
 	 */
-	public static class Builder implements ObjectBuilder<HourlySchedule> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HourlySchedule> {
 		private List<Integer> minute;
 
 		/**
 		 * Required - API name: {@code minute}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>minute</code>.
 		 */
-		public Builder minute(List<Integer> value) {
-			this.minute = value;
+		public final Builder minute(List<Integer> list) {
+			this.minute = _listAddAll(this.minute, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code minute}
+		 * <p>
+		 * Adds one or more values to <code>minute</code>.
 		 */
-		public Builder minute(Integer... value) {
-			this.minute = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #minute(List)}, creating the list if needed.
-		 */
-		public Builder addMinute(Integer value) {
-			if (this.minute == null) {
-				this.minute = new ArrayList<>();
-			}
-			this.minute.add(value);
+		public final Builder minute(Integer value, Integer... values) {
+			this.minute = _listAdd(this.minute, value, values);
 			return this;
 		}
 
@@ -136,6 +138,7 @@ public final class HourlySchedule implements ScheduleVariant, JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public HourlySchedule build() {
+			_checkSingleUse();
 
 			return new HourlySchedule(this);
 		}
@@ -147,9 +150,9 @@ public final class HourlySchedule implements ScheduleVariant, JsonpSerializable 
 	 * Json deserializer for {@link HourlySchedule}
 	 */
 	public static final JsonpDeserializer<HourlySchedule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			HourlySchedule::setupHourlyScheduleDeserializer, Builder::build);
+			HourlySchedule::setupHourlyScheduleDeserializer);
 
-	protected static void setupHourlyScheduleDeserializer(DelegatingDeserializer<HourlySchedule.Builder> op) {
+	protected static void setupHourlyScheduleDeserializer(ObjectDeserializer<HourlySchedule.Builder> op) {
 
 		op.add(Builder::minute, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.integerDeserializer()), "minute");
 

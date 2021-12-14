@@ -23,27 +23,31 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StopTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L96-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StopTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	@Nullable
 	private final Boolean ignoreCase;
 
@@ -57,33 +61,33 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StopTokenFilter(Builder builder) {
+	private StopTokenFilter(Builder builder) {
 		super(builder);
 
 		this.ignoreCase = builder.ignoreCase;
 		this.removeTrailing = builder.removeTrailing;
-		this.stopwords = ModelTypeHelper.unmodifiableNonNull(builder.stopwords, "stopwords");
+		this.stopwords = ApiTypeHelper.unmodifiableRequired(builder.stopwords, this, "stopwords");
 		this.stopwordsPath = builder.stopwordsPath;
 
 	}
 
-	public StopTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopTokenFilter of(Function<Builder, ObjectBuilder<StopTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stop";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Stop;
 	}
 
 	/**
 	 * API name: {@code ignore_case}
 	 */
 	@Nullable
-	public Boolean ignoreCase() {
+	public final Boolean ignoreCase() {
 		return this.ignoreCase;
 	}
 
@@ -91,14 +95,14 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 	 * API name: {@code remove_trailing}
 	 */
 	@Nullable
-	public Boolean removeTrailing() {
+	public final Boolean removeTrailing() {
 		return this.removeTrailing;
 	}
 
 	/**
 	 * Required - API name: {@code stopwords}
 	 */
-	public List<String> stopwords() {
+	public final List<String> stopwords() {
 		return this.stopwords;
 	}
 
@@ -106,7 +110,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 	 * API name: {@code stopwords_path}
 	 */
 	@Nullable
-	public String stopwordsPath() {
+	public final String stopwordsPath() {
 		return this.stopwordsPath;
 	}
 
@@ -115,28 +119,26 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		generator.write("type", "stop");
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreCase != null) {
-
 			generator.writeKey("ignore_case");
 			generator.write(this.ignoreCase);
 
 		}
 		if (this.removeTrailing != null) {
-
 			generator.writeKey("remove_trailing");
 			generator.write(this.removeTrailing);
 
 		}
+		if (ApiTypeHelper.isDefined(this.stopwords)) {
+			generator.writeKey("stopwords");
+			generator.writeStartArray();
+			for (String item0 : this.stopwords) {
+				generator.write(item0);
 
-		generator.writeKey("stopwords");
-		generator.writeStartArray();
-		for (String item0 : this.stopwords) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.stopwordsPath != null) {
-
 			generator.writeKey("stopwords_path");
 			generator.write(this.stopwordsPath);
 
@@ -149,6 +151,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 	/**
 	 * Builder for {@link StopTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StopTokenFilter> {
@@ -166,7 +169,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		/**
 		 * API name: {@code ignore_case}
 		 */
-		public Builder ignoreCase(@Nullable Boolean value) {
+		public final Builder ignoreCase(@Nullable Boolean value) {
 			this.ignoreCase = value;
 			return this;
 		}
@@ -174,42 +177,35 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		/**
 		 * API name: {@code remove_trailing}
 		 */
-		public Builder removeTrailing(@Nullable Boolean value) {
+		public final Builder removeTrailing(@Nullable Boolean value) {
 			this.removeTrailing = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stopwords}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
 		 */
-		public Builder stopwords(List<String> value) {
-			this.stopwords = value;
+		public final Builder stopwords(List<String> list) {
+			this.stopwords = _listAddAll(this.stopwords, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stopwords}
+		 * <p>
+		 * Adds one or more values to <code>stopwords</code>.
 		 */
-		public Builder stopwords(String... value) {
-			this.stopwords = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
-		 */
-		public Builder addStopwords(String value) {
-			if (this.stopwords == null) {
-				this.stopwords = new ArrayList<>();
-			}
-			this.stopwords.add(value);
+		public final Builder stopwords(String value, String... values) {
+			this.stopwords = _listAdd(this.stopwords, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stopwords_path}
 		 */
-		public Builder stopwordsPath(@Nullable String value) {
+		public final Builder stopwordsPath(@Nullable String value) {
 			this.stopwordsPath = value;
 			return this;
 		}
@@ -226,6 +222,7 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 		 *             if some of the required fields are null.
 		 */
 		public StopTokenFilter build() {
+			_checkSingleUse();
 
 			return new StopTokenFilter(this);
 		}
@@ -237,9 +234,9 @@ public final class StopTokenFilter extends TokenFilterBase implements TokenFilte
 	 * Json deserializer for {@link StopTokenFilter}
 	 */
 	public static final JsonpDeserializer<StopTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StopTokenFilter::setupStopTokenFilterDeserializer, Builder::build);
+			StopTokenFilter::setupStopTokenFilterDeserializer);
 
-	protected static void setupStopTokenFilterDeserializer(DelegatingDeserializer<StopTokenFilter.Builder> op) {
+	protected static void setupStopTokenFilterDeserializer(ObjectDeserializer<StopTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::ignoreCase, JsonpDeserializer.booleanDeserializer(), "ignore_case");
 		op.add(Builder::removeTrailing, JsonpDeserializer.booleanDeserializer(), "remove_trailing");

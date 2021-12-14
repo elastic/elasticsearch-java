@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,14 +30,21 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/abstractions.ts#L172-L176">API
+ *      specification</a>
+ */
 
 public abstract class QueryBase implements JsonpSerializable {
 	@Nullable
@@ -49,7 +55,7 @@ public abstract class QueryBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryBase(AbstractBuilder<?> builder) {
+	protected QueryBase(AbstractBuilder<?> builder) {
 
 		this.boost = builder.boost;
 		this.queryName = builder.queryName;
@@ -60,7 +66,7 @@ public abstract class QueryBase implements JsonpSerializable {
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Float boost() {
+	public final Float boost() {
 		return this.boost;
 	}
 
@@ -68,7 +74,7 @@ public abstract class QueryBase implements JsonpSerializable {
 	 * API name: {@code _name}
 	 */
 	@Nullable
-	public String queryName() {
+	public final String queryName() {
 		return this.queryName;
 	}
 
@@ -84,13 +90,11 @@ public abstract class QueryBase implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.queryName != null) {
-
 			generator.writeKey("_name");
 			generator.write(this.queryName);
 
@@ -98,7 +102,9 @@ public abstract class QueryBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private Float boost;
 
@@ -108,7 +114,7 @@ public abstract class QueryBase implements JsonpSerializable {
 		/**
 		 * API name: {@code boost}
 		 */
-		public BuilderT boost(@Nullable Float value) {
+		public final BuilderT boost(@Nullable Float value) {
 			this.boost = value;
 			return self();
 		}
@@ -116,7 +122,7 @@ public abstract class QueryBase implements JsonpSerializable {
 		/**
 		 * API name: {@code _name}
 		 */
-		public BuilderT queryName(@Nullable String value) {
+		public final BuilderT queryName(@Nullable String value) {
 			this.queryName = value;
 			return self();
 		}
@@ -127,7 +133,7 @@ public abstract class QueryBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupQueryBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::boost, JsonpDeserializer.floatDeserializer(), "boost");
 		op.add(AbstractBuilder::queryName, JsonpDeserializer.stringDeserializer(), "_name");

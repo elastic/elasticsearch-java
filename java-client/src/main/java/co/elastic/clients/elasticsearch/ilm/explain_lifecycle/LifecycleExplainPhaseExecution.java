@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ilm.explain_lifecycle;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplainPhaseExecution
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/explain_lifecycle/types.ts#L55-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
+public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	private final String policy;
 
 	private final long version;
@@ -49,36 +57,38 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LifecycleExplainPhaseExecution(Builder builder) {
+	private LifecycleExplainPhaseExecution(Builder builder) {
 
-		this.policy = Objects.requireNonNull(builder.policy, "policy");
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.modifiedDateInMillis = Objects.requireNonNull(builder.modifiedDateInMillis, "modified_date_in_millis");
+		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.modifiedDateInMillis = ApiTypeHelper.requireNonNull(builder.modifiedDateInMillis, this,
+				"modifiedDateInMillis");
 
 	}
 
-	public LifecycleExplainPhaseExecution(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LifecycleExplainPhaseExecution of(
+			Function<Builder, ObjectBuilder<LifecycleExplainPhaseExecution>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code policy}
 	 */
-	public String policy() {
+	public final String policy() {
 		return this.policy;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public long version() {
+	public final long version() {
 		return this.version;
 	}
 
 	/**
 	 * Required - API name: {@code modified_date_in_millis}
 	 */
-	public String modifiedDateInMillis() {
+	public final String modifiedDateInMillis() {
 		return this.modifiedDateInMillis;
 	}
 
@@ -109,7 +119,8 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	/**
 	 * Builder for {@link LifecycleExplainPhaseExecution}.
 	 */
-	public static class Builder implements ObjectBuilder<LifecycleExplainPhaseExecution> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplainPhaseExecution> {
 		private String policy;
 
 		private Long version;
@@ -119,7 +130,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code policy}
 		 */
-		public Builder policy(String value) {
+		public final Builder policy(String value) {
 			this.policy = value;
 			return this;
 		}
@@ -127,7 +138,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(long value) {
+		public final Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -135,7 +146,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code modified_date_in_millis}
 		 */
-		public Builder modifiedDateInMillis(String value) {
+		public final Builder modifiedDateInMillis(String value) {
 			this.modifiedDateInMillis = value;
 			return this;
 		}
@@ -147,6 +158,7 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public LifecycleExplainPhaseExecution build() {
+			_checkSingleUse();
 
 			return new LifecycleExplainPhaseExecution(this);
 		}
@@ -158,11 +170,10 @@ public final class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	 * Json deserializer for {@link LifecycleExplainPhaseExecution}
 	 */
 	public static final JsonpDeserializer<LifecycleExplainPhaseExecution> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LifecycleExplainPhaseExecution::setupLifecycleExplainPhaseExecutionDeserializer,
-					Builder::build);
+			.lazy(Builder::new, LifecycleExplainPhaseExecution::setupLifecycleExplainPhaseExecutionDeserializer);
 
 	protected static void setupLifecycleExplainPhaseExecutionDeserializer(
-			DelegatingDeserializer<LifecycleExplainPhaseExecution.Builder> op) {
+			ObjectDeserializer<LifecycleExplainPhaseExecution.Builder> op) {
 
 		op.add(Builder::policy, JsonpDeserializer.stringDeserializer(), "policy");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");

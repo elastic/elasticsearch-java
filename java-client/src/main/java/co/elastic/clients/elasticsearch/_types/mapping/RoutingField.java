@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.RoutingField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/meta-fields.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RoutingField implements JsonpSerializable {
+public class RoutingField implements JsonpSerializable {
 	private final boolean required;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RoutingField(Builder builder) {
+	private RoutingField(Builder builder) {
 
-		this.required = Objects.requireNonNull(builder.required, "required");
+		this.required = ApiTypeHelper.requireNonNull(builder.required, this, "required");
 
 	}
 
-	public RoutingField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RoutingField of(Function<Builder, ObjectBuilder<RoutingField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code required}
 	 */
-	public boolean required() {
+	public final boolean required() {
 		return this.required;
 	}
 
@@ -81,13 +89,14 @@ public final class RoutingField implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoutingField}.
 	 */
-	public static class Builder implements ObjectBuilder<RoutingField> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoutingField> {
 		private Boolean required;
 
 		/**
 		 * Required - API name: {@code required}
 		 */
-		public Builder required(boolean value) {
+		public final Builder required(boolean value) {
 			this.required = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class RoutingField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RoutingField build() {
+			_checkSingleUse();
 
 			return new RoutingField(this);
 		}
@@ -110,9 +120,9 @@ public final class RoutingField implements JsonpSerializable {
 	 * Json deserializer for {@link RoutingField}
 	 */
 	public static final JsonpDeserializer<RoutingField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RoutingField::setupRoutingFieldDeserializer, Builder::build);
+			RoutingField::setupRoutingFieldDeserializer);
 
-	protected static void setupRoutingFieldDeserializer(DelegatingDeserializer<RoutingField.Builder> op) {
+	protected static void setupRoutingFieldDeserializer(ObjectDeserializer<RoutingField.Builder> op) {
 
 		op.add(Builder::required, JsonpDeserializer.booleanDeserializer(), "required");
 

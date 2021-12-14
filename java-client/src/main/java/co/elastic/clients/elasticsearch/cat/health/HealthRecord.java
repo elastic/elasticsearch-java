@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.health;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.health.HealthRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/health/types.ts#L22-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class HealthRecord implements JsonpSerializable {
+public class HealthRecord implements JsonpSerializable {
 	@Nullable
 	private final String epoch;
 
@@ -84,7 +91,7 @@ public final class HealthRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HealthRecord(Builder builder) {
+	private HealthRecord(Builder builder) {
 
 		this.epoch = builder.epoch;
 		this.timestamp = builder.timestamp;
@@ -103,8 +110,8 @@ public final class HealthRecord implements JsonpSerializable {
 
 	}
 
-	public HealthRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HealthRecord of(Function<Builder, ObjectBuilder<HealthRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -113,7 +120,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code epoch}
 	 */
 	@Nullable
-	public String epoch() {
+	public final String epoch() {
 		return this.epoch;
 	}
 
@@ -123,7 +130,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -133,7 +140,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code cluster}
 	 */
 	@Nullable
-	public String cluster() {
+	public final String cluster() {
 		return this.cluster;
 	}
 
@@ -143,7 +150,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public String status() {
+	public final String status() {
 		return this.status;
 	}
 
@@ -153,7 +160,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code node.total}
 	 */
 	@Nullable
-	public String nodeTotal() {
+	public final String nodeTotal() {
 		return this.nodeTotal;
 	}
 
@@ -163,7 +170,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code node.data}
 	 */
 	@Nullable
-	public String nodeData() {
+	public final String nodeData() {
 		return this.nodeData;
 	}
 
@@ -173,7 +180,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code shards}
 	 */
 	@Nullable
-	public String shards() {
+	public final String shards() {
 		return this.shards;
 	}
 
@@ -183,7 +190,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code pri}
 	 */
 	@Nullable
-	public String pri() {
+	public final String pri() {
 		return this.pri;
 	}
 
@@ -193,7 +200,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code relo}
 	 */
 	@Nullable
-	public String relo() {
+	public final String relo() {
 		return this.relo;
 	}
 
@@ -203,7 +210,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code init}
 	 */
 	@Nullable
-	public String init() {
+	public final String init() {
 		return this.init;
 	}
 
@@ -213,7 +220,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code unassign}
 	 */
 	@Nullable
-	public String unassign() {
+	public final String unassign() {
 		return this.unassign;
 	}
 
@@ -223,7 +230,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code pending_tasks}
 	 */
 	@Nullable
-	public String pendingTasks() {
+	public final String pendingTasks() {
 		return this.pendingTasks;
 	}
 
@@ -233,7 +240,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code max_task_wait_time}
 	 */
 	@Nullable
-	public String maxTaskWaitTime() {
+	public final String maxTaskWaitTime() {
 		return this.maxTaskWaitTime;
 	}
 
@@ -243,7 +250,7 @@ public final class HealthRecord implements JsonpSerializable {
 	 * API name: {@code active_shards_percent}
 	 */
 	@Nullable
-	public String activeShardsPercent() {
+	public final String activeShardsPercent() {
 		return this.activeShardsPercent;
 	}
 
@@ -259,85 +266,71 @@ public final class HealthRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.epoch != null) {
-
 			generator.writeKey("epoch");
 			generator.write(this.epoch);
 
 		}
 		if (this.timestamp != null) {
-
 			generator.writeKey("timestamp");
 			generator.write(this.timestamp);
 
 		}
 		if (this.cluster != null) {
-
 			generator.writeKey("cluster");
 			generator.write(this.cluster);
 
 		}
 		if (this.status != null) {
-
 			generator.writeKey("status");
 			generator.write(this.status);
 
 		}
 		if (this.nodeTotal != null) {
-
 			generator.writeKey("node.total");
 			generator.write(this.nodeTotal);
 
 		}
 		if (this.nodeData != null) {
-
 			generator.writeKey("node.data");
 			generator.write(this.nodeData);
 
 		}
 		if (this.shards != null) {
-
 			generator.writeKey("shards");
 			generator.write(this.shards);
 
 		}
 		if (this.pri != null) {
-
 			generator.writeKey("pri");
 			generator.write(this.pri);
 
 		}
 		if (this.relo != null) {
-
 			generator.writeKey("relo");
 			generator.write(this.relo);
 
 		}
 		if (this.init != null) {
-
 			generator.writeKey("init");
 			generator.write(this.init);
 
 		}
 		if (this.unassign != null) {
-
 			generator.writeKey("unassign");
 			generator.write(this.unassign);
 
 		}
 		if (this.pendingTasks != null) {
-
 			generator.writeKey("pending_tasks");
 			generator.write(this.pendingTasks);
 
 		}
 		if (this.maxTaskWaitTime != null) {
-
 			generator.writeKey("max_task_wait_time");
 			generator.write(this.maxTaskWaitTime);
 
 		}
 		if (this.activeShardsPercent != null) {
-
 			generator.writeKey("active_shards_percent");
 			generator.write(this.activeShardsPercent);
 
@@ -350,7 +343,8 @@ public final class HealthRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link HealthRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<HealthRecord> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HealthRecord> {
 		@Nullable
 		private String epoch;
 
@@ -398,7 +392,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code epoch}
 		 */
-		public Builder epoch(@Nullable String value) {
+		public final Builder epoch(@Nullable String value) {
 			this.epoch = value;
 			return this;
 		}
@@ -408,7 +402,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(@Nullable String value) {
+		public final Builder timestamp(@Nullable String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -418,7 +412,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cluster}
 		 */
-		public Builder cluster(@Nullable String value) {
+		public final Builder cluster(@Nullable String value) {
 			this.cluster = value;
 			return this;
 		}
@@ -428,7 +422,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable String value) {
+		public final Builder status(@Nullable String value) {
 			this.status = value;
 			return this;
 		}
@@ -438,7 +432,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.total}
 		 */
-		public Builder nodeTotal(@Nullable String value) {
+		public final Builder nodeTotal(@Nullable String value) {
 			this.nodeTotal = value;
 			return this;
 		}
@@ -448,7 +442,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.data}
 		 */
-		public Builder nodeData(@Nullable String value) {
+		public final Builder nodeData(@Nullable String value) {
 			this.nodeData = value;
 			return this;
 		}
@@ -458,7 +452,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shards}
 		 */
-		public Builder shards(@Nullable String value) {
+		public final Builder shards(@Nullable String value) {
 			this.shards = value;
 			return this;
 		}
@@ -468,7 +462,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pri}
 		 */
-		public Builder pri(@Nullable String value) {
+		public final Builder pri(@Nullable String value) {
 			this.pri = value;
 			return this;
 		}
@@ -478,7 +472,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code relo}
 		 */
-		public Builder relo(@Nullable String value) {
+		public final Builder relo(@Nullable String value) {
 			this.relo = value;
 			return this;
 		}
@@ -488,7 +482,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code init}
 		 */
-		public Builder init(@Nullable String value) {
+		public final Builder init(@Nullable String value) {
 			this.init = value;
 			return this;
 		}
@@ -498,7 +492,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unassign}
 		 */
-		public Builder unassign(@Nullable String value) {
+		public final Builder unassign(@Nullable String value) {
 			this.unassign = value;
 			return this;
 		}
@@ -508,7 +502,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pending_tasks}
 		 */
-		public Builder pendingTasks(@Nullable String value) {
+		public final Builder pendingTasks(@Nullable String value) {
 			this.pendingTasks = value;
 			return this;
 		}
@@ -518,7 +512,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_task_wait_time}
 		 */
-		public Builder maxTaskWaitTime(@Nullable String value) {
+		public final Builder maxTaskWaitTime(@Nullable String value) {
 			this.maxTaskWaitTime = value;
 			return this;
 		}
@@ -528,7 +522,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code active_shards_percent}
 		 */
-		public Builder activeShardsPercent(@Nullable String value) {
+		public final Builder activeShardsPercent(@Nullable String value) {
 			this.activeShardsPercent = value;
 			return this;
 		}
@@ -540,6 +534,7 @@ public final class HealthRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HealthRecord build() {
+			_checkSingleUse();
 
 			return new HealthRecord(this);
 		}
@@ -551,9 +546,9 @@ public final class HealthRecord implements JsonpSerializable {
 	 * Json deserializer for {@link HealthRecord}
 	 */
 	public static final JsonpDeserializer<HealthRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			HealthRecord::setupHealthRecordDeserializer, Builder::build);
+			HealthRecord::setupHealthRecordDeserializer);
 
-	protected static void setupHealthRecordDeserializer(DelegatingDeserializer<HealthRecord.Builder> op) {
+	protected static void setupHealthRecordDeserializer(ObjectDeserializer<HealthRecord.Builder> op) {
 
 		op.add(Builder::epoch, JsonpDeserializer.stringDeserializer(), "epoch", "time");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp", "ts", "hms", "hhmmss");

@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch.watcher.execute_watch.WatchRecord;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,36 +40,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/execute_watch/WatcherExecuteWatchResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ExecuteWatchResponse implements JsonpSerializable {
+public class ExecuteWatchResponse implements JsonpSerializable {
 	private final String id;
 
 	private final WatchRecord watchRecord;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecuteWatchResponse(Builder builder) {
+	private ExecuteWatchResponse(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.watchRecord = Objects.requireNonNull(builder.watchRecord, "watch_record");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.watchRecord = ApiTypeHelper.requireNonNull(builder.watchRecord, this, "watchRecord");
 
 	}
 
-	public ExecuteWatchResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecuteWatchResponse of(Function<Builder, ObjectBuilder<ExecuteWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code watch_record}
 	 */
-	public WatchRecord watchRecord() {
+	public final WatchRecord watchRecord() {
 		return this.watchRecord;
 	}
 
@@ -96,7 +104,8 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecuteWatchResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecuteWatchResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteWatchResponse> {
 		private String id;
 
 		private WatchRecord watchRecord;
@@ -104,7 +113,7 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -112,7 +121,7 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code watch_record}
 		 */
-		public Builder watchRecord(WatchRecord value) {
+		public final Builder watchRecord(WatchRecord value) {
 			this.watchRecord = value;
 			return this;
 		}
@@ -120,7 +129,7 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code watch_record}
 		 */
-		public Builder watchRecord(Function<WatchRecord.Builder, ObjectBuilder<WatchRecord>> fn) {
+		public final Builder watchRecord(Function<WatchRecord.Builder, ObjectBuilder<WatchRecord>> fn) {
 			return this.watchRecord(fn.apply(new WatchRecord.Builder()).build());
 		}
 
@@ -131,6 +140,7 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecuteWatchResponse build() {
+			_checkSingleUse();
 
 			return new ExecuteWatchResponse(this);
 		}
@@ -142,10 +152,9 @@ public final class ExecuteWatchResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ExecuteWatchResponse}
 	 */
 	public static final JsonpDeserializer<ExecuteWatchResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExecuteWatchResponse::setupExecuteWatchResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ExecuteWatchResponse::setupExecuteWatchResponseDeserializer);
 
-	protected static void setupExecuteWatchResponseDeserializer(
-			DelegatingDeserializer<ExecuteWatchResponse.Builder> op) {
+	protected static void setupExecuteWatchResponseDeserializer(ObjectDeserializer<ExecuteWatchResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::watchRecord, WatchRecord._DESERIALIZER, "watch_record");

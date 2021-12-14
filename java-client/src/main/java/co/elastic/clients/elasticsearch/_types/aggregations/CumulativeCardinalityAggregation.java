@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,33 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.CumulativeCardinalityAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L63-L63">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CumulativeCardinalityAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class CumulativeCardinalityAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public CumulativeCardinalityAggregation(Builder builder) {
+	private CumulativeCardinalityAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public CumulativeCardinalityAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CumulativeCardinalityAggregation of(
+			Function<Builder, ObjectBuilder<CumulativeCardinalityAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "cumulative_cardinality";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.CumulativeCardinality;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +67,7 @@ public final class CumulativeCardinalityAggregation extends PipelineAggregationB
 	/**
 	 * Builder for {@link CumulativeCardinalityAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CumulativeCardinalityAggregation> {
@@ -75,6 +83,7 @@ public final class CumulativeCardinalityAggregation extends PipelineAggregationB
 		 *             if some of the required fields are null.
 		 */
 		public CumulativeCardinalityAggregation build() {
+			_checkSingleUse();
 
 			return new CumulativeCardinalityAggregation(this);
 		}
@@ -86,11 +95,10 @@ public final class CumulativeCardinalityAggregation extends PipelineAggregationB
 	 * Json deserializer for {@link CumulativeCardinalityAggregation}
 	 */
 	public static final JsonpDeserializer<CumulativeCardinalityAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CumulativeCardinalityAggregation::setupCumulativeCardinalityAggregationDeserializer,
-					Builder::build);
+			.lazy(Builder::new, CumulativeCardinalityAggregation::setupCumulativeCardinalityAggregationDeserializer);
 
 	protected static void setupCumulativeCardinalityAggregationDeserializer(
-			DelegatingDeserializer<CumulativeCardinalityAggregation.Builder> op) {
+			ObjectDeserializer<CumulativeCardinalityAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

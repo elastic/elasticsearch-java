@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.delete_service_token.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_service_token/DeleteServiceTokenResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteServiceTokenResponse implements JsonpSerializable {
+public class DeleteServiceTokenResponse implements JsonpSerializable {
 	private final boolean found;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteServiceTokenResponse(Builder builder) {
+	private DeleteServiceTokenResponse(Builder builder) {
 
-		this.found = Objects.requireNonNull(builder.found, "found");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
 
 	}
 
-	public DeleteServiceTokenResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteServiceTokenResponse of(Function<Builder, ObjectBuilder<DeleteServiceTokenResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code found}
 	 */
-	public boolean found() {
+	public final boolean found() {
 		return this.found;
 	}
 
@@ -81,13 +89,14 @@ public final class DeleteServiceTokenResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeleteServiceTokenResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteServiceTokenResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteServiceTokenResponse> {
 		private Boolean found;
 
 		/**
 		 * Required - API name: {@code found}
 		 */
-		public Builder found(boolean value) {
+		public final Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class DeleteServiceTokenResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteServiceTokenResponse build() {
+			_checkSingleUse();
 
 			return new DeleteServiceTokenResponse(this);
 		}
@@ -109,11 +119,11 @@ public final class DeleteServiceTokenResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link DeleteServiceTokenResponse}
 	 */
-	public static final JsonpDeserializer<DeleteServiceTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DeleteServiceTokenResponse::setupDeleteServiceTokenResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<DeleteServiceTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteServiceTokenResponse::setupDeleteServiceTokenResponseDeserializer);
 
 	protected static void setupDeleteServiceTokenResponseDeserializer(
-			DelegatingDeserializer<DeleteServiceTokenResponse.Builder> op) {
+			ObjectDeserializer<DeleteServiceTokenResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 

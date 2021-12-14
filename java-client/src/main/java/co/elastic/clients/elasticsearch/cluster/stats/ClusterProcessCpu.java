@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterProcessCpu
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L249-L251">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterProcessCpu implements JsonpSerializable {
+public class ClusterProcessCpu implements JsonpSerializable {
 	private final int percent;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterProcessCpu(Builder builder) {
+	private ClusterProcessCpu(Builder builder) {
 
-		this.percent = Objects.requireNonNull(builder.percent, "percent");
+		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
 
 	}
 
-	public ClusterProcessCpu(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterProcessCpu of(Function<Builder, ObjectBuilder<ClusterProcessCpu>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code percent}
 	 */
-	public int percent() {
+	public final int percent() {
 		return this.percent;
 	}
 
@@ -81,13 +89,14 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterProcessCpu}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterProcessCpu> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcessCpu> {
 		private Integer percent;
 
 		/**
 		 * Required - API name: {@code percent}
 		 */
-		public Builder percent(int value) {
+		public final Builder percent(int value) {
 			this.percent = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterProcessCpu build() {
+			_checkSingleUse();
 
 			return new ClusterProcessCpu(this);
 		}
@@ -110,9 +120,9 @@ public final class ClusterProcessCpu implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterProcessCpu}
 	 */
 	public static final JsonpDeserializer<ClusterProcessCpu> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterProcessCpu::setupClusterProcessCpuDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterProcessCpu::setupClusterProcessCpuDeserializer);
 
-	protected static void setupClusterProcessCpuDeserializer(DelegatingDeserializer<ClusterProcessCpu.Builder> op) {
+	protected static void setupClusterProcessCpuDeserializer(ObjectDeserializer<ClusterProcessCpu.Builder> op) {
 
 		op.add(Builder::percent, JsonpDeserializer.integerDeserializer(), "percent");
 

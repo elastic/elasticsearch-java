@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexVersioning
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexSettings.ts#L289-L291">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexVersioning implements JsonpSerializable {
+public class IndexVersioning implements JsonpSerializable {
 	private final String created;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexVersioning(Builder builder) {
+	private IndexVersioning(Builder builder) {
 
-		this.created = Objects.requireNonNull(builder.created, "created");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
 
 	}
 
-	public IndexVersioning(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexVersioning of(Function<Builder, ObjectBuilder<IndexVersioning>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code created}
 	 */
-	public String created() {
+	public final String created() {
 		return this.created;
 	}
 
@@ -82,13 +90,14 @@ public final class IndexVersioning implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexVersioning}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexVersioning> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexVersioning> {
 		private String created;
 
 		/**
 		 * Required - API name: {@code created}
 		 */
-		public Builder created(String value) {
+		public final Builder created(String value) {
 			this.created = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class IndexVersioning implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexVersioning build() {
+			_checkSingleUse();
 
 			return new IndexVersioning(this);
 		}
@@ -111,9 +121,9 @@ public final class IndexVersioning implements JsonpSerializable {
 	 * Json deserializer for {@link IndexVersioning}
 	 */
 	public static final JsonpDeserializer<IndexVersioning> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexVersioning::setupIndexVersioningDeserializer, Builder::build);
+			IndexVersioning::setupIndexVersioningDeserializer);
 
-	protected static void setupIndexVersioningDeserializer(DelegatingDeserializer<IndexVersioning.Builder> op) {
+	protected static void setupIndexVersioningDeserializer(ObjectDeserializer<IndexVersioning.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.stringDeserializer(), "created");
 

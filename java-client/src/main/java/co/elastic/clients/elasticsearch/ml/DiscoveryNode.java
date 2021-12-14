@@ -23,26 +23,32 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DiscoveryNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DiscoveryNode.ts#L24-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DiscoveryNode implements JsonpSerializable {
+public class DiscoveryNode implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
 	private final String ephemeralId;
@@ -55,52 +61,52 @@ public final class DiscoveryNode implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DiscoveryNode(Builder builder) {
+	private DiscoveryNode(Builder builder) {
 
-		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
-		this.ephemeralId = Objects.requireNonNull(builder.ephemeralId, "ephemeral_id");
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 
 	}
 
-	public DiscoveryNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DiscoveryNode of(Function<Builder, ObjectBuilder<DiscoveryNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code attributes}
 	 */
-	public Map<String, String> attributes() {
+	public final Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
 	 * Required - API name: {@code ephemeral_id}
 	 */
-	public String ephemeralId() {
+	public final String ephemeralId() {
 		return this.ephemeralId;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code transport_address}
 	 */
-	public String transportAddress() {
+	public final String transportAddress() {
 		return this.transportAddress;
 	}
 
@@ -115,15 +121,17 @@ public final class DiscoveryNode implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("attributes");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ApiTypeHelper.isDefined(this.attributes)) {
+			generator.writeKey("attributes");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("ephemeral_id");
 		generator.write(this.ephemeralId);
 
@@ -143,7 +151,8 @@ public final class DiscoveryNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link DiscoveryNode}.
 	 */
-	public static class Builder implements ObjectBuilder<DiscoveryNode> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiscoveryNode> {
 		private Map<String, String> attributes;
 
 		private String ephemeralId;
@@ -156,27 +165,28 @@ public final class DiscoveryNode implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
-		public Builder attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final Builder attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #attributes(Map)}, creating the map if needed.
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
 		 */
-		public Builder putAttributes(String key, String value) {
-			if (this.attributes == null) {
-				this.attributes = new HashMap<>();
-			}
-			this.attributes.put(key, value);
+		public final Builder attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code ephemeral_id}
 		 */
-		public Builder ephemeralId(String value) {
+		public final Builder ephemeralId(String value) {
 			this.ephemeralId = value;
 			return this;
 		}
@@ -184,7 +194,7 @@ public final class DiscoveryNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -192,7 +202,7 @@ public final class DiscoveryNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -200,7 +210,7 @@ public final class DiscoveryNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transport_address}
 		 */
-		public Builder transportAddress(String value) {
+		public final Builder transportAddress(String value) {
 			this.transportAddress = value;
 			return this;
 		}
@@ -212,6 +222,7 @@ public final class DiscoveryNode implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DiscoveryNode build() {
+			_checkSingleUse();
 
 			return new DiscoveryNode(this);
 		}
@@ -223,9 +234,9 @@ public final class DiscoveryNode implements JsonpSerializable {
 	 * Json deserializer for {@link DiscoveryNode}
 	 */
 	public static final JsonpDeserializer<DiscoveryNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DiscoveryNode::setupDiscoveryNodeDeserializer, Builder::build);
+			DiscoveryNode::setupDiscoveryNodeDeserializer);
 
-	protected static void setupDiscoveryNodeDeserializer(DelegatingDeserializer<DiscoveryNode.Builder> op) {
+	protected static void setupDiscoveryNodeDeserializer(ObjectDeserializer<DiscoveryNode.Builder> op) {
 
 		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"attributes");

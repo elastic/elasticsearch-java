@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackMessage
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L109-L116">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SlackMessage implements JsonpSerializable {
+public class SlackMessage implements JsonpSerializable {
 	private final List<SlackAttachment> attachments;
 
 	@Nullable
@@ -60,25 +65,25 @@ public final class SlackMessage implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SlackMessage(Builder builder) {
+	private SlackMessage(Builder builder) {
 
-		this.attachments = ModelTypeHelper.unmodifiableNonNull(builder.attachments, "attachments");
+		this.attachments = ApiTypeHelper.unmodifiableRequired(builder.attachments, this, "attachments");
 		this.dynamicAttachments = builder.dynamicAttachments;
-		this.from = Objects.requireNonNull(builder.from, "from");
+		this.from = ApiTypeHelper.requireNonNull(builder.from, this, "from");
 		this.icon = builder.icon;
-		this.text = Objects.requireNonNull(builder.text, "text");
-		this.to = ModelTypeHelper.unmodifiableNonNull(builder.to, "to");
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.to = ApiTypeHelper.unmodifiableRequired(builder.to, this, "to");
 
 	}
 
-	public SlackMessage(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SlackMessage of(Function<Builder, ObjectBuilder<SlackMessage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code attachments}
 	 */
-	public List<SlackAttachment> attachments() {
+	public final List<SlackAttachment> attachments() {
 		return this.attachments;
 	}
 
@@ -86,14 +91,14 @@ public final class SlackMessage implements JsonpSerializable {
 	 * API name: {@code dynamic_attachments}
 	 */
 	@Nullable
-	public SlackDynamicAttachment dynamicAttachments() {
+	public final SlackDynamicAttachment dynamicAttachments() {
 		return this.dynamicAttachments;
 	}
 
 	/**
 	 * Required - API name: {@code from}
 	 */
-	public String from() {
+	public final String from() {
 		return this.from;
 	}
 
@@ -101,21 +106,21 @@ public final class SlackMessage implements JsonpSerializable {
 	 * API name: {@code icon}
 	 */
 	@Nullable
-	public String icon() {
+	public final String icon() {
 		return this.icon;
 	}
 
 	/**
 	 * Required - API name: {@code text}
 	 */
-	public String text() {
+	public final String text() {
 		return this.text;
 	}
 
 	/**
 	 * Required - API name: {@code to}
 	 */
-	public List<String> to() {
+	public final List<String> to() {
 		return this.to;
 	}
 
@@ -130,41 +135,42 @@ public final class SlackMessage implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("attachments");
-		generator.writeStartArray();
-		for (SlackAttachment item0 : this.attachments) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.attachments)) {
+			generator.writeKey("attachments");
+			generator.writeStartArray();
+			for (SlackAttachment item0 : this.attachments) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.dynamicAttachments != null) {
-
 			generator.writeKey("dynamic_attachments");
 			this.dynamicAttachments.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("from");
 		generator.write(this.from);
 
 		if (this.icon != null) {
-
 			generator.writeKey("icon");
 			generator.write(this.icon);
 
 		}
-
 		generator.writeKey("text");
 		generator.write(this.text);
 
-		generator.writeKey("to");
-		generator.writeStartArray();
-		for (String item0 : this.to) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.to)) {
+			generator.writeKey("to");
+			generator.writeStartArray();
+			for (String item0 : this.to) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -173,7 +179,8 @@ public final class SlackMessage implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackMessage}.
 	 */
-	public static class Builder implements ObjectBuilder<SlackMessage> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackMessage> {
 		private List<SlackAttachment> attachments;
 
 		@Nullable
@@ -190,49 +197,37 @@ public final class SlackMessage implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code attachments}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>attachments</code>.
 		 */
-		public Builder attachments(List<SlackAttachment> value) {
-			this.attachments = value;
+		public final Builder attachments(List<SlackAttachment> list) {
+			this.attachments = _listAddAll(this.attachments, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attachments}
+		 * <p>
+		 * Adds one or more values to <code>attachments</code>.
 		 */
-		public Builder attachments(SlackAttachment... value) {
-			this.attachments = Arrays.asList(value);
+		public final Builder attachments(SlackAttachment value, SlackAttachment... values) {
+			this.attachments = _listAdd(this.attachments, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #attachments(List)}, creating the list if needed.
+		 * Required - API name: {@code attachments}
+		 * <p>
+		 * Adds a value to <code>attachments</code> using a builder lambda.
 		 */
-		public Builder addAttachments(SlackAttachment value) {
-			if (this.attachments == null) {
-				this.attachments = new ArrayList<>();
-			}
-			this.attachments.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #attachments(List)} to a singleton list.
-		 */
-		public Builder attachments(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn) {
-			return this.attachments(fn.apply(new SlackAttachment.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #attachments(List)}, creating the list if needed.
-		 */
-		public Builder addAttachments(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn) {
-			return this.addAttachments(fn.apply(new SlackAttachment.Builder()).build());
+		public final Builder attachments(Function<SlackAttachment.Builder, ObjectBuilder<SlackAttachment>> fn) {
+			return attachments(fn.apply(new SlackAttachment.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code dynamic_attachments}
 		 */
-		public Builder dynamicAttachments(@Nullable SlackDynamicAttachment value) {
+		public final Builder dynamicAttachments(@Nullable SlackDynamicAttachment value) {
 			this.dynamicAttachments = value;
 			return this;
 		}
@@ -240,7 +235,7 @@ public final class SlackMessage implements JsonpSerializable {
 		/**
 		 * API name: {@code dynamic_attachments}
 		 */
-		public Builder dynamicAttachments(
+		public final Builder dynamicAttachments(
 				Function<SlackDynamicAttachment.Builder, ObjectBuilder<SlackDynamicAttachment>> fn) {
 			return this.dynamicAttachments(fn.apply(new SlackDynamicAttachment.Builder()).build());
 		}
@@ -248,7 +243,7 @@ public final class SlackMessage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code from}
 		 */
-		public Builder from(String value) {
+		public final Builder from(String value) {
 			this.from = value;
 			return this;
 		}
@@ -256,7 +251,7 @@ public final class SlackMessage implements JsonpSerializable {
 		/**
 		 * API name: {@code icon}
 		 */
-		public Builder icon(@Nullable String value) {
+		public final Builder icon(@Nullable String value) {
 			this.icon = value;
 			return this;
 		}
@@ -264,35 +259,28 @@ public final class SlackMessage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code text}
 		 */
-		public Builder text(String value) {
+		public final Builder text(String value) {
 			this.text = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code to}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>to</code>.
 		 */
-		public Builder to(List<String> value) {
-			this.to = value;
+		public final Builder to(List<String> list) {
+			this.to = _listAddAll(this.to, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code to}
+		 * <p>
+		 * Adds one or more values to <code>to</code>.
 		 */
-		public Builder to(String... value) {
-			this.to = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #to(List)}, creating the list if needed.
-		 */
-		public Builder addTo(String value) {
-			if (this.to == null) {
-				this.to = new ArrayList<>();
-			}
-			this.to.add(value);
+		public final Builder to(String value, String... values) {
+			this.to = _listAdd(this.to, value, values);
 			return this;
 		}
 
@@ -303,6 +291,7 @@ public final class SlackMessage implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SlackMessage build() {
+			_checkSingleUse();
 
 			return new SlackMessage(this);
 		}
@@ -314,9 +303,9 @@ public final class SlackMessage implements JsonpSerializable {
 	 * Json deserializer for {@link SlackMessage}
 	 */
 	public static final JsonpDeserializer<SlackMessage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SlackMessage::setupSlackMessageDeserializer, Builder::build);
+			SlackMessage::setupSlackMessageDeserializer);
 
-	protected static void setupSlackMessageDeserializer(DelegatingDeserializer<SlackMessage.Builder> op) {
+	protected static void setupSlackMessageDeserializer(ObjectDeserializer<SlackMessage.Builder> op) {
 
 		op.add(Builder::attachments, JsonpDeserializer.arrayDeserializer(SlackAttachment._DESERIALIZER), "attachments");
 		op.add(Builder::dynamicAttachments, SlackDynamicAttachment._DESERIALIZER, "dynamic_attachments");

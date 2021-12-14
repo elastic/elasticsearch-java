@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.AutoscalingNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L48-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AutoscalingNode implements JsonpSerializable {
+public class AutoscalingNode implements JsonpSerializable {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AutoscalingNode(Builder builder) {
+	private AutoscalingNode(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public AutoscalingNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AutoscalingNode of(Function<Builder, ObjectBuilder<AutoscalingNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -82,13 +90,14 @@ public final class AutoscalingNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link AutoscalingNode}.
 	 */
-	public static class Builder implements ObjectBuilder<AutoscalingNode> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingNode> {
 		private String name;
 
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class AutoscalingNode implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AutoscalingNode build() {
+			_checkSingleUse();
 
 			return new AutoscalingNode(this);
 		}
@@ -111,9 +121,9 @@ public final class AutoscalingNode implements JsonpSerializable {
 	 * Json deserializer for {@link AutoscalingNode}
 	 */
 	public static final JsonpDeserializer<AutoscalingNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AutoscalingNode::setupAutoscalingNodeDeserializer, Builder::build);
+			AutoscalingNode::setupAutoscalingNodeDeserializer);
 
-	protected static void setupAutoscalingNodeDeserializer(DelegatingDeserializer<AutoscalingNode.Builder> op) {
+	protected static void setupAutoscalingNodeDeserializer(ObjectDeserializer<AutoscalingNode.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 

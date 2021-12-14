@@ -23,13 +23,27 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/common.ts#L94-L99">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum VersionType implements StringEnum {
-	Internal("internal"), External("external"), ExternalGte("external_gte"), Force("force");
+public enum VersionType implements JsonEnum {
+	Internal("internal"),
+
+	External("external"),
+
+	ExternalGte("external_gte"),
+
+	Force("force"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +55,6 @@ public enum VersionType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<VersionType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<VersionType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			VersionType.values());
 }

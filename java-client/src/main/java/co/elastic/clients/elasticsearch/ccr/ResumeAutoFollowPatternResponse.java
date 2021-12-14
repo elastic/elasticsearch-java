@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,25 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ccr.resume_auto_follow_pattern.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/resume_auto_follow_pattern/ResumeAutoFollowPatternResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ResumeAutoFollowPatternResponse extends AcknowledgedResponseBase {
+public class ResumeAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ResumeAutoFollowPatternResponse(Builder builder) {
+	private ResumeAutoFollowPatternResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ResumeAutoFollowPatternResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResumeAutoFollowPatternResponse of(
+			Function<Builder, ObjectBuilder<ResumeAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public final class ResumeAutoFollowPatternResponse extends AcknowledgedResponseB
 	/**
 	 * Builder for {@link ResumeAutoFollowPatternResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ResumeAutoFollowPatternResponse> {
@@ -68,6 +76,7 @@ public final class ResumeAutoFollowPatternResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public ResumeAutoFollowPatternResponse build() {
+			_checkSingleUse();
 
 			return new ResumeAutoFollowPatternResponse(this);
 		}
@@ -79,11 +88,10 @@ public final class ResumeAutoFollowPatternResponse extends AcknowledgedResponseB
 	 * Json deserializer for {@link ResumeAutoFollowPatternResponse}
 	 */
 	public static final JsonpDeserializer<ResumeAutoFollowPatternResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ResumeAutoFollowPatternResponse::setupResumeAutoFollowPatternResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, ResumeAutoFollowPatternResponse::setupResumeAutoFollowPatternResponseDeserializer);
 
 	protected static void setupResumeAutoFollowPatternResponseDeserializer(
-			DelegatingDeserializer<ResumeAutoFollowPatternResponse.Builder> op) {
+			ObjectDeserializer<ResumeAutoFollowPatternResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

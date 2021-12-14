@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Page
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Page.ts#L22-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Page implements JsonpSerializable {
+public class Page implements JsonpSerializable {
 	@Nullable
 	private final Integer from;
 
@@ -48,30 +55,34 @@ public final class Page implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Page(Builder builder) {
+	private Page(Builder builder) {
 
 		this.from = builder.from;
 		this.size = builder.size;
 
 	}
 
-	public Page(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Page of(Function<Builder, ObjectBuilder<Page>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
+	 * Skips the specified number of items.
+	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
 	/**
+	 * Specifies the maximum number of items to obtain.
+	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -87,13 +98,11 @@ public final class Page implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.from != null) {
-
 			generator.writeKey("from");
 			generator.write(this.from);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -106,7 +115,8 @@ public final class Page implements JsonpSerializable {
 	/**
 	 * Builder for {@link Page}.
 	 */
-	public static class Builder implements ObjectBuilder<Page> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Page> {
 		@Nullable
 		private Integer from;
 
@@ -114,17 +124,21 @@ public final class Page implements JsonpSerializable {
 		private Integer size;
 
 		/**
+		 * Skips the specified number of items.
+		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
+		 * Specifies the maximum number of items to obtain.
+		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -136,6 +150,7 @@ public final class Page implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Page build() {
+			_checkSingleUse();
 
 			return new Page(this);
 		}
@@ -147,9 +162,9 @@ public final class Page implements JsonpSerializable {
 	 * Json deserializer for {@link Page}
 	 */
 	public static final JsonpDeserializer<Page> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Page::setupPageDeserializer, Builder::build);
+			Page::setupPageDeserializer);
 
-	protected static void setupPageDeserializer(DelegatingDeserializer<Page.Builder> op) {
+	protected static void setupPageDeserializer(ObjectDeserializer<Page.Builder> op) {
 
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

@@ -23,14 +23,13 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -39,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.DiversifiedSamplerAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L150-L156">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DiversifiedSamplerAggregation extends BucketAggregationBase implements AggregationVariant {
+public class DiversifiedSamplerAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final SamplerAggregationExecutionHint executionHint;
 
@@ -48,7 +54,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	private final Integer maxDocsPerValue;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final Integer shardSize;
@@ -58,7 +64,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DiversifiedSamplerAggregation(Builder builder) {
+	private DiversifiedSamplerAggregation(Builder builder) {
 		super(builder);
 
 		this.executionHint = builder.executionHint;
@@ -69,23 +75,23 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 
 	}
 
-	public DiversifiedSamplerAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DiversifiedSamplerAggregation of(Function<Builder, ObjectBuilder<DiversifiedSamplerAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "diversified_sampler";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.DiversifiedSampler;
 	}
 
 	/**
 	 * API name: {@code execution_hint}
 	 */
 	@Nullable
-	public SamplerAggregationExecutionHint executionHint() {
+	public final SamplerAggregationExecutionHint executionHint() {
 		return this.executionHint;
 	}
 
@@ -93,7 +99,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	 * API name: {@code max_docs_per_value}
 	 */
 	@Nullable
-	public Integer maxDocsPerValue() {
+	public final Integer maxDocsPerValue() {
 		return this.maxDocsPerValue;
 	}
 
@@ -101,7 +107,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -109,7 +115,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -117,7 +123,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -125,30 +131,25 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 
 		super.serializeInternal(generator, mapper);
 		if (this.executionHint != null) {
-
 			generator.writeKey("execution_hint");
 			this.executionHint.serialize(generator, mapper);
 		}
 		if (this.maxDocsPerValue != null) {
-
 			generator.writeKey("max_docs_per_value");
 			generator.write(this.maxDocsPerValue);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
@@ -161,6 +162,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	/**
 	 * Builder for {@link DiversifiedSamplerAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DiversifiedSamplerAggregation> {
@@ -171,7 +173,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		private Integer maxDocsPerValue;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private Integer shardSize;
@@ -182,7 +184,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		/**
 		 * API name: {@code execution_hint}
 		 */
-		public Builder executionHint(@Nullable SamplerAggregationExecutionHint value) {
+		public final Builder executionHint(@Nullable SamplerAggregationExecutionHint value) {
 			this.executionHint = value;
 			return this;
 		}
@@ -190,7 +192,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		/**
 		 * API name: {@code max_docs_per_value}
 		 */
-		public Builder maxDocsPerValue(@Nullable Integer value) {
+		public final Builder maxDocsPerValue(@Nullable Integer value) {
 			this.maxDocsPerValue = value;
 			return this;
 		}
@@ -198,15 +200,22 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -214,7 +223,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -231,6 +240,7 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 		 *             if some of the required fields are null.
 		 */
 		public DiversifiedSamplerAggregation build() {
+			_checkSingleUse();
 
 			return new DiversifiedSamplerAggregation(this);
 		}
@@ -241,16 +251,15 @@ public final class DiversifiedSamplerAggregation extends BucketAggregationBase i
 	/**
 	 * Json deserializer for {@link DiversifiedSamplerAggregation}
 	 */
-	public static final JsonpDeserializer<DiversifiedSamplerAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DiversifiedSamplerAggregation::setupDiversifiedSamplerAggregationDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<DiversifiedSamplerAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DiversifiedSamplerAggregation::setupDiversifiedSamplerAggregationDeserializer);
 
 	protected static void setupDiversifiedSamplerAggregationDeserializer(
-			DelegatingDeserializer<DiversifiedSamplerAggregation.Builder> op) {
+			ObjectDeserializer<DiversifiedSamplerAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::executionHint, SamplerAggregationExecutionHint._DESERIALIZER, "execution_hint");
 		op.add(Builder::maxDocsPerValue, JsonpDeserializer.integerDeserializer(), "max_docs_per_value");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 

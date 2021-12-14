@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.FilterRef
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Filter.ts#L28-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FilterRef implements JsonpSerializable {
+public class FilterRef implements JsonpSerializable {
 	private final String filterId;
 
 	@Nullable
@@ -47,15 +55,15 @@ public final class FilterRef implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FilterRef(Builder builder) {
+	private FilterRef(Builder builder) {
 
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 		this.filterType = builder.filterType;
 
 	}
 
-	public FilterRef(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FilterRef of(Function<Builder, ObjectBuilder<FilterRef>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +71,7 @@ public final class FilterRef implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
-	public String filterId() {
+	public final String filterId() {
 		return this.filterId;
 	}
 
@@ -74,7 +82,7 @@ public final class FilterRef implements JsonpSerializable {
 	 * API name: {@code filter_type}
 	 */
 	@Nullable
-	public FilterType filterType() {
+	public final FilterType filterType() {
 		return this.filterType;
 	}
 
@@ -93,7 +101,6 @@ public final class FilterRef implements JsonpSerializable {
 		generator.write(this.filterId);
 
 		if (this.filterType != null) {
-
 			generator.writeKey("filter_type");
 			this.filterType.serialize(generator, mapper);
 		}
@@ -105,7 +112,8 @@ public final class FilterRef implements JsonpSerializable {
 	/**
 	 * Builder for {@link FilterRef}.
 	 */
-	public static class Builder implements ObjectBuilder<FilterRef> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FilterRef> {
 		private String filterId;
 
 		@Nullable
@@ -116,7 +124,7 @@ public final class FilterRef implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter_id}
 		 */
-		public Builder filterId(String value) {
+		public final Builder filterId(String value) {
 			this.filterId = value;
 			return this;
 		}
@@ -127,7 +135,7 @@ public final class FilterRef implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code filter_type}
 		 */
-		public Builder filterType(@Nullable FilterType value) {
+		public final Builder filterType(@Nullable FilterType value) {
 			this.filterType = value;
 			return this;
 		}
@@ -139,6 +147,7 @@ public final class FilterRef implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FilterRef build() {
+			_checkSingleUse();
 
 			return new FilterRef(this);
 		}
@@ -150,9 +159,9 @@ public final class FilterRef implements JsonpSerializable {
 	 * Json deserializer for {@link FilterRef}
 	 */
 	public static final JsonpDeserializer<FilterRef> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FilterRef::setupFilterRefDeserializer, Builder::build);
+			FilterRef::setupFilterRefDeserializer);
 
-	protected static void setupFilterRefDeserializer(DelegatingDeserializer<FilterRef.Builder> op) {
+	protected static void setupFilterRefDeserializer(ObjectDeserializer<FilterRef.Builder> op) {
 
 		op.add(Builder::filterId, JsonpDeserializer.stringDeserializer(), "filter_id");
 		op.add(Builder::filterType, FilterType._DESERIALIZER, "filter_type");

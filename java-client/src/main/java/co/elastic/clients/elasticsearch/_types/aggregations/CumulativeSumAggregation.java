@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.CumulativeSumAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L65-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CumulativeSumAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class CumulativeSumAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public CumulativeSumAggregation(Builder builder) {
+	private CumulativeSumAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public CumulativeSumAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CumulativeSumAggregation of(Function<Builder, ObjectBuilder<CumulativeSumAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "cumulative_sum";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.CumulativeSum;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class CumulativeSumAggregation extends PipelineAggregationBase impl
 	/**
 	 * Builder for {@link CumulativeSumAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CumulativeSumAggregation> {
@@ -75,6 +82,7 @@ public final class CumulativeSumAggregation extends PipelineAggregationBase impl
 		 *             if some of the required fields are null.
 		 */
 		public CumulativeSumAggregation build() {
+			_checkSingleUse();
 
 			return new CumulativeSumAggregation(this);
 		}
@@ -86,10 +94,10 @@ public final class CumulativeSumAggregation extends PipelineAggregationBase impl
 	 * Json deserializer for {@link CumulativeSumAggregation}
 	 */
 	public static final JsonpDeserializer<CumulativeSumAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CumulativeSumAggregation::setupCumulativeSumAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, CumulativeSumAggregation::setupCumulativeSumAggregationDeserializer);
 
 	protected static void setupCumulativeSumAggregationDeserializer(
-			DelegatingDeserializer<CumulativeSumAggregation.Builder> op) {
+			ObjectDeserializer<CumulativeSumAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

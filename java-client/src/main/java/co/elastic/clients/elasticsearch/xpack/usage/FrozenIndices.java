@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -36,34 +36,40 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.FrozenIndices
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L312-L314">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FrozenIndices extends Base {
+public class FrozenIndices extends Base {
 	private final long indicesCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FrozenIndices(Builder builder) {
+	private FrozenIndices(Builder builder) {
 		super(builder);
 
-		this.indicesCount = Objects.requireNonNull(builder.indicesCount, "indices_count");
+		this.indicesCount = ApiTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
 
 	}
 
-	public FrozenIndices(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FrozenIndices of(Function<Builder, ObjectBuilder<FrozenIndices>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code indices_count}
 	 */
-	public long indicesCount() {
+	public final long indicesCount() {
 		return this.indicesCount;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("indices_count");
 		generator.write(this.indicesCount);
 
@@ -74,13 +80,14 @@ public final class FrozenIndices extends Base {
 	/**
 	 * Builder for {@link FrozenIndices}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<FrozenIndices> {
 		private Long indicesCount;
 
 		/**
 		 * Required - API name: {@code indices_count}
 		 */
-		public Builder indicesCount(long value) {
+		public final Builder indicesCount(long value) {
 			this.indicesCount = value;
 			return this;
 		}
@@ -97,6 +104,7 @@ public final class FrozenIndices extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public FrozenIndices build() {
+			_checkSingleUse();
 
 			return new FrozenIndices(this);
 		}
@@ -108,9 +116,9 @@ public final class FrozenIndices extends Base {
 	 * Json deserializer for {@link FrozenIndices}
 	 */
 	public static final JsonpDeserializer<FrozenIndices> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FrozenIndices::setupFrozenIndicesDeserializer, Builder::build);
+			FrozenIndices::setupFrozenIndicesDeserializer);
 
-	protected static void setupFrozenIndicesDeserializer(DelegatingDeserializer<FrozenIndices.Builder> op) {
+	protected static void setupFrozenIndicesDeserializer(ObjectDeserializer<FrozenIndices.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::indicesCount, JsonpDeserializer.longDeserializer(), "indices_count");
 

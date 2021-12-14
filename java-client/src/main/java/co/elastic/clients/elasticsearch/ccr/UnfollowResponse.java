@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ccr.unfollow.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/unfollow/UnfollowIndexResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UnfollowResponse extends AcknowledgedResponseBase {
+public class UnfollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public UnfollowResponse(Builder builder) {
+	private UnfollowResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public UnfollowResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UnfollowResponse of(Function<Builder, ObjectBuilder<UnfollowResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class UnfollowResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link UnfollowResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UnfollowResponse> {
@@ -68,6 +75,7 @@ public final class UnfollowResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public UnfollowResponse build() {
+			_checkSingleUse();
 
 			return new UnfollowResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class UnfollowResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link UnfollowResponse}
 	 */
 	public static final JsonpDeserializer<UnfollowResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			UnfollowResponse::setupUnfollowResponseDeserializer, Builder::build);
+			UnfollowResponse::setupUnfollowResponseDeserializer);
 
-	protected static void setupUnfollowResponseDeserializer(DelegatingDeserializer<UnfollowResponse.Builder> op) {
+	protected static void setupUnfollowResponseDeserializer(ObjectDeserializer<UnfollowResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

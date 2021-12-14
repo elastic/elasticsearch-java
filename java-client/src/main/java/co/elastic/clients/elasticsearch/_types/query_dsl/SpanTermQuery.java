@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,47 +37,61 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanTermQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/span.ts#L69-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+public class SpanTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+	// Single key dictionary
 	private final String field;
 
 	private final String value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SpanTermQuery(Builder builder) {
+	private SpanTermQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public SpanTermQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SpanTermQuery of(Function<Builder, ObjectBuilder<SpanTermQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link SpanQuery}, {@link Query} variant type
+	 * SpanQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "span_term";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.SpanTerm;
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.SpanTerm;
 	}
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public String value() {
+	public final String value() {
 		return this.value;
 	}
 
@@ -85,11 +99,11 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("value");
 		generator.write(this.value);
 
 		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -97,15 +111,14 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 	/**
 	 * Builder for {@link SpanTermQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<SpanTermQuery> {
 		private String field;
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -115,7 +128,7 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(String value) {
+		public final Builder value(String value) {
 			this.value = value;
 			return this;
 		}
@@ -132,6 +145,7 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 		 *             if some of the required fields are null.
 		 */
 		public SpanTermQuery build() {
+			_checkSingleUse();
 
 			return new SpanTermQuery(this);
 		}
@@ -143,13 +157,14 @@ public final class SpanTermQuery extends QueryBase implements SpanQueryVariant, 
 	 * Json deserializer for {@link SpanTermQuery}
 	 */
 	public static final JsonpDeserializer<SpanTermQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SpanTermQuery::setupSpanTermQueryDeserializer, Builder::build);
+			SpanTermQuery::setupSpanTermQueryDeserializer);
 
-	protected static void setupSpanTermQueryDeserializer(DelegatingDeserializer<SpanTermQuery.Builder> op) {
+	protected static void setupSpanTermQueryDeserializer(ObjectDeserializer<SpanTermQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+		op.shortcutProperty("value");
 
 	}
 

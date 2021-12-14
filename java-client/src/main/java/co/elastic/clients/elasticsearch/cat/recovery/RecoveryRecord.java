@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.recovery.RecoveryRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/recovery/types.ts#L23-L154">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RecoveryRecord implements JsonpSerializable {
+public class RecoveryRecord implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
@@ -120,7 +127,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryRecord(Builder builder) {
+	private RecoveryRecord(Builder builder) {
 
 		this.index = builder.index;
 		this.shard = builder.shard;
@@ -151,8 +158,8 @@ public final class RecoveryRecord implements JsonpSerializable {
 
 	}
 
-	public RecoveryRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryRecord of(Function<Builder, ObjectBuilder<RecoveryRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -161,7 +168,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -171,7 +178,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code shard}
 	 */
 	@Nullable
-	public String shard() {
+	public final String shard() {
 		return this.shard;
 	}
 
@@ -181,7 +188,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code start_time}
 	 */
 	@Nullable
-	public String startTime() {
+	public final String startTime() {
 		return this.startTime;
 	}
 
@@ -191,7 +198,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code start_time_millis}
 	 */
 	@Nullable
-	public String startTimeMillis() {
+	public final String startTimeMillis() {
 		return this.startTimeMillis;
 	}
 
@@ -201,7 +208,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code stop_time}
 	 */
 	@Nullable
-	public String stopTime() {
+	public final String stopTime() {
 		return this.stopTime;
 	}
 
@@ -211,7 +218,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code stop_time_millis}
 	 */
 	@Nullable
-	public String stopTimeMillis() {
+	public final String stopTimeMillis() {
 		return this.stopTimeMillis;
 	}
 
@@ -221,7 +228,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code time}
 	 */
 	@Nullable
-	public String time() {
+	public final String time() {
 		return this.time;
 	}
 
@@ -231,7 +238,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -241,7 +248,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code stage}
 	 */
 	@Nullable
-	public String stage() {
+	public final String stage() {
 		return this.stage;
 	}
 
@@ -251,7 +258,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code source_host}
 	 */
 	@Nullable
-	public String sourceHost() {
+	public final String sourceHost() {
 		return this.sourceHost;
 	}
 
@@ -261,7 +268,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code source_node}
 	 */
 	@Nullable
-	public String sourceNode() {
+	public final String sourceNode() {
 		return this.sourceNode;
 	}
 
@@ -271,7 +278,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code target_host}
 	 */
 	@Nullable
-	public String targetHost() {
+	public final String targetHost() {
 		return this.targetHost;
 	}
 
@@ -281,7 +288,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code target_node}
 	 */
 	@Nullable
-	public String targetNode() {
+	public final String targetNode() {
 		return this.targetNode;
 	}
 
@@ -291,7 +298,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code repository}
 	 */
 	@Nullable
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
@@ -301,7 +308,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code snapshot}
 	 */
 	@Nullable
-	public String snapshot() {
+	public final String snapshot() {
 		return this.snapshot;
 	}
 
@@ -311,7 +318,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code files}
 	 */
 	@Nullable
-	public String files() {
+	public final String files() {
 		return this.files;
 	}
 
@@ -321,7 +328,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code files_recovered}
 	 */
 	@Nullable
-	public String filesRecovered() {
+	public final String filesRecovered() {
 		return this.filesRecovered;
 	}
 
@@ -331,7 +338,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code files_percent}
 	 */
 	@Nullable
-	public String filesPercent() {
+	public final String filesPercent() {
 		return this.filesPercent;
 	}
 
@@ -341,7 +348,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code files_total}
 	 */
 	@Nullable
-	public String filesTotal() {
+	public final String filesTotal() {
 		return this.filesTotal;
 	}
 
@@ -351,7 +358,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public String bytes() {
+	public final String bytes() {
 		return this.bytes;
 	}
 
@@ -361,7 +368,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code bytes_recovered}
 	 */
 	@Nullable
-	public String bytesRecovered() {
+	public final String bytesRecovered() {
 		return this.bytesRecovered;
 	}
 
@@ -371,7 +378,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code bytes_percent}
 	 */
 	@Nullable
-	public String bytesPercent() {
+	public final String bytesPercent() {
 		return this.bytesPercent;
 	}
 
@@ -381,7 +388,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code bytes_total}
 	 */
 	@Nullable
-	public String bytesTotal() {
+	public final String bytesTotal() {
 		return this.bytesTotal;
 	}
 
@@ -391,7 +398,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code translog_ops}
 	 */
 	@Nullable
-	public String translogOps() {
+	public final String translogOps() {
 		return this.translogOps;
 	}
 
@@ -401,7 +408,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code translog_ops_recovered}
 	 */
 	@Nullable
-	public String translogOpsRecovered() {
+	public final String translogOpsRecovered() {
 		return this.translogOpsRecovered;
 	}
 
@@ -411,7 +418,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code translog_ops_percent}
 	 */
 	@Nullable
-	public String translogOpsPercent() {
+	public final String translogOpsPercent() {
 		return this.translogOpsPercent;
 	}
 
@@ -427,157 +434,131 @@ public final class RecoveryRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.shard != null) {
-
 			generator.writeKey("shard");
 			generator.write(this.shard);
 
 		}
 		if (this.startTime != null) {
-
 			generator.writeKey("start_time");
 			generator.write(this.startTime);
 
 		}
 		if (this.startTimeMillis != null) {
-
 			generator.writeKey("start_time_millis");
 			generator.write(this.startTimeMillis);
 
 		}
 		if (this.stopTime != null) {
-
 			generator.writeKey("stop_time");
 			generator.write(this.stopTime);
 
 		}
 		if (this.stopTimeMillis != null) {
-
 			generator.writeKey("stop_time_millis");
 			generator.write(this.stopTimeMillis);
 
 		}
 		if (this.time != null) {
-
 			generator.writeKey("time");
 			generator.write(this.time);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
 		}
 		if (this.stage != null) {
-
 			generator.writeKey("stage");
 			generator.write(this.stage);
 
 		}
 		if (this.sourceHost != null) {
-
 			generator.writeKey("source_host");
 			generator.write(this.sourceHost);
 
 		}
 		if (this.sourceNode != null) {
-
 			generator.writeKey("source_node");
 			generator.write(this.sourceNode);
 
 		}
 		if (this.targetHost != null) {
-
 			generator.writeKey("target_host");
 			generator.write(this.targetHost);
 
 		}
 		if (this.targetNode != null) {
-
 			generator.writeKey("target_node");
 			generator.write(this.targetNode);
 
 		}
 		if (this.repository != null) {
-
 			generator.writeKey("repository");
 			generator.write(this.repository);
 
 		}
 		if (this.snapshot != null) {
-
 			generator.writeKey("snapshot");
 			generator.write(this.snapshot);
 
 		}
 		if (this.files != null) {
-
 			generator.writeKey("files");
 			generator.write(this.files);
 
 		}
 		if (this.filesRecovered != null) {
-
 			generator.writeKey("files_recovered");
 			generator.write(this.filesRecovered);
 
 		}
 		if (this.filesPercent != null) {
-
 			generator.writeKey("files_percent");
 			generator.write(this.filesPercent);
 
 		}
 		if (this.filesTotal != null) {
-
 			generator.writeKey("files_total");
 			generator.write(this.filesTotal);
 
 		}
 		if (this.bytes != null) {
-
 			generator.writeKey("bytes");
 			generator.write(this.bytes);
 
 		}
 		if (this.bytesRecovered != null) {
-
 			generator.writeKey("bytes_recovered");
 			generator.write(this.bytesRecovered);
 
 		}
 		if (this.bytesPercent != null) {
-
 			generator.writeKey("bytes_percent");
 			generator.write(this.bytesPercent);
 
 		}
 		if (this.bytesTotal != null) {
-
 			generator.writeKey("bytes_total");
 			generator.write(this.bytesTotal);
 
 		}
 		if (this.translogOps != null) {
-
 			generator.writeKey("translog_ops");
 			generator.write(this.translogOps);
 
 		}
 		if (this.translogOpsRecovered != null) {
-
 			generator.writeKey("translog_ops_recovered");
 			generator.write(this.translogOpsRecovered);
 
 		}
 		if (this.translogOpsPercent != null) {
-
 			generator.writeKey("translog_ops_percent");
 			generator.write(this.translogOpsPercent);
 
@@ -590,7 +571,8 @@ public final class RecoveryRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryRecord> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryRecord> {
 		@Nullable
 		private String index;
 
@@ -674,7 +656,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -684,7 +666,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shard}
 		 */
-		public Builder shard(@Nullable String value) {
+		public final Builder shard(@Nullable String value) {
 			this.shard = value;
 			return this;
 		}
@@ -694,7 +676,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time}
 		 */
-		public Builder startTime(@Nullable String value) {
+		public final Builder startTime(@Nullable String value) {
 			this.startTime = value;
 			return this;
 		}
@@ -704,7 +686,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time_millis}
 		 */
-		public Builder startTimeMillis(@Nullable String value) {
+		public final Builder startTimeMillis(@Nullable String value) {
 			this.startTimeMillis = value;
 			return this;
 		}
@@ -714,7 +696,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stop_time}
 		 */
-		public Builder stopTime(@Nullable String value) {
+		public final Builder stopTime(@Nullable String value) {
 			this.stopTime = value;
 			return this;
 		}
@@ -724,7 +706,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stop_time_millis}
 		 */
-		public Builder stopTimeMillis(@Nullable String value) {
+		public final Builder stopTimeMillis(@Nullable String value) {
 			this.stopTimeMillis = value;
 			return this;
 		}
@@ -734,7 +716,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code time}
 		 */
-		public Builder time(@Nullable String value) {
+		public final Builder time(@Nullable String value) {
 			this.time = value;
 			return this;
 		}
@@ -744,7 +726,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -754,7 +736,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stage}
 		 */
-		public Builder stage(@Nullable String value) {
+		public final Builder stage(@Nullable String value) {
 			this.stage = value;
 			return this;
 		}
@@ -764,7 +746,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code source_host}
 		 */
-		public Builder sourceHost(@Nullable String value) {
+		public final Builder sourceHost(@Nullable String value) {
 			this.sourceHost = value;
 			return this;
 		}
@@ -774,7 +756,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code source_node}
 		 */
-		public Builder sourceNode(@Nullable String value) {
+		public final Builder sourceNode(@Nullable String value) {
 			this.sourceNode = value;
 			return this;
 		}
@@ -784,7 +766,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code target_host}
 		 */
-		public Builder targetHost(@Nullable String value) {
+		public final Builder targetHost(@Nullable String value) {
 			this.targetHost = value;
 			return this;
 		}
@@ -794,7 +776,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code target_node}
 		 */
-		public Builder targetNode(@Nullable String value) {
+		public final Builder targetNode(@Nullable String value) {
 			this.targetNode = value;
 			return this;
 		}
@@ -804,7 +786,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder repository(@Nullable String value) {
+		public final Builder repository(@Nullable String value) {
 			this.repository = value;
 			return this;
 		}
@@ -814,7 +796,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
-		public Builder snapshot(@Nullable String value) {
+		public final Builder snapshot(@Nullable String value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -824,7 +806,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code files}
 		 */
-		public Builder files(@Nullable String value) {
+		public final Builder files(@Nullable String value) {
 			this.files = value;
 			return this;
 		}
@@ -834,7 +816,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code files_recovered}
 		 */
-		public Builder filesRecovered(@Nullable String value) {
+		public final Builder filesRecovered(@Nullable String value) {
 			this.filesRecovered = value;
 			return this;
 		}
@@ -844,7 +826,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code files_percent}
 		 */
-		public Builder filesPercent(@Nullable String value) {
+		public final Builder filesPercent(@Nullable String value) {
 			this.filesPercent = value;
 			return this;
 		}
@@ -854,7 +836,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code files_total}
 		 */
-		public Builder filesTotal(@Nullable String value) {
+		public final Builder filesTotal(@Nullable String value) {
 			this.filesTotal = value;
 			return this;
 		}
@@ -864,7 +846,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable String value) {
+		public final Builder bytes(@Nullable String value) {
 			this.bytes = value;
 			return this;
 		}
@@ -874,7 +856,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bytes_recovered}
 		 */
-		public Builder bytesRecovered(@Nullable String value) {
+		public final Builder bytesRecovered(@Nullable String value) {
 			this.bytesRecovered = value;
 			return this;
 		}
@@ -884,7 +866,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bytes_percent}
 		 */
-		public Builder bytesPercent(@Nullable String value) {
+		public final Builder bytesPercent(@Nullable String value) {
 			this.bytesPercent = value;
 			return this;
 		}
@@ -894,7 +876,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bytes_total}
 		 */
-		public Builder bytesTotal(@Nullable String value) {
+		public final Builder bytesTotal(@Nullable String value) {
 			this.bytesTotal = value;
 			return this;
 		}
@@ -904,7 +886,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code translog_ops}
 		 */
-		public Builder translogOps(@Nullable String value) {
+		public final Builder translogOps(@Nullable String value) {
 			this.translogOps = value;
 			return this;
 		}
@@ -914,7 +896,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code translog_ops_recovered}
 		 */
-		public Builder translogOpsRecovered(@Nullable String value) {
+		public final Builder translogOpsRecovered(@Nullable String value) {
 			this.translogOpsRecovered = value;
 			return this;
 		}
@@ -924,7 +906,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code translog_ops_percent}
 		 */
-		public Builder translogOpsPercent(@Nullable String value) {
+		public final Builder translogOpsPercent(@Nullable String value) {
 			this.translogOpsPercent = value;
 			return this;
 		}
@@ -936,6 +918,7 @@ public final class RecoveryRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryRecord build() {
+			_checkSingleUse();
 
 			return new RecoveryRecord(this);
 		}
@@ -947,9 +930,9 @@ public final class RecoveryRecord implements JsonpSerializable {
 	 * Json deserializer for {@link RecoveryRecord}
 	 */
 	public static final JsonpDeserializer<RecoveryRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryRecord::setupRecoveryRecordDeserializer, Builder::build);
+			RecoveryRecord::setupRecoveryRecordDeserializer);
 
-	protected static void setupRecoveryRecordDeserializer(DelegatingDeserializer<RecoveryRecord.Builder> op) {
+	protected static void setupRecoveryRecordDeserializer(ObjectDeserializer<RecoveryRecord.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index", "i", "idx");
 		op.add(Builder::shard, JsonpDeserializer.stringDeserializer(), "shard", "s", "sh");

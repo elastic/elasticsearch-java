@@ -23,9 +23,7 @@
 
 package co.elastic.clients.elasticsearch.autoscaling;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,7 +31,11 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -42,23 +44,32 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.put_autoscaling_policy.Request
+
+/**
+ * Creates a new autoscaling policy. Designed for indirect use by ECE/ESS and
+ * ECK. Direct use is not supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/put_autoscaling_policy/PutAutoscalingPolicyRequest.ts#L24-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSerializable {
+public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSerializable {
 	private final String name;
 
 	private final AutoscalingPolicy policy;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutAutoscalingPolicyRequest(Builder builder) {
+	private PutAutoscalingPolicyRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.policy = Objects.requireNonNull(builder.policy, "_value_body");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.policy = ApiTypeHelper.requireNonNull(builder.policy, this, "policy");
 
 	}
 
-	public PutAutoscalingPolicyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutAutoscalingPolicyRequest of(Function<Builder, ObjectBuilder<PutAutoscalingPolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +77,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -75,7 +86,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public AutoscalingPolicy policy() {
+	public final AutoscalingPolicy policy() {
 		return this.policy;
 	}
 
@@ -92,7 +103,8 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 	/**
 	 * Builder for {@link PutAutoscalingPolicyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutAutoscalingPolicyRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutAutoscalingPolicyRequest> {
 		private String name;
 
 		private AutoscalingPolicy policy;
@@ -102,7 +114,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -112,7 +124,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder policy(AutoscalingPolicy value) {
+		public final Builder policy(AutoscalingPolicy value) {
 			this.policy = value;
 			return this;
 		}
@@ -122,7 +134,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder policy(Function<AutoscalingPolicy.Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
+		public final Builder policy(Function<AutoscalingPolicy.Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
 			return this.policy(fn.apply(new AutoscalingPolicy.Builder()).build());
 		}
 
@@ -133,6 +145,7 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 		 *             if some of the required fields are null.
 		 */
 		public PutAutoscalingPolicyRequest build() {
+			_checkSingleUse();
 
 			return new PutAutoscalingPolicyRequest(this);
 		}
@@ -143,8 +156,8 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 
 		JsonpDeserializer<AutoscalingPolicy> valueDeserializer = AutoscalingPolicy._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.policy(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().policy(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -152,7 +165,9 @@ public final class PutAutoscalingPolicyRequest extends RequestBase implements Js
 	/**
 	 * Endpoint "{@code autoscaling.put_autoscaling_policy}".
 	 */
-	public static final Endpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/autoscaling.put_autoscaling_policy",
+
 			// Request method
 			request -> {
 				return "PUT";

@@ -23,10 +23,9 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -34,25 +33,27 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
-import javax.annotation.Nullable;
 
 // typedef: async_search.submit.Response
 
-public final class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<TDocument> {
-	@Nullable
-	private final JsonpSerializer<TDocument> tDocumentSerializer;
-
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/submit/AsyncSearchSubmitResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<TDocument> {
 	// ---------------------------------------------------------------------------------------------
 
-	public SubmitResponse(Builder<TDocument> builder) {
+	private SubmitResponse(Builder<TDocument> builder) {
 		super(builder);
-
-		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public SubmitResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> SubmitResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<SubmitResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,23 +61,12 @@ public final class SubmitResponse<TDocument> extends AsyncSearchDocumentResponse
 	/**
 	 * Builder for {@link SubmitResponse}.
 	 */
+
 	public static class Builder<TDocument>
 			extends
 				AsyncSearchDocumentResponseBase.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<SubmitResponse<TDocument>> {
-		@Nullable
-		private JsonpSerializer<TDocument> tDocumentSerializer;
-
-		/**
-		 * Serializer for TDocument. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
-		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
-			this.tDocumentSerializer = value;
-			return this;
-		}
-
 		@Override
 		protected Builder<TDocument> self() {
 			return this;
@@ -89,6 +79,7 @@ public final class SubmitResponse<TDocument> extends AsyncSearchDocumentResponse
 		 *             if some of the required fields are null.
 		 */
 		public SubmitResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new SubmitResponse<TDocument>(this);
 		}
@@ -97,7 +88,7 @@ public final class SubmitResponse<TDocument> extends AsyncSearchDocumentResponse
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for SubmitResponse
+	 * Create a JSON deserializer for SubmitResponse
 	 */
 	public static <TDocument> JsonpDeserializer<SubmitResponse<TDocument>> createSubmitResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
@@ -105,8 +96,15 @@ public final class SubmitResponse<TDocument> extends AsyncSearchDocumentResponse
 				op -> SubmitResponse.setupSubmitResponseDeserializer(op, tDocumentDeserializer));
 	};
 
+	/**
+	 * Json deserializer for {@link SubmitResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<SubmitResponse<Object>> _DESERIALIZER = createSubmitResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.submit.TDocument"));
+
 	protected static <TDocument> void setupSubmitResponseDeserializer(
-			DelegatingDeserializer<SubmitResponse.Builder<TDocument>> op,
+			ObjectDeserializer<SubmitResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		AsyncSearchDocumentResponseBase.setupAsyncSearchDocumentResponseBaseDeserializer(op, tDocumentDeserializer);
 

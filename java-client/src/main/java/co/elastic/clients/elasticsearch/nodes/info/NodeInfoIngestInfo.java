@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngestInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L122-L124">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoIngestInfo implements JsonpSerializable {
+public class NodeInfoIngestInfo implements JsonpSerializable {
 	private final NodeInfoIngestDownloader downloader;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoIngestInfo(Builder builder) {
+	private NodeInfoIngestInfo(Builder builder) {
 
-		this.downloader = Objects.requireNonNull(builder.downloader, "downloader");
+		this.downloader = ApiTypeHelper.requireNonNull(builder.downloader, this, "downloader");
 
 	}
 
-	public NodeInfoIngestInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoIngestInfo of(Function<Builder, ObjectBuilder<NodeInfoIngestInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code downloader}
 	 */
-	public NodeInfoIngestDownloader downloader() {
+	public final NodeInfoIngestDownloader downloader() {
 		return this.downloader;
 	}
 
@@ -81,13 +89,14 @@ public final class NodeInfoIngestInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoIngestInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoIngestInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngestInfo> {
 		private NodeInfoIngestDownloader downloader;
 
 		/**
 		 * Required - API name: {@code downloader}
 		 */
-		public Builder downloader(NodeInfoIngestDownloader value) {
+		public final Builder downloader(NodeInfoIngestDownloader value) {
 			this.downloader = value;
 			return this;
 		}
@@ -95,7 +104,7 @@ public final class NodeInfoIngestInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code downloader}
 		 */
-		public Builder downloader(
+		public final Builder downloader(
 				Function<NodeInfoIngestDownloader.Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {
 			return this.downloader(fn.apply(new NodeInfoIngestDownloader.Builder()).build());
 		}
@@ -107,6 +116,7 @@ public final class NodeInfoIngestInfo implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoIngestInfo build() {
+			_checkSingleUse();
 
 			return new NodeInfoIngestInfo(this);
 		}
@@ -118,9 +128,9 @@ public final class NodeInfoIngestInfo implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoIngestInfo}
 	 */
 	public static final JsonpDeserializer<NodeInfoIngestInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoIngestInfo::setupNodeInfoIngestInfoDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoIngestInfo::setupNodeInfoIngestInfoDeserializer);
 
-	protected static void setupNodeInfoIngestInfoDeserializer(DelegatingDeserializer<NodeInfoIngestInfo.Builder> op) {
+	protected static void setupNodeInfoIngestInfoDeserializer(ObjectDeserializer<NodeInfoIngestInfo.Builder> op) {
 
 		op.add(Builder::downloader, NodeInfoIngestDownloader._DESERIALIZER, "downloader");
 

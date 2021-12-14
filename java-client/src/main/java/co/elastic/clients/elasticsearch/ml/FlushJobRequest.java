@@ -23,35 +23,45 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.flush_job.Request
+
+/**
+ * Forces any buffered data to be processed by the job. The flush jobs API is
+ * only applicable when sending data for analysis using the post data API.
+ * Depending on the content of the buffer, then it might additionally calculate
+ * new results. Both flush and close operations are similar, however the flush
+ * is more efficient if you are expecting to send more data for analysis. When
+ * flushing, the job remains open and is available to continue analyzing data. A
+ * close operation additionally prunes and persists the model state to disk and
+ * the job must be opened again before analyzing further data.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/flush_job/MlFlushJobRequest.ts#L24-L95">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FlushJobRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
-	@Nullable
-	private final String skipTime;
-
+public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String advanceTime;
 
@@ -61,75 +71,87 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	@Nullable
 	private final String end;
 
+	private final String jobId;
+
+	@Nullable
+	private final String skipTime;
+
 	@Nullable
 	private final String start;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FlushJobRequest(Builder builder) {
+	private FlushJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.skipTime = builder.skipTime;
 		this.advanceTime = builder.advanceTime;
 		this.calcInterim = builder.calcInterim;
 		this.end = builder.end;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.skipTime = builder.skipTime;
 		this.start = builder.start;
 
 	}
 
-	public FlushJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FlushJobRequest of(Function<Builder, ObjectBuilder<FlushJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The name of the job to flush
+	 * Refer to the description for the <code>advance_time</code> query parameter.
 	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
-	}
-
-	/**
-	 * Skips time to the given value without generating results or updating the
-	 * model for the skipped interval
-	 * <p>
-	 * API name: {@code skip_time}
-	 */
-	@Nullable
-	public String skipTime() {
-		return this.skipTime;
-	}
-
-	/**
 	 * API name: {@code advance_time}
 	 */
 	@Nullable
-	public String advanceTime() {
+	public final String advanceTime() {
 		return this.advanceTime;
 	}
 
 	/**
+	 * Refer to the description for the <code>calc_interim</code> query parameter.
+	 * <p>
 	 * API name: {@code calc_interim}
 	 */
 	@Nullable
-	public Boolean calcInterim() {
+	public final Boolean calcInterim() {
 		return this.calcInterim;
 	}
 
 	/**
+	 * Refer to the description for the <code>end</code> query parameter.
+	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public String end() {
+	public final String end() {
 		return this.end;
 	}
 
 	/**
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public final String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * Refer to the description for the <code>skip_time</code> query parameter.
+	 * <p>
+	 * API name: {@code skip_time}
+	 */
+	@Nullable
+	public final String skipTime() {
+		return this.skipTime;
+	}
+
+	/**
+	 * Refer to the description for the <code>start</code> query parameter.
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public String start() {
+	public final String start() {
 		return this.start;
 	}
 
@@ -145,25 +167,26 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.advanceTime != null) {
-
 			generator.writeKey("advance_time");
 			generator.write(this.advanceTime);
 
 		}
 		if (this.calcInterim != null) {
-
 			generator.writeKey("calc_interim");
 			generator.write(this.calcInterim);
 
 		}
 		if (this.end != null) {
-
 			generator.writeKey("end");
 			generator.write(this.end);
 
 		}
-		if (this.start != null) {
+		if (this.skipTime != null) {
+			generator.writeKey("skip_time");
+			generator.write(this.skipTime);
 
+		}
+		if (this.start != null) {
 			generator.writeKey("start");
 			generator.write(this.start);
 
@@ -176,12 +199,8 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link FlushJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<FlushJobRequest> {
-		private String jobId;
 
-		@Nullable
-		private String skipTime;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FlushJobRequest> {
 		@Nullable
 		private String advanceTime;
 
@@ -191,58 +210,70 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		@Nullable
 		private String end;
 
+		private String jobId;
+
+		@Nullable
+		private String skipTime;
+
 		@Nullable
 		private String start;
 
 		/**
-		 * Required - The name of the job to flush
+		 * Refer to the description for the <code>advance_time</code> query parameter.
 		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
-		 * Skips time to the given value without generating results or updating the
-		 * model for the skipped interval
-		 * <p>
-		 * API name: {@code skip_time}
-		 */
-		public Builder skipTime(@Nullable String value) {
-			this.skipTime = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code advance_time}
 		 */
-		public Builder advanceTime(@Nullable String value) {
+		public final Builder advanceTime(@Nullable String value) {
 			this.advanceTime = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>calc_interim</code> query parameter.
+		 * <p>
 		 * API name: {@code calc_interim}
 		 */
-		public Builder calcInterim(@Nullable Boolean value) {
+		public final Builder calcInterim(@Nullable Boolean value) {
 			this.calcInterim = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable String value) {
+		public final Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
 
 		/**
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public final Builder jobId(String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>skip_time</code> query parameter.
+		 * <p>
+		 * API name: {@code skip_time}
+		 */
+		public final Builder skipTime(@Nullable String value) {
+			this.skipTime = value;
+			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>start</code> query parameter.
+		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable String value) {
+		public final Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
@@ -254,6 +285,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public FlushJobRequest build() {
+			_checkSingleUse();
 
 			return new FlushJobRequest(this);
 		}
@@ -265,13 +297,14 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	 * Json deserializer for {@link FlushJobRequest}
 	 */
 	public static final JsonpDeserializer<FlushJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FlushJobRequest::setupFlushJobRequestDeserializer, Builder::build);
+			FlushJobRequest::setupFlushJobRequestDeserializer);
 
-	protected static void setupFlushJobRequestDeserializer(DelegatingDeserializer<FlushJobRequest.Builder> op) {
+	protected static void setupFlushJobRequestDeserializer(ObjectDeserializer<FlushJobRequest.Builder> op) {
 
 		op.add(Builder::advanceTime, JsonpDeserializer.stringDeserializer(), "advance_time");
 		op.add(Builder::calcInterim, JsonpDeserializer.booleanDeserializer(), "calc_interim");
 		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
+		op.add(Builder::skipTime, JsonpDeserializer.stringDeserializer(), "skip_time");
 		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
 
 	}
@@ -281,7 +314,9 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code ml.flush_job}".
 	 */
-	public static final Endpoint<FlushJobRequest, FlushJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FlushJobRequest, FlushJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.flush_job",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -311,11 +346,7 @@ public final class FlushJobRequest extends RequestBase implements JsonpSerializa
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.skipTime != null) {
-					params.put("skip_time", request.skipTime);
-				}
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), true, FlushJobResponse._DESERIALIZER);
 }

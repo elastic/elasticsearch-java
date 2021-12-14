@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L228-L231">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum ZeroTermsQuery implements StringEnum {
-	All("all"), None("none");
+public enum ZeroTermsQuery implements JsonEnum {
+	All("all"),
+
+	None("none"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum ZeroTermsQuery implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ZeroTermsQuery> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ZeroTermsQuery> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ZeroTermsQuery.values());
 }

@@ -23,58 +23,66 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.IcuAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/icu-plugin.ts#L66-L70">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
+public class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	private final IcuNormalizationType method;
 
 	private final IcuNormalizationMode mode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IcuAnalyzer(Builder builder) {
+	private IcuAnalyzer(Builder builder) {
 
-		this.method = Objects.requireNonNull(builder.method, "method");
-		this.mode = Objects.requireNonNull(builder.mode, "mode");
+		this.method = ApiTypeHelper.requireNonNull(builder.method, this, "method");
+		this.mode = ApiTypeHelper.requireNonNull(builder.mode, this, "mode");
 
 	}
 
-	public IcuAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IcuAnalyzer of(Function<Builder, ObjectBuilder<IcuAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "icu_analyzer";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.IcuAnalyzer;
 	}
 
 	/**
 	 * Required - API name: {@code method}
 	 */
-	public IcuNormalizationType method() {
+	public final IcuNormalizationType method() {
 		return this.method;
 	}
 
 	/**
 	 * Required - API name: {@code mode}
 	 */
-	public IcuNormalizationMode mode() {
+	public final IcuNormalizationMode mode() {
 		return this.mode;
 	}
 
@@ -93,7 +101,6 @@ public final class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		generator.writeKey("method");
 		this.method.serialize(generator, mapper);
-
 		generator.writeKey("mode");
 		this.mode.serialize(generator, mapper);
 
@@ -104,7 +111,8 @@ public final class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link IcuAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<IcuAnalyzer> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IcuAnalyzer> {
 		private IcuNormalizationType method;
 
 		private IcuNormalizationMode mode;
@@ -112,7 +120,7 @@ public final class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code method}
 		 */
-		public Builder method(IcuNormalizationType value) {
+		public final Builder method(IcuNormalizationType value) {
 			this.method = value;
 			return this;
 		}
@@ -120,7 +128,7 @@ public final class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code mode}
 		 */
-		public Builder mode(IcuNormalizationMode value) {
+		public final Builder mode(IcuNormalizationMode value) {
 			this.mode = value;
 			return this;
 		}
@@ -132,6 +140,7 @@ public final class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IcuAnalyzer build() {
+			_checkSingleUse();
 
 			return new IcuAnalyzer(this);
 		}
@@ -143,9 +152,9 @@ public final class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link IcuAnalyzer}
 	 */
 	public static final JsonpDeserializer<IcuAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IcuAnalyzer::setupIcuAnalyzerDeserializer, Builder::build);
+			IcuAnalyzer::setupIcuAnalyzerDeserializer);
 
-	protected static void setupIcuAnalyzerDeserializer(DelegatingDeserializer<IcuAnalyzer.Builder> op) {
+	protected static void setupIcuAnalyzerDeserializer(ObjectDeserializer<IcuAnalyzer.Builder> op) {
 
 		op.add(Builder::method, IcuNormalizationType._DESERIALIZER, "method");
 		op.add(Builder::mode, IcuNormalizationMode._DESERIALIZER, "mode");

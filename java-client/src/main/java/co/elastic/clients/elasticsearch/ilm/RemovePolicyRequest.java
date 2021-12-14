@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,27 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.remove_policy.Request
 
-public final class RemovePolicyRequest extends RequestBase {
+/**
+ * Removes the assigned lifecycle policy and stops managing the specified index
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/remove_policy/RemovePolicyRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class RemovePolicyRequest extends RequestBase {
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RemovePolicyRequest(Builder builder) {
+	private RemovePolicyRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public RemovePolicyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RemovePolicyRequest of(Function<Builder, ObjectBuilder<RemovePolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +71,7 @@ public final class RemovePolicyRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -70,7 +80,8 @@ public final class RemovePolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link RemovePolicyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<RemovePolicyRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemovePolicyRequest> {
 		private String index;
 
 		/**
@@ -78,7 +89,7 @@ public final class RemovePolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -90,6 +101,7 @@ public final class RemovePolicyRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public RemovePolicyRequest build() {
+			_checkSingleUse();
 
 			return new RemovePolicyRequest(this);
 		}
@@ -100,7 +112,9 @@ public final class RemovePolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.remove_policy}".
 	 */
-	public static final Endpoint<RemovePolicyRequest, RemovePolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RemovePolicyRequest, RemovePolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.remove_policy",
+
 			// Request method
 			request -> {
 				return "POST";

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.query_dsl.MatchNoneQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/MatchNoneQuery.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MatchNoneQuery extends QueryBase implements QueryVariant {
+public class MatchNoneQuery extends QueryBase implements QueryVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MatchNoneQuery(Builder builder) {
+	private MatchNoneQuery(Builder builder) {
 		super(builder);
 
 	}
 
-	public MatchNoneQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MatchNoneQuery of(Function<Builder, ObjectBuilder<MatchNoneQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "match_none";
+	public Query.Kind _queryKind() {
+		return Query.Kind.MatchNone;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class MatchNoneQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MatchNoneQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchNoneQuery> {
 		@Override
 		protected Builder self() {
@@ -73,6 +80,7 @@ public final class MatchNoneQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public MatchNoneQuery build() {
+			_checkSingleUse();
 
 			return new MatchNoneQuery(this);
 		}
@@ -84,9 +92,9 @@ public final class MatchNoneQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link MatchNoneQuery}
 	 */
 	public static final JsonpDeserializer<MatchNoneQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MatchNoneQuery::setupMatchNoneQueryDeserializer, Builder::build);
+			MatchNoneQuery::setupMatchNoneQueryDeserializer);
 
-	protected static void setupMatchNoneQueryDeserializer(DelegatingDeserializer<MatchNoneQuery.Builder> op) {
+	protected static void setupMatchNoneQueryDeserializer(ObjectDeserializer<MatchNoneQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 
 	}

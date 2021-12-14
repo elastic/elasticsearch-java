@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/common.ts#L250-L254">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum SuggestMode implements StringEnum {
-	Missing("missing"), Popular("popular"), Always("always");
+public enum SuggestMode implements JsonEnum {
+	Missing("missing"),
+
+	Popular("popular"),
+
+	Always("always"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +53,6 @@ public enum SuggestMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<SuggestMode> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<SuggestMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			SuggestMode.values());
 }

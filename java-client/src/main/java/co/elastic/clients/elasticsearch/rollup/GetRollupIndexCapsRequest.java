@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,28 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.Request
 
-public final class GetRollupIndexCapsRequest extends RequestBase {
+/**
+ * Returns the rollup capabilities of all jobs inside of a rollup index (e.g.
+ * the index where rollup data is stored).
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_rollup_index_caps/GetRollupIndexCapabilitiesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class GetRollupIndexCapsRequest extends RequestBase {
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRollupIndexCapsRequest(Builder builder) {
+	private GetRollupIndexCapsRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public GetRollupIndexCapsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRollupIndexCapsRequest of(Function<Builder, ObjectBuilder<GetRollupIndexCapsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +73,7 @@ public final class GetRollupIndexCapsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -71,7 +82,8 @@ public final class GetRollupIndexCapsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRollupIndexCapsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetRollupIndexCapsRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRollupIndexCapsRequest> {
 		private String index;
 
 		/**
@@ -80,7 +92,7 @@ public final class GetRollupIndexCapsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -92,6 +104,7 @@ public final class GetRollupIndexCapsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetRollupIndexCapsRequest build() {
+			_checkSingleUse();
 
 			return new GetRollupIndexCapsRequest(this);
 		}
@@ -102,7 +115,9 @@ public final class GetRollupIndexCapsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code rollup.get_rollup_index_caps}".
 	 */
-	public static final Endpoint<GetRollupIndexCapsRequest, GetRollupIndexCapsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetRollupIndexCapsRequest, GetRollupIndexCapsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.get_rollup_index_caps",
+
 			// Request method
 			request -> {
 				return "GET";

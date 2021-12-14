@@ -23,21 +23,20 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,45 +47,71 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeed_stats.Request
 
-public final class GetDatafeedStatsRequest extends RequestBase {
-	@Nullable
-	private final List<String> datafeedId;
+/**
+ * Retrieves usage information for datafeeds. You can get statistics for
+ * multiple datafeeds in a single API request by using a comma-separated list of
+ * datafeeds or a wildcard expression. You can get statistics for all datafeeds
+ * by using <code>_all</code>, by specifying <code>*</code> as the
+ * <code>&lt;feed_id&gt;</code>, or by omitting the
+ * <code>&lt;feed_id&gt;</code>. If the datafeed is stopped, the only
+ * information you receive is the <code>datafeed_id</code> and the
+ * <code>state</code>. This API returns a maximum of 10,000 datafeeds.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_datafeed_stats/MlGetDatafeedStatsRequest.ts#L23-L60">API
+ *      specification</a>
+ */
 
+public class GetDatafeedStatsRequest extends RequestBase {
 	@Nullable
-	private final Boolean allowNoDatafeeds;
+	private final Boolean allowNoMatch;
+
+	private final List<String> datafeedId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetDatafeedStatsRequest(Builder builder) {
+	private GetDatafeedStatsRequest(Builder builder) {
 
-		this.datafeedId = ModelTypeHelper.unmodifiable(builder.datafeedId);
-		this.allowNoDatafeeds = builder.allowNoDatafeeds;
+		this.allowNoMatch = builder.allowNoMatch;
+		this.datafeedId = ApiTypeHelper.unmodifiable(builder.datafeedId);
 
 	}
 
-	public GetDatafeedStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetDatafeedStatsRequest of(Function<Builder, ObjectBuilder<GetDatafeedStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * The ID of the datafeeds stats to fetch
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no datafeeds that match.</li>
+	 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+	 * matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
+	 * <p>
+	 * The default value is <code>true</code>, which returns an empty
+	 * <code>datafeeds</code> array when there are no matches and the subset of
+	 * results when there are partial matches. If this parameter is
+	 * <code>false</code>, the request returns a <code>404</code> status code when
+	 * there are no matches or only partial matches.
+	 * <p>
+	 * API name: {@code allow_no_match}
+	 */
+	@Nullable
+	public final Boolean allowNoMatch() {
+		return this.allowNoMatch;
+	}
+
+	/**
+	 * Identifier for the datafeed. It can be a datafeed identifier or a wildcard
+	 * expression. If you do not specify one of these options, the API returns
+	 * information about all datafeeds.
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
-	@Nullable
-	public List<String> datafeedId() {
+	public final List<String> datafeedId() {
 		return this.datafeedId;
-	}
-
-	/**
-	 * Whether to ignore if a wildcard expression matches no datafeeds. (This
-	 * includes <code>_all</code> string or when no datafeeds have been specified)
-	 * <p>
-	 * API name: {@code allow_no_datafeeds}
-	 */
-	@Nullable
-	public Boolean allowNoDatafeeds() {
-		return this.allowNoDatafeeds;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -94,52 +119,61 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetDatafeedStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetDatafeedStatsRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDatafeedStatsRequest> {
+		@Nullable
+		private Boolean allowNoMatch;
+
 		@Nullable
 		private List<String> datafeedId;
 
-		@Nullable
-		private Boolean allowNoDatafeeds;
+		/**
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no datafeeds that match.</li>
+		 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+		 * matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
+		 * <p>
+		 * The default value is <code>true</code>, which returns an empty
+		 * <code>datafeeds</code> array when there are no matches and the subset of
+		 * results when there are partial matches. If this parameter is
+		 * <code>false</code>, the request returns a <code>404</code> status code when
+		 * there are no matches or only partial matches.
+		 * <p>
+		 * API name: {@code allow_no_match}
+		 */
+		public final Builder allowNoMatch(@Nullable Boolean value) {
+			this.allowNoMatch = value;
+			return this;
+		}
 
 		/**
-		 * The ID of the datafeeds stats to fetch
+		 * Identifier for the datafeed. It can be a datafeed identifier or a wildcard
+		 * expression. If you do not specify one of these options, the API returns
+		 * information about all datafeeds.
 		 * <p>
 		 * API name: {@code datafeed_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>datafeedId</code>.
 		 */
-		public Builder datafeedId(@Nullable List<String> value) {
-			this.datafeedId = value;
+		public final Builder datafeedId(List<String> list) {
+			this.datafeedId = _listAddAll(this.datafeedId, list);
 			return this;
 		}
 
 		/**
-		 * The ID of the datafeeds stats to fetch
+		 * Identifier for the datafeed. It can be a datafeed identifier or a wildcard
+		 * expression. If you do not specify one of these options, the API returns
+		 * information about all datafeeds.
 		 * <p>
 		 * API name: {@code datafeed_id}
-		 */
-		public Builder datafeedId(String... value) {
-			this.datafeedId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #datafeedId(List)}, creating the list if needed.
-		 */
-		public Builder addDatafeedId(String value) {
-			if (this.datafeedId == null) {
-				this.datafeedId = new ArrayList<>();
-			}
-			this.datafeedId.add(value);
-			return this;
-		}
-
-		/**
-		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
-		 * includes <code>_all</code> string or when no datafeeds have been specified)
 		 * <p>
-		 * API name: {@code allow_no_datafeeds}
+		 * Adds one or more values to <code>datafeedId</code>.
 		 */
-		public Builder allowNoDatafeeds(@Nullable Boolean value) {
-			this.allowNoDatafeeds = value;
+		public final Builder datafeedId(String value, String... values) {
+			this.datafeedId = _listAdd(this.datafeedId, value, values);
 			return this;
 		}
 
@@ -150,6 +184,7 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetDatafeedStatsRequest build() {
+			_checkSingleUse();
 
 			return new GetDatafeedStatsRequest(this);
 		}
@@ -160,7 +195,9 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_datafeed_stats}".
 	 */
-	public static final Endpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_datafeed_stats",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -173,7 +210,7 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.datafeedId() != null)
+				if (ApiTypeHelper.isDefined(request.datafeedId()))
 					propsSet |= _datafeedId;
 
 				if (propsSet == (_datafeedId)) {
@@ -200,8 +237,8 @@ public final class GetDatafeedStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoDatafeeds != null) {
-					params.put("allow_no_datafeeds", String.valueOf(request.allowNoDatafeeds));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

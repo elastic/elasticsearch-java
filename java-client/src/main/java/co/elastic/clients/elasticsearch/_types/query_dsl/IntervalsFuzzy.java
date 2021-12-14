@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -40,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsFuzzy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L88-L97">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
+public class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	@Nullable
 	private final String analyzer;
 
@@ -61,34 +69,42 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IntervalsFuzzy(Builder builder) {
+	private IntervalsFuzzy(Builder builder) {
 
 		this.analyzer = builder.analyzer;
 		this.fuzziness = builder.fuzziness;
 		this.prefixLength = builder.prefixLength;
-		this.term = Objects.requireNonNull(builder.term, "term");
+		this.term = ApiTypeHelper.requireNonNull(builder.term, this, "term");
 		this.transpositions = builder.transpositions;
 		this.useField = builder.useField;
 
 	}
 
-	public IntervalsFuzzy(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IntervalsFuzzy of(Function<Builder, ObjectBuilder<IntervalsFuzzy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link IntervalsQuery}, {@link Intervals} variant type
+	 * IntervalsQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "fuzzy";
+	public IntervalsQuery.Kind _intervalsQueryKind() {
+		return IntervalsQuery.Kind.Fuzzy;
+	}
+
+	/**
+	 * Intervals variant kind.
+	 */
+	@Override
+	public Intervals.Kind _intervalsKind() {
+		return Intervals.Kind.Fuzzy;
 	}
 
 	/**
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -96,7 +112,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
-	public String fuzziness() {
+	public final String fuzziness() {
 		return this.fuzziness;
 	}
 
@@ -104,14 +120,14 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
-	public Integer prefixLength() {
+	public final Integer prefixLength() {
 		return this.prefixLength;
 	}
 
 	/**
 	 * Required - API name: {@code term}
 	 */
-	public String term() {
+	public final String term() {
 		return this.term;
 	}
 
@@ -119,7 +135,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 	 * API name: {@code transpositions}
 	 */
 	@Nullable
-	public Boolean transpositions() {
+	public final Boolean transpositions() {
 		return this.transpositions;
 	}
 
@@ -127,7 +143,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 	 * API name: {@code use_field}
 	 */
 	@Nullable
-	public String useField() {
+	public final String useField() {
 		return this.useField;
 	}
 
@@ -143,35 +159,29 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.fuzziness != null) {
-
 			generator.writeKey("fuzziness");
 			generator.write(this.fuzziness);
 
 		}
 		if (this.prefixLength != null) {
-
 			generator.writeKey("prefix_length");
 			generator.write(this.prefixLength);
 
 		}
-
 		generator.writeKey("term");
 		generator.write(this.term);
 
 		if (this.transpositions != null) {
-
 			generator.writeKey("transpositions");
 			generator.write(this.transpositions);
 
 		}
 		if (this.useField != null) {
-
 			generator.writeKey("use_field");
 			generator.write(this.useField);
 
@@ -184,7 +194,8 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 	/**
 	 * Builder for {@link IntervalsFuzzy}.
 	 */
-	public static class Builder implements ObjectBuilder<IntervalsFuzzy> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsFuzzy> {
 		@Nullable
 		private String analyzer;
 
@@ -205,7 +216,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -213,7 +224,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 		/**
 		 * API name: {@code fuzziness}
 		 */
-		public Builder fuzziness(@Nullable String value) {
+		public final Builder fuzziness(@Nullable String value) {
 			this.fuzziness = value;
 			return this;
 		}
@@ -221,7 +232,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 		/**
 		 * API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(@Nullable Integer value) {
+		public final Builder prefixLength(@Nullable Integer value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -229,7 +240,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 		/**
 		 * Required - API name: {@code term}
 		 */
-		public Builder term(String value) {
+		public final Builder term(String value) {
 			this.term = value;
 			return this;
 		}
@@ -237,7 +248,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 		/**
 		 * API name: {@code transpositions}
 		 */
-		public Builder transpositions(@Nullable Boolean value) {
+		public final Builder transpositions(@Nullable Boolean value) {
 			this.transpositions = value;
 			return this;
 		}
@@ -245,7 +256,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 		/**
 		 * API name: {@code use_field}
 		 */
-		public Builder useField(@Nullable String value) {
+		public final Builder useField(@Nullable String value) {
 			this.useField = value;
 			return this;
 		}
@@ -257,6 +268,7 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 		 *             if some of the required fields are null.
 		 */
 		public IntervalsFuzzy build() {
+			_checkSingleUse();
 
 			return new IntervalsFuzzy(this);
 		}
@@ -268,9 +280,9 @@ public final class IntervalsFuzzy implements IntervalsQueryVariant, IntervalsVar
 	 * Json deserializer for {@link IntervalsFuzzy}
 	 */
 	public static final JsonpDeserializer<IntervalsFuzzy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IntervalsFuzzy::setupIntervalsFuzzyDeserializer, Builder::build);
+			IntervalsFuzzy::setupIntervalsFuzzyDeserializer);
 
-	protected static void setupIntervalsFuzzyDeserializer(DelegatingDeserializer<IntervalsFuzzy.Builder> op) {
+	protected static void setupIntervalsFuzzyDeserializer(ObjectDeserializer<IntervalsFuzzy.Builder> op) {
 
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::fuzziness, JsonpDeserializer.stringDeserializer(), "fuzziness");

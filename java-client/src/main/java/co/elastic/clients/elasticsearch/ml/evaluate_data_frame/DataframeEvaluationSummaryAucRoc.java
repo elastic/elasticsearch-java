@@ -23,54 +23,56 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationSummaryAucRoc
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
-	@Nullable
+public class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationValue {
 	private final List<DataframeEvaluationSummaryAucRocCurveItem> curve;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationSummaryAucRoc(Builder builder) {
+	private DataframeEvaluationSummaryAucRoc(Builder builder) {
 		super(builder);
 
-		this.curve = ModelTypeHelper.unmodifiable(builder.curve);
+		this.curve = ApiTypeHelper.unmodifiable(builder.curve);
 
 	}
 
-	public DataframeEvaluationSummaryAucRoc(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationSummaryAucRoc of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationSummaryAucRoc>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code curve}
 	 */
-	@Nullable
-	public List<DataframeEvaluationSummaryAucRocCurveItem> curve() {
+	public final List<DataframeEvaluationSummaryAucRocCurveItem> curve() {
 		return this.curve;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.curve != null) {
-
+		if (ApiTypeHelper.isDefined(this.curve)) {
 			generator.writeKey("curve");
 			generator.writeStartArray();
 			for (DataframeEvaluationSummaryAucRocCurveItem item0 : this.curve) {
@@ -88,6 +90,7 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 	/**
 	 * Builder for {@link DataframeEvaluationSummaryAucRoc}.
 	 */
+
 	public static class Builder extends DataframeEvaluationValue.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeEvaluationSummaryAucRoc> {
@@ -96,45 +99,33 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 
 		/**
 		 * API name: {@code curve}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>curve</code>.
 		 */
-		public Builder curve(@Nullable List<DataframeEvaluationSummaryAucRocCurveItem> value) {
-			this.curve = value;
+		public final Builder curve(List<DataframeEvaluationSummaryAucRocCurveItem> list) {
+			this.curve = _listAddAll(this.curve, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code curve}
+		 * <p>
+		 * Adds one or more values to <code>curve</code>.
 		 */
-		public Builder curve(DataframeEvaluationSummaryAucRocCurveItem... value) {
-			this.curve = Arrays.asList(value);
+		public final Builder curve(DataframeEvaluationSummaryAucRocCurveItem value,
+				DataframeEvaluationSummaryAucRocCurveItem... values) {
+			this.curve = _listAdd(this.curve, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #curve(List)}, creating the list if needed.
+		 * API name: {@code curve}
+		 * <p>
+		 * Adds a value to <code>curve</code> using a builder lambda.
 		 */
-		public Builder addCurve(DataframeEvaluationSummaryAucRocCurveItem value) {
-			if (this.curve == null) {
-				this.curve = new ArrayList<>();
-			}
-			this.curve.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #curve(List)} to a singleton list.
-		 */
-		public Builder curve(
+		public final Builder curve(
 				Function<DataframeEvaluationSummaryAucRocCurveItem.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>> fn) {
-			return this.curve(fn.apply(new DataframeEvaluationSummaryAucRocCurveItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #curve(List)}, creating the list if needed.
-		 */
-		public Builder addCurve(
-				Function<DataframeEvaluationSummaryAucRocCurveItem.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRocCurveItem>> fn) {
-			return this.addCurve(fn.apply(new DataframeEvaluationSummaryAucRocCurveItem.Builder()).build());
+			return curve(fn.apply(new DataframeEvaluationSummaryAucRocCurveItem.Builder()).build());
 		}
 
 		@Override
@@ -149,6 +140,7 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationSummaryAucRoc build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationSummaryAucRoc(this);
 		}
@@ -160,11 +152,10 @@ public final class DataframeEvaluationSummaryAucRoc extends DataframeEvaluationV
 	 * Json deserializer for {@link DataframeEvaluationSummaryAucRoc}
 	 */
 	public static final JsonpDeserializer<DataframeEvaluationSummaryAucRoc> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeEvaluationSummaryAucRoc::setupDataframeEvaluationSummaryAucRocDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeEvaluationSummaryAucRoc::setupDataframeEvaluationSummaryAucRocDeserializer);
 
 	protected static void setupDataframeEvaluationSummaryAucRocDeserializer(
-			DelegatingDeserializer<DataframeEvaluationSummaryAucRoc.Builder> op) {
+			ObjectDeserializer<DataframeEvaluationSummaryAucRoc.Builder> op) {
 		DataframeEvaluationValue.setupDataframeEvaluationValueDeserializer(op);
 		op.add(Builder::curve,
 				JsonpDeserializer.arrayDeserializer(DataframeEvaluationSummaryAucRocCurveItem._DESERIALIZER), "curve");

@@ -23,28 +23,33 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SimulatedActions
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Action.ts#L68-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SimulatedActions implements JsonpSerializable {
+public class SimulatedActions implements JsonpSerializable {
 	private final List<String> actions;
 
 	private final SimulatedActions all;
@@ -53,36 +58,36 @@ public final class SimulatedActions implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SimulatedActions(Builder builder) {
+	private SimulatedActions(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
-		this.all = Objects.requireNonNull(builder.all, "all");
-		this.useAll = Objects.requireNonNull(builder.useAll, "use_all");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
+		this.useAll = ApiTypeHelper.requireNonNull(builder.useAll, this, "useAll");
 
 	}
 
-	public SimulatedActions(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SimulatedActions of(Function<Builder, ObjectBuilder<SimulatedActions>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code actions}
 	 */
-	public List<String> actions() {
+	public final List<String> actions() {
 		return this.actions;
 	}
 
 	/**
 	 * Required - API name: {@code all}
 	 */
-	public SimulatedActions all() {
+	public final SimulatedActions all() {
 		return this.all;
 	}
 
 	/**
 	 * Required - API name: {@code use_all}
 	 */
-	public boolean useAll() {
+	public final boolean useAll() {
 		return this.useAll;
 	}
 
@@ -97,14 +102,16 @@ public final class SimulatedActions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("actions");
-		generator.writeStartArray();
-		for (String item0 : this.actions) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.actions)) {
+			generator.writeKey("actions");
+			generator.writeStartArray();
+			for (String item0 : this.actions) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("all");
 		this.all.serialize(generator, mapper);
 
@@ -118,7 +125,8 @@ public final class SimulatedActions implements JsonpSerializable {
 	/**
 	 * Builder for {@link SimulatedActions}.
 	 */
-	public static class Builder implements ObjectBuilder<SimulatedActions> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulatedActions> {
 		private List<String> actions;
 
 		private SimulatedActions all;
@@ -127,35 +135,28 @@ public final class SimulatedActions implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actions</code>.
 		 */
-		public Builder actions(List<String> value) {
-			this.actions = value;
+		public final Builder actions(List<String> list) {
+			this.actions = _listAddAll(this.actions, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds one or more values to <code>actions</code>.
 		 */
-		public Builder actions(String... value) {
-			this.actions = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #actions(List)}, creating the list if needed.
-		 */
-		public Builder addActions(String value) {
-			if (this.actions == null) {
-				this.actions = new ArrayList<>();
-			}
-			this.actions.add(value);
+		public final Builder actions(String value, String... values) {
+			this.actions = _listAdd(this.actions, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code all}
 		 */
-		public Builder all(SimulatedActions value) {
+		public final Builder all(SimulatedActions value) {
 			this.all = value;
 			return this;
 		}
@@ -163,14 +164,14 @@ public final class SimulatedActions implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code all}
 		 */
-		public Builder all(Function<SimulatedActions.Builder, ObjectBuilder<SimulatedActions>> fn) {
+		public final Builder all(Function<SimulatedActions.Builder, ObjectBuilder<SimulatedActions>> fn) {
 			return this.all(fn.apply(new SimulatedActions.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code use_all}
 		 */
-		public Builder useAll(boolean value) {
+		public final Builder useAll(boolean value) {
 			this.useAll = value;
 			return this;
 		}
@@ -182,6 +183,7 @@ public final class SimulatedActions implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SimulatedActions build() {
+			_checkSingleUse();
 
 			return new SimulatedActions(this);
 		}
@@ -193,9 +195,9 @@ public final class SimulatedActions implements JsonpSerializable {
 	 * Json deserializer for {@link SimulatedActions}
 	 */
 	public static final JsonpDeserializer<SimulatedActions> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SimulatedActions::setupSimulatedActionsDeserializer, Builder::build);
+			SimulatedActions::setupSimulatedActionsDeserializer);
 
-	protected static void setupSimulatedActionsDeserializer(DelegatingDeserializer<SimulatedActions.Builder> op) {
+	protected static void setupSimulatedActionsDeserializer(ObjectDeserializer<SimulatedActions.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"actions");

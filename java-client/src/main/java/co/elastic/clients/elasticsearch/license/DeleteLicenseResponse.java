@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: license.delete.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/delete/DeleteLicenseResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteLicenseResponse extends AcknowledgedResponseBase {
+public class DeleteLicenseResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteLicenseResponse(Builder builder) {
+	private DeleteLicenseResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteLicenseResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteLicenseResponse of(Function<Builder, ObjectBuilder<DeleteLicenseResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteLicenseResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteLicenseResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteLicenseResponse> {
@@ -68,6 +75,7 @@ public final class DeleteLicenseResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteLicenseResponse build() {
+			_checkSingleUse();
 
 			return new DeleteLicenseResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class DeleteLicenseResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteLicenseResponse}
 	 */
 	public static final JsonpDeserializer<DeleteLicenseResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteLicenseResponse::setupDeleteLicenseResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteLicenseResponse::setupDeleteLicenseResponseDeserializer);
 
-	protected static void setupDeleteLicenseResponseDeserializer(
-			DelegatingDeserializer<DeleteLicenseResponse.Builder> op) {
+	protected static void setupDeleteLicenseResponseDeserializer(ObjectDeserializer<DeleteLicenseResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

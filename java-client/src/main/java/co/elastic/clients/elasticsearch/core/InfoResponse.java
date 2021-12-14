@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ElasticsearchVersionInfo;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/info/RootNodeInfoResponse.ts#L23-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class InfoResponse implements JsonpSerializable {
+public class InfoResponse implements JsonpSerializable {
 	private final String clusterName;
 
 	private final String clusterUuid;
@@ -53,52 +61,52 @@ public final class InfoResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InfoResponse(Builder builder) {
+	private InfoResponse(Builder builder) {
 
-		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
-		this.clusterUuid = Objects.requireNonNull(builder.clusterUuid, "cluster_uuid");
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.tagline = Objects.requireNonNull(builder.tagline, "tagline");
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.clusterUuid = ApiTypeHelper.requireNonNull(builder.clusterUuid, this, "clusterUuid");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.tagline = ApiTypeHelper.requireNonNull(builder.tagline, this, "tagline");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public InfoResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InfoResponse of(Function<Builder, ObjectBuilder<InfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cluster_name}
 	 */
-	public String clusterName() {
+	public final String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
 	 * Required - API name: {@code cluster_uuid}
 	 */
-	public String clusterUuid() {
+	public final String clusterUuid() {
 		return this.clusterUuid;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code tagline}
 	 */
-	public String tagline() {
+	public final String tagline() {
 		return this.tagline;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public ElasticsearchVersionInfo version() {
+	public final ElasticsearchVersionInfo version() {
 		return this.version;
 	}
 
@@ -135,7 +143,8 @@ public final class InfoResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link InfoResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<InfoResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InfoResponse> {
 		private String clusterName;
 
 		private String clusterUuid;
@@ -149,7 +158,7 @@ public final class InfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster_name}
 		 */
-		public Builder clusterName(String value) {
+		public final Builder clusterName(String value) {
 			this.clusterName = value;
 			return this;
 		}
@@ -157,7 +166,7 @@ public final class InfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cluster_uuid}
 		 */
-		public Builder clusterUuid(String value) {
+		public final Builder clusterUuid(String value) {
 			this.clusterUuid = value;
 			return this;
 		}
@@ -165,7 +174,7 @@ public final class InfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -173,7 +182,7 @@ public final class InfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tagline}
 		 */
-		public Builder tagline(String value) {
+		public final Builder tagline(String value) {
 			this.tagline = value;
 			return this;
 		}
@@ -181,7 +190,7 @@ public final class InfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(ElasticsearchVersionInfo value) {
+		public final Builder version(ElasticsearchVersionInfo value) {
 			this.version = value;
 			return this;
 		}
@@ -189,7 +198,8 @@ public final class InfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(Function<ElasticsearchVersionInfo.Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {
+		public final Builder version(
+				Function<ElasticsearchVersionInfo.Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {
 			return this.version(fn.apply(new ElasticsearchVersionInfo.Builder()).build());
 		}
 
@@ -200,6 +210,7 @@ public final class InfoResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InfoResponse build() {
+			_checkSingleUse();
 
 			return new InfoResponse(this);
 		}
@@ -211,9 +222,9 @@ public final class InfoResponse implements JsonpSerializable {
 	 * Json deserializer for {@link InfoResponse}
 	 */
 	public static final JsonpDeserializer<InfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InfoResponse::setupInfoResponseDeserializer, Builder::build);
+			InfoResponse::setupInfoResponseDeserializer);
 
-	protected static void setupInfoResponseDeserializer(DelegatingDeserializer<InfoResponse.Builder> op) {
+	protected static void setupInfoResponseDeserializer(ObjectDeserializer<InfoResponse.Builder> op) {
 
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");

@@ -23,17 +23,18 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.BooleanEndpoint;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.BooleanEndpoint;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -44,20 +45,29 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.delete_voting_config_exclusions.Request
 
-public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
+/**
+ * Clears cluster voting config exclusions.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/delete_voting_config_exclusions/ClusterDeleteVotingConfigExclusionsRequest.ts#L22-L40">API
+ *      specification</a>
+ */
+
+public class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	@Nullable
 	private final Boolean waitForRemoval;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteVotingConfigExclusionsRequest(Builder builder) {
+	private DeleteVotingConfigExclusionsRequest(Builder builder) {
 
 		this.waitForRemoval = builder.waitForRemoval;
 
 	}
 
-	public DeleteVotingConfigExclusionsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteVotingConfigExclusionsRequest of(
+			Function<Builder, ObjectBuilder<DeleteVotingConfigExclusionsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +81,7 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	 * API name: {@code wait_for_removal}
 	 */
 	@Nullable
-	public Boolean waitForRemoval() {
+	public final Boolean waitForRemoval() {
 		return this.waitForRemoval;
 	}
 
@@ -80,7 +90,10 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteVotingConfigExclusionsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteVotingConfigExclusionsRequest> {
+
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DeleteVotingConfigExclusionsRequest> {
 		@Nullable
 		private Boolean waitForRemoval;
 
@@ -94,7 +107,7 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_removal}
 		 */
-		public Builder waitForRemoval(@Nullable Boolean value) {
+		public final Builder waitForRemoval(@Nullable Boolean value) {
 			this.waitForRemoval = value;
 			return this;
 		}
@@ -106,6 +119,7 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteVotingConfigExclusionsRequest build() {
+			_checkSingleUse();
 
 			return new DeleteVotingConfigExclusionsRequest(this);
 		}
@@ -116,7 +130,9 @@ public final class DeleteVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.delete_voting_config_exclusions}".
 	 */
-	public static final Endpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<DeleteVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/cluster.delete_voting_config_exclusions",
+
 			// Request method
 			request -> {
 				return "DELETE";

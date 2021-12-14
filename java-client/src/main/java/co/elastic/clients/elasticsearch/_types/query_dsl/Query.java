@@ -25,16 +25,18 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.AggregationVariant;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
@@ -42,106 +44,188 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.QueryContainer
-@JsonpDeserializable
-public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSerializable {
 
-	public static final String BOOL = "bool";
-	public static final String BOOSTING = "boosting";
-	public static final String COMMON = "common";
-	public static final String COMBINED_FIELDS = "combined_fields";
-	public static final String CONSTANT_SCORE = "constant_score";
-	public static final String DIS_MAX = "dis_max";
-	public static final String DISTANCE_FEATURE = "distance_feature";
-	public static final String EXISTS = "exists";
-	public static final String FUNCTION_SCORE = "function_score";
-	public static final String FUZZY = "fuzzy";
-	public static final String GEO_BOUNDING_BOX = "geo_bounding_box";
-	public static final String GEO_DISTANCE = "geo_distance";
-	public static final String GEO_POLYGON = "geo_polygon";
-	public static final String GEO_SHAPE = "geo_shape";
-	public static final String HAS_CHILD = "has_child";
-	public static final String HAS_PARENT = "has_parent";
-	public static final String IDS = "ids";
-	public static final String INTERVALS = "intervals";
-	public static final String MATCH = "match";
-	public static final String MATCH_ALL = "match_all";
-	public static final String MATCH_BOOL_PREFIX = "match_bool_prefix";
-	public static final String MATCH_NONE = "match_none";
-	public static final String MATCH_PHRASE = "match_phrase";
-	public static final String MATCH_PHRASE_PREFIX = "match_phrase_prefix";
-	public static final String MORE_LIKE_THIS = "more_like_this";
-	public static final String MULTI_MATCH = "multi_match";
-	public static final String NESTED = "nested";
-	public static final String PARENT_ID = "parent_id";
-	public static final String PERCOLATE = "percolate";
-	public static final String PINNED = "pinned";
-	public static final String PREFIX = "prefix";
-	public static final String QUERY_STRING = "query_string";
-	public static final String RANGE = "range";
-	public static final String RANK_FEATURE = "rank_feature";
-	public static final String REGEXP = "regexp";
-	public static final String SCRIPT = "script";
-	public static final String SCRIPT_SCORE = "script_score";
-	public static final String SHAPE = "shape";
-	public static final String SIMPLE_QUERY_STRING = "simple_query_string";
-	public static final String SPAN_CONTAINING = "span_containing";
-	public static final String FIELD_MASKING_SPAN = "field_masking_span";
-	public static final String SPAN_FIRST = "span_first";
-	public static final String SPAN_MULTI = "span_multi";
-	public static final String SPAN_NEAR = "span_near";
-	public static final String SPAN_NOT = "span_not";
-	public static final String SPAN_OR = "span_or";
-	public static final String SPAN_TERM = "span_term";
-	public static final String SPAN_WITHIN = "span_within";
-	public static final String TERM = "term";
-	public static final String TERMS = "terms";
-	public static final String TERMS_SET = "terms_set";
-	public static final String WILDCARD = "wildcard";
-	public static final String TYPE = "type";
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/abstractions.ts#L96-L159">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVariant, JsonpSerializable {
 
 	/**
-	 * {@link Aggregation} variant type
+	 * {@link Query} variant kinds.
 	 */
-	@Override
-	public String _variantType() {
-		return "filter";
+	/**
+	 * {@link Query} variant kinds.
+	 */
+
+	public enum Kind implements JsonEnum {
+		Bool("bool"),
+
+		Boosting("boosting"),
+
+		Common("common"),
+
+		CombinedFields("combined_fields"),
+
+		ConstantScore("constant_score"),
+
+		DisMax("dis_max"),
+
+		DistanceFeature("distance_feature"),
+
+		Exists("exists"),
+
+		FunctionScore("function_score"),
+
+		Fuzzy("fuzzy"),
+
+		GeoBoundingBox("geo_bounding_box"),
+
+		GeoDistance("geo_distance"),
+
+		GeoPolygon("geo_polygon"),
+
+		GeoShape("geo_shape"),
+
+		HasChild("has_child"),
+
+		HasParent("has_parent"),
+
+		Ids("ids"),
+
+		Intervals("intervals"),
+
+		Match("match"),
+
+		MatchAll("match_all"),
+
+		MatchBoolPrefix("match_bool_prefix"),
+
+		MatchNone("match_none"),
+
+		MatchPhrase("match_phrase"),
+
+		MatchPhrasePrefix("match_phrase_prefix"),
+
+		MoreLikeThis("more_like_this"),
+
+		MultiMatch("multi_match"),
+
+		Nested("nested"),
+
+		ParentId("parent_id"),
+
+		Percolate("percolate"),
+
+		Pinned("pinned"),
+
+		Prefix("prefix"),
+
+		QueryString("query_string"),
+
+		Range("range"),
+
+		RankFeature("rank_feature"),
+
+		Regexp("regexp"),
+
+		Script("script"),
+
+		ScriptScore("script_score"),
+
+		Shape("shape"),
+
+		SimpleQueryString("simple_query_string"),
+
+		SpanContaining("span_containing"),
+
+		FieldMaskingSpan("field_masking_span"),
+
+		SpanFirst("span_first"),
+
+		SpanMulti("span_multi"),
+
+		SpanNear("span_near"),
+
+		SpanNot("span_not"),
+
+		SpanOr("span_or"),
+
+		SpanTerm("span_term"),
+
+		SpanWithin("span_within"),
+
+		Term("term"),
+
+		Terms("terms"),
+
+		TermsSet("terms_set"),
+
+		Wildcard("wildcard"),
+
+		Type("type"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
 	}
 
-	// Tagged union implementation
+	/**
+	 * Aggregation variant kind.
+	 */
+	@Override
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Filter;
+	}
 
-	private final String _type;
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public Query(QueryVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._queryKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends QueryVariant> Query(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Query(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Query(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Query of(Function<Builder, ObjectBuilder<Query>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bool}?
+	 */
+	public boolean isBool() {
+		return _kind == Kind.Bool;
 	}
 
 	/**
@@ -151,7 +235,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code bool} kind.
 	 */
 	public BoolQuery bool() {
-		return TaggedUnionUtils.get(this, BOOL);
+		return TaggedUnionUtils.get(this, Kind.Bool);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code boosting}?
+	 */
+	public boolean isBoosting() {
+		return _kind == Kind.Boosting;
 	}
 
 	/**
@@ -161,7 +252,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code boosting} kind.
 	 */
 	public BoostingQuery boosting() {
-		return TaggedUnionUtils.get(this, BOOSTING);
+		return TaggedUnionUtils.get(this, Kind.Boosting);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code common}?
+	 */
+	public boolean isCommon() {
+		return _kind == Kind.Common;
 	}
 
 	/**
@@ -171,7 +269,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code common} kind.
 	 */
 	public CommonTermsQuery common() {
-		return TaggedUnionUtils.get(this, COMMON);
+		return TaggedUnionUtils.get(this, Kind.Common);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code combined_fields}?
+	 */
+	public boolean isCombinedFields() {
+		return _kind == Kind.CombinedFields;
 	}
 
 	/**
@@ -182,7 +287,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             kind.
 	 */
 	public CombinedFieldsQuery combinedFields() {
-		return TaggedUnionUtils.get(this, COMBINED_FIELDS);
+		return TaggedUnionUtils.get(this, Kind.CombinedFields);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code constant_score}?
+	 */
+	public boolean isConstantScore() {
+		return _kind == Kind.ConstantScore;
 	}
 
 	/**
@@ -192,7 +304,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code constant_score} kind.
 	 */
 	public ConstantScoreQuery constantScore() {
-		return TaggedUnionUtils.get(this, CONSTANT_SCORE);
+		return TaggedUnionUtils.get(this, Kind.ConstantScore);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dis_max}?
+	 */
+	public boolean isDisMax() {
+		return _kind == Kind.DisMax;
 	}
 
 	/**
@@ -202,7 +321,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code dis_max} kind.
 	 */
 	public DisMaxQuery disMax() {
-		return TaggedUnionUtils.get(this, DIS_MAX);
+		return TaggedUnionUtils.get(this, Kind.DisMax);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code distance_feature}?
+	 */
+	public boolean isDistanceFeature() {
+		return _kind == Kind.DistanceFeature;
 	}
 
 	/**
@@ -212,8 +338,15 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code distance_feature}
 	 *             kind.
 	 */
-	public JsonValue /* _types.query_dsl.DistanceFeatureQuery */ distanceFeature() {
-		return TaggedUnionUtils.get(this, DISTANCE_FEATURE);
+	public DistanceFeatureQuery distanceFeature() {
+		return TaggedUnionUtils.get(this, Kind.DistanceFeature);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code exists}?
+	 */
+	public boolean isExists() {
+		return _kind == Kind.Exists;
 	}
 
 	/**
@@ -223,7 +356,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code exists} kind.
 	 */
 	public ExistsQuery exists() {
-		return TaggedUnionUtils.get(this, EXISTS);
+		return TaggedUnionUtils.get(this, Kind.Exists);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code function_score}?
+	 */
+	public boolean isFunctionScore() {
+		return _kind == Kind.FunctionScore;
 	}
 
 	/**
@@ -233,7 +373,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code function_score} kind.
 	 */
 	public FunctionScoreQuery functionScore() {
-		return TaggedUnionUtils.get(this, FUNCTION_SCORE);
+		return TaggedUnionUtils.get(this, Kind.FunctionScore);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code fuzzy}?
+	 */
+	public boolean isFuzzy() {
+		return _kind == Kind.Fuzzy;
 	}
 
 	/**
@@ -243,7 +390,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code fuzzy} kind.
 	 */
 	public FuzzyQuery fuzzy() {
-		return TaggedUnionUtils.get(this, FUZZY);
+		return TaggedUnionUtils.get(this, Kind.Fuzzy);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_bounding_box}?
+	 */
+	public boolean isGeoBoundingBox() {
+		return _kind == Kind.GeoBoundingBox;
 	}
 
 	/**
@@ -254,7 +408,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             kind.
 	 */
 	public GeoBoundingBoxQuery geoBoundingBox() {
-		return TaggedUnionUtils.get(this, GEO_BOUNDING_BOX);
+		return TaggedUnionUtils.get(this, Kind.GeoBoundingBox);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_distance}?
+	 */
+	public boolean isGeoDistance() {
+		return _kind == Kind.GeoDistance;
 	}
 
 	/**
@@ -264,7 +425,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code geo_distance} kind.
 	 */
 	public GeoDistanceQuery geoDistance() {
-		return TaggedUnionUtils.get(this, GEO_DISTANCE);
+		return TaggedUnionUtils.get(this, Kind.GeoDistance);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_polygon}?
+	 */
+	public boolean isGeoPolygon() {
+		return _kind == Kind.GeoPolygon;
 	}
 
 	/**
@@ -274,7 +442,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code geo_polygon} kind.
 	 */
 	public GeoPolygonQuery geoPolygon() {
-		return TaggedUnionUtils.get(this, GEO_POLYGON);
+		return TaggedUnionUtils.get(this, Kind.GeoPolygon);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_shape}?
+	 */
+	public boolean isGeoShape() {
+		return _kind == Kind.GeoShape;
 	}
 
 	/**
@@ -284,7 +459,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code geo_shape} kind.
 	 */
 	public GeoShapeQuery geoShape() {
-		return TaggedUnionUtils.get(this, GEO_SHAPE);
+		return TaggedUnionUtils.get(this, Kind.GeoShape);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code has_child}?
+	 */
+	public boolean isHasChild() {
+		return _kind == Kind.HasChild;
 	}
 
 	/**
@@ -294,7 +476,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code has_child} kind.
 	 */
 	public HasChildQuery hasChild() {
-		return TaggedUnionUtils.get(this, HAS_CHILD);
+		return TaggedUnionUtils.get(this, Kind.HasChild);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code has_parent}?
+	 */
+	public boolean isHasParent() {
+		return _kind == Kind.HasParent;
 	}
 
 	/**
@@ -304,7 +493,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code has_parent} kind.
 	 */
 	public HasParentQuery hasParent() {
-		return TaggedUnionUtils.get(this, HAS_PARENT);
+		return TaggedUnionUtils.get(this, Kind.HasParent);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code ids}?
+	 */
+	public boolean isIds() {
+		return _kind == Kind.Ids;
 	}
 
 	/**
@@ -314,7 +510,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code ids} kind.
 	 */
 	public IdsQuery ids() {
-		return TaggedUnionUtils.get(this, IDS);
+		return TaggedUnionUtils.get(this, Kind.Ids);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code intervals}?
+	 */
+	public boolean isIntervals() {
+		return _kind == Kind.Intervals;
 	}
 
 	/**
@@ -324,7 +527,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code intervals} kind.
 	 */
 	public IntervalsQuery intervals() {
-		return TaggedUnionUtils.get(this, INTERVALS);
+		return TaggedUnionUtils.get(this, Kind.Intervals);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match}?
+	 */
+	public boolean isMatch() {
+		return _kind == Kind.Match;
 	}
 
 	/**
@@ -334,7 +544,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code match} kind.
 	 */
 	public MatchQuery match() {
-		return TaggedUnionUtils.get(this, MATCH);
+		return TaggedUnionUtils.get(this, Kind.Match);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match_all}?
+	 */
+	public boolean isMatchAll() {
+		return _kind == Kind.MatchAll;
 	}
 
 	/**
@@ -344,7 +561,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code match_all} kind.
 	 */
 	public MatchAllQuery matchAll() {
-		return TaggedUnionUtils.get(this, MATCH_ALL);
+		return TaggedUnionUtils.get(this, Kind.MatchAll);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match_bool_prefix}?
+	 */
+	public boolean isMatchBoolPrefix() {
+		return _kind == Kind.MatchBoolPrefix;
 	}
 
 	/**
@@ -355,7 +579,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             kind.
 	 */
 	public MatchBoolPrefixQuery matchBoolPrefix() {
-		return TaggedUnionUtils.get(this, MATCH_BOOL_PREFIX);
+		return TaggedUnionUtils.get(this, Kind.MatchBoolPrefix);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match_none}?
+	 */
+	public boolean isMatchNone() {
+		return _kind == Kind.MatchNone;
 	}
 
 	/**
@@ -365,7 +596,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code match_none} kind.
 	 */
 	public MatchNoneQuery matchNone() {
-		return TaggedUnionUtils.get(this, MATCH_NONE);
+		return TaggedUnionUtils.get(this, Kind.MatchNone);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match_phrase}?
+	 */
+	public boolean isMatchPhrase() {
+		return _kind == Kind.MatchPhrase;
 	}
 
 	/**
@@ -375,7 +613,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code match_phrase} kind.
 	 */
 	public MatchPhraseQuery matchPhrase() {
-		return TaggedUnionUtils.get(this, MATCH_PHRASE);
+		return TaggedUnionUtils.get(this, Kind.MatchPhrase);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match_phrase_prefix}?
+	 */
+	public boolean isMatchPhrasePrefix() {
+		return _kind == Kind.MatchPhrasePrefix;
 	}
 
 	/**
@@ -386,7 +631,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             kind.
 	 */
 	public MatchPhrasePrefixQuery matchPhrasePrefix() {
-		return TaggedUnionUtils.get(this, MATCH_PHRASE_PREFIX);
+		return TaggedUnionUtils.get(this, Kind.MatchPhrasePrefix);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code more_like_this}?
+	 */
+	public boolean isMoreLikeThis() {
+		return _kind == Kind.MoreLikeThis;
 	}
 
 	/**
@@ -396,7 +648,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code more_like_this} kind.
 	 */
 	public MoreLikeThisQuery moreLikeThis() {
-		return TaggedUnionUtils.get(this, MORE_LIKE_THIS);
+		return TaggedUnionUtils.get(this, Kind.MoreLikeThis);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code multi_match}?
+	 */
+	public boolean isMultiMatch() {
+		return _kind == Kind.MultiMatch;
 	}
 
 	/**
@@ -406,7 +665,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code multi_match} kind.
 	 */
 	public MultiMatchQuery multiMatch() {
-		return TaggedUnionUtils.get(this, MULTI_MATCH);
+		return TaggedUnionUtils.get(this, Kind.MultiMatch);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code nested}?
+	 */
+	public boolean isNested() {
+		return _kind == Kind.Nested;
 	}
 
 	/**
@@ -416,7 +682,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code nested} kind.
 	 */
 	public NestedQuery nested() {
-		return TaggedUnionUtils.get(this, NESTED);
+		return TaggedUnionUtils.get(this, Kind.Nested);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code parent_id}?
+	 */
+	public boolean isParentId() {
+		return _kind == Kind.ParentId;
 	}
 
 	/**
@@ -426,7 +699,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code parent_id} kind.
 	 */
 	public ParentIdQuery parentId() {
-		return TaggedUnionUtils.get(this, PARENT_ID);
+		return TaggedUnionUtils.get(this, Kind.ParentId);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code percolate}?
+	 */
+	public boolean isPercolate() {
+		return _kind == Kind.Percolate;
 	}
 
 	/**
@@ -436,7 +716,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code percolate} kind.
 	 */
 	public PercolateQuery percolate() {
-		return TaggedUnionUtils.get(this, PERCOLATE);
+		return TaggedUnionUtils.get(this, Kind.Percolate);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code pinned}?
+	 */
+	public boolean isPinned() {
+		return _kind == Kind.Pinned;
 	}
 
 	/**
@@ -446,7 +733,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code pinned} kind.
 	 */
 	public PinnedQuery pinned() {
-		return TaggedUnionUtils.get(this, PINNED);
+		return TaggedUnionUtils.get(this, Kind.Pinned);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code prefix}?
+	 */
+	public boolean isPrefix() {
+		return _kind == Kind.Prefix;
 	}
 
 	/**
@@ -456,7 +750,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code prefix} kind.
 	 */
 	public PrefixQuery prefix() {
-		return TaggedUnionUtils.get(this, PREFIX);
+		return TaggedUnionUtils.get(this, Kind.Prefix);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code query_string}?
+	 */
+	public boolean isQueryString() {
+		return _kind == Kind.QueryString;
 	}
 
 	/**
@@ -466,7 +767,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code query_string} kind.
 	 */
 	public QueryStringQuery queryString() {
-		return TaggedUnionUtils.get(this, QUERY_STRING);
+		return TaggedUnionUtils.get(this, Kind.QueryString);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code range}?
+	 */
+	public boolean isRange() {
+		return _kind == Kind.Range;
 	}
 
 	/**
@@ -475,8 +783,15 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code range} kind.
 	 */
-	public JsonValue /* _types.query_dsl.RangeQuery */ range() {
-		return TaggedUnionUtils.get(this, RANGE);
+	public RangeQuery range() {
+		return TaggedUnionUtils.get(this, Kind.Range);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code rank_feature}?
+	 */
+	public boolean isRankFeature() {
+		return _kind == Kind.RankFeature;
 	}
 
 	/**
@@ -486,7 +801,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code rank_feature} kind.
 	 */
 	public RankFeatureQuery rankFeature() {
-		return TaggedUnionUtils.get(this, RANK_FEATURE);
+		return TaggedUnionUtils.get(this, Kind.RankFeature);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code regexp}?
+	 */
+	public boolean isRegexp() {
+		return _kind == Kind.Regexp;
 	}
 
 	/**
@@ -496,7 +818,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code regexp} kind.
 	 */
 	public RegexpQuery regexp() {
-		return TaggedUnionUtils.get(this, REGEXP);
+		return TaggedUnionUtils.get(this, Kind.Regexp);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean isScript() {
+		return _kind == Kind.Script;
 	}
 
 	/**
@@ -506,7 +835,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code script} kind.
 	 */
 	public ScriptQuery script() {
-		return TaggedUnionUtils.get(this, SCRIPT);
+		return TaggedUnionUtils.get(this, Kind.Script);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code script_score}?
+	 */
+	public boolean isScriptScore() {
+		return _kind == Kind.ScriptScore;
 	}
 
 	/**
@@ -516,7 +852,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code script_score} kind.
 	 */
 	public ScriptScoreQuery scriptScore() {
-		return TaggedUnionUtils.get(this, SCRIPT_SCORE);
+		return TaggedUnionUtils.get(this, Kind.ScriptScore);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code shape}?
+	 */
+	public boolean isShape() {
+		return _kind == Kind.Shape;
 	}
 
 	/**
@@ -526,7 +869,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code shape} kind.
 	 */
 	public ShapeQuery shape() {
-		return TaggedUnionUtils.get(this, SHAPE);
+		return TaggedUnionUtils.get(this, Kind.Shape);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code simple_query_string}?
+	 */
+	public boolean isSimpleQueryString() {
+		return _kind == Kind.SimpleQueryString;
 	}
 
 	/**
@@ -537,7 +887,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             kind.
 	 */
 	public SimpleQueryStringQuery simpleQueryString() {
-		return TaggedUnionUtils.get(this, SIMPLE_QUERY_STRING);
+		return TaggedUnionUtils.get(this, Kind.SimpleQueryString);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_containing}?
+	 */
+	public boolean isSpanContaining() {
+		return _kind == Kind.SpanContaining;
 	}
 
 	/**
@@ -548,7 +905,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             kind.
 	 */
 	public SpanContainingQuery spanContaining() {
-		return TaggedUnionUtils.get(this, SPAN_CONTAINING);
+		return TaggedUnionUtils.get(this, Kind.SpanContaining);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code field_masking_span}?
+	 */
+	public boolean isFieldMaskingSpan() {
+		return _kind == Kind.FieldMaskingSpan;
 	}
 
 	/**
@@ -559,7 +923,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             kind.
 	 */
 	public SpanFieldMaskingQuery fieldMaskingSpan() {
-		return TaggedUnionUtils.get(this, FIELD_MASKING_SPAN);
+		return TaggedUnionUtils.get(this, Kind.FieldMaskingSpan);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_first}?
+	 */
+	public boolean isSpanFirst() {
+		return _kind == Kind.SpanFirst;
 	}
 
 	/**
@@ -569,7 +940,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code span_first} kind.
 	 */
 	public SpanFirstQuery spanFirst() {
-		return TaggedUnionUtils.get(this, SPAN_FIRST);
+		return TaggedUnionUtils.get(this, Kind.SpanFirst);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_multi}?
+	 */
+	public boolean isSpanMulti() {
+		return _kind == Kind.SpanMulti;
 	}
 
 	/**
@@ -579,7 +957,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code span_multi} kind.
 	 */
 	public SpanMultiTermQuery spanMulti() {
-		return TaggedUnionUtils.get(this, SPAN_MULTI);
+		return TaggedUnionUtils.get(this, Kind.SpanMulti);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_near}?
+	 */
+	public boolean isSpanNear() {
+		return _kind == Kind.SpanNear;
 	}
 
 	/**
@@ -589,7 +974,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code span_near} kind.
 	 */
 	public SpanNearQuery spanNear() {
-		return TaggedUnionUtils.get(this, SPAN_NEAR);
+		return TaggedUnionUtils.get(this, Kind.SpanNear);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_not}?
+	 */
+	public boolean isSpanNot() {
+		return _kind == Kind.SpanNot;
 	}
 
 	/**
@@ -599,7 +991,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code span_not} kind.
 	 */
 	public SpanNotQuery spanNot() {
-		return TaggedUnionUtils.get(this, SPAN_NOT);
+		return TaggedUnionUtils.get(this, Kind.SpanNot);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_or}?
+	 */
+	public boolean isSpanOr() {
+		return _kind == Kind.SpanOr;
 	}
 
 	/**
@@ -609,7 +1008,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code span_or} kind.
 	 */
 	public SpanOrQuery spanOr() {
-		return TaggedUnionUtils.get(this, SPAN_OR);
+		return TaggedUnionUtils.get(this, Kind.SpanOr);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_term}?
+	 */
+	public boolean isSpanTerm() {
+		return _kind == Kind.SpanTerm;
 	}
 
 	/**
@@ -619,7 +1025,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code span_term} kind.
 	 */
 	public SpanTermQuery spanTerm() {
-		return TaggedUnionUtils.get(this, SPAN_TERM);
+		return TaggedUnionUtils.get(this, Kind.SpanTerm);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code span_within}?
+	 */
+	public boolean isSpanWithin() {
+		return _kind == Kind.SpanWithin;
 	}
 
 	/**
@@ -629,7 +1042,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code span_within} kind.
 	 */
 	public SpanWithinQuery spanWithin() {
-		return TaggedUnionUtils.get(this, SPAN_WITHIN);
+		return TaggedUnionUtils.get(this, Kind.SpanWithin);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code term}?
+	 */
+	public boolean isTerm() {
+		return _kind == Kind.Term;
 	}
 
 	/**
@@ -639,7 +1059,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code term} kind.
 	 */
 	public TermQuery term() {
-		return TaggedUnionUtils.get(this, TERM);
+		return TaggedUnionUtils.get(this, Kind.Term);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code terms}?
+	 */
+	public boolean isTerms() {
+		return _kind == Kind.Terms;
 	}
 
 	/**
@@ -649,7 +1076,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code terms} kind.
 	 */
 	public TermsQuery terms() {
-		return TaggedUnionUtils.get(this, TERMS);
+		return TaggedUnionUtils.get(this, Kind.Terms);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code terms_set}?
+	 */
+	public boolean isTermsSet() {
+		return _kind == Kind.TermsSet;
 	}
 
 	/**
@@ -659,7 +1093,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code terms_set} kind.
 	 */
 	public TermsSetQuery termsSet() {
-		return TaggedUnionUtils.get(this, TERMS_SET);
+		return TaggedUnionUtils.get(this, Kind.TermsSet);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code wildcard}?
+	 */
+	public boolean isWildcard() {
+		return _kind == Kind.Wildcard;
 	}
 
 	/**
@@ -669,7 +1110,14 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code wildcard} kind.
 	 */
 	public WildcardQuery wildcard() {
-		return TaggedUnionUtils.get(this, WILDCARD);
+		return TaggedUnionUtils.get(this, Kind.Wildcard);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code type}?
+	 */
+	public boolean isType() {
+		return _kind == Kind.Type;
 	}
 
 	/**
@@ -679,569 +1127,583 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 	 *             if the current variant is not of the {@code type} kind.
 	 */
 	public TypeQuery type() {
-		return TaggedUnionUtils.get(this, TYPE);
+		return TaggedUnionUtils.get(this, Kind.Type);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_type) {
-				case DISTANCE_FEATURE :
-					generator.write(((JsonValue /* _types.query_dsl.DistanceFeatureQuery */) this._value));
-
-					break;
-				case RANGE :
-					generator.write(((JsonValue /* _types.query_dsl.RangeQuery */) this._value));
-
-					break;
-			}
 		}
 
 		generator.writeEnd();
+
 	}
 
-	public static class Builder implements ObjectBuilder<Query> {
-		private String _type;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Query> {
+		private Kind _kind;
 		private Object _value;
 
-		public Builder bool(BoolQuery v) {
-			this._type = BOOL;
+		public ObjectBuilder<Query> bool(BoolQuery v) {
+			this._kind = Kind.Bool;
 			this._value = v;
 			return this;
 		}
 
-		public Builder bool(Function<BoolQuery.Builder, ObjectBuilder<BoolQuery>> f) {
-			return this.bool(f.apply(new BoolQuery.Builder()).build());
+		public ObjectBuilder<Query> bool(Function<BoolQuery.Builder, ObjectBuilder<BoolQuery>> fn) {
+			return this.bool(fn.apply(new BoolQuery.Builder()).build());
 		}
 
-		public Builder boosting(BoostingQuery v) {
-			this._type = BOOSTING;
+		public ObjectBuilder<Query> boosting(BoostingQuery v) {
+			this._kind = Kind.Boosting;
 			this._value = v;
 			return this;
 		}
 
-		public Builder boosting(Function<BoostingQuery.Builder, ObjectBuilder<BoostingQuery>> f) {
-			return this.boosting(f.apply(new BoostingQuery.Builder()).build());
+		public ObjectBuilder<Query> boosting(Function<BoostingQuery.Builder, ObjectBuilder<BoostingQuery>> fn) {
+			return this.boosting(fn.apply(new BoostingQuery.Builder()).build());
 		}
 
-		public Builder common(CommonTermsQuery v) {
-			this._type = COMMON;
+		public ObjectBuilder<Query> common(CommonTermsQuery v) {
+			this._kind = Kind.Common;
 			this._value = v;
 			return this;
 		}
 
-		public Builder common(Function<CommonTermsQuery.Builder, ObjectBuilder<CommonTermsQuery>> f) {
-			return this.common(f.apply(new CommonTermsQuery.Builder()).build());
+		public ObjectBuilder<Query> common(Function<CommonTermsQuery.Builder, ObjectBuilder<CommonTermsQuery>> fn) {
+			return this.common(fn.apply(new CommonTermsQuery.Builder()).build());
 		}
 
-		public Builder combinedFields(CombinedFieldsQuery v) {
-			this._type = COMBINED_FIELDS;
+		public ObjectBuilder<Query> combinedFields(CombinedFieldsQuery v) {
+			this._kind = Kind.CombinedFields;
 			this._value = v;
 			return this;
 		}
 
-		public Builder combinedFields(Function<CombinedFieldsQuery.Builder, ObjectBuilder<CombinedFieldsQuery>> f) {
-			return this.combinedFields(f.apply(new CombinedFieldsQuery.Builder()).build());
+		public ObjectBuilder<Query> combinedFields(
+				Function<CombinedFieldsQuery.Builder, ObjectBuilder<CombinedFieldsQuery>> fn) {
+			return this.combinedFields(fn.apply(new CombinedFieldsQuery.Builder()).build());
 		}
 
-		public Builder constantScore(ConstantScoreQuery v) {
-			this._type = CONSTANT_SCORE;
+		public ObjectBuilder<Query> constantScore(ConstantScoreQuery v) {
+			this._kind = Kind.ConstantScore;
 			this._value = v;
 			return this;
 		}
 
-		public Builder constantScore(Function<ConstantScoreQuery.Builder, ObjectBuilder<ConstantScoreQuery>> f) {
-			return this.constantScore(f.apply(new ConstantScoreQuery.Builder()).build());
+		public ObjectBuilder<Query> constantScore(
+				Function<ConstantScoreQuery.Builder, ObjectBuilder<ConstantScoreQuery>> fn) {
+			return this.constantScore(fn.apply(new ConstantScoreQuery.Builder()).build());
 		}
 
-		public Builder disMax(DisMaxQuery v) {
-			this._type = DIS_MAX;
+		public ObjectBuilder<Query> disMax(DisMaxQuery v) {
+			this._kind = Kind.DisMax;
 			this._value = v;
 			return this;
 		}
 
-		public Builder disMax(Function<DisMaxQuery.Builder, ObjectBuilder<DisMaxQuery>> f) {
-			return this.disMax(f.apply(new DisMaxQuery.Builder()).build());
+		public ObjectBuilder<Query> disMax(Function<DisMaxQuery.Builder, ObjectBuilder<DisMaxQuery>> fn) {
+			return this.disMax(fn.apply(new DisMaxQuery.Builder()).build());
 		}
 
-		public Builder distanceFeature(JsonValue /* _types.query_dsl.DistanceFeatureQuery */ v) {
-			this._type = DISTANCE_FEATURE;
+		public ObjectBuilder<Query> distanceFeature(DistanceFeatureQuery v) {
+			this._kind = Kind.DistanceFeature;
 			this._value = v;
 			return this;
 		}
 
-		public Builder exists(ExistsQuery v) {
-			this._type = EXISTS;
+		public ObjectBuilder<Query> distanceFeature(
+				Function<DistanceFeatureQuery.Builder, ObjectBuilder<DistanceFeatureQuery>> fn) {
+			return this.distanceFeature(fn.apply(new DistanceFeatureQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> exists(ExistsQuery v) {
+			this._kind = Kind.Exists;
 			this._value = v;
 			return this;
 		}
 
-		public Builder exists(Function<ExistsQuery.Builder, ObjectBuilder<ExistsQuery>> f) {
-			return this.exists(f.apply(new ExistsQuery.Builder()).build());
+		public ObjectBuilder<Query> exists(Function<ExistsQuery.Builder, ObjectBuilder<ExistsQuery>> fn) {
+			return this.exists(fn.apply(new ExistsQuery.Builder()).build());
 		}
 
-		public Builder functionScore(FunctionScoreQuery v) {
-			this._type = FUNCTION_SCORE;
+		public ObjectBuilder<Query> functionScore(FunctionScoreQuery v) {
+			this._kind = Kind.FunctionScore;
 			this._value = v;
 			return this;
 		}
 
-		public Builder functionScore(Function<FunctionScoreQuery.Builder, ObjectBuilder<FunctionScoreQuery>> f) {
-			return this.functionScore(f.apply(new FunctionScoreQuery.Builder()).build());
+		public ObjectBuilder<Query> functionScore(
+				Function<FunctionScoreQuery.Builder, ObjectBuilder<FunctionScoreQuery>> fn) {
+			return this.functionScore(fn.apply(new FunctionScoreQuery.Builder()).build());
 		}
 
-		public Builder fuzzy(FuzzyQuery v) {
-			this._type = FUZZY;
+		public ObjectBuilder<Query> fuzzy(FuzzyQuery v) {
+			this._kind = Kind.Fuzzy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fuzzy(Function<FuzzyQuery.Builder, ObjectBuilder<FuzzyQuery>> f) {
-			return this.fuzzy(f.apply(new FuzzyQuery.Builder()).build());
+		public ObjectBuilder<Query> fuzzy(Function<FuzzyQuery.Builder, ObjectBuilder<FuzzyQuery>> fn) {
+			return this.fuzzy(fn.apply(new FuzzyQuery.Builder()).build());
 		}
 
-		public Builder geoBoundingBox(GeoBoundingBoxQuery v) {
-			this._type = GEO_BOUNDING_BOX;
+		public ObjectBuilder<Query> geoBoundingBox(GeoBoundingBoxQuery v) {
+			this._kind = Kind.GeoBoundingBox;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoBoundingBox(Function<GeoBoundingBoxQuery.Builder, ObjectBuilder<GeoBoundingBoxQuery>> f) {
-			return this.geoBoundingBox(f.apply(new GeoBoundingBoxQuery.Builder()).build());
+		public ObjectBuilder<Query> geoBoundingBox(
+				Function<GeoBoundingBoxQuery.Builder, ObjectBuilder<GeoBoundingBoxQuery>> fn) {
+			return this.geoBoundingBox(fn.apply(new GeoBoundingBoxQuery.Builder()).build());
 		}
 
-		public Builder geoDistance(GeoDistanceQuery v) {
-			this._type = GEO_DISTANCE;
+		public ObjectBuilder<Query> geoDistance(GeoDistanceQuery v) {
+			this._kind = Kind.GeoDistance;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoDistance(Function<GeoDistanceQuery.Builder, ObjectBuilder<GeoDistanceQuery>> f) {
-			return this.geoDistance(f.apply(new GeoDistanceQuery.Builder()).build());
+		public ObjectBuilder<Query> geoDistance(
+				Function<GeoDistanceQuery.Builder, ObjectBuilder<GeoDistanceQuery>> fn) {
+			return this.geoDistance(fn.apply(new GeoDistanceQuery.Builder()).build());
 		}
 
-		public Builder geoPolygon(GeoPolygonQuery v) {
-			this._type = GEO_POLYGON;
+		public ObjectBuilder<Query> geoPolygon(GeoPolygonQuery v) {
+			this._kind = Kind.GeoPolygon;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoPolygon(Function<GeoPolygonQuery.Builder, ObjectBuilder<GeoPolygonQuery>> f) {
-			return this.geoPolygon(f.apply(new GeoPolygonQuery.Builder()).build());
+		public ObjectBuilder<Query> geoPolygon(Function<GeoPolygonQuery.Builder, ObjectBuilder<GeoPolygonQuery>> fn) {
+			return this.geoPolygon(fn.apply(new GeoPolygonQuery.Builder()).build());
 		}
 
-		public Builder geoShape(GeoShapeQuery v) {
-			this._type = GEO_SHAPE;
+		public ObjectBuilder<Query> geoShape(GeoShapeQuery v) {
+			this._kind = Kind.GeoShape;
 			this._value = v;
 			return this;
 		}
 
-		public Builder geoShape(Function<GeoShapeQuery.Builder, ObjectBuilder<GeoShapeQuery>> f) {
-			return this.geoShape(f.apply(new GeoShapeQuery.Builder()).build());
+		public ObjectBuilder<Query> geoShape(Function<GeoShapeQuery.Builder, ObjectBuilder<GeoShapeQuery>> fn) {
+			return this.geoShape(fn.apply(new GeoShapeQuery.Builder()).build());
 		}
 
-		public Builder hasChild(HasChildQuery v) {
-			this._type = HAS_CHILD;
+		public ObjectBuilder<Query> hasChild(HasChildQuery v) {
+			this._kind = Kind.HasChild;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hasChild(Function<HasChildQuery.Builder, ObjectBuilder<HasChildQuery>> f) {
-			return this.hasChild(f.apply(new HasChildQuery.Builder()).build());
+		public ObjectBuilder<Query> hasChild(Function<HasChildQuery.Builder, ObjectBuilder<HasChildQuery>> fn) {
+			return this.hasChild(fn.apply(new HasChildQuery.Builder()).build());
 		}
 
-		public Builder hasParent(HasParentQuery v) {
-			this._type = HAS_PARENT;
+		public ObjectBuilder<Query> hasParent(HasParentQuery v) {
+			this._kind = Kind.HasParent;
 			this._value = v;
 			return this;
 		}
 
-		public Builder hasParent(Function<HasParentQuery.Builder, ObjectBuilder<HasParentQuery>> f) {
-			return this.hasParent(f.apply(new HasParentQuery.Builder()).build());
+		public ObjectBuilder<Query> hasParent(Function<HasParentQuery.Builder, ObjectBuilder<HasParentQuery>> fn) {
+			return this.hasParent(fn.apply(new HasParentQuery.Builder()).build());
 		}
 
-		public Builder ids(IdsQuery v) {
-			this._type = IDS;
+		public ObjectBuilder<Query> ids(IdsQuery v) {
+			this._kind = Kind.Ids;
 			this._value = v;
 			return this;
 		}
 
-		public Builder ids(Function<IdsQuery.Builder, ObjectBuilder<IdsQuery>> f) {
-			return this.ids(f.apply(new IdsQuery.Builder()).build());
+		public ObjectBuilder<Query> ids(Function<IdsQuery.Builder, ObjectBuilder<IdsQuery>> fn) {
+			return this.ids(fn.apply(new IdsQuery.Builder()).build());
 		}
 
-		public Builder intervals(IntervalsQuery v) {
-			this._type = INTERVALS;
+		public ObjectBuilder<Query> intervals(IntervalsQuery v) {
+			this._kind = Kind.Intervals;
 			this._value = v;
 			return this;
 		}
 
-		public Builder intervals(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> f) {
-			return this.intervals(f.apply(new IntervalsQuery.Builder()).build());
+		public ObjectBuilder<Query> intervals(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> fn) {
+			return this.intervals(fn.apply(new IntervalsQuery.Builder()).build());
 		}
 
-		public Builder match(MatchQuery v) {
-			this._type = MATCH;
+		public ObjectBuilder<Query> match(MatchQuery v) {
+			this._kind = Kind.Match;
 			this._value = v;
 			return this;
 		}
 
-		public Builder match(Function<MatchQuery.Builder, ObjectBuilder<MatchQuery>> f) {
-			return this.match(f.apply(new MatchQuery.Builder()).build());
+		public ObjectBuilder<Query> match(Function<MatchQuery.Builder, ObjectBuilder<MatchQuery>> fn) {
+			return this.match(fn.apply(new MatchQuery.Builder()).build());
 		}
 
-		public Builder matchAll(MatchAllQuery v) {
-			this._type = MATCH_ALL;
+		public ObjectBuilder<Query> matchAll(MatchAllQuery v) {
+			this._kind = Kind.MatchAll;
 			this._value = v;
 			return this;
 		}
 
-		public Builder matchAll(Function<MatchAllQuery.Builder, ObjectBuilder<MatchAllQuery>> f) {
-			return this.matchAll(f.apply(new MatchAllQuery.Builder()).build());
+		public ObjectBuilder<Query> matchAll(Function<MatchAllQuery.Builder, ObjectBuilder<MatchAllQuery>> fn) {
+			return this.matchAll(fn.apply(new MatchAllQuery.Builder()).build());
 		}
 
-		public Builder matchBoolPrefix(MatchBoolPrefixQuery v) {
-			this._type = MATCH_BOOL_PREFIX;
+		public ObjectBuilder<Query> matchBoolPrefix(MatchBoolPrefixQuery v) {
+			this._kind = Kind.MatchBoolPrefix;
 			this._value = v;
 			return this;
 		}
 
-		public Builder matchBoolPrefix(Function<MatchBoolPrefixQuery.Builder, ObjectBuilder<MatchBoolPrefixQuery>> f) {
-			return this.matchBoolPrefix(f.apply(new MatchBoolPrefixQuery.Builder()).build());
+		public ObjectBuilder<Query> matchBoolPrefix(
+				Function<MatchBoolPrefixQuery.Builder, ObjectBuilder<MatchBoolPrefixQuery>> fn) {
+			return this.matchBoolPrefix(fn.apply(new MatchBoolPrefixQuery.Builder()).build());
 		}
 
-		public Builder matchNone(MatchNoneQuery v) {
-			this._type = MATCH_NONE;
+		public ObjectBuilder<Query> matchNone(MatchNoneQuery v) {
+			this._kind = Kind.MatchNone;
 			this._value = v;
 			return this;
 		}
 
-		public Builder matchNone(Function<MatchNoneQuery.Builder, ObjectBuilder<MatchNoneQuery>> f) {
-			return this.matchNone(f.apply(new MatchNoneQuery.Builder()).build());
+		public ObjectBuilder<Query> matchNone(Function<MatchNoneQuery.Builder, ObjectBuilder<MatchNoneQuery>> fn) {
+			return this.matchNone(fn.apply(new MatchNoneQuery.Builder()).build());
 		}
 
-		public Builder matchPhrase(MatchPhraseQuery v) {
-			this._type = MATCH_PHRASE;
+		public ObjectBuilder<Query> matchPhrase(MatchPhraseQuery v) {
+			this._kind = Kind.MatchPhrase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder matchPhrase(Function<MatchPhraseQuery.Builder, ObjectBuilder<MatchPhraseQuery>> f) {
-			return this.matchPhrase(f.apply(new MatchPhraseQuery.Builder()).build());
+		public ObjectBuilder<Query> matchPhrase(
+				Function<MatchPhraseQuery.Builder, ObjectBuilder<MatchPhraseQuery>> fn) {
+			return this.matchPhrase(fn.apply(new MatchPhraseQuery.Builder()).build());
 		}
 
-		public Builder matchPhrasePrefix(MatchPhrasePrefixQuery v) {
-			this._type = MATCH_PHRASE_PREFIX;
+		public ObjectBuilder<Query> matchPhrasePrefix(MatchPhrasePrefixQuery v) {
+			this._kind = Kind.MatchPhrasePrefix;
 			this._value = v;
 			return this;
 		}
 
-		public Builder matchPhrasePrefix(
-				Function<MatchPhrasePrefixQuery.Builder, ObjectBuilder<MatchPhrasePrefixQuery>> f) {
-			return this.matchPhrasePrefix(f.apply(new MatchPhrasePrefixQuery.Builder()).build());
+		public ObjectBuilder<Query> matchPhrasePrefix(
+				Function<MatchPhrasePrefixQuery.Builder, ObjectBuilder<MatchPhrasePrefixQuery>> fn) {
+			return this.matchPhrasePrefix(fn.apply(new MatchPhrasePrefixQuery.Builder()).build());
 		}
 
-		public Builder moreLikeThis(MoreLikeThisQuery v) {
-			this._type = MORE_LIKE_THIS;
+		public ObjectBuilder<Query> moreLikeThis(MoreLikeThisQuery v) {
+			this._kind = Kind.MoreLikeThis;
 			this._value = v;
 			return this;
 		}
 
-		public Builder moreLikeThis(Function<MoreLikeThisQuery.Builder, ObjectBuilder<MoreLikeThisQuery>> f) {
-			return this.moreLikeThis(f.apply(new MoreLikeThisQuery.Builder()).build());
+		public ObjectBuilder<Query> moreLikeThis(
+				Function<MoreLikeThisQuery.Builder, ObjectBuilder<MoreLikeThisQuery>> fn) {
+			return this.moreLikeThis(fn.apply(new MoreLikeThisQuery.Builder()).build());
 		}
 
-		public Builder multiMatch(MultiMatchQuery v) {
-			this._type = MULTI_MATCH;
+		public ObjectBuilder<Query> multiMatch(MultiMatchQuery v) {
+			this._kind = Kind.MultiMatch;
 			this._value = v;
 			return this;
 		}
 
-		public Builder multiMatch(Function<MultiMatchQuery.Builder, ObjectBuilder<MultiMatchQuery>> f) {
-			return this.multiMatch(f.apply(new MultiMatchQuery.Builder()).build());
+		public ObjectBuilder<Query> multiMatch(Function<MultiMatchQuery.Builder, ObjectBuilder<MultiMatchQuery>> fn) {
+			return this.multiMatch(fn.apply(new MultiMatchQuery.Builder()).build());
 		}
 
-		public Builder nested(NestedQuery v) {
-			this._type = NESTED;
+		public ObjectBuilder<Query> nested(NestedQuery v) {
+			this._kind = Kind.Nested;
 			this._value = v;
 			return this;
 		}
 
-		public Builder nested(Function<NestedQuery.Builder, ObjectBuilder<NestedQuery>> f) {
-			return this.nested(f.apply(new NestedQuery.Builder()).build());
+		public ObjectBuilder<Query> nested(Function<NestedQuery.Builder, ObjectBuilder<NestedQuery>> fn) {
+			return this.nested(fn.apply(new NestedQuery.Builder()).build());
 		}
 
-		public Builder parentId(ParentIdQuery v) {
-			this._type = PARENT_ID;
+		public ObjectBuilder<Query> parentId(ParentIdQuery v) {
+			this._kind = Kind.ParentId;
 			this._value = v;
 			return this;
 		}
 
-		public Builder parentId(Function<ParentIdQuery.Builder, ObjectBuilder<ParentIdQuery>> f) {
-			return this.parentId(f.apply(new ParentIdQuery.Builder()).build());
+		public ObjectBuilder<Query> parentId(Function<ParentIdQuery.Builder, ObjectBuilder<ParentIdQuery>> fn) {
+			return this.parentId(fn.apply(new ParentIdQuery.Builder()).build());
 		}
 
-		public Builder percolate(PercolateQuery v) {
-			this._type = PERCOLATE;
+		public ObjectBuilder<Query> percolate(PercolateQuery v) {
+			this._kind = Kind.Percolate;
 			this._value = v;
 			return this;
 		}
 
-		public Builder percolate(Function<PercolateQuery.Builder, ObjectBuilder<PercolateQuery>> f) {
-			return this.percolate(f.apply(new PercolateQuery.Builder()).build());
+		public ObjectBuilder<Query> percolate(Function<PercolateQuery.Builder, ObjectBuilder<PercolateQuery>> fn) {
+			return this.percolate(fn.apply(new PercolateQuery.Builder()).build());
 		}
 
-		public Builder pinned(PinnedQuery v) {
-			this._type = PINNED;
+		public ObjectBuilder<Query> pinned(PinnedQuery v) {
+			this._kind = Kind.Pinned;
 			this._value = v;
 			return this;
 		}
 
-		public Builder pinned(Function<PinnedQuery.Builder, ObjectBuilder<PinnedQuery>> f) {
-			return this.pinned(f.apply(new PinnedQuery.Builder()).build());
+		public ObjectBuilder<Query> pinned(Function<PinnedQuery.Builder, ObjectBuilder<PinnedQuery>> fn) {
+			return this.pinned(fn.apply(new PinnedQuery.Builder()).build());
 		}
 
-		public Builder prefix(PrefixQuery v) {
-			this._type = PREFIX;
+		public ObjectBuilder<Query> prefix(PrefixQuery v) {
+			this._kind = Kind.Prefix;
 			this._value = v;
 			return this;
 		}
 
-		public Builder prefix(Function<PrefixQuery.Builder, ObjectBuilder<PrefixQuery>> f) {
-			return this.prefix(f.apply(new PrefixQuery.Builder()).build());
+		public ObjectBuilder<Query> prefix(Function<PrefixQuery.Builder, ObjectBuilder<PrefixQuery>> fn) {
+			return this.prefix(fn.apply(new PrefixQuery.Builder()).build());
 		}
 
-		public Builder queryString(QueryStringQuery v) {
-			this._type = QUERY_STRING;
+		public ObjectBuilder<Query> queryString(QueryStringQuery v) {
+			this._kind = Kind.QueryString;
 			this._value = v;
 			return this;
 		}
 
-		public Builder queryString(Function<QueryStringQuery.Builder, ObjectBuilder<QueryStringQuery>> f) {
-			return this.queryString(f.apply(new QueryStringQuery.Builder()).build());
+		public ObjectBuilder<Query> queryString(
+				Function<QueryStringQuery.Builder, ObjectBuilder<QueryStringQuery>> fn) {
+			return this.queryString(fn.apply(new QueryStringQuery.Builder()).build());
 		}
 
-		public Builder range(JsonValue /* _types.query_dsl.RangeQuery */ v) {
-			this._type = RANGE;
+		public ObjectBuilder<Query> range(RangeQuery v) {
+			this._kind = Kind.Range;
 			this._value = v;
 			return this;
 		}
 
-		public Builder rankFeature(RankFeatureQuery v) {
-			this._type = RANK_FEATURE;
+		public ObjectBuilder<Query> range(Function<RangeQuery.Builder, ObjectBuilder<RangeQuery>> fn) {
+			return this.range(fn.apply(new RangeQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> rankFeature(RankFeatureQuery v) {
+			this._kind = Kind.RankFeature;
 			this._value = v;
 			return this;
 		}
 
-		public Builder rankFeature(Function<RankFeatureQuery.Builder, ObjectBuilder<RankFeatureQuery>> f) {
-			return this.rankFeature(f.apply(new RankFeatureQuery.Builder()).build());
+		public ObjectBuilder<Query> rankFeature(
+				Function<RankFeatureQuery.Builder, ObjectBuilder<RankFeatureQuery>> fn) {
+			return this.rankFeature(fn.apply(new RankFeatureQuery.Builder()).build());
 		}
 
-		public Builder regexp(RegexpQuery v) {
-			this._type = REGEXP;
+		public ObjectBuilder<Query> regexp(RegexpQuery v) {
+			this._kind = Kind.Regexp;
 			this._value = v;
 			return this;
 		}
 
-		public Builder regexp(Function<RegexpQuery.Builder, ObjectBuilder<RegexpQuery>> f) {
-			return this.regexp(f.apply(new RegexpQuery.Builder()).build());
+		public ObjectBuilder<Query> regexp(Function<RegexpQuery.Builder, ObjectBuilder<RegexpQuery>> fn) {
+			return this.regexp(fn.apply(new RegexpQuery.Builder()).build());
 		}
 
-		public Builder script(ScriptQuery v) {
-			this._type = SCRIPT;
+		public ObjectBuilder<Query> script(ScriptQuery v) {
+			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Function<ScriptQuery.Builder, ObjectBuilder<ScriptQuery>> f) {
-			return this.script(f.apply(new ScriptQuery.Builder()).build());
+		public ObjectBuilder<Query> script(Function<ScriptQuery.Builder, ObjectBuilder<ScriptQuery>> fn) {
+			return this.script(fn.apply(new ScriptQuery.Builder()).build());
 		}
 
-		public Builder scriptScore(ScriptScoreQuery v) {
-			this._type = SCRIPT_SCORE;
+		public ObjectBuilder<Query> scriptScore(ScriptScoreQuery v) {
+			this._kind = Kind.ScriptScore;
 			this._value = v;
 			return this;
 		}
 
-		public Builder scriptScore(Function<ScriptScoreQuery.Builder, ObjectBuilder<ScriptScoreQuery>> f) {
-			return this.scriptScore(f.apply(new ScriptScoreQuery.Builder()).build());
+		public ObjectBuilder<Query> scriptScore(
+				Function<ScriptScoreQuery.Builder, ObjectBuilder<ScriptScoreQuery>> fn) {
+			return this.scriptScore(fn.apply(new ScriptScoreQuery.Builder()).build());
 		}
 
-		public Builder shape(ShapeQuery v) {
-			this._type = SHAPE;
+		public ObjectBuilder<Query> shape(ShapeQuery v) {
+			this._kind = Kind.Shape;
 			this._value = v;
 			return this;
 		}
 
-		public Builder shape(Function<ShapeQuery.Builder, ObjectBuilder<ShapeQuery>> f) {
-			return this.shape(f.apply(new ShapeQuery.Builder()).build());
+		public ObjectBuilder<Query> shape(Function<ShapeQuery.Builder, ObjectBuilder<ShapeQuery>> fn) {
+			return this.shape(fn.apply(new ShapeQuery.Builder()).build());
 		}
 
-		public Builder simpleQueryString(SimpleQueryStringQuery v) {
-			this._type = SIMPLE_QUERY_STRING;
+		public ObjectBuilder<Query> simpleQueryString(SimpleQueryStringQuery v) {
+			this._kind = Kind.SimpleQueryString;
 			this._value = v;
 			return this;
 		}
 
-		public Builder simpleQueryString(
-				Function<SimpleQueryStringQuery.Builder, ObjectBuilder<SimpleQueryStringQuery>> f) {
-			return this.simpleQueryString(f.apply(new SimpleQueryStringQuery.Builder()).build());
+		public ObjectBuilder<Query> simpleQueryString(
+				Function<SimpleQueryStringQuery.Builder, ObjectBuilder<SimpleQueryStringQuery>> fn) {
+			return this.simpleQueryString(fn.apply(new SimpleQueryStringQuery.Builder()).build());
 		}
 
-		public Builder spanContaining(SpanContainingQuery v) {
-			this._type = SPAN_CONTAINING;
+		public ObjectBuilder<Query> spanContaining(SpanContainingQuery v) {
+			this._kind = Kind.SpanContaining;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanContaining(Function<SpanContainingQuery.Builder, ObjectBuilder<SpanContainingQuery>> f) {
-			return this.spanContaining(f.apply(new SpanContainingQuery.Builder()).build());
+		public ObjectBuilder<Query> spanContaining(
+				Function<SpanContainingQuery.Builder, ObjectBuilder<SpanContainingQuery>> fn) {
+			return this.spanContaining(fn.apply(new SpanContainingQuery.Builder()).build());
 		}
 
-		public Builder fieldMaskingSpan(SpanFieldMaskingQuery v) {
-			this._type = FIELD_MASKING_SPAN;
+		public ObjectBuilder<Query> fieldMaskingSpan(SpanFieldMaskingQuery v) {
+			this._kind = Kind.FieldMaskingSpan;
 			this._value = v;
 			return this;
 		}
 
-		public Builder fieldMaskingSpan(
-				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> f) {
-			return this.fieldMaskingSpan(f.apply(new SpanFieldMaskingQuery.Builder()).build());
+		public ObjectBuilder<Query> fieldMaskingSpan(
+				Function<SpanFieldMaskingQuery.Builder, ObjectBuilder<SpanFieldMaskingQuery>> fn) {
+			return this.fieldMaskingSpan(fn.apply(new SpanFieldMaskingQuery.Builder()).build());
 		}
 
-		public Builder spanFirst(SpanFirstQuery v) {
-			this._type = SPAN_FIRST;
+		public ObjectBuilder<Query> spanFirst(SpanFirstQuery v) {
+			this._kind = Kind.SpanFirst;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanFirst(Function<SpanFirstQuery.Builder, ObjectBuilder<SpanFirstQuery>> f) {
-			return this.spanFirst(f.apply(new SpanFirstQuery.Builder()).build());
+		public ObjectBuilder<Query> spanFirst(Function<SpanFirstQuery.Builder, ObjectBuilder<SpanFirstQuery>> fn) {
+			return this.spanFirst(fn.apply(new SpanFirstQuery.Builder()).build());
 		}
 
-		public Builder spanMulti(SpanMultiTermQuery v) {
-			this._type = SPAN_MULTI;
+		public ObjectBuilder<Query> spanMulti(SpanMultiTermQuery v) {
+			this._kind = Kind.SpanMulti;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanMulti(Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> f) {
-			return this.spanMulti(f.apply(new SpanMultiTermQuery.Builder()).build());
+		public ObjectBuilder<Query> spanMulti(
+				Function<SpanMultiTermQuery.Builder, ObjectBuilder<SpanMultiTermQuery>> fn) {
+			return this.spanMulti(fn.apply(new SpanMultiTermQuery.Builder()).build());
 		}
 
-		public Builder spanNear(SpanNearQuery v) {
-			this._type = SPAN_NEAR;
+		public ObjectBuilder<Query> spanNear(SpanNearQuery v) {
+			this._kind = Kind.SpanNear;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanNear(Function<SpanNearQuery.Builder, ObjectBuilder<SpanNearQuery>> f) {
-			return this.spanNear(f.apply(new SpanNearQuery.Builder()).build());
+		public ObjectBuilder<Query> spanNear(Function<SpanNearQuery.Builder, ObjectBuilder<SpanNearQuery>> fn) {
+			return this.spanNear(fn.apply(new SpanNearQuery.Builder()).build());
 		}
 
-		public Builder spanNot(SpanNotQuery v) {
-			this._type = SPAN_NOT;
+		public ObjectBuilder<Query> spanNot(SpanNotQuery v) {
+			this._kind = Kind.SpanNot;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanNot(Function<SpanNotQuery.Builder, ObjectBuilder<SpanNotQuery>> f) {
-			return this.spanNot(f.apply(new SpanNotQuery.Builder()).build());
+		public ObjectBuilder<Query> spanNot(Function<SpanNotQuery.Builder, ObjectBuilder<SpanNotQuery>> fn) {
+			return this.spanNot(fn.apply(new SpanNotQuery.Builder()).build());
 		}
 
-		public Builder spanOr(SpanOrQuery v) {
-			this._type = SPAN_OR;
+		public ObjectBuilder<Query> spanOr(SpanOrQuery v) {
+			this._kind = Kind.SpanOr;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanOr(Function<SpanOrQuery.Builder, ObjectBuilder<SpanOrQuery>> f) {
-			return this.spanOr(f.apply(new SpanOrQuery.Builder()).build());
+		public ObjectBuilder<Query> spanOr(Function<SpanOrQuery.Builder, ObjectBuilder<SpanOrQuery>> fn) {
+			return this.spanOr(fn.apply(new SpanOrQuery.Builder()).build());
 		}
 
-		public Builder spanTerm(SpanTermQuery v) {
-			this._type = SPAN_TERM;
+		public ObjectBuilder<Query> spanTerm(SpanTermQuery v) {
+			this._kind = Kind.SpanTerm;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanTerm(Function<SpanTermQuery.Builder, ObjectBuilder<SpanTermQuery>> f) {
-			return this.spanTerm(f.apply(new SpanTermQuery.Builder()).build());
+		public ObjectBuilder<Query> spanTerm(Function<SpanTermQuery.Builder, ObjectBuilder<SpanTermQuery>> fn) {
+			return this.spanTerm(fn.apply(new SpanTermQuery.Builder()).build());
 		}
 
-		public Builder spanWithin(SpanWithinQuery v) {
-			this._type = SPAN_WITHIN;
+		public ObjectBuilder<Query> spanWithin(SpanWithinQuery v) {
+			this._kind = Kind.SpanWithin;
 			this._value = v;
 			return this;
 		}
 
-		public Builder spanWithin(Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> f) {
-			return this.spanWithin(f.apply(new SpanWithinQuery.Builder()).build());
+		public ObjectBuilder<Query> spanWithin(Function<SpanWithinQuery.Builder, ObjectBuilder<SpanWithinQuery>> fn) {
+			return this.spanWithin(fn.apply(new SpanWithinQuery.Builder()).build());
 		}
 
-		public Builder term(TermQuery v) {
-			this._type = TERM;
+		public ObjectBuilder<Query> term(TermQuery v) {
+			this._kind = Kind.Term;
 			this._value = v;
 			return this;
 		}
 
-		public Builder term(Function<TermQuery.Builder, ObjectBuilder<TermQuery>> f) {
-			return this.term(f.apply(new TermQuery.Builder()).build());
+		public ObjectBuilder<Query> term(Function<TermQuery.Builder, ObjectBuilder<TermQuery>> fn) {
+			return this.term(fn.apply(new TermQuery.Builder()).build());
 		}
 
-		public Builder terms(TermsQuery v) {
-			this._type = TERMS;
+		public ObjectBuilder<Query> terms(TermsQuery v) {
+			this._kind = Kind.Terms;
 			this._value = v;
 			return this;
 		}
 
-		public Builder terms(Function<TermsQuery.Builder, ObjectBuilder<TermsQuery>> f) {
-			return this.terms(f.apply(new TermsQuery.Builder()).build());
+		public ObjectBuilder<Query> terms(Function<TermsQuery.Builder, ObjectBuilder<TermsQuery>> fn) {
+			return this.terms(fn.apply(new TermsQuery.Builder()).build());
 		}
 
-		public Builder termsSet(TermsSetQuery v) {
-			this._type = TERMS_SET;
+		public ObjectBuilder<Query> termsSet(TermsSetQuery v) {
+			this._kind = Kind.TermsSet;
 			this._value = v;
 			return this;
 		}
 
-		public Builder termsSet(Function<TermsSetQuery.Builder, ObjectBuilder<TermsSetQuery>> f) {
-			return this.termsSet(f.apply(new TermsSetQuery.Builder()).build());
+		public ObjectBuilder<Query> termsSet(Function<TermsSetQuery.Builder, ObjectBuilder<TermsSetQuery>> fn) {
+			return this.termsSet(fn.apply(new TermsSetQuery.Builder()).build());
 		}
 
-		public Builder wildcard(WildcardQuery v) {
-			this._type = WILDCARD;
+		public ObjectBuilder<Query> wildcard(WildcardQuery v) {
+			this._kind = Kind.Wildcard;
 			this._value = v;
 			return this;
 		}
 
-		public Builder wildcard(Function<WildcardQuery.Builder, ObjectBuilder<WildcardQuery>> f) {
-			return this.wildcard(f.apply(new WildcardQuery.Builder()).build());
+		public ObjectBuilder<Query> wildcard(Function<WildcardQuery.Builder, ObjectBuilder<WildcardQuery>> fn) {
+			return this.wildcard(fn.apply(new WildcardQuery.Builder()).build());
 		}
 
-		public Builder type(TypeQuery v) {
-			this._type = TYPE;
+		public ObjectBuilder<Query> type(TypeQuery v) {
+			this._kind = Kind.Type;
 			this._value = v;
 			return this;
 		}
 
-		public Builder type(Function<TypeQuery.Builder, ObjectBuilder<TypeQuery>> f) {
-			return this.type(f.apply(new TypeQuery.Builder()).build());
+		public ObjectBuilder<Query> type(Function<TypeQuery.Builder, ObjectBuilder<TypeQuery>> fn) {
+			return this.type(fn.apply(new TypeQuery.Builder()).build());
 		}
 
 		public Query build() {
+			_checkSingleUse();
 			return new Query(this);
 		}
 
 	}
 
-	protected static void setupQueryDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupQueryDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::bool, BoolQuery._DESERIALIZER, "bool");
 		op.add(Builder::boosting, BoostingQuery._DESERIALIZER, "boosting");
@@ -1249,7 +1711,7 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 		op.add(Builder::combinedFields, CombinedFieldsQuery._DESERIALIZER, "combined_fields");
 		op.add(Builder::constantScore, ConstantScoreQuery._DESERIALIZER, "constant_score");
 		op.add(Builder::disMax, DisMaxQuery._DESERIALIZER, "dis_max");
-		op.add(Builder::distanceFeature, JsonpDeserializer.jsonValueDeserializer(), "distance_feature");
+		op.add(Builder::distanceFeature, DistanceFeatureQuery._DESERIALIZER, "distance_feature");
 		op.add(Builder::exists, ExistsQuery._DESERIALIZER, "exists");
 		op.add(Builder::functionScore, FunctionScoreQuery._DESERIALIZER, "function_score");
 		op.add(Builder::fuzzy, FuzzyQuery._DESERIALIZER, "fuzzy");
@@ -1275,7 +1737,7 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 		op.add(Builder::pinned, PinnedQuery._DESERIALIZER, "pinned");
 		op.add(Builder::prefix, PrefixQuery._DESERIALIZER, "prefix");
 		op.add(Builder::queryString, QueryStringQuery._DESERIALIZER, "query_string");
-		op.add(Builder::range, JsonpDeserializer.jsonValueDeserializer(), "range");
+		op.add(Builder::range, RangeQuery._DESERIALIZER, "range");
 		op.add(Builder::rankFeature, RankFeatureQuery._DESERIALIZER, "rank_feature");
 		op.add(Builder::regexp, RegexpQuery._DESERIALIZER, "regexp");
 		op.add(Builder::script, ScriptQuery._DESERIALIZER, "script");
@@ -1299,6 +1761,6 @@ public class Query implements TaggedUnion<Object>, AggregationVariant, JsonpSeri
 
 	}
 
-	public static final JsonpDeserializer<Query> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Query> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Query::setupQueryDeserializer, Builder::build);
 }

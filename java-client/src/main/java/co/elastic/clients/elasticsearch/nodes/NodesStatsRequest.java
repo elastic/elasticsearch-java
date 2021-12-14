@@ -23,22 +23,22 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.Level;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,23 +49,19 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.stats.Request
 
-public final class NodesStatsRequest extends RequestBase {
-	@Nullable
-	private final List<String> nodeId;
+/**
+ * Returns statistical information about nodes in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/stats/NodesStatsRequest.ts#L24-L68">API
+ *      specification</a>
+ */
 
-	@Nullable
-	private final List<String> metric;
-
-	@Nullable
-	private final List<String> indexMetric;
-
-	@Nullable
+public class NodesStatsRequest extends RequestBase {
 	private final List<String> completionFields;
 
-	@Nullable
 	private final List<String> fielddataFields;
 
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
@@ -75,73 +71,47 @@ public final class NodesStatsRequest extends RequestBase {
 	private final Boolean includeSegmentFileSizes;
 
 	@Nullable
+	private final Boolean includeUnloadedSegments;
+
+	private final List<String> indexMetric;
+
+	@Nullable
 	private final Level level;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
+
+	private final List<String> metric;
+
+	private final List<String> nodeId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
-	@Nullable
 	private final List<String> types;
-
-	@Nullable
-	private final Boolean includeUnloadedSegments;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodesStatsRequest(Builder builder) {
+	private NodesStatsRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
-		this.indexMetric = ModelTypeHelper.unmodifiable(builder.indexMetric);
-		this.completionFields = ModelTypeHelper.unmodifiable(builder.completionFields);
-		this.fielddataFields = ModelTypeHelper.unmodifiable(builder.fielddataFields);
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.completionFields = ApiTypeHelper.unmodifiable(builder.completionFields);
+		this.fielddataFields = ApiTypeHelper.unmodifiable(builder.fielddataFields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.groups = builder.groups;
 		this.includeSegmentFileSizes = builder.includeSegmentFileSizes;
+		this.includeUnloadedSegments = builder.includeUnloadedSegments;
+		this.indexMetric = ApiTypeHelper.unmodifiable(builder.indexMetric);
 		this.level = builder.level;
 		this.masterTimeout = builder.masterTimeout;
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
-		this.types = ModelTypeHelper.unmodifiable(builder.types);
-		this.includeUnloadedSegments = builder.includeUnloadedSegments;
+		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
 	}
 
-	public NodesStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list of node IDs or names used to limit returned information.
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	@Nullable
-	public List<String> nodeId() {
-		return this.nodeId;
-	}
-
-	/**
-	 * Limit the information returned to the specified metrics
-	 * <p>
-	 * API name: {@code metric}
-	 */
-	@Nullable
-	public List<String> metric() {
-		return this.metric;
-	}
-
-	/**
-	 * Limit the information returned for indices metric to the specific index
-	 * metrics. It can be used only if indices (or all) metric is specified.
-	 * <p>
-	 * API name: {@code index_metric}
-	 */
-	@Nullable
-	public List<String> indexMetric() {
-		return this.indexMetric;
+	public static NodesStatsRequest of(Function<Builder, ObjectBuilder<NodesStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -150,8 +120,7 @@ public final class NodesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code completion_fields}
 	 */
-	@Nullable
-	public List<String> completionFields() {
+	public final List<String> completionFields() {
 		return this.completionFields;
 	}
 
@@ -161,8 +130,7 @@ public final class NodesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code fielddata_fields}
 	 */
-	@Nullable
-	public List<String> fielddataFields() {
+	public final List<String> fielddataFields() {
 		return this.fielddataFields;
 	}
 
@@ -172,8 +140,7 @@ public final class NodesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -183,7 +150,7 @@ public final class NodesStatsRequest extends RequestBase {
 	 * API name: {@code groups}
 	 */
 	@Nullable
-	public Boolean groups() {
+	public final Boolean groups() {
 		return this.groups;
 	}
 
@@ -194,8 +161,29 @@ public final class NodesStatsRequest extends RequestBase {
 	 * API name: {@code include_segment_file_sizes}
 	 */
 	@Nullable
-	public Boolean includeSegmentFileSizes() {
+	public final Boolean includeSegmentFileSizes() {
 		return this.includeSegmentFileSizes;
+	}
+
+	/**
+	 * If set to true segment stats will include stats for segments that are not
+	 * currently loaded into memory
+	 * <p>
+	 * API name: {@code include_unloaded_segments}
+	 */
+	@Nullable
+	public final Boolean includeUnloadedSegments() {
+		return this.includeUnloadedSegments;
+	}
+
+	/**
+	 * Limit the information returned for indices metric to the specific index
+	 * metrics. It can be used only if indices (or all) metric is specified.
+	 * <p>
+	 * API name: {@code index_metric}
+	 */
+	public final List<String> indexMetric() {
+		return this.indexMetric;
 	}
 
 	/**
@@ -205,7 +193,7 @@ public final class NodesStatsRequest extends RequestBase {
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public Level level() {
+	public final Level level() {
 		return this.level;
 	}
 
@@ -216,8 +204,26 @@ public final class NodesStatsRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Limit the information returned to the specified metrics
+	 * <p>
+	 * API name: {@code metric}
+	 */
+	public final List<String> metric() {
+		return this.metric;
+	}
+
+	/**
+	 * Comma-separated list of node IDs or names used to limit returned information.
+	 * <p>
+	 * API name: {@code node_id}
+	 */
+	public final List<String> nodeId() {
+		return this.nodeId;
 	}
 
 	/**
@@ -227,7 +233,7 @@ public final class NodesStatsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -236,20 +242,8 @@ public final class NodesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code types}
 	 */
-	@Nullable
-	public List<String> types() {
+	public final List<String> types() {
 		return this.types;
-	}
-
-	/**
-	 * If set to true segment stats will include stats for segments that are not
-	 * currently loaded into memory
-	 * <p>
-	 * API name: {@code include_unloaded_segments}
-	 */
-	@Nullable
-	public Boolean includeUnloadedSegments() {
-		return this.includeUnloadedSegments;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -257,16 +251,8 @@ public final class NodesStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link NodesStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<NodesStatsRequest> {
-		@Nullable
-		private List<String> nodeId;
 
-		@Nullable
-		private List<String> metric;
-
-		@Nullable
-		private List<String> indexMetric;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesStatsRequest> {
 		@Nullable
 		private List<String> completionFields;
 
@@ -283,112 +269,39 @@ public final class NodesStatsRequest extends RequestBase {
 		private Boolean includeSegmentFileSizes;
 
 		@Nullable
+		private Boolean includeUnloadedSegments;
+
+		@Nullable
+		private List<String> indexMetric;
+
+		@Nullable
 		private Level level;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
-		private String timeout;
+		private List<String> metric;
+
+		@Nullable
+		private List<String> nodeId;
+
+		@Nullable
+		private Time timeout;
 
 		@Nullable
 		private List<String> types;
 
-		@Nullable
-		private Boolean includeUnloadedSegments;
-
 		/**
-		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * Comma-separated list or wildcard expressions of fields to include in
+		 * fielddata and suggest statistics.
 		 * <p>
-		 * API name: {@code node_id}
-		 */
-		public Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
-			return this;
-		}
-
-		/**
-		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * API name: {@code completion_fields}
 		 * <p>
-		 * API name: {@code node_id}
+		 * Adds all elements of <code>list</code> to <code>completionFields</code>.
 		 */
-		public Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
-			return this;
-		}
-
-		/**
-		 * Limit the information returned to the specified metrics
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(@Nullable List<String> value) {
-			this.metric = value;
-			return this;
-		}
-
-		/**
-		 * Limit the information returned to the specified metrics
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
-			return this;
-		}
-
-		/**
-		 * Limit the information returned for indices metric to the specific index
-		 * metrics. It can be used only if indices (or all) metric is specified.
-		 * <p>
-		 * API name: {@code index_metric}
-		 */
-		public Builder indexMetric(@Nullable List<String> value) {
-			this.indexMetric = value;
-			return this;
-		}
-
-		/**
-		 * Limit the information returned for indices metric to the specific index
-		 * metrics. It can be used only if indices (or all) metric is specified.
-		 * <p>
-		 * API name: {@code index_metric}
-		 */
-		public Builder indexMetric(String... value) {
-			this.indexMetric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indexMetric(List)}, creating the list if needed.
-		 */
-		public Builder addIndexMetric(String value) {
-			if (this.indexMetric == null) {
-				this.indexMetric = new ArrayList<>();
-			}
-			this.indexMetric.add(value);
+		public final Builder completionFields(List<String> list) {
+			this.completionFields = _listAddAll(this.completionFields, list);
 			return this;
 		}
 
@@ -397,31 +310,11 @@ public final class NodesStatsRequest extends RequestBase {
 		 * fielddata and suggest statistics.
 		 * <p>
 		 * API name: {@code completion_fields}
-		 */
-		public Builder completionFields(@Nullable List<String> value) {
-			this.completionFields = value;
-			return this;
-		}
-
-		/**
-		 * Comma-separated list or wildcard expressions of fields to include in
-		 * fielddata and suggest statistics.
 		 * <p>
-		 * API name: {@code completion_fields}
+		 * Adds one or more values to <code>completionFields</code>.
 		 */
-		public Builder completionFields(String... value) {
-			this.completionFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #completionFields(List)}, creating the list if needed.
-		 */
-		public Builder addCompletionFields(String value) {
-			if (this.completionFields == null) {
-				this.completionFields = new ArrayList<>();
-			}
-			this.completionFields.add(value);
+		public final Builder completionFields(String value, String... values) {
+			this.completionFields = _listAdd(this.completionFields, value, values);
 			return this;
 		}
 
@@ -430,9 +323,11 @@ public final class NodesStatsRequest extends RequestBase {
 		 * fielddata statistics.
 		 * <p>
 		 * API name: {@code fielddata_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>.
 		 */
-		public Builder fielddataFields(@Nullable List<String> value) {
-			this.fielddataFields = value;
+		public final Builder fielddataFields(List<String> list) {
+			this.fielddataFields = _listAddAll(this.fielddataFields, list);
 			return this;
 		}
 
@@ -441,20 +336,11 @@ public final class NodesStatsRequest extends RequestBase {
 		 * fielddata statistics.
 		 * <p>
 		 * API name: {@code fielddata_fields}
+		 * <p>
+		 * Adds one or more values to <code>fielddataFields</code>.
 		 */
-		public Builder fielddataFields(String... value) {
-			this.fielddataFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed.
-		 */
-		public Builder addFielddataFields(String value) {
-			if (this.fielddataFields == null) {
-				this.fielddataFields = new ArrayList<>();
-			}
-			this.fielddataFields.add(value);
+		public final Builder fielddataFields(String value, String... values) {
+			this.fielddataFields = _listAdd(this.fielddataFields, value, values);
 			return this;
 		}
 
@@ -463,9 +349,11 @@ public final class NodesStatsRequest extends RequestBase {
 		 * statistics.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -474,20 +362,11 @@ public final class NodesStatsRequest extends RequestBase {
 		 * statistics.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -496,7 +375,7 @@ public final class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code groups}
 		 */
-		public Builder groups(@Nullable Boolean value) {
+		public final Builder groups(@Nullable Boolean value) {
 			this.groups = value;
 			return this;
 		}
@@ -507,8 +386,45 @@ public final class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_segment_file_sizes}
 		 */
-		public Builder includeSegmentFileSizes(@Nullable Boolean value) {
+		public final Builder includeSegmentFileSizes(@Nullable Boolean value) {
 			this.includeSegmentFileSizes = value;
+			return this;
+		}
+
+		/**
+		 * If set to true segment stats will include stats for segments that are not
+		 * currently loaded into memory
+		 * <p>
+		 * API name: {@code include_unloaded_segments}
+		 */
+		public final Builder includeUnloadedSegments(@Nullable Boolean value) {
+			this.includeUnloadedSegments = value;
+			return this;
+		}
+
+		/**
+		 * Limit the information returned for indices metric to the specific index
+		 * metrics. It can be used only if indices (or all) metric is specified.
+		 * <p>
+		 * API name: {@code index_metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexMetric</code>.
+		 */
+		public final Builder indexMetric(List<String> list) {
+			this.indexMetric = _listAddAll(this.indexMetric, list);
+			return this;
+		}
+
+		/**
+		 * Limit the information returned for indices metric to the specific index
+		 * metrics. It can be used only if indices (or all) metric is specified.
+		 * <p>
+		 * API name: {@code index_metric}
+		 * <p>
+		 * Adds one or more values to <code>indexMetric</code>.
+		 */
+		public final Builder indexMetric(String value, String... values) {
+			this.indexMetric = _listAdd(this.indexMetric, value, values);
 			return this;
 		}
 
@@ -518,7 +434,7 @@ public final class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable Level value) {
+		public final Builder level(@Nullable Level value) {
 			this.level = value;
 			return this;
 		}
@@ -529,8 +445,66 @@ public final class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
+		 */
+		public final Builder metric(List<String> list) {
+			this.metric = _listAddAll(this.metric, list);
+			return this;
+		}
+
+		/**
+		 * Limit the information returned to the specified metrics
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
+		 */
+		public final Builder metric(String value, String... values) {
+			this.metric = _listAdd(this.metric, value, values);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -540,50 +514,42 @@ public final class NodesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
-		 * A comma-separated list of document types for the indexing index metric.
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
-		 * API name: {@code types}
+		 * API name: {@code timeout}
 		 */
-		public Builder types(@Nullable List<String> value) {
-			this.types = value;
-			return this;
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * A comma-separated list of document types for the indexing index metric.
 		 * <p>
 		 * API name: {@code types}
-		 */
-		public Builder types(String... value) {
-			this.types = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed.
-		 */
-		public Builder addTypes(String value) {
-			if (this.types == null) {
-				this.types = new ArrayList<>();
-			}
-			this.types.add(value);
-			return this;
-		}
-
-		/**
-		 * If set to true segment stats will include stats for segments that are not
-		 * currently loaded into memory
 		 * <p>
-		 * API name: {@code include_unloaded_segments}
+		 * Adds all elements of <code>list</code> to <code>types</code>.
 		 */
-		public Builder includeUnloadedSegments(@Nullable Boolean value) {
-			this.includeUnloadedSegments = value;
+		public final Builder types(List<String> list) {
+			this.types = _listAddAll(this.types, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of document types for the indexing index metric.
+		 * <p>
+		 * API name: {@code types}
+		 * <p>
+		 * Adds one or more values to <code>types</code>.
+		 */
+		public final Builder types(String value, String... values) {
+			this.types = _listAdd(this.types, value, values);
 			return this;
 		}
 
@@ -594,6 +560,7 @@ public final class NodesStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public NodesStatsRequest build() {
+			_checkSingleUse();
 
 			return new NodesStatsRequest(this);
 		}
@@ -604,7 +571,9 @@ public final class NodesStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.stats}".
 	 */
-	public static final Endpoint<NodesStatsRequest, NodesStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/nodes.stats",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -613,18 +582,18 @@ public final class NodesStatsRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _nodeId = 1 << 0;
-				final int _metric = 1 << 1;
-				final int _indexMetric = 1 << 2;
+				final int _metric = 1 << 0;
+				final int _indexMetric = 1 << 1;
+				final int _nodeId = 1 << 2;
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
-					propsSet |= _nodeId;
-				if (request.metric() != null)
+				if (ApiTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
-				if (request.indexMetric() != null)
+				if (ApiTypeHelper.isDefined(request.indexMetric()))
 					propsSet |= _indexMetric;
+				if (ApiTypeHelper.isDefined(request.nodeId()))
+					propsSet |= _nodeId;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -696,37 +665,37 @@ public final class NodesStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.completionFields != null) {
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (ApiTypeHelper.isDefined(request.types)) {
+					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.level != null) {
+					params.put("level", request.level.jsonValue());
+				}
+				if (ApiTypeHelper.isDefined(request.completionFields)) {
 					params.put("completion_fields",
 							request.completionFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.fielddataFields != null) {
+				if (ApiTypeHelper.isDefined(request.fielddataFields)) {
 					params.put("fielddata_fields",
 							request.fielddataFields.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.fields != null) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.groups != null) {
 					params.put("groups", String.valueOf(request.groups));
 				}
+				if (request.includeUnloadedSegments != null) {
+					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
+				}
+				if (ApiTypeHelper.isDefined(request.fields)) {
+					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (request.includeSegmentFileSizes != null) {
 					params.put("include_segment_file_sizes", String.valueOf(request.includeSegmentFileSizes));
 				}
-				if (request.level != null) {
-					params.put("level", request.level.toString());
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
-				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
-				}
-				if (request.types != null) {
-					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.includeUnloadedSegments != null) {
-					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

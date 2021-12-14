@@ -23,24 +23,22 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -48,12 +46,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_api_key.Request
+
+/**
+ * Invalidates one or more API keys.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/invalidate_api_key/SecurityInvalidateApiKeyRequest.ts#L23-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class InvalidateApiKeyRequest extends RequestBase implements JsonpSerializable {
+public class InvalidateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
-	@Nullable
 	private final List<String> ids;
 
 	@Nullable
@@ -70,10 +75,10 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InvalidateApiKeyRequest(Builder builder) {
+	private InvalidateApiKeyRequest(Builder builder) {
 
 		this.id = builder.id;
-		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
+		this.ids = ApiTypeHelper.unmodifiable(builder.ids);
 		this.name = builder.name;
 		this.owner = builder.owner;
 		this.realmName = builder.realmName;
@@ -81,23 +86,22 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 
 	}
 
-	public InvalidateApiKeyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InvalidateApiKeyRequest of(Function<Builder, ObjectBuilder<InvalidateApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * API name: {@code ids}
 	 */
-	@Nullable
-	public List<String> ids() {
+	public final List<String> ids() {
 		return this.ids;
 	}
 
@@ -105,7 +109,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -113,7 +117,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	 * API name: {@code owner}
 	 */
 	@Nullable
-	public Boolean owner() {
+	public final Boolean owner() {
 		return this.owner;
 	}
 
@@ -121,7 +125,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	 * API name: {@code realm_name}
 	 */
 	@Nullable
-	public String realmName() {
+	public final String realmName() {
 		return this.realmName;
 	}
 
@@ -129,7 +133,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	 * API name: {@code username}
 	 */
 	@Nullable
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -145,13 +149,11 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
-		if (this.ids != null) {
-
+		if (ApiTypeHelper.isDefined(this.ids)) {
 			generator.writeKey("ids");
 			generator.writeStartArray();
 			for (String item0 : this.ids) {
@@ -162,25 +164,21 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.owner != null) {
-
 			generator.writeKey("owner");
 			generator.write(this.owner);
 
 		}
 		if (this.realmName != null) {
-
 			generator.writeKey("realm_name");
 			generator.write(this.realmName);
 
 		}
 		if (this.username != null) {
-
 			generator.writeKey("username");
 			generator.write(this.username);
 
@@ -193,7 +191,8 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link InvalidateApiKeyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<InvalidateApiKeyRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateApiKeyRequest> {
 		@Nullable
 		private String id;
 
@@ -215,42 +214,35 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ids</code>.
 		 */
-		public Builder ids(@Nullable List<String> value) {
-			this.ids = value;
+		public final Builder ids(List<String> list) {
+			this.ids = _listAddAll(this.ids, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds one or more values to <code>ids</code>.
 		 */
-		public Builder ids(String... value) {
-			this.ids = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed.
-		 */
-		public Builder addIds(String value) {
-			if (this.ids == null) {
-				this.ids = new ArrayList<>();
-			}
-			this.ids.add(value);
+		public final Builder ids(String value, String... values) {
+			this.ids = _listAdd(this.ids, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -258,7 +250,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code owner}
 		 */
-		public Builder owner(@Nullable Boolean value) {
+		public final Builder owner(@Nullable Boolean value) {
 			this.owner = value;
 			return this;
 		}
@@ -266,7 +258,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code realm_name}
 		 */
-		public Builder realmName(@Nullable String value) {
+		public final Builder realmName(@Nullable String value) {
 			this.realmName = value;
 			return this;
 		}
@@ -274,7 +266,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code username}
 		 */
-		public Builder username(@Nullable String value) {
+		public final Builder username(@Nullable String value) {
 			this.username = value;
 			return this;
 		}
@@ -286,6 +278,7 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 		 *             if some of the required fields are null.
 		 */
 		public InvalidateApiKeyRequest build() {
+			_checkSingleUse();
 
 			return new InvalidateApiKeyRequest(this);
 		}
@@ -297,10 +290,10 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	 * Json deserializer for {@link InvalidateApiKeyRequest}
 	 */
 	public static final JsonpDeserializer<InvalidateApiKeyRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InvalidateApiKeyRequest::setupInvalidateApiKeyRequestDeserializer, Builder::build);
+			.lazy(Builder::new, InvalidateApiKeyRequest::setupInvalidateApiKeyRequestDeserializer);
 
 	protected static void setupInvalidateApiKeyRequestDeserializer(
-			DelegatingDeserializer<InvalidateApiKeyRequest.Builder> op) {
+			ObjectDeserializer<InvalidateApiKeyRequest.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
@@ -316,7 +309,9 @@ public final class InvalidateApiKeyRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code security.invalidate_api_key}".
 	 */
-	public static final Endpoint<InvalidateApiKeyRequest, InvalidateApiKeyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<InvalidateApiKeyRequest, InvalidateApiKeyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.invalidate_api_key",
+
 			// Request method
 			request -> {
 				return "DELETE";

@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.UrlDecodeProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L347-L351">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UrlDecodeProcessor extends ProcessorBase implements ProcessorVariant {
+public class UrlDecodeProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -50,31 +57,31 @@ public final class UrlDecodeProcessor extends ProcessorBase implements Processor
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UrlDecodeProcessor(Builder builder) {
+	private UrlDecodeProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
 
 	}
 
-	public UrlDecodeProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UrlDecodeProcessor of(Function<Builder, ObjectBuilder<UrlDecodeProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "urldecode";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Urldecode;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -82,7 +89,7 @@ public final class UrlDecodeProcessor extends ProcessorBase implements Processor
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public Boolean ignoreMissing() {
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -90,25 +97,22 @@ public final class UrlDecodeProcessor extends ProcessorBase implements Processor
 	 * API name: {@code target_field}
 	 */
 	@Nullable
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.ignoreMissing != null) {
-
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
 
 		}
 		if (this.targetField != null) {
-
 			generator.writeKey("target_field");
 			generator.write(this.targetField);
 
@@ -121,6 +125,7 @@ public final class UrlDecodeProcessor extends ProcessorBase implements Processor
 	/**
 	 * Builder for {@link UrlDecodeProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UrlDecodeProcessor> {
@@ -135,7 +140,7 @@ public final class UrlDecodeProcessor extends ProcessorBase implements Processor
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -143,7 +148,7 @@ public final class UrlDecodeProcessor extends ProcessorBase implements Processor
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(@Nullable Boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -151,7 +156,7 @@ public final class UrlDecodeProcessor extends ProcessorBase implements Processor
 		/**
 		 * API name: {@code target_field}
 		 */
-		public Builder targetField(@Nullable String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -168,6 +173,7 @@ public final class UrlDecodeProcessor extends ProcessorBase implements Processor
 		 *             if some of the required fields are null.
 		 */
 		public UrlDecodeProcessor build() {
+			_checkSingleUse();
 
 			return new UrlDecodeProcessor(this);
 		}
@@ -179,9 +185,9 @@ public final class UrlDecodeProcessor extends ProcessorBase implements Processor
 	 * Json deserializer for {@link UrlDecodeProcessor}
 	 */
 	public static final JsonpDeserializer<UrlDecodeProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UrlDecodeProcessor::setupUrlDecodeProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, UrlDecodeProcessor::setupUrlDecodeProcessorDeserializer);
 
-	protected static void setupUrlDecodeProcessorDeserializer(DelegatingDeserializer<UrlDecodeProcessor.Builder> op) {
+	protected static void setupUrlDecodeProcessorDeserializer(ObjectDeserializer<UrlDecodeProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

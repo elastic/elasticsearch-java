@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -36,35 +36,42 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.KeywordTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L61-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class KeywordTokenizer extends TokenizerBase implements TokenizerVariant {
+public class KeywordTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final int bufferSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KeywordTokenizer(Builder builder) {
+	private KeywordTokenizer(Builder builder) {
 		super(builder);
 
-		this.bufferSize = Objects.requireNonNull(builder.bufferSize, "buffer_size");
+		this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
 
 	}
 
-	public KeywordTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KeywordTokenizer of(Function<Builder, ObjectBuilder<KeywordTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "keyword";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.Keyword;
 	}
 
 	/**
 	 * Required - API name: {@code buffer_size}
 	 */
-	public int bufferSize() {
+	public final int bufferSize() {
 		return this.bufferSize;
 	}
 
@@ -72,7 +79,6 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 
 		generator.write("type", "keyword");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("buffer_size");
 		generator.write(this.bufferSize);
 
@@ -83,6 +89,7 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 	/**
 	 * Builder for {@link KeywordTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeywordTokenizer> {
@@ -91,7 +98,7 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 		/**
 		 * Required - API name: {@code buffer_size}
 		 */
-		public Builder bufferSize(int value) {
+		public final Builder bufferSize(int value) {
 			this.bufferSize = value;
 			return this;
 		}
@@ -108,6 +115,7 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 		 *             if some of the required fields are null.
 		 */
 		public KeywordTokenizer build() {
+			_checkSingleUse();
 
 			return new KeywordTokenizer(this);
 		}
@@ -119,9 +127,9 @@ public final class KeywordTokenizer extends TokenizerBase implements TokenizerVa
 	 * Json deserializer for {@link KeywordTokenizer}
 	 */
 	public static final JsonpDeserializer<KeywordTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KeywordTokenizer::setupKeywordTokenizerDeserializer, Builder::build);
+			KeywordTokenizer::setupKeywordTokenizerDeserializer);
 
-	protected static void setupKeywordTokenizerDeserializer(DelegatingDeserializer<KeywordTokenizer.Builder> op) {
+	protected static void setupKeywordTokenizerDeserializer(ObjectDeserializer<KeywordTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::bufferSize, JsonpDeserializer.integerDeserializer(), "buffer_size");
 

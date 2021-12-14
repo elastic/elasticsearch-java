@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.delete_forecast.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_forecast/MlDeleteForecastResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteForecastResponse extends AcknowledgedResponseBase {
+public class DeleteForecastResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteForecastResponse(Builder builder) {
+	private DeleteForecastResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteForecastResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteForecastResponse of(Function<Builder, ObjectBuilder<DeleteForecastResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteForecastResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteForecastResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteForecastResponse> {
@@ -68,6 +75,7 @@ public final class DeleteForecastResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteForecastResponse build() {
+			_checkSingleUse();
 
 			return new DeleteForecastResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class DeleteForecastResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteForecastResponse}
 	 */
 	public static final JsonpDeserializer<DeleteForecastResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteForecastResponse::setupDeleteForecastResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteForecastResponse::setupDeleteForecastResponseDeserializer);
 
 	protected static void setupDeleteForecastResponseDeserializer(
-			DelegatingDeserializer<DeleteForecastResponse.Builder> op) {
+			ObjectDeserializer<DeleteForecastResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.KeyedProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L62-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class KeyedProcessor implements JsonpSerializable {
+public class KeyedProcessor implements JsonpSerializable {
 	private final Process statistics;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KeyedProcessor(Builder builder) {
+	private KeyedProcessor(Builder builder) {
 
-		this.statistics = Objects.requireNonNull(builder.statistics, "statistics");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.statistics = ApiTypeHelper.requireNonNull(builder.statistics, this, "statistics");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public KeyedProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KeyedProcessor of(Function<Builder, ObjectBuilder<KeyedProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code statistics}
 	 */
-	public Process statistics() {
+	public final Process statistics() {
 		return this.statistics;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -95,7 +103,8 @@ public final class KeyedProcessor implements JsonpSerializable {
 	/**
 	 * Builder for {@link KeyedProcessor}.
 	 */
-	public static class Builder implements ObjectBuilder<KeyedProcessor> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KeyedProcessor> {
 		private Process statistics;
 
 		private String type;
@@ -103,7 +112,7 @@ public final class KeyedProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code statistics}
 		 */
-		public Builder statistics(Process value) {
+		public final Builder statistics(Process value) {
 			this.statistics = value;
 			return this;
 		}
@@ -111,14 +120,14 @@ public final class KeyedProcessor implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code statistics}
 		 */
-		public Builder statistics(Function<Process.Builder, ObjectBuilder<Process>> fn) {
+		public final Builder statistics(Function<Process.Builder, ObjectBuilder<Process>> fn) {
 			return this.statistics(fn.apply(new Process.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -130,6 +139,7 @@ public final class KeyedProcessor implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public KeyedProcessor build() {
+			_checkSingleUse();
 
 			return new KeyedProcessor(this);
 		}
@@ -141,9 +151,9 @@ public final class KeyedProcessor implements JsonpSerializable {
 	 * Json deserializer for {@link KeyedProcessor}
 	 */
 	public static final JsonpDeserializer<KeyedProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KeyedProcessor::setupKeyedProcessorDeserializer, Builder::build);
+			KeyedProcessor::setupKeyedProcessorDeserializer);
 
-	protected static void setupKeyedProcessorDeserializer(DelegatingDeserializer<KeyedProcessor.Builder> op) {
+	protected static void setupKeyedProcessorDeserializer(ObjectDeserializer<KeyedProcessor.Builder> op) {
 
 		op.add(Builder::statistics, Process._DESERIALIZER, "statistics");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");

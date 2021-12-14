@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngestProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L213-L215">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoIngestProcessor implements JsonpSerializable {
+public class NodeInfoIngestProcessor implements JsonpSerializable {
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoIngestProcessor(Builder builder) {
+	private NodeInfoIngestProcessor(Builder builder) {
 
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public NodeInfoIngestProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoIngestProcessor of(Function<Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -82,13 +90,14 @@ public final class NodeInfoIngestProcessor implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoIngestProcessor}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoIngestProcessor> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngestProcessor> {
 		private String type;
 
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class NodeInfoIngestProcessor implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoIngestProcessor build() {
+			_checkSingleUse();
 
 			return new NodeInfoIngestProcessor(this);
 		}
@@ -111,10 +121,10 @@ public final class NodeInfoIngestProcessor implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoIngestProcessor}
 	 */
 	public static final JsonpDeserializer<NodeInfoIngestProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoIngestProcessor::setupNodeInfoIngestProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoIngestProcessor::setupNodeInfoIngestProcessorDeserializer);
 
 	protected static void setupNodeInfoIngestProcessorDeserializer(
-			DelegatingDeserializer<NodeInfoIngestProcessor.Builder> op) {
+			ObjectDeserializer<NodeInfoIngestProcessor.Builder> op) {
 
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 

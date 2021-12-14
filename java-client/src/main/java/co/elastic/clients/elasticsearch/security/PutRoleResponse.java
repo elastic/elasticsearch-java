@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_role.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_role/SecurityPutRoleResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutRoleResponse implements JsonpSerializable {
+public class PutRoleResponse implements JsonpSerializable {
 	private final CreatedStatus role;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutRoleResponse(Builder builder) {
+	private PutRoleResponse(Builder builder) {
 
-		this.role = Objects.requireNonNull(builder.role, "role");
+		this.role = ApiTypeHelper.requireNonNull(builder.role, this, "role");
 
 	}
 
-	public PutRoleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutRoleResponse of(Function<Builder, ObjectBuilder<PutRoleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code role}
 	 */
-	public CreatedStatus role() {
+	public final CreatedStatus role() {
 		return this.role;
 	}
 
@@ -81,13 +89,14 @@ public final class PutRoleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutRoleResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutRoleResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleResponse> {
 		private CreatedStatus role;
 
 		/**
 		 * Required - API name: {@code role}
 		 */
-		public Builder role(CreatedStatus value) {
+		public final Builder role(CreatedStatus value) {
 			this.role = value;
 			return this;
 		}
@@ -95,7 +104,7 @@ public final class PutRoleResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role}
 		 */
-		public Builder role(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
+		public final Builder role(Function<CreatedStatus.Builder, ObjectBuilder<CreatedStatus>> fn) {
 			return this.role(fn.apply(new CreatedStatus.Builder()).build());
 		}
 
@@ -106,6 +115,7 @@ public final class PutRoleResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutRoleResponse build() {
+			_checkSingleUse();
 
 			return new PutRoleResponse(this);
 		}
@@ -117,9 +127,9 @@ public final class PutRoleResponse implements JsonpSerializable {
 	 * Json deserializer for {@link PutRoleResponse}
 	 */
 	public static final JsonpDeserializer<PutRoleResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutRoleResponse::setupPutRoleResponseDeserializer, Builder::build);
+			PutRoleResponse::setupPutRoleResponseDeserializer);
 
-	protected static void setupPutRoleResponseDeserializer(DelegatingDeserializer<PutRoleResponse.Builder> op) {
+	protected static void setupPutRoleResponseDeserializer(ObjectDeserializer<PutRoleResponse.Builder> op) {
 
 		op.add(Builder::role, CreatedStatus._DESERIALIZER, "role");
 

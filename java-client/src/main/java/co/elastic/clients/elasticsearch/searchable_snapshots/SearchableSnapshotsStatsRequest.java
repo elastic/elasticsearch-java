@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.searchable_snapshots;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,8 +46,15 @@ import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.stats.Request
 
-public final class SearchableSnapshotsStatsRequest extends RequestBase {
-	@Nullable
+/**
+ * Retrieve shard-level statistics about searchable snapshots.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/stats/SearchableSnapshotsStatsRequest.ts#L24-L36">API
+ *      specification</a>
+ */
+
+public class SearchableSnapshotsStatsRequest extends RequestBase {
 	private final List<String> index;
 
 	@Nullable
@@ -56,15 +62,16 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchableSnapshotsStatsRequest(Builder builder) {
+	private SearchableSnapshotsStatsRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.level = builder.level;
 
 	}
 
-	public SearchableSnapshotsStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchableSnapshotsStatsRequest of(
+			Function<Builder, ObjectBuilder<SearchableSnapshotsStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,8 +79,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	@Nullable
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -83,7 +89,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public StatsLevel level() {
+	public final StatsLevel level() {
 		return this.level;
 	}
 
@@ -92,7 +98,8 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link SearchableSnapshotsStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchableSnapshotsStatsRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchableSnapshotsStatsRequest> {
 		@Nullable
 		private List<String> index;
 
@@ -103,9 +110,11 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 		 * A comma-separated list of index names
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -113,20 +122,11 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 		 * A comma-separated list of index names
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -135,7 +135,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable StatsLevel value) {
+		public final Builder level(@Nullable StatsLevel value) {
 			this.level = value;
 			return this;
 		}
@@ -147,6 +147,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public SearchableSnapshotsStatsRequest build() {
+			_checkSingleUse();
 
 			return new SearchableSnapshotsStatsRequest(this);
 		}
@@ -157,7 +158,9 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code searchable_snapshots.stats}".
 	 */
-	public static final Endpoint<SearchableSnapshotsStatsRequest, SearchableSnapshotsStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SearchableSnapshotsStatsRequest, SearchableSnapshotsStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/searchable_snapshots.stats",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -170,7 +173,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -195,7 +198,7 @@ public final class SearchableSnapshotsStatsRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.level != null) {
-					params.put("level", request.level.toString());
+					params.put("level", request.level.jsonValue());
 				}
 				return params;
 

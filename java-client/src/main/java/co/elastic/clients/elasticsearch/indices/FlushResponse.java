@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardsOperationResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.flush.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/flush/IndicesFlushResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FlushResponse extends ShardsOperationResponseBase {
+public class FlushResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public FlushResponse(Builder builder) {
+	private FlushResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public FlushResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FlushResponse of(Function<Builder, ObjectBuilder<FlushResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class FlushResponse extends ShardsOperationResponseBase {
 	/**
 	 * Builder for {@link FlushResponse}.
 	 */
+
 	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FlushResponse> {
@@ -68,6 +75,7 @@ public final class FlushResponse extends ShardsOperationResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public FlushResponse build() {
+			_checkSingleUse();
 
 			return new FlushResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class FlushResponse extends ShardsOperationResponseBase {
 	 * Json deserializer for {@link FlushResponse}
 	 */
 	public static final JsonpDeserializer<FlushResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FlushResponse::setupFlushResponseDeserializer, Builder::build);
+			FlushResponse::setupFlushResponseDeserializer);
 
-	protected static void setupFlushResponseDeserializer(DelegatingDeserializer<FlushResponse.Builder> op) {
+	protected static void setupFlushResponseDeserializer(ObjectDeserializer<FlushResponse.Builder> op) {
 		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
 	}

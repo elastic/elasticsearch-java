@@ -23,24 +23,22 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -48,20 +46,27 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.put_job.Request
-@JsonpDeserializable
-public final class PutJobRequest extends RequestBase implements JsonpSerializable {
-	private final String id;
 
+/**
+ * Creates a rollup job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/put_job/CreateRollupJobRequest.ts#L26-L43">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String cron;
 
 	@Nullable
 	private final Groupings groups;
 
+	private final String id;
+
 	@Nullable
 	private final String indexPattern;
 
-	@Nullable
 	private final List<FieldMetric> metrics;
 
 	@Nullable
@@ -72,36 +77,27 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutJobRequest(Builder builder) {
+	private PutJobRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
 		this.cron = builder.cron;
 		this.groups = builder.groups;
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.indexPattern = builder.indexPattern;
-		this.metrics = ModelTypeHelper.unmodifiable(builder.metrics);
+		this.metrics = ApiTypeHelper.unmodifiable(builder.metrics);
 		this.pageSize = builder.pageSize;
 		this.rollupIndex = builder.rollupIndex;
 
 	}
 
-	public PutJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The ID of the job to create
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
+	public static PutJobRequest of(Function<Builder, ObjectBuilder<PutJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code cron}
 	 */
 	@Nullable
-	public String cron() {
+	public final String cron() {
 		return this.cron;
 	}
 
@@ -109,23 +105,31 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code groups}
 	 */
 	@Nullable
-	public Groupings groups() {
+	public final Groupings groups() {
 		return this.groups;
+	}
+
+	/**
+	 * Required - The ID of the job to create
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public final String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code index_pattern}
 	 */
 	@Nullable
-	public String indexPattern() {
+	public final String indexPattern() {
 		return this.indexPattern;
 	}
 
 	/**
 	 * API name: {@code metrics}
 	 */
-	@Nullable
-	public List<FieldMetric> metrics() {
+	public final List<FieldMetric> metrics() {
 		return this.metrics;
 	}
 
@@ -133,7 +137,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code page_size}
 	 */
 	@Nullable
-	public Long pageSize() {
+	public final Long pageSize() {
 		return this.pageSize;
 	}
 
@@ -141,7 +145,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code rollup_index}
 	 */
 	@Nullable
-	public String rollupIndex() {
+	public final String rollupIndex() {
 		return this.rollupIndex;
 	}
 
@@ -157,25 +161,21 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.cron != null) {
-
 			generator.writeKey("cron");
 			generator.write(this.cron);
 
 		}
 		if (this.groups != null) {
-
 			generator.writeKey("groups");
 			this.groups.serialize(generator, mapper);
 
 		}
 		if (this.indexPattern != null) {
-
 			generator.writeKey("index_pattern");
 			generator.write(this.indexPattern);
 
 		}
-		if (this.metrics != null) {
-
+		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
 			for (FieldMetric item0 : this.metrics) {
@@ -186,13 +186,11 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 		}
 		if (this.pageSize != null) {
-
 			generator.writeKey("page_size");
 			generator.write(this.pageSize);
 
 		}
 		if (this.rollupIndex != null) {
-
 			generator.writeKey("rollup_index");
 			generator.write(this.rollupIndex);
 
@@ -205,14 +203,15 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link PutJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutJobRequest> {
-		private String id;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutJobRequest> {
 		@Nullable
 		private String cron;
 
 		@Nullable
 		private Groupings groups;
+
+		private String id;
 
 		@Nullable
 		private String indexPattern;
@@ -227,19 +226,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		private String rollupIndex;
 
 		/**
-		 * Required - The ID of the job to create
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code cron}
 		 */
-		public Builder cron(@Nullable String value) {
+		public final Builder cron(@Nullable String value) {
 			this.cron = value;
 			return this;
 		}
@@ -247,7 +236,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code groups}
 		 */
-		public Builder groups(@Nullable Groupings value) {
+		public final Builder groups(@Nullable Groupings value) {
 			this.groups = value;
 			return this;
 		}
@@ -255,63 +244,61 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code groups}
 		 */
-		public Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
+		public final Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
 			return this.groups(fn.apply(new Groupings.Builder()).build());
+		}
+
+		/**
+		 * Required - The ID of the job to create
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public final Builder id(String value) {
+			this.id = value;
+			return this;
 		}
 
 		/**
 		 * API name: {@code index_pattern}
 		 */
-		public Builder indexPattern(@Nullable String value) {
+		public final Builder indexPattern(@Nullable String value) {
 			this.indexPattern = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code metrics}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metrics</code>.
 		 */
-		public Builder metrics(@Nullable List<FieldMetric> value) {
-			this.metrics = value;
+		public final Builder metrics(List<FieldMetric> list) {
+			this.metrics = _listAddAll(this.metrics, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code metrics}
+		 * <p>
+		 * Adds one or more values to <code>metrics</code>.
 		 */
-		public Builder metrics(FieldMetric... value) {
-			this.metrics = Arrays.asList(value);
+		public final Builder metrics(FieldMetric value, FieldMetric... values) {
+			this.metrics = _listAdd(this.metrics, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
+		 * API name: {@code metrics}
+		 * <p>
+		 * Adds a value to <code>metrics</code> using a builder lambda.
 		 */
-		public Builder addMetrics(FieldMetric value) {
-			if (this.metrics == null) {
-				this.metrics = new ArrayList<>();
-			}
-			this.metrics.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #metrics(List)} to a singleton list.
-		 */
-		public Builder metrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
-			return this.metrics(fn.apply(new FieldMetric.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #metrics(List)}, creating the list if needed.
-		 */
-		public Builder addMetrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
-			return this.addMetrics(fn.apply(new FieldMetric.Builder()).build());
+		public final Builder metrics(Function<FieldMetric.Builder, ObjectBuilder<FieldMetric>> fn) {
+			return metrics(fn.apply(new FieldMetric.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code page_size}
 		 */
-		public Builder pageSize(@Nullable Long value) {
+		public final Builder pageSize(@Nullable Long value) {
 			this.pageSize = value;
 			return this;
 		}
@@ -319,7 +306,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		/**
 		 * API name: {@code rollup_index}
 		 */
-		public Builder rollupIndex(@Nullable String value) {
+		public final Builder rollupIndex(@Nullable String value) {
 			this.rollupIndex = value;
 			return this;
 		}
@@ -331,6 +318,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public PutJobRequest build() {
+			_checkSingleUse();
 
 			return new PutJobRequest(this);
 		}
@@ -342,9 +330,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link PutJobRequest}
 	 */
 	public static final JsonpDeserializer<PutJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutJobRequest::setupPutJobRequestDeserializer, Builder::build);
+			PutJobRequest::setupPutJobRequestDeserializer);
 
-	protected static void setupPutJobRequestDeserializer(DelegatingDeserializer<PutJobRequest.Builder> op) {
+	protected static void setupPutJobRequestDeserializer(ObjectDeserializer<PutJobRequest.Builder> op) {
 
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
 		op.add(Builder::groups, Groupings._DESERIALIZER, "groups");
@@ -360,7 +348,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code rollup.put_job}".
 	 */
-	public static final Endpoint<PutJobRequest, PutJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutJobRequest, PutJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.put_job",
+
 			// Request method
 			request -> {
 				return "PUT";

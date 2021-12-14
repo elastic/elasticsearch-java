@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.put_trained_model_alias.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model_alias/MlPutTrainedModelAliasResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutTrainedModelAliasResponse extends AcknowledgedResponseBase {
+public class PutTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutTrainedModelAliasResponse(Builder builder) {
+	private PutTrainedModelAliasResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutTrainedModelAliasResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutTrainedModelAliasResponse of(Function<Builder, ObjectBuilder<PutTrainedModelAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutTrainedModelAliasResponse extends AcknowledgedResponseBase
 	/**
 	 * Builder for {@link PutTrainedModelAliasResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutTrainedModelAliasResponse> {
@@ -68,6 +75,7 @@ public final class PutTrainedModelAliasResponse extends AcknowledgedResponseBase
 		 *             if some of the required fields are null.
 		 */
 		public PutTrainedModelAliasResponse build() {
+			_checkSingleUse();
 
 			return new PutTrainedModelAliasResponse(this);
 		}
@@ -78,11 +86,11 @@ public final class PutTrainedModelAliasResponse extends AcknowledgedResponseBase
 	/**
 	 * Json deserializer for {@link PutTrainedModelAliasResponse}
 	 */
-	public static final JsonpDeserializer<PutTrainedModelAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutTrainedModelAliasResponse::setupPutTrainedModelAliasResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<PutTrainedModelAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutTrainedModelAliasResponse::setupPutTrainedModelAliasResponseDeserializer);
 
 	protected static void setupPutTrainedModelAliasResponseDeserializer(
-			DelegatingDeserializer<PutTrainedModelAliasResponse.Builder> op) {
+			ObjectDeserializer<PutTrainedModelAliasResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

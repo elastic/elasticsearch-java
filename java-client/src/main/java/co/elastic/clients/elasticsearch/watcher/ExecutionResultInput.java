@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,18 +30,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ExecutionResultInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Execution.ts#L86-L90">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ExecutionResultInput implements JsonpSerializable {
+public class ExecutionResultInput implements JsonpSerializable {
 	private final Map<String, JsonData> payload;
 
 	private final ActionStatusOptions status;
@@ -51,36 +58,36 @@ public final class ExecutionResultInput implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecutionResultInput(Builder builder) {
+	private ExecutionResultInput(Builder builder) {
 
-		this.payload = ModelTypeHelper.unmodifiableNonNull(builder.payload, "payload");
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.payload = ApiTypeHelper.unmodifiableRequired(builder.payload, this, "payload");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public ExecutionResultInput(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecutionResultInput of(Function<Builder, ObjectBuilder<ExecutionResultInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code payload}
 	 */
-	public Map<String, JsonData> payload() {
+	public final Map<String, JsonData> payload() {
 		return this.payload;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public ActionStatusOptions status() {
+	public final ActionStatusOptions status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public InputType type() {
+	public final InputType type() {
 		return this.type;
 	}
 
@@ -95,18 +102,19 @@ public final class ExecutionResultInput implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("payload");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.payload.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.payload)) {
+			generator.writeKey("payload");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.payload.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
-
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 
@@ -117,7 +125,8 @@ public final class ExecutionResultInput implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecutionResultInput}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecutionResultInput> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionResultInput> {
 		private Map<String, JsonData> payload;
 
 		private ActionStatusOptions status;
@@ -126,27 +135,28 @@ public final class ExecutionResultInput implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code payload}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>payload</code>.
 		 */
-		public Builder payload(Map<String, JsonData> value) {
-			this.payload = value;
+		public final Builder payload(Map<String, JsonData> map) {
+			this.payload = _mapPutAll(this.payload, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #payload(Map)}, creating the map if needed.
+		 * Required - API name: {@code payload}
+		 * <p>
+		 * Adds an entry to <code>payload</code>.
 		 */
-		public Builder putPayload(String key, JsonData value) {
-			if (this.payload == null) {
-				this.payload = new HashMap<>();
-			}
-			this.payload.put(key, value);
+		public final Builder payload(String key, JsonData value) {
+			this.payload = _mapPut(this.payload, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(ActionStatusOptions value) {
+		public final Builder status(ActionStatusOptions value) {
 			this.status = value;
 			return this;
 		}
@@ -154,7 +164,7 @@ public final class ExecutionResultInput implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(InputType value) {
+		public final Builder type(InputType value) {
 			this.type = value;
 			return this;
 		}
@@ -166,6 +176,7 @@ public final class ExecutionResultInput implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecutionResultInput build() {
+			_checkSingleUse();
 
 			return new ExecutionResultInput(this);
 		}
@@ -177,10 +188,9 @@ public final class ExecutionResultInput implements JsonpSerializable {
 	 * Json deserializer for {@link ExecutionResultInput}
 	 */
 	public static final JsonpDeserializer<ExecutionResultInput> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExecutionResultInput::setupExecutionResultInputDeserializer, Builder::build);
+			.lazy(Builder::new, ExecutionResultInput::setupExecutionResultInputDeserializer);
 
-	protected static void setupExecutionResultInputDeserializer(
-			DelegatingDeserializer<ExecutionResultInput.Builder> op) {
+	protected static void setupExecutionResultInputDeserializer(ObjectDeserializer<ExecutionResultInput.Builder> op) {
 
 		op.add(Builder::payload, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "payload");
 		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");

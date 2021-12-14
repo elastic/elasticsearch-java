@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.TranslogStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L95-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TranslogStatus implements JsonpSerializable {
+public class TranslogStatus implements JsonpSerializable {
 	private final String percent;
 
 	private final long recovered;
@@ -56,46 +64,46 @@ public final class TranslogStatus implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TranslogStatus(Builder builder) {
+	private TranslogStatus(Builder builder) {
 
-		this.percent = Objects.requireNonNull(builder.percent, "percent");
-		this.recovered = Objects.requireNonNull(builder.recovered, "recovered");
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.totalOnStart = Objects.requireNonNull(builder.totalOnStart, "total_on_start");
+		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalOnStart = ApiTypeHelper.requireNonNull(builder.totalOnStart, this, "totalOnStart");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = Objects.requireNonNull(builder.totalTimeInMillis, "total_time_in_millis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
-	public TranslogStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TranslogStatus of(Function<Builder, ObjectBuilder<TranslogStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code percent}
 	 */
-	public String percent() {
+	public final String percent() {
 		return this.percent;
 	}
 
 	/**
 	 * Required - API name: {@code recovered}
 	 */
-	public long recovered() {
+	public final long recovered() {
 		return this.recovered;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code total_on_start}
 	 */
-	public long totalOnStart() {
+	public final long totalOnStart() {
 		return this.totalOnStart;
 	}
 
@@ -103,14 +111,14 @@ public final class TranslogStatus implements JsonpSerializable {
 	 * API name: {@code total_time}
 	 */
 	@Nullable
-	public String totalTime() {
+	public final String totalTime() {
 		return this.totalTime;
 	}
 
 	/**
 	 * Required - API name: {@code total_time_in_millis}
 	 */
-	public String totalTimeInMillis() {
+	public final String totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -138,12 +146,10 @@ public final class TranslogStatus implements JsonpSerializable {
 		generator.write(this.totalOnStart);
 
 		if (this.totalTime != null) {
-
 			generator.writeKey("total_time");
 			generator.write(this.totalTime);
 
 		}
-
 		generator.writeKey("total_time_in_millis");
 		generator.write(this.totalTimeInMillis);
 
@@ -154,7 +160,8 @@ public final class TranslogStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link TranslogStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<TranslogStatus> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslogStatus> {
 		private String percent;
 
 		private Long recovered;
@@ -171,7 +178,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code percent}
 		 */
-		public Builder percent(String value) {
+		public final Builder percent(String value) {
 			this.percent = value;
 			return this;
 		}
@@ -179,7 +186,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code recovered}
 		 */
-		public Builder recovered(long value) {
+		public final Builder recovered(long value) {
 			this.recovered = value;
 			return this;
 		}
@@ -187,7 +194,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(long value) {
+		public final Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -195,7 +202,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_on_start}
 		 */
-		public Builder totalOnStart(long value) {
+		public final Builder totalOnStart(long value) {
 			this.totalOnStart = value;
 			return this;
 		}
@@ -203,7 +210,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public Builder totalTime(@Nullable String value) {
+		public final Builder totalTime(@Nullable String value) {
 			this.totalTime = value;
 			return this;
 		}
@@ -211,7 +218,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(String value) {
+		public final Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -223,6 +230,7 @@ public final class TranslogStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TranslogStatus build() {
+			_checkSingleUse();
 
 			return new TranslogStatus(this);
 		}
@@ -234,9 +242,9 @@ public final class TranslogStatus implements JsonpSerializable {
 	 * Json deserializer for {@link TranslogStatus}
 	 */
 	public static final JsonpDeserializer<TranslogStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TranslogStatus::setupTranslogStatusDeserializer, Builder::build);
+			TranslogStatus::setupTranslogStatusDeserializer);
 
-	protected static void setupTranslogStatusDeserializer(DelegatingDeserializer<TranslogStatus.Builder> op) {
+	protected static void setupTranslogStatusDeserializer(ObjectDeserializer<TranslogStatus.Builder> op) {
 
 		op.add(Builder::percent, JsonpDeserializer.stringDeserializer(), "percent");
 		op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");

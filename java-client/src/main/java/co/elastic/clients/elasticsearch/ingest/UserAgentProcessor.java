@@ -23,27 +23,31 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.UserAgentProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L113-L119">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UserAgentProcessor extends ProcessorBase implements ProcessorVariant {
+public class UserAgentProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final boolean ignoreMissing;
@@ -56,81 +60,82 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UserAgentProcessor(Builder builder) {
+	private UserAgentProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.ignoreMissing = Objects.requireNonNull(builder.ignoreMissing, "ignore_missing");
-		this.options = ModelTypeHelper.unmodifiableNonNull(builder.options, "options");
-		this.regexFile = Objects.requireNonNull(builder.regexFile, "regex_file");
-		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.ignoreMissing = ApiTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
+		this.options = ApiTypeHelper.unmodifiableRequired(builder.options, this, "options");
+		this.regexFile = ApiTypeHelper.requireNonNull(builder.regexFile, this, "regexFile");
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 
-	public UserAgentProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UserAgentProcessor of(Function<Builder, ObjectBuilder<UserAgentProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "user_agent";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.UserAgent;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code ignore_missing}
 	 */
-	public boolean ignoreMissing() {
+	public final boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
 	 * Required - API name: {@code options}
 	 */
-	public List<UserAgentProperty> options() {
+	public final List<UserAgentProperty> options() {
 		return this.options;
 	}
 
 	/**
 	 * Required - API name: {@code regex_file}
 	 */
-	public String regexFile() {
+	public final String regexFile() {
 		return this.regexFile;
 	}
 
 	/**
 	 * Required - API name: {@code target_field}
 	 */
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		generator.writeKey("ignore_missing");
 		generator.write(this.ignoreMissing);
 
-		generator.writeKey("options");
-		generator.writeStartArray();
-		for (UserAgentProperty item0 : this.options) {
-			item0.serialize(generator, mapper);
-		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.options)) {
+			generator.writeKey("options");
+			generator.writeStartArray();
+			for (UserAgentProperty item0 : this.options) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
+		}
 		generator.writeKey("regex_file");
 		generator.write(this.regexFile);
 
@@ -144,6 +149,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 	/**
 	 * Builder for {@link UserAgentProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UserAgentProcessor> {
@@ -160,7 +166,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -168,42 +174,35 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		/**
 		 * Required - API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(boolean value) {
+		public final Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>options</code>.
 		 */
-		public Builder options(List<UserAgentProperty> value) {
-			this.options = value;
+		public final Builder options(List<UserAgentProperty> list) {
+			this.options = _listAddAll(this.options, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds one or more values to <code>options</code>.
 		 */
-		public Builder options(UserAgentProperty... value) {
-			this.options = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #options(List)}, creating the list if needed.
-		 */
-		public Builder addOptions(UserAgentProperty value) {
-			if (this.options == null) {
-				this.options = new ArrayList<>();
-			}
-			this.options.add(value);
+		public final Builder options(UserAgentProperty value, UserAgentProperty... values) {
+			this.options = _listAdd(this.options, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code regex_file}
 		 */
-		public Builder regexFile(String value) {
+		public final Builder regexFile(String value) {
 			this.regexFile = value;
 			return this;
 		}
@@ -211,7 +210,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		/**
 		 * Required - API name: {@code target_field}
 		 */
-		public Builder targetField(String value) {
+		public final Builder targetField(String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -228,6 +227,7 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 		 *             if some of the required fields are null.
 		 */
 		public UserAgentProcessor build() {
+			_checkSingleUse();
 
 			return new UserAgentProcessor(this);
 		}
@@ -239,9 +239,9 @@ public final class UserAgentProcessor extends ProcessorBase implements Processor
 	 * Json deserializer for {@link UserAgentProcessor}
 	 */
 	public static final JsonpDeserializer<UserAgentProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UserAgentProcessor::setupUserAgentProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, UserAgentProcessor::setupUserAgentProcessorDeserializer);
 
-	protected static void setupUserAgentProcessorDeserializer(DelegatingDeserializer<UserAgentProcessor.Builder> op) {
+	protected static void setupUserAgentProcessorDeserializer(ObjectDeserializer<UserAgentProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

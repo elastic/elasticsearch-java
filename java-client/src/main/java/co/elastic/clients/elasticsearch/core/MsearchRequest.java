@@ -23,28 +23,29 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
+import co.elastic.clients.elasticsearch.core.msearch.RequestItem;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -53,25 +54,31 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch.Request
-@JsonpDeserializable
-public final class MsearchRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final List<String> index;
 
+/**
+ * Allows to execute several search operations in one request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch/MultiSearchRequest.ts#L25-L91">API
+ *      specification</a>
+ */
+
+public class MsearchRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
 	private final Boolean ccsMinimizeRoundtrips;
 
-	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
+
+	private final List<String> index;
 
 	@Nullable
 	private final Long maxConcurrentSearches;
@@ -85,44 +92,34 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final SearchType searchType;
 
-	@Nullable
-	private final Boolean typedKeys;
-
-	private final List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches;
+	private final List<RequestItem> searches;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MsearchRequest(Builder builder) {
+	private MsearchRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preFilterShardSize = builder.preFilterShardSize;
 		this.searchType = builder.searchType;
-		this.typedKeys = builder.typedKeys;
-		this.searches = ModelTypeHelper.unmodifiableNonNull(builder.searches, "_value_body");
+		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
 
 	}
 
-	public MsearchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MsearchRequest of(Function<Builder, ObjectBuilder<MsearchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
-	/**
-	 * Comma-separated list of data streams, indices, and index aliases to search.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
+	@Override
+	public Iterator<?> _serializables() {
+		return this.searches.iterator();
 	}
-
 	/**
 	 * If false, the request returns an error if any wildcard expression, index
 	 * alias, or _all value targets only missing or closed indices. This behavior
@@ -133,7 +130,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -144,7 +141,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
 	@Nullable
-	public Boolean ccsMinimizeRoundtrips() {
+	public final Boolean ccsMinimizeRoundtrips() {
 		return this.ccsMinimizeRoundtrips;
 	}
 
@@ -155,8 +152,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -166,7 +162,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code ignore_throttled}
 	 */
 	@Nullable
-	public Boolean ignoreThrottled() {
+	public final Boolean ignoreThrottled() {
 		return this.ignoreThrottled;
 	}
 
@@ -176,8 +172,17 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * Comma-separated list of data streams, indices, and index aliases to search.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -186,7 +191,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code max_concurrent_searches}
 	 */
 	@Nullable
-	public Long maxConcurrentSearches() {
+	public final Long maxConcurrentSearches() {
 		return this.maxConcurrentSearches;
 	}
 
@@ -197,7 +202,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code max_concurrent_shard_requests}
 	 */
 	@Nullable
-	public Long maxConcurrentShardRequests() {
+	public final Long maxConcurrentShardRequests() {
 		return this.maxConcurrentShardRequests;
 	}
 
@@ -212,7 +217,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code pre_filter_shard_size}
 	 */
 	@Nullable
-	public Long preFilterShardSize() {
+	public final Long preFilterShardSize() {
 		return this.preFilterShardSize;
 	}
 
@@ -223,19 +228,8 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public SearchType searchType() {
+	public final SearchType searchType() {
 		return this.searchType;
-	}
-
-	/**
-	 * Specifies whether aggregation and suggester names should be prefixed by their
-	 * respective types in the response.
-	 * <p>
-	 * API name: {@code typed_keys}
-	 */
-	@Nullable
-	public Boolean typedKeys() {
-		return this.typedKeys;
 	}
 
 	/**
@@ -243,7 +237,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches() {
+	public final List<RequestItem> searches() {
 		return this.searches;
 	}
 
@@ -252,8 +246,8 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */ item0 : this.searches) {
-			generator.write(item0);
+		for (RequestItem item0 : this.searches) {
+			item0.serialize(generator, mapper);
 
 		}
 		generator.writeEnd();
@@ -265,10 +259,8 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link MsearchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MsearchRequest> {
-		@Nullable
-		private List<String> index;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MsearchRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -276,13 +268,16 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		private Boolean ccsMinimizeRoundtrips;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean ignoreThrottled;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
+
+		@Nullable
+		private List<String> index;
 
 		@Nullable
 		private Long maxConcurrentSearches;
@@ -296,41 +291,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private SearchType searchType;
 
-		@Nullable
-		private Boolean typedKeys;
-
-		private List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> searches;
-
-		/**
-		 * Comma-separated list of data streams, indices, and index aliases to search.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Comma-separated list of data streams, indices, and index aliases to search.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
+		private List<RequestItem> searches;
 
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
@@ -341,7 +302,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -352,7 +313,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
-		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
+		public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
 			this.ccsMinimizeRoundtrips = value;
 			return this;
 		}
@@ -363,9 +324,11 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * hidden data streams.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -375,20 +338,11 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * hidden data streams.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -397,7 +351,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code ignore_throttled}
 		 */
-		public Builder ignoreThrottled(@Nullable Boolean value) {
+		public final Builder ignoreThrottled(@Nullable Boolean value) {
 			this.ignoreThrottled = value;
 			return this;
 		}
@@ -407,8 +361,32 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of data streams, indices, and index aliases to search.
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of data streams, indices, and index aliases to search.
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -417,7 +395,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code max_concurrent_searches}
 		 */
-		public Builder maxConcurrentSearches(@Nullable Long value) {
+		public final Builder maxConcurrentSearches(@Nullable Long value) {
 			this.maxConcurrentSearches = value;
 			return this;
 		}
@@ -428,7 +406,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code max_concurrent_shard_requests}
 		 */
-		public Builder maxConcurrentShardRequests(@Nullable Long value) {
+		public final Builder maxConcurrentShardRequests(@Nullable Long value) {
 			this.maxConcurrentShardRequests = value;
 			return this;
 		}
@@ -443,7 +421,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code pre_filter_shard_size}
 		 */
-		public Builder preFilterShardSize(@Nullable Long value) {
+		public final Builder preFilterShardSize(@Nullable Long value) {
 			this.preFilterShardSize = value;
 			return this;
 		}
@@ -454,19 +432,20 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code search_type}
 		 */
-		public Builder searchType(@Nullable SearchType value) {
+		public final Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
 			return this;
 		}
 
 		/**
-		 * Specifies whether aggregation and suggester names should be prefixed by their
-		 * respective types in the response.
+		 * Required - Request body.
 		 * <p>
-		 * API name: {@code typed_keys}
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>searches</code>.
 		 */
-		public Builder typedKeys(@Nullable Boolean value) {
-			this.typedKeys = value;
+		public final Builder searches(List<RequestItem> list) {
+			this.searches = _listAddAll(this.searches, list);
 			return this;
 		}
 
@@ -474,9 +453,11 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>searches</code>.
 		 */
-		public Builder searches(List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */> value) {
-			this.searches = value;
+		public final Builder searches(RequestItem value, RequestItem... values) {
+			this.searches = _listAdd(this.searches, value, values);
 			return this;
 		}
 
@@ -484,21 +465,11 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>searches</code> using a builder lambda.
 		 */
-		public Builder searches(JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */... value) {
-			this.searches = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #searches(List)}, creating the list if needed.
-		 */
-		public Builder addSearches(JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */ value) {
-			if (this.searches == null) {
-				this.searches = new ArrayList<>();
-			}
-			this.searches.add(value);
-			return this;
+		public final Builder searches(Function<RequestItem.Builder, ObjectBuilder<RequestItem>> fn) {
+			return searches(fn.apply(new RequestItem.Builder()).build());
 		}
 
 		/**
@@ -508,19 +479,10 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public MsearchRequest build() {
+			_checkSingleUse();
 
 			return new MsearchRequest(this);
 		}
-	}
-
-	public static final JsonpDeserializer<MsearchRequest> _DESERIALIZER = createMsearchRequestDeserializer();
-	protected static JsonpDeserializer<MsearchRequest> createMsearchRequestDeserializer() {
-
-		JsonpDeserializer<List<JsonValue /* Union(_global.msearch.Body | _global.msearch.Header) */>> valueDeserializer = JsonpDeserializer
-				.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer());
-
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.searches(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -528,7 +490,8 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code msearch}".
 	 */
-	private static final SimpleEndpoint<MsearchRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<MsearchRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/msearch",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -541,7 +504,7 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -563,47 +526,45 @@ public final class MsearchRequest extends RequestBase implements JsonpSerializab
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.ccsMinimizeRoundtrips != null) {
-					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
-				}
-				if (request.expandWildcards != null) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
-				}
-				if (request.ignoreThrottled != null) {
-					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
-				}
-				if (request.ignoreUnavailable != null) {
-					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-				}
-				if (request.maxConcurrentSearches != null) {
-					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
+				params.put("typed_keys", "true");
+				if (request.preFilterShardSize != null) {
+					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
 				}
 				if (request.maxConcurrentShardRequests != null) {
 					params.put("max_concurrent_shard_requests", String.valueOf(request.maxConcurrentShardRequests));
 				}
-				if (request.preFilterShardSize != null) {
-					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
+				if (request.ignoreThrottled != null) {
+					params.put("ignore_throttled", String.valueOf(request.ignoreThrottled));
+				}
+				if (request.maxConcurrentSearches != null) {
+					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
 				}
 				if (request.searchType != null) {
-					params.put("search_type", request.searchType.toString());
+					params.put("search_type", request.searchType.jsonValue());
 				}
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
+				if (request.ccsMinimizeRoundtrips != null) {
+					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, MsearchResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code msearch}" endpoint.
 	 */
-	public static <TDocument> Endpoint<MsearchRequest, MsearchResponse<TDocument>, ElasticsearchError> createMsearchEndpoint(
+	public static <TDocument> Endpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> createMsearchEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT
+		return _ENDPOINT
 				.withResponseDeserializer(MsearchResponse.createMsearchResponseDeserializer(tDocumentDeserializer));
 	}
 }

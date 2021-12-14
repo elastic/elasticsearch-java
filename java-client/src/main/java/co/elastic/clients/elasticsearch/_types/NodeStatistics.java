@@ -23,28 +23,32 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Node.ts#L28-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeStatistics implements JsonpSerializable {
-	@Nullable
+public class NodeStatistics implements JsonpSerializable {
 	private final List<ErrorCause> failures;
 
 	private final int total;
@@ -55,24 +59,23 @@ public final class NodeStatistics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeStatistics(Builder builder) {
+	private NodeStatistics(Builder builder) {
 
-		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.successful = Objects.requireNonNull(builder.successful, "successful");
-		this.failed = Objects.requireNonNull(builder.failed, "failed");
+		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
+		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
 
 	}
 
-	public NodeStatistics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeStatistics of(Function<Builder, ObjectBuilder<NodeStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code failures}
 	 */
-	@Nullable
-	public List<ErrorCause> failures() {
+	public final List<ErrorCause> failures() {
 		return this.failures;
 	}
 
@@ -81,7 +84,7 @@ public final class NodeStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code total}
 	 */
-	public int total() {
+	public final int total() {
 		return this.total;
 	}
 
@@ -90,7 +93,7 @@ public final class NodeStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code successful}
 	 */
-	public int successful() {
+	public final int successful() {
 		return this.successful;
 	}
 
@@ -101,7 +104,7 @@ public final class NodeStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code failed}
 	 */
-	public int failed() {
+	public final int failed() {
 		return this.failed;
 	}
 
@@ -116,8 +119,7 @@ public final class NodeStatistics implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.failures != null) {
-
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.failures) {
@@ -127,7 +129,6 @@ public final class NodeStatistics implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("total");
 		generator.write(this.total);
 
@@ -144,7 +145,8 @@ public final class NodeStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeStatistics}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeStatistics> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeStatistics> {
 		@Nullable
 		private List<ErrorCause> failures;
 
@@ -156,43 +158,31 @@ public final class NodeStatistics implements JsonpSerializable {
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 */
-		public Builder failures(@Nullable List<ErrorCause> value) {
-			this.failures = value;
+		public final Builder failures(List<ErrorCause> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public Builder failures(ErrorCause... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(ErrorCause value, ErrorCause... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * API name: {@code failures}
+		 * <p>
+		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
-		public Builder addFailures(ErrorCause value) {
-			if (this.failures == null) {
-				this.failures = new ArrayList<>();
-			}
-			this.failures.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #failures(List)} to a singleton list.
-		 */
-		public Builder failures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.failures(fn.apply(new ErrorCause.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
-		 */
-		public Builder addFailures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.addFailures(fn.apply(new ErrorCause.Builder()).build());
+		public final Builder failures(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return failures(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
@@ -200,7 +190,7 @@ public final class NodeStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total}
 		 */
-		public Builder total(int value) {
+		public final Builder total(int value) {
 			this.total = value;
 			return this;
 		}
@@ -210,7 +200,7 @@ public final class NodeStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code successful}
 		 */
-		public Builder successful(int value) {
+		public final Builder successful(int value) {
 			this.successful = value;
 			return this;
 		}
@@ -222,7 +212,7 @@ public final class NodeStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code failed}
 		 */
-		public Builder failed(int value) {
+		public final Builder failed(int value) {
 			this.failed = value;
 			return this;
 		}
@@ -234,6 +224,7 @@ public final class NodeStatistics implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeStatistics build() {
+			_checkSingleUse();
 
 			return new NodeStatistics(this);
 		}
@@ -245,9 +236,9 @@ public final class NodeStatistics implements JsonpSerializable {
 	 * Json deserializer for {@link NodeStatistics}
 	 */
 	public static final JsonpDeserializer<NodeStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeStatistics::setupNodeStatisticsDeserializer, Builder::build);
+			NodeStatistics::setupNodeStatisticsDeserializer);
 
-	protected static void setupNodeStatisticsDeserializer(DelegatingDeserializer<NodeStatistics.Builder> op) {
+	protected static void setupNodeStatisticsDeserializer(ObjectDeserializer<NodeStatistics.Builder> op) {
 
 		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "failures");
 		op.add(Builder::total, JsonpDeserializer.integerDeserializer(), "total");

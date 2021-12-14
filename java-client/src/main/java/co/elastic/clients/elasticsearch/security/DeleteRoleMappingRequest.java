@@ -23,17 +23,18 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -44,23 +45,31 @@ import javax.annotation.Nullable;
 
 // typedef: security.delete_role_mapping.Request
 
-public final class DeleteRoleMappingRequest extends RequestBase {
+/**
+ * Removes role mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_role_mapping/SecurityDeleteRoleMappingRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
+public class DeleteRoleMappingRequest extends RequestBase {
 	private final String name;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteRoleMappingRequest(Builder builder) {
+	private DeleteRoleMappingRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 
 	}
 
-	public DeleteRoleMappingRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteRoleMappingRequest of(Function<Builder, ObjectBuilder<DeleteRoleMappingRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +77,7 @@ public final class DeleteRoleMappingRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -81,7 +90,7 @@ public final class DeleteRoleMappingRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -90,18 +99,19 @@ public final class DeleteRoleMappingRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteRoleMappingRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteRoleMappingRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRoleMappingRequest> {
 		private String name;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		/**
 		 * Required - Role-mapping name
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -114,7 +124,7 @@ public final class DeleteRoleMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -126,6 +136,7 @@ public final class DeleteRoleMappingRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteRoleMappingRequest build() {
+			_checkSingleUse();
 
 			return new DeleteRoleMappingRequest(this);
 		}
@@ -136,7 +147,9 @@ public final class DeleteRoleMappingRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.delete_role_mapping}".
 	 */
-	public static final Endpoint<DeleteRoleMappingRequest, DeleteRoleMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteRoleMappingRequest, DeleteRoleMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.delete_role_mapping",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -167,7 +180,7 @@ public final class DeleteRoleMappingRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

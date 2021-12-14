@@ -23,55 +23,60 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_builtin_privileges.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_builtin_privileges/SecurityGetBuiltinPrivilegesResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
+public class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	private final List<String> cluster;
 
 	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetBuiltinPrivilegesResponse(Builder builder) {
+	private GetBuiltinPrivilegesResponse(Builder builder) {
 
-		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 
 	}
 
-	public GetBuiltinPrivilegesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetBuiltinPrivilegesResponse of(Function<Builder, ObjectBuilder<GetBuiltinPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cluster}
 	 */
-	public List<String> cluster() {
+	public final List<String> cluster() {
 		return this.cluster;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -86,21 +91,26 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("cluster");
-		generator.writeStartArray();
-		for (String item0 : this.cluster) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.cluster)) {
+			generator.writeKey("cluster");
+			generator.writeStartArray();
+			for (String item0 : this.cluster) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.index)) {
+			generator.writeKey("index");
+			generator.writeStartArray();
+			for (String item0 : this.index) {
+				generator.write(item0);
 
-		generator.writeKey("index");
-		generator.writeStartArray();
-		for (String item0 : this.index) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -109,62 +119,49 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetBuiltinPrivilegesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetBuiltinPrivilegesResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetBuiltinPrivilegesResponse> {
 		private List<String> cluster;
 
 		private List<String> index;
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 */
-		public Builder cluster(List<String> value) {
-			this.cluster = value;
+		public final Builder cluster(List<String> list) {
+			this.cluster = _listAddAll(this.cluster, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds one or more values to <code>cluster</code>.
 		 */
-		public Builder cluster(String... value) {
-			this.cluster = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
-		 */
-		public Builder addCluster(String value) {
-			if (this.cluster == null) {
-				this.cluster = new ArrayList<>();
-			}
-			this.cluster.add(value);
+		public final Builder cluster(String value, String... values) {
+			this.cluster = _listAdd(this.cluster, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -175,6 +172,7 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetBuiltinPrivilegesResponse build() {
+			_checkSingleUse();
 
 			return new GetBuiltinPrivilegesResponse(this);
 		}
@@ -185,11 +183,11 @@ public final class GetBuiltinPrivilegesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetBuiltinPrivilegesResponse}
 	 */
-	public static final JsonpDeserializer<GetBuiltinPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, GetBuiltinPrivilegesResponse::setupGetBuiltinPrivilegesResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<GetBuiltinPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetBuiltinPrivilegesResponse::setupGetBuiltinPrivilegesResponseDeserializer);
 
 	protected static void setupGetBuiltinPrivilegesResponseDeserializer(
-			DelegatingDeserializer<GetBuiltinPrivilegesResponse.Builder> op) {
+			ObjectDeserializer<GetBuiltinPrivilegesResponse.Builder> op) {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");

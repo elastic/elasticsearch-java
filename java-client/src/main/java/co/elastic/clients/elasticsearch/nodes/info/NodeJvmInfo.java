@@ -23,30 +23,35 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeJvmInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L341-L355">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeJvmInfo implements JsonpSerializable {
+public class NodeJvmInfo implements JsonpSerializable {
 	private final List<String> gcCollectors;
 
 	private final NodeInfoJvmMemory mem;
@@ -76,102 +81,102 @@ public final class NodeJvmInfo implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeJvmInfo(Builder builder) {
+	private NodeJvmInfo(Builder builder) {
 
-		this.gcCollectors = ModelTypeHelper.unmodifiableNonNull(builder.gcCollectors, "gc_collectors");
-		this.mem = Objects.requireNonNull(builder.mem, "mem");
-		this.memoryPools = ModelTypeHelper.unmodifiableNonNull(builder.memoryPools, "memory_pools");
-		this.pid = Objects.requireNonNull(builder.pid, "pid");
-		this.startTimeInMillis = Objects.requireNonNull(builder.startTimeInMillis, "start_time_in_millis");
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.vmName = Objects.requireNonNull(builder.vmName, "vm_name");
-		this.vmVendor = Objects.requireNonNull(builder.vmVendor, "vm_vendor");
-		this.vmVersion = Objects.requireNonNull(builder.vmVersion, "vm_version");
-		this.bundledJdk = Objects.requireNonNull(builder.bundledJdk, "bundled_jdk");
-		this.usingBundledJdk = Objects.requireNonNull(builder.usingBundledJdk, "using_bundled_jdk");
+		this.gcCollectors = ApiTypeHelper.unmodifiableRequired(builder.gcCollectors, this, "gcCollectors");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.memoryPools = ApiTypeHelper.unmodifiableRequired(builder.memoryPools, this, "memoryPools");
+		this.pid = ApiTypeHelper.requireNonNull(builder.pid, this, "pid");
+		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.vmName = ApiTypeHelper.requireNonNull(builder.vmName, this, "vmName");
+		this.vmVendor = ApiTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
+		this.vmVersion = ApiTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
+		this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
+		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
 		this.usingCompressedOrdinaryObjectPointers = builder.usingCompressedOrdinaryObjectPointers;
-		this.inputArguments = ModelTypeHelper.unmodifiableNonNull(builder.inputArguments, "input_arguments");
+		this.inputArguments = ApiTypeHelper.unmodifiableRequired(builder.inputArguments, this, "inputArguments");
 
 	}
 
-	public NodeJvmInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeJvmInfo of(Function<Builder, ObjectBuilder<NodeJvmInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code gc_collectors}
 	 */
-	public List<String> gcCollectors() {
+	public final List<String> gcCollectors() {
 		return this.gcCollectors;
 	}
 
 	/**
 	 * Required - API name: {@code mem}
 	 */
-	public NodeInfoJvmMemory mem() {
+	public final NodeInfoJvmMemory mem() {
 		return this.mem;
 	}
 
 	/**
 	 * Required - API name: {@code memory_pools}
 	 */
-	public List<String> memoryPools() {
+	public final List<String> memoryPools() {
 		return this.memoryPools;
 	}
 
 	/**
 	 * Required - API name: {@code pid}
 	 */
-	public int pid() {
+	public final int pid() {
 		return this.pid;
 	}
 
 	/**
 	 * Required - API name: {@code start_time_in_millis}
 	 */
-	public long startTimeInMillis() {
+	public final long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
 	/**
 	 * Required - API name: {@code vm_name}
 	 */
-	public String vmName() {
+	public final String vmName() {
 		return this.vmName;
 	}
 
 	/**
 	 * Required - API name: {@code vm_vendor}
 	 */
-	public String vmVendor() {
+	public final String vmVendor() {
 		return this.vmVendor;
 	}
 
 	/**
 	 * Required - API name: {@code vm_version}
 	 */
-	public String vmVersion() {
+	public final String vmVersion() {
 		return this.vmVersion;
 	}
 
 	/**
 	 * Required - API name: {@code bundled_jdk}
 	 */
-	public boolean bundledJdk() {
+	public final boolean bundledJdk() {
 		return this.bundledJdk;
 	}
 
 	/**
 	 * Required - API name: {@code using_bundled_jdk}
 	 */
-	public boolean usingBundledJdk() {
+	public final boolean usingBundledJdk() {
 		return this.usingBundledJdk;
 	}
 
@@ -179,14 +184,14 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	 * API name: {@code using_compressed_ordinary_object_pointers}
 	 */
 	@Nullable
-	public Boolean usingCompressedOrdinaryObjectPointers() {
+	public final Boolean usingCompressedOrdinaryObjectPointers() {
 		return this.usingCompressedOrdinaryObjectPointers;
 	}
 
 	/**
 	 * Required - API name: {@code input_arguments}
 	 */
-	public List<String> inputArguments() {
+	public final List<String> inputArguments() {
 		return this.inputArguments;
 	}
 
@@ -201,25 +206,29 @@ public final class NodeJvmInfo implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("gc_collectors");
-		generator.writeStartArray();
-		for (String item0 : this.gcCollectors) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.gcCollectors)) {
+			generator.writeKey("gc_collectors");
+			generator.writeStartArray();
+			for (String item0 : this.gcCollectors) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("mem");
 		this.mem.serialize(generator, mapper);
 
-		generator.writeKey("memory_pools");
-		generator.writeStartArray();
-		for (String item0 : this.memoryPools) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.memoryPools)) {
+			generator.writeKey("memory_pools");
+			generator.writeStartArray();
+			for (String item0 : this.memoryPools) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("pid");
 		generator.write(this.pid);
 
@@ -245,19 +254,20 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		generator.write(this.usingBundledJdk);
 
 		if (this.usingCompressedOrdinaryObjectPointers != null) {
-
 			generator.writeKey("using_compressed_ordinary_object_pointers");
 			generator.write(this.usingCompressedOrdinaryObjectPointers);
 
 		}
+		if (ApiTypeHelper.isDefined(this.inputArguments)) {
+			generator.writeKey("input_arguments");
+			generator.writeStartArray();
+			for (String item0 : this.inputArguments) {
+				generator.write(item0);
 
-		generator.writeKey("input_arguments");
-		generator.writeStartArray();
-		for (String item0 : this.inputArguments) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -266,7 +276,8 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeJvmInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeJvmInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeJvmInfo> {
 		private List<String> gcCollectors;
 
 		private NodeInfoJvmMemory mem;
@@ -296,35 +307,28 @@ public final class NodeJvmInfo implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code gc_collectors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>gcCollectors</code>.
 		 */
-		public Builder gcCollectors(List<String> value) {
-			this.gcCollectors = value;
+		public final Builder gcCollectors(List<String> list) {
+			this.gcCollectors = _listAddAll(this.gcCollectors, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code gc_collectors}
+		 * <p>
+		 * Adds one or more values to <code>gcCollectors</code>.
 		 */
-		public Builder gcCollectors(String... value) {
-			this.gcCollectors = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #gcCollectors(List)}, creating the list if needed.
-		 */
-		public Builder addGcCollectors(String value) {
-			if (this.gcCollectors == null) {
-				this.gcCollectors = new ArrayList<>();
-			}
-			this.gcCollectors.add(value);
+		public final Builder gcCollectors(String value, String... values) {
+			this.gcCollectors = _listAdd(this.gcCollectors, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public Builder mem(NodeInfoJvmMemory value) {
+		public final Builder mem(NodeInfoJvmMemory value) {
 			this.mem = value;
 			return this;
 		}
@@ -332,41 +336,34 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public Builder mem(Function<NodeInfoJvmMemory.Builder, ObjectBuilder<NodeInfoJvmMemory>> fn) {
+		public final Builder mem(Function<NodeInfoJvmMemory.Builder, ObjectBuilder<NodeInfoJvmMemory>> fn) {
 			return this.mem(fn.apply(new NodeInfoJvmMemory.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code memory_pools}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>memoryPools</code>.
 		 */
-		public Builder memoryPools(List<String> value) {
-			this.memoryPools = value;
+		public final Builder memoryPools(List<String> list) {
+			this.memoryPools = _listAddAll(this.memoryPools, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code memory_pools}
+		 * <p>
+		 * Adds one or more values to <code>memoryPools</code>.
 		 */
-		public Builder memoryPools(String... value) {
-			this.memoryPools = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #memoryPools(List)}, creating the list if needed.
-		 */
-		public Builder addMemoryPools(String value) {
-			if (this.memoryPools == null) {
-				this.memoryPools = new ArrayList<>();
-			}
-			this.memoryPools.add(value);
+		public final Builder memoryPools(String value, String... values) {
+			this.memoryPools = _listAdd(this.memoryPools, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code pid}
 		 */
-		public Builder pid(int value) {
+		public final Builder pid(int value) {
 			this.pid = value;
 			return this;
 		}
@@ -374,7 +371,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(long value) {
+		public final Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -382,7 +379,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(String value) {
 			this.version = value;
 			return this;
 		}
@@ -390,7 +387,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vm_name}
 		 */
-		public Builder vmName(String value) {
+		public final Builder vmName(String value) {
 			this.vmName = value;
 			return this;
 		}
@@ -398,7 +395,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vm_vendor}
 		 */
-		public Builder vmVendor(String value) {
+		public final Builder vmVendor(String value) {
 			this.vmVendor = value;
 			return this;
 		}
@@ -406,7 +403,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vm_version}
 		 */
-		public Builder vmVersion(String value) {
+		public final Builder vmVersion(String value) {
 			this.vmVersion = value;
 			return this;
 		}
@@ -414,7 +411,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bundled_jdk}
 		 */
-		public Builder bundledJdk(boolean value) {
+		public final Builder bundledJdk(boolean value) {
 			this.bundledJdk = value;
 			return this;
 		}
@@ -422,7 +419,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code using_bundled_jdk}
 		 */
-		public Builder usingBundledJdk(boolean value) {
+		public final Builder usingBundledJdk(boolean value) {
 			this.usingBundledJdk = value;
 			return this;
 		}
@@ -430,35 +427,28 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code using_compressed_ordinary_object_pointers}
 		 */
-		public Builder usingCompressedOrdinaryObjectPointers(@Nullable Boolean value) {
+		public final Builder usingCompressedOrdinaryObjectPointers(@Nullable Boolean value) {
 			this.usingCompressedOrdinaryObjectPointers = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code input_arguments}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>inputArguments</code>.
 		 */
-		public Builder inputArguments(List<String> value) {
-			this.inputArguments = value;
+		public final Builder inputArguments(List<String> list) {
+			this.inputArguments = _listAddAll(this.inputArguments, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code input_arguments}
+		 * <p>
+		 * Adds one or more values to <code>inputArguments</code>.
 		 */
-		public Builder inputArguments(String... value) {
-			this.inputArguments = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #inputArguments(List)}, creating the list if needed.
-		 */
-		public Builder addInputArguments(String value) {
-			if (this.inputArguments == null) {
-				this.inputArguments = new ArrayList<>();
-			}
-			this.inputArguments.add(value);
+		public final Builder inputArguments(String value, String... values) {
+			this.inputArguments = _listAdd(this.inputArguments, value, values);
 			return this;
 		}
 
@@ -469,6 +459,7 @@ public final class NodeJvmInfo implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeJvmInfo build() {
+			_checkSingleUse();
 
 			return new NodeJvmInfo(this);
 		}
@@ -480,9 +471,9 @@ public final class NodeJvmInfo implements JsonpSerializable {
 	 * Json deserializer for {@link NodeJvmInfo}
 	 */
 	public static final JsonpDeserializer<NodeJvmInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeJvmInfo::setupNodeJvmInfoDeserializer, Builder::build);
+			NodeJvmInfo::setupNodeJvmInfoDeserializer);
 
-	protected static void setupNodeJvmInfoDeserializer(DelegatingDeserializer<NodeJvmInfo.Builder> op) {
+	protected static void setupNodeJvmInfoDeserializer(ObjectDeserializer<NodeJvmInfo.Builder> op) {
 
 		op.add(Builder::gcCollectors, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"gc_collectors");

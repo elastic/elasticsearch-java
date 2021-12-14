@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.SizeField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/meta-fields.ts#L54-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SizeField implements JsonpSerializable {
+public class SizeField implements JsonpSerializable {
 	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SizeField(Builder builder) {
+	private SizeField(Builder builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
-	public SizeField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SizeField of(Function<Builder, ObjectBuilder<SizeField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -81,13 +89,14 @@ public final class SizeField implements JsonpSerializable {
 	/**
 	 * Builder for {@link SizeField}.
 	 */
-	public static class Builder implements ObjectBuilder<SizeField> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SizeField> {
 		private Boolean enabled;
 
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(boolean value) {
+		public final Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class SizeField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SizeField build() {
+			_checkSingleUse();
 
 			return new SizeField(this);
 		}
@@ -110,9 +120,9 @@ public final class SizeField implements JsonpSerializable {
 	 * Json deserializer for {@link SizeField}
 	 */
 	public static final JsonpDeserializer<SizeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SizeField::setupSizeFieldDeserializer, Builder::build);
+			SizeField::setupSizeFieldDeserializer);
 
-	protected static void setupSizeFieldDeserializer(DelegatingDeserializer<SizeField.Builder> op) {
+	protected static void setupSizeFieldDeserializer(ObjectDeserializer<SizeField.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 

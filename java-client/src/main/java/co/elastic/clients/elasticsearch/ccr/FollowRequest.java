@@ -23,20 +23,21 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -47,12 +48,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.follow.Request
-@JsonpDeserializable
-public final class FollowRequest extends RequestBase implements JsonpSerializable {
-	private final String index;
 
-	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+/**
+ * Creates a new follower index configured to follow the referenced leader
+ * index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/follow/CreateFollowIndexRequest.ts#L25-L51">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class FollowRequest extends RequestBase implements JsonpSerializable {
+	private final String index;
 
 	@Nullable
 	private final String leaderIndex;
@@ -70,7 +77,7 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	private final String maxReadRequestSize;
 
 	@Nullable
-	private final String maxRetryDelay;
+	private final Time maxRetryDelay;
 
 	@Nullable
 	private final Long maxWriteBufferCount;
@@ -85,17 +92,19 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	private final String maxWriteRequestSize;
 
 	@Nullable
-	private final String readPollTimeout;
+	private final Time readPollTimeout;
 
 	@Nullable
 	private final String remoteCluster;
 
+	@Nullable
+	private final WaitForActiveShards waitForActiveShards;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public FollowRequest(Builder builder) {
+	private FollowRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.waitForActiveShards = builder.waitForActiveShards;
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.leaderIndex = builder.leaderIndex;
 		this.maxOutstandingReadRequests = builder.maxOutstandingReadRequests;
 		this.maxOutstandingWriteRequests = builder.maxOutstandingWriteRequests;
@@ -108,11 +117,12 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		this.maxWriteRequestSize = builder.maxWriteRequestSize;
 		this.readPollTimeout = builder.readPollTimeout;
 		this.remoteCluster = builder.remoteCluster;
+		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
 
-	public FollowRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FollowRequest of(Function<Builder, ObjectBuilder<FollowRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -120,8 +130,104 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
+	}
+
+	/**
+	 * API name: {@code leader_index}
+	 */
+	@Nullable
+	public final String leaderIndex() {
+		return this.leaderIndex;
+	}
+
+	/**
+	 * API name: {@code max_outstanding_read_requests}
+	 */
+	@Nullable
+	public final Long maxOutstandingReadRequests() {
+		return this.maxOutstandingReadRequests;
+	}
+
+	/**
+	 * API name: {@code max_outstanding_write_requests}
+	 */
+	@Nullable
+	public final Long maxOutstandingWriteRequests() {
+		return this.maxOutstandingWriteRequests;
+	}
+
+	/**
+	 * API name: {@code max_read_request_operation_count}
+	 */
+	@Nullable
+	public final Long maxReadRequestOperationCount() {
+		return this.maxReadRequestOperationCount;
+	}
+
+	/**
+	 * API name: {@code max_read_request_size}
+	 */
+	@Nullable
+	public final String maxReadRequestSize() {
+		return this.maxReadRequestSize;
+	}
+
+	/**
+	 * API name: {@code max_retry_delay}
+	 */
+	@Nullable
+	public final Time maxRetryDelay() {
+		return this.maxRetryDelay;
+	}
+
+	/**
+	 * API name: {@code max_write_buffer_count}
+	 */
+	@Nullable
+	public final Long maxWriteBufferCount() {
+		return this.maxWriteBufferCount;
+	}
+
+	/**
+	 * API name: {@code max_write_buffer_size}
+	 */
+	@Nullable
+	public final String maxWriteBufferSize() {
+		return this.maxWriteBufferSize;
+	}
+
+	/**
+	 * API name: {@code max_write_request_operation_count}
+	 */
+	@Nullable
+	public final Long maxWriteRequestOperationCount() {
+		return this.maxWriteRequestOperationCount;
+	}
+
+	/**
+	 * API name: {@code max_write_request_size}
+	 */
+	@Nullable
+	public final String maxWriteRequestSize() {
+		return this.maxWriteRequestSize;
+	}
+
+	/**
+	 * API name: {@code read_poll_timeout}
+	 */
+	@Nullable
+	public final Time readPollTimeout() {
+		return this.readPollTimeout;
+	}
+
+	/**
+	 * API name: {@code remote_cluster}
+	 */
+	@Nullable
+	public final String remoteCluster() {
+		return this.remoteCluster;
 	}
 
 	/**
@@ -133,104 +239,8 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final WaitForActiveShards waitForActiveShards() {
 		return this.waitForActiveShards;
-	}
-
-	/**
-	 * API name: {@code leader_index}
-	 */
-	@Nullable
-	public String leaderIndex() {
-		return this.leaderIndex;
-	}
-
-	/**
-	 * API name: {@code max_outstanding_read_requests}
-	 */
-	@Nullable
-	public Long maxOutstandingReadRequests() {
-		return this.maxOutstandingReadRequests;
-	}
-
-	/**
-	 * API name: {@code max_outstanding_write_requests}
-	 */
-	@Nullable
-	public Long maxOutstandingWriteRequests() {
-		return this.maxOutstandingWriteRequests;
-	}
-
-	/**
-	 * API name: {@code max_read_request_operation_count}
-	 */
-	@Nullable
-	public Long maxReadRequestOperationCount() {
-		return this.maxReadRequestOperationCount;
-	}
-
-	/**
-	 * API name: {@code max_read_request_size}
-	 */
-	@Nullable
-	public String maxReadRequestSize() {
-		return this.maxReadRequestSize;
-	}
-
-	/**
-	 * API name: {@code max_retry_delay}
-	 */
-	@Nullable
-	public String maxRetryDelay() {
-		return this.maxRetryDelay;
-	}
-
-	/**
-	 * API name: {@code max_write_buffer_count}
-	 */
-	@Nullable
-	public Long maxWriteBufferCount() {
-		return this.maxWriteBufferCount;
-	}
-
-	/**
-	 * API name: {@code max_write_buffer_size}
-	 */
-	@Nullable
-	public String maxWriteBufferSize() {
-		return this.maxWriteBufferSize;
-	}
-
-	/**
-	 * API name: {@code max_write_request_operation_count}
-	 */
-	@Nullable
-	public Long maxWriteRequestOperationCount() {
-		return this.maxWriteRequestOperationCount;
-	}
-
-	/**
-	 * API name: {@code max_write_request_size}
-	 */
-	@Nullable
-	public String maxWriteRequestSize() {
-		return this.maxWriteRequestSize;
-	}
-
-	/**
-	 * API name: {@code read_poll_timeout}
-	 */
-	@Nullable
-	public String readPollTimeout() {
-		return this.readPollTimeout;
-	}
-
-	/**
-	 * API name: {@code remote_cluster}
-	 */
-	@Nullable
-	public String remoteCluster() {
-		return this.remoteCluster;
 	}
 
 	/**
@@ -245,73 +255,61 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.leaderIndex != null) {
-
 			generator.writeKey("leader_index");
 			generator.write(this.leaderIndex);
 
 		}
 		if (this.maxOutstandingReadRequests != null) {
-
 			generator.writeKey("max_outstanding_read_requests");
 			generator.write(this.maxOutstandingReadRequests);
 
 		}
 		if (this.maxOutstandingWriteRequests != null) {
-
 			generator.writeKey("max_outstanding_write_requests");
 			generator.write(this.maxOutstandingWriteRequests);
 
 		}
 		if (this.maxReadRequestOperationCount != null) {
-
 			generator.writeKey("max_read_request_operation_count");
 			generator.write(this.maxReadRequestOperationCount);
 
 		}
 		if (this.maxReadRequestSize != null) {
-
 			generator.writeKey("max_read_request_size");
 			generator.write(this.maxReadRequestSize);
 
 		}
 		if (this.maxRetryDelay != null) {
-
 			generator.writeKey("max_retry_delay");
-			generator.write(this.maxRetryDelay);
+			this.maxRetryDelay.serialize(generator, mapper);
 
 		}
 		if (this.maxWriteBufferCount != null) {
-
 			generator.writeKey("max_write_buffer_count");
 			generator.write(this.maxWriteBufferCount);
 
 		}
 		if (this.maxWriteBufferSize != null) {
-
 			generator.writeKey("max_write_buffer_size");
 			generator.write(this.maxWriteBufferSize);
 
 		}
 		if (this.maxWriteRequestOperationCount != null) {
-
 			generator.writeKey("max_write_request_operation_count");
 			generator.write(this.maxWriteRequestOperationCount);
 
 		}
 		if (this.maxWriteRequestSize != null) {
-
 			generator.writeKey("max_write_request_size");
 			generator.write(this.maxWriteRequestSize);
 
 		}
 		if (this.readPollTimeout != null) {
-
 			generator.writeKey("read_poll_timeout");
-			generator.write(this.readPollTimeout);
+			this.readPollTimeout.serialize(generator, mapper);
 
 		}
 		if (this.remoteCluster != null) {
-
 			generator.writeKey("remote_cluster");
 			generator.write(this.remoteCluster);
 
@@ -324,11 +322,9 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link FollowRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<FollowRequest> {
-		private String index;
 
-		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowRequest> {
+		private String index;
 
 		@Nullable
 		private String leaderIndex;
@@ -346,7 +342,7 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		private String maxReadRequestSize;
 
 		@Nullable
-		private String maxRetryDelay;
+		private Time maxRetryDelay;
 
 		@Nullable
 		private Long maxWriteBufferCount;
@@ -361,18 +357,131 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		private String maxWriteRequestSize;
 
 		@Nullable
-		private String readPollTimeout;
+		private Time readPollTimeout;
 
 		@Nullable
 		private String remoteCluster;
+
+		@Nullable
+		private WaitForActiveShards waitForActiveShards;
 
 		/**
 		 * Required - The name of the follower index
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code leader_index}
+		 */
+		public final Builder leaderIndex(@Nullable String value) {
+			this.leaderIndex = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_outstanding_read_requests}
+		 */
+		public final Builder maxOutstandingReadRequests(@Nullable Long value) {
+			this.maxOutstandingReadRequests = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_outstanding_write_requests}
+		 */
+		public final Builder maxOutstandingWriteRequests(@Nullable Long value) {
+			this.maxOutstandingWriteRequests = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_read_request_operation_count}
+		 */
+		public final Builder maxReadRequestOperationCount(@Nullable Long value) {
+			this.maxReadRequestOperationCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_read_request_size}
+		 */
+		public final Builder maxReadRequestSize(@Nullable String value) {
+			this.maxReadRequestSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_retry_delay}
+		 */
+		public final Builder maxRetryDelay(@Nullable Time value) {
+			this.maxRetryDelay = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_retry_delay}
+		 */
+		public final Builder maxRetryDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxRetryDelay(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code max_write_buffer_count}
+		 */
+		public final Builder maxWriteBufferCount(@Nullable Long value) {
+			this.maxWriteBufferCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_write_buffer_size}
+		 */
+		public final Builder maxWriteBufferSize(@Nullable String value) {
+			this.maxWriteBufferSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_write_request_operation_count}
+		 */
+		public final Builder maxWriteRequestOperationCount(@Nullable Long value) {
+			this.maxWriteRequestOperationCount = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_write_request_size}
+		 */
+		public final Builder maxWriteRequestSize(@Nullable String value) {
+			this.maxWriteRequestSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code read_poll_timeout}
+		 */
+		public final Builder readPollTimeout(@Nullable Time value) {
+			this.readPollTimeout = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code read_poll_timeout}
+		 */
+		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code remote_cluster}
+		 */
+		public final Builder remoteCluster(@Nullable String value) {
+			this.remoteCluster = value;
 			return this;
 		}
 
@@ -384,105 +493,22 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code leader_index}
+		 * Sets the number of shard copies that must be active before returning.
+		 * Defaults to 0. Set to <code>all</code> for all shard copies, otherwise set to
+		 * any non-negative value less than or equal to the total number of copies for
+		 * the shard (number of replicas + 1)
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder leaderIndex(@Nullable String value) {
-			this.leaderIndex = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code max_outstanding_read_requests}
-		 */
-		public Builder maxOutstandingReadRequests(@Nullable Long value) {
-			this.maxOutstandingReadRequests = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code max_outstanding_write_requests}
-		 */
-		public Builder maxOutstandingWriteRequests(@Nullable Long value) {
-			this.maxOutstandingWriteRequests = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code max_read_request_operation_count}
-		 */
-		public Builder maxReadRequestOperationCount(@Nullable Long value) {
-			this.maxReadRequestOperationCount = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code max_read_request_size}
-		 */
-		public Builder maxReadRequestSize(@Nullable String value) {
-			this.maxReadRequestSize = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code max_retry_delay}
-		 */
-		public Builder maxRetryDelay(@Nullable String value) {
-			this.maxRetryDelay = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code max_write_buffer_count}
-		 */
-		public Builder maxWriteBufferCount(@Nullable Long value) {
-			this.maxWriteBufferCount = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code max_write_buffer_size}
-		 */
-		public Builder maxWriteBufferSize(@Nullable String value) {
-			this.maxWriteBufferSize = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code max_write_request_operation_count}
-		 */
-		public Builder maxWriteRequestOperationCount(@Nullable Long value) {
-			this.maxWriteRequestOperationCount = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code max_write_request_size}
-		 */
-		public Builder maxWriteRequestSize(@Nullable String value) {
-			this.maxWriteRequestSize = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code read_poll_timeout}
-		 */
-		public Builder readPollTimeout(@Nullable String value) {
-			this.readPollTimeout = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code remote_cluster}
-		 */
-		public Builder remoteCluster(@Nullable String value) {
-			this.remoteCluster = value;
-			return this;
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -492,6 +518,7 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public FollowRequest build() {
+			_checkSingleUse();
 
 			return new FollowRequest(this);
 		}
@@ -503,9 +530,9 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link FollowRequest}
 	 */
 	public static final JsonpDeserializer<FollowRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FollowRequest::setupFollowRequestDeserializer, Builder::build);
+			FollowRequest::setupFollowRequestDeserializer);
 
-	protected static void setupFollowRequestDeserializer(DelegatingDeserializer<FollowRequest.Builder> op) {
+	protected static void setupFollowRequestDeserializer(ObjectDeserializer<FollowRequest.Builder> op) {
 
 		op.add(Builder::leaderIndex, JsonpDeserializer.stringDeserializer(), "leader_index");
 		op.add(Builder::maxOutstandingReadRequests, JsonpDeserializer.longDeserializer(),
@@ -515,13 +542,13 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 		op.add(Builder::maxReadRequestOperationCount, JsonpDeserializer.longDeserializer(),
 				"max_read_request_operation_count");
 		op.add(Builder::maxReadRequestSize, JsonpDeserializer.stringDeserializer(), "max_read_request_size");
-		op.add(Builder::maxRetryDelay, JsonpDeserializer.stringDeserializer(), "max_retry_delay");
+		op.add(Builder::maxRetryDelay, Time._DESERIALIZER, "max_retry_delay");
 		op.add(Builder::maxWriteBufferCount, JsonpDeserializer.longDeserializer(), "max_write_buffer_count");
 		op.add(Builder::maxWriteBufferSize, JsonpDeserializer.stringDeserializer(), "max_write_buffer_size");
 		op.add(Builder::maxWriteRequestOperationCount, JsonpDeserializer.longDeserializer(),
 				"max_write_request_operation_count");
 		op.add(Builder::maxWriteRequestSize, JsonpDeserializer.stringDeserializer(), "max_write_request_size");
-		op.add(Builder::readPollTimeout, JsonpDeserializer.stringDeserializer(), "read_poll_timeout");
+		op.add(Builder::readPollTimeout, Time._DESERIALIZER, "read_poll_timeout");
 		op.add(Builder::remoteCluster, JsonpDeserializer.stringDeserializer(), "remote_cluster");
 
 	}
@@ -531,7 +558,9 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ccr.follow}".
 	 */
-	public static final Endpoint<FollowRequest, FollowResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FollowRequest, FollowResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.follow",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -562,7 +591,7 @@ public final class FollowRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				return params;
 

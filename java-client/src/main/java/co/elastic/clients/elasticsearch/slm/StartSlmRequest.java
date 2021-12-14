@@ -23,23 +23,30 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: slm.start.Request
 
-public final class StartSlmRequest extends RequestBase {
+/**
+ * Turns on snapshot lifecycle management (SLM).
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/start/StartSnapshotLifecycleManagementRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class StartSlmRequest extends RequestBase {
 	public StartSlmRequest() {
 	}
 
@@ -53,7 +60,9 @@ public final class StartSlmRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code slm.start}".
 	 */
-	public static final Endpoint<StartSlmRequest, StartSlmResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StartSlmRequest, StartSlmResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/slm.start",
+
 			// Request method
 			request -> {
 				return "POST";

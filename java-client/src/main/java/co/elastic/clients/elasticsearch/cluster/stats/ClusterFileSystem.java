@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterFileSystem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L33-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterFileSystem implements JsonpSerializable {
+public class ClusterFileSystem implements JsonpSerializable {
 	private final long availableInBytes;
 
 	private final long freeInBytes;
@@ -47,36 +55,36 @@ public final class ClusterFileSystem implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterFileSystem(Builder builder) {
+	private ClusterFileSystem(Builder builder) {
 
-		this.availableInBytes = Objects.requireNonNull(builder.availableInBytes, "available_in_bytes");
-		this.freeInBytes = Objects.requireNonNull(builder.freeInBytes, "free_in_bytes");
-		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
+		this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
 	}
 
-	public ClusterFileSystem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterFileSystem of(Function<Builder, ObjectBuilder<ClusterFileSystem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code available_in_bytes}
 	 */
-	public long availableInBytes() {
+	public final long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code free_in_bytes}
 	 */
-	public long freeInBytes() {
+	public final long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code total_in_bytes}
 	 */
-	public long totalInBytes() {
+	public final long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -107,7 +115,8 @@ public final class ClusterFileSystem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterFileSystem}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterFileSystem> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterFileSystem> {
 		private Long availableInBytes;
 
 		private Long freeInBytes;
@@ -117,7 +126,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(long value) {
+		public final Builder availableInBytes(long value) {
 			this.availableInBytes = value;
 			return this;
 		}
@@ -125,7 +134,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(long value) {
+		public final Builder freeInBytes(long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -133,7 +142,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(long value) {
+		public final Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -145,6 +154,7 @@ public final class ClusterFileSystem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterFileSystem build() {
+			_checkSingleUse();
 
 			return new ClusterFileSystem(this);
 		}
@@ -156,9 +166,9 @@ public final class ClusterFileSystem implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterFileSystem}
 	 */
 	public static final JsonpDeserializer<ClusterFileSystem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterFileSystem::setupClusterFileSystemDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterFileSystem::setupClusterFileSystemDeserializer);
 
-	protected static void setupClusterFileSystemDeserializer(DelegatingDeserializer<ClusterFileSystem.Builder> op) {
+	protected static void setupClusterFileSystemDeserializer(ObjectDeserializer<ClusterFileSystem.Builder> op) {
 
 		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");
 		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");

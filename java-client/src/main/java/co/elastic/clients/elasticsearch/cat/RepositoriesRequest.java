@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: cat.repositories.Request
 
-public final class RepositoriesRequest extends CatRequestBase {
+/**
+ * Returns information about snapshot repositories registered in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/repositories/CatRepositoriesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class RepositoriesRequest extends CatRequestBase {
 	public RepositoriesRequest() {
 	}
 
@@ -52,7 +60,9 @@ public final class RepositoriesRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.repositories}".
 	 */
-	public static final Endpoint<RepositoriesRequest, RepositoriesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RepositoriesRequest, RepositoriesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.repositories",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -67,7 +77,9 @@ public final class RepositoriesRequest extends CatRequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, RepositoriesResponse._DESERIALIZER);
 }

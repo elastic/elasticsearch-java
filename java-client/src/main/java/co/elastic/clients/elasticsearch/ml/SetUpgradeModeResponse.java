@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.set_upgrade_mode.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/set_upgrade_mode/MlSetUpgradeModeResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SetUpgradeModeResponse extends AcknowledgedResponseBase {
+public class SetUpgradeModeResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public SetUpgradeModeResponse(Builder builder) {
+	private SetUpgradeModeResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public SetUpgradeModeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SetUpgradeModeResponse of(Function<Builder, ObjectBuilder<SetUpgradeModeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class SetUpgradeModeResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link SetUpgradeModeResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SetUpgradeModeResponse> {
@@ -68,6 +75,7 @@ public final class SetUpgradeModeResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public SetUpgradeModeResponse build() {
+			_checkSingleUse();
 
 			return new SetUpgradeModeResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class SetUpgradeModeResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link SetUpgradeModeResponse}
 	 */
 	public static final JsonpDeserializer<SetUpgradeModeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SetUpgradeModeResponse::setupSetUpgradeModeResponseDeserializer, Builder::build);
+			.lazy(Builder::new, SetUpgradeModeResponse::setupSetUpgradeModeResponseDeserializer);
 
 	protected static void setupSetUpgradeModeResponseDeserializer(
-			DelegatingDeserializer<SetUpgradeModeResponse.Builder> op) {
+			ObjectDeserializer<SetUpgradeModeResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

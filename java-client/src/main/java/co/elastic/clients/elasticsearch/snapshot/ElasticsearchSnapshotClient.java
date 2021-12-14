@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -33,10 +39,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the snapshot namespace.
  */
-public class ElasticsearchSnapshotClient extends ApiClient {
+public class ElasticsearchSnapshotClient extends ApiClient<ElasticsearchTransport, ElasticsearchSnapshotClient> {
 
-	public ElasticsearchSnapshotClient(Transport transport) {
-		super(transport);
+	public ElasticsearchSnapshotClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchSnapshotClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSnapshotClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSnapshotClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.cleanup_repository
@@ -49,24 +64,28 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CleanupRepositoryResponse cleanupRepository(CleanupRepositoryRequest request) throws IOException {
-		return this.transport.performRequest(request, CleanupRepositoryRequest.ENDPOINT);
+	public CleanupRepositoryResponse cleanupRepository(CleanupRepositoryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<CleanupRepositoryRequest, CleanupRepositoryResponse, ErrorResponse>) CleanupRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Removes stale data from repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CleanupRepositoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/clean-up-snapshot-repo-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CleanupRepositoryResponse cleanupRepository(
-			Function<CleanupRepositoryRequest.Builder, ObjectBuilder<CleanupRepositoryRequest>> fn) throws IOException {
+			Function<CleanupRepositoryRequest.Builder, ObjectBuilder<CleanupRepositoryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return cleanupRepository(fn.apply(new CleanupRepositoryRequest.Builder()).build());
 	}
 
@@ -81,8 +100,11 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CloneSnapshotResponse clone(CloneSnapshotRequest request) throws IOException {
-		return this.transport.performRequest(request, CloneSnapshotRequest.ENDPOINT);
+	public CloneSnapshotResponse clone(CloneSnapshotRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<CloneSnapshotRequest, CloneSnapshotResponse, ErrorResponse>) CloneSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -90,16 +112,16 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 * repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CloneSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CloneSnapshotResponse clone(
-			Function<CloneSnapshotRequest.Builder, ObjectBuilder<CloneSnapshotRequest>> fn) throws IOException {
+			Function<CloneSnapshotRequest.Builder, ObjectBuilder<CloneSnapshotRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return clone(fn.apply(new CloneSnapshotRequest.Builder()).build());
 	}
 
@@ -113,24 +135,27 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CreateSnapshotResponse create(CreateSnapshotRequest request) throws IOException {
-		return this.transport.performRequest(request, CreateSnapshotRequest.ENDPOINT);
+	public CreateSnapshotResponse create(CreateSnapshotRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateSnapshotRequest, CreateSnapshotResponse, ErrorResponse>) CreateSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates a snapshot in a repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CreateSnapshotResponse create(
-			Function<CreateSnapshotRequest.Builder, ObjectBuilder<CreateSnapshotRequest>> fn) throws IOException {
+			Function<CreateSnapshotRequest.Builder, ObjectBuilder<CreateSnapshotRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return create(fn.apply(new CreateSnapshotRequest.Builder()).build());
 	}
 
@@ -144,24 +169,28 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CreateRepositoryResponse createRepository(CreateRepositoryRequest request) throws IOException {
-		return this.transport.performRequest(request, CreateRepositoryRequest.ENDPOINT);
+	public CreateRepositoryResponse createRepository(CreateRepositoryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateRepositoryRequest, CreateRepositoryResponse, ErrorResponse>) CreateRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates a repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateRepositoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CreateRepositoryResponse createRepository(
-			Function<CreateRepositoryRequest.Builder, ObjectBuilder<CreateRepositoryRequest>> fn) throws IOException {
+			Function<CreateRepositoryRequest.Builder, ObjectBuilder<CreateRepositoryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return createRepository(fn.apply(new CreateRepositoryRequest.Builder()).build());
 	}
 
@@ -175,24 +204,27 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteSnapshotResponse delete(DeleteSnapshotRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteSnapshotRequest.ENDPOINT);
+	public DeleteSnapshotResponse delete(DeleteSnapshotRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse>) DeleteSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes one or more snapshots.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteSnapshotResponse delete(
-			Function<DeleteSnapshotRequest.Builder, ObjectBuilder<DeleteSnapshotRequest>> fn) throws IOException {
+			Function<DeleteSnapshotRequest.Builder, ObjectBuilder<DeleteSnapshotRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return delete(fn.apply(new DeleteSnapshotRequest.Builder()).build());
 	}
 
@@ -206,24 +238,28 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteRepositoryResponse deleteRepository(DeleteRepositoryRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteRepositoryRequest.ENDPOINT);
+	public DeleteRepositoryResponse deleteRepository(DeleteRepositoryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteRepositoryRequest, DeleteRepositoryResponse, ErrorResponse>) DeleteRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes a repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteRepositoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteRepositoryResponse deleteRepository(
-			Function<DeleteRepositoryRequest.Builder, ObjectBuilder<DeleteRepositoryRequest>> fn) throws IOException {
+			Function<DeleteRepositoryRequest.Builder, ObjectBuilder<DeleteRepositoryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteRepository(fn.apply(new DeleteRepositoryRequest.Builder()).build());
 	}
 
@@ -237,24 +273,26 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetSnapshotResponse get(GetSnapshotRequest request) throws IOException {
-		return this.transport.performRequest(request, GetSnapshotRequest.ENDPOINT);
+	public GetSnapshotResponse get(GetSnapshotRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<GetSnapshotRequest, GetSnapshotResponse, ErrorResponse>) GetSnapshotRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about a snapshot.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetSnapshotRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetSnapshotResponse get(Function<GetSnapshotRequest.Builder, ObjectBuilder<GetSnapshotRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return get(fn.apply(new GetSnapshotRequest.Builder()).build());
 	}
 
@@ -268,24 +306,28 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetRepositoryResponse getRepository(GetRepositoryRequest request) throws IOException {
-		return this.transport.performRequest(request, GetRepositoryRequest.ENDPOINT);
+	public GetRepositoryResponse getRepository(GetRepositoryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse>) GetRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about a repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRepositoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetRepositoryResponse getRepository(
-			Function<GetRepositoryRequest.Builder, ObjectBuilder<GetRepositoryRequest>> fn) throws IOException {
+			Function<GetRepositoryRequest.Builder, ObjectBuilder<GetRepositoryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getRepository(fn.apply(new GetRepositoryRequest.Builder()).build());
 	}
 
@@ -297,8 +339,9 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetRepositoryResponse getRepository() throws IOException {
-		return this.transport.performRequest(new GetRepositoryRequest.Builder().build(), GetRepositoryRequest.ENDPOINT);
+	public GetRepositoryResponse getRepository() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new GetRepositoryRequest.Builder().build(), GetRepositoryRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.restore
@@ -311,24 +354,26 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public RestoreResponse restore(RestoreRequest request) throws IOException {
-		return this.transport.performRequest(request, RestoreRequest.ENDPOINT);
+	public RestoreResponse restore(RestoreRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RestoreRequest, RestoreResponse, ErrorResponse> endpoint = (JsonEndpoint<RestoreRequest, RestoreResponse, ErrorResponse>) RestoreRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Restores a snapshot.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RestoreRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final RestoreResponse restore(Function<RestoreRequest.Builder, ObjectBuilder<RestoreRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return restore(fn.apply(new RestoreRequest.Builder()).build());
 	}
 
@@ -342,25 +387,28 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StatusResponse status(StatusRequest request) throws IOException {
-		return this.transport.performRequest(request, StatusRequest.ENDPOINT);
+	public SnapshotStatusResponse status(SnapshotStatusRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse> endpoint = (JsonEndpoint<SnapshotStatusRequest, SnapshotStatusResponse, ErrorResponse>) SnapshotStatusRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about the status of a snapshot.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SnapshotStatusRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final StatusResponse status(Function<StatusRequest.Builder, ObjectBuilder<StatusRequest>> fn)
-			throws IOException {
-		return status(fn.apply(new StatusRequest.Builder()).build());
+	public final SnapshotStatusResponse status(
+			Function<SnapshotStatusRequest.Builder, ObjectBuilder<SnapshotStatusRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return status(fn.apply(new SnapshotStatusRequest.Builder()).build());
 	}
 
 	/**
@@ -371,8 +419,9 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public StatusResponse status() throws IOException {
-		return this.transport.performRequest(new StatusRequest.Builder().build(), StatusRequest.ENDPOINT);
+	public SnapshotStatusResponse status() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new SnapshotStatusRequest.Builder().build(),
+				SnapshotStatusRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: snapshot.verify_repository
@@ -385,24 +434,28 @@ public class ElasticsearchSnapshotClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public VerifyRepositoryResponse verifyRepository(VerifyRepositoryRequest request) throws IOException {
-		return this.transport.performRequest(request, VerifyRepositoryRequest.ENDPOINT);
+	public VerifyRepositoryResponse verifyRepository(VerifyRepositoryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse> endpoint = (JsonEndpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse>) VerifyRepositoryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Verifies a repository.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link VerifyRepositoryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final VerifyRepositoryResponse verifyRepository(
-			Function<VerifyRepositoryRequest.Builder, ObjectBuilder<VerifyRepositoryRequest>> fn) throws IOException {
+			Function<VerifyRepositoryRequest.Builder, ObjectBuilder<VerifyRepositoryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return verifyRepository(fn.apply(new VerifyRepositoryRequest.Builder()).build());
 	}
 

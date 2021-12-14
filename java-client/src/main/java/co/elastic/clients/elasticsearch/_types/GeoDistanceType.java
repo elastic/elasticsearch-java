@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Geo.ts#L51-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum GeoDistanceType implements StringEnum {
-	Arc("arc"), Plane("plane");
+public enum GeoDistanceType implements JsonEnum {
+	Arc("arc"),
+
+	Plane("plane"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum GeoDistanceType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<GeoDistanceType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<GeoDistanceType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			GeoDistanceType.values());
 }

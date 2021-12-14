@@ -24,44 +24,49 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch.security.get_api_key.ApiKey;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_api_key.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_api_key/SecurityGetApiKeyResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetApiKeyResponse implements JsonpSerializable {
+public class GetApiKeyResponse implements JsonpSerializable {
 	private final List<ApiKey> apiKeys;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetApiKeyResponse(Builder builder) {
+	private GetApiKeyResponse(Builder builder) {
 
-		this.apiKeys = ModelTypeHelper.unmodifiableNonNull(builder.apiKeys, "api_keys");
+		this.apiKeys = ApiTypeHelper.unmodifiableRequired(builder.apiKeys, this, "apiKeys");
 
 	}
 
-	public GetApiKeyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetApiKeyResponse of(Function<Builder, ObjectBuilder<GetApiKeyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code api_keys}
 	 */
-	public List<ApiKey> apiKeys() {
+	public final List<ApiKey> apiKeys() {
 		return this.apiKeys;
 	}
 
@@ -76,13 +81,16 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("api_keys");
-		generator.writeStartArray();
-		for (ApiKey item0 : this.apiKeys) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.apiKeys)) {
+			generator.writeKey("api_keys");
+			generator.writeStartArray();
+			for (ApiKey item0 : this.apiKeys) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,48 +99,37 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetApiKeyResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetApiKeyResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetApiKeyResponse> {
 		private List<ApiKey> apiKeys;
 
 		/**
 		 * Required - API name: {@code api_keys}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>apiKeys</code>.
 		 */
-		public Builder apiKeys(List<ApiKey> value) {
-			this.apiKeys = value;
+		public final Builder apiKeys(List<ApiKey> list) {
+			this.apiKeys = _listAddAll(this.apiKeys, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code api_keys}
+		 * <p>
+		 * Adds one or more values to <code>apiKeys</code>.
 		 */
-		public Builder apiKeys(ApiKey... value) {
-			this.apiKeys = Arrays.asList(value);
+		public final Builder apiKeys(ApiKey value, ApiKey... values) {
+			this.apiKeys = _listAdd(this.apiKeys, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #apiKeys(List)}, creating the list if needed.
+		 * Required - API name: {@code api_keys}
+		 * <p>
+		 * Adds a value to <code>apiKeys</code> using a builder lambda.
 		 */
-		public Builder addApiKeys(ApiKey value) {
-			if (this.apiKeys == null) {
-				this.apiKeys = new ArrayList<>();
-			}
-			this.apiKeys.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #apiKeys(List)} to a singleton list.
-		 */
-		public Builder apiKeys(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
-			return this.apiKeys(fn.apply(new ApiKey.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #apiKeys(List)}, creating the list if needed.
-		 */
-		public Builder addApiKeys(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
-			return this.addApiKeys(fn.apply(new ApiKey.Builder()).build());
+		public final Builder apiKeys(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
+			return apiKeys(fn.apply(new ApiKey.Builder()).build());
 		}
 
 		/**
@@ -142,6 +139,7 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetApiKeyResponse build() {
+			_checkSingleUse();
 
 			return new GetApiKeyResponse(this);
 		}
@@ -153,9 +151,9 @@ public final class GetApiKeyResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetApiKeyResponse}
 	 */
 	public static final JsonpDeserializer<GetApiKeyResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetApiKeyResponse::setupGetApiKeyResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetApiKeyResponse::setupGetApiKeyResponseDeserializer);
 
-	protected static void setupGetApiKeyResponseDeserializer(DelegatingDeserializer<GetApiKeyResponse.Builder> op) {
+	protected static void setupGetApiKeyResponseDeserializer(ObjectDeserializer<GetApiKeyResponse.Builder> op) {
 
 		op.add(Builder::apiKeys, JsonpDeserializer.arrayDeserializer(ApiKey._DESERIALIZER), "api_keys");
 

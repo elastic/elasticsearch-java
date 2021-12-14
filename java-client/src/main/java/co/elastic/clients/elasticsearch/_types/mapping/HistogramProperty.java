@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.HistogramProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L70-L73">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class HistogramProperty extends PropertyBase implements PropertyVariant {
+public class HistogramProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean ignoreMalformed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HistogramProperty(Builder builder) {
+	private HistogramProperty(Builder builder) {
 		super(builder);
 
 		this.ignoreMalformed = builder.ignoreMalformed;
 
 	}
 
-	public HistogramProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HistogramProperty of(Function<Builder, ObjectBuilder<HistogramProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "histogram";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Histogram;
 	}
 
 	/**
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
-	public Boolean ignoreMalformed() {
+	public final Boolean ignoreMalformed() {
 		return this.ignoreMalformed;
 	}
 
@@ -76,7 +82,6 @@ public final class HistogramProperty extends PropertyBase implements PropertyVar
 		generator.write("type", "histogram");
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreMalformed != null) {
-
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
@@ -89,6 +94,7 @@ public final class HistogramProperty extends PropertyBase implements PropertyVar
 	/**
 	 * Builder for {@link HistogramProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HistogramProperty> {
@@ -98,7 +104,7 @@ public final class HistogramProperty extends PropertyBase implements PropertyVar
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
-		public Builder ignoreMalformed(@Nullable Boolean value) {
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
 			return this;
 		}
@@ -115,6 +121,7 @@ public final class HistogramProperty extends PropertyBase implements PropertyVar
 		 *             if some of the required fields are null.
 		 */
 		public HistogramProperty build() {
+			_checkSingleUse();
 
 			return new HistogramProperty(this);
 		}
@@ -126,9 +133,9 @@ public final class HistogramProperty extends PropertyBase implements PropertyVar
 	 * Json deserializer for {@link HistogramProperty}
 	 */
 	public static final JsonpDeserializer<HistogramProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HistogramProperty::setupHistogramPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, HistogramProperty::setupHistogramPropertyDeserializer);
 
-	protected static void setupHistogramPropertyDeserializer(DelegatingDeserializer<HistogramProperty.Builder> op) {
+	protected static void setupHistogramPropertyDeserializer(ObjectDeserializer<HistogramProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 

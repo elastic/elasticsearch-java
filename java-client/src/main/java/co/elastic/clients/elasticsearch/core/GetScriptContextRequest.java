@@ -23,23 +23,30 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: _global.get_script_context.Request
 
-public final class GetScriptContextRequest extends RequestBase {
+/**
+ * Returns all script contexts.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_context/GetScriptContextRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class GetScriptContextRequest extends RequestBase {
 	public GetScriptContextRequest() {
 	}
 
@@ -53,7 +60,9 @@ public final class GetScriptContextRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get_script_context}".
 	 */
-	public static final Endpoint<GetScriptContextRequest, GetScriptContextResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetScriptContextRequest, GetScriptContextResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/get_script_context",
+
 			// Request method
 			request -> {
 				return "GET";

@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Model.ts#L71-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum CategorizationStatus implements StringEnum {
-	Ok("ok"), Warn("warn");
+public enum CategorizationStatus implements JsonEnum {
+	Ok("ok"),
+
+	Warn("warn"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum CategorizationStatus implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<CategorizationStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<CategorizationStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			CategorizationStatus.values());
 }

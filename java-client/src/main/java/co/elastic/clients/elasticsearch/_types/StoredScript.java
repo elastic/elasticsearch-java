@@ -23,53 +23,70 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.StoredScript
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Scripting.ts#L37-L41">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StoredScript implements JsonpSerializable {
-	@Nullable
-	private final ScriptLanguage lang;
+public class StoredScript implements JsonpSerializable {
+	private final String lang;
+
+	private final Map<String, String> options;
 
 	private final String source;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StoredScript(Builder builder) {
+	private StoredScript(Builder builder) {
 
-		this.lang = builder.lang;
-		this.source = Objects.requireNonNull(builder.source, "source");
+		this.lang = ApiTypeHelper.requireNonNull(builder.lang, this, "lang");
+		this.options = ApiTypeHelper.unmodifiable(builder.options);
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
-	public StoredScript(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StoredScript of(Function<Builder, ObjectBuilder<StoredScript>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code lang}
+	 * Required - API name: {@code lang}
 	 */
-	@Nullable
-	public ScriptLanguage lang() {
+	public final String lang() {
 		return this.lang;
+	}
+
+	/**
+	 * API name: {@code options}
+	 */
+	public final Map<String, String> options() {
+		return this.options;
 	}
 
 	/**
 	 * Required - API name: {@code source}
 	 */
-	public String source() {
+	public final String source() {
 		return this.source;
 	}
 
@@ -84,12 +101,20 @@ public final class StoredScript implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.lang != null) {
+		generator.writeKey("lang");
+		generator.write(this.lang);
 
-			generator.writeKey("lang");
-			this.lang.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.options)) {
+			generator.writeKey("options");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.options.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
+
 		}
-
 		generator.writeKey("source");
 		generator.write(this.source);
 
@@ -100,24 +125,47 @@ public final class StoredScript implements JsonpSerializable {
 	/**
 	 * Builder for {@link StoredScript}.
 	 */
-	public static class Builder implements ObjectBuilder<StoredScript> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StoredScript> {
+		private String lang;
+
 		@Nullable
-		private ScriptLanguage lang;
+		private Map<String, String> options;
 
 		private String source;
 
 		/**
-		 * API name: {@code lang}
+		 * Required - API name: {@code lang}
 		 */
-		public Builder lang(@Nullable ScriptLanguage value) {
+		public final Builder lang(String value) {
 			this.lang = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code options}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>options</code>.
+		 */
+		public final Builder options(Map<String, String> map) {
+			this.options = _mapPutAll(this.options, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code options}
+		 * <p>
+		 * Adds an entry to <code>options</code>.
+		 */
+		public final Builder options(String key, String value) {
+			this.options = _mapPut(this.options, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public Builder source(String value) {
+		public final Builder source(String value) {
 			this.source = value;
 			return this;
 		}
@@ -129,6 +177,7 @@ public final class StoredScript implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StoredScript build() {
+			_checkSingleUse();
 
 			return new StoredScript(this);
 		}
@@ -140,11 +189,13 @@ public final class StoredScript implements JsonpSerializable {
 	 * Json deserializer for {@link StoredScript}
 	 */
 	public static final JsonpDeserializer<StoredScript> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StoredScript::setupStoredScriptDeserializer, Builder::build);
+			StoredScript::setupStoredScriptDeserializer);
 
-	protected static void setupStoredScriptDeserializer(DelegatingDeserializer<StoredScript.Builder> op) {
+	protected static void setupStoredScriptDeserializer(ObjectDeserializer<StoredScript.Builder> op) {
 
-		op.add(Builder::lang, ScriptLanguage._DESERIALIZER, "lang");
+		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
+		op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
+				"options");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
 
 	}

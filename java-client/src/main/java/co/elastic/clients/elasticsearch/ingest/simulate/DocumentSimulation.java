@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,19 +30,26 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.DocumentSimulation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/simulate/types.ts#L45-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DocumentSimulation implements JsonpSerializable {
+public class DocumentSimulation implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
@@ -63,40 +69,40 @@ public final class DocumentSimulation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DocumentSimulation(Builder builder) {
+	private DocumentSimulation(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.index = Objects.requireNonNull(builder.index, "_index");
-		this.ingest = Objects.requireNonNull(builder.ingest, "_ingest");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.ingest = ApiTypeHelper.requireNonNull(builder.ingest, this, "ingest");
 		this.parent = builder.parent;
 		this.routing = builder.routing;
-		this.source = ModelTypeHelper.unmodifiableNonNull(builder.source, "_source");
+		this.source = ApiTypeHelper.unmodifiableRequired(builder.source, this, "source");
 		this.type = builder.type;
 
 	}
 
-	public DocumentSimulation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DocumentSimulation of(Function<Builder, ObjectBuilder<DocumentSimulation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code _ingest}
 	 */
-	public Ingest ingest() {
+	public final Ingest ingest() {
 		return this.ingest;
 	}
 
@@ -104,7 +110,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 	 * API name: {@code _parent}
 	 */
 	@Nullable
-	public String parent() {
+	public final String parent() {
 		return this.parent;
 	}
 
@@ -112,14 +118,14 @@ public final class DocumentSimulation implements JsonpSerializable {
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
 	/**
 	 * Required - API name: {@code _source}
 	 */
-	public Map<String, JsonData> source() {
+	public final Map<String, JsonData> source() {
 		return this.source;
 	}
 
@@ -127,7 +133,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -152,29 +158,27 @@ public final class DocumentSimulation implements JsonpSerializable {
 		this.ingest.serialize(generator, mapper);
 
 		if (this.parent != null) {
-
 			generator.writeKey("_parent");
 			generator.write(this.parent);
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("_routing");
 			generator.write(this.routing);
 
 		}
+		if (ApiTypeHelper.isDefined(this.source)) {
+			generator.writeKey("_source");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.source.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("_source");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.source.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.type != null) {
-
 			generator.writeKey("_type");
 			generator.write(this.type);
 
@@ -187,7 +191,8 @@ public final class DocumentSimulation implements JsonpSerializable {
 	/**
 	 * Builder for {@link DocumentSimulation}.
 	 */
-	public static class Builder implements ObjectBuilder<DocumentSimulation> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DocumentSimulation> {
 		private String id;
 
 		private String index;
@@ -208,7 +213,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -216,7 +221,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -224,7 +229,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _ingest}
 		 */
-		public Builder ingest(Ingest value) {
+		public final Builder ingest(Ingest value) {
 			this.ingest = value;
 			return this;
 		}
@@ -232,14 +237,14 @@ public final class DocumentSimulation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _ingest}
 		 */
-		public Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
+		public final Builder ingest(Function<Ingest.Builder, ObjectBuilder<Ingest>> fn) {
 			return this.ingest(fn.apply(new Ingest.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _parent}
 		 */
-		public Builder parent(@Nullable String value) {
+		public final Builder parent(@Nullable String value) {
 			this.parent = value;
 			return this;
 		}
@@ -247,34 +252,35 @@ public final class DocumentSimulation implements JsonpSerializable {
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code _source}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>source</code>.
 		 */
-		public Builder source(Map<String, JsonData> value) {
-			this.source = value;
+		public final Builder source(Map<String, JsonData> map) {
+			this.source = _mapPutAll(this.source, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #source(Map)}, creating the map if needed.
+		 * Required - API name: {@code _source}
+		 * <p>
+		 * Adds an entry to <code>source</code>.
 		 */
-		public Builder putSource(String key, JsonData value) {
-			if (this.source == null) {
-				this.source = new HashMap<>();
-			}
-			this.source.put(key, value);
+		public final Builder source(String key, JsonData value) {
+			this.source = _mapPut(this.source, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -286,6 +292,7 @@ public final class DocumentSimulation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DocumentSimulation build() {
+			_checkSingleUse();
 
 			return new DocumentSimulation(this);
 		}
@@ -297,9 +304,9 @@ public final class DocumentSimulation implements JsonpSerializable {
 	 * Json deserializer for {@link DocumentSimulation}
 	 */
 	public static final JsonpDeserializer<DocumentSimulation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DocumentSimulation::setupDocumentSimulationDeserializer, Builder::build);
+			.lazy(Builder::new, DocumentSimulation::setupDocumentSimulationDeserializer);
 
-	protected static void setupDocumentSimulationDeserializer(DelegatingDeserializer<DocumentSimulation.Builder> op) {
+	protected static void setupDocumentSimulationDeserializer(ObjectDeserializer<DocumentSimulation.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

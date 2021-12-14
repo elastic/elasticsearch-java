@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,27 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.activate_watch.Request
 
-public final class ActivateWatchRequest extends RequestBase {
+/**
+ * Activates a currently inactive watch.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/activate_watch/WatcherActivateWatchRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class ActivateWatchRequest extends RequestBase {
 	private final String watchId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ActivateWatchRequest(Builder builder) {
+	private ActivateWatchRequest(Builder builder) {
 
-		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
+		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 
 	}
 
-	public ActivateWatchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ActivateWatchRequest of(Function<Builder, ObjectBuilder<ActivateWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +71,7 @@ public final class ActivateWatchRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code watch_id}
 	 */
-	public String watchId() {
+	public final String watchId() {
 		return this.watchId;
 	}
 
@@ -70,7 +80,8 @@ public final class ActivateWatchRequest extends RequestBase {
 	/**
 	 * Builder for {@link ActivateWatchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ActivateWatchRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActivateWatchRequest> {
 		private String watchId;
 
 		/**
@@ -78,7 +89,7 @@ public final class ActivateWatchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code watch_id}
 		 */
-		public Builder watchId(String value) {
+		public final Builder watchId(String value) {
 			this.watchId = value;
 			return this;
 		}
@@ -90,6 +101,7 @@ public final class ActivateWatchRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ActivateWatchRequest build() {
+			_checkSingleUse();
 
 			return new ActivateWatchRequest(this);
 		}
@@ -100,7 +112,9 @@ public final class ActivateWatchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.activate_watch}".
 	 */
-	public static final Endpoint<ActivateWatchRequest, ActivateWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.activate_watch",
+
 			// Request method
 			request -> {
 				return "PUT";

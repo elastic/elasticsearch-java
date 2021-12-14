@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.PorterStemTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L289-L291">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PorterStemTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class PorterStemTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public PorterStemTokenFilter(Builder builder) {
+	private PorterStemTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public PorterStemTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PorterStemTokenFilter of(Function<Builder, ObjectBuilder<PorterStemTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "porter_stem";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.PorterStem;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class PorterStemTokenFilter extends TokenFilterBase implements Toke
 	/**
 	 * Builder for {@link PorterStemTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PorterStemTokenFilter> {
@@ -83,6 +90,7 @@ public final class PorterStemTokenFilter extends TokenFilterBase implements Toke
 		 *             if some of the required fields are null.
 		 */
 		public PorterStemTokenFilter build() {
+			_checkSingleUse();
 
 			return new PorterStemTokenFilter(this);
 		}
@@ -94,10 +102,9 @@ public final class PorterStemTokenFilter extends TokenFilterBase implements Toke
 	 * Json deserializer for {@link PorterStemTokenFilter}
 	 */
 	public static final JsonpDeserializer<PorterStemTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PorterStemTokenFilter::setupPorterStemTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, PorterStemTokenFilter::setupPorterStemTokenFilterDeserializer);
 
-	protected static void setupPorterStemTokenFilterDeserializer(
-			DelegatingDeserializer<PorterStemTokenFilter.Builder> op) {
+	protected static void setupPorterStemTokenFilterDeserializer(ObjectDeserializer<PorterStemTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

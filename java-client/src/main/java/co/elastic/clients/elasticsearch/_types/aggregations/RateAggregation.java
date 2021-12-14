@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,17 +35,24 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.RateAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L118-L121">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RateAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class RateAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
-	private final DateInterval unit;
+	private final CalendarInterval unit;
 
 	@Nullable
 	private final RateMode mode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RateAggregation(Builder builder) {
+	private RateAggregation(Builder builder) {
 		super(builder);
 
 		this.unit = builder.unit;
@@ -54,23 +60,23 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 
 	}
 
-	public RateAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RateAggregation of(Function<Builder, ObjectBuilder<RateAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "rate";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Rate;
 	}
 
 	/**
 	 * API name: {@code unit}
 	 */
 	@Nullable
-	public DateInterval unit() {
+	public final CalendarInterval unit() {
 		return this.unit;
 	}
 
@@ -78,7 +84,7 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 	 * API name: {@code mode}
 	 */
 	@Nullable
-	public RateMode mode() {
+	public final RateMode mode() {
 		return this.mode;
 	}
 
@@ -86,12 +92,10 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 
 		super.serializeInternal(generator, mapper);
 		if (this.unit != null) {
-
 			generator.writeKey("unit");
 			this.unit.serialize(generator, mapper);
 		}
 		if (this.mode != null) {
-
 			generator.writeKey("mode");
 			this.mode.serialize(generator, mapper);
 		}
@@ -103,11 +107,12 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 	/**
 	 * Builder for {@link RateAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RateAggregation> {
 		@Nullable
-		private DateInterval unit;
+		private CalendarInterval unit;
 
 		@Nullable
 		private RateMode mode;
@@ -115,7 +120,7 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 		/**
 		 * API name: {@code unit}
 		 */
-		public Builder unit(@Nullable DateInterval value) {
+		public final Builder unit(@Nullable CalendarInterval value) {
 			this.unit = value;
 			return this;
 		}
@@ -123,7 +128,7 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 		/**
 		 * API name: {@code mode}
 		 */
-		public Builder mode(@Nullable RateMode value) {
+		public final Builder mode(@Nullable RateMode value) {
 			this.mode = value;
 			return this;
 		}
@@ -140,6 +145,7 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 		 *             if some of the required fields are null.
 		 */
 		public RateAggregation build() {
+			_checkSingleUse();
 
 			return new RateAggregation(this);
 		}
@@ -151,11 +157,11 @@ public final class RateAggregation extends FormatMetricAggregationBase implement
 	 * Json deserializer for {@link RateAggregation}
 	 */
 	public static final JsonpDeserializer<RateAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RateAggregation::setupRateAggregationDeserializer, Builder::build);
+			RateAggregation::setupRateAggregationDeserializer);
 
-	protected static void setupRateAggregationDeserializer(DelegatingDeserializer<RateAggregation.Builder> op) {
+	protected static void setupRateAggregationDeserializer(ObjectDeserializer<RateAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
-		op.add(Builder::unit, DateInterval._DESERIALIZER, "unit");
+		op.add(Builder::unit, CalendarInterval._DESERIALIZER, "unit");
 		op.add(Builder::mode, RateMode._DESERIALIZER, "mode");
 
 	}

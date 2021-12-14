@@ -23,70 +23,71 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthcRealms
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L243-L247">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
-	@Nullable
+public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 	private final Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> file;
 
-	@Nullable
 	private final Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> native_;
 
-	@Nullable
 	private final Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> pki;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoXpackSecurityAuthcRealms(Builder builder) {
+	private NodeInfoXpackSecurityAuthcRealms(Builder builder) {
 
-		this.file = ModelTypeHelper.unmodifiable(builder.file);
-		this.native_ = ModelTypeHelper.unmodifiable(builder.native_);
-		this.pki = ModelTypeHelper.unmodifiable(builder.pki);
+		this.file = ApiTypeHelper.unmodifiable(builder.file);
+		this.native_ = ApiTypeHelper.unmodifiable(builder.native_);
+		this.pki = ApiTypeHelper.unmodifiable(builder.pki);
 
 	}
 
-	public NodeInfoXpackSecurityAuthcRealms(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoXpackSecurityAuthcRealms of(
+			Function<Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealms>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code file}
 	 */
-	@Nullable
-	public Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> file() {
+	public final Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> file() {
 		return this.file;
 	}
 
 	/**
 	 * API name: {@code native}
 	 */
-	@Nullable
-	public Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> native_() {
+	public final Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> native_() {
 		return this.native_;
 	}
 
 	/**
 	 * API name: {@code pki}
 	 */
-	@Nullable
-	public Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> pki() {
+	public final Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> pki() {
 		return this.pki;
 	}
 
@@ -101,8 +102,7 @@ public final class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.file != null) {
-
+		if (ApiTypeHelper.isDefined(this.file)) {
 			generator.writeKey("file");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoXpackSecurityAuthcRealmsStatus> item0 : this.file.entrySet()) {
@@ -113,8 +113,7 @@ public final class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable
 			generator.writeEnd();
 
 		}
-		if (this.native_ != null) {
-
+		if (ApiTypeHelper.isDefined(this.native_)) {
 			generator.writeKey("native");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoXpackSecurityAuthcRealmsStatus> item0 : this.native_.entrySet()) {
@@ -125,8 +124,7 @@ public final class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable
 			generator.writeEnd();
 
 		}
-		if (this.pki != null) {
-
+		if (ApiTypeHelper.isDefined(this.pki)) {
 			generator.writeKey("pki");
 			generator.writeStartObject();
 			for (Map.Entry<String, NodeInfoXpackSecurityAuthcRealmsStatus> item0 : this.pki.entrySet()) {
@@ -145,7 +143,8 @@ public final class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable
 	/**
 	 * Builder for {@link NodeInfoXpackSecurityAuthcRealms}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoXpackSecurityAuthcRealms> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackSecurityAuthcRealms> {
 		@Nullable
 		private Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> file;
 
@@ -157,110 +156,92 @@ public final class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable
 
 		/**
 		 * API name: {@code file}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>file</code>.
 		 */
-		public Builder file(@Nullable Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> value) {
-			this.file = value;
+		public final Builder file(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
+			this.file = _mapPutAll(this.file, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #file(Map)}, creating the map if needed.
+		 * API name: {@code file}
+		 * <p>
+		 * Adds an entry to <code>file</code>.
 		 */
-		public Builder putFile(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
-			if (this.file == null) {
-				this.file = new HashMap<>();
-			}
-			this.file.put(key, value);
+		public final Builder file(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
+			this.file = _mapPut(this.file, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #file(Map)} to a singleton map.
+		 * API name: {@code file}
+		 * <p>
+		 * Adds an entry to <code>file</code> using a builder lambda.
 		 */
-		public Builder file(String key,
+		public final Builder file(String key,
 				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
-			return this.file(Collections.singletonMap(key,
-					fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #file(Map)}, creating the map if needed.
-		 */
-		public Builder putFile(String key,
-				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
-			return this.putFile(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
+			return file(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code native}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>native_</code>.
 		 */
-		public Builder native_(@Nullable Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> value) {
-			this.native_ = value;
+		public final Builder native_(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
+			this.native_ = _mapPutAll(this.native_, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #native_(Map)}, creating the map if needed.
+		 * API name: {@code native}
+		 * <p>
+		 * Adds an entry to <code>native_</code>.
 		 */
-		public Builder putNative(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
-			if (this.native_ == null) {
-				this.native_ = new HashMap<>();
-			}
-			this.native_.put(key, value);
+		public final Builder native_(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
+			this.native_ = _mapPut(this.native_, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #native_(Map)} to a singleton map.
+		 * API name: {@code native}
+		 * <p>
+		 * Adds an entry to <code>native_</code> using a builder lambda.
 		 */
-		public Builder native_(String key,
+		public final Builder native_(String key,
 				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
-			return this.native_(Collections.singletonMap(key,
-					fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #native_(Map)}, creating the map if needed.
-		 */
-		public Builder putNative(String key,
-				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
-			return this.putNative(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
+			return native_(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code pki}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>pki</code>.
 		 */
-		public Builder pki(@Nullable Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> value) {
-			this.pki = value;
+		public final Builder pki(Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> map) {
+			this.pki = _mapPutAll(this.pki, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #pki(Map)}, creating the map if needed.
+		 * API name: {@code pki}
+		 * <p>
+		 * Adds an entry to <code>pki</code>.
 		 */
-		public Builder putPki(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
-			if (this.pki == null) {
-				this.pki = new HashMap<>();
-			}
-			this.pki.put(key, value);
+		public final Builder pki(String key, NodeInfoXpackSecurityAuthcRealmsStatus value) {
+			this.pki = _mapPut(this.pki, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #pki(Map)} to a singleton map.
+		 * API name: {@code pki}
+		 * <p>
+		 * Adds an entry to <code>pki</code> using a builder lambda.
 		 */
-		public Builder pki(String key,
+		public final Builder pki(String key,
 				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
-			return this.pki(Collections.singletonMap(key,
-					fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #pki(Map)}, creating the map if needed.
-		 */
-		public Builder putPki(String key,
-				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
-			return this.putPki(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
+			return pki(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
 		}
 
 		/**
@@ -270,6 +251,7 @@ public final class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoXpackSecurityAuthcRealms build() {
+			_checkSingleUse();
 
 			return new NodeInfoXpackSecurityAuthcRealms(this);
 		}
@@ -281,11 +263,10 @@ public final class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable
 	 * Json deserializer for {@link NodeInfoXpackSecurityAuthcRealms}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthcRealms> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoXpackSecurityAuthcRealms::setupNodeInfoXpackSecurityAuthcRealmsDeserializer,
-					Builder::build);
+			.lazy(Builder::new, NodeInfoXpackSecurityAuthcRealms::setupNodeInfoXpackSecurityAuthcRealmsDeserializer);
 
 	protected static void setupNodeInfoXpackSecurityAuthcRealmsDeserializer(
-			DelegatingDeserializer<NodeInfoXpackSecurityAuthcRealms.Builder> op) {
+			ObjectDeserializer<NodeInfoXpackSecurityAuthcRealms.Builder> op) {
 
 		op.add(Builder::file,
 				JsonpDeserializer.stringMapDeserializer(NodeInfoXpackSecurityAuthcRealmsStatus._DESERIALIZER), "file");

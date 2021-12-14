@@ -23,14 +23,16 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,46 +40,53 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.VerifyIndex
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L104-L109">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class VerifyIndex implements JsonpSerializable {
+public class VerifyIndex implements JsonpSerializable {
 	@Nullable
-	private final String checkIndexTime;
+	private final Time checkIndexTime;
 
 	private final String checkIndexTimeInMillis;
 
 	@Nullable
-	private final String totalTime;
+	private final Time totalTime;
 
 	private final String totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public VerifyIndex(Builder builder) {
+	private VerifyIndex(Builder builder) {
 
 		this.checkIndexTime = builder.checkIndexTime;
-		this.checkIndexTimeInMillis = Objects.requireNonNull(builder.checkIndexTimeInMillis,
-				"check_index_time_in_millis");
+		this.checkIndexTimeInMillis = ApiTypeHelper.requireNonNull(builder.checkIndexTimeInMillis, this,
+				"checkIndexTimeInMillis");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = Objects.requireNonNull(builder.totalTimeInMillis, "total_time_in_millis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
-	public VerifyIndex(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static VerifyIndex of(Function<Builder, ObjectBuilder<VerifyIndex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code check_index_time}
 	 */
 	@Nullable
-	public String checkIndexTime() {
+	public final Time checkIndexTime() {
 		return this.checkIndexTime;
 	}
 
 	/**
 	 * Required - API name: {@code check_index_time_in_millis}
 	 */
-	public String checkIndexTimeInMillis() {
+	public final String checkIndexTimeInMillis() {
 		return this.checkIndexTimeInMillis;
 	}
 
@@ -85,14 +94,14 @@ public final class VerifyIndex implements JsonpSerializable {
 	 * API name: {@code total_time}
 	 */
 	@Nullable
-	public String totalTime() {
+	public final Time totalTime() {
 		return this.totalTime;
 	}
 
 	/**
 	 * Required - API name: {@code total_time_in_millis}
 	 */
-	public String totalTimeInMillis() {
+	public final String totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -108,22 +117,18 @@ public final class VerifyIndex implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.checkIndexTime != null) {
-
 			generator.writeKey("check_index_time");
-			generator.write(this.checkIndexTime);
+			this.checkIndexTime.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("check_index_time_in_millis");
 		generator.write(this.checkIndexTimeInMillis);
 
 		if (this.totalTime != null) {
-
 			generator.writeKey("total_time");
-			generator.write(this.totalTime);
+			this.totalTime.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("total_time_in_millis");
 		generator.write(this.totalTimeInMillis);
 
@@ -134,29 +139,37 @@ public final class VerifyIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link VerifyIndex}.
 	 */
-	public static class Builder implements ObjectBuilder<VerifyIndex> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VerifyIndex> {
 		@Nullable
-		private String checkIndexTime;
+		private Time checkIndexTime;
 
 		private String checkIndexTimeInMillis;
 
 		@Nullable
-		private String totalTime;
+		private Time totalTime;
 
 		private String totalTimeInMillis;
 
 		/**
 		 * API name: {@code check_index_time}
 		 */
-		public Builder checkIndexTime(@Nullable String value) {
+		public final Builder checkIndexTime(@Nullable Time value) {
 			this.checkIndexTime = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code check_index_time}
+		 */
+		public final Builder checkIndexTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.checkIndexTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code check_index_time_in_millis}
 		 */
-		public Builder checkIndexTimeInMillis(String value) {
+		public final Builder checkIndexTimeInMillis(String value) {
 			this.checkIndexTimeInMillis = value;
 			return this;
 		}
@@ -164,15 +177,22 @@ public final class VerifyIndex implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public Builder totalTime(@Nullable String value) {
+		public final Builder totalTime(@Nullable Time value) {
 			this.totalTime = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code total_time}
+		 */
+		public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(String value) {
+		public final Builder totalTimeInMillis(String value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -184,6 +204,7 @@ public final class VerifyIndex implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public VerifyIndex build() {
+			_checkSingleUse();
 
 			return new VerifyIndex(this);
 		}
@@ -195,13 +216,13 @@ public final class VerifyIndex implements JsonpSerializable {
 	 * Json deserializer for {@link VerifyIndex}
 	 */
 	public static final JsonpDeserializer<VerifyIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			VerifyIndex::setupVerifyIndexDeserializer, Builder::build);
+			VerifyIndex::setupVerifyIndexDeserializer);
 
-	protected static void setupVerifyIndexDeserializer(DelegatingDeserializer<VerifyIndex.Builder> op) {
+	protected static void setupVerifyIndexDeserializer(ObjectDeserializer<VerifyIndex.Builder> op) {
 
-		op.add(Builder::checkIndexTime, JsonpDeserializer.stringDeserializer(), "check_index_time");
+		op.add(Builder::checkIndexTime, Time._DESERIALIZER, "check_index_time");
 		op.add(Builder::checkIndexTimeInMillis, JsonpDeserializer.stringDeserializer(), "check_index_time_in_millis");
-		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTime, Time._DESERIALIZER, "total_time");
 		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
 
 	}

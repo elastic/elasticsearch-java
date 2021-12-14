@@ -23,25 +23,33 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm._types.Retention
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/_types/SnapshotLifecycle.ts#L78-L91">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Retention implements JsonpSerializable {
-	private final String expireAfter;
+public class Retention implements JsonpSerializable {
+	private final Time expireAfter;
 
 	private final int maxCount;
 
@@ -49,16 +57,16 @@ public final class Retention implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Retention(Builder builder) {
+	private Retention(Builder builder) {
 
-		this.expireAfter = Objects.requireNonNull(builder.expireAfter, "expire_after");
-		this.maxCount = Objects.requireNonNull(builder.maxCount, "max_count");
-		this.minCount = Objects.requireNonNull(builder.minCount, "min_count");
+		this.expireAfter = ApiTypeHelper.requireNonNull(builder.expireAfter, this, "expireAfter");
+		this.maxCount = ApiTypeHelper.requireNonNull(builder.maxCount, this, "maxCount");
+		this.minCount = ApiTypeHelper.requireNonNull(builder.minCount, this, "minCount");
 
 	}
 
-	public Retention(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Retention of(Function<Builder, ObjectBuilder<Retention>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +76,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code expire_after}
 	 */
-	public String expireAfter() {
+	public final Time expireAfter() {
 		return this.expireAfter;
 	}
 
@@ -80,7 +88,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code max_count}
 	 */
-	public int maxCount() {
+	public final int maxCount() {
 		return this.maxCount;
 	}
 
@@ -90,7 +98,7 @@ public final class Retention implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code min_count}
 	 */
-	public int minCount() {
+	public final int minCount() {
 		return this.minCount;
 	}
 
@@ -106,7 +114,7 @@ public final class Retention implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("expire_after");
-		generator.write(this.expireAfter);
+		this.expireAfter.serialize(generator, mapper);
 
 		generator.writeKey("max_count");
 		generator.write(this.maxCount);
@@ -121,8 +129,9 @@ public final class Retention implements JsonpSerializable {
 	/**
 	 * Builder for {@link Retention}.
 	 */
-	public static class Builder implements ObjectBuilder<Retention> {
-		private String expireAfter;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Retention> {
+		private Time expireAfter;
 
 		private Integer maxCount;
 
@@ -135,9 +144,20 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expire_after}
 		 */
-		public Builder expireAfter(String value) {
+		public final Builder expireAfter(Time value) {
 			this.expireAfter = value;
 			return this;
+		}
+
+		/**
+		 * Required - Time period after which a snapshot is considered expired and
+		 * eligible for deletion. SLM deletes expired snapshots based on the
+		 * slm.retention_schedule.
+		 * <p>
+		 * API name: {@code expire_after}
+		 */
+		public final Builder expireAfter(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expireAfter(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -148,7 +168,7 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_count}
 		 */
-		public Builder maxCount(int value) {
+		public final Builder maxCount(int value) {
 			this.maxCount = value;
 			return this;
 		}
@@ -159,7 +179,7 @@ public final class Retention implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code min_count}
 		 */
-		public Builder minCount(int value) {
+		public final Builder minCount(int value) {
 			this.minCount = value;
 			return this;
 		}
@@ -171,6 +191,7 @@ public final class Retention implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Retention build() {
+			_checkSingleUse();
 
 			return new Retention(this);
 		}
@@ -182,11 +203,11 @@ public final class Retention implements JsonpSerializable {
 	 * Json deserializer for {@link Retention}
 	 */
 	public static final JsonpDeserializer<Retention> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Retention::setupRetentionDeserializer, Builder::build);
+			Retention::setupRetentionDeserializer);
 
-	protected static void setupRetentionDeserializer(DelegatingDeserializer<Retention.Builder> op) {
+	protected static void setupRetentionDeserializer(ObjectDeserializer<Retention.Builder> op) {
 
-		op.add(Builder::expireAfter, JsonpDeserializer.stringDeserializer(), "expire_after");
+		op.add(Builder::expireAfter, Time._DESERIALIZER, "expire_after");
 		op.add(Builder::maxCount, JsonpDeserializer.integerDeserializer(), "max_count");
 		op.add(Builder::minCount, JsonpDeserializer.integerDeserializer(), "min_count");
 

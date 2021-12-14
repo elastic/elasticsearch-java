@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,22 +36,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricDiscountedCumulativeGain
+
+/**
+ * Discounted cumulative gain (DCG)
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#_discounted_cumulative_gain_dcg">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L66-L77">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
+public class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetricBase {
 	@Nullable
 	private final Boolean normalize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricDiscountedCumulativeGain(Builder builder) {
+	private RankEvalMetricDiscountedCumulativeGain(Builder builder) {
 		super(builder);
 
 		this.normalize = builder.normalize;
 
 	}
 
-	public RankEvalMetricDiscountedCumulativeGain(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricDiscountedCumulativeGain of(
+			Function<Builder, ObjectBuilder<RankEvalMetricDiscountedCumulativeGain>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +72,7 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 	 * API name: {@code normalize}
 	 */
 	@Nullable
-	public Boolean normalize() {
+	public final Boolean normalize() {
 		return this.normalize;
 	}
 
@@ -69,7 +80,6 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 
 		super.serializeInternal(generator, mapper);
 		if (this.normalize != null) {
-
 			generator.writeKey("normalize");
 			generator.write(this.normalize);
 
@@ -82,6 +92,7 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 	/**
 	 * Builder for {@link RankEvalMetricDiscountedCumulativeGain}.
 	 */
+
 	public static class Builder extends RankEvalMetricBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankEvalMetricDiscountedCumulativeGain> {
@@ -93,7 +104,7 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 		 * <p>
 		 * API name: {@code normalize}
 		 */
-		public Builder normalize(@Nullable Boolean value) {
+		public final Builder normalize(@Nullable Boolean value) {
 			this.normalize = value;
 			return this;
 		}
@@ -110,6 +121,7 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricDiscountedCumulativeGain build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricDiscountedCumulativeGain(this);
 		}
@@ -122,11 +134,10 @@ public final class RankEvalMetricDiscountedCumulativeGain extends RankEvalMetric
 	 */
 	public static final JsonpDeserializer<RankEvalMetricDiscountedCumulativeGain> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					RankEvalMetricDiscountedCumulativeGain::setupRankEvalMetricDiscountedCumulativeGainDeserializer,
-					Builder::build);
+					RankEvalMetricDiscountedCumulativeGain::setupRankEvalMetricDiscountedCumulativeGainDeserializer);
 
 	protected static void setupRankEvalMetricDiscountedCumulativeGainDeserializer(
-			DelegatingDeserializer<RankEvalMetricDiscountedCumulativeGain.Builder> op) {
+			ObjectDeserializer<RankEvalMetricDiscountedCumulativeGain.Builder> op) {
 		RankEvalMetricBase.setupRankEvalMetricBaseDeserializer(op);
 		op.add(Builder::normalize, JsonpDeserializer.booleanDeserializer(), "normalize");
 

@@ -23,13 +23,9 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.EmptyObject;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.indices.put_index_template.IndexTemplateMapping;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,16 +33,16 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -54,48 +50,82 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_index_template.Request
+
+/**
+ * Creates or updates an index template.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_index_template/IndicesPutIndexTemplateRequest.ts#L35-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutIndexTemplateRequest extends RequestBase implements JsonpSerializable {
-	private final String name;
+public class PutIndexTemplateRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, JsonData> meta;
 
-	@Nullable
-	private final List<String> indexPatterns;
-
-	@Nullable
 	private final List<String> composedOf;
 
 	@Nullable
-	private final IndexTemplateMapping template;
+	private final DataStream dataStream;
 
-	@Nullable
-	private final EmptyObject dataStream;
+	private final List<String> indexPatterns;
+
+	private final String name;
 
 	@Nullable
 	private final Integer priority;
 
 	@Nullable
-	private final Long version;
+	private final IndexTemplateMapping template;
 
 	@Nullable
-	private final Map<String, JsonData> meta;
+	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutIndexTemplateRequest(Builder builder) {
+	private PutIndexTemplateRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.indexPatterns = ModelTypeHelper.unmodifiable(builder.indexPatterns);
-		this.composedOf = ModelTypeHelper.unmodifiable(builder.composedOf);
-		this.template = builder.template;
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
 		this.dataStream = builder.dataStream;
+		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.priority = builder.priority;
+		this.template = builder.template;
 		this.version = builder.version;
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
 
 	}
 
-	public PutIndexTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutIndexTemplateRequest of(Function<Builder, ObjectBuilder<PutIndexTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code _meta}
+	 */
+	public final Map<String, JsonData> meta() {
+		return this.meta;
+	}
+
+	/**
+	 * API name: {@code composed_of}
+	 */
+	public final List<String> composedOf() {
+		return this.composedOf;
+	}
+
+	/**
+	 * API name: {@code data_stream}
+	 */
+	@Nullable
+	public final DataStream dataStream() {
+		return this.dataStream;
+	}
+
+	/**
+	 * API name: {@code index_patterns}
+	 */
+	public final List<String> indexPatterns() {
+		return this.indexPatterns;
 	}
 
 	/**
@@ -103,64 +133,32 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
-	}
-
-	/**
-	 * API name: {@code index_patterns}
-	 */
-	@Nullable
-	public List<String> indexPatterns() {
-		return this.indexPatterns;
-	}
-
-	/**
-	 * API name: {@code composed_of}
-	 */
-	@Nullable
-	public List<String> composedOf() {
-		return this.composedOf;
-	}
-
-	/**
-	 * API name: {@code template}
-	 */
-	@Nullable
-	public IndexTemplateMapping template() {
-		return this.template;
-	}
-
-	/**
-	 * API name: {@code data_stream}
-	 */
-	@Nullable
-	public EmptyObject dataStream() {
-		return this.dataStream;
 	}
 
 	/**
 	 * API name: {@code priority}
 	 */
 	@Nullable
-	public Integer priority() {
+	public final Integer priority() {
 		return this.priority;
+	}
+
+	/**
+	 * API name: {@code template}
+	 */
+	@Nullable
+	public final IndexTemplateMapping template() {
+		return this.template;
 	}
 
 	/**
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
-	}
-
-	/**
-	 * API name: {@code _meta}
-	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
-		return this.meta;
 	}
 
 	/**
@@ -174,54 +172,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.indexPatterns != null) {
-
-			generator.writeKey("index_patterns");
-			generator.writeStartArray();
-			for (String item0 : this.indexPatterns) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.composedOf != null) {
-
-			generator.writeKey("composed_of");
-			generator.writeStartArray();
-			for (String item0 : this.composedOf) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.template != null) {
-
-			generator.writeKey("template");
-			this.template.serialize(generator, mapper);
-
-		}
-		if (this.dataStream != null) {
-
-			generator.writeKey("data_stream");
-			this.dataStream.serialize(generator, mapper);
-
-		}
-		if (this.priority != null) {
-
-			generator.writeKey("priority");
-			generator.write(this.priority);
-
-		}
-		if (this.version != null) {
-
-			generator.writeKey("version");
-			generator.write(this.version);
-
-		}
-		if (this.meta != null) {
-
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -232,6 +183,46 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.composedOf)) {
+			generator.writeKey("composed_of");
+			generator.writeStartArray();
+			for (String item0 : this.composedOf) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.dataStream != null) {
+			generator.writeKey("data_stream");
+			this.dataStream.serialize(generator, mapper);
+
+		}
+		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
+			generator.writeKey("index_patterns");
+			generator.writeStartArray();
+			for (String item0 : this.indexPatterns) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.priority != null) {
+			generator.writeKey("priority");
+			generator.write(this.priority);
+
+		}
+		if (this.template != null) {
+			generator.writeKey("template");
+			this.template.serialize(generator, mapper);
+
+		}
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
 
 	}
 
@@ -240,113 +231,75 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link PutIndexTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutIndexTemplateRequest> {
-		private String name;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndexTemplateRequest> {
 		@Nullable
-		private List<String> indexPatterns;
+		private Map<String, JsonData> meta;
 
 		@Nullable
 		private List<String> composedOf;
 
 		@Nullable
-		private IndexTemplateMapping template;
+		private DataStream dataStream;
 
 		@Nullable
-		private EmptyObject dataStream;
+		private List<String> indexPatterns;
+
+		private String name;
 
 		@Nullable
 		private Integer priority;
 
 		@Nullable
-		private Long version;
+		private IndexTemplateMapping template;
 
 		@Nullable
-		private Map<String, JsonData> meta;
+		private Long version;
 
 		/**
-		 * Required - Index or template name
+		 * API name: {@code _meta}
 		 * <p>
-		 * API name: {@code name}
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public Builder name(String value) {
-			this.name = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
 			return this;
 		}
 
 		/**
-		 * API name: {@code index_patterns}
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
 		 */
-		public Builder indexPatterns(@Nullable List<String> value) {
-			this.indexPatterns = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code index_patterns}
-		 */
-		public Builder indexPatterns(String... value) {
-			this.indexPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
-		 */
-		public Builder addIndexPatterns(String value) {
-			if (this.indexPatterns == null) {
-				this.indexPatterns = new ArrayList<>();
-			}
-			this.indexPatterns.add(value);
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code composed_of}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>composedOf</code>.
 		 */
-		public Builder composedOf(@Nullable List<String> value) {
-			this.composedOf = value;
+		public final Builder composedOf(List<String> list) {
+			this.composedOf = _listAddAll(this.composedOf, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code composed_of}
+		 * <p>
+		 * Adds one or more values to <code>composedOf</code>.
 		 */
-		public Builder composedOf(String... value) {
-			this.composedOf = Arrays.asList(value);
+		public final Builder composedOf(String value, String... values) {
+			this.composedOf = _listAdd(this.composedOf, value, values);
 			return this;
-		}
-
-		/**
-		 * Add a value to {@link #composedOf(List)}, creating the list if needed.
-		 */
-		public Builder addComposedOf(String value) {
-			if (this.composedOf == null) {
-				this.composedOf = new ArrayList<>();
-			}
-			this.composedOf.add(value);
-			return this;
-		}
-
-		/**
-		 * API name: {@code template}
-		 */
-		public Builder template(@Nullable IndexTemplateMapping value) {
-			this.template = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code template}
-		 */
-		public Builder template(Function<IndexTemplateMapping.Builder, ObjectBuilder<IndexTemplateMapping>> fn) {
-			return this.template(fn.apply(new IndexTemplateMapping.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public Builder dataStream(@Nullable EmptyObject value) {
+		public final Builder dataStream(@Nullable DataStream value) {
 			this.dataStream = value;
 			return this;
 		}
@@ -354,42 +307,68 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public Builder dataStream(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
-			return this.dataStream(fn.apply(new EmptyObject.Builder()).build());
+		public final Builder dataStream(Function<DataStream.Builder, ObjectBuilder<DataStream>> fn) {
+			return this.dataStream(fn.apply(new DataStream.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code index_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
+		 */
+		public final Builder indexPatterns(List<String> list) {
+			this.indexPatterns = _listAddAll(this.indexPatterns, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code index_patterns}
+		 * <p>
+		 * Adds one or more values to <code>indexPatterns</code>.
+		 */
+		public final Builder indexPatterns(String value, String... values) {
+			this.indexPatterns = _listAdd(this.indexPatterns, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - Index or template name
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
+			return this;
 		}
 
 		/**
 		 * API name: {@code priority}
 		 */
-		public Builder priority(@Nullable Integer value) {
+		public final Builder priority(@Nullable Integer value) {
 			this.priority = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code template}
+		 */
+		public final Builder template(@Nullable IndexTemplateMapping value) {
+			this.template = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code template}
+		 */
+		public final Builder template(Function<IndexTemplateMapping.Builder, ObjectBuilder<IndexTemplateMapping>> fn) {
+			return this.template(fn.apply(new IndexTemplateMapping.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _meta}
-		 */
-		public Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
-		 */
-		public Builder putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
 			return this;
 		}
 
@@ -400,6 +379,7 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 		 *             if some of the required fields are null.
 		 */
 		public PutIndexTemplateRequest build() {
+			_checkSingleUse();
 
 			return new PutIndexTemplateRequest(this);
 		}
@@ -411,20 +391,20 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	 * Json deserializer for {@link PutIndexTemplateRequest}
 	 */
 	public static final JsonpDeserializer<PutIndexTemplateRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutIndexTemplateRequest::setupPutIndexTemplateRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutIndexTemplateRequest::setupPutIndexTemplateRequestDeserializer);
 
 	protected static void setupPutIndexTemplateRequestDeserializer(
-			DelegatingDeserializer<PutIndexTemplateRequest.Builder> op) {
+			ObjectDeserializer<PutIndexTemplateRequest.Builder> op) {
 
-		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"index_patterns");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
-		op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
-		op.add(Builder::dataStream, EmptyObject._DESERIALIZER, "data_stream");
+		op.add(Builder::dataStream, DataStream._DESERIALIZER, "data_stream");
+		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"index_patterns");
 		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
+		op.add(Builder::template, IndexTemplateMapping._DESERIALIZER, "template");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
 
@@ -433,7 +413,9 @@ public final class PutIndexTemplateRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code indices.put_index_template}".
 	 */
-	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.put_index_template",
+
 			// Request method
 			request -> {
 				return "PUT";

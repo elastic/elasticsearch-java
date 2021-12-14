@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -33,10 +39,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the nodes namespace.
  */
-public class ElasticsearchNodesClient extends ApiClient {
+public class ElasticsearchNodesClient extends ApiClient<ElasticsearchTransport, ElasticsearchNodesClient> {
 
-	public ElasticsearchNodesClient(Transport transport) {
-		super(transport);
+	public ElasticsearchNodesClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchNodesClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchNodesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchNodesClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: nodes.hot_threads
@@ -49,24 +64,26 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException {
-		return this.transport.performRequest(request, HotThreadsRequest.ENDPOINT);
+	public HotThreadsResponse hotThreads(HotThreadsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint = (JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about hot threads on each node in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link HotThreadsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final HotThreadsResponse hotThreads(Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
 
@@ -78,8 +95,9 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public HotThreadsResponse hotThreads() throws IOException {
-		return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest.ENDPOINT);
+	public HotThreadsResponse hotThreads() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: nodes.info
@@ -92,24 +110,26 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public NodesInfoResponse info(NodesInfoRequest request) throws IOException {
-		return this.transport.performRequest(request, NodesInfoRequest.ENDPOINT);
+	public NodesInfoResponse info(NodesInfoRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse>) NodesInfoRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about nodes in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link NodesInfoRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final NodesInfoResponse info(Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return info(fn.apply(new NodesInfoRequest.Builder()).build());
 	}
 
@@ -121,8 +141,9 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public NodesInfoResponse info() throws IOException {
-		return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest.ENDPOINT);
+	public NodesInfoResponse info() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new NodesInfoRequest.Builder().build(), NodesInfoRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: nodes.reload_secure_settings
@@ -135,17 +156,20 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request) throws IOException {
-		return this.transport.performRequest(request, ReloadSecureSettingsRequest.ENDPOINT);
+	public ReloadSecureSettingsResponse reloadSecureSettings(ReloadSecureSettingsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse>) ReloadSecureSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Reloads secure settings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ReloadSecureSettingsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
 	 *      on elastic.co</a>
@@ -153,7 +177,7 @@ public class ElasticsearchNodesClient extends ApiClient {
 
 	public final ReloadSecureSettingsResponse reloadSecureSettings(
 			Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
 	}
 
@@ -165,9 +189,9 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException {
+	public ReloadSecureSettingsResponse reloadSecureSettings() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new ReloadSecureSettingsRequest.Builder().build(),
-				ReloadSecureSettingsRequest.ENDPOINT);
+				ReloadSecureSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: nodes.stats
@@ -180,24 +204,26 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException {
-		return this.transport.performRequest(request, NodesStatsRequest.ENDPOINT);
+	public NodesStatsResponse stats(NodesStatsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse>) NodesStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns statistical information about nodes in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link NodesStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final NodesStatsResponse stats(Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
@@ -209,8 +235,9 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public NodesStatsResponse stats() throws IOException {
-		return this.transport.performRequest(new NodesStatsRequest.Builder().build(), NodesStatsRequest.ENDPOINT);
+	public NodesStatsResponse stats() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new NodesStatsRequest.Builder().build(), NodesStatsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: nodes.usage
@@ -223,25 +250,27 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage(UsageRequest request) throws IOException {
-		return this.transport.performRequest(request, UsageRequest.ENDPOINT);
+	public NodesUsageResponse usage(NodesUsageRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse>) NodesUsageRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns low-level information about REST actions usage on nodes.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link NodesUsageRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final UsageResponse usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
-			throws IOException {
-		return usage(fn.apply(new UsageRequest.Builder()).build());
+	public final NodesUsageResponse usage(Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return usage(fn.apply(new NodesUsageRequest.Builder()).build());
 	}
 
 	/**
@@ -252,8 +281,9 @@ public class ElasticsearchNodesClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UsageResponse usage() throws IOException {
-		return this.transport.performRequest(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT);
+	public NodesUsageResponse usage() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new NodesUsageRequest.Builder().build(), NodesUsageRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

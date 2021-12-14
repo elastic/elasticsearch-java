@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.RecoveryStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L160-L165">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RecoveryStats implements JsonpSerializable {
+public class RecoveryStats implements JsonpSerializable {
 	private final long currentAsSource;
 
 	private final long currentAsTarget;
@@ -52,30 +60,31 @@ public final class RecoveryStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryStats(Builder builder) {
+	private RecoveryStats(Builder builder) {
 
-		this.currentAsSource = Objects.requireNonNull(builder.currentAsSource, "current_as_source");
-		this.currentAsTarget = Objects.requireNonNull(builder.currentAsTarget, "current_as_target");
+		this.currentAsSource = ApiTypeHelper.requireNonNull(builder.currentAsSource, this, "currentAsSource");
+		this.currentAsTarget = ApiTypeHelper.requireNonNull(builder.currentAsTarget, this, "currentAsTarget");
 		this.throttleTime = builder.throttleTime;
-		this.throttleTimeInMillis = Objects.requireNonNull(builder.throttleTimeInMillis, "throttle_time_in_millis");
+		this.throttleTimeInMillis = ApiTypeHelper.requireNonNull(builder.throttleTimeInMillis, this,
+				"throttleTimeInMillis");
 
 	}
 
-	public RecoveryStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryStats of(Function<Builder, ObjectBuilder<RecoveryStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code current_as_source}
 	 */
-	public long currentAsSource() {
+	public final long currentAsSource() {
 		return this.currentAsSource;
 	}
 
 	/**
 	 * Required - API name: {@code current_as_target}
 	 */
-	public long currentAsTarget() {
+	public final long currentAsTarget() {
 		return this.currentAsTarget;
 	}
 
@@ -83,14 +92,14 @@ public final class RecoveryStats implements JsonpSerializable {
 	 * API name: {@code throttle_time}
 	 */
 	@Nullable
-	public String throttleTime() {
+	public final String throttleTime() {
 		return this.throttleTime;
 	}
 
 	/**
 	 * Required - API name: {@code throttle_time_in_millis}
 	 */
-	public long throttleTimeInMillis() {
+	public final long throttleTimeInMillis() {
 		return this.throttleTimeInMillis;
 	}
 
@@ -112,12 +121,10 @@ public final class RecoveryStats implements JsonpSerializable {
 		generator.write(this.currentAsTarget);
 
 		if (this.throttleTime != null) {
-
 			generator.writeKey("throttle_time");
 			generator.write(this.throttleTime);
 
 		}
-
 		generator.writeKey("throttle_time_in_millis");
 		generator.write(this.throttleTimeInMillis);
 
@@ -128,7 +135,8 @@ public final class RecoveryStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryStats}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryStats> {
 		private Long currentAsSource;
 
 		private Long currentAsTarget;
@@ -141,7 +149,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code current_as_source}
 		 */
-		public Builder currentAsSource(long value) {
+		public final Builder currentAsSource(long value) {
 			this.currentAsSource = value;
 			return this;
 		}
@@ -149,7 +157,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code current_as_target}
 		 */
-		public Builder currentAsTarget(long value) {
+		public final Builder currentAsTarget(long value) {
 			this.currentAsTarget = value;
 			return this;
 		}
@@ -157,7 +165,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_time}
 		 */
-		public Builder throttleTime(@Nullable String value) {
+		public final Builder throttleTime(@Nullable String value) {
 			this.throttleTime = value;
 			return this;
 		}
@@ -165,7 +173,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code throttle_time_in_millis}
 		 */
-		public Builder throttleTimeInMillis(long value) {
+		public final Builder throttleTimeInMillis(long value) {
 			this.throttleTimeInMillis = value;
 			return this;
 		}
@@ -177,6 +185,7 @@ public final class RecoveryStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryStats build() {
+			_checkSingleUse();
 
 			return new RecoveryStats(this);
 		}
@@ -188,9 +197,9 @@ public final class RecoveryStats implements JsonpSerializable {
 	 * Json deserializer for {@link RecoveryStats}
 	 */
 	public static final JsonpDeserializer<RecoveryStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryStats::setupRecoveryStatsDeserializer, Builder::build);
+			RecoveryStats::setupRecoveryStatsDeserializer);
 
-	protected static void setupRecoveryStatsDeserializer(DelegatingDeserializer<RecoveryStats.Builder> op) {
+	protected static void setupRecoveryStatsDeserializer(ObjectDeserializer<RecoveryStats.Builder> op) {
 
 		op.add(Builder::currentAsSource, JsonpDeserializer.longDeserializer(), "current_as_source");
 		op.add(Builder::currentAsTarget, JsonpDeserializer.longDeserializer(), "current_as_target");

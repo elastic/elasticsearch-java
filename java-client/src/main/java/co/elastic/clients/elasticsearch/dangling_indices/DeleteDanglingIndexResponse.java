@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.dangling_indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: dangling_indices.delete_dangling_index.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/dangling_indices/delete_dangling_index/DeleteDanglingIndexResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
+public class DeleteDanglingIndexResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteDanglingIndexResponse(Builder builder) {
+	private DeleteDanglingIndexResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteDanglingIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteDanglingIndexResponse of(Function<Builder, ObjectBuilder<DeleteDanglingIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteDanglingIndexResponse extends AcknowledgedResponseBase 
 	/**
 	 * Builder for {@link DeleteDanglingIndexResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteDanglingIndexResponse> {
@@ -68,6 +75,7 @@ public final class DeleteDanglingIndexResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public DeleteDanglingIndexResponse build() {
+			_checkSingleUse();
 
 			return new DeleteDanglingIndexResponse(this);
 		}
@@ -78,11 +86,11 @@ public final class DeleteDanglingIndexResponse extends AcknowledgedResponseBase 
 	/**
 	 * Json deserializer for {@link DeleteDanglingIndexResponse}
 	 */
-	public static final JsonpDeserializer<DeleteDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DeleteDanglingIndexResponse::setupDeleteDanglingIndexResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<DeleteDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteDanglingIndexResponse::setupDeleteDanglingIndexResponseDeserializer);
 
 	protected static void setupDeleteDanglingIndexResponseDeserializer(
-			DelegatingDeserializer<DeleteDanglingIndexResponse.Builder> op) {
+			ObjectDeserializer<DeleteDanglingIndexResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

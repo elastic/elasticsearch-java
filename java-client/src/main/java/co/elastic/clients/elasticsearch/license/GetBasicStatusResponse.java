@@ -23,40 +23,49 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: license.get_basic_status.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/get_basic_status/GetBasicLicenseStatusResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetBasicStatusResponse implements JsonpSerializable {
+public class GetBasicStatusResponse implements JsonpSerializable {
 	private final boolean eligibleToStartBasic;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetBasicStatusResponse(Builder builder) {
+	private GetBasicStatusResponse(Builder builder) {
 
-		this.eligibleToStartBasic = Objects.requireNonNull(builder.eligibleToStartBasic, "eligible_to_start_basic");
+		this.eligibleToStartBasic = ApiTypeHelper.requireNonNull(builder.eligibleToStartBasic, this,
+				"eligibleToStartBasic");
 
 	}
 
-	public GetBasicStatusResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetBasicStatusResponse of(Function<Builder, ObjectBuilder<GetBasicStatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code eligible_to_start_basic}
 	 */
-	public boolean eligibleToStartBasic() {
+	public final boolean eligibleToStartBasic() {
 		return this.eligibleToStartBasic;
 	}
 
@@ -81,13 +90,14 @@ public final class GetBasicStatusResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetBasicStatusResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetBasicStatusResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetBasicStatusResponse> {
 		private Boolean eligibleToStartBasic;
 
 		/**
 		 * Required - API name: {@code eligible_to_start_basic}
 		 */
-		public Builder eligibleToStartBasic(boolean value) {
+		public final Builder eligibleToStartBasic(boolean value) {
 			this.eligibleToStartBasic = value;
 			return this;
 		}
@@ -99,6 +109,7 @@ public final class GetBasicStatusResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetBasicStatusResponse build() {
+			_checkSingleUse();
 
 			return new GetBasicStatusResponse(this);
 		}
@@ -110,10 +121,10 @@ public final class GetBasicStatusResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetBasicStatusResponse}
 	 */
 	public static final JsonpDeserializer<GetBasicStatusResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetBasicStatusResponse::setupGetBasicStatusResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetBasicStatusResponse::setupGetBasicStatusResponseDeserializer);
 
 	protected static void setupGetBasicStatusResponseDeserializer(
-			DelegatingDeserializer<GetBasicStatusResponse.Builder> op) {
+			ObjectDeserializer<GetBasicStatusResponse.Builder> op) {
 
 		op.add(Builder::eligibleToStartBasic, JsonpDeserializer.booleanDeserializer(), "eligible_to_start_basic");
 

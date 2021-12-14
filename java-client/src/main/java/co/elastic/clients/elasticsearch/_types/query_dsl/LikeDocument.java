@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -32,14 +31,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -47,12 +44,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.LikeDocument
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L92-L103">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class LikeDocument implements JsonpSerializable {
+public class LikeDocument implements JsonpSerializable {
 	@Nullable
 	private final JsonData doc;
 
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
@@ -64,7 +67,6 @@ public final class LikeDocument implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
-	@Nullable
 	private final Map<String, String> perFieldAnalyzer;
 
 	@Nullable
@@ -78,37 +80,36 @@ public final class LikeDocument implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LikeDocument(Builder builder) {
+	private LikeDocument(Builder builder) {
 
 		this.doc = builder.doc;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.id = builder.id;
 		this.type = builder.type;
 		this.index = builder.index;
-		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
+		this.perFieldAnalyzer = ApiTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.routing = builder.routing;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
 	}
 
-	public LikeDocument(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LikeDocument of(Function<Builder, ObjectBuilder<LikeDocument>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code doc}
 	 */
 	@Nullable
-	public JsonData doc() {
+	public final JsonData doc() {
 		return this.doc;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -116,7 +117,7 @@ public final class LikeDocument implements JsonpSerializable {
 	 * API name: {@code _id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -124,7 +125,7 @@ public final class LikeDocument implements JsonpSerializable {
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -132,15 +133,14 @@ public final class LikeDocument implements JsonpSerializable {
 	 * API name: {@code _index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * API name: {@code per_field_analyzer}
 	 */
-	@Nullable
-	public Map<String, String> perFieldAnalyzer() {
+	public final Map<String, String> perFieldAnalyzer() {
 		return this.perFieldAnalyzer;
 	}
 
@@ -148,7 +148,7 @@ public final class LikeDocument implements JsonpSerializable {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -156,7 +156,7 @@ public final class LikeDocument implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -164,7 +164,7 @@ public final class LikeDocument implements JsonpSerializable {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -180,13 +180,11 @@ public final class LikeDocument implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.doc != null) {
-
 			generator.writeKey("doc");
 			this.doc.serialize(generator, mapper);
 
 		}
-		if (this.fields != null) {
-
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -197,25 +195,21 @@ public final class LikeDocument implements JsonpSerializable {
 
 		}
 		if (this.id != null) {
-
 			generator.writeKey("_id");
 			generator.write(this.id);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("_type");
 			generator.write(this.type);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("_index");
 			generator.write(this.index);
 
 		}
-		if (this.perFieldAnalyzer != null) {
-
+		if (ApiTypeHelper.isDefined(this.perFieldAnalyzer)) {
 			generator.writeKey("per_field_analyzer");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.perFieldAnalyzer.entrySet()) {
@@ -227,19 +221,16 @@ public final class LikeDocument implements JsonpSerializable {
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("routing");
 			generator.write(this.routing);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.versionType != null) {
-
 			generator.writeKey("version_type");
 			this.versionType.serialize(generator, mapper);
 		}
@@ -251,7 +242,8 @@ public final class LikeDocument implements JsonpSerializable {
 	/**
 	 * Builder for {@link LikeDocument}.
 	 */
-	public static class Builder implements ObjectBuilder<LikeDocument> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LikeDocument> {
 		@Nullable
 		private JsonData doc;
 
@@ -282,42 +274,35 @@ public final class LikeDocument implements JsonpSerializable {
 		/**
 		 * API name: {@code doc}
 		 */
-		public Builder doc(@Nullable JsonData value) {
+		public final Builder doc(@Nullable JsonData value) {
 			this.doc = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -325,7 +310,7 @@ public final class LikeDocument implements JsonpSerializable {
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -333,35 +318,35 @@ public final class LikeDocument implements JsonpSerializable {
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>.
 		 */
-		public Builder perFieldAnalyzer(@Nullable Map<String, String> value) {
-			this.perFieldAnalyzer = value;
+		public final Builder perFieldAnalyzer(Map<String, String> map) {
+			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #perFieldAnalyzer(Map)}, creating the map if
-		 * needed.
+		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds an entry to <code>perFieldAnalyzer</code>.
 		 */
-		public Builder putPerFieldAnalyzer(String key, String value) {
-			if (this.perFieldAnalyzer == null) {
-				this.perFieldAnalyzer = new HashMap<>();
-			}
-			this.perFieldAnalyzer.put(key, value);
+		public final Builder perFieldAnalyzer(String key, String value) {
+			this.perFieldAnalyzer = _mapPut(this.perFieldAnalyzer, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -369,7 +354,7 @@ public final class LikeDocument implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -377,7 +362,7 @@ public final class LikeDocument implements JsonpSerializable {
 		/**
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -389,6 +374,7 @@ public final class LikeDocument implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public LikeDocument build() {
+			_checkSingleUse();
 
 			return new LikeDocument(this);
 		}
@@ -400,9 +386,9 @@ public final class LikeDocument implements JsonpSerializable {
 	 * Json deserializer for {@link LikeDocument}
 	 */
 	public static final JsonpDeserializer<LikeDocument> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			LikeDocument::setupLikeDocumentDeserializer, Builder::build);
+			LikeDocument::setupLikeDocumentDeserializer);
 
-	protected static void setupLikeDocumentDeserializer(DelegatingDeserializer<LikeDocument.Builder> op) {
+	protected static void setupLikeDocumentDeserializer(ObjectDeserializer<LikeDocument.Builder> op) {
 
 		op.add(Builder::doc, JsonData._DESERIALIZER, "doc");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");

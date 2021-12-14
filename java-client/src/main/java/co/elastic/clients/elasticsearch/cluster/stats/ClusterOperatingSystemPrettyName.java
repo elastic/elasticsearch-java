@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -39,36 +40,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterOperatingSystemPrettyName
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L239-L242">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterOperatingSystemPrettyName implements JsonpSerializable {
+public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 	private final int count;
 
 	private final String prettyName;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterOperatingSystemPrettyName(Builder builder) {
+	private ClusterOperatingSystemPrettyName(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.prettyName = Objects.requireNonNull(builder.prettyName, "pretty_name");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
 
 	}
 
-	public ClusterOperatingSystemPrettyName(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterOperatingSystemPrettyName of(
+			Function<Builder, ObjectBuilder<ClusterOperatingSystemPrettyName>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code pretty_name}
 	 */
-	public String prettyName() {
+	public final String prettyName() {
 		return this.prettyName;
 	}
 
@@ -96,7 +105,8 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 	/**
 	 * Builder for {@link ClusterOperatingSystemPrettyName}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterOperatingSystemPrettyName> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemPrettyName> {
 		private Integer count;
 
 		private String prettyName;
@@ -104,7 +114,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -112,7 +122,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 		/**
 		 * Required - API name: {@code pretty_name}
 		 */
-		public Builder prettyName(String value) {
+		public final Builder prettyName(String value) {
 			this.prettyName = value;
 			return this;
 		}
@@ -124,6 +134,7 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 		 *             if some of the required fields are null.
 		 */
 		public ClusterOperatingSystemPrettyName build() {
+			_checkSingleUse();
 
 			return new ClusterOperatingSystemPrettyName(this);
 		}
@@ -135,11 +146,10 @@ public final class ClusterOperatingSystemPrettyName implements JsonpSerializable
 	 * Json deserializer for {@link ClusterOperatingSystemPrettyName}
 	 */
 	public static final JsonpDeserializer<ClusterOperatingSystemPrettyName> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterOperatingSystemPrettyName::setupClusterOperatingSystemPrettyNameDeserializer,
-					Builder::build);
+			.lazy(Builder::new, ClusterOperatingSystemPrettyName::setupClusterOperatingSystemPrettyNameDeserializer);
 
 	protected static void setupClusterOperatingSystemPrettyNameDeserializer(
-			DelegatingDeserializer<ClusterOperatingSystemPrettyName.Builder> op) {
+			ObjectDeserializer<ClusterOperatingSystemPrettyName.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");
 		op.add(Builder::prettyName, JsonpDeserializer.stringDeserializer(), "pretty_name");

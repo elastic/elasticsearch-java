@@ -23,23 +23,21 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,29 +46,36 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Request
+
+/**
+ * Updates the license for the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post/PostLicenseRequest.ts#L23-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PostRequest extends RequestBase implements JsonpSerializable {
+public class PostRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean acknowledge;
 
 	@Nullable
 	private final License license;
 
-	@Nullable
 	private final List<License> licenses;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PostRequest(Builder builder) {
+	private PostRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
 		this.license = builder.license;
-		this.licenses = ModelTypeHelper.unmodifiable(builder.licenses);
+		this.licenses = ApiTypeHelper.unmodifiable(builder.licenses);
 
 	}
 
-	public PostRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PostRequest of(Function<Builder, ObjectBuilder<PostRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,7 +84,7 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code acknowledge}
 	 */
 	@Nullable
-	public Boolean acknowledge() {
+	public final Boolean acknowledge() {
 		return this.acknowledge;
 	}
 
@@ -87,15 +92,14 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code license}
 	 */
 	@Nullable
-	public License license() {
+	public final License license() {
 		return this.license;
 	}
 
 	/**
 	 * API name: {@code licenses}
 	 */
-	@Nullable
-	public List<License> licenses() {
+	public final List<License> licenses() {
 		return this.licenses;
 	}
 
@@ -111,13 +115,11 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.license != null) {
-
 			generator.writeKey("license");
 			this.license.serialize(generator, mapper);
 
 		}
-		if (this.licenses != null) {
-
+		if (ApiTypeHelper.isDefined(this.licenses)) {
 			generator.writeKey("licenses");
 			generator.writeStartArray();
 			for (License item0 : this.licenses) {
@@ -135,7 +137,8 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Builder for {@link PostRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PostRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostRequest> {
 		@Nullable
 		private Boolean acknowledge;
 
@@ -150,7 +153,7 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */
-		public Builder acknowledge(@Nullable Boolean value) {
+		public final Builder acknowledge(@Nullable Boolean value) {
 			this.acknowledge = value;
 			return this;
 		}
@@ -158,7 +161,7 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * API name: {@code license}
 		 */
-		public Builder license(@Nullable License value) {
+		public final Builder license(@Nullable License value) {
 			this.license = value;
 			return this;
 		}
@@ -166,49 +169,37 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 		/**
 		 * API name: {@code license}
 		 */
-		public Builder license(Function<License.Builder, ObjectBuilder<License>> fn) {
+		public final Builder license(Function<License.Builder, ObjectBuilder<License>> fn) {
 			return this.license(fn.apply(new License.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code licenses}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>licenses</code>.
 		 */
-		public Builder licenses(@Nullable List<License> value) {
-			this.licenses = value;
+		public final Builder licenses(List<License> list) {
+			this.licenses = _listAddAll(this.licenses, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code licenses}
+		 * <p>
+		 * Adds one or more values to <code>licenses</code>.
 		 */
-		public Builder licenses(License... value) {
-			this.licenses = Arrays.asList(value);
+		public final Builder licenses(License value, License... values) {
+			this.licenses = _listAdd(this.licenses, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #licenses(List)}, creating the list if needed.
+		 * API name: {@code licenses}
+		 * <p>
+		 * Adds a value to <code>licenses</code> using a builder lambda.
 		 */
-		public Builder addLicenses(License value) {
-			if (this.licenses == null) {
-				this.licenses = new ArrayList<>();
-			}
-			this.licenses.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #licenses(List)} to a singleton list.
-		 */
-		public Builder licenses(Function<License.Builder, ObjectBuilder<License>> fn) {
-			return this.licenses(fn.apply(new License.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #licenses(List)}, creating the list if needed.
-		 */
-		public Builder addLicenses(Function<License.Builder, ObjectBuilder<License>> fn) {
-			return this.addLicenses(fn.apply(new License.Builder()).build());
+		public final Builder licenses(Function<License.Builder, ObjectBuilder<License>> fn) {
+			return licenses(fn.apply(new License.Builder()).build());
 		}
 
 		/**
@@ -218,6 +209,7 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public PostRequest build() {
+			_checkSingleUse();
 
 			return new PostRequest(this);
 		}
@@ -229,9 +221,9 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 	 * Json deserializer for {@link PostRequest}
 	 */
 	public static final JsonpDeserializer<PostRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PostRequest::setupPostRequestDeserializer, Builder::build);
+			PostRequest::setupPostRequestDeserializer);
 
-	protected static void setupPostRequestDeserializer(DelegatingDeserializer<PostRequest.Builder> op) {
+	protected static void setupPostRequestDeserializer(ObjectDeserializer<PostRequest.Builder> op) {
 
 		op.add(Builder::license, License._DESERIALIZER, "license");
 		op.add(Builder::licenses, JsonpDeserializer.arrayDeserializer(License._DESERIALIZER), "licenses");
@@ -243,7 +235,9 @@ public final class PostRequest extends RequestBase implements JsonpSerializable 
 	/**
 	 * Endpoint "{@code license.post}".
 	 */
-	public static final Endpoint<PostRequest, PostResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PostRequest, PostResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/license.post",
+
 			// Request method
 			request -> {
 				return "PUT";

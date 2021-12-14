@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.indices.reload_search_analyzers;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.reload_search_analyzers.ReloadDetails
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/reload_search_analyzers/types.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ReloadDetails implements JsonpSerializable {
+public class ReloadDetails implements JsonpSerializable {
 	private final String index;
 
 	private final List<String> reloadedAnalyzers;
@@ -52,36 +57,37 @@ public final class ReloadDetails implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReloadDetails(Builder builder) {
+	private ReloadDetails(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.reloadedAnalyzers = ModelTypeHelper.unmodifiableNonNull(builder.reloadedAnalyzers, "reloaded_analyzers");
-		this.reloadedNodeIds = ModelTypeHelper.unmodifiableNonNull(builder.reloadedNodeIds, "reloaded_node_ids");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.reloadedAnalyzers = ApiTypeHelper.unmodifiableRequired(builder.reloadedAnalyzers, this,
+				"reloadedAnalyzers");
+		this.reloadedNodeIds = ApiTypeHelper.unmodifiableRequired(builder.reloadedNodeIds, this, "reloadedNodeIds");
 
 	}
 
-	public ReloadDetails(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReloadDetails of(Function<Builder, ObjectBuilder<ReloadDetails>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code reloaded_analyzers}
 	 */
-	public List<String> reloadedAnalyzers() {
+	public final List<String> reloadedAnalyzers() {
 		return this.reloadedAnalyzers;
 	}
 
 	/**
 	 * Required - API name: {@code reloaded_node_ids}
 	 */
-	public List<String> reloadedNodeIds() {
+	public final List<String> reloadedNodeIds() {
 		return this.reloadedNodeIds;
 	}
 
@@ -99,21 +105,26 @@ public final class ReloadDetails implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		generator.writeKey("reloaded_analyzers");
-		generator.writeStartArray();
-		for (String item0 : this.reloadedAnalyzers) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.reloadedAnalyzers)) {
+			generator.writeKey("reloaded_analyzers");
+			generator.writeStartArray();
+			for (String item0 : this.reloadedAnalyzers) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.reloadedNodeIds)) {
+			generator.writeKey("reloaded_node_ids");
+			generator.writeStartArray();
+			for (String item0 : this.reloadedNodeIds) {
+				generator.write(item0);
 
-		generator.writeKey("reloaded_node_ids");
-		generator.writeStartArray();
-		for (String item0 : this.reloadedNodeIds) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -122,7 +133,8 @@ public final class ReloadDetails implements JsonpSerializable {
 	/**
 	 * Builder for {@link ReloadDetails}.
 	 */
-	public static class Builder implements ObjectBuilder<ReloadDetails> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReloadDetails> {
 		private String index;
 
 		private List<String> reloadedAnalyzers;
@@ -132,62 +144,48 @@ public final class ReloadDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reloaded_analyzers}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>reloadedAnalyzers</code>.
 		 */
-		public Builder reloadedAnalyzers(List<String> value) {
-			this.reloadedAnalyzers = value;
+		public final Builder reloadedAnalyzers(List<String> list) {
+			this.reloadedAnalyzers = _listAddAll(this.reloadedAnalyzers, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reloaded_analyzers}
+		 * <p>
+		 * Adds one or more values to <code>reloadedAnalyzers</code>.
 		 */
-		public Builder reloadedAnalyzers(String... value) {
-			this.reloadedAnalyzers = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #reloadedAnalyzers(List)}, creating the list if needed.
-		 */
-		public Builder addReloadedAnalyzers(String value) {
-			if (this.reloadedAnalyzers == null) {
-				this.reloadedAnalyzers = new ArrayList<>();
-			}
-			this.reloadedAnalyzers.add(value);
+		public final Builder reloadedAnalyzers(String value, String... values) {
+			this.reloadedAnalyzers = _listAdd(this.reloadedAnalyzers, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reloaded_node_ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>reloadedNodeIds</code>.
 		 */
-		public Builder reloadedNodeIds(List<String> value) {
-			this.reloadedNodeIds = value;
+		public final Builder reloadedNodeIds(List<String> list) {
+			this.reloadedNodeIds = _listAddAll(this.reloadedNodeIds, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code reloaded_node_ids}
+		 * <p>
+		 * Adds one or more values to <code>reloadedNodeIds</code>.
 		 */
-		public Builder reloadedNodeIds(String... value) {
-			this.reloadedNodeIds = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #reloadedNodeIds(List)}, creating the list if needed.
-		 */
-		public Builder addReloadedNodeIds(String value) {
-			if (this.reloadedNodeIds == null) {
-				this.reloadedNodeIds = new ArrayList<>();
-			}
-			this.reloadedNodeIds.add(value);
+		public final Builder reloadedNodeIds(String value, String... values) {
+			this.reloadedNodeIds = _listAdd(this.reloadedNodeIds, value, values);
 			return this;
 		}
 
@@ -198,6 +196,7 @@ public final class ReloadDetails implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ReloadDetails build() {
+			_checkSingleUse();
 
 			return new ReloadDetails(this);
 		}
@@ -209,9 +208,9 @@ public final class ReloadDetails implements JsonpSerializable {
 	 * Json deserializer for {@link ReloadDetails}
 	 */
 	public static final JsonpDeserializer<ReloadDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ReloadDetails::setupReloadDetailsDeserializer, Builder::build);
+			ReloadDetails::setupReloadDetailsDeserializer);
 
-	protected static void setupReloadDetailsDeserializer(DelegatingDeserializer<ReloadDetails.Builder> op) {
+	protected static void setupReloadDetailsDeserializer(ObjectDeserializer<ReloadDetails.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::reloadedAnalyzers, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

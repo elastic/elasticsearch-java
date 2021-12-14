@@ -23,57 +23,60 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldSecurity
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/FieldSecurity.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FieldSecurity implements JsonpSerializable {
-	@Nullable
+public class FieldSecurity implements JsonpSerializable {
 	private final List<String> except;
 
 	private final List<String> grant;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldSecurity(Builder builder) {
+	private FieldSecurity(Builder builder) {
 
-		this.except = ModelTypeHelper.unmodifiable(builder.except);
-		this.grant = ModelTypeHelper.unmodifiableNonNull(builder.grant, "grant");
+		this.except = ApiTypeHelper.unmodifiable(builder.except);
+		this.grant = ApiTypeHelper.unmodifiableRequired(builder.grant, this, "grant");
 
 	}
 
-	public FieldSecurity(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldSecurity of(Function<Builder, ObjectBuilder<FieldSecurity>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code except}
 	 */
-	@Nullable
-	public List<String> except() {
+	public final List<String> except() {
 		return this.except;
 	}
 
 	/**
 	 * Required - API name: {@code grant}
 	 */
-	public List<String> grant() {
+	public final List<String> grant() {
 		return this.grant;
 	}
 
@@ -88,8 +91,7 @@ public final class FieldSecurity implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.except != null) {
-
+		if (ApiTypeHelper.isDefined(this.except)) {
 			generator.writeKey("except");
 			generator.writeStartArray();
 			for (String item0 : this.except) {
@@ -99,14 +101,16 @@ public final class FieldSecurity implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.grant)) {
+			generator.writeKey("grant");
+			generator.writeStartArray();
+			for (String item0 : this.grant) {
+				generator.write(item0);
 
-		generator.writeKey("grant");
-		generator.writeStartArray();
-		for (String item0 : this.grant) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -115,7 +119,8 @@ public final class FieldSecurity implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldSecurity}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldSecurity> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSecurity> {
 		@Nullable
 		private List<String> except;
 
@@ -123,55 +128,41 @@ public final class FieldSecurity implements JsonpSerializable {
 
 		/**
 		 * API name: {@code except}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>except</code>.
 		 */
-		public Builder except(@Nullable List<String> value) {
-			this.except = value;
+		public final Builder except(List<String> list) {
+			this.except = _listAddAll(this.except, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code except}
+		 * <p>
+		 * Adds one or more values to <code>except</code>.
 		 */
-		public Builder except(String... value) {
-			this.except = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #except(List)}, creating the list if needed.
-		 */
-		public Builder addExcept(String value) {
-			if (this.except == null) {
-				this.except = new ArrayList<>();
-			}
-			this.except.add(value);
+		public final Builder except(String value, String... values) {
+			this.except = _listAdd(this.except, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code grant}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>grant</code>.
 		 */
-		public Builder grant(List<String> value) {
-			this.grant = value;
+		public final Builder grant(List<String> list) {
+			this.grant = _listAddAll(this.grant, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code grant}
+		 * <p>
+		 * Adds one or more values to <code>grant</code>.
 		 */
-		public Builder grant(String... value) {
-			this.grant = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #grant(List)}, creating the list if needed.
-		 */
-		public Builder addGrant(String value) {
-			if (this.grant == null) {
-				this.grant = new ArrayList<>();
-			}
-			this.grant.add(value);
+		public final Builder grant(String value, String... values) {
+			this.grant = _listAdd(this.grant, value, values);
 			return this;
 		}
 
@@ -182,6 +173,7 @@ public final class FieldSecurity implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldSecurity build() {
+			_checkSingleUse();
 
 			return new FieldSecurity(this);
 		}
@@ -193,9 +185,9 @@ public final class FieldSecurity implements JsonpSerializable {
 	 * Json deserializer for {@link FieldSecurity}
 	 */
 	public static final JsonpDeserializer<FieldSecurity> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldSecurity::setupFieldSecurityDeserializer, Builder::build);
+			FieldSecurity::setupFieldSecurityDeserializer);
 
-	protected static void setupFieldSecurityDeserializer(DelegatingDeserializer<FieldSecurity.Builder> op) {
+	protected static void setupFieldSecurityDeserializer(ObjectDeserializer<FieldSecurity.Builder> op) {
 
 		op.add(Builder::except, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "except");
 		op.add(Builder::grant, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "grant");

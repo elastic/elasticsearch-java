@@ -23,27 +23,34 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.JobForecastStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Job.ts#L115-L122">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class JobForecastStatistics implements JsonpSerializable {
+public class JobForecastStatistics implements JsonpSerializable {
 	@Nullable
 	private final JobStatistics memoryBytes;
 
@@ -53,7 +60,6 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	@Nullable
 	private final JobStatistics records;
 
-	@Nullable
 	private final Map<String, Long> status;
 
 	private final long total;
@@ -62,26 +68,26 @@ public final class JobForecastStatistics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public JobForecastStatistics(Builder builder) {
+	private JobForecastStatistics(Builder builder) {
 
 		this.memoryBytes = builder.memoryBytes;
 		this.processingTimeMs = builder.processingTimeMs;
 		this.records = builder.records;
-		this.status = ModelTypeHelper.unmodifiable(builder.status);
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.forecastedJobs = Objects.requireNonNull(builder.forecastedJobs, "forecasted_jobs");
+		this.status = ApiTypeHelper.unmodifiable(builder.status);
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.forecastedJobs = ApiTypeHelper.requireNonNull(builder.forecastedJobs, this, "forecastedJobs");
 
 	}
 
-	public JobForecastStatistics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static JobForecastStatistics of(Function<Builder, ObjectBuilder<JobForecastStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code memory_bytes}
 	 */
 	@Nullable
-	public JobStatistics memoryBytes() {
+	public final JobStatistics memoryBytes() {
 		return this.memoryBytes;
 	}
 
@@ -89,7 +95,7 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	 * API name: {@code processing_time_ms}
 	 */
 	@Nullable
-	public JobStatistics processingTimeMs() {
+	public final JobStatistics processingTimeMs() {
 		return this.processingTimeMs;
 	}
 
@@ -97,29 +103,28 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	 * API name: {@code records}
 	 */
 	@Nullable
-	public JobStatistics records() {
+	public final JobStatistics records() {
 		return this.records;
 	}
 
 	/**
 	 * API name: {@code status}
 	 */
-	@Nullable
-	public Map<String, Long> status() {
+	public final Map<String, Long> status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code forecasted_jobs}
 	 */
-	public int forecastedJobs() {
+	public final int forecastedJobs() {
 		return this.forecastedJobs;
 	}
 
@@ -135,25 +140,21 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.memoryBytes != null) {
-
 			generator.writeKey("memory_bytes");
 			this.memoryBytes.serialize(generator, mapper);
 
 		}
 		if (this.processingTimeMs != null) {
-
 			generator.writeKey("processing_time_ms");
 			this.processingTimeMs.serialize(generator, mapper);
 
 		}
 		if (this.records != null) {
-
 			generator.writeKey("records");
 			this.records.serialize(generator, mapper);
 
 		}
-		if (this.status != null) {
-
+		if (ApiTypeHelper.isDefined(this.status)) {
 			generator.writeKey("status");
 			generator.writeStartObject();
 			for (Map.Entry<String, Long> item0 : this.status.entrySet()) {
@@ -164,7 +165,6 @@ public final class JobForecastStatistics implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("total");
 		generator.write(this.total);
 
@@ -178,7 +178,8 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobForecastStatistics}.
 	 */
-	public static class Builder implements ObjectBuilder<JobForecastStatistics> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobForecastStatistics> {
 		@Nullable
 		private JobStatistics memoryBytes;
 
@@ -198,7 +199,7 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_bytes}
 		 */
-		public Builder memoryBytes(@Nullable JobStatistics value) {
+		public final Builder memoryBytes(@Nullable JobStatistics value) {
 			this.memoryBytes = value;
 			return this;
 		}
@@ -206,14 +207,14 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code memory_bytes}
 		 */
-		public Builder memoryBytes(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
+		public final Builder memoryBytes(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
 			return this.memoryBytes(fn.apply(new JobStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code processing_time_ms}
 		 */
-		public Builder processingTimeMs(@Nullable JobStatistics value) {
+		public final Builder processingTimeMs(@Nullable JobStatistics value) {
 			this.processingTimeMs = value;
 			return this;
 		}
@@ -221,14 +222,14 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code processing_time_ms}
 		 */
-		public Builder processingTimeMs(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
+		public final Builder processingTimeMs(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
 			return this.processingTimeMs(fn.apply(new JobStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code records}
 		 */
-		public Builder records(@Nullable JobStatistics value) {
+		public final Builder records(@Nullable JobStatistics value) {
 			this.records = value;
 			return this;
 		}
@@ -236,33 +237,34 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * API name: {@code records}
 		 */
-		public Builder records(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
+		public final Builder records(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
 			return this.records(fn.apply(new JobStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code status}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>status</code>.
 		 */
-		public Builder status(@Nullable Map<String, Long> value) {
-			this.status = value;
+		public final Builder status(Map<String, Long> map) {
+			this.status = _mapPutAll(this.status, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #status(Map)}, creating the map if needed.
+		 * API name: {@code status}
+		 * <p>
+		 * Adds an entry to <code>status</code>.
 		 */
-		public Builder putStatus(String key, Long value) {
-			if (this.status == null) {
-				this.status = new HashMap<>();
-			}
-			this.status.put(key, value);
+		public final Builder status(String key, Long value) {
+			this.status = _mapPut(this.status, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(long value) {
+		public final Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -270,7 +272,7 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code forecasted_jobs}
 		 */
-		public Builder forecastedJobs(int value) {
+		public final Builder forecastedJobs(int value) {
 			this.forecastedJobs = value;
 			return this;
 		}
@@ -282,6 +284,7 @@ public final class JobForecastStatistics implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public JobForecastStatistics build() {
+			_checkSingleUse();
 
 			return new JobForecastStatistics(this);
 		}
@@ -293,10 +296,9 @@ public final class JobForecastStatistics implements JsonpSerializable {
 	 * Json deserializer for {@link JobForecastStatistics}
 	 */
 	public static final JsonpDeserializer<JobForecastStatistics> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, JobForecastStatistics::setupJobForecastStatisticsDeserializer, Builder::build);
+			.lazy(Builder::new, JobForecastStatistics::setupJobForecastStatisticsDeserializer);
 
-	protected static void setupJobForecastStatisticsDeserializer(
-			DelegatingDeserializer<JobForecastStatistics.Builder> op) {
+	protected static void setupJobForecastStatisticsDeserializer(ObjectDeserializer<JobForecastStatistics.Builder> op) {
 
 		op.add(Builder::memoryBytes, JobStatistics._DESERIALIZER, "memory_bytes");
 		op.add(Builder::processingTimeMs, JobStatistics._DESERIALIZER, "processing_time_ms");

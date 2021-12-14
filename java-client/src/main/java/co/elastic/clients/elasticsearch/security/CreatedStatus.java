@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security._types.CreatedStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/CreatedStatus.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CreatedStatus implements JsonpSerializable {
+public class CreatedStatus implements JsonpSerializable {
 	private final boolean created;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreatedStatus(Builder builder) {
+	private CreatedStatus(Builder builder) {
 
-		this.created = Objects.requireNonNull(builder.created, "created");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
 
 	}
 
-	public CreatedStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreatedStatus of(Function<Builder, ObjectBuilder<CreatedStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code created}
 	 */
-	public boolean created() {
+	public final boolean created() {
 		return this.created;
 	}
 
@@ -81,13 +89,14 @@ public final class CreatedStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link CreatedStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<CreatedStatus> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreatedStatus> {
 		private Boolean created;
 
 		/**
 		 * Required - API name: {@code created}
 		 */
-		public Builder created(boolean value) {
+		public final Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class CreatedStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CreatedStatus build() {
+			_checkSingleUse();
 
 			return new CreatedStatus(this);
 		}
@@ -110,9 +120,9 @@ public final class CreatedStatus implements JsonpSerializable {
 	 * Json deserializer for {@link CreatedStatus}
 	 */
 	public static final JsonpDeserializer<CreatedStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CreatedStatus::setupCreatedStatusDeserializer, Builder::build);
+			CreatedStatus::setupCreatedStatusDeserializer);
 
-	protected static void setupCreatedStatusDeserializer(DelegatingDeserializer<CreatedStatus.Builder> op) {
+	protected static void setupCreatedStatusDeserializer(ObjectDeserializer<CreatedStatus.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 

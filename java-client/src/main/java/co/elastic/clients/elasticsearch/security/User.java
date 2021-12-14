@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,14 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,6 +43,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.User
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/User.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class User implements JsonpSerializable {
 	@Nullable
@@ -64,22 +68,26 @@ public class User implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public User(AbstractBuilder<?> builder) {
+	protected User(AbstractBuilder<?> builder) {
 
 		this.email = builder.email;
 		this.fullName = builder.fullName;
-		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
-		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
-		this.username = Objects.requireNonNull(builder.username, "username");
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
+		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
+	}
+
+	public static User userOf(Function<Builder, ObjectBuilder<User>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code email}
 	 */
 	@Nullable
-	public String email() {
+	public final String email() {
 		return this.email;
 	}
 
@@ -87,35 +95,35 @@ public class User implements JsonpSerializable {
 	 * API name: {@code full_name}
 	 */
 	@Nullable
-	public String fullName() {
+	public final String fullName() {
 		return this.fullName;
 	}
 
 	/**
 	 * Required - API name: {@code metadata}
 	 */
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
 	 * Required - API name: {@code roles}
 	 */
-	public List<String> roles() {
+	public final List<String> roles() {
 		return this.roles;
 	}
 
 	/**
 	 * Required - API name: {@code username}
 	 */
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -131,35 +139,36 @@ public class User implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.email != null) {
-
 			generator.writeKey("email");
 			generator.write(this.email);
 
 		}
 		if (this.fullName != null) {
-
 			generator.writeKey("full_name");
 			generator.write(this.fullName);
 
 		}
+		if (ApiTypeHelper.isDefined(this.metadata)) {
+			generator.writeKey("metadata");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("metadata");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("roles");
-		generator.writeStartArray();
-		for (String item0 : this.roles) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.roles)) {
+			generator.writeKey("roles");
+			generator.writeStartArray();
+			for (String item0 : this.roles) {
+				generator.write(item0);
 
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("username");
 		generator.write(this.username);
 
@@ -173,6 +182,7 @@ public class User implements JsonpSerializable {
 	/**
 	 * Builder for {@link User}.
 	 */
+
 	public static class Builder extends User.AbstractBuilder<Builder> implements ObjectBuilder<User> {
 		@Override
 		protected Builder self() {
@@ -186,12 +196,15 @@ public class User implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public User build() {
+			_checkSingleUse();
 
 			return new User(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private String email;
 
@@ -209,7 +222,7 @@ public class User implements JsonpSerializable {
 		/**
 		 * API name: {@code email}
 		 */
-		public BuilderT email(@Nullable String value) {
+		public final BuilderT email(@Nullable String value) {
 			this.email = value;
 			return self();
 		}
@@ -217,61 +230,55 @@ public class User implements JsonpSerializable {
 		/**
 		 * API name: {@code full_name}
 		 */
-		public BuilderT fullName(@Nullable String value) {
+		public final BuilderT fullName(@Nullable String value) {
 			this.fullName = value;
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public BuilderT metadata(Map<String, JsonData> value) {
-			this.metadata = value;
+		public final BuilderT metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
 			return self();
 		}
 
 		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
+		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
 		 */
-		public BuilderT putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
-			return self();
-		}
-
-		/**
-		 * Required - API name: {@code roles}
-		 */
-		public BuilderT roles(List<String> value) {
-			this.roles = value;
+		public final BuilderT metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public BuilderT roles(String... value) {
-			this.roles = Arrays.asList(value);
+		public final BuilderT roles(List<String> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return self();
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public BuilderT addRoles(String value) {
-			if (this.roles == null) {
-				this.roles = new ArrayList<>();
-			}
-			this.roles.add(value);
+		public final BuilderT roles(String value, String... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code username}
 		 */
-		public BuilderT username(String value) {
+		public final BuilderT username(String value) {
 			this.username = value;
 			return self();
 		}
@@ -279,7 +286,7 @@ public class User implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public BuilderT enabled(boolean value) {
+		public final BuilderT enabled(boolean value) {
 			this.enabled = value;
 			return self();
 		}
@@ -294,10 +301,10 @@ public class User implements JsonpSerializable {
 	 * Json deserializer for {@link User}
 	 */
 	public static final JsonpDeserializer<User> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			User::setupUserDeserializer, Builder::build);
+			User::setupUserDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupUserDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(AbstractBuilder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");

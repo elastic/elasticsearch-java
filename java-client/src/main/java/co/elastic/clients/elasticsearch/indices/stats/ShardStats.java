@@ -39,22 +39,30 @@ import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
 import co.elastic.clients.elasticsearch._types.TranslogStats;
 import co.elastic.clients.elasticsearch._types.WarmerStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L162-L187">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShardStats implements JsonpSerializable {
+public class ShardStats implements JsonpSerializable {
 	private final ShardCommit commit;
 
 	private final CompletionStats completion;
@@ -104,182 +112,182 @@ public final class ShardStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardStats(Builder builder) {
+	private ShardStats(Builder builder) {
 
-		this.commit = Objects.requireNonNull(builder.commit, "commit");
-		this.completion = Objects.requireNonNull(builder.completion, "completion");
-		this.docs = Objects.requireNonNull(builder.docs, "docs");
-		this.fielddata = Objects.requireNonNull(builder.fielddata, "fielddata");
-		this.flush = Objects.requireNonNull(builder.flush, "flush");
-		this.get = Objects.requireNonNull(builder.get, "get");
-		this.indexing = Objects.requireNonNull(builder.indexing, "indexing");
-		this.merges = Objects.requireNonNull(builder.merges, "merges");
-		this.shardPath = Objects.requireNonNull(builder.shardPath, "shard_path");
-		this.queryCache = Objects.requireNonNull(builder.queryCache, "query_cache");
-		this.recovery = Objects.requireNonNull(builder.recovery, "recovery");
-		this.refresh = Objects.requireNonNull(builder.refresh, "refresh");
-		this.requestCache = Objects.requireNonNull(builder.requestCache, "request_cache");
-		this.retentionLeases = Objects.requireNonNull(builder.retentionLeases, "retention_leases");
-		this.routing = Objects.requireNonNull(builder.routing, "routing");
-		this.search = Objects.requireNonNull(builder.search, "search");
-		this.segments = Objects.requireNonNull(builder.segments, "segments");
-		this.seqNo = Objects.requireNonNull(builder.seqNo, "seq_no");
-		this.store = Objects.requireNonNull(builder.store, "store");
-		this.translog = Objects.requireNonNull(builder.translog, "translog");
-		this.warmer = Objects.requireNonNull(builder.warmer, "warmer");
+		this.commit = ApiTypeHelper.requireNonNull(builder.commit, this, "commit");
+		this.completion = ApiTypeHelper.requireNonNull(builder.completion, this, "completion");
+		this.docs = ApiTypeHelper.requireNonNull(builder.docs, this, "docs");
+		this.fielddata = ApiTypeHelper.requireNonNull(builder.fielddata, this, "fielddata");
+		this.flush = ApiTypeHelper.requireNonNull(builder.flush, this, "flush");
+		this.get = ApiTypeHelper.requireNonNull(builder.get, this, "get");
+		this.indexing = ApiTypeHelper.requireNonNull(builder.indexing, this, "indexing");
+		this.merges = ApiTypeHelper.requireNonNull(builder.merges, this, "merges");
+		this.shardPath = ApiTypeHelper.requireNonNull(builder.shardPath, this, "shardPath");
+		this.queryCache = ApiTypeHelper.requireNonNull(builder.queryCache, this, "queryCache");
+		this.recovery = ApiTypeHelper.requireNonNull(builder.recovery, this, "recovery");
+		this.refresh = ApiTypeHelper.requireNonNull(builder.refresh, this, "refresh");
+		this.requestCache = ApiTypeHelper.requireNonNull(builder.requestCache, this, "requestCache");
+		this.retentionLeases = ApiTypeHelper.requireNonNull(builder.retentionLeases, this, "retentionLeases");
+		this.routing = ApiTypeHelper.requireNonNull(builder.routing, this, "routing");
+		this.search = ApiTypeHelper.requireNonNull(builder.search, this, "search");
+		this.segments = ApiTypeHelper.requireNonNull(builder.segments, this, "segments");
+		this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
+		this.store = ApiTypeHelper.requireNonNull(builder.store, this, "store");
+		this.translog = ApiTypeHelper.requireNonNull(builder.translog, this, "translog");
+		this.warmer = ApiTypeHelper.requireNonNull(builder.warmer, this, "warmer");
 		this.bulk = builder.bulk;
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public ShardStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardStats of(Function<Builder, ObjectBuilder<ShardStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code commit}
 	 */
-	public ShardCommit commit() {
+	public final ShardCommit commit() {
 		return this.commit;
 	}
 
 	/**
 	 * Required - API name: {@code completion}
 	 */
-	public CompletionStats completion() {
+	public final CompletionStats completion() {
 		return this.completion;
 	}
 
 	/**
 	 * Required - API name: {@code docs}
 	 */
-	public DocStats docs() {
+	public final DocStats docs() {
 		return this.docs;
 	}
 
 	/**
 	 * Required - API name: {@code fielddata}
 	 */
-	public FielddataStats fielddata() {
+	public final FielddataStats fielddata() {
 		return this.fielddata;
 	}
 
 	/**
 	 * Required - API name: {@code flush}
 	 */
-	public FlushStats flush() {
+	public final FlushStats flush() {
 		return this.flush;
 	}
 
 	/**
 	 * Required - API name: {@code get}
 	 */
-	public GetStats get() {
+	public final GetStats get() {
 		return this.get;
 	}
 
 	/**
 	 * Required - API name: {@code indexing}
 	 */
-	public IndexingStats indexing() {
+	public final IndexingStats indexing() {
 		return this.indexing;
 	}
 
 	/**
 	 * Required - API name: {@code merges}
 	 */
-	public MergesStats merges() {
+	public final MergesStats merges() {
 		return this.merges;
 	}
 
 	/**
 	 * Required - API name: {@code shard_path}
 	 */
-	public ShardPath shardPath() {
+	public final ShardPath shardPath() {
 		return this.shardPath;
 	}
 
 	/**
 	 * Required - API name: {@code query_cache}
 	 */
-	public ShardQueryCache queryCache() {
+	public final ShardQueryCache queryCache() {
 		return this.queryCache;
 	}
 
 	/**
 	 * Required - API name: {@code recovery}
 	 */
-	public RecoveryStats recovery() {
+	public final RecoveryStats recovery() {
 		return this.recovery;
 	}
 
 	/**
 	 * Required - API name: {@code refresh}
 	 */
-	public RefreshStats refresh() {
+	public final RefreshStats refresh() {
 		return this.refresh;
 	}
 
 	/**
 	 * Required - API name: {@code request_cache}
 	 */
-	public RequestCacheStats requestCache() {
+	public final RequestCacheStats requestCache() {
 		return this.requestCache;
 	}
 
 	/**
 	 * Required - API name: {@code retention_leases}
 	 */
-	public ShardRetentionLeases retentionLeases() {
+	public final ShardRetentionLeases retentionLeases() {
 		return this.retentionLeases;
 	}
 
 	/**
 	 * Required - API name: {@code routing}
 	 */
-	public ShardRouting routing() {
+	public final ShardRouting routing() {
 		return this.routing;
 	}
 
 	/**
 	 * Required - API name: {@code search}
 	 */
-	public SearchStats search() {
+	public final SearchStats search() {
 		return this.search;
 	}
 
 	/**
 	 * Required - API name: {@code segments}
 	 */
-	public SegmentsStats segments() {
+	public final SegmentsStats segments() {
 		return this.segments;
 	}
 
 	/**
 	 * Required - API name: {@code seq_no}
 	 */
-	public ShardSequenceNumber seqNo() {
+	public final ShardSequenceNumber seqNo() {
 		return this.seqNo;
 	}
 
 	/**
 	 * Required - API name: {@code store}
 	 */
-	public StoreStats store() {
+	public final StoreStats store() {
 		return this.store;
 	}
 
 	/**
 	 * Required - API name: {@code translog}
 	 */
-	public TranslogStats translog() {
+	public final TranslogStats translog() {
 		return this.translog;
 	}
 
 	/**
 	 * Required - API name: {@code warmer}
 	 */
-	public WarmerStats warmer() {
+	public final WarmerStats warmer() {
 		return this.warmer;
 	}
 
@@ -287,14 +295,14 @@ public final class ShardStats implements JsonpSerializable {
 	 * API name: {@code bulk}
 	 */
 	@Nullable
-	public BulkStats bulk() {
+	public final BulkStats bulk() {
 		return this.bulk;
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public ShardsTotalStats shards() {
+	public final ShardsTotalStats shards() {
 		return this.shards;
 	}
 
@@ -373,12 +381,10 @@ public final class ShardStats implements JsonpSerializable {
 		this.warmer.serialize(generator, mapper);
 
 		if (this.bulk != null) {
-
 			generator.writeKey("bulk");
 			this.bulk.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("shards");
 		this.shards.serialize(generator, mapper);
 
@@ -389,7 +395,8 @@ public final class ShardStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStats}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStats> {
 		private ShardCommit commit;
 
 		private CompletionStats completion;
@@ -440,7 +447,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code commit}
 		 */
-		public Builder commit(ShardCommit value) {
+		public final Builder commit(ShardCommit value) {
 			this.commit = value;
 			return this;
 		}
@@ -448,14 +455,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code commit}
 		 */
-		public Builder commit(Function<ShardCommit.Builder, ObjectBuilder<ShardCommit>> fn) {
+		public final Builder commit(Function<ShardCommit.Builder, ObjectBuilder<ShardCommit>> fn) {
 			return this.commit(fn.apply(new ShardCommit.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code completion}
 		 */
-		public Builder completion(CompletionStats value) {
+		public final Builder completion(CompletionStats value) {
 			this.completion = value;
 			return this;
 		}
@@ -463,14 +470,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code completion}
 		 */
-		public Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
+		public final Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
 			return this.completion(fn.apply(new CompletionStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public Builder docs(DocStats value) {
+		public final Builder docs(DocStats value) {
 			this.docs = value;
 			return this;
 		}
@@ -478,14 +485,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs}
 		 */
-		public Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
+		public final Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
 			return this.docs(fn.apply(new DocStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code fielddata}
 		 */
-		public Builder fielddata(FielddataStats value) {
+		public final Builder fielddata(FielddataStats value) {
 			this.fielddata = value;
 			return this;
 		}
@@ -493,14 +500,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fielddata}
 		 */
-		public Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
+		public final Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
 			return this.fielddata(fn.apply(new FielddataStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code flush}
 		 */
-		public Builder flush(FlushStats value) {
+		public final Builder flush(FlushStats value) {
 			this.flush = value;
 			return this;
 		}
@@ -508,14 +515,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code flush}
 		 */
-		public Builder flush(Function<FlushStats.Builder, ObjectBuilder<FlushStats>> fn) {
+		public final Builder flush(Function<FlushStats.Builder, ObjectBuilder<FlushStats>> fn) {
 			return this.flush(fn.apply(new FlushStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code get}
 		 */
-		public Builder get(GetStats value) {
+		public final Builder get(GetStats value) {
 			this.get = value;
 			return this;
 		}
@@ -523,14 +530,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code get}
 		 */
-		public Builder get(Function<GetStats.Builder, ObjectBuilder<GetStats>> fn) {
+		public final Builder get(Function<GetStats.Builder, ObjectBuilder<GetStats>> fn) {
 			return this.get(fn.apply(new GetStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code indexing}
 		 */
-		public Builder indexing(IndexingStats value) {
+		public final Builder indexing(IndexingStats value) {
 			this.indexing = value;
 			return this;
 		}
@@ -538,14 +545,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indexing}
 		 */
-		public Builder indexing(Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
+		public final Builder indexing(Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
 			return this.indexing(fn.apply(new IndexingStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code merges}
 		 */
-		public Builder merges(MergesStats value) {
+		public final Builder merges(MergesStats value) {
 			this.merges = value;
 			return this;
 		}
@@ -553,14 +560,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code merges}
 		 */
-		public Builder merges(Function<MergesStats.Builder, ObjectBuilder<MergesStats>> fn) {
+		public final Builder merges(Function<MergesStats.Builder, ObjectBuilder<MergesStats>> fn) {
 			return this.merges(fn.apply(new MergesStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code shard_path}
 		 */
-		public Builder shardPath(ShardPath value) {
+		public final Builder shardPath(ShardPath value) {
 			this.shardPath = value;
 			return this;
 		}
@@ -568,14 +575,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard_path}
 		 */
-		public Builder shardPath(Function<ShardPath.Builder, ObjectBuilder<ShardPath>> fn) {
+		public final Builder shardPath(Function<ShardPath.Builder, ObjectBuilder<ShardPath>> fn) {
 			return this.shardPath(fn.apply(new ShardPath.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code query_cache}
 		 */
-		public Builder queryCache(ShardQueryCache value) {
+		public final Builder queryCache(ShardQueryCache value) {
 			this.queryCache = value;
 			return this;
 		}
@@ -583,14 +590,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query_cache}
 		 */
-		public Builder queryCache(Function<ShardQueryCache.Builder, ObjectBuilder<ShardQueryCache>> fn) {
+		public final Builder queryCache(Function<ShardQueryCache.Builder, ObjectBuilder<ShardQueryCache>> fn) {
 			return this.queryCache(fn.apply(new ShardQueryCache.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code recovery}
 		 */
-		public Builder recovery(RecoveryStats value) {
+		public final Builder recovery(RecoveryStats value) {
 			this.recovery = value;
 			return this;
 		}
@@ -598,14 +605,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code recovery}
 		 */
-		public Builder recovery(Function<RecoveryStats.Builder, ObjectBuilder<RecoveryStats>> fn) {
+		public final Builder recovery(Function<RecoveryStats.Builder, ObjectBuilder<RecoveryStats>> fn) {
 			return this.recovery(fn.apply(new RecoveryStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code refresh}
 		 */
-		public Builder refresh(RefreshStats value) {
+		public final Builder refresh(RefreshStats value) {
 			this.refresh = value;
 			return this;
 		}
@@ -613,14 +620,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code refresh}
 		 */
-		public Builder refresh(Function<RefreshStats.Builder, ObjectBuilder<RefreshStats>> fn) {
+		public final Builder refresh(Function<RefreshStats.Builder, ObjectBuilder<RefreshStats>> fn) {
 			return this.refresh(fn.apply(new RefreshStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code request_cache}
 		 */
-		public Builder requestCache(RequestCacheStats value) {
+		public final Builder requestCache(RequestCacheStats value) {
 			this.requestCache = value;
 			return this;
 		}
@@ -628,14 +635,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code request_cache}
 		 */
-		public Builder requestCache(Function<RequestCacheStats.Builder, ObjectBuilder<RequestCacheStats>> fn) {
+		public final Builder requestCache(Function<RequestCacheStats.Builder, ObjectBuilder<RequestCacheStats>> fn) {
 			return this.requestCache(fn.apply(new RequestCacheStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code retention_leases}
 		 */
-		public Builder retentionLeases(ShardRetentionLeases value) {
+		public final Builder retentionLeases(ShardRetentionLeases value) {
 			this.retentionLeases = value;
 			return this;
 		}
@@ -643,14 +650,15 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code retention_leases}
 		 */
-		public Builder retentionLeases(Function<ShardRetentionLeases.Builder, ObjectBuilder<ShardRetentionLeases>> fn) {
+		public final Builder retentionLeases(
+				Function<ShardRetentionLeases.Builder, ObjectBuilder<ShardRetentionLeases>> fn) {
 			return this.retentionLeases(fn.apply(new ShardRetentionLeases.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code routing}
 		 */
-		public Builder routing(ShardRouting value) {
+		public final Builder routing(ShardRouting value) {
 			this.routing = value;
 			return this;
 		}
@@ -658,14 +666,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code routing}
 		 */
-		public Builder routing(Function<ShardRouting.Builder, ObjectBuilder<ShardRouting>> fn) {
+		public final Builder routing(Function<ShardRouting.Builder, ObjectBuilder<ShardRouting>> fn) {
 			return this.routing(fn.apply(new ShardRouting.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code search}
 		 */
-		public Builder search(SearchStats value) {
+		public final Builder search(SearchStats value) {
 			this.search = value;
 			return this;
 		}
@@ -673,14 +681,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code search}
 		 */
-		public Builder search(Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
+		public final Builder search(Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
 			return this.search(fn.apply(new SearchStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code segments}
 		 */
-		public Builder segments(SegmentsStats value) {
+		public final Builder segments(SegmentsStats value) {
 			this.segments = value;
 			return this;
 		}
@@ -688,14 +696,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code segments}
 		 */
-		public Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
+		public final Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
 			return this.segments(fn.apply(new SegmentsStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code seq_no}
 		 */
-		public Builder seqNo(ShardSequenceNumber value) {
+		public final Builder seqNo(ShardSequenceNumber value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -703,14 +711,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code seq_no}
 		 */
-		public Builder seqNo(Function<ShardSequenceNumber.Builder, ObjectBuilder<ShardSequenceNumber>> fn) {
+		public final Builder seqNo(Function<ShardSequenceNumber.Builder, ObjectBuilder<ShardSequenceNumber>> fn) {
 			return this.seqNo(fn.apply(new ShardSequenceNumber.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code store}
 		 */
-		public Builder store(StoreStats value) {
+		public final Builder store(StoreStats value) {
 			this.store = value;
 			return this;
 		}
@@ -718,14 +726,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store}
 		 */
-		public Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
+		public final Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
 			return this.store(fn.apply(new StoreStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code translog}
 		 */
-		public Builder translog(TranslogStats value) {
+		public final Builder translog(TranslogStats value) {
 			this.translog = value;
 			return this;
 		}
@@ -733,14 +741,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code translog}
 		 */
-		public Builder translog(Function<TranslogStats.Builder, ObjectBuilder<TranslogStats>> fn) {
+		public final Builder translog(Function<TranslogStats.Builder, ObjectBuilder<TranslogStats>> fn) {
 			return this.translog(fn.apply(new TranslogStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code warmer}
 		 */
-		public Builder warmer(WarmerStats value) {
+		public final Builder warmer(WarmerStats value) {
 			this.warmer = value;
 			return this;
 		}
@@ -748,14 +756,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code warmer}
 		 */
-		public Builder warmer(Function<WarmerStats.Builder, ObjectBuilder<WarmerStats>> fn) {
+		public final Builder warmer(Function<WarmerStats.Builder, ObjectBuilder<WarmerStats>> fn) {
 			return this.warmer(fn.apply(new WarmerStats.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code bulk}
 		 */
-		public Builder bulk(@Nullable BulkStats value) {
+		public final Builder bulk(@Nullable BulkStats value) {
 			this.bulk = value;
 			return this;
 		}
@@ -763,14 +771,14 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * API name: {@code bulk}
 		 */
-		public Builder bulk(Function<BulkStats.Builder, ObjectBuilder<BulkStats>> fn) {
+		public final Builder bulk(Function<BulkStats.Builder, ObjectBuilder<BulkStats>> fn) {
 			return this.bulk(fn.apply(new BulkStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(ShardsTotalStats value) {
+		public final Builder shards(ShardsTotalStats value) {
 			this.shards = value;
 			return this;
 		}
@@ -778,7 +786,7 @@ public final class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shards}
 		 */
-		public Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
+		public final Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
 			return this.shards(fn.apply(new ShardsTotalStats.Builder()).build());
 		}
 
@@ -789,6 +797,7 @@ public final class ShardStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardStats build() {
+			_checkSingleUse();
 
 			return new ShardStats(this);
 		}
@@ -800,9 +809,9 @@ public final class ShardStats implements JsonpSerializable {
 	 * Json deserializer for {@link ShardStats}
 	 */
 	public static final JsonpDeserializer<ShardStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardStats::setupShardStatsDeserializer, Builder::build);
+			ShardStats::setupShardStatsDeserializer);
 
-	protected static void setupShardStatsDeserializer(DelegatingDeserializer<ShardStats.Builder> op) {
+	protected static void setupShardStatsDeserializer(ObjectDeserializer<ShardStats.Builder> op) {
 
 		op.add(Builder::commit, ShardCommit._DESERIALIZER, "commit");
 		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");

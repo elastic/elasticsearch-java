@@ -23,67 +23,68 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CustomNormalizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/normalizers.ts#L30-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
-	@Nullable
+public class CustomNormalizer implements NormalizerVariant, JsonpSerializable {
 	private final List<String> charFilter;
 
-	@Nullable
 	private final List<String> filter;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CustomNormalizer(Builder builder) {
+	private CustomNormalizer(Builder builder) {
 
-		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.charFilter = ApiTypeHelper.unmodifiable(builder.charFilter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 
 	}
 
-	public CustomNormalizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CustomNormalizer of(Function<Builder, ObjectBuilder<CustomNormalizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Normalizer} variant type
+	 * Normalizer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "custom";
+	public Normalizer.Kind _normalizerKind() {
+		return Normalizer.Kind.Custom;
 	}
 
 	/**
 	 * API name: {@code char_filter}
 	 */
-	@Nullable
-	public List<String> charFilter() {
+	public final List<String> charFilter() {
 		return this.charFilter;
 	}
 
 	/**
 	 * API name: {@code filter}
 	 */
-	@Nullable
-	public List<String> filter() {
+	public final List<String> filter() {
 		return this.filter;
 	}
 
@@ -100,8 +101,7 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 
 		generator.write("type", "custom");
 
-		if (this.charFilter != null) {
-
+		if (ApiTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (String item0 : this.charFilter) {
@@ -111,8 +111,7 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 			generator.writeEnd();
 
 		}
-		if (this.filter != null) {
-
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (String item0 : this.filter) {
@@ -130,7 +129,8 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 	/**
 	 * Builder for {@link CustomNormalizer}.
 	 */
-	public static class Builder implements ObjectBuilder<CustomNormalizer> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CustomNormalizer> {
 		@Nullable
 		private List<String> charFilter;
 
@@ -139,55 +139,41 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>charFilter</code>.
 		 */
-		public Builder charFilter(@Nullable List<String> value) {
-			this.charFilter = value;
+		public final Builder charFilter(List<String> list) {
+			this.charFilter = _listAddAll(this.charFilter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds one or more values to <code>charFilter</code>.
 		 */
-		public Builder charFilter(String... value) {
-			this.charFilter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
-		 */
-		public Builder addCharFilter(String value) {
-			if (this.charFilter == null) {
-				this.charFilter = new ArrayList<>();
-			}
-			this.charFilter.add(value);
+		public final Builder charFilter(String value, String... values) {
+			this.charFilter = _listAdd(this.charFilter, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 */
-		public Builder filter(@Nullable List<String> value) {
-			this.filter = value;
+		public final Builder filter(List<String> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public Builder filter(String... value) {
-			this.filter = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(String value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
-			}
-			this.filter.add(value);
+		public final Builder filter(String value, String... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 
@@ -198,6 +184,7 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public CustomNormalizer build() {
+			_checkSingleUse();
 
 			return new CustomNormalizer(this);
 		}
@@ -209,9 +196,9 @@ public final class CustomNormalizer implements NormalizerVariant, JsonpSerializa
 	 * Json deserializer for {@link CustomNormalizer}
 	 */
 	public static final JsonpDeserializer<CustomNormalizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CustomNormalizer::setupCustomNormalizerDeserializer, Builder::build);
+			CustomNormalizer::setupCustomNormalizerDeserializer);
 
-	protected static void setupCustomNormalizerDeserializer(DelegatingDeserializer<CustomNormalizer.Builder> op) {
+	protected static void setupCustomNormalizerDeserializer(ObjectDeserializer<CustomNormalizer.Builder> op) {
 
 		op.add(Builder::charFilter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"char_filter");

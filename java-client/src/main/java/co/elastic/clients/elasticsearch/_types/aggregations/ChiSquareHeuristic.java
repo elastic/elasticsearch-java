@@ -23,50 +23,59 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.ChiSquareHeuristic
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L285-L288">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ChiSquareHeuristic implements JsonpSerializable {
+public class ChiSquareHeuristic implements JsonpSerializable {
 	private final boolean backgroundIsSuperset;
 
 	private final boolean includeNegatives;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ChiSquareHeuristic(Builder builder) {
+	private ChiSquareHeuristic(Builder builder) {
 
-		this.backgroundIsSuperset = Objects.requireNonNull(builder.backgroundIsSuperset, "background_is_superset");
-		this.includeNegatives = Objects.requireNonNull(builder.includeNegatives, "include_negatives");
+		this.backgroundIsSuperset = ApiTypeHelper.requireNonNull(builder.backgroundIsSuperset, this,
+				"backgroundIsSuperset");
+		this.includeNegatives = ApiTypeHelper.requireNonNull(builder.includeNegatives, this, "includeNegatives");
 
 	}
 
-	public ChiSquareHeuristic(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ChiSquareHeuristic of(Function<Builder, ObjectBuilder<ChiSquareHeuristic>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code background_is_superset}
 	 */
-	public boolean backgroundIsSuperset() {
+	public final boolean backgroundIsSuperset() {
 		return this.backgroundIsSuperset;
 	}
 
 	/**
 	 * Required - API name: {@code include_negatives}
 	 */
-	public boolean includeNegatives() {
+	public final boolean includeNegatives() {
 		return this.includeNegatives;
 	}
 
@@ -94,7 +103,8 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 	/**
 	 * Builder for {@link ChiSquareHeuristic}.
 	 */
-	public static class Builder implements ObjectBuilder<ChiSquareHeuristic> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChiSquareHeuristic> {
 		private Boolean backgroundIsSuperset;
 
 		private Boolean includeNegatives;
@@ -102,7 +112,7 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code background_is_superset}
 		 */
-		public Builder backgroundIsSuperset(boolean value) {
+		public final Builder backgroundIsSuperset(boolean value) {
 			this.backgroundIsSuperset = value;
 			return this;
 		}
@@ -110,7 +120,7 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code include_negatives}
 		 */
-		public Builder includeNegatives(boolean value) {
+		public final Builder includeNegatives(boolean value) {
 			this.includeNegatives = value;
 			return this;
 		}
@@ -122,6 +132,7 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ChiSquareHeuristic build() {
+			_checkSingleUse();
 
 			return new ChiSquareHeuristic(this);
 		}
@@ -133,9 +144,9 @@ public final class ChiSquareHeuristic implements JsonpSerializable {
 	 * Json deserializer for {@link ChiSquareHeuristic}
 	 */
 	public static final JsonpDeserializer<ChiSquareHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ChiSquareHeuristic::setupChiSquareHeuristicDeserializer, Builder::build);
+			.lazy(Builder::new, ChiSquareHeuristic::setupChiSquareHeuristicDeserializer);
 
-	protected static void setupChiSquareHeuristicDeserializer(DelegatingDeserializer<ChiSquareHeuristic.Builder> op) {
+	protected static void setupChiSquareHeuristicDeserializer(ObjectDeserializer<ChiSquareHeuristic.Builder> op) {
 
 		op.add(Builder::backgroundIsSuperset, JsonpDeserializer.booleanDeserializer(), "background_is_superset");
 		op.add(Builder::includeNegatives, JsonpDeserializer.booleanDeserializer(), "include_negatives");

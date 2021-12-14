@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.autoscaling;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,29 @@ import javax.annotation.Nullable;
 
 // typedef: autoscaling.delete_autoscaling_policy.Request
 
-public final class DeleteAutoscalingPolicyRequest extends RequestBase {
+/**
+ * Deletes an autoscaling policy. Designed for indirect use by ECE/ESS and ECK.
+ * Direct use is not supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/delete_autoscaling_policy/DeleteAutoscalingPolicyRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class DeleteAutoscalingPolicyRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAutoscalingPolicyRequest(Builder builder) {
+	private DeleteAutoscalingPolicyRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public DeleteAutoscalingPolicyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAutoscalingPolicyRequest of(
+			Function<Builder, ObjectBuilder<DeleteAutoscalingPolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +73,7 @@ public final class DeleteAutoscalingPolicyRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -70,7 +82,8 @@ public final class DeleteAutoscalingPolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteAutoscalingPolicyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteAutoscalingPolicyRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAutoscalingPolicyRequest> {
 		private String name;
 
 		/**
@@ -78,7 +91,7 @@ public final class DeleteAutoscalingPolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -90,6 +103,7 @@ public final class DeleteAutoscalingPolicyRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAutoscalingPolicyRequest build() {
+			_checkSingleUse();
 
 			return new DeleteAutoscalingPolicyRequest(this);
 		}
@@ -100,7 +114,9 @@ public final class DeleteAutoscalingPolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code autoscaling.delete_autoscaling_policy}".
 	 */
-	public static final Endpoint<DeleteAutoscalingPolicyRequest, DeleteAutoscalingPolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteAutoscalingPolicyRequest, DeleteAutoscalingPolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/autoscaling.delete_autoscaling_policy",
+
 			// Request method
 			request -> {
 				return "DELETE";

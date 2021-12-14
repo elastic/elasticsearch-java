@@ -23,21 +23,21 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,38 +48,35 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.get_repository.Request
 
-public final class GetRepositoryRequest extends RequestBase {
-	@Nullable
-	private final List<String> repository;
+/**
+ * Returns information about a repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/get_repository/SnapshotGetRepositoryRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
+public class GetRepositoryRequest extends RequestBase {
 	@Nullable
 	private final Boolean local;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
+
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRepositoryRequest(Builder builder) {
+	private GetRepositoryRequest(Builder builder) {
 
-		this.repository = ModelTypeHelper.unmodifiable(builder.repository);
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
-	public GetRepositoryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of repository names
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	@Nullable
-	public List<String> repository() {
-		return this.repository;
+	public static GetRepositoryRequest of(Function<Builder, ObjectBuilder<GetRepositoryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +86,7 @@ public final class GetRepositoryRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -99,8 +96,17 @@ public final class GetRepositoryRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * A comma-separated list of repository names
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	public final List<String> name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -108,46 +114,16 @@ public final class GetRepositoryRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRepositoryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetRepositoryRequest> {
-		@Nullable
-		private List<String> repository;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRepositoryRequest> {
 		@Nullable
 		private Boolean local;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
-		/**
-		 * A comma-separated list of repository names
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(@Nullable List<String> value) {
-			this.repository = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of repository names
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(String... value) {
-			this.repository = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #repository(List)}, creating the list if needed.
-		 */
-		public Builder addRepository(String value) {
-			if (this.repository == null) {
-				this.repository = new ArrayList<>();
-			}
-			this.repository.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> name;
 
 		/**
 		 * Return local information, do not retrieve the state from master node
@@ -155,7 +131,7 @@ public final class GetRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -165,8 +141,41 @@ public final class GetRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * A comma-separated list of repository names
+		 * <p>
+		 * API name: {@code repository}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
+		 */
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of repository names
+		 * <p>
+		 * API name: {@code repository}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -177,6 +186,7 @@ public final class GetRepositoryRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetRepositoryRequest build() {
+			_checkSingleUse();
 
 			return new GetRepositoryRequest(this);
 		}
@@ -187,7 +197,9 @@ public final class GetRepositoryRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code snapshot.get_repository}".
 	 */
-	public static final Endpoint<GetRepositoryRequest, GetRepositoryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetRepositoryRequest, GetRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/snapshot.get_repository",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -196,24 +208,23 @@ public final class GetRepositoryRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _repository = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
-					propsSet |= _repository;
+				if (ApiTypeHelper.isDefined(request.name()))
+					propsSet |= _name;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					return buf.toString();
 				}
-				if (propsSet == (_repository)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.repository.stream().map(v -> v).collect(Collectors.joining(",")),
-							buf);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -223,11 +234,11 @@ public final class GetRepositoryRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 

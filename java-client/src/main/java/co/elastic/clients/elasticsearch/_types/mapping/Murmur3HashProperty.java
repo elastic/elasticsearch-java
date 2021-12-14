@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.Murmur3HashProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L83-L85">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Murmur3HashProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class Murmur3HashProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public Murmur3HashProperty(Builder builder) {
+	private Murmur3HashProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public Murmur3HashProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Murmur3HashProperty of(Function<Builder, ObjectBuilder<Murmur3HashProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "murmur3";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Murmur3;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class Murmur3HashProperty extends DocValuesPropertyBase implements 
 	/**
 	 * Builder for {@link Murmur3HashProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<Murmur3HashProperty> {
@@ -83,6 +90,7 @@ public final class Murmur3HashProperty extends DocValuesPropertyBase implements 
 		 *             if some of the required fields are null.
 		 */
 		public Murmur3HashProperty build() {
+			_checkSingleUse();
 
 			return new Murmur3HashProperty(this);
 		}
@@ -94,9 +102,9 @@ public final class Murmur3HashProperty extends DocValuesPropertyBase implements 
 	 * Json deserializer for {@link Murmur3HashProperty}
 	 */
 	public static final JsonpDeserializer<Murmur3HashProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, Murmur3HashProperty::setupMurmur3HashPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, Murmur3HashProperty::setupMurmur3HashPropertyDeserializer);
 
-	protected static void setupMurmur3HashPropertyDeserializer(DelegatingDeserializer<Murmur3HashProperty.Builder> op) {
+	protected static void setupMurmur3HashPropertyDeserializer(ObjectDeserializer<Murmur3HashProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 
 		op.ignore("type");

@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsNetwork
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L205-L207">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoSettingsNetwork implements JsonpSerializable {
+public class NodeInfoSettingsNetwork implements JsonpSerializable {
 	private final String host;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSettingsNetwork(Builder builder) {
+	private NodeInfoSettingsNetwork(Builder builder) {
 
-		this.host = Objects.requireNonNull(builder.host, "host");
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
 
 	}
 
-	public NodeInfoSettingsNetwork(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSettingsNetwork of(Function<Builder, ObjectBuilder<NodeInfoSettingsNetwork>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code host}
 	 */
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
@@ -82,13 +90,14 @@ public final class NodeInfoSettingsNetwork implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSettingsNetwork}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSettingsNetwork> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsNetwork> {
 		private String host;
 
 		/**
 		 * Required - API name: {@code host}
 		 */
-		public Builder host(String value) {
+		public final Builder host(String value) {
 			this.host = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class NodeInfoSettingsNetwork implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSettingsNetwork build() {
+			_checkSingleUse();
 
 			return new NodeInfoSettingsNetwork(this);
 		}
@@ -111,10 +121,10 @@ public final class NodeInfoSettingsNetwork implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoSettingsNetwork}
 	 */
 	public static final JsonpDeserializer<NodeInfoSettingsNetwork> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsNetwork::setupNodeInfoSettingsNetworkDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoSettingsNetwork::setupNodeInfoSettingsNetworkDeserializer);
 
 	protected static void setupNodeInfoSettingsNetworkDeserializer(
-			DelegatingDeserializer<NodeInfoSettingsNetwork.Builder> op) {
+			ObjectDeserializer<NodeInfoSettingsNetwork.Builder> op) {
 
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
 

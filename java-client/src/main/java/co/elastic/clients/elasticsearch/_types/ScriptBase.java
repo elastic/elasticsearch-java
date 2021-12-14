@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,46 +30,39 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptBase
 
-public abstract class ScriptBase implements JsonpSerializable {
-	@Nullable
-	private final ScriptLanguage lang;
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Scripting.ts#L43-L45">API
+ *      specification</a>
+ */
 
-	@Nullable
+public abstract class ScriptBase implements JsonpSerializable {
 	private final Map<String, JsonData> params;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptBase(AbstractBuilder<?> builder) {
+	protected ScriptBase(AbstractBuilder<?> builder) {
 
-		this.lang = builder.lang;
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 
-	}
-
-	/**
-	 * API name: {@code lang}
-	 */
-	@Nullable
-	public ScriptLanguage lang() {
-		return this.lang;
 	}
 
 	/**
 	 * API name: {@code params}
 	 */
-	@Nullable
-	public Map<String, JsonData> params() {
+	public final Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -85,13 +77,7 @@ public abstract class ScriptBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.lang != null) {
-
-			generator.writeKey("lang");
-			this.lang.serialize(generator, mapper);
-		}
-		if (this.params != null) {
-
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -105,37 +91,29 @@ public abstract class ScriptBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
-		@Nullable
-		private ScriptLanguage lang;
-
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private Map<String, JsonData> params;
 
 		/**
-		 * API name: {@code lang}
+		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 */
-		public BuilderT lang(@Nullable ScriptLanguage value) {
-			this.lang = value;
+		public final BuilderT params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
 			return self();
 		}
 
 		/**
 		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
 		 */
-		public BuilderT params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
-			return self();
-		}
-
-		/**
-		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
-		 */
-		public BuilderT putParams(String key, JsonData value) {
-			if (this.params == null) {
-				this.params = new HashMap<>();
-			}
-			this.params.put(key, value);
+		public final BuilderT params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return self();
 		}
 
@@ -145,9 +123,8 @@ public abstract class ScriptBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupScriptBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::lang, ScriptLanguage._DESERIALIZER, "lang");
 		op.add(AbstractBuilder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 
 	}

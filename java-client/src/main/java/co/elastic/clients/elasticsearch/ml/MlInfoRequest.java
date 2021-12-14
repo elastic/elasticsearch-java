@@ -23,23 +23,35 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: ml.info.Request
 
-public final class MlInfoRequest extends RequestBase {
+/**
+ * Returns defaults and limits used by machine learning. This endpoint is
+ * designed to be used by a user interface that needs to fully understand
+ * machine learning configurations where some options are not specified, meaning
+ * that the defaults should be used. This endpoint may be used to find out what
+ * those defaults are. It also provides information about the maximum size of
+ * machine learning jobs that could run in the current cluster configuration.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/info/MlInfoRequest.ts#L22-L35">API
+ *      specification</a>
+ */
+
+public class MlInfoRequest extends RequestBase {
 	public MlInfoRequest() {
 	}
 
@@ -53,7 +65,9 @@ public final class MlInfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.info}".
 	 */
-	public static final Endpoint<MlInfoRequest, MlInfoResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MlInfoRequest, MlInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.info",
+
 			// Request method
 			request -> {
 				return "GET";

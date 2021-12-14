@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.logstash;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -46,19 +45,27 @@ import javax.annotation.Nullable;
 
 // typedef: logstash.get_pipeline.Request
 
-public final class GetPipelineRequest extends RequestBase {
+/**
+ * Retrieves Logstash Pipelines used by Central Management
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/logstash/get_pipeline/LogstashGetPipelineRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class GetPipelineRequest extends RequestBase {
 	private final List<String> id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPipelineRequest(Builder builder) {
+	private GetPipelineRequest(Builder builder) {
 
-		this.id = ModelTypeHelper.unmodifiableNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.unmodifiableRequired(builder.id, this, "id");
 
 	}
 
-	public GetPipelineRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPipelineRequest of(Function<Builder, ObjectBuilder<GetPipelineRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +73,7 @@ public final class GetPipelineRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public List<String> id() {
+	public final List<String> id() {
 		return this.id;
 	}
 
@@ -75,16 +82,19 @@ public final class GetPipelineRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetPipelineRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetPipelineRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineRequest> {
 		private List<String> id;
 
 		/**
 		 * Required - A comma-separated list of Pipeline IDs
 		 * <p>
 		 * API name: {@code id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>id</code>.
 		 */
-		public Builder id(List<String> value) {
-			this.id = value;
+		public final Builder id(List<String> list) {
+			this.id = _listAddAll(this.id, list);
 			return this;
 		}
 
@@ -92,20 +102,11 @@ public final class GetPipelineRequest extends RequestBase {
 		 * Required - A comma-separated list of Pipeline IDs
 		 * <p>
 		 * API name: {@code id}
+		 * <p>
+		 * Adds one or more values to <code>id</code>.
 		 */
-		public Builder id(String... value) {
-			this.id = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #id(List)}, creating the list if needed.
-		 */
-		public Builder addId(String value) {
-			if (this.id == null) {
-				this.id = new ArrayList<>();
-			}
-			this.id.add(value);
+		public final Builder id(String value, String... values) {
+			this.id = _listAdd(this.id, value, values);
 			return this;
 		}
 
@@ -116,6 +117,7 @@ public final class GetPipelineRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetPipelineRequest build() {
+			_checkSingleUse();
 
 			return new GetPipelineRequest(this);
 		}
@@ -126,7 +128,9 @@ public final class GetPipelineRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code logstash.get_pipeline}".
 	 */
-	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/logstash.get_pipeline",
+
 			// Request method
 			request -> {
 				return "GET";

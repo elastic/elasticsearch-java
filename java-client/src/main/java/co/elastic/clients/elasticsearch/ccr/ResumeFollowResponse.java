@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ccr.resume_follow.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/resume_follow/ResumeFollowIndexResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ResumeFollowResponse extends AcknowledgedResponseBase {
+public class ResumeFollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ResumeFollowResponse(Builder builder) {
+	private ResumeFollowResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ResumeFollowResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResumeFollowResponse of(Function<Builder, ObjectBuilder<ResumeFollowResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class ResumeFollowResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link ResumeFollowResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ResumeFollowResponse> {
@@ -68,6 +75,7 @@ public final class ResumeFollowResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ResumeFollowResponse build() {
+			_checkSingleUse();
 
 			return new ResumeFollowResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class ResumeFollowResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link ResumeFollowResponse}
 	 */
 	public static final JsonpDeserializer<ResumeFollowResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ResumeFollowResponse::setupResumeFollowResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ResumeFollowResponse::setupResumeFollowResponseDeserializer);
 
-	protected static void setupResumeFollowResponseDeserializer(
-			DelegatingDeserializer<ResumeFollowResponse.Builder> op) {
+	protected static void setupResumeFollowResponseDeserializer(ObjectDeserializer<ResumeFollowResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

@@ -20,8 +20,12 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.mapping.Property;
+import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
+import co.elastic.clients.json.JsonData;
 import org.junit.Test;
 
 public class VariantsTest extends ModelTestCase {
@@ -32,22 +36,23 @@ public class VariantsTest extends ModelTestCase {
         // intervals is a single key dictionary
         // query has container properties
 
-        Query q = new Query(_0 -> _0
+        Query q = Query.of(_0 -> _0
             .intervals(_1 -> _1
                 .queryName("my-query")
                 .field("a_field")
                 .anyOf(_2 -> _2
-                    .addIntervals(_3 -> _3
-                        .match(_4 -> _4
-                            .query("match-query")
-                            .analyzer("lowercase")
+                    .intervals(_3 -> _3
+                        .match(
+                            _5 -> _5
+                                .query("match-query")
+                                .analyzer("lowercase")
+                            )
                         )
-                    )
                 )
             )
         );
 
-        assertEquals(Query.INTERVALS, q._type());
+        assertEquals(Query.Kind.Intervals, q._kind());
         assertNotNull(q.intervals());
         assertEquals("a_field", q.intervals().field());
         assertEquals(1, q.intervals().anyOf().intervals().size());
@@ -61,7 +66,7 @@ public class VariantsTest extends ModelTestCase {
         Query q2 = fromJson(json, Query.class);
         assertEquals(json, toJson(q2));
 
-        assertEquals(Query.INTERVALS, q2._type());
+        assertEquals(Query.Kind.Intervals, q2._kind());
         assertNotNull(q2.intervals());
         assertEquals("a_field", q2.intervals().field());
         assertEquals(1, q2.intervals().anyOf().intervals().size());
@@ -74,12 +79,13 @@ public class VariantsTest extends ModelTestCase {
         String expected = "{\"type\":\"ip\",\"fields\":{\"a-field\":{\"type\":\"float\",\"coerce\":true}},\"boost\":1" +
             ".0,\"index\":true}";
 
-        Property p = new Property(_0 -> _0
+        Property p = Property.of(_0 -> _0
             .ip(_1 -> _1
                 .index(true)
                 .boost(1.0)
-                .fields("a-field", _2 -> _2
-                    .float_(_3 -> _3
+                .fields(
+                    "a-field", _3 -> _3
+                    .float_(_4 -> _4
                         .coerce(true)
                     )
                 )
@@ -97,8 +103,97 @@ public class VariantsTest extends ModelTestCase {
 
     @Test
     public void testBuilders() {
-        Query q = new Query(QueryBuilders.exists().field("foo"));
+        Query q = new Query(QueryBuilders.exists().field("foo").build());
 
         assertEquals("{\"exists\":{\"field\":\"foo\"}}", toJson(q));
+    }
+
+
+    @Test
+    public void testNestedTaggedUnionWithDefaultTag() {
+        // https://github.com/elastic/elasticsearch-java/issues/45
+
+        // Object fields don't really exist in ES and are based on a naming convention where field names
+        // are dot-separated paths. The hierarchy is rebuilt from these names and ES doesn't send back
+        // "type": "object" for object properties.
+        // See https://www.elastic.co/guide/en/elasticsearch/reference/current/object.html
+        //
+        // Mappings are therefore a hierarchy of internally-tagged unions based on the "type" property
+        // with a default "object" tag value if the "type" property is missing.
+
+        String json =
+            "{\n" +
+            "  \"testindex\" : {\n" +
+            "    \"mappings\" : {\n" +
+            "      \"properties\" : {\n" +
+            "        \"id\" : {\n" +
+            "          \"type\" : \"text\",\n" +
+            "          \"fields\" : {\n" +
+            "            \"keyword\" : {\n" +
+            "              \"type\" : \"keyword\",\n" +
+            "              \"ignore_above\" : 256\n" +
+            "            }\n" +
+            "          }\n" +
+            "        },\n" +
+            "        \"name\" : {\n" +
+            "          \"properties\" : {\n" +
+            "            \"first\" : {\n" +
+            "              \"type\" : \"text\",\n" +
+            "              \"fields\" : {\n" +
+            "                \"keyword\" : {\n" +
+            "                  \"type\" : \"keyword\",\n" +
+            "                  \"ignore_above\" : 256\n" +
+            "                }\n" +
+            "              }\n" +
+            "            },\n" +
+            "            \"last\" : {\n" +
+            "              \"type\" : \"text\",\n" +
+            "              \"fields\" : {\n" +
+            "                \"keyword\" : {\n" +
+            "                  \"type\" : \"keyword\",\n" +
+            "                  \"ignore_above\" : 256\n" +
+            "                }\n" +
+            "              }\n" +
+            "            }\n" +
+            "          }\n" +
+            "        }\n" +
+            "      }\n" +
+            "    }\n" +
+            "  }\n" +
+            "}";
+
+        GetMappingResponse response = fromJson(json, GetMappingResponse.class);
+
+        TypeMapping mappings = response.get("testindex").mappings();
+        assertTrue(mappings.properties().get("name").isObject());
+
+        assertEquals(256, mappings
+            .properties().get("name").object()
+            .properties().get("first").text()
+            .fields().get("keyword").keyword().
+            ignoreAbove().longValue()
+        );
+
+        assertTrue(mappings.properties().get("id").isText());
+
+        assertEquals(256, mappings.properties().get("id").text().fields().get("keyword").keyword().ignoreAbove().longValue());
+    }
+
+    @Test
+    public void testNestedVariantsWithContainerProperties() {
+
+        SearchRequest search = SearchRequest.of(s -> s
+            .aggregations(
+                "agg1", a -> a
+                    .meta("m1", JsonData.of("m1 value"))
+                    // Here we can choose any aggregation type, but build() isn't accessible
+                    .valueCount(v -> v.field("f"))
+                    // Here we can only set container properties (meta and (sub)aggregations) or build()
+                    .meta("m2", JsonData.of("m2 value"))
+            )
+        );
+
+        assertEquals("m1 value", search.aggregations().get("agg1").meta().get("m1").to(String.class));
+        assertEquals("m2 value", search.aggregations().get("agg1").meta().get("m2").to(String.class));
     }
 }

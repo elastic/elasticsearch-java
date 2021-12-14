@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotShardFailure
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotShardFailure.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SnapshotShardFailure implements JsonpSerializable {
+public class SnapshotShardFailure implements JsonpSerializable {
 	private final String index;
 
 	private final String nodeId;
@@ -52,52 +60,52 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SnapshotShardFailure(Builder builder) {
+	private SnapshotShardFailure(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
-		this.reason = Objects.requireNonNull(builder.reason, "reason");
-		this.shardId = Objects.requireNonNull(builder.shardId, "shard_id");
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
+		this.shardId = ApiTypeHelper.requireNonNull(builder.shardId, this, "shardId");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public SnapshotShardFailure(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SnapshotShardFailure of(Function<Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
 	 * Required - API name: {@code reason}
 	 */
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
 	/**
 	 * Required - API name: {@code shard_id}
 	 */
-	public String shardId() {
+	public final String shardId() {
 		return this.shardId;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public String status() {
+	public final String status() {
 		return this.status;
 	}
 
@@ -134,7 +142,8 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotShardFailure}.
 	 */
-	public static class Builder implements ObjectBuilder<SnapshotShardFailure> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotShardFailure> {
 		private String index;
 
 		private String nodeId;
@@ -148,7 +157,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -156,7 +165,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -164,7 +173,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public Builder reason(String value) {
+		public final Builder reason(String value) {
 			this.reason = value;
 			return this;
 		}
@@ -172,7 +181,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard_id}
 		 */
-		public Builder shardId(String value) {
+		public final Builder shardId(String value) {
 			this.shardId = value;
 			return this;
 		}
@@ -180,7 +189,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(String value) {
+		public final Builder status(String value) {
 			this.status = value;
 			return this;
 		}
@@ -192,6 +201,7 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SnapshotShardFailure build() {
+			_checkSingleUse();
 
 			return new SnapshotShardFailure(this);
 		}
@@ -203,10 +213,9 @@ public final class SnapshotShardFailure implements JsonpSerializable {
 	 * Json deserializer for {@link SnapshotShardFailure}
 	 */
 	public static final JsonpDeserializer<SnapshotShardFailure> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SnapshotShardFailure::setupSnapshotShardFailureDeserializer, Builder::build);
+			.lazy(Builder::new, SnapshotShardFailure::setupSnapshotShardFailureDeserializer);
 
-	protected static void setupSnapshotShardFailureDeserializer(
-			DelegatingDeserializer<SnapshotShardFailure.Builder> op) {
+	protected static void setupSnapshotShardFailureDeserializer(ObjectDeserializer<SnapshotShardFailure.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");

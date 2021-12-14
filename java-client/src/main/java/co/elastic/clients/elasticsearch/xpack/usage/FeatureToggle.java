@@ -23,36 +23,48 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.FeatureToggle
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L38-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class FeatureToggle implements JsonpSerializable {
 	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FeatureToggle(AbstractBuilder<?> builder) {
+	protected FeatureToggle(AbstractBuilder<?> builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
+	}
+
+	public static FeatureToggle featureToggleOf(Function<Builder, ObjectBuilder<FeatureToggle>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -77,6 +89,7 @@ public class FeatureToggle implements JsonpSerializable {
 	/**
 	 * Builder for {@link FeatureToggle}.
 	 */
+
 	public static class Builder extends FeatureToggle.AbstractBuilder<Builder> implements ObjectBuilder<FeatureToggle> {
 		@Override
 		protected Builder self() {
@@ -90,18 +103,21 @@ public class FeatureToggle implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FeatureToggle build() {
+			_checkSingleUse();
 
 			return new FeatureToggle(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private Boolean enabled;
 
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public BuilderT enabled(boolean value) {
+		public final BuilderT enabled(boolean value) {
 			this.enabled = value;
 			return self();
 		}
@@ -116,10 +132,10 @@ public class FeatureToggle implements JsonpSerializable {
 	 * Json deserializer for {@link FeatureToggle}
 	 */
 	public static final JsonpDeserializer<FeatureToggle> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FeatureToggle::setupFeatureToggleDeserializer, Builder::build);
+			FeatureToggle::setupFeatureToggleDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupFeatureToggleDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 

@@ -23,18 +23,19 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -47,10 +48,19 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_influencers.Request
-@JsonpDeserializable
-public final class GetInfluencersRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
 
+/**
+ * Retrieves anomaly detection job results for one or more influencers.
+ * Influencers are the entities that have contributed to, or are to blame for,
+ * the anomalies. Influencer results are available only if an
+ * <code>influencer_field_name</code> is specified in the job configuration.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_influencers/MlGetInfluencersRequest.ts#L26-L93">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class GetInfluencersRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean desc;
 
@@ -61,10 +71,15 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	private final Boolean excludeInterim;
 
 	@Nullable
-	private final Double influencerScore;
+	private final Integer from;
 
 	@Nullable
-	private final Integer from;
+	private final Double influencerScore;
+
+	private final String jobId;
+
+	@Nullable
+	private final Page page;
 
 	@Nullable
 	private final Integer size;
@@ -75,37 +90,25 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	@Nullable
 	private final String start;
 
-	@Nullable
-	private final Page page;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public GetInfluencersRequest(Builder builder) {
+	private GetInfluencersRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.desc = builder.desc;
 		this.end = builder.end;
 		this.excludeInterim = builder.excludeInterim;
-		this.influencerScore = builder.influencerScore;
 		this.from = builder.from;
+		this.influencerScore = builder.influencerScore;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.page = builder.page;
 		this.size = builder.size;
 		this.sort = builder.sort;
 		this.start = builder.start;
-		this.page = builder.page;
 
 	}
 
-	public GetInfluencersRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the anomaly detection job.
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
+	public static GetInfluencersRequest of(Function<Builder, ObjectBuilder<GetInfluencersRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,17 +117,18 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	 * API name: {@code desc}
 	 */
 	@Nullable
-	public Boolean desc() {
+	public final Boolean desc() {
 		return this.desc;
 	}
 
 	/**
-	 * Returns influencers with timestamps earlier than this time.
+	 * Returns influencers with timestamps earlier than this time. The default value
+	 * means it is unset and results are not limited to specific timestamps.
 	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public String end() {
+	public final String end() {
 		return this.end;
 	}
 
@@ -135,18 +139,8 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	 * API name: {@code exclude_interim}
 	 */
 	@Nullable
-	public Boolean excludeInterim() {
+	public final Boolean excludeInterim() {
 		return this.excludeInterim;
-	}
-
-	/**
-	 * Returns influencers with anomaly scores greater than or equal to this value.
-	 * <p>
-	 * API name: {@code influencer_score}
-	 */
-	@Nullable
-	public Double influencerScore() {
-		return this.influencerScore;
 	}
 
 	/**
@@ -155,8 +149,35 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
+	}
+
+	/**
+	 * Returns influencers with anomaly scores greater than or equal to this value.
+	 * <p>
+	 * API name: {@code influencer_score}
+	 */
+	@Nullable
+	public final Double influencerScore() {
+		return this.influencerScore;
+	}
+
+	/**
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public final String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * API name: {@code page}
+	 */
+	@Nullable
+	public final Page page() {
+		return this.page;
 	}
 
 	/**
@@ -165,37 +186,30 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
 	/**
 	 * Specifies the sort field for the requested influencers. By default, the
-	 * influencers are sorted by the influencer_score value.
+	 * influencers are sorted by the <code>influencer_score</code> value.
 	 * <p>
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public String sort() {
+	public final String sort() {
 		return this.sort;
 	}
 
 	/**
-	 * Returns influencers with timestamps after this time.
+	 * Returns influencers with timestamps after this time. The default value means
+	 * it is unset and results are not limited to specific timestamps.
 	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public String start() {
+	public final String start() {
 		return this.start;
-	}
-
-	/**
-	 * API name: {@code page}
-	 */
-	@Nullable
-	public Page page() {
-		return this.page;
 	}
 
 	/**
@@ -210,7 +224,6 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.page != null) {
-
 			generator.writeKey("page");
 			this.page.serialize(generator, mapper);
 
@@ -223,9 +236,8 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link GetInfluencersRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetInfluencersRequest> {
-		private String jobId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetInfluencersRequest> {
 		@Nullable
 		private Boolean desc;
 
@@ -236,10 +248,15 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		private Boolean excludeInterim;
 
 		@Nullable
-		private Double influencerScore;
+		private Integer from;
 
 		@Nullable
-		private Integer from;
+		private Double influencerScore;
+
+		private String jobId;
+
+		@Nullable
+		private Page page;
 
 		@Nullable
 		private Integer size;
@@ -250,35 +267,23 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private String start;
 
-		@Nullable
-		private Page page;
-
-		/**
-		 * Required - Identifier for the anomaly detection job.
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
 		/**
 		 * If true, the results are sorted in descending order.
 		 * <p>
 		 * API name: {@code desc}
 		 */
-		public Builder desc(@Nullable Boolean value) {
+		public final Builder desc(@Nullable Boolean value) {
 			this.desc = value;
 			return this;
 		}
 
 		/**
-		 * Returns influencers with timestamps earlier than this time.
+		 * Returns influencers with timestamps earlier than this time. The default value
+		 * means it is unset and results are not limited to specific timestamps.
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable String value) {
+		public final Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
@@ -289,18 +294,8 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code exclude_interim}
 		 */
-		public Builder excludeInterim(@Nullable Boolean value) {
+		public final Builder excludeInterim(@Nullable Boolean value) {
 			this.excludeInterim = value;
-			return this;
-		}
-
-		/**
-		 * Returns influencers with anomaly scores greater than or equal to this value.
-		 * <p>
-		 * API name: {@code influencer_score}
-		 */
-		public Builder influencerScore(@Nullable Double value) {
-			this.influencerScore = value;
 			return this;
 		}
 
@@ -309,46 +304,35 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
-		 * Specifies the maximum number of influencers to obtain.
+		 * Returns influencers with anomaly scores greater than or equal to this value.
 		 * <p>
-		 * API name: {@code size}
+		 * API name: {@code influencer_score}
 		 */
-		public Builder size(@Nullable Integer value) {
-			this.size = value;
+		public final Builder influencerScore(@Nullable Double value) {
+			this.influencerScore = value;
 			return this;
 		}
 
 		/**
-		 * Specifies the sort field for the requested influencers. By default, the
-		 * influencers are sorted by the influencer_score value.
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
-		 * API name: {@code sort}
+		 * API name: {@code job_id}
 		 */
-		public Builder sort(@Nullable String value) {
-			this.sort = value;
-			return this;
-		}
-
-		/**
-		 * Returns influencers with timestamps after this time.
-		 * <p>
-		 * API name: {@code start}
-		 */
-		public Builder start(@Nullable String value) {
-			this.start = value;
+		public final Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code page}
 		 */
-		public Builder page(@Nullable Page value) {
+		public final Builder page(@Nullable Page value) {
 			this.page = value;
 			return this;
 		}
@@ -356,8 +340,40 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code page}
 		 */
-		public Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
 			return this.page(fn.apply(new Page.Builder()).build());
+		}
+
+		/**
+		 * Specifies the maximum number of influencers to obtain.
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public final Builder size(@Nullable Integer value) {
+			this.size = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the sort field for the requested influencers. By default, the
+		 * influencers are sorted by the <code>influencer_score</code> value.
+		 * <p>
+		 * API name: {@code sort}
+		 */
+		public final Builder sort(@Nullable String value) {
+			this.sort = value;
+			return this;
+		}
+
+		/**
+		 * Returns influencers with timestamps after this time. The default value means
+		 * it is unset and results are not limited to specific timestamps.
+		 * <p>
+		 * API name: {@code start}
+		 */
+		public final Builder start(@Nullable String value) {
+			this.start = value;
+			return this;
 		}
 
 		/**
@@ -367,6 +383,7 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 		 *             if some of the required fields are null.
 		 */
 		public GetInfluencersRequest build() {
+			_checkSingleUse();
 
 			return new GetInfluencersRequest(this);
 		}
@@ -378,10 +395,9 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	 * Json deserializer for {@link GetInfluencersRequest}
 	 */
 	public static final JsonpDeserializer<GetInfluencersRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetInfluencersRequest::setupGetInfluencersRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetInfluencersRequest::setupGetInfluencersRequestDeserializer);
 
-	protected static void setupGetInfluencersRequestDeserializer(
-			DelegatingDeserializer<GetInfluencersRequest.Builder> op) {
+	protected static void setupGetInfluencersRequestDeserializer(ObjectDeserializer<GetInfluencersRequest.Builder> op) {
 
 		op.add(Builder::page, Page._DESERIALIZER, "page");
 
@@ -392,7 +408,9 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code ml.get_influencers}".
 	 */
-	public static final Endpoint<GetInfluencersRequest, GetInfluencersResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_influencers",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -424,29 +442,29 @@ public final class GetInfluencersRequest extends RequestBase implements JsonpSer
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.desc != null) {
-					params.put("desc", String.valueOf(request.desc));
-				}
-				if (request.end != null) {
-					params.put("end", request.end);
-				}
 				if (request.excludeInterim != null) {
 					params.put("exclude_interim", String.valueOf(request.excludeInterim));
-				}
-				if (request.influencerScore != null) {
-					params.put("influencer_score", String.valueOf(request.influencerScore));
-				}
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
 				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
 				}
+				if (request.start != null) {
+					params.put("start", request.start);
+				}
+				if (request.end != null) {
+					params.put("end", request.end);
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
+				}
 				if (request.sort != null) {
 					params.put("sort", request.sort);
 				}
-				if (request.start != null) {
-					params.put("start", request.start);
+				if (request.influencerScore != null) {
+					params.put("influencer_score", String.valueOf(request.influencerScore));
+				}
+				if (request.desc != null) {
+					params.put("desc", String.valueOf(request.desc));
 				}
 				return params;
 

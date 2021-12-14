@@ -23,13 +23,27 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Rule.ts#L74-L79">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum ConditionOperator implements StringEnum {
-	Gt("gt"), Gte("gte"), Lt("lt"), Lte("lte");
+public enum ConditionOperator implements JsonEnum {
+	Gt("gt"),
+
+	Gte("gte"),
+
+	Lt("lt"),
+
+	Lte("lte"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +55,6 @@ public enum ConditionOperator implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ConditionOperator> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ConditionOperator> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ConditionOperator.values());
 }

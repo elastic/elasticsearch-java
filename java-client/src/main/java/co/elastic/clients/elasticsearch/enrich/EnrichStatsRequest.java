@@ -23,23 +23,31 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: enrich.stats.Request
 
-public final class EnrichStatsRequest extends RequestBase {
+/**
+ * Gets enrich coordinator statistics and information about enrich policies that
+ * are currently executing.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/stats/EnrichStatsRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class EnrichStatsRequest extends RequestBase {
 	public EnrichStatsRequest() {
 	}
 
@@ -53,7 +61,9 @@ public final class EnrichStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code enrich.stats}".
 	 */
-	public static final Endpoint<EnrichStatsRequest, EnrichStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<EnrichStatsRequest, EnrichStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/enrich.stats",
+
 			// Request method
 			request -> {
 				return "GET";

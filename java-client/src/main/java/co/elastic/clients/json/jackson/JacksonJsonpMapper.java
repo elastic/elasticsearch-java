@@ -20,6 +20,7 @@
 package co.elastic.clients.json.jackson;
 
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpMapperBase;
 import co.elastic.clients.json.JsonpSerializer;
@@ -70,7 +71,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     public <T> void serialize(T value, JsonGenerator generator) {
 
         if (!(generator instanceof JacksonJsonpGenerator)) {
-            throw new IllegalArgumentException("Jackson' ObjectMapper can only be used with the JacksonJsonpProvider");
+            throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the JacksonJsonpProvider");
         }
 
         JsonpSerializer<T> serializer = findSerializer(value);
@@ -87,7 +88,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
         }
     }
 
-    private class JacksonValueParser<T> extends JsonpDeserializer<T> {
+    private class JacksonValueParser<T> extends JsonpDeserializerBase<T> {
 
         private final Class<T> clazz;
 
@@ -100,7 +101,7 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
         public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
 
             if (!(parser instanceof JacksonJsonpParser)) {
-                throw new IllegalArgumentException("Jackson' ObjectMapper can only be used with the JacksonJsonpProvider");
+                throw new IllegalArgumentException("Jackson's ObjectMapper can only be used with the JacksonJsonpProvider");
             }
 
             com.fasterxml.jackson.core.JsonParser jkParser = ((JacksonJsonpParser)parser).jacksonParser();

@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeOperatingSystemInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L357-L374">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeOperatingSystemInfo implements JsonpSerializable {
+public class NodeOperatingSystemInfo implements JsonpSerializable {
 	private final String arch;
 
 	private final int availableProcessors;
@@ -67,24 +75,25 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeOperatingSystemInfo(Builder builder) {
+	private NodeOperatingSystemInfo(Builder builder) {
 
-		this.arch = Objects.requireNonNull(builder.arch, "arch");
-		this.availableProcessors = Objects.requireNonNull(builder.availableProcessors, "available_processors");
+		this.arch = ApiTypeHelper.requireNonNull(builder.arch, this, "arch");
+		this.availableProcessors = ApiTypeHelper.requireNonNull(builder.availableProcessors, this,
+				"availableProcessors");
 		this.allocatedProcessors = builder.allocatedProcessors;
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.prettyName = Objects.requireNonNull(builder.prettyName, "pretty_name");
-		this.refreshIntervalInMillis = Objects.requireNonNull(builder.refreshIntervalInMillis,
-				"refresh_interval_in_millis");
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.prettyName = ApiTypeHelper.requireNonNull(builder.prettyName, this, "prettyName");
+		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
+				"refreshIntervalInMillis");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.cpu = builder.cpu;
 		this.mem = builder.mem;
 		this.swap = builder.swap;
 
 	}
 
-	public NodeOperatingSystemInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeOperatingSystemInfo of(Function<Builder, ObjectBuilder<NodeOperatingSystemInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -92,7 +101,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code arch}
 	 */
-	public String arch() {
+	public final String arch() {
 		return this.arch;
 	}
 
@@ -101,7 +110,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code available_processors}
 	 */
-	public int availableProcessors() {
+	public final int availableProcessors() {
 		return this.availableProcessors;
 	}
 
@@ -113,7 +122,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * API name: {@code allocated_processors}
 	 */
 	@Nullable
-	public Integer allocatedProcessors() {
+	public final Integer allocatedProcessors() {
 		return this.allocatedProcessors;
 	}
 
@@ -122,14 +131,14 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code pretty_name}
 	 */
-	public String prettyName() {
+	public final String prettyName() {
 		return this.prettyName;
 	}
 
@@ -138,7 +147,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
-	public int refreshIntervalInMillis() {
+	public final int refreshIntervalInMillis() {
 		return this.refreshIntervalInMillis;
 	}
 
@@ -147,7 +156,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code version}
 	 */
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -155,7 +164,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * API name: {@code cpu}
 	 */
 	@Nullable
-	public NodeInfoOSCPU cpu() {
+	public final NodeInfoOSCPU cpu() {
 		return this.cpu;
 	}
 
@@ -163,7 +172,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * API name: {@code mem}
 	 */
 	@Nullable
-	public NodeInfoMemory mem() {
+	public final NodeInfoMemory mem() {
 		return this.mem;
 	}
 
@@ -171,7 +180,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * API name: {@code swap}
 	 */
 	@Nullable
-	public NodeInfoMemory swap() {
+	public final NodeInfoMemory swap() {
 		return this.swap;
 	}
 
@@ -193,12 +202,10 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		generator.write(this.availableProcessors);
 
 		if (this.allocatedProcessors != null) {
-
 			generator.writeKey("allocated_processors");
 			generator.write(this.allocatedProcessors);
 
 		}
-
 		generator.writeKey("name");
 		generator.write(this.name);
 
@@ -212,19 +219,16 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		generator.write(this.version);
 
 		if (this.cpu != null) {
-
 			generator.writeKey("cpu");
 			this.cpu.serialize(generator, mapper);
 
 		}
 		if (this.mem != null) {
-
 			generator.writeKey("mem");
 			this.mem.serialize(generator, mapper);
 
 		}
 		if (this.swap != null) {
-
 			generator.writeKey("swap");
 			this.swap.serialize(generator, mapper);
 
@@ -237,7 +241,8 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeOperatingSystemInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeOperatingSystemInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeOperatingSystemInfo> {
 		private String arch;
 
 		private Integer availableProcessors;
@@ -267,7 +272,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code arch}
 		 */
-		public Builder arch(String value) {
+		public final Builder arch(String value) {
 			this.arch = value;
 			return this;
 		}
@@ -277,7 +282,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code available_processors}
 		 */
-		public Builder availableProcessors(int value) {
+		public final Builder availableProcessors(int value) {
 			this.availableProcessors = value;
 			return this;
 		}
@@ -289,7 +294,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocated_processors}
 		 */
-		public Builder allocatedProcessors(@Nullable Integer value) {
+		public final Builder allocatedProcessors(@Nullable Integer value) {
 			this.allocatedProcessors = value;
 			return this;
 		}
@@ -299,7 +304,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -307,7 +312,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pretty_name}
 		 */
-		public Builder prettyName(String value) {
+		public final Builder prettyName(String value) {
 			this.prettyName = value;
 			return this;
 		}
@@ -317,7 +322,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
-		public Builder refreshIntervalInMillis(int value) {
+		public final Builder refreshIntervalInMillis(int value) {
 			this.refreshIntervalInMillis = value;
 			return this;
 		}
@@ -327,7 +332,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(String value) {
 			this.version = value;
 			return this;
 		}
@@ -335,7 +340,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code cpu}
 		 */
-		public Builder cpu(@Nullable NodeInfoOSCPU value) {
+		public final Builder cpu(@Nullable NodeInfoOSCPU value) {
 			this.cpu = value;
 			return this;
 		}
@@ -343,14 +348,14 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code cpu}
 		 */
-		public Builder cpu(Function<NodeInfoOSCPU.Builder, ObjectBuilder<NodeInfoOSCPU>> fn) {
+		public final Builder cpu(Function<NodeInfoOSCPU.Builder, ObjectBuilder<NodeInfoOSCPU>> fn) {
 			return this.cpu(fn.apply(new NodeInfoOSCPU.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code mem}
 		 */
-		public Builder mem(@Nullable NodeInfoMemory value) {
+		public final Builder mem(@Nullable NodeInfoMemory value) {
 			this.mem = value;
 			return this;
 		}
@@ -358,14 +363,14 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code mem}
 		 */
-		public Builder mem(Function<NodeInfoMemory.Builder, ObjectBuilder<NodeInfoMemory>> fn) {
+		public final Builder mem(Function<NodeInfoMemory.Builder, ObjectBuilder<NodeInfoMemory>> fn) {
 			return this.mem(fn.apply(new NodeInfoMemory.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code swap}
 		 */
-		public Builder swap(@Nullable NodeInfoMemory value) {
+		public final Builder swap(@Nullable NodeInfoMemory value) {
 			this.swap = value;
 			return this;
 		}
@@ -373,7 +378,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code swap}
 		 */
-		public Builder swap(Function<NodeInfoMemory.Builder, ObjectBuilder<NodeInfoMemory>> fn) {
+		public final Builder swap(Function<NodeInfoMemory.Builder, ObjectBuilder<NodeInfoMemory>> fn) {
 			return this.swap(fn.apply(new NodeInfoMemory.Builder()).build());
 		}
 
@@ -384,6 +389,7 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeOperatingSystemInfo build() {
+			_checkSingleUse();
 
 			return new NodeOperatingSystemInfo(this);
 		}
@@ -395,10 +401,10 @@ public final class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * Json deserializer for {@link NodeOperatingSystemInfo}
 	 */
 	public static final JsonpDeserializer<NodeOperatingSystemInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeOperatingSystemInfo::setupNodeOperatingSystemInfoDeserializer, Builder::build);
+			.lazy(Builder::new, NodeOperatingSystemInfo::setupNodeOperatingSystemInfoDeserializer);
 
 	protected static void setupNodeOperatingSystemInfoDeserializer(
-			DelegatingDeserializer<NodeOperatingSystemInfo.Builder> op) {
+			ObjectDeserializer<NodeOperatingSystemInfo.Builder> op) {
 
 		op.add(Builder::arch, JsonpDeserializer.stringDeserializer(), "arch");
 		op.add(Builder::availableProcessors, JsonpDeserializer.integerDeserializer(), "available_processors");

@@ -23,27 +23,33 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.CurrentNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L78-L84">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CurrentNode implements JsonpSerializable {
+public class CurrentNode implements JsonpSerializable {
 	private final String id;
 
 	private final String name;
@@ -56,52 +62,52 @@ public final class CurrentNode implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CurrentNode(Builder builder) {
+	private CurrentNode(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
-		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
-		this.weightRanking = Objects.requireNonNull(builder.weightRanking, "weight_ranking");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.weightRanking = ApiTypeHelper.requireNonNull(builder.weightRanking, this, "weightRanking");
 
 	}
 
-	public CurrentNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CurrentNode of(Function<Builder, ObjectBuilder<CurrentNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code attributes}
 	 */
-	public Map<String, String> attributes() {
+	public final Map<String, String> attributes() {
 		return this.attributes;
 	}
 
 	/**
 	 * Required - API name: {@code transport_address}
 	 */
-	public String transportAddress() {
+	public final String transportAddress() {
 		return this.transportAddress;
 	}
 
 	/**
 	 * Required - API name: {@code weight_ranking}
 	 */
-	public int weightRanking() {
+	public final int weightRanking() {
 		return this.weightRanking;
 	}
 
@@ -122,15 +128,17 @@ public final class CurrentNode implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		generator.writeKey("attributes");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ApiTypeHelper.isDefined(this.attributes)) {
+			generator.writeKey("attributes");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("transport_address");
 		generator.write(this.transportAddress);
 
@@ -144,7 +152,8 @@ public final class CurrentNode implements JsonpSerializable {
 	/**
 	 * Builder for {@link CurrentNode}.
 	 */
-	public static class Builder implements ObjectBuilder<CurrentNode> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CurrentNode> {
 		private String id;
 
 		private String name;
@@ -158,7 +167,7 @@ public final class CurrentNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -166,34 +175,35 @@ public final class CurrentNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
-		public Builder attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final Builder attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #attributes(Map)}, creating the map if needed.
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
 		 */
-		public Builder putAttributes(String key, String value) {
-			if (this.attributes == null) {
-				this.attributes = new HashMap<>();
-			}
-			this.attributes.put(key, value);
+		public final Builder attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transport_address}
 		 */
-		public Builder transportAddress(String value) {
+		public final Builder transportAddress(String value) {
 			this.transportAddress = value;
 			return this;
 		}
@@ -201,7 +211,7 @@ public final class CurrentNode implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code weight_ranking}
 		 */
-		public Builder weightRanking(int value) {
+		public final Builder weightRanking(int value) {
 			this.weightRanking = value;
 			return this;
 		}
@@ -213,6 +223,7 @@ public final class CurrentNode implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CurrentNode build() {
+			_checkSingleUse();
 
 			return new CurrentNode(this);
 		}
@@ -224,9 +235,9 @@ public final class CurrentNode implements JsonpSerializable {
 	 * Json deserializer for {@link CurrentNode}
 	 */
 	public static final JsonpDeserializer<CurrentNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CurrentNode::setupCurrentNodeDeserializer, Builder::build);
+			CurrentNode::setupCurrentNodeDeserializer);
 
-	protected static void setupCurrentNodeDeserializer(DelegatingDeserializer<CurrentNode.Builder> op) {
+	protected static void setupCurrentNodeDeserializer(ObjectDeserializer<CurrentNode.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

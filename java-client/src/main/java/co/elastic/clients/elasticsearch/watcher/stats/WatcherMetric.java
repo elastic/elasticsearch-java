@@ -23,24 +23,44 @@
 
 package co.elastic.clients.elasticsearch.watcher.stats;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/types.ts#L42-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum WatcherMetric implements StringEnum {
-	All("_all"), QueuedWatches("queued_watches"), CurrentWatches("current_watches"), PendingWatches("pending_watches");
+public enum WatcherMetric implements JsonEnum {
+	All("_all", "all"),
+
+	QueuedWatches("queued_watches"),
+
+	CurrentWatches("current_watches"),
+
+	PendingWatches("pending_watches"),
+
+	;
 
 	private final String jsonValue;
+	private final String[] aliases;
 
-	WatcherMetric(String jsonValue) {
+	WatcherMetric(String jsonValue, String... aliases) {
 		this.jsonValue = jsonValue;
+		this.aliases = aliases;
 	}
 
 	public String jsonValue() {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<WatcherMetric> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public String[] aliases() {
+		return this.aliases;
+	}
+
+	public static final JsonEnum.Deserializer<WatcherMetric> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			WatcherMetric.values());
 }

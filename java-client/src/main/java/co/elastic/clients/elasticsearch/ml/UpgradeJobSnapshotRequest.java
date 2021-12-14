@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,30 +46,45 @@ import javax.annotation.Nullable;
 
 // typedef: ml.upgrade_job_snapshot.Request
 
-public final class UpgradeJobSnapshotRequest extends RequestBase {
+/**
+ * Upgrades an anomaly detection model snapshot to the latest major version.
+ * Over time, older snapshot formats are deprecated and removed. Anomaly
+ * detection jobs support only snapshots that are from the current or previous
+ * major version. This API provides a means to upgrade a snapshot to the current
+ * major version. This aids in preparing the cluster for an upgrade to the next
+ * major version. Only one snapshot per anomaly detection job can be upgraded at
+ * a time and the upgraded snapshot cannot be the current snapshot of the
+ * anomaly detection job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/upgrade_job_snapshot/MlUpgradeJobSnapshotRequest.ts#L24-L63">API
+ *      specification</a>
+ */
+
+public class UpgradeJobSnapshotRequest extends RequestBase {
 	private final String jobId;
 
 	private final String snapshotId;
 
 	@Nullable
-	private final Boolean waitForCompletion;
+	private final Time timeout;
 
 	@Nullable
-	private final String timeout;
+	private final Boolean waitForCompletion;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpgradeJobSnapshotRequest(Builder builder) {
+	private UpgradeJobSnapshotRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
-		this.waitForCompletion = builder.waitForCompletion;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 		this.timeout = builder.timeout;
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public UpgradeJobSnapshotRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpgradeJobSnapshotRequest of(Function<Builder, ObjectBuilder<UpgradeJobSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -74,7 +92,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -84,8 +102,18 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
-	public String snapshotId() {
+	public final String snapshotId() {
 		return this.snapshotId;
+	}
+
+	/**
+	 * Controls the time to wait for the request to complete.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -95,18 +123,8 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
-	}
-
-	/**
-	 * Controls the time to wait for the request to complete.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public String timeout() {
-		return this.timeout;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -114,23 +132,24 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	/**
 	 * Builder for {@link UpgradeJobSnapshotRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UpgradeJobSnapshotRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpgradeJobSnapshotRequest> {
 		private String jobId;
 
 		private String snapshotId;
 
 		@Nullable
-		private Boolean waitForCompletion;
+		private Time timeout;
 
 		@Nullable
-		private String timeout;
+		private Boolean waitForCompletion;
 
 		/**
 		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -141,19 +160,8 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
-		public Builder snapshotId(String value) {
+		public final Builder snapshotId(String value) {
 			this.snapshotId = value;
-			return this;
-		}
-
-		/**
-		 * When true, the API won’t respond until the upgrade is complete. Otherwise, it
-		 * responds as soon as the upgrade task is assigned to a node.
-		 * <p>
-		 * API name: {@code wait_for_completion}
-		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
-			this.waitForCompletion = value;
 			return this;
 		}
 
@@ -162,8 +170,28 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Controls the time to wait for the request to complete.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * When true, the API won’t respond until the upgrade is complete. Otherwise, it
+		 * responds as soon as the upgrade task is assigned to a node.
+		 * <p>
+		 * API name: {@code wait_for_completion}
+		 */
+		public final Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
 			return this;
 		}
 
@@ -174,6 +202,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public UpgradeJobSnapshotRequest build() {
+			_checkSingleUse();
 
 			return new UpgradeJobSnapshotRequest(this);
 		}
@@ -184,7 +213,9 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.upgrade_job_snapshot}".
 	 */
-	public static final Endpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.upgrade_job_snapshot",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -193,13 +224,13 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _jobId = 1 << 0;
-				final int _snapshotId = 1 << 1;
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _jobId;
 				propsSet |= _snapshotId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();
@@ -224,7 +255,7 @@ public final class UpgradeJobSnapshotRequest extends RequestBase {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

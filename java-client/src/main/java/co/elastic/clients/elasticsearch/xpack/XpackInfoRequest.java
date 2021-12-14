@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.xpack;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,20 +46,27 @@ import javax.annotation.Nullable;
 
 // typedef: xpack.info.Request
 
-public final class XpackInfoRequest extends RequestBase {
-	@Nullable
+/**
+ * Retrieves information about the installed X-Pack features.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/info/XPackInfoRequest.ts#L22-L31">API
+ *      specification</a>
+ */
+
+public class XpackInfoRequest extends RequestBase {
 	private final List<String> categories;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public XpackInfoRequest(Builder builder) {
+	private XpackInfoRequest(Builder builder) {
 
-		this.categories = ModelTypeHelper.unmodifiable(builder.categories);
+		this.categories = ApiTypeHelper.unmodifiable(builder.categories);
 
 	}
 
-	public XpackInfoRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static XpackInfoRequest of(Function<Builder, ObjectBuilder<XpackInfoRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,8 +75,7 @@ public final class XpackInfoRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code categories}
 	 */
-	@Nullable
-	public List<String> categories() {
+	public final List<String> categories() {
 		return this.categories;
 	}
 
@@ -79,7 +84,8 @@ public final class XpackInfoRequest extends RequestBase {
 	/**
 	 * Builder for {@link XpackInfoRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<XpackInfoRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XpackInfoRequest> {
 		@Nullable
 		private List<String> categories;
 
@@ -88,9 +94,11 @@ public final class XpackInfoRequest extends RequestBase {
 		 * features
 		 * <p>
 		 * API name: {@code categories}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>categories</code>.
 		 */
-		public Builder categories(@Nullable List<String> value) {
-			this.categories = value;
+		public final Builder categories(List<String> list) {
+			this.categories = _listAddAll(this.categories, list);
 			return this;
 		}
 
@@ -99,20 +107,11 @@ public final class XpackInfoRequest extends RequestBase {
 		 * features
 		 * <p>
 		 * API name: {@code categories}
+		 * <p>
+		 * Adds one or more values to <code>categories</code>.
 		 */
-		public Builder categories(String... value) {
-			this.categories = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #categories(List)}, creating the list if needed.
-		 */
-		public Builder addCategories(String value) {
-			if (this.categories == null) {
-				this.categories = new ArrayList<>();
-			}
-			this.categories.add(value);
+		public final Builder categories(String value, String... values) {
+			this.categories = _listAdd(this.categories, value, values);
 			return this;
 		}
 
@@ -123,6 +122,7 @@ public final class XpackInfoRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public XpackInfoRequest build() {
+			_checkSingleUse();
 
 			return new XpackInfoRequest(this);
 		}
@@ -133,7 +133,9 @@ public final class XpackInfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code xpack.info}".
 	 */
-	public static final Endpoint<XpackInfoRequest, XpackInfoResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/xpack.info",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -149,7 +151,7 @@ public final class XpackInfoRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.categories != null) {
+				if (ApiTypeHelper.isDefined(request.categories)) {
 					params.put("categories", request.categories.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;

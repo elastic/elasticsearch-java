@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,34 +46,32 @@ import javax.annotation.Nullable;
 
 // typedef: cat.fielddata.Request
 
-public final class FielddataRequest extends CatRequestBase {
-	@Nullable
-	private final List<String> fields;
+/**
+ * Shows how much heap memory is currently being used by fielddata on every data
+ * node in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/fielddata/CatFielddataRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
+public class FielddataRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
+	private final List<String> fields;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public FielddataRequest(Builder builder) {
+	private FielddataRequest(Builder builder) {
 
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
 		this.bytes = builder.bytes;
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}
 
-	public FielddataRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of fields to return the fielddata size
-	 * <p>
-	 * API name: {@code fields}
-	 */
-	@Nullable
-	public List<String> fields() {
-		return this.fields;
+	public static FielddataRequest of(Function<Builder, ObjectBuilder<FielddataRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,8 +80,17 @@ public final class FielddataRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
+	}
+
+	/**
+	 * A comma-separated list of fields to return the fielddata size
+	 * <p>
+	 * API name: {@code fields}
+	 */
+	public final List<String> fields() {
+		return this.fields;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -92,51 +98,45 @@ public final class FielddataRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link FielddataRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<FielddataRequest> {
-		@Nullable
-		private List<String> fields;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataRequest> {
 		@Nullable
 		private Bytes bytes;
 
-		/**
-		 * A comma-separated list of fields to return the fielddata size
-		 * <p>
-		 * API name: {@code fields}
-		 */
-		public Builder fields(@Nullable List<String> value) {
-			this.fields = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of fields to return the fielddata size
-		 * <p>
-		 * API name: {@code fields}
-		 */
-		public Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> fields;
 
 		/**
 		 * The unit in which to display byte values
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of fields to return the fielddata size
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
+		 */
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of fields to return the fielddata size
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
+		 */
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -147,6 +147,7 @@ public final class FielddataRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public FielddataRequest build() {
+			_checkSingleUse();
 
 			return new FielddataRequest(this);
 		}
@@ -157,7 +158,9 @@ public final class FielddataRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.fielddata}".
 	 */
-	public static final Endpoint<FielddataRequest, FielddataResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FielddataRequest, FielddataResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.fielddata",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -170,7 +173,7 @@ public final class FielddataRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.fields() != null)
+				if (ApiTypeHelper.isDefined(request.fields()))
 					propsSet |= _fields;
 
 				if (propsSet == 0) {
@@ -195,8 +198,9 @@ public final class FielddataRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				return params;
 

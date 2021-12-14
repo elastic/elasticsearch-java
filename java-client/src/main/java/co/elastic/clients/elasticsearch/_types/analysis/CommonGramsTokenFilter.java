@@ -23,84 +23,94 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CommonGramsTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L172-L178">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class CommonGramsTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> commonWords;
 
+	@Nullable
 	private final String commonWordsPath;
 
-	private final boolean ignoreCase;
+	@Nullable
+	private final Boolean ignoreCase;
 
-	private final boolean queryMode;
+	@Nullable
+	private final Boolean queryMode;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CommonGramsTokenFilter(Builder builder) {
+	private CommonGramsTokenFilter(Builder builder) {
 		super(builder);
 
-		this.commonWords = ModelTypeHelper.unmodifiableNonNull(builder.commonWords, "common_words");
-		this.commonWordsPath = Objects.requireNonNull(builder.commonWordsPath, "common_words_path");
-		this.ignoreCase = Objects.requireNonNull(builder.ignoreCase, "ignore_case");
-		this.queryMode = Objects.requireNonNull(builder.queryMode, "query_mode");
+		this.commonWords = ApiTypeHelper.unmodifiable(builder.commonWords);
+		this.commonWordsPath = builder.commonWordsPath;
+		this.ignoreCase = builder.ignoreCase;
+		this.queryMode = builder.queryMode;
 
 	}
 
-	public CommonGramsTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CommonGramsTokenFilter of(Function<Builder, ObjectBuilder<CommonGramsTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "common_grams";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.CommonGrams;
 	}
 
 	/**
-	 * Required - API name: {@code common_words}
+	 * API name: {@code common_words}
 	 */
-	public List<String> commonWords() {
+	public final List<String> commonWords() {
 		return this.commonWords;
 	}
 
 	/**
-	 * Required - API name: {@code common_words_path}
+	 * API name: {@code common_words_path}
 	 */
-	public String commonWordsPath() {
+	@Nullable
+	public final String commonWordsPath() {
 		return this.commonWordsPath;
 	}
 
 	/**
-	 * Required - API name: {@code ignore_case}
+	 * API name: {@code ignore_case}
 	 */
-	public boolean ignoreCase() {
+	@Nullable
+	public final Boolean ignoreCase() {
 		return this.ignoreCase;
 	}
 
 	/**
-	 * Required - API name: {@code query_mode}
+	 * API name: {@code query_mode}
 	 */
-	public boolean queryMode() {
+	@Nullable
+	public final Boolean queryMode() {
 		return this.queryMode;
 	}
 
@@ -108,23 +118,31 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 
 		generator.write("type", "common_grams");
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.commonWords)) {
+			generator.writeKey("common_words");
+			generator.writeStartArray();
+			for (String item0 : this.commonWords) {
+				generator.write(item0);
 
-		generator.writeKey("common_words");
-		generator.writeStartArray();
-		for (String item0 : this.commonWords) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.commonWordsPath != null) {
+			generator.writeKey("common_words_path");
+			generator.write(this.commonWordsPath);
 
-		generator.writeKey("common_words_path");
-		generator.write(this.commonWordsPath);
+		}
+		if (this.ignoreCase != null) {
+			generator.writeKey("ignore_case");
+			generator.write(this.ignoreCase);
 
-		generator.writeKey("ignore_case");
-		generator.write(this.ignoreCase);
+		}
+		if (this.queryMode != null) {
+			generator.writeKey("query_mode");
+			generator.write(this.queryMode);
 
-		generator.writeKey("query_mode");
-		generator.write(this.queryMode);
+		}
 
 	}
 
@@ -133,64 +151,62 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 	/**
 	 * Builder for {@link CommonGramsTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CommonGramsTokenFilter> {
+		@Nullable
 		private List<String> commonWords;
 
+		@Nullable
 		private String commonWordsPath;
 
+		@Nullable
 		private Boolean ignoreCase;
 
+		@Nullable
 		private Boolean queryMode;
 
 		/**
-		 * Required - API name: {@code common_words}
+		 * API name: {@code common_words}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>commonWords</code>.
 		 */
-		public Builder commonWords(List<String> value) {
-			this.commonWords = value;
+		public final Builder commonWords(List<String> list) {
+			this.commonWords = _listAddAll(this.commonWords, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code common_words}
+		 * API name: {@code common_words}
+		 * <p>
+		 * Adds one or more values to <code>commonWords</code>.
 		 */
-		public Builder commonWords(String... value) {
-			this.commonWords = Arrays.asList(value);
+		public final Builder commonWords(String value, String... values) {
+			this.commonWords = _listAdd(this.commonWords, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #commonWords(List)}, creating the list if needed.
+		 * API name: {@code common_words_path}
 		 */
-		public Builder addCommonWords(String value) {
-			if (this.commonWords == null) {
-				this.commonWords = new ArrayList<>();
-			}
-			this.commonWords.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code common_words_path}
-		 */
-		public Builder commonWordsPath(String value) {
+		public final Builder commonWordsPath(@Nullable String value) {
 			this.commonWordsPath = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code ignore_case}
+		 * API name: {@code ignore_case}
 		 */
-		public Builder ignoreCase(boolean value) {
+		public final Builder ignoreCase(@Nullable Boolean value) {
 			this.ignoreCase = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code query_mode}
+		 * API name: {@code query_mode}
 		 */
-		public Builder queryMode(boolean value) {
+		public final Builder queryMode(@Nullable Boolean value) {
 			this.queryMode = value;
 			return this;
 		}
@@ -207,6 +223,7 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 		 *             if some of the required fields are null.
 		 */
 		public CommonGramsTokenFilter build() {
+			_checkSingleUse();
 
 			return new CommonGramsTokenFilter(this);
 		}
@@ -218,10 +235,10 @@ public final class CommonGramsTokenFilter extends TokenFilterBase implements Tok
 	 * Json deserializer for {@link CommonGramsTokenFilter}
 	 */
 	public static final JsonpDeserializer<CommonGramsTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CommonGramsTokenFilter::setupCommonGramsTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, CommonGramsTokenFilter::setupCommonGramsTokenFilterDeserializer);
 
 	protected static void setupCommonGramsTokenFilterDeserializer(
-			DelegatingDeserializer<CommonGramsTokenFilter.Builder> op) {
+			ObjectDeserializer<CommonGramsTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::commonWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"common_words");

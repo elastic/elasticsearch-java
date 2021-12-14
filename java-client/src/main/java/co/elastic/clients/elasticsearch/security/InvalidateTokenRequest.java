@@ -23,18 +23,18 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -43,64 +43,72 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_token.Request
+
+/**
+ * Invalidates one or more access tokens or refresh tokens.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/invalidate_token/SecurityInvalidateTokenRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class InvalidateTokenRequest extends RequestBase implements JsonpSerializable {
+public class InvalidateTokenRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String token;
+	private final String realmName;
 
 	@Nullable
 	private final String refreshToken;
 
 	@Nullable
-	private final String realmName;
+	private final String token;
 
 	@Nullable
 	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InvalidateTokenRequest(Builder builder) {
+	private InvalidateTokenRequest(Builder builder) {
 
-		this.token = builder.token;
-		this.refreshToken = builder.refreshToken;
 		this.realmName = builder.realmName;
+		this.refreshToken = builder.refreshToken;
+		this.token = builder.token;
 		this.username = builder.username;
 
 	}
 
-	public InvalidateTokenRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * API name: {@code token}
-	 */
-	@Nullable
-	public String token() {
-		return this.token;
-	}
-
-	/**
-	 * API name: {@code refresh_token}
-	 */
-	@Nullable
-	public String refreshToken() {
-		return this.refreshToken;
+	public static InvalidateTokenRequest of(Function<Builder, ObjectBuilder<InvalidateTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code realm_name}
 	 */
 	@Nullable
-	public String realmName() {
+	public final String realmName() {
 		return this.realmName;
+	}
+
+	/**
+	 * API name: {@code refresh_token}
+	 */
+	@Nullable
+	public final String refreshToken() {
+		return this.refreshToken;
+	}
+
+	/**
+	 * API name: {@code token}
+	 */
+	@Nullable
+	public final String token() {
+		return this.token;
 	}
 
 	/**
 	 * API name: {@code username}
 	 */
 	@Nullable
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -115,26 +123,22 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.token != null) {
-
-			generator.writeKey("token");
-			generator.write(this.token);
-
-		}
-		if (this.refreshToken != null) {
-
-			generator.writeKey("refresh_token");
-			generator.write(this.refreshToken);
-
-		}
 		if (this.realmName != null) {
-
 			generator.writeKey("realm_name");
 			generator.write(this.realmName);
 
 		}
-		if (this.username != null) {
+		if (this.refreshToken != null) {
+			generator.writeKey("refresh_token");
+			generator.write(this.refreshToken);
 
+		}
+		if (this.token != null) {
+			generator.writeKey("token");
+			generator.write(this.token);
+
+		}
+		if (this.username != null) {
 			generator.writeKey("username");
 			generator.write(this.username);
 
@@ -147,47 +151,48 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link InvalidateTokenRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<InvalidateTokenRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateTokenRequest> {
 		@Nullable
-		private String token;
+		private String realmName;
 
 		@Nullable
 		private String refreshToken;
 
 		@Nullable
-		private String realmName;
+		private String token;
 
 		@Nullable
 		private String username;
 
 		/**
-		 * API name: {@code token}
+		 * API name: {@code realm_name}
 		 */
-		public Builder token(@Nullable String value) {
-			this.token = value;
+		public final Builder realmName(@Nullable String value) {
+			this.realmName = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code refresh_token}
 		 */
-		public Builder refreshToken(@Nullable String value) {
+		public final Builder refreshToken(@Nullable String value) {
 			this.refreshToken = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code realm_name}
+		 * API name: {@code token}
 		 */
-		public Builder realmName(@Nullable String value) {
-			this.realmName = value;
+		public final Builder token(@Nullable String value) {
+			this.token = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code username}
 		 */
-		public Builder username(@Nullable String value) {
+		public final Builder username(@Nullable String value) {
 			this.username = value;
 			return this;
 		}
@@ -199,6 +204,7 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 		 *             if some of the required fields are null.
 		 */
 		public InvalidateTokenRequest build() {
+			_checkSingleUse();
 
 			return new InvalidateTokenRequest(this);
 		}
@@ -210,14 +216,14 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	 * Json deserializer for {@link InvalidateTokenRequest}
 	 */
 	public static final JsonpDeserializer<InvalidateTokenRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InvalidateTokenRequest::setupInvalidateTokenRequestDeserializer, Builder::build);
+			.lazy(Builder::new, InvalidateTokenRequest::setupInvalidateTokenRequestDeserializer);
 
 	protected static void setupInvalidateTokenRequestDeserializer(
-			DelegatingDeserializer<InvalidateTokenRequest.Builder> op) {
+			ObjectDeserializer<InvalidateTokenRequest.Builder> op) {
 
-		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
-		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
 		op.add(Builder::realmName, JsonpDeserializer.stringDeserializer(), "realm_name");
+		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
+		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}
@@ -227,7 +233,9 @@ public final class InvalidateTokenRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code security.invalidate_token}".
 	 */
-	public static final Endpoint<InvalidateTokenRequest, InvalidateTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<InvalidateTokenRequest, InvalidateTokenResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.invalidate_token",
+
 			// Request method
 			request -> {
 				return "DELETE";

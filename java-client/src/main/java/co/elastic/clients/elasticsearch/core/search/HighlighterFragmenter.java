@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/highlighting.ts#L61-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum HighlighterFragmenter implements StringEnum {
-	Simple("simple"), Span("span");
+public enum HighlighterFragmenter implements JsonEnum {
+	Simple("simple"),
+
+	Span("span"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum HighlighterFragmenter implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<HighlighterFragmenter> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<HighlighterFragmenter> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			HighlighterFragmenter.values());
 }

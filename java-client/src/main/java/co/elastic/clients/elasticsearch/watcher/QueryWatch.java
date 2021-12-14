@@ -23,24 +23,33 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.QueryWatch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Watch.ts#L58-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class QueryWatch implements JsonpSerializable {
+public class QueryWatch implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -53,13 +62,13 @@ public final class QueryWatch implements JsonpSerializable {
 	private final Integer primaryTerm;
 
 	@Nullable
-	private final Integer seqNo;
+	private final Long seqNo;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryWatch(Builder builder) {
+	private QueryWatch(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.status = builder.status;
 		this.watch = builder.watch;
 		this.primaryTerm = builder.primaryTerm;
@@ -67,14 +76,14 @@ public final class QueryWatch implements JsonpSerializable {
 
 	}
 
-	public QueryWatch(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static QueryWatch of(Function<Builder, ObjectBuilder<QueryWatch>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -82,7 +91,7 @@ public final class QueryWatch implements JsonpSerializable {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public WatchStatus status() {
+	public final WatchStatus status() {
 		return this.status;
 	}
 
@@ -90,7 +99,7 @@ public final class QueryWatch implements JsonpSerializable {
 	 * API name: {@code watch}
 	 */
 	@Nullable
-	public Watch watch() {
+	public final Watch watch() {
 		return this.watch;
 	}
 
@@ -98,7 +107,7 @@ public final class QueryWatch implements JsonpSerializable {
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
-	public Integer primaryTerm() {
+	public final Integer primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -106,7 +115,7 @@ public final class QueryWatch implements JsonpSerializable {
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Integer seqNo() {
+	public final Long seqNo() {
 		return this.seqNo;
 	}
 
@@ -125,25 +134,21 @@ public final class QueryWatch implements JsonpSerializable {
 		generator.write(this.id);
 
 		if (this.status != null) {
-
 			generator.writeKey("status");
 			this.status.serialize(generator, mapper);
 
 		}
 		if (this.watch != null) {
-
 			generator.writeKey("watch");
 			this.watch.serialize(generator, mapper);
 
 		}
 		if (this.primaryTerm != null) {
-
 			generator.writeKey("_primary_term");
 			generator.write(this.primaryTerm);
 
 		}
 		if (this.seqNo != null) {
-
 			generator.writeKey("_seq_no");
 			generator.write(this.seqNo);
 
@@ -156,7 +161,8 @@ public final class QueryWatch implements JsonpSerializable {
 	/**
 	 * Builder for {@link QueryWatch}.
 	 */
-	public static class Builder implements ObjectBuilder<QueryWatch> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatch> {
 		private String id;
 
 		@Nullable
@@ -169,12 +175,12 @@ public final class QueryWatch implements JsonpSerializable {
 		private Integer primaryTerm;
 
 		@Nullable
-		private Integer seqNo;
+		private Long seqNo;
 
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -182,7 +188,7 @@ public final class QueryWatch implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable WatchStatus value) {
+		public final Builder status(@Nullable WatchStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -190,14 +196,14 @@ public final class QueryWatch implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
+		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
 			return this.status(fn.apply(new WatchStatus.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code watch}
 		 */
-		public Builder watch(@Nullable Watch value) {
+		public final Builder watch(@Nullable Watch value) {
 			this.watch = value;
 			return this;
 		}
@@ -205,14 +211,14 @@ public final class QueryWatch implements JsonpSerializable {
 		/**
 		 * API name: {@code watch}
 		 */
-		public Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
+		public final Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
 			return this.watch(fn.apply(new Watch.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder primaryTerm(@Nullable Integer value) {
+		public final Builder primaryTerm(@Nullable Integer value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -220,7 +226,7 @@ public final class QueryWatch implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder seqNo(@Nullable Integer value) {
+		public final Builder seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -232,6 +238,7 @@ public final class QueryWatch implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public QueryWatch build() {
+			_checkSingleUse();
 
 			return new QueryWatch(this);
 		}
@@ -243,15 +250,15 @@ public final class QueryWatch implements JsonpSerializable {
 	 * Json deserializer for {@link QueryWatch}
 	 */
 	public static final JsonpDeserializer<QueryWatch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			QueryWatch::setupQueryWatchDeserializer, Builder::build);
+			QueryWatch::setupQueryWatchDeserializer);
 
-	protected static void setupQueryWatchDeserializer(DelegatingDeserializer<QueryWatch.Builder> op) {
+	protected static void setupQueryWatchDeserializer(ObjectDeserializer<QueryWatch.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::status, WatchStatus._DESERIALIZER, "status");
 		op.add(Builder::watch, Watch._DESERIALIZER, "watch");
 		op.add(Builder::primaryTerm, JsonpDeserializer.integerDeserializer(), "_primary_term");
-		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 
 	}
 

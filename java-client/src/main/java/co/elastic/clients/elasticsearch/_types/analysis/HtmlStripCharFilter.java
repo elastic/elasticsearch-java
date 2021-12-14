@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.HtmlStripCharFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/char_filters.ts#L40-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class HtmlStripCharFilter extends CharFilterBase implements CharFilterVariant {
+public class HtmlStripCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public HtmlStripCharFilter(Builder builder) {
+	private HtmlStripCharFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public HtmlStripCharFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HtmlStripCharFilter of(Function<Builder, ObjectBuilder<HtmlStripCharFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link CharFilter} variant type
+	 * CharFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "html_strip";
+	public CharFilterDefinition.Kind _charFilterDefinitionKind() {
+		return CharFilterDefinition.Kind.HtmlStrip;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class HtmlStripCharFilter extends CharFilterBase implements CharFil
 	/**
 	 * Builder for {@link HtmlStripCharFilter}.
 	 */
+
 	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HtmlStripCharFilter> {
@@ -83,6 +90,7 @@ public final class HtmlStripCharFilter extends CharFilterBase implements CharFil
 		 *             if some of the required fields are null.
 		 */
 		public HtmlStripCharFilter build() {
+			_checkSingleUse();
 
 			return new HtmlStripCharFilter(this);
 		}
@@ -94,9 +102,9 @@ public final class HtmlStripCharFilter extends CharFilterBase implements CharFil
 	 * Json deserializer for {@link HtmlStripCharFilter}
 	 */
 	public static final JsonpDeserializer<HtmlStripCharFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HtmlStripCharFilter::setupHtmlStripCharFilterDeserializer, Builder::build);
+			.lazy(Builder::new, HtmlStripCharFilter::setupHtmlStripCharFilterDeserializer);
 
-	protected static void setupHtmlStripCharFilterDeserializer(DelegatingDeserializer<HtmlStripCharFilter.Builder> op) {
+	protected static void setupHtmlStripCharFilterDeserializer(ObjectDeserializer<HtmlStripCharFilter.Builder> op) {
 		CharFilterBase.setupCharFilterBaseDeserializer(op);
 
 		op.ignore("type");

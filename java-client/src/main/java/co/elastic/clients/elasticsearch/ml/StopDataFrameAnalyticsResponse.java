@@ -23,40 +23,49 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.stop_data_frame_analytics.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/stop_data_frame_analytics/MlStopDataFrameAnalyticsResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StopDataFrameAnalyticsResponse implements JsonpSerializable {
+public class StopDataFrameAnalyticsResponse implements JsonpSerializable {
 	private final boolean stopped;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StopDataFrameAnalyticsResponse(Builder builder) {
+	private StopDataFrameAnalyticsResponse(Builder builder) {
 
-		this.stopped = Objects.requireNonNull(builder.stopped, "stopped");
+		this.stopped = ApiTypeHelper.requireNonNull(builder.stopped, this, "stopped");
 
 	}
 
-	public StopDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<StopDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code stopped}
 	 */
-	public boolean stopped() {
+	public final boolean stopped() {
 		return this.stopped;
 	}
 
@@ -81,13 +90,14 @@ public final class StopDataFrameAnalyticsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StopDataFrameAnalyticsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<StopDataFrameAnalyticsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDataFrameAnalyticsResponse> {
 		private Boolean stopped;
 
 		/**
 		 * Required - API name: {@code stopped}
 		 */
-		public Builder stopped(boolean value) {
+		public final Builder stopped(boolean value) {
 			this.stopped = value;
 			return this;
 		}
@@ -99,6 +109,7 @@ public final class StopDataFrameAnalyticsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StopDataFrameAnalyticsResponse build() {
+			_checkSingleUse();
 
 			return new StopDataFrameAnalyticsResponse(this);
 		}
@@ -110,11 +121,10 @@ public final class StopDataFrameAnalyticsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link StopDataFrameAnalyticsResponse}
 	 */
 	public static final JsonpDeserializer<StopDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StopDataFrameAnalyticsResponse::setupStopDataFrameAnalyticsResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, StopDataFrameAnalyticsResponse::setupStopDataFrameAnalyticsResponseDeserializer);
 
 	protected static void setupStopDataFrameAnalyticsResponseDeserializer(
-			DelegatingDeserializer<StopDataFrameAnalyticsResponse.Builder> op) {
+			ObjectDeserializer<StopDataFrameAnalyticsResponse.Builder> op) {
 
 		op.add(Builder::stopped, JsonpDeserializer.booleanDeserializer(), "stopped");
 

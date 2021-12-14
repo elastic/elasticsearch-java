@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoRepositoriesUrl
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L158-L160">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoRepositoriesUrl implements JsonpSerializable {
+public class NodeInfoRepositoriesUrl implements JsonpSerializable {
 	private final String allowedUrls;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoRepositoriesUrl(Builder builder) {
+	private NodeInfoRepositoriesUrl(Builder builder) {
 
-		this.allowedUrls = Objects.requireNonNull(builder.allowedUrls, "allowed_urls");
+		this.allowedUrls = ApiTypeHelper.requireNonNull(builder.allowedUrls, this, "allowedUrls");
 
 	}
 
-	public NodeInfoRepositoriesUrl(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoRepositoriesUrl of(Function<Builder, ObjectBuilder<NodeInfoRepositoriesUrl>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code allowed_urls}
 	 */
-	public String allowedUrls() {
+	public final String allowedUrls() {
 		return this.allowedUrls;
 	}
 
@@ -82,13 +90,14 @@ public final class NodeInfoRepositoriesUrl implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoRepositoriesUrl}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoRepositoriesUrl> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoRepositoriesUrl> {
 		private String allowedUrls;
 
 		/**
 		 * Required - API name: {@code allowed_urls}
 		 */
-		public Builder allowedUrls(String value) {
+		public final Builder allowedUrls(String value) {
 			this.allowedUrls = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class NodeInfoRepositoriesUrl implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoRepositoriesUrl build() {
+			_checkSingleUse();
 
 			return new NodeInfoRepositoriesUrl(this);
 		}
@@ -111,10 +121,10 @@ public final class NodeInfoRepositoriesUrl implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoRepositoriesUrl}
 	 */
 	public static final JsonpDeserializer<NodeInfoRepositoriesUrl> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoRepositoriesUrl::setupNodeInfoRepositoriesUrlDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoRepositoriesUrl::setupNodeInfoRepositoriesUrlDeserializer);
 
 	protected static void setupNodeInfoRepositoriesUrlDeserializer(
-			DelegatingDeserializer<NodeInfoRepositoriesUrl.Builder> op) {
+			ObjectDeserializer<NodeInfoRepositoriesUrl.Builder> op) {
 
 		op.add(Builder::allowedUrls, JsonpDeserializer.stringDeserializer(), "allowed_urls");
 

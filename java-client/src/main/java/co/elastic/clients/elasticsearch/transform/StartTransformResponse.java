@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: transform.start_transform.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/start_transform/StartTransformResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StartTransformResponse extends AcknowledgedResponseBase {
+public class StartTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public StartTransformResponse(Builder builder) {
+	private StartTransformResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public StartTransformResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartTransformResponse of(Function<Builder, ObjectBuilder<StartTransformResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class StartTransformResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link StartTransformResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StartTransformResponse> {
@@ -68,6 +75,7 @@ public final class StartTransformResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public StartTransformResponse build() {
+			_checkSingleUse();
 
 			return new StartTransformResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class StartTransformResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link StartTransformResponse}
 	 */
 	public static final JsonpDeserializer<StartTransformResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StartTransformResponse::setupStartTransformResponseDeserializer, Builder::build);
+			.lazy(Builder::new, StartTransformResponse::setupStartTransformResponseDeserializer);
 
 	protected static void setupStartTransformResponseDeserializer(
-			DelegatingDeserializer<StartTransformResponse.Builder> op) {
+			ObjectDeserializer<StartTransformResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

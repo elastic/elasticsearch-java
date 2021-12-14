@@ -23,28 +23,32 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.AttachmentProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L94-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AttachmentProcessor extends ProcessorBase implements ProcessorVariant {
+public class AttachmentProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -56,7 +60,6 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 	@Nullable
 	private final String indexedCharsField;
 
-	@Nullable
 	private final List<String> properties;
 
 	@Nullable
@@ -67,35 +70,35 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AttachmentProcessor(Builder builder) {
+	private AttachmentProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.indexedChars = builder.indexedChars;
 		this.indexedCharsField = builder.indexedCharsField;
-		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
+		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 		this.targetField = builder.targetField;
 		this.resourceName = builder.resourceName;
 
 	}
 
-	public AttachmentProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AttachmentProcessor of(Function<Builder, ObjectBuilder<AttachmentProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "attachment";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Attachment;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -103,7 +106,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public Boolean ignoreMissing() {
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -111,7 +114,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 	 * API name: {@code indexed_chars}
 	 */
 	@Nullable
-	public Long indexedChars() {
+	public final Long indexedChars() {
 		return this.indexedChars;
 	}
 
@@ -119,15 +122,14 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 	 * API name: {@code indexed_chars_field}
 	 */
 	@Nullable
-	public String indexedCharsField() {
+	public final String indexedCharsField() {
 		return this.indexedCharsField;
 	}
 
 	/**
 	 * API name: {@code properties}
 	 */
-	@Nullable
-	public List<String> properties() {
+	public final List<String> properties() {
 		return this.properties;
 	}
 
@@ -135,7 +137,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 	 * API name: {@code target_field}
 	 */
 	@Nullable
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
@@ -143,37 +145,32 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 	 * API name: {@code resource_name}
 	 */
 	@Nullable
-	public String resourceName() {
+	public final String resourceName() {
 		return this.resourceName;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.ignoreMissing != null) {
-
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
 
 		}
 		if (this.indexedChars != null) {
-
 			generator.writeKey("indexed_chars");
 			generator.write(this.indexedChars);
 
 		}
 		if (this.indexedCharsField != null) {
-
 			generator.writeKey("indexed_chars_field");
 			generator.write(this.indexedCharsField);
 
 		}
-		if (this.properties != null) {
-
+		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartArray();
 			for (String item0 : this.properties) {
@@ -184,13 +181,11 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 
 		}
 		if (this.targetField != null) {
-
 			generator.writeKey("target_field");
 			generator.write(this.targetField);
 
 		}
 		if (this.resourceName != null) {
-
 			generator.writeKey("resource_name");
 			generator.write(this.resourceName);
 
@@ -203,6 +198,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 	/**
 	 * Builder for {@link AttachmentProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AttachmentProcessor> {
@@ -229,7 +225,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -237,7 +233,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(@Nullable Boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -245,7 +241,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 		/**
 		 * API name: {@code indexed_chars}
 		 */
-		public Builder indexedChars(@Nullable Long value) {
+		public final Builder indexedChars(@Nullable Long value) {
 			this.indexedChars = value;
 			return this;
 		}
@@ -253,42 +249,35 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 		/**
 		 * API name: {@code indexed_chars_field}
 		 */
-		public Builder indexedCharsField(@Nullable String value) {
+		public final Builder indexedCharsField(@Nullable String value) {
 			this.indexedCharsField = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>properties</code>.
 		 */
-		public Builder properties(@Nullable List<String> value) {
-			this.properties = value;
+		public final Builder properties(List<String> list) {
+			this.properties = _listAddAll(this.properties, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds one or more values to <code>properties</code>.
 		 */
-		public Builder properties(String... value) {
-			this.properties = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #properties(List)}, creating the list if needed.
-		 */
-		public Builder addProperties(String value) {
-			if (this.properties == null) {
-				this.properties = new ArrayList<>();
-			}
-			this.properties.add(value);
+		public final Builder properties(String value, String... values) {
+			this.properties = _listAdd(this.properties, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code target_field}
 		 */
-		public Builder targetField(@Nullable String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -296,7 +285,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 		/**
 		 * API name: {@code resource_name}
 		 */
-		public Builder resourceName(@Nullable String value) {
+		public final Builder resourceName(@Nullable String value) {
 			this.resourceName = value;
 			return this;
 		}
@@ -313,6 +302,7 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 		 *             if some of the required fields are null.
 		 */
 		public AttachmentProcessor build() {
+			_checkSingleUse();
 
 			return new AttachmentProcessor(this);
 		}
@@ -324,9 +314,9 @@ public final class AttachmentProcessor extends ProcessorBase implements Processo
 	 * Json deserializer for {@link AttachmentProcessor}
 	 */
 	public static final JsonpDeserializer<AttachmentProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AttachmentProcessor::setupAttachmentProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, AttachmentProcessor::setupAttachmentProcessorDeserializer);
 
-	protected static void setupAttachmentProcessorDeserializer(DelegatingDeserializer<AttachmentProcessor.Builder> op) {
+	protected static void setupAttachmentProcessorDeserializer(ObjectDeserializer<AttachmentProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

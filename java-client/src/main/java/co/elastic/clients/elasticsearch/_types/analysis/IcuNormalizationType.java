@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/icu-plugin.ts#L82-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum IcuNormalizationType implements StringEnum {
-	Nfc("nfc"), Nfkc("nfkc"), NfkcCf("nfkc_cf");
+public enum IcuNormalizationType implements JsonEnum {
+	Nfc("nfc"),
+
+	Nfkc("nfkc"),
+
+	NfkcCf("nfkc_cf"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +53,6 @@ public enum IcuNormalizationType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IcuNormalizationType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<IcuNormalizationType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			IcuNormalizationType.values());
 }

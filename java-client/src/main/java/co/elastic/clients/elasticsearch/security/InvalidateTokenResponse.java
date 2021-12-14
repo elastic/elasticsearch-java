@@ -24,30 +24,34 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.invalidate_token.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/invalidate_token/SecurityInvalidateTokenResponse.ts#L23-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class InvalidateTokenResponse implements JsonpSerializable {
+public class InvalidateTokenResponse implements JsonpSerializable {
 	private final long errorCount;
 
-	@Nullable
 	private final List<ErrorCause> errorDetails;
 
 	private final long invalidatedTokens;
@@ -56,46 +60,45 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InvalidateTokenResponse(Builder builder) {
+	private InvalidateTokenResponse(Builder builder) {
 
-		this.errorCount = Objects.requireNonNull(builder.errorCount, "error_count");
-		this.errorDetails = ModelTypeHelper.unmodifiable(builder.errorDetails);
-		this.invalidatedTokens = Objects.requireNonNull(builder.invalidatedTokens, "invalidated_tokens");
-		this.previouslyInvalidatedTokens = Objects.requireNonNull(builder.previouslyInvalidatedTokens,
-				"previously_invalidated_tokens");
+		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
+		this.errorDetails = ApiTypeHelper.unmodifiable(builder.errorDetails);
+		this.invalidatedTokens = ApiTypeHelper.requireNonNull(builder.invalidatedTokens, this, "invalidatedTokens");
+		this.previouslyInvalidatedTokens = ApiTypeHelper.requireNonNull(builder.previouslyInvalidatedTokens, this,
+				"previouslyInvalidatedTokens");
 
 	}
 
-	public InvalidateTokenResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InvalidateTokenResponse of(Function<Builder, ObjectBuilder<InvalidateTokenResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code error_count}
 	 */
-	public long errorCount() {
+	public final long errorCount() {
 		return this.errorCount;
 	}
 
 	/**
 	 * API name: {@code error_details}
 	 */
-	@Nullable
-	public List<ErrorCause> errorDetails() {
+	public final List<ErrorCause> errorDetails() {
 		return this.errorDetails;
 	}
 
 	/**
 	 * Required - API name: {@code invalidated_tokens}
 	 */
-	public long invalidatedTokens() {
+	public final long invalidatedTokens() {
 		return this.invalidatedTokens;
 	}
 
 	/**
 	 * Required - API name: {@code previously_invalidated_tokens}
 	 */
-	public long previouslyInvalidatedTokens() {
+	public final long previouslyInvalidatedTokens() {
 		return this.previouslyInvalidatedTokens;
 	}
 
@@ -113,8 +116,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		generator.writeKey("error_count");
 		generator.write(this.errorCount);
 
-		if (this.errorDetails != null) {
-
+		if (ApiTypeHelper.isDefined(this.errorDetails)) {
 			generator.writeKey("error_details");
 			generator.writeStartArray();
 			for (ErrorCause item0 : this.errorDetails) {
@@ -124,7 +126,6 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("invalidated_tokens");
 		generator.write(this.invalidatedTokens);
 
@@ -138,7 +139,8 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link InvalidateTokenResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<InvalidateTokenResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateTokenResponse> {
 		private Long errorCount;
 
 		@Nullable
@@ -151,56 +153,44 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code error_count}
 		 */
-		public Builder errorCount(long value) {
+		public final Builder errorCount(long value) {
 			this.errorCount = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>errorDetails</code>.
 		 */
-		public Builder errorDetails(@Nullable List<ErrorCause> value) {
-			this.errorDetails = value;
+		public final Builder errorDetails(List<ErrorCause> list) {
+			this.errorDetails = _listAddAll(this.errorDetails, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code error_details}
+		 * <p>
+		 * Adds one or more values to <code>errorDetails</code>.
 		 */
-		public Builder errorDetails(ErrorCause... value) {
-			this.errorDetails = Arrays.asList(value);
+		public final Builder errorDetails(ErrorCause value, ErrorCause... values) {
+			this.errorDetails = _listAdd(this.errorDetails, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #errorDetails(List)}, creating the list if needed.
+		 * API name: {@code error_details}
+		 * <p>
+		 * Adds a value to <code>errorDetails</code> using a builder lambda.
 		 */
-		public Builder addErrorDetails(ErrorCause value) {
-			if (this.errorDetails == null) {
-				this.errorDetails = new ArrayList<>();
-			}
-			this.errorDetails.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #errorDetails(List)} to a singleton list.
-		 */
-		public Builder errorDetails(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.errorDetails(fn.apply(new ErrorCause.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #errorDetails(List)}, creating the list if needed.
-		 */
-		public Builder addErrorDetails(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
-			return this.addErrorDetails(fn.apply(new ErrorCause.Builder()).build());
+		public final Builder errorDetails(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return errorDetails(fn.apply(new ErrorCause.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code invalidated_tokens}
 		 */
-		public Builder invalidatedTokens(long value) {
+		public final Builder invalidatedTokens(long value) {
 			this.invalidatedTokens = value;
 			return this;
 		}
@@ -208,7 +198,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code previously_invalidated_tokens}
 		 */
-		public Builder previouslyInvalidatedTokens(long value) {
+		public final Builder previouslyInvalidatedTokens(long value) {
 			this.previouslyInvalidatedTokens = value;
 			return this;
 		}
@@ -220,6 +210,7 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InvalidateTokenResponse build() {
+			_checkSingleUse();
 
 			return new InvalidateTokenResponse(this);
 		}
@@ -231,10 +222,10 @@ public final class InvalidateTokenResponse implements JsonpSerializable {
 	 * Json deserializer for {@link InvalidateTokenResponse}
 	 */
 	public static final JsonpDeserializer<InvalidateTokenResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InvalidateTokenResponse::setupInvalidateTokenResponseDeserializer, Builder::build);
+			.lazy(Builder::new, InvalidateTokenResponse::setupInvalidateTokenResponseDeserializer);
 
 	protected static void setupInvalidateTokenResponseDeserializer(
-			DelegatingDeserializer<InvalidateTokenResponse.Builder> op) {
+			ObjectDeserializer<InvalidateTokenResponse.Builder> op) {
 
 		op.add(Builder::errorCount, JsonpDeserializer.longDeserializer(), "error_count");
 		op.add(Builder::errorDetails, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "error_details");

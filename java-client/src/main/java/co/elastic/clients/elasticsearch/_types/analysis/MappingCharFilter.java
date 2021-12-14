@@ -23,63 +23,69 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MappingCharFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/char_filters.ts#L44-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MappingCharFilter extends CharFilterBase implements CharFilterVariant {
+public class MappingCharFilter extends CharFilterBase implements CharFilterDefinitionVariant {
 	private final List<String> mappings;
 
+	@Nullable
 	private final String mappingsPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MappingCharFilter(Builder builder) {
+	private MappingCharFilter(Builder builder) {
 		super(builder);
 
-		this.mappings = ModelTypeHelper.unmodifiableNonNull(builder.mappings, "mappings");
-		this.mappingsPath = Objects.requireNonNull(builder.mappingsPath, "mappings_path");
+		this.mappings = ApiTypeHelper.unmodifiableRequired(builder.mappings, this, "mappings");
+		this.mappingsPath = builder.mappingsPath;
 
 	}
 
-	public MappingCharFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MappingCharFilter of(Function<Builder, ObjectBuilder<MappingCharFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link CharFilter} variant type
+	 * CharFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "mapping";
+	public CharFilterDefinition.Kind _charFilterDefinitionKind() {
+		return CharFilterDefinition.Kind.Mapping;
 	}
 
 	/**
 	 * Required - API name: {@code mappings}
 	 */
-	public List<String> mappings() {
+	public final List<String> mappings() {
 		return this.mappings;
 	}
 
 	/**
-	 * Required - API name: {@code mappings_path}
+	 * API name: {@code mappings_path}
 	 */
-	public String mappingsPath() {
+	@Nullable
+	public final String mappingsPath() {
 		return this.mappingsPath;
 	}
 
@@ -87,17 +93,21 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 
 		generator.write("type", "mapping");
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.mappings)) {
+			generator.writeKey("mappings");
+			generator.writeStartArray();
+			for (String item0 : this.mappings) {
+				generator.write(item0);
 
-		generator.writeKey("mappings");
-		generator.writeStartArray();
-		for (String item0 : this.mappings) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.mappingsPath != null) {
+			generator.writeKey("mappings_path");
+			generator.write(this.mappingsPath);
 
-		generator.writeKey("mappings_path");
-		generator.write(this.mappingsPath);
+		}
 
 	}
 
@@ -106,44 +116,39 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 	/**
 	 * Builder for {@link MappingCharFilter}.
 	 */
+
 	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MappingCharFilter> {
 		private List<String> mappings;
 
+		@Nullable
 		private String mappingsPath;
 
 		/**
 		 * Required - API name: {@code mappings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>mappings</code>.
 		 */
-		public Builder mappings(List<String> value) {
-			this.mappings = value;
+		public final Builder mappings(List<String> list) {
+			this.mappings = _listAddAll(this.mappings, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code mappings}
+		 * <p>
+		 * Adds one or more values to <code>mappings</code>.
 		 */
-		public Builder mappings(String... value) {
-			this.mappings = Arrays.asList(value);
+		public final Builder mappings(String value, String... values) {
+			this.mappings = _listAdd(this.mappings, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #mappings(List)}, creating the list if needed.
+		 * API name: {@code mappings_path}
 		 */
-		public Builder addMappings(String value) {
-			if (this.mappings == null) {
-				this.mappings = new ArrayList<>();
-			}
-			this.mappings.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code mappings_path}
-		 */
-		public Builder mappingsPath(String value) {
+		public final Builder mappingsPath(@Nullable String value) {
 			this.mappingsPath = value;
 			return this;
 		}
@@ -160,6 +165,7 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 		 *             if some of the required fields are null.
 		 */
 		public MappingCharFilter build() {
+			_checkSingleUse();
 
 			return new MappingCharFilter(this);
 		}
@@ -171,9 +177,9 @@ public final class MappingCharFilter extends CharFilterBase implements CharFilte
 	 * Json deserializer for {@link MappingCharFilter}
 	 */
 	public static final JsonpDeserializer<MappingCharFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MappingCharFilter::setupMappingCharFilterDeserializer, Builder::build);
+			.lazy(Builder::new, MappingCharFilter::setupMappingCharFilterDeserializer);
 
-	protected static void setupMappingCharFilterDeserializer(DelegatingDeserializer<MappingCharFilter.Builder> op) {
+	protected static void setupMappingCharFilterDeserializer(ObjectDeserializer<MappingCharFilter.Builder> op) {
 		CharFilterBase.setupCharFilterBaseDeserializer(op);
 		op.add(Builder::mappings, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"mappings");

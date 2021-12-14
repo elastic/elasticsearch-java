@@ -25,54 +25,60 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.segments.IndexSegment;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.segments.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/segments/IndicesSegmentsResponse.ts#L24-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SegmentsResponse implements JsonpSerializable {
+public class SegmentsResponse implements JsonpSerializable {
 	private final Map<String, IndexSegment> indices;
 
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SegmentsResponse(Builder builder) {
+	private SegmentsResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
-	public SegmentsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SegmentsResponse of(Function<Builder, ObjectBuilder<SegmentsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public Map<String, IndexSegment> indices() {
+	public final Map<String, IndexSegment> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
@@ -87,15 +93,17 @@ public final class SegmentsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("indices");
-		generator.writeStartObject();
-		for (Map.Entry<String, IndexSegment> item0 : this.indices.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartObject();
+			for (Map.Entry<String, IndexSegment> item0 : this.indices.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
@@ -106,48 +114,45 @@ public final class SegmentsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SegmentsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<SegmentsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsResponse> {
 		private Map<String, IndexSegment> indices;
 
 		private ShardStatistics shards;
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 */
-		public Builder indices(Map<String, IndexSegment> value) {
-			this.indices = value;
+		public final Builder indices(Map<String, IndexSegment> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
 		 */
-		public Builder putIndices(String key, IndexSegment value) {
-			if (this.indices == null) {
-				this.indices = new HashMap<>();
-			}
-			this.indices.put(key, value);
+		public final Builder indices(String key, IndexSegment value) {
+			this.indices = _mapPut(this.indices, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #indices(Map)} to a singleton map.
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
 		 */
-		public Builder indices(String key, Function<IndexSegment.Builder, ObjectBuilder<IndexSegment>> fn) {
-			return this.indices(Collections.singletonMap(key, fn.apply(new IndexSegment.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
-		 */
-		public Builder putIndices(String key, Function<IndexSegment.Builder, ObjectBuilder<IndexSegment>> fn) {
-			return this.putIndices(key, fn.apply(new IndexSegment.Builder()).build());
+		public final Builder indices(String key, Function<IndexSegment.Builder, ObjectBuilder<IndexSegment>> fn) {
+			return indices(key, fn.apply(new IndexSegment.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(ShardStatistics value) {
+		public final Builder shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -155,7 +160,7 @@ public final class SegmentsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
@@ -166,6 +171,7 @@ public final class SegmentsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SegmentsResponse build() {
+			_checkSingleUse();
 
 			return new SegmentsResponse(this);
 		}
@@ -177,9 +183,9 @@ public final class SegmentsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link SegmentsResponse}
 	 */
 	public static final JsonpDeserializer<SegmentsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SegmentsResponse::setupSegmentsResponseDeserializer, Builder::build);
+			SegmentsResponse::setupSegmentsResponseDeserializer);
 
-	protected static void setupSegmentsResponseDeserializer(DelegatingDeserializer<SegmentsResponse.Builder> op) {
+	protected static void setupSegmentsResponseDeserializer(ObjectDeserializer<SegmentsResponse.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.stringMapDeserializer(IndexSegment._DESERIALIZER), "indices");
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");

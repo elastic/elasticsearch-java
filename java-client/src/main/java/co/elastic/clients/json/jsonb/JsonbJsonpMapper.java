@@ -20,6 +20,7 @@
 package co.elastic.clients.json.jsonb;
 
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpMapperBase;
 import co.elastic.clients.json.JsonpSerializable;
@@ -64,7 +65,7 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
             return;
         }
 
-        // Jsonb doesn't offer a way to serialize to a json generator, so we have to roundtrip via a string representation.
+        // JSON-B doesn't offer a way to serialize to a JSON generator, so we have to roundtrip via a string representation.
         CharArrayWriter caw = new CharArrayWriter();
         jsonb.toJson(value, caw);
 
@@ -78,7 +79,7 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
         return jsonProvider;
     }
 
-    private class Deserializer<T> extends JsonpDeserializer<T> {
+    private class Deserializer<T> extends JsonpDeserializerBase<T> {
         private final Class<T> clazz;
 
         Deserializer(Class<T> clazz) {
@@ -88,7 +89,11 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
 
         @Override
         public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
-
+            // TODO: Add a runtime check to use Yasson's JsonB extensions
+            // JsonB doesn't provide methods to deserialize from a JsonParser or a JsonValue. We therefore have
+            // to roundtrip through a string, which is far from efficient. Yasson addresses this with an additional
+            // `YassonJsonb` that extends the base JSON-B interface with additional mapping functions. We should check
+            // here at runtime if the mapper implements this interface and use it if present.
             CharArrayWriter caw = new CharArrayWriter();
             JsonGenerator generator = jsonProvider.createGenerator(caw);
             transferAll(parser, event, generator);

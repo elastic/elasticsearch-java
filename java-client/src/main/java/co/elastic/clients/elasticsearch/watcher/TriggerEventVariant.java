@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link TriggerEvent} variants.
  */
-public interface TriggerEventVariant extends UnionVariant {
+public interface TriggerEventVariant {
+
+	TriggerEvent.Kind _triggerEventKind();
 
 	default TriggerEvent _toTriggerEvent() {
 		return new TriggerEvent(this);

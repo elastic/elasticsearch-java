@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,34 +30,42 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L243-L245">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class InferenceConfig implements JsonpSerializable {
+public class InferenceConfig implements JsonpSerializable {
 	@Nullable
 	private final InferenceConfigRegression regression;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InferenceConfig(Builder builder) {
+	private InferenceConfig(Builder builder) {
 
 		this.regression = builder.regression;
 
 	}
 
-	public InferenceConfig(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InferenceConfig of(Function<Builder, ObjectBuilder<InferenceConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code regression}
 	 */
 	@Nullable
-	public InferenceConfigRegression regression() {
+	public final InferenceConfigRegression regression() {
 		return this.regression;
 	}
 
@@ -74,7 +81,6 @@ public final class InferenceConfig implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.regression != null) {
-
 			generator.writeKey("regression");
 			this.regression.serialize(generator, mapper);
 
@@ -87,14 +93,15 @@ public final class InferenceConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link InferenceConfig}.
 	 */
-	public static class Builder implements ObjectBuilder<InferenceConfig> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceConfig> {
 		@Nullable
 		private InferenceConfigRegression regression;
 
 		/**
 		 * API name: {@code regression}
 		 */
-		public Builder regression(@Nullable InferenceConfigRegression value) {
+		public final Builder regression(@Nullable InferenceConfigRegression value) {
 			this.regression = value;
 			return this;
 		}
@@ -102,7 +109,7 @@ public final class InferenceConfig implements JsonpSerializable {
 		/**
 		 * API name: {@code regression}
 		 */
-		public Builder regression(
+		public final Builder regression(
 				Function<InferenceConfigRegression.Builder, ObjectBuilder<InferenceConfigRegression>> fn) {
 			return this.regression(fn.apply(new InferenceConfigRegression.Builder()).build());
 		}
@@ -114,6 +121,7 @@ public final class InferenceConfig implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InferenceConfig build() {
+			_checkSingleUse();
 
 			return new InferenceConfig(this);
 		}
@@ -125,9 +133,9 @@ public final class InferenceConfig implements JsonpSerializable {
 	 * Json deserializer for {@link InferenceConfig}
 	 */
 	public static final JsonpDeserializer<InferenceConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InferenceConfig::setupInferenceConfigDeserializer, Builder::build);
+			InferenceConfig::setupInferenceConfigDeserializer);
 
-	protected static void setupInferenceConfigDeserializer(DelegatingDeserializer<InferenceConfig.Builder> op) {
+	protected static void setupInferenceConfigDeserializer(ObjectDeserializer<InferenceConfig.Builder> op) {
 
 		op.add(Builder::regression, InferenceConfigRegression._DESERIALIZER, "regression");
 

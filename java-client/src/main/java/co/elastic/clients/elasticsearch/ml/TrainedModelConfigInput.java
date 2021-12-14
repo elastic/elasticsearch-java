@@ -23,39 +23,44 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfigInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L90-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TrainedModelConfigInput implements JsonpSerializable {
+public class TrainedModelConfigInput implements JsonpSerializable {
 	private final List<String> fieldNames;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TrainedModelConfigInput(Builder builder) {
+	private TrainedModelConfigInput(Builder builder) {
 
-		this.fieldNames = ModelTypeHelper.unmodifiableNonNull(builder.fieldNames, "field_names");
+		this.fieldNames = ApiTypeHelper.unmodifiableRequired(builder.fieldNames, this, "fieldNames");
 
 	}
 
-	public TrainedModelConfigInput(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TrainedModelConfigInput of(Function<Builder, ObjectBuilder<TrainedModelConfigInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +68,7 @@ public final class TrainedModelConfigInput implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code field_names}
 	 */
-	public List<String> fieldNames() {
+	public final List<String> fieldNames() {
 		return this.fieldNames;
 	}
 
@@ -78,13 +83,16 @@ public final class TrainedModelConfigInput implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field_names");
-		generator.writeStartArray();
-		for (String item0 : this.fieldNames) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.fieldNames)) {
+			generator.writeKey("field_names");
+			generator.writeStartArray();
+			for (String item0 : this.fieldNames) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -93,16 +101,19 @@ public final class TrainedModelConfigInput implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelConfigInput}.
 	 */
-	public static class Builder implements ObjectBuilder<TrainedModelConfigInput> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelConfigInput> {
 		private List<String> fieldNames;
 
 		/**
 		 * Required - An array of input field names for the model.
 		 * <p>
 		 * API name: {@code field_names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fieldNames</code>.
 		 */
-		public Builder fieldNames(List<String> value) {
-			this.fieldNames = value;
+		public final Builder fieldNames(List<String> list) {
+			this.fieldNames = _listAddAll(this.fieldNames, list);
 			return this;
 		}
 
@@ -110,20 +121,11 @@ public final class TrainedModelConfigInput implements JsonpSerializable {
 		 * Required - An array of input field names for the model.
 		 * <p>
 		 * API name: {@code field_names}
+		 * <p>
+		 * Adds one or more values to <code>fieldNames</code>.
 		 */
-		public Builder fieldNames(String... value) {
-			this.fieldNames = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fieldNames(List)}, creating the list if needed.
-		 */
-		public Builder addFieldNames(String value) {
-			if (this.fieldNames == null) {
-				this.fieldNames = new ArrayList<>();
-			}
-			this.fieldNames.add(value);
+		public final Builder fieldNames(String value, String... values) {
+			this.fieldNames = _listAdd(this.fieldNames, value, values);
 			return this;
 		}
 
@@ -134,6 +136,7 @@ public final class TrainedModelConfigInput implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TrainedModelConfigInput build() {
+			_checkSingleUse();
 
 			return new TrainedModelConfigInput(this);
 		}
@@ -145,10 +148,10 @@ public final class TrainedModelConfigInput implements JsonpSerializable {
 	 * Json deserializer for {@link TrainedModelConfigInput}
 	 */
 	public static final JsonpDeserializer<TrainedModelConfigInput> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelConfigInput::setupTrainedModelConfigInputDeserializer, Builder::build);
+			.lazy(Builder::new, TrainedModelConfigInput::setupTrainedModelConfigInputDeserializer);
 
 	protected static void setupTrainedModelConfigInputDeserializer(
-			DelegatingDeserializer<TrainedModelConfigInput.Builder> op) {
+			ObjectDeserializer<TrainedModelConfigInput.Builder> op) {
 
 		op.add(Builder::fieldNames, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"field_names");

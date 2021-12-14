@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,8 +36,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L202-L207">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class WeightedAverageAggregation extends AggregationBase implements AggregationVariant {
+public class WeightedAverageAggregation extends AggregationBase implements AggregationVariant {
 	@Nullable
 	private final String format;
 
@@ -53,7 +59,7 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WeightedAverageAggregation(Builder builder) {
+	private WeightedAverageAggregation(Builder builder) {
 		super(builder);
 
 		this.format = builder.format;
@@ -63,23 +69,23 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 
 	}
 
-	public WeightedAverageAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WeightedAverageAggregation of(Function<Builder, ObjectBuilder<WeightedAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "weighted_avg";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.WeightedAvg;
 	}
 
 	/**
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -87,7 +93,7 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 	 * API name: {@code value}
 	 */
 	@Nullable
-	public WeightedAverageValue value() {
+	public final WeightedAverageValue value() {
 		return this.value;
 	}
 
@@ -95,7 +101,7 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 	 * API name: {@code value_type}
 	 */
 	@Nullable
-	public ValueType valueType() {
+	public final ValueType valueType() {
 		return this.valueType;
 	}
 
@@ -103,7 +109,7 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 	 * API name: {@code weight}
 	 */
 	@Nullable
-	public WeightedAverageValue weight() {
+	public final WeightedAverageValue weight() {
 		return this.weight;
 	}
 
@@ -111,24 +117,20 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 
 		super.serializeInternal(generator, mapper);
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.value != null) {
-
 			generator.writeKey("value");
 			this.value.serialize(generator, mapper);
 
 		}
 		if (this.valueType != null) {
-
 			generator.writeKey("value_type");
 			this.valueType.serialize(generator, mapper);
 		}
 		if (this.weight != null) {
-
 			generator.writeKey("weight");
 			this.weight.serialize(generator, mapper);
 
@@ -141,6 +143,7 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 	/**
 	 * Builder for {@link WeightedAverageAggregation}.
 	 */
+
 	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WeightedAverageAggregation> {
@@ -159,7 +162,7 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -167,7 +170,7 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(@Nullable WeightedAverageValue value) {
+		public final Builder value(@Nullable WeightedAverageValue value) {
 			this.value = value;
 			return this;
 		}
@@ -175,14 +178,14 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(Function<WeightedAverageValue.Builder, ObjectBuilder<WeightedAverageValue>> fn) {
+		public final Builder value(Function<WeightedAverageValue.Builder, ObjectBuilder<WeightedAverageValue>> fn) {
 			return this.value(fn.apply(new WeightedAverageValue.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code value_type}
 		 */
-		public Builder valueType(@Nullable ValueType value) {
+		public final Builder valueType(@Nullable ValueType value) {
 			this.valueType = value;
 			return this;
 		}
@@ -190,7 +193,7 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 		/**
 		 * API name: {@code weight}
 		 */
-		public Builder weight(@Nullable WeightedAverageValue value) {
+		public final Builder weight(@Nullable WeightedAverageValue value) {
 			this.weight = value;
 			return this;
 		}
@@ -198,7 +201,7 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 		/**
 		 * API name: {@code weight}
 		 */
-		public Builder weight(Function<WeightedAverageValue.Builder, ObjectBuilder<WeightedAverageValue>> fn) {
+		public final Builder weight(Function<WeightedAverageValue.Builder, ObjectBuilder<WeightedAverageValue>> fn) {
 			return this.weight(fn.apply(new WeightedAverageValue.Builder()).build());
 		}
 
@@ -214,6 +217,7 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public WeightedAverageAggregation build() {
+			_checkSingleUse();
 
 			return new WeightedAverageAggregation(this);
 		}
@@ -224,11 +228,11 @@ public final class WeightedAverageAggregation extends AggregationBase implements
 	/**
 	 * Json deserializer for {@link WeightedAverageAggregation}
 	 */
-	public static final JsonpDeserializer<WeightedAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, WeightedAverageAggregation::setupWeightedAverageAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<WeightedAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, WeightedAverageAggregation::setupWeightedAverageAggregationDeserializer);
 
 	protected static void setupWeightedAverageAggregationDeserializer(
-			DelegatingDeserializer<WeightedAverageAggregation.Builder> op) {
+			ObjectDeserializer<WeightedAverageAggregation.Builder> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::value, WeightedAverageValue._DESERIALIZER, "value");

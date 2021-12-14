@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,8 +37,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisRegression
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L214-L224">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataframeAnalysisRegression extends DataframeAnalysisBase implements DataframeAnalysisVariant {
+public class DataframeAnalysisRegression extends DataframeAnalysisBase implements DataframeAnalysisVariant {
 	@Nullable
 	private final String lossFunction;
 
@@ -48,7 +54,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalysisRegression(Builder builder) {
+	private DataframeAnalysisRegression(Builder builder) {
 		super(builder);
 
 		this.lossFunction = builder.lossFunction;
@@ -56,16 +62,16 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 
 	}
 
-	public DataframeAnalysisRegression(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalysisRegression of(Function<Builder, ObjectBuilder<DataframeAnalysisRegression>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link DataframeAnalysis} variant type
+	 * DataframeAnalysis variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "regression";
+	public DataframeAnalysis.Kind _dataframeAnalysisKind() {
+		return DataframeAnalysis.Kind.Regression;
 	}
 
 	/**
@@ -76,7 +82,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 	 * API name: {@code loss_function}
 	 */
 	@Nullable
-	public String lossFunction() {
+	public final String lossFunction() {
 		return this.lossFunction;
 	}
 
@@ -87,7 +93,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 	 * API name: {@code loss_function_parameter}
 	 */
 	@Nullable
-	public Double lossFunctionParameter() {
+	public final Double lossFunctionParameter() {
 		return this.lossFunctionParameter;
 	}
 
@@ -95,13 +101,11 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 
 		super.serializeInternal(generator, mapper);
 		if (this.lossFunction != null) {
-
 			generator.writeKey("loss_function");
 			generator.write(this.lossFunction);
 
 		}
 		if (this.lossFunctionParameter != null) {
-
 			generator.writeKey("loss_function_parameter");
 			generator.write(this.lossFunctionParameter);
 
@@ -114,6 +118,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 	/**
 	 * Builder for {@link DataframeAnalysisRegression}.
 	 */
+
 	public static class Builder extends DataframeAnalysisBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisRegression> {
@@ -130,7 +135,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 		 * <p>
 		 * API name: {@code loss_function}
 		 */
-		public Builder lossFunction(@Nullable String value) {
+		public final Builder lossFunction(@Nullable String value) {
 			this.lossFunction = value;
 			return this;
 		}
@@ -141,7 +146,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 		 * <p>
 		 * API name: {@code loss_function_parameter}
 		 */
-		public Builder lossFunctionParameter(@Nullable Double value) {
+		public final Builder lossFunctionParameter(@Nullable Double value) {
 			this.lossFunctionParameter = value;
 			return this;
 		}
@@ -158,6 +163,7 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalysisRegression build() {
+			_checkSingleUse();
 
 			return new DataframeAnalysisRegression(this);
 		}
@@ -168,11 +174,11 @@ public final class DataframeAnalysisRegression extends DataframeAnalysisBase imp
 	/**
 	 * Json deserializer for {@link DataframeAnalysisRegression}
 	 */
-	public static final JsonpDeserializer<DataframeAnalysisRegression> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DataframeAnalysisRegression::setupDataframeAnalysisRegressionDeserializer, Builder::build);
+	public static final JsonpDeserializer<DataframeAnalysisRegression> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DataframeAnalysisRegression::setupDataframeAnalysisRegressionDeserializer);
 
 	protected static void setupDataframeAnalysisRegressionDeserializer(
-			DelegatingDeserializer<DataframeAnalysisRegression.Builder> op) {
+			ObjectDeserializer<DataframeAnalysisRegression.Builder> op) {
 		DataframeAnalysisBase.setupDataframeAnalysisBaseDeserializer(op);
 		op.add(Builder::lossFunction, JsonpDeserializer.stringDeserializer(), "loss_function");
 		op.add(Builder::lossFunctionParameter, JsonpDeserializer.doubleDeserializer(), "loss_function_parameter");

@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,7 +42,15 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_service_accounts.Request
 
-public final class GetServiceAccountsRequest extends RequestBase {
+/**
+ * Retrieves information about service accounts.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_accounts/GetServiceAccountsRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
+public class GetServiceAccountsRequest extends RequestBase {
 	@Nullable
 	private final String namespace;
 
@@ -50,15 +59,15 @@ public final class GetServiceAccountsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetServiceAccountsRequest(Builder builder) {
+	private GetServiceAccountsRequest(Builder builder) {
 
 		this.namespace = builder.namespace;
 		this.service = builder.service;
 
 	}
 
-	public GetServiceAccountsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetServiceAccountsRequest of(Function<Builder, ObjectBuilder<GetServiceAccountsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +76,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	 * API name: {@code namespace}
 	 */
 	@Nullable
-	public String namespace() {
+	public final String namespace() {
 		return this.namespace;
 	}
 
@@ -77,7 +86,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	 * API name: {@code service}
 	 */
 	@Nullable
-	public String service() {
+	public final String service() {
 		return this.service;
 	}
 
@@ -86,7 +95,8 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetServiceAccountsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetServiceAccountsRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetServiceAccountsRequest> {
 		@Nullable
 		private String namespace;
 
@@ -98,7 +108,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code namespace}
 		 */
-		public Builder namespace(@Nullable String value) {
+		public final Builder namespace(@Nullable String value) {
 			this.namespace = value;
 			return this;
 		}
@@ -108,7 +118,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code service}
 		 */
-		public Builder service(@Nullable String value) {
+		public final Builder service(@Nullable String value) {
 			this.service = value;
 			return this;
 		}
@@ -120,6 +130,7 @@ public final class GetServiceAccountsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetServiceAccountsRequest build() {
+			_checkSingleUse();
 
 			return new GetServiceAccountsRequest(this);
 		}
@@ -130,7 +141,9 @@ public final class GetServiceAccountsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_service_accounts}".
 	 */
-	public static final Endpoint<GetServiceAccountsRequest, GetServiceAccountsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetServiceAccountsRequest, GetServiceAccountsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_service_accounts",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -139,15 +152,15 @@ public final class GetServiceAccountsRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _namespace = 1 << 0;
-				final int _service = 1 << 1;
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
 
 				int propsSet = 0;
 
-				if (request.namespace() != null)
-					propsSet |= _namespace;
 				if (request.service() != null)
 					propsSet |= _service;
+				if (request.namespace() != null)
+					propsSet |= _namespace;
 
 				if (propsSet == (_namespace | _service)) {
 					StringBuilder buf = new StringBuilder();

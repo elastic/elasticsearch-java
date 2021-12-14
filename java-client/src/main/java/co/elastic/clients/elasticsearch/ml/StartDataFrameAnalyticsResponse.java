@@ -24,12 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,21 +38,29 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/start_data_frame_analytics/MlStartDataFrameAnalyticsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
+public class StartDataFrameAnalyticsResponse extends AcknowledgedResponseBase {
 	private final String node;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartDataFrameAnalyticsResponse(Builder builder) {
+	private StartDataFrameAnalyticsResponse(Builder builder) {
 		super(builder);
 
-		this.node = Objects.requireNonNull(builder.node, "node");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 
 	}
 
-	public StartDataFrameAnalyticsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartDataFrameAnalyticsResponse of(
+			Function<Builder, ObjectBuilder<StartDataFrameAnalyticsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,14 +70,13 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 	 * <p>
 	 * API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("node");
 		generator.write(this.node);
 
@@ -80,6 +87,7 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 	/**
 	 * Builder for {@link StartDataFrameAnalyticsResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StartDataFrameAnalyticsResponse> {
@@ -92,7 +100,7 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -109,6 +117,7 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public StartDataFrameAnalyticsResponse build() {
+			_checkSingleUse();
 
 			return new StartDataFrameAnalyticsResponse(this);
 		}
@@ -120,11 +129,10 @@ public final class StartDataFrameAnalyticsResponse extends AcknowledgedResponseB
 	 * Json deserializer for {@link StartDataFrameAnalyticsResponse}
 	 */
 	public static final JsonpDeserializer<StartDataFrameAnalyticsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StartDataFrameAnalyticsResponse::setupStartDataFrameAnalyticsResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, StartDataFrameAnalyticsResponse::setupStartDataFrameAnalyticsResponseDeserializer);
 
 	protected static void setupStartDataFrameAnalyticsResponseDeserializer(
-			DelegatingDeserializer<StartDataFrameAnalyticsResponse.Builder> op) {
+			ObjectDeserializer<StartDataFrameAnalyticsResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 

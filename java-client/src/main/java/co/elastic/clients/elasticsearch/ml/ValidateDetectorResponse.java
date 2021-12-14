@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.validate_detector.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/validate_detector/MlValidateDetectorResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ValidateDetectorResponse extends AcknowledgedResponseBase {
+public class ValidateDetectorResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ValidateDetectorResponse(Builder builder) {
+	private ValidateDetectorResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ValidateDetectorResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ValidateDetectorResponse of(Function<Builder, ObjectBuilder<ValidateDetectorResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class ValidateDetectorResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link ValidateDetectorResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ValidateDetectorResponse> {
@@ -68,6 +75,7 @@ public final class ValidateDetectorResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ValidateDetectorResponse build() {
+			_checkSingleUse();
 
 			return new ValidateDetectorResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class ValidateDetectorResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link ValidateDetectorResponse}
 	 */
 	public static final JsonpDeserializer<ValidateDetectorResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ValidateDetectorResponse::setupValidateDetectorResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ValidateDetectorResponse::setupValidateDetectorResponseDeserializer);
 
 	protected static void setupValidateDetectorResponseDeserializer(
-			DelegatingDeserializer<ValidateDetectorResponse.Builder> op) {
+			ObjectDeserializer<ValidateDetectorResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,27 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.delete_policy.Request
 
-public final class DeletePolicyRequest extends RequestBase {
+/**
+ * Deletes an existing enrich policy and its enrich index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/delete_policy/DeleteEnrichPolicyRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class DeletePolicyRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeletePolicyRequest(Builder builder) {
+	private DeletePolicyRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public DeletePolicyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeletePolicyRequest of(Function<Builder, ObjectBuilder<DeletePolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +71,7 @@ public final class DeletePolicyRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -70,7 +80,8 @@ public final class DeletePolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeletePolicyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeletePolicyRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePolicyRequest> {
 		private String name;
 
 		/**
@@ -78,7 +89,7 @@ public final class DeletePolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -90,6 +101,7 @@ public final class DeletePolicyRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeletePolicyRequest build() {
+			_checkSingleUse();
 
 			return new DeletePolicyRequest(this);
 		}
@@ -100,7 +112,9 @@ public final class DeletePolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code enrich.delete_policy}".
 	 */
-	public static final Endpoint<DeletePolicyRequest, DeletePolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/enrich.delete_policy",
+
 			// Request method
 			request -> {
 				return "DELETE";

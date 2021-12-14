@@ -23,27 +23,33 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.FrequencyEncodingPreprocessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L38-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FrequencyEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
+public class FrequencyEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
 	private final String field;
 
 	private final String featureName;
@@ -52,44 +58,44 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FrequencyEncodingPreprocessor(Builder builder) {
+	private FrequencyEncodingPreprocessor(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
-		this.frequencyMap = ModelTypeHelper.unmodifiableNonNull(builder.frequencyMap, "frequency_map");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.frequencyMap = ApiTypeHelper.unmodifiableRequired(builder.frequencyMap, this, "frequencyMap");
 
 	}
 
-	public FrequencyEncodingPreprocessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FrequencyEncodingPreprocessor of(Function<Builder, ObjectBuilder<FrequencyEncodingPreprocessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Preprocessor} variant type
+	 * Preprocessor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "frequency_encoding";
+	public Preprocessor.Kind _preprocessorKind() {
+		return Preprocessor.Kind.FrequencyEncoding;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code feature_name}
 	 */
-	public String featureName() {
+	public final String featureName() {
 		return this.featureName;
 	}
 
 	/**
 	 * Required - API name: {@code frequency_map}
 	 */
-	public Map<String, Double> frequencyMap() {
+	public final Map<String, Double> frequencyMap() {
 		return this.frequencyMap;
 	}
 
@@ -110,14 +116,17 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 		generator.writeKey("feature_name");
 		generator.write(this.featureName);
 
-		generator.writeKey("frequency_map");
-		generator.writeStartObject();
-		for (Map.Entry<String, Double> item0 : this.frequencyMap.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ApiTypeHelper.isDefined(this.frequencyMap)) {
+			generator.writeKey("frequency_map");
+			generator.writeStartObject();
+			for (Map.Entry<String, Double> item0 : this.frequencyMap.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -126,7 +135,8 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 	/**
 	 * Builder for {@link FrequencyEncodingPreprocessor}.
 	 */
-	public static class Builder implements ObjectBuilder<FrequencyEncodingPreprocessor> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FrequencyEncodingPreprocessor> {
 		private String field;
 
 		private String featureName;
@@ -136,7 +146,7 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -144,27 +154,28 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 		/**
 		 * Required - API name: {@code feature_name}
 		 */
-		public Builder featureName(String value) {
+		public final Builder featureName(String value) {
 			this.featureName = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code frequency_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>frequencyMap</code>.
 		 */
-		public Builder frequencyMap(Map<String, Double> value) {
-			this.frequencyMap = value;
+		public final Builder frequencyMap(Map<String, Double> map) {
+			this.frequencyMap = _mapPutAll(this.frequencyMap, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #frequencyMap(Map)}, creating the map if needed.
+		 * Required - API name: {@code frequency_map}
+		 * <p>
+		 * Adds an entry to <code>frequencyMap</code>.
 		 */
-		public Builder putFrequencyMap(String key, Double value) {
-			if (this.frequencyMap == null) {
-				this.frequencyMap = new HashMap<>();
-			}
-			this.frequencyMap.put(key, value);
+		public final Builder frequencyMap(String key, Double value) {
+			this.frequencyMap = _mapPut(this.frequencyMap, key, value);
 			return this;
 		}
 
@@ -175,6 +186,7 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 		 *             if some of the required fields are null.
 		 */
 		public FrequencyEncodingPreprocessor build() {
+			_checkSingleUse();
 
 			return new FrequencyEncodingPreprocessor(this);
 		}
@@ -185,12 +197,11 @@ public final class FrequencyEncodingPreprocessor implements PreprocessorVariant,
 	/**
 	 * Json deserializer for {@link FrequencyEncodingPreprocessor}
 	 */
-	public static final JsonpDeserializer<FrequencyEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, FrequencyEncodingPreprocessor::setupFrequencyEncodingPreprocessorDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<FrequencyEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, FrequencyEncodingPreprocessor::setupFrequencyEncodingPreprocessorDeserializer);
 
 	protected static void setupFrequencyEncodingPreprocessorDeserializer(
-			DelegatingDeserializer<FrequencyEncodingPreprocessor.Builder> op) {
+			ObjectDeserializer<FrequencyEncodingPreprocessor.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");

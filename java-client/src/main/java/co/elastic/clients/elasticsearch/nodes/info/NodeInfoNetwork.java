@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoNetwork
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L313-L316">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoNetwork implements JsonpSerializable {
+public class NodeInfoNetwork implements JsonpSerializable {
 	private final NodeInfoNetworkInterface primaryInterface;
 
 	private final int refreshInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoNetwork(Builder builder) {
+	private NodeInfoNetwork(Builder builder) {
 
-		this.primaryInterface = Objects.requireNonNull(builder.primaryInterface, "primary_interface");
-		this.refreshInterval = Objects.requireNonNull(builder.refreshInterval, "refresh_interval");
+		this.primaryInterface = ApiTypeHelper.requireNonNull(builder.primaryInterface, this, "primaryInterface");
+		this.refreshInterval = ApiTypeHelper.requireNonNull(builder.refreshInterval, this, "refreshInterval");
 
 	}
 
-	public NodeInfoNetwork(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoNetwork of(Function<Builder, ObjectBuilder<NodeInfoNetwork>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code primary_interface}
 	 */
-	public NodeInfoNetworkInterface primaryInterface() {
+	public final NodeInfoNetworkInterface primaryInterface() {
 		return this.primaryInterface;
 	}
 
 	/**
 	 * Required - API name: {@code refresh_interval}
 	 */
-	public int refreshInterval() {
+	public final int refreshInterval() {
 		return this.refreshInterval;
 	}
 
@@ -95,7 +103,8 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoNetwork}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoNetwork> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoNetwork> {
 		private NodeInfoNetworkInterface primaryInterface;
 
 		private Integer refreshInterval;
@@ -103,7 +112,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primary_interface}
 		 */
-		public Builder primaryInterface(NodeInfoNetworkInterface value) {
+		public final Builder primaryInterface(NodeInfoNetworkInterface value) {
 			this.primaryInterface = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primary_interface}
 		 */
-		public Builder primaryInterface(
+		public final Builder primaryInterface(
 				Function<NodeInfoNetworkInterface.Builder, ObjectBuilder<NodeInfoNetworkInterface>> fn) {
 			return this.primaryInterface(fn.apply(new NodeInfoNetworkInterface.Builder()).build());
 		}
@@ -119,7 +128,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code refresh_interval}
 		 */
-		public Builder refreshInterval(int value) {
+		public final Builder refreshInterval(int value) {
 			this.refreshInterval = value;
 			return this;
 		}
@@ -131,6 +140,7 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoNetwork build() {
+			_checkSingleUse();
 
 			return new NodeInfoNetwork(this);
 		}
@@ -142,9 +152,9 @@ public final class NodeInfoNetwork implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoNetwork}
 	 */
 	public static final JsonpDeserializer<NodeInfoNetwork> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoNetwork::setupNodeInfoNetworkDeserializer, Builder::build);
+			NodeInfoNetwork::setupNodeInfoNetworkDeserializer);
 
-	protected static void setupNodeInfoNetworkDeserializer(DelegatingDeserializer<NodeInfoNetwork.Builder> op) {
+	protected static void setupNodeInfoNetworkDeserializer(ObjectDeserializer<NodeInfoNetwork.Builder> op) {
 
 		op.add(Builder::primaryInterface, NodeInfoNetworkInterface._DESERIALIZER, "primary_interface");
 		op.add(Builder::refreshInterval, JsonpDeserializer.integerDeserializer(), "refresh_interval");

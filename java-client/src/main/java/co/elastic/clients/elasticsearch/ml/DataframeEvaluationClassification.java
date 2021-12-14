@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationClassification
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L35-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataframeEvaluationClassification implements DataframeEvaluationVariant, JsonpSerializable {
+public class DataframeEvaluationClassification implements DataframeEvaluationVariant, JsonpSerializable {
 	private final String actualField;
 
 	@Nullable
@@ -53,25 +61,26 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationClassification(Builder builder) {
+	private DataframeEvaluationClassification(Builder builder) {
 
-		this.actualField = Objects.requireNonNull(builder.actualField, "actual_field");
+		this.actualField = ApiTypeHelper.requireNonNull(builder.actualField, this, "actualField");
 		this.predictedField = builder.predictedField;
 		this.topClassesField = builder.topClassesField;
 		this.metrics = builder.metrics;
 
 	}
 
-	public DataframeEvaluationClassification(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationClassification of(
+			Function<Builder, ObjectBuilder<DataframeEvaluationClassification>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link DataframeEvaluation} variant type
+	 * DataframeEvaluation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "classification";
+	public DataframeEvaluation.Kind _dataframeEvaluationKind() {
+		return DataframeEvaluation.Kind.Classification;
 	}
 
 	/**
@@ -81,7 +90,7 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 	 * <p>
 	 * API name: {@code actual_field}
 	 */
-	public String actualField() {
+	public final String actualField() {
 		return this.actualField;
 	}
 
@@ -92,7 +101,7 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 	 * API name: {@code predicted_field}
 	 */
 	@Nullable
-	public String predictedField() {
+	public final String predictedField() {
 		return this.predictedField;
 	}
 
@@ -104,7 +113,7 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 	 * API name: {@code top_classes_field}
 	 */
 	@Nullable
-	public String topClassesField() {
+	public final String topClassesField() {
 		return this.topClassesField;
 	}
 
@@ -114,7 +123,7 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 	 * API name: {@code metrics}
 	 */
 	@Nullable
-	public DataframeEvaluationClassificationMetrics metrics() {
+	public final DataframeEvaluationClassificationMetrics metrics() {
 		return this.metrics;
 	}
 
@@ -133,19 +142,16 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 		generator.write(this.actualField);
 
 		if (this.predictedField != null) {
-
 			generator.writeKey("predicted_field");
 			generator.write(this.predictedField);
 
 		}
 		if (this.topClassesField != null) {
-
 			generator.writeKey("top_classes_field");
 			generator.write(this.topClassesField);
 
 		}
 		if (this.metrics != null) {
-
 			generator.writeKey("metrics");
 			this.metrics.serialize(generator, mapper);
 
@@ -158,7 +164,8 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 	/**
 	 * Builder for {@link DataframeEvaluationClassification}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeEvaluationClassification> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeEvaluationClassification> {
 		private String actualField;
 
 		@Nullable
@@ -177,7 +184,7 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 		 * <p>
 		 * API name: {@code actual_field}
 		 */
-		public Builder actualField(String value) {
+		public final Builder actualField(String value) {
 			this.actualField = value;
 			return this;
 		}
@@ -188,7 +195,7 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 		 * <p>
 		 * API name: {@code predicted_field}
 		 */
-		public Builder predictedField(@Nullable String value) {
+		public final Builder predictedField(@Nullable String value) {
 			this.predictedField = value;
 			return this;
 		}
@@ -200,7 +207,7 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 		 * <p>
 		 * API name: {@code top_classes_field}
 		 */
-		public Builder topClassesField(@Nullable String value) {
+		public final Builder topClassesField(@Nullable String value) {
 			this.topClassesField = value;
 			return this;
 		}
@@ -210,7 +217,7 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 		 * <p>
 		 * API name: {@code metrics}
 		 */
-		public Builder metrics(@Nullable DataframeEvaluationClassificationMetrics value) {
+		public final Builder metrics(@Nullable DataframeEvaluationClassificationMetrics value) {
 			this.metrics = value;
 			return this;
 		}
@@ -220,7 +227,7 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 		 * <p>
 		 * API name: {@code metrics}
 		 */
-		public Builder metrics(
+		public final Builder metrics(
 				Function<DataframeEvaluationClassificationMetrics.Builder, ObjectBuilder<DataframeEvaluationClassificationMetrics>> fn) {
 			return this.metrics(fn.apply(new DataframeEvaluationClassificationMetrics.Builder()).build());
 		}
@@ -232,6 +239,7 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationClassification build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationClassification(this);
 		}
@@ -243,11 +251,10 @@ public final class DataframeEvaluationClassification implements DataframeEvaluat
 	 * Json deserializer for {@link DataframeEvaluationClassification}
 	 */
 	public static final JsonpDeserializer<DataframeEvaluationClassification> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeEvaluationClassification::setupDataframeEvaluationClassificationDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeEvaluationClassification::setupDataframeEvaluationClassificationDeserializer);
 
 	protected static void setupDataframeEvaluationClassificationDeserializer(
-			DelegatingDeserializer<DataframeEvaluationClassification.Builder> op) {
+			ObjectDeserializer<DataframeEvaluationClassification.Builder> op) {
 
 		op.add(Builder::actualField, JsonpDeserializer.stringDeserializer(), "actual_field");
 		op.add(Builder::predictedField, JsonpDeserializer.stringDeserializer(), "predicted_field");

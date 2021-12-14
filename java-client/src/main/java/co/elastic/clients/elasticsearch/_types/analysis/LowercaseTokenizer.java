@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L70-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class LowercaseTokenizer extends TokenizerBase implements TokenizerVariant {
+public class LowercaseTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public LowercaseTokenizer(Builder builder) {
+	private LowercaseTokenizer(Builder builder) {
 		super(builder);
 
 	}
 
-	public LowercaseTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LowercaseTokenizer of(Function<Builder, ObjectBuilder<LowercaseTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "lowercase";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.Lowercase;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class LowercaseTokenizer extends TokenizerBase implements Tokenizer
 	/**
 	 * Builder for {@link LowercaseTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LowercaseTokenizer> {
@@ -83,6 +90,7 @@ public final class LowercaseTokenizer extends TokenizerBase implements Tokenizer
 		 *             if some of the required fields are null.
 		 */
 		public LowercaseTokenizer build() {
+			_checkSingleUse();
 
 			return new LowercaseTokenizer(this);
 		}
@@ -94,9 +102,9 @@ public final class LowercaseTokenizer extends TokenizerBase implements Tokenizer
 	 * Json deserializer for {@link LowercaseTokenizer}
 	 */
 	public static final JsonpDeserializer<LowercaseTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LowercaseTokenizer::setupLowercaseTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, LowercaseTokenizer::setupLowercaseTokenizerDeserializer);
 
-	protected static void setupLowercaseTokenizerDeserializer(DelegatingDeserializer<LowercaseTokenizer.Builder> op) {
+	protected static void setupLowercaseTokenizerDeserializer(ObjectDeserializer<LowercaseTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 
 		op.ignore("type");

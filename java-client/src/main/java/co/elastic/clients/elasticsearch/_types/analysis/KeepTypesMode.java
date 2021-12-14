@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L211-L214">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum KeepTypesMode implements StringEnum {
-	Include("include"), Exclude("exclude");
+public enum KeepTypesMode implements JsonEnum {
+	Include("include"),
+
+	Exclude("exclude"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum KeepTypesMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<KeepTypesMode> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<KeepTypesMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			KeepTypesMode.values());
 }

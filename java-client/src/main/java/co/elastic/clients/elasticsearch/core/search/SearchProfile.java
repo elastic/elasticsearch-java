@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SearchProfile
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/profile.ts#L125-L129">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SearchProfile implements JsonpSerializable {
+public class SearchProfile implements JsonpSerializable {
 	private final List<Collector> collector;
 
 	private final List<QueryProfile> query;
@@ -52,36 +57,36 @@ public final class SearchProfile implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchProfile(Builder builder) {
+	private SearchProfile(Builder builder) {
 
-		this.collector = ModelTypeHelper.unmodifiableNonNull(builder.collector, "collector");
-		this.query = ModelTypeHelper.unmodifiableNonNull(builder.query, "query");
-		this.rewriteTime = Objects.requireNonNull(builder.rewriteTime, "rewrite_time");
+		this.collector = ApiTypeHelper.unmodifiableRequired(builder.collector, this, "collector");
+		this.query = ApiTypeHelper.unmodifiableRequired(builder.query, this, "query");
+		this.rewriteTime = ApiTypeHelper.requireNonNull(builder.rewriteTime, this, "rewriteTime");
 
 	}
 
-	public SearchProfile(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchProfile of(Function<Builder, ObjectBuilder<SearchProfile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code collector}
 	 */
-	public List<Collector> collector() {
+	public final List<Collector> collector() {
 		return this.collector;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public List<QueryProfile> query() {
+	public final List<QueryProfile> query() {
 		return this.query;
 	}
 
 	/**
 	 * Required - API name: {@code rewrite_time}
 	 */
-	public long rewriteTime() {
+	public final long rewriteTime() {
 		return this.rewriteTime;
 	}
 
@@ -96,22 +101,26 @@ public final class SearchProfile implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("collector");
-		generator.writeStartArray();
-		for (Collector item0 : this.collector) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.collector)) {
+			generator.writeKey("collector");
+			generator.writeStartArray();
+			for (Collector item0 : this.collector) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.query)) {
+			generator.writeKey("query");
+			generator.writeStartArray();
+			for (QueryProfile item0 : this.query) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("query");
-		generator.writeStartArray();
-		for (QueryProfile item0 : this.query) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("rewrite_time");
 		generator.write(this.rewriteTime);
 
@@ -122,7 +131,8 @@ public final class SearchProfile implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchProfile}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchProfile> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchProfile> {
 		private List<Collector> collector;
 
 		private List<QueryProfile> query;
@@ -131,90 +141,66 @@ public final class SearchProfile implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code collector}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>collector</code>.
 		 */
-		public Builder collector(List<Collector> value) {
-			this.collector = value;
+		public final Builder collector(List<Collector> list) {
+			this.collector = _listAddAll(this.collector, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code collector}
+		 * <p>
+		 * Adds one or more values to <code>collector</code>.
 		 */
-		public Builder collector(Collector... value) {
-			this.collector = Arrays.asList(value);
+		public final Builder collector(Collector value, Collector... values) {
+			this.collector = _listAdd(this.collector, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #collector(List)}, creating the list if needed.
+		 * Required - API name: {@code collector}
+		 * <p>
+		 * Adds a value to <code>collector</code> using a builder lambda.
 		 */
-		public Builder addCollector(Collector value) {
-			if (this.collector == null) {
-				this.collector = new ArrayList<>();
-			}
-			this.collector.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #collector(List)} to a singleton list.
-		 */
-		public Builder collector(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
-			return this.collector(fn.apply(new Collector.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #collector(List)}, creating the list if needed.
-		 */
-		public Builder addCollector(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
-			return this.addCollector(fn.apply(new Collector.Builder()).build());
+		public final Builder collector(Function<Collector.Builder, ObjectBuilder<Collector>> fn) {
+			return collector(fn.apply(new Collector.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code query}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>query</code>.
 		 */
-		public Builder query(List<QueryProfile> value) {
-			this.query = value;
+		public final Builder query(List<QueryProfile> list) {
+			this.query = _listAddAll(this.query, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code query}
+		 * <p>
+		 * Adds one or more values to <code>query</code>.
 		 */
-		public Builder query(QueryProfile... value) {
-			this.query = Arrays.asList(value);
+		public final Builder query(QueryProfile value, QueryProfile... values) {
+			this.query = _listAdd(this.query, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #query(List)}, creating the list if needed.
+		 * Required - API name: {@code query}
+		 * <p>
+		 * Adds a value to <code>query</code> using a builder lambda.
 		 */
-		public Builder addQuery(QueryProfile value) {
-			if (this.query == null) {
-				this.query = new ArrayList<>();
-			}
-			this.query.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #query(List)} to a singleton list.
-		 */
-		public Builder query(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
-			return this.query(fn.apply(new QueryProfile.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #query(List)}, creating the list if needed.
-		 */
-		public Builder addQuery(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
-			return this.addQuery(fn.apply(new QueryProfile.Builder()).build());
+		public final Builder query(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
+			return query(fn.apply(new QueryProfile.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code rewrite_time}
 		 */
-		public Builder rewriteTime(long value) {
+		public final Builder rewriteTime(long value) {
 			this.rewriteTime = value;
 			return this;
 		}
@@ -226,6 +212,7 @@ public final class SearchProfile implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SearchProfile build() {
+			_checkSingleUse();
 
 			return new SearchProfile(this);
 		}
@@ -237,9 +224,9 @@ public final class SearchProfile implements JsonpSerializable {
 	 * Json deserializer for {@link SearchProfile}
 	 */
 	public static final JsonpDeserializer<SearchProfile> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SearchProfile::setupSearchProfileDeserializer, Builder::build);
+			SearchProfile::setupSearchProfileDeserializer);
 
-	protected static void setupSearchProfileDeserializer(DelegatingDeserializer<SearchProfile.Builder> op) {
+	protected static void setupSearchProfileDeserializer(ObjectDeserializer<SearchProfile.Builder> op) {
 
 		op.add(Builder::collector, JsonpDeserializer.arrayDeserializer(Collector._DESERIALIZER), "collector");
 		op.add(Builder::query, JsonpDeserializer.arrayDeserializer(QueryProfile._DESERIALIZER), "query");

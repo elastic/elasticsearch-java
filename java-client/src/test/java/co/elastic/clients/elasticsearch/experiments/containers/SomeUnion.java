@@ -33,11 +33,13 @@ package co.elastic.clients.elasticsearch.experiments.containers;
   }
 */
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
+import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
@@ -46,10 +48,26 @@ import jakarta.json.stream.JsonGenerator;
 import java.util.function.Function;
 
 @JsonpDeserializable
-public class SomeUnion implements TaggedUnion<SomeUnionVariant>, JsonpSerializable {
+public class SomeUnion implements TaggedUnion<SomeUnion.Kind, SomeUnionVariant>, JsonpSerializable {
+
+    public enum Kind implements JsonEnum {
+        VariantA("variant_a"),
+        VariantB("variant_b");
+
+        private final String jsonValue;
+
+        Kind(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
+
+        @Override
+        public String jsonValue() {
+            return null;
+        }
+    }
 
     private final SomeUnionVariant _value;
-    private final String _type;
+    private final Kind _type;
 
     public SomeUnion(Builder builder) {
         this._value = builder._value;
@@ -65,7 +83,7 @@ public class SomeUnion implements TaggedUnion<SomeUnionVariant>, JsonpSerializab
     }
 
     @Override
-    public String _type() {
+    public Kind _kind() {
         return _type;
     }
 
@@ -75,17 +93,17 @@ public class SomeUnion implements TaggedUnion<SomeUnionVariant>, JsonpSerializab
     }
 
     public UVariantA variantA() {
-        return TaggedUnionUtils.get(this, "variant_a");
+        return TaggedUnionUtils.get(this, Kind.VariantA);
     }
 
     public UVariantB variantB() {
-        return TaggedUnionUtils.get(this, "variant_b");
+        return TaggedUnionUtils.get(this, Kind.VariantB);
     }
 
     static class Builder {
 
         private SomeUnionVariant _value;
-        private String _type;
+        private Kind _type;
 
         // This "builder" doesn't allow building objects. It only contains methods to set a variant.
         // These methods return a builder class with no other methods. This enforces the choice of one and only one
@@ -95,8 +113,9 @@ public class SomeUnion implements TaggedUnion<SomeUnionVariant>, JsonpSerializab
 
         public ObjectBuilder<SomeUnion> variantA(UVariantA value) {
             this._value = value;
-            this._type = "variant_a";
-            return ObjectBuilder.constant(build());
+            this._type = Kind.VariantA;
+            final SomeUnion result = build();
+            return () -> result;
         }
 
         public ObjectBuilder<SomeUnion> variantA(Function<UVariantA.Builder, UVariantA.Builder> fn) {
@@ -107,8 +126,9 @@ public class SomeUnion implements TaggedUnion<SomeUnionVariant>, JsonpSerializab
 
         public ObjectBuilder<SomeUnion> variantB(UVariantB value) {
             this._value = value;
-            this._type = "variant_b";
-            return ObjectBuilder.constant(build());
+            this._type = Kind.VariantB;
+            final SomeUnion result = build();
+            return () -> result;
         }
 
         public ObjectBuilder<SomeUnion> variantB(Function<UVariantB.Builder, UVariantB.Builder> fn) {
@@ -120,13 +140,13 @@ public class SomeUnion implements TaggedUnion<SomeUnionVariant>, JsonpSerializab
         }
     }
 
-    public static final JsonpDeserializer<SomeUnion> _DESERIALIZER = JsonpDeserializer.lazy(SomeUnion.Builder::new,
+    public static final JsonpDeserializer<SomeUnion> _DESERIALIZER = ObjectBuilderDeserializer.lazy(SomeUnion.Builder::new,
         SomeUnion::setupSomeUnionDeserializer, SomeUnion.Builder::build);
 
-    protected static void setupSomeUnionDeserializer(DelegatingDeserializer<SomeUnion.Builder> op) {
+    protected static void setupSomeUnionDeserializer(ObjectDeserializer<Builder> op) {
         op.add(SomeUnion.Builder::variantA, UVariantA._DESERIALIZER, "variant_a");
         op.add(SomeUnion.Builder::variantB, UVariantB._DESERIALIZER, "variant_b");
 
-        op.setTypeProperty("type");
+        op.setTypeProperty("type", null);
     }
 }

@@ -23,19 +23,19 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ml.preview_data_frame_analytics.DataframePreviewConfig;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,35 +44,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_data_frame_analytics.Request
-@JsonpDeserializable
-public final class PreviewDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final String id;
 
+/**
+ * Previews the extracted features used by a data frame analytics config.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/preview_data_frame_analytics/MlPreviewDataFrameAnalyticsRequest.ts#L24-L47">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class PreviewDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final DataframePreviewConfig config;
 
+	@Nullable
+	private final String id;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public PreviewDataFrameAnalyticsRequest(Builder builder) {
+	private PreviewDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = builder.id;
 		this.config = builder.config;
+		this.id = builder.id;
 
 	}
 
-	public PreviewDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Identifier for the data frame analytics job.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	@Nullable
-	public String id() {
-		return this.id;
+	public static PreviewDataFrameAnalyticsRequest of(
+			Function<Builder, ObjectBuilder<PreviewDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,8 +82,18 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	 * API name: {@code config}
 	 */
 	@Nullable
-	public DataframePreviewConfig config() {
+	public final DataframePreviewConfig config() {
 		return this.config;
+	}
+
+	/**
+	 * Identifier for the data frame analytics job.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public final String id() {
+		return this.id;
 	}
 
 	/**
@@ -99,7 +108,6 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.config != null) {
-
 			generator.writeKey("config");
 			this.config.serialize(generator, mapper);
 
@@ -112,22 +120,13 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Builder for {@link PreviewDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PreviewDataFrameAnalyticsRequest> {
-		@Nullable
-		private String id;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDataFrameAnalyticsRequest> {
 		@Nullable
 		private DataframePreviewConfig config;
 
-		/**
-		 * Identifier for the data frame analytics job.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
+		@Nullable
+		private String id;
 
 		/**
 		 * A data frame analytics config as described in Create data frame analytics
@@ -136,7 +135,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public Builder config(@Nullable DataframePreviewConfig value) {
+		public final Builder config(@Nullable DataframePreviewConfig value) {
 			this.config = value;
 			return this;
 		}
@@ -148,8 +147,19 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public Builder config(Function<DataframePreviewConfig.Builder, ObjectBuilder<DataframePreviewConfig>> fn) {
+		public final Builder config(
+				Function<DataframePreviewConfig.Builder, ObjectBuilder<DataframePreviewConfig>> fn) {
 			return this.config(fn.apply(new DataframePreviewConfig.Builder()).build());
+		}
+
+		/**
+		 * Identifier for the data frame analytics job.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public final Builder id(@Nullable String value) {
+			this.id = value;
+			return this;
 		}
 
 		/**
@@ -159,6 +169,7 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public PreviewDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new PreviewDataFrameAnalyticsRequest(this);
 		}
@@ -170,11 +181,10 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	 * Json deserializer for {@link PreviewDataFrameAnalyticsRequest}
 	 */
 	public static final JsonpDeserializer<PreviewDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PreviewDataFrameAnalyticsRequest::setupPreviewDataFrameAnalyticsRequestDeserializer,
-					Builder::build);
+			.lazy(Builder::new, PreviewDataFrameAnalyticsRequest::setupPreviewDataFrameAnalyticsRequestDeserializer);
 
 	protected static void setupPreviewDataFrameAnalyticsRequestDeserializer(
-			DelegatingDeserializer<PreviewDataFrameAnalyticsRequest.Builder> op) {
+			ObjectDeserializer<PreviewDataFrameAnalyticsRequest.Builder> op) {
 
 		op.add(Builder::config, DataframePreviewConfig._DESERIALIZER, "config");
 
@@ -185,7 +195,9 @@ public final class PreviewDataFrameAnalyticsRequest extends RequestBase implemen
 	/**
 	 * Endpoint "{@code ml.preview_data_frame_analytics}".
 	 */
-	public static final Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.preview_data_frame_analytics",
+
 			// Request method
 			request -> {
 				return "POST";

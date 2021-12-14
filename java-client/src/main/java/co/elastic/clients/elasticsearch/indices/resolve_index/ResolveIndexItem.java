@@ -23,30 +23,34 @@
 
 package co.elastic.clients.elasticsearch.indices.resolve_index;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/resolve_index/ResolveIndexResponse.ts#L30-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ResolveIndexItem implements JsonpSerializable {
+public class ResolveIndexItem implements JsonpSerializable {
 	private final String name;
 
-	@Nullable
 	private final List<String> aliases;
 
 	private final List<String> attributes;
@@ -56,38 +60,37 @@ public final class ResolveIndexItem implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResolveIndexItem(Builder builder) {
+	private ResolveIndexItem(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
-		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
 		this.dataStream = builder.dataStream;
 
 	}
 
-	public ResolveIndexItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResolveIndexItem of(Function<Builder, ObjectBuilder<ResolveIndexItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * API name: {@code aliases}
 	 */
-	@Nullable
-	public List<String> aliases() {
+	public final List<String> aliases() {
 		return this.aliases;
 	}
 
 	/**
 	 * Required - API name: {@code attributes}
 	 */
-	public List<String> attributes() {
+	public final List<String> attributes() {
 		return this.attributes;
 	}
 
@@ -95,7 +98,7 @@ public final class ResolveIndexItem implements JsonpSerializable {
 	 * API name: {@code data_stream}
 	 */
 	@Nullable
-	public String dataStream() {
+	public final String dataStream() {
 		return this.dataStream;
 	}
 
@@ -113,8 +116,7 @@ public final class ResolveIndexItem implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		if (this.aliases != null) {
-
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartArray();
 			for (String item0 : this.aliases) {
@@ -124,17 +126,17 @@ public final class ResolveIndexItem implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.attributes)) {
+			generator.writeKey("attributes");
+			generator.writeStartArray();
+			for (String item0 : this.attributes) {
+				generator.write(item0);
 
-		generator.writeKey("attributes");
-		generator.writeStartArray();
-		for (String item0 : this.attributes) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.dataStream != null) {
-
 			generator.writeKey("data_stream");
 			generator.write(this.dataStream);
 
@@ -147,7 +149,8 @@ public final class ResolveIndexItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResolveIndexItem}.
 	 */
-	public static class Builder implements ObjectBuilder<ResolveIndexItem> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexItem> {
 		private String name;
 
 		@Nullable
@@ -161,69 +164,55 @@ public final class ResolveIndexItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 */
-		public Builder aliases(@Nullable List<String> value) {
-			this.aliases = value;
+		public final Builder aliases(List<String> list) {
+			this.aliases = _listAddAll(this.aliases, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code aliases}
+		 * <p>
+		 * Adds one or more values to <code>aliases</code>.
 		 */
-		public Builder aliases(String... value) {
-			this.aliases = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed.
-		 */
-		public Builder addAliases(String value) {
-			if (this.aliases == null) {
-				this.aliases = new ArrayList<>();
-			}
-			this.aliases.add(value);
+		public final Builder aliases(String value, String... values) {
+			this.aliases = _listAdd(this.aliases, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>attributes</code>.
 		 */
-		public Builder attributes(List<String> value) {
-			this.attributes = value;
+		public final Builder attributes(List<String> list) {
+			this.attributes = _listAddAll(this.attributes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds one or more values to <code>attributes</code>.
 		 */
-		public Builder attributes(String... value) {
-			this.attributes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #attributes(List)}, creating the list if needed.
-		 */
-		public Builder addAttributes(String value) {
-			if (this.attributes == null) {
-				this.attributes = new ArrayList<>();
-			}
-			this.attributes.add(value);
+		public final Builder attributes(String value, String... values) {
+			this.attributes = _listAdd(this.attributes, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public Builder dataStream(@Nullable String value) {
+		public final Builder dataStream(@Nullable String value) {
 			this.dataStream = value;
 			return this;
 		}
@@ -235,6 +224,7 @@ public final class ResolveIndexItem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ResolveIndexItem build() {
+			_checkSingleUse();
 
 			return new ResolveIndexItem(this);
 		}
@@ -246,9 +236,9 @@ public final class ResolveIndexItem implements JsonpSerializable {
 	 * Json deserializer for {@link ResolveIndexItem}
 	 */
 	public static final JsonpDeserializer<ResolveIndexItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ResolveIndexItem::setupResolveIndexItemDeserializer, Builder::build);
+			ResolveIndexItem::setupResolveIndexItemDeserializer);
 
-	protected static void setupResolveIndexItemDeserializer(DelegatingDeserializer<ResolveIndexItem.Builder> op) {
+	protected static void setupResolveIndexItemDeserializer(ObjectDeserializer<ResolveIndexItem.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

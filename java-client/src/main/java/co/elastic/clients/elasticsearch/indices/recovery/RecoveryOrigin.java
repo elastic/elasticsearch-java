@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryOrigin
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L71-L84">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RecoveryOrigin implements JsonpSerializable {
+public class RecoveryOrigin implements JsonpSerializable {
 	@Nullable
 	private final String hostname;
 
@@ -79,7 +86,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryOrigin(Builder builder) {
+	private RecoveryOrigin(Builder builder) {
 
 		this.hostname = builder.hostname;
 		this.host = builder.host;
@@ -96,15 +103,15 @@ public final class RecoveryOrigin implements JsonpSerializable {
 
 	}
 
-	public RecoveryOrigin(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryOrigin of(Function<Builder, ObjectBuilder<RecoveryOrigin>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code hostname}
 	 */
 	@Nullable
-	public String hostname() {
+	public final String hostname() {
 		return this.hostname;
 	}
 
@@ -112,7 +119,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code host}
 	 */
 	@Nullable
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
@@ -120,7 +127,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code transport_address}
 	 */
 	@Nullable
-	public String transportAddress() {
+	public final String transportAddress() {
 		return this.transportAddress;
 	}
 
@@ -128,7 +135,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -136,7 +143,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code ip}
 	 */
 	@Nullable
-	public String ip() {
+	public final String ip() {
 		return this.ip;
 	}
 
@@ -144,7 +151,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -152,7 +159,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code bootstrap_new_history_uuid}
 	 */
 	@Nullable
-	public Boolean bootstrapNewHistoryUuid() {
+	public final Boolean bootstrapNewHistoryUuid() {
 		return this.bootstrapNewHistoryUuid;
 	}
 
@@ -160,7 +167,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code repository}
 	 */
 	@Nullable
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
@@ -168,7 +175,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code snapshot}
 	 */
 	@Nullable
-	public String snapshot() {
+	public final String snapshot() {
 		return this.snapshot;
 	}
 
@@ -176,7 +183,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -184,7 +191,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code restoreUUID}
 	 */
 	@Nullable
-	public String restoreuuid() {
+	public final String restoreuuid() {
 		return this.restoreuuid;
 	}
 
@@ -192,7 +199,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -208,73 +215,61 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.hostname != null) {
-
 			generator.writeKey("hostname");
 			generator.write(this.hostname);
 
 		}
 		if (this.host != null) {
-
 			generator.writeKey("host");
 			generator.write(this.host);
 
 		}
 		if (this.transportAddress != null) {
-
 			generator.writeKey("transport_address");
 			generator.write(this.transportAddress);
 
 		}
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.ip != null) {
-
 			generator.writeKey("ip");
 			generator.write(this.ip);
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.bootstrapNewHistoryUuid != null) {
-
 			generator.writeKey("bootstrap_new_history_uuid");
 			generator.write(this.bootstrapNewHistoryUuid);
 
 		}
 		if (this.repository != null) {
-
 			generator.writeKey("repository");
 			generator.write(this.repository);
 
 		}
 		if (this.snapshot != null) {
-
 			generator.writeKey("snapshot");
 			generator.write(this.snapshot);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.restoreuuid != null) {
-
 			generator.writeKey("restoreUUID");
 			generator.write(this.restoreuuid);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
@@ -287,7 +282,8 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryOrigin}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryOrigin> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryOrigin> {
 		@Nullable
 		private String hostname;
 
@@ -327,7 +323,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code hostname}
 		 */
-		public Builder hostname(@Nullable String value) {
+		public final Builder hostname(@Nullable String value) {
 			this.hostname = value;
 			return this;
 		}
@@ -335,7 +331,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code host}
 		 */
-		public Builder host(@Nullable String value) {
+		public final Builder host(@Nullable String value) {
 			this.host = value;
 			return this;
 		}
@@ -343,7 +339,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code transport_address}
 		 */
-		public Builder transportAddress(@Nullable String value) {
+		public final Builder transportAddress(@Nullable String value) {
 			this.transportAddress = value;
 			return this;
 		}
@@ -351,7 +347,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -359,7 +355,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code ip}
 		 */
-		public Builder ip(@Nullable String value) {
+		public final Builder ip(@Nullable String value) {
 			this.ip = value;
 			return this;
 		}
@@ -367,7 +363,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -375,7 +371,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code bootstrap_new_history_uuid}
 		 */
-		public Builder bootstrapNewHistoryUuid(@Nullable Boolean value) {
+		public final Builder bootstrapNewHistoryUuid(@Nullable Boolean value) {
 			this.bootstrapNewHistoryUuid = value;
 			return this;
 		}
@@ -383,7 +379,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code repository}
 		 */
-		public Builder repository(@Nullable String value) {
+		public final Builder repository(@Nullable String value) {
 			this.repository = value;
 			return this;
 		}
@@ -391,7 +387,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code snapshot}
 		 */
-		public Builder snapshot(@Nullable String value) {
+		public final Builder snapshot(@Nullable String value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -399,7 +395,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -407,7 +403,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code restoreUUID}
 		 */
-		public Builder restoreuuid(@Nullable String value) {
+		public final Builder restoreuuid(@Nullable String value) {
 			this.restoreuuid = value;
 			return this;
 		}
@@ -415,7 +411,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -427,6 +423,7 @@ public final class RecoveryOrigin implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryOrigin build() {
+			_checkSingleUse();
 
 			return new RecoveryOrigin(this);
 		}
@@ -438,9 +435,9 @@ public final class RecoveryOrigin implements JsonpSerializable {
 	 * Json deserializer for {@link RecoveryOrigin}
 	 */
 	public static final JsonpDeserializer<RecoveryOrigin> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryOrigin::setupRecoveryOriginDeserializer, Builder::build);
+			RecoveryOrigin::setupRecoveryOriginDeserializer);
 
-	protected static void setupRecoveryOriginDeserializer(DelegatingDeserializer<RecoveryOrigin.Builder> op) {
+	protected static void setupRecoveryOriginDeserializer(ObjectDeserializer<RecoveryOrigin.Builder> op) {
 
 		op.add(Builder::hostname, JsonpDeserializer.stringDeserializer(), "hostname");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");

@@ -24,12 +24,12 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -38,34 +38,40 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.forecast.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/forecast/MlForecastJobResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ForecastResponse extends AcknowledgedResponseBase {
+public class ForecastResponse extends AcknowledgedResponseBase {
 	private final String forecastId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ForecastResponse(Builder builder) {
+	private ForecastResponse(Builder builder) {
 		super(builder);
 
-		this.forecastId = Objects.requireNonNull(builder.forecastId, "forecast_id");
+		this.forecastId = ApiTypeHelper.requireNonNull(builder.forecastId, this, "forecastId");
 
 	}
 
-	public ForecastResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ForecastResponse of(Function<Builder, ObjectBuilder<ForecastResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code forecast_id}
 	 */
-	public String forecastId() {
+	public final String forecastId() {
 		return this.forecastId;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("forecast_id");
 		generator.write(this.forecastId);
 
@@ -76,6 +82,7 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link ForecastResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ForecastResponse> {
@@ -84,7 +91,7 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code forecast_id}
 		 */
-		public Builder forecastId(String value) {
+		public final Builder forecastId(String value) {
 			this.forecastId = value;
 			return this;
 		}
@@ -101,6 +108,7 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ForecastResponse build() {
+			_checkSingleUse();
 
 			return new ForecastResponse(this);
 		}
@@ -112,9 +120,9 @@ public final class ForecastResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link ForecastResponse}
 	 */
 	public static final JsonpDeserializer<ForecastResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ForecastResponse::setupForecastResponseDeserializer, Builder::build);
+			ForecastResponse::setupForecastResponseDeserializer);
 
-	protected static void setupForecastResponseDeserializer(DelegatingDeserializer<ForecastResponse.Builder> op) {
+	protected static void setupForecastResponseDeserializer(ObjectDeserializer<ForecastResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::forecastId, JsonpDeserializer.stringDeserializer(), "forecast_id");
 

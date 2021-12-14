@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.IpProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L75-L81">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IpProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class IpProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Double boost;
 
@@ -50,34 +56,38 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 	@Nullable
 	private final String nullValue;
 
+	@Nullable
+	private final Boolean ignoreMalformed;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public IpProperty(Builder builder) {
+	private IpProperty(Builder builder) {
 		super(builder);
 
 		this.boost = builder.boost;
 		this.index = builder.index;
 		this.nullValue = builder.nullValue;
+		this.ignoreMalformed = builder.ignoreMalformed;
 
 	}
 
-	public IpProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IpProperty of(Function<Builder, ObjectBuilder<IpProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "ip";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Ip;
 	}
 
 	/**
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Double boost() {
+	public final Double boost() {
 		return this.boost;
 	}
 
@@ -85,7 +95,7 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -93,8 +103,16 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public String nullValue() {
+	public final String nullValue() {
 		return this.nullValue;
+	}
+
+	/**
+	 * API name: {@code ignore_malformed}
+	 */
+	@Nullable
+	public final Boolean ignoreMalformed() {
+		return this.ignoreMalformed;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -102,21 +120,23 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 		generator.write("type", "ip");
 		super.serializeInternal(generator, mapper);
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
+
+		}
+		if (this.ignoreMalformed != null) {
+			generator.writeKey("ignore_malformed");
+			generator.write(this.ignoreMalformed);
 
 		}
 
@@ -127,6 +147,7 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 	/**
 	 * Builder for {@link IpProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IpProperty> {
@@ -139,10 +160,13 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 		@Nullable
 		private String nullValue;
 
+		@Nullable
+		private Boolean ignoreMalformed;
+
 		/**
 		 * API name: {@code boost}
 		 */
-		public Builder boost(@Nullable Double value) {
+		public final Builder boost(@Nullable Double value) {
 			this.boost = value;
 			return this;
 		}
@@ -150,7 +174,7 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable Boolean value) {
+		public final Builder index(@Nullable Boolean value) {
 			this.index = value;
 			return this;
 		}
@@ -158,8 +182,16 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable String value) {
+		public final Builder nullValue(@Nullable String value) {
 			this.nullValue = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ignore_malformed}
+		 */
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
+			this.ignoreMalformed = value;
 			return this;
 		}
 
@@ -175,6 +207,7 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 		 *             if some of the required fields are null.
 		 */
 		public IpProperty build() {
+			_checkSingleUse();
 
 			return new IpProperty(this);
 		}
@@ -186,13 +219,14 @@ public final class IpProperty extends DocValuesPropertyBase implements PropertyV
 	 * Json deserializer for {@link IpProperty}
 	 */
 	public static final JsonpDeserializer<IpProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IpProperty::setupIpPropertyDeserializer, Builder::build);
+			IpProperty::setupIpPropertyDeserializer);
 
-	protected static void setupIpPropertyDeserializer(DelegatingDeserializer<IpProperty.Builder> op) {
+	protected static void setupIpPropertyDeserializer(ObjectDeserializer<IpProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
 		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
+		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 
 		op.ignore("type");
 	}

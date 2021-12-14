@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.IntegerRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IntegerRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class IntegerRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public IntegerRangeProperty(Builder builder) {
+	private IntegerRangeProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public IntegerRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IntegerRangeProperty of(Function<Builder, ObjectBuilder<IntegerRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "integer_range";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.IntegerRange;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class IntegerRangeProperty extends RangePropertyBase implements Pro
 	/**
 	 * Builder for {@link IntegerRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IntegerRangeProperty> {
@@ -83,6 +90,7 @@ public final class IntegerRangeProperty extends RangePropertyBase implements Pro
 		 *             if some of the required fields are null.
 		 */
 		public IntegerRangeProperty build() {
+			_checkSingleUse();
 
 			return new IntegerRangeProperty(this);
 		}
@@ -94,10 +102,9 @@ public final class IntegerRangeProperty extends RangePropertyBase implements Pro
 	 * Json deserializer for {@link IntegerRangeProperty}
 	 */
 	public static final JsonpDeserializer<IntegerRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IntegerRangeProperty::setupIntegerRangePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, IntegerRangeProperty::setupIntegerRangePropertyDeserializer);
 
-	protected static void setupIntegerRangePropertyDeserializer(
-			DelegatingDeserializer<IntegerRangeProperty.Builder> op) {
+	protected static void setupIntegerRangePropertyDeserializer(ObjectDeserializer<IntegerRangeProperty.Builder> op) {
 		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
 		op.ignore("type");

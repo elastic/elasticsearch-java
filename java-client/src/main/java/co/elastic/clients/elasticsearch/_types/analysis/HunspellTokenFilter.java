@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.HunspellTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L198-L204">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class HunspellTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final boolean dedup;
 
 	private final String dictionary;
@@ -50,53 +57,53 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HunspellTokenFilter(Builder builder) {
+	private HunspellTokenFilter(Builder builder) {
 		super(builder);
 
-		this.dedup = Objects.requireNonNull(builder.dedup, "dedup");
-		this.dictionary = Objects.requireNonNull(builder.dictionary, "dictionary");
-		this.locale = Objects.requireNonNull(builder.locale, "locale");
-		this.longestOnly = Objects.requireNonNull(builder.longestOnly, "longest_only");
+		this.dedup = ApiTypeHelper.requireNonNull(builder.dedup, this, "dedup");
+		this.dictionary = ApiTypeHelper.requireNonNull(builder.dictionary, this, "dictionary");
+		this.locale = ApiTypeHelper.requireNonNull(builder.locale, this, "locale");
+		this.longestOnly = ApiTypeHelper.requireNonNull(builder.longestOnly, this, "longestOnly");
 
 	}
 
-	public HunspellTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HunspellTokenFilter of(Function<Builder, ObjectBuilder<HunspellTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "hunspell";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Hunspell;
 	}
 
 	/**
 	 * Required - API name: {@code dedup}
 	 */
-	public boolean dedup() {
+	public final boolean dedup() {
 		return this.dedup;
 	}
 
 	/**
 	 * Required - API name: {@code dictionary}
 	 */
-	public String dictionary() {
+	public final String dictionary() {
 		return this.dictionary;
 	}
 
 	/**
 	 * Required - API name: {@code locale}
 	 */
-	public String locale() {
+	public final String locale() {
 		return this.locale;
 	}
 
 	/**
 	 * Required - API name: {@code longest_only}
 	 */
-	public boolean longestOnly() {
+	public final boolean longestOnly() {
 		return this.longestOnly;
 	}
 
@@ -104,7 +111,6 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 
 		generator.write("type", "hunspell");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("dedup");
 		generator.write(this.dedup);
 
@@ -124,6 +130,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 	/**
 	 * Builder for {@link HunspellTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HunspellTokenFilter> {
@@ -138,7 +145,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * Required - API name: {@code dedup}
 		 */
-		public Builder dedup(boolean value) {
+		public final Builder dedup(boolean value) {
 			this.dedup = value;
 			return this;
 		}
@@ -146,7 +153,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * Required - API name: {@code dictionary}
 		 */
-		public Builder dictionary(String value) {
+		public final Builder dictionary(String value) {
 			this.dictionary = value;
 			return this;
 		}
@@ -154,7 +161,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * Required - API name: {@code locale}
 		 */
-		public Builder locale(String value) {
+		public final Builder locale(String value) {
 			this.locale = value;
 			return this;
 		}
@@ -162,7 +169,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * Required - API name: {@code longest_only}
 		 */
-		public Builder longestOnly(boolean value) {
+		public final Builder longestOnly(boolean value) {
 			this.longestOnly = value;
 			return this;
 		}
@@ -179,6 +186,7 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 		 *             if some of the required fields are null.
 		 */
 		public HunspellTokenFilter build() {
+			_checkSingleUse();
 
 			return new HunspellTokenFilter(this);
 		}
@@ -190,9 +198,9 @@ public final class HunspellTokenFilter extends TokenFilterBase implements TokenF
 	 * Json deserializer for {@link HunspellTokenFilter}
 	 */
 	public static final JsonpDeserializer<HunspellTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HunspellTokenFilter::setupHunspellTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, HunspellTokenFilter::setupHunspellTokenFilterDeserializer);
 
-	protected static void setupHunspellTokenFilterDeserializer(DelegatingDeserializer<HunspellTokenFilter.Builder> op) {
+	protected static void setupHunspellTokenFilterDeserializer(ObjectDeserializer<HunspellTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::dedup, JsonpDeserializer.booleanDeserializer(), "dedup");
 		op.add(Builder::dictionary, JsonpDeserializer.stringDeserializer(), "dictionary");

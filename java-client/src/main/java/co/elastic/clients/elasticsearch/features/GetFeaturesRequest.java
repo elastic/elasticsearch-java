@@ -23,23 +23,31 @@
 
 package co.elastic.clients.elasticsearch.features;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: features.get_features.Request
 
-public final class GetFeaturesRequest extends RequestBase {
+/**
+ * Gets a list of features which can be included in snapshots using the
+ * feature_states field when creating a snapshot
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/features/get_features/GetFeaturesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class GetFeaturesRequest extends RequestBase {
 	public GetFeaturesRequest() {
 	}
 
@@ -53,7 +61,9 @@ public final class GetFeaturesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code features.get_features}".
 	 */
-	public static final Endpoint<GetFeaturesRequest, GetFeaturesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetFeaturesRequest, GetFeaturesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/features.get_features",
+
 			// Request method
 			request -> {
 				return "GET";

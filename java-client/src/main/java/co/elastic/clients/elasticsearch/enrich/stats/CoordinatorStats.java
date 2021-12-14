@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.enrich.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -40,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.CoordinatorStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/stats/types.ts#L29-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CoordinatorStats implements JsonpSerializable {
+public class CoordinatorStats implements JsonpSerializable {
 	private final long executedSearchesTotal;
 
 	private final String nodeId;
@@ -54,52 +62,55 @@ public final class CoordinatorStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CoordinatorStats(Builder builder) {
+	private CoordinatorStats(Builder builder) {
 
-		this.executedSearchesTotal = Objects.requireNonNull(builder.executedSearchesTotal, "executed_searches_total");
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
-		this.queueSize = Objects.requireNonNull(builder.queueSize, "queue_size");
-		this.remoteRequestsCurrent = Objects.requireNonNull(builder.remoteRequestsCurrent, "remote_requests_current");
-		this.remoteRequestsTotal = Objects.requireNonNull(builder.remoteRequestsTotal, "remote_requests_total");
+		this.executedSearchesTotal = ApiTypeHelper.requireNonNull(builder.executedSearchesTotal, this,
+				"executedSearchesTotal");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
+		this.remoteRequestsCurrent = ApiTypeHelper.requireNonNull(builder.remoteRequestsCurrent, this,
+				"remoteRequestsCurrent");
+		this.remoteRequestsTotal = ApiTypeHelper.requireNonNull(builder.remoteRequestsTotal, this,
+				"remoteRequestsTotal");
 
 	}
 
-	public CoordinatorStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CoordinatorStats of(Function<Builder, ObjectBuilder<CoordinatorStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code executed_searches_total}
 	 */
-	public long executedSearchesTotal() {
+	public final long executedSearchesTotal() {
 		return this.executedSearchesTotal;
 	}
 
 	/**
 	 * Required - API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
 	 * Required - API name: {@code queue_size}
 	 */
-	public int queueSize() {
+	public final int queueSize() {
 		return this.queueSize;
 	}
 
 	/**
 	 * Required - API name: {@code remote_requests_current}
 	 */
-	public int remoteRequestsCurrent() {
+	public final int remoteRequestsCurrent() {
 		return this.remoteRequestsCurrent;
 	}
 
 	/**
 	 * Required - API name: {@code remote_requests_total}
 	 */
-	public long remoteRequestsTotal() {
+	public final long remoteRequestsTotal() {
 		return this.remoteRequestsTotal;
 	}
 
@@ -136,7 +147,8 @@ public final class CoordinatorStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CoordinatorStats}.
 	 */
-	public static class Builder implements ObjectBuilder<CoordinatorStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CoordinatorStats> {
 		private Long executedSearchesTotal;
 
 		private String nodeId;
@@ -150,7 +162,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code executed_searches_total}
 		 */
-		public Builder executedSearchesTotal(long value) {
+		public final Builder executedSearchesTotal(long value) {
 			this.executedSearchesTotal = value;
 			return this;
 		}
@@ -158,7 +170,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -166,7 +178,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code queue_size}
 		 */
-		public Builder queueSize(int value) {
+		public final Builder queueSize(int value) {
 			this.queueSize = value;
 			return this;
 		}
@@ -174,7 +186,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code remote_requests_current}
 		 */
-		public Builder remoteRequestsCurrent(int value) {
+		public final Builder remoteRequestsCurrent(int value) {
 			this.remoteRequestsCurrent = value;
 			return this;
 		}
@@ -182,7 +194,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code remote_requests_total}
 		 */
-		public Builder remoteRequestsTotal(long value) {
+		public final Builder remoteRequestsTotal(long value) {
 			this.remoteRequestsTotal = value;
 			return this;
 		}
@@ -194,6 +206,7 @@ public final class CoordinatorStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CoordinatorStats build() {
+			_checkSingleUse();
 
 			return new CoordinatorStats(this);
 		}
@@ -205,9 +218,9 @@ public final class CoordinatorStats implements JsonpSerializable {
 	 * Json deserializer for {@link CoordinatorStats}
 	 */
 	public static final JsonpDeserializer<CoordinatorStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CoordinatorStats::setupCoordinatorStatsDeserializer, Builder::build);
+			CoordinatorStats::setupCoordinatorStatsDeserializer);
 
-	protected static void setupCoordinatorStatsDeserializer(DelegatingDeserializer<CoordinatorStats.Builder> op) {
+	protected static void setupCoordinatorStatsDeserializer(ObjectDeserializer<CoordinatorStats.Builder> op) {
 
 		op.add(Builder::executedSearchesTotal, JsonpDeserializer.longDeserializer(), "executed_searches_total");
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");

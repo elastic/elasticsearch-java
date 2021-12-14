@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -37,6 +37,13 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: async_search._types.AsyncSearchDocumentResponseBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/_types/AsyncSearchResponseBase.ts#L31-L35">API
+ *      specification</a>
+ */
 
 public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSearchResponseBase {
 	private final AsyncSearch<TDocument> response;
@@ -46,10 +53,10 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
+	protected AsyncSearchDocumentResponseBase(AbstractBuilder<TDocument, ?> builder) {
 		super(builder);
 
-		this.response = Objects.requireNonNull(builder.response, "response");
+		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
@@ -57,14 +64,13 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 	/**
 	 * Required - API name: {@code response}
 	 */
-	public AsyncSearch<TDocument> response() {
+	public final AsyncSearch<TDocument> response() {
 		return this.response;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("response");
 		this.response.serialize(generator, mapper);
 
@@ -81,7 +87,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public BuilderT response(AsyncSearch<TDocument> value) {
+		public final BuilderT response(AsyncSearch<TDocument> value) {
 			this.response = value;
 			return self();
 		}
@@ -89,7 +95,8 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public BuilderT response(Function<AsyncSearch.Builder<TDocument>, ObjectBuilder<AsyncSearch<TDocument>>> fn) {
+		public final BuilderT response(
+				Function<AsyncSearch.Builder<TDocument>, ObjectBuilder<AsyncSearch<TDocument>>> fn) {
 			return this.response(fn.apply(new AsyncSearch.Builder<TDocument>()).build());
 		}
 
@@ -97,7 +104,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public BuilderT tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final BuilderT tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return self();
 		}
@@ -106,7 +113,7 @@ public abstract class AsyncSearchDocumentResponseBase<TDocument> extends AsyncSe
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupAsyncSearchDocumentResponseBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
+			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		AsyncSearchResponseBase.setupAsyncSearchResponseBaseDeserializer(op);
 		op.add(AbstractBuilder::response, AsyncSearch.createAsyncSearchDeserializer(tDocumentDeserializer), "response");
 

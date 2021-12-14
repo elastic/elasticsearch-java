@@ -23,48 +23,56 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.search._types.LaplaceSmoothingModel
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L181-L183">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
+public class LaplaceSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
 	private final double alpha;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LaplaceSmoothingModel(Builder builder) {
+	private LaplaceSmoothingModel(Builder builder) {
 
-		this.alpha = Objects.requireNonNull(builder.alpha, "alpha");
+		this.alpha = ApiTypeHelper.requireNonNull(builder.alpha, this, "alpha");
 
 	}
 
-	public LaplaceSmoothingModel(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LaplaceSmoothingModel of(Function<Builder, ObjectBuilder<LaplaceSmoothingModel>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link SmoothingModel} variant type
+	 * SmoothingModel variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "laplace";
+	public SmoothingModel.Kind _smoothingModelKind() {
+		return SmoothingModel.Kind.Laplace;
 	}
 
 	/**
 	 * Required - API name: {@code alpha}
 	 */
-	public double alpha() {
+	public final double alpha() {
 		return this.alpha;
 	}
 
@@ -89,13 +97,14 @@ public final class LaplaceSmoothingModel implements SmoothingModelVariant, Jsonp
 	/**
 	 * Builder for {@link LaplaceSmoothingModel}.
 	 */
-	public static class Builder implements ObjectBuilder<LaplaceSmoothingModel> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LaplaceSmoothingModel> {
 		private Double alpha;
 
 		/**
 		 * Required - API name: {@code alpha}
 		 */
-		public Builder alpha(double value) {
+		public final Builder alpha(double value) {
 			this.alpha = value;
 			return this;
 		}
@@ -107,6 +116,7 @@ public final class LaplaceSmoothingModel implements SmoothingModelVariant, Jsonp
 		 *             if some of the required fields are null.
 		 */
 		public LaplaceSmoothingModel build() {
+			_checkSingleUse();
 
 			return new LaplaceSmoothingModel(this);
 		}
@@ -118,10 +128,9 @@ public final class LaplaceSmoothingModel implements SmoothingModelVariant, Jsonp
 	 * Json deserializer for {@link LaplaceSmoothingModel}
 	 */
 	public static final JsonpDeserializer<LaplaceSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LaplaceSmoothingModel::setupLaplaceSmoothingModelDeserializer, Builder::build);
+			.lazy(Builder::new, LaplaceSmoothingModel::setupLaplaceSmoothingModelDeserializer);
 
-	protected static void setupLaplaceSmoothingModelDeserializer(
-			DelegatingDeserializer<LaplaceSmoothingModel.Builder> op) {
+	protected static void setupLaplaceSmoothingModelDeserializer(ObjectDeserializer<LaplaceSmoothingModel.Builder> op) {
 
 		op.add(Builder::alpha, JsonpDeserializer.doubleDeserializer(), "alpha");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.AverageAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L48-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AverageAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class AverageAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public AverageAggregation(Builder builder) {
+	private AverageAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public AverageAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AverageAggregation of(Function<Builder, ObjectBuilder<AverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "avg";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Avg;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class AverageAggregation extends FormatMetricAggregationBase implem
 	/**
 	 * Builder for {@link AverageAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AverageAggregation> {
@@ -75,6 +82,7 @@ public final class AverageAggregation extends FormatMetricAggregationBase implem
 		 *             if some of the required fields are null.
 		 */
 		public AverageAggregation build() {
+			_checkSingleUse();
 
 			return new AverageAggregation(this);
 		}
@@ -86,9 +94,9 @@ public final class AverageAggregation extends FormatMetricAggregationBase implem
 	 * Json deserializer for {@link AverageAggregation}
 	 */
 	public static final JsonpDeserializer<AverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AverageAggregation::setupAverageAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, AverageAggregation::setupAverageAggregationDeserializer);
 
-	protected static void setupAverageAggregationDeserializer(DelegatingDeserializer<AverageAggregation.Builder> op) {
+	protected static void setupAverageAggregationDeserializer(ObjectDeserializer<AverageAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 
 	}

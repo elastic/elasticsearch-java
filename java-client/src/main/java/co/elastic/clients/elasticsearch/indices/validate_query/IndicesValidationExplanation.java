@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.indices.validate_query;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.IndicesValidationExplanation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/validate_query/IndicesValidateQueryResponse.ts#L32-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndicesValidationExplanation implements JsonpSerializable {
+public class IndicesValidationExplanation implements JsonpSerializable {
 	@Nullable
 	private final String error;
 
@@ -53,24 +61,24 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesValidationExplanation(Builder builder) {
+	private IndicesValidationExplanation(Builder builder) {
 
 		this.error = builder.error;
 		this.explanation = builder.explanation;
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.valid = Objects.requireNonNull(builder.valid, "valid");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.valid = ApiTypeHelper.requireNonNull(builder.valid, this, "valid");
 
 	}
 
-	public IndicesValidationExplanation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesValidationExplanation of(Function<Builder, ObjectBuilder<IndicesValidationExplanation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code error}
 	 */
 	@Nullable
-	public String error() {
+	public final String error() {
 		return this.error;
 	}
 
@@ -78,21 +86,21 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 	 * API name: {@code explanation}
 	 */
 	@Nullable
-	public String explanation() {
+	public final String explanation() {
 		return this.explanation;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code valid}
 	 */
-	public boolean valid() {
+	public final boolean valid() {
 		return this.valid;
 	}
 
@@ -108,18 +116,15 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.error != null) {
-
 			generator.writeKey("error");
 			generator.write(this.error);
 
 		}
 		if (this.explanation != null) {
-
 			generator.writeKey("explanation");
 			generator.write(this.explanation);
 
 		}
-
 		generator.writeKey("index");
 		generator.write(this.index);
 
@@ -133,7 +138,8 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndicesValidationExplanation}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesValidationExplanation> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesValidationExplanation> {
 		@Nullable
 		private String error;
 
@@ -147,7 +153,7 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 		/**
 		 * API name: {@code error}
 		 */
-		public Builder error(@Nullable String value) {
+		public final Builder error(@Nullable String value) {
 			this.error = value;
 			return this;
 		}
@@ -155,7 +161,7 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 		/**
 		 * API name: {@code explanation}
 		 */
-		public Builder explanation(@Nullable String value) {
+		public final Builder explanation(@Nullable String value) {
 			this.explanation = value;
 			return this;
 		}
@@ -163,7 +169,7 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -171,7 +177,7 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code valid}
 		 */
-		public Builder valid(boolean value) {
+		public final Builder valid(boolean value) {
 			this.valid = value;
 			return this;
 		}
@@ -183,6 +189,7 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesValidationExplanation build() {
+			_checkSingleUse();
 
 			return new IndicesValidationExplanation(this);
 		}
@@ -193,11 +200,11 @@ public final class IndicesValidationExplanation implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndicesValidationExplanation}
 	 */
-	public static final JsonpDeserializer<IndicesValidationExplanation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, IndicesValidationExplanation::setupIndicesValidationExplanationDeserializer, Builder::build);
+	public static final JsonpDeserializer<IndicesValidationExplanation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndicesValidationExplanation::setupIndicesValidationExplanationDeserializer);
 
 	protected static void setupIndicesValidationExplanationDeserializer(
-			DelegatingDeserializer<IndicesValidationExplanation.Builder> op) {
+			ObjectDeserializer<IndicesValidationExplanation.Builder> op) {
 
 		op.add(Builder::error, JsonpDeserializer.stringDeserializer(), "error");
 		op.add(Builder::explanation, JsonpDeserializer.stringDeserializer(), "explanation");

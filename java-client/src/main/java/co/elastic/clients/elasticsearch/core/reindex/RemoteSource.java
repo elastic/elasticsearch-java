@@ -23,14 +23,16 @@
 
 package co.elastic.clients.elasticsearch.core.reindex;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,9 +40,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.RemoteSource
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/reindex/types.ts#L58-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RemoteSource implements JsonpSerializable {
-	private final String connectTimeout;
+public class RemoteSource implements JsonpSerializable {
+	private final Time connectTimeout;
 
 	private final String host;
 
@@ -48,56 +57,56 @@ public final class RemoteSource implements JsonpSerializable {
 
 	private final String password;
 
-	private final String socketTimeout;
+	private final Time socketTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RemoteSource(Builder builder) {
+	private RemoteSource(Builder builder) {
 
-		this.connectTimeout = Objects.requireNonNull(builder.connectTimeout, "connect_timeout");
-		this.host = Objects.requireNonNull(builder.host, "host");
-		this.username = Objects.requireNonNull(builder.username, "username");
-		this.password = Objects.requireNonNull(builder.password, "password");
-		this.socketTimeout = Objects.requireNonNull(builder.socketTimeout, "socket_timeout");
+		this.connectTimeout = ApiTypeHelper.requireNonNull(builder.connectTimeout, this, "connectTimeout");
+		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
+		this.password = ApiTypeHelper.requireNonNull(builder.password, this, "password");
+		this.socketTimeout = ApiTypeHelper.requireNonNull(builder.socketTimeout, this, "socketTimeout");
 
 	}
 
-	public RemoteSource(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RemoteSource of(Function<Builder, ObjectBuilder<RemoteSource>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code connect_timeout}
 	 */
-	public String connectTimeout() {
+	public final Time connectTimeout() {
 		return this.connectTimeout;
 	}
 
 	/**
 	 * Required - API name: {@code host}
 	 */
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
 	/**
 	 * Required - API name: {@code username}
 	 */
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
 	/**
 	 * Required - API name: {@code password}
 	 */
-	public String password() {
+	public final String password() {
 		return this.password;
 	}
 
 	/**
 	 * Required - API name: {@code socket_timeout}
 	 */
-	public String socketTimeout() {
+	public final Time socketTimeout() {
 		return this.socketTimeout;
 	}
 
@@ -113,7 +122,7 @@ public final class RemoteSource implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("connect_timeout");
-		generator.write(this.connectTimeout);
+		this.connectTimeout.serialize(generator, mapper);
 
 		generator.writeKey("host");
 		generator.write(this.host);
@@ -125,7 +134,7 @@ public final class RemoteSource implements JsonpSerializable {
 		generator.write(this.password);
 
 		generator.writeKey("socket_timeout");
-		generator.write(this.socketTimeout);
+		this.socketTimeout.serialize(generator, mapper);
 
 	}
 
@@ -134,8 +143,9 @@ public final class RemoteSource implements JsonpSerializable {
 	/**
 	 * Builder for {@link RemoteSource}.
 	 */
-	public static class Builder implements ObjectBuilder<RemoteSource> {
-		private String connectTimeout;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemoteSource> {
+		private Time connectTimeout;
 
 		private String host;
 
@@ -143,20 +153,27 @@ public final class RemoteSource implements JsonpSerializable {
 
 		private String password;
 
-		private String socketTimeout;
+		private Time socketTimeout;
 
 		/**
 		 * Required - API name: {@code connect_timeout}
 		 */
-		public Builder connectTimeout(String value) {
+		public final Builder connectTimeout(Time value) {
 			this.connectTimeout = value;
 			return this;
 		}
 
 		/**
+		 * Required - API name: {@code connect_timeout}
+		 */
+		public final Builder connectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.connectTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code host}
 		 */
-		public Builder host(String value) {
+		public final Builder host(String value) {
 			this.host = value;
 			return this;
 		}
@@ -164,7 +181,7 @@ public final class RemoteSource implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code username}
 		 */
-		public Builder username(String value) {
+		public final Builder username(String value) {
 			this.username = value;
 			return this;
 		}
@@ -172,7 +189,7 @@ public final class RemoteSource implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code password}
 		 */
-		public Builder password(String value) {
+		public final Builder password(String value) {
 			this.password = value;
 			return this;
 		}
@@ -180,9 +197,16 @@ public final class RemoteSource implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code socket_timeout}
 		 */
-		public Builder socketTimeout(String value) {
+		public final Builder socketTimeout(Time value) {
 			this.socketTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code socket_timeout}
+		 */
+		public final Builder socketTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.socketTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -192,6 +216,7 @@ public final class RemoteSource implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RemoteSource build() {
+			_checkSingleUse();
 
 			return new RemoteSource(this);
 		}
@@ -203,15 +228,15 @@ public final class RemoteSource implements JsonpSerializable {
 	 * Json deserializer for {@link RemoteSource}
 	 */
 	public static final JsonpDeserializer<RemoteSource> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RemoteSource::setupRemoteSourceDeserializer, Builder::build);
+			RemoteSource::setupRemoteSourceDeserializer);
 
-	protected static void setupRemoteSourceDeserializer(DelegatingDeserializer<RemoteSource.Builder> op) {
+	protected static void setupRemoteSourceDeserializer(ObjectDeserializer<RemoteSource.Builder> op) {
 
-		op.add(Builder::connectTimeout, JsonpDeserializer.stringDeserializer(), "connect_timeout");
+		op.add(Builder::connectTimeout, Time._DESERIALIZER, "connect_timeout");
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
-		op.add(Builder::socketTimeout, JsonpDeserializer.stringDeserializer(), "socket_timeout");
+		op.add(Builder::socketTimeout, Time._DESERIALIZER, "socket_timeout");
 
 	}
 

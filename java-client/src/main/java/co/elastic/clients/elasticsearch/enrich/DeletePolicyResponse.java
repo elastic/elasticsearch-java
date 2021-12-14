@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.enrich;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: enrich.delete_policy.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/delete_policy/DeleteEnrichPolicyResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeletePolicyResponse extends AcknowledgedResponseBase {
+public class DeletePolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeletePolicyResponse(Builder builder) {
+	private DeletePolicyResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeletePolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeletePolicyResponse of(Function<Builder, ObjectBuilder<DeletePolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeletePolicyResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeletePolicyResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeletePolicyResponse> {
@@ -68,6 +75,7 @@ public final class DeletePolicyResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeletePolicyResponse build() {
+			_checkSingleUse();
 
 			return new DeletePolicyResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class DeletePolicyResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeletePolicyResponse}
 	 */
 	public static final JsonpDeserializer<DeletePolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeletePolicyResponse::setupDeletePolicyResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeletePolicyResponse::setupDeletePolicyResponseDeserializer);
 
-	protected static void setupDeletePolicyResponseDeserializer(
-			DelegatingDeserializer<DeletePolicyResponse.Builder> op) {
+	protected static void setupDeletePolicyResponseDeserializer(ObjectDeserializer<DeletePolicyResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

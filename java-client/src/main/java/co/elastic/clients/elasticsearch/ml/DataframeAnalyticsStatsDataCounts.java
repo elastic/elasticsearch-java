@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml._types.DataframeAnalyticsStatsDataCounts
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L356-L363">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
+public class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
 	private final int skippedDocsCount;
 
 	private final int testDocsCount;
@@ -47,16 +55,17 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalyticsStatsDataCounts(Builder builder) {
+	private DataframeAnalyticsStatsDataCounts(Builder builder) {
 
-		this.skippedDocsCount = Objects.requireNonNull(builder.skippedDocsCount, "skipped_docs_count");
-		this.testDocsCount = Objects.requireNonNull(builder.testDocsCount, "test_docs_count");
-		this.trainingDocsCount = Objects.requireNonNull(builder.trainingDocsCount, "training_docs_count");
+		this.skippedDocsCount = ApiTypeHelper.requireNonNull(builder.skippedDocsCount, this, "skippedDocsCount");
+		this.testDocsCount = ApiTypeHelper.requireNonNull(builder.testDocsCount, this, "testDocsCount");
+		this.trainingDocsCount = ApiTypeHelper.requireNonNull(builder.trainingDocsCount, this, "trainingDocsCount");
 
 	}
 
-	public DataframeAnalyticsStatsDataCounts(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalyticsStatsDataCounts of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsStatsDataCounts>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +77,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code skipped_docs_count}
 	 */
-	public int skippedDocsCount() {
+	public final int skippedDocsCount() {
 		return this.skippedDocsCount;
 	}
 
@@ -78,7 +87,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code test_docs_count}
 	 */
-	public int testDocsCount() {
+	public final int testDocsCount() {
 		return this.testDocsCount;
 	}
 
@@ -87,7 +96,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code training_docs_count}
 	 */
-	public int trainingDocsCount() {
+	public final int trainingDocsCount() {
 		return this.trainingDocsCount;
 	}
 
@@ -118,7 +127,8 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	/**
 	 * Builder for {@link DataframeAnalyticsStatsDataCounts}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsDataCounts> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsStatsDataCounts> {
 		private Integer skippedDocsCount;
 
 		private Integer testDocsCount;
@@ -134,7 +144,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code skipped_docs_count}
 		 */
-		public Builder skippedDocsCount(int value) {
+		public final Builder skippedDocsCount(int value) {
 			this.skippedDocsCount = value;
 			return this;
 		}
@@ -145,7 +155,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code test_docs_count}
 		 */
-		public Builder testDocsCount(int value) {
+		public final Builder testDocsCount(int value) {
 			this.testDocsCount = value;
 			return this;
 		}
@@ -155,7 +165,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code training_docs_count}
 		 */
-		public Builder trainingDocsCount(int value) {
+		public final Builder trainingDocsCount(int value) {
 			this.trainingDocsCount = value;
 			return this;
 		}
@@ -167,6 +177,7 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalyticsStatsDataCounts build() {
+			_checkSingleUse();
 
 			return new DataframeAnalyticsStatsDataCounts(this);
 		}
@@ -178,11 +189,10 @@ public final class DataframeAnalyticsStatsDataCounts implements JsonpSerializabl
 	 * Json deserializer for {@link DataframeAnalyticsStatsDataCounts}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsStatsDataCounts> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeAnalyticsStatsDataCounts::setupDataframeAnalyticsStatsDataCountsDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeAnalyticsStatsDataCounts::setupDataframeAnalyticsStatsDataCountsDeserializer);
 
 	protected static void setupDataframeAnalyticsStatsDataCountsDeserializer(
-			DelegatingDeserializer<DataframeAnalyticsStatsDataCounts.Builder> op) {
+			ObjectDeserializer<DataframeAnalyticsStatsDataCounts.Builder> op) {
 
 		op.add(Builder::skippedDocsCount, JsonpDeserializer.integerDeserializer(), "skipped_docs_count");
 		op.add(Builder::testDocsCount, JsonpDeserializer.integerDeserializer(), "test_docs_count");

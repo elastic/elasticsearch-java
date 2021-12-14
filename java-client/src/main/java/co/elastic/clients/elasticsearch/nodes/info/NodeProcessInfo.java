@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -38,8 +39,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: nodes.info.NodeProcessInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L376-L383">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeProcessInfo implements JsonpSerializable {
+public class NodeProcessInfo implements JsonpSerializable {
 	private final long id;
 
 	private final boolean mlockall;
@@ -48,17 +56,17 @@ public final class NodeProcessInfo implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeProcessInfo(Builder builder) {
+	private NodeProcessInfo(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.mlockall = Objects.requireNonNull(builder.mlockall, "mlockall");
-		this.refreshIntervalInMillis = Objects.requireNonNull(builder.refreshIntervalInMillis,
-				"refresh_interval_in_millis");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.mlockall = ApiTypeHelper.requireNonNull(builder.mlockall, this, "mlockall");
+		this.refreshIntervalInMillis = ApiTypeHelper.requireNonNull(builder.refreshIntervalInMillis, this,
+				"refreshIntervalInMillis");
 
 	}
 
-	public NodeProcessInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeProcessInfo of(Function<Builder, ObjectBuilder<NodeProcessInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +74,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public long id() {
+	public final long id() {
 		return this.id;
 	}
 
@@ -76,7 +84,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code mlockall}
 	 */
-	public boolean mlockall() {
+	public final boolean mlockall() {
 		return this.mlockall;
 	}
 
@@ -85,7 +93,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
-	public long refreshIntervalInMillis() {
+	public final long refreshIntervalInMillis() {
 		return this.refreshIntervalInMillis;
 	}
 
@@ -116,7 +124,8 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeProcessInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeProcessInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeProcessInfo> {
 		private Long id;
 
 		private Boolean mlockall;
@@ -128,7 +137,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(long value) {
+		public final Builder id(long value) {
 			this.id = value;
 			return this;
 		}
@@ -139,7 +148,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code mlockall}
 		 */
-		public Builder mlockall(boolean value) {
+		public final Builder mlockall(boolean value) {
 			this.mlockall = value;
 			return this;
 		}
@@ -149,7 +158,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
-		public Builder refreshIntervalInMillis(long value) {
+		public final Builder refreshIntervalInMillis(long value) {
 			this.refreshIntervalInMillis = value;
 			return this;
 		}
@@ -161,6 +170,7 @@ public final class NodeProcessInfo implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeProcessInfo build() {
+			_checkSingleUse();
 
 			return new NodeProcessInfo(this);
 		}
@@ -172,9 +182,9 @@ public final class NodeProcessInfo implements JsonpSerializable {
 	 * Json deserializer for {@link NodeProcessInfo}
 	 */
 	public static final JsonpDeserializer<NodeProcessInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeProcessInfo::setupNodeProcessInfoDeserializer, Builder::build);
+			NodeProcessInfo::setupNodeProcessInfoDeserializer);
 
-	protected static void setupNodeProcessInfoDeserializer(DelegatingDeserializer<NodeProcessInfo.Builder> op) {
+	protected static void setupNodeProcessInfoDeserializer(ObjectDeserializer<NodeProcessInfo.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.longDeserializer(), "id");
 		op.add(Builder::mlockall, JsonpDeserializer.booleanDeserializer(), "mlockall");

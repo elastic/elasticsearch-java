@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -46,19 +45,27 @@ import javax.annotation.Nullable;
 
 // typedef: security.clear_api_key_cache.Request
 
-public final class ClearApiKeyCacheRequest extends RequestBase {
+/**
+ * Clear a subset or all entries from the API key cache.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/clear_api_key_cache/SecurityClearApiKeyCacheRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class ClearApiKeyCacheRequest extends RequestBase {
 	private final List<String> ids;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearApiKeyCacheRequest(Builder builder) {
+	private ClearApiKeyCacheRequest(Builder builder) {
 
-		this.ids = ModelTypeHelper.unmodifiableNonNull(builder.ids, "ids");
+		this.ids = ApiTypeHelper.unmodifiableRequired(builder.ids, this, "ids");
 
 	}
 
-	public ClearApiKeyCacheRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearApiKeyCacheRequest of(Function<Builder, ObjectBuilder<ClearApiKeyCacheRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -66,7 +73,7 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code ids}
 	 */
-	public List<String> ids() {
+	public final List<String> ids() {
 		return this.ids;
 	}
 
@@ -75,16 +82,19 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 	/**
 	 * Builder for {@link ClearApiKeyCacheRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearApiKeyCacheRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearApiKeyCacheRequest> {
 		private List<String> ids;
 
 		/**
 		 * Required - A comma-separated list of IDs of API keys to clear from the cache
 		 * <p>
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ids</code>.
 		 */
-		public Builder ids(List<String> value) {
-			this.ids = value;
+		public final Builder ids(List<String> list) {
+			this.ids = _listAddAll(this.ids, list);
 			return this;
 		}
 
@@ -92,20 +102,11 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 		 * Required - A comma-separated list of IDs of API keys to clear from the cache
 		 * <p>
 		 * API name: {@code ids}
+		 * <p>
+		 * Adds one or more values to <code>ids</code>.
 		 */
-		public Builder ids(String... value) {
-			this.ids = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed.
-		 */
-		public Builder addIds(String value) {
-			if (this.ids == null) {
-				this.ids = new ArrayList<>();
-			}
-			this.ids.add(value);
+		public final Builder ids(String value, String... values) {
+			this.ids = _listAdd(this.ids, value, values);
 			return this;
 		}
 
@@ -116,6 +117,7 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ClearApiKeyCacheRequest build() {
+			_checkSingleUse();
 
 			return new ClearApiKeyCacheRequest(this);
 		}
@@ -126,7 +128,9 @@ public final class ClearApiKeyCacheRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.clear_api_key_cache}".
 	 */
-	public static final Endpoint<ClearApiKeyCacheRequest, ClearApiKeyCacheResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ClearApiKeyCacheRequest, ClearApiKeyCacheResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.clear_api_key_cache",
+
 			// Request method
 			request -> {
 				return "POST";

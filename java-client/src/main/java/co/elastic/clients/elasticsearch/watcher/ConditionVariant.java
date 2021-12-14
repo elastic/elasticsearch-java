@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Condition} variants.
  */
-public interface ConditionVariant extends UnionVariant {
+public interface ConditionVariant {
+
+	Condition.Kind _conditionKind();
 
 	default Condition _toCondition() {
 		return new Condition(this);

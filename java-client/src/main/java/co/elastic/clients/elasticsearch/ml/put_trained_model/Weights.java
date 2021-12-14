@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.put_trained_model.Weights
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L108-L110">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Weights implements JsonpSerializable {
+public class Weights implements JsonpSerializable {
 	private final double weights;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Weights(Builder builder) {
+	private Weights(Builder builder) {
 
-		this.weights = Objects.requireNonNull(builder.weights, "weights");
+		this.weights = ApiTypeHelper.requireNonNull(builder.weights, this, "weights");
 
 	}
 
-	public Weights(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Weights of(Function<Builder, ObjectBuilder<Weights>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code weights}
 	 */
-	public double weights() {
+	public final double weights() {
 		return this.weights;
 	}
 
@@ -81,13 +89,14 @@ public final class Weights implements JsonpSerializable {
 	/**
 	 * Builder for {@link Weights}.
 	 */
-	public static class Builder implements ObjectBuilder<Weights> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Weights> {
 		private Double weights;
 
 		/**
 		 * Required - API name: {@code weights}
 		 */
-		public Builder weights(double value) {
+		public final Builder weights(double value) {
 			this.weights = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class Weights implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Weights build() {
+			_checkSingleUse();
 
 			return new Weights(this);
 		}
@@ -110,9 +120,9 @@ public final class Weights implements JsonpSerializable {
 	 * Json deserializer for {@link Weights}
 	 */
 	public static final JsonpDeserializer<Weights> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Weights::setupWeightsDeserializer, Builder::build);
+			Weights::setupWeightsDeserializer);
 
-	protected static void setupWeightsDeserializer(DelegatingDeserializer<Weights.Builder> op) {
+	protected static void setupWeightsDeserializer(ObjectDeserializer<Weights.Builder> op) {
 
 		op.add(Builder::weights, JsonpDeserializer.doubleDeserializer(), "weights");
 

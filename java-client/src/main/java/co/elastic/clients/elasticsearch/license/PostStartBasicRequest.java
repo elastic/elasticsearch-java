@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -42,20 +43,28 @@ import javax.annotation.Nullable;
 
 // typedef: license.post_start_basic.Request
 
-public final class PostStartBasicRequest extends RequestBase {
+/**
+ * Starts an indefinite basic license.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post_start_basic/StartBasicLicenseRequest.ts#L22-L31">API
+ *      specification</a>
+ */
+
+public class PostStartBasicRequest extends RequestBase {
 	@Nullable
 	private final Boolean acknowledge;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PostStartBasicRequest(Builder builder) {
+	private PostStartBasicRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
 
 	}
 
-	public PostStartBasicRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PostStartBasicRequest of(Function<Builder, ObjectBuilder<PostStartBasicRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +73,7 @@ public final class PostStartBasicRequest extends RequestBase {
 	 * API name: {@code acknowledge}
 	 */
 	@Nullable
-	public Boolean acknowledge() {
+	public final Boolean acknowledge() {
 		return this.acknowledge;
 	}
 
@@ -73,7 +82,8 @@ public final class PostStartBasicRequest extends RequestBase {
 	/**
 	 * Builder for {@link PostStartBasicRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PostStartBasicRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostStartBasicRequest> {
 		@Nullable
 		private Boolean acknowledge;
 
@@ -82,7 +92,7 @@ public final class PostStartBasicRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */
-		public Builder acknowledge(@Nullable Boolean value) {
+		public final Builder acknowledge(@Nullable Boolean value) {
 			this.acknowledge = value;
 			return this;
 		}
@@ -94,6 +104,7 @@ public final class PostStartBasicRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public PostStartBasicRequest build() {
+			_checkSingleUse();
 
 			return new PostStartBasicRequest(this);
 		}
@@ -104,7 +115,9 @@ public final class PostStartBasicRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code license.post_start_basic}".
 	 */
-	public static final Endpoint<PostStartBasicRequest, PostStartBasicResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PostStartBasicRequest, PostStartBasicResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/license.post_start_basic",
+
 			// Request method
 			request -> {
 				return "POST";

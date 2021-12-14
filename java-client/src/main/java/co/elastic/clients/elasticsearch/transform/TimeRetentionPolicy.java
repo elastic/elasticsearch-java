@@ -23,14 +23,16 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,31 +40,38 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.RetentionPolicy
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/_types/Transform.ts#L76-L81">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSerializable {
+public class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpSerializable {
 	private final String field;
 
-	private final String maxAge;
+	private final Time maxAge;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TimeRetentionPolicy(Builder builder) {
+	private TimeRetentionPolicy(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.maxAge = Objects.requireNonNull(builder.maxAge, "max_age");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.maxAge = ApiTypeHelper.requireNonNull(builder.maxAge, this, "maxAge");
 
 	}
 
-	public TimeRetentionPolicy(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TimeRetentionPolicy of(Function<Builder, ObjectBuilder<TimeRetentionPolicy>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link RetentionPolicy} variant type
+	 * RetentionPolicy variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "time";
+	public RetentionPolicy.Kind _retentionPolicyKind() {
+		return RetentionPolicy.Kind.Time;
 	}
 
 	/**
@@ -70,7 +79,7 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 	 * <p>
 	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -81,7 +90,7 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 	 * <p>
 	 * API name: {@code max_age}
 	 */
-	public String maxAge() {
+	public final Time maxAge() {
 		return this.maxAge;
 	}
 
@@ -100,7 +109,7 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 		generator.write(this.field);
 
 		generator.writeKey("max_age");
-		generator.write(this.maxAge);
+		this.maxAge.serialize(generator, mapper);
 
 	}
 
@@ -109,17 +118,18 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 	/**
 	 * Builder for {@link TimeRetentionPolicy}.
 	 */
-	public static class Builder implements ObjectBuilder<TimeRetentionPolicy> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeRetentionPolicy> {
 		private String field;
 
-		private String maxAge;
+		private Time maxAge;
 
 		/**
 		 * Required - The date field that is used to calculate the age of the document.
 		 * <p>
 		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -131,9 +141,20 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 		 * <p>
 		 * API name: {@code max_age}
 		 */
-		public Builder maxAge(String value) {
+		public final Builder maxAge(Time value) {
 			this.maxAge = value;
 			return this;
+		}
+
+		/**
+		 * Required - Specifies the maximum age of a document in the destination index.
+		 * Documents that are older than the configured value are removed from the
+		 * destination index.
+		 * <p>
+		 * API name: {@code max_age}
+		 */
+		public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.maxAge(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -143,6 +164,7 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 		 *             if some of the required fields are null.
 		 */
 		public TimeRetentionPolicy build() {
+			_checkSingleUse();
 
 			return new TimeRetentionPolicy(this);
 		}
@@ -154,12 +176,12 @@ public final class TimeRetentionPolicy implements RetentionPolicyVariant, JsonpS
 	 * Json deserializer for {@link TimeRetentionPolicy}
 	 */
 	public static final JsonpDeserializer<TimeRetentionPolicy> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TimeRetentionPolicy::setupTimeRetentionPolicyDeserializer, Builder::build);
+			.lazy(Builder::new, TimeRetentionPolicy::setupTimeRetentionPolicyDeserializer);
 
-	protected static void setupTimeRetentionPolicyDeserializer(DelegatingDeserializer<TimeRetentionPolicy.Builder> op) {
+	protected static void setupTimeRetentionPolicyDeserializer(ObjectDeserializer<TimeRetentionPolicy.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::maxAge, JsonpDeserializer.stringDeserializer(), "max_age");
+		op.add(Builder::maxAge, Time._DESERIALIZER, "max_age");
 
 	}
 

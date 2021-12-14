@@ -23,14 +23,16 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,34 +40,41 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.RollupJobSummaryField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_rollup_index_caps/types.ts#L35-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RollupJobSummaryField implements JsonpSerializable {
+public class RollupJobSummaryField implements JsonpSerializable {
 	private final String agg;
 
 	@Nullable
 	private final String timeZone;
 
 	@Nullable
-	private final String calendarInterval;
+	private final Time calendarInterval;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupJobSummaryField(Builder builder) {
+	private RollupJobSummaryField(Builder builder) {
 
-		this.agg = Objects.requireNonNull(builder.agg, "agg");
+		this.agg = ApiTypeHelper.requireNonNull(builder.agg, this, "agg");
 		this.timeZone = builder.timeZone;
 		this.calendarInterval = builder.calendarInterval;
 
 	}
 
-	public RollupJobSummaryField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RollupJobSummaryField of(Function<Builder, ObjectBuilder<RollupJobSummaryField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code agg}
 	 */
-	public String agg() {
+	public final String agg() {
 		return this.agg;
 	}
 
@@ -73,7 +82,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
-	public String timeZone() {
+	public final String timeZone() {
 		return this.timeZone;
 	}
 
@@ -81,7 +90,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	 * API name: {@code calendar_interval}
 	 */
 	@Nullable
-	public String calendarInterval() {
+	public final Time calendarInterval() {
 		return this.calendarInterval;
 	}
 
@@ -100,15 +109,13 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		generator.write(this.agg);
 
 		if (this.timeZone != null) {
-
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
 
 		}
 		if (this.calendarInterval != null) {
-
 			generator.writeKey("calendar_interval");
-			generator.write(this.calendarInterval);
+			this.calendarInterval.serialize(generator, mapper);
 
 		}
 
@@ -119,19 +126,20 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJobSummaryField}.
 	 */
-	public static class Builder implements ObjectBuilder<RollupJobSummaryField> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobSummaryField> {
 		private String agg;
 
 		@Nullable
 		private String timeZone;
 
 		@Nullable
-		private String calendarInterval;
+		private Time calendarInterval;
 
 		/**
 		 * Required - API name: {@code agg}
 		 */
-		public Builder agg(String value) {
+		public final Builder agg(String value) {
 			this.agg = value;
 			return this;
 		}
@@ -139,7 +147,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		/**
 		 * API name: {@code time_zone}
 		 */
-		public Builder timeZone(@Nullable String value) {
+		public final Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
 			return this;
 		}
@@ -147,9 +155,16 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		/**
 		 * API name: {@code calendar_interval}
 		 */
-		public Builder calendarInterval(@Nullable String value) {
+		public final Builder calendarInterval(@Nullable Time value) {
 			this.calendarInterval = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code calendar_interval}
+		 */
+		public final Builder calendarInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.calendarInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -159,6 +174,7 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RollupJobSummaryField build() {
+			_checkSingleUse();
 
 			return new RollupJobSummaryField(this);
 		}
@@ -170,14 +186,13 @@ public final class RollupJobSummaryField implements JsonpSerializable {
 	 * Json deserializer for {@link RollupJobSummaryField}
 	 */
 	public static final JsonpDeserializer<RollupJobSummaryField> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RollupJobSummaryField::setupRollupJobSummaryFieldDeserializer, Builder::build);
+			.lazy(Builder::new, RollupJobSummaryField::setupRollupJobSummaryFieldDeserializer);
 
-	protected static void setupRollupJobSummaryFieldDeserializer(
-			DelegatingDeserializer<RollupJobSummaryField.Builder> op) {
+	protected static void setupRollupJobSummaryFieldDeserializer(ObjectDeserializer<RollupJobSummaryField.Builder> op) {
 
 		op.add(Builder::agg, JsonpDeserializer.stringDeserializer(), "agg");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
-		op.add(Builder::calendarInterval, JsonpDeserializer.stringDeserializer(), "calendar_interval");
+		op.add(Builder::calendarInterval, Time._DESERIALIZER, "calendar_interval");
 
 	}
 

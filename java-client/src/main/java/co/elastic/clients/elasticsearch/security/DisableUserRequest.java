@@ -23,17 +23,18 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -44,32 +45,31 @@ import javax.annotation.Nullable;
 
 // typedef: security.disable_user.Request
 
-public final class DisableUserRequest extends RequestBase {
-	private final String username;
+/**
+ * Disables users in the native realm.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/disable_user/SecurityDisableUserRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
+public class DisableUserRequest extends RequestBase {
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
+
+	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DisableUserRequest(Builder builder) {
+	private DisableUserRequest(Builder builder) {
 
-		this.username = Objects.requireNonNull(builder.username, "username");
 		this.refresh = builder.refresh;
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public DisableUserRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The username of the user to disable
-	 * <p>
-	 * API name: {@code username}
-	 */
-	public String username() {
-		return this.username;
+	public static DisableUserRequest of(Function<Builder, ObjectBuilder<DisableUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,8 +81,17 @@ public final class DisableUserRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
+	}
+
+	/**
+	 * Required - The username of the user to disable
+	 * <p>
+	 * API name: {@code username}
+	 */
+	public final String username() {
+		return this.username;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -90,21 +99,12 @@ public final class DisableUserRequest extends RequestBase {
 	/**
 	 * Builder for {@link DisableUserRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DisableUserRequest> {
-		private String username;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DisableUserRequest> {
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
-		/**
-		 * Required - The username of the user to disable
-		 * <p>
-		 * API name: {@code username}
-		 */
-		public Builder username(String value) {
-			this.username = value;
-			return this;
-		}
+		private String username;
 
 		/**
 		 * If <code>true</code> (the default) then refresh the affected shards to make
@@ -114,8 +114,18 @@ public final class DisableUserRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * Required - The username of the user to disable
+		 * <p>
+		 * API name: {@code username}
+		 */
+		public final Builder username(String value) {
+			this.username = value;
 			return this;
 		}
 
@@ -126,6 +136,7 @@ public final class DisableUserRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DisableUserRequest build() {
+			_checkSingleUse();
 
 			return new DisableUserRequest(this);
 		}
@@ -136,7 +147,9 @@ public final class DisableUserRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.disable_user}".
 	 */
-	public static final Endpoint<DisableUserRequest, DisableUserResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DisableUserRequest, DisableUserResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.disable_user",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -168,7 +181,7 @@ public final class DisableUserRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

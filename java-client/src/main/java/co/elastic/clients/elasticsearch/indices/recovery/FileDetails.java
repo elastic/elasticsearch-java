@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.FileDetails
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L45-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FileDetails implements JsonpSerializable {
+public class FileDetails implements JsonpSerializable {
 	private final long length;
 
 	private final String name;
@@ -49,36 +57,36 @@ public final class FileDetails implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FileDetails(Builder builder) {
+	private FileDetails(Builder builder) {
 
-		this.length = Objects.requireNonNull(builder.length, "length");
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.recovered = Objects.requireNonNull(builder.recovered, "recovered");
+		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.recovered = ApiTypeHelper.requireNonNull(builder.recovered, this, "recovered");
 
 	}
 
-	public FileDetails(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FileDetails of(Function<Builder, ObjectBuilder<FileDetails>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code length}
 	 */
-	public long length() {
+	public final long length() {
 		return this.length;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code recovered}
 	 */
-	public long recovered() {
+	public final long recovered() {
 		return this.recovered;
 	}
 
@@ -109,7 +117,8 @@ public final class FileDetails implements JsonpSerializable {
 	/**
 	 * Builder for {@link FileDetails}.
 	 */
-	public static class Builder implements ObjectBuilder<FileDetails> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileDetails> {
 		private Long length;
 
 		private String name;
@@ -119,7 +128,7 @@ public final class FileDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code length}
 		 */
-		public Builder length(long value) {
+		public final Builder length(long value) {
 			this.length = value;
 			return this;
 		}
@@ -127,7 +136,7 @@ public final class FileDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -135,7 +144,7 @@ public final class FileDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code recovered}
 		 */
-		public Builder recovered(long value) {
+		public final Builder recovered(long value) {
 			this.recovered = value;
 			return this;
 		}
@@ -147,6 +156,7 @@ public final class FileDetails implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FileDetails build() {
+			_checkSingleUse();
 
 			return new FileDetails(this);
 		}
@@ -158,9 +168,9 @@ public final class FileDetails implements JsonpSerializable {
 	 * Json deserializer for {@link FileDetails}
 	 */
 	public static final JsonpDeserializer<FileDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FileDetails::setupFileDetailsDeserializer, Builder::build);
+			FileDetails::setupFileDetailsDeserializer);
 
-	protected static void setupFileDetailsDeserializer(DelegatingDeserializer<FileDetails.Builder> op) {
+	protected static void setupFileDetailsDeserializer(ObjectDeserializer<FileDetails.Builder> op) {
 
 		op.add(Builder::length, JsonpDeserializer.longDeserializer(), "length");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

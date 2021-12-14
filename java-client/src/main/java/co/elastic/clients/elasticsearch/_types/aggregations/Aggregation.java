@@ -24,163 +24,260 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationContainer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/AggregationContainer.ts#L99-L185">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
+public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, JsonpSerializable {
 
-	public static final String ADJACENCY_MATRIX = "adjacency_matrix";
-	public static final String AUTO_DATE_HISTOGRAM = "auto_date_histogram";
-	public static final String AVG = "avg";
-	public static final String AVG_BUCKET = "avg_bucket";
-	public static final String BOXPLOT = "boxplot";
-	public static final String BUCKET_SCRIPT = "bucket_script";
-	public static final String BUCKET_SELECTOR = "bucket_selector";
-	public static final String BUCKET_SORT = "bucket_sort";
-	public static final String CARDINALITY = "cardinality";
-	public static final String CHILDREN = "children";
-	public static final String COMPOSITE = "composite";
-	public static final String CUMULATIVE_CARDINALITY = "cumulative_cardinality";
-	public static final String CUMULATIVE_SUM = "cumulative_sum";
-	public static final String DATE_HISTOGRAM = "date_histogram";
-	public static final String DATE_RANGE = "date_range";
-	public static final String DERIVATIVE = "derivative";
-	public static final String DIVERSIFIED_SAMPLER = "diversified_sampler";
-	public static final String EXTENDED_STATS = "extended_stats";
-	public static final String EXTENDED_STATS_BUCKET = "extended_stats_bucket";
-	public static final String FILTER = "filter";
-	public static final String FILTERS = "filters";
-	public static final String GEO_BOUNDS = "geo_bounds";
-	public static final String GEO_CENTROID = "geo_centroid";
-	public static final String GEO_DISTANCE = "geo_distance";
-	public static final String GEOHASH_GRID = "geohash_grid";
-	public static final String GEO_LINE = "geo_line";
-	public static final String GEOTILE_GRID = "geotile_grid";
-	public static final String GLOBAL = "global";
-	public static final String HISTOGRAM = "histogram";
-	public static final String IP_RANGE = "ip_range";
-	public static final String INFERENCE = "inference";
-	public static final String MATRIX_STATS = "matrix_stats";
-	public static final String MAX = "max";
-	public static final String MAX_BUCKET = "max_bucket";
-	public static final String MEDIAN_ABSOLUTE_DEVIATION = "median_absolute_deviation";
-	public static final String MIN = "min";
-	public static final String MIN_BUCKET = "min_bucket";
-	public static final String MISSING = "missing";
-	public static final String MOVING_AVG = "moving_avg";
-	public static final String MOVING_PERCENTILES = "moving_percentiles";
-	public static final String MOVING_FN = "moving_fn";
-	public static final String MULTI_TERMS = "multi_terms";
-	public static final String NESTED = "nested";
-	public static final String NORMALIZE = "normalize";
-	public static final String PARENT = "parent";
-	public static final String PERCENTILE_RANKS = "percentile_ranks";
-	public static final String PERCENTILES = "percentiles";
-	public static final String PERCENTILES_BUCKET = "percentiles_bucket";
-	public static final String RANGE = "range";
-	public static final String RARE_TERMS = "rare_terms";
-	public static final String RATE = "rate";
-	public static final String REVERSE_NESTED = "reverse_nested";
-	public static final String SAMPLER = "sampler";
-	public static final String SCRIPTED_METRIC = "scripted_metric";
-	public static final String SERIAL_DIFF = "serial_diff";
-	public static final String SIGNIFICANT_TERMS = "significant_terms";
-	public static final String SIGNIFICANT_TEXT = "significant_text";
-	public static final String STATS = "stats";
-	public static final String STATS_BUCKET = "stats_bucket";
-	public static final String STRING_STATS = "string_stats";
-	public static final String SUM = "sum";
-	public static final String SUM_BUCKET = "sum_bucket";
-	public static final String TERMS = "terms";
-	public static final String TOP_HITS = "top_hits";
-	public static final String T_TEST = "t_test";
-	public static final String TOP_METRICS = "top_metrics";
-	public static final String VALUE_COUNT = "value_count";
-	public static final String WEIGHTED_AVG = "weighted_avg";
-	public static final String VARIABLE_WIDTH_HISTOGRAM = "variable_width_histogram";
+	/**
+	 * {@link Aggregation} variant kinds.
+	 */
+	/**
+	 * {@link Aggregation} variant kinds.
+	 */
 
-	// Tagged union implementation
+	public enum Kind implements JsonEnum {
+		AdjacencyMatrix("adjacency_matrix"),
 
-	private final String _type;
+		AutoDateHistogram("auto_date_histogram"),
+
+		Avg("avg"),
+
+		AvgBucket("avg_bucket"),
+
+		Boxplot("boxplot"),
+
+		BucketScript("bucket_script"),
+
+		BucketSelector("bucket_selector"),
+
+		BucketSort("bucket_sort"),
+
+		Cardinality("cardinality"),
+
+		Children("children"),
+
+		Composite("composite"),
+
+		CumulativeCardinality("cumulative_cardinality"),
+
+		CumulativeSum("cumulative_sum"),
+
+		DateHistogram("date_histogram"),
+
+		DateRange("date_range"),
+
+		Derivative("derivative"),
+
+		DiversifiedSampler("diversified_sampler"),
+
+		ExtendedStats("extended_stats"),
+
+		ExtendedStatsBucket("extended_stats_bucket"),
+
+		Filter("filter"),
+
+		Filters("filters"),
+
+		GeoBounds("geo_bounds"),
+
+		GeoCentroid("geo_centroid"),
+
+		GeoDistance("geo_distance"),
+
+		GeohashGrid("geohash_grid"),
+
+		GeoLine("geo_line"),
+
+		GeotileGrid("geotile_grid"),
+
+		Global("global"),
+
+		Histogram("histogram"),
+
+		IpRange("ip_range"),
+
+		Inference("inference"),
+
+		MatrixStats("matrix_stats"),
+
+		Max("max"),
+
+		MaxBucket("max_bucket"),
+
+		MedianAbsoluteDeviation("median_absolute_deviation"),
+
+		Min("min"),
+
+		MinBucket("min_bucket"),
+
+		Missing("missing"),
+
+		MovingAvg("moving_avg"),
+
+		MovingPercentiles("moving_percentiles"),
+
+		MovingFn("moving_fn"),
+
+		MultiTerms("multi_terms"),
+
+		Nested("nested"),
+
+		Normalize("normalize"),
+
+		Parent("parent"),
+
+		PercentileRanks("percentile_ranks"),
+
+		Percentiles("percentiles"),
+
+		PercentilesBucket("percentiles_bucket"),
+
+		Range("range"),
+
+		RareTerms("rare_terms"),
+
+		Rate("rate"),
+
+		ReverseNested("reverse_nested"),
+
+		Sampler("sampler"),
+
+		ScriptedMetric("scripted_metric"),
+
+		SerialDiff("serial_diff"),
+
+		SignificantTerms("significant_terms"),
+
+		SignificantText("significant_text"),
+
+		Stats("stats"),
+
+		StatsBucket("stats_bucket"),
+
+		StringStats("string_stats"),
+
+		Sum("sum"),
+
+		SumBucket("sum_bucket"),
+
+		Terms("terms"),
+
+		TopHits("top_hits"),
+
+		TTest("t_test"),
+
+		TopMetrics("top_metrics"),
+
+		ValueCount("value_count"),
+
+		WeightedAvg("weighted_avg"),
+
+		VariableWidthHistogram("variable_width_histogram"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
-	@Nullable
-	private final Map<String, Aggregation> aggs;
+	private final Map<String, Aggregation> aggregations;
 
-	@Nullable
 	private final Map<String, JsonData> meta;
 
 	public Aggregation(AggregationVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._aggregationKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-		this.aggs = null;
+		this.aggregations = null;
 		this.meta = null;
 
 	}
 
-	public <T extends AggregationVariant> Aggregation(ObjectBuilder<T> builder) {
-		this(builder.build());
-	}
-
 	private Aggregation(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
-		this.aggs = ModelTypeHelper.unmodifiable(builder.aggs);
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
 
-	public Aggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Aggregation of(Function<Builder, ObjectBuilder<Aggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code aggs}
+	 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+	 * <p>
+	 * API name: {@code aggregations}
 	 */
-	@Nullable
-	public Map<String, Aggregation> aggs() {
-		return this.aggs;
+	public final Map<String, Aggregation> aggregations() {
+		return this.aggregations;
 	}
 
 	/**
 	 * API name: {@code meta}
 	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
+	public final Map<String, JsonData> meta() {
 		return this.meta;
+	}
+
+	/**
+	 * Is this variant instance of kind {@code adjacency_matrix}?
+	 */
+	public boolean isAdjacencyMatrix() {
+		return _kind == Kind.AdjacencyMatrix;
 	}
 
 	/**
@@ -191,7 +288,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public AdjacencyMatrixAggregation adjacencyMatrix() {
-		return TaggedUnionUtils.get(this, ADJACENCY_MATRIX);
+		return TaggedUnionUtils.get(this, Kind.AdjacencyMatrix);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code auto_date_histogram}?
+	 */
+	public boolean isAutoDateHistogram() {
+		return _kind == Kind.AutoDateHistogram;
 	}
 
 	/**
@@ -202,7 +306,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public AutoDateHistogramAggregation autoDateHistogram() {
-		return TaggedUnionUtils.get(this, AUTO_DATE_HISTOGRAM);
+		return TaggedUnionUtils.get(this, Kind.AutoDateHistogram);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code avg}?
+	 */
+	public boolean isAvg() {
+		return _kind == Kind.Avg;
 	}
 
 	/**
@@ -212,7 +323,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code avg} kind.
 	 */
 	public AverageAggregation avg() {
-		return TaggedUnionUtils.get(this, AVG);
+		return TaggedUnionUtils.get(this, Kind.Avg);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code avg_bucket}?
+	 */
+	public boolean isAvgBucket() {
+		return _kind == Kind.AvgBucket;
 	}
 
 	/**
@@ -222,7 +340,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code avg_bucket} kind.
 	 */
 	public AverageBucketAggregation avgBucket() {
-		return TaggedUnionUtils.get(this, AVG_BUCKET);
+		return TaggedUnionUtils.get(this, Kind.AvgBucket);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code boxplot}?
+	 */
+	public boolean isBoxplot() {
+		return _kind == Kind.Boxplot;
 	}
 
 	/**
@@ -232,7 +357,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code boxplot} kind.
 	 */
 	public BoxplotAggregation boxplot() {
-		return TaggedUnionUtils.get(this, BOXPLOT);
+		return TaggedUnionUtils.get(this, Kind.Boxplot);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bucket_script}?
+	 */
+	public boolean isBucketScript() {
+		return _kind == Kind.BucketScript;
 	}
 
 	/**
@@ -242,7 +374,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code bucket_script} kind.
 	 */
 	public BucketScriptAggregation bucketScript() {
-		return TaggedUnionUtils.get(this, BUCKET_SCRIPT);
+		return TaggedUnionUtils.get(this, Kind.BucketScript);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bucket_selector}?
+	 */
+	public boolean isBucketSelector() {
+		return _kind == Kind.BucketSelector;
 	}
 
 	/**
@@ -253,7 +392,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public BucketSelectorAggregation bucketSelector() {
-		return TaggedUnionUtils.get(this, BUCKET_SELECTOR);
+		return TaggedUnionUtils.get(this, Kind.BucketSelector);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bucket_sort}?
+	 */
+	public boolean isBucketSort() {
+		return _kind == Kind.BucketSort;
 	}
 
 	/**
@@ -263,7 +409,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code bucket_sort} kind.
 	 */
 	public BucketSortAggregation bucketSort() {
-		return TaggedUnionUtils.get(this, BUCKET_SORT);
+		return TaggedUnionUtils.get(this, Kind.BucketSort);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code cardinality}?
+	 */
+	public boolean isCardinality() {
+		return _kind == Kind.Cardinality;
 	}
 
 	/**
@@ -273,7 +426,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code cardinality} kind.
 	 */
 	public CardinalityAggregation cardinality() {
-		return TaggedUnionUtils.get(this, CARDINALITY);
+		return TaggedUnionUtils.get(this, Kind.Cardinality);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code children}?
+	 */
+	public boolean isChildren() {
+		return _kind == Kind.Children;
 	}
 
 	/**
@@ -283,7 +443,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code children} kind.
 	 */
 	public ChildrenAggregation children() {
-		return TaggedUnionUtils.get(this, CHILDREN);
+		return TaggedUnionUtils.get(this, Kind.Children);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code composite}?
+	 */
+	public boolean isComposite() {
+		return _kind == Kind.Composite;
 	}
 
 	/**
@@ -293,7 +460,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code composite} kind.
 	 */
 	public CompositeAggregation composite() {
-		return TaggedUnionUtils.get(this, COMPOSITE);
+		return TaggedUnionUtils.get(this, Kind.Composite);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code cumulative_cardinality}?
+	 */
+	public boolean isCumulativeCardinality() {
+		return _kind == Kind.CumulativeCardinality;
 	}
 
 	/**
@@ -304,7 +478,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             {@code cumulative_cardinality} kind.
 	 */
 	public CumulativeCardinalityAggregation cumulativeCardinality() {
-		return TaggedUnionUtils.get(this, CUMULATIVE_CARDINALITY);
+		return TaggedUnionUtils.get(this, Kind.CumulativeCardinality);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code cumulative_sum}?
+	 */
+	public boolean isCumulativeSum() {
+		return _kind == Kind.CumulativeSum;
 	}
 
 	/**
@@ -314,7 +495,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code cumulative_sum} kind.
 	 */
 	public CumulativeSumAggregation cumulativeSum() {
-		return TaggedUnionUtils.get(this, CUMULATIVE_SUM);
+		return TaggedUnionUtils.get(this, Kind.CumulativeSum);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code date_histogram}?
+	 */
+	public boolean isDateHistogram() {
+		return _kind == Kind.DateHistogram;
 	}
 
 	/**
@@ -324,7 +512,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code date_histogram} kind.
 	 */
 	public DateHistogramAggregation dateHistogram() {
-		return TaggedUnionUtils.get(this, DATE_HISTOGRAM);
+		return TaggedUnionUtils.get(this, Kind.DateHistogram);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code date_range}?
+	 */
+	public boolean isDateRange() {
+		return _kind == Kind.DateRange;
 	}
 
 	/**
@@ -334,7 +529,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code date_range} kind.
 	 */
 	public DateRangeAggregation dateRange() {
-		return TaggedUnionUtils.get(this, DATE_RANGE);
+		return TaggedUnionUtils.get(this, Kind.DateRange);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code derivative}?
+	 */
+	public boolean isDerivative() {
+		return _kind == Kind.Derivative;
 	}
 
 	/**
@@ -344,7 +546,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code derivative} kind.
 	 */
 	public DerivativeAggregation derivative() {
-		return TaggedUnionUtils.get(this, DERIVATIVE);
+		return TaggedUnionUtils.get(this, Kind.Derivative);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code diversified_sampler}?
+	 */
+	public boolean isDiversifiedSampler() {
+		return _kind == Kind.DiversifiedSampler;
 	}
 
 	/**
@@ -355,7 +564,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public DiversifiedSamplerAggregation diversifiedSampler() {
-		return TaggedUnionUtils.get(this, DIVERSIFIED_SAMPLER);
+		return TaggedUnionUtils.get(this, Kind.DiversifiedSampler);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code extended_stats}?
+	 */
+	public boolean isExtendedStats() {
+		return _kind == Kind.ExtendedStats;
 	}
 
 	/**
@@ -365,7 +581,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code extended_stats} kind.
 	 */
 	public ExtendedStatsAggregation extendedStats() {
-		return TaggedUnionUtils.get(this, EXTENDED_STATS);
+		return TaggedUnionUtils.get(this, Kind.ExtendedStats);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code extended_stats_bucket}?
+	 */
+	public boolean isExtendedStatsBucket() {
+		return _kind == Kind.ExtendedStatsBucket;
 	}
 
 	/**
@@ -376,7 +599,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             {@code extended_stats_bucket} kind.
 	 */
 	public ExtendedStatsBucketAggregation extendedStatsBucket() {
-		return TaggedUnionUtils.get(this, EXTENDED_STATS_BUCKET);
+		return TaggedUnionUtils.get(this, Kind.ExtendedStatsBucket);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code filter}?
+	 */
+	public boolean isFilter() {
+		return _kind == Kind.Filter;
 	}
 
 	/**
@@ -386,7 +616,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code filter} kind.
 	 */
 	public Query filter() {
-		return TaggedUnionUtils.get(this, FILTER);
+		return TaggedUnionUtils.get(this, Kind.Filter);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code filters}?
+	 */
+	public boolean isFilters() {
+		return _kind == Kind.Filters;
 	}
 
 	/**
@@ -396,7 +633,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code filters} kind.
 	 */
 	public FiltersAggregation filters() {
-		return TaggedUnionUtils.get(this, FILTERS);
+		return TaggedUnionUtils.get(this, Kind.Filters);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_bounds}?
+	 */
+	public boolean isGeoBounds() {
+		return _kind == Kind.GeoBounds;
 	}
 
 	/**
@@ -406,7 +650,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code geo_bounds} kind.
 	 */
 	public GeoBoundsAggregation geoBounds() {
-		return TaggedUnionUtils.get(this, GEO_BOUNDS);
+		return TaggedUnionUtils.get(this, Kind.GeoBounds);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_centroid}?
+	 */
+	public boolean isGeoCentroid() {
+		return _kind == Kind.GeoCentroid;
 	}
 
 	/**
@@ -416,7 +667,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code geo_centroid} kind.
 	 */
 	public GeoCentroidAggregation geoCentroid() {
-		return TaggedUnionUtils.get(this, GEO_CENTROID);
+		return TaggedUnionUtils.get(this, Kind.GeoCentroid);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_distance}?
+	 */
+	public boolean isGeoDistance() {
+		return _kind == Kind.GeoDistance;
 	}
 
 	/**
@@ -426,7 +684,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code geo_distance} kind.
 	 */
 	public GeoDistanceAggregation geoDistance() {
-		return TaggedUnionUtils.get(this, GEO_DISTANCE);
+		return TaggedUnionUtils.get(this, Kind.GeoDistance);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geohash_grid}?
+	 */
+	public boolean isGeohashGrid() {
+		return _kind == Kind.GeohashGrid;
 	}
 
 	/**
@@ -436,7 +701,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code geohash_grid} kind.
 	 */
 	public GeoHashGridAggregation geohashGrid() {
-		return TaggedUnionUtils.get(this, GEOHASH_GRID);
+		return TaggedUnionUtils.get(this, Kind.GeohashGrid);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geo_line}?
+	 */
+	public boolean isGeoLine() {
+		return _kind == Kind.GeoLine;
 	}
 
 	/**
@@ -446,7 +718,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code geo_line} kind.
 	 */
 	public GeoLineAggregation geoLine() {
-		return TaggedUnionUtils.get(this, GEO_LINE);
+		return TaggedUnionUtils.get(this, Kind.GeoLine);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geotile_grid}?
+	 */
+	public boolean isGeotileGrid() {
+		return _kind == Kind.GeotileGrid;
 	}
 
 	/**
@@ -456,7 +735,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code geotile_grid} kind.
 	 */
 	public GeoTileGridAggregation geotileGrid() {
-		return TaggedUnionUtils.get(this, GEOTILE_GRID);
+		return TaggedUnionUtils.get(this, Kind.GeotileGrid);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code global}?
+	 */
+	public boolean isGlobal() {
+		return _kind == Kind.Global;
 	}
 
 	/**
@@ -466,7 +752,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code global} kind.
 	 */
 	public GlobalAggregation global() {
-		return TaggedUnionUtils.get(this, GLOBAL);
+		return TaggedUnionUtils.get(this, Kind.Global);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code histogram}?
+	 */
+	public boolean isHistogram() {
+		return _kind == Kind.Histogram;
 	}
 
 	/**
@@ -476,7 +769,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code histogram} kind.
 	 */
 	public HistogramAggregation histogram() {
-		return TaggedUnionUtils.get(this, HISTOGRAM);
+		return TaggedUnionUtils.get(this, Kind.Histogram);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code ip_range}?
+	 */
+	public boolean isIpRange() {
+		return _kind == Kind.IpRange;
 	}
 
 	/**
@@ -486,7 +786,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code ip_range} kind.
 	 */
 	public IpRangeAggregation ipRange() {
-		return TaggedUnionUtils.get(this, IP_RANGE);
+		return TaggedUnionUtils.get(this, Kind.IpRange);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code inference}?
+	 */
+	public boolean isInference() {
+		return _kind == Kind.Inference;
 	}
 
 	/**
@@ -496,7 +803,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code inference} kind.
 	 */
 	public InferenceAggregation inference() {
-		return TaggedUnionUtils.get(this, INFERENCE);
+		return TaggedUnionUtils.get(this, Kind.Inference);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code matrix_stats}?
+	 */
+	public boolean isMatrixStats() {
+		return _kind == Kind.MatrixStats;
 	}
 
 	/**
@@ -506,7 +820,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code matrix_stats} kind.
 	 */
 	public MatrixStatsAggregation matrixStats() {
-		return TaggedUnionUtils.get(this, MATRIX_STATS);
+		return TaggedUnionUtils.get(this, Kind.MatrixStats);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code max}?
+	 */
+	public boolean isMax() {
+		return _kind == Kind.Max;
 	}
 
 	/**
@@ -516,7 +837,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code max} kind.
 	 */
 	public MaxAggregation max() {
-		return TaggedUnionUtils.get(this, MAX);
+		return TaggedUnionUtils.get(this, Kind.Max);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code max_bucket}?
+	 */
+	public boolean isMaxBucket() {
+		return _kind == Kind.MaxBucket;
 	}
 
 	/**
@@ -526,7 +854,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code max_bucket} kind.
 	 */
 	public MaxBucketAggregation maxBucket() {
-		return TaggedUnionUtils.get(this, MAX_BUCKET);
+		return TaggedUnionUtils.get(this, Kind.MaxBucket);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code median_absolute_deviation}?
+	 */
+	public boolean isMedianAbsoluteDeviation() {
+		return _kind == Kind.MedianAbsoluteDeviation;
 	}
 
 	/**
@@ -537,7 +872,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             {@code median_absolute_deviation} kind.
 	 */
 	public MedianAbsoluteDeviationAggregation medianAbsoluteDeviation() {
-		return TaggedUnionUtils.get(this, MEDIAN_ABSOLUTE_DEVIATION);
+		return TaggedUnionUtils.get(this, Kind.MedianAbsoluteDeviation);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code min}?
+	 */
+	public boolean isMin() {
+		return _kind == Kind.Min;
 	}
 
 	/**
@@ -547,7 +889,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code min} kind.
 	 */
 	public MinAggregation min() {
-		return TaggedUnionUtils.get(this, MIN);
+		return TaggedUnionUtils.get(this, Kind.Min);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code min_bucket}?
+	 */
+	public boolean isMinBucket() {
+		return _kind == Kind.MinBucket;
 	}
 
 	/**
@@ -557,7 +906,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code min_bucket} kind.
 	 */
 	public MinBucketAggregation minBucket() {
-		return TaggedUnionUtils.get(this, MIN_BUCKET);
+		return TaggedUnionUtils.get(this, Kind.MinBucket);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code missing}?
+	 */
+	public boolean isMissing() {
+		return _kind == Kind.Missing;
 	}
 
 	/**
@@ -567,7 +923,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code missing} kind.
 	 */
 	public MissingAggregation missing() {
-		return TaggedUnionUtils.get(this, MISSING);
+		return TaggedUnionUtils.get(this, Kind.Missing);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code moving_avg}?
+	 */
+	public boolean isMovingAvg() {
+		return _kind == Kind.MovingAvg;
 	}
 
 	/**
@@ -577,7 +940,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code moving_avg} kind.
 	 */
 	public MovingAverageAggregation movingAvg() {
-		return TaggedUnionUtils.get(this, MOVING_AVG);
+		return TaggedUnionUtils.get(this, Kind.MovingAvg);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code moving_percentiles}?
+	 */
+	public boolean isMovingPercentiles() {
+		return _kind == Kind.MovingPercentiles;
 	}
 
 	/**
@@ -588,7 +958,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public MovingPercentilesAggregation movingPercentiles() {
-		return TaggedUnionUtils.get(this, MOVING_PERCENTILES);
+		return TaggedUnionUtils.get(this, Kind.MovingPercentiles);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code moving_fn}?
+	 */
+	public boolean isMovingFn() {
+		return _kind == Kind.MovingFn;
 	}
 
 	/**
@@ -598,7 +975,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code moving_fn} kind.
 	 */
 	public MovingFunctionAggregation movingFn() {
-		return TaggedUnionUtils.get(this, MOVING_FN);
+		return TaggedUnionUtils.get(this, Kind.MovingFn);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code multi_terms}?
+	 */
+	public boolean isMultiTerms() {
+		return _kind == Kind.MultiTerms;
 	}
 
 	/**
@@ -608,7 +992,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code multi_terms} kind.
 	 */
 	public MultiTermsAggregation multiTerms() {
-		return TaggedUnionUtils.get(this, MULTI_TERMS);
+		return TaggedUnionUtils.get(this, Kind.MultiTerms);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code nested}?
+	 */
+	public boolean isNested() {
+		return _kind == Kind.Nested;
 	}
 
 	/**
@@ -618,7 +1009,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code nested} kind.
 	 */
 	public NestedAggregation nested() {
-		return TaggedUnionUtils.get(this, NESTED);
+		return TaggedUnionUtils.get(this, Kind.Nested);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code normalize}?
+	 */
+	public boolean isNormalize() {
+		return _kind == Kind.Normalize;
 	}
 
 	/**
@@ -628,7 +1026,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code normalize} kind.
 	 */
 	public NormalizeAggregation normalize() {
-		return TaggedUnionUtils.get(this, NORMALIZE);
+		return TaggedUnionUtils.get(this, Kind.Normalize);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code parent}?
+	 */
+	public boolean isParent() {
+		return _kind == Kind.Parent;
 	}
 
 	/**
@@ -638,7 +1043,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code parent} kind.
 	 */
 	public ParentAggregation parent() {
-		return TaggedUnionUtils.get(this, PARENT);
+		return TaggedUnionUtils.get(this, Kind.Parent);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code percentile_ranks}?
+	 */
+	public boolean isPercentileRanks() {
+		return _kind == Kind.PercentileRanks;
 	}
 
 	/**
@@ -649,7 +1061,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public PercentileRanksAggregation percentileRanks() {
-		return TaggedUnionUtils.get(this, PERCENTILE_RANKS);
+		return TaggedUnionUtils.get(this, Kind.PercentileRanks);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code percentiles}?
+	 */
+	public boolean isPercentiles() {
+		return _kind == Kind.Percentiles;
 	}
 
 	/**
@@ -659,7 +1078,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code percentiles} kind.
 	 */
 	public PercentilesAggregation percentiles() {
-		return TaggedUnionUtils.get(this, PERCENTILES);
+		return TaggedUnionUtils.get(this, Kind.Percentiles);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code percentiles_bucket}?
+	 */
+	public boolean isPercentilesBucket() {
+		return _kind == Kind.PercentilesBucket;
 	}
 
 	/**
@@ -670,7 +1096,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public PercentilesBucketAggregation percentilesBucket() {
-		return TaggedUnionUtils.get(this, PERCENTILES_BUCKET);
+		return TaggedUnionUtils.get(this, Kind.PercentilesBucket);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code range}?
+	 */
+	public boolean isRange() {
+		return _kind == Kind.Range;
 	}
 
 	/**
@@ -680,7 +1113,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code range} kind.
 	 */
 	public RangeAggregation range() {
-		return TaggedUnionUtils.get(this, RANGE);
+		return TaggedUnionUtils.get(this, Kind.Range);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code rare_terms}?
+	 */
+	public boolean isRareTerms() {
+		return _kind == Kind.RareTerms;
 	}
 
 	/**
@@ -690,7 +1130,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code rare_terms} kind.
 	 */
 	public RareTermsAggregation rareTerms() {
-		return TaggedUnionUtils.get(this, RARE_TERMS);
+		return TaggedUnionUtils.get(this, Kind.RareTerms);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code rate}?
+	 */
+	public boolean isRate() {
+		return _kind == Kind.Rate;
 	}
 
 	/**
@@ -700,7 +1147,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code rate} kind.
 	 */
 	public RateAggregation rate() {
-		return TaggedUnionUtils.get(this, RATE);
+		return TaggedUnionUtils.get(this, Kind.Rate);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code reverse_nested}?
+	 */
+	public boolean isReverseNested() {
+		return _kind == Kind.ReverseNested;
 	}
 
 	/**
@@ -710,7 +1164,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code reverse_nested} kind.
 	 */
 	public ReverseNestedAggregation reverseNested() {
-		return TaggedUnionUtils.get(this, REVERSE_NESTED);
+		return TaggedUnionUtils.get(this, Kind.ReverseNested);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code sampler}?
+	 */
+	public boolean isSampler() {
+		return _kind == Kind.Sampler;
 	}
 
 	/**
@@ -720,7 +1181,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code sampler} kind.
 	 */
 	public SamplerAggregation sampler() {
-		return TaggedUnionUtils.get(this, SAMPLER);
+		return TaggedUnionUtils.get(this, Kind.Sampler);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code scripted_metric}?
+	 */
+	public boolean isScriptedMetric() {
+		return _kind == Kind.ScriptedMetric;
 	}
 
 	/**
@@ -731,7 +1199,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public ScriptedMetricAggregation scriptedMetric() {
-		return TaggedUnionUtils.get(this, SCRIPTED_METRIC);
+		return TaggedUnionUtils.get(this, Kind.ScriptedMetric);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code serial_diff}?
+	 */
+	public boolean isSerialDiff() {
+		return _kind == Kind.SerialDiff;
 	}
 
 	/**
@@ -741,7 +1216,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code serial_diff} kind.
 	 */
 	public SerialDifferencingAggregation serialDiff() {
-		return TaggedUnionUtils.get(this, SERIAL_DIFF);
+		return TaggedUnionUtils.get(this, Kind.SerialDiff);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code significant_terms}?
+	 */
+	public boolean isSignificantTerms() {
+		return _kind == Kind.SignificantTerms;
 	}
 
 	/**
@@ -752,7 +1234,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public SignificantTermsAggregation significantTerms() {
-		return TaggedUnionUtils.get(this, SIGNIFICANT_TERMS);
+		return TaggedUnionUtils.get(this, Kind.SignificantTerms);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code significant_text}?
+	 */
+	public boolean isSignificantText() {
+		return _kind == Kind.SignificantText;
 	}
 
 	/**
@@ -763,7 +1252,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public SignificantTextAggregation significantText() {
-		return TaggedUnionUtils.get(this, SIGNIFICANT_TEXT);
+		return TaggedUnionUtils.get(this, Kind.SignificantText);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stats}?
+	 */
+	public boolean isStats() {
+		return _kind == Kind.Stats;
 	}
 
 	/**
@@ -773,7 +1269,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code stats} kind.
 	 */
 	public StatsAggregation stats() {
-		return TaggedUnionUtils.get(this, STATS);
+		return TaggedUnionUtils.get(this, Kind.Stats);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code stats_bucket}?
+	 */
+	public boolean isStatsBucket() {
+		return _kind == Kind.StatsBucket;
 	}
 
 	/**
@@ -783,7 +1286,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code stats_bucket} kind.
 	 */
 	public StatsBucketAggregation statsBucket() {
-		return TaggedUnionUtils.get(this, STATS_BUCKET);
+		return TaggedUnionUtils.get(this, Kind.StatsBucket);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code string_stats}?
+	 */
+	public boolean isStringStats() {
+		return _kind == Kind.StringStats;
 	}
 
 	/**
@@ -793,7 +1303,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code string_stats} kind.
 	 */
 	public StringStatsAggregation stringStats() {
-		return TaggedUnionUtils.get(this, STRING_STATS);
+		return TaggedUnionUtils.get(this, Kind.StringStats);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code sum}?
+	 */
+	public boolean isSum() {
+		return _kind == Kind.Sum;
 	}
 
 	/**
@@ -803,7 +1320,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code sum} kind.
 	 */
 	public SumAggregation sum() {
-		return TaggedUnionUtils.get(this, SUM);
+		return TaggedUnionUtils.get(this, Kind.Sum);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code sum_bucket}?
+	 */
+	public boolean isSumBucket() {
+		return _kind == Kind.SumBucket;
 	}
 
 	/**
@@ -813,7 +1337,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code sum_bucket} kind.
 	 */
 	public SumBucketAggregation sumBucket() {
-		return TaggedUnionUtils.get(this, SUM_BUCKET);
+		return TaggedUnionUtils.get(this, Kind.SumBucket);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code terms}?
+	 */
+	public boolean isTerms() {
+		return _kind == Kind.Terms;
 	}
 
 	/**
@@ -823,7 +1354,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code terms} kind.
 	 */
 	public TermsAggregation terms() {
-		return TaggedUnionUtils.get(this, TERMS);
+		return TaggedUnionUtils.get(this, Kind.Terms);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code top_hits}?
+	 */
+	public boolean isTopHits() {
+		return _kind == Kind.TopHits;
 	}
 
 	/**
@@ -833,7 +1371,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code top_hits} kind.
 	 */
 	public TopHitsAggregation topHits() {
-		return TaggedUnionUtils.get(this, TOP_HITS);
+		return TaggedUnionUtils.get(this, Kind.TopHits);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code t_test}?
+	 */
+	public boolean isTTest() {
+		return _kind == Kind.TTest;
 	}
 
 	/**
@@ -843,7 +1388,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code t_test} kind.
 	 */
 	public TTestAggregation tTest() {
-		return TaggedUnionUtils.get(this, T_TEST);
+		return TaggedUnionUtils.get(this, Kind.TTest);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code top_metrics}?
+	 */
+	public boolean isTopMetrics() {
+		return _kind == Kind.TopMetrics;
 	}
 
 	/**
@@ -853,7 +1405,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code top_metrics} kind.
 	 */
 	public TopMetricsAggregation topMetrics() {
-		return TaggedUnionUtils.get(this, TOP_METRICS);
+		return TaggedUnionUtils.get(this, Kind.TopMetrics);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code value_count}?
+	 */
+	public boolean isValueCount() {
+		return _kind == Kind.ValueCount;
 	}
 
 	/**
@@ -863,7 +1422,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code value_count} kind.
 	 */
 	public ValueCountAggregation valueCount() {
-		return TaggedUnionUtils.get(this, VALUE_COUNT);
+		return TaggedUnionUtils.get(this, Kind.ValueCount);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code weighted_avg}?
+	 */
+	public boolean isWeightedAvg() {
+		return _kind == Kind.WeightedAvg;
 	}
 
 	/**
@@ -873,7 +1439,14 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code weighted_avg} kind.
 	 */
 	public WeightedAverageAggregation weightedAvg() {
-		return TaggedUnionUtils.get(this, WEIGHTED_AVG);
+		return TaggedUnionUtils.get(this, Kind.WeightedAvg);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code variable_width_histogram}?
+	 */
+	public boolean isVariableWidthHistogram() {
+		return _kind == Kind.VariableWidthHistogram;
 	}
 
 	/**
@@ -884,19 +1457,19 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 	 *             {@code variable_width_histogram} kind.
 	 */
 	public VariableWidthHistogramAggregation variableWidthHistogram() {
-		return TaggedUnionUtils.get(this, VARIABLE_WIDTH_HISTOGRAM);
+		return TaggedUnionUtils.get(this, Kind.VariableWidthHistogram);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
-		if (this.aggs != null) {
-
-			generator.writeKey("aggs");
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
+			generator.writeKey("aggregations");
 			generator.writeStartObject();
-			for (Map.Entry<String, Aggregation> item0 : this.aggs.entrySet()) {
+			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -904,8 +1477,7 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.meta != null) {
-
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -917,869 +1489,878 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 
 		}
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
 		generator.writeEnd();
+
 	}
 
-	public static class Builder {
-		private String _type;
+	public static class Builder extends ObjectBuilderBase {
+		private Kind _kind;
 		private Object _value;
 
 		@Nullable
-		private Map<String, Aggregation> aggs;
+		private Map<String, Aggregation> aggregations;
 
 		@Nullable
 		private Map<String, JsonData> meta;
 
 		/**
-		 * API name: {@code aggs}
+		 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
-		public Builder aggs(@Nullable Map<String, Aggregation> value) {
-			this.aggs = value;
+		public final Builder aggregations(Map<String, Aggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
+		 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
 		 */
-		public Builder putAggs(String key, Aggregation value) {
-			if (this.aggs == null) {
-				this.aggs = new HashMap<>();
-			}
-			this.aggs.put(key, value);
+		public final Builder aggregations(String key, Aggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #aggs(Map)} to a singleton map.
+		 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+		 * <p>
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
 		 */
-		public Builder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
-		 */
-		public Builder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-			return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
+		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
+		 * API name: {@code meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
 		 */
-		public Builder putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
 		public ContainerBuilder adjacencyMatrix(AdjacencyMatrixAggregation v) {
-			this._type = ADJACENCY_MATRIX;
+			this._kind = Kind.AdjacencyMatrix;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder adjacencyMatrix(
-				Function<AdjacencyMatrixAggregation.Builder, ObjectBuilder<AdjacencyMatrixAggregation>> f) {
-			return this.adjacencyMatrix(f.apply(new AdjacencyMatrixAggregation.Builder()).build());
+				Function<AdjacencyMatrixAggregation.Builder, ObjectBuilder<AdjacencyMatrixAggregation>> fn) {
+			return this.adjacencyMatrix(fn.apply(new AdjacencyMatrixAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder autoDateHistogram(AutoDateHistogramAggregation v) {
-			this._type = AUTO_DATE_HISTOGRAM;
+			this._kind = Kind.AutoDateHistogram;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder autoDateHistogram(
-				Function<AutoDateHistogramAggregation.Builder, ObjectBuilder<AutoDateHistogramAggregation>> f) {
-			return this.autoDateHistogram(f.apply(new AutoDateHistogramAggregation.Builder()).build());
+				Function<AutoDateHistogramAggregation.Builder, ObjectBuilder<AutoDateHistogramAggregation>> fn) {
+			return this.autoDateHistogram(fn.apply(new AutoDateHistogramAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder avg(AverageAggregation v) {
-			this._type = AVG;
+			this._kind = Kind.Avg;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder avg(Function<AverageAggregation.Builder, ObjectBuilder<AverageAggregation>> f) {
-			return this.avg(f.apply(new AverageAggregation.Builder()).build());
+		public ContainerBuilder avg(Function<AverageAggregation.Builder, ObjectBuilder<AverageAggregation>> fn) {
+			return this.avg(fn.apply(new AverageAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder avgBucket(AverageBucketAggregation v) {
-			this._type = AVG_BUCKET;
+			this._kind = Kind.AvgBucket;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder avgBucket(
-				Function<AverageBucketAggregation.Builder, ObjectBuilder<AverageBucketAggregation>> f) {
-			return this.avgBucket(f.apply(new AverageBucketAggregation.Builder()).build());
+				Function<AverageBucketAggregation.Builder, ObjectBuilder<AverageBucketAggregation>> fn) {
+			return this.avgBucket(fn.apply(new AverageBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder boxplot(BoxplotAggregation v) {
-			this._type = BOXPLOT;
+			this._kind = Kind.Boxplot;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder boxplot(Function<BoxplotAggregation.Builder, ObjectBuilder<BoxplotAggregation>> f) {
-			return this.boxplot(f.apply(new BoxplotAggregation.Builder()).build());
+		public ContainerBuilder boxplot(Function<BoxplotAggregation.Builder, ObjectBuilder<BoxplotAggregation>> fn) {
+			return this.boxplot(fn.apply(new BoxplotAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder bucketScript(BucketScriptAggregation v) {
-			this._type = BUCKET_SCRIPT;
+			this._kind = Kind.BucketScript;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder bucketScript(
-				Function<BucketScriptAggregation.Builder, ObjectBuilder<BucketScriptAggregation>> f) {
-			return this.bucketScript(f.apply(new BucketScriptAggregation.Builder()).build());
+				Function<BucketScriptAggregation.Builder, ObjectBuilder<BucketScriptAggregation>> fn) {
+			return this.bucketScript(fn.apply(new BucketScriptAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder bucketSelector(BucketSelectorAggregation v) {
-			this._type = BUCKET_SELECTOR;
+			this._kind = Kind.BucketSelector;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder bucketSelector(
-				Function<BucketSelectorAggregation.Builder, ObjectBuilder<BucketSelectorAggregation>> f) {
-			return this.bucketSelector(f.apply(new BucketSelectorAggregation.Builder()).build());
+				Function<BucketSelectorAggregation.Builder, ObjectBuilder<BucketSelectorAggregation>> fn) {
+			return this.bucketSelector(fn.apply(new BucketSelectorAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder bucketSort(BucketSortAggregation v) {
-			this._type = BUCKET_SORT;
+			this._kind = Kind.BucketSort;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder bucketSort(
-				Function<BucketSortAggregation.Builder, ObjectBuilder<BucketSortAggregation>> f) {
-			return this.bucketSort(f.apply(new BucketSortAggregation.Builder()).build());
+				Function<BucketSortAggregation.Builder, ObjectBuilder<BucketSortAggregation>> fn) {
+			return this.bucketSort(fn.apply(new BucketSortAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder cardinality(CardinalityAggregation v) {
-			this._type = CARDINALITY;
+			this._kind = Kind.Cardinality;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder cardinality(
-				Function<CardinalityAggregation.Builder, ObjectBuilder<CardinalityAggregation>> f) {
-			return this.cardinality(f.apply(new CardinalityAggregation.Builder()).build());
+				Function<CardinalityAggregation.Builder, ObjectBuilder<CardinalityAggregation>> fn) {
+			return this.cardinality(fn.apply(new CardinalityAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder children(ChildrenAggregation v) {
-			this._type = CHILDREN;
+			this._kind = Kind.Children;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder children(Function<ChildrenAggregation.Builder, ObjectBuilder<ChildrenAggregation>> f) {
-			return this.children(f.apply(new ChildrenAggregation.Builder()).build());
+		public ContainerBuilder children(Function<ChildrenAggregation.Builder, ObjectBuilder<ChildrenAggregation>> fn) {
+			return this.children(fn.apply(new ChildrenAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder composite(CompositeAggregation v) {
-			this._type = COMPOSITE;
+			this._kind = Kind.Composite;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder composite(
-				Function<CompositeAggregation.Builder, ObjectBuilder<CompositeAggregation>> f) {
-			return this.composite(f.apply(new CompositeAggregation.Builder()).build());
+				Function<CompositeAggregation.Builder, ObjectBuilder<CompositeAggregation>> fn) {
+			return this.composite(fn.apply(new CompositeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder cumulativeCardinality(CumulativeCardinalityAggregation v) {
-			this._type = CUMULATIVE_CARDINALITY;
+			this._kind = Kind.CumulativeCardinality;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder cumulativeCardinality(
-				Function<CumulativeCardinalityAggregation.Builder, ObjectBuilder<CumulativeCardinalityAggregation>> f) {
-			return this.cumulativeCardinality(f.apply(new CumulativeCardinalityAggregation.Builder()).build());
+				Function<CumulativeCardinalityAggregation.Builder, ObjectBuilder<CumulativeCardinalityAggregation>> fn) {
+			return this.cumulativeCardinality(fn.apply(new CumulativeCardinalityAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder cumulativeSum(CumulativeSumAggregation v) {
-			this._type = CUMULATIVE_SUM;
+			this._kind = Kind.CumulativeSum;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder cumulativeSum(
-				Function<CumulativeSumAggregation.Builder, ObjectBuilder<CumulativeSumAggregation>> f) {
-			return this.cumulativeSum(f.apply(new CumulativeSumAggregation.Builder()).build());
+				Function<CumulativeSumAggregation.Builder, ObjectBuilder<CumulativeSumAggregation>> fn) {
+			return this.cumulativeSum(fn.apply(new CumulativeSumAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder dateHistogram(DateHistogramAggregation v) {
-			this._type = DATE_HISTOGRAM;
+			this._kind = Kind.DateHistogram;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder dateHistogram(
-				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> f) {
-			return this.dateHistogram(f.apply(new DateHistogramAggregation.Builder()).build());
+				Function<DateHistogramAggregation.Builder, ObjectBuilder<DateHistogramAggregation>> fn) {
+			return this.dateHistogram(fn.apply(new DateHistogramAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder dateRange(DateRangeAggregation v) {
-			this._type = DATE_RANGE;
+			this._kind = Kind.DateRange;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder dateRange(
-				Function<DateRangeAggregation.Builder, ObjectBuilder<DateRangeAggregation>> f) {
-			return this.dateRange(f.apply(new DateRangeAggregation.Builder()).build());
+				Function<DateRangeAggregation.Builder, ObjectBuilder<DateRangeAggregation>> fn) {
+			return this.dateRange(fn.apply(new DateRangeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder derivative(DerivativeAggregation v) {
-			this._type = DERIVATIVE;
+			this._kind = Kind.Derivative;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder derivative(
-				Function<DerivativeAggregation.Builder, ObjectBuilder<DerivativeAggregation>> f) {
-			return this.derivative(f.apply(new DerivativeAggregation.Builder()).build());
+				Function<DerivativeAggregation.Builder, ObjectBuilder<DerivativeAggregation>> fn) {
+			return this.derivative(fn.apply(new DerivativeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder diversifiedSampler(DiversifiedSamplerAggregation v) {
-			this._type = DIVERSIFIED_SAMPLER;
+			this._kind = Kind.DiversifiedSampler;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder diversifiedSampler(
-				Function<DiversifiedSamplerAggregation.Builder, ObjectBuilder<DiversifiedSamplerAggregation>> f) {
-			return this.diversifiedSampler(f.apply(new DiversifiedSamplerAggregation.Builder()).build());
+				Function<DiversifiedSamplerAggregation.Builder, ObjectBuilder<DiversifiedSamplerAggregation>> fn) {
+			return this.diversifiedSampler(fn.apply(new DiversifiedSamplerAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder extendedStats(ExtendedStatsAggregation v) {
-			this._type = EXTENDED_STATS;
+			this._kind = Kind.ExtendedStats;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder extendedStats(
-				Function<ExtendedStatsAggregation.Builder, ObjectBuilder<ExtendedStatsAggregation>> f) {
-			return this.extendedStats(f.apply(new ExtendedStatsAggregation.Builder()).build());
+				Function<ExtendedStatsAggregation.Builder, ObjectBuilder<ExtendedStatsAggregation>> fn) {
+			return this.extendedStats(fn.apply(new ExtendedStatsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder extendedStatsBucket(ExtendedStatsBucketAggregation v) {
-			this._type = EXTENDED_STATS_BUCKET;
+			this._kind = Kind.ExtendedStatsBucket;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder extendedStatsBucket(
-				Function<ExtendedStatsBucketAggregation.Builder, ObjectBuilder<ExtendedStatsBucketAggregation>> f) {
-			return this.extendedStatsBucket(f.apply(new ExtendedStatsBucketAggregation.Builder()).build());
+				Function<ExtendedStatsBucketAggregation.Builder, ObjectBuilder<ExtendedStatsBucketAggregation>> fn) {
+			return this.extendedStatsBucket(fn.apply(new ExtendedStatsBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder filter(Query v) {
-			this._type = FILTER;
+			this._kind = Kind.Filter;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder filter(Function<Query.Builder, ObjectBuilder<Query>> f) {
-			return this.filter(f.apply(new Query.Builder()).build());
+		public ContainerBuilder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		public ContainerBuilder filters(FiltersAggregation v) {
-			this._type = FILTERS;
+			this._kind = Kind.Filters;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder filters(Function<FiltersAggregation.Builder, ObjectBuilder<FiltersAggregation>> f) {
-			return this.filters(f.apply(new FiltersAggregation.Builder()).build());
+		public ContainerBuilder filters(Function<FiltersAggregation.Builder, ObjectBuilder<FiltersAggregation>> fn) {
+			return this.filters(fn.apply(new FiltersAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geoBounds(GeoBoundsAggregation v) {
-			this._type = GEO_BOUNDS;
+			this._kind = Kind.GeoBounds;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder geoBounds(
-				Function<GeoBoundsAggregation.Builder, ObjectBuilder<GeoBoundsAggregation>> f) {
-			return this.geoBounds(f.apply(new GeoBoundsAggregation.Builder()).build());
+				Function<GeoBoundsAggregation.Builder, ObjectBuilder<GeoBoundsAggregation>> fn) {
+			return this.geoBounds(fn.apply(new GeoBoundsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geoCentroid(GeoCentroidAggregation v) {
-			this._type = GEO_CENTROID;
+			this._kind = Kind.GeoCentroid;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder geoCentroid(
-				Function<GeoCentroidAggregation.Builder, ObjectBuilder<GeoCentroidAggregation>> f) {
-			return this.geoCentroid(f.apply(new GeoCentroidAggregation.Builder()).build());
+				Function<GeoCentroidAggregation.Builder, ObjectBuilder<GeoCentroidAggregation>> fn) {
+			return this.geoCentroid(fn.apply(new GeoCentroidAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geoDistance(GeoDistanceAggregation v) {
-			this._type = GEO_DISTANCE;
+			this._kind = Kind.GeoDistance;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder geoDistance(
-				Function<GeoDistanceAggregation.Builder, ObjectBuilder<GeoDistanceAggregation>> f) {
-			return this.geoDistance(f.apply(new GeoDistanceAggregation.Builder()).build());
+				Function<GeoDistanceAggregation.Builder, ObjectBuilder<GeoDistanceAggregation>> fn) {
+			return this.geoDistance(fn.apply(new GeoDistanceAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geohashGrid(GeoHashGridAggregation v) {
-			this._type = GEOHASH_GRID;
+			this._kind = Kind.GeohashGrid;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder geohashGrid(
-				Function<GeoHashGridAggregation.Builder, ObjectBuilder<GeoHashGridAggregation>> f) {
-			return this.geohashGrid(f.apply(new GeoHashGridAggregation.Builder()).build());
+				Function<GeoHashGridAggregation.Builder, ObjectBuilder<GeoHashGridAggregation>> fn) {
+			return this.geohashGrid(fn.apply(new GeoHashGridAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geoLine(GeoLineAggregation v) {
-			this._type = GEO_LINE;
+			this._kind = Kind.GeoLine;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder geoLine(Function<GeoLineAggregation.Builder, ObjectBuilder<GeoLineAggregation>> f) {
-			return this.geoLine(f.apply(new GeoLineAggregation.Builder()).build());
+		public ContainerBuilder geoLine(Function<GeoLineAggregation.Builder, ObjectBuilder<GeoLineAggregation>> fn) {
+			return this.geoLine(fn.apply(new GeoLineAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder geotileGrid(GeoTileGridAggregation v) {
-			this._type = GEOTILE_GRID;
+			this._kind = Kind.GeotileGrid;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder geotileGrid(
-				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> f) {
-			return this.geotileGrid(f.apply(new GeoTileGridAggregation.Builder()).build());
+				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
+			return this.geotileGrid(fn.apply(new GeoTileGridAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder global(GlobalAggregation v) {
-			this._type = GLOBAL;
+			this._kind = Kind.Global;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder global(Function<GlobalAggregation.Builder, ObjectBuilder<GlobalAggregation>> f) {
-			return this.global(f.apply(new GlobalAggregation.Builder()).build());
+		public ContainerBuilder global(Function<GlobalAggregation.Builder, ObjectBuilder<GlobalAggregation>> fn) {
+			return this.global(fn.apply(new GlobalAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder histogram(HistogramAggregation v) {
-			this._type = HISTOGRAM;
+			this._kind = Kind.Histogram;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder histogram(
-				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> f) {
-			return this.histogram(f.apply(new HistogramAggregation.Builder()).build());
+				Function<HistogramAggregation.Builder, ObjectBuilder<HistogramAggregation>> fn) {
+			return this.histogram(fn.apply(new HistogramAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder ipRange(IpRangeAggregation v) {
-			this._type = IP_RANGE;
+			this._kind = Kind.IpRange;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder ipRange(Function<IpRangeAggregation.Builder, ObjectBuilder<IpRangeAggregation>> f) {
-			return this.ipRange(f.apply(new IpRangeAggregation.Builder()).build());
+		public ContainerBuilder ipRange(Function<IpRangeAggregation.Builder, ObjectBuilder<IpRangeAggregation>> fn) {
+			return this.ipRange(fn.apply(new IpRangeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder inference(InferenceAggregation v) {
-			this._type = INFERENCE;
+			this._kind = Kind.Inference;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder inference(
-				Function<InferenceAggregation.Builder, ObjectBuilder<InferenceAggregation>> f) {
-			return this.inference(f.apply(new InferenceAggregation.Builder()).build());
+				Function<InferenceAggregation.Builder, ObjectBuilder<InferenceAggregation>> fn) {
+			return this.inference(fn.apply(new InferenceAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder matrixStats(MatrixStatsAggregation v) {
-			this._type = MATRIX_STATS;
+			this._kind = Kind.MatrixStats;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder matrixStats(
-				Function<MatrixStatsAggregation.Builder, ObjectBuilder<MatrixStatsAggregation>> f) {
-			return this.matrixStats(f.apply(new MatrixStatsAggregation.Builder()).build());
+				Function<MatrixStatsAggregation.Builder, ObjectBuilder<MatrixStatsAggregation>> fn) {
+			return this.matrixStats(fn.apply(new MatrixStatsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder max(MaxAggregation v) {
-			this._type = MAX;
+			this._kind = Kind.Max;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder max(Function<MaxAggregation.Builder, ObjectBuilder<MaxAggregation>> f) {
-			return this.max(f.apply(new MaxAggregation.Builder()).build());
+		public ContainerBuilder max(Function<MaxAggregation.Builder, ObjectBuilder<MaxAggregation>> fn) {
+			return this.max(fn.apply(new MaxAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder maxBucket(MaxBucketAggregation v) {
-			this._type = MAX_BUCKET;
+			this._kind = Kind.MaxBucket;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder maxBucket(
-				Function<MaxBucketAggregation.Builder, ObjectBuilder<MaxBucketAggregation>> f) {
-			return this.maxBucket(f.apply(new MaxBucketAggregation.Builder()).build());
+				Function<MaxBucketAggregation.Builder, ObjectBuilder<MaxBucketAggregation>> fn) {
+			return this.maxBucket(fn.apply(new MaxBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder medianAbsoluteDeviation(MedianAbsoluteDeviationAggregation v) {
-			this._type = MEDIAN_ABSOLUTE_DEVIATION;
+			this._kind = Kind.MedianAbsoluteDeviation;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder medianAbsoluteDeviation(
-				Function<MedianAbsoluteDeviationAggregation.Builder, ObjectBuilder<MedianAbsoluteDeviationAggregation>> f) {
-			return this.medianAbsoluteDeviation(f.apply(new MedianAbsoluteDeviationAggregation.Builder()).build());
+				Function<MedianAbsoluteDeviationAggregation.Builder, ObjectBuilder<MedianAbsoluteDeviationAggregation>> fn) {
+			return this.medianAbsoluteDeviation(fn.apply(new MedianAbsoluteDeviationAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder min(MinAggregation v) {
-			this._type = MIN;
+			this._kind = Kind.Min;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder min(Function<MinAggregation.Builder, ObjectBuilder<MinAggregation>> f) {
-			return this.min(f.apply(new MinAggregation.Builder()).build());
+		public ContainerBuilder min(Function<MinAggregation.Builder, ObjectBuilder<MinAggregation>> fn) {
+			return this.min(fn.apply(new MinAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder minBucket(MinBucketAggregation v) {
-			this._type = MIN_BUCKET;
+			this._kind = Kind.MinBucket;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder minBucket(
-				Function<MinBucketAggregation.Builder, ObjectBuilder<MinBucketAggregation>> f) {
-			return this.minBucket(f.apply(new MinBucketAggregation.Builder()).build());
+				Function<MinBucketAggregation.Builder, ObjectBuilder<MinBucketAggregation>> fn) {
+			return this.minBucket(fn.apply(new MinBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder missing(MissingAggregation v) {
-			this._type = MISSING;
+			this._kind = Kind.Missing;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder missing(Function<MissingAggregation.Builder, ObjectBuilder<MissingAggregation>> f) {
-			return this.missing(f.apply(new MissingAggregation.Builder()).build());
+		public ContainerBuilder missing(Function<MissingAggregation.Builder, ObjectBuilder<MissingAggregation>> fn) {
+			return this.missing(fn.apply(new MissingAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder movingAvg(MovingAverageAggregation v) {
-			this._type = MOVING_AVG;
+			this._kind = Kind.MovingAvg;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder movingAvg(
-				Function<MovingAverageAggregation.Builder, ObjectBuilder<MovingAverageAggregation>> f) {
-			return this.movingAvg(f.apply(new MovingAverageAggregation.Builder()).build());
+				Function<MovingAverageAggregation.Builder, ObjectBuilder<MovingAverageAggregation>> fn) {
+			return this.movingAvg(fn.apply(new MovingAverageAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder movingPercentiles(MovingPercentilesAggregation v) {
-			this._type = MOVING_PERCENTILES;
+			this._kind = Kind.MovingPercentiles;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder movingPercentiles(
-				Function<MovingPercentilesAggregation.Builder, ObjectBuilder<MovingPercentilesAggregation>> f) {
-			return this.movingPercentiles(f.apply(new MovingPercentilesAggregation.Builder()).build());
+				Function<MovingPercentilesAggregation.Builder, ObjectBuilder<MovingPercentilesAggregation>> fn) {
+			return this.movingPercentiles(fn.apply(new MovingPercentilesAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder movingFn(MovingFunctionAggregation v) {
-			this._type = MOVING_FN;
+			this._kind = Kind.MovingFn;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder movingFn(
-				Function<MovingFunctionAggregation.Builder, ObjectBuilder<MovingFunctionAggregation>> f) {
-			return this.movingFn(f.apply(new MovingFunctionAggregation.Builder()).build());
+				Function<MovingFunctionAggregation.Builder, ObjectBuilder<MovingFunctionAggregation>> fn) {
+			return this.movingFn(fn.apply(new MovingFunctionAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder multiTerms(MultiTermsAggregation v) {
-			this._type = MULTI_TERMS;
+			this._kind = Kind.MultiTerms;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder multiTerms(
-				Function<MultiTermsAggregation.Builder, ObjectBuilder<MultiTermsAggregation>> f) {
-			return this.multiTerms(f.apply(new MultiTermsAggregation.Builder()).build());
+				Function<MultiTermsAggregation.Builder, ObjectBuilder<MultiTermsAggregation>> fn) {
+			return this.multiTerms(fn.apply(new MultiTermsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder nested(NestedAggregation v) {
-			this._type = NESTED;
+			this._kind = Kind.Nested;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder nested(Function<NestedAggregation.Builder, ObjectBuilder<NestedAggregation>> f) {
-			return this.nested(f.apply(new NestedAggregation.Builder()).build());
+		public ContainerBuilder nested(Function<NestedAggregation.Builder, ObjectBuilder<NestedAggregation>> fn) {
+			return this.nested(fn.apply(new NestedAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder normalize(NormalizeAggregation v) {
-			this._type = NORMALIZE;
+			this._kind = Kind.Normalize;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder normalize(
-				Function<NormalizeAggregation.Builder, ObjectBuilder<NormalizeAggregation>> f) {
-			return this.normalize(f.apply(new NormalizeAggregation.Builder()).build());
+				Function<NormalizeAggregation.Builder, ObjectBuilder<NormalizeAggregation>> fn) {
+			return this.normalize(fn.apply(new NormalizeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder parent(ParentAggregation v) {
-			this._type = PARENT;
+			this._kind = Kind.Parent;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder parent(Function<ParentAggregation.Builder, ObjectBuilder<ParentAggregation>> f) {
-			return this.parent(f.apply(new ParentAggregation.Builder()).build());
+		public ContainerBuilder parent(Function<ParentAggregation.Builder, ObjectBuilder<ParentAggregation>> fn) {
+			return this.parent(fn.apply(new ParentAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder percentileRanks(PercentileRanksAggregation v) {
-			this._type = PERCENTILE_RANKS;
+			this._kind = Kind.PercentileRanks;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder percentileRanks(
-				Function<PercentileRanksAggregation.Builder, ObjectBuilder<PercentileRanksAggregation>> f) {
-			return this.percentileRanks(f.apply(new PercentileRanksAggregation.Builder()).build());
+				Function<PercentileRanksAggregation.Builder, ObjectBuilder<PercentileRanksAggregation>> fn) {
+			return this.percentileRanks(fn.apply(new PercentileRanksAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder percentiles(PercentilesAggregation v) {
-			this._type = PERCENTILES;
+			this._kind = Kind.Percentiles;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder percentiles(
-				Function<PercentilesAggregation.Builder, ObjectBuilder<PercentilesAggregation>> f) {
-			return this.percentiles(f.apply(new PercentilesAggregation.Builder()).build());
+				Function<PercentilesAggregation.Builder, ObjectBuilder<PercentilesAggregation>> fn) {
+			return this.percentiles(fn.apply(new PercentilesAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder percentilesBucket(PercentilesBucketAggregation v) {
-			this._type = PERCENTILES_BUCKET;
+			this._kind = Kind.PercentilesBucket;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder percentilesBucket(
-				Function<PercentilesBucketAggregation.Builder, ObjectBuilder<PercentilesBucketAggregation>> f) {
-			return this.percentilesBucket(f.apply(new PercentilesBucketAggregation.Builder()).build());
+				Function<PercentilesBucketAggregation.Builder, ObjectBuilder<PercentilesBucketAggregation>> fn) {
+			return this.percentilesBucket(fn.apply(new PercentilesBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder range(RangeAggregation v) {
-			this._type = RANGE;
+			this._kind = Kind.Range;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder range(Function<RangeAggregation.Builder, ObjectBuilder<RangeAggregation>> f) {
-			return this.range(f.apply(new RangeAggregation.Builder()).build());
+		public ContainerBuilder range(Function<RangeAggregation.Builder, ObjectBuilder<RangeAggregation>> fn) {
+			return this.range(fn.apply(new RangeAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder rareTerms(RareTermsAggregation v) {
-			this._type = RARE_TERMS;
+			this._kind = Kind.RareTerms;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder rareTerms(
-				Function<RareTermsAggregation.Builder, ObjectBuilder<RareTermsAggregation>> f) {
-			return this.rareTerms(f.apply(new RareTermsAggregation.Builder()).build());
+				Function<RareTermsAggregation.Builder, ObjectBuilder<RareTermsAggregation>> fn) {
+			return this.rareTerms(fn.apply(new RareTermsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder rate(RateAggregation v) {
-			this._type = RATE;
+			this._kind = Kind.Rate;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder rate(Function<RateAggregation.Builder, ObjectBuilder<RateAggregation>> f) {
-			return this.rate(f.apply(new RateAggregation.Builder()).build());
+		public ContainerBuilder rate(Function<RateAggregation.Builder, ObjectBuilder<RateAggregation>> fn) {
+			return this.rate(fn.apply(new RateAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder reverseNested(ReverseNestedAggregation v) {
-			this._type = REVERSE_NESTED;
+			this._kind = Kind.ReverseNested;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder reverseNested(
-				Function<ReverseNestedAggregation.Builder, ObjectBuilder<ReverseNestedAggregation>> f) {
-			return this.reverseNested(f.apply(new ReverseNestedAggregation.Builder()).build());
+				Function<ReverseNestedAggregation.Builder, ObjectBuilder<ReverseNestedAggregation>> fn) {
+			return this.reverseNested(fn.apply(new ReverseNestedAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder sampler(SamplerAggregation v) {
-			this._type = SAMPLER;
+			this._kind = Kind.Sampler;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder sampler(Function<SamplerAggregation.Builder, ObjectBuilder<SamplerAggregation>> f) {
-			return this.sampler(f.apply(new SamplerAggregation.Builder()).build());
+		public ContainerBuilder sampler(Function<SamplerAggregation.Builder, ObjectBuilder<SamplerAggregation>> fn) {
+			return this.sampler(fn.apply(new SamplerAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder scriptedMetric(ScriptedMetricAggregation v) {
-			this._type = SCRIPTED_METRIC;
+			this._kind = Kind.ScriptedMetric;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder scriptedMetric(
-				Function<ScriptedMetricAggregation.Builder, ObjectBuilder<ScriptedMetricAggregation>> f) {
-			return this.scriptedMetric(f.apply(new ScriptedMetricAggregation.Builder()).build());
+				Function<ScriptedMetricAggregation.Builder, ObjectBuilder<ScriptedMetricAggregation>> fn) {
+			return this.scriptedMetric(fn.apply(new ScriptedMetricAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder serialDiff(SerialDifferencingAggregation v) {
-			this._type = SERIAL_DIFF;
+			this._kind = Kind.SerialDiff;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder serialDiff(
-				Function<SerialDifferencingAggregation.Builder, ObjectBuilder<SerialDifferencingAggregation>> f) {
-			return this.serialDiff(f.apply(new SerialDifferencingAggregation.Builder()).build());
+				Function<SerialDifferencingAggregation.Builder, ObjectBuilder<SerialDifferencingAggregation>> fn) {
+			return this.serialDiff(fn.apply(new SerialDifferencingAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder significantTerms(SignificantTermsAggregation v) {
-			this._type = SIGNIFICANT_TERMS;
+			this._kind = Kind.SignificantTerms;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder significantTerms(
-				Function<SignificantTermsAggregation.Builder, ObjectBuilder<SignificantTermsAggregation>> f) {
-			return this.significantTerms(f.apply(new SignificantTermsAggregation.Builder()).build());
+				Function<SignificantTermsAggregation.Builder, ObjectBuilder<SignificantTermsAggregation>> fn) {
+			return this.significantTerms(fn.apply(new SignificantTermsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder significantText(SignificantTextAggregation v) {
-			this._type = SIGNIFICANT_TEXT;
+			this._kind = Kind.SignificantText;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder significantText(
-				Function<SignificantTextAggregation.Builder, ObjectBuilder<SignificantTextAggregation>> f) {
-			return this.significantText(f.apply(new SignificantTextAggregation.Builder()).build());
+				Function<SignificantTextAggregation.Builder, ObjectBuilder<SignificantTextAggregation>> fn) {
+			return this.significantText(fn.apply(new SignificantTextAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder stats(StatsAggregation v) {
-			this._type = STATS;
+			this._kind = Kind.Stats;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder stats(Function<StatsAggregation.Builder, ObjectBuilder<StatsAggregation>> f) {
-			return this.stats(f.apply(new StatsAggregation.Builder()).build());
+		public ContainerBuilder stats(Function<StatsAggregation.Builder, ObjectBuilder<StatsAggregation>> fn) {
+			return this.stats(fn.apply(new StatsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder statsBucket(StatsBucketAggregation v) {
-			this._type = STATS_BUCKET;
+			this._kind = Kind.StatsBucket;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder statsBucket(
-				Function<StatsBucketAggregation.Builder, ObjectBuilder<StatsBucketAggregation>> f) {
-			return this.statsBucket(f.apply(new StatsBucketAggregation.Builder()).build());
+				Function<StatsBucketAggregation.Builder, ObjectBuilder<StatsBucketAggregation>> fn) {
+			return this.statsBucket(fn.apply(new StatsBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder stringStats(StringStatsAggregation v) {
-			this._type = STRING_STATS;
+			this._kind = Kind.StringStats;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder stringStats(
-				Function<StringStatsAggregation.Builder, ObjectBuilder<StringStatsAggregation>> f) {
-			return this.stringStats(f.apply(new StringStatsAggregation.Builder()).build());
+				Function<StringStatsAggregation.Builder, ObjectBuilder<StringStatsAggregation>> fn) {
+			return this.stringStats(fn.apply(new StringStatsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder sum(SumAggregation v) {
-			this._type = SUM;
+			this._kind = Kind.Sum;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder sum(Function<SumAggregation.Builder, ObjectBuilder<SumAggregation>> f) {
-			return this.sum(f.apply(new SumAggregation.Builder()).build());
+		public ContainerBuilder sum(Function<SumAggregation.Builder, ObjectBuilder<SumAggregation>> fn) {
+			return this.sum(fn.apply(new SumAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder sumBucket(SumBucketAggregation v) {
-			this._type = SUM_BUCKET;
+			this._kind = Kind.SumBucket;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder sumBucket(
-				Function<SumBucketAggregation.Builder, ObjectBuilder<SumBucketAggregation>> f) {
-			return this.sumBucket(f.apply(new SumBucketAggregation.Builder()).build());
+				Function<SumBucketAggregation.Builder, ObjectBuilder<SumBucketAggregation>> fn) {
+			return this.sumBucket(fn.apply(new SumBucketAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder terms(TermsAggregation v) {
-			this._type = TERMS;
+			this._kind = Kind.Terms;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> f) {
-			return this.terms(f.apply(new TermsAggregation.Builder()).build());
+		public ContainerBuilder terms(Function<TermsAggregation.Builder, ObjectBuilder<TermsAggregation>> fn) {
+			return this.terms(fn.apply(new TermsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder topHits(TopHitsAggregation v) {
-			this._type = TOP_HITS;
+			this._kind = Kind.TopHits;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder topHits(Function<TopHitsAggregation.Builder, ObjectBuilder<TopHitsAggregation>> f) {
-			return this.topHits(f.apply(new TopHitsAggregation.Builder()).build());
+		public ContainerBuilder topHits(Function<TopHitsAggregation.Builder, ObjectBuilder<TopHitsAggregation>> fn) {
+			return this.topHits(fn.apply(new TopHitsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder tTest(TTestAggregation v) {
-			this._type = T_TEST;
+			this._kind = Kind.TTest;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
-		public ContainerBuilder tTest(Function<TTestAggregation.Builder, ObjectBuilder<TTestAggregation>> f) {
-			return this.tTest(f.apply(new TTestAggregation.Builder()).build());
+		public ContainerBuilder tTest(Function<TTestAggregation.Builder, ObjectBuilder<TTestAggregation>> fn) {
+			return this.tTest(fn.apply(new TTestAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder topMetrics(TopMetricsAggregation v) {
-			this._type = TOP_METRICS;
+			this._kind = Kind.TopMetrics;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder topMetrics(
-				Function<TopMetricsAggregation.Builder, ObjectBuilder<TopMetricsAggregation>> f) {
-			return this.topMetrics(f.apply(new TopMetricsAggregation.Builder()).build());
+				Function<TopMetricsAggregation.Builder, ObjectBuilder<TopMetricsAggregation>> fn) {
+			return this.topMetrics(fn.apply(new TopMetricsAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder valueCount(ValueCountAggregation v) {
-			this._type = VALUE_COUNT;
+			this._kind = Kind.ValueCount;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder valueCount(
-				Function<ValueCountAggregation.Builder, ObjectBuilder<ValueCountAggregation>> f) {
-			return this.valueCount(f.apply(new ValueCountAggregation.Builder()).build());
+				Function<ValueCountAggregation.Builder, ObjectBuilder<ValueCountAggregation>> fn) {
+			return this.valueCount(fn.apply(new ValueCountAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder weightedAvg(WeightedAverageAggregation v) {
-			this._type = WEIGHTED_AVG;
+			this._kind = Kind.WeightedAvg;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder weightedAvg(
-				Function<WeightedAverageAggregation.Builder, ObjectBuilder<WeightedAverageAggregation>> f) {
-			return this.weightedAvg(f.apply(new WeightedAverageAggregation.Builder()).build());
+				Function<WeightedAverageAggregation.Builder, ObjectBuilder<WeightedAverageAggregation>> fn) {
+			return this.weightedAvg(fn.apply(new WeightedAverageAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder variableWidthHistogram(VariableWidthHistogramAggregation v) {
-			this._type = VARIABLE_WIDTH_HISTOGRAM;
+			this._kind = Kind.VariableWidthHistogram;
 			this._value = v;
 			return new ContainerBuilder();
 		}
 
 		public ContainerBuilder variableWidthHistogram(
-				Function<VariableWidthHistogramAggregation.Builder, ObjectBuilder<VariableWidthHistogramAggregation>> f) {
-			return this.variableWidthHistogram(f.apply(new VariableWidthHistogramAggregation.Builder()).build());
+				Function<VariableWidthHistogramAggregation.Builder, ObjectBuilder<VariableWidthHistogramAggregation>> fn) {
+			return this.variableWidthHistogram(fn.apply(new VariableWidthHistogramAggregation.Builder()).build());
 		}
 
 		protected Aggregation build() {
+			_checkSingleUse();
 			return new Aggregation(this);
 		}
 
 		public class ContainerBuilder implements ObjectBuilder<Aggregation> {
 
 			/**
-			 * API name: {@code aggs}
+			 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+			 * <p>
+			 * API name: {@code aggregations}
+			 * <p>
+			 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 			 */
-			public ContainerBuilder aggs(@Nullable Map<String, Aggregation> value) {
-				Builder.this.aggs = value;
+			public final ContainerBuilder aggregations(Map<String, Aggregation> map) {
+				Builder.this.aggregations = _mapPutAll(Builder.this.aggregations, map);
 				return this;
 			}
 
 			/**
-			 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
+			 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+			 * <p>
+			 * API name: {@code aggregations}
+			 * <p>
+			 * Adds an entry to <code>aggregations</code>.
 			 */
-			public ContainerBuilder putAggs(String key, Aggregation value) {
-				if (Builder.this.aggs == null) {
-					Builder.this.aggs = new HashMap<>();
-				}
-				Builder.this.aggs.put(key, value);
+			public final ContainerBuilder aggregations(String key, Aggregation value) {
+				Builder.this.aggregations = _mapPut(Builder.this.aggregations, key, value);
 				return this;
 			}
 
 			/**
-			 * Set {@link #aggs(Map)} to a singleton map.
+			 * Sub-aggregations for this aggregation. Only applies to bucket aggregations.
+			 * <p>
+			 * API name: {@code aggregations}
+			 * <p>
+			 * Adds an entry to <code>aggregations</code> using a builder lambda.
 			 */
-			public ContainerBuilder aggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-				return this.aggs(Collections.singletonMap(key, fn.apply(new Aggregation.Builder()).build()));
-			}
-
-			/**
-			 * Add a key/value to {@link #aggs(Map)}, creating the map if needed.
-			 */
-			public ContainerBuilder putAggs(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
-				return this.putAggs(key, fn.apply(new Aggregation.Builder()).build());
+			public final ContainerBuilder aggregations(String key,
+					Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+				return aggregations(key, fn.apply(new Aggregation.Builder()).build());
 			}
 
 			/**
 			 * API name: {@code meta}
+			 * <p>
+			 * Adds all entries of <code>map</code> to <code>meta</code>.
 			 */
-			public ContainerBuilder meta(@Nullable Map<String, JsonData> value) {
-				Builder.this.meta = value;
+			public final ContainerBuilder meta(Map<String, JsonData> map) {
+				Builder.this.meta = _mapPutAll(Builder.this.meta, map);
 				return this;
 			}
 
 			/**
-			 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
+			 * API name: {@code meta}
+			 * <p>
+			 * Adds an entry to <code>meta</code>.
 			 */
-			public ContainerBuilder putMeta(String key, JsonData value) {
-				if (Builder.this.meta == null) {
-					Builder.this.meta = new HashMap<>();
-				}
-				Builder.this.meta.put(key, value);
+			public final ContainerBuilder meta(String key, JsonData value) {
+				Builder.this.meta = _mapPut(Builder.this.meta, key, value);
 				return this;
 			}
 
@@ -1789,9 +2370,10 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 		}
 	}
 
-	protected static void setupAggregationDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupAggregationDeserializer(ObjectDeserializer<Builder> op) {
 
-		op.add(Builder::aggs, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER), "aggs");
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
+				"aggregations", "aggs");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
 		op.add(Builder::adjacencyMatrix, AdjacencyMatrixAggregation._DESERIALIZER, "adjacency_matrix");
 		op.add(Builder::autoDateHistogram, AutoDateHistogramAggregation._DESERIALIZER, "auto_date_histogram");
@@ -1868,6 +2450,6 @@ public class Aggregation implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<Aggregation> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Aggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Aggregation::setupAggregationDeserializer, Builder::build);
 }

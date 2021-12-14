@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,34 +46,32 @@ import javax.annotation.Nullable;
 
 // typedef: cat.allocation.Request
 
-public final class AllocationRequest extends CatRequestBase {
-	@Nullable
-	private final List<String> nodeId;
+/**
+ * Provides a snapshot of how many shards are allocated to each data node and
+ * how much disk space they are using.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/allocation/CatAllocationRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
+public class AllocationRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
+	private final List<String> nodeId;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public AllocationRequest(Builder builder) {
+	private AllocationRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
 		this.bytes = builder.bytes;
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 
 	}
 
-	public AllocationRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of node IDs or names to limit the returned information
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	@Nullable
-	public List<String> nodeId() {
-		return this.nodeId;
+	public static AllocationRequest of(Function<Builder, ObjectBuilder<AllocationRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,8 +80,17 @@ public final class AllocationRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
+	}
+
+	/**
+	 * A comma-separated list of node IDs or names to limit the returned information
+	 * <p>
+	 * API name: {@code node_id}
+	 */
+	public final List<String> nodeId() {
+		return this.nodeId;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -92,51 +98,45 @@ public final class AllocationRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link AllocationRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<AllocationRequest> {
-		@Nullable
-		private List<String> nodeId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationRequest> {
 		@Nullable
 		private Bytes bytes;
 
-		/**
-		 * A comma-separated list of node IDs or names to limit the returned information
-		 * <p>
-		 * API name: {@code node_id}
-		 */
-		public Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of node IDs or names to limit the returned information
-		 * <p>
-		 * API name: {@code node_id}
-		 */
-		public Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> nodeId;
 
 		/**
 		 * The unit in which to display byte values
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of node IDs or names to limit the returned information
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of node IDs or names to limit the returned information
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -147,6 +147,7 @@ public final class AllocationRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public AllocationRequest build() {
+			_checkSingleUse();
 
 			return new AllocationRequest(this);
 		}
@@ -157,7 +158,9 @@ public final class AllocationRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.allocation}".
 	 */
-	public static final Endpoint<AllocationRequest, AllocationResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<AllocationRequest, AllocationResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.allocation",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -170,7 +173,7 @@ public final class AllocationRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
+				if (ApiTypeHelper.isDefined(request.nodeId()))
 					propsSet |= _nodeId;
 
 				if (propsSet == 0) {
@@ -195,8 +198,9 @@ public final class AllocationRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				return params;
 

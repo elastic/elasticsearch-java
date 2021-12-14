@@ -23,20 +23,28 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.Counter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L33-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Counter implements JsonpSerializable {
 	private final long active;
@@ -45,24 +53,28 @@ public class Counter implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Counter(AbstractBuilder<?> builder) {
+	protected Counter(AbstractBuilder<?> builder) {
 
-		this.active = Objects.requireNonNull(builder.active, "active");
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
+	}
+
+	public static Counter counterOf(Function<Builder, ObjectBuilder<Counter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code active}
 	 */
-	public long active() {
+	public final long active() {
 		return this.active;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
@@ -90,6 +102,7 @@ public class Counter implements JsonpSerializable {
 	/**
 	 * Builder for {@link Counter}.
 	 */
+
 	public static class Builder extends Counter.AbstractBuilder<Builder> implements ObjectBuilder<Counter> {
 		@Override
 		protected Builder self() {
@@ -103,12 +116,15 @@ public class Counter implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Counter build() {
+			_checkSingleUse();
 
 			return new Counter(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private Long active;
 
 		private Long total;
@@ -116,7 +132,7 @@ public class Counter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code active}
 		 */
-		public BuilderT active(long value) {
+		public final BuilderT active(long value) {
 			this.active = value;
 			return self();
 		}
@@ -124,7 +140,7 @@ public class Counter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public BuilderT total(long value) {
+		public final BuilderT total(long value) {
 			this.total = value;
 			return self();
 		}
@@ -139,10 +155,10 @@ public class Counter implements JsonpSerializable {
 	 * Json deserializer for {@link Counter}
 	 */
 	public static final JsonpDeserializer<Counter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Counter::setupCounterDeserializer, Builder::build);
+			Counter::setupCounterDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupCounterDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::active, JsonpDeserializer.longDeserializer(), "active");
 		op.add(AbstractBuilder::total, JsonpDeserializer.longDeserializer(), "total");

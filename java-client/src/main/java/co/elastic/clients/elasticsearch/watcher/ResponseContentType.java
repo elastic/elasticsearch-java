@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L108-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum ResponseContentType implements StringEnum {
-	Json("json"), Yaml("yaml"), Text("text");
+public enum ResponseContentType implements JsonEnum {
+	Json("json"),
+
+	Yaml("yaml"),
+
+	Text("text"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +53,6 @@ public enum ResponseContentType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ResponseContentType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ResponseContentType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ResponseContentType.values());
 }

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,8 +35,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TTestAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L144-L148">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TTestAggregation extends AggregationBase implements AggregationVariant {
+public class TTestAggregation extends AggregationBase implements AggregationVariant {
 	@Nullable
 	private final TestPopulation a;
 
@@ -49,7 +55,7 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TTestAggregation(Builder builder) {
+	private TTestAggregation(Builder builder) {
 		super(builder);
 
 		this.a = builder.a;
@@ -58,23 +64,23 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 
 	}
 
-	public TTestAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TTestAggregation of(Function<Builder, ObjectBuilder<TTestAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "t_test";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.TTest;
 	}
 
 	/**
 	 * API name: {@code a}
 	 */
 	@Nullable
-	public TestPopulation a() {
+	public final TestPopulation a() {
 		return this.a;
 	}
 
@@ -82,7 +88,7 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 	 * API name: {@code b}
 	 */
 	@Nullable
-	public TestPopulation b() {
+	public final TestPopulation b() {
 		return this.b;
 	}
 
@@ -90,7 +96,7 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public TTestType type() {
+	public final TTestType type() {
 		return this.type;
 	}
 
@@ -98,19 +104,16 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 
 		super.serializeInternal(generator, mapper);
 		if (this.a != null) {
-
 			generator.writeKey("a");
 			this.a.serialize(generator, mapper);
 
 		}
 		if (this.b != null) {
-
 			generator.writeKey("b");
 			this.b.serialize(generator, mapper);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			this.type.serialize(generator, mapper);
 		}
@@ -122,6 +125,7 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 	/**
 	 * Builder for {@link TTestAggregation}.
 	 */
+
 	public static class Builder extends AggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TTestAggregation> {
@@ -137,7 +141,7 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 		/**
 		 * API name: {@code a}
 		 */
-		public Builder a(@Nullable TestPopulation value) {
+		public final Builder a(@Nullable TestPopulation value) {
 			this.a = value;
 			return this;
 		}
@@ -145,14 +149,14 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 		/**
 		 * API name: {@code a}
 		 */
-		public Builder a(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
+		public final Builder a(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
 			return this.a(fn.apply(new TestPopulation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code b}
 		 */
-		public Builder b(@Nullable TestPopulation value) {
+		public final Builder b(@Nullable TestPopulation value) {
 			this.b = value;
 			return this;
 		}
@@ -160,14 +164,14 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 		/**
 		 * API name: {@code b}
 		 */
-		public Builder b(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
+		public final Builder b(Function<TestPopulation.Builder, ObjectBuilder<TestPopulation>> fn) {
 			return this.b(fn.apply(new TestPopulation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable TTestType value) {
+		public final Builder type(@Nullable TTestType value) {
 			this.type = value;
 			return this;
 		}
@@ -184,6 +188,7 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 		 *             if some of the required fields are null.
 		 */
 		public TTestAggregation build() {
+			_checkSingleUse();
 
 			return new TTestAggregation(this);
 		}
@@ -195,9 +200,9 @@ public final class TTestAggregation extends AggregationBase implements Aggregati
 	 * Json deserializer for {@link TTestAggregation}
 	 */
 	public static final JsonpDeserializer<TTestAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TTestAggregation::setupTTestAggregationDeserializer, Builder::build);
+			TTestAggregation::setupTTestAggregationDeserializer);
 
-	protected static void setupTTestAggregationDeserializer(DelegatingDeserializer<TTestAggregation.Builder> op) {
+	protected static void setupTTestAggregationDeserializer(ObjectDeserializer<TTestAggregation.Builder> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
 		op.add(Builder::a, TestPopulation._DESERIALIZER, "a");
 		op.add(Builder::b, TestPopulation._DESERIALIZER, "b");

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.put_alias.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_alias/IndicesPutAliasResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutAliasResponse extends AcknowledgedResponseBase {
+public class PutAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutAliasResponse(Builder builder) {
+	private PutAliasResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutAliasResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutAliasResponse of(Function<Builder, ObjectBuilder<PutAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutAliasResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutAliasResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutAliasResponse> {
@@ -68,6 +75,7 @@ public final class PutAliasResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutAliasResponse build() {
+			_checkSingleUse();
 
 			return new PutAliasResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class PutAliasResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutAliasResponse}
 	 */
 	public static final JsonpDeserializer<PutAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutAliasResponse::setupPutAliasResponseDeserializer, Builder::build);
+			PutAliasResponse::setupPutAliasResponseDeserializer);
 
-	protected static void setupPutAliasResponseDeserializer(DelegatingDeserializer<PutAliasResponse.Builder> op) {
+	protected static void setupPutAliasResponseDeserializer(ObjectDeserializer<PutAliasResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

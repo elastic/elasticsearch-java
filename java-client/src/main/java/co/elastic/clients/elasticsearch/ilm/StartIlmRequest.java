@@ -23,17 +23,18 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -42,31 +43,39 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.start.Request
 
-public final class StartIlmRequest extends RequestBase {
+/**
+ * Start the index lifecycle management (ILM) plugin.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/start/StartIlmRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
+public class StartIlmRequest extends RequestBase {
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartIlmRequest(Builder builder) {
+	private StartIlmRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
 		this.timeout = builder.timeout;
 
 	}
 
-	public StartIlmRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartIlmRequest of(Function<Builder, ObjectBuilder<StartIlmRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
 	}
 
@@ -74,7 +83,7 @@ public final class StartIlmRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -83,27 +92,42 @@ public final class StartIlmRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartIlmRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StartIlmRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartIlmRequest> {
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -113,6 +137,7 @@ public final class StartIlmRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public StartIlmRequest build() {
+			_checkSingleUse();
 
 			return new StartIlmRequest(this);
 		}
@@ -123,7 +148,9 @@ public final class StartIlmRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.start}".
 	 */
-	public static final Endpoint<StartIlmRequest, StartIlmResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StartIlmRequest, StartIlmResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.start",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -140,10 +167,10 @@ public final class StartIlmRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

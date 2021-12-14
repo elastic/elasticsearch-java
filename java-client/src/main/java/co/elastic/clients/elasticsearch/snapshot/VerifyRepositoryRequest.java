@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,36 +45,35 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.verify_repository.Request
 
-public final class VerifyRepositoryRequest extends RequestBase {
-	private final String repository;
+/**
+ * Verifies a repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/verify_repository/SnapshotVerifyRepositoryRequest.ts#L24-L38">API
+ *      specification</a>
+ */
+
+public class VerifyRepositoryRequest extends RequestBase {
+	@Nullable
+	private final Time masterTimeout;
+
+	private final String name;
 
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public VerifyRepositoryRequest(Builder builder) {
+	private VerifyRepositoryRequest(Builder builder) {
 
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
 
-	public VerifyRepositoryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A repository name
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	public String repository() {
-		return this.repository;
+	public static VerifyRepositoryRequest of(Function<Builder, ObjectBuilder<VerifyRepositoryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -80,8 +82,17 @@ public final class VerifyRepositoryRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - A repository name
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	public final String name() {
+		return this.name;
 	}
 
 	/**
@@ -90,7 +101,7 @@ public final class VerifyRepositoryRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -99,22 +110,23 @@ public final class VerifyRepositoryRequest extends RequestBase {
 	/**
 	 * Builder for {@link VerifyRepositoryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<VerifyRepositoryRequest> {
-		private String repository;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VerifyRepositoryRequest> {
+		@Nullable
+		private Time masterTimeout;
+
+		private String name;
 
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
-		 * Required - A repository name
+		 * Explicit operation timeout for connection to master node
 		 * <p>
-		 * API name: {@code repository}
+		 * API name: {@code master_timeout}
 		 */
-		public Builder repository(String value) {
-			this.repository = value;
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
@@ -123,8 +135,17 @@ public final class VerifyRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - A repository name
+		 * <p>
+		 * API name: {@code repository}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -133,9 +154,18 @@ public final class VerifyRepositoryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -145,6 +175,7 @@ public final class VerifyRepositoryRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public VerifyRepositoryRequest build() {
+			_checkSingleUse();
 
 			return new VerifyRepositoryRequest(this);
 		}
@@ -155,7 +186,9 @@ public final class VerifyRepositoryRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code snapshot.verify_repository}".
 	 */
-	public static final Endpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<VerifyRepositoryRequest, VerifyRepositoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/snapshot.verify_repository",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -164,17 +197,17 @@ public final class VerifyRepositoryRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _repository = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _repository;
+				propsSet |= _name;
 
-				if (propsSet == (_repository)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_snapshot");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.repository, buf);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					buf.append("/_verify");
 					return buf.toString();
 				}
@@ -186,10 +219,10 @@ public final class VerifyRepositoryRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

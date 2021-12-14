@@ -23,74 +23,82 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepWordsTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L222-L227">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KeepWordsTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> keepWords;
 
-	private final boolean keepWordsCase;
+	@Nullable
+	private final Boolean keepWordsCase;
 
+	@Nullable
 	private final String keepWordsPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KeepWordsTokenFilter(Builder builder) {
+	private KeepWordsTokenFilter(Builder builder) {
 		super(builder);
 
-		this.keepWords = ModelTypeHelper.unmodifiableNonNull(builder.keepWords, "keep_words");
-		this.keepWordsCase = Objects.requireNonNull(builder.keepWordsCase, "keep_words_case");
-		this.keepWordsPath = Objects.requireNonNull(builder.keepWordsPath, "keep_words_path");
+		this.keepWords = ApiTypeHelper.unmodifiable(builder.keepWords);
+		this.keepWordsCase = builder.keepWordsCase;
+		this.keepWordsPath = builder.keepWordsPath;
 
 	}
 
-	public KeepWordsTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KeepWordsTokenFilter of(Function<Builder, ObjectBuilder<KeepWordsTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "keep";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Keep;
 	}
 
 	/**
-	 * Required - API name: {@code keep_words}
+	 * API name: {@code keep_words}
 	 */
-	public List<String> keepWords() {
+	public final List<String> keepWords() {
 		return this.keepWords;
 	}
 
 	/**
-	 * Required - API name: {@code keep_words_case}
+	 * API name: {@code keep_words_case}
 	 */
-	public boolean keepWordsCase() {
+	@Nullable
+	public final Boolean keepWordsCase() {
 		return this.keepWordsCase;
 	}
 
 	/**
-	 * Required - API name: {@code keep_words_path}
+	 * API name: {@code keep_words_path}
 	 */
-	public String keepWordsPath() {
+	@Nullable
+	public final String keepWordsPath() {
 		return this.keepWordsPath;
 	}
 
@@ -98,20 +106,26 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "keep");
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.keepWords)) {
+			generator.writeKey("keep_words");
+			generator.writeStartArray();
+			for (String item0 : this.keepWords) {
+				generator.write(item0);
 
-		generator.writeKey("keep_words");
-		generator.writeStartArray();
-		for (String item0 : this.keepWords) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.keepWordsCase != null) {
+			generator.writeKey("keep_words_case");
+			generator.write(this.keepWordsCase);
 
-		generator.writeKey("keep_words_case");
-		generator.write(this.keepWordsCase);
+		}
+		if (this.keepWordsPath != null) {
+			generator.writeKey("keep_words_path");
+			generator.write(this.keepWordsPath);
 
-		generator.writeKey("keep_words_path");
-		generator.write(this.keepWordsPath);
+		}
 
 	}
 
@@ -120,54 +134,51 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Builder for {@link KeepWordsTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeepWordsTokenFilter> {
+		@Nullable
 		private List<String> keepWords;
 
+		@Nullable
 		private Boolean keepWordsCase;
 
+		@Nullable
 		private String keepWordsPath;
 
 		/**
-		 * Required - API name: {@code keep_words}
+		 * API name: {@code keep_words}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>keepWords</code>.
 		 */
-		public Builder keepWords(List<String> value) {
-			this.keepWords = value;
+		public final Builder keepWords(List<String> list) {
+			this.keepWords = _listAddAll(this.keepWords, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code keep_words}
+		 * API name: {@code keep_words}
+		 * <p>
+		 * Adds one or more values to <code>keepWords</code>.
 		 */
-		public Builder keepWords(String... value) {
-			this.keepWords = Arrays.asList(value);
+		public final Builder keepWords(String value, String... values) {
+			this.keepWords = _listAdd(this.keepWords, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #keepWords(List)}, creating the list if needed.
+		 * API name: {@code keep_words_case}
 		 */
-		public Builder addKeepWords(String value) {
-			if (this.keepWords == null) {
-				this.keepWords = new ArrayList<>();
-			}
-			this.keepWords.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code keep_words_case}
-		 */
-		public Builder keepWordsCase(boolean value) {
+		public final Builder keepWordsCase(@Nullable Boolean value) {
 			this.keepWordsCase = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code keep_words_path}
+		 * API name: {@code keep_words_path}
 		 */
-		public Builder keepWordsPath(String value) {
+		public final Builder keepWordsPath(@Nullable String value) {
 			this.keepWordsPath = value;
 			return this;
 		}
@@ -184,6 +195,7 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public KeepWordsTokenFilter build() {
+			_checkSingleUse();
 
 			return new KeepWordsTokenFilter(this);
 		}
@@ -195,10 +207,9 @@ public final class KeepWordsTokenFilter extends TokenFilterBase implements Token
 	 * Json deserializer for {@link KeepWordsTokenFilter}
 	 */
 	public static final JsonpDeserializer<KeepWordsTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KeepWordsTokenFilter::setupKeepWordsTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, KeepWordsTokenFilter::setupKeepWordsTokenFilterDeserializer);
 
-	protected static void setupKeepWordsTokenFilterDeserializer(
-			DelegatingDeserializer<KeepWordsTokenFilter.Builder> op) {
+	protected static void setupKeepWordsTokenFilterDeserializer(ObjectDeserializer<KeepWordsTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::keepWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"keep_words");

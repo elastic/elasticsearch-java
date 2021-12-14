@@ -23,19 +23,19 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -46,22 +46,32 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_data_frame_analytics.Request
-@JsonpDeserializable
-public final class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
-	private final String id;
 
+/**
+ * Instantiates a data frame analytics job. This API creates a data frame
+ * analytics job that performs an analysis on the source indices and stores the
+ * outcome in a destination index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_data_frame_analytics/MlPutDataFrameAnalyticsRequest.ts#L30-L130">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowLazyStart;
 
 	private final DataframeAnalysis analysis;
 
 	@Nullable
-	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+	private final DataframeAnalysisAnalyzedFields analyzedFields;
 
 	@Nullable
 	private final String description;
 
 	private final DataframeAnalyticsDestination dest;
+
+	private final String id;
 
 	@Nullable
 	private final Integer maxNumThreads;
@@ -73,33 +83,22 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutDataFrameAnalyticsRequest(Builder builder) {
+	private PutDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
 		this.allowLazyStart = builder.allowLazyStart;
-		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.analyzedFields = builder.analyzedFields;
 		this.description = builder.description;
-		this.dest = Objects.requireNonNull(builder.dest, "dest");
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.maxNumThreads = builder.maxNumThreads;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
-		this.source = Objects.requireNonNull(builder.source, "source");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
-	public PutDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the data frame analytics job. This identifier can
-	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-	 * underscores. It must start and end with alphanumeric characters.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
+	public static PutDataFrameAnalyticsRequest of(Function<Builder, ObjectBuilder<PutDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -114,7 +113,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * API name: {@code allow_lazy_start}
 	 */
 	@Nullable
-	public Boolean allowLazyStart() {
+	public final Boolean allowLazyStart() {
 		return this.allowLazyStart;
 	}
 
@@ -125,7 +124,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * <p>
 	 * API name: {@code analysis}
 	 */
-	public DataframeAnalysis analysis() {
+	public final DataframeAnalysis analysis() {
 		return this.analysis;
 	}
 
@@ -164,7 +163,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
+	public final DataframeAnalysisAnalyzedFields analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -174,7 +173,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -183,8 +182,19 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * <p>
 	 * API name: {@code dest}
 	 */
-	public DataframeAnalyticsDestination dest() {
+	public final DataframeAnalyticsDestination dest() {
 		return this.dest;
+	}
+
+	/**
+	 * Required - Identifier for the data frame analytics job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public final String id() {
+		return this.id;
 	}
 
 	/**
@@ -196,7 +206,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Integer maxNumThreads() {
+	public final Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -210,7 +220,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
-	public String modelMemoryLimit() {
+	public final String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -219,7 +229,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	 * <p>
 	 * API name: {@code source}
 	 */
-	public DataframeAnalyticsSource source() {
+	public final DataframeAnalyticsSource source() {
 		return this.source;
 	}
 
@@ -235,44 +245,36 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowLazyStart != null) {
-
 			generator.writeKey("allow_lazy_start");
 			generator.write(this.allowLazyStart);
 
 		}
-
 		generator.writeKey("analysis");
 		this.analysis.serialize(generator, mapper);
 
 		if (this.analyzedFields != null) {
-
 			generator.writeKey("analyzed_fields");
-			generator.write(this.analyzedFields);
+			this.analyzedFields.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-
 		generator.writeKey("dest");
 		this.dest.serialize(generator, mapper);
 
 		if (this.maxNumThreads != null) {
-
 			generator.writeKey("max_num_threads");
 			generator.write(this.maxNumThreads);
 
 		}
 		if (this.modelMemoryLimit != null) {
-
 			generator.writeKey("model_memory_limit");
 			generator.write(this.modelMemoryLimit);
 
 		}
-
 		generator.writeKey("source");
 		this.source.serialize(generator, mapper);
 
@@ -283,21 +285,22 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	/**
 	 * Builder for {@link PutDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutDataFrameAnalyticsRequest> {
-		private String id;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowLazyStart;
 
 		private DataframeAnalysis analysis;
 
 		@Nullable
-		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+		private DataframeAnalysisAnalyzedFields analyzedFields;
 
 		@Nullable
 		private String description;
 
 		private DataframeAnalyticsDestination dest;
+
+		private String id;
 
 		@Nullable
 		private Integer maxNumThreads;
@@ -306,18 +309,6 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		private String modelMemoryLimit;
 
 		private DataframeAnalyticsSource source;
-
-		/**
-		 * Required - Identifier for the data frame analytics job. This identifier can
-		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-		 * underscores. It must start and end with alphanumeric characters.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
 
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
@@ -330,7 +321,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code allow_lazy_start}
 		 */
-		public Builder allowLazyStart(@Nullable Boolean value) {
+		public final Builder allowLazyStart(@Nullable Boolean value) {
 			this.allowLazyStart = value;
 			return this;
 		}
@@ -342,7 +333,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(DataframeAnalysis value) {
+		public final Builder analysis(DataframeAnalysis value) {
 			this.analysis = value;
 			return this;
 		}
@@ -354,7 +345,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+		public final Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
 			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
@@ -392,9 +383,48 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code analyzed_fields}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+		public final Builder analyzedFields(@Nullable DataframeAnalysisAnalyzedFields value) {
 			this.analyzedFields = value;
 			return this;
+		}
+
+		/**
+		 * Specifies <code>includes</code> and/or <code>excludes</code> patterns to
+		 * select which fields will be included in the analysis. The patterns specified
+		 * in <code>excludes</code> are applied last, therefore <code>excludes</code>
+		 * takes precedence. In other words, if the same field is specified in both
+		 * <code>includes</code> and <code>excludes</code>, then the field will not be
+		 * included in the analysis. If <code>analyzed_fields</code> is not set, only
+		 * the relevant fields will be included. For example, all the numeric fields for
+		 * outlier detection. The supported fields vary for each type of analysis.
+		 * Outlier detection requires numeric or <code>boolean</code> data to analyze.
+		 * The algorithms don’t support missing values therefore fields that have data
+		 * types other than numeric or boolean are ignored. Documents where included
+		 * fields contain missing values, null values, or an array are also ignored.
+		 * Therefore the <code>dest</code> index may contain documents that don’t have
+		 * an outlier score. Regression supports fields that are numeric,
+		 * <code>boolean</code>, <code>text</code>, <code>keyword</code>, and
+		 * <code>ip</code> data types. It is also tolerant of missing values. Fields
+		 * that are supported are included in the analysis, other fields are ignored.
+		 * Documents where included fields contain an array with two or more values are
+		 * also ignored. Documents in the <code>dest</code> index that don’t contain a
+		 * results field are not included in the regression analysis. Classification
+		 * supports fields that are numeric, <code>boolean</code>, <code>text</code>,
+		 * <code>keyword</code>, and <code>ip</code> data types. It is also tolerant of
+		 * missing values. Fields that are supported are included in the analysis, other
+		 * fields are ignored. Documents where included fields contain an array with two
+		 * or more values are also ignored. Documents in the <code>dest</code> index
+		 * that don’t contain a results field are not included in the classification
+		 * analysis. Classification analysis can be improved by mapping ordinal variable
+		 * values to a single number. For example, in case of age ranges, you can model
+		 * the values as <code>0-14 = 0</code>, <code>15-24 = 1</code>,
+		 * <code>25-34 = 2</code>, and so on.
+		 * <p>
+		 * API name: {@code analyzed_fields}
+		 */
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
 		}
 
 		/**
@@ -402,7 +432,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -412,7 +442,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public Builder dest(DataframeAnalyticsDestination value) {
+		public final Builder dest(DataframeAnalyticsDestination value) {
 			this.dest = value;
 			return this;
 		}
@@ -422,9 +452,21 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code dest}
 		 */
-		public Builder dest(
+		public final Builder dest(
 				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
 			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
+		}
+
+		/**
+		 * Required - Identifier for the data frame analytics job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public final Builder id(String value) {
+			this.id = value;
+			return this;
 		}
 
 		/**
@@ -435,7 +477,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Integer value) {
+		public final Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -449,7 +491,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(@Nullable String value) {
+		public final Builder modelMemoryLimit(@Nullable String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -459,7 +501,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public Builder source(DataframeAnalyticsSource value) {
+		public final Builder source(DataframeAnalyticsSource value) {
 			this.source = value;
 			return this;
 		}
@@ -469,7 +511,8 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code source}
 		 */
-		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+		public final Builder source(
+				Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
 			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
@@ -480,6 +523,7 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 		 *             if some of the required fields are null.
 		 */
 		public PutDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new PutDataFrameAnalyticsRequest(this);
 		}
@@ -490,15 +534,15 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	/**
 	 * Json deserializer for {@link PutDataFrameAnalyticsRequest}
 	 */
-	public static final JsonpDeserializer<PutDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutDataFrameAnalyticsRequest::setupPutDataFrameAnalyticsRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<PutDataFrameAnalyticsRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutDataFrameAnalyticsRequest::setupPutDataFrameAnalyticsRequestDeserializer);
 
 	protected static void setupPutDataFrameAnalyticsRequestDeserializer(
-			DelegatingDeserializer<PutDataFrameAnalyticsRequest.Builder> op) {
+			ObjectDeserializer<PutDataFrameAnalyticsRequest.Builder> op) {
 
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 		op.add(Builder::analysis, DataframeAnalysis._DESERIALIZER, "analysis");
-		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
+		op.add(Builder::analyzedFields, DataframeAnalysisAnalyzedFields._DESERIALIZER, "analyzed_fields");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
@@ -512,7 +556,9 @@ public final class PutDataFrameAnalyticsRequest extends RequestBase implements J
 	/**
 	 * Endpoint "{@code ml.put_data_frame_analytics}".
 	 */
-	public static final Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_data_frame_analytics",
+
 			// Request method
 			request -> {
 				return "PUT";

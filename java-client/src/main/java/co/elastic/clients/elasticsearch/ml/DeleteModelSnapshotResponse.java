@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.delete_model_snapshot.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_model_snapshot/MlDeleteModelSnapshotResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteModelSnapshotResponse extends AcknowledgedResponseBase {
+public class DeleteModelSnapshotResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteModelSnapshotResponse(Builder builder) {
+	private DeleteModelSnapshotResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteModelSnapshotResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteModelSnapshotResponse of(Function<Builder, ObjectBuilder<DeleteModelSnapshotResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteModelSnapshotResponse extends AcknowledgedResponseBase 
 	/**
 	 * Builder for {@link DeleteModelSnapshotResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteModelSnapshotResponse> {
@@ -68,6 +75,7 @@ public final class DeleteModelSnapshotResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public DeleteModelSnapshotResponse build() {
+			_checkSingleUse();
 
 			return new DeleteModelSnapshotResponse(this);
 		}
@@ -78,11 +86,11 @@ public final class DeleteModelSnapshotResponse extends AcknowledgedResponseBase 
 	/**
 	 * Json deserializer for {@link DeleteModelSnapshotResponse}
 	 */
-	public static final JsonpDeserializer<DeleteModelSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DeleteModelSnapshotResponse::setupDeleteModelSnapshotResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<DeleteModelSnapshotResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteModelSnapshotResponse::setupDeleteModelSnapshotResponseDeserializer);
 
 	protected static void setupDeleteModelSnapshotResponseDeserializer(
-			DelegatingDeserializer<DeleteModelSnapshotResponse.Builder> op) {
+			ObjectDeserializer<DeleteModelSnapshotResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

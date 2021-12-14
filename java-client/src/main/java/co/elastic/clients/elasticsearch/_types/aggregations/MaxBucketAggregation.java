@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.MaxBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L111-L111">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MaxBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class MaxBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MaxBucketAggregation(Builder builder) {
+	private MaxBucketAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public MaxBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MaxBucketAggregation of(Function<Builder, ObjectBuilder<MaxBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "max_bucket";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.MaxBucket;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class MaxBucketAggregation extends PipelineAggregationBase implemen
 	/**
 	 * Builder for {@link MaxBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MaxBucketAggregation> {
@@ -75,6 +82,7 @@ public final class MaxBucketAggregation extends PipelineAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public MaxBucketAggregation build() {
+			_checkSingleUse();
 
 			return new MaxBucketAggregation(this);
 		}
@@ -86,10 +94,9 @@ public final class MaxBucketAggregation extends PipelineAggregationBase implemen
 	 * Json deserializer for {@link MaxBucketAggregation}
 	 */
 	public static final JsonpDeserializer<MaxBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MaxBucketAggregation::setupMaxBucketAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, MaxBucketAggregation::setupMaxBucketAggregationDeserializer);
 
-	protected static void setupMaxBucketAggregationDeserializer(
-			DelegatingDeserializer<MaxBucketAggregation.Builder> op) {
+	protected static void setupMaxBucketAggregationDeserializer(ObjectDeserializer<MaxBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

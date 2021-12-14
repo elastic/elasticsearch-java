@@ -23,18 +23,17 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.mapping.DynamicMapping;
 import co.elastic.clients.elasticsearch._types.mapping.DynamicTemplate;
 import co.elastic.clients.elasticsearch._types.mapping.FieldNamesField;
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.RoutingField;
 import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.mapping.SourceField;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -42,15 +41,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -60,54 +58,20 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.put_mapping.Request
+
+/**
+ * Updates the index mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_mapping/IndicesPutMappingRequest.ts#L37-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutMappingRequest extends RequestBase implements JsonpSerializable {
-	private final List<String> index;
-
-	@Nullable
-	private final Boolean allowNoIndices;
-
-	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
-
-	@Nullable
-	private final Boolean ignoreUnavailable;
-
-	@Nullable
-	private final Boolean includeTypeName;
-
-	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final String timeout;
-
-	@Nullable
-	private final Boolean writeIndexOnly;
-
-	@Nullable
-	private final Boolean dateDetection;
-
-	@Nullable
-	private final JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
-
-	@Nullable
-	private final List<String> dynamicDateFormats;
-
-	@Nullable
-	private final List<Map<String, DynamicTemplate>> dynamicTemplates;
-
+public class PutMappingRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final FieldNamesField fieldNames;
 
-	@Nullable
 	private final Map<String, JsonData> meta;
-
-	@Nullable
-	private final Boolean numericDetection;
-
-	@Nullable
-	private final Map<String, Property> properties;
 
 	@Nullable
 	private final RoutingField routing;
@@ -116,162 +80,72 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	private final SourceField source;
 
 	@Nullable
+	private final Boolean allowNoIndices;
+
+	@Nullable
+	private final Boolean dateDetection;
+
+	@Nullable
+	private final DynamicMapping dynamic;
+
+	private final List<String> dynamicDateFormats;
+
+	private final List<Map<String, DynamicTemplate>> dynamicTemplates;
+
+	private final List<ExpandWildcard> expandWildcards;
+
+	@Nullable
+	private final Boolean ignoreUnavailable;
+
+	@Nullable
+	private final Boolean includeTypeName;
+
+	private final List<String> index;
+
+	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
+	private final Boolean numericDetection;
+
+	private final Map<String, Property> properties;
+
 	private final Map<String, RuntimeField> runtime;
+
+	@Nullable
+	private final Time timeout;
+
+	@Nullable
+	private final Boolean writeIndexOnly;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutMappingRequest(Builder builder) {
+	private PutMappingRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
-		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
-		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.includeTypeName = builder.includeTypeName;
-		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
-		this.writeIndexOnly = builder.writeIndexOnly;
-		this.dateDetection = builder.dateDetection;
-		this.dynamic = builder.dynamic;
-		this.dynamicDateFormats = ModelTypeHelper.unmodifiable(builder.dynamicDateFormats);
-		this.dynamicTemplates = ModelTypeHelper.unmodifiable(builder.dynamicTemplates);
 		this.fieldNames = builder.fieldNames;
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
-		this.numericDetection = builder.numericDetection;
-		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.routing = builder.routing;
 		this.source = builder.source;
-		this.runtime = ModelTypeHelper.unmodifiable(builder.runtime);
+		this.allowNoIndices = builder.allowNoIndices;
+		this.dateDetection = builder.dateDetection;
+		this.dynamic = builder.dynamic;
+		this.dynamicDateFormats = ApiTypeHelper.unmodifiable(builder.dynamicDateFormats);
+		this.dynamicTemplates = ApiTypeHelper.unmodifiable(builder.dynamicTemplates);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.includeTypeName = builder.includeTypeName;
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.masterTimeout = builder.masterTimeout;
+		this.numericDetection = builder.numericDetection;
+		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
+		this.runtime = ApiTypeHelper.unmodifiable(builder.runtime);
+		this.timeout = builder.timeout;
+		this.writeIndexOnly = builder.writeIndexOnly;
 
 	}
 
-	public PutMappingRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A comma-separated list of index names the mapping should be added
-	 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
-	 * all indices.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public List<String> index() {
-		return this.index;
-	}
-
-	/**
-	 * Whether to ignore if a wildcard indices expression resolves into no concrete
-	 * indices. (This includes <code>_all</code> string or when no indices have been
-	 * specified)
-	 * <p>
-	 * API name: {@code allow_no_indices}
-	 */
-	@Nullable
-	public Boolean allowNoIndices() {
-		return this.allowNoIndices;
-	}
-
-	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
-	 * <p>
-	 * API name: {@code expand_wildcards}
-	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
-		return this.expandWildcards;
-	}
-
-	/**
-	 * Whether specified concrete indices should be ignored when unavailable
-	 * (missing or closed)
-	 * <p>
-	 * API name: {@code ignore_unavailable}
-	 */
-	@Nullable
-	public Boolean ignoreUnavailable() {
-		return this.ignoreUnavailable;
-	}
-
-	/**
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public Boolean includeTypeName() {
-		return this.includeTypeName;
-	}
-
-	/**
-	 * Specify timeout for connection to master
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public String timeout() {
-		return this.timeout;
-	}
-
-	/**
-	 * When true, applies mappings only to the write index of an alias or data
-	 * stream
-	 * <p>
-	 * API name: {@code write_index_only}
-	 */
-	@Nullable
-	public Boolean writeIndexOnly() {
-		return this.writeIndexOnly;
-	}
-
-	/**
-	 * Controls whether dynamic date detection is enabled.
-	 * <p>
-	 * API name: {@code date_detection}
-	 */
-	@Nullable
-	public Boolean dateDetection() {
-		return this.dateDetection;
-	}
-
-	/**
-	 * Controls whether new fields are added dynamically.
-	 * <p>
-	 * API name: {@code dynamic}
-	 */
-	@Nullable
-	public JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic() {
-		return this.dynamic;
-	}
-
-	/**
-	 * If date detection is enabled then new string fields are checked against
-	 * 'dynamic_date_formats' and if the value matches then a new date field is
-	 * added instead of string.
-	 * <p>
-	 * API name: {@code dynamic_date_formats}
-	 */
-	@Nullable
-	public List<String> dynamicDateFormats() {
-		return this.dynamicDateFormats;
-	}
-
-	/**
-	 * Specify dynamic templates for the mapping.
-	 * <p>
-	 * API name: {@code dynamic_templates}
-	 */
-	@Nullable
-	public List<Map<String, DynamicTemplate>> dynamicTemplates() {
-		return this.dynamicTemplates;
+	public static PutMappingRequest of(Function<Builder, ObjectBuilder<PutMappingRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -280,7 +154,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code _field_names}
 	 */
 	@Nullable
-	public FieldNamesField fieldNames() {
+	public final FieldNamesField fieldNames() {
 		return this.fieldNames;
 	}
 
@@ -291,9 +165,130 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * <p>
 	 * API name: {@code _meta}
 	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
+	public final Map<String, JsonData> meta() {
 		return this.meta;
+	}
+
+	/**
+	 * Enable making a routing value required on indexed documents.
+	 * <p>
+	 * API name: {@code _routing}
+	 */
+	@Nullable
+	public final RoutingField routing() {
+		return this.routing;
+	}
+
+	/**
+	 * Control whether the _source field is enabled on the index.
+	 * <p>
+	 * API name: {@code _source}
+	 */
+	@Nullable
+	public final SourceField source() {
+		return this.source;
+	}
+
+	/**
+	 * Whether to ignore if a wildcard indices expression resolves into no concrete
+	 * indices. (This includes <code>_all</code> string or when no indices have been
+	 * specified)
+	 * <p>
+	 * API name: {@code allow_no_indices}
+	 */
+	@Nullable
+	public final Boolean allowNoIndices() {
+		return this.allowNoIndices;
+	}
+
+	/**
+	 * Controls whether dynamic date detection is enabled.
+	 * <p>
+	 * API name: {@code date_detection}
+	 */
+	@Nullable
+	public final Boolean dateDetection() {
+		return this.dateDetection;
+	}
+
+	/**
+	 * Controls whether new fields are added dynamically.
+	 * <p>
+	 * API name: {@code dynamic}
+	 */
+	@Nullable
+	public final DynamicMapping dynamic() {
+		return this.dynamic;
+	}
+
+	/**
+	 * If date detection is enabled then new string fields are checked against
+	 * 'dynamic_date_formats' and if the value matches then a new date field is
+	 * added instead of string.
+	 * <p>
+	 * API name: {@code dynamic_date_formats}
+	 */
+	public final List<String> dynamicDateFormats() {
+		return this.dynamicDateFormats;
+	}
+
+	/**
+	 * Specify dynamic templates for the mapping.
+	 * <p>
+	 * API name: {@code dynamic_templates}
+	 */
+	public final List<Map<String, DynamicTemplate>> dynamicTemplates() {
+		return this.dynamicTemplates;
+	}
+
+	/**
+	 * Whether to expand wildcard expression to concrete indices that are open,
+	 * closed or both.
+	 * <p>
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
+	}
+
+	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
+	 * API name: {@code ignore_unavailable}
+	 */
+	@Nullable
+	public final Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * API name: {@code include_type_name}
+	 */
+	@Nullable
+	public final Boolean includeTypeName() {
+		return this.includeTypeName;
+	}
+
+	/**
+	 * Required - A comma-separated list of index names the mapping should be added
+	 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+	 * all indices.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
+	}
+
+	/**
+	 * Specify timeout for connection to master
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -302,7 +297,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * API name: {@code numeric_detection}
 	 */
 	@Nullable
-	public Boolean numericDetection() {
+	public final Boolean numericDetection() {
 		return this.numericDetection;
 	}
 
@@ -316,29 +311,8 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * <p>
 	 * API name: {@code properties}
 	 */
-	@Nullable
-	public Map<String, Property> properties() {
+	public final Map<String, Property> properties() {
 		return this.properties;
-	}
-
-	/**
-	 * Enable making a routing value required on indexed documents.
-	 * <p>
-	 * API name: {@code _routing}
-	 */
-	@Nullable
-	public RoutingField routing() {
-		return this.routing;
-	}
-
-	/**
-	 * Control whether the _source field is enabled on the index.
-	 * <p>
-	 * API name: {@code _source}
-	 */
-	@Nullable
-	public SourceField source() {
-		return this.source;
 	}
 
 	/**
@@ -346,9 +320,29 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * <p>
 	 * API name: {@code runtime}
 	 */
-	@Nullable
-	public Map<String, RuntimeField> runtime() {
+	public final Map<String, RuntimeField> runtime() {
 		return this.runtime;
+	}
+
+	/**
+	 * Explicit operation timeout
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * When true, applies mappings only to the write index of an alias or data
+	 * stream
+	 * <p>
+	 * API name: {@code write_index_only}
+	 */
+	@Nullable
+	public final Boolean writeIndexOnly() {
+		return this.writeIndexOnly;
 	}
 
 	/**
@@ -362,54 +356,12 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.dateDetection != null) {
-
-			generator.writeKey("date_detection");
-			generator.write(this.dateDetection);
-
-		}
-		if (this.dynamic != null) {
-
-			generator.writeKey("dynamic");
-			generator.write(this.dynamic);
-
-		}
-		if (this.dynamicDateFormats != null) {
-
-			generator.writeKey("dynamic_date_formats");
-			generator.writeStartArray();
-			for (String item0 : this.dynamicDateFormats) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (this.dynamicTemplates != null) {
-
-			generator.writeKey("dynamic_templates");
-			generator.writeStartArray();
-			for (Map<String, DynamicTemplate> item0 : this.dynamicTemplates) {
-				generator.writeStartObject();
-				for (Map.Entry<String, DynamicTemplate> item1 : item0.entrySet()) {
-					generator.writeKey(item1.getKey());
-					item1.getValue().serialize(generator, mapper);
-
-				}
-				generator.writeEnd();
-
-			}
-			generator.writeEnd();
-
-		}
 		if (this.fieldNames != null) {
-
 			generator.writeKey("_field_names");
 			this.fieldNames.serialize(generator, mapper);
 
 		}
-		if (this.meta != null) {
-
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -420,14 +372,59 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 			generator.writeEnd();
 
 		}
-		if (this.numericDetection != null) {
+		if (this.routing != null) {
+			generator.writeKey("_routing");
+			this.routing.serialize(generator, mapper);
 
+		}
+		if (this.source != null) {
+			generator.writeKey("_source");
+			this.source.serialize(generator, mapper);
+
+		}
+		if (this.dateDetection != null) {
+			generator.writeKey("date_detection");
+			generator.write(this.dateDetection);
+
+		}
+		if (this.dynamic != null) {
+			generator.writeKey("dynamic");
+			this.dynamic.serialize(generator, mapper);
+		}
+		if (ApiTypeHelper.isDefined(this.dynamicDateFormats)) {
+			generator.writeKey("dynamic_date_formats");
+			generator.writeStartArray();
+			for (String item0 : this.dynamicDateFormats) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.dynamicTemplates)) {
+			generator.writeKey("dynamic_templates");
+			generator.writeStartArray();
+			for (Map<String, DynamicTemplate> item0 : this.dynamicTemplates) {
+				generator.writeStartObject();
+				if (item0 != null) {
+					for (Map.Entry<String, DynamicTemplate> item1 : item0.entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.numericDetection != null) {
 			generator.writeKey("numeric_detection");
 			generator.write(this.numericDetection);
 
 		}
-		if (this.properties != null) {
-
+		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartObject();
 			for (Map.Entry<String, Property> item0 : this.properties.entrySet()) {
@@ -438,20 +435,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 			generator.writeEnd();
 
 		}
-		if (this.routing != null) {
-
-			generator.writeKey("_routing");
-			this.routing.serialize(generator, mapper);
-
-		}
-		if (this.source != null) {
-
-			generator.writeKey("_source");
-			this.source.serialize(generator, mapper);
-
-		}
-		if (this.runtime != null) {
-
+		if (ApiTypeHelper.isDefined(this.runtime)) {
 			generator.writeKey("runtime");
 			generator.writeStartObject();
 			for (Map.Entry<String, RuntimeField> item0 : this.runtime.entrySet()) {
@@ -470,53 +454,13 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Builder for {@link PutMappingRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutMappingRequest> {
-		private List<String> index;
 
-		@Nullable
-		private Boolean allowNoIndices;
-
-		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
-
-		@Nullable
-		private Boolean ignoreUnavailable;
-
-		@Nullable
-		private Boolean includeTypeName;
-
-		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
-
-		@Nullable
-		private Boolean writeIndexOnly;
-
-		@Nullable
-		private Boolean dateDetection;
-
-		@Nullable
-		private JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ dynamic;
-
-		@Nullable
-		private List<String> dynamicDateFormats;
-
-		@Nullable
-		private List<Map<String, DynamicTemplate>> dynamicTemplates;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutMappingRequest> {
 		@Nullable
 		private FieldNamesField fieldNames;
 
 		@Nullable
 		private Map<String, JsonData> meta;
-
-		@Nullable
-		private Boolean numericDetection;
-
-		@Nullable
-		private Map<String, Property> properties;
 
 		@Nullable
 		private RoutingField routing;
@@ -525,41 +469,132 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		private SourceField source;
 
 		@Nullable
+		private Boolean allowNoIndices;
+
+		@Nullable
+		private Boolean dateDetection;
+
+		@Nullable
+		private DynamicMapping dynamic;
+
+		@Nullable
+		private List<String> dynamicDateFormats;
+
+		@Nullable
+		private List<Map<String, DynamicTemplate>> dynamicTemplates;
+
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
+		@Nullable
+		private Boolean ignoreUnavailable;
+
+		@Nullable
+		private Boolean includeTypeName;
+
+		private List<String> index;
+
+		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
+		private Boolean numericDetection;
+
+		@Nullable
+		private Map<String, Property> properties;
+
+		@Nullable
 		private Map<String, RuntimeField> runtime;
 
+		@Nullable
+		private Time timeout;
+
+		@Nullable
+		private Boolean writeIndexOnly;
+
 		/**
-		 * Required - A comma-separated list of index names the mapping should be added
-		 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
-		 * all indices.
+		 * Control whether field names are enabled for the index.
 		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code _field_names}
 		 */
-		public Builder index(List<String> value) {
-			this.index = value;
+		public final Builder fieldNames(@Nullable FieldNamesField value) {
+			this.fieldNames = value;
 			return this;
 		}
 
 		/**
-		 * Required - A comma-separated list of index names the mapping should be added
-		 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
-		 * all indices.
+		 * Control whether field names are enabled for the index.
 		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code _field_names}
 		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
+			return this.fieldNames(fn.apply(new FieldNamesField.Builder()).build());
+		}
+
+		/**
+		 * A mapping type can have custom meta data associated with it. These are not
+		 * used at all by Elasticsearch, but can be used to store application-specific
+		 * metadata.
+		 * <p>
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
+		 */
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * A mapping type can have custom meta data associated with it. These are not
+		 * used at all by Elasticsearch, but can be used to store application-specific
+		 * metadata.
+		 * <p>
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
 		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
+		}
+
+		/**
+		 * Enable making a routing value required on indexed documents.
+		 * <p>
+		 * API name: {@code _routing}
+		 */
+		public final Builder routing(@Nullable RoutingField value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
+		 * Enable making a routing value required on indexed documents.
+		 * <p>
+		 * API name: {@code _routing}
+		 */
+		public final Builder routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
+			return this.routing(fn.apply(new RoutingField.Builder()).build());
+		}
+
+		/**
+		 * Control whether the _source field is enabled on the index.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(@Nullable SourceField value) {
+			this.source = value;
+			return this;
+		}
+
+		/**
+		 * Control whether the _source field is enabled on the index.
+		 * <p>
+		 * API name: {@code _source}
+		 */
+		public final Builder source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
+			return this.source(fn.apply(new SourceField.Builder()).build());
 		}
 
 		/**
@@ -569,91 +604,8 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
-			return this;
-		}
-
-		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
-		 * <p>
-		 * API name: {@code expand_wildcards}
-		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
-			return this;
-		}
-
-		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
-		 * <p>
-		 * API name: {@code expand_wildcards}
-		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
-			return this;
-		}
-
-		/**
-		 * Whether specified concrete indices should be ignored when unavailable
-		 * (missing or closed)
-		 * <p>
-		 * API name: {@code ignore_unavailable}
-		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
-			this.ignoreUnavailable = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code include_type_name}
-		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
-			return this;
-		}
-
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * When true, applies mappings only to the write index of an alias or data
-		 * stream
-		 * <p>
-		 * API name: {@code write_index_only}
-		 */
-		public Builder writeIndexOnly(@Nullable Boolean value) {
-			this.writeIndexOnly = value;
 			return this;
 		}
 
@@ -662,7 +614,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code date_detection}
 		 */
-		public Builder dateDetection(@Nullable Boolean value) {
+		public final Builder dateDetection(@Nullable Boolean value) {
 			this.dateDetection = value;
 			return this;
 		}
@@ -672,8 +624,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code dynamic}
 		 */
-		public Builder dynamic(
-				@Nullable JsonValue /* Union(_types.mapping.DynamicMapping | internal.boolean) */ value) {
+		public final Builder dynamic(@Nullable DynamicMapping value) {
 			this.dynamic = value;
 			return this;
 		}
@@ -684,9 +635,11 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * added instead of string.
 		 * <p>
 		 * API name: {@code dynamic_date_formats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dynamicDateFormats</code>.
 		 */
-		public Builder dynamicDateFormats(@Nullable List<String> value) {
-			this.dynamicDateFormats = value;
+		public final Builder dynamicDateFormats(List<String> list) {
+			this.dynamicDateFormats = _listAddAll(this.dynamicDateFormats, list);
 			return this;
 		}
 
@@ -696,21 +649,11 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * added instead of string.
 		 * <p>
 		 * API name: {@code dynamic_date_formats}
+		 * <p>
+		 * Adds one or more values to <code>dynamicDateFormats</code>.
 		 */
-		public Builder dynamicDateFormats(String... value) {
-			this.dynamicDateFormats = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #dynamicDateFormats(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addDynamicDateFormats(String value) {
-			if (this.dynamicDateFormats == null) {
-				this.dynamicDateFormats = new ArrayList<>();
-			}
-			this.dynamicDateFormats.add(value);
+		public final Builder dynamicDateFormats(String value, String... values) {
+			this.dynamicDateFormats = _listAdd(this.dynamicDateFormats, value, values);
 			return this;
 		}
 
@@ -718,9 +661,11 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * Specify dynamic templates for the mapping.
 		 * <p>
 		 * API name: {@code dynamic_templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dynamicTemplates</code>.
 		 */
-		public Builder dynamicTemplates(@Nullable List<Map<String, DynamicTemplate>> value) {
-			this.dynamicTemplates = value;
+		public final Builder dynamicTemplates(List<Map<String, DynamicTemplate>> list) {
+			this.dynamicTemplates = _listAddAll(this.dynamicTemplates, list);
 			return this;
 		}
 
@@ -728,63 +673,105 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * Specify dynamic templates for the mapping.
 		 * <p>
 		 * API name: {@code dynamic_templates}
-		 */
-		public Builder dynamicTemplates(Map<String, DynamicTemplate>... value) {
-			this.dynamicTemplates = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #dynamicTemplates(List)}, creating the list if needed.
-		 */
-		public Builder addDynamicTemplates(Map<String, DynamicTemplate> value) {
-			if (this.dynamicTemplates == null) {
-				this.dynamicTemplates = new ArrayList<>();
-			}
-			this.dynamicTemplates.add(value);
-			return this;
-		}
-
-		/**
-		 * Control whether field names are enabled for the index.
 		 * <p>
-		 * API name: {@code _field_names}
+		 * Adds one or more values to <code>dynamicTemplates</code>.
 		 */
-		public Builder fieldNames(@Nullable FieldNamesField value) {
-			this.fieldNames = value;
+		public final Builder dynamicTemplates(Map<String, DynamicTemplate> value,
+				Map<String, DynamicTemplate>... values) {
+			this.dynamicTemplates = _listAdd(this.dynamicTemplates, value, values);
 			return this;
 		}
 
 		/**
-		 * Control whether field names are enabled for the index.
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
 		 * <p>
-		 * API name: {@code _field_names}
-		 */
-		public Builder fieldNames(Function<FieldNamesField.Builder, ObjectBuilder<FieldNamesField>> fn) {
-			return this.fieldNames(fn.apply(new FieldNamesField.Builder()).build());
-		}
-
-		/**
-		 * A mapping type can have custom meta data associated with it. These are not
-		 * used at all by Elasticsearch, but can be used to store application-specific
-		 * metadata.
+		 * API name: {@code expand_wildcards}
 		 * <p>
-		 * API name: {@code _meta}
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
+		 * Whether to expand wildcard expression to concrete indices that are open,
+		 * closed or both.
+		 * <p>
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public Builder putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
+		}
+
+		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code include_type_name}
+		 */
+		public final Builder includeTypeName(@Nullable Boolean value) {
+			this.includeTypeName = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of index names the mapping should be added
+		 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+		 * all indices.
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of index names the mapping should be added
+		 * to (supports wildcards); use <code>_all</code> or omit to add the mapping on
+		 * all indices.
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -792,7 +779,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * <p>
 		 * API name: {@code numeric_detection}
 		 */
-		public Builder numericDetection(@Nullable Boolean value) {
+		public final Builder numericDetection(@Nullable Boolean value) {
 			this.numericDetection = value;
 			return this;
 		}
@@ -806,108 +793,110 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 * </ul>
 		 * <p>
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>properties</code>.
 		 */
-		public Builder properties(@Nullable Map<String, Property> value) {
-			this.properties = value;
+		public final Builder properties(Map<String, Property> map) {
+			this.properties = _mapPutAll(this.properties, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
+		 * Mapping for a field. For new fields, this mapping can include:
+		 * <ul>
+		 * <li>Field name</li>
+		 * <li>Field data type</li>
+		 * <li>Mapping parameters</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code properties}
+		 * <p>
+		 * Adds an entry to <code>properties</code>.
 		 */
-		public Builder putProperties(String key, Property value) {
-			if (this.properties == null) {
-				this.properties = new HashMap<>();
-			}
-			this.properties.put(key, value);
+		public final Builder properties(String key, Property value) {
+			this.properties = _mapPut(this.properties, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #properties(Map)} to a singleton map.
-		 */
-		public Builder properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.properties(Collections.singletonMap(key, fn.apply(new Property.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #properties(Map)}, creating the map if needed.
-		 */
-		public Builder putProperties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
-			return this.putProperties(key, fn.apply(new Property.Builder()).build());
-		}
-
-		/**
-		 * Enable making a routing value required on indexed documents.
+		 * Mapping for a field. For new fields, this mapping can include:
+		 * <ul>
+		 * <li>Field name</li>
+		 * <li>Field data type</li>
+		 * <li>Mapping parameters</li>
+		 * </ul>
 		 * <p>
-		 * API name: {@code _routing}
-		 */
-		public Builder routing(@Nullable RoutingField value) {
-			this.routing = value;
-			return this;
-		}
-
-		/**
-		 * Enable making a routing value required on indexed documents.
+		 * API name: {@code properties}
 		 * <p>
-		 * API name: {@code _routing}
+		 * Adds an entry to <code>properties</code> using a builder lambda.
 		 */
-		public Builder routing(Function<RoutingField.Builder, ObjectBuilder<RoutingField>> fn) {
-			return this.routing(fn.apply(new RoutingField.Builder()).build());
-		}
-
-		/**
-		 * Control whether the _source field is enabled on the index.
-		 * <p>
-		 * API name: {@code _source}
-		 */
-		public Builder source(@Nullable SourceField value) {
-			this.source = value;
-			return this;
-		}
-
-		/**
-		 * Control whether the _source field is enabled on the index.
-		 * <p>
-		 * API name: {@code _source}
-		 */
-		public Builder source(Function<SourceField.Builder, ObjectBuilder<SourceField>> fn) {
-			return this.source(fn.apply(new SourceField.Builder()).build());
+		public final Builder properties(String key, Function<Property.Builder, ObjectBuilder<Property>> fn) {
+			return properties(key, fn.apply(new Property.Builder()).build());
 		}
 
 		/**
 		 * Mapping of runtime fields for the index.
 		 * <p>
 		 * API name: {@code runtime}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtime</code>.
 		 */
-		public Builder runtime(@Nullable Map<String, RuntimeField> value) {
-			this.runtime = value;
+		public final Builder runtime(Map<String, RuntimeField> map) {
+			this.runtime = _mapPutAll(this.runtime, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #runtime(Map)}, creating the map if needed.
+		 * Mapping of runtime fields for the index.
+		 * <p>
+		 * API name: {@code runtime}
+		 * <p>
+		 * Adds an entry to <code>runtime</code>.
 		 */
-		public Builder putRuntime(String key, RuntimeField value) {
-			if (this.runtime == null) {
-				this.runtime = new HashMap<>();
-			}
-			this.runtime.put(key, value);
+		public final Builder runtime(String key, RuntimeField value) {
+			this.runtime = _mapPut(this.runtime, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #runtime(Map)} to a singleton map.
+		 * Mapping of runtime fields for the index.
+		 * <p>
+		 * API name: {@code runtime}
+		 * <p>
+		 * Adds an entry to <code>runtime</code> using a builder lambda.
 		 */
-		public Builder runtime(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.runtime(Collections.singletonMap(key, fn.apply(new RuntimeField.Builder()).build()));
+		public final Builder runtime(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtime(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
-		 * Add a key/value to {@link #runtime(Map)}, creating the map if needed.
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
 		 */
-		public Builder putRuntime(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return this.putRuntime(key, fn.apply(new RuntimeField.Builder()).build());
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * When true, applies mappings only to the write index of an alias or data
+		 * stream
+		 * <p>
+		 * API name: {@code write_index_only}
+		 */
+		public final Builder writeIndexOnly(@Nullable Boolean value) {
+			this.writeIndexOnly = value;
+			return this;
 		}
 
 		/**
@@ -917,6 +906,7 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 		 *             if some of the required fields are null.
 		 */
 		public PutMappingRequest build() {
+			_checkSingleUse();
 
 			return new PutMappingRequest(this);
 		}
@@ -928,22 +918,22 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	 * Json deserializer for {@link PutMappingRequest}
 	 */
 	public static final JsonpDeserializer<PutMappingRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutMappingRequest::setupPutMappingRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutMappingRequest::setupPutMappingRequestDeserializer);
 
-	protected static void setupPutMappingRequestDeserializer(DelegatingDeserializer<PutMappingRequest.Builder> op) {
+	protected static void setupPutMappingRequestDeserializer(ObjectDeserializer<PutMappingRequest.Builder> op) {
 
+		op.add(Builder::fieldNames, FieldNamesField._DESERIALIZER, "_field_names");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
+		op.add(Builder::routing, RoutingField._DESERIALIZER, "_routing");
+		op.add(Builder::source, SourceField._DESERIALIZER, "_source");
 		op.add(Builder::dateDetection, JsonpDeserializer.booleanDeserializer(), "date_detection");
-		op.add(Builder::dynamic, JsonpDeserializer.jsonValueDeserializer(), "dynamic");
+		op.add(Builder::dynamic, DynamicMapping._DESERIALIZER, "dynamic");
 		op.add(Builder::dynamicDateFormats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"dynamic_date_formats");
 		op.add(Builder::dynamicTemplates, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(DynamicTemplate._DESERIALIZER)), "dynamic_templates");
-		op.add(Builder::fieldNames, FieldNamesField._DESERIALIZER, "_field_names");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
 		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "properties");
-		op.add(Builder::routing, RoutingField._DESERIALIZER, "_routing");
-		op.add(Builder::source, SourceField._DESERIALIZER, "_source");
 		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime");
 
 	}
@@ -953,7 +943,9 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code indices.put_mapping}".
 	 */
-	public static final Endpoint<PutMappingRequest, PutMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutMappingRequest, PutMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.put_mapping",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -982,27 +974,27 @@ public final class PutMappingRequest extends RequestBase implements JsonpSeriali
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.expandWildcards != null) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
-				}
-				if (request.ignoreUnavailable != null) {
-					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.writeIndexOnly != null) {
 					params.put("write_index_only", String.valueOf(request.writeIndexOnly));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

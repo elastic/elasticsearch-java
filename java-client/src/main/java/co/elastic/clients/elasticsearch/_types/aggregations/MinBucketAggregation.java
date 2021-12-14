@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.MinBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L113-L113">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MinBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class MinBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MinBucketAggregation(Builder builder) {
+	private MinBucketAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public MinBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MinBucketAggregation of(Function<Builder, ObjectBuilder<MinBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "min_bucket";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.MinBucket;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class MinBucketAggregation extends PipelineAggregationBase implemen
 	/**
 	 * Builder for {@link MinBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MinBucketAggregation> {
@@ -75,6 +82,7 @@ public final class MinBucketAggregation extends PipelineAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public MinBucketAggregation build() {
+			_checkSingleUse();
 
 			return new MinBucketAggregation(this);
 		}
@@ -86,10 +94,9 @@ public final class MinBucketAggregation extends PipelineAggregationBase implemen
 	 * Json deserializer for {@link MinBucketAggregation}
 	 */
 	public static final JsonpDeserializer<MinBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MinBucketAggregation::setupMinBucketAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, MinBucketAggregation::setupMinBucketAggregationDeserializer);
 
-	protected static void setupMinBucketAggregationDeserializer(
-			DelegatingDeserializer<MinBucketAggregation.Builder> op) {
+	protected static void setupMinBucketAggregationDeserializer(ObjectDeserializer<MinBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

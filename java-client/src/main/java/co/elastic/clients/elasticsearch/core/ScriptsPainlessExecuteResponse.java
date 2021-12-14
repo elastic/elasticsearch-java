@@ -23,16 +23,18 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -41,7 +43,14 @@ import javax.annotation.Nullable;
 
 // typedef: _global.scripts_painless_execute.Response
 
-public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializable {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/scripts_painless_execute/ExecutePainlessScriptResponse.ts#L20-L24">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializable {
 	private final TResult result;
 
 	@Nullable
@@ -49,21 +58,22 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSeria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptsPainlessExecuteResponse(Builder<TResult> builder) {
+	private ScriptsPainlessExecuteResponse(Builder<TResult> builder) {
 
-		this.result = Objects.requireNonNull(builder.result, "result");
+		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 		this.tResultSerializer = builder.tResultSerializer;
 
 	}
 
-	public ScriptsPainlessExecuteResponse(Function<Builder<TResult>, Builder<TResult>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TResult> ScriptsPainlessExecuteResponse<TResult> of(
+			Function<Builder<TResult>, ObjectBuilder<ScriptsPainlessExecuteResponse<TResult>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code result}
 	 */
-	public TResult result() {
+	public final TResult result() {
 		return this.result;
 	}
 
@@ -88,7 +98,10 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSeria
 	/**
 	 * Builder for {@link ScriptsPainlessExecuteResponse}.
 	 */
-	public static class Builder<TResult> implements ObjectBuilder<ScriptsPainlessExecuteResponse<TResult>> {
+
+	public static class Builder<TResult> extends ObjectBuilderBase
+			implements
+				ObjectBuilder<ScriptsPainlessExecuteResponse<TResult>> {
 		private TResult result;
 
 		@Nullable
@@ -97,7 +110,7 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSeria
 		/**
 		 * Required - API name: {@code result}
 		 */
-		public Builder<TResult> result(TResult value) {
+		public final Builder<TResult> result(TResult value) {
 			this.result = value;
 			return this;
 		}
@@ -106,7 +119,7 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSeria
 		 * Serializer for TResult. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TResult> tResultSerializer(@Nullable JsonpSerializer<TResult> value) {
+		public final Builder<TResult> tResultSerializer(@Nullable JsonpSerializer<TResult> value) {
 			this.tResultSerializer = value;
 			return this;
 		}
@@ -118,6 +131,7 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public ScriptsPainlessExecuteResponse<TResult> build() {
+			_checkSingleUse();
 
 			return new ScriptsPainlessExecuteResponse<TResult>(this);
 		}
@@ -126,7 +140,7 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSeria
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for ScriptsPainlessExecuteResponse
+	 * Create a JSON deserializer for ScriptsPainlessExecuteResponse
 	 */
 	public static <TResult> JsonpDeserializer<ScriptsPainlessExecuteResponse<TResult>> createScriptsPainlessExecuteResponseDeserializer(
 			JsonpDeserializer<TResult> tResultDeserializer) {
@@ -135,8 +149,15 @@ public final class ScriptsPainlessExecuteResponse<TResult> implements JsonpSeria
 						tResultDeserializer));
 	};
 
+	/**
+	 * Json deserializer for {@link ScriptsPainlessExecuteResponse} based on named
+	 * deserializers provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<ScriptsPainlessExecuteResponse<Object>> _DESERIALIZER = createScriptsPainlessExecuteResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult"));
+
 	protected static <TResult> void setupScriptsPainlessExecuteResponseDeserializer(
-			DelegatingDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
+			ObjectDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,
 			JsonpDeserializer<TResult> tResultDeserializer) {
 
 		op.add(Builder::result, tResultDeserializer, "result");

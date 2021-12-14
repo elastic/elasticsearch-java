@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.indices.analyze;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.AnalyzeToken
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/analyze/types.ts#L35-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AnalyzeToken implements JsonpSerializable {
+public class AnalyzeToken implements JsonpSerializable {
 	private final long endOffset;
 
 	private final long position;
@@ -56,32 +64,32 @@ public final class AnalyzeToken implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AnalyzeToken(Builder builder) {
+	private AnalyzeToken(Builder builder) {
 
-		this.endOffset = Objects.requireNonNull(builder.endOffset, "end_offset");
-		this.position = Objects.requireNonNull(builder.position, "position");
+		this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset");
+		this.position = ApiTypeHelper.requireNonNull(builder.position, this, "position");
 		this.positionLength = builder.positionLength;
-		this.startOffset = Objects.requireNonNull(builder.startOffset, "start_offset");
-		this.token = Objects.requireNonNull(builder.token, "token");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.startOffset = ApiTypeHelper.requireNonNull(builder.startOffset, this, "startOffset");
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public AnalyzeToken(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AnalyzeToken of(Function<Builder, ObjectBuilder<AnalyzeToken>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code end_offset}
 	 */
-	public long endOffset() {
+	public final long endOffset() {
 		return this.endOffset;
 	}
 
 	/**
 	 * Required - API name: {@code position}
 	 */
-	public long position() {
+	public final long position() {
 		return this.position;
 	}
 
@@ -89,28 +97,28 @@ public final class AnalyzeToken implements JsonpSerializable {
 	 * API name: {@code position_length}
 	 */
 	@Nullable
-	public Long positionLength() {
+	public final Long positionLength() {
 		return this.positionLength;
 	}
 
 	/**
 	 * Required - API name: {@code start_offset}
 	 */
-	public long startOffset() {
+	public final long startOffset() {
 		return this.startOffset;
 	}
 
 	/**
 	 * Required - API name: {@code token}
 	 */
-	public String token() {
+	public final String token() {
 		return this.token;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -132,12 +140,10 @@ public final class AnalyzeToken implements JsonpSerializable {
 		generator.write(this.position);
 
 		if (this.positionLength != null) {
-
 			generator.writeKey("position_length");
 			generator.write(this.positionLength);
 
 		}
-
 		generator.writeKey("start_offset");
 		generator.write(this.startOffset);
 
@@ -154,7 +160,8 @@ public final class AnalyzeToken implements JsonpSerializable {
 	/**
 	 * Builder for {@link AnalyzeToken}.
 	 */
-	public static class Builder implements ObjectBuilder<AnalyzeToken> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeToken> {
 		private Long endOffset;
 
 		private Long position;
@@ -171,7 +178,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code end_offset}
 		 */
-		public Builder endOffset(long value) {
+		public final Builder endOffset(long value) {
 			this.endOffset = value;
 			return this;
 		}
@@ -179,7 +186,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code position}
 		 */
-		public Builder position(long value) {
+		public final Builder position(long value) {
 			this.position = value;
 			return this;
 		}
@@ -187,7 +194,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * API name: {@code position_length}
 		 */
-		public Builder positionLength(@Nullable Long value) {
+		public final Builder positionLength(@Nullable Long value) {
 			this.positionLength = value;
 			return this;
 		}
@@ -195,7 +202,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code start_offset}
 		 */
-		public Builder startOffset(long value) {
+		public final Builder startOffset(long value) {
 			this.startOffset = value;
 			return this;
 		}
@@ -203,7 +210,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code token}
 		 */
-		public Builder token(String value) {
+		public final Builder token(String value) {
 			this.token = value;
 			return this;
 		}
@@ -211,7 +218,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -223,6 +230,7 @@ public final class AnalyzeToken implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AnalyzeToken build() {
+			_checkSingleUse();
 
 			return new AnalyzeToken(this);
 		}
@@ -234,9 +242,9 @@ public final class AnalyzeToken implements JsonpSerializable {
 	 * Json deserializer for {@link AnalyzeToken}
 	 */
 	public static final JsonpDeserializer<AnalyzeToken> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AnalyzeToken::setupAnalyzeTokenDeserializer, Builder::build);
+			AnalyzeToken::setupAnalyzeTokenDeserializer);
 
-	protected static void setupAnalyzeTokenDeserializer(DelegatingDeserializer<AnalyzeToken.Builder> op) {
+	protected static void setupAnalyzeTokenDeserializer(ObjectDeserializer<AnalyzeToken.Builder> op) {
 
 		op.add(Builder::endOffset, JsonpDeserializer.longDeserializer(), "end_offset");
 		op.add(Builder::position, JsonpDeserializer.longDeserializer(), "position");

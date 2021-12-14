@@ -23,13 +23,16 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,48 +42,80 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Preprocessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L31-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
+public class Preprocessor implements TaggedUnion<Preprocessor.Kind, Object>, JsonpSerializable {
 
-	public static final String FREQUENCY_ENCODING = "frequency_encoding";
-	public static final String ONE_HOT_ENCODING = "one_hot_encoding";
-	public static final String TARGET_MEAN_ENCODING = "target_mean_encoding";
+	/**
+	 * {@link Preprocessor} variant kinds.
+	 */
+	/**
+	 * {@link Preprocessor} variant kinds.
+	 */
 
-	// Tagged union implementation
+	public enum Kind implements JsonEnum {
+		FrequencyEncoding("frequency_encoding"),
 
-	private final String _type;
+		OneHotEncoding("one_hot_encoding"),
+
+		TargetMeanEncoding("target_mean_encoding"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public Preprocessor(PreprocessorVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._preprocessorKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends PreprocessorVariant> Preprocessor(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Preprocessor(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Preprocessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Preprocessor of(Function<Builder, ObjectBuilder<Preprocessor>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code frequency_encoding}?
+	 */
+	public boolean isFrequencyEncoding() {
+		return _kind == Kind.FrequencyEncoding;
 	}
 
 	/**
@@ -91,7 +126,14 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public FrequencyEncodingPreprocessor frequencyEncoding() {
-		return TaggedUnionUtils.get(this, FREQUENCY_ENCODING);
+		return TaggedUnionUtils.get(this, Kind.FrequencyEncoding);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code one_hot_encoding}?
+	 */
+	public boolean isOneHotEncoding() {
+		return _kind == Kind.OneHotEncoding;
 	}
 
 	/**
@@ -102,7 +144,14 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public OneHotEncodingPreprocessor oneHotEncoding() {
-		return TaggedUnionUtils.get(this, ONE_HOT_ENCODING);
+		return TaggedUnionUtils.get(this, Kind.OneHotEncoding);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code target_mean_encoding}?
+	 */
+	public boolean isTargetMeanEncoding() {
+		return _kind == Kind.TargetMeanEncoding;
 	}
 
 	/**
@@ -113,66 +162,69 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 	 *             kind.
 	 */
 	public TargetMeanEncodingPreprocessor targetMeanEncoding() {
-		return TaggedUnionUtils.get(this, TARGET_MEAN_ENCODING);
+		return TaggedUnionUtils.get(this, Kind.TargetMeanEncoding);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
 		generator.writeEnd();
+
 	}
 
-	public static class Builder implements ObjectBuilder<Preprocessor> {
-		private String _type;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Preprocessor> {
+		private Kind _kind;
 		private Object _value;
 
-		public Builder frequencyEncoding(FrequencyEncodingPreprocessor v) {
-			this._type = FREQUENCY_ENCODING;
+		public ObjectBuilder<Preprocessor> frequencyEncoding(FrequencyEncodingPreprocessor v) {
+			this._kind = Kind.FrequencyEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder frequencyEncoding(
-				Function<FrequencyEncodingPreprocessor.Builder, ObjectBuilder<FrequencyEncodingPreprocessor>> f) {
-			return this.frequencyEncoding(f.apply(new FrequencyEncodingPreprocessor.Builder()).build());
+		public ObjectBuilder<Preprocessor> frequencyEncoding(
+				Function<FrequencyEncodingPreprocessor.Builder, ObjectBuilder<FrequencyEncodingPreprocessor>> fn) {
+			return this.frequencyEncoding(fn.apply(new FrequencyEncodingPreprocessor.Builder()).build());
 		}
 
-		public Builder oneHotEncoding(OneHotEncodingPreprocessor v) {
-			this._type = ONE_HOT_ENCODING;
+		public ObjectBuilder<Preprocessor> oneHotEncoding(OneHotEncodingPreprocessor v) {
+			this._kind = Kind.OneHotEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder oneHotEncoding(
-				Function<OneHotEncodingPreprocessor.Builder, ObjectBuilder<OneHotEncodingPreprocessor>> f) {
-			return this.oneHotEncoding(f.apply(new OneHotEncodingPreprocessor.Builder()).build());
+		public ObjectBuilder<Preprocessor> oneHotEncoding(
+				Function<OneHotEncodingPreprocessor.Builder, ObjectBuilder<OneHotEncodingPreprocessor>> fn) {
+			return this.oneHotEncoding(fn.apply(new OneHotEncodingPreprocessor.Builder()).build());
 		}
 
-		public Builder targetMeanEncoding(TargetMeanEncodingPreprocessor v) {
-			this._type = TARGET_MEAN_ENCODING;
+		public ObjectBuilder<Preprocessor> targetMeanEncoding(TargetMeanEncodingPreprocessor v) {
+			this._kind = Kind.TargetMeanEncoding;
 			this._value = v;
 			return this;
 		}
 
-		public Builder targetMeanEncoding(
-				Function<TargetMeanEncodingPreprocessor.Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> f) {
-			return this.targetMeanEncoding(f.apply(new TargetMeanEncodingPreprocessor.Builder()).build());
+		public ObjectBuilder<Preprocessor> targetMeanEncoding(
+				Function<TargetMeanEncodingPreprocessor.Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> fn) {
+			return this.targetMeanEncoding(fn.apply(new TargetMeanEncodingPreprocessor.Builder()).build());
 		}
 
 		public Preprocessor build() {
+			_checkSingleUse();
 			return new Preprocessor(this);
 		}
 
 	}
 
-	protected static void setupPreprocessorDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupPreprocessorDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::frequencyEncoding, FrequencyEncodingPreprocessor._DESERIALIZER, "frequency_encoding");
 		op.add(Builder::oneHotEncoding, OneHotEncodingPreprocessor._DESERIALIZER, "one_hot_encoding");
@@ -180,6 +232,6 @@ public class Preprocessor implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<Preprocessor> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Preprocessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Preprocessor::setupPreprocessorDeserializer, Builder::build);
 }

@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,27 +43,36 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_trained_model.Request
 
-public final class DeleteTrainedModelRequest extends RequestBase {
+/**
+ * Deletes an existing trained inference model that is currently not referenced
+ * by an ingest pipeline.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_trained_model/MlDeleteTrainedModelRequest.ts#L23-L38">API
+ *      specification</a>
+ */
+
+public class DeleteTrainedModelRequest extends RequestBase {
 	private final String modelId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteTrainedModelRequest(Builder builder) {
+	private DeleteTrainedModelRequest(Builder builder) {
 
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
 
-	public DeleteTrainedModelRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteTrainedModelRequest of(Function<Builder, ObjectBuilder<DeleteTrainedModelRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the trained model to delete
+	 * Required - The unique identifier of the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	public String modelId() {
+	public final String modelId() {
 		return this.modelId;
 	}
 
@@ -70,15 +81,16 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteTrainedModelRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteTrainedModelRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTrainedModelRequest> {
 		private String modelId;
 
 		/**
-		 * Required - The ID of the trained model to delete
+		 * Required - The unique identifier of the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public Builder modelId(String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -90,6 +102,7 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteTrainedModelRequest build() {
+			_checkSingleUse();
 
 			return new DeleteTrainedModelRequest(this);
 		}
@@ -100,7 +113,9 @@ public final class DeleteTrainedModelRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_trained_model}".
 	 */
-	public static final Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_trained_model",
+
 			// Request method
 			request -> {
 				return "DELETE";

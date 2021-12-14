@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,27 +43,35 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_calendar.Request
 
-public final class DeleteCalendarRequest extends RequestBase {
+/**
+ * Removes all scheduled events from a calendar, then deletes it.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_calendar/MlDeleteCalendarRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
+public class DeleteCalendarRequest extends RequestBase {
 	private final String calendarId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteCalendarRequest(Builder builder) {
+	private DeleteCalendarRequest(Builder builder) {
 
-		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 
 	}
 
-	public DeleteCalendarRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteCalendarRequest of(Function<Builder, ObjectBuilder<DeleteCalendarRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the calendar to delete
+	 * Required - A string that uniquely identifies a calendar.
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
-	public String calendarId() {
+	public final String calendarId() {
 		return this.calendarId;
 	}
 
@@ -70,15 +80,16 @@ public final class DeleteCalendarRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteCalendarRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteCalendarRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteCalendarRequest> {
 		private String calendarId;
 
 		/**
-		 * Required - The ID of the calendar to delete
+		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(String value) {
+		public final Builder calendarId(String value) {
 			this.calendarId = value;
 			return this;
 		}
@@ -90,6 +101,7 @@ public final class DeleteCalendarRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteCalendarRequest build() {
+			_checkSingleUse();
 
 			return new DeleteCalendarRequest(this);
 		}
@@ -100,7 +112,9 @@ public final class DeleteCalendarRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_calendar}".
 	 */
-	public static final Endpoint<DeleteCalendarRequest, DeleteCalendarResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteCalendarRequest, DeleteCalendarResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_calendar",
+
 			// Request method
 			request -> {
 				return "DELETE";

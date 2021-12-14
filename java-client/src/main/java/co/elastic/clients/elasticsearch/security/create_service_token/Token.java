@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.security.create_service_token;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Token
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_service_token/types.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Token implements JsonpSerializable {
+public class Token implements JsonpSerializable {
 	private final String name;
 
 	private final String value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Token(Builder builder) {
+	private Token(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public Token(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Token of(Function<Builder, ObjectBuilder<Token>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public String value() {
+	public final String value() {
 		return this.value;
 	}
 
@@ -95,7 +103,8 @@ public final class Token implements JsonpSerializable {
 	/**
 	 * Builder for {@link Token}.
 	 */
-	public static class Builder implements ObjectBuilder<Token> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Token> {
 		private String name;
 
 		private String value;
@@ -103,7 +112,7 @@ public final class Token implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class Token implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(String value) {
+		public final Builder value(String value) {
 			this.value = value;
 			return this;
 		}
@@ -123,6 +132,7 @@ public final class Token implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Token build() {
+			_checkSingleUse();
 
 			return new Token(this);
 		}
@@ -134,9 +144,9 @@ public final class Token implements JsonpSerializable {
 	 * Json deserializer for {@link Token}
 	 */
 	public static final JsonpDeserializer<Token> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Token::setupTokenDeserializer, Builder::build);
+			Token::setupTokenDeserializer);
 
-	protected static void setupTokenDeserializer(DelegatingDeserializer<Token.Builder> op) {
+	protected static void setupTokenDeserializer(ObjectDeserializer<Token.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");

@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.ack_watch.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/ack_watch/WatcherAckWatchResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AckWatchResponse implements JsonpSerializable {
+public class AckWatchResponse implements JsonpSerializable {
 	private final WatchStatus status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AckWatchResponse(Builder builder) {
+	private AckWatchResponse(Builder builder) {
 
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public AckWatchResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AckWatchResponse of(Function<Builder, ObjectBuilder<AckWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public WatchStatus status() {
+	public final WatchStatus status() {
 		return this.status;
 	}
 
@@ -81,13 +89,14 @@ public final class AckWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link AckWatchResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<AckWatchResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AckWatchResponse> {
 		private WatchStatus status;
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(WatchStatus value) {
+		public final Builder status(WatchStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -95,7 +104,7 @@ public final class AckWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
+		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
 			return this.status(fn.apply(new WatchStatus.Builder()).build());
 		}
 
@@ -106,6 +115,7 @@ public final class AckWatchResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AckWatchResponse build() {
+			_checkSingleUse();
 
 			return new AckWatchResponse(this);
 		}
@@ -117,9 +127,9 @@ public final class AckWatchResponse implements JsonpSerializable {
 	 * Json deserializer for {@link AckWatchResponse}
 	 */
 	public static final JsonpDeserializer<AckWatchResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AckWatchResponse::setupAckWatchResponseDeserializer, Builder::build);
+			AckWatchResponse::setupAckWatchResponseDeserializer);
 
-	protected static void setupAckWatchResponseDeserializer(DelegatingDeserializer<AckWatchResponse.Builder> op) {
+	protected static void setupAckWatchResponseDeserializer(ObjectDeserializer<AckWatchResponse.Builder> op) {
 
 		op.add(Builder::status, WatchStatus._DESERIALIZER, "status");
 

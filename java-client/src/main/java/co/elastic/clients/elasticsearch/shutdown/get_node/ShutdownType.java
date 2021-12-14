@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/get_node/ShutdownGetNodeResponse.ts#L40-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum ShutdownType implements StringEnum {
-	Remove("remove"), Restart("restart");
+public enum ShutdownType implements JsonEnum {
+	Remove("remove"),
+
+	Restart("restart"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum ShutdownType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ShutdownType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ShutdownType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ShutdownType.values());
 }

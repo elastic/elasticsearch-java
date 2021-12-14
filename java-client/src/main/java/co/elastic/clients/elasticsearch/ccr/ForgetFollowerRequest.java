@@ -23,18 +23,19 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -43,10 +44,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr.forget_follower.Request
-@JsonpDeserializable
-public final class ForgetFollowerRequest extends RequestBase implements JsonpSerializable {
-	private final String index;
 
+/**
+ * Removes the follower retention leases from the leader.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/forget_follower/ForgetFollowerIndexRequest.ts#L23-L38">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class ForgetFollowerRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String followerCluster;
 
@@ -56,23 +63,49 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	@Nullable
 	private final String followerIndexUuid;
 
+	private final String index;
+
 	@Nullable
 	private final String leaderRemoteCluster;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ForgetFollowerRequest(Builder builder) {
+	private ForgetFollowerRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
 		this.followerCluster = builder.followerCluster;
 		this.followerIndex = builder.followerIndex;
 		this.followerIndexUuid = builder.followerIndexUuid;
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.leaderRemoteCluster = builder.leaderRemoteCluster;
 
 	}
 
-	public ForgetFollowerRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ForgetFollowerRequest of(Function<Builder, ObjectBuilder<ForgetFollowerRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code follower_cluster}
+	 */
+	@Nullable
+	public final String followerCluster() {
+		return this.followerCluster;
+	}
+
+	/**
+	 * API name: {@code follower_index}
+	 */
+	@Nullable
+	public final String followerIndex() {
+		return this.followerIndex;
+	}
+
+	/**
+	 * API name: {@code follower_index_uuid}
+	 */
+	@Nullable
+	public final String followerIndexUuid() {
+		return this.followerIndexUuid;
 	}
 
 	/**
@@ -81,39 +114,15 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
-	}
-
-	/**
-	 * API name: {@code follower_cluster}
-	 */
-	@Nullable
-	public String followerCluster() {
-		return this.followerCluster;
-	}
-
-	/**
-	 * API name: {@code follower_index}
-	 */
-	@Nullable
-	public String followerIndex() {
-		return this.followerIndex;
-	}
-
-	/**
-	 * API name: {@code follower_index_uuid}
-	 */
-	@Nullable
-	public String followerIndexUuid() {
-		return this.followerIndexUuid;
 	}
 
 	/**
 	 * API name: {@code leader_remote_cluster}
 	 */
 	@Nullable
-	public String leaderRemoteCluster() {
+	public final String leaderRemoteCluster() {
 		return this.leaderRemoteCluster;
 	}
 
@@ -129,25 +138,21 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.followerCluster != null) {
-
 			generator.writeKey("follower_cluster");
 			generator.write(this.followerCluster);
 
 		}
 		if (this.followerIndex != null) {
-
 			generator.writeKey("follower_index");
 			generator.write(this.followerIndex);
 
 		}
 		if (this.followerIndexUuid != null) {
-
 			generator.writeKey("follower_index_uuid");
 			generator.write(this.followerIndexUuid);
 
 		}
 		if (this.leaderRemoteCluster != null) {
-
 			generator.writeKey("leader_remote_cluster");
 			generator.write(this.leaderRemoteCluster);
 
@@ -160,9 +165,8 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link ForgetFollowerRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ForgetFollowerRequest> {
-		private String index;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForgetFollowerRequest> {
 		@Nullable
 		private String followerCluster;
 
@@ -172,24 +176,15 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 		@Nullable
 		private String followerIndexUuid;
 
+		private String index;
+
 		@Nullable
 		private String leaderRemoteCluster;
 
 		/**
-		 * Required - the name of the leader index for which specified follower
-		 * retention leases should be removed
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code follower_cluster}
 		 */
-		public Builder followerCluster(@Nullable String value) {
+		public final Builder followerCluster(@Nullable String value) {
 			this.followerCluster = value;
 			return this;
 		}
@@ -197,7 +192,7 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code follower_index}
 		 */
-		public Builder followerIndex(@Nullable String value) {
+		public final Builder followerIndex(@Nullable String value) {
 			this.followerIndex = value;
 			return this;
 		}
@@ -205,15 +200,26 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 		/**
 		 * API name: {@code follower_index_uuid}
 		 */
-		public Builder followerIndexUuid(@Nullable String value) {
+		public final Builder followerIndexUuid(@Nullable String value) {
 			this.followerIndexUuid = value;
+			return this;
+		}
+
+		/**
+		 * Required - the name of the leader index for which specified follower
+		 * retention leases should be removed
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public final Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code leader_remote_cluster}
 		 */
-		public Builder leaderRemoteCluster(@Nullable String value) {
+		public final Builder leaderRemoteCluster(@Nullable String value) {
 			this.leaderRemoteCluster = value;
 			return this;
 		}
@@ -225,6 +231,7 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 		 *             if some of the required fields are null.
 		 */
 		public ForgetFollowerRequest build() {
+			_checkSingleUse();
 
 			return new ForgetFollowerRequest(this);
 		}
@@ -236,10 +243,9 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	 * Json deserializer for {@link ForgetFollowerRequest}
 	 */
 	public static final JsonpDeserializer<ForgetFollowerRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ForgetFollowerRequest::setupForgetFollowerRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ForgetFollowerRequest::setupForgetFollowerRequestDeserializer);
 
-	protected static void setupForgetFollowerRequestDeserializer(
-			DelegatingDeserializer<ForgetFollowerRequest.Builder> op) {
+	protected static void setupForgetFollowerRequestDeserializer(ObjectDeserializer<ForgetFollowerRequest.Builder> op) {
 
 		op.add(Builder::followerCluster, JsonpDeserializer.stringDeserializer(), "follower_cluster");
 		op.add(Builder::followerIndex, JsonpDeserializer.stringDeserializer(), "follower_index");
@@ -253,7 +259,9 @@ public final class ForgetFollowerRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code ccr.forget_follower}".
 	 */
-	public static final Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.forget_follower",
+
 			// Request method
 			request -> {
 				return "POST";

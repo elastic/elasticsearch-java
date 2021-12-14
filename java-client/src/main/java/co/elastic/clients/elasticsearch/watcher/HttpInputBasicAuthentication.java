@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputBasicAuthentication
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L56-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class HttpInputBasicAuthentication implements JsonpSerializable {
+public class HttpInputBasicAuthentication implements JsonpSerializable {
 	private final String password;
 
 	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HttpInputBasicAuthentication(Builder builder) {
+	private HttpInputBasicAuthentication(Builder builder) {
 
-		this.password = Objects.requireNonNull(builder.password, "password");
-		this.username = Objects.requireNonNull(builder.username, "username");
+		this.password = ApiTypeHelper.requireNonNull(builder.password, this, "password");
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public HttpInputBasicAuthentication(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HttpInputBasicAuthentication of(Function<Builder, ObjectBuilder<HttpInputBasicAuthentication>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code password}
 	 */
-	public String password() {
+	public final String password() {
 		return this.password;
 	}
 
 	/**
 	 * Required - API name: {@code username}
 	 */
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -95,7 +103,8 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInputBasicAuthentication}.
 	 */
-	public static class Builder implements ObjectBuilder<HttpInputBasicAuthentication> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInputBasicAuthentication> {
 		private String password;
 
 		private String username;
@@ -103,7 +112,7 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code password}
 		 */
-		public Builder password(String value) {
+		public final Builder password(String value) {
 			this.password = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code username}
 		 */
-		public Builder username(String value) {
+		public final Builder username(String value) {
 			this.username = value;
 			return this;
 		}
@@ -123,6 +132,7 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HttpInputBasicAuthentication build() {
+			_checkSingleUse();
 
 			return new HttpInputBasicAuthentication(this);
 		}
@@ -133,11 +143,11 @@ public final class HttpInputBasicAuthentication implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link HttpInputBasicAuthentication}
 	 */
-	public static final JsonpDeserializer<HttpInputBasicAuthentication> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, HttpInputBasicAuthentication::setupHttpInputBasicAuthenticationDeserializer, Builder::build);
+	public static final JsonpDeserializer<HttpInputBasicAuthentication> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, HttpInputBasicAuthentication::setupHttpInputBasicAuthenticationDeserializer);
 
 	protected static void setupHttpInputBasicAuthenticationDeserializer(
-			DelegatingDeserializer<HttpInputBasicAuthentication.Builder> op) {
+			ObjectDeserializer<HttpInputBasicAuthentication.Builder> op) {
 
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");

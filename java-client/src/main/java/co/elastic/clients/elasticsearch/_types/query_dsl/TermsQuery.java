@@ -23,14 +23,13 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,61 +37,57 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermsQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L123-L125">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TermsQuery extends QueryBase implements QueryVariant {
+public class TermsQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
-	private final JsonValue /*
-							 * Union(Array<_types.long> | Array<internal.string> |
-							 * _types.query_dsl.TermsLookup)
-							 */ value;
+	private final TermsQueryField terms;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermsQuery(Builder builder) {
+	private TermsQuery(Builder builder) {
 		super(builder);
-
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
 
 	}
 
-	public TermsQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermsQuery of(Function<Builder, ObjectBuilder<TermsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "terms";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Terms;
 	}
 
 	/**
 	 * Required -
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required -
 	 */
-	public JsonValue /*
-						 * Union(Array<_types.long> | Array<internal.string> |
-						 * _types.query_dsl.TermsLookup)
-						 */ value() {
-		return this.value;
+	public final TermsQueryField terms() {
+		return this.terms;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		// >> AdditionalProperty start
 		generator.writeKey(this.field);
-		generator.write(this.value);
-
-		// << AdditionalProperty start
+		this.terms.serialize(generator, mapper);
 
 		super.serializeInternal(generator, mapper);
 
@@ -103,18 +98,16 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link TermsQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermsQuery> {
 		private String field;
 
-		private JsonValue /*
-							 * Union(Array<_types.long> | Array<internal.string> |
-							 * _types.query_dsl.TermsLookup)
-							 */ value;
+		private TermsQueryField terms;
 
 		/**
 		 * Required -
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -122,12 +115,16 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public Builder value(JsonValue /*
-										 * Union(Array<_types.long> | Array<internal.string> |
-										 * _types.query_dsl.TermsLookup)
-										 */ value) {
-			this.value = value;
+		public final Builder terms(TermsQueryField value) {
+			this.terms = value;
 			return this;
+		}
+
+		/**
+		 * Required -
+		 */
+		public final Builder terms(Function<TermsQueryField.Builder, ObjectBuilder<TermsQueryField>> fn) {
+			return this.terms(fn.apply(new TermsQueryField.Builder()).build());
 		}
 
 		@Override
@@ -142,6 +139,7 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public TermsQuery build() {
+			_checkSingleUse();
 
 			return new TermsQuery(this);
 		}
@@ -153,14 +151,14 @@ public final class TermsQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link TermsQuery}
 	 */
 	public static final JsonpDeserializer<TermsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermsQuery::setupTermsQueryDeserializer, Builder::build);
+			TermsQuery::setupTermsQueryDeserializer);
 
-	protected static void setupTermsQueryDeserializer(DelegatingDeserializer<TermsQuery.Builder> op) {
+	protected static void setupTermsQueryDeserializer(ObjectDeserializer<TermsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			builder.field(name);
-			builder.value(JsonpDeserializer.jsonValueDeserializer().deserialize(parser, mapper));
+			builder.terms(TermsQueryField._DESERIALIZER.deserialize(parser, mapper));
 		});
 
 	}

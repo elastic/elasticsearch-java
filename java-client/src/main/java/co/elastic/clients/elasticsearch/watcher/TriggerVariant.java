@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link Trigger} variants.
  */
-public interface TriggerVariant extends UnionVariant {
+public interface TriggerVariant {
+
+	Trigger.Kind _triggerKind();
 
 	default Trigger _toTrigger() {
 		return new Trigger(this);

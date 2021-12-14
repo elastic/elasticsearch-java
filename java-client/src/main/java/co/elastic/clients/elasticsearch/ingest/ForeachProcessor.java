@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.ForeachProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L214-L218">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ForeachProcessor extends ProcessorBase implements ProcessorVariant {
+public class ForeachProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -49,31 +56,31 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ForeachProcessor(Builder builder) {
+	private ForeachProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
-		this.processor = Objects.requireNonNull(builder.processor, "processor");
+		this.processor = ApiTypeHelper.requireNonNull(builder.processor, this, "processor");
 
 	}
 
-	public ForeachProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ForeachProcessor of(Function<Builder, ObjectBuilder<ForeachProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "foreach";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Foreach;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -81,31 +88,28 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public Boolean ignoreMissing() {
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
 	 * Required - API name: {@code processor}
 	 */
-	public Processor processor() {
+	public final Processor processor() {
 		return this.processor;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.ignoreMissing != null) {
-
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
 
 		}
-
 		generator.writeKey("processor");
 		this.processor.serialize(generator, mapper);
 
@@ -116,6 +120,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 	/**
 	 * Builder for {@link ForeachProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ForeachProcessor> {
@@ -129,7 +134,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -137,7 +142,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(@Nullable Boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -145,7 +150,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * Required - API name: {@code processor}
 		 */
-		public Builder processor(Processor value) {
+		public final Builder processor(Processor value) {
 			this.processor = value;
 			return this;
 		}
@@ -153,7 +158,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 		/**
 		 * Required - API name: {@code processor}
 		 */
-		public Builder processor(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+		public final Builder processor(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
 			return this.processor(fn.apply(new Processor.Builder()).build());
 		}
 
@@ -169,6 +174,7 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 		 *             if some of the required fields are null.
 		 */
 		public ForeachProcessor build() {
+			_checkSingleUse();
 
 			return new ForeachProcessor(this);
 		}
@@ -180,9 +186,9 @@ public final class ForeachProcessor extends ProcessorBase implements ProcessorVa
 	 * Json deserializer for {@link ForeachProcessor}
 	 */
 	public static final JsonpDeserializer<ForeachProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ForeachProcessor::setupForeachProcessorDeserializer, Builder::build);
+			ForeachProcessor::setupForeachProcessorDeserializer);
 
-	protected static void setupForeachProcessorDeserializer(DelegatingDeserializer<ForeachProcessor.Builder> op) {
+	protected static void setupForeachProcessorDeserializer(ObjectDeserializer<ForeachProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

@@ -23,14 +23,16 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,30 +40,37 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PointInTimeReference
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/PointInTimeReference.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PointInTimeReference implements JsonpSerializable {
+public class PointInTimeReference implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
-	private final String keepAlive;
+	private final Time keepAlive;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PointInTimeReference(Builder builder) {
+	private PointInTimeReference(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.keepAlive = builder.keepAlive;
 
 	}
 
-	public PointInTimeReference(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PointInTimeReference of(Function<Builder, ObjectBuilder<PointInTimeReference>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -69,7 +78,7 @@ public final class PointInTimeReference implements JsonpSerializable {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public String keepAlive() {
+	public final Time keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -88,9 +97,8 @@ public final class PointInTimeReference implements JsonpSerializable {
 		generator.write(this.id);
 
 		if (this.keepAlive != null) {
-
 			generator.writeKey("keep_alive");
-			generator.write(this.keepAlive);
+			this.keepAlive.serialize(generator, mapper);
 
 		}
 
@@ -101,16 +109,17 @@ public final class PointInTimeReference implements JsonpSerializable {
 	/**
 	 * Builder for {@link PointInTimeReference}.
 	 */
-	public static class Builder implements ObjectBuilder<PointInTimeReference> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PointInTimeReference> {
 		private String id;
 
 		@Nullable
-		private String keepAlive;
+		private Time keepAlive;
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -118,9 +127,16 @@ public final class PointInTimeReference implements JsonpSerializable {
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable Time value) {
 			this.keepAlive = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -130,6 +146,7 @@ public final class PointInTimeReference implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PointInTimeReference build() {
+			_checkSingleUse();
 
 			return new PointInTimeReference(this);
 		}
@@ -141,13 +158,12 @@ public final class PointInTimeReference implements JsonpSerializable {
 	 * Json deserializer for {@link PointInTimeReference}
 	 */
 	public static final JsonpDeserializer<PointInTimeReference> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PointInTimeReference::setupPointInTimeReferenceDeserializer, Builder::build);
+			.lazy(Builder::new, PointInTimeReference::setupPointInTimeReferenceDeserializer);
 
-	protected static void setupPointInTimeReferenceDeserializer(
-			DelegatingDeserializer<PointInTimeReference.Builder> op) {
+	protected static void setupPointInTimeReferenceDeserializer(ObjectDeserializer<PointInTimeReference.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
+		op.add(Builder::keepAlive, Time._DESERIALIZER, "keep_alive");
 
 	}
 

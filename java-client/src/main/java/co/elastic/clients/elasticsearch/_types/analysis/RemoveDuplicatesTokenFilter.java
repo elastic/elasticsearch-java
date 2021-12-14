@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.RemoveDuplicatesTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L298-L300">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RemoveDuplicatesTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class RemoveDuplicatesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public RemoveDuplicatesTokenFilter(Builder builder) {
+	private RemoveDuplicatesTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public RemoveDuplicatesTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RemoveDuplicatesTokenFilter of(Function<Builder, ObjectBuilder<RemoveDuplicatesTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "remove_duplicates";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.RemoveDuplicates;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class RemoveDuplicatesTokenFilter extends TokenFilterBase implement
 	/**
 	 * Builder for {@link RemoveDuplicatesTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RemoveDuplicatesTokenFilter> {
@@ -83,6 +90,7 @@ public final class RemoveDuplicatesTokenFilter extends TokenFilterBase implement
 		 *             if some of the required fields are null.
 		 */
 		public RemoveDuplicatesTokenFilter build() {
+			_checkSingleUse();
 
 			return new RemoveDuplicatesTokenFilter(this);
 		}
@@ -93,11 +101,11 @@ public final class RemoveDuplicatesTokenFilter extends TokenFilterBase implement
 	/**
 	 * Json deserializer for {@link RemoveDuplicatesTokenFilter}
 	 */
-	public static final JsonpDeserializer<RemoveDuplicatesTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, RemoveDuplicatesTokenFilter::setupRemoveDuplicatesTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<RemoveDuplicatesTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RemoveDuplicatesTokenFilter::setupRemoveDuplicatesTokenFilterDeserializer);
 
 	protected static void setupRemoveDuplicatesTokenFilterDeserializer(
-			DelegatingDeserializer<RemoveDuplicatesTokenFilter.Builder> op) {
+			ObjectDeserializer<RemoveDuplicatesTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L56-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum PagerDutyEventType implements StringEnum {
-	Trigger("trigger"), Resolve("resolve"), Acknowledge("acknowledge");
+public enum PagerDutyEventType implements JsonEnum {
+	Trigger("trigger"),
+
+	Resolve("resolve"),
+
+	Acknowledge("acknowledge"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +53,6 @@ public enum PagerDutyEventType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<PagerDutyEventType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<PagerDutyEventType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			PagerDutyEventType.values());
 }

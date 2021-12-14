@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.enrich.execute_policy;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.ExecuteEnrichPolicyStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/execute_policy/types.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
+public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	private final EnrichPolicyPhase phase;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecuteEnrichPolicyStatus(Builder builder) {
+	private ExecuteEnrichPolicyStatus(Builder builder) {
 
-		this.phase = Objects.requireNonNull(builder.phase, "phase");
+		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
 
 	}
 
-	public ExecuteEnrichPolicyStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecuteEnrichPolicyStatus of(Function<Builder, ObjectBuilder<ExecuteEnrichPolicyStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code phase}
 	 */
-	public EnrichPolicyPhase phase() {
+	public final EnrichPolicyPhase phase() {
 		return this.phase;
 	}
 
@@ -81,13 +89,14 @@ public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecuteEnrichPolicyStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecuteEnrichPolicyStatus> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteEnrichPolicyStatus> {
 		private EnrichPolicyPhase phase;
 
 		/**
 		 * Required - API name: {@code phase}
 		 */
-		public Builder phase(EnrichPolicyPhase value) {
+		public final Builder phase(EnrichPolicyPhase value) {
 			this.phase = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecuteEnrichPolicyStatus build() {
+			_checkSingleUse();
 
 			return new ExecuteEnrichPolicyStatus(this);
 		}
@@ -110,10 +120,10 @@ public final class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	 * Json deserializer for {@link ExecuteEnrichPolicyStatus}
 	 */
 	public static final JsonpDeserializer<ExecuteEnrichPolicyStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExecuteEnrichPolicyStatus::setupExecuteEnrichPolicyStatusDeserializer, Builder::build);
+			.lazy(Builder::new, ExecuteEnrichPolicyStatus::setupExecuteEnrichPolicyStatusDeserializer);
 
 	protected static void setupExecuteEnrichPolicyStatusDeserializer(
-			DelegatingDeserializer<ExecuteEnrichPolicyStatus.Builder> op) {
+			ObjectDeserializer<ExecuteEnrichPolicyStatus.Builder> op) {
 
 		op.add(Builder::phase, EnrichPolicyPhase._DESERIALIZER, "phase");
 

@@ -24,13 +24,12 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,9 +37,6 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -48,8 +44,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MoreLikeThisQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L63-L90">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
+public class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String analyzer;
 
@@ -59,13 +62,12 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Boolean failOnUnsupportedField;
 
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
 	private final Boolean include;
 
-	private final List<LikeDocument> like;
+	private final List<Like> like;
 
 	@Nullable
 	private final Integer maxDocFreq;
@@ -88,17 +90,14 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Integer minWordLength;
 
-	@Nullable
 	private final Map<String, String> perFieldAnalyzer;
 
 	@Nullable
 	private final String routing;
 
-	@Nullable
 	private final List<String> stopWords;
 
-	@Nullable
-	private final List<LikeDocument> unlike;
+	private final List<Like> unlike;
 
 	@Nullable
 	private final Long version;
@@ -108,15 +107,15 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MoreLikeThisQuery(Builder builder) {
+	private MoreLikeThisQuery(Builder builder) {
 		super(builder);
 
 		this.analyzer = builder.analyzer;
 		this.boostTerms = builder.boostTerms;
 		this.failOnUnsupportedField = builder.failOnUnsupportedField;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.include = builder.include;
-		this.like = ModelTypeHelper.unmodifiableNonNull(builder.like, "like");
+		this.like = ApiTypeHelper.unmodifiableRequired(builder.like, this, "like");
 		this.maxDocFreq = builder.maxDocFreq;
 		this.maxQueryTerms = builder.maxQueryTerms;
 		this.maxWordLength = builder.maxWordLength;
@@ -124,32 +123,32 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.minTermFreq = builder.minTermFreq;
 		this.minWordLength = builder.minWordLength;
-		this.perFieldAnalyzer = ModelTypeHelper.unmodifiable(builder.perFieldAnalyzer);
+		this.perFieldAnalyzer = ApiTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.routing = builder.routing;
-		this.stopWords = ModelTypeHelper.unmodifiable(builder.stopWords);
-		this.unlike = ModelTypeHelper.unmodifiable(builder.unlike);
+		this.stopWords = ApiTypeHelper.unmodifiable(builder.stopWords);
+		this.unlike = ApiTypeHelper.unmodifiable(builder.unlike);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
 	}
 
-	public MoreLikeThisQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MoreLikeThisQuery of(Function<Builder, ObjectBuilder<MoreLikeThisQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "more_like_this";
+	public Query.Kind _queryKind() {
+		return Query.Kind.MoreLikeThis;
 	}
 
 	/**
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -157,7 +156,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code boost_terms}
 	 */
 	@Nullable
-	public Double boostTerms() {
+	public final Double boostTerms() {
 		return this.boostTerms;
 	}
 
@@ -165,15 +164,14 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fail_on_unsupported_field}
 	 */
 	@Nullable
-	public Boolean failOnUnsupportedField() {
+	public final Boolean failOnUnsupportedField() {
 		return this.failOnUnsupportedField;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -181,14 +179,14 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code include}
 	 */
 	@Nullable
-	public Boolean include() {
+	public final Boolean include() {
 		return this.include;
 	}
 
 	/**
 	 * Required - API name: {@code like}
 	 */
-	public List<LikeDocument> like() {
+	public final List<Like> like() {
 		return this.like;
 	}
 
@@ -196,7 +194,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code max_doc_freq}
 	 */
 	@Nullable
-	public Integer maxDocFreq() {
+	public final Integer maxDocFreq() {
 		return this.maxDocFreq;
 	}
 
@@ -204,7 +202,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code max_query_terms}
 	 */
 	@Nullable
-	public Integer maxQueryTerms() {
+	public final Integer maxQueryTerms() {
 		return this.maxQueryTerms;
 	}
 
@@ -212,7 +210,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code max_word_length}
 	 */
 	@Nullable
-	public Integer maxWordLength() {
+	public final Integer maxWordLength() {
 		return this.maxWordLength;
 	}
 
@@ -220,7 +218,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code min_doc_freq}
 	 */
 	@Nullable
-	public Integer minDocFreq() {
+	public final Integer minDocFreq() {
 		return this.minDocFreq;
 	}
 
@@ -228,7 +226,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public String minimumShouldMatch() {
+	public final String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
@@ -236,7 +234,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code min_term_freq}
 	 */
 	@Nullable
-	public Integer minTermFreq() {
+	public final Integer minTermFreq() {
 		return this.minTermFreq;
 	}
 
@@ -244,15 +242,14 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code min_word_length}
 	 */
 	@Nullable
-	public Integer minWordLength() {
+	public final Integer minWordLength() {
 		return this.minWordLength;
 	}
 
 	/**
 	 * API name: {@code per_field_analyzer}
 	 */
-	@Nullable
-	public Map<String, String> perFieldAnalyzer() {
+	public final Map<String, String> perFieldAnalyzer() {
 		return this.perFieldAnalyzer;
 	}
 
@@ -260,23 +257,21 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
 	/**
 	 * API name: {@code stop_words}
 	 */
-	@Nullable
-	public List<String> stopWords() {
+	public final List<String> stopWords() {
 		return this.stopWords;
 	}
 
 	/**
 	 * API name: {@code unlike}
 	 */
-	@Nullable
-	public List<LikeDocument> unlike() {
+	public final List<Like> unlike() {
 		return this.unlike;
 	}
 
@@ -284,7 +279,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -292,7 +287,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -300,25 +295,21 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.boostTerms != null) {
-
 			generator.writeKey("boost_terms");
 			generator.write(this.boostTerms);
 
 		}
 		if (this.failOnUnsupportedField != null) {
-
 			generator.writeKey("fail_on_unsupported_field");
 			generator.write(this.failOnUnsupportedField);
 
 		}
-		if (this.fields != null) {
-
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -329,64 +320,56 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 		}
 		if (this.include != null) {
-
 			generator.writeKey("include");
 			generator.write(this.include);
 
 		}
+		if (ApiTypeHelper.isDefined(this.like)) {
+			generator.writeKey("like");
+			generator.writeStartArray();
+			for (Like item0 : this.like) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("like");
-		generator.writeStartArray();
-		for (LikeDocument item0 : this.like) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.maxDocFreq != null) {
-
 			generator.writeKey("max_doc_freq");
 			generator.write(this.maxDocFreq);
 
 		}
 		if (this.maxQueryTerms != null) {
-
 			generator.writeKey("max_query_terms");
 			generator.write(this.maxQueryTerms);
 
 		}
 		if (this.maxWordLength != null) {
-
 			generator.writeKey("max_word_length");
 			generator.write(this.maxWordLength);
 
 		}
 		if (this.minDocFreq != null) {
-
 			generator.writeKey("min_doc_freq");
 			generator.write(this.minDocFreq);
 
 		}
 		if (this.minimumShouldMatch != null) {
-
 			generator.writeKey("minimum_should_match");
 			generator.write(this.minimumShouldMatch);
 
 		}
 		if (this.minTermFreq != null) {
-
 			generator.writeKey("min_term_freq");
 			generator.write(this.minTermFreq);
 
 		}
 		if (this.minWordLength != null) {
-
 			generator.writeKey("min_word_length");
 			generator.write(this.minWordLength);
 
 		}
-		if (this.perFieldAnalyzer != null) {
-
+		if (ApiTypeHelper.isDefined(this.perFieldAnalyzer)) {
 			generator.writeKey("per_field_analyzer");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.perFieldAnalyzer.entrySet()) {
@@ -398,13 +381,11 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("routing");
 			generator.write(this.routing);
 
 		}
-		if (this.stopWords != null) {
-
+		if (ApiTypeHelper.isDefined(this.stopWords)) {
 			generator.writeKey("stop_words");
 			generator.writeStartArray();
 			for (String item0 : this.stopWords) {
@@ -414,11 +395,10 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 			generator.writeEnd();
 
 		}
-		if (this.unlike != null) {
-
+		if (ApiTypeHelper.isDefined(this.unlike)) {
 			generator.writeKey("unlike");
 			generator.writeStartArray();
-			for (LikeDocument item0 : this.unlike) {
+			for (Like item0 : this.unlike) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -426,13 +406,11 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.versionType != null) {
-
 			generator.writeKey("version_type");
 			this.versionType.serialize(generator, mapper);
 		}
@@ -444,6 +422,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MoreLikeThisQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MoreLikeThisQuery> {
 		@Nullable
 		private String analyzer;
@@ -460,7 +439,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		@Nullable
 		private Boolean include;
 
-		private List<LikeDocument> like;
+		private List<Like> like;
 
 		@Nullable
 		private Integer maxDocFreq;
@@ -493,7 +472,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		private List<String> stopWords;
 
 		@Nullable
-		private List<LikeDocument> unlike;
+		private List<Like> unlike;
 
 		@Nullable
 		private Long version;
@@ -504,7 +483,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -512,7 +491,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code boost_terms}
 		 */
-		public Builder boostTerms(@Nullable Double value) {
+		public final Builder boostTerms(@Nullable Double value) {
 			this.boostTerms = value;
 			return this;
 		}
@@ -520,91 +499,72 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fail_on_unsupported_field}
 		 */
-		public Builder failOnUnsupportedField(@Nullable Boolean value) {
+		public final Builder failOnUnsupportedField(@Nullable Boolean value) {
 			this.failOnUnsupportedField = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code include}
 		 */
-		public Builder include(@Nullable Boolean value) {
+		public final Builder include(@Nullable Boolean value) {
 			this.include = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code like}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>like</code>.
 		 */
-		public Builder like(List<LikeDocument> value) {
-			this.like = value;
+		public final Builder like(List<Like> list) {
+			this.like = _listAddAll(this.like, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code like}
+		 * <p>
+		 * Adds one or more values to <code>like</code>.
 		 */
-		public Builder like(LikeDocument... value) {
-			this.like = Arrays.asList(value);
+		public final Builder like(Like value, Like... values) {
+			this.like = _listAdd(this.like, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #like(List)}, creating the list if needed.
+		 * Required - API name: {@code like}
+		 * <p>
+		 * Adds a value to <code>like</code> using a builder lambda.
 		 */
-		public Builder addLike(LikeDocument value) {
-			if (this.like == null) {
-				this.like = new ArrayList<>();
-			}
-			this.like.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #like(List)} to a singleton list.
-		 */
-		public Builder like(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
-			return this.like(fn.apply(new LikeDocument.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #like(List)}, creating the list if needed.
-		 */
-		public Builder addLike(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
-			return this.addLike(fn.apply(new LikeDocument.Builder()).build());
+		public final Builder like(Function<Like.Builder, ObjectBuilder<Like>> fn) {
+			return like(fn.apply(new Like.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code max_doc_freq}
 		 */
-		public Builder maxDocFreq(@Nullable Integer value) {
+		public final Builder maxDocFreq(@Nullable Integer value) {
 			this.maxDocFreq = value;
 			return this;
 		}
@@ -612,7 +572,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code max_query_terms}
 		 */
-		public Builder maxQueryTerms(@Nullable Integer value) {
+		public final Builder maxQueryTerms(@Nullable Integer value) {
 			this.maxQueryTerms = value;
 			return this;
 		}
@@ -620,7 +580,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code max_word_length}
 		 */
-		public Builder maxWordLength(@Nullable Integer value) {
+		public final Builder maxWordLength(@Nullable Integer value) {
 			this.maxWordLength = value;
 			return this;
 		}
@@ -628,7 +588,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code min_doc_freq}
 		 */
-		public Builder minDocFreq(@Nullable Integer value) {
+		public final Builder minDocFreq(@Nullable Integer value) {
 			this.minDocFreq = value;
 			return this;
 		}
@@ -636,7 +596,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable String value) {
+		public final Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -644,7 +604,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code min_term_freq}
 		 */
-		public Builder minTermFreq(@Nullable Integer value) {
+		public final Builder minTermFreq(@Nullable Integer value) {
 			this.minTermFreq = value;
 			return this;
 		}
@@ -652,111 +612,92 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code min_word_length}
 		 */
-		public Builder minWordLength(@Nullable Integer value) {
+		public final Builder minWordLength(@Nullable Integer value) {
 			this.minWordLength = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>perFieldAnalyzer</code>.
 		 */
-		public Builder perFieldAnalyzer(@Nullable Map<String, String> value) {
-			this.perFieldAnalyzer = value;
+		public final Builder perFieldAnalyzer(Map<String, String> map) {
+			this.perFieldAnalyzer = _mapPutAll(this.perFieldAnalyzer, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #perFieldAnalyzer(Map)}, creating the map if
-		 * needed.
+		 * API name: {@code per_field_analyzer}
+		 * <p>
+		 * Adds an entry to <code>perFieldAnalyzer</code>.
 		 */
-		public Builder putPerFieldAnalyzer(String key, String value) {
-			if (this.perFieldAnalyzer == null) {
-				this.perFieldAnalyzer = new HashMap<>();
-			}
-			this.perFieldAnalyzer.put(key, value);
+		public final Builder perFieldAnalyzer(String key, String value) {
+			this.perFieldAnalyzer = _mapPut(this.perFieldAnalyzer, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code stop_words}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stopWords</code>.
 		 */
-		public Builder stopWords(@Nullable List<String> value) {
-			this.stopWords = value;
+		public final Builder stopWords(List<String> list) {
+			this.stopWords = _listAddAll(this.stopWords, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code stop_words}
+		 * <p>
+		 * Adds one or more values to <code>stopWords</code>.
 		 */
-		public Builder stopWords(String... value) {
-			this.stopWords = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #stopWords(List)}, creating the list if needed.
-		 */
-		public Builder addStopWords(String value) {
-			if (this.stopWords == null) {
-				this.stopWords = new ArrayList<>();
-			}
-			this.stopWords.add(value);
+		public final Builder stopWords(String value, String... values) {
+			this.stopWords = _listAdd(this.stopWords, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code unlike}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>unlike</code>.
 		 */
-		public Builder unlike(@Nullable List<LikeDocument> value) {
-			this.unlike = value;
+		public final Builder unlike(List<Like> list) {
+			this.unlike = _listAddAll(this.unlike, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code unlike}
+		 * <p>
+		 * Adds one or more values to <code>unlike</code>.
 		 */
-		public Builder unlike(LikeDocument... value) {
-			this.unlike = Arrays.asList(value);
+		public final Builder unlike(Like value, Like... values) {
+			this.unlike = _listAdd(this.unlike, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #unlike(List)}, creating the list if needed.
+		 * API name: {@code unlike}
+		 * <p>
+		 * Adds a value to <code>unlike</code> using a builder lambda.
 		 */
-		public Builder addUnlike(LikeDocument value) {
-			if (this.unlike == null) {
-				this.unlike = new ArrayList<>();
-			}
-			this.unlike.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #unlike(List)} to a singleton list.
-		 */
-		public Builder unlike(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
-			return this.unlike(fn.apply(new LikeDocument.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #unlike(List)}, creating the list if needed.
-		 */
-		public Builder addUnlike(Function<LikeDocument.Builder, ObjectBuilder<LikeDocument>> fn) {
-			return this.addUnlike(fn.apply(new LikeDocument.Builder()).build());
+		public final Builder unlike(Function<Like.Builder, ObjectBuilder<Like>> fn) {
+			return unlike(fn.apply(new Like.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -764,7 +705,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -781,6 +722,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public MoreLikeThisQuery build() {
+			_checkSingleUse();
 
 			return new MoreLikeThisQuery(this);
 		}
@@ -792,16 +734,16 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link MoreLikeThisQuery}
 	 */
 	public static final JsonpDeserializer<MoreLikeThisQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MoreLikeThisQuery::setupMoreLikeThisQueryDeserializer, Builder::build);
+			.lazy(Builder::new, MoreLikeThisQuery::setupMoreLikeThisQueryDeserializer);
 
-	protected static void setupMoreLikeThisQueryDeserializer(DelegatingDeserializer<MoreLikeThisQuery.Builder> op) {
+	protected static void setupMoreLikeThisQueryDeserializer(ObjectDeserializer<MoreLikeThisQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::boostTerms, JsonpDeserializer.doubleDeserializer(), "boost_terms");
 		op.add(Builder::failOnUnsupportedField, JsonpDeserializer.booleanDeserializer(), "fail_on_unsupported_field");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::include, JsonpDeserializer.booleanDeserializer(), "include");
-		op.add(Builder::like, JsonpDeserializer.arrayDeserializer(LikeDocument._DESERIALIZER), "like");
+		op.add(Builder::like, JsonpDeserializer.arrayDeserializer(Like._DESERIALIZER), "like");
 		op.add(Builder::maxDocFreq, JsonpDeserializer.integerDeserializer(), "max_doc_freq");
 		op.add(Builder::maxQueryTerms, JsonpDeserializer.integerDeserializer(), "max_query_terms");
 		op.add(Builder::maxWordLength, JsonpDeserializer.integerDeserializer(), "max_word_length");
@@ -814,7 +756,7 @@ public final class MoreLikeThisQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::stopWords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stop_words");
-		op.add(Builder::unlike, JsonpDeserializer.arrayDeserializer(LikeDocument._DESERIALIZER), "unlike");
+		op.add(Builder::unlike, JsonpDeserializer.arrayDeserializer(Like._DESERIALIZER), "unlike");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::versionType, VersionType._DESERIALIZER, "version_type");
 

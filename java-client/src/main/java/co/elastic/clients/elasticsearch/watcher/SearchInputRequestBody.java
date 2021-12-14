@@ -24,40 +24,48 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInputRequestBody
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L129-L131">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SearchInputRequestBody implements JsonpSerializable {
+public class SearchInputRequestBody implements JsonpSerializable {
 	private final Query query;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchInputRequestBody(Builder builder) {
+	private SearchInputRequestBody(Builder builder) {
 
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
-	public SearchInputRequestBody(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchInputRequestBody of(Function<Builder, ObjectBuilder<SearchInputRequestBody>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -82,13 +90,14 @@ public final class SearchInputRequestBody implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchInputRequestBody}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchInputRequestBody> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchInputRequestBody> {
 		private Query query;
 
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Query value) {
+		public final Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -96,7 +105,7 @@ public final class SearchInputRequestBody implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
@@ -107,6 +116,7 @@ public final class SearchInputRequestBody implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SearchInputRequestBody build() {
+			_checkSingleUse();
 
 			return new SearchInputRequestBody(this);
 		}
@@ -118,10 +128,10 @@ public final class SearchInputRequestBody implements JsonpSerializable {
 	 * Json deserializer for {@link SearchInputRequestBody}
 	 */
 	public static final JsonpDeserializer<SearchInputRequestBody> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchInputRequestBody::setupSearchInputRequestBodyDeserializer, Builder::build);
+			.lazy(Builder::new, SearchInputRequestBody::setupSearchInputRequestBodyDeserializer);
 
 	protected static void setupSearchInputRequestBodyDeserializer(
-			DelegatingDeserializer<SearchInputRequestBody.Builder> op) {
+			ObjectDeserializer<SearchInputRequestBody.Builder> op) {
 
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 

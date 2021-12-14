@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: watcher.start.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/start/WatcherStartResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StartWatcherResponse extends AcknowledgedResponseBase {
+public class StartWatcherResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public StartWatcherResponse(Builder builder) {
+	private StartWatcherResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public StartWatcherResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartWatcherResponse of(Function<Builder, ObjectBuilder<StartWatcherResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class StartWatcherResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link StartWatcherResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StartWatcherResponse> {
@@ -68,6 +75,7 @@ public final class StartWatcherResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public StartWatcherResponse build() {
+			_checkSingleUse();
 
 			return new StartWatcherResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class StartWatcherResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link StartWatcherResponse}
 	 */
 	public static final JsonpDeserializer<StartWatcherResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StartWatcherResponse::setupStartWatcherResponseDeserializer, Builder::build);
+			.lazy(Builder::new, StartWatcherResponse::setupStartWatcherResponseDeserializer);
 
-	protected static void setupStartWatcherResponseDeserializer(
-			DelegatingDeserializer<StartWatcherResponse.Builder> op) {
+	protected static void setupStartWatcherResponseDeserializer(ObjectDeserializer<StartWatcherResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

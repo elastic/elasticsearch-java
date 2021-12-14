@@ -23,75 +23,137 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_overall_buckets.Request
+
+/**
+ * Retrieves overall bucket results that summarize the bucket results of
+ * multiple anomaly detection jobs.
+ * <p>
+ * The <code>overall_score</code> is calculated by combining the scores of all
+ * the buckets within the overall bucket span. First, the maximum
+ * <code>anomaly_score</code> per anomaly detection job in the overall bucket is
+ * calculated. Then the <code>top_n</code> of those scores are averaged to
+ * result in the <code>overall_score</code>. This means that you can fine-tune
+ * the <code>overall_score</code> so that it is more or less sensitive to the
+ * number of jobs that detect an anomaly at the same time. For example, if you
+ * set <code>top_n</code> to <code>1</code>, the <code>overall_score</code> is
+ * the maximum bucket score in the overall bucket. Alternatively, if you set
+ * <code>top_n</code> to the number of jobs, the <code>overall_score</code> is
+ * high only when all jobs detect anomalies in that overall bucket. If you set
+ * the <code>bucket_span</code> parameter (to a value greater than its default),
+ * the <code>overall_score</code> is the maximum <code>overall_score</code> of
+ * the overall buckets that have a span equal to the jobs' largest bucket span.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_overall_buckets/MlGetOverallBucketsRequest.ts#L25-L143">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetOverallBucketsRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
+public class GetOverallBucketsRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Boolean allowNoMatch;
 
 	@Nullable
-	private final String bucketSpan;
+	private final Time bucketSpan;
+
+	@Nullable
+	private final Time end;
+
+	@Nullable
+	private final Boolean excludeInterim;
+
+	private final String jobId;
 
 	@Nullable
 	private final String overallScore;
 
 	@Nullable
+	private final Time start;
+
+	@Nullable
 	private final Integer topN;
-
-	@Nullable
-	private final String end;
-
-	@Nullable
-	private final String start;
-
-	@Nullable
-	private final Boolean excludeInterim;
-
-	@Nullable
-	private final Boolean allowNoMatch;
-
-	@Nullable
-	private final Boolean allowNoJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetOverallBucketsRequest(Builder builder) {
+	private GetOverallBucketsRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.bucketSpan = builder.bucketSpan;
-		this.overallScore = builder.overallScore;
-		this.topN = builder.topN;
-		this.end = builder.end;
-		this.start = builder.start;
-		this.excludeInterim = builder.excludeInterim;
 		this.allowNoMatch = builder.allowNoMatch;
-		this.allowNoJobs = builder.allowNoJobs;
+		this.bucketSpan = builder.bucketSpan;
+		this.end = builder.end;
+		this.excludeInterim = builder.excludeInterim;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.overallScore = builder.overallScore;
+		this.start = builder.start;
+		this.topN = builder.topN;
 
 	}
 
-	public GetOverallBucketsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetOverallBucketsRequest of(Function<Builder, ObjectBuilder<GetOverallBucketsRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Refer to the description for the <code>allow_no_match</code> query parameter.
+	 * <p>
+	 * API name: {@code allow_no_match}
+	 */
+	@Nullable
+	public final Boolean allowNoMatch() {
+		return this.allowNoMatch;
+	}
+
+	/**
+	 * Refer to the description for the <code>bucket_span</code> query parameter.
+	 * <p>
+	 * API name: {@code bucket_span}
+	 */
+	@Nullable
+	public final Time bucketSpan() {
+		return this.bucketSpan;
+	}
+
+	/**
+	 * Refer to the description for the <code>end</code> query parameter.
+	 * <p>
+	 * API name: {@code end}
+	 */
+	@Nullable
+	public final Time end() {
+		return this.end;
+	}
+
+	/**
+	 * Refer to the description for the <code>exclude_interim</code> query
+	 * parameter.
+	 * <p>
+	 * API name: {@code exclude_interim}
+	 */
+	@Nullable
+	public final Boolean excludeInterim() {
+		return this.excludeInterim;
 	}
 
 	/**
@@ -99,94 +161,44 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * identifier, a group name, a comma-separated list of jobs or groups, or a
 	 * wildcard expression.
 	 * <p>
+	 * You can summarize the bucket results for all anomaly detection jobs by using
+	 * <code>_all</code> or by specifying <code>*</code> as the
+	 * <code>&lt;job_id&gt;</code>.
+	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * The span of the overall buckets. Must be greater or equal to the largest
-	 * bucket span of the specified anomaly detection jobs, which is the default
-	 * value.
-	 * <p>
-	 * API name: {@code bucket_span}
-	 */
-	@Nullable
-	public String bucketSpan() {
-		return this.bucketSpan;
-	}
-
-	/**
-	 * Returns overall buckets with overall scores greater than or equal to this
-	 * value.
+	 * Refer to the description for the <code>overall_score</code> query parameter.
 	 * <p>
 	 * API name: {@code overall_score}
 	 */
 	@Nullable
-	public String overallScore() {
+	public final String overallScore() {
 		return this.overallScore;
 	}
 
 	/**
-	 * The number of top anomaly detection job bucket scores to be used in the
-	 * overall_score calculation.
-	 * <p>
-	 * API name: {@code top_n}
-	 */
-	@Nullable
-	public Integer topN() {
-		return this.topN;
-	}
-
-	/**
-	 * Returns overall buckets with timestamps earlier than this time.
-	 * <p>
-	 * API name: {@code end}
-	 */
-	@Nullable
-	public String end() {
-		return this.end;
-	}
-
-	/**
-	 * Returns overall buckets with timestamps after this time.
+	 * Refer to the description for the <code>start</code> query parameter.
 	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public String start() {
+	public final Time start() {
 		return this.start;
 	}
 
 	/**
-	 * If true, the output excludes interim results. By default, interim results are
-	 * included.
+	 * Refer to the description for the <code>top_n</code> query parameter.
 	 * <p>
-	 * API name: {@code exclude_interim}
+	 * API name: {@code top_n}
 	 */
 	@Nullable
-	public Boolean excludeInterim() {
-		return this.excludeInterim;
-	}
-
-	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
-	 * <p>
-	 * API name: {@code allow_no_match}
-	 */
-	@Nullable
-	public Boolean allowNoMatch() {
-		return this.allowNoMatch;
-	}
-
-	/**
-	 * API name: {@code allow_no_jobs}
-	 */
-	@Nullable
-	public Boolean allowNoJobs() {
-		return this.allowNoJobs;
+	public final Integer topN() {
+		return this.topN;
 	}
 
 	/**
@@ -200,10 +212,39 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.allowNoJobs != null) {
+		if (this.allowNoMatch != null) {
+			generator.writeKey("allow_no_match");
+			generator.write(this.allowNoMatch);
 
-			generator.writeKey("allow_no_jobs");
-			generator.write(this.allowNoJobs);
+		}
+		if (this.bucketSpan != null) {
+			generator.writeKey("bucket_span");
+			this.bucketSpan.serialize(generator, mapper);
+
+		}
+		if (this.end != null) {
+			generator.writeKey("end");
+			this.end.serialize(generator, mapper);
+
+		}
+		if (this.excludeInterim != null) {
+			generator.writeKey("exclude_interim");
+			generator.write(this.excludeInterim);
+
+		}
+		if (this.overallScore != null) {
+			generator.writeKey("overall_score");
+			generator.write(this.overallScore);
+
+		}
+		if (this.start != null) {
+			generator.writeKey("start");
+			this.start.serialize(generator, mapper);
+
+		}
+		if (this.topN != null) {
+			generator.writeKey("top_n");
+			generator.write(this.topN);
 
 		}
 
@@ -214,126 +255,142 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	/**
 	 * Builder for {@link GetOverallBucketsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetOverallBucketsRequest> {
-		private String jobId;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetOverallBucketsRequest> {
+		@Nullable
+		private Boolean allowNoMatch;
 
 		@Nullable
-		private String bucketSpan;
+		private Time bucketSpan;
+
+		@Nullable
+		private Time end;
+
+		@Nullable
+		private Boolean excludeInterim;
+
+		private String jobId;
 
 		@Nullable
 		private String overallScore;
 
 		@Nullable
+		private Time start;
+
+		@Nullable
 		private Integer topN;
 
-		@Nullable
-		private String end;
+		/**
+		 * Refer to the description for the <code>allow_no_match</code> query parameter.
+		 * <p>
+		 * API name: {@code allow_no_match}
+		 */
+		public final Builder allowNoMatch(@Nullable Boolean value) {
+			this.allowNoMatch = value;
+			return this;
+		}
 
-		@Nullable
-		private String start;
+		/**
+		 * Refer to the description for the <code>bucket_span</code> query parameter.
+		 * <p>
+		 * API name: {@code bucket_span}
+		 */
+		public final Builder bucketSpan(@Nullable Time value) {
+			this.bucketSpan = value;
+			return this;
+		}
 
-		@Nullable
-		private Boolean excludeInterim;
+		/**
+		 * Refer to the description for the <code>bucket_span</code> query parameter.
+		 * <p>
+		 * API name: {@code bucket_span}
+		 */
+		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.bucketSpan(fn.apply(new Time.Builder()).build());
+		}
 
-		@Nullable
-		private Boolean allowNoMatch;
+		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(@Nullable Time value) {
+			this.end = value;
+			return this;
+		}
 
-		@Nullable
-		private Boolean allowNoJobs;
+		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Refer to the description for the <code>exclude_interim</code> query
+		 * parameter.
+		 * <p>
+		 * API name: {@code exclude_interim}
+		 */
+		public final Builder excludeInterim(@Nullable Boolean value) {
+			this.excludeInterim = value;
+			return this;
+		}
 
 		/**
 		 * Required - Identifier for the anomaly detection job. It can be a job
 		 * identifier, a group name, a comma-separated list of jobs or groups, or a
 		 * wildcard expression.
 		 * <p>
+		 * You can summarize the bucket results for all anomaly detection jobs by using
+		 * <code>_all</code> or by specifying <code>*</code> as the
+		 * <code>&lt;job_id&gt;</code>.
+		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
-		 * The span of the overall buckets. Must be greater or equal to the largest
-		 * bucket span of the specified anomaly detection jobs, which is the default
-		 * value.
-		 * <p>
-		 * API name: {@code bucket_span}
-		 */
-		public Builder bucketSpan(@Nullable String value) {
-			this.bucketSpan = value;
-			return this;
-		}
-
-		/**
-		 * Returns overall buckets with overall scores greater than or equal to this
-		 * value.
+		 * Refer to the description for the <code>overall_score</code> query parameter.
 		 * <p>
 		 * API name: {@code overall_score}
 		 */
-		public Builder overallScore(@Nullable String value) {
+		public final Builder overallScore(@Nullable String value) {
 			this.overallScore = value;
 			return this;
 		}
 
 		/**
-		 * The number of top anomaly detection job bucket scores to be used in the
-		 * overall_score calculation.
-		 * <p>
-		 * API name: {@code top_n}
-		 */
-		public Builder topN(@Nullable Integer value) {
-			this.topN = value;
-			return this;
-		}
-
-		/**
-		 * Returns overall buckets with timestamps earlier than this time.
-		 * <p>
-		 * API name: {@code end}
-		 */
-		public Builder end(@Nullable String value) {
-			this.end = value;
-			return this;
-		}
-
-		/**
-		 * Returns overall buckets with timestamps after this time.
+		 * Refer to the description for the <code>start</code> query parameter.
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable String value) {
+		public final Builder start(@Nullable Time value) {
 			this.start = value;
 			return this;
 		}
 
 		/**
-		 * If true, the output excludes interim results. By default, interim results are
-		 * included.
+		 * Refer to the description for the <code>start</code> query parameter.
 		 * <p>
-		 * API name: {@code exclude_interim}
+		 * API name: {@code start}
 		 */
-		public Builder excludeInterim(@Nullable Boolean value) {
-			this.excludeInterim = value;
-			return this;
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
+		 * Refer to the description for the <code>top_n</code> query parameter.
 		 * <p>
-		 * API name: {@code allow_no_match}
+		 * API name: {@code top_n}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
-			this.allowNoMatch = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code allow_no_jobs}
-		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
-			this.allowNoJobs = value;
+		public final Builder topN(@Nullable Integer value) {
+			this.topN = value;
 			return this;
 		}
 
@@ -344,6 +401,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 		 *             if some of the required fields are null.
 		 */
 		public GetOverallBucketsRequest build() {
+			_checkSingleUse();
 
 			return new GetOverallBucketsRequest(this);
 		}
@@ -355,12 +413,18 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	 * Json deserializer for {@link GetOverallBucketsRequest}
 	 */
 	public static final JsonpDeserializer<GetOverallBucketsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetOverallBucketsRequest::setupGetOverallBucketsRequestDeserializer);
 
 	protected static void setupGetOverallBucketsRequestDeserializer(
-			DelegatingDeserializer<GetOverallBucketsRequest.Builder> op) {
+			ObjectDeserializer<GetOverallBucketsRequest.Builder> op) {
 
-		op.add(Builder::allowNoJobs, JsonpDeserializer.booleanDeserializer(), "allow_no_jobs");
+		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
+		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
+		op.add(Builder::end, Time._DESERIALIZER, "end");
+		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
+		op.add(Builder::overallScore, JsonpDeserializer.stringDeserializer(), "overall_score");
+		op.add(Builder::start, Time._DESERIALIZER, "start");
+		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");
 
 	}
 
@@ -369,7 +433,9 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 	/**
 	 * Endpoint "{@code ml.get_overall_buckets}".
 	 */
-	public static final Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_overall_buckets",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -400,29 +466,7 @@ public final class GetOverallBucketsRequest extends RequestBase implements Jsonp
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.bucketSpan != null) {
-					params.put("bucket_span", request.bucketSpan);
-				}
-				if (request.overallScore != null) {
-					params.put("overall_score", request.overallScore);
-				}
-				if (request.topN != null) {
-					params.put("top_n", String.valueOf(request.topN));
-				}
-				if (request.end != null) {
-					params.put("end", request.end);
-				}
-				if (request.start != null) {
-					params.put("start", request.start);
-				}
-				if (request.excludeInterim != null) {
-					params.put("exclude_interim", String.valueOf(request.excludeInterim));
-				}
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), true, GetOverallBucketsResponse._DESERIALIZER);
 }

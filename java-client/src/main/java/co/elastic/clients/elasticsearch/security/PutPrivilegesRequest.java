@@ -23,22 +23,23 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.put_privileges.Actions;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -46,24 +47,32 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Request
+
+/**
+ * Adds or updates application privileges.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_privileges/SecurityPutPrivilegesRequest.ts#L25-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutPrivilegesRequest extends RequestBase implements JsonpSerializable {
+public class PutPrivilegesRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	private final Map<String, Map<String, Actions>> privileges;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutPrivilegesRequest(Builder builder) {
+	private PutPrivilegesRequest(Builder builder) {
 
 		this.refresh = builder.refresh;
-		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "_value_body");
+		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 
 	}
 
-	public PutPrivilegesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutPrivilegesRequest of(Function<Builder, ObjectBuilder<PutPrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -75,7 +84,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -84,7 +93,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public Map<String, Map<String, Actions>> privileges() {
+	public final Map<String, Map<String, Actions>> privileges() {
 		return this.privileges;
 	}
 
@@ -96,10 +105,12 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		for (Map.Entry<String, Map<String, Actions>> item0 : this.privileges.entrySet()) {
 			generator.writeKey(item0.getKey());
 			generator.writeStartObject();
-			for (Map.Entry<String, Actions> item1 : item0.getValue().entrySet()) {
-				generator.writeKey(item1.getKey());
-				item1.getValue().serialize(generator, mapper);
+			if (item0.getValue() != null) {
+				for (Map.Entry<String, Actions> item1 : item0.getValue().entrySet()) {
+					generator.writeKey(item1.getKey());
+					item1.getValue().serialize(generator, mapper);
 
+				}
 			}
 			generator.writeEnd();
 
@@ -113,9 +124,10 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link PutPrivilegesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutPrivilegesRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPrivilegesRequest> {
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		private Map<String, Map<String, Actions>> privileges;
 
@@ -127,7 +139,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -136,20 +148,23 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>privileges</code>.
 		 */
-		public Builder privileges(Map<String, Map<String, Actions>> value) {
-			this.privileges = value;
+		public final Builder privileges(Map<String, Map<String, Actions>> map) {
+			this.privileges = _mapPutAll(this.privileges, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #privileges(Map)}, creating the map if needed.
+		 * Required - Request body.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>privileges</code>.
 		 */
-		public Builder putPrivileges(String key, Map<String, Actions> value) {
-			if (this.privileges == null) {
-				this.privileges = new HashMap<>();
-			}
-			this.privileges.put(key, value);
+		public final Builder privileges(String key, Map<String, Actions> value) {
+			this.privileges = _mapPut(this.privileges, key, value);
 			return this;
 		}
 
@@ -160,6 +175,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public PutPrivilegesRequest build() {
+			_checkSingleUse();
 
 			return new PutPrivilegesRequest(this);
 		}
@@ -171,8 +187,8 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 		JsonpDeserializer<Map<String, Map<String, Actions>>> valueDeserializer = JsonpDeserializer
 				.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(Actions._DESERIALIZER));
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.privileges(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().privileges(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -180,7 +196,9 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code security.put_privileges}".
 	 */
-	public static final Endpoint<PutPrivilegesRequest, PutPrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutPrivilegesRequest, PutPrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.put_privileges",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -197,7 +215,7 @@ public final class PutPrivilegesRequest extends RequestBase implements JsonpSeri
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

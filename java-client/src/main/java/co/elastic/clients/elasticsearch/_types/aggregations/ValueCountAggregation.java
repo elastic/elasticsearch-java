@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.ValueCountAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L187-L187">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ValueCountAggregation extends FormattableMetricAggregation implements AggregationVariant {
+public class ValueCountAggregation extends FormattableMetricAggregation implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public ValueCountAggregation(Builder builder) {
+	private ValueCountAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public ValueCountAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ValueCountAggregation of(Function<Builder, ObjectBuilder<ValueCountAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "value_count";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.ValueCount;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class ValueCountAggregation extends FormattableMetricAggregation im
 	/**
 	 * Builder for {@link ValueCountAggregation}.
 	 */
+
 	public static class Builder extends FormattableMetricAggregation.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ValueCountAggregation> {
@@ -75,6 +82,7 @@ public final class ValueCountAggregation extends FormattableMetricAggregation im
 		 *             if some of the required fields are null.
 		 */
 		public ValueCountAggregation build() {
+			_checkSingleUse();
 
 			return new ValueCountAggregation(this);
 		}
@@ -86,10 +94,9 @@ public final class ValueCountAggregation extends FormattableMetricAggregation im
 	 * Json deserializer for {@link ValueCountAggregation}
 	 */
 	public static final JsonpDeserializer<ValueCountAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ValueCountAggregation::setupValueCountAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, ValueCountAggregation::setupValueCountAggregationDeserializer);
 
-	protected static void setupValueCountAggregationDeserializer(
-			DelegatingDeserializer<ValueCountAggregation.Builder> op) {
+	protected static void setupValueCountAggregationDeserializer(ObjectDeserializer<ValueCountAggregation.Builder> op) {
 		FormattableMetricAggregation.setupFormattableMetricAggregationDeserializer(op);
 
 	}

@@ -23,64 +23,68 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.MultiplexerTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L258-L262">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class MultiplexerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> filters;
 
 	private final boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MultiplexerTokenFilter(Builder builder) {
+	private MultiplexerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.filters = ModelTypeHelper.unmodifiableNonNull(builder.filters, "filters");
-		this.preserveOriginal = Objects.requireNonNull(builder.preserveOriginal, "preserve_original");
+		this.filters = ApiTypeHelper.unmodifiableRequired(builder.filters, this, "filters");
+		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
 
 	}
 
-	public MultiplexerTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MultiplexerTokenFilter of(Function<Builder, ObjectBuilder<MultiplexerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "multiplexer";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Multiplexer;
 	}
 
 	/**
 	 * Required - API name: {@code filters}
 	 */
-	public List<String> filters() {
+	public final List<String> filters() {
 		return this.filters;
 	}
 
 	/**
 	 * Required - API name: {@code preserve_original}
 	 */
-	public boolean preserveOriginal() {
+	public final boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
@@ -88,15 +92,16 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 
 		generator.write("type", "multiplexer");
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.filters)) {
+			generator.writeKey("filters");
+			generator.writeStartArray();
+			for (String item0 : this.filters) {
+				generator.write(item0);
 
-		generator.writeKey("filters");
-		generator.writeStartArray();
-		for (String item0 : this.filters) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("preserve_original");
 		generator.write(this.preserveOriginal);
 
@@ -107,6 +112,7 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 	/**
 	 * Builder for {@link MultiplexerTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MultiplexerTokenFilter> {
@@ -116,35 +122,28 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 
 		/**
 		 * Required - API name: {@code filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filters</code>.
 		 */
-		public Builder filters(List<String> value) {
-			this.filters = value;
+		public final Builder filters(List<String> list) {
+			this.filters = _listAddAll(this.filters, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code filters}
+		 * <p>
+		 * Adds one or more values to <code>filters</code>.
 		 */
-		public Builder filters(String... value) {
-			this.filters = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #filters(List)}, creating the list if needed.
-		 */
-		public Builder addFilters(String value) {
-			if (this.filters == null) {
-				this.filters = new ArrayList<>();
-			}
-			this.filters.add(value);
+		public final Builder filters(String value, String... values) {
+			this.filters = _listAdd(this.filters, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code preserve_original}
 		 */
-		public Builder preserveOriginal(boolean value) {
+		public final Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}
@@ -161,6 +160,7 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 		 *             if some of the required fields are null.
 		 */
 		public MultiplexerTokenFilter build() {
+			_checkSingleUse();
 
 			return new MultiplexerTokenFilter(this);
 		}
@@ -172,10 +172,10 @@ public final class MultiplexerTokenFilter extends TokenFilterBase implements Tok
 	 * Json deserializer for {@link MultiplexerTokenFilter}
 	 */
 	public static final JsonpDeserializer<MultiplexerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MultiplexerTokenFilter::setupMultiplexerTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, MultiplexerTokenFilter::setupMultiplexerTokenFilterDeserializer);
 
 	protected static void setupMultiplexerTokenFilterDeserializer(
-			DelegatingDeserializer<MultiplexerTokenFilter.Builder> op) {
+			ObjectDeserializer<MultiplexerTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::filters, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"filters");

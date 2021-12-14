@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: snapshot.create_repository.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/create_repository/SnapshotCreateRepositoryResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CreateRepositoryResponse extends AcknowledgedResponseBase {
+public class CreateRepositoryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateRepositoryResponse(Builder builder) {
+	private CreateRepositoryResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public CreateRepositoryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateRepositoryResponse of(Function<Builder, ObjectBuilder<CreateRepositoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class CreateRepositoryResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link CreateRepositoryResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CreateRepositoryResponse> {
@@ -68,6 +75,7 @@ public final class CreateRepositoryResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public CreateRepositoryResponse build() {
+			_checkSingleUse();
 
 			return new CreateRepositoryResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class CreateRepositoryResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link CreateRepositoryResponse}
 	 */
 	public static final JsonpDeserializer<CreateRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateRepositoryResponse::setupCreateRepositoryResponseDeserializer, Builder::build);
+			.lazy(Builder::new, CreateRepositoryResponse::setupCreateRepositoryResponseDeserializer);
 
 	protected static void setupCreateRepositoryResponseDeserializer(
-			DelegatingDeserializer<CreateRepositoryResponse.Builder> op) {
+			ObjectDeserializer<CreateRepositoryResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

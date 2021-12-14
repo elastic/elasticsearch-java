@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,28 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.resume_auto_follow_pattern.Request
 
-public final class ResumeAutoFollowPatternRequest extends RequestBase {
+/**
+ * Resumes an auto-follow pattern that has been paused
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/resume_auto_follow_pattern/ResumeAutoFollowPatternRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class ResumeAutoFollowPatternRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResumeAutoFollowPatternRequest(Builder builder) {
+	private ResumeAutoFollowPatternRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public ResumeAutoFollowPatternRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResumeAutoFollowPatternRequest of(
+			Function<Builder, ObjectBuilder<ResumeAutoFollowPatternRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +73,7 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -71,7 +82,8 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Builder for {@link ResumeAutoFollowPatternRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ResumeAutoFollowPatternRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResumeAutoFollowPatternRequest> {
 		private String name;
 
 		/**
@@ -80,7 +92,7 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -92,6 +104,7 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ResumeAutoFollowPatternRequest build() {
+			_checkSingleUse();
 
 			return new ResumeAutoFollowPatternRequest(this);
 		}
@@ -102,7 +115,9 @@ public final class ResumeAutoFollowPatternRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.resume_auto_follow_pattern}".
 	 */
-	public static final Endpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.resume_auto_follow_pattern",
+
 			// Request method
 			request -> {
 				return "POST";

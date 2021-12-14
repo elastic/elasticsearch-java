@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.create.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/create/CreateResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CreateResponse extends WriteResponseBase {
+public class CreateResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateResponse(Builder builder) {
+	private CreateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public CreateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateResponse of(Function<Builder, ObjectBuilder<CreateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class CreateResponse extends WriteResponseBase {
 	/**
 	 * Builder for {@link CreateResponse}.
 	 */
+
 	public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CreateResponse> {
@@ -68,6 +75,7 @@ public final class CreateResponse extends WriteResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public CreateResponse build() {
+			_checkSingleUse();
 
 			return new CreateResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class CreateResponse extends WriteResponseBase {
 	 * Json deserializer for {@link CreateResponse}
 	 */
 	public static final JsonpDeserializer<CreateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CreateResponse::setupCreateResponseDeserializer, Builder::build);
+			CreateResponse::setupCreateResponseDeserializer);
 
-	protected static void setupCreateResponseDeserializer(DelegatingDeserializer<CreateResponse.Builder> op) {
+	protected static void setupCreateResponseDeserializer(ObjectDeserializer<CreateResponse.Builder> op) {
 		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 
 	}

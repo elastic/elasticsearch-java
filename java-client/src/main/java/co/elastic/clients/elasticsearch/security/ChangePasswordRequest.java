@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -46,39 +45,64 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.change_password.Request
+
+/**
+ * Changes the passwords of users in the native realm and built-in users.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/change_password/SecurityChangePasswordRequest.ts#L23-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ChangePasswordRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final String username;
-
-	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
-
+public class ChangePasswordRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String password;
 
+	@Nullable
+	private final String passwordHash;
+
+	@Nullable
+	private final Refresh refresh;
+
+	@Nullable
+	private final String username;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public ChangePasswordRequest(Builder builder) {
+	private ChangePasswordRequest(Builder builder) {
 
-		this.username = builder.username;
-		this.refresh = builder.refresh;
 		this.password = builder.password;
+		this.passwordHash = builder.passwordHash;
+		this.refresh = builder.refresh;
+		this.username = builder.username;
 
 	}
 
-	public ChangePasswordRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ChangePasswordRequest of(Function<Builder, ObjectBuilder<ChangePasswordRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * The username of the user to change the password for
+	 * The new password value. Passwords must be at least 6 characters long.
 	 * <p>
-	 * API name: {@code username}
+	 * API name: {@code password}
 	 */
 	@Nullable
-	public String username() {
-		return this.username;
+	public final String password() {
+		return this.password;
+	}
+
+	/**
+	 * A hash of the new password value. This must be produced using the same
+	 * hashing algorithm as has been configured for password storage. For more
+	 * details, see the explanation of the
+	 * <code>xpack.security.authc.password_hashing.algorithm</code> setting.
+	 * <p>
+	 * API name: {@code password_hash}
+	 */
+	@Nullable
+	public final String passwordHash() {
+		return this.passwordHash;
 	}
 
 	/**
@@ -90,16 +114,19 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
 	/**
-	 * API name: {@code password}
+	 * The user whose password you want to change. If you do not specify this
+	 * parameter, the password is changed for the current user.
+	 * <p>
+	 * API name: {@code username}
 	 */
 	@Nullable
-	public String password() {
-		return this.password;
+	public final String username() {
+		return this.username;
 	}
 
 	/**
@@ -114,9 +141,13 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.password != null) {
-
 			generator.writeKey("password");
 			generator.write(this.password);
+
+		}
+		if (this.passwordHash != null) {
+			generator.writeKey("password_hash");
+			generator.write(this.passwordHash);
 
 		}
 
@@ -127,23 +158,40 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	/**
 	 * Builder for {@link ChangePasswordRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ChangePasswordRequest> {
-		@Nullable
-		private String username;
 
-		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChangePasswordRequest> {
 		@Nullable
 		private String password;
 
+		@Nullable
+		private String passwordHash;
+
+		@Nullable
+		private Refresh refresh;
+
+		@Nullable
+		private String username;
+
 		/**
-		 * The username of the user to change the password for
+		 * The new password value. Passwords must be at least 6 characters long.
 		 * <p>
-		 * API name: {@code username}
+		 * API name: {@code password}
 		 */
-		public Builder username(@Nullable String value) {
-			this.username = value;
+		public final Builder password(@Nullable String value) {
+			this.password = value;
+			return this;
+		}
+
+		/**
+		 * A hash of the new password value. This must be produced using the same
+		 * hashing algorithm as has been configured for password storage. For more
+		 * details, see the explanation of the
+		 * <code>xpack.security.authc.password_hashing.algorithm</code> setting.
+		 * <p>
+		 * API name: {@code password_hash}
+		 */
+		public final Builder passwordHash(@Nullable String value) {
+			this.passwordHash = value;
 			return this;
 		}
 
@@ -155,16 +203,19 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code password}
+		 * The user whose password you want to change. If you do not specify this
+		 * parameter, the password is changed for the current user.
+		 * <p>
+		 * API name: {@code username}
 		 */
-		public Builder password(@Nullable String value) {
-			this.password = value;
+		public final Builder username(@Nullable String value) {
+			this.username = value;
 			return this;
 		}
 
@@ -175,6 +226,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 		 *             if some of the required fields are null.
 		 */
 		public ChangePasswordRequest build() {
+			_checkSingleUse();
 
 			return new ChangePasswordRequest(this);
 		}
@@ -186,12 +238,12 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	 * Json deserializer for {@link ChangePasswordRequest}
 	 */
 	public static final JsonpDeserializer<ChangePasswordRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ChangePasswordRequest::setupChangePasswordRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ChangePasswordRequest::setupChangePasswordRequestDeserializer);
 
-	protected static void setupChangePasswordRequestDeserializer(
-			DelegatingDeserializer<ChangePasswordRequest.Builder> op) {
+	protected static void setupChangePasswordRequestDeserializer(ObjectDeserializer<ChangePasswordRequest.Builder> op) {
 
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
+		op.add(Builder::passwordHash, JsonpDeserializer.stringDeserializer(), "password_hash");
 
 	}
 
@@ -200,7 +252,9 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 	/**
 	 * Endpoint "{@code security.change_password}".
 	 */
-	public static final Endpoint<ChangePasswordRequest, ChangePasswordResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ChangePasswordRequest, ChangePasswordResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.change_password",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -240,7 +294,7 @@ public final class ChangePasswordRequest extends RequestBase implements JsonpSer
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

@@ -23,8 +23,8 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.BoundingBox;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.GeoBounds;
+import co.elastic.clients.elasticsearch._types.GeoHashPrecision;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,23 +33,29 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoHashGridAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L179-L185">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GeoHashGridAggregation extends BucketAggregationBase implements AggregationVariant {
+public class GeoHashGridAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
-	private final BoundingBox bounds;
+	private final GeoBounds bounds;
 
 	@Nullable
 	private final String field;
 
 	@Nullable
-	private final Number precision;
+	private final GeoHashPrecision precision;
 
 	@Nullable
 	private final Integer shardSize;
@@ -59,7 +65,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoHashGridAggregation(Builder builder) {
+	private GeoHashGridAggregation(Builder builder) {
 		super(builder);
 
 		this.bounds = builder.bounds;
@@ -70,23 +76,23 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 
 	}
 
-	public GeoHashGridAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoHashGridAggregation of(Function<Builder, ObjectBuilder<GeoHashGridAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geohash_grid";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.GeohashGrid;
 	}
 
 	/**
 	 * API name: {@code bounds}
 	 */
 	@Nullable
-	public BoundingBox bounds() {
+	public final GeoBounds bounds() {
 		return this.bounds;
 	}
 
@@ -94,7 +100,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -102,7 +108,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	 * API name: {@code precision}
 	 */
 	@Nullable
-	public Number precision() {
+	public final GeoHashPrecision precision() {
 		return this.precision;
 	}
 
@@ -110,7 +116,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -118,7 +124,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -126,31 +132,26 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 
 		super.serializeInternal(generator, mapper);
 		if (this.bounds != null) {
-
 			generator.writeKey("bounds");
 			this.bounds.serialize(generator, mapper);
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.precision != null) {
-
 			generator.writeKey("precision");
-			generator.write(this.precision.doubleValue());
+			this.precision.serialize(generator, mapper);
 
 		}
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -163,17 +164,18 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	/**
 	 * Builder for {@link GeoHashGridAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoHashGridAggregation> {
 		@Nullable
-		private BoundingBox bounds;
+		private GeoBounds bounds;
 
 		@Nullable
 		private String field;
 
 		@Nullable
-		private Number precision;
+		private GeoHashPrecision precision;
 
 		@Nullable
 		private Integer shardSize;
@@ -184,7 +186,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code bounds}
 		 */
-		public Builder bounds(@Nullable BoundingBox value) {
+		public final Builder bounds(@Nullable GeoBounds value) {
 			this.bounds = value;
 			return this;
 		}
@@ -192,14 +194,14 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code bounds}
 		 */
-		public Builder bounds(Function<BoundingBox.Builder, ObjectBuilder<BoundingBox>> fn) {
-			return this.bounds(fn.apply(new BoundingBox.Builder()).build());
+		public final Builder bounds(Function<GeoBounds.Builder, ObjectBuilder<GeoBounds>> fn) {
+			return this.bounds(fn.apply(new GeoBounds.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -207,15 +209,22 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code precision}
 		 */
-		public Builder precision(@Nullable Number value) {
+		public final Builder precision(@Nullable GeoHashPrecision value) {
 			this.precision = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code precision}
+		 */
+		public final Builder precision(Function<GeoHashPrecision.Builder, ObjectBuilder<GeoHashPrecision>> fn) {
+			return this.precision(fn.apply(new GeoHashPrecision.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -223,7 +232,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -240,6 +249,7 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public GeoHashGridAggregation build() {
+			_checkSingleUse();
 
 			return new GeoHashGridAggregation(this);
 		}
@@ -251,14 +261,14 @@ public final class GeoHashGridAggregation extends BucketAggregationBase implemen
 	 * Json deserializer for {@link GeoHashGridAggregation}
 	 */
 	public static final JsonpDeserializer<GeoHashGridAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoHashGridAggregation::setupGeoHashGridAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, GeoHashGridAggregation::setupGeoHashGridAggregationDeserializer);
 
 	protected static void setupGeoHashGridAggregationDeserializer(
-			DelegatingDeserializer<GeoHashGridAggregation.Builder> op) {
+			ObjectDeserializer<GeoHashGridAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::bounds, BoundingBox._DESERIALIZER, "bounds");
+		op.add(Builder::bounds, GeoBounds._DESERIALIZER, "bounds");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
-		op.add(Builder::precision, JsonpDeserializer.numberDeserializer(), "precision");
+		op.add(Builder::precision, GeoHashPrecision._DESERIALIZER, "precision");
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
 

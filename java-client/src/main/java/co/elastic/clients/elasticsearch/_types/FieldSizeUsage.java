@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.FieldSizeUsage
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L58-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FieldSizeUsage implements JsonpSerializable {
+public class FieldSizeUsage implements JsonpSerializable {
 	@Nullable
 	private final String size;
 
@@ -48,29 +56,29 @@ public final class FieldSizeUsage implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldSizeUsage(Builder builder) {
+	private FieldSizeUsage(Builder builder) {
 
 		this.size = builder.size;
-		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 
 	}
 
-	public FieldSizeUsage(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldSizeUsage of(Function<Builder, ObjectBuilder<FieldSizeUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public String size() {
+	public final String size() {
 		return this.size;
 	}
 
 	/**
 	 * Required - API name: {@code size_in_bytes}
 	 */
-	public long sizeInBytes() {
+	public final long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -86,12 +94,10 @@ public final class FieldSizeUsage implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-
 		generator.writeKey("size_in_bytes");
 		generator.write(this.sizeInBytes);
 
@@ -102,7 +108,8 @@ public final class FieldSizeUsage implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldSizeUsage}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldSizeUsage> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSizeUsage> {
 		@Nullable
 		private String size;
 
@@ -111,7 +118,7 @@ public final class FieldSizeUsage implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable String value) {
+		public final Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -119,7 +126,7 @@ public final class FieldSizeUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(long value) {
+		public final Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -131,6 +138,7 @@ public final class FieldSizeUsage implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldSizeUsage build() {
+			_checkSingleUse();
 
 			return new FieldSizeUsage(this);
 		}
@@ -142,9 +150,9 @@ public final class FieldSizeUsage implements JsonpSerializable {
 	 * Json deserializer for {@link FieldSizeUsage}
 	 */
 	public static final JsonpDeserializer<FieldSizeUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldSizeUsage::setupFieldSizeUsageDeserializer, Builder::build);
+			FieldSizeUsage::setupFieldSizeUsageDeserializer);
 
-	protected static void setupFieldSizeUsageDeserializer(DelegatingDeserializer<FieldSizeUsage.Builder> op) {
+	protected static void setupFieldSizeUsageDeserializer(ObjectDeserializer<FieldSizeUsage.Builder> op) {
 
 		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
 		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");

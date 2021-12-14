@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -38,21 +39,28 @@ import javax.annotation.Nullable;
 
 // typedef: _types.ShardsOperationResponseBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Base.ts#L85-L87">API
+ *      specification</a>
+ */
+
 public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardsOperationResponseBase(AbstractBuilder<?> builder) {
+	protected ShardsOperationResponseBase(AbstractBuilder<?> builder) {
 
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
 
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
@@ -72,13 +80,15 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private ShardStatistics shards;
 
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public BuilderT shards(ShardStatistics value) {
+		public final BuilderT shards(ShardStatistics value) {
 			this.shards = value;
 			return self();
 		}
@@ -86,7 +96,7 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
@@ -96,7 +106,7 @@ public abstract class ShardsOperationResponseBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupShardsOperationResponseBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
 

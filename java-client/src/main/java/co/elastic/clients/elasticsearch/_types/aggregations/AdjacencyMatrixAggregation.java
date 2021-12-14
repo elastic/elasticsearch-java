@@ -24,62 +24,64 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AdjacencyMatrixAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L47-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant {
-	@Nullable
+public class AdjacencyMatrixAggregation extends BucketAggregationBase implements AggregationVariant {
 	private final Map<String, Query> filters;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AdjacencyMatrixAggregation(Builder builder) {
+	private AdjacencyMatrixAggregation(Builder builder) {
 		super(builder);
 
-		this.filters = ModelTypeHelper.unmodifiable(builder.filters);
+		this.filters = ApiTypeHelper.unmodifiable(builder.filters);
 
 	}
 
-	public AdjacencyMatrixAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AdjacencyMatrixAggregation of(Function<Builder, ObjectBuilder<AdjacencyMatrixAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "adjacency_matrix";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.AdjacencyMatrix;
 	}
 
 	/**
 	 * API name: {@code filters}
 	 */
-	@Nullable
-	public Map<String, Query> filters() {
+	public final Map<String, Query> filters() {
 		return this.filters;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.filters != null) {
-
+		if (ApiTypeHelper.isDefined(this.filters)) {
 			generator.writeKey("filters");
 			generator.writeStartObject();
 			for (Map.Entry<String, Query> item0 : this.filters.entrySet()) {
@@ -98,6 +100,7 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase impl
 	/**
 	 * Builder for {@link AdjacencyMatrixAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AdjacencyMatrixAggregation> {
@@ -106,35 +109,31 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase impl
 
 		/**
 		 * API name: {@code filters}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>filters</code>.
 		 */
-		public Builder filters(@Nullable Map<String, Query> value) {
-			this.filters = value;
+		public final Builder filters(Map<String, Query> map) {
+			this.filters = _mapPutAll(this.filters, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #filters(Map)}, creating the map if needed.
+		 * API name: {@code filters}
+		 * <p>
+		 * Adds an entry to <code>filters</code>.
 		 */
-		public Builder putFilters(String key, Query value) {
-			if (this.filters == null) {
-				this.filters = new HashMap<>();
-			}
-			this.filters.put(key, value);
+		public final Builder filters(String key, Query value) {
+			this.filters = _mapPut(this.filters, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #filters(Map)} to a singleton map.
+		 * API name: {@code filters}
+		 * <p>
+		 * Adds an entry to <code>filters</code> using a builder lambda.
 		 */
-		public Builder filters(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filters(Collections.singletonMap(key, fn.apply(new Query.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #filters(Map)}, creating the map if needed.
-		 */
-		public Builder putFilters(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.putFilters(key, fn.apply(new Query.Builder()).build());
+		public final Builder filters(String key, Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return filters(key, fn.apply(new Query.Builder()).build());
 		}
 
 		@Override
@@ -149,6 +148,7 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase impl
 		 *             if some of the required fields are null.
 		 */
 		public AdjacencyMatrixAggregation build() {
+			_checkSingleUse();
 
 			return new AdjacencyMatrixAggregation(this);
 		}
@@ -159,11 +159,11 @@ public final class AdjacencyMatrixAggregation extends BucketAggregationBase impl
 	/**
 	 * Json deserializer for {@link AdjacencyMatrixAggregation}
 	 */
-	public static final JsonpDeserializer<AdjacencyMatrixAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<AdjacencyMatrixAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AdjacencyMatrixAggregation::setupAdjacencyMatrixAggregationDeserializer);
 
 	protected static void setupAdjacencyMatrixAggregationDeserializer(
-			DelegatingDeserializer<AdjacencyMatrixAggregation.Builder> op) {
+			ObjectDeserializer<AdjacencyMatrixAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::filters, JsonpDeserializer.stringMapDeserializer(Query._DESERIALIZER), "filters");
 

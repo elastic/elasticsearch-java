@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -36,21 +36,33 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.rank_eval.RankEvalMetricExpectedReciprocalRank
+
+/**
+ * Expected Reciprocal Rank (ERR)
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#_expected_reciprocal_rank_err">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L79-L88">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
+public class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBase {
 	private final int maximumRelevance;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricExpectedReciprocalRank(Builder builder) {
+	private RankEvalMetricExpectedReciprocalRank(Builder builder) {
 		super(builder);
 
-		this.maximumRelevance = Objects.requireNonNull(builder.maximumRelevance, "maximum_relevance");
+		this.maximumRelevance = ApiTypeHelper.requireNonNull(builder.maximumRelevance, this, "maximumRelevance");
 
 	}
 
-	public RankEvalMetricExpectedReciprocalRank(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricExpectedReciprocalRank of(
+			Function<Builder, ObjectBuilder<RankEvalMetricExpectedReciprocalRank>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -59,14 +71,13 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 	 * <p>
 	 * API name: {@code maximum_relevance}
 	 */
-	public int maximumRelevance() {
+	public final int maximumRelevance() {
 		return this.maximumRelevance;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("maximum_relevance");
 		generator.write(this.maximumRelevance);
 
@@ -77,6 +88,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 	/**
 	 * Builder for {@link RankEvalMetricExpectedReciprocalRank}.
 	 */
+
 	public static class Builder extends RankEvalMetricBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankEvalMetricExpectedReciprocalRank> {
@@ -88,7 +100,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 		 * <p>
 		 * API name: {@code maximum_relevance}
 		 */
-		public Builder maximumRelevance(int value) {
+		public final Builder maximumRelevance(int value) {
 			this.maximumRelevance = value;
 			return this;
 		}
@@ -105,6 +117,7 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricExpectedReciprocalRank build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricExpectedReciprocalRank(this);
 		}
@@ -117,11 +130,10 @@ public final class RankEvalMetricExpectedReciprocalRank extends RankEvalMetricBa
 	 */
 	public static final JsonpDeserializer<RankEvalMetricExpectedReciprocalRank> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					RankEvalMetricExpectedReciprocalRank::setupRankEvalMetricExpectedReciprocalRankDeserializer,
-					Builder::build);
+					RankEvalMetricExpectedReciprocalRank::setupRankEvalMetricExpectedReciprocalRankDeserializer);
 
 	protected static void setupRankEvalMetricExpectedReciprocalRankDeserializer(
-			DelegatingDeserializer<RankEvalMetricExpectedReciprocalRank.Builder> op) {
+			ObjectDeserializer<RankEvalMetricExpectedReciprocalRank.Builder> op) {
 		RankEvalMetricBase.setupRankEvalMetricBaseDeserializer(op);
 		op.add(Builder::maximumRelevance, JsonpDeserializer.integerDeserializer(), "maximum_relevance");
 

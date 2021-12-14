@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.WarmerStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L247-L252">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class WarmerStats implements JsonpSerializable {
+public class WarmerStats implements JsonpSerializable {
 	private final long current;
 
 	private final long total;
@@ -52,30 +60,30 @@ public final class WarmerStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WarmerStats(Builder builder) {
+	private WarmerStats(Builder builder) {
 
-		this.current = Objects.requireNonNull(builder.current, "current");
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 		this.totalTime = builder.totalTime;
-		this.totalTimeInMillis = Objects.requireNonNull(builder.totalTimeInMillis, "total_time_in_millis");
+		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
 
-	public WarmerStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WarmerStats of(Function<Builder, ObjectBuilder<WarmerStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code current}
 	 */
-	public long current() {
+	public final long current() {
 		return this.current;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
@@ -83,14 +91,14 @@ public final class WarmerStats implements JsonpSerializable {
 	 * API name: {@code total_time}
 	 */
 	@Nullable
-	public String totalTime() {
+	public final String totalTime() {
 		return this.totalTime;
 	}
 
 	/**
 	 * Required - API name: {@code total_time_in_millis}
 	 */
-	public long totalTimeInMillis() {
+	public final long totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -112,12 +120,10 @@ public final class WarmerStats implements JsonpSerializable {
 		generator.write(this.total);
 
 		if (this.totalTime != null) {
-
 			generator.writeKey("total_time");
 			generator.write(this.totalTime);
 
 		}
-
 		generator.writeKey("total_time_in_millis");
 		generator.write(this.totalTimeInMillis);
 
@@ -128,7 +134,8 @@ public final class WarmerStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link WarmerStats}.
 	 */
-	public static class Builder implements ObjectBuilder<WarmerStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WarmerStats> {
 		private Long current;
 
 		private Long total;
@@ -141,7 +148,7 @@ public final class WarmerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code current}
 		 */
-		public Builder current(long value) {
+		public final Builder current(long value) {
 			this.current = value;
 			return this;
 		}
@@ -149,7 +156,7 @@ public final class WarmerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(long value) {
+		public final Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -157,7 +164,7 @@ public final class WarmerStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public Builder totalTime(@Nullable String value) {
+		public final Builder totalTime(@Nullable String value) {
 			this.totalTime = value;
 			return this;
 		}
@@ -165,7 +172,7 @@ public final class WarmerStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_time_in_millis}
 		 */
-		public Builder totalTimeInMillis(long value) {
+		public final Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -177,6 +184,7 @@ public final class WarmerStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WarmerStats build() {
+			_checkSingleUse();
 
 			return new WarmerStats(this);
 		}
@@ -188,9 +196,9 @@ public final class WarmerStats implements JsonpSerializable {
 	 * Json deserializer for {@link WarmerStats}
 	 */
 	public static final JsonpDeserializer<WarmerStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			WarmerStats::setupWarmerStatsDeserializer, Builder::build);
+			WarmerStats::setupWarmerStatsDeserializer);
 
-	protected static void setupWarmerStatsDeserializer(DelegatingDeserializer<WarmerStats.Builder> op) {
+	protected static void setupWarmerStatsDeserializer(ObjectDeserializer<WarmerStats.Builder> op) {
 
 		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");

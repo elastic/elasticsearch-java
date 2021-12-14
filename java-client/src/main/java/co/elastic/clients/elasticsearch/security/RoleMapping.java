@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.security.get_role.RoleTemplate;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,15 +31,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -47,8 +44,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.RoleMapping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/RoleMapping.ts#L25-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RoleMapping implements JsonpSerializable {
+public class RoleMapping implements JsonpSerializable {
 	private final boolean enabled;
 
 	private final Map<String, JsonData> metadata;
@@ -57,58 +61,56 @@ public final class RoleMapping implements JsonpSerializable {
 
 	private final RoleMappingRule rules;
 
-	@Nullable
-	private final List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates;
+	private final List<RoleTemplate> roleTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RoleMapping(Builder builder) {
+	private RoleMapping(Builder builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
-		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
-		this.roles = ModelTypeHelper.unmodifiableNonNull(builder.roles, "roles");
-		this.rules = Objects.requireNonNull(builder.rules, "rules");
-		this.roleTemplates = ModelTypeHelper.unmodifiable(builder.roleTemplates);
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
+		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
+		this.rules = ApiTypeHelper.requireNonNull(builder.rules, this, "rules");
+		this.roleTemplates = ApiTypeHelper.unmodifiable(builder.roleTemplates);
 
 	}
 
-	public RoleMapping(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RoleMapping of(Function<Builder, ObjectBuilder<RoleMapping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
 	 * Required - API name: {@code metadata}
 	 */
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
 	 * Required - API name: {@code roles}
 	 */
-	public List<String> roles() {
+	public final List<String> roles() {
 		return this.roles;
 	}
 
 	/**
 	 * Required - API name: {@code rules}
 	 */
-	public RoleMappingRule rules() {
+	public final RoleMappingRule rules() {
 		return this.rules;
 	}
 
 	/**
 	 * API name: {@code role_templates}
 	 */
-	@Nullable
-	public List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates() {
+	public final List<RoleTemplate> roleTemplates() {
 		return this.roleTemplates;
 	}
 
@@ -126,32 +128,35 @@ public final class RoleMapping implements JsonpSerializable {
 		generator.writeKey("enabled");
 		generator.write(this.enabled);
 
-		generator.writeKey("metadata");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.metadata)) {
+			generator.writeKey("metadata");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.roles)) {
+			generator.writeKey("roles");
+			generator.writeStartArray();
+			for (String item0 : this.roles) {
+				generator.write(item0);
 
-		generator.writeKey("roles");
-		generator.writeStartArray();
-		for (String item0 : this.roles) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("rules");
 		this.rules.serialize(generator, mapper);
 
-		if (this.roleTemplates != null) {
-
+		if (ApiTypeHelper.isDefined(this.roleTemplates)) {
 			generator.writeKey("role_templates");
 			generator.writeStartArray();
-			for (JsonValue /* security.get_role.RoleTemplate */ item0 : this.roleTemplates) {
-				generator.write(item0);
+			for (RoleTemplate item0 : this.roleTemplates) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -165,7 +170,8 @@ public final class RoleMapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleMapping}.
 	 */
-	public static class Builder implements ObjectBuilder<RoleMapping> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleMapping> {
 		private Boolean enabled;
 
 		private Map<String, JsonData> metadata;
@@ -175,66 +181,60 @@ public final class RoleMapping implements JsonpSerializable {
 		private RoleMappingRule rules;
 
 		@Nullable
-		private List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates;
+		private List<RoleTemplate> roleTemplates;
 
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(boolean value) {
+		public final Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public Builder metadata(Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
+		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
 		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code roles}
-		 */
-		public Builder roles(List<String> value) {
-			this.roles = value;
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public Builder roles(String... value) {
-			this.roles = Arrays.asList(value);
+		public final Builder roles(List<String> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
+		 * Required - API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public Builder addRoles(String value) {
-			if (this.roles == null) {
-				this.roles = new ArrayList<>();
-			}
-			this.roles.add(value);
+		public final Builder roles(String value, String... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code rules}
 		 */
-		public Builder rules(RoleMappingRule value) {
+		public final Builder rules(RoleMappingRule value) {
 			this.rules = value;
 			return this;
 		}
@@ -242,35 +242,37 @@ public final class RoleMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rules}
 		 */
-		public Builder rules(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
+		public final Builder rules(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
 			return this.rules(fn.apply(new RoleMappingRule.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code role_templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roleTemplates</code>.
 		 */
-		public Builder roleTemplates(@Nullable List<JsonValue /* security.get_role.RoleTemplate */> value) {
-			this.roleTemplates = value;
+		public final Builder roleTemplates(List<RoleTemplate> list) {
+			this.roleTemplates = _listAddAll(this.roleTemplates, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code role_templates}
+		 * <p>
+		 * Adds one or more values to <code>roleTemplates</code>.
 		 */
-		public Builder roleTemplates(JsonValue /* security.get_role.RoleTemplate */... value) {
-			this.roleTemplates = Arrays.asList(value);
+		public final Builder roleTemplates(RoleTemplate value, RoleTemplate... values) {
+			this.roleTemplates = _listAdd(this.roleTemplates, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed.
+		 * API name: {@code role_templates}
+		 * <p>
+		 * Adds a value to <code>roleTemplates</code> using a builder lambda.
 		 */
-		public Builder addRoleTemplates(JsonValue /* security.get_role.RoleTemplate */ value) {
-			if (this.roleTemplates == null) {
-				this.roleTemplates = new ArrayList<>();
-			}
-			this.roleTemplates.add(value);
-			return this;
+		public final Builder roleTemplates(Function<RoleTemplate.Builder, ObjectBuilder<RoleTemplate>> fn) {
+			return roleTemplates(fn.apply(new RoleTemplate.Builder()).build());
 		}
 
 		/**
@@ -280,6 +282,7 @@ public final class RoleMapping implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RoleMapping build() {
+			_checkSingleUse();
 
 			return new RoleMapping(this);
 		}
@@ -291,15 +294,15 @@ public final class RoleMapping implements JsonpSerializable {
 	 * Json deserializer for {@link RoleMapping}
 	 */
 	public static final JsonpDeserializer<RoleMapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RoleMapping::setupRoleMappingDeserializer, Builder::build);
+			RoleMapping::setupRoleMappingDeserializer);
 
-	protected static void setupRoleMappingDeserializer(DelegatingDeserializer<RoleMapping.Builder> op) {
+	protected static void setupRoleMappingDeserializer(ObjectDeserializer<RoleMapping.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
 		op.add(Builder::rules, RoleMappingRule._DESERIALIZER, "rules");
-		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(RoleTemplate._DESERIALIZER),
 				"role_templates");
 
 	}

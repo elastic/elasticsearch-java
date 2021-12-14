@@ -23,20 +23,20 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,23 +47,30 @@ import javax.annotation.Nullable;
 
 // typedef: _global.open_point_in_time.Request
 
-public final class OpenPointInTimeRequest extends RequestBase {
+/**
+ * Open a point in time that can be used in subsequent searches
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/open_point_in_time/OpenPointInTimeRequest.ts#L24-L36">API
+ *      specification</a>
+ */
+
+public class OpenPointInTimeRequest extends RequestBase {
 	private final List<String> index;
 
-	@Nullable
-	private final String keepAlive;
+	private final Time keepAlive;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OpenPointInTimeRequest(Builder builder) {
+	private OpenPointInTimeRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
-		this.keepAlive = builder.keepAlive;
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.keepAlive = ApiTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
 
 	}
 
-	public OpenPointInTimeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OpenPointInTimeRequest of(Function<Builder, ObjectBuilder<OpenPointInTimeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,17 +79,16 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
 	/**
-	 * Specific the time to live for the point in time
+	 * Required - Specific the time to live for the point in time
 	 * <p>
 	 * API name: {@code keep_alive}
 	 */
-	@Nullable
-	public String keepAlive() {
+	public final Time keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -91,20 +97,22 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	/**
 	 * Builder for {@link OpenPointInTimeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<OpenPointInTimeRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenPointInTimeRequest> {
 		private List<String> index;
 
-		@Nullable
-		private String keepAlive;
+		private Time keepAlive;
 
 		/**
 		 * Required - A comma-separated list of index names to open point in time; use
 		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -113,31 +121,31 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * Specific the time to live for the point in time
+		 * Required - Specific the time to live for the point in time
 		 * <p>
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(Time value) {
 			this.keepAlive = value;
 			return this;
+		}
+
+		/**
+		 * Required - Specific the time to live for the point in time
+		 * <p>
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -147,6 +155,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public OpenPointInTimeRequest build() {
+			_checkSingleUse();
 
 			return new OpenPointInTimeRequest(this);
 		}
@@ -157,7 +166,9 @@ public final class OpenPointInTimeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code open_point_in_time}".
 	 */
-	public static final Endpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/open_point_in_time",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -186,9 +197,7 @@ public final class OpenPointInTimeRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.keepAlive != null) {
-					params.put("keep_alive", request.keepAlive);
-				}
+				params.put("keep_alive", request.keepAlive._toJsonString());
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, OpenPointInTimeResponse._DESERIALIZER);

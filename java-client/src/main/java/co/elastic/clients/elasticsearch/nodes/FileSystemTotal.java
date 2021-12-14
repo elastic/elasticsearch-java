@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.FileSystemTotal
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L144-L151">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FileSystemTotal implements JsonpSerializable {
+public class FileSystemTotal implements JsonpSerializable {
 	private final String available;
 
 	private final long availableInBytes;
@@ -55,60 +63,60 @@ public final class FileSystemTotal implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FileSystemTotal(Builder builder) {
+	private FileSystemTotal(Builder builder) {
 
-		this.available = Objects.requireNonNull(builder.available, "available");
-		this.availableInBytes = Objects.requireNonNull(builder.availableInBytes, "available_in_bytes");
-		this.free = Objects.requireNonNull(builder.free, "free");
-		this.freeInBytes = Objects.requireNonNull(builder.freeInBytes, "free_in_bytes");
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
+		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available");
+		this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
+		this.free = ApiTypeHelper.requireNonNull(builder.free, this, "free");
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
 	}
 
-	public FileSystemTotal(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FileSystemTotal of(Function<Builder, ObjectBuilder<FileSystemTotal>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code available}
 	 */
-	public String available() {
+	public final String available() {
 		return this.available;
 	}
 
 	/**
 	 * Required - API name: {@code available_in_bytes}
 	 */
-	public long availableInBytes() {
+	public final long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code free}
 	 */
-	public String free() {
+	public final String free() {
 		return this.free;
 	}
 
 	/**
 	 * Required - API name: {@code free_in_bytes}
 	 */
-	public long freeInBytes() {
+	public final long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public String total() {
+	public final String total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code total_in_bytes}
 	 */
-	public long totalInBytes() {
+	public final long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -148,7 +156,8 @@ public final class FileSystemTotal implements JsonpSerializable {
 	/**
 	 * Builder for {@link FileSystemTotal}.
 	 */
-	public static class Builder implements ObjectBuilder<FileSystemTotal> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileSystemTotal> {
 		private String available;
 
 		private Long availableInBytes;
@@ -164,7 +173,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code available}
 		 */
-		public Builder available(String value) {
+		public final Builder available(String value) {
 			this.available = value;
 			return this;
 		}
@@ -172,7 +181,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code available_in_bytes}
 		 */
-		public Builder availableInBytes(long value) {
+		public final Builder availableInBytes(long value) {
 			this.availableInBytes = value;
 			return this;
 		}
@@ -180,7 +189,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code free}
 		 */
-		public Builder free(String value) {
+		public final Builder free(String value) {
 			this.free = value;
 			return this;
 		}
@@ -188,7 +197,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(long value) {
+		public final Builder freeInBytes(long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -196,7 +205,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(String value) {
+		public final Builder total(String value) {
 			this.total = value;
 			return this;
 		}
@@ -204,7 +213,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(long value) {
+		public final Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -216,6 +225,7 @@ public final class FileSystemTotal implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FileSystemTotal build() {
+			_checkSingleUse();
 
 			return new FileSystemTotal(this);
 		}
@@ -227,9 +237,9 @@ public final class FileSystemTotal implements JsonpSerializable {
 	 * Json deserializer for {@link FileSystemTotal}
 	 */
 	public static final JsonpDeserializer<FileSystemTotal> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FileSystemTotal::setupFileSystemTotalDeserializer, Builder::build);
+			FileSystemTotal::setupFileSystemTotalDeserializer);
 
-	protected static void setupFileSystemTotalDeserializer(DelegatingDeserializer<FileSystemTotal.Builder> op) {
+	protected static void setupFileSystemTotalDeserializer(ObjectDeserializer<FileSystemTotal.Builder> op) {
 
 		op.add(Builder::available, JsonpDeserializer.stringDeserializer(), "available");
 		op.add(Builder::availableInBytes, JsonpDeserializer.longDeserializer(), "available_in_bytes");

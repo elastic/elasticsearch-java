@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -36,45 +36,52 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.Ccr
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L289-L292">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Ccr extends Base {
+public class Ccr extends Base {
 	private final int autoFollowPatternsCount;
 
 	private final int followerIndicesCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Ccr(Builder builder) {
+	private Ccr(Builder builder) {
 		super(builder);
 
-		this.autoFollowPatternsCount = Objects.requireNonNull(builder.autoFollowPatternsCount,
-				"auto_follow_patterns_count");
-		this.followerIndicesCount = Objects.requireNonNull(builder.followerIndicesCount, "follower_indices_count");
+		this.autoFollowPatternsCount = ApiTypeHelper.requireNonNull(builder.autoFollowPatternsCount, this,
+				"autoFollowPatternsCount");
+		this.followerIndicesCount = ApiTypeHelper.requireNonNull(builder.followerIndicesCount, this,
+				"followerIndicesCount");
 
 	}
 
-	public Ccr(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Ccr of(Function<Builder, ObjectBuilder<Ccr>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code auto_follow_patterns_count}
 	 */
-	public int autoFollowPatternsCount() {
+	public final int autoFollowPatternsCount() {
 		return this.autoFollowPatternsCount;
 	}
 
 	/**
 	 * Required - API name: {@code follower_indices_count}
 	 */
-	public int followerIndicesCount() {
+	public final int followerIndicesCount() {
 		return this.followerIndicesCount;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("auto_follow_patterns_count");
 		generator.write(this.autoFollowPatternsCount);
 
@@ -88,6 +95,7 @@ public final class Ccr extends Base {
 	/**
 	 * Builder for {@link Ccr}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Ccr> {
 		private Integer autoFollowPatternsCount;
 
@@ -96,7 +104,7 @@ public final class Ccr extends Base {
 		/**
 		 * Required - API name: {@code auto_follow_patterns_count}
 		 */
-		public Builder autoFollowPatternsCount(int value) {
+		public final Builder autoFollowPatternsCount(int value) {
 			this.autoFollowPatternsCount = value;
 			return this;
 		}
@@ -104,7 +112,7 @@ public final class Ccr extends Base {
 		/**
 		 * Required - API name: {@code follower_indices_count}
 		 */
-		public Builder followerIndicesCount(int value) {
+		public final Builder followerIndicesCount(int value) {
 			this.followerIndicesCount = value;
 			return this;
 		}
@@ -121,6 +129,7 @@ public final class Ccr extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Ccr build() {
+			_checkSingleUse();
 
 			return new Ccr(this);
 		}
@@ -132,9 +141,9 @@ public final class Ccr extends Base {
 	 * Json deserializer for {@link Ccr}
 	 */
 	public static final JsonpDeserializer<Ccr> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Ccr::setupCcrDeserializer, Builder::build);
+			Ccr::setupCcrDeserializer);
 
-	protected static void setupCcrDeserializer(DelegatingDeserializer<Ccr.Builder> op) {
+	protected static void setupCcrDeserializer(ObjectDeserializer<Ccr.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::autoFollowPatternsCount, JsonpDeserializer.integerDeserializer(), "auto_follow_patterns_count");
 		op.add(Builder::followerIndicesCount, JsonpDeserializer.integerDeserializer(), "follower_indices_count");

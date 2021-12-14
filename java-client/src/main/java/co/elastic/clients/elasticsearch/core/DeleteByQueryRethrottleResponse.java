@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch.tasks.ListResponse;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,25 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.delete_by_query_rethrottle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete_by_query_rethrottle/DeleteByQueryRethrottleResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteByQueryRethrottleResponse extends ListResponse {
+public class DeleteByQueryRethrottleResponse extends ListResponse {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteByQueryRethrottleResponse(Builder builder) {
+	private DeleteByQueryRethrottleResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteByQueryRethrottleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteByQueryRethrottleResponse of(
+			Function<Builder, ObjectBuilder<DeleteByQueryRethrottleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public final class DeleteByQueryRethrottleResponse extends ListResponse {
 	/**
 	 * Builder for {@link DeleteByQueryRethrottleResponse}.
 	 */
+
 	public static class Builder extends ListResponse.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteByQueryRethrottleResponse> {
@@ -68,6 +76,7 @@ public final class DeleteByQueryRethrottleResponse extends ListResponse {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteByQueryRethrottleResponse build() {
+			_checkSingleUse();
 
 			return new DeleteByQueryRethrottleResponse(this);
 		}
@@ -79,11 +88,10 @@ public final class DeleteByQueryRethrottleResponse extends ListResponse {
 	 * Json deserializer for {@link DeleteByQueryRethrottleResponse}
 	 */
 	public static final JsonpDeserializer<DeleteByQueryRethrottleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DeleteByQueryRethrottleResponse::setupDeleteByQueryRethrottleResponseDeserializer);
 
 	protected static void setupDeleteByQueryRethrottleResponseDeserializer(
-			DelegatingDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {
+			ObjectDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {
 		ListResponse.setupListResponseDeserializer(op);
 
 	}

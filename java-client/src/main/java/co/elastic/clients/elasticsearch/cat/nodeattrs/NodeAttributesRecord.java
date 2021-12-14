@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.nodeattrs;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.nodeattrs.NodeAttributesRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/nodeattrs/types.ts#L20-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeAttributesRecord implements JsonpSerializable {
+public class NodeAttributesRecord implements JsonpSerializable {
 	@Nullable
 	private final String node;
 
@@ -66,7 +73,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeAttributesRecord(Builder builder) {
+	private NodeAttributesRecord(Builder builder) {
 
 		this.node = builder.node;
 		this.id = builder.id;
@@ -79,8 +86,8 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 
 	}
 
-	public NodeAttributesRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeAttributesRecord of(Function<Builder, ObjectBuilder<NodeAttributesRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +96,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	 * API name: {@code node}
 	 */
 	@Nullable
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
@@ -99,7 +106,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -109,7 +116,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	 * API name: {@code pid}
 	 */
 	@Nullable
-	public String pid() {
+	public final String pid() {
 		return this.pid;
 	}
 
@@ -119,7 +126,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	 * API name: {@code host}
 	 */
 	@Nullable
-	public String host() {
+	public final String host() {
 		return this.host;
 	}
 
@@ -129,7 +136,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	 * API name: {@code ip}
 	 */
 	@Nullable
-	public String ip() {
+	public final String ip() {
 		return this.ip;
 	}
 
@@ -139,7 +146,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	 * API name: {@code port}
 	 */
 	@Nullable
-	public String port() {
+	public final String port() {
 		return this.port;
 	}
 
@@ -149,7 +156,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	 * API name: {@code attr}
 	 */
 	@Nullable
-	public String attr() {
+	public final String attr() {
 		return this.attr;
 	}
 
@@ -159,7 +166,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	 * API name: {@code value}
 	 */
 	@Nullable
-	public String value() {
+	public final String value() {
 		return this.value;
 	}
 
@@ -175,49 +182,41 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.node != null) {
-
 			generator.writeKey("node");
 			generator.write(this.node);
 
 		}
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.pid != null) {
-
 			generator.writeKey("pid");
 			generator.write(this.pid);
 
 		}
 		if (this.host != null) {
-
 			generator.writeKey("host");
 			generator.write(this.host);
 
 		}
 		if (this.ip != null) {
-
 			generator.writeKey("ip");
 			generator.write(this.ip);
 
 		}
 		if (this.port != null) {
-
 			generator.writeKey("port");
 			generator.write(this.port);
 
 		}
 		if (this.attr != null) {
-
 			generator.writeKey("attr");
 			generator.write(this.attr);
 
 		}
 		if (this.value != null) {
-
 			generator.writeKey("value");
 			generator.write(this.value);
 
@@ -230,7 +229,8 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeAttributesRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeAttributesRecord> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeAttributesRecord> {
 		@Nullable
 		private String node;
 
@@ -260,7 +260,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public Builder node(@Nullable String value) {
+		public final Builder node(@Nullable String value) {
 			this.node = value;
 			return this;
 		}
@@ -270,7 +270,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -280,7 +280,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code pid}
 		 */
-		public Builder pid(@Nullable String value) {
+		public final Builder pid(@Nullable String value) {
 			this.pid = value;
 			return this;
 		}
@@ -290,7 +290,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code host}
 		 */
-		public Builder host(@Nullable String value) {
+		public final Builder host(@Nullable String value) {
 			this.host = value;
 			return this;
 		}
@@ -300,7 +300,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ip}
 		 */
-		public Builder ip(@Nullable String value) {
+		public final Builder ip(@Nullable String value) {
 			this.ip = value;
 			return this;
 		}
@@ -310,7 +310,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code port}
 		 */
-		public Builder port(@Nullable String value) {
+		public final Builder port(@Nullable String value) {
 			this.port = value;
 			return this;
 		}
@@ -320,7 +320,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code attr}
 		 */
-		public Builder attr(@Nullable String value) {
+		public final Builder attr(@Nullable String value) {
 			this.attr = value;
 			return this;
 		}
@@ -330,7 +330,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code value}
 		 */
-		public Builder value(@Nullable String value) {
+		public final Builder value(@Nullable String value) {
 			this.value = value;
 			return this;
 		}
@@ -342,6 +342,7 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeAttributesRecord build() {
+			_checkSingleUse();
 
 			return new NodeAttributesRecord(this);
 		}
@@ -353,10 +354,9 @@ public final class NodeAttributesRecord implements JsonpSerializable {
 	 * Json deserializer for {@link NodeAttributesRecord}
 	 */
 	public static final JsonpDeserializer<NodeAttributesRecord> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeAttributesRecord::setupNodeAttributesRecordDeserializer, Builder::build);
+			.lazy(Builder::new, NodeAttributesRecord::setupNodeAttributesRecordDeserializer);
 
-	protected static void setupNodeAttributesRecordDeserializer(
-			DelegatingDeserializer<NodeAttributesRecord.Builder> op) {
+	protected static void setupNodeAttributesRecordDeserializer(ObjectDeserializer<NodeAttributesRecord.Builder> op) {
 
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");

@@ -30,31 +30,37 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/thread_pool/CatThreadPoolResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ThreadPoolResponse implements JsonpSerializable {
+public class ThreadPoolResponse implements JsonpSerializable {
 	private final List<ThreadPoolRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ThreadPoolResponse(Builder builder) {
+	private ThreadPoolResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public ThreadPoolResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ThreadPoolResponse of(Function<Builder, ObjectBuilder<ThreadPoolResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +68,7 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<ThreadPoolRecord> valueBody() {
+	public final List<ThreadPoolRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,16 +90,19 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ThreadPoolResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ThreadPoolResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolResponse> {
 		private List<ThreadPoolRecord> valueBody;
 
 		/**
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 */
-		public Builder valueBody(List<ThreadPoolRecord> value) {
-			this.valueBody = value;
+		public final Builder valueBody(List<ThreadPoolRecord> list) {
+			this.valueBody = _listAddAll(this.valueBody, list);
 			return this;
 		}
 
@@ -101,35 +110,23 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>valueBody</code>.
 		 */
-		public Builder valueBody(ThreadPoolRecord... value) {
-			this.valueBody = Arrays.asList(value);
+		public final Builder valueBody(ThreadPoolRecord value, ThreadPoolRecord... values) {
+			this.valueBody = _listAdd(this.valueBody, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>valueBody</code> using a builder lambda.
 		 */
-		public Builder addValueBody(ThreadPoolRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
-			}
-			this.valueBody.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<ThreadPoolRecord.Builder, ObjectBuilder<ThreadPoolRecord>> fn) {
-			return this.valueBody(fn.apply(new ThreadPoolRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<ThreadPoolRecord.Builder, ObjectBuilder<ThreadPoolRecord>> fn) {
-			return this.addValueBody(fn.apply(new ThreadPoolRecord.Builder()).build());
+		public final Builder valueBody(Function<ThreadPoolRecord.Builder, ObjectBuilder<ThreadPoolRecord>> fn) {
+			return valueBody(fn.apply(new ThreadPoolRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +136,7 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ThreadPoolResponse build() {
+			_checkSingleUse();
 
 			return new ThreadPoolResponse(this);
 		}
@@ -150,8 +148,8 @@ public final class ThreadPoolResponse implements JsonpSerializable {
 		JsonpDeserializer<List<ThreadPoolRecord>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(ThreadPoolRecord._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

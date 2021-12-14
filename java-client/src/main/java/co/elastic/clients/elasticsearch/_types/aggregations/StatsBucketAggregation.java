@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.StatsBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L211-L211">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class StatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public StatsBucketAggregation(Builder builder) {
+	private StatsBucketAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public StatsBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StatsBucketAggregation of(Function<Builder, ObjectBuilder<StatsBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stats_bucket";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.StatsBucket;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class StatsBucketAggregation extends PipelineAggregationBase implem
 	/**
 	 * Builder for {@link StatsBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StatsBucketAggregation> {
@@ -75,6 +82,7 @@ public final class StatsBucketAggregation extends PipelineAggregationBase implem
 		 *             if some of the required fields are null.
 		 */
 		public StatsBucketAggregation build() {
+			_checkSingleUse();
 
 			return new StatsBucketAggregation(this);
 		}
@@ -86,10 +94,10 @@ public final class StatsBucketAggregation extends PipelineAggregationBase implem
 	 * Json deserializer for {@link StatsBucketAggregation}
 	 */
 	public static final JsonpDeserializer<StatsBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StatsBucketAggregation::setupStatsBucketAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, StatsBucketAggregation::setupStatsBucketAggregationDeserializer);
 
 	protected static void setupStatsBucketAggregationDeserializer(
-			DelegatingDeserializer<StatsBucketAggregation.Builder> op) {
+			ObjectDeserializer<StatsBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

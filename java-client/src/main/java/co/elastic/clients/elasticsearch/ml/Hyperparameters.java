@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
@@ -39,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Hyperparameters
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L390-L405">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Hyperparameters implements JsonpSerializable {
+public class Hyperparameters implements JsonpSerializable {
 	@Nullable
 	private final Double alpha;
 
@@ -85,7 +92,7 @@ public final class Hyperparameters implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Hyperparameters(Builder builder) {
+	private Hyperparameters(Builder builder) {
 
 		this.alpha = builder.alpha;
 		this.lambda = builder.lambda;
@@ -104,15 +111,15 @@ public final class Hyperparameters implements JsonpSerializable {
 
 	}
 
-	public Hyperparameters(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Hyperparameters of(Function<Builder, ObjectBuilder<Hyperparameters>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code alpha}
 	 */
 	@Nullable
-	public Double alpha() {
+	public final Double alpha() {
 		return this.alpha;
 	}
 
@@ -120,7 +127,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code lambda}
 	 */
 	@Nullable
-	public Double lambda() {
+	public final Double lambda() {
 		return this.lambda;
 	}
 
@@ -128,7 +135,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code gamma}
 	 */
 	@Nullable
-	public Double gamma() {
+	public final Double gamma() {
 		return this.gamma;
 	}
 
@@ -136,7 +143,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code eta}
 	 */
 	@Nullable
-	public Double eta() {
+	public final Double eta() {
 		return this.eta;
 	}
 
@@ -144,7 +151,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code eta_growth_rate_per_tree}
 	 */
 	@Nullable
-	public Double etaGrowthRatePerTree() {
+	public final Double etaGrowthRatePerTree() {
 		return this.etaGrowthRatePerTree;
 	}
 
@@ -152,7 +159,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code feature_bag_fraction}
 	 */
 	@Nullable
-	public Double featureBagFraction() {
+	public final Double featureBagFraction() {
 		return this.featureBagFraction;
 	}
 
@@ -160,7 +167,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code downsample_factor}
 	 */
 	@Nullable
-	public Double downsampleFactor() {
+	public final Double downsampleFactor() {
 		return this.downsampleFactor;
 	}
 
@@ -168,7 +175,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code max_attempts_to_add_tree}
 	 */
 	@Nullable
-	public Integer maxAttemptsToAddTree() {
+	public final Integer maxAttemptsToAddTree() {
 		return this.maxAttemptsToAddTree;
 	}
 
@@ -176,7 +183,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code max_optimization_rounds_per_hyperparameter}
 	 */
 	@Nullable
-	public Integer maxOptimizationRoundsPerHyperparameter() {
+	public final Integer maxOptimizationRoundsPerHyperparameter() {
 		return this.maxOptimizationRoundsPerHyperparameter;
 	}
 
@@ -184,7 +191,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code max_trees}
 	 */
 	@Nullable
-	public Integer maxTrees() {
+	public final Integer maxTrees() {
 		return this.maxTrees;
 	}
 
@@ -192,7 +199,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code num_folds}
 	 */
 	@Nullable
-	public Integer numFolds() {
+	public final Integer numFolds() {
 		return this.numFolds;
 	}
 
@@ -200,7 +207,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code num_splits_per_feature}
 	 */
 	@Nullable
-	public Integer numSplitsPerFeature() {
+	public final Integer numSplitsPerFeature() {
 		return this.numSplitsPerFeature;
 	}
 
@@ -208,7 +215,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code soft_tree_depth_limit}
 	 */
 	@Nullable
-	public Integer softTreeDepthLimit() {
+	public final Integer softTreeDepthLimit() {
 		return this.softTreeDepthLimit;
 	}
 
@@ -216,7 +223,7 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * API name: {@code soft_tree_depth_tolerance}
 	 */
 	@Nullable
-	public Double softTreeDepthTolerance() {
+	public final Double softTreeDepthTolerance() {
 		return this.softTreeDepthTolerance;
 	}
 
@@ -232,85 +239,71 @@ public final class Hyperparameters implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.alpha != null) {
-
 			generator.writeKey("alpha");
 			generator.write(this.alpha);
 
 		}
 		if (this.lambda != null) {
-
 			generator.writeKey("lambda");
 			generator.write(this.lambda);
 
 		}
 		if (this.gamma != null) {
-
 			generator.writeKey("gamma");
 			generator.write(this.gamma);
 
 		}
 		if (this.eta != null) {
-
 			generator.writeKey("eta");
 			generator.write(this.eta);
 
 		}
 		if (this.etaGrowthRatePerTree != null) {
-
 			generator.writeKey("eta_growth_rate_per_tree");
 			generator.write(this.etaGrowthRatePerTree);
 
 		}
 		if (this.featureBagFraction != null) {
-
 			generator.writeKey("feature_bag_fraction");
 			generator.write(this.featureBagFraction);
 
 		}
 		if (this.downsampleFactor != null) {
-
 			generator.writeKey("downsample_factor");
 			generator.write(this.downsampleFactor);
 
 		}
 		if (this.maxAttemptsToAddTree != null) {
-
 			generator.writeKey("max_attempts_to_add_tree");
 			generator.write(this.maxAttemptsToAddTree);
 
 		}
 		if (this.maxOptimizationRoundsPerHyperparameter != null) {
-
 			generator.writeKey("max_optimization_rounds_per_hyperparameter");
 			generator.write(this.maxOptimizationRoundsPerHyperparameter);
 
 		}
 		if (this.maxTrees != null) {
-
 			generator.writeKey("max_trees");
 			generator.write(this.maxTrees);
 
 		}
 		if (this.numFolds != null) {
-
 			generator.writeKey("num_folds");
 			generator.write(this.numFolds);
 
 		}
 		if (this.numSplitsPerFeature != null) {
-
 			generator.writeKey("num_splits_per_feature");
 			generator.write(this.numSplitsPerFeature);
 
 		}
 		if (this.softTreeDepthLimit != null) {
-
 			generator.writeKey("soft_tree_depth_limit");
 			generator.write(this.softTreeDepthLimit);
 
 		}
 		if (this.softTreeDepthTolerance != null) {
-
 			generator.writeKey("soft_tree_depth_tolerance");
 			generator.write(this.softTreeDepthTolerance);
 
@@ -323,7 +316,8 @@ public final class Hyperparameters implements JsonpSerializable {
 	/**
 	 * Builder for {@link Hyperparameters}.
 	 */
-	public static class Builder implements ObjectBuilder<Hyperparameters> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Hyperparameters> {
 		@Nullable
 		private Double alpha;
 
@@ -369,7 +363,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code alpha}
 		 */
-		public Builder alpha(@Nullable Double value) {
+		public final Builder alpha(@Nullable Double value) {
 			this.alpha = value;
 			return this;
 		}
@@ -377,7 +371,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code lambda}
 		 */
-		public Builder lambda(@Nullable Double value) {
+		public final Builder lambda(@Nullable Double value) {
 			this.lambda = value;
 			return this;
 		}
@@ -385,7 +379,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code gamma}
 		 */
-		public Builder gamma(@Nullable Double value) {
+		public final Builder gamma(@Nullable Double value) {
 			this.gamma = value;
 			return this;
 		}
@@ -393,7 +387,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code eta}
 		 */
-		public Builder eta(@Nullable Double value) {
+		public final Builder eta(@Nullable Double value) {
 			this.eta = value;
 			return this;
 		}
@@ -401,7 +395,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code eta_growth_rate_per_tree}
 		 */
-		public Builder etaGrowthRatePerTree(@Nullable Double value) {
+		public final Builder etaGrowthRatePerTree(@Nullable Double value) {
 			this.etaGrowthRatePerTree = value;
 			return this;
 		}
@@ -409,7 +403,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code feature_bag_fraction}
 		 */
-		public Builder featureBagFraction(@Nullable Double value) {
+		public final Builder featureBagFraction(@Nullable Double value) {
 			this.featureBagFraction = value;
 			return this;
 		}
@@ -417,7 +411,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code downsample_factor}
 		 */
-		public Builder downsampleFactor(@Nullable Double value) {
+		public final Builder downsampleFactor(@Nullable Double value) {
 			this.downsampleFactor = value;
 			return this;
 		}
@@ -425,7 +419,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code max_attempts_to_add_tree}
 		 */
-		public Builder maxAttemptsToAddTree(@Nullable Integer value) {
+		public final Builder maxAttemptsToAddTree(@Nullable Integer value) {
 			this.maxAttemptsToAddTree = value;
 			return this;
 		}
@@ -433,7 +427,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code max_optimization_rounds_per_hyperparameter}
 		 */
-		public Builder maxOptimizationRoundsPerHyperparameter(@Nullable Integer value) {
+		public final Builder maxOptimizationRoundsPerHyperparameter(@Nullable Integer value) {
 			this.maxOptimizationRoundsPerHyperparameter = value;
 			return this;
 		}
@@ -441,7 +435,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code max_trees}
 		 */
-		public Builder maxTrees(@Nullable Integer value) {
+		public final Builder maxTrees(@Nullable Integer value) {
 			this.maxTrees = value;
 			return this;
 		}
@@ -449,7 +443,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code num_folds}
 		 */
-		public Builder numFolds(@Nullable Integer value) {
+		public final Builder numFolds(@Nullable Integer value) {
 			this.numFolds = value;
 			return this;
 		}
@@ -457,7 +451,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code num_splits_per_feature}
 		 */
-		public Builder numSplitsPerFeature(@Nullable Integer value) {
+		public final Builder numSplitsPerFeature(@Nullable Integer value) {
 			this.numSplitsPerFeature = value;
 			return this;
 		}
@@ -465,7 +459,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code soft_tree_depth_limit}
 		 */
-		public Builder softTreeDepthLimit(@Nullable Integer value) {
+		public final Builder softTreeDepthLimit(@Nullable Integer value) {
 			this.softTreeDepthLimit = value;
 			return this;
 		}
@@ -473,7 +467,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		/**
 		 * API name: {@code soft_tree_depth_tolerance}
 		 */
-		public Builder softTreeDepthTolerance(@Nullable Double value) {
+		public final Builder softTreeDepthTolerance(@Nullable Double value) {
 			this.softTreeDepthTolerance = value;
 			return this;
 		}
@@ -485,6 +479,7 @@ public final class Hyperparameters implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Hyperparameters build() {
+			_checkSingleUse();
 
 			return new Hyperparameters(this);
 		}
@@ -496,9 +491,9 @@ public final class Hyperparameters implements JsonpSerializable {
 	 * Json deserializer for {@link Hyperparameters}
 	 */
 	public static final JsonpDeserializer<Hyperparameters> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Hyperparameters::setupHyperparametersDeserializer, Builder::build);
+			Hyperparameters::setupHyperparametersDeserializer);
 
-	protected static void setupHyperparametersDeserializer(DelegatingDeserializer<Hyperparameters.Builder> op) {
+	protected static void setupHyperparametersDeserializer(ObjectDeserializer<Hyperparameters.Builder> op) {
 
 		op.add(Builder::alpha, JsonpDeserializer.doubleDeserializer(), "alpha");
 		op.add(Builder::lambda, JsonpDeserializer.doubleDeserializer(), "lambda");

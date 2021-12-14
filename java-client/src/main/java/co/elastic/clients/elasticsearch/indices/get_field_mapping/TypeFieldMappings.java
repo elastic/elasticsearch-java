@@ -24,44 +24,48 @@
 package co.elastic.clients.elasticsearch.indices.get_field_mapping;
 
 import co.elastic.clients.elasticsearch._types.mapping.FieldMapping;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_field_mapping.TypeFieldMappings
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_field_mapping/types.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TypeFieldMappings implements JsonpSerializable {
-	private final Map<String, FieldMapping> mappings;
+public class TypeFieldMappings implements JsonpSerializable {
+	private final FieldMapping mappings;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TypeFieldMappings(Builder builder) {
+	private TypeFieldMappings(Builder builder) {
 
-		this.mappings = ModelTypeHelper.unmodifiableNonNull(builder.mappings, "mappings");
+		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
 
 	}
 
-	public TypeFieldMappings(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TypeFieldMappings of(Function<Builder, ObjectBuilder<TypeFieldMappings>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code mappings}
 	 */
-	public Map<String, FieldMapping> mappings() {
+	public final FieldMapping mappings() {
 		return this.mappings;
 	}
 
@@ -77,13 +81,7 @@ public final class TypeFieldMappings implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("mappings");
-		generator.writeStartObject();
-		for (Map.Entry<String, FieldMapping> item0 : this.mappings.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
+		this.mappings.serialize(generator, mapper);
 
 	}
 
@@ -92,40 +90,23 @@ public final class TypeFieldMappings implements JsonpSerializable {
 	/**
 	 * Builder for {@link TypeFieldMappings}.
 	 */
-	public static class Builder implements ObjectBuilder<TypeFieldMappings> {
-		private Map<String, FieldMapping> mappings;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeFieldMappings> {
+		private FieldMapping mappings;
 
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(Map<String, FieldMapping> value) {
+		public final Builder mappings(FieldMapping value) {
 			this.mappings = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #mappings(Map)}, creating the map if needed.
+		 * Required - API name: {@code mappings}
 		 */
-		public Builder putMappings(String key, FieldMapping value) {
-			if (this.mappings == null) {
-				this.mappings = new HashMap<>();
-			}
-			this.mappings.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #mappings(Map)} to a singleton map.
-		 */
-		public Builder mappings(String key, Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
-			return this.mappings(Collections.singletonMap(key, fn.apply(new FieldMapping.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #mappings(Map)}, creating the map if needed.
-		 */
-		public Builder putMappings(String key, Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
-			return this.putMappings(key, fn.apply(new FieldMapping.Builder()).build());
+		public final Builder mappings(Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
+			return this.mappings(fn.apply(new FieldMapping.Builder()).build());
 		}
 
 		/**
@@ -135,6 +116,7 @@ public final class TypeFieldMappings implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TypeFieldMappings build() {
+			_checkSingleUse();
 
 			return new TypeFieldMappings(this);
 		}
@@ -146,11 +128,11 @@ public final class TypeFieldMappings implements JsonpSerializable {
 	 * Json deserializer for {@link TypeFieldMappings}
 	 */
 	public static final JsonpDeserializer<TypeFieldMappings> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TypeFieldMappings::setupTypeFieldMappingsDeserializer, Builder::build);
+			.lazy(Builder::new, TypeFieldMappings::setupTypeFieldMappingsDeserializer);
 
-	protected static void setupTypeFieldMappingsDeserializer(DelegatingDeserializer<TypeFieldMappings.Builder> op) {
+	protected static void setupTypeFieldMappingsDeserializer(ObjectDeserializer<TypeFieldMappings.Builder> op) {
 
-		op.add(Builder::mappings, JsonpDeserializer.stringMapDeserializer(FieldMapping._DESERIALIZER), "mappings");
+		op.add(Builder::mappings, FieldMapping._DESERIALIZER, "mappings");
 
 	}
 

@@ -23,30 +23,33 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.FunctionScoreQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L52-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FunctionScoreQuery extends QueryBase implements QueryVariant {
+public class FunctionScoreQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final FunctionBoostMode boostMode;
 
-	@Nullable
 	private final List<FunctionScore> functions;
 
 	@Nullable
@@ -63,11 +66,11 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FunctionScoreQuery(Builder builder) {
+	private FunctionScoreQuery(Builder builder) {
 		super(builder);
 
 		this.boostMode = builder.boostMode;
-		this.functions = ModelTypeHelper.unmodifiable(builder.functions);
+		this.functions = ApiTypeHelper.unmodifiable(builder.functions);
 		this.maxBoost = builder.maxBoost;
 		this.minScore = builder.minScore;
 		this.query = builder.query;
@@ -75,31 +78,30 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 
 	}
 
-	public FunctionScoreQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FunctionScoreQuery of(Function<Builder, ObjectBuilder<FunctionScoreQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "function_score";
+	public Query.Kind _queryKind() {
+		return Query.Kind.FunctionScore;
 	}
 
 	/**
 	 * API name: {@code boost_mode}
 	 */
 	@Nullable
-	public FunctionBoostMode boostMode() {
+	public final FunctionBoostMode boostMode() {
 		return this.boostMode;
 	}
 
 	/**
 	 * API name: {@code functions}
 	 */
-	@Nullable
-	public List<FunctionScore> functions() {
+	public final List<FunctionScore> functions() {
 		return this.functions;
 	}
 
@@ -107,7 +109,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 	 * API name: {@code max_boost}
 	 */
 	@Nullable
-	public Double maxBoost() {
+	public final Double maxBoost() {
 		return this.maxBoost;
 	}
 
@@ -115,7 +117,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 	 * API name: {@code min_score}
 	 */
 	@Nullable
-	public Double minScore() {
+	public final Double minScore() {
 		return this.minScore;
 	}
 
@@ -123,7 +125,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -131,7 +133,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
-	public FunctionScoreMode scoreMode() {
+	public final FunctionScoreMode scoreMode() {
 		return this.scoreMode;
 	}
 
@@ -139,12 +141,10 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 
 		super.serializeInternal(generator, mapper);
 		if (this.boostMode != null) {
-
 			generator.writeKey("boost_mode");
 			this.boostMode.serialize(generator, mapper);
 		}
-		if (this.functions != null) {
-
+		if (ApiTypeHelper.isDefined(this.functions)) {
 			generator.writeKey("functions");
 			generator.writeStartArray();
 			for (FunctionScore item0 : this.functions) {
@@ -155,25 +155,21 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 
 		}
 		if (this.maxBoost != null) {
-
 			generator.writeKey("max_boost");
 			generator.write(this.maxBoost);
 
 		}
 		if (this.minScore != null) {
-
 			generator.writeKey("min_score");
 			generator.write(this.minScore);
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
 		if (this.scoreMode != null) {
-
 			generator.writeKey("score_mode");
 			this.scoreMode.serialize(generator, mapper);
 		}
@@ -185,6 +181,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 	/**
 	 * Builder for {@link FunctionScoreQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FunctionScoreQuery> {
@@ -209,56 +206,44 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 		/**
 		 * API name: {@code boost_mode}
 		 */
-		public Builder boostMode(@Nullable FunctionBoostMode value) {
+		public final Builder boostMode(@Nullable FunctionBoostMode value) {
 			this.boostMode = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code functions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>functions</code>.
 		 */
-		public Builder functions(@Nullable List<FunctionScore> value) {
-			this.functions = value;
+		public final Builder functions(List<FunctionScore> list) {
+			this.functions = _listAddAll(this.functions, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code functions}
+		 * <p>
+		 * Adds one or more values to <code>functions</code>.
 		 */
-		public Builder functions(FunctionScore... value) {
-			this.functions = Arrays.asList(value);
+		public final Builder functions(FunctionScore value, FunctionScore... values) {
+			this.functions = _listAdd(this.functions, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #functions(List)}, creating the list if needed.
+		 * API name: {@code functions}
+		 * <p>
+		 * Adds a value to <code>functions</code> using a builder lambda.
 		 */
-		public Builder addFunctions(FunctionScore value) {
-			if (this.functions == null) {
-				this.functions = new ArrayList<>();
-			}
-			this.functions.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #functions(List)} to a singleton list.
-		 */
-		public Builder functions(Function<FunctionScore.Builder, ObjectBuilder<FunctionScore>> fn) {
-			return this.functions(fn.apply(new FunctionScore.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #functions(List)}, creating the list if needed.
-		 */
-		public Builder addFunctions(Function<FunctionScore.Builder, ObjectBuilder<FunctionScore>> fn) {
-			return this.addFunctions(fn.apply(new FunctionScore.Builder()).build());
+		public final Builder functions(Function<FunctionScore.Builder, ObjectBuilder<FunctionScore>> fn) {
+			return functions(fn.apply(new FunctionScore.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code max_boost}
 		 */
-		public Builder maxBoost(@Nullable Double value) {
+		public final Builder maxBoost(@Nullable Double value) {
 			this.maxBoost = value;
 			return this;
 		}
@@ -266,7 +251,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 		/**
 		 * API name: {@code min_score}
 		 */
-		public Builder minScore(@Nullable Double value) {
+		public final Builder minScore(@Nullable Double value) {
 			this.minScore = value;
 			return this;
 		}
@@ -274,7 +259,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -282,14 +267,14 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code score_mode}
 		 */
-		public Builder scoreMode(@Nullable FunctionScoreMode value) {
+		public final Builder scoreMode(@Nullable FunctionScoreMode value) {
 			this.scoreMode = value;
 			return this;
 		}
@@ -306,6 +291,7 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 		 *             if some of the required fields are null.
 		 */
 		public FunctionScoreQuery build() {
+			_checkSingleUse();
 
 			return new FunctionScoreQuery(this);
 		}
@@ -317,9 +303,9 @@ public final class FunctionScoreQuery extends QueryBase implements QueryVariant 
 	 * Json deserializer for {@link FunctionScoreQuery}
 	 */
 	public static final JsonpDeserializer<FunctionScoreQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FunctionScoreQuery::setupFunctionScoreQueryDeserializer, Builder::build);
+			.lazy(Builder::new, FunctionScoreQuery::setupFunctionScoreQueryDeserializer);
 
-	protected static void setupFunctionScoreQueryDeserializer(DelegatingDeserializer<FunctionScoreQuery.Builder> op) {
+	protected static void setupFunctionScoreQueryDeserializer(ObjectDeserializer<FunctionScoreQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::boostMode, FunctionBoostMode._DESERIALIZER, "boost_mode");
 		op.add(Builder::functions, JsonpDeserializer.arrayDeserializer(FunctionScore._DESERIALIZER), "functions");

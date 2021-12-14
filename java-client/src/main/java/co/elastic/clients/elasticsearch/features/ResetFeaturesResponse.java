@@ -23,44 +23,49 @@
 
 package co.elastic.clients.elasticsearch.features;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: features.reset_features.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/features/reset_features/ResetFeaturesResponse.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ResetFeaturesResponse implements JsonpSerializable {
+public class ResetFeaturesResponse implements JsonpSerializable {
 	private final List<Feature> features;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResetFeaturesResponse(Builder builder) {
+	private ResetFeaturesResponse(Builder builder) {
 
-		this.features = ModelTypeHelper.unmodifiableNonNull(builder.features, "features");
+		this.features = ApiTypeHelper.unmodifiableRequired(builder.features, this, "features");
 
 	}
 
-	public ResetFeaturesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResetFeaturesResponse of(Function<Builder, ObjectBuilder<ResetFeaturesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code features}
 	 */
-	public List<Feature> features() {
+	public final List<Feature> features() {
 		return this.features;
 	}
 
@@ -75,13 +80,16 @@ public final class ResetFeaturesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("features");
-		generator.writeStartArray();
-		for (Feature item0 : this.features) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.features)) {
+			generator.writeKey("features");
+			generator.writeStartArray();
+			for (Feature item0 : this.features) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,48 +98,37 @@ public final class ResetFeaturesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResetFeaturesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ResetFeaturesResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResetFeaturesResponse> {
 		private List<Feature> features;
 
 		/**
 		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>features</code>.
 		 */
-		public Builder features(List<Feature> value) {
-			this.features = value;
+		public final Builder features(List<Feature> list) {
+			this.features = _listAddAll(this.features, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds one or more values to <code>features</code>.
 		 */
-		public Builder features(Feature... value) {
-			this.features = Arrays.asList(value);
+		public final Builder features(Feature value, Feature... values) {
+			this.features = _listAdd(this.features, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #features(List)}, creating the list if needed.
+		 * Required - API name: {@code features}
+		 * <p>
+		 * Adds a value to <code>features</code> using a builder lambda.
 		 */
-		public Builder addFeatures(Feature value) {
-			if (this.features == null) {
-				this.features = new ArrayList<>();
-			}
-			this.features.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #features(List)} to a singleton list.
-		 */
-		public Builder features(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
-			return this.features(fn.apply(new Feature.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #features(List)}, creating the list if needed.
-		 */
-		public Builder addFeatures(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
-			return this.addFeatures(fn.apply(new Feature.Builder()).build());
+		public final Builder features(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return features(fn.apply(new Feature.Builder()).build());
 		}
 
 		/**
@@ -141,6 +138,7 @@ public final class ResetFeaturesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ResetFeaturesResponse build() {
+			_checkSingleUse();
 
 			return new ResetFeaturesResponse(this);
 		}
@@ -152,10 +150,9 @@ public final class ResetFeaturesResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ResetFeaturesResponse}
 	 */
 	public static final JsonpDeserializer<ResetFeaturesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ResetFeaturesResponse::setupResetFeaturesResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ResetFeaturesResponse::setupResetFeaturesResponseDeserializer);
 
-	protected static void setupResetFeaturesResponseDeserializer(
-			DelegatingDeserializer<ResetFeaturesResponse.Builder> op) {
+	protected static void setupResetFeaturesResponseDeserializer(ObjectDeserializer<ResetFeaturesResponse.Builder> op) {
 
 		op.add(Builder::features, JsonpDeserializer.arrayDeserializer(Feature._DESERIALIZER), "features");
 

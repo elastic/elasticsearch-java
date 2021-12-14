@@ -24,13 +24,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import java.util.EnumSet;
 import java.util.Objects;
+import java.util.function.Consumer;
 
 @JsonpDeserializable
 public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
@@ -40,20 +41,26 @@ public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
 	private final int spanWidth;
 
 	@Override
-	public String _variantType() {
-		return "span_gap";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.SpanGap;
 	}
 
-	public SpanGapQuery(SpanGapQuery.Builder builder) {
+	private SpanGapQuery(SpanGapQuery.Builder builder) {
 		this.field = Objects.requireNonNull(builder.field, "field");
 		this.spanWidth = Objects.requireNonNull(builder.spanWidth, "span_width");
 	}
 
-	public String field() {
+	public static SpanGapQuery of(Consumer<SpanGapQuery.Builder> fn) {
+		Builder builder = new Builder();
+		fn.accept(builder);
+		return builder.build();
+	}
+
+	public final String field() {
 		return this.field;
 	}
 
-	public int spanWidth() {
+	public final int spanWidth() {
 		return this.spanWidth;
 	}
 
@@ -69,23 +76,24 @@ public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link SpanGapQuery}.
 	 */
-	public static class Builder implements ObjectBuilder<SpanGapQuery> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SpanGapQuery> {
 
 		private String field;
 		private Integer spanWidth;
 
-		public SpanGapQuery.Builder field(String value) {
+		public final SpanGapQuery.Builder field(String value) {
 			this.field = value;
 			return this;
 		}
 
-		public SpanGapQuery.Builder spanWidth(int value) {
+		public final SpanGapQuery.Builder spanWidth(int value) {
 			this.spanWidth = value;
 			return this;
 		}
 
 		@Override
 		public SpanGapQuery build() {
+			_checkSingleUse();
 			return new SpanGapQuery(this);
 		}
 	}
@@ -93,11 +101,11 @@ public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link SpanFirstQuery}
+	 * Json deserializer for {@link SpanGapQuery}
 	 */
-	public static final JsonpDeserializer<SpanGapQuery> _DESERIALIZER = ObjectDeserializer
-			.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, mapper, event) -> {
-
+	public static final JsonpDeserializer<SpanGapQuery> _DESERIALIZER = JsonpDeserializer
+			.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, mapper) -> {
+				JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_OBJECT);
 				String name = JsonpUtils.expectKeyName(parser, parser.next());
 
 				JsonpUtils.expectNextEvent(parser, JsonParser.Event.VALUE_NUMBER);

@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,20 +42,29 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_caps.Request
 
-public final class GetRollupCapsRequest extends RequestBase {
+/**
+ * Returns the capabilities of any rollup jobs that have been configured for a
+ * specific index or index pattern.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_rollup_caps/GetRollupCapabilitiesRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class GetRollupCapsRequest extends RequestBase {
 	@Nullable
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRollupCapsRequest(Builder builder) {
+	private GetRollupCapsRequest(Builder builder) {
 
 		this.id = builder.id;
 
 	}
 
-	public GetRollupCapsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRollupCapsRequest of(Function<Builder, ObjectBuilder<GetRollupCapsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +74,7 @@ public final class GetRollupCapsRequest extends RequestBase {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -73,7 +83,8 @@ public final class GetRollupCapsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRollupCapsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetRollupCapsRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRollupCapsRequest> {
 		@Nullable
 		private String id;
 
@@ -83,7 +94,7 @@ public final class GetRollupCapsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -95,6 +106,7 @@ public final class GetRollupCapsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetRollupCapsRequest build() {
+			_checkSingleUse();
 
 			return new GetRollupCapsRequest(this);
 		}
@@ -105,7 +117,9 @@ public final class GetRollupCapsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code rollup.get_rollup_caps}".
 	 */
-	public static final Endpoint<GetRollupCapsRequest, GetRollupCapsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetRollupCapsRequest, GetRollupCapsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.get_rollup_caps",
+
 			// Request method
 			request -> {
 				return "GET";

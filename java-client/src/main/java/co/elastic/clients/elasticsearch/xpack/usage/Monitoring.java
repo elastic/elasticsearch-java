@@ -23,73 +23,81 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Monitoring
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L342-L345">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Monitoring extends Base {
+public class Monitoring extends Base {
 	private final boolean collectionEnabled;
 
 	private final Map<String, Long> enabledExporters;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Monitoring(Builder builder) {
+	private Monitoring(Builder builder) {
 		super(builder);
 
-		this.collectionEnabled = Objects.requireNonNull(builder.collectionEnabled, "collection_enabled");
-		this.enabledExporters = ModelTypeHelper.unmodifiableNonNull(builder.enabledExporters, "enabled_exporters");
+		this.collectionEnabled = ApiTypeHelper.requireNonNull(builder.collectionEnabled, this, "collectionEnabled");
+		this.enabledExporters = ApiTypeHelper.unmodifiableRequired(builder.enabledExporters, this, "enabledExporters");
 
 	}
 
-	public Monitoring(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Monitoring of(Function<Builder, ObjectBuilder<Monitoring>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code collection_enabled}
 	 */
-	public boolean collectionEnabled() {
+	public final boolean collectionEnabled() {
 		return this.collectionEnabled;
 	}
 
 	/**
 	 * Required - API name: {@code enabled_exporters}
 	 */
-	public Map<String, Long> enabledExporters() {
+	public final Map<String, Long> enabledExporters() {
 		return this.enabledExporters;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("collection_enabled");
 		generator.write(this.collectionEnabled);
 
-		generator.writeKey("enabled_exporters");
-		generator.writeStartObject();
-		for (Map.Entry<String, Long> item0 : this.enabledExporters.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ApiTypeHelper.isDefined(this.enabledExporters)) {
+			generator.writeKey("enabled_exporters");
+			generator.writeStartObject();
+			for (Map.Entry<String, Long> item0 : this.enabledExporters.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -98,6 +106,7 @@ public final class Monitoring extends Base {
 	/**
 	 * Builder for {@link Monitoring}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Monitoring> {
 		private Boolean collectionEnabled;
 
@@ -106,28 +115,28 @@ public final class Monitoring extends Base {
 		/**
 		 * Required - API name: {@code collection_enabled}
 		 */
-		public Builder collectionEnabled(boolean value) {
+		public final Builder collectionEnabled(boolean value) {
 			this.collectionEnabled = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code enabled_exporters}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>enabledExporters</code>.
 		 */
-		public Builder enabledExporters(Map<String, Long> value) {
-			this.enabledExporters = value;
+		public final Builder enabledExporters(Map<String, Long> map) {
+			this.enabledExporters = _mapPutAll(this.enabledExporters, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #enabledExporters(Map)}, creating the map if
-		 * needed.
+		 * Required - API name: {@code enabled_exporters}
+		 * <p>
+		 * Adds an entry to <code>enabledExporters</code>.
 		 */
-		public Builder putEnabledExporters(String key, Long value) {
-			if (this.enabledExporters == null) {
-				this.enabledExporters = new HashMap<>();
-			}
-			this.enabledExporters.put(key, value);
+		public final Builder enabledExporters(String key, Long value) {
+			this.enabledExporters = _mapPut(this.enabledExporters, key, value);
 			return this;
 		}
 
@@ -143,6 +152,7 @@ public final class Monitoring extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Monitoring build() {
+			_checkSingleUse();
 
 			return new Monitoring(this);
 		}
@@ -154,9 +164,9 @@ public final class Monitoring extends Base {
 	 * Json deserializer for {@link Monitoring}
 	 */
 	public static final JsonpDeserializer<Monitoring> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Monitoring::setupMonitoringDeserializer, Builder::build);
+			Monitoring::setupMonitoringDeserializer);
 
-	protected static void setupMonitoringDeserializer(DelegatingDeserializer<Monitoring.Builder> op) {
+	protected static void setupMonitoringDeserializer(ObjectDeserializer<Monitoring.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::collectionEnabled, JsonpDeserializer.booleanDeserializer(), "collection_enabled");
 		op.add(Builder::enabledExporters, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.longDeserializer()),

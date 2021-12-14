@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -32,16 +32,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -49,23 +46,29 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.SnapshotInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotInfo.ts#L35-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SnapshotInfo implements JsonpSerializable {
+public class SnapshotInfo implements JsonpSerializable {
 	private final List<String> dataStreams;
 
 	@Nullable
-	private final String duration;
+	private final Time duration;
 
 	@Nullable
 	private final String durationInMillis;
 
 	@Nullable
-	private final String endTime;
+	private final Time endTime;
 
 	@Nullable
 	private final String endTimeInMillis;
 
-	@Nullable
 	private final List<SnapshotShardFailure> failures;
 
 	@Nullable
@@ -73,10 +76,8 @@ public final class SnapshotInfo implements JsonpSerializable {
 
 	private final List<String> indices;
 
-	@Nullable
 	private final Map<String, IndexDetails> indexDetails;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
 	@Nullable
@@ -91,7 +92,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	private final ShardStatistics shards;
 
 	@Nullable
-	private final String startTime;
+	private final Time startTime;
 
 	@Nullable
 	private final String startTimeInMillis;
@@ -107,45 +108,44 @@ public final class SnapshotInfo implements JsonpSerializable {
 	@Nullable
 	private final Long versionId;
 
-	@Nullable
 	private final List<InfoFeatureState> featureStates;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SnapshotInfo(Builder builder) {
+	private SnapshotInfo(Builder builder) {
 
-		this.dataStreams = ModelTypeHelper.unmodifiableNonNull(builder.dataStreams, "data_streams");
+		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 		this.duration = builder.duration;
 		this.durationInMillis = builder.durationInMillis;
 		this.endTime = builder.endTime;
 		this.endTimeInMillis = builder.endTimeInMillis;
-		this.failures = ModelTypeHelper.unmodifiable(builder.failures);
+		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
 		this.includeGlobalState = builder.includeGlobalState;
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.indexDetails = ModelTypeHelper.unmodifiable(builder.indexDetails);
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.indexDetails = ApiTypeHelper.unmodifiable(builder.indexDetails);
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.reason = builder.reason;
 		this.repository = builder.repository;
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 		this.shards = builder.shards;
 		this.startTime = builder.startTime;
 		this.startTimeInMillis = builder.startTimeInMillis;
 		this.state = builder.state;
-		this.uuid = Objects.requireNonNull(builder.uuid, "uuid");
+		this.uuid = ApiTypeHelper.requireNonNull(builder.uuid, this, "uuid");
 		this.version = builder.version;
 		this.versionId = builder.versionId;
-		this.featureStates = ModelTypeHelper.unmodifiable(builder.featureStates);
+		this.featureStates = ApiTypeHelper.unmodifiable(builder.featureStates);
 
 	}
 
-	public SnapshotInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SnapshotInfo of(Function<Builder, ObjectBuilder<SnapshotInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code data_streams}
 	 */
-	public List<String> dataStreams() {
+	public final List<String> dataStreams() {
 		return this.dataStreams;
 	}
 
@@ -153,7 +153,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code duration}
 	 */
 	@Nullable
-	public String duration() {
+	public final Time duration() {
 		return this.duration;
 	}
 
@@ -161,7 +161,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code duration_in_millis}
 	 */
 	@Nullable
-	public String durationInMillis() {
+	public final String durationInMillis() {
 		return this.durationInMillis;
 	}
 
@@ -169,7 +169,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code end_time}
 	 */
 	@Nullable
-	public String endTime() {
+	public final Time endTime() {
 		return this.endTime;
 	}
 
@@ -177,15 +177,14 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code end_time_in_millis}
 	 */
 	@Nullable
-	public String endTimeInMillis() {
+	public final String endTimeInMillis() {
 		return this.endTimeInMillis;
 	}
 
 	/**
 	 * API name: {@code failures}
 	 */
-	@Nullable
-	public List<SnapshotShardFailure> failures() {
+	public final List<SnapshotShardFailure> failures() {
 		return this.failures;
 	}
 
@@ -193,30 +192,28 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code include_global_state}
 	 */
 	@Nullable
-	public Boolean includeGlobalState() {
+	public final Boolean includeGlobalState() {
 		return this.includeGlobalState;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<String> indices() {
+	public final List<String> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * API name: {@code index_details}
 	 */
-	@Nullable
-	public Map<String, IndexDetails> indexDetails() {
+	public final Map<String, IndexDetails> indexDetails() {
 		return this.indexDetails;
 	}
 
 	/**
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -224,7 +221,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code reason}
 	 */
 	@Nullable
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
@@ -232,14 +229,14 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code repository}
 	 */
 	@Nullable
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
 	/**
 	 * Required - API name: {@code snapshot}
 	 */
-	public String snapshot() {
+	public final String snapshot() {
 		return this.snapshot;
 	}
 
@@ -247,7 +244,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code shards}
 	 */
 	@Nullable
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
@@ -255,7 +252,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code start_time}
 	 */
 	@Nullable
-	public String startTime() {
+	public final Time startTime() {
 		return this.startTime;
 	}
 
@@ -263,7 +260,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code start_time_in_millis}
 	 */
 	@Nullable
-	public String startTimeInMillis() {
+	public final String startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -271,14 +268,14 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code state}
 	 */
 	@Nullable
-	public String state() {
+	public final String state() {
 		return this.state;
 	}
 
 	/**
 	 * Required - API name: {@code uuid}
 	 */
-	public String uuid() {
+	public final String uuid() {
 		return this.uuid;
 	}
 
@@ -286,7 +283,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -294,15 +291,14 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code version_id}
 	 */
 	@Nullable
-	public Long versionId() {
+	public final Long versionId() {
 		return this.versionId;
 	}
 
 	/**
 	 * API name: {@code feature_states}
 	 */
-	@Nullable
-	public List<InfoFeatureState> featureStates() {
+	public final List<InfoFeatureState> featureStates() {
 		return this.featureStates;
 	}
 
@@ -317,40 +313,37 @@ public final class SnapshotInfo implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("data_streams");
-		generator.writeStartArray();
-		for (String item0 : this.dataStreams) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.dataStreams)) {
+			generator.writeKey("data_streams");
+			generator.writeStartArray();
+			for (String item0 : this.dataStreams) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.duration != null) {
-
 			generator.writeKey("duration");
-			generator.write(this.duration);
+			this.duration.serialize(generator, mapper);
 
 		}
 		if (this.durationInMillis != null) {
-
 			generator.writeKey("duration_in_millis");
 			generator.write(this.durationInMillis);
 
 		}
 		if (this.endTime != null) {
-
 			generator.writeKey("end_time");
-			generator.write(this.endTime);
+			this.endTime.serialize(generator, mapper);
 
 		}
 		if (this.endTimeInMillis != null) {
-
 			generator.writeKey("end_time_in_millis");
 			generator.write(this.endTimeInMillis);
 
 		}
-		if (this.failures != null) {
-
+		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
 			generator.writeStartArray();
 			for (SnapshotShardFailure item0 : this.failures) {
@@ -361,22 +354,21 @@ public final class SnapshotInfo implements JsonpSerializable {
 
 		}
 		if (this.includeGlobalState != null) {
-
 			generator.writeKey("include_global_state");
 			generator.write(this.includeGlobalState);
 
 		}
+		if (ApiTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (String item0 : this.indices) {
+				generator.write(item0);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (String item0 : this.indices) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		if (this.indexDetails != null) {
-
+		if (ApiTypeHelper.isDefined(this.indexDetails)) {
 			generator.writeKey("index_details");
 			generator.writeStartObject();
 			for (Map.Entry<String, IndexDetails> item0 : this.indexDetails.entrySet()) {
@@ -387,8 +379,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.metadata != null) {
-
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -400,63 +391,52 @@ public final class SnapshotInfo implements JsonpSerializable {
 
 		}
 		if (this.reason != null) {
-
 			generator.writeKey("reason");
 			generator.write(this.reason);
 
 		}
 		if (this.repository != null) {
-
 			generator.writeKey("repository");
 			generator.write(this.repository);
 
 		}
-
 		generator.writeKey("snapshot");
 		generator.write(this.snapshot);
 
 		if (this.shards != null) {
-
 			generator.writeKey("shards");
 			this.shards.serialize(generator, mapper);
 
 		}
 		if (this.startTime != null) {
-
 			generator.writeKey("start_time");
-			generator.write(this.startTime);
+			this.startTime.serialize(generator, mapper);
 
 		}
 		if (this.startTimeInMillis != null) {
-
 			generator.writeKey("start_time_in_millis");
 			generator.write(this.startTimeInMillis);
 
 		}
 		if (this.state != null) {
-
 			generator.writeKey("state");
 			generator.write(this.state);
 
 		}
-
 		generator.writeKey("uuid");
 		generator.write(this.uuid);
 
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.versionId != null) {
-
 			generator.writeKey("version_id");
 			generator.write(this.versionId);
 
 		}
-		if (this.featureStates != null) {
-
+		if (ApiTypeHelper.isDefined(this.featureStates)) {
 			generator.writeKey("feature_states");
 			generator.writeStartArray();
 			for (InfoFeatureState item0 : this.featureStates) {
@@ -474,17 +454,18 @@ public final class SnapshotInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<SnapshotInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotInfo> {
 		private List<String> dataStreams;
 
 		@Nullable
-		private String duration;
+		private Time duration;
 
 		@Nullable
 		private String durationInMillis;
 
 		@Nullable
-		private String endTime;
+		private Time endTime;
 
 		@Nullable
 		private String endTimeInMillis;
@@ -515,7 +496,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		private ShardStatistics shards;
 
 		@Nullable
-		private String startTime;
+		private Time startTime;
 
 		@Nullable
 		private String startTimeInMillis;
@@ -536,43 +517,43 @@ public final class SnapshotInfo implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataStreams</code>.
 		 */
-		public Builder dataStreams(List<String> value) {
-			this.dataStreams = value;
+		public final Builder dataStreams(List<String> list) {
+			this.dataStreams = _listAddAll(this.dataStreams, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds one or more values to <code>dataStreams</code>.
 		 */
-		public Builder dataStreams(String... value) {
-			this.dataStreams = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
-		 */
-		public Builder addDataStreams(String value) {
-			if (this.dataStreams == null) {
-				this.dataStreams = new ArrayList<>();
-			}
-			this.dataStreams.add(value);
+		public final Builder dataStreams(String value, String... values) {
+			this.dataStreams = _listAdd(this.dataStreams, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code duration}
 		 */
-		public Builder duration(@Nullable String value) {
+		public final Builder duration(@Nullable Time value) {
 			this.duration = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code duration}
+		 */
+		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.duration(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code duration_in_millis}
 		 */
-		public Builder durationInMillis(@Nullable String value) {
+		public final Builder durationInMillis(@Nullable String value) {
 			this.durationInMillis = value;
 			return this;
 		}
@@ -580,151 +561,136 @@ public final class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code end_time}
 		 */
-		public Builder endTime(@Nullable String value) {
+		public final Builder endTime(@Nullable Time value) {
 			this.endTime = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code end_time}
+		 */
+		public final Builder endTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.endTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code end_time_in_millis}
 		 */
-		public Builder endTimeInMillis(@Nullable String value) {
+		public final Builder endTimeInMillis(@Nullable String value) {
 			this.endTimeInMillis = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>failures</code>.
 		 */
-		public Builder failures(@Nullable List<SnapshotShardFailure> value) {
-			this.failures = value;
+		public final Builder failures(List<SnapshotShardFailure> list) {
+			this.failures = _listAddAll(this.failures, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code failures}
+		 * <p>
+		 * Adds one or more values to <code>failures</code>.
 		 */
-		public Builder failures(SnapshotShardFailure... value) {
-			this.failures = Arrays.asList(value);
+		public final Builder failures(SnapshotShardFailure value, SnapshotShardFailure... values) {
+			this.failures = _listAdd(this.failures, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
+		 * API name: {@code failures}
+		 * <p>
+		 * Adds a value to <code>failures</code> using a builder lambda.
 		 */
-		public Builder addFailures(SnapshotShardFailure value) {
-			if (this.failures == null) {
-				this.failures = new ArrayList<>();
-			}
-			this.failures.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #failures(List)} to a singleton list.
-		 */
-		public Builder failures(Function<SnapshotShardFailure.Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
-			return this.failures(fn.apply(new SnapshotShardFailure.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #failures(List)}, creating the list if needed.
-		 */
-		public Builder addFailures(Function<SnapshotShardFailure.Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
-			return this.addFailures(fn.apply(new SnapshotShardFailure.Builder()).build());
+		public final Builder failures(Function<SnapshotShardFailure.Builder, ObjectBuilder<SnapshotShardFailure>> fn) {
+			return failures(fn.apply(new SnapshotShardFailure.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code include_global_state}
 		 */
-		public Builder includeGlobalState(@Nullable Boolean value) {
+		public final Builder includeGlobalState(@Nullable Boolean value) {
 			this.includeGlobalState = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public Builder indices(List<String> value) {
-			this.indices = value;
+		public final Builder indices(List<String> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public Builder indices(String... value) {
-			this.indices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(String value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
+		public final Builder indices(String value, String... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code index_details}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indexDetails</code>.
 		 */
-		public Builder indexDetails(@Nullable Map<String, IndexDetails> value) {
-			this.indexDetails = value;
+		public final Builder indexDetails(Map<String, IndexDetails> map) {
+			this.indexDetails = _mapPutAll(this.indexDetails, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #indexDetails(Map)}, creating the map if needed.
+		 * API name: {@code index_details}
+		 * <p>
+		 * Adds an entry to <code>indexDetails</code>.
 		 */
-		public Builder putIndexDetails(String key, IndexDetails value) {
-			if (this.indexDetails == null) {
-				this.indexDetails = new HashMap<>();
-			}
-			this.indexDetails.put(key, value);
+		public final Builder indexDetails(String key, IndexDetails value) {
+			this.indexDetails = _mapPut(this.indexDetails, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #indexDetails(Map)} to a singleton map.
+		 * API name: {@code index_details}
+		 * <p>
+		 * Adds an entry to <code>indexDetails</code> using a builder lambda.
 		 */
-		public Builder indexDetails(String key, Function<IndexDetails.Builder, ObjectBuilder<IndexDetails>> fn) {
-			return this.indexDetails(Collections.singletonMap(key, fn.apply(new IndexDetails.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #indexDetails(Map)}, creating the map if needed.
-		 */
-		public Builder putIndexDetails(String key, Function<IndexDetails.Builder, ObjectBuilder<IndexDetails>> fn) {
-			return this.putIndexDetails(key, fn.apply(new IndexDetails.Builder()).build());
+		public final Builder indexDetails(String key, Function<IndexDetails.Builder, ObjectBuilder<IndexDetails>> fn) {
+			return indexDetails(key, fn.apply(new IndexDetails.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
 		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code reason}
 		 */
-		public Builder reason(@Nullable String value) {
+		public final Builder reason(@Nullable String value) {
 			this.reason = value;
 			return this;
 		}
@@ -732,7 +698,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code repository}
 		 */
-		public Builder repository(@Nullable String value) {
+		public final Builder repository(@Nullable String value) {
 			this.repository = value;
 			return this;
 		}
@@ -740,7 +706,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code snapshot}
 		 */
-		public Builder snapshot(String value) {
+		public final Builder snapshot(String value) {
 			this.snapshot = value;
 			return this;
 		}
@@ -748,7 +714,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code shards}
 		 */
-		public Builder shards(@Nullable ShardStatistics value) {
+		public final Builder shards(@Nullable ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -756,22 +722,29 @@ public final class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code start_time}
 		 */
-		public Builder startTime(@Nullable String value) {
+		public final Builder startTime(@Nullable Time value) {
 			this.startTime = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code start_time}
+		 */
+		public final Builder startTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.startTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public Builder startTimeInMillis(@Nullable String value) {
+		public final Builder startTimeInMillis(@Nullable String value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -779,7 +752,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code state}
 		 */
-		public Builder state(@Nullable String value) {
+		public final Builder state(@Nullable String value) {
 			this.state = value;
 			return this;
 		}
@@ -787,7 +760,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code uuid}
 		 */
-		public Builder uuid(String value) {
+		public final Builder uuid(String value) {
 			this.uuid = value;
 			return this;
 		}
@@ -795,7 +768,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -803,50 +776,38 @@ public final class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code version_id}
 		 */
-		public Builder versionId(@Nullable Long value) {
+		public final Builder versionId(@Nullable Long value) {
 			this.versionId = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureStates</code>.
 		 */
-		public Builder featureStates(@Nullable List<InfoFeatureState> value) {
-			this.featureStates = value;
+		public final Builder featureStates(List<InfoFeatureState> list) {
+			this.featureStates = _listAddAll(this.featureStates, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds one or more values to <code>featureStates</code>.
 		 */
-		public Builder featureStates(InfoFeatureState... value) {
-			this.featureStates = Arrays.asList(value);
+		public final Builder featureStates(InfoFeatureState value, InfoFeatureState... values) {
+			this.featureStates = _listAdd(this.featureStates, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
+		 * API name: {@code feature_states}
+		 * <p>
+		 * Adds a value to <code>featureStates</code> using a builder lambda.
 		 */
-		public Builder addFeatureStates(InfoFeatureState value) {
-			if (this.featureStates == null) {
-				this.featureStates = new ArrayList<>();
-			}
-			this.featureStates.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #featureStates(List)} to a singleton list.
-		 */
-		public Builder featureStates(Function<InfoFeatureState.Builder, ObjectBuilder<InfoFeatureState>> fn) {
-			return this.featureStates(fn.apply(new InfoFeatureState.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #featureStates(List)}, creating the list if needed.
-		 */
-		public Builder addFeatureStates(Function<InfoFeatureState.Builder, ObjectBuilder<InfoFeatureState>> fn) {
-			return this.addFeatureStates(fn.apply(new InfoFeatureState.Builder()).build());
+		public final Builder featureStates(Function<InfoFeatureState.Builder, ObjectBuilder<InfoFeatureState>> fn) {
+			return featureStates(fn.apply(new InfoFeatureState.Builder()).build());
 		}
 
 		/**
@@ -856,6 +817,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SnapshotInfo build() {
+			_checkSingleUse();
 
 			return new SnapshotInfo(this);
 		}
@@ -867,15 +829,15 @@ public final class SnapshotInfo implements JsonpSerializable {
 	 * Json deserializer for {@link SnapshotInfo}
 	 */
 	public static final JsonpDeserializer<SnapshotInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SnapshotInfo::setupSnapshotInfoDeserializer, Builder::build);
+			SnapshotInfo::setupSnapshotInfoDeserializer);
 
-	protected static void setupSnapshotInfoDeserializer(DelegatingDeserializer<SnapshotInfo.Builder> op) {
+	protected static void setupSnapshotInfoDeserializer(ObjectDeserializer<SnapshotInfo.Builder> op) {
 
 		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"data_streams");
-		op.add(Builder::duration, JsonpDeserializer.stringDeserializer(), "duration");
+		op.add(Builder::duration, Time._DESERIALIZER, "duration");
 		op.add(Builder::durationInMillis, JsonpDeserializer.stringDeserializer(), "duration_in_millis");
-		op.add(Builder::endTime, JsonpDeserializer.stringDeserializer(), "end_time");
+		op.add(Builder::endTime, Time._DESERIALIZER, "end_time");
 		op.add(Builder::endTimeInMillis, JsonpDeserializer.stringDeserializer(), "end_time_in_millis");
 		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(SnapshotShardFailure._DESERIALIZER), "failures");
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
@@ -888,7 +850,7 @@ public final class SnapshotInfo implements JsonpSerializable {
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
 		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "shards");
-		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time");
+		op.add(Builder::startTime, Time._DESERIALIZER, "start_time");
 		op.add(Builder::startTimeInMillis, JsonpDeserializer.stringDeserializer(), "start_time_in_millis");
 		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
 		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");

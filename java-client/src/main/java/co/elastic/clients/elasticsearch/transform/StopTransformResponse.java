@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: transform.stop_transform.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/stop_transform/StopTransformResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StopTransformResponse extends AcknowledgedResponseBase {
+public class StopTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public StopTransformResponse(Builder builder) {
+	private StopTransformResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public StopTransformResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopTransformResponse of(Function<Builder, ObjectBuilder<StopTransformResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class StopTransformResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link StopTransformResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StopTransformResponse> {
@@ -68,6 +75,7 @@ public final class StopTransformResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public StopTransformResponse build() {
+			_checkSingleUse();
 
 			return new StopTransformResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class StopTransformResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link StopTransformResponse}
 	 */
 	public static final JsonpDeserializer<StopTransformResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StopTransformResponse::setupStopTransformResponseDeserializer, Builder::build);
+			.lazy(Builder::new, StopTransformResponse::setupStopTransformResponseDeserializer);
 
-	protected static void setupStopTransformResponseDeserializer(
-			DelegatingDeserializer<StopTransformResponse.Builder> op) {
+	protected static void setupStopTransformResponseDeserializer(ObjectDeserializer<StopTransformResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

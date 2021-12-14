@@ -23,22 +23,22 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.BooleanEndpoint;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.BooleanEndpoint;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -49,39 +49,35 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.post_voting_config_exclusions.Request
 
-public final class PostVotingConfigExclusionsRequest extends RequestBase {
-	@Nullable
+/**
+ * Updates the cluster voting config exclusions by node ids or node names.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/post_voting_config_exclusions/ClusterPostVotingConfigExclusionsRequest.ts#L24-L50">API
+ *      specification</a>
+ */
+
+public class PostVotingConfigExclusionsRequest extends RequestBase {
+	private final List<String> nodeIds;
+
 	private final List<String> nodeNames;
 
 	@Nullable
-	private final List<String> nodeIds;
-
-	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PostVotingConfigExclusionsRequest(Builder builder) {
+	private PostVotingConfigExclusionsRequest(Builder builder) {
 
-		this.nodeNames = ModelTypeHelper.unmodifiable(builder.nodeNames);
-		this.nodeIds = ModelTypeHelper.unmodifiable(builder.nodeIds);
+		this.nodeIds = ApiTypeHelper.unmodifiable(builder.nodeIds);
+		this.nodeNames = ApiTypeHelper.unmodifiable(builder.nodeNames);
 		this.timeout = builder.timeout;
 
 	}
 
-	public PostVotingConfigExclusionsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of the names of the nodes to exclude from the voting
-	 * configuration. If specified, you may not also specify node_ids.
-	 * <p>
-	 * API name: {@code node_names}
-	 */
-	@Nullable
-	public List<String> nodeNames() {
-		return this.nodeNames;
+	public static PostVotingConfigExclusionsRequest of(
+			Function<Builder, ObjectBuilder<PostVotingConfigExclusionsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -90,9 +86,18 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code node_ids}
 	 */
-	@Nullable
-	public List<String> nodeIds() {
+	public final List<String> nodeIds() {
 		return this.nodeIds;
+	}
+
+	/**
+	 * A comma-separated list of the names of the nodes to exclude from the voting
+	 * configuration. If specified, you may not also specify node_ids.
+	 * <p>
+	 * API name: {@code node_names}
+	 */
+	public final List<String> nodeNames() {
+		return this.nodeNames;
 	}
 
 	/**
@@ -104,7 +109,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -113,46 +118,27 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Builder for {@link PostVotingConfigExclusionsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PostVotingConfigExclusionsRequest> {
-		@Nullable
-		private List<String> nodeNames;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostVotingConfigExclusionsRequest> {
 		@Nullable
 		private List<String> nodeIds;
 
 		@Nullable
-		private String timeout;
+		private List<String> nodeNames;
+
+		@Nullable
+		private Time timeout;
 
 		/**
-		 * A comma-separated list of the names of the nodes to exclude from the voting
-		 * configuration. If specified, you may not also specify node_ids.
+		 * A comma-separated list of the persistent ids of the nodes to exclude from the
+		 * voting configuration. If specified, you may not also specify node_names.
 		 * <p>
-		 * API name: {@code node_names}
-		 */
-		public Builder nodeNames(@Nullable List<String> value) {
-			this.nodeNames = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of the names of the nodes to exclude from the voting
-		 * configuration. If specified, you may not also specify node_ids.
+		 * API name: {@code node_ids}
 		 * <p>
-		 * API name: {@code node_names}
+		 * Adds all elements of <code>list</code> to <code>nodeIds</code>.
 		 */
-		public Builder nodeNames(String... value) {
-			this.nodeNames = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeNames(List)}, creating the list if needed.
-		 */
-		public Builder addNodeNames(String value) {
-			if (this.nodeNames == null) {
-				this.nodeNames = new ArrayList<>();
-			}
-			this.nodeNames.add(value);
+		public final Builder nodeIds(List<String> list) {
+			this.nodeIds = _listAddAll(this.nodeIds, list);
 			return this;
 		}
 
@@ -161,31 +147,37 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 		 * voting configuration. If specified, you may not also specify node_names.
 		 * <p>
 		 * API name: {@code node_ids}
-		 */
-		public Builder nodeIds(@Nullable List<String> value) {
-			this.nodeIds = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of the persistent ids of the nodes to exclude from the
-		 * voting configuration. If specified, you may not also specify node_names.
 		 * <p>
-		 * API name: {@code node_ids}
+		 * Adds one or more values to <code>nodeIds</code>.
 		 */
-		public Builder nodeIds(String... value) {
-			this.nodeIds = Arrays.asList(value);
+		public final Builder nodeIds(String value, String... values) {
+			this.nodeIds = _listAdd(this.nodeIds, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #nodeIds(List)}, creating the list if needed.
+		 * A comma-separated list of the names of the nodes to exclude from the voting
+		 * configuration. If specified, you may not also specify node_ids.
+		 * <p>
+		 * API name: {@code node_names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeNames</code>.
 		 */
-		public Builder addNodeIds(String value) {
-			if (this.nodeIds == null) {
-				this.nodeIds = new ArrayList<>();
-			}
-			this.nodeIds.add(value);
+		public final Builder nodeNames(List<String> list) {
+			this.nodeNames = _listAddAll(this.nodeNames, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of the names of the nodes to exclude from the voting
+		 * configuration. If specified, you may not also specify node_ids.
+		 * <p>
+		 * API name: {@code node_names}
+		 * <p>
+		 * Adds one or more values to <code>nodeNames</code>.
+		 */
+		public final Builder nodeNames(String value, String... values) {
+			this.nodeNames = _listAdd(this.nodeNames, value, values);
 			return this;
 		}
 
@@ -197,9 +189,21 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * When adding a voting configuration exclusion, the API waits for the specified
+		 * nodes to be excluded from the voting configuration before returning. If the
+		 * timeout expires before the appropriate condition is satisfied, the request
+		 * fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -209,6 +213,7 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public PostVotingConfigExclusionsRequest build() {
+			_checkSingleUse();
 
 			return new PostVotingConfigExclusionsRequest(this);
 		}
@@ -219,7 +224,9 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.post_voting_config_exclusions}".
 	 */
-	public static final Endpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<PostVotingConfigExclusionsRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/cluster.post_voting_config_exclusions",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -235,14 +242,14 @@ public final class PostVotingConfigExclusionsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.nodeNames != null) {
+				if (ApiTypeHelper.isDefined(request.nodeNames)) {
 					params.put("node_names", request.nodeNames.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.nodeIds != null) {
+				if (ApiTypeHelper.isDefined(request.nodeIds)) {
 					params.put("node_ids", request.nodeIds.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

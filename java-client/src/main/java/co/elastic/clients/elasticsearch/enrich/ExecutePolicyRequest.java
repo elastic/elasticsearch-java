@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,15 @@ import javax.annotation.Nullable;
 
 // typedef: enrich.execute_policy.Request
 
-public final class ExecutePolicyRequest extends RequestBase {
+/**
+ * Creates the enrich index for an existing enrich policy.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/execute_policy/ExecuteEnrichPolicyRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
+public class ExecutePolicyRequest extends RequestBase {
 	private final String name;
 
 	@Nullable
@@ -51,15 +61,15 @@ public final class ExecutePolicyRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecutePolicyRequest(Builder builder) {
+	private ExecutePolicyRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public ExecutePolicyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecutePolicyRequest of(Function<Builder, ObjectBuilder<ExecutePolicyRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +77,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -77,7 +87,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -86,7 +96,8 @@ public final class ExecutePolicyRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExecutePolicyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecutePolicyRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutePolicyRequest> {
 		private String name;
 
 		@Nullable
@@ -97,7 +108,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -107,7 +118,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -119,6 +130,7 @@ public final class ExecutePolicyRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ExecutePolicyRequest build() {
+			_checkSingleUse();
 
 			return new ExecutePolicyRequest(this);
 		}
@@ -129,7 +141,9 @@ public final class ExecutePolicyRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code enrich.execute_policy}".
 	 */
-	public static final Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/enrich.execute_policy",
+
 			// Request method
 			request -> {
 				return "PUT";

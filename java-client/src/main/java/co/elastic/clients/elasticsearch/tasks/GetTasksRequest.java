@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.tasks;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,27 +46,35 @@ import javax.annotation.Nullable;
 
 // typedef: tasks.get.Request
 
-public final class GetTasksRequest extends RequestBase {
+/**
+ * Returns information about a task.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/get/GetTaskRequest.ts#L24-L37">API
+ *      specification</a>
+ */
+
+public class GetTasksRequest extends RequestBase {
 	private final String taskId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final Boolean waitForCompletion;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTasksRequest(Builder builder) {
+	private GetTasksRequest(Builder builder) {
 
-		this.taskId = Objects.requireNonNull(builder.taskId, "task_id");
+		this.taskId = ApiTypeHelper.requireNonNull(builder.taskId, this, "taskId");
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public GetTasksRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetTasksRequest of(Function<Builder, ObjectBuilder<GetTasksRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +82,7 @@ public final class GetTasksRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code task_id}
 	 */
-	public String taskId() {
+	public final String taskId() {
 		return this.taskId;
 	}
 
@@ -81,7 +92,7 @@ public final class GetTasksRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -91,7 +102,7 @@ public final class GetTasksRequest extends RequestBase {
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -100,11 +111,12 @@ public final class GetTasksRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTasksRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetTasksRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTasksRequest> {
 		private String taskId;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private Boolean waitForCompletion;
@@ -114,7 +126,7 @@ public final class GetTasksRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code task_id}
 		 */
-		public Builder taskId(String value) {
+		public final Builder taskId(String value) {
 			this.taskId = value;
 			return this;
 		}
@@ -124,9 +136,18 @@ public final class GetTasksRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -134,7 +155,7 @@ public final class GetTasksRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -146,6 +167,7 @@ public final class GetTasksRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetTasksRequest build() {
+			_checkSingleUse();
 
 			return new GetTasksRequest(this);
 		}
@@ -156,7 +178,9 @@ public final class GetTasksRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code tasks.get}".
 	 */
-	public static final Endpoint<GetTasksRequest, GetTasksResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTasksRequest, GetTasksResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/tasks.get",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -185,11 +209,11 @@ public final class GetTasksRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
-				}
 				if (request.waitForCompletion != null) {
 					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.MinAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L94-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MinAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class MinAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MinAggregation(Builder builder) {
+	private MinAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public MinAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MinAggregation of(Function<Builder, ObjectBuilder<MinAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "min";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Min;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class MinAggregation extends FormatMetricAggregationBase implements
 	/**
 	 * Builder for {@link MinAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MinAggregation> {
@@ -75,6 +82,7 @@ public final class MinAggregation extends FormatMetricAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public MinAggregation build() {
+			_checkSingleUse();
 
 			return new MinAggregation(this);
 		}
@@ -86,9 +94,9 @@ public final class MinAggregation extends FormatMetricAggregationBase implements
 	 * Json deserializer for {@link MinAggregation}
 	 */
 	public static final JsonpDeserializer<MinAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MinAggregation::setupMinAggregationDeserializer, Builder::build);
+			MinAggregation::setupMinAggregationDeserializer);
 
-	protected static void setupMinAggregationDeserializer(DelegatingDeserializer<MinAggregation.Builder> op) {
+	protected static void setupMinAggregationDeserializer(ObjectDeserializer<MinAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 
 	}

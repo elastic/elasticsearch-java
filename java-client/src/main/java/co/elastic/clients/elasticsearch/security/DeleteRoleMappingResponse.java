@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.delete_role_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_role_mapping/SecurityDeleteRoleMappingResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteRoleMappingResponse implements JsonpSerializable {
+public class DeleteRoleMappingResponse implements JsonpSerializable {
 	private final boolean found;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteRoleMappingResponse(Builder builder) {
+	private DeleteRoleMappingResponse(Builder builder) {
 
-		this.found = Objects.requireNonNull(builder.found, "found");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
 
 	}
 
-	public DeleteRoleMappingResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteRoleMappingResponse of(Function<Builder, ObjectBuilder<DeleteRoleMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code found}
 	 */
-	public boolean found() {
+	public final boolean found() {
 		return this.found;
 	}
 
@@ -81,13 +89,14 @@ public final class DeleteRoleMappingResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DeleteRoleMappingResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteRoleMappingResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteRoleMappingResponse> {
 		private Boolean found;
 
 		/**
 		 * Required - API name: {@code found}
 		 */
-		public Builder found(boolean value) {
+		public final Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class DeleteRoleMappingResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteRoleMappingResponse build() {
+			_checkSingleUse();
 
 			return new DeleteRoleMappingResponse(this);
 		}
@@ -110,10 +120,10 @@ public final class DeleteRoleMappingResponse implements JsonpSerializable {
 	 * Json deserializer for {@link DeleteRoleMappingResponse}
 	 */
 	public static final JsonpDeserializer<DeleteRoleMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteRoleMappingResponse::setupDeleteRoleMappingResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteRoleMappingResponse::setupDeleteRoleMappingResponseDeserializer);
 
 	protected static void setupDeleteRoleMappingResponseDeserializer(
-			DelegatingDeserializer<DeleteRoleMappingResponse.Builder> op) {
+			ObjectDeserializer<DeleteRoleMappingResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 

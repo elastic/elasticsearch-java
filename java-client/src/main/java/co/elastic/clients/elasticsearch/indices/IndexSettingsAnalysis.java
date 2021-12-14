@@ -27,83 +27,92 @@ import co.elastic.clients.elasticsearch._types.analysis.Analyzer;
 import co.elastic.clients.elasticsearch._types.analysis.CharFilter;
 import co.elastic.clients.elasticsearch._types.analysis.Normalizer;
 import co.elastic.clients.elasticsearch._types.analysis.TokenFilter;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.analysis.Tokenizer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexSettingsAnalysis
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexSettings.ts#L297-L303">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexSettingsAnalysis implements JsonpSerializable {
-	@Nullable
+public class IndexSettingsAnalysis implements JsonpSerializable {
 	private final Map<String, Analyzer> analyzer;
 
-	@Nullable
 	private final Map<String, CharFilter> charFilter;
 
-	@Nullable
 	private final Map<String, TokenFilter> filter;
 
-	@Nullable
 	private final Map<String, Normalizer> normalizer;
+
+	private final Map<String, Tokenizer> tokenizer;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexSettingsAnalysis(Builder builder) {
+	private IndexSettingsAnalysis(Builder builder) {
 
-		this.analyzer = ModelTypeHelper.unmodifiable(builder.analyzer);
-		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
-		this.normalizer = ModelTypeHelper.unmodifiable(builder.normalizer);
+		this.analyzer = ApiTypeHelper.unmodifiable(builder.analyzer);
+		this.charFilter = ApiTypeHelper.unmodifiable(builder.charFilter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
+		this.normalizer = ApiTypeHelper.unmodifiable(builder.normalizer);
+		this.tokenizer = ApiTypeHelper.unmodifiable(builder.tokenizer);
 
 	}
 
-	public IndexSettingsAnalysis(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexSettingsAnalysis of(Function<Builder, ObjectBuilder<IndexSettingsAnalysis>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code analyzer}
 	 */
-	@Nullable
-	public Map<String, Analyzer> analyzer() {
+	public final Map<String, Analyzer> analyzer() {
 		return this.analyzer;
 	}
 
 	/**
 	 * API name: {@code char_filter}
 	 */
-	@Nullable
-	public Map<String, CharFilter> charFilter() {
+	public final Map<String, CharFilter> charFilter() {
 		return this.charFilter;
 	}
 
 	/**
 	 * API name: {@code filter}
 	 */
-	@Nullable
-	public Map<String, TokenFilter> filter() {
+	public final Map<String, TokenFilter> filter() {
 		return this.filter;
 	}
 
 	/**
 	 * API name: {@code normalizer}
 	 */
-	@Nullable
-	public Map<String, Normalizer> normalizer() {
+	public final Map<String, Normalizer> normalizer() {
 		return this.normalizer;
+	}
+
+	/**
+	 * API name: {@code tokenizer}
+	 */
+	public final Map<String, Tokenizer> tokenizer() {
+		return this.tokenizer;
 	}
 
 	/**
@@ -117,8 +126,7 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.analyzer != null) {
-
+		if (ApiTypeHelper.isDefined(this.analyzer)) {
 			generator.writeKey("analyzer");
 			generator.writeStartObject();
 			for (Map.Entry<String, Analyzer> item0 : this.analyzer.entrySet()) {
@@ -129,8 +137,7 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.charFilter != null) {
-
+		if (ApiTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartObject();
 			for (Map.Entry<String, CharFilter> item0 : this.charFilter.entrySet()) {
@@ -141,8 +148,7 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.filter != null) {
-
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartObject();
 			for (Map.Entry<String, TokenFilter> item0 : this.filter.entrySet()) {
@@ -153,11 +159,21 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.normalizer != null) {
-
+		if (ApiTypeHelper.isDefined(this.normalizer)) {
 			generator.writeKey("normalizer");
 			generator.writeStartObject();
 			for (Map.Entry<String, Normalizer> item0 : this.normalizer.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.tokenizer)) {
+			generator.writeKey("tokenizer");
+			generator.writeStartObject();
+			for (Map.Entry<String, Tokenizer> item0 : this.tokenizer.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -173,7 +189,8 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexSettingsAnalysis}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexSettingsAnalysis> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingsAnalysis> {
 		@Nullable
 		private Map<String, Analyzer> analyzer;
 
@@ -186,136 +203,152 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 		@Nullable
 		private Map<String, Normalizer> normalizer;
 
+		@Nullable
+		private Map<String, Tokenizer> tokenizer;
+
 		/**
 		 * API name: {@code analyzer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>analyzer</code>.
 		 */
-		public Builder analyzer(@Nullable Map<String, Analyzer> value) {
-			this.analyzer = value;
+		public final Builder analyzer(Map<String, Analyzer> map) {
+			this.analyzer = _mapPutAll(this.analyzer, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #analyzer(Map)}, creating the map if needed.
+		 * API name: {@code analyzer}
+		 * <p>
+		 * Adds an entry to <code>analyzer</code>.
 		 */
-		public Builder putAnalyzer(String key, Analyzer value) {
-			if (this.analyzer == null) {
-				this.analyzer = new HashMap<>();
-			}
-			this.analyzer.put(key, value);
+		public final Builder analyzer(String key, Analyzer value) {
+			this.analyzer = _mapPut(this.analyzer, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #analyzer(Map)} to a singleton map.
+		 * API name: {@code analyzer}
+		 * <p>
+		 * Adds an entry to <code>analyzer</code> using a builder lambda.
 		 */
-		public Builder analyzer(String key, Function<Analyzer.Builder, ObjectBuilder<Analyzer>> fn) {
-			return this.analyzer(Collections.singletonMap(key, fn.apply(new Analyzer.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #analyzer(Map)}, creating the map if needed.
-		 */
-		public Builder putAnalyzer(String key, Function<Analyzer.Builder, ObjectBuilder<Analyzer>> fn) {
-			return this.putAnalyzer(key, fn.apply(new Analyzer.Builder()).build());
+		public final Builder analyzer(String key, Function<Analyzer.Builder, ObjectBuilder<Analyzer>> fn) {
+			return analyzer(key, fn.apply(new Analyzer.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>charFilter</code>.
 		 */
-		public Builder charFilter(@Nullable Map<String, CharFilter> value) {
-			this.charFilter = value;
+		public final Builder charFilter(Map<String, CharFilter> map) {
+			this.charFilter = _mapPutAll(this.charFilter, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #charFilter(Map)}, creating the map if needed.
+		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds an entry to <code>charFilter</code>.
 		 */
-		public Builder putCharFilter(String key, CharFilter value) {
-			if (this.charFilter == null) {
-				this.charFilter = new HashMap<>();
-			}
-			this.charFilter.put(key, value);
+		public final Builder charFilter(String key, CharFilter value) {
+			this.charFilter = _mapPut(this.charFilter, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #charFilter(Map)} to a singleton map.
+		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds an entry to <code>charFilter</code> using a builder lambda.
 		 */
-		public Builder charFilter(String key, Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
-			return this.charFilter(Collections.singletonMap(key, fn.apply(new CharFilter.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #charFilter(Map)}, creating the map if needed.
-		 */
-		public Builder putCharFilter(String key, Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
-			return this.putCharFilter(key, fn.apply(new CharFilter.Builder()).build());
+		public final Builder charFilter(String key, Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
+			return charFilter(key, fn.apply(new CharFilter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>filter</code>.
 		 */
-		public Builder filter(@Nullable Map<String, TokenFilter> value) {
-			this.filter = value;
+		public final Builder filter(Map<String, TokenFilter> map) {
+			this.filter = _mapPutAll(this.filter, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #filter(Map)}, creating the map if needed.
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds an entry to <code>filter</code>.
 		 */
-		public Builder putFilter(String key, TokenFilter value) {
-			if (this.filter == null) {
-				this.filter = new HashMap<>();
-			}
-			this.filter.put(key, value);
+		public final Builder filter(String key, TokenFilter value) {
+			this.filter = _mapPut(this.filter, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #filter(Map)} to a singleton map.
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds an entry to <code>filter</code> using a builder lambda.
 		 */
-		public Builder filter(String key, Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
-			return this.filter(Collections.singletonMap(key, fn.apply(new TokenFilter.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #filter(Map)}, creating the map if needed.
-		 */
-		public Builder putFilter(String key, Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
-			return this.putFilter(key, fn.apply(new TokenFilter.Builder()).build());
+		public final Builder filter(String key, Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
+			return filter(key, fn.apply(new TokenFilter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code normalizer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>normalizer</code>.
 		 */
-		public Builder normalizer(@Nullable Map<String, Normalizer> value) {
-			this.normalizer = value;
+		public final Builder normalizer(Map<String, Normalizer> map) {
+			this.normalizer = _mapPutAll(this.normalizer, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #normalizer(Map)}, creating the map if needed.
+		 * API name: {@code normalizer}
+		 * <p>
+		 * Adds an entry to <code>normalizer</code>.
 		 */
-		public Builder putNormalizer(String key, Normalizer value) {
-			if (this.normalizer == null) {
-				this.normalizer = new HashMap<>();
-			}
-			this.normalizer.put(key, value);
+		public final Builder normalizer(String key, Normalizer value) {
+			this.normalizer = _mapPut(this.normalizer, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #normalizer(Map)} to a singleton map.
+		 * API name: {@code normalizer}
+		 * <p>
+		 * Adds an entry to <code>normalizer</code> using a builder lambda.
 		 */
-		public Builder normalizer(String key, Function<Normalizer.Builder, ObjectBuilder<Normalizer>> fn) {
-			return this.normalizer(Collections.singletonMap(key, fn.apply(new Normalizer.Builder()).build()));
+		public final Builder normalizer(String key, Function<Normalizer.Builder, ObjectBuilder<Normalizer>> fn) {
+			return normalizer(key, fn.apply(new Normalizer.Builder()).build());
 		}
 
 		/**
-		 * Add a key/value to {@link #normalizer(Map)}, creating the map if needed.
+		 * API name: {@code tokenizer}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>tokenizer</code>.
 		 */
-		public Builder putNormalizer(String key, Function<Normalizer.Builder, ObjectBuilder<Normalizer>> fn) {
-			return this.putNormalizer(key, fn.apply(new Normalizer.Builder()).build());
+		public final Builder tokenizer(Map<String, Tokenizer> map) {
+			this.tokenizer = _mapPutAll(this.tokenizer, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code tokenizer}
+		 * <p>
+		 * Adds an entry to <code>tokenizer</code>.
+		 */
+		public final Builder tokenizer(String key, Tokenizer value) {
+			this.tokenizer = _mapPut(this.tokenizer, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code tokenizer}
+		 * <p>
+		 * Adds an entry to <code>tokenizer</code> using a builder lambda.
+		 */
+		public final Builder tokenizer(String key, Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
+			return tokenizer(key, fn.apply(new Tokenizer.Builder()).build());
 		}
 
 		/**
@@ -325,6 +358,7 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexSettingsAnalysis build() {
+			_checkSingleUse();
 
 			return new IndexSettingsAnalysis(this);
 		}
@@ -336,15 +370,15 @@ public final class IndexSettingsAnalysis implements JsonpSerializable {
 	 * Json deserializer for {@link IndexSettingsAnalysis}
 	 */
 	public static final JsonpDeserializer<IndexSettingsAnalysis> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexSettingsAnalysis::setupIndexSettingsAnalysisDeserializer, Builder::build);
+			.lazy(Builder::new, IndexSettingsAnalysis::setupIndexSettingsAnalysisDeserializer);
 
-	protected static void setupIndexSettingsAnalysisDeserializer(
-			DelegatingDeserializer<IndexSettingsAnalysis.Builder> op) {
+	protected static void setupIndexSettingsAnalysisDeserializer(ObjectDeserializer<IndexSettingsAnalysis.Builder> op) {
 
 		op.add(Builder::analyzer, JsonpDeserializer.stringMapDeserializer(Analyzer._DESERIALIZER), "analyzer");
 		op.add(Builder::charFilter, JsonpDeserializer.stringMapDeserializer(CharFilter._DESERIALIZER), "char_filter");
 		op.add(Builder::filter, JsonpDeserializer.stringMapDeserializer(TokenFilter._DESERIALIZER), "filter");
 		op.add(Builder::normalizer, JsonpDeserializer.stringMapDeserializer(Normalizer._DESERIALIZER), "normalizer");
+		op.add(Builder::tokenizer, JsonpDeserializer.stringMapDeserializer(Tokenizer._DESERIALIZER), "tokenizer");
 
 	}
 

@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -39,36 +40,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: graph._types.VertexInclude
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/_types/Vertex.ts#L39-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class VertexInclude implements JsonpSerializable {
+public class VertexInclude implements JsonpSerializable {
 	private final double boost;
 
 	private final String term;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public VertexInclude(Builder builder) {
+	private VertexInclude(Builder builder) {
 
-		this.boost = Objects.requireNonNull(builder.boost, "boost");
-		this.term = Objects.requireNonNull(builder.term, "term");
+		this.boost = ApiTypeHelper.requireNonNull(builder.boost, this, "boost");
+		this.term = ApiTypeHelper.requireNonNull(builder.term, this, "term");
 
 	}
 
-	public VertexInclude(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static VertexInclude of(Function<Builder, ObjectBuilder<VertexInclude>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code boost}
 	 */
-	public double boost() {
+	public final double boost() {
 		return this.boost;
 	}
 
 	/**
 	 * Required - API name: {@code term}
 	 */
-	public String term() {
+	public final String term() {
 		return this.term;
 	}
 
@@ -96,7 +104,8 @@ public final class VertexInclude implements JsonpSerializable {
 	/**
 	 * Builder for {@link VertexInclude}.
 	 */
-	public static class Builder implements ObjectBuilder<VertexInclude> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VertexInclude> {
 		private Double boost;
 
 		private String term;
@@ -104,7 +113,7 @@ public final class VertexInclude implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code boost}
 		 */
-		public Builder boost(double value) {
+		public final Builder boost(double value) {
 			this.boost = value;
 			return this;
 		}
@@ -112,7 +121,7 @@ public final class VertexInclude implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code term}
 		 */
-		public Builder term(String value) {
+		public final Builder term(String value) {
 			this.term = value;
 			return this;
 		}
@@ -124,6 +133,7 @@ public final class VertexInclude implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public VertexInclude build() {
+			_checkSingleUse();
 
 			return new VertexInclude(this);
 		}
@@ -135,9 +145,9 @@ public final class VertexInclude implements JsonpSerializable {
 	 * Json deserializer for {@link VertexInclude}
 	 */
 	public static final JsonpDeserializer<VertexInclude> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			VertexInclude::setupVertexIncludeDeserializer, Builder::build);
+			VertexInclude::setupVertexIncludeDeserializer);
 
-	protected static void setupVertexIncludeDeserializer(DelegatingDeserializer<VertexInclude.Builder> op) {
+	protected static void setupVertexIncludeDeserializer(ObjectDeserializer<VertexInclude.Builder> op) {
 
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(Builder::term, JsonpDeserializer.stringDeserializer(), "term");

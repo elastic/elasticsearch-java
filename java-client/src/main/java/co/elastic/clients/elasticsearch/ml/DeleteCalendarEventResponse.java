@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.delete_calendar_event.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_calendar_event/MlDeleteCalendarEventResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteCalendarEventResponse extends AcknowledgedResponseBase {
+public class DeleteCalendarEventResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteCalendarEventResponse(Builder builder) {
+	private DeleteCalendarEventResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteCalendarEventResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteCalendarEventResponse of(Function<Builder, ObjectBuilder<DeleteCalendarEventResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteCalendarEventResponse extends AcknowledgedResponseBase 
 	/**
 	 * Builder for {@link DeleteCalendarEventResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteCalendarEventResponse> {
@@ -68,6 +75,7 @@ public final class DeleteCalendarEventResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public DeleteCalendarEventResponse build() {
+			_checkSingleUse();
 
 			return new DeleteCalendarEventResponse(this);
 		}
@@ -78,11 +86,11 @@ public final class DeleteCalendarEventResponse extends AcknowledgedResponseBase 
 	/**
 	 * Json deserializer for {@link DeleteCalendarEventResponse}
 	 */
-	public static final JsonpDeserializer<DeleteCalendarEventResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DeleteCalendarEventResponse::setupDeleteCalendarEventResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<DeleteCalendarEventResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteCalendarEventResponse::setupDeleteCalendarEventResponseDeserializer);
 
 	protected static void setupDeleteCalendarEventResponseDeserializer(
-			DelegatingDeserializer<DeleteCalendarEventResponse.Builder> op) {
+			ObjectDeserializer<DeleteCalendarEventResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

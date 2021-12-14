@@ -23,8 +23,15 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -34,10 +41,20 @@ import javax.annotation.Nullable;
 /**
  * Client for the rollup namespace.
  */
-public class ElasticsearchRollupAsyncClient extends ApiClient {
+public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchRollupAsyncClient> {
 
-	public ElasticsearchRollupAsyncClient(Transport transport) {
-		super(transport);
+	public ElasticsearchRollupAsyncClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchRollupAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchRollupAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchRollupAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: rollup.delete_job
@@ -50,24 +67,28 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteJobResponse> deleteJob(DeleteJobRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteJobRequest.ENDPOINT);
+	public CompletableFuture<DeleteJobResponse> deleteJob(DeleteJobRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse>) DeleteJobRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes an existing rollup job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-delete-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteJobResponse> deleteJob(
-			Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn) throws IOException {
+			Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteJob(fn.apply(new DeleteJobRequest.Builder()).build());
 	}
 
@@ -81,24 +102,28 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetJobsResponse> getJobs(GetJobsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetJobsRequest.ENDPOINT);
+	public CompletableFuture<GetJobsResponse> getJobs(GetJobsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetJobsRequest, GetJobsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetJobsRequest, GetJobsResponse, ErrorResponse>) GetJobsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Retrieves the configuration, stats, and status of rollup jobs.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetJobsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetJobsResponse> getJobs(
-			Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn) throws IOException {
+			Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getJobs(fn.apply(new GetJobsRequest.Builder()).build());
 	}
 
@@ -110,8 +135,9 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetJobsResponse> getJobs() throws IOException {
-		return this.transport.performRequestAsync(new GetJobsRequest.Builder().build(), GetJobsRequest.ENDPOINT);
+	public CompletableFuture<GetJobsResponse> getJobs() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new GetJobsRequest.Builder().build(), GetJobsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: rollup.get_rollup_caps
@@ -125,8 +151,12 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRollupCapsResponse> getRollupCaps(GetRollupCapsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetRollupCapsRequest.ENDPOINT);
+	public CompletableFuture<GetRollupCapsResponse> getRollupCaps(GetRollupCapsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRollupCapsRequest, GetRollupCapsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRollupCapsRequest, GetRollupCapsResponse, ErrorResponse>) GetRollupCapsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -134,16 +164,16 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 * specific index or index pattern.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRollupCapsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-caps.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetRollupCapsResponse> getRollupCaps(
-			Function<GetRollupCapsRequest.Builder, ObjectBuilder<GetRollupCapsRequest>> fn) throws IOException {
+			Function<GetRollupCapsRequest.Builder, ObjectBuilder<GetRollupCapsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getRollupCaps(fn.apply(new GetRollupCapsRequest.Builder()).build());
 	}
 
@@ -156,9 +186,9 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRollupCapsResponse> getRollupCaps() throws IOException {
+	public CompletableFuture<GetRollupCapsResponse> getRollupCaps() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetRollupCapsRequest.Builder().build(),
-				GetRollupCapsRequest.ENDPOINT);
+				GetRollupCapsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: rollup.get_rollup_index_caps
@@ -173,8 +203,11 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetRollupIndexCapsResponse> getRollupIndexCaps(GetRollupIndexCapsRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, GetRollupIndexCapsRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRollupIndexCapsRequest, GetRollupIndexCapsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRollupIndexCapsRequest, GetRollupIndexCapsResponse, ErrorResponse>) GetRollupIndexCapsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -182,9 +215,8 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 * the index where rollup data is stored).
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRollupIndexCapsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-get-rollup-index-caps.html">Documentation
 	 *      on elastic.co</a>
@@ -192,7 +224,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 
 	public final CompletableFuture<GetRollupIndexCapsResponse> getRollupIndexCaps(
 			Function<GetRollupIndexCapsRequest.Builder, ObjectBuilder<GetRollupIndexCapsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getRollupIndexCaps(fn.apply(new GetRollupIndexCapsRequest.Builder()).build());
 	}
 
@@ -206,24 +238,27 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutJobResponse> putJob(PutJobRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PutJobRequest.ENDPOINT);
+	public CompletableFuture<PutJobResponse> putJob(PutJobRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutJobRequest, PutJobResponse, ErrorResponse> endpoint = (JsonEndpoint<PutJobRequest, PutJobResponse, ErrorResponse>) PutJobRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates a rollup job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-put-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutJobResponse> putJob(
-			Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn) throws IOException {
+			Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putJob(fn.apply(new PutJobRequest.Builder()).build());
 	}
 
@@ -237,24 +272,27 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RollupResponse> rollup(RollupRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, RollupRequest.ENDPOINT);
+	public CompletableFuture<RollupResponse> rollup(RollupRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RollupRequest, RollupResponse, ErrorResponse> endpoint = (JsonEndpoint<RollupRequest, RollupResponse, ErrorResponse>) RollupRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Rollup an index
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RollupRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/xpack-rollup.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<RollupResponse> rollup(
-			Function<RollupRequest.Builder, ObjectBuilder<RollupRequest>> fn) throws IOException {
+			Function<RollupRequest.Builder, ObjectBuilder<RollupRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return rollup(fn.apply(new RollupRequest.Builder()).build());
 	}
 
@@ -269,18 +307,21 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 */
 
 	public <TDocument> CompletableFuture<RollupSearchResponse<TDocument>> rollupSearch(RollupSearchRequest request,
-			Class<TDocument> tDocumentClass) throws IOException {
-		return this.transport.performRequestAsync(request,
-				RollupSearchRequest.createRollupSearchEndpoint(getDeserializer(tDocumentClass)));
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse>) RollupSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:rollup.rollup_search.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Enables searching rolled-up data using the standard query DSL.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RollupSearchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-search.html">Documentation
 	 *      on elastic.co</a>
@@ -288,7 +329,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 
 	public final <TDocument> CompletableFuture<RollupSearchResponse<TDocument>> rollupSearch(
 			Function<RollupSearchRequest.Builder, ObjectBuilder<RollupSearchRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return rollupSearch(fn.apply(new RollupSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -302,24 +343,28 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StartJobResponse> startJob(StartJobRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, StartJobRequest.ENDPOINT);
+	public CompletableFuture<StartJobResponse> startJob(StartJobRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StartJobRequest, StartJobResponse, ErrorResponse> endpoint = (JsonEndpoint<StartJobRequest, StartJobResponse, ErrorResponse>) StartJobRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Starts an existing, stopped rollup job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StartJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-start-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StartJobResponse> startJob(
-			Function<StartJobRequest.Builder, ObjectBuilder<StartJobRequest>> fn) throws IOException {
+			Function<StartJobRequest.Builder, ObjectBuilder<StartJobRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return startJob(fn.apply(new StartJobRequest.Builder()).build());
 	}
 
@@ -333,24 +378,28 @@ public class ElasticsearchRollupAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StopJobResponse> stopJob(StopJobRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, StopJobRequest.ENDPOINT);
+	public CompletableFuture<StopJobResponse> stopJob(StopJobRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<StopJobRequest, StopJobResponse, ErrorResponse> endpoint = (JsonEndpoint<StopJobRequest, StopJobResponse, ErrorResponse>) StopJobRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Stops an existing, started rollup job.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link StopJobRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/rollup-stop-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<StopJobResponse> stopJob(
-			Function<StopJobRequest.Builder, ObjectBuilder<StopJobRequest>> fn) throws IOException {
+			Function<StopJobRequest.Builder, ObjectBuilder<StopJobRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return stopJob(fn.apply(new StopJobRequest.Builder()).build());
 	}
 

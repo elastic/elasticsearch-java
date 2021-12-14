@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,35 +37,42 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L317-L320">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StemmerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class StemmerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String language;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StemmerTokenFilter(Builder builder) {
+	private StemmerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.language = Objects.requireNonNull(builder.language, "language");
+		this.language = ApiTypeHelper.requireNonNull(builder.language, this, "language");
 
 	}
 
-	public StemmerTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StemmerTokenFilter of(Function<Builder, ObjectBuilder<StemmerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stemmer";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Stemmer;
 	}
 
 	/**
 	 * Required - API name: {@code language}
 	 */
-	public String language() {
+	public final String language() {
 		return this.language;
 	}
 
@@ -73,7 +80,6 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 
 		generator.write("type", "stemmer");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("language");
 		generator.write(this.language);
 
@@ -84,6 +90,7 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 	/**
 	 * Builder for {@link StemmerTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StemmerTokenFilter> {
@@ -92,7 +99,7 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 		/**
 		 * Required - API name: {@code language}
 		 */
-		public Builder language(String value) {
+		public final Builder language(String value) {
 			this.language = value;
 			return this;
 		}
@@ -109,6 +116,7 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 		 *             if some of the required fields are null.
 		 */
 		public StemmerTokenFilter build() {
+			_checkSingleUse();
 
 			return new StemmerTokenFilter(this);
 		}
@@ -120,9 +128,9 @@ public final class StemmerTokenFilter extends TokenFilterBase implements TokenFi
 	 * Json deserializer for {@link StemmerTokenFilter}
 	 */
 	public static final JsonpDeserializer<StemmerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StemmerTokenFilter::setupStemmerTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, StemmerTokenFilter::setupStemmerTokenFilterDeserializer);
 
-	protected static void setupStemmerTokenFilterDeserializer(DelegatingDeserializer<StemmerTokenFilter.Builder> op) {
+	protected static void setupStemmerTokenFilterDeserializer(ObjectDeserializer<StemmerTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
 

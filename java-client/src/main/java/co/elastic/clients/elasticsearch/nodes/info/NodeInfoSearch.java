@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSearch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L271-L273">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoSearch implements JsonpSerializable {
+public class NodeInfoSearch implements JsonpSerializable {
 	private final NodeInfoSearchRemote remote;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSearch(Builder builder) {
+	private NodeInfoSearch(Builder builder) {
 
-		this.remote = Objects.requireNonNull(builder.remote, "remote");
+		this.remote = ApiTypeHelper.requireNonNull(builder.remote, this, "remote");
 
 	}
 
-	public NodeInfoSearch(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSearch of(Function<Builder, ObjectBuilder<NodeInfoSearch>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code remote}
 	 */
-	public NodeInfoSearchRemote remote() {
+	public final NodeInfoSearchRemote remote() {
 		return this.remote;
 	}
 
@@ -81,13 +89,14 @@ public final class NodeInfoSearch implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoSearch}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSearch> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSearch> {
 		private NodeInfoSearchRemote remote;
 
 		/**
 		 * Required - API name: {@code remote}
 		 */
-		public Builder remote(NodeInfoSearchRemote value) {
+		public final Builder remote(NodeInfoSearchRemote value) {
 			this.remote = value;
 			return this;
 		}
@@ -95,7 +104,7 @@ public final class NodeInfoSearch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code remote}
 		 */
-		public Builder remote(Function<NodeInfoSearchRemote.Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
+		public final Builder remote(Function<NodeInfoSearchRemote.Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
 			return this.remote(fn.apply(new NodeInfoSearchRemote.Builder()).build());
 		}
 
@@ -106,6 +115,7 @@ public final class NodeInfoSearch implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSearch build() {
+			_checkSingleUse();
 
 			return new NodeInfoSearch(this);
 		}
@@ -117,9 +127,9 @@ public final class NodeInfoSearch implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoSearch}
 	 */
 	public static final JsonpDeserializer<NodeInfoSearch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoSearch::setupNodeInfoSearchDeserializer, Builder::build);
+			NodeInfoSearch::setupNodeInfoSearchDeserializer);
 
-	protected static void setupNodeInfoSearchDeserializer(DelegatingDeserializer<NodeInfoSearch.Builder> op) {
+	protected static void setupNodeInfoSearchDeserializer(ObjectDeserializer<NodeInfoSearch.Builder> op) {
 
 		op.add(Builder::remote, NodeInfoSearchRemote._DESERIALIZER, "remote");
 

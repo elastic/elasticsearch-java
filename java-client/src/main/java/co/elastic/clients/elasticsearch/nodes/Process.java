@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Process
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L200-L205">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Process implements JsonpSerializable {
+public class Process implements JsonpSerializable {
 	private final Cpu cpu;
 
 	private final MemoryStats mem;
@@ -51,44 +59,45 @@ public final class Process implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Process(Builder builder) {
+	private Process(Builder builder) {
 
-		this.cpu = Objects.requireNonNull(builder.cpu, "cpu");
-		this.mem = Objects.requireNonNull(builder.mem, "mem");
-		this.openFileDescriptors = Objects.requireNonNull(builder.openFileDescriptors, "open_file_descriptors");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.cpu = ApiTypeHelper.requireNonNull(builder.cpu, this, "cpu");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.openFileDescriptors = ApiTypeHelper.requireNonNull(builder.openFileDescriptors, this,
+				"openFileDescriptors");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public Process(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Process of(Function<Builder, ObjectBuilder<Process>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cpu}
 	 */
-	public Cpu cpu() {
+	public final Cpu cpu() {
 		return this.cpu;
 	}
 
 	/**
 	 * Required - API name: {@code mem}
 	 */
-	public MemoryStats mem() {
+	public final MemoryStats mem() {
 		return this.mem;
 	}
 
 	/**
 	 * Required - API name: {@code open_file_descriptors}
 	 */
-	public int openFileDescriptors() {
+	public final int openFileDescriptors() {
 		return this.openFileDescriptors;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public long timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
 	}
 
@@ -122,7 +131,8 @@ public final class Process implements JsonpSerializable {
 	/**
 	 * Builder for {@link Process}.
 	 */
-	public static class Builder implements ObjectBuilder<Process> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Process> {
 		private Cpu cpu;
 
 		private MemoryStats mem;
@@ -134,7 +144,7 @@ public final class Process implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public Builder cpu(Cpu value) {
+		public final Builder cpu(Cpu value) {
 			this.cpu = value;
 			return this;
 		}
@@ -142,14 +152,14 @@ public final class Process implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code cpu}
 		 */
-		public Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
+		public final Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
 			return this.cpu(fn.apply(new Cpu.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public Builder mem(MemoryStats value) {
+		public final Builder mem(MemoryStats value) {
 			this.mem = value;
 			return this;
 		}
@@ -157,14 +167,14 @@ public final class Process implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public Builder mem(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
+		public final Builder mem(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
 			return this.mem(fn.apply(new MemoryStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code open_file_descriptors}
 		 */
-		public Builder openFileDescriptors(int value) {
+		public final Builder openFileDescriptors(int value) {
 			this.openFileDescriptors = value;
 			return this;
 		}
@@ -172,7 +182,7 @@ public final class Process implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(long value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -184,6 +194,7 @@ public final class Process implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Process build() {
+			_checkSingleUse();
 
 			return new Process(this);
 		}
@@ -195,9 +206,9 @@ public final class Process implements JsonpSerializable {
 	 * Json deserializer for {@link Process}
 	 */
 	public static final JsonpDeserializer<Process> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Process::setupProcessDeserializer, Builder::build);
+			Process::setupProcessDeserializer);
 
-	protected static void setupProcessDeserializer(DelegatingDeserializer<Process.Builder> op) {
+	protected static void setupProcessDeserializer(ObjectDeserializer<Process.Builder> op) {
 
 		op.add(Builder::cpu, Cpu._DESERIALIZER, "cpu");
 		op.add(Builder::mem, MemoryStats._DESERIALIZER, "mem");

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,8 +36,21 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ShapeProperty
+
+/**
+ * The <code>shape</code> data type facilitates the indexing of and searching
+ * with arbitrary <code>x, y</code> cartesian shapes such as rectangles and
+ * polygons.
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/shape.html">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/geo.ts#L69-L81">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class ShapeProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean coerce;
 
@@ -49,11 +61,11 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	private final Boolean ignoreZValue;
 
 	@Nullable
-	private final ShapeOrientation orientation;
+	private final GeoOrientation orientation;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShapeProperty(Builder builder) {
+	private ShapeProperty(Builder builder) {
 		super(builder);
 
 		this.coerce = builder.coerce;
@@ -63,23 +75,23 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 
 	}
 
-	public ShapeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShapeProperty of(Function<Builder, ObjectBuilder<ShapeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "shape";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Shape;
 	}
 
 	/**
 	 * API name: {@code coerce}
 	 */
 	@Nullable
-	public Boolean coerce() {
+	public final Boolean coerce() {
 		return this.coerce;
 	}
 
@@ -87,7 +99,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
-	public Boolean ignoreMalformed() {
+	public final Boolean ignoreMalformed() {
 		return this.ignoreMalformed;
 	}
 
@@ -95,7 +107,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code ignore_z_value}
 	 */
 	@Nullable
-	public Boolean ignoreZValue() {
+	public final Boolean ignoreZValue() {
 		return this.ignoreZValue;
 	}
 
@@ -103,7 +115,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	 * API name: {@code orientation}
 	 */
 	@Nullable
-	public ShapeOrientation orientation() {
+	public final GeoOrientation orientation() {
 		return this.orientation;
 	}
 
@@ -112,25 +124,21 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		generator.write("type", "shape");
 		super.serializeInternal(generator, mapper);
 		if (this.coerce != null) {
-
 			generator.writeKey("coerce");
 			generator.write(this.coerce);
 
 		}
 		if (this.ignoreMalformed != null) {
-
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
 		}
 		if (this.ignoreZValue != null) {
-
 			generator.writeKey("ignore_z_value");
 			generator.write(this.ignoreZValue);
 
 		}
 		if (this.orientation != null) {
-
 			generator.writeKey("orientation");
 			this.orientation.serialize(generator, mapper);
 		}
@@ -142,6 +150,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	/**
 	 * Builder for {@link ShapeProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ShapeProperty> {
@@ -155,12 +164,12 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		private Boolean ignoreZValue;
 
 		@Nullable
-		private ShapeOrientation orientation;
+		private GeoOrientation orientation;
 
 		/**
 		 * API name: {@code coerce}
 		 */
-		public Builder coerce(@Nullable Boolean value) {
+		public final Builder coerce(@Nullable Boolean value) {
 			this.coerce = value;
 			return this;
 		}
@@ -168,7 +177,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
-		public Builder ignoreMalformed(@Nullable Boolean value) {
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
 			return this;
 		}
@@ -176,7 +185,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code ignore_z_value}
 		 */
-		public Builder ignoreZValue(@Nullable Boolean value) {
+		public final Builder ignoreZValue(@Nullable Boolean value) {
 			this.ignoreZValue = value;
 			return this;
 		}
@@ -184,7 +193,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		/**
 		 * API name: {@code orientation}
 		 */
-		public Builder orientation(@Nullable ShapeOrientation value) {
+		public final Builder orientation(@Nullable GeoOrientation value) {
 			this.orientation = value;
 			return this;
 		}
@@ -201,6 +210,7 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 		 *             if some of the required fields are null.
 		 */
 		public ShapeProperty build() {
+			_checkSingleUse();
 
 			return new ShapeProperty(this);
 		}
@@ -212,14 +222,14 @@ public final class ShapeProperty extends DocValuesPropertyBase implements Proper
 	 * Json deserializer for {@link ShapeProperty}
 	 */
 	public static final JsonpDeserializer<ShapeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShapeProperty::setupShapePropertyDeserializer, Builder::build);
+			ShapeProperty::setupShapePropertyDeserializer);
 
-	protected static void setupShapePropertyDeserializer(DelegatingDeserializer<ShapeProperty.Builder> op) {
+	protected static void setupShapePropertyDeserializer(ObjectDeserializer<ShapeProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 		op.add(Builder::ignoreZValue, JsonpDeserializer.booleanDeserializer(), "ignore_z_value");
-		op.add(Builder::orientation, ShapeOrientation._DESERIALIZER, "orientation");
+		op.add(Builder::orientation, GeoOrientation._DESERIALIZER, "orientation");
 
 		op.ignore("type");
 	}

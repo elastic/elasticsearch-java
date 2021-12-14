@@ -23,21 +23,19 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch.cat.thread_pool.ThreadPoolSize;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,24 +46,40 @@ import javax.annotation.Nullable;
 
 // typedef: cat.thread_pool.Request
 
-public final class ThreadPoolRequest extends CatRequestBase {
-	@Nullable
-	private final List<String> threadPoolPatterns;
+/**
+ * Returns cluster-wide thread pool statistics per node. By default the active,
+ * queue and rejected statistics are returned for all thread pools.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/thread_pool/CatThreadPoolRequest.ts#L24-L36">API
+ *      specification</a>
+ */
 
+public class ThreadPoolRequest extends CatRequestBase {
 	@Nullable
-	private final JsonValue /* Union(_types.Size | internal.boolean) */ size;
+	private final ThreadPoolSize size;
+
+	private final List<String> threadPoolPatterns;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ThreadPoolRequest(Builder builder) {
+	private ThreadPoolRequest(Builder builder) {
 
-		this.threadPoolPatterns = ModelTypeHelper.unmodifiable(builder.threadPoolPatterns);
 		this.size = builder.size;
+		this.threadPoolPatterns = ApiTypeHelper.unmodifiable(builder.threadPoolPatterns);
 
 	}
 
-	public ThreadPoolRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ThreadPoolRequest of(Function<Builder, ObjectBuilder<ThreadPoolRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public final ThreadPoolSize size() {
+		return this.size;
 	}
 
 	/**
@@ -74,17 +88,8 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code thread_pool_patterns}
 	 */
-	@Nullable
-	public List<String> threadPoolPatterns() {
+	public final List<String> threadPoolPatterns() {
 		return this.threadPoolPatterns;
-	}
-
-	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public JsonValue /* Union(_types.Size | internal.boolean) */ size() {
-		return this.size;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -92,52 +97,45 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link ThreadPoolRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ThreadPoolRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolRequest> {
+		@Nullable
+		private ThreadPoolSize size;
+
 		@Nullable
 		private List<String> threadPoolPatterns;
-
-		@Nullable
-		private JsonValue /* Union(_types.Size | internal.boolean) */ size;
-
-		/**
-		 * A comma-separated list of regular-expressions to filter the thread pools in
-		 * the output
-		 * <p>
-		 * API name: {@code thread_pool_patterns}
-		 */
-		public Builder threadPoolPatterns(@Nullable List<String> value) {
-			this.threadPoolPatterns = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of regular-expressions to filter the thread pools in
-		 * the output
-		 * <p>
-		 * API name: {@code thread_pool_patterns}
-		 */
-		public Builder threadPoolPatterns(String... value) {
-			this.threadPoolPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #threadPoolPatterns(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addThreadPoolPatterns(String value) {
-			if (this.threadPoolPatterns == null) {
-				this.threadPoolPatterns = new ArrayList<>();
-			}
-			this.threadPoolPatterns.add(value);
-			return this;
-		}
 
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable JsonValue /* Union(_types.Size | internal.boolean) */ value) {
+		public final Builder size(@Nullable ThreadPoolSize value) {
 			this.size = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of regular-expressions to filter the thread pools in
+		 * the output
+		 * <p>
+		 * API name: {@code thread_pool_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>threadPoolPatterns</code>.
+		 */
+		public final Builder threadPoolPatterns(List<String> list) {
+			this.threadPoolPatterns = _listAddAll(this.threadPoolPatterns, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of regular-expressions to filter the thread pools in
+		 * the output
+		 * <p>
+		 * API name: {@code thread_pool_patterns}
+		 * <p>
+		 * Adds one or more values to <code>threadPoolPatterns</code>.
+		 */
+		public final Builder threadPoolPatterns(String value, String... values) {
+			this.threadPoolPatterns = _listAdd(this.threadPoolPatterns, value, values);
 			return this;
 		}
 
@@ -148,6 +146,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ThreadPoolRequest build() {
+			_checkSingleUse();
 
 			return new ThreadPoolRequest(this);
 		}
@@ -158,7 +157,9 @@ public final class ThreadPoolRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.thread_pool}".
 	 */
-	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ThreadPoolRequest, ThreadPoolResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.thread_pool",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -171,7 +172,7 @@ public final class ThreadPoolRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.threadPoolPatterns() != null)
+				if (ApiTypeHelper.isDefined(request.threadPoolPatterns()))
 					propsSet |= _threadPoolPatterns;
 
 				if (propsSet == 0) {
@@ -196,8 +197,9 @@ public final class ThreadPoolRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
 				if (request.size != null) {
-					params.put("size", JsonpUtils.toString(request.size));
+					params.put("size", request.size.jsonValue());
 				}
 				return params;
 

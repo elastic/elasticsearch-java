@@ -23,23 +23,30 @@
 
 package co.elastic.clients.elasticsearch.features;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: features.reset_features.Request
 
-public final class ResetFeaturesRequest extends RequestBase {
+/**
+ * Resets the internal state of features, usually by deleting system indices
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/features/reset_features/ResetFeaturesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class ResetFeaturesRequest extends RequestBase {
 	public ResetFeaturesRequest() {
 	}
 
@@ -53,7 +60,9 @@ public final class ResetFeaturesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code features.reset_features}".
 	 */
-	public static final Endpoint<ResetFeaturesRequest, ResetFeaturesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ResetFeaturesRequest, ResetFeaturesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/features.reset_features",
+
 			// Request method
 			request -> {
 				return "POST";

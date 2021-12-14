@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.get_index_template;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,15 +30,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -47,12 +44,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.IndexTemplate
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_index_template/IndicesGetIndexTemplateResponse.ts#L38-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexTemplate implements JsonpSerializable {
+public class IndexTemplate implements JsonpSerializable {
 	private final List<String> indexPatterns;
 
 	private final List<String> composedOf;
 
+	@Nullable
 	private final IndexTemplateSummary template;
 
 	@Nullable
@@ -61,52 +66,51 @@ public final class IndexTemplate implements JsonpSerializable {
 	@Nullable
 	private final Long priority;
 
-	@Nullable
 	private final Map<String, JsonData> meta;
 
 	@Nullable
 	private final Boolean allowAutoCreate;
 
-	@Nullable
 	private final Map<String, JsonData> dataStream;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexTemplate(Builder builder) {
+	private IndexTemplate(Builder builder) {
 
-		this.indexPatterns = ModelTypeHelper.unmodifiableNonNull(builder.indexPatterns, "index_patterns");
-		this.composedOf = ModelTypeHelper.unmodifiableNonNull(builder.composedOf, "composed_of");
-		this.template = Objects.requireNonNull(builder.template, "template");
+		this.indexPatterns = ApiTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
+		this.composedOf = ApiTypeHelper.unmodifiableRequired(builder.composedOf, this, "composedOf");
+		this.template = builder.template;
 		this.version = builder.version;
 		this.priority = builder.priority;
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.allowAutoCreate = builder.allowAutoCreate;
-		this.dataStream = ModelTypeHelper.unmodifiable(builder.dataStream);
+		this.dataStream = ApiTypeHelper.unmodifiable(builder.dataStream);
 
 	}
 
-	public IndexTemplate(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexTemplate of(Function<Builder, ObjectBuilder<IndexTemplate>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index_patterns}
 	 */
-	public List<String> indexPatterns() {
+	public final List<String> indexPatterns() {
 		return this.indexPatterns;
 	}
 
 	/**
 	 * Required - API name: {@code composed_of}
 	 */
-	public List<String> composedOf() {
+	public final List<String> composedOf() {
 		return this.composedOf;
 	}
 
 	/**
-	 * Required - API name: {@code template}
+	 * API name: {@code template}
 	 */
-	public IndexTemplateSummary template() {
+	@Nullable
+	public final IndexTemplateSummary template() {
 		return this.template;
 	}
 
@@ -114,7 +118,7 @@ public final class IndexTemplate implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -122,15 +126,14 @@ public final class IndexTemplate implements JsonpSerializable {
 	 * API name: {@code priority}
 	 */
 	@Nullable
-	public Long priority() {
+	public final Long priority() {
 		return this.priority;
 	}
 
 	/**
 	 * API name: {@code _meta}
 	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
+	public final Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
@@ -138,15 +141,14 @@ public final class IndexTemplate implements JsonpSerializable {
 	 * API name: {@code allow_auto_create}
 	 */
 	@Nullable
-	public Boolean allowAutoCreate() {
+	public final Boolean allowAutoCreate() {
 		return this.allowAutoCreate;
 	}
 
 	/**
 	 * API name: {@code data_stream}
 	 */
-	@Nullable
-	public Map<String, JsonData> dataStream() {
+	public final Map<String, JsonData> dataStream() {
 		return this.dataStream;
 	}
 
@@ -161,39 +163,42 @@ public final class IndexTemplate implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index_patterns");
-		generator.writeStartArray();
-		for (String item0 : this.indexPatterns) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
+			generator.writeKey("index_patterns");
+			generator.writeStartArray();
+			for (String item0 : this.indexPatterns) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.composedOf)) {
+			generator.writeKey("composed_of");
+			generator.writeStartArray();
+			for (String item0 : this.composedOf) {
+				generator.write(item0);
 
-		generator.writeKey("composed_of");
-		generator.writeStartArray();
-		for (String item0 : this.composedOf) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.template != null) {
+			generator.writeKey("template");
+			this.template.serialize(generator, mapper);
 
-		generator.writeKey("template");
-		this.template.serialize(generator, mapper);
-
+		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.priority != null) {
-
 			generator.writeKey("priority");
 			generator.write(this.priority);
 
 		}
-		if (this.meta != null) {
-
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("_meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -205,13 +210,11 @@ public final class IndexTemplate implements JsonpSerializable {
 
 		}
 		if (this.allowAutoCreate != null) {
-
 			generator.writeKey("allow_auto_create");
 			generator.write(this.allowAutoCreate);
 
 		}
-		if (this.dataStream != null) {
-
+		if (ApiTypeHelper.isDefined(this.dataStream)) {
 			generator.writeKey("data_stream");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.dataStream.entrySet()) {
@@ -230,11 +233,13 @@ public final class IndexTemplate implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexTemplate}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexTemplate> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplate> {
 		private List<String> indexPatterns;
 
 		private List<String> composedOf;
 
+		@Nullable
 		private IndexTemplateSummary template;
 
 		@Nullable
@@ -254,77 +259,63 @@ public final class IndexTemplate implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code index_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
 		 */
-		public Builder indexPatterns(List<String> value) {
-			this.indexPatterns = value;
+		public final Builder indexPatterns(List<String> list) {
+			this.indexPatterns = _listAddAll(this.indexPatterns, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index_patterns}
+		 * <p>
+		 * Adds one or more values to <code>indexPatterns</code>.
 		 */
-		public Builder indexPatterns(String... value) {
-			this.indexPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
-		 */
-		public Builder addIndexPatterns(String value) {
-			if (this.indexPatterns == null) {
-				this.indexPatterns = new ArrayList<>();
-			}
-			this.indexPatterns.add(value);
+		public final Builder indexPatterns(String value, String... values) {
+			this.indexPatterns = _listAdd(this.indexPatterns, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code composed_of}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>composedOf</code>.
 		 */
-		public Builder composedOf(List<String> value) {
-			this.composedOf = value;
+		public final Builder composedOf(List<String> list) {
+			this.composedOf = _listAddAll(this.composedOf, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code composed_of}
+		 * <p>
+		 * Adds one or more values to <code>composedOf</code>.
 		 */
-		public Builder composedOf(String... value) {
-			this.composedOf = Arrays.asList(value);
+		public final Builder composedOf(String value, String... values) {
+			this.composedOf = _listAdd(this.composedOf, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #composedOf(List)}, creating the list if needed.
+		 * API name: {@code template}
 		 */
-		public Builder addComposedOf(String value) {
-			if (this.composedOf == null) {
-				this.composedOf = new ArrayList<>();
-			}
-			this.composedOf.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code template}
-		 */
-		public Builder template(IndexTemplateSummary value) {
+		public final Builder template(@Nullable IndexTemplateSummary value) {
 			this.template = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code template}
+		 * API name: {@code template}
 		 */
-		public Builder template(Function<IndexTemplateSummary.Builder, ObjectBuilder<IndexTemplateSummary>> fn) {
+		public final Builder template(Function<IndexTemplateSummary.Builder, ObjectBuilder<IndexTemplateSummary>> fn) {
 			return this.template(fn.apply(new IndexTemplateSummary.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -332,54 +323,56 @@ public final class IndexTemplate implements JsonpSerializable {
 		/**
 		 * API name: {@code priority}
 		 */
-		public Builder priority(@Nullable Long value) {
+		public final Builder priority(@Nullable Long value) {
 			this.priority = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public Builder meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
 		 */
-		public Builder putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code allow_auto_create}
 		 */
-		public Builder allowAutoCreate(@Nullable Boolean value) {
+		public final Builder allowAutoCreate(@Nullable Boolean value) {
 			this.allowAutoCreate = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code data_stream}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>dataStream</code>.
 		 */
-		public Builder dataStream(@Nullable Map<String, JsonData> value) {
-			this.dataStream = value;
+		public final Builder dataStream(Map<String, JsonData> map) {
+			this.dataStream = _mapPutAll(this.dataStream, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #dataStream(Map)}, creating the map if needed.
+		 * API name: {@code data_stream}
+		 * <p>
+		 * Adds an entry to <code>dataStream</code>.
 		 */
-		public Builder putDataStream(String key, JsonData value) {
-			if (this.dataStream == null) {
-				this.dataStream = new HashMap<>();
-			}
-			this.dataStream.put(key, value);
+		public final Builder dataStream(String key, JsonData value) {
+			this.dataStream = _mapPut(this.dataStream, key, value);
 			return this;
 		}
 
@@ -390,6 +383,7 @@ public final class IndexTemplate implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexTemplate build() {
+			_checkSingleUse();
 
 			return new IndexTemplate(this);
 		}
@@ -401,9 +395,9 @@ public final class IndexTemplate implements JsonpSerializable {
 	 * Json deserializer for {@link IndexTemplate}
 	 */
 	public static final JsonpDeserializer<IndexTemplate> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexTemplate::setupIndexTemplateDeserializer, Builder::build);
+			IndexTemplate::setupIndexTemplateDeserializer);
 
-	protected static void setupIndexTemplateDeserializer(DelegatingDeserializer<IndexTemplate.Builder> op) {
+	protected static void setupIndexTemplateDeserializer(ObjectDeserializer<IndexTemplate.Builder> op) {
 
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"index_patterns");

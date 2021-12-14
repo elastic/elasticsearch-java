@@ -24,34 +24,37 @@
 package co.elastic.clients.elasticsearch.watcher.stats;
 
 import co.elastic.clients.elasticsearch.watcher.ExecutionThreadPool;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatcherNodeStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/types.ts#L33-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class WatcherNodeStats implements JsonpSerializable {
-	@Nullable
+public class WatcherNodeStats implements JsonpSerializable {
 	private final List<WatchRecordStats> currentWatches;
 
 	private final ExecutionThreadPool executionThreadPool;
 
-	@Nullable
 	private final List<WatchRecordQueuedStats> queuedWatches;
 
 	private final long watchCount;
@@ -62,62 +65,61 @@ public final class WatcherNodeStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatcherNodeStats(Builder builder) {
+	private WatcherNodeStats(Builder builder) {
 
-		this.currentWatches = ModelTypeHelper.unmodifiable(builder.currentWatches);
-		this.executionThreadPool = Objects.requireNonNull(builder.executionThreadPool, "execution_thread_pool");
-		this.queuedWatches = ModelTypeHelper.unmodifiable(builder.queuedWatches);
-		this.watchCount = Objects.requireNonNull(builder.watchCount, "watch_count");
-		this.watcherState = Objects.requireNonNull(builder.watcherState, "watcher_state");
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
+		this.currentWatches = ApiTypeHelper.unmodifiable(builder.currentWatches);
+		this.executionThreadPool = ApiTypeHelper.requireNonNull(builder.executionThreadPool, this,
+				"executionThreadPool");
+		this.queuedWatches = ApiTypeHelper.unmodifiable(builder.queuedWatches);
+		this.watchCount = ApiTypeHelper.requireNonNull(builder.watchCount, this, "watchCount");
+		this.watcherState = ApiTypeHelper.requireNonNull(builder.watcherState, this, "watcherState");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 
 	}
 
-	public WatcherNodeStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WatcherNodeStats of(Function<Builder, ObjectBuilder<WatcherNodeStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code current_watches}
 	 */
-	@Nullable
-	public List<WatchRecordStats> currentWatches() {
+	public final List<WatchRecordStats> currentWatches() {
 		return this.currentWatches;
 	}
 
 	/**
 	 * Required - API name: {@code execution_thread_pool}
 	 */
-	public ExecutionThreadPool executionThreadPool() {
+	public final ExecutionThreadPool executionThreadPool() {
 		return this.executionThreadPool;
 	}
 
 	/**
 	 * API name: {@code queued_watches}
 	 */
-	@Nullable
-	public List<WatchRecordQueuedStats> queuedWatches() {
+	public final List<WatchRecordQueuedStats> queuedWatches() {
 		return this.queuedWatches;
 	}
 
 	/**
 	 * Required - API name: {@code watch_count}
 	 */
-	public long watchCount() {
+	public final long watchCount() {
 		return this.watchCount;
 	}
 
 	/**
 	 * Required - API name: {@code watcher_state}
 	 */
-	public WatcherState watcherState() {
+	public final WatcherState watcherState() {
 		return this.watcherState;
 	}
 
 	/**
 	 * Required - API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
@@ -132,8 +134,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.currentWatches != null) {
-
+		if (ApiTypeHelper.isDefined(this.currentWatches)) {
 			generator.writeKey("current_watches");
 			generator.writeStartArray();
 			for (WatchRecordStats item0 : this.currentWatches) {
@@ -143,12 +144,10 @@ public final class WatcherNodeStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("execution_thread_pool");
 		this.executionThreadPool.serialize(generator, mapper);
 
-		if (this.queuedWatches != null) {
-
+		if (ApiTypeHelper.isDefined(this.queuedWatches)) {
 			generator.writeKey("queued_watches");
 			generator.writeStartArray();
 			for (WatchRecordQueuedStats item0 : this.queuedWatches) {
@@ -158,13 +157,11 @@ public final class WatcherNodeStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("watch_count");
 		generator.write(this.watchCount);
 
 		generator.writeKey("watcher_state");
 		this.watcherState.serialize(generator, mapper);
-
 		generator.writeKey("node_id");
 		generator.write(this.nodeId);
 
@@ -175,7 +172,8 @@ public final class WatcherNodeStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatcherNodeStats}.
 	 */
-	public static class Builder implements ObjectBuilder<WatcherNodeStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherNodeStats> {
 		@Nullable
 		private List<WatchRecordStats> currentWatches;
 
@@ -192,49 +190,37 @@ public final class WatcherNodeStats implements JsonpSerializable {
 
 		/**
 		 * API name: {@code current_watches}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>currentWatches</code>.
 		 */
-		public Builder currentWatches(@Nullable List<WatchRecordStats> value) {
-			this.currentWatches = value;
+		public final Builder currentWatches(List<WatchRecordStats> list) {
+			this.currentWatches = _listAddAll(this.currentWatches, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code current_watches}
+		 * <p>
+		 * Adds one or more values to <code>currentWatches</code>.
 		 */
-		public Builder currentWatches(WatchRecordStats... value) {
-			this.currentWatches = Arrays.asList(value);
+		public final Builder currentWatches(WatchRecordStats value, WatchRecordStats... values) {
+			this.currentWatches = _listAdd(this.currentWatches, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #currentWatches(List)}, creating the list if needed.
+		 * API name: {@code current_watches}
+		 * <p>
+		 * Adds a value to <code>currentWatches</code> using a builder lambda.
 		 */
-		public Builder addCurrentWatches(WatchRecordStats value) {
-			if (this.currentWatches == null) {
-				this.currentWatches = new ArrayList<>();
-			}
-			this.currentWatches.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #currentWatches(List)} to a singleton list.
-		 */
-		public Builder currentWatches(Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>> fn) {
-			return this.currentWatches(fn.apply(new WatchRecordStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #currentWatches(List)}, creating the list if needed.
-		 */
-		public Builder addCurrentWatches(Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>> fn) {
-			return this.addCurrentWatches(fn.apply(new WatchRecordStats.Builder()).build());
+		public final Builder currentWatches(Function<WatchRecordStats.Builder, ObjectBuilder<WatchRecordStats>> fn) {
+			return currentWatches(fn.apply(new WatchRecordStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code execution_thread_pool}
 		 */
-		public Builder executionThreadPool(ExecutionThreadPool value) {
+		public final Builder executionThreadPool(ExecutionThreadPool value) {
 			this.executionThreadPool = value;
 			return this;
 		}
@@ -242,58 +228,45 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code execution_thread_pool}
 		 */
-		public Builder executionThreadPool(
+		public final Builder executionThreadPool(
 				Function<ExecutionThreadPool.Builder, ObjectBuilder<ExecutionThreadPool>> fn) {
 			return this.executionThreadPool(fn.apply(new ExecutionThreadPool.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code queued_watches}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>queuedWatches</code>.
 		 */
-		public Builder queuedWatches(@Nullable List<WatchRecordQueuedStats> value) {
-			this.queuedWatches = value;
+		public final Builder queuedWatches(List<WatchRecordQueuedStats> list) {
+			this.queuedWatches = _listAddAll(this.queuedWatches, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code queued_watches}
+		 * <p>
+		 * Adds one or more values to <code>queuedWatches</code>.
 		 */
-		public Builder queuedWatches(WatchRecordQueuedStats... value) {
-			this.queuedWatches = Arrays.asList(value);
+		public final Builder queuedWatches(WatchRecordQueuedStats value, WatchRecordQueuedStats... values) {
+			this.queuedWatches = _listAdd(this.queuedWatches, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed.
+		 * API name: {@code queued_watches}
+		 * <p>
+		 * Adds a value to <code>queuedWatches</code> using a builder lambda.
 		 */
-		public Builder addQueuedWatches(WatchRecordQueuedStats value) {
-			if (this.queuedWatches == null) {
-				this.queuedWatches = new ArrayList<>();
-			}
-			this.queuedWatches.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #queuedWatches(List)} to a singleton list.
-		 */
-		public Builder queuedWatches(
+		public final Builder queuedWatches(
 				Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>> fn) {
-			return this.queuedWatches(fn.apply(new WatchRecordQueuedStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #queuedWatches(List)}, creating the list if needed.
-		 */
-		public Builder addQueuedWatches(
-				Function<WatchRecordQueuedStats.Builder, ObjectBuilder<WatchRecordQueuedStats>> fn) {
-			return this.addQueuedWatches(fn.apply(new WatchRecordQueuedStats.Builder()).build());
+			return queuedWatches(fn.apply(new WatchRecordQueuedStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code watch_count}
 		 */
-		public Builder watchCount(long value) {
+		public final Builder watchCount(long value) {
 			this.watchCount = value;
 			return this;
 		}
@@ -301,7 +274,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code watcher_state}
 		 */
-		public Builder watcherState(WatcherState value) {
+		public final Builder watcherState(WatcherState value) {
 			this.watcherState = value;
 			return this;
 		}
@@ -309,7 +282,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -321,6 +294,7 @@ public final class WatcherNodeStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WatcherNodeStats build() {
+			_checkSingleUse();
 
 			return new WatcherNodeStats(this);
 		}
@@ -332,9 +306,9 @@ public final class WatcherNodeStats implements JsonpSerializable {
 	 * Json deserializer for {@link WatcherNodeStats}
 	 */
 	public static final JsonpDeserializer<WatcherNodeStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			WatcherNodeStats::setupWatcherNodeStatsDeserializer, Builder::build);
+			WatcherNodeStats::setupWatcherNodeStatsDeserializer);
 
-	protected static void setupWatcherNodeStatsDeserializer(DelegatingDeserializer<WatcherNodeStats.Builder> op) {
+	protected static void setupWatcherNodeStatsDeserializer(ObjectDeserializer<WatcherNodeStats.Builder> op) {
 
 		op.add(Builder::currentWatches, JsonpDeserializer.arrayDeserializer(WatchRecordStats._DESERIALIZER),
 				"current_watches");

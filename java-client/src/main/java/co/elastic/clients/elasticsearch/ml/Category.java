@@ -23,29 +23,34 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Category
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Category.ts#L23-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Category implements JsonpSerializable {
+public class Category implements JsonpSerializable {
 	private final Number categoryId;
 
 	private final List<String> examples;
@@ -70,7 +75,6 @@ public final class Category implements JsonpSerializable {
 	@Nullable
 	private final Long numMatches;
 
-	@Nullable
 	private final List<String> preferredToCategories;
 
 	@Nullable
@@ -82,27 +86,27 @@ public final class Category implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Category(Builder builder) {
+	private Category(Builder builder) {
 
-		this.categoryId = Objects.requireNonNull(builder.categoryId, "category_id");
-		this.examples = ModelTypeHelper.unmodifiableNonNull(builder.examples, "examples");
+		this.categoryId = ApiTypeHelper.requireNonNull(builder.categoryId, this, "categoryId");
+		this.examples = ApiTypeHelper.unmodifiableRequired(builder.examples, this, "examples");
 		this.grokPattern = builder.grokPattern;
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.maxMatchingLength = Objects.requireNonNull(builder.maxMatchingLength, "max_matching_length");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.maxMatchingLength = ApiTypeHelper.requireNonNull(builder.maxMatchingLength, this, "maxMatchingLength");
 		this.partitionFieldName = builder.partitionFieldName;
 		this.partitionFieldValue = builder.partitionFieldValue;
-		this.regex = Objects.requireNonNull(builder.regex, "regex");
-		this.terms = Objects.requireNonNull(builder.terms, "terms");
+		this.regex = ApiTypeHelper.requireNonNull(builder.regex, this, "regex");
+		this.terms = ApiTypeHelper.requireNonNull(builder.terms, this, "terms");
 		this.numMatches = builder.numMatches;
-		this.preferredToCategories = ModelTypeHelper.unmodifiable(builder.preferredToCategories);
+		this.preferredToCategories = ApiTypeHelper.unmodifiable(builder.preferredToCategories);
 		this.p = builder.p;
-		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
-		this.mlcategory = Objects.requireNonNull(builder.mlcategory, "mlcategory");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.mlcategory = ApiTypeHelper.requireNonNull(builder.mlcategory, this, "mlcategory");
 
 	}
 
-	public Category(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Category of(Function<Builder, ObjectBuilder<Category>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -111,7 +115,7 @@ public final class Category implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code category_id}
 	 */
-	public Number categoryId() {
+	public final Number categoryId() {
 		return this.categoryId;
 	}
 
@@ -120,7 +124,7 @@ public final class Category implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code examples}
 	 */
-	public List<String> examples() {
+	public final List<String> examples() {
 		return this.examples;
 	}
 
@@ -134,7 +138,7 @@ public final class Category implements JsonpSerializable {
 	 * API name: {@code grok_pattern}
 	 */
 	@Nullable
-	public String grokPattern() {
+	public final String grokPattern() {
 		return this.grokPattern;
 	}
 
@@ -143,7 +147,7 @@ public final class Category implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -154,7 +158,7 @@ public final class Category implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code max_matching_length}
 	 */
-	public Number maxMatchingLength() {
+	public final Number maxMatchingLength() {
 		return this.maxMatchingLength;
 	}
 
@@ -166,7 +170,7 @@ public final class Category implements JsonpSerializable {
 	 * API name: {@code partition_field_name}
 	 */
 	@Nullable
-	public String partitionFieldName() {
+	public final String partitionFieldName() {
 		return this.partitionFieldName;
 	}
 
@@ -178,7 +182,7 @@ public final class Category implements JsonpSerializable {
 	 * API name: {@code partition_field_value}
 	 */
 	@Nullable
-	public String partitionFieldValue() {
+	public final String partitionFieldValue() {
 		return this.partitionFieldValue;
 	}
 
@@ -188,7 +192,7 @@ public final class Category implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code regex}
 	 */
-	public String regex() {
+	public final String regex() {
 		return this.regex;
 	}
 
@@ -198,7 +202,7 @@ public final class Category implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code terms}
 	 */
-	public String terms() {
+	public final String terms() {
 		return this.terms;
 	}
 
@@ -209,7 +213,7 @@ public final class Category implements JsonpSerializable {
 	 * API name: {@code num_matches}
 	 */
 	@Nullable
-	public Long numMatches() {
+	public final Long numMatches() {
 		return this.numMatches;
 	}
 
@@ -221,8 +225,7 @@ public final class Category implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code preferred_to_categories}
 	 */
-	@Nullable
-	public List<String> preferredToCategories() {
+	public final List<String> preferredToCategories() {
 		return this.preferredToCategories;
 	}
 
@@ -230,21 +233,21 @@ public final class Category implements JsonpSerializable {
 	 * API name: {@code p}
 	 */
 	@Nullable
-	public String p() {
+	public final String p() {
 		return this.p;
 	}
 
 	/**
 	 * Required - API name: {@code result_type}
 	 */
-	public String resultType() {
+	public final String resultType() {
 		return this.resultType;
 	}
 
 	/**
 	 * Required - API name: {@code mlcategory}
 	 */
-	public String mlcategory() {
+	public final String mlcategory() {
 		return this.mlcategory;
 	}
 
@@ -262,21 +265,21 @@ public final class Category implements JsonpSerializable {
 		generator.writeKey("category_id");
 		generator.write(this.categoryId.doubleValue());
 
-		generator.writeKey("examples");
-		generator.writeStartArray();
-		for (String item0 : this.examples) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.examples)) {
+			generator.writeKey("examples");
+			generator.writeStartArray();
+			for (String item0 : this.examples) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.grokPattern != null) {
-
 			generator.writeKey("grok_pattern");
 			generator.write(this.grokPattern);
 
 		}
-
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
@@ -284,18 +287,15 @@ public final class Category implements JsonpSerializable {
 		generator.write(this.maxMatchingLength.doubleValue());
 
 		if (this.partitionFieldName != null) {
-
 			generator.writeKey("partition_field_name");
 			generator.write(this.partitionFieldName);
 
 		}
 		if (this.partitionFieldValue != null) {
-
 			generator.writeKey("partition_field_value");
 			generator.write(this.partitionFieldValue);
 
 		}
-
 		generator.writeKey("regex");
 		generator.write(this.regex);
 
@@ -303,13 +303,11 @@ public final class Category implements JsonpSerializable {
 		generator.write(this.terms);
 
 		if (this.numMatches != null) {
-
 			generator.writeKey("num_matches");
 			generator.write(this.numMatches);
 
 		}
-		if (this.preferredToCategories != null) {
-
+		if (ApiTypeHelper.isDefined(this.preferredToCategories)) {
 			generator.writeKey("preferred_to_categories");
 			generator.writeStartArray();
 			for (String item0 : this.preferredToCategories) {
@@ -320,12 +318,10 @@ public final class Category implements JsonpSerializable {
 
 		}
 		if (this.p != null) {
-
 			generator.writeKey("p");
 			generator.write(this.p);
 
 		}
-
 		generator.writeKey("result_type");
 		generator.write(this.resultType);
 
@@ -339,7 +335,8 @@ public final class Category implements JsonpSerializable {
 	/**
 	 * Builder for {@link Category}.
 	 */
-	public static class Builder implements ObjectBuilder<Category> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Category> {
 		private Number categoryId;
 
 		private List<String> examples;
@@ -380,7 +377,7 @@ public final class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code category_id}
 		 */
-		public Builder categoryId(Number value) {
+		public final Builder categoryId(Number value) {
 			this.categoryId = value;
 			return this;
 		}
@@ -389,9 +386,11 @@ public final class Category implements JsonpSerializable {
 		 * Required - A list of examples of actual values that matched the category.
 		 * <p>
 		 * API name: {@code examples}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>examples</code>.
 		 */
-		public Builder examples(List<String> value) {
-			this.examples = value;
+		public final Builder examples(List<String> list) {
+			this.examples = _listAddAll(this.examples, list);
 			return this;
 		}
 
@@ -399,20 +398,11 @@ public final class Category implements JsonpSerializable {
 		 * Required - A list of examples of actual values that matched the category.
 		 * <p>
 		 * API name: {@code examples}
+		 * <p>
+		 * Adds one or more values to <code>examples</code>.
 		 */
-		public Builder examples(String... value) {
-			this.examples = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #examples(List)}, creating the list if needed.
-		 */
-		public Builder addExamples(String value) {
-			if (this.examples == null) {
-				this.examples = new ArrayList<>();
-			}
-			this.examples.add(value);
+		public final Builder examples(String value, String... values) {
+			this.examples = _listAdd(this.examples, value, values);
 			return this;
 		}
 
@@ -425,7 +415,7 @@ public final class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code grok_pattern}
 		 */
-		public Builder grokPattern(@Nullable String value) {
+		public final Builder grokPattern(@Nullable String value) {
 			this.grokPattern = value;
 			return this;
 		}
@@ -435,7 +425,7 @@ public final class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -447,7 +437,7 @@ public final class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code max_matching_length}
 		 */
-		public Builder maxMatchingLength(Number value) {
+		public final Builder maxMatchingLength(Number value) {
 			this.maxMatchingLength = value;
 			return this;
 		}
@@ -459,7 +449,7 @@ public final class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code partition_field_name}
 		 */
-		public Builder partitionFieldName(@Nullable String value) {
+		public final Builder partitionFieldName(@Nullable String value) {
 			this.partitionFieldName = value;
 			return this;
 		}
@@ -471,7 +461,7 @@ public final class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code partition_field_value}
 		 */
-		public Builder partitionFieldValue(@Nullable String value) {
+		public final Builder partitionFieldValue(@Nullable String value) {
 			this.partitionFieldValue = value;
 			return this;
 		}
@@ -482,7 +472,7 @@ public final class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code regex}
 		 */
-		public Builder regex(String value) {
+		public final Builder regex(String value) {
 			this.regex = value;
 			return this;
 		}
@@ -493,7 +483,7 @@ public final class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code terms}
 		 */
-		public Builder terms(String value) {
+		public final Builder terms(String value) {
 			this.terms = value;
 			return this;
 		}
@@ -504,7 +494,7 @@ public final class Category implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code num_matches}
 		 */
-		public Builder numMatches(@Nullable Long value) {
+		public final Builder numMatches(@Nullable Long value) {
 			this.numMatches = value;
 			return this;
 		}
@@ -516,9 +506,11 @@ public final class Category implements JsonpSerializable {
 		 * the latest accurate list of categories after a job _flush or _close
 		 * <p>
 		 * API name: {@code preferred_to_categories}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>preferredToCategories</code>.
 		 */
-		public Builder preferredToCategories(@Nullable List<String> value) {
-			this.preferredToCategories = value;
+		public final Builder preferredToCategories(List<String> list) {
+			this.preferredToCategories = _listAddAll(this.preferredToCategories, list);
 			return this;
 		}
 
@@ -529,28 +521,18 @@ public final class Category implements JsonpSerializable {
 		 * the latest accurate list of categories after a job _flush or _close
 		 * <p>
 		 * API name: {@code preferred_to_categories}
+		 * <p>
+		 * Adds one or more values to <code>preferredToCategories</code>.
 		 */
-		public Builder preferredToCategories(String... value) {
-			this.preferredToCategories = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #preferredToCategories(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addPreferredToCategories(String value) {
-			if (this.preferredToCategories == null) {
-				this.preferredToCategories = new ArrayList<>();
-			}
-			this.preferredToCategories.add(value);
+		public final Builder preferredToCategories(String value, String... values) {
+			this.preferredToCategories = _listAdd(this.preferredToCategories, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code p}
 		 */
-		public Builder p(@Nullable String value) {
+		public final Builder p(@Nullable String value) {
 			this.p = value;
 			return this;
 		}
@@ -558,7 +540,7 @@ public final class Category implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code result_type}
 		 */
-		public Builder resultType(String value) {
+		public final Builder resultType(String value) {
 			this.resultType = value;
 			return this;
 		}
@@ -566,7 +548,7 @@ public final class Category implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mlcategory}
 		 */
-		public Builder mlcategory(String value) {
+		public final Builder mlcategory(String value) {
 			this.mlcategory = value;
 			return this;
 		}
@@ -578,6 +560,7 @@ public final class Category implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Category build() {
+			_checkSingleUse();
 
 			return new Category(this);
 		}
@@ -589,9 +572,9 @@ public final class Category implements JsonpSerializable {
 	 * Json deserializer for {@link Category}
 	 */
 	public static final JsonpDeserializer<Category> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Category::setupCategoryDeserializer, Builder::build);
+			Category::setupCategoryDeserializer);
 
-	protected static void setupCategoryDeserializer(DelegatingDeserializer<Category.Builder> op) {
+	protected static void setupCategoryDeserializer(ObjectDeserializer<Category.Builder> op) {
 
 		op.add(Builder::categoryId, JsonpDeserializer.numberDeserializer(), "category_id");
 		op.add(Builder::examples, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

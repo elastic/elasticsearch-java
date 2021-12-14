@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -46,20 +45,27 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_user.Request
 
-public final class GetUserRequest extends RequestBase {
-	@Nullable
+/**
+ * Retrieves information about users in the native realm and built-in users.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_user/SecurityGetUserRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
+public class GetUserRequest extends RequestBase {
 	private final List<String> username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetUserRequest(Builder builder) {
+	private GetUserRequest(Builder builder) {
 
-		this.username = ModelTypeHelper.unmodifiable(builder.username);
+		this.username = ApiTypeHelper.unmodifiable(builder.username);
 
 	}
 
-	public GetUserRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetUserRequest of(Function<Builder, ObjectBuilder<GetUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,8 +75,7 @@ public final class GetUserRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code username}
 	 */
-	@Nullable
-	public List<String> username() {
+	public final List<String> username() {
 		return this.username;
 	}
 
@@ -79,7 +84,8 @@ public final class GetUserRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetUserRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetUserRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetUserRequest> {
 		@Nullable
 		private List<String> username;
 
@@ -89,9 +95,11 @@ public final class GetUserRequest extends RequestBase {
 		 * information about all users.
 		 * <p>
 		 * API name: {@code username}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>username</code>.
 		 */
-		public Builder username(@Nullable List<String> value) {
-			this.username = value;
+		public final Builder username(List<String> list) {
+			this.username = _listAddAll(this.username, list);
 			return this;
 		}
 
@@ -101,20 +109,11 @@ public final class GetUserRequest extends RequestBase {
 		 * information about all users.
 		 * <p>
 		 * API name: {@code username}
+		 * <p>
+		 * Adds one or more values to <code>username</code>.
 		 */
-		public Builder username(String... value) {
-			this.username = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #username(List)}, creating the list if needed.
-		 */
-		public Builder addUsername(String value) {
-			if (this.username == null) {
-				this.username = new ArrayList<>();
-			}
-			this.username.add(value);
+		public final Builder username(String value, String... values) {
+			this.username = _listAdd(this.username, value, values);
 			return this;
 		}
 
@@ -125,6 +124,7 @@ public final class GetUserRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetUserRequest build() {
+			_checkSingleUse();
 
 			return new GetUserRequest(this);
 		}
@@ -135,7 +135,9 @@ public final class GetUserRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_user}".
 	 */
-	public static final Endpoint<GetUserRequest, GetUserResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetUserRequest, GetUserResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_user",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -148,7 +150,7 @@ public final class GetUserRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.username() != null)
+				if (ApiTypeHelper.isDefined(request.username()))
 					propsSet |= _username;
 
 				if (propsSet == (_username)) {

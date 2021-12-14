@@ -30,27 +30,36 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: searchable_snapshots.clear_cache.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/clear_cache/SearchableSnapshotsClearCacheResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClearCacheResponse implements JsonpSerializable {
+public class ClearCacheResponse implements JsonpSerializable {
 	private final JsonData valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCacheResponse(Builder builder) {
+	private ClearCacheResponse(Builder builder) {
 
-		this.valueBody = Objects.requireNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ApiTypeHelper.requireNonNull(builder.valueBody, this, "valueBody");
 
 	}
 
-	public ClearCacheResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCacheResponse of(Function<Builder, ObjectBuilder<ClearCacheResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -58,7 +67,7 @@ public final class ClearCacheResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public JsonData valueBody() {
+	public final JsonData valueBody() {
 		return this.valueBody;
 	}
 
@@ -75,7 +84,8 @@ public final class ClearCacheResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClearCacheResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearCacheResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCacheResponse> {
 		private JsonData valueBody;
 
 		/**
@@ -83,7 +93,7 @@ public final class ClearCacheResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder valueBody(JsonData value) {
+		public final Builder valueBody(JsonData value) {
 			this.valueBody = value;
 			return this;
 		}
@@ -95,6 +105,7 @@ public final class ClearCacheResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClearCacheResponse build() {
+			_checkSingleUse();
 
 			return new ClearCacheResponse(this);
 		}
@@ -105,8 +116,8 @@ public final class ClearCacheResponse implements JsonpSerializable {
 
 		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

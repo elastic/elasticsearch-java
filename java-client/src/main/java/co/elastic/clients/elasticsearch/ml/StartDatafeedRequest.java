@@ -23,85 +23,119 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.start_datafeed.Request
+
+/**
+ * Starts one or more datafeeds.
+ * <p>
+ * A datafeed must be started in order to retrieve data from Elasticsearch. A
+ * datafeed can be started and stopped multiple times throughout its lifecycle.
+ * <p>
+ * Before you can start a datafeed, the anomaly detection job must be open.
+ * Otherwise, an error occurs.
+ * <p>
+ * If you restart a stopped datafeed, it continues processing input data from
+ * the next millisecond after it was stopped. If new data was indexed for that
+ * exact millisecond between stopping and starting, it will be ignored.
+ * <p>
+ * When Elasticsearch security features are enabled, your datafeed remembers
+ * which roles the last user to create or update it had at the time of creation
+ * or update and runs the query using those same roles. If you provided
+ * secondary authorization headers when you created or updated the datafeed,
+ * those credentials are used instead.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/start_datafeed/MlStartDatafeedRequest.ts#L24-L91">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StartDatafeedRequest extends RequestBase implements JsonpSerializable {
+public class StartDatafeedRequest extends RequestBase implements JsonpSerializable {
 	private final String datafeedId;
 
 	@Nullable
-	private final String end;
+	private final Time end;
 
 	@Nullable
-	private final String start;
+	private final Time start;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartDatafeedRequest(Builder builder) {
+	private StartDatafeedRequest(Builder builder) {
 
-		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.end = builder.end;
 		this.start = builder.start;
 		this.timeout = builder.timeout;
 
 	}
 
-	public StartDatafeedRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartDatafeedRequest of(Function<Builder, ObjectBuilder<StartDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the datafeed to start
+	 * Required - A numerical character string that uniquely identifies the
+	 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+	 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+	 * characters.
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
-	public String datafeedId() {
+	public final String datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
+	 * Refer to the description for the <code>end</code> query parameter.
+	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public String end() {
+	public final Time end() {
 		return this.end;
 	}
 
 	/**
+	 * Refer to the description for the <code>start</code> query parameter.
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public String start() {
+	public final Time start() {
 		return this.start;
 	}
 
 	/**
+	 * Refer to the description for the <code>timeout</code> query parameter.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -117,21 +151,18 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.end != null) {
-
 			generator.writeKey("end");
-			generator.write(this.end);
+			this.end.serialize(generator, mapper);
 
 		}
 		if (this.start != null) {
-
 			generator.writeKey("start");
-			generator.write(this.start);
+			this.start.serialize(generator, mapper);
 
 		}
 		if (this.timeout != null) {
-
 			generator.writeKey("timeout");
-			generator.write(this.timeout);
+			this.timeout.serialize(generator, mapper);
 
 		}
 
@@ -142,50 +173,87 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link StartDatafeedRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StartDatafeedRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDatafeedRequest> {
 		private String datafeedId;
 
 		@Nullable
-		private String end;
+		private Time end;
 
 		@Nullable
-		private String start;
+		private Time start;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
-		 * Required - The ID of the datafeed to start
+		 * Required - A numerical character string that uniquely identifies the
+		 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+		 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+		 * characters.
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(String value) {
+		public final Builder datafeedId(String value) {
 			this.datafeedId = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable String value) {
+		public final Builder end(@Nullable Time value) {
 			this.end = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Refer to the description for the <code>start</code> query parameter.
+		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable String value) {
+		public final Builder start(@Nullable Time value) {
 			this.start = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>start</code> query parameter.
+		 * <p>
+		 * API name: {@code start}
+		 */
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Refer to the description for the <code>timeout</code> query parameter.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>timeout</code> query parameter.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -195,6 +263,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public StartDatafeedRequest build() {
+			_checkSingleUse();
 
 			return new StartDatafeedRequest(this);
 		}
@@ -206,14 +275,13 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	 * Json deserializer for {@link StartDatafeedRequest}
 	 */
 	public static final JsonpDeserializer<StartDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StartDatafeedRequest::setupStartDatafeedRequestDeserializer, Builder::build);
+			.lazy(Builder::new, StartDatafeedRequest::setupStartDatafeedRequestDeserializer);
 
-	protected static void setupStartDatafeedRequestDeserializer(
-			DelegatingDeserializer<StartDatafeedRequest.Builder> op) {
+	protected static void setupStartDatafeedRequestDeserializer(ObjectDeserializer<StartDatafeedRequest.Builder> op) {
 
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
-		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::end, Time._DESERIALIZER, "end");
+		op.add(Builder::start, Time._DESERIALIZER, "start");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 
@@ -222,7 +290,9 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code ml.start_datafeed}".
 	 */
-	public static final Endpoint<StartDatafeedRequest, StartDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.start_datafeed",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -252,8 +322,7 @@ public final class StartDatafeedRequest extends RequestBase implements JsonpSeri
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), true, StartDatafeedResponse._DESERIALIZER);
 }

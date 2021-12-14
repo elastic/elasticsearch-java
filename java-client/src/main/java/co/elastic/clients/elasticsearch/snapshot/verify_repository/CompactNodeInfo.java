@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.snapshot.verify_repository;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.verify_repository.CompactNodeInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/verify_repository/SnapshotVerifyRepositoryResponse.ts#L27-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CompactNodeInfo implements JsonpSerializable {
+public class CompactNodeInfo implements JsonpSerializable {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompactNodeInfo(Builder builder) {
+	private CompactNodeInfo(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public CompactNodeInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CompactNodeInfo of(Function<Builder, ObjectBuilder<CompactNodeInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -82,13 +90,14 @@ public final class CompactNodeInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompactNodeInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<CompactNodeInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompactNodeInfo> {
 		private String name;
 
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class CompactNodeInfo implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CompactNodeInfo build() {
+			_checkSingleUse();
 
 			return new CompactNodeInfo(this);
 		}
@@ -111,9 +121,9 @@ public final class CompactNodeInfo implements JsonpSerializable {
 	 * Json deserializer for {@link CompactNodeInfo}
 	 */
 	public static final JsonpDeserializer<CompactNodeInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CompactNodeInfo::setupCompactNodeInfoDeserializer, Builder::build);
+			CompactNodeInfo::setupCompactNodeInfoDeserializer);
 
-	protected static void setupCompactNodeInfoDeserializer(DelegatingDeserializer<CompactNodeInfo.Builder> op) {
+	protected static void setupCompactNodeInfoDeserializer(ObjectDeserializer<CompactNodeInfo.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 

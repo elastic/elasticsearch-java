@@ -23,19 +23,20 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,8 +45,20 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.Request
+
+/**
+ * Evaluates the data frame analytics for an annotated index. The API packages
+ * together commonly used evaluation metrics for various types of machine
+ * learning features. This has been designed for use on indexes created by data
+ * frame analytics. Evaluation requires both a ground truth field and an
+ * analytics result field to be present.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/MlEvaluateDataFrameRequest.ts#L25-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class EvaluateDataFrameRequest extends RequestBase implements JsonpSerializable {
+public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerializable {
 	private final DataframeEvaluation evaluation;
 
 	private final String index;
@@ -55,16 +68,16 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EvaluateDataFrameRequest(Builder builder) {
+	private EvaluateDataFrameRequest(Builder builder) {
 
-		this.evaluation = Objects.requireNonNull(builder.evaluation, "evaluation");
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.evaluation = ApiTypeHelper.requireNonNull(builder.evaluation, this, "evaluation");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.query = builder.query;
 
 	}
 
-	public EvaluateDataFrameRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EvaluateDataFrameRequest of(Function<Builder, ObjectBuilder<EvaluateDataFrameRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,7 +85,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	 * <p>
 	 * API name: {@code evaluation}
 	 */
-	public DataframeEvaluation evaluation() {
+	public final DataframeEvaluation evaluation() {
 		return this.evaluation;
 	}
 
@@ -81,7 +94,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -91,7 +104,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	 * API name: {@code query}
 	 */
 	@Nullable
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -113,7 +126,6 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		generator.write(this.index);
 
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
@@ -126,7 +138,8 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	/**
 	 * Builder for {@link EvaluateDataFrameRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<EvaluateDataFrameRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EvaluateDataFrameRequest> {
 		private DataframeEvaluation evaluation;
 
 		private String index;
@@ -139,7 +152,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code evaluation}
 		 */
-		public Builder evaluation(DataframeEvaluation value) {
+		public final Builder evaluation(DataframeEvaluation value) {
 			this.evaluation = value;
 			return this;
 		}
@@ -149,7 +162,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code evaluation}
 		 */
-		public Builder evaluation(Function<DataframeEvaluation.Builder, ObjectBuilder<DataframeEvaluation>> fn) {
+		public final Builder evaluation(Function<DataframeEvaluation.Builder, ObjectBuilder<DataframeEvaluation>> fn) {
 			return this.evaluation(fn.apply(new DataframeEvaluation.Builder()).build());
 		}
 
@@ -158,7 +171,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -168,7 +181,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -178,7 +191,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
@@ -189,6 +202,7 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 		 *             if some of the required fields are null.
 		 */
 		public EvaluateDataFrameRequest build() {
+			_checkSingleUse();
 
 			return new EvaluateDataFrameRequest(this);
 		}
@@ -200,10 +214,10 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	 * Json deserializer for {@link EvaluateDataFrameRequest}
 	 */
 	public static final JsonpDeserializer<EvaluateDataFrameRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, EvaluateDataFrameRequest::setupEvaluateDataFrameRequestDeserializer, Builder::build);
+			.lazy(Builder::new, EvaluateDataFrameRequest::setupEvaluateDataFrameRequestDeserializer);
 
 	protected static void setupEvaluateDataFrameRequestDeserializer(
-			DelegatingDeserializer<EvaluateDataFrameRequest.Builder> op) {
+			ObjectDeserializer<EvaluateDataFrameRequest.Builder> op) {
 
 		op.add(Builder::evaluation, DataframeEvaluation._DESERIALIZER, "evaluation");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
@@ -216,7 +230,9 @@ public final class EvaluateDataFrameRequest extends RequestBase implements Jsonp
 	/**
 	 * Endpoint "{@code ml.evaluate_data_frame}".
 	 */
-	public static final Endpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.evaluate_data_frame",
+
 			// Request method
 			request -> {
 				return "POST";

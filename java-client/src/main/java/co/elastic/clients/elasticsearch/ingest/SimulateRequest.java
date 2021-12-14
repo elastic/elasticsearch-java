@@ -23,25 +23,23 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.ingest.simulate.Document;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,33 +48,47 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Request
+
+/**
+ * Allows to simulate a pipeline with example documents.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/simulate/SimulatePipelineRequest.ts#L25-L41">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SimulateRequest extends RequestBase implements JsonpSerializable {
+public class SimulateRequest extends RequestBase implements JsonpSerializable {
+	private final List<Document> docs;
+
 	@Nullable
 	private final String id;
 
 	@Nullable
-	private final Boolean verbose;
-
-	@Nullable
-	private final List<Document> docs;
-
-	@Nullable
 	private final Pipeline pipeline;
+
+	@Nullable
+	private final Boolean verbose;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SimulateRequest(Builder builder) {
+	private SimulateRequest(Builder builder) {
 
+		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
 		this.id = builder.id;
-		this.verbose = builder.verbose;
-		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
 		this.pipeline = builder.pipeline;
+		this.verbose = builder.verbose;
 
 	}
 
-	public SimulateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SimulateRequest of(Function<Builder, ObjectBuilder<SimulateRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code docs}
+	 */
+	public final List<Document> docs() {
+		return this.docs;
 	}
 
 	/**
@@ -85,8 +97,16 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
+	}
+
+	/**
+	 * API name: {@code pipeline}
+	 */
+	@Nullable
+	public final Pipeline pipeline() {
+		return this.pipeline;
 	}
 
 	/**
@@ -95,24 +115,8 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code verbose}
 	 */
 	@Nullable
-	public Boolean verbose() {
+	public final Boolean verbose() {
 		return this.verbose;
-	}
-
-	/**
-	 * API name: {@code docs}
-	 */
-	@Nullable
-	public List<Document> docs() {
-		return this.docs;
-	}
-
-	/**
-	 * API name: {@code pipeline}
-	 */
-	@Nullable
-	public Pipeline pipeline() {
-		return this.pipeline;
 	}
 
 	/**
@@ -126,8 +130,7 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.docs != null) {
-
+		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
 			for (Document item0 : this.docs) {
@@ -138,7 +141,6 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 
 		}
 		if (this.pipeline != null) {
-
 			generator.writeKey("pipeline");
 			this.pipeline.serialize(generator, mapper);
 
@@ -151,84 +153,63 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link SimulateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<SimulateRequest> {
-		@Nullable
-		private String id;
 
-		@Nullable
-		private Boolean verbose;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateRequest> {
 		@Nullable
 		private List<Document> docs;
 
 		@Nullable
+		private String id;
+
+		@Nullable
 		private Pipeline pipeline;
+
+		@Nullable
+		private Boolean verbose;
+
+		/**
+		 * API name: {@code docs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
+		 */
+		public final Builder docs(List<Document> list) {
+			this.docs = _listAddAll(this.docs, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code docs}
+		 * <p>
+		 * Adds one or more values to <code>docs</code>.
+		 */
+		public final Builder docs(Document value, Document... values) {
+			this.docs = _listAdd(this.docs, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code docs}
+		 * <p>
+		 * Adds a value to <code>docs</code> using a builder lambda.
+		 */
+		public final Builder docs(Function<Document.Builder, ObjectBuilder<Document>> fn) {
+			return docs(fn.apply(new Document.Builder()).build());
+		}
 
 		/**
 		 * Pipeline ID
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
 
 		/**
-		 * Verbose mode. Display data output for each processor in executed pipeline
-		 * <p>
-		 * API name: {@code verbose}
-		 */
-		public Builder verbose(@Nullable Boolean value) {
-			this.verbose = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code docs}
-		 */
-		public Builder docs(@Nullable List<Document> value) {
-			this.docs = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code docs}
-		 */
-		public Builder docs(Document... value) {
-			this.docs = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder addDocs(Document value) {
-			if (this.docs == null) {
-				this.docs = new ArrayList<>();
-			}
-			this.docs.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #docs(List)} to a singleton list.
-		 */
-		public Builder docs(Function<Document.Builder, ObjectBuilder<Document>> fn) {
-			return this.docs(fn.apply(new Document.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder addDocs(Function<Document.Builder, ObjectBuilder<Document>> fn) {
-			return this.addDocs(fn.apply(new Document.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code pipeline}
 		 */
-		public Builder pipeline(@Nullable Pipeline value) {
+		public final Builder pipeline(@Nullable Pipeline value) {
 			this.pipeline = value;
 			return this;
 		}
@@ -236,8 +217,18 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code pipeline}
 		 */
-		public Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
+		public final Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
 			return this.pipeline(fn.apply(new Pipeline.Builder()).build());
+		}
+
+		/**
+		 * Verbose mode. Display data output for each processor in executed pipeline
+		 * <p>
+		 * API name: {@code verbose}
+		 */
+		public final Builder verbose(@Nullable Boolean value) {
+			this.verbose = value;
+			return this;
 		}
 
 		/**
@@ -247,6 +238,7 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public SimulateRequest build() {
+			_checkSingleUse();
 
 			return new SimulateRequest(this);
 		}
@@ -258,9 +250,9 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 	 * Json deserializer for {@link SimulateRequest}
 	 */
 	public static final JsonpDeserializer<SimulateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SimulateRequest::setupSimulateRequestDeserializer, Builder::build);
+			SimulateRequest::setupSimulateRequestDeserializer);
 
-	protected static void setupSimulateRequestDeserializer(DelegatingDeserializer<SimulateRequest.Builder> op) {
+	protected static void setupSimulateRequestDeserializer(ObjectDeserializer<SimulateRequest.Builder> op) {
 
 		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Document._DESERIALIZER), "docs");
 		op.add(Builder::pipeline, Pipeline._DESERIALIZER, "pipeline");
@@ -272,7 +264,9 @@ public final class SimulateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code ingest.simulate}".
 	 */
-	public static final Endpoint<SimulateRequest, SimulateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SimulateRequest, SimulateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ingest.simulate",
+
 			// Request method
 			request -> {
 				return "POST";

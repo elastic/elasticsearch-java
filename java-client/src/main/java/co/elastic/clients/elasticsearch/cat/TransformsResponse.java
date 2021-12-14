@@ -30,31 +30,37 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.transforms.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/transforms/CatTransformsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TransformsResponse implements JsonpSerializable {
+public class TransformsResponse implements JsonpSerializable {
 	private final List<TransformsRecord> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TransformsResponse(Builder builder) {
+	private TransformsResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public TransformsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TransformsResponse of(Function<Builder, ObjectBuilder<TransformsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +68,7 @@ public final class TransformsResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<TransformsRecord> valueBody() {
+	public final List<TransformsRecord> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,16 +90,19 @@ public final class TransformsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransformsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<TransformsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformsResponse> {
 		private List<TransformsRecord> valueBody;
 
 		/**
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 */
-		public Builder valueBody(List<TransformsRecord> value) {
-			this.valueBody = value;
+		public final Builder valueBody(List<TransformsRecord> list) {
+			this.valueBody = _listAddAll(this.valueBody, list);
 			return this;
 		}
 
@@ -101,35 +110,23 @@ public final class TransformsResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>valueBody</code>.
 		 */
-		public Builder valueBody(TransformsRecord... value) {
-			this.valueBody = Arrays.asList(value);
+		public final Builder valueBody(TransformsRecord value, TransformsRecord... values) {
+			this.valueBody = _listAdd(this.valueBody, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>valueBody</code> using a builder lambda.
 		 */
-		public Builder addValueBody(TransformsRecord value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
-			}
-			this.valueBody.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
-			return this.valueBody(fn.apply(new TransformsRecord.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
-			return this.addValueBody(fn.apply(new TransformsRecord.Builder()).build());
+		public final Builder valueBody(Function<TransformsRecord.Builder, ObjectBuilder<TransformsRecord>> fn) {
+			return valueBody(fn.apply(new TransformsRecord.Builder()).build());
 		}
 
 		/**
@@ -139,6 +136,7 @@ public final class TransformsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TransformsResponse build() {
+			_checkSingleUse();
 
 			return new TransformsResponse(this);
 		}
@@ -150,8 +148,8 @@ public final class TransformsResponse implements JsonpSerializable {
 		JsonpDeserializer<List<TransformsRecord>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(TransformsRecord._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

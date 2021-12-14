@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackLicense
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L258-L260">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoXpackLicense implements JsonpSerializable {
+public class NodeInfoXpackLicense implements JsonpSerializable {
 	private final NodeInfoXpackLicenseType selfGenerated;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoXpackLicense(Builder builder) {
+	private NodeInfoXpackLicense(Builder builder) {
 
-		this.selfGenerated = Objects.requireNonNull(builder.selfGenerated, "self_generated");
+		this.selfGenerated = ApiTypeHelper.requireNonNull(builder.selfGenerated, this, "selfGenerated");
 
 	}
 
-	public NodeInfoXpackLicense(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoXpackLicense of(Function<Builder, ObjectBuilder<NodeInfoXpackLicense>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code self_generated}
 	 */
-	public NodeInfoXpackLicenseType selfGenerated() {
+	public final NodeInfoXpackLicenseType selfGenerated() {
 		return this.selfGenerated;
 	}
 
@@ -81,13 +89,14 @@ public final class NodeInfoXpackLicense implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackLicense}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoXpackLicense> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackLicense> {
 		private NodeInfoXpackLicenseType selfGenerated;
 
 		/**
 		 * Required - API name: {@code self_generated}
 		 */
-		public Builder selfGenerated(NodeInfoXpackLicenseType value) {
+		public final Builder selfGenerated(NodeInfoXpackLicenseType value) {
 			this.selfGenerated = value;
 			return this;
 		}
@@ -95,7 +104,7 @@ public final class NodeInfoXpackLicense implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code self_generated}
 		 */
-		public Builder selfGenerated(
+		public final Builder selfGenerated(
 				Function<NodeInfoXpackLicenseType.Builder, ObjectBuilder<NodeInfoXpackLicenseType>> fn) {
 			return this.selfGenerated(fn.apply(new NodeInfoXpackLicenseType.Builder()).build());
 		}
@@ -107,6 +116,7 @@ public final class NodeInfoXpackLicense implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoXpackLicense build() {
+			_checkSingleUse();
 
 			return new NodeInfoXpackLicense(this);
 		}
@@ -118,10 +128,9 @@ public final class NodeInfoXpackLicense implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoXpackLicense}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackLicense> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoXpackLicense::setupNodeInfoXpackLicenseDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoXpackLicense::setupNodeInfoXpackLicenseDeserializer);
 
-	protected static void setupNodeInfoXpackLicenseDeserializer(
-			DelegatingDeserializer<NodeInfoXpackLicense.Builder> op) {
+	protected static void setupNodeInfoXpackLicenseDeserializer(ObjectDeserializer<NodeInfoXpackLicense.Builder> op) {
 
 		op.add(Builder::selfGenerated, NodeInfoXpackLicenseType._DESERIALIZER, "self_generated");
 

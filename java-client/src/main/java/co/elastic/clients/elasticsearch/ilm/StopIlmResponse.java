@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ilm.stop.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/stop/StopIlmResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StopIlmResponse extends AcknowledgedResponseBase {
+public class StopIlmResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public StopIlmResponse(Builder builder) {
+	private StopIlmResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public StopIlmResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopIlmResponse of(Function<Builder, ObjectBuilder<StopIlmResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class StopIlmResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link StopIlmResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StopIlmResponse> {
@@ -68,6 +75,7 @@ public final class StopIlmResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public StopIlmResponse build() {
+			_checkSingleUse();
 
 			return new StopIlmResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class StopIlmResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link StopIlmResponse}
 	 */
 	public static final JsonpDeserializer<StopIlmResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StopIlmResponse::setupStopIlmResponseDeserializer, Builder::build);
+			StopIlmResponse::setupStopIlmResponseDeserializer);
 
-	protected static void setupStopIlmResponseDeserializer(DelegatingDeserializer<StopIlmResponse.Builder> op) {
+	protected static void setupStopIlmResponseDeserializer(ObjectDeserializer<StopIlmResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

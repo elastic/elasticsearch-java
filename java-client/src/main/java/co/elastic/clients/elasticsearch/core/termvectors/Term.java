@@ -23,28 +23,33 @@
 
 package co.elastic.clients.elasticsearch.core.termvectors;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.termvectors.Term
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/termvectors/types.ts#L34-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Term implements JsonpSerializable {
+public class Term implements JsonpSerializable {
 	@Nullable
 	private final Integer docFreq;
 
@@ -60,25 +65,25 @@ public final class Term implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Term(Builder builder) {
+	private Term(Builder builder) {
 
 		this.docFreq = builder.docFreq;
 		this.score = builder.score;
-		this.termFreq = Objects.requireNonNull(builder.termFreq, "term_freq");
-		this.tokens = ModelTypeHelper.unmodifiableNonNull(builder.tokens, "tokens");
+		this.termFreq = ApiTypeHelper.requireNonNull(builder.termFreq, this, "termFreq");
+		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
 		this.ttf = builder.ttf;
 
 	}
 
-	public Term(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Term of(Function<Builder, ObjectBuilder<Term>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code doc_freq}
 	 */
 	@Nullable
-	public Integer docFreq() {
+	public final Integer docFreq() {
 		return this.docFreq;
 	}
 
@@ -86,21 +91,21 @@ public final class Term implements JsonpSerializable {
 	 * API name: {@code score}
 	 */
 	@Nullable
-	public Double score() {
+	public final Double score() {
 		return this.score;
 	}
 
 	/**
 	 * Required - API name: {@code term_freq}
 	 */
-	public int termFreq() {
+	public final int termFreq() {
 		return this.termFreq;
 	}
 
 	/**
 	 * Required - API name: {@code tokens}
 	 */
-	public List<Token> tokens() {
+	public final List<Token> tokens() {
 		return this.tokens;
 	}
 
@@ -108,7 +113,7 @@ public final class Term implements JsonpSerializable {
 	 * API name: {@code ttf}
 	 */
 	@Nullable
-	public Integer ttf() {
+	public final Integer ttf() {
 		return this.ttf;
 	}
 
@@ -124,31 +129,29 @@ public final class Term implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.docFreq != null) {
-
 			generator.writeKey("doc_freq");
 			generator.write(this.docFreq);
 
 		}
 		if (this.score != null) {
-
 			generator.writeKey("score");
 			generator.write(this.score);
 
 		}
-
 		generator.writeKey("term_freq");
 		generator.write(this.termFreq);
 
-		generator.writeKey("tokens");
-		generator.writeStartArray();
-		for (Token item0 : this.tokens) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.tokens)) {
+			generator.writeKey("tokens");
+			generator.writeStartArray();
+			for (Token item0 : this.tokens) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.ttf != null) {
-
 			generator.writeKey("ttf");
 			generator.write(this.ttf);
 
@@ -161,7 +164,8 @@ public final class Term implements JsonpSerializable {
 	/**
 	 * Builder for {@link Term}.
 	 */
-	public static class Builder implements ObjectBuilder<Term> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Term> {
 		@Nullable
 		private Integer docFreq;
 
@@ -178,7 +182,7 @@ public final class Term implements JsonpSerializable {
 		/**
 		 * API name: {@code doc_freq}
 		 */
-		public Builder docFreq(@Nullable Integer value) {
+		public final Builder docFreq(@Nullable Integer value) {
 			this.docFreq = value;
 			return this;
 		}
@@ -186,7 +190,7 @@ public final class Term implements JsonpSerializable {
 		/**
 		 * API name: {@code score}
 		 */
-		public Builder score(@Nullable Double value) {
+		public final Builder score(@Nullable Double value) {
 			this.score = value;
 			return this;
 		}
@@ -194,56 +198,44 @@ public final class Term implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code term_freq}
 		 */
-		public Builder termFreq(int value) {
+		public final Builder termFreq(int value) {
 			this.termFreq = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokens</code>.
 		 */
-		public Builder tokens(List<Token> value) {
-			this.tokens = value;
+		public final Builder tokens(List<Token> list) {
+			this.tokens = _listAddAll(this.tokens, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds one or more values to <code>tokens</code>.
 		 */
-		public Builder tokens(Token... value) {
-			this.tokens = Arrays.asList(value);
+		public final Builder tokens(Token value, Token... values) {
+			this.tokens = _listAdd(this.tokens, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
+		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds a value to <code>tokens</code> using a builder lambda.
 		 */
-		public Builder addTokens(Token value) {
-			if (this.tokens == null) {
-				this.tokens = new ArrayList<>();
-			}
-			this.tokens.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #tokens(List)} to a singleton list.
-		 */
-		public Builder tokens(Function<Token.Builder, ObjectBuilder<Token>> fn) {
-			return this.tokens(fn.apply(new Token.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
-		 */
-		public Builder addTokens(Function<Token.Builder, ObjectBuilder<Token>> fn) {
-			return this.addTokens(fn.apply(new Token.Builder()).build());
+		public final Builder tokens(Function<Token.Builder, ObjectBuilder<Token>> fn) {
+			return tokens(fn.apply(new Token.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code ttf}
 		 */
-		public Builder ttf(@Nullable Integer value) {
+		public final Builder ttf(@Nullable Integer value) {
 			this.ttf = value;
 			return this;
 		}
@@ -255,6 +247,7 @@ public final class Term implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Term build() {
+			_checkSingleUse();
 
 			return new Term(this);
 		}
@@ -266,9 +259,9 @@ public final class Term implements JsonpSerializable {
 	 * Json deserializer for {@link Term}
 	 */
 	public static final JsonpDeserializer<Term> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Term::setupTermDeserializer, Builder::build);
+			Term::setupTermDeserializer);
 
-	protected static void setupTermDeserializer(DelegatingDeserializer<Term.Builder> op) {
+	protected static void setupTermDeserializer(ObjectDeserializer<Term.Builder> op) {
 
 		op.add(Builder::docFreq, JsonpDeserializer.integerDeserializer(), "doc_freq");
 		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "score");

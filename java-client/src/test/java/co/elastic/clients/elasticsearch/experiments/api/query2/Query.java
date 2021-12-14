@@ -19,7 +19,9 @@
 
 package co.elastic.clients.elasticsearch.experiments.api.query2;
 
+import co.elastic.clients.elasticsearch.experiments.UnionVariant;
 import co.elastic.clients.json.BuildFunctionDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
@@ -27,29 +29,44 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
-import co.elastic.clients.util.UnionVariant;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 
 import java.util.Map;
 import java.util.function.Function;
 
-public class Query implements TaggedUnion<Query.Variant>, JsonpSerializable {
+public class Query implements TaggedUnion<Query.Kind, Query.Variant>, JsonpSerializable {
 
-    public interface Variant extends UnionVariant, JsonpSerializable {
+    public interface Variant extends UnionVariant<Kind>, JsonpSerializable {
         default Query _toQuery() {
             return new Query(this);
+        }
+    }
+
+    public enum Kind implements JsonEnum {
+        Bool("bool"),
+        Terms("terms");
+
+        private final String jsonValue;
+
+        Kind(String jsonValue) {
+            this.jsonValue = jsonValue;
+        }
+
+        @Override
+        public String jsonValue() {
+            return null;
         }
     }
 
     private static final String BOOL = "bool";
     private static final String TERMS = "terms";
 
-    private final String _variantType;
+    private final Kind _variantType;
     private final Variant _variantValue;
 
     @Override
-    public String _type() {
+    public Kind _kind() {
         return _variantType;
     }
 
@@ -79,17 +96,17 @@ public class Query implements TaggedUnion<Query.Variant>, JsonpSerializable {
     }
 
     public BoolQuery bool() {
-        return TaggedUnionUtils.get(this, BOOL);
+        return TaggedUnionUtils.get(this, Kind.Bool);
     }
 
     public TermsQuery terms() {
-        return TaggedUnionUtils.get(this, TERMS);
+        return TaggedUnionUtils.get(this, Kind.Terms);
     }
 
     @Override
     public void serialize(JsonGenerator generator, JsonpMapper mapper) {
         generator.writeStartObject();
-        generator.writeKey(_variantType);
+        generator.writeKey(_variantType.jsonValue);
         if (_variantValue instanceof JsonpSerializable) {
             ((JsonpSerializable) _variantValue).serialize(generator, mapper);
         } else {
@@ -108,7 +125,7 @@ public class Query implements TaggedUnion<Query.Variant>, JsonpSerializable {
     public static class Builder {
 
         private Variant $variant;
-        private String $tag;
+        private Kind $tag;
         private Map<String, JsonValue> meta;
 
         // Container properties
@@ -124,13 +141,13 @@ public class Query implements TaggedUnion<Query.Variant>, JsonpSerializable {
 
         public ContainerBuilder bool(BoolQuery v) {
             this.$variant = v;
-            this.$tag = "bool";
+            this.$tag = Kind.Bool;
             return new ContainerBuilder();
         }
 
         // If we don't have container properties, the container builder is not necessary
         public ObjectBuilder<Query> foo() {
-            return ObjectBuilder.of(this, Builder::build);
+            return this::build;
         }
 
         public ContainerBuilder bool(Function<BoolQuery.Builder, ObjectBuilder<BoolQuery>> f) {
@@ -139,7 +156,7 @@ public class Query implements TaggedUnion<Query.Variant>, JsonpSerializable {
 
         public ContainerBuilder terms(TermsQuery v) {
             this.$variant = v;
-            this.$tag = "terms";
+            this.$tag = Kind.Terms;
             return new ContainerBuilder();
         }
 

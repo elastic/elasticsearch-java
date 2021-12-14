@@ -24,55 +24,60 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch.core.get_script_languages.LanguageContext;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_languages.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_languages/GetScriptLanguagesResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetScriptLanguagesResponse implements JsonpSerializable {
+public class GetScriptLanguagesResponse implements JsonpSerializable {
 	private final List<LanguageContext> languageContexts;
 
 	private final List<String> typesAllowed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetScriptLanguagesResponse(Builder builder) {
+	private GetScriptLanguagesResponse(Builder builder) {
 
-		this.languageContexts = ModelTypeHelper.unmodifiableNonNull(builder.languageContexts, "language_contexts");
-		this.typesAllowed = ModelTypeHelper.unmodifiableNonNull(builder.typesAllowed, "types_allowed");
+		this.languageContexts = ApiTypeHelper.unmodifiableRequired(builder.languageContexts, this, "languageContexts");
+		this.typesAllowed = ApiTypeHelper.unmodifiableRequired(builder.typesAllowed, this, "typesAllowed");
 
 	}
 
-	public GetScriptLanguagesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetScriptLanguagesResponse of(Function<Builder, ObjectBuilder<GetScriptLanguagesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code language_contexts}
 	 */
-	public List<LanguageContext> languageContexts() {
+	public final List<LanguageContext> languageContexts() {
 		return this.languageContexts;
 	}
 
 	/**
 	 * Required - API name: {@code types_allowed}
 	 */
-	public List<String> typesAllowed() {
+	public final List<String> typesAllowed() {
 		return this.typesAllowed;
 	}
 
@@ -87,21 +92,26 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("language_contexts");
-		generator.writeStartArray();
-		for (LanguageContext item0 : this.languageContexts) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.languageContexts)) {
+			generator.writeKey("language_contexts");
+			generator.writeStartArray();
+			for (LanguageContext item0 : this.languageContexts) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.typesAllowed)) {
+			generator.writeKey("types_allowed");
+			generator.writeStartArray();
+			for (String item0 : this.typesAllowed) {
+				generator.write(item0);
 
-		generator.writeKey("types_allowed");
-		generator.writeStartArray();
-		for (String item0 : this.typesAllowed) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -110,76 +120,58 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetScriptLanguagesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetScriptLanguagesResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptLanguagesResponse> {
 		private List<LanguageContext> languageContexts;
 
 		private List<String> typesAllowed;
 
 		/**
 		 * Required - API name: {@code language_contexts}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>languageContexts</code>.
 		 */
-		public Builder languageContexts(List<LanguageContext> value) {
-			this.languageContexts = value;
+		public final Builder languageContexts(List<LanguageContext> list) {
+			this.languageContexts = _listAddAll(this.languageContexts, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code language_contexts}
+		 * <p>
+		 * Adds one or more values to <code>languageContexts</code>.
 		 */
-		public Builder languageContexts(LanguageContext... value) {
-			this.languageContexts = Arrays.asList(value);
+		public final Builder languageContexts(LanguageContext value, LanguageContext... values) {
+			this.languageContexts = _listAdd(this.languageContexts, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #languageContexts(List)}, creating the list if needed.
+		 * Required - API name: {@code language_contexts}
+		 * <p>
+		 * Adds a value to <code>languageContexts</code> using a builder lambda.
 		 */
-		public Builder addLanguageContexts(LanguageContext value) {
-			if (this.languageContexts == null) {
-				this.languageContexts = new ArrayList<>();
-			}
-			this.languageContexts.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #languageContexts(List)} to a singleton list.
-		 */
-		public Builder languageContexts(Function<LanguageContext.Builder, ObjectBuilder<LanguageContext>> fn) {
-			return this.languageContexts(fn.apply(new LanguageContext.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #languageContexts(List)}, creating the list if needed.
-		 */
-		public Builder addLanguageContexts(Function<LanguageContext.Builder, ObjectBuilder<LanguageContext>> fn) {
-			return this.addLanguageContexts(fn.apply(new LanguageContext.Builder()).build());
+		public final Builder languageContexts(Function<LanguageContext.Builder, ObjectBuilder<LanguageContext>> fn) {
+			return languageContexts(fn.apply(new LanguageContext.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code types_allowed}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>typesAllowed</code>.
 		 */
-		public Builder typesAllowed(List<String> value) {
-			this.typesAllowed = value;
+		public final Builder typesAllowed(List<String> list) {
+			this.typesAllowed = _listAddAll(this.typesAllowed, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code types_allowed}
+		 * <p>
+		 * Adds one or more values to <code>typesAllowed</code>.
 		 */
-		public Builder typesAllowed(String... value) {
-			this.typesAllowed = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #typesAllowed(List)}, creating the list if needed.
-		 */
-		public Builder addTypesAllowed(String value) {
-			if (this.typesAllowed == null) {
-				this.typesAllowed = new ArrayList<>();
-			}
-			this.typesAllowed.add(value);
+		public final Builder typesAllowed(String value, String... values) {
+			this.typesAllowed = _listAdd(this.typesAllowed, value, values);
 			return this;
 		}
 
@@ -190,6 +182,7 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetScriptLanguagesResponse build() {
+			_checkSingleUse();
 
 			return new GetScriptLanguagesResponse(this);
 		}
@@ -200,11 +193,11 @@ public final class GetScriptLanguagesResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link GetScriptLanguagesResponse}
 	 */
-	public static final JsonpDeserializer<GetScriptLanguagesResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, GetScriptLanguagesResponse::setupGetScriptLanguagesResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<GetScriptLanguagesResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetScriptLanguagesResponse::setupGetScriptLanguagesResponseDeserializer);
 
 	protected static void setupGetScriptLanguagesResponseDeserializer(
-			DelegatingDeserializer<GetScriptLanguagesResponse.Builder> op) {
+			ObjectDeserializer<GetScriptLanguagesResponse.Builder> op) {
 
 		op.add(Builder::languageContexts, JsonpDeserializer.arrayDeserializer(LanguageContext._DESERIALIZER),
 				"language_contexts");

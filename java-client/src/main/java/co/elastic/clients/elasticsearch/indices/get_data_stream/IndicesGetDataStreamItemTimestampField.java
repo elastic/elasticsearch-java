@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.indices.get_data_stream;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_data_stream.IndicesGetDataStreamItemTimestampField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_data_stream/IndicesGetDataStreamResponse.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndicesGetDataStreamItemTimestampField implements JsonpSerializable {
+public class IndicesGetDataStreamItemTimestampField implements JsonpSerializable {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesGetDataStreamItemTimestampField(Builder builder) {
+	private IndicesGetDataStreamItemTimestampField(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public IndicesGetDataStreamItemTimestampField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndicesGetDataStreamItemTimestampField of(
+			Function<Builder, ObjectBuilder<IndicesGetDataStreamItemTimestampField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -82,13 +91,16 @@ public final class IndicesGetDataStreamItemTimestampField implements JsonpSerial
 	/**
 	 * Builder for {@link IndicesGetDataStreamItemTimestampField}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesGetDataStreamItemTimestampField> {
+
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<IndicesGetDataStreamItemTimestampField> {
 		private String name;
 
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -100,6 +112,7 @@ public final class IndicesGetDataStreamItemTimestampField implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public IndicesGetDataStreamItemTimestampField build() {
+			_checkSingleUse();
 
 			return new IndicesGetDataStreamItemTimestampField(this);
 		}
@@ -112,11 +125,10 @@ public final class IndicesGetDataStreamItemTimestampField implements JsonpSerial
 	 */
 	public static final JsonpDeserializer<IndicesGetDataStreamItemTimestampField> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					IndicesGetDataStreamItemTimestampField::setupIndicesGetDataStreamItemTimestampFieldDeserializer,
-					Builder::build);
+					IndicesGetDataStreamItemTimestampField::setupIndicesGetDataStreamItemTimestampFieldDeserializer);
 
 	protected static void setupIndicesGetDataStreamItemTimestampFieldDeserializer(
-			DelegatingDeserializer<IndicesGetDataStreamItemTimestampField.Builder> op) {
+			ObjectDeserializer<IndicesGetDataStreamItemTimestampField.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 

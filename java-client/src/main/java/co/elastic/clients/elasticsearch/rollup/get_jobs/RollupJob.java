@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_jobs;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_jobs.RollupJob
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_jobs/types.ts#L28-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RollupJob implements JsonpSerializable {
+public class RollupJob implements JsonpSerializable {
 	private final RollupJobConfiguration config;
 
 	private final RollupJobStats stats;
@@ -47,36 +55,36 @@ public final class RollupJob implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RollupJob(Builder builder) {
+	private RollupJob(Builder builder) {
 
-		this.config = Objects.requireNonNull(builder.config, "config");
-		this.stats = Objects.requireNonNull(builder.stats, "stats");
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.config = ApiTypeHelper.requireNonNull(builder.config, this, "config");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public RollupJob(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RollupJob of(Function<Builder, ObjectBuilder<RollupJob>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code config}
 	 */
-	public RollupJobConfiguration config() {
+	public final RollupJobConfiguration config() {
 		return this.config;
 	}
 
 	/**
 	 * Required - API name: {@code stats}
 	 */
-	public RollupJobStats stats() {
+	public final RollupJobStats stats() {
 		return this.stats;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public RollupJobStatus status() {
+	public final RollupJobStatus status() {
 		return this.status;
 	}
 
@@ -107,7 +115,8 @@ public final class RollupJob implements JsonpSerializable {
 	/**
 	 * Builder for {@link RollupJob}.
 	 */
-	public static class Builder implements ObjectBuilder<RollupJob> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJob> {
 		private RollupJobConfiguration config;
 
 		private RollupJobStats stats;
@@ -117,7 +126,7 @@ public final class RollupJob implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public Builder config(RollupJobConfiguration value) {
+		public final Builder config(RollupJobConfiguration value) {
 			this.config = value;
 			return this;
 		}
@@ -125,14 +134,15 @@ public final class RollupJob implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code config}
 		 */
-		public Builder config(Function<RollupJobConfiguration.Builder, ObjectBuilder<RollupJobConfiguration>> fn) {
+		public final Builder config(
+				Function<RollupJobConfiguration.Builder, ObjectBuilder<RollupJobConfiguration>> fn) {
 			return this.config(fn.apply(new RollupJobConfiguration.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public Builder stats(RollupJobStats value) {
+		public final Builder stats(RollupJobStats value) {
 			this.stats = value;
 			return this;
 		}
@@ -140,14 +150,14 @@ public final class RollupJob implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public Builder stats(Function<RollupJobStats.Builder, ObjectBuilder<RollupJobStats>> fn) {
+		public final Builder stats(Function<RollupJobStats.Builder, ObjectBuilder<RollupJobStats>> fn) {
 			return this.stats(fn.apply(new RollupJobStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(RollupJobStatus value) {
+		public final Builder status(RollupJobStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -155,7 +165,7 @@ public final class RollupJob implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(Function<RollupJobStatus.Builder, ObjectBuilder<RollupJobStatus>> fn) {
+		public final Builder status(Function<RollupJobStatus.Builder, ObjectBuilder<RollupJobStatus>> fn) {
 			return this.status(fn.apply(new RollupJobStatus.Builder()).build());
 		}
 
@@ -166,6 +176,7 @@ public final class RollupJob implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RollupJob build() {
+			_checkSingleUse();
 
 			return new RollupJob(this);
 		}
@@ -177,9 +188,9 @@ public final class RollupJob implements JsonpSerializable {
 	 * Json deserializer for {@link RollupJob}
 	 */
 	public static final JsonpDeserializer<RollupJob> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RollupJob::setupRollupJobDeserializer, Builder::build);
+			RollupJob::setupRollupJobDeserializer);
 
-	protected static void setupRollupJobDeserializer(DelegatingDeserializer<RollupJob.Builder> op) {
+	protected static void setupRollupJobDeserializer(ObjectDeserializer<RollupJob.Builder> op) {
 
 		op.add(Builder::config, RollupJobConfiguration._DESERIALIZER, "config");
 		op.add(Builder::stats, RollupJobStats._DESERIALIZER, "stats");

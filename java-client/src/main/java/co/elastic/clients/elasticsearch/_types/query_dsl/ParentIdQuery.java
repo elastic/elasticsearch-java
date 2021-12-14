@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,8 +37,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ParentIdQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/joining.ts#L73-L78">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ParentIdQuery extends QueryBase implements QueryVariant {
+public class ParentIdQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String id;
 
@@ -51,7 +57,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ParentIdQuery(Builder builder) {
+	private ParentIdQuery(Builder builder) {
 		super(builder);
 
 		this.id = builder.id;
@@ -60,23 +66,23 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public ParentIdQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ParentIdQuery of(Function<Builder, ObjectBuilder<ParentIdQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "parent_id";
+	public Query.Kind _queryKind() {
+		return Query.Kind.ParentId;
 	}
 
 	/**
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -84,7 +90,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code ignore_unmapped}
 	 */
 	@Nullable
-	public Boolean ignoreUnmapped() {
+	public final Boolean ignoreUnmapped() {
 		return this.ignoreUnmapped;
 	}
 
@@ -92,7 +98,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -100,19 +106,16 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.ignoreUnmapped != null) {
-
 			generator.writeKey("ignore_unmapped");
 			generator.write(this.ignoreUnmapped);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
@@ -125,6 +128,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link ParentIdQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ParentIdQuery> {
 		@Nullable
 		private String id;
@@ -138,7 +142,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -146,7 +150,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code ignore_unmapped}
 		 */
-		public Builder ignoreUnmapped(@Nullable Boolean value) {
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
 			this.ignoreUnmapped = value;
 			return this;
 		}
@@ -154,7 +158,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -171,6 +175,7 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public ParentIdQuery build() {
+			_checkSingleUse();
 
 			return new ParentIdQuery(this);
 		}
@@ -182,9 +187,9 @@ public final class ParentIdQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link ParentIdQuery}
 	 */
 	public static final JsonpDeserializer<ParentIdQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ParentIdQuery::setupParentIdQueryDeserializer, Builder::build);
+			ParentIdQuery::setupParentIdQueryDeserializer);
 
-	protected static void setupParentIdQueryDeserializer(DelegatingDeserializer<ParentIdQuery.Builder> op) {
+	protected static void setupParentIdQueryDeserializer(ObjectDeserializer<ParentIdQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");

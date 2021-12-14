@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.Transform;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -32,28 +31,33 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.Watch
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Watch.ts#L37-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Watch implements JsonpSerializable {
+public class Watch implements JsonpSerializable {
 	private final Map<String, Action> actions;
 
 	private final Condition condition;
 
 	private final Input input;
 
-	@Nullable
 	private final Map<String, JsonData> metadata;
 
 	@Nullable
@@ -72,50 +76,49 @@ public final class Watch implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Watch(Builder builder) {
+	private Watch(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
-		this.condition = Objects.requireNonNull(builder.condition, "condition");
-		this.input = Objects.requireNonNull(builder.input, "input");
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.status = builder.status;
 		this.throttlePeriod = builder.throttlePeriod;
 		this.transform = builder.transform;
-		this.trigger = Objects.requireNonNull(builder.trigger, "trigger");
+		this.trigger = ApiTypeHelper.requireNonNull(builder.trigger, this, "trigger");
 		this.throttlePeriodInMillis = builder.throttlePeriodInMillis;
 
 	}
 
-	public Watch(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Watch of(Function<Builder, ObjectBuilder<Watch>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code actions}
 	 */
-	public Map<String, Action> actions() {
+	public final Map<String, Action> actions() {
 		return this.actions;
 	}
 
 	/**
 	 * Required - API name: {@code condition}
 	 */
-	public Condition condition() {
+	public final Condition condition() {
 		return this.condition;
 	}
 
 	/**
 	 * Required - API name: {@code input}
 	 */
-	public Input input() {
+	public final Input input() {
 		return this.input;
 	}
 
 	/**
 	 * API name: {@code metadata}
 	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
@@ -123,7 +126,7 @@ public final class Watch implements JsonpSerializable {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public WatchStatus status() {
+	public final WatchStatus status() {
 		return this.status;
 	}
 
@@ -131,7 +134,7 @@ public final class Watch implements JsonpSerializable {
 	 * API name: {@code throttle_period}
 	 */
 	@Nullable
-	public String throttlePeriod() {
+	public final String throttlePeriod() {
 		return this.throttlePeriod;
 	}
 
@@ -139,14 +142,14 @@ public final class Watch implements JsonpSerializable {
 	 * API name: {@code transform}
 	 */
 	@Nullable
-	public Transform transform() {
+	public final Transform transform() {
 		return this.transform;
 	}
 
 	/**
 	 * Required - API name: {@code trigger}
 	 */
-	public Trigger trigger() {
+	public final Trigger trigger() {
 		return this.trigger;
 	}
 
@@ -154,7 +157,7 @@ public final class Watch implements JsonpSerializable {
 	 * API name: {@code throttle_period_in_millis}
 	 */
 	@Nullable
-	public Long throttlePeriodInMillis() {
+	public final Long throttlePeriodInMillis() {
 		return this.throttlePeriodInMillis;
 	}
 
@@ -169,23 +172,24 @@ public final class Watch implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("actions");
-		generator.writeStartObject();
-		for (Map.Entry<String, Action> item0 : this.actions.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.actions)) {
+			generator.writeKey("actions");
+			generator.writeStartObject();
+			for (Map.Entry<String, Action> item0 : this.actions.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("condition");
 		this.condition.serialize(generator, mapper);
 
 		generator.writeKey("input");
 		this.input.serialize(generator, mapper);
 
-		if (this.metadata != null) {
-
+		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
@@ -197,29 +201,24 @@ public final class Watch implements JsonpSerializable {
 
 		}
 		if (this.status != null) {
-
 			generator.writeKey("status");
 			this.status.serialize(generator, mapper);
 
 		}
 		if (this.throttlePeriod != null) {
-
 			generator.writeKey("throttle_period");
 			generator.write(this.throttlePeriod);
 
 		}
 		if (this.transform != null) {
-
 			generator.writeKey("transform");
 			this.transform.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("trigger");
 		this.trigger.serialize(generator, mapper);
 
 		if (this.throttlePeriodInMillis != null) {
-
 			generator.writeKey("throttle_period_in_millis");
 			generator.write(this.throttlePeriodInMillis);
 
@@ -232,7 +231,8 @@ public final class Watch implements JsonpSerializable {
 	/**
 	 * Builder for {@link Watch}.
 	 */
-	public static class Builder implements ObjectBuilder<Watch> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Watch> {
 		private Map<String, Action> actions;
 
 		private Condition condition;
@@ -258,41 +258,37 @@ public final class Watch implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>actions</code>.
 		 */
-		public Builder actions(Map<String, Action> value) {
-			this.actions = value;
+		public final Builder actions(Map<String, Action> map) {
+			this.actions = _mapPutAll(this.actions, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #actions(Map)}, creating the map if needed.
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code>.
 		 */
-		public Builder putActions(String key, Action value) {
-			if (this.actions == null) {
-				this.actions = new HashMap<>();
-			}
-			this.actions.put(key, value);
+		public final Builder actions(String key, Action value) {
+			this.actions = _mapPut(this.actions, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #actions(Map)} to a singleton map.
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code> using a builder lambda.
 		 */
-		public Builder actions(String key, Function<Action.Builder, ObjectBuilder<Action>> fn) {
-			return this.actions(Collections.singletonMap(key, fn.apply(new Action.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #actions(Map)}, creating the map if needed.
-		 */
-		public Builder putActions(String key, Function<Action.Builder, ObjectBuilder<Action>> fn) {
-			return this.putActions(key, fn.apply(new Action.Builder()).build());
+		public final Builder actions(String key, Function<Action.Builder, ObjectBuilder<Action>> fn) {
+			return actions(key, fn.apply(new Action.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public Builder condition(Condition value) {
+		public final Builder condition(Condition value) {
 			this.condition = value;
 			return this;
 		}
@@ -300,14 +296,14 @@ public final class Watch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code condition}
 		 */
-		public Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
+		public final Builder condition(Function<Condition.Builder, ObjectBuilder<Condition>> fn) {
 			return this.condition(fn.apply(new Condition.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public Builder input(Input value) {
+		public final Builder input(Input value) {
 			this.input = value;
 			return this;
 		}
@@ -315,33 +311,34 @@ public final class Watch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code input}
 		 */
-		public Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
 			return this.input(fn.apply(new Input.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
 		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable WatchStatus value) {
+		public final Builder status(@Nullable WatchStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -349,14 +346,14 @@ public final class Watch implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
+		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
 			return this.status(fn.apply(new WatchStatus.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code throttle_period}
 		 */
-		public Builder throttlePeriod(@Nullable String value) {
+		public final Builder throttlePeriod(@Nullable String value) {
 			this.throttlePeriod = value;
 			return this;
 		}
@@ -364,7 +361,7 @@ public final class Watch implements JsonpSerializable {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(@Nullable Transform value) {
+		public final Builder transform(@Nullable Transform value) {
 			this.transform = value;
 			return this;
 		}
@@ -372,14 +369,14 @@ public final class Watch implements JsonpSerializable {
 		/**
 		 * API name: {@code transform}
 		 */
-		public Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
+		public final Builder transform(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
 			return this.transform(fn.apply(new Transform.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code trigger}
 		 */
-		public Builder trigger(Trigger value) {
+		public final Builder trigger(Trigger value) {
 			this.trigger = value;
 			return this;
 		}
@@ -387,14 +384,14 @@ public final class Watch implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trigger}
 		 */
-		public Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
+		public final Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
 			return this.trigger(fn.apply(new Trigger.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code throttle_period_in_millis}
 		 */
-		public Builder throttlePeriodInMillis(@Nullable Long value) {
+		public final Builder throttlePeriodInMillis(@Nullable Long value) {
 			this.throttlePeriodInMillis = value;
 			return this;
 		}
@@ -406,6 +403,7 @@ public final class Watch implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Watch build() {
+			_checkSingleUse();
 
 			return new Watch(this);
 		}
@@ -417,9 +415,9 @@ public final class Watch implements JsonpSerializable {
 	 * Json deserializer for {@link Watch}
 	 */
 	public static final JsonpDeserializer<Watch> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Watch::setupWatchDeserializer, Builder::build);
+			Watch::setupWatchDeserializer);
 
-	protected static void setupWatchDeserializer(DelegatingDeserializer<Watch.Builder> op) {
+	protected static void setupWatchDeserializer(ObjectDeserializer<Watch.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(Action._DESERIALIZER), "actions");
 		op.add(Builder::condition, Condition._DESERIALIZER, "condition");

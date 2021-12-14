@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L61-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum DelimitedPayloadEncoding implements StringEnum {
-	Int("int"), Float("float"), Identity("identity");
+public enum DelimitedPayloadEncoding implements JsonEnum {
+	Int("int"),
+
+	Float("float"),
+
+	Identity("identity"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +53,6 @@ public enum DelimitedPayloadEncoding implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<DelimitedPayloadEncoding> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<DelimitedPayloadEncoding> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			DelimitedPayloadEncoding.values());
 }

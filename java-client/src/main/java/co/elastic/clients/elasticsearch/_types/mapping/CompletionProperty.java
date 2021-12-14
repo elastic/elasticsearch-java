@@ -23,32 +23,35 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.CompletionProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L28-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CompletionProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class CompletionProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final String analyzer;
 
-	@Nullable
 	private final List<SuggestContext> contexts;
 
 	@Nullable
@@ -65,11 +68,11 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompletionProperty(Builder builder) {
+	private CompletionProperty(Builder builder) {
 		super(builder);
 
 		this.analyzer = builder.analyzer;
-		this.contexts = ModelTypeHelper.unmodifiable(builder.contexts);
+		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
 		this.maxInputLength = builder.maxInputLength;
 		this.preservePositionIncrements = builder.preservePositionIncrements;
 		this.preserveSeparators = builder.preserveSeparators;
@@ -77,31 +80,30 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 
 	}
 
-	public CompletionProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CompletionProperty of(Function<Builder, ObjectBuilder<CompletionProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "completion";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Completion;
 	}
 
 	/**
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
 	/**
 	 * API name: {@code contexts}
 	 */
-	@Nullable
-	public List<SuggestContext> contexts() {
+	public final List<SuggestContext> contexts() {
 		return this.contexts;
 	}
 
@@ -109,7 +111,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code max_input_length}
 	 */
 	@Nullable
-	public Integer maxInputLength() {
+	public final Integer maxInputLength() {
 		return this.maxInputLength;
 	}
 
@@ -117,7 +119,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code preserve_position_increments}
 	 */
 	@Nullable
-	public Boolean preservePositionIncrements() {
+	public final Boolean preservePositionIncrements() {
 		return this.preservePositionIncrements;
 	}
 
@@ -125,7 +127,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code preserve_separators}
 	 */
 	@Nullable
-	public Boolean preserveSeparators() {
+	public final Boolean preserveSeparators() {
 		return this.preserveSeparators;
 	}
 
@@ -133,7 +135,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code search_analyzer}
 	 */
 	@Nullable
-	public String searchAnalyzer() {
+	public final String searchAnalyzer() {
 		return this.searchAnalyzer;
 	}
 
@@ -142,13 +144,11 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		generator.write("type", "completion");
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
-		if (this.contexts != null) {
-
+		if (ApiTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartArray();
 			for (SuggestContext item0 : this.contexts) {
@@ -159,25 +159,21 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 
 		}
 		if (this.maxInputLength != null) {
-
 			generator.writeKey("max_input_length");
 			generator.write(this.maxInputLength);
 
 		}
 		if (this.preservePositionIncrements != null) {
-
 			generator.writeKey("preserve_position_increments");
 			generator.write(this.preservePositionIncrements);
 
 		}
 		if (this.preserveSeparators != null) {
-
 			generator.writeKey("preserve_separators");
 			generator.write(this.preserveSeparators);
 
 		}
 		if (this.searchAnalyzer != null) {
-
 			generator.writeKey("search_analyzer");
 			generator.write(this.searchAnalyzer);
 
@@ -190,6 +186,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	/**
 	 * Builder for {@link CompletionProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CompletionProperty> {
@@ -214,56 +211,44 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code contexts}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>contexts</code>.
 		 */
-		public Builder contexts(@Nullable List<SuggestContext> value) {
-			this.contexts = value;
+		public final Builder contexts(List<SuggestContext> list) {
+			this.contexts = _listAddAll(this.contexts, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code contexts}
+		 * <p>
+		 * Adds one or more values to <code>contexts</code>.
 		 */
-		public Builder contexts(SuggestContext... value) {
-			this.contexts = Arrays.asList(value);
+		public final Builder contexts(SuggestContext value, SuggestContext... values) {
+			this.contexts = _listAdd(this.contexts, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds a value to <code>contexts</code> using a builder lambda.
 		 */
-		public Builder addContexts(SuggestContext value) {
-			if (this.contexts == null) {
-				this.contexts = new ArrayList<>();
-			}
-			this.contexts.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #contexts(List)} to a singleton list.
-		 */
-		public Builder contexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn) {
-			return this.contexts(fn.apply(new SuggestContext.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #contexts(List)}, creating the list if needed.
-		 */
-		public Builder addContexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn) {
-			return this.addContexts(fn.apply(new SuggestContext.Builder()).build());
+		public final Builder contexts(Function<SuggestContext.Builder, ObjectBuilder<SuggestContext>> fn) {
+			return contexts(fn.apply(new SuggestContext.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code max_input_length}
 		 */
-		public Builder maxInputLength(@Nullable Integer value) {
+		public final Builder maxInputLength(@Nullable Integer value) {
 			this.maxInputLength = value;
 			return this;
 		}
@@ -271,7 +256,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code preserve_position_increments}
 		 */
-		public Builder preservePositionIncrements(@Nullable Boolean value) {
+		public final Builder preservePositionIncrements(@Nullable Boolean value) {
 			this.preservePositionIncrements = value;
 			return this;
 		}
@@ -279,7 +264,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code preserve_separators}
 		 */
-		public Builder preserveSeparators(@Nullable Boolean value) {
+		public final Builder preserveSeparators(@Nullable Boolean value) {
 			this.preserveSeparators = value;
 			return this;
 		}
@@ -287,7 +272,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code search_analyzer}
 		 */
-		public Builder searchAnalyzer(@Nullable String value) {
+		public final Builder searchAnalyzer(@Nullable String value) {
 			this.searchAnalyzer = value;
 			return this;
 		}
@@ -304,6 +289,7 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 		 *             if some of the required fields are null.
 		 */
 		public CompletionProperty build() {
+			_checkSingleUse();
 
 			return new CompletionProperty(this);
 		}
@@ -315,9 +301,9 @@ public final class CompletionProperty extends DocValuesPropertyBase implements P
 	 * Json deserializer for {@link CompletionProperty}
 	 */
 	public static final JsonpDeserializer<CompletionProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CompletionProperty::setupCompletionPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, CompletionProperty::setupCompletionPropertyDeserializer);
 
-	protected static void setupCompletionPropertyDeserializer(DelegatingDeserializer<CompletionProperty.Builder> op) {
+	protected static void setupCompletionPropertyDeserializer(ObjectDeserializer<CompletionProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(SuggestContext._DESERIALIZER), "contexts");

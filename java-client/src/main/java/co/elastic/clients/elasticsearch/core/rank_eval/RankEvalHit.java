@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalHit
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L141-L146">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankEvalHit implements JsonpSerializable {
+public class RankEvalHit implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
@@ -52,30 +60,30 @@ public final class RankEvalHit implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalHit(Builder builder) {
+	private RankEvalHit(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.type = builder.type;
-		this.score = Objects.requireNonNull(builder.score, "_score");
+		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
 
 	}
 
-	public RankEvalHit(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalHit of(Function<Builder, ObjectBuilder<RankEvalHit>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -83,14 +91,14 @@ public final class RankEvalHit implements JsonpSerializable {
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
 	/**
 	 * Required - API name: {@code _score}
 	 */
-	public double score() {
+	public final double score() {
 		return this.score;
 	}
 
@@ -112,12 +120,10 @@ public final class RankEvalHit implements JsonpSerializable {
 		generator.write(this.index);
 
 		if (this.type != null) {
-
 			generator.writeKey("_type");
 			generator.write(this.type);
 
 		}
-
 		generator.writeKey("_score");
 		generator.write(this.score);
 
@@ -128,7 +134,8 @@ public final class RankEvalHit implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalHit}.
 	 */
-	public static class Builder implements ObjectBuilder<RankEvalHit> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalHit> {
 		private String id;
 
 		private String index;
@@ -141,7 +148,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -149,7 +156,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -157,7 +164,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -165,7 +172,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _score}
 		 */
-		public Builder score(double value) {
+		public final Builder score(double value) {
 			this.score = value;
 			return this;
 		}
@@ -177,6 +184,7 @@ public final class RankEvalHit implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalHit build() {
+			_checkSingleUse();
 
 			return new RankEvalHit(this);
 		}
@@ -188,9 +196,9 @@ public final class RankEvalHit implements JsonpSerializable {
 	 * Json deserializer for {@link RankEvalHit}
 	 */
 	public static final JsonpDeserializer<RankEvalHit> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RankEvalHit::setupRankEvalHitDeserializer, Builder::build);
+			RankEvalHit::setupRankEvalHitDeserializer);
 
-	protected static void setupRankEvalHitDeserializer(DelegatingDeserializer<RankEvalHit.Builder> op) {
+	protected static void setupRankEvalHitDeserializer(ObjectDeserializer<RankEvalHit.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

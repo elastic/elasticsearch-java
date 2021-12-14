@@ -23,73 +23,82 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StopAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L101-L106">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
+public class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
+	@Nullable
 	private final String version;
 
 	private final List<String> stopwords;
 
+	@Nullable
 	private final String stopwordsPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StopAnalyzer(Builder builder) {
+	private StopAnalyzer(Builder builder) {
 
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.stopwords = ModelTypeHelper.unmodifiableNonNull(builder.stopwords, "stopwords");
-		this.stopwordsPath = Objects.requireNonNull(builder.stopwordsPath, "stopwords_path");
+		this.version = builder.version;
+		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
+		this.stopwordsPath = builder.stopwordsPath;
 
 	}
 
-	public StopAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopAnalyzer of(Function<Builder, ObjectBuilder<StopAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stop";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.Stop;
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * API name: {@code version}
 	 */
-	public String version() {
+	@Nullable
+	public final String version() {
 		return this.version;
 	}
 
 	/**
-	 * Required - API name: {@code stopwords}
+	 * API name: {@code stopwords}
 	 */
-	public List<String> stopwords() {
+	public final List<String> stopwords() {
 		return this.stopwords;
 	}
 
 	/**
-	 * Required - API name: {@code stopwords_path}
+	 * API name: {@code stopwords_path}
 	 */
-	public String stopwordsPath() {
+	@Nullable
+	public final String stopwordsPath() {
 		return this.stopwordsPath;
 	}
 
@@ -106,19 +115,26 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		generator.write("type", "stop");
 
-		generator.writeKey("version");
-		generator.write(this.version);
-
-		generator.writeKey("stopwords");
-		generator.writeStartArray();
-		for (String item0 : this.stopwords) {
-			generator.write(item0);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.stopwords)) {
+			generator.writeKey("stopwords");
+			generator.writeStartArray();
+			for (String item0 : this.stopwords) {
+				generator.write(item0);
 
-		generator.writeKey("stopwords_path");
-		generator.write(this.stopwordsPath);
+			}
+			generator.writeEnd();
+
+		}
+		if (this.stopwordsPath != null) {
+			generator.writeKey("stopwords_path");
+			generator.write(this.stopwordsPath);
+
+		}
 
 	}
 
@@ -127,52 +143,49 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link StopAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<StopAnalyzer> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopAnalyzer> {
+		@Nullable
 		private String version;
 
+		@Nullable
 		private List<String> stopwords;
 
+		@Nullable
 		private String stopwordsPath;
 
 		/**
-		 * Required - API name: {@code version}
+		 * API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
 		 */
-		public Builder stopwords(List<String> value) {
-			this.stopwords = value;
+		public final Builder stopwords(List<String> list) {
+			this.stopwords = _listAddAll(this.stopwords, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds one or more values to <code>stopwords</code>.
 		 */
-		public Builder stopwords(String... value) {
-			this.stopwords = Arrays.asList(value);
+		public final Builder stopwords(String value, String... values) {
+			this.stopwords = _listAdd(this.stopwords, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
+		 * API name: {@code stopwords_path}
 		 */
-		public Builder addStopwords(String value) {
-			if (this.stopwords == null) {
-				this.stopwords = new ArrayList<>();
-			}
-			this.stopwords.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code stopwords_path}
-		 */
-		public Builder stopwordsPath(String value) {
+		public final Builder stopwordsPath(@Nullable String value) {
 			this.stopwordsPath = value;
 			return this;
 		}
@@ -184,6 +197,7 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StopAnalyzer build() {
+			_checkSingleUse();
 
 			return new StopAnalyzer(this);
 		}
@@ -195,9 +209,9 @@ public final class StopAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link StopAnalyzer}
 	 */
 	public static final JsonpDeserializer<StopAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StopAnalyzer::setupStopAnalyzerDeserializer, Builder::build);
+			StopAnalyzer::setupStopAnalyzerDeserializer);
 
-	protected static void setupStopAnalyzerDeserializer(DelegatingDeserializer<StopAnalyzer.Builder> op) {
+	protected static void setupStopAnalyzerDeserializer(ObjectDeserializer<StopAnalyzer.Builder> op) {
 
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::stopwords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

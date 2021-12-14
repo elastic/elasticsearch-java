@@ -23,154 +23,152 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.UnionDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.CharFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/char_filters.ts#L28-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class CharFilter implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class CharFilter implements TaggedUnion<CharFilter.Kind, Object>, JsonpSerializable {
 
-	public static final String HTML_STRIP = "html_strip";
-	public static final String MAPPING = "mapping";
-	public static final String PATTERN_REPLACE = "pattern_replace";
+	public enum Kind {
+		Definition, Name
 
-	// Tagged union implementation
+	}
 
-	private final String _type;
-	private final JsonpSerializable _value;
+	private final Kind _kind;
+	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final Object _get() {
 		return _value;
 	}
 
-	public CharFilter(CharFilterVariant value) {
-
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
-
-	}
-
-	public <T extends CharFilterVariant> CharFilter(ObjectBuilder<T> builder) {
-		this(builder.build());
+	private CharFilter(Kind kind, Object value) {
+		this._kind = kind;
+		this._value = value;
 	}
 
 	private CharFilter(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public CharFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Get the {@code html_strip} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code html_strip} kind.
-	 */
-	public HtmlStripCharFilter htmlStrip() {
-		return TaggedUnionUtils.get(this, HTML_STRIP);
+	public static CharFilter of(Function<Builder, ObjectBuilder<CharFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Get the {@code mapping} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code mapping} kind.
+	 * Is this variant instance of kind {@code definition}?
 	 */
-	public MappingCharFilter mapping() {
-		return TaggedUnionUtils.get(this, MAPPING);
+	public boolean isDefinition() {
+		return _kind == Kind.Definition;
 	}
 
 	/**
-	 * Get the {@code pattern_replace} variant value.
+	 * Get the {@code definition} variant value.
 	 *
 	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code pattern_replace}
-	 *             kind.
+	 *             if the current variant is not of the {@code definition} kind.
 	 */
-	public PatternReplaceTokenFilter patternReplace() {
-		return TaggedUnionUtils.get(this, PATTERN_REPLACE);
+	public CharFilterDefinition definition() {
+		return TaggedUnionUtils.get(this, Kind.Definition);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code name}?
+	 */
+	public boolean isName() {
+		return _kind == Kind.Name;
+	}
+
+	/**
+	 * Get the {@code name} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code name} kind.
+	 */
+	public String name() {
+		return TaggedUnionUtils.get(this, Kind.Name);
 	}
 
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		} else {
+			switch (_kind) {
+				case Name :
+					generator.write(((String) this._value));
 
-		_value.serialize(generator, mapper);
+					break;
+			}
+		}
 
 	}
 
-	public static class Builder implements ObjectBuilder<CharFilter> {
-		private String _type;
-		private JsonpSerializable _value;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilter> {
+		private Kind _kind;
+		private Object _value;
 
-		public Builder htmlStrip(HtmlStripCharFilter v) {
-			this._type = HTML_STRIP;
+		public ObjectBuilder<CharFilter> definition(CharFilterDefinition v) {
+			this._kind = Kind.Definition;
 			this._value = v;
 			return this;
 		}
 
-		public Builder htmlStrip(Function<HtmlStripCharFilter.Builder, ObjectBuilder<HtmlStripCharFilter>> f) {
-			return this.htmlStrip(f.apply(new HtmlStripCharFilter.Builder()).build());
+		public ObjectBuilder<CharFilter> definition(
+				Function<CharFilterDefinition.Builder, ObjectBuilder<CharFilterDefinition>> fn) {
+			return this.definition(fn.apply(new CharFilterDefinition.Builder()).build());
 		}
 
-		public Builder mapping(MappingCharFilter v) {
-			this._type = MAPPING;
+		public ObjectBuilder<CharFilter> name(String v) {
+			this._kind = Kind.Name;
 			this._value = v;
 			return this;
-		}
-
-		public Builder mapping(Function<MappingCharFilter.Builder, ObjectBuilder<MappingCharFilter>> f) {
-			return this.mapping(f.apply(new MappingCharFilter.Builder()).build());
-		}
-
-		public Builder patternReplace(PatternReplaceTokenFilter v) {
-			this._type = PATTERN_REPLACE;
-			this._value = v;
-			return this;
-		}
-
-		public Builder patternReplace(
-				Function<PatternReplaceTokenFilter.Builder, ObjectBuilder<PatternReplaceTokenFilter>> f) {
-			return this.patternReplace(f.apply(new PatternReplaceTokenFilter.Builder()).build());
 		}
 
 		public CharFilter build() {
+			_checkSingleUse();
 			return new CharFilter(this);
 		}
 
 	}
 
-	protected static void setupCharFilterDeserializer(DelegatingDeserializer<Builder> op) {
-
-		op.add(Builder::htmlStrip, HtmlStripCharFilter._DESERIALIZER, "html_strip");
-		op.add(Builder::mapping, MappingCharFilter._DESERIALIZER, "mapping");
-		op.add(Builder::patternReplace, PatternReplaceTokenFilter._DESERIALIZER, "pattern_replace");
-
-		op.setTypeProperty("type");
-
+	private static JsonpDeserializer<CharFilter> buildCharFilterDeserializer() {
+		return new UnionDeserializer.Builder<CharFilter, Kind, Object>(CharFilter::new, false)
+				.addMember(Kind.Definition, CharFilterDefinition._DESERIALIZER)
+				.addMember(Kind.Name, JsonpDeserializer.stringDeserializer()).build();
 	}
 
-	public static final JsonpDeserializer<CharFilter> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
-			CharFilter::setupCharFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<CharFilter> _DESERIALIZER = JsonpDeserializer
+			.lazy(CharFilter::buildCharFilterDeserializer);
 }

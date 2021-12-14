@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,28 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.unfollow.Request
 
-public final class UnfollowRequest extends RequestBase {
+/**
+ * Stops the following task associated with a follower index and removes index
+ * metadata and settings associated with cross-cluster replication.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/unfollow/UnfollowIndexRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class UnfollowRequest extends RequestBase {
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UnfollowRequest(Builder builder) {
+	private UnfollowRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public UnfollowRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UnfollowRequest of(Function<Builder, ObjectBuilder<UnfollowRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +73,7 @@ public final class UnfollowRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -71,7 +82,8 @@ public final class UnfollowRequest extends RequestBase {
 	/**
 	 * Builder for {@link UnfollowRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UnfollowRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnfollowRequest> {
 		private String index;
 
 		/**
@@ -80,7 +92,7 @@ public final class UnfollowRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -92,6 +104,7 @@ public final class UnfollowRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public UnfollowRequest build() {
+			_checkSingleUse();
 
 			return new UnfollowRequest(this);
 		}
@@ -102,7 +115,9 @@ public final class UnfollowRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.unfollow}".
 	 */
-	public static final Endpoint<UnfollowRequest, UnfollowResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UnfollowRequest, UnfollowResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.unfollow",
+
 			// Request method
 			request -> {
 				return "POST";

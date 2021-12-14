@@ -23,23 +23,30 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: ingest.geo_ip_stats.Request
 
-public final class GeoIpStatsRequest extends RequestBase {
+/**
+ * Returns statistical information about geoip databases
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/geo_ip_stats/IngestGeoIpStatsRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class GeoIpStatsRequest extends RequestBase {
 	public GeoIpStatsRequest() {
 	}
 
@@ -53,7 +60,9 @@ public final class GeoIpStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ingest.geo_ip_stats}".
 	 */
-	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GeoIpStatsRequest, GeoIpStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ingest.geo_ip_stats",
+
 			// Request method
 			request -> {
 				return "GET";

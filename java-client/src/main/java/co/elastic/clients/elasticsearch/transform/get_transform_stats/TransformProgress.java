@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.transform.get_transform_stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -38,8 +39,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: transform.get_transform_stats.TransformProgress
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform_stats/types.ts#L34-L40">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TransformProgress implements JsonpSerializable {
+public class TransformProgress implements JsonpSerializable {
 	private final long docsIndexed;
 
 	private final long docsProcessed;
@@ -52,52 +60,52 @@ public final class TransformProgress implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TransformProgress(Builder builder) {
+	private TransformProgress(Builder builder) {
 
-		this.docsIndexed = Objects.requireNonNull(builder.docsIndexed, "docs_indexed");
-		this.docsProcessed = Objects.requireNonNull(builder.docsProcessed, "docs_processed");
-		this.docsRemaining = Objects.requireNonNull(builder.docsRemaining, "docs_remaining");
-		this.percentComplete = Objects.requireNonNull(builder.percentComplete, "percent_complete");
-		this.totalDocs = Objects.requireNonNull(builder.totalDocs, "total_docs");
+		this.docsIndexed = ApiTypeHelper.requireNonNull(builder.docsIndexed, this, "docsIndexed");
+		this.docsProcessed = ApiTypeHelper.requireNonNull(builder.docsProcessed, this, "docsProcessed");
+		this.docsRemaining = ApiTypeHelper.requireNonNull(builder.docsRemaining, this, "docsRemaining");
+		this.percentComplete = ApiTypeHelper.requireNonNull(builder.percentComplete, this, "percentComplete");
+		this.totalDocs = ApiTypeHelper.requireNonNull(builder.totalDocs, this, "totalDocs");
 
 	}
 
-	public TransformProgress(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TransformProgress of(Function<Builder, ObjectBuilder<TransformProgress>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code docs_indexed}
 	 */
-	public long docsIndexed() {
+	public final long docsIndexed() {
 		return this.docsIndexed;
 	}
 
 	/**
 	 * Required - API name: {@code docs_processed}
 	 */
-	public long docsProcessed() {
+	public final long docsProcessed() {
 		return this.docsProcessed;
 	}
 
 	/**
 	 * Required - API name: {@code docs_remaining}
 	 */
-	public long docsRemaining() {
+	public final long docsRemaining() {
 		return this.docsRemaining;
 	}
 
 	/**
 	 * Required - API name: {@code percent_complete}
 	 */
-	public double percentComplete() {
+	public final double percentComplete() {
 		return this.percentComplete;
 	}
 
 	/**
 	 * Required - API name: {@code total_docs}
 	 */
-	public long totalDocs() {
+	public final long totalDocs() {
 		return this.totalDocs;
 	}
 
@@ -134,7 +142,8 @@ public final class TransformProgress implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransformProgress}.
 	 */
-	public static class Builder implements ObjectBuilder<TransformProgress> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformProgress> {
 		private Long docsIndexed;
 
 		private Long docsProcessed;
@@ -148,7 +157,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs_indexed}
 		 */
-		public Builder docsIndexed(long value) {
+		public final Builder docsIndexed(long value) {
 			this.docsIndexed = value;
 			return this;
 		}
@@ -156,7 +165,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs_processed}
 		 */
-		public Builder docsProcessed(long value) {
+		public final Builder docsProcessed(long value) {
 			this.docsProcessed = value;
 			return this;
 		}
@@ -164,7 +173,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code docs_remaining}
 		 */
-		public Builder docsRemaining(long value) {
+		public final Builder docsRemaining(long value) {
 			this.docsRemaining = value;
 			return this;
 		}
@@ -172,7 +181,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code percent_complete}
 		 */
-		public Builder percentComplete(double value) {
+		public final Builder percentComplete(double value) {
 			this.percentComplete = value;
 			return this;
 		}
@@ -180,7 +189,7 @@ public final class TransformProgress implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_docs}
 		 */
-		public Builder totalDocs(long value) {
+		public final Builder totalDocs(long value) {
 			this.totalDocs = value;
 			return this;
 		}
@@ -192,6 +201,7 @@ public final class TransformProgress implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TransformProgress build() {
+			_checkSingleUse();
 
 			return new TransformProgress(this);
 		}
@@ -203,9 +213,9 @@ public final class TransformProgress implements JsonpSerializable {
 	 * Json deserializer for {@link TransformProgress}
 	 */
 	public static final JsonpDeserializer<TransformProgress> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TransformProgress::setupTransformProgressDeserializer, Builder::build);
+			.lazy(Builder::new, TransformProgress::setupTransformProgressDeserializer);
 
-	protected static void setupTransformProgressDeserializer(DelegatingDeserializer<TransformProgress.Builder> op) {
+	protected static void setupTransformProgressDeserializer(ObjectDeserializer<TransformProgress.Builder> op) {
 
 		op.add(Builder::docsIndexed, JsonpDeserializer.longDeserializer(), "docs_indexed");
 		op.add(Builder::docsProcessed, JsonpDeserializer.longDeserializer(), "docs_processed");

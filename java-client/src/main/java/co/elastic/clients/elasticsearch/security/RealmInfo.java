@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.RealmInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/RealmInfo.ts#L22-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RealmInfo implements JsonpSerializable {
+public class RealmInfo implements JsonpSerializable {
 	private final String name;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RealmInfo(Builder builder) {
+	private RealmInfo(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public RealmInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RealmInfo of(Function<Builder, ObjectBuilder<RealmInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -95,7 +103,8 @@ public final class RealmInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link RealmInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<RealmInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RealmInfo> {
 		private String name;
 
 		private String type;
@@ -103,7 +112,7 @@ public final class RealmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class RealmInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -123,6 +132,7 @@ public final class RealmInfo implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RealmInfo build() {
+			_checkSingleUse();
 
 			return new RealmInfo(this);
 		}
@@ -134,9 +144,9 @@ public final class RealmInfo implements JsonpSerializable {
 	 * Json deserializer for {@link RealmInfo}
 	 */
 	public static final JsonpDeserializer<RealmInfo> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RealmInfo::setupRealmInfoDeserializer, Builder::build);
+			RealmInfo::setupRealmInfoDeserializer);
 
-	protected static void setupRealmInfoDeserializer(DelegatingDeserializer<RealmInfo.Builder> op) {
+	protected static void setupRealmInfoDeserializer(ObjectDeserializer<RealmInfo.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");

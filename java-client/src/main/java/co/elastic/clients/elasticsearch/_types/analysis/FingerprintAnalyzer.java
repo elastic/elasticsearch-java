@@ -23,29 +23,35 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.FingerprintAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L37-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
+public class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializable {
+	@Nullable
 	private final String version;
 
 	private final int maxOutputSize;
@@ -56,72 +62,75 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 
 	private final List<String> stopwords;
 
+	@Nullable
 	private final String stopwordsPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FingerprintAnalyzer(Builder builder) {
+	private FingerprintAnalyzer(Builder builder) {
 
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.maxOutputSize = Objects.requireNonNull(builder.maxOutputSize, "max_output_size");
-		this.preserveOriginal = Objects.requireNonNull(builder.preserveOriginal, "preserve_original");
-		this.separator = Objects.requireNonNull(builder.separator, "separator");
-		this.stopwords = ModelTypeHelper.unmodifiableNonNull(builder.stopwords, "stopwords");
-		this.stopwordsPath = Objects.requireNonNull(builder.stopwordsPath, "stopwords_path");
+		this.version = builder.version;
+		this.maxOutputSize = ApiTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
+		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
+		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
+		this.stopwordsPath = builder.stopwordsPath;
 
 	}
 
-	public FingerprintAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FingerprintAnalyzer of(Function<Builder, ObjectBuilder<FingerprintAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "fingerprint";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.Fingerprint;
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * API name: {@code version}
 	 */
-	public String version() {
+	@Nullable
+	public final String version() {
 		return this.version;
 	}
 
 	/**
 	 * Required - API name: {@code max_output_size}
 	 */
-	public int maxOutputSize() {
+	public final int maxOutputSize() {
 		return this.maxOutputSize;
 	}
 
 	/**
 	 * Required - API name: {@code preserve_original}
 	 */
-	public boolean preserveOriginal() {
+	public final boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
 	/**
 	 * Required - API name: {@code separator}
 	 */
-	public String separator() {
+	public final String separator() {
 		return this.separator;
 	}
 
 	/**
-	 * Required - API name: {@code stopwords}
+	 * API name: {@code stopwords}
 	 */
-	public List<String> stopwords() {
+	public final List<String> stopwords() {
 		return this.stopwords;
 	}
 
 	/**
-	 * Required - API name: {@code stopwords_path}
+	 * API name: {@code stopwords_path}
 	 */
-	public String stopwordsPath() {
+	@Nullable
+	public final String stopwordsPath() {
 		return this.stopwordsPath;
 	}
 
@@ -138,9 +147,11 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 
 		generator.write("type", "fingerprint");
 
-		generator.writeKey("version");
-		generator.write(this.version);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
 
+		}
 		generator.writeKey("max_output_size");
 		generator.write(this.maxOutputSize);
 
@@ -150,16 +161,21 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		generator.writeKey("separator");
 		generator.write(this.separator);
 
-		generator.writeKey("stopwords");
-		generator.writeStartArray();
-		for (String item0 : this.stopwords) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.stopwords)) {
+			generator.writeKey("stopwords");
+			generator.writeStartArray();
+			for (String item0 : this.stopwords) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.stopwordsPath != null) {
+			generator.writeKey("stopwords_path");
+			generator.write(this.stopwordsPath);
 
-		generator.writeKey("stopwords_path");
-		generator.write(this.stopwordsPath);
+		}
 
 	}
 
@@ -168,7 +184,9 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 	/**
 	 * Builder for {@link FingerprintAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<FingerprintAnalyzer> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FingerprintAnalyzer> {
+		@Nullable
 		private String version;
 
 		private Integer maxOutputSize;
@@ -177,14 +195,16 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 
 		private String separator;
 
+		@Nullable
 		private List<String> stopwords;
 
+		@Nullable
 		private String stopwordsPath;
 
 		/**
-		 * Required - API name: {@code version}
+		 * API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -192,7 +212,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		/**
 		 * Required - API name: {@code max_output_size}
 		 */
-		public Builder maxOutputSize(int value) {
+		public final Builder maxOutputSize(int value) {
 			this.maxOutputSize = value;
 			return this;
 		}
@@ -200,7 +220,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		/**
 		 * Required - API name: {@code preserve_original}
 		 */
-		public Builder preserveOriginal(boolean value) {
+		public final Builder preserveOriginal(boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}
@@ -208,42 +228,35 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		/**
 		 * Required - API name: {@code separator}
 		 */
-		public Builder separator(String value) {
+		public final Builder separator(String value) {
 			this.separator = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
 		 */
-		public Builder stopwords(List<String> value) {
-			this.stopwords = value;
+		public final Builder stopwords(List<String> list) {
+			this.stopwords = _listAddAll(this.stopwords, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
+		 * <p>
+		 * Adds one or more values to <code>stopwords</code>.
 		 */
-		public Builder stopwords(String... value) {
-			this.stopwords = Arrays.asList(value);
+		public final Builder stopwords(String value, String... values) {
+			this.stopwords = _listAdd(this.stopwords, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #stopwords(List)}, creating the list if needed.
+		 * API name: {@code stopwords_path}
 		 */
-		public Builder addStopwords(String value) {
-			if (this.stopwords == null) {
-				this.stopwords = new ArrayList<>();
-			}
-			this.stopwords.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code stopwords_path}
-		 */
-		public Builder stopwordsPath(String value) {
+		public final Builder stopwordsPath(@Nullable String value) {
 			this.stopwordsPath = value;
 			return this;
 		}
@@ -255,6 +268,7 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 		 *             if some of the required fields are null.
 		 */
 		public FingerprintAnalyzer build() {
+			_checkSingleUse();
 
 			return new FingerprintAnalyzer(this);
 		}
@@ -266,9 +280,9 @@ public final class FingerprintAnalyzer implements AnalyzerVariant, JsonpSerializ
 	 * Json deserializer for {@link FingerprintAnalyzer}
 	 */
 	public static final JsonpDeserializer<FingerprintAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FingerprintAnalyzer::setupFingerprintAnalyzerDeserializer, Builder::build);
+			.lazy(Builder::new, FingerprintAnalyzer::setupFingerprintAnalyzerDeserializer);
 
-	protected static void setupFingerprintAnalyzerDeserializer(DelegatingDeserializer<FingerprintAnalyzer.Builder> op) {
+	protected static void setupFingerprintAnalyzerDeserializer(ObjectDeserializer<FingerprintAnalyzer.Builder> op) {
 
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::maxOutputSize, JsonpDeserializer.integerDeserializer(), "max_output_size");

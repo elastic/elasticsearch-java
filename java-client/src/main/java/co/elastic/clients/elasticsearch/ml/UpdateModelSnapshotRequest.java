@@ -23,18 +23,19 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -44,65 +45,79 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_model_snapshot.Request
+
+/**
+ * Updates certain properties of a snapshot.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_model_snapshot/MlUpdateModelSnapshotRequest.ts#L23-L54">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UpdateModelSnapshotRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
-	private final String snapshotId;
-
+public class UpdateModelSnapshotRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String description;
+
+	private final String jobId;
 
 	@Nullable
 	private final Boolean retain;
 
+	private final String snapshotId;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateModelSnapshotRequest(Builder builder) {
+	private UpdateModelSnapshotRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
 		this.description = builder.description;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.retain = builder.retain;
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 
 	}
 
-	public UpdateModelSnapshotRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateModelSnapshotRequest of(Function<Builder, ObjectBuilder<UpdateModelSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the job to fetch
+	 * A description of the model snapshot.
 	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
-	}
-
-	/**
-	 * Required - The ID of the snapshot to update
-	 * <p>
-	 * API name: {@code snapshot_id}
-	 */
-	public String snapshotId() {
-		return this.snapshotId;
-	}
-
-	/**
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public final String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * If <code>true</code>, this snapshot will not be deleted during automatic
+	 * cleanup of snapshots older than <code>model_snapshot_retention_days</code>.
+	 * However, this snapshot will be deleted when the job is deleted.
+	 * <p>
 	 * API name: {@code retain}
 	 */
 	@Nullable
-	public Boolean retain() {
+	public final Boolean retain() {
 		return this.retain;
+	}
+
+	/**
+	 * Required - Identifier for the model snapshot.
+	 * <p>
+	 * API name: {@code snapshot_id}
+	 */
+	public final String snapshotId() {
+		return this.snapshotId;
 	}
 
 	/**
@@ -117,13 +132,11 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.retain != null) {
-
 			generator.writeKey("retain");
 			generator.write(this.retain);
 
@@ -136,50 +149,57 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	/**
 	 * Builder for {@link UpdateModelSnapshotRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<UpdateModelSnapshotRequest> {
-		private String jobId;
 
-		private String snapshotId;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateModelSnapshotRequest> {
 		@Nullable
 		private String description;
+
+		private String jobId;
 
 		@Nullable
 		private Boolean retain;
 
-		/**
-		 * Required - The ID of the job to fetch
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
+		private String snapshotId;
 
 		/**
-		 * Required - The ID of the snapshot to update
+		 * A description of the model snapshot.
 		 * <p>
-		 * API name: {@code snapshot_id}
-		 */
-		public Builder snapshotId(String value) {
-			this.snapshotId = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
 
 		/**
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public final Builder jobId(String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, this snapshot will not be deleted during automatic
+		 * cleanup of snapshots older than <code>model_snapshot_retention_days</code>.
+		 * However, this snapshot will be deleted when the job is deleted.
+		 * <p>
 		 * API name: {@code retain}
 		 */
-		public Builder retain(@Nullable Boolean value) {
+		public final Builder retain(@Nullable Boolean value) {
 			this.retain = value;
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the model snapshot.
+		 * <p>
+		 * API name: {@code snapshot_id}
+		 */
+		public final Builder snapshotId(String value) {
+			this.snapshotId = value;
 			return this;
 		}
 
@@ -190,6 +210,7 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 		 *             if some of the required fields are null.
 		 */
 		public UpdateModelSnapshotRequest build() {
+			_checkSingleUse();
 
 			return new UpdateModelSnapshotRequest(this);
 		}
@@ -200,11 +221,11 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	/**
 	 * Json deserializer for {@link UpdateModelSnapshotRequest}
 	 */
-	public static final JsonpDeserializer<UpdateModelSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, UpdateModelSnapshotRequest::setupUpdateModelSnapshotRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<UpdateModelSnapshotRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateModelSnapshotRequest::setupUpdateModelSnapshotRequestDeserializer);
 
 	protected static void setupUpdateModelSnapshotRequestDeserializer(
-			DelegatingDeserializer<UpdateModelSnapshotRequest.Builder> op) {
+			ObjectDeserializer<UpdateModelSnapshotRequest.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::retain, JsonpDeserializer.booleanDeserializer(), "retain");
@@ -216,7 +237,9 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 	/**
 	 * Endpoint "{@code ml.update_model_snapshot}".
 	 */
-	public static final Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.update_model_snapshot",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -225,13 +248,13 @@ public final class UpdateModelSnapshotRequest extends RequestBase implements Jso
 
 			// Request path
 			request -> {
-				final int _jobId = 1 << 0;
-				final int _snapshotId = 1 << 1;
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _jobId;
 				propsSet |= _snapshotId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();

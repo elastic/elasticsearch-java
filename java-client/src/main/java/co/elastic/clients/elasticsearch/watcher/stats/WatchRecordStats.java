@@ -24,31 +24,34 @@
 package co.elastic.clients.elasticsearch.watcher.stats;
 
 import co.elastic.clients.elasticsearch.watcher.ExecutionPhase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatchRecordStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/types.ts#L54-L60">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class WatchRecordStats extends WatchRecordQueuedStats {
+public class WatchRecordStats extends WatchRecordQueuedStats {
 	private final ExecutionPhase executionPhase;
 
 	private final String triggeredTime;
 
-	@Nullable
 	private final List<String> executedActions;
 
 	private final String watchId;
@@ -57,69 +60,65 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatchRecordStats(Builder builder) {
+	private WatchRecordStats(Builder builder) {
 		super(builder);
 
-		this.executionPhase = Objects.requireNonNull(builder.executionPhase, "execution_phase");
-		this.triggeredTime = Objects.requireNonNull(builder.triggeredTime, "triggered_time");
-		this.executedActions = ModelTypeHelper.unmodifiable(builder.executedActions);
-		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
-		this.watchRecordId = Objects.requireNonNull(builder.watchRecordId, "watch_record_id");
+		this.executionPhase = ApiTypeHelper.requireNonNull(builder.executionPhase, this, "executionPhase");
+		this.triggeredTime = ApiTypeHelper.requireNonNull(builder.triggeredTime, this, "triggeredTime");
+		this.executedActions = ApiTypeHelper.unmodifiable(builder.executedActions);
+		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
+		this.watchRecordId = ApiTypeHelper.requireNonNull(builder.watchRecordId, this, "watchRecordId");
 
 	}
 
-	public WatchRecordStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WatchRecordStats of(Function<Builder, ObjectBuilder<WatchRecordStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code execution_phase}
 	 */
-	public ExecutionPhase executionPhase() {
+	public final ExecutionPhase executionPhase() {
 		return this.executionPhase;
 	}
 
 	/**
 	 * Required - API name: {@code triggered_time}
 	 */
-	public String triggeredTime() {
+	public final String triggeredTime() {
 		return this.triggeredTime;
 	}
 
 	/**
 	 * API name: {@code executed_actions}
 	 */
-	@Nullable
-	public List<String> executedActions() {
+	public final List<String> executedActions() {
 		return this.executedActions;
 	}
 
 	/**
 	 * Required - API name: {@code watch_id}
 	 */
-	public String watchId() {
+	public final String watchId() {
 		return this.watchId;
 	}
 
 	/**
 	 * Required - API name: {@code watch_record_id}
 	 */
-	public String watchRecordId() {
+	public final String watchRecordId() {
 		return this.watchRecordId;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("execution_phase");
 		this.executionPhase.serialize(generator, mapper);
-
 		generator.writeKey("triggered_time");
 		generator.write(this.triggeredTime);
 
-		if (this.executedActions != null) {
-
+		if (ApiTypeHelper.isDefined(this.executedActions)) {
 			generator.writeKey("executed_actions");
 			generator.writeStartArray();
 			for (String item0 : this.executedActions) {
@@ -129,7 +128,6 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("watch_id");
 		generator.write(this.watchId);
 
@@ -143,6 +141,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 	/**
 	 * Builder for {@link WatchRecordStats}.
 	 */
+
 	public static class Builder extends WatchRecordQueuedStats.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WatchRecordStats> {
@@ -160,7 +159,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		/**
 		 * Required - API name: {@code execution_phase}
 		 */
-		public Builder executionPhase(ExecutionPhase value) {
+		public final Builder executionPhase(ExecutionPhase value) {
 			this.executionPhase = value;
 			return this;
 		}
@@ -168,42 +167,35 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		/**
 		 * Required - API name: {@code triggered_time}
 		 */
-		public Builder triggeredTime(String value) {
+		public final Builder triggeredTime(String value) {
 			this.triggeredTime = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code executed_actions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>executedActions</code>.
 		 */
-		public Builder executedActions(@Nullable List<String> value) {
-			this.executedActions = value;
+		public final Builder executedActions(List<String> list) {
+			this.executedActions = _listAddAll(this.executedActions, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code executed_actions}
+		 * <p>
+		 * Adds one or more values to <code>executedActions</code>.
 		 */
-		public Builder executedActions(String... value) {
-			this.executedActions = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #executedActions(List)}, creating the list if needed.
-		 */
-		public Builder addExecutedActions(String value) {
-			if (this.executedActions == null) {
-				this.executedActions = new ArrayList<>();
-			}
-			this.executedActions.add(value);
+		public final Builder executedActions(String value, String... values) {
+			this.executedActions = _listAdd(this.executedActions, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code watch_id}
 		 */
-		public Builder watchId(String value) {
+		public final Builder watchId(String value) {
 			this.watchId = value;
 			return this;
 		}
@@ -211,7 +203,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		/**
 		 * Required - API name: {@code watch_record_id}
 		 */
-		public Builder watchRecordId(String value) {
+		public final Builder watchRecordId(String value) {
 			this.watchRecordId = value;
 			return this;
 		}
@@ -228,6 +220,7 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 		 *             if some of the required fields are null.
 		 */
 		public WatchRecordStats build() {
+			_checkSingleUse();
 
 			return new WatchRecordStats(this);
 		}
@@ -239,9 +232,9 @@ public final class WatchRecordStats extends WatchRecordQueuedStats {
 	 * Json deserializer for {@link WatchRecordStats}
 	 */
 	public static final JsonpDeserializer<WatchRecordStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			WatchRecordStats::setupWatchRecordStatsDeserializer, Builder::build);
+			WatchRecordStats::setupWatchRecordStatsDeserializer);
 
-	protected static void setupWatchRecordStatsDeserializer(DelegatingDeserializer<WatchRecordStats.Builder> op) {
+	protected static void setupWatchRecordStatsDeserializer(ObjectDeserializer<WatchRecordStats.Builder> op) {
 		WatchRecordQueuedStats.setupWatchRecordQueuedStatsDeserializer(op);
 		op.add(Builder::executionPhase, ExecutionPhase._DESERIALIZER, "execution_phase");
 		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");

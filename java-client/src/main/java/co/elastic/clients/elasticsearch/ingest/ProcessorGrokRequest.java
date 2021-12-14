@@ -23,23 +23,30 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: ingest.processor_grok.Request
 
-public final class ProcessorGrokRequest extends RequestBase {
+/**
+ * Returns a list of the built-in patterns.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/processor_grok/GrokProcessorPatternsRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class ProcessorGrokRequest extends RequestBase {
 	public ProcessorGrokRequest() {
 	}
 
@@ -53,7 +60,9 @@ public final class ProcessorGrokRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ingest.processor_grok}".
 	 */
-	public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ProcessorGrokRequest, ProcessorGrokResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ingest.processor_grok",
+
 			// Request method
 			request -> {
 				return "GET";

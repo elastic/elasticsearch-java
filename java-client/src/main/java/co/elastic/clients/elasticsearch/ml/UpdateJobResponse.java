@@ -23,22 +23,20 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,8 +44,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.update_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_job/MlUpdateJobResponse.ts#L29-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UpdateJobResponse implements JsonpSerializable {
+public class UpdateJobResponse implements JsonpSerializable {
 	private final boolean allowLazyOpen;
 
 	private final AnalysisConfigRead analysisConfig;
@@ -55,14 +60,13 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	private final AnalysisLimits analysisLimits;
 
 	@Nullable
-	private final String backgroundPersistInterval;
+	private final Time backgroundPersistInterval;
 
 	private final String createTime;
 
 	@Nullable
 	private final String finishedTime;
 
-	@Nullable
 	private final Map<String, String> customSettings;
 
 	private final long dailyModelSnapshotRetentionAfterDays;
@@ -75,7 +79,6 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
-	@Nullable
 	private final List<String> groups;
 
 	private final String jobId;
@@ -102,56 +105,56 @@ public final class UpdateJobResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateJobResponse(Builder builder) {
+	private UpdateJobResponse(Builder builder) {
 
-		this.allowLazyOpen = Objects.requireNonNull(builder.allowLazyOpen, "allow_lazy_open");
-		this.analysisConfig = Objects.requireNonNull(builder.analysisConfig, "analysis_config");
-		this.analysisLimits = Objects.requireNonNull(builder.analysisLimits, "analysis_limits");
+		this.allowLazyOpen = ApiTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen");
+		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
+		this.analysisLimits = ApiTypeHelper.requireNonNull(builder.analysisLimits, this, "analysisLimits");
 		this.backgroundPersistInterval = builder.backgroundPersistInterval;
-		this.createTime = Objects.requireNonNull(builder.createTime, "create_time");
+		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
 		this.finishedTime = builder.finishedTime;
-		this.customSettings = ModelTypeHelper.unmodifiable(builder.customSettings);
-		this.dailyModelSnapshotRetentionAfterDays = Objects.requireNonNull(builder.dailyModelSnapshotRetentionAfterDays,
-				"daily_model_snapshot_retention_after_days");
-		this.dataDescription = Objects.requireNonNull(builder.dataDescription, "data_description");
+		this.customSettings = ApiTypeHelper.unmodifiable(builder.customSettings);
+		this.dailyModelSnapshotRetentionAfterDays = ApiTypeHelper.requireNonNull(
+				builder.dailyModelSnapshotRetentionAfterDays, this, "dailyModelSnapshotRetentionAfterDays");
+		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.jobType = Objects.requireNonNull(builder.jobType, "job_type");
-		this.jobVersion = Objects.requireNonNull(builder.jobVersion, "job_version");
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.jobType = ApiTypeHelper.requireNonNull(builder.jobType, this, "jobType");
+		this.jobVersion = ApiTypeHelper.requireNonNull(builder.jobVersion, this, "jobVersion");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotId = builder.modelSnapshotId;
-		this.modelSnapshotRetentionDays = Objects.requireNonNull(builder.modelSnapshotRetentionDays,
-				"model_snapshot_retention_days");
+		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
+				"modelSnapshotRetentionDays");
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
-		this.resultsIndexName = Objects.requireNonNull(builder.resultsIndexName, "results_index_name");
+		this.resultsIndexName = ApiTypeHelper.requireNonNull(builder.resultsIndexName, this, "resultsIndexName");
 		this.resultsRetentionDays = builder.resultsRetentionDays;
 
 	}
 
-	public UpdateJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateJobResponse of(Function<Builder, ObjectBuilder<UpdateJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code allow_lazy_open}
 	 */
-	public boolean allowLazyOpen() {
+	public final boolean allowLazyOpen() {
 		return this.allowLazyOpen;
 	}
 
 	/**
 	 * Required - API name: {@code analysis_config}
 	 */
-	public AnalysisConfigRead analysisConfig() {
+	public final AnalysisConfigRead analysisConfig() {
 		return this.analysisConfig;
 	}
 
 	/**
 	 * Required - API name: {@code analysis_limits}
 	 */
-	public AnalysisLimits analysisLimits() {
+	public final AnalysisLimits analysisLimits() {
 		return this.analysisLimits;
 	}
 
@@ -159,14 +162,14 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code background_persist_interval}
 	 */
 	@Nullable
-	public String backgroundPersistInterval() {
+	public final Time backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
 
 	/**
 	 * Required - API name: {@code create_time}
 	 */
-	public String createTime() {
+	public final String createTime() {
 		return this.createTime;
 	}
 
@@ -174,29 +177,28 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code finished_time}
 	 */
 	@Nullable
-	public String finishedTime() {
+	public final String finishedTime() {
 		return this.finishedTime;
 	}
 
 	/**
 	 * API name: {@code custom_settings}
 	 */
-	@Nullable
-	public Map<String, String> customSettings() {
+	public final Map<String, String> customSettings() {
 		return this.customSettings;
 	}
 
 	/**
 	 * Required - API name: {@code daily_model_snapshot_retention_after_days}
 	 */
-	public long dailyModelSnapshotRetentionAfterDays() {
+	public final long dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
 	/**
 	 * Required - API name: {@code data_description}
 	 */
-	public DataDescription dataDescription() {
+	public final DataDescription dataDescription() {
 		return this.dataDescription;
 	}
 
@@ -204,7 +206,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code datafeed_config}
 	 */
 	@Nullable
-	public Datafeed datafeedConfig() {
+	public final Datafeed datafeedConfig() {
 		return this.datafeedConfig;
 	}
 
@@ -212,36 +214,35 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * API name: {@code groups}
 	 */
-	@Nullable
-	public List<String> groups() {
+	public final List<String> groups() {
 		return this.groups;
 	}
 
 	/**
 	 * Required - API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
 	 * Required - API name: {@code job_type}
 	 */
-	public String jobType() {
+	public final String jobType() {
 		return this.jobType;
 	}
 
 	/**
 	 * Required - API name: {@code job_version}
 	 */
-	public String jobVersion() {
+	public final String jobVersion() {
 		return this.jobVersion;
 	}
 
@@ -249,7 +250,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code model_plot_config}
 	 */
 	@Nullable
-	public ModelPlotConfig modelPlotConfig() {
+	public final ModelPlotConfig modelPlotConfig() {
 		return this.modelPlotConfig;
 	}
 
@@ -257,14 +258,14 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code model_snapshot_id}
 	 */
 	@Nullable
-	public String modelSnapshotId() {
+	public final String modelSnapshotId() {
 		return this.modelSnapshotId;
 	}
 
 	/**
 	 * Required - API name: {@code model_snapshot_retention_days}
 	 */
-	public long modelSnapshotRetentionDays() {
+	public final long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
@@ -272,14 +273,14 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code renormalization_window_days}
 	 */
 	@Nullable
-	public Long renormalizationWindowDays() {
+	public final Long renormalizationWindowDays() {
 		return this.renormalizationWindowDays;
 	}
 
 	/**
 	 * Required - API name: {@code results_index_name}
 	 */
-	public String resultsIndexName() {
+	public final String resultsIndexName() {
 		return this.resultsIndexName;
 	}
 
@@ -287,7 +288,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code results_retention_days}
 	 */
 	@Nullable
-	public Long resultsRetentionDays() {
+	public final Long resultsRetentionDays() {
 		return this.resultsRetentionDays;
 	}
 
@@ -312,23 +313,19 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		this.analysisLimits.serialize(generator, mapper);
 
 		if (this.backgroundPersistInterval != null) {
-
 			generator.writeKey("background_persist_interval");
-			generator.write(this.backgroundPersistInterval);
+			this.backgroundPersistInterval.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("create_time");
 		generator.write(this.createTime);
 
 		if (this.finishedTime != null) {
-
 			generator.writeKey("finished_time");
 			generator.write(this.finishedTime);
 
 		}
-		if (this.customSettings != null) {
-
+		if (ApiTypeHelper.isDefined(this.customSettings)) {
 			generator.writeKey("custom_settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.customSettings.entrySet()) {
@@ -339,7 +336,6 @@ public final class UpdateJobResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("daily_model_snapshot_retention_after_days");
 		generator.write(this.dailyModelSnapshotRetentionAfterDays);
 
@@ -347,19 +343,16 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		this.dataDescription.serialize(generator, mapper);
 
 		if (this.datafeedConfig != null) {
-
 			generator.writeKey("datafeed_config");
 			this.datafeedConfig.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-		if (this.groups != null) {
-
+		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartArray();
 			for (String item0 : this.groups) {
@@ -369,7 +362,6 @@ public final class UpdateJobResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
@@ -380,33 +372,27 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		generator.write(this.jobVersion);
 
 		if (this.modelPlotConfig != null) {
-
 			generator.writeKey("model_plot_config");
 			this.modelPlotConfig.serialize(generator, mapper);
 
 		}
 		if (this.modelSnapshotId != null) {
-
 			generator.writeKey("model_snapshot_id");
 			generator.write(this.modelSnapshotId);
 
 		}
-
 		generator.writeKey("model_snapshot_retention_days");
 		generator.write(this.modelSnapshotRetentionDays);
 
 		if (this.renormalizationWindowDays != null) {
-
 			generator.writeKey("renormalization_window_days");
 			generator.write(this.renormalizationWindowDays);
 
 		}
-
 		generator.writeKey("results_index_name");
 		generator.write(this.resultsIndexName);
 
 		if (this.resultsRetentionDays != null) {
-
 			generator.writeKey("results_retention_days");
 			generator.write(this.resultsRetentionDays);
 
@@ -419,7 +405,8 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link UpdateJobResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<UpdateJobResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateJobResponse> {
 		private Boolean allowLazyOpen;
 
 		private AnalysisConfigRead analysisConfig;
@@ -427,7 +414,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		private AnalysisLimits analysisLimits;
 
 		@Nullable
-		private String backgroundPersistInterval;
+		private Time backgroundPersistInterval;
 
 		private String createTime;
 
@@ -475,7 +462,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code allow_lazy_open}
 		 */
-		public Builder allowLazyOpen(boolean value) {
+		public final Builder allowLazyOpen(boolean value) {
 			this.allowLazyOpen = value;
 			return this;
 		}
@@ -483,7 +470,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(AnalysisConfigRead value) {
+		public final Builder analysisConfig(AnalysisConfigRead value) {
 			this.analysisConfig = value;
 			return this;
 		}
@@ -491,14 +478,15 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(Function<AnalysisConfigRead.Builder, ObjectBuilder<AnalysisConfigRead>> fn) {
+		public final Builder analysisConfig(
+				Function<AnalysisConfigRead.Builder, ObjectBuilder<AnalysisConfigRead>> fn) {
 			return this.analysisConfig(fn.apply(new AnalysisConfigRead.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code analysis_limits}
 		 */
-		public Builder analysisLimits(AnalysisLimits value) {
+		public final Builder analysisLimits(AnalysisLimits value) {
 			this.analysisLimits = value;
 			return this;
 		}
@@ -506,22 +494,29 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis_limits}
 		 */
-		public Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
+		public final Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
 			return this.analysisLimits(fn.apply(new AnalysisLimits.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code background_persist_interval}
 		 */
-		public Builder backgroundPersistInterval(@Nullable String value) {
+		public final Builder backgroundPersistInterval(@Nullable Time value) {
 			this.backgroundPersistInterval = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code background_persist_interval}
+		 */
+		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code create_time}
 		 */
-		public Builder createTime(String value) {
+		public final Builder createTime(String value) {
 			this.createTime = value;
 			return this;
 		}
@@ -529,34 +524,35 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code finished_time}
 		 */
-		public Builder finishedTime(@Nullable String value) {
+		public final Builder finishedTime(@Nullable String value) {
 			this.finishedTime = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code custom_settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>customSettings</code>.
 		 */
-		public Builder customSettings(@Nullable Map<String, String> value) {
-			this.customSettings = value;
+		public final Builder customSettings(Map<String, String> map) {
+			this.customSettings = _mapPutAll(this.customSettings, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #customSettings(Map)}, creating the map if needed.
+		 * API name: {@code custom_settings}
+		 * <p>
+		 * Adds an entry to <code>customSettings</code>.
 		 */
-		public Builder putCustomSettings(String key, String value) {
-			if (this.customSettings == null) {
-				this.customSettings = new HashMap<>();
-			}
-			this.customSettings.put(key, value);
+		public final Builder customSettings(String key, String value) {
+			this.customSettings = _mapPut(this.customSettings, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code daily_model_snapshot_retention_after_days}
 		 */
-		public Builder dailyModelSnapshotRetentionAfterDays(long value) {
+		public final Builder dailyModelSnapshotRetentionAfterDays(long value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;
 			return this;
 		}
@@ -564,7 +560,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_description}
 		 */
-		public Builder dataDescription(DataDescription value) {
+		public final Builder dataDescription(DataDescription value) {
 			this.dataDescription = value;
 			return this;
 		}
@@ -572,14 +568,14 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_description}
 		 */
-		public Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
+		public final Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
 			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(@Nullable Datafeed value) {
+		public final Builder datafeedConfig(@Nullable Datafeed value) {
 			this.datafeedConfig = value;
 			return this;
 		}
@@ -587,49 +583,42 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(Function<Datafeed.Builder, ObjectBuilder<Datafeed>> fn) {
+		public final Builder datafeedConfig(Function<Datafeed.Builder, ObjectBuilder<Datafeed>> fn) {
 			return this.datafeedConfig(fn.apply(new Datafeed.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>groups</code>.
 		 */
-		public Builder groups(@Nullable List<String> value) {
-			this.groups = value;
+		public final Builder groups(List<String> list) {
+			this.groups = _listAddAll(this.groups, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds one or more values to <code>groups</code>.
 		 */
-		public Builder groups(String... value) {
-			this.groups = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
-		 */
-		public Builder addGroups(String value) {
-			if (this.groups == null) {
-				this.groups = new ArrayList<>();
-			}
-			this.groups.add(value);
+		public final Builder groups(String value, String... values) {
+			this.groups = _listAdd(this.groups, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -637,7 +626,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code job_type}
 		 */
-		public Builder jobType(String value) {
+		public final Builder jobType(String value) {
 			this.jobType = value;
 			return this;
 		}
@@ -645,7 +634,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code job_version}
 		 */
-		public Builder jobVersion(String value) {
+		public final Builder jobVersion(String value) {
 			this.jobVersion = value;
 			return this;
 		}
@@ -653,7 +642,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code model_plot_config}
 		 */
-		public Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
+		public final Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
 			this.modelPlotConfig = value;
 			return this;
 		}
@@ -661,14 +650,14 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code model_plot_config}
 		 */
-		public Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+		public final Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
 			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code model_snapshot_id}
 		 */
-		public Builder modelSnapshotId(@Nullable String value) {
+		public final Builder modelSnapshotId(@Nullable String value) {
 			this.modelSnapshotId = value;
 			return this;
 		}
@@ -676,7 +665,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(long value) {
+		public final Builder modelSnapshotRetentionDays(long value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -684,7 +673,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code renormalization_window_days}
 		 */
-		public Builder renormalizationWindowDays(@Nullable Long value) {
+		public final Builder renormalizationWindowDays(@Nullable Long value) {
 			this.renormalizationWindowDays = value;
 			return this;
 		}
@@ -692,7 +681,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code results_index_name}
 		 */
-		public Builder resultsIndexName(String value) {
+		public final Builder resultsIndexName(String value) {
 			this.resultsIndexName = value;
 			return this;
 		}
@@ -700,7 +689,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code results_retention_days}
 		 */
-		public Builder resultsRetentionDays(@Nullable Long value) {
+		public final Builder resultsRetentionDays(@Nullable Long value) {
 			this.resultsRetentionDays = value;
 			return this;
 		}
@@ -712,6 +701,7 @@ public final class UpdateJobResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public UpdateJobResponse build() {
+			_checkSingleUse();
 
 			return new UpdateJobResponse(this);
 		}
@@ -723,15 +713,14 @@ public final class UpdateJobResponse implements JsonpSerializable {
 	 * Json deserializer for {@link UpdateJobResponse}
 	 */
 	public static final JsonpDeserializer<UpdateJobResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateJobResponse::setupUpdateJobResponseDeserializer, Builder::build);
+			.lazy(Builder::new, UpdateJobResponse::setupUpdateJobResponseDeserializer);
 
-	protected static void setupUpdateJobResponseDeserializer(DelegatingDeserializer<UpdateJobResponse.Builder> op) {
+	protected static void setupUpdateJobResponseDeserializer(ObjectDeserializer<UpdateJobResponse.Builder> op) {
 
 		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
 		op.add(Builder::analysisConfig, AnalysisConfigRead._DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
-		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.stringDeserializer(),
-				"background_persist_interval");
+		op.add(Builder::backgroundPersistInterval, Time._DESERIALIZER, "background_persist_interval");
 		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time");
 		op.add(Builder::finishedTime, JsonpDeserializer.stringDeserializer(), "finished_time");
 		op.add(Builder::customSettings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),

@@ -23,25 +23,23 @@
 
 package co.elastic.clients.elasticsearch.monitoring;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.core.bulk.Operation;
+import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
@@ -52,55 +50,53 @@ import javax.annotation.Nullable;
 
 // typedef: monitoring.bulk.Request
 
-public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSerializable<Object>, JsonpSerializable {
-	@Nullable
-	private final String type;
+/**
+ * Used by the monitoring features to send monitoring data.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/monitoring/bulk/BulkMonitoringRequest.ts#L24-L57">API
+ *      specification</a>
+ */
 
-	private final String systemId;
+public class BulkRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
+	private final String interval;
 
 	private final String systemApiVersion;
 
-	private final String interval;
-
-	private final List<Object> operations;
+	private final String systemId;
 
 	@Nullable
-	private final JsonpSerializer<TSource> tSourceSerializer;
+	private final String type;
+
+	private final List<BulkOperation> operations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BulkRequest(Builder<TSource> builder) {
+	private BulkRequest(Builder builder) {
 
+		this.interval = ApiTypeHelper.requireNonNull(builder.interval, this, "interval");
+		this.systemApiVersion = ApiTypeHelper.requireNonNull(builder.systemApiVersion, this, "systemApiVersion");
+		this.systemId = ApiTypeHelper.requireNonNull(builder.systemId, this, "systemId");
 		this.type = builder.type;
-		this.systemId = Objects.requireNonNull(builder.systemId, "system_id");
-		this.systemApiVersion = Objects.requireNonNull(builder.systemApiVersion, "system_api_version");
-		this.interval = Objects.requireNonNull(builder.interval, "interval");
-		this.operations = ModelTypeHelper.unmodifiableNonNull(builder.operations, "_value_body");
-		this.tSourceSerializer = builder.tSourceSerializer;
+		this.operations = ApiTypeHelper.unmodifiableRequired(builder.operations, this, "operations");
 
 	}
 
-	public BulkRequest(Function<Builder<TSource>, Builder<TSource>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static BulkRequest of(Function<Builder, ObjectBuilder<BulkRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
+	@Override
+	public Iterator<?> _serializables() {
+		return this.operations.iterator();
+	}
 	/**
-	 * Default document type for items which don't provide one
+	 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
 	 * <p>
-	 * API name: {@code type}
+	 * API name: {@code interval}
 	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
-	 * Required - Identifier of the monitored system
-	 * <p>
-	 * API name: {@code system_id}
-	 */
-	public String systemId() {
-		return this.systemId;
+	public final String interval() {
+		return this.interval;
 	}
 
 	/**
@@ -108,17 +104,30 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	 * <p>
 	 * API name: {@code system_api_version}
 	 */
-	public String systemApiVersion() {
+	public final String systemApiVersion() {
 		return this.systemApiVersion;
 	}
 
 	/**
-	 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
+	 * Required - Identifier of the monitored system
 	 * <p>
-	 * API name: {@code interval}
+	 * API name: {@code system_id}
 	 */
-	public String interval() {
-		return this.interval;
+	public final String systemId() {
+		return this.systemId;
+	}
+
+	/**
+	 * Default document type for items which don't provide one
+	 * <p>
+	 * API name: {@code type}
+	 * 
+	 * @deprecated 7.0.0
+	 */
+	@Deprecated
+	@Nullable
+	public final String type() {
+		return this.type;
 	}
 
 	/**
@@ -126,13 +135,8 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<Object> operations() {
+	public final List<BulkOperation> operations() {
 		return this.operations;
-	}
-
-	@Override
-	public Iterator<Object> iterator() {
-		return this.operations.iterator();
 	}
 
 	/**
@@ -140,8 +144,9 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (Object item0 : this.operations) {
-			mapper.serialize(item0, generator);
+		for (BulkOperation item0 : this.operations) {
+			item0.serialize(generator, mapper);
+
 		}
 		generator.writeEnd();
 
@@ -152,38 +157,26 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	/**
 	 * Builder for {@link BulkRequest}.
 	 */
-	public static class Builder<TSource> implements ObjectBuilder<BulkRequest<TSource>> {
-		@Nullable
-		private String type;
 
-		private String systemId;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkRequest> {
+		private String interval;
 
 		private String systemApiVersion;
 
-		private String interval;
-
-		private List<Object> operations;
+		private String systemId;
 
 		@Nullable
-		private JsonpSerializer<TSource> tSourceSerializer;
+		private String type;
+
+		private List<BulkOperation> operations;
 
 		/**
-		 * Default document type for items which don't provide one
+		 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
 		 * <p>
-		 * API name: {@code type}
+		 * API name: {@code interval}
 		 */
-		public Builder<TSource> type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * Required - Identifier of the monitored system
-		 * <p>
-		 * API name: {@code system_id}
-		 */
-		public Builder<TSource> systemId(String value) {
-			this.systemId = value;
+		public final Builder interval(String value) {
+			this.interval = value;
 			return this;
 		}
 
@@ -192,80 +185,67 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * <p>
 		 * API name: {@code system_api_version}
 		 */
-		public Builder<TSource> systemApiVersion(String value) {
+		public final Builder systemApiVersion(String value) {
 			this.systemApiVersion = value;
 			return this;
 		}
 
 		/**
-		 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
+		 * Required - Identifier of the monitored system
 		 * <p>
-		 * API name: {@code interval}
+		 * API name: {@code system_id}
 		 */
-		public Builder<TSource> interval(String value) {
-			this.interval = value;
+		public final Builder systemId(String value) {
+			this.systemId = value;
 			return this;
 		}
 
 		/**
-		 * Required - Request body.
+		 * Default document type for items which don't provide one
 		 * <p>
-		 * API name: {@code _value_body}
-		 */
-		public Builder<TSource> operations(List<Object> value) {
-			this.operations = value;
-			return this;
-		}
-
-		/**
-		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
-		 */
-		public Builder<TSource> operations(Object... value) {
-			this.operations = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
-		 * <p>
+		 * API name: {@code type}
 		 * 
-		 * @deprecated
+		 * @deprecated 7.0.0
 		 */
-		public Builder<TSource> addOperation(Operation value) {
-			if (this.operations == null) {
-				this.operations = new ArrayList<>();
-			}
-			this.operations.add(value);
+		@Deprecated
+		public final Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
 		/**
-		 * Add a document to {@link #operations(List)}, creating the list if needed.
+		 * Required - Request body.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>operations</code>.
 		 */
-		public Builder<TSource> addDocument(TSource value) {
-			if (this.operations == null) {
-				this.operations = new ArrayList<>();
-			}
-			this.operations.add(value);
+		public final Builder operations(List<BulkOperation> list) {
+			this.operations = _listAddAll(this.operations, list);
 			return this;
 		}
 
 		/**
-		 * Add an Operation to {@link #operations(List)}, creating the list if needed.
+		 * Required - Request body.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>operations</code>.
 		 */
-		public Builder<TSource> addOperation(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
-			return this.addOperation(fn.apply(new Operation.Builder()).build());
+		public final Builder operations(BulkOperation value, BulkOperation... values) {
+			this.operations = _listAdd(this.operations, value, values);
+			return this;
 		}
 
 		/**
-		 * Serializer for TSource. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
+		 * Required - Request body.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>operations</code> using a builder lambda.
 		 */
-		public Builder<TSource> tSourceSerializer(@Nullable JsonpSerializer<TSource> value) {
-			this.tSourceSerializer = value;
-			return this;
+		public final Builder operations(Function<BulkOperation.Builder, ObjectBuilder<BulkOperation>> fn) {
+			return operations(fn.apply(new BulkOperation.Builder()).build());
 		}
 
 		/**
@@ -274,9 +254,10 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public BulkRequest<TSource> build() {
+		public BulkRequest build() {
+			_checkSingleUse();
 
-			return new BulkRequest<TSource>(this);
+			return new BulkRequest(this);
 		}
 	}
 
@@ -285,7 +266,9 @@ public final class BulkRequest<TSource> extends RequestBase implements NdJsonpSe
 	/**
 	 * Endpoint "{@code monitoring.bulk}".
 	 */
-	public static final Endpoint<BulkRequest<?>, BulkResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<BulkRequest, BulkResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/monitoring.bulk",
+
 			// Request method
 			request -> {
 				return "POST";

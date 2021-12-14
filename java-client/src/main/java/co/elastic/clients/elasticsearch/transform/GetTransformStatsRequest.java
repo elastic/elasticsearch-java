@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -44,9 +46,15 @@ import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Request
 
-public final class GetTransformStatsRequest extends RequestBase {
-	private final String transformId;
+/**
+ * Retrieves usage information for transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform_stats/GetTransformStatsRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
+public class GetTransformStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -56,29 +64,21 @@ public final class GetTransformStatsRequest extends RequestBase {
 	@Nullable
 	private final Long size;
 
+	private final String transformId;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTransformStatsRequest(Builder builder) {
+	private GetTransformStatsRequest(Builder builder) {
 
-		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
 		this.size = builder.size;
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
-	public GetTransformStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The id of the transform for which to get stats. '_all' or '*'
-	 * implies all transforms
-	 * <p>
-	 * API name: {@code transform_id}
-	 */
-	public String transformId() {
-		return this.transformId;
+	public static GetTransformStatsRequest of(Function<Builder, ObjectBuilder<GetTransformStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,7 +88,7 @@ public final class GetTransformStatsRequest extends RequestBase {
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -98,7 +98,7 @@ public final class GetTransformStatsRequest extends RequestBase {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Long from() {
+	public final Long from() {
 		return this.from;
 	}
 
@@ -108,8 +108,18 @@ public final class GetTransformStatsRequest extends RequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Long size() {
+	public final Long size() {
 		return this.size;
+	}
+
+	/**
+	 * Required - The id of the transform for which to get stats. '_all' or '*'
+	 * implies all transforms
+	 * <p>
+	 * API name: {@code transform_id}
+	 */
+	public final String transformId() {
+		return this.transformId;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -117,9 +127,8 @@ public final class GetTransformStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTransformStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetTransformStatsRequest> {
-		private String transformId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTransformStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -129,16 +138,7 @@ public final class GetTransformStatsRequest extends RequestBase {
 		@Nullable
 		private Long size;
 
-		/**
-		 * Required - The id of the transform for which to get stats. '_all' or '*'
-		 * implies all transforms
-		 * <p>
-		 * API name: {@code transform_id}
-		 */
-		public Builder transformId(String value) {
-			this.transformId = value;
-			return this;
-		}
+		private String transformId;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no transforms. (This
@@ -146,7 +146,7 @@ public final class GetTransformStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -156,7 +156,7 @@ public final class GetTransformStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Long value) {
+		public final Builder from(@Nullable Long value) {
 			this.from = value;
 			return this;
 		}
@@ -166,8 +166,19 @@ public final class GetTransformStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Long value) {
+		public final Builder size(@Nullable Long value) {
 			this.size = value;
+			return this;
+		}
+
+		/**
+		 * Required - The id of the transform for which to get stats. '_all' or '*'
+		 * implies all transforms
+		 * <p>
+		 * API name: {@code transform_id}
+		 */
+		public final Builder transformId(String value) {
+			this.transformId = value;
 			return this;
 		}
 
@@ -178,6 +189,7 @@ public final class GetTransformStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetTransformStatsRequest build() {
+			_checkSingleUse();
 
 			return new GetTransformStatsRequest(this);
 		}
@@ -188,7 +200,9 @@ public final class GetTransformStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.get_transform_stats}".
 	 */
-	public static final Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/transform.get_transform_stats",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -218,14 +232,14 @@ public final class GetTransformStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

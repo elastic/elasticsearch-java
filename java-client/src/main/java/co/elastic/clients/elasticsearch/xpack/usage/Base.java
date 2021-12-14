@@ -23,20 +23,28 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.Base
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L28-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class Base implements JsonpSerializable {
 	private final boolean available;
@@ -45,24 +53,28 @@ public class Base implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Base(AbstractBuilder<?> builder) {
+	protected Base(AbstractBuilder<?> builder) {
 
-		this.available = Objects.requireNonNull(builder.available, "available");
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
+	}
+
+	public static Base baseOf(Function<Builder, ObjectBuilder<Base>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code available}
 	 */
-	public boolean available() {
+	public final boolean available() {
 		return this.available;
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -90,6 +102,7 @@ public class Base implements JsonpSerializable {
 	/**
 	 * Builder for {@link Base}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Base> {
 		@Override
 		protected Builder self() {
@@ -103,12 +116,15 @@ public class Base implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Base build() {
+			_checkSingleUse();
 
 			return new Base(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private Boolean available;
 
 		private Boolean enabled;
@@ -116,7 +132,7 @@ public class Base implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code available}
 		 */
-		public BuilderT available(boolean value) {
+		public final BuilderT available(boolean value) {
 			this.available = value;
 			return self();
 		}
@@ -124,7 +140,7 @@ public class Base implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public BuilderT enabled(boolean value) {
+		public final BuilderT enabled(boolean value) {
 			this.enabled = value;
 			return self();
 		}
@@ -139,10 +155,10 @@ public class Base implements JsonpSerializable {
 	 * Json deserializer for {@link Base}
 	 */
 	public static final JsonpDeserializer<Base> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Base::setupBaseDeserializer, Builder::build);
+			Base::setupBaseDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::available, JsonpDeserializer.booleanDeserializer(), "available");
 		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");

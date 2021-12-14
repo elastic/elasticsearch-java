@@ -24,59 +24,66 @@
 package co.elastic.clients.elasticsearch.core.reindex_rethrottle;
 
 import co.elastic.clients.elasticsearch._types.BaseNode;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex_rethrottle.ReindexNode
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/reindex_rethrottle/types.ts#L26-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ReindexNode extends BaseNode {
+public class ReindexNode extends BaseNode {
 	private final Map<String, ReindexTask> tasks;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ReindexNode(Builder builder) {
+	private ReindexNode(Builder builder) {
 		super(builder);
 
-		this.tasks = ModelTypeHelper.unmodifiableNonNull(builder.tasks, "tasks");
+		this.tasks = ApiTypeHelper.unmodifiableRequired(builder.tasks, this, "tasks");
 
 	}
 
-	public ReindexNode(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReindexNode of(Function<Builder, ObjectBuilder<ReindexNode>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code tasks}
 	 */
-	public Map<String, ReindexTask> tasks() {
+	public final Map<String, ReindexTask> tasks() {
 		return this.tasks;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.tasks)) {
+			generator.writeKey("tasks");
+			generator.writeStartObject();
+			for (Map.Entry<String, ReindexTask> item0 : this.tasks.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("tasks");
-		generator.writeStartObject();
-		for (Map.Entry<String, ReindexTask> item0 : this.tasks.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -85,40 +92,37 @@ public final class ReindexNode extends BaseNode {
 	/**
 	 * Builder for {@link ReindexNode}.
 	 */
+
 	public static class Builder extends BaseNode.AbstractBuilder<Builder> implements ObjectBuilder<ReindexNode> {
 		private Map<String, ReindexTask> tasks;
 
 		/**
 		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>tasks</code>.
 		 */
-		public Builder tasks(Map<String, ReindexTask> value) {
-			this.tasks = value;
+		public final Builder tasks(Map<String, ReindexTask> map) {
+			this.tasks = _mapPutAll(this.tasks, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #tasks(Map)}, creating the map if needed.
+		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds an entry to <code>tasks</code>.
 		 */
-		public Builder putTasks(String key, ReindexTask value) {
-			if (this.tasks == null) {
-				this.tasks = new HashMap<>();
-			}
-			this.tasks.put(key, value);
+		public final Builder tasks(String key, ReindexTask value) {
+			this.tasks = _mapPut(this.tasks, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #tasks(Map)} to a singleton map.
+		 * Required - API name: {@code tasks}
+		 * <p>
+		 * Adds an entry to <code>tasks</code> using a builder lambda.
 		 */
-		public Builder tasks(String key, Function<ReindexTask.Builder, ObjectBuilder<ReindexTask>> fn) {
-			return this.tasks(Collections.singletonMap(key, fn.apply(new ReindexTask.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #tasks(Map)}, creating the map if needed.
-		 */
-		public Builder putTasks(String key, Function<ReindexTask.Builder, ObjectBuilder<ReindexTask>> fn) {
-			return this.putTasks(key, fn.apply(new ReindexTask.Builder()).build());
+		public final Builder tasks(String key, Function<ReindexTask.Builder, ObjectBuilder<ReindexTask>> fn) {
+			return tasks(key, fn.apply(new ReindexTask.Builder()).build());
 		}
 
 		@Override
@@ -133,6 +137,7 @@ public final class ReindexNode extends BaseNode {
 		 *             if some of the required fields are null.
 		 */
 		public ReindexNode build() {
+			_checkSingleUse();
 
 			return new ReindexNode(this);
 		}
@@ -144,9 +149,9 @@ public final class ReindexNode extends BaseNode {
 	 * Json deserializer for {@link ReindexNode}
 	 */
 	public static final JsonpDeserializer<ReindexNode> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ReindexNode::setupReindexNodeDeserializer, Builder::build);
+			ReindexNode::setupReindexNodeDeserializer);
 
-	protected static void setupReindexNodeDeserializer(DelegatingDeserializer<ReindexNode.Builder> op) {
+	protected static void setupReindexNodeDeserializer(ObjectDeserializer<ReindexNode.Builder> op) {
 		BaseNode.setupBaseNodeDeserializer(op);
 		op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(ReindexTask._DESERIALIZER), "tasks");
 

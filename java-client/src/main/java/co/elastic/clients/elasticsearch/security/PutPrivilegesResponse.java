@@ -23,12 +23,11 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.DictionaryResponse;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,17 +36,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.put_privileges.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_privileges/SecurityPutPrivilegesResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutPrivilegesResponse extends DictionaryResponse<String, Map<String, CreatedStatus>> {
+public class PutPrivilegesResponse extends DictionaryResponse<String, Map<String, CreatedStatus>> {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutPrivilegesResponse(Builder builder) {
+	private PutPrivilegesResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutPrivilegesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutPrivilegesResponse of(Function<Builder, ObjectBuilder<PutPrivilegesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +61,7 @@ public final class PutPrivilegesResponse extends DictionaryResponse<String, Map<
 	/**
 	 * Builder for {@link PutPrivilegesResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Map<String, CreatedStatus>, Builder>
 			implements
 				ObjectBuilder<PutPrivilegesResponse> {
@@ -70,6 +77,7 @@ public final class PutPrivilegesResponse extends DictionaryResponse<String, Map<
 		 *             if some of the required fields are null.
 		 */
 		public PutPrivilegesResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -83,10 +91,9 @@ public final class PutPrivilegesResponse extends DictionaryResponse<String, Map<
 	 * Json deserializer for {@link PutPrivilegesResponse}
 	 */
 	public static final JsonpDeserializer<PutPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutPrivilegesResponse::setupPutPrivilegesResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutPrivilegesResponse::setupPutPrivilegesResponseDeserializer);
 
-	protected static void setupPutPrivilegesResponseDeserializer(
-			DelegatingDeserializer<PutPrivilegesResponse.Builder> op) {
+	protected static void setupPutPrivilegesResponseDeserializer(ObjectDeserializer<PutPrivilegesResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				JsonpDeserializer.stringMapDeserializer(CreatedStatus._DESERIALIZER));
 

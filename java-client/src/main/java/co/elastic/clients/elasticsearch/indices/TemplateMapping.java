@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -32,16 +31,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -49,8 +45,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.TemplateMapping
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/TemplateMapping.ts#L27-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TemplateMapping implements JsonpSerializable {
+public class TemplateMapping implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
 
 	private final List<String> indexPatterns;
@@ -66,53 +69,53 @@ public final class TemplateMapping implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TemplateMapping(Builder builder) {
+	private TemplateMapping(Builder builder) {
 
-		this.aliases = ModelTypeHelper.unmodifiableNonNull(builder.aliases, "aliases");
-		this.indexPatterns = ModelTypeHelper.unmodifiableNonNull(builder.indexPatterns, "index_patterns");
-		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
-		this.order = Objects.requireNonNull(builder.order, "order");
-		this.settings = ModelTypeHelper.unmodifiableNonNull(builder.settings, "settings");
+		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
+		this.indexPatterns = ApiTypeHelper.unmodifiableRequired(builder.indexPatterns, this, "indexPatterns");
+		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+		this.order = ApiTypeHelper.requireNonNull(builder.order, this, "order");
+		this.settings = ApiTypeHelper.unmodifiableRequired(builder.settings, this, "settings");
 		this.version = builder.version;
 
 	}
 
-	public TemplateMapping(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TemplateMapping of(Function<Builder, ObjectBuilder<TemplateMapping>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code aliases}
 	 */
-	public Map<String, Alias> aliases() {
+	public final Map<String, Alias> aliases() {
 		return this.aliases;
 	}
 
 	/**
 	 * Required - API name: {@code index_patterns}
 	 */
-	public List<String> indexPatterns() {
+	public final List<String> indexPatterns() {
 		return this.indexPatterns;
 	}
 
 	/**
 	 * Required - API name: {@code mappings}
 	 */
-	public TypeMapping mappings() {
+	public final TypeMapping mappings() {
 		return this.mappings;
 	}
 
 	/**
 	 * Required - API name: {@code order}
 	 */
-	public int order() {
+	public final int order() {
 		return this.order;
 	}
 
 	/**
 	 * Required - API name: {@code settings}
 	 */
-	public Map<String, JsonData> settings() {
+	public final Map<String, JsonData> settings() {
 		return this.settings;
 	}
 
@@ -120,7 +123,7 @@ public final class TemplateMapping implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -135,40 +138,45 @@ public final class TemplateMapping implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("aliases");
-		generator.writeStartObject();
-		for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.aliases)) {
+			generator.writeKey("aliases");
+			generator.writeStartObject();
+			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.indexPatterns)) {
+			generator.writeKey("index_patterns");
+			generator.writeStartArray();
+			for (String item0 : this.indexPatterns) {
+				generator.write(item0);
 
-		generator.writeKey("index_patterns");
-		generator.writeStartArray();
-		for (String item0 : this.indexPatterns) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("mappings");
 		this.mappings.serialize(generator, mapper);
 
 		generator.writeKey("order");
 		generator.write(this.order);
 
-		generator.writeKey("settings");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.settings)) {
+			generator.writeKey("settings");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
@@ -181,7 +189,8 @@ public final class TemplateMapping implements JsonpSerializable {
 	/**
 	 * Builder for {@link TemplateMapping}.
 	 */
-	public static class Builder implements ObjectBuilder<TemplateMapping> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TemplateMapping> {
 		private Map<String, Alias> aliases;
 
 		private List<String> indexPatterns;
@@ -197,68 +206,57 @@ public final class TemplateMapping implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
 		 */
-		public Builder aliases(Map<String, Alias> value) {
-			this.aliases = value;
+		public final Builder aliases(Map<String, Alias> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
+		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
 		 */
-		public Builder putAliases(String key, Alias value) {
-			if (this.aliases == null) {
-				this.aliases = new HashMap<>();
-			}
-			this.aliases.put(key, value);
+		public final Builder aliases(String key, Alias value) {
+			this.aliases = _mapPut(this.aliases, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #aliases(Map)} to a singleton map.
+		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
 		 */
-		public Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.aliases(Collections.singletonMap(key, fn.apply(new Alias.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.putAliases(key, fn.apply(new Alias.Builder()).build());
+		public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
+			return aliases(key, fn.apply(new Alias.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code index_patterns}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexPatterns</code>.
 		 */
-		public Builder indexPatterns(List<String> value) {
-			this.indexPatterns = value;
+		public final Builder indexPatterns(List<String> list) {
+			this.indexPatterns = _listAddAll(this.indexPatterns, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index_patterns}
+		 * <p>
+		 * Adds one or more values to <code>indexPatterns</code>.
 		 */
-		public Builder indexPatterns(String... value) {
-			this.indexPatterns = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #indexPatterns(List)}, creating the list if needed.
-		 */
-		public Builder addIndexPatterns(String value) {
-			if (this.indexPatterns == null) {
-				this.indexPatterns = new ArrayList<>();
-			}
-			this.indexPatterns.add(value);
+		public final Builder indexPatterns(String value, String... values) {
+			this.indexPatterns = _listAdd(this.indexPatterns, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(TypeMapping value) {
+		public final Builder mappings(TypeMapping value) {
 			this.mappings = value;
 			return this;
 		}
@@ -266,41 +264,42 @@ public final class TemplateMapping implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mappings}
 		 */
-		public Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code order}
 		 */
-		public Builder order(int value) {
+		public final Builder order(int value) {
 			this.order = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 */
-		public Builder settings(Map<String, JsonData> value) {
-			this.settings = value;
+		public final Builder settings(Map<String, JsonData> map) {
+			this.settings = _mapPutAll(this.settings, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
+		 * Required - API name: {@code settings}
+		 * <p>
+		 * Adds an entry to <code>settings</code>.
 		 */
-		public Builder putSettings(String key, JsonData value) {
-			if (this.settings == null) {
-				this.settings = new HashMap<>();
-			}
-			this.settings.put(key, value);
+		public final Builder settings(String key, JsonData value) {
+			this.settings = _mapPut(this.settings, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -312,6 +311,7 @@ public final class TemplateMapping implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TemplateMapping build() {
+			_checkSingleUse();
 
 			return new TemplateMapping(this);
 		}
@@ -323,9 +323,9 @@ public final class TemplateMapping implements JsonpSerializable {
 	 * Json deserializer for {@link TemplateMapping}
 	 */
 	public static final JsonpDeserializer<TemplateMapping> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TemplateMapping::setupTemplateMappingDeserializer, Builder::build);
+			TemplateMapping::setupTemplateMappingDeserializer);
 
-	protected static void setupTemplateMappingDeserializer(DelegatingDeserializer<TemplateMapping.Builder> op) {
+	protected static void setupTemplateMappingDeserializer(ObjectDeserializer<TemplateMapping.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

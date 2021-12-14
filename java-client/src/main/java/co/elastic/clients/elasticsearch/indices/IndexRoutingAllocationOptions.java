@@ -23,13 +23,27 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexRouting.ts#L38-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum IndexRoutingAllocationOptions implements StringEnum {
-	All("all"), Primaries("primaries"), NewPrimaries("new_primaries"), None("none");
+public enum IndexRoutingAllocationOptions implements JsonEnum {
+	All("all"),
+
+	Primaries("primaries"),
+
+	NewPrimaries("new_primaries"),
+
+	None("none"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +55,6 @@ public enum IndexRoutingAllocationOptions implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<IndexRoutingAllocationOptions> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<IndexRoutingAllocationOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			IndexRoutingAllocationOptions.values());
 }

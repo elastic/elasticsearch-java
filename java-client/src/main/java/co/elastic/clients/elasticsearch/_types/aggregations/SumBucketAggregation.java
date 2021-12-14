@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.SumBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L213-L213">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SumBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class SumBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public SumBucketAggregation(Builder builder) {
+	private SumBucketAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public SumBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SumBucketAggregation of(Function<Builder, ObjectBuilder<SumBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "sum_bucket";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.SumBucket;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class SumBucketAggregation extends PipelineAggregationBase implemen
 	/**
 	 * Builder for {@link SumBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SumBucketAggregation> {
@@ -75,6 +82,7 @@ public final class SumBucketAggregation extends PipelineAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public SumBucketAggregation build() {
+			_checkSingleUse();
 
 			return new SumBucketAggregation(this);
 		}
@@ -86,10 +94,9 @@ public final class SumBucketAggregation extends PipelineAggregationBase implemen
 	 * Json deserializer for {@link SumBucketAggregation}
 	 */
 	public static final JsonpDeserializer<SumBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SumBucketAggregation::setupSumBucketAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, SumBucketAggregation::setupSumBucketAggregationDeserializer);
 
-	protected static void setupSumBucketAggregationDeserializer(
-			DelegatingDeserializer<SumBucketAggregation.Builder> op) {
+	protected static void setupSumBucketAggregationDeserializer(ObjectDeserializer<SumBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

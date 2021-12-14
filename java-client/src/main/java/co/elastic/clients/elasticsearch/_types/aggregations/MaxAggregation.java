@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.MaxAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L88-L88">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MaxAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class MaxAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MaxAggregation(Builder builder) {
+	private MaxAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public MaxAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MaxAggregation of(Function<Builder, ObjectBuilder<MaxAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "max";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Max;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class MaxAggregation extends FormatMetricAggregationBase implements
 	/**
 	 * Builder for {@link MaxAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MaxAggregation> {
@@ -75,6 +82,7 @@ public final class MaxAggregation extends FormatMetricAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public MaxAggregation build() {
+			_checkSingleUse();
 
 			return new MaxAggregation(this);
 		}
@@ -86,9 +94,9 @@ public final class MaxAggregation extends FormatMetricAggregationBase implements
 	 * Json deserializer for {@link MaxAggregation}
 	 */
 	public static final JsonpDeserializer<MaxAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MaxAggregation::setupMaxAggregationDeserializer, Builder::build);
+			MaxAggregation::setupMaxAggregationDeserializer);
 
-	protected static void setupMaxAggregationDeserializer(DelegatingDeserializer<MaxAggregation.Builder> op) {
+	protected static void setupMaxAggregationDeserializer(ObjectDeserializer<MaxAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 
 	}

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ingest.put_pipeline.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/put_pipeline/PutPipelineResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutPipelineResponse extends AcknowledgedResponseBase {
+public class PutPipelineResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutPipelineResponse(Builder builder) {
+	private PutPipelineResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutPipelineResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutPipelineResponse of(Function<Builder, ObjectBuilder<PutPipelineResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutPipelineResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutPipelineResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutPipelineResponse> {
@@ -68,6 +75,7 @@ public final class PutPipelineResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutPipelineResponse build() {
+			_checkSingleUse();
 
 			return new PutPipelineResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class PutPipelineResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutPipelineResponse}
 	 */
 	public static final JsonpDeserializer<PutPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutPipelineResponse::setupPutPipelineResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutPipelineResponse::setupPutPipelineResponseDeserializer);
 
-	protected static void setupPutPipelineResponseDeserializer(DelegatingDeserializer<PutPipelineResponse.Builder> op) {
+	protected static void setupPutPipelineResponseDeserializer(ObjectDeserializer<PutPipelineResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

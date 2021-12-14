@@ -23,50 +23,58 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackSecurityAuthc
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L238-L241">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
+public class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 	private final NodeInfoXpackSecurityAuthcRealms realms;
 
 	private final NodeInfoXpackSecurityAuthcToken token;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoXpackSecurityAuthc(Builder builder) {
+	private NodeInfoXpackSecurityAuthc(Builder builder) {
 
-		this.realms = Objects.requireNonNull(builder.realms, "realms");
-		this.token = Objects.requireNonNull(builder.token, "token");
+		this.realms = ApiTypeHelper.requireNonNull(builder.realms, this, "realms");
+		this.token = ApiTypeHelper.requireNonNull(builder.token, this, "token");
 
 	}
 
-	public NodeInfoXpackSecurityAuthc(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoXpackSecurityAuthc of(Function<Builder, ObjectBuilder<NodeInfoXpackSecurityAuthc>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code realms}
 	 */
-	public NodeInfoXpackSecurityAuthcRealms realms() {
+	public final NodeInfoXpackSecurityAuthcRealms realms() {
 		return this.realms;
 	}
 
 	/**
 	 * Required - API name: {@code token}
 	 */
-	public NodeInfoXpackSecurityAuthcToken token() {
+	public final NodeInfoXpackSecurityAuthcToken token() {
 		return this.token;
 	}
 
@@ -94,7 +102,8 @@ public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackSecurityAuthc}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoXpackSecurityAuthc> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackSecurityAuthc> {
 		private NodeInfoXpackSecurityAuthcRealms realms;
 
 		private NodeInfoXpackSecurityAuthcToken token;
@@ -102,7 +111,7 @@ public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code realms}
 		 */
-		public Builder realms(NodeInfoXpackSecurityAuthcRealms value) {
+		public final Builder realms(NodeInfoXpackSecurityAuthcRealms value) {
 			this.realms = value;
 			return this;
 		}
@@ -110,7 +119,7 @@ public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code realms}
 		 */
-		public Builder realms(
+		public final Builder realms(
 				Function<NodeInfoXpackSecurityAuthcRealms.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealms>> fn) {
 			return this.realms(fn.apply(new NodeInfoXpackSecurityAuthcRealms.Builder()).build());
 		}
@@ -118,7 +127,7 @@ public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code token}
 		 */
-		public Builder token(NodeInfoXpackSecurityAuthcToken value) {
+		public final Builder token(NodeInfoXpackSecurityAuthcToken value) {
 			this.token = value;
 			return this;
 		}
@@ -126,7 +135,7 @@ public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code token}
 		 */
-		public Builder token(
+		public final Builder token(
 				Function<NodeInfoXpackSecurityAuthcToken.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcToken>> fn) {
 			return this.token(fn.apply(new NodeInfoXpackSecurityAuthcToken.Builder()).build());
 		}
@@ -138,6 +147,7 @@ public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoXpackSecurityAuthc build() {
+			_checkSingleUse();
 
 			return new NodeInfoXpackSecurityAuthc(this);
 		}
@@ -148,11 +158,11 @@ public final class NodeInfoXpackSecurityAuthc implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link NodeInfoXpackSecurityAuthc}
 	 */
-	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthc> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, NodeInfoXpackSecurityAuthc::setupNodeInfoXpackSecurityAuthcDeserializer, Builder::build);
+	public static final JsonpDeserializer<NodeInfoXpackSecurityAuthc> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NodeInfoXpackSecurityAuthc::setupNodeInfoXpackSecurityAuthcDeserializer);
 
 	protected static void setupNodeInfoXpackSecurityAuthcDeserializer(
-			DelegatingDeserializer<NodeInfoXpackSecurityAuthc.Builder> op) {
+			ObjectDeserializer<NodeInfoXpackSecurityAuthc.Builder> op) {
 
 		op.add(Builder::realms, NodeInfoXpackSecurityAuthcRealms._DESERIALIZER, "realms");
 		op.add(Builder::token, NodeInfoXpackSecurityAuthcToken._DESERIALIZER, "token");

@@ -23,54 +23,60 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInference
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L177-L180">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MlInference implements JsonpSerializable {
+public class MlInference implements JsonpSerializable {
 	private final Map<String, MlInferenceIngestProcessor> ingestProcessors;
 
 	private final MlInferenceTrainedModels trainedModels;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlInference(Builder builder) {
+	private MlInference(Builder builder) {
 
-		this.ingestProcessors = ModelTypeHelper.unmodifiableNonNull(builder.ingestProcessors, "ingest_processors");
-		this.trainedModels = Objects.requireNonNull(builder.trainedModels, "trained_models");
+		this.ingestProcessors = ApiTypeHelper.unmodifiableRequired(builder.ingestProcessors, this, "ingestProcessors");
+		this.trainedModels = ApiTypeHelper.requireNonNull(builder.trainedModels, this, "trainedModels");
 
 	}
 
-	public MlInference(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlInference of(Function<Builder, ObjectBuilder<MlInference>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code ingest_processors}
 	 */
-	public Map<String, MlInferenceIngestProcessor> ingestProcessors() {
+	public final Map<String, MlInferenceIngestProcessor> ingestProcessors() {
 		return this.ingestProcessors;
 	}
 
 	/**
 	 * Required - API name: {@code trained_models}
 	 */
-	public MlInferenceTrainedModels trainedModels() {
+	public final MlInferenceTrainedModels trainedModels() {
 		return this.trainedModels;
 	}
 
@@ -85,15 +91,17 @@ public final class MlInference implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("ingest_processors");
-		generator.writeStartObject();
-		for (Map.Entry<String, MlInferenceIngestProcessor> item0 : this.ingestProcessors.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.ingestProcessors)) {
+			generator.writeKey("ingest_processors");
+			generator.writeStartObject();
+			for (Map.Entry<String, MlInferenceIngestProcessor> item0 : this.ingestProcessors.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("trained_models");
 		this.trainedModels.serialize(generator, mapper);
 
@@ -104,53 +112,46 @@ public final class MlInference implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInference}.
 	 */
-	public static class Builder implements ObjectBuilder<MlInference> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInference> {
 		private Map<String, MlInferenceIngestProcessor> ingestProcessors;
 
 		private MlInferenceTrainedModels trainedModels;
 
 		/**
 		 * Required - API name: {@code ingest_processors}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>ingestProcessors</code>.
 		 */
-		public Builder ingestProcessors(Map<String, MlInferenceIngestProcessor> value) {
-			this.ingestProcessors = value;
+		public final Builder ingestProcessors(Map<String, MlInferenceIngestProcessor> map) {
+			this.ingestProcessors = _mapPutAll(this.ingestProcessors, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #ingestProcessors(Map)}, creating the map if
-		 * needed.
+		 * Required - API name: {@code ingest_processors}
+		 * <p>
+		 * Adds an entry to <code>ingestProcessors</code>.
 		 */
-		public Builder putIngestProcessors(String key, MlInferenceIngestProcessor value) {
-			if (this.ingestProcessors == null) {
-				this.ingestProcessors = new HashMap<>();
-			}
-			this.ingestProcessors.put(key, value);
+		public final Builder ingestProcessors(String key, MlInferenceIngestProcessor value) {
+			this.ingestProcessors = _mapPut(this.ingestProcessors, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #ingestProcessors(Map)} to a singleton map.
+		 * Required - API name: {@code ingest_processors}
+		 * <p>
+		 * Adds an entry to <code>ingestProcessors</code> using a builder lambda.
 		 */
-		public Builder ingestProcessors(String key,
+		public final Builder ingestProcessors(String key,
 				Function<MlInferenceIngestProcessor.Builder, ObjectBuilder<MlInferenceIngestProcessor>> fn) {
-			return this.ingestProcessors(
-					Collections.singletonMap(key, fn.apply(new MlInferenceIngestProcessor.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #ingestProcessors(Map)}, creating the map if
-		 * needed.
-		 */
-		public Builder putIngestProcessors(String key,
-				Function<MlInferenceIngestProcessor.Builder, ObjectBuilder<MlInferenceIngestProcessor>> fn) {
-			return this.putIngestProcessors(key, fn.apply(new MlInferenceIngestProcessor.Builder()).build());
+			return ingestProcessors(key, fn.apply(new MlInferenceIngestProcessor.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code trained_models}
 		 */
-		public Builder trainedModels(MlInferenceTrainedModels value) {
+		public final Builder trainedModels(MlInferenceTrainedModels value) {
 			this.trainedModels = value;
 			return this;
 		}
@@ -158,7 +159,7 @@ public final class MlInference implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code trained_models}
 		 */
-		public Builder trainedModels(
+		public final Builder trainedModels(
 				Function<MlInferenceTrainedModels.Builder, ObjectBuilder<MlInferenceTrainedModels>> fn) {
 			return this.trainedModels(fn.apply(new MlInferenceTrainedModels.Builder()).build());
 		}
@@ -170,6 +171,7 @@ public final class MlInference implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MlInference build() {
+			_checkSingleUse();
 
 			return new MlInference(this);
 		}
@@ -181,9 +183,9 @@ public final class MlInference implements JsonpSerializable {
 	 * Json deserializer for {@link MlInference}
 	 */
 	public static final JsonpDeserializer<MlInference> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MlInference::setupMlInferenceDeserializer, Builder::build);
+			MlInference::setupMlInferenceDeserializer);
 
-	protected static void setupMlInferenceDeserializer(DelegatingDeserializer<MlInference.Builder> op) {
+	protected static void setupMlInferenceDeserializer(ObjectDeserializer<MlInference.Builder> op) {
 
 		op.add(Builder::ingestProcessors,
 				JsonpDeserializer.stringMapDeserializer(MlInferenceIngestProcessor._DESERIALIZER), "ingest_processors");

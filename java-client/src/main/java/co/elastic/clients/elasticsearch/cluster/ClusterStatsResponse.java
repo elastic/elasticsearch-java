@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.elasticsearch._types.HealthStatus;
 import co.elastic.clients.elasticsearch.cluster.stats.ClusterIndices;
 import co.elastic.clients.elasticsearch.cluster.stats.ClusterNodes;
 import co.elastic.clients.elasticsearch.nodes.NodesResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -41,8 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/ClusterStatsResponse.ts#L25-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterStatsResponse extends NodesResponseBase {
+public class ClusterStatsResponse extends NodesResponseBase {
 	private final String clusterName;
 
 	private final String clusterUuid;
@@ -51,26 +59,26 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 
 	private final ClusterNodes nodes;
 
-	private final ClusterStatus status;
+	private final HealthStatus status;
 
 	private final long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterStatsResponse(Builder builder) {
+	private ClusterStatsResponse(Builder builder) {
 		super(builder);
 
-		this.clusterName = Objects.requireNonNull(builder.clusterName, "cluster_name");
-		this.clusterUuid = Objects.requireNonNull(builder.clusterUuid, "cluster_uuid");
-		this.indices = Objects.requireNonNull(builder.indices, "indices");
-		this.nodes = Objects.requireNonNull(builder.nodes, "nodes");
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.clusterUuid = ApiTypeHelper.requireNonNull(builder.clusterUuid, this, "clusterUuid");
+		this.indices = ApiTypeHelper.requireNonNull(builder.indices, this, "indices");
+		this.nodes = ApiTypeHelper.requireNonNull(builder.nodes, this, "nodes");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public ClusterStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterStatsResponse of(Function<Builder, ObjectBuilder<ClusterStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -78,7 +86,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 	 * <p>
 	 * API name: {@code cluster_name}
 	 */
-	public String clusterName() {
+	public final String clusterName() {
 		return this.clusterName;
 	}
 
@@ -87,7 +95,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 	 * <p>
 	 * API name: {@code cluster_uuid}
 	 */
-	public String clusterUuid() {
+	public final String clusterUuid() {
 		return this.clusterUuid;
 	}
 
@@ -97,7 +105,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 	 * <p>
 	 * API name: {@code indices}
 	 */
-	public ClusterIndices indices() {
+	public final ClusterIndices indices() {
 		return this.indices;
 	}
 
@@ -107,7 +115,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 	 * <p>
 	 * API name: {@code nodes}
 	 */
-	public ClusterNodes nodes() {
+	public final ClusterNodes nodes() {
 		return this.nodes;
 	}
 
@@ -117,7 +125,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 	 * <p>
 	 * API name: {@code status}
 	 */
-	public ClusterStatus status() {
+	public final HealthStatus status() {
 		return this.status;
 	}
 
@@ -127,14 +135,13 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public long timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("cluster_name");
 		generator.write(this.clusterName);
 
@@ -149,7 +156,6 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
-
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
@@ -160,6 +166,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 	/**
 	 * Builder for {@link ClusterStatsResponse}.
 	 */
+
 	public static class Builder extends NodesResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ClusterStatsResponse> {
@@ -171,7 +178,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 
 		private ClusterNodes nodes;
 
-		private ClusterStatus status;
+		private HealthStatus status;
 
 		private Long timestamp;
 
@@ -180,7 +187,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code cluster_name}
 		 */
-		public Builder clusterName(String value) {
+		public final Builder clusterName(String value) {
 			this.clusterName = value;
 			return this;
 		}
@@ -190,7 +197,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code cluster_uuid}
 		 */
-		public Builder clusterUuid(String value) {
+		public final Builder clusterUuid(String value) {
 			this.clusterUuid = value;
 			return this;
 		}
@@ -201,7 +208,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public Builder indices(ClusterIndices value) {
+		public final Builder indices(ClusterIndices value) {
 			this.indices = value;
 			return this;
 		}
@@ -212,7 +219,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public Builder indices(Function<ClusterIndices.Builder, ObjectBuilder<ClusterIndices>> fn) {
+		public final Builder indices(Function<ClusterIndices.Builder, ObjectBuilder<ClusterIndices>> fn) {
 			return this.indices(fn.apply(new ClusterIndices.Builder()).build());
 		}
 
@@ -222,7 +229,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code nodes}
 		 */
-		public Builder nodes(ClusterNodes value) {
+		public final Builder nodes(ClusterNodes value) {
 			this.nodes = value;
 			return this;
 		}
@@ -233,7 +240,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code nodes}
 		 */
-		public Builder nodes(Function<ClusterNodes.Builder, ObjectBuilder<ClusterNodes>> fn) {
+		public final Builder nodes(Function<ClusterNodes.Builder, ObjectBuilder<ClusterNodes>> fn) {
 			return this.nodes(fn.apply(new ClusterNodes.Builder()).build());
 		}
 
@@ -243,7 +250,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public Builder status(ClusterStatus value) {
+		public final Builder status(HealthStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -254,7 +261,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(long value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -271,6 +278,7 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterStatsResponse build() {
+			_checkSingleUse();
 
 			return new ClusterStatsResponse(this);
 		}
@@ -282,16 +290,15 @@ public final class ClusterStatsResponse extends NodesResponseBase {
 	 * Json deserializer for {@link ClusterStatsResponse}
 	 */
 	public static final JsonpDeserializer<ClusterStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterStatsResponse::setupClusterStatsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterStatsResponse::setupClusterStatsResponseDeserializer);
 
-	protected static void setupClusterStatsResponseDeserializer(
-			DelegatingDeserializer<ClusterStatsResponse.Builder> op) {
+	protected static void setupClusterStatsResponseDeserializer(ObjectDeserializer<ClusterStatsResponse.Builder> op) {
 		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(Builder::clusterUuid, JsonpDeserializer.stringDeserializer(), "cluster_uuid");
 		op.add(Builder::indices, ClusterIndices._DESERIALIZER, "indices");
 		op.add(Builder::nodes, ClusterNodes._DESERIALIZER, "nodes");
-		op.add(Builder::status, ClusterStatus._DESERIALIZER, "status");
+		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}

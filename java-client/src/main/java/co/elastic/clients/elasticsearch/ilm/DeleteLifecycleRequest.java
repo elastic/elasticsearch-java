@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,28 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.delete_lifecycle.Request
 
-public final class DeleteLifecycleRequest extends RequestBase {
-	private final String policy;
+/**
+ * Deletes the specified lifecycle policy definition. A currently used policy
+ * cannot be deleted.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/delete_lifecycle/DeleteLifecycleRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
+public class DeleteLifecycleRequest extends RequestBase {
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteLifecycleRequest(Builder builder) {
+	private DeleteLifecycleRequest(Builder builder) {
 
-		this.policy = Objects.requireNonNull(builder.policy, "policy");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public DeleteLifecycleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteLifecycleRequest of(Function<Builder, ObjectBuilder<DeleteLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,8 +72,8 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code policy}
 	 */
-	public String policy() {
-		return this.policy;
+	public final String name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,16 +81,17 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteLifecycleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteLifecycleRequest> {
-		private String policy;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteLifecycleRequest> {
+		private String name;
 
 		/**
 		 * Required - The name of the index lifecycle policy
 		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder policy(String value) {
-			this.policy = value;
+		public final Builder name(String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -90,6 +102,7 @@ public final class DeleteLifecycleRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteLifecycleRequest build() {
+			_checkSingleUse();
 
 			return new DeleteLifecycleRequest(this);
 		}
@@ -100,7 +113,9 @@ public final class DeleteLifecycleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.delete_lifecycle}".
 	 */
-	public static final Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.delete_lifecycle",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -109,18 +124,18 @@ public final class DeleteLifecycleRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _policy = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				propsSet |= _policy;
+				propsSet |= _name;
 
-				if (propsSet == (_policy)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ilm");
 					buf.append("/policy");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.policy, buf);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

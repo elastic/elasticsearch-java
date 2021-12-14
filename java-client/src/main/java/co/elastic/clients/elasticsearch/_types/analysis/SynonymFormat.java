@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L104-L107">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum SynonymFormat implements StringEnum {
-	Solr("solr"), Wordnet("wordnet");
+public enum SynonymFormat implements JsonEnum {
+	Solr("solr"),
+
+	Wordnet("wordnet"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum SynonymFormat implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<SynonymFormat> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<SynonymFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			SynonymFormat.values());
 }

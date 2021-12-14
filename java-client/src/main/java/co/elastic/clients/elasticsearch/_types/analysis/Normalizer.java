@@ -23,13 +23,16 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -38,47 +41,81 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.Normalizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-normalizers.html">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/normalizers.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVariant>, JsonpSerializable {
 
-	public static final String CUSTOM = "custom";
-	public static final String LOWERCASE = "lowercase";
+	/**
+	 * {@link Normalizer} variant kinds.
+	 */
+	/**
+	 * {@link Normalizer} variant kinds.
+	 */
 
-	// Tagged union implementation
+	public enum Kind implements JsonEnum {
+		Custom("custom"),
 
-	private final String _type;
-	private final JsonpSerializable _value;
+		Lowercase("lowercase"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final NormalizerVariant _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final NormalizerVariant _get() {
 		return _value;
 	}
 
 	public Normalizer(NormalizerVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._normalizerKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends NormalizerVariant> Normalizer(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Normalizer(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Normalizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Normalizer of(Function<Builder, ObjectBuilder<Normalizer>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code custom}?
+	 */
+	public boolean isCustom() {
+		return _kind == Kind.Custom;
 	}
 
 	/**
@@ -88,7 +125,14 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 	 *             if the current variant is not of the {@code custom} kind.
 	 */
 	public CustomNormalizer custom() {
-		return TaggedUnionUtils.get(this, CUSTOM);
+		return TaggedUnionUtils.get(this, Kind.Custom);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code lowercase}?
+	 */
+	public boolean isLowercase() {
+		return _kind == Kind.Lowercase;
 	}
 
 	/**
@@ -98,55 +142,58 @@ public class Normalizer implements TaggedUnion<JsonpSerializable>, JsonpSerializ
 	 *             if the current variant is not of the {@code lowercase} kind.
 	 */
 	public LowercaseNormalizer lowercase() {
-		return TaggedUnionUtils.get(this, LOWERCASE);
+		return TaggedUnionUtils.get(this, Kind.Lowercase);
 	}
 
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		_value.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
-	public static class Builder implements ObjectBuilder<Normalizer> {
-		private String _type;
-		private JsonpSerializable _value;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Normalizer> {
+		private Kind _kind;
+		private NormalizerVariant _value;
 
-		public Builder custom(CustomNormalizer v) {
-			this._type = CUSTOM;
+		public ObjectBuilder<Normalizer> custom(CustomNormalizer v) {
+			this._kind = Kind.Custom;
 			this._value = v;
 			return this;
 		}
 
-		public Builder custom(Function<CustomNormalizer.Builder, ObjectBuilder<CustomNormalizer>> f) {
-			return this.custom(f.apply(new CustomNormalizer.Builder()).build());
+		public ObjectBuilder<Normalizer> custom(
+				Function<CustomNormalizer.Builder, ObjectBuilder<CustomNormalizer>> fn) {
+			return this.custom(fn.apply(new CustomNormalizer.Builder()).build());
 		}
 
-		public Builder lowercase(LowercaseNormalizer v) {
-			this._type = LOWERCASE;
+		public ObjectBuilder<Normalizer> lowercase(LowercaseNormalizer v) {
+			this._kind = Kind.Lowercase;
 			this._value = v;
 			return this;
 		}
 
-		public Builder lowercase(Function<LowercaseNormalizer.Builder, ObjectBuilder<LowercaseNormalizer>> f) {
-			return this.lowercase(f.apply(new LowercaseNormalizer.Builder()).build());
+		public ObjectBuilder<Normalizer> lowercase(
+				Function<LowercaseNormalizer.Builder, ObjectBuilder<LowercaseNormalizer>> fn) {
+			return this.lowercase(fn.apply(new LowercaseNormalizer.Builder()).build());
 		}
 
 		public Normalizer build() {
+			_checkSingleUse();
 			return new Normalizer(this);
 		}
 
 	}
 
-	protected static void setupNormalizerDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupNormalizerDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::custom, CustomNormalizer._DESERIALIZER, "custom");
 		op.add(Builder::lowercase, LowercaseNormalizer._DESERIALIZER, "lowercase");
 
-		op.setTypeProperty("type");
+		op.setTypeProperty("type", null);
 
 	}
 
-	public static final JsonpDeserializer<Normalizer> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Normalizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Normalizer::setupNormalizerDeserializer, Builder::build);
 }

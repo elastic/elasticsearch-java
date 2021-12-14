@@ -23,17 +23,18 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -44,32 +45,31 @@ import javax.annotation.Nullable;
 
 // typedef: security.delete_user.Request
 
-public final class DeleteUserRequest extends RequestBase {
-	private final String username;
+/**
+ * Deletes users from the native realm.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_user/SecurityDeleteUserRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
+public class DeleteUserRequest extends RequestBase {
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
+
+	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteUserRequest(Builder builder) {
+	private DeleteUserRequest(Builder builder) {
 
-		this.username = Objects.requireNonNull(builder.username, "username");
 		this.refresh = builder.refresh;
+		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
 	}
 
-	public DeleteUserRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - username
-	 * <p>
-	 * API name: {@code username}
-	 */
-	public String username() {
-		return this.username;
+	public static DeleteUserRequest of(Function<Builder, ObjectBuilder<DeleteUserRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,8 +81,17 @@ public final class DeleteUserRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
+	}
+
+	/**
+	 * Required - username
+	 * <p>
+	 * API name: {@code username}
+	 */
+	public final String username() {
+		return this.username;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -90,21 +99,12 @@ public final class DeleteUserRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteUserRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteUserRequest> {
-		private String username;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteUserRequest> {
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
-		/**
-		 * Required - username
-		 * <p>
-		 * API name: {@code username}
-		 */
-		public Builder username(String value) {
-			this.username = value;
-			return this;
-		}
+		private String username;
 
 		/**
 		 * If <code>true</code> (the default) then refresh the affected shards to make
@@ -114,8 +114,18 @@ public final class DeleteUserRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * Required - username
+		 * <p>
+		 * API name: {@code username}
+		 */
+		public final Builder username(String value) {
+			this.username = value;
 			return this;
 		}
 
@@ -126,6 +136,7 @@ public final class DeleteUserRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteUserRequest build() {
+			_checkSingleUse();
 
 			return new DeleteUserRequest(this);
 		}
@@ -136,7 +147,9 @@ public final class DeleteUserRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.delete_user}".
 	 */
-	public static final Endpoint<DeleteUserRequest, DeleteUserResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteUserRequest, DeleteUserResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.delete_user",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -167,7 +180,7 @@ public final class DeleteUserRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.StringStatsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L138-L140">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StringStatsAggregation extends MetricAggregationBase implements AggregationVariant {
+public class StringStatsAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean showDistribution;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StringStatsAggregation(Builder builder) {
+	private StringStatsAggregation(Builder builder) {
 		super(builder);
 
 		this.showDistribution = builder.showDistribution;
 
 	}
 
-	public StringStatsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StringStatsAggregation of(Function<Builder, ObjectBuilder<StringStatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "string_stats";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.StringStats;
 	}
 
 	/**
 	 * API name: {@code show_distribution}
 	 */
 	@Nullable
-	public Boolean showDistribution() {
+	public final Boolean showDistribution() {
 		return this.showDistribution;
 	}
 
@@ -75,7 +81,6 @@ public final class StringStatsAggregation extends MetricAggregationBase implemen
 
 		super.serializeInternal(generator, mapper);
 		if (this.showDistribution != null) {
-
 			generator.writeKey("show_distribution");
 			generator.write(this.showDistribution);
 
@@ -88,6 +93,7 @@ public final class StringStatsAggregation extends MetricAggregationBase implemen
 	/**
 	 * Builder for {@link StringStatsAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StringStatsAggregation> {
@@ -97,7 +103,7 @@ public final class StringStatsAggregation extends MetricAggregationBase implemen
 		/**
 		 * API name: {@code show_distribution}
 		 */
-		public Builder showDistribution(@Nullable Boolean value) {
+		public final Builder showDistribution(@Nullable Boolean value) {
 			this.showDistribution = value;
 			return this;
 		}
@@ -114,6 +120,7 @@ public final class StringStatsAggregation extends MetricAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public StringStatsAggregation build() {
+			_checkSingleUse();
 
 			return new StringStatsAggregation(this);
 		}
@@ -125,10 +132,10 @@ public final class StringStatsAggregation extends MetricAggregationBase implemen
 	 * Json deserializer for {@link StringStatsAggregation}
 	 */
 	public static final JsonpDeserializer<StringStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StringStatsAggregation::setupStringStatsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, StringStatsAggregation::setupStringStatsAggregationDeserializer);
 
 	protected static void setupStringStatsAggregationDeserializer(
-			DelegatingDeserializer<StringStatsAggregation.Builder> op) {
+			ObjectDeserializer<StringStatsAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::showDistribution, JsonpDeserializer.booleanDeserializer(), "show_distribution");
 

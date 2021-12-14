@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.put_script.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/put_script/PutScriptResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutScriptResponse extends AcknowledgedResponseBase {
+public class PutScriptResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutScriptResponse(Builder builder) {
+	private PutScriptResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutScriptResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutScriptResponse of(Function<Builder, ObjectBuilder<PutScriptResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutScriptResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutScriptResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutScriptResponse> {
@@ -68,6 +75,7 @@ public final class PutScriptResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutScriptResponse build() {
+			_checkSingleUse();
 
 			return new PutScriptResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class PutScriptResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutScriptResponse}
 	 */
 	public static final JsonpDeserializer<PutScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutScriptResponse::setupPutScriptResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutScriptResponse::setupPutScriptResponseDeserializer);
 
-	protected static void setupPutScriptResponseDeserializer(DelegatingDeserializer<PutScriptResponse.Builder> op) {
+	protected static void setupPutScriptResponseDeserializer(ObjectDeserializer<PutScriptResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

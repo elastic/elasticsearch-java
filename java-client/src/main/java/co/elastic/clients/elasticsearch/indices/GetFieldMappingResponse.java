@@ -23,13 +23,12 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.indices.get_field_mapping.TypeFieldMappings;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,17 +36,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.get_field_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_field_mapping/IndicesGetFieldMappingResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetFieldMappingResponse extends DictionaryResponse<String, TypeFieldMappings> {
+public class GetFieldMappingResponse extends DictionaryResponse<String, TypeFieldMappings> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetFieldMappingResponse(Builder builder) {
+	private GetFieldMappingResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetFieldMappingResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetFieldMappingResponse of(Function<Builder, ObjectBuilder<GetFieldMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +61,7 @@ public final class GetFieldMappingResponse extends DictionaryResponse<String, Ty
 	/**
 	 * Builder for {@link GetFieldMappingResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, TypeFieldMappings, Builder>
 			implements
 				ObjectBuilder<GetFieldMappingResponse> {
@@ -70,6 +77,7 @@ public final class GetFieldMappingResponse extends DictionaryResponse<String, Ty
 		 *             if some of the required fields are null.
 		 */
 		public GetFieldMappingResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -83,10 +91,10 @@ public final class GetFieldMappingResponse extends DictionaryResponse<String, Ty
 	 * Json deserializer for {@link GetFieldMappingResponse}
 	 */
 	public static final JsonpDeserializer<GetFieldMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetFieldMappingResponse::setupGetFieldMappingResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetFieldMappingResponse::setupGetFieldMappingResponseDeserializer);
 
 	protected static void setupGetFieldMappingResponseDeserializer(
-			DelegatingDeserializer<GetFieldMappingResponse.Builder> op) {
+			ObjectDeserializer<GetFieldMappingResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				TypeFieldMappings._DESERIALIZER);
 

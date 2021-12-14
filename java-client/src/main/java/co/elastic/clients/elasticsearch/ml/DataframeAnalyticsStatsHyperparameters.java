@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsStatsHyperparameters
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L375-L382">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerializable {
+public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalyticsStatsVariant, JsonpSerializable {
 	private final Hyperparameters hyperparameters;
 
 	private final int iteration;
@@ -53,24 +61,33 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalyticsStatsHyperparameters(Builder builder) {
+	private DataframeAnalyticsStatsHyperparameters(Builder builder) {
 
-		this.hyperparameters = Objects.requireNonNull(builder.hyperparameters, "hyperparameters");
-		this.iteration = Objects.requireNonNull(builder.iteration, "iteration");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
-		this.timingStats = Objects.requireNonNull(builder.timingStats, "timing_stats");
-		this.validationLoss = Objects.requireNonNull(builder.validationLoss, "validation_loss");
+		this.hyperparameters = ApiTypeHelper.requireNonNull(builder.hyperparameters, this, "hyperparameters");
+		this.iteration = ApiTypeHelper.requireNonNull(builder.iteration, this, "iteration");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
+		this.validationLoss = ApiTypeHelper.requireNonNull(builder.validationLoss, this, "validationLoss");
 
 	}
 
-	public DataframeAnalyticsStatsHyperparameters(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalyticsStatsHyperparameters of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * DataframeAnalyticsStats variant kind.
+	 */
+	@Override
+	public DataframeAnalyticsStats.Kind _dataframeAnalyticsStatsKind() {
+		return DataframeAnalyticsStats.Kind.RegressionStats;
 	}
 
 	/**
 	 * Required - API name: {@code hyperparameters}
 	 */
-	public Hyperparameters hyperparameters() {
+	public final Hyperparameters hyperparameters() {
 		return this.hyperparameters;
 	}
 
@@ -79,28 +96,28 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 	 * <p>
 	 * API name: {@code iteration}
 	 */
-	public int iteration() {
+	public final int iteration() {
 		return this.iteration;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
 	/**
 	 * Required - API name: {@code timing_stats}
 	 */
-	public TimingStats timingStats() {
+	public final TimingStats timingStats() {
 		return this.timingStats;
 	}
 
 	/**
 	 * Required - API name: {@code validation_loss}
 	 */
-	public ValidationLoss validationLoss() {
+	public final ValidationLoss validationLoss() {
 		return this.validationLoss;
 	}
 
@@ -137,7 +154,10 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 	/**
 	 * Builder for {@link DataframeAnalyticsStatsHyperparameters}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalyticsStatsHyperparameters> {
+
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeAnalyticsStatsHyperparameters> {
 		private Hyperparameters hyperparameters;
 
 		private Integer iteration;
@@ -151,7 +171,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		/**
 		 * Required - API name: {@code hyperparameters}
 		 */
-		public Builder hyperparameters(Hyperparameters value) {
+		public final Builder hyperparameters(Hyperparameters value) {
 			this.hyperparameters = value;
 			return this;
 		}
@@ -159,7 +179,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		/**
 		 * Required - API name: {@code hyperparameters}
 		 */
-		public Builder hyperparameters(Function<Hyperparameters.Builder, ObjectBuilder<Hyperparameters>> fn) {
+		public final Builder hyperparameters(Function<Hyperparameters.Builder, ObjectBuilder<Hyperparameters>> fn) {
 			return this.hyperparameters(fn.apply(new Hyperparameters.Builder()).build());
 		}
 
@@ -168,7 +188,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		 * <p>
 		 * API name: {@code iteration}
 		 */
-		public Builder iteration(int value) {
+		public final Builder iteration(int value) {
 			this.iteration = value;
 			return this;
 		}
@@ -176,7 +196,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -184,7 +204,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public Builder timingStats(TimingStats value) {
+		public final Builder timingStats(TimingStats value) {
 			this.timingStats = value;
 			return this;
 		}
@@ -192,14 +212,14 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		/**
 		 * Required - API name: {@code timing_stats}
 		 */
-		public Builder timingStats(Function<TimingStats.Builder, ObjectBuilder<TimingStats>> fn) {
+		public final Builder timingStats(Function<TimingStats.Builder, ObjectBuilder<TimingStats>> fn) {
 			return this.timingStats(fn.apply(new TimingStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code validation_loss}
 		 */
-		public Builder validationLoss(ValidationLoss value) {
+		public final Builder validationLoss(ValidationLoss value) {
 			this.validationLoss = value;
 			return this;
 		}
@@ -207,7 +227,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		/**
 		 * Required - API name: {@code validation_loss}
 		 */
-		public Builder validationLoss(Function<ValidationLoss.Builder, ObjectBuilder<ValidationLoss>> fn) {
+		public final Builder validationLoss(Function<ValidationLoss.Builder, ObjectBuilder<ValidationLoss>> fn) {
 			return this.validationLoss(fn.apply(new ValidationLoss.Builder()).build());
 		}
 
@@ -218,6 +238,7 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalyticsStatsHyperparameters build() {
+			_checkSingleUse();
 
 			return new DataframeAnalyticsStatsHyperparameters(this);
 		}
@@ -230,11 +251,10 @@ public final class DataframeAnalyticsStatsHyperparameters implements JsonpSerial
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsStatsHyperparameters> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					DataframeAnalyticsStatsHyperparameters::setupDataframeAnalyticsStatsHyperparametersDeserializer,
-					Builder::build);
+					DataframeAnalyticsStatsHyperparameters::setupDataframeAnalyticsStatsHyperparametersDeserializer);
 
 	protected static void setupDataframeAnalyticsStatsHyperparametersDeserializer(
-			DelegatingDeserializer<DataframeAnalyticsStatsHyperparameters.Builder> op) {
+			ObjectDeserializer<DataframeAnalyticsStatsHyperparameters.Builder> op) {
 
 		op.add(Builder::hyperparameters, Hyperparameters._DESERIALIZER, "hyperparameters");
 		op.add(Builder::iteration, JsonpDeserializer.integerDeserializer(), "iteration");

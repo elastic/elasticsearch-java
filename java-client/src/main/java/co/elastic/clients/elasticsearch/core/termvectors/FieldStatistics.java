@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.core.termvectors;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -38,8 +39,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.termvectors.FieldStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/termvectors/types.ts#L28-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FieldStatistics implements JsonpSerializable {
+public class FieldStatistics implements JsonpSerializable {
 	private final int docCount;
 
 	private final long sumDocFreq;
@@ -48,36 +56,36 @@ public final class FieldStatistics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldStatistics(Builder builder) {
+	private FieldStatistics(Builder builder) {
 
-		this.docCount = Objects.requireNonNull(builder.docCount, "doc_count");
-		this.sumDocFreq = Objects.requireNonNull(builder.sumDocFreq, "sum_doc_freq");
-		this.sumTtf = Objects.requireNonNull(builder.sumTtf, "sum_ttf");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+		this.sumDocFreq = ApiTypeHelper.requireNonNull(builder.sumDocFreq, this, "sumDocFreq");
+		this.sumTtf = ApiTypeHelper.requireNonNull(builder.sumTtf, this, "sumTtf");
 
 	}
 
-	public FieldStatistics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldStatistics of(Function<Builder, ObjectBuilder<FieldStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code doc_count}
 	 */
-	public int docCount() {
+	public final int docCount() {
 		return this.docCount;
 	}
 
 	/**
 	 * Required - API name: {@code sum_doc_freq}
 	 */
-	public long sumDocFreq() {
+	public final long sumDocFreq() {
 		return this.sumDocFreq;
 	}
 
 	/**
 	 * Required - API name: {@code sum_ttf}
 	 */
-	public long sumTtf() {
+	public final long sumTtf() {
 		return this.sumTtf;
 	}
 
@@ -108,7 +116,8 @@ public final class FieldStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldStatistics}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldStatistics> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldStatistics> {
 		private Integer docCount;
 
 		private Long sumDocFreq;
@@ -118,7 +127,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code doc_count}
 		 */
-		public Builder docCount(int value) {
+		public final Builder docCount(int value) {
 			this.docCount = value;
 			return this;
 		}
@@ -126,7 +135,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sum_doc_freq}
 		 */
-		public Builder sumDocFreq(long value) {
+		public final Builder sumDocFreq(long value) {
 			this.sumDocFreq = value;
 			return this;
 		}
@@ -134,7 +143,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code sum_ttf}
 		 */
-		public Builder sumTtf(long value) {
+		public final Builder sumTtf(long value) {
 			this.sumTtf = value;
 			return this;
 		}
@@ -146,6 +155,7 @@ public final class FieldStatistics implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldStatistics build() {
+			_checkSingleUse();
 
 			return new FieldStatistics(this);
 		}
@@ -157,9 +167,9 @@ public final class FieldStatistics implements JsonpSerializable {
 	 * Json deserializer for {@link FieldStatistics}
 	 */
 	public static final JsonpDeserializer<FieldStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldStatistics::setupFieldStatisticsDeserializer, Builder::build);
+			FieldStatistics::setupFieldStatisticsDeserializer);
 
-	protected static void setupFieldStatisticsDeserializer(DelegatingDeserializer<FieldStatistics.Builder> op) {
+	protected static void setupFieldStatisticsDeserializer(ObjectDeserializer<FieldStatistics.Builder> op) {
 
 		op.add(Builder::docCount, JsonpDeserializer.integerDeserializer(), "doc_count");
 		op.add(Builder::sumDocFreq, JsonpDeserializer.longDeserializer(), "sum_doc_freq");

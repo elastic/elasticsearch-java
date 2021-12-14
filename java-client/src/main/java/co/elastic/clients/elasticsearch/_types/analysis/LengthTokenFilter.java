@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -36,45 +36,52 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.LengthTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L241-L245">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class LengthTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int max;
 
 	private final int min;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LengthTokenFilter(Builder builder) {
+	private LengthTokenFilter(Builder builder) {
 		super(builder);
 
-		this.max = Objects.requireNonNull(builder.max, "max");
-		this.min = Objects.requireNonNull(builder.min, "min");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
 
 	}
 
-	public LengthTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LengthTokenFilter of(Function<Builder, ObjectBuilder<LengthTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "length";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Length;
 	}
 
 	/**
 	 * Required - API name: {@code max}
 	 */
-	public int max() {
+	public final int max() {
 		return this.max;
 	}
 
 	/**
 	 * Required - API name: {@code min}
 	 */
-	public int min() {
+	public final int min() {
 		return this.min;
 	}
 
@@ -82,7 +89,6 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 
 		generator.write("type", "length");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("max");
 		generator.write(this.max);
 
@@ -96,6 +102,7 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 	/**
 	 * Builder for {@link LengthTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LengthTokenFilter> {
@@ -106,7 +113,7 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 		/**
 		 * Required - API name: {@code max}
 		 */
-		public Builder max(int value) {
+		public final Builder max(int value) {
 			this.max = value;
 			return this;
 		}
@@ -114,7 +121,7 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 		/**
 		 * Required - API name: {@code min}
 		 */
-		public Builder min(int value) {
+		public final Builder min(int value) {
 			this.min = value;
 			return this;
 		}
@@ -131,6 +138,7 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 		 *             if some of the required fields are null.
 		 */
 		public LengthTokenFilter build() {
+			_checkSingleUse();
 
 			return new LengthTokenFilter(this);
 		}
@@ -142,9 +150,9 @@ public final class LengthTokenFilter extends TokenFilterBase implements TokenFil
 	 * Json deserializer for {@link LengthTokenFilter}
 	 */
 	public static final JsonpDeserializer<LengthTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LengthTokenFilter::setupLengthTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, LengthTokenFilter::setupLengthTokenFilterDeserializer);
 
-	protected static void setupLengthTokenFilterDeserializer(DelegatingDeserializer<LengthTokenFilter.Builder> op) {
+	protected static void setupLengthTokenFilterDeserializer(ObjectDeserializer<LengthTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
 		op.add(Builder::min, JsonpDeserializer.integerDeserializer(), "min");

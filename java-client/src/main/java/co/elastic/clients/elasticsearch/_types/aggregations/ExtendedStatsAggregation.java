@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L59-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ExtendedStatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class ExtendedStatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Double sigma;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExtendedStatsAggregation(Builder builder) {
+	private ExtendedStatsAggregation(Builder builder) {
 		super(builder);
 
 		this.sigma = builder.sigma;
 
 	}
 
-	public ExtendedStatsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExtendedStatsAggregation of(Function<Builder, ObjectBuilder<ExtendedStatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "extended_stats";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.ExtendedStats;
 	}
 
 	/**
 	 * API name: {@code sigma}
 	 */
 	@Nullable
-	public Double sigma() {
+	public final Double sigma() {
 		return this.sigma;
 	}
 
@@ -75,7 +81,6 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 
 		super.serializeInternal(generator, mapper);
 		if (this.sigma != null) {
-
 			generator.writeKey("sigma");
 			generator.write(this.sigma);
 
@@ -88,6 +93,7 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 	/**
 	 * Builder for {@link ExtendedStatsAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExtendedStatsAggregation> {
@@ -97,7 +103,7 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 		/**
 		 * API name: {@code sigma}
 		 */
-		public Builder sigma(@Nullable Double value) {
+		public final Builder sigma(@Nullable Double value) {
 			this.sigma = value;
 			return this;
 		}
@@ -114,6 +120,7 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 		 *             if some of the required fields are null.
 		 */
 		public ExtendedStatsAggregation build() {
+			_checkSingleUse();
 
 			return new ExtendedStatsAggregation(this);
 		}
@@ -125,10 +132,10 @@ public final class ExtendedStatsAggregation extends FormatMetricAggregationBase 
 	 * Json deserializer for {@link ExtendedStatsAggregation}
 	 */
 	public static final JsonpDeserializer<ExtendedStatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExtendedStatsAggregation::setupExtendedStatsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, ExtendedStatsAggregation::setupExtendedStatsAggregationDeserializer);
 
 	protected static void setupExtendedStatsAggregationDeserializer(
-			DelegatingDeserializer<ExtendedStatsAggregation.Builder> op) {
+			ObjectDeserializer<ExtendedStatsAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 		op.add(Builder::sigma, JsonpDeserializer.doubleDeserializer(), "sigma");
 

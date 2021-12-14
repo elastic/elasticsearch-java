@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.query_dsl.MatchAllQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/MatchAllQuery.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MatchAllQuery extends QueryBase implements QueryVariant {
+public class MatchAllQuery extends QueryBase implements QueryVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public MatchAllQuery(Builder builder) {
+	private MatchAllQuery(Builder builder) {
 		super(builder);
 
 	}
 
-	public MatchAllQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MatchAllQuery of(Function<Builder, ObjectBuilder<MatchAllQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "match_all";
+	public Query.Kind _queryKind() {
+		return Query.Kind.MatchAll;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class MatchAllQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MatchAllQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MatchAllQuery> {
 		@Override
 		protected Builder self() {
@@ -73,6 +80,7 @@ public final class MatchAllQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public MatchAllQuery build() {
+			_checkSingleUse();
 
 			return new MatchAllQuery(this);
 		}
@@ -84,9 +92,9 @@ public final class MatchAllQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link MatchAllQuery}
 	 */
 	public static final JsonpDeserializer<MatchAllQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MatchAllQuery::setupMatchAllQueryDeserializer, Builder::build);
+			MatchAllQuery::setupMatchAllQueryDeserializer);
 
-	protected static void setupMatchAllQueryDeserializer(DelegatingDeserializer<MatchAllQuery.Builder> op) {
+	protected static void setupMatchAllQueryDeserializer(ObjectDeserializer<MatchAllQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 
 	}

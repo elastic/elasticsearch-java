@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,14 +30,22 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.AggregateOutput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L101-L106">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AggregateOutput implements JsonpSerializable {
+public class AggregateOutput implements JsonpSerializable {
 	@Nullable
 	private final Weights logisticRegression;
 
@@ -53,7 +60,7 @@ public final class AggregateOutput implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AggregateOutput(Builder builder) {
+	private AggregateOutput(Builder builder) {
 
 		this.logisticRegression = builder.logisticRegression;
 		this.weightedSum = builder.weightedSum;
@@ -62,15 +69,15 @@ public final class AggregateOutput implements JsonpSerializable {
 
 	}
 
-	public AggregateOutput(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AggregateOutput of(Function<Builder, ObjectBuilder<AggregateOutput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code logistic_regression}
 	 */
 	@Nullable
-	public Weights logisticRegression() {
+	public final Weights logisticRegression() {
 		return this.logisticRegression;
 	}
 
@@ -78,7 +85,7 @@ public final class AggregateOutput implements JsonpSerializable {
 	 * API name: {@code weighted_sum}
 	 */
 	@Nullable
-	public Weights weightedSum() {
+	public final Weights weightedSum() {
 		return this.weightedSum;
 	}
 
@@ -86,7 +93,7 @@ public final class AggregateOutput implements JsonpSerializable {
 	 * API name: {@code weighted_mode}
 	 */
 	@Nullable
-	public Weights weightedMode() {
+	public final Weights weightedMode() {
 		return this.weightedMode;
 	}
 
@@ -94,7 +101,7 @@ public final class AggregateOutput implements JsonpSerializable {
 	 * API name: {@code exponent}
 	 */
 	@Nullable
-	public Weights exponent() {
+	public final Weights exponent() {
 		return this.exponent;
 	}
 
@@ -110,25 +117,21 @@ public final class AggregateOutput implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.logisticRegression != null) {
-
 			generator.writeKey("logistic_regression");
 			this.logisticRegression.serialize(generator, mapper);
 
 		}
 		if (this.weightedSum != null) {
-
 			generator.writeKey("weighted_sum");
 			this.weightedSum.serialize(generator, mapper);
 
 		}
 		if (this.weightedMode != null) {
-
 			generator.writeKey("weighted_mode");
 			this.weightedMode.serialize(generator, mapper);
 
 		}
 		if (this.exponent != null) {
-
 			generator.writeKey("exponent");
 			this.exponent.serialize(generator, mapper);
 
@@ -141,7 +144,8 @@ public final class AggregateOutput implements JsonpSerializable {
 	/**
 	 * Builder for {@link AggregateOutput}.
 	 */
-	public static class Builder implements ObjectBuilder<AggregateOutput> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregateOutput> {
 		@Nullable
 		private Weights logisticRegression;
 
@@ -157,7 +161,7 @@ public final class AggregateOutput implements JsonpSerializable {
 		/**
 		 * API name: {@code logistic_regression}
 		 */
-		public Builder logisticRegression(@Nullable Weights value) {
+		public final Builder logisticRegression(@Nullable Weights value) {
 			this.logisticRegression = value;
 			return this;
 		}
@@ -165,14 +169,14 @@ public final class AggregateOutput implements JsonpSerializable {
 		/**
 		 * API name: {@code logistic_regression}
 		 */
-		public Builder logisticRegression(Function<Weights.Builder, ObjectBuilder<Weights>> fn) {
+		public final Builder logisticRegression(Function<Weights.Builder, ObjectBuilder<Weights>> fn) {
 			return this.logisticRegression(fn.apply(new Weights.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code weighted_sum}
 		 */
-		public Builder weightedSum(@Nullable Weights value) {
+		public final Builder weightedSum(@Nullable Weights value) {
 			this.weightedSum = value;
 			return this;
 		}
@@ -180,14 +184,14 @@ public final class AggregateOutput implements JsonpSerializable {
 		/**
 		 * API name: {@code weighted_sum}
 		 */
-		public Builder weightedSum(Function<Weights.Builder, ObjectBuilder<Weights>> fn) {
+		public final Builder weightedSum(Function<Weights.Builder, ObjectBuilder<Weights>> fn) {
 			return this.weightedSum(fn.apply(new Weights.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code weighted_mode}
 		 */
-		public Builder weightedMode(@Nullable Weights value) {
+		public final Builder weightedMode(@Nullable Weights value) {
 			this.weightedMode = value;
 			return this;
 		}
@@ -195,14 +199,14 @@ public final class AggregateOutput implements JsonpSerializable {
 		/**
 		 * API name: {@code weighted_mode}
 		 */
-		public Builder weightedMode(Function<Weights.Builder, ObjectBuilder<Weights>> fn) {
+		public final Builder weightedMode(Function<Weights.Builder, ObjectBuilder<Weights>> fn) {
 			return this.weightedMode(fn.apply(new Weights.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code exponent}
 		 */
-		public Builder exponent(@Nullable Weights value) {
+		public final Builder exponent(@Nullable Weights value) {
 			this.exponent = value;
 			return this;
 		}
@@ -210,7 +214,7 @@ public final class AggregateOutput implements JsonpSerializable {
 		/**
 		 * API name: {@code exponent}
 		 */
-		public Builder exponent(Function<Weights.Builder, ObjectBuilder<Weights>> fn) {
+		public final Builder exponent(Function<Weights.Builder, ObjectBuilder<Weights>> fn) {
 			return this.exponent(fn.apply(new Weights.Builder()).build());
 		}
 
@@ -221,6 +225,7 @@ public final class AggregateOutput implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AggregateOutput build() {
+			_checkSingleUse();
 
 			return new AggregateOutput(this);
 		}
@@ -232,9 +237,9 @@ public final class AggregateOutput implements JsonpSerializable {
 	 * Json deserializer for {@link AggregateOutput}
 	 */
 	public static final JsonpDeserializer<AggregateOutput> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AggregateOutput::setupAggregateOutputDeserializer, Builder::build);
+			AggregateOutput::setupAggregateOutputDeserializer);
 
-	protected static void setupAggregateOutputDeserializer(DelegatingDeserializer<AggregateOutput.Builder> op) {
+	protected static void setupAggregateOutputDeserializer(ObjectDeserializer<AggregateOutput.Builder> op) {
 
 		op.add(Builder::logisticRegression, Weights._DESERIALIZER, "logistic_regression");
 		op.add(Builder::weightedSum, Weights._DESERIALIZER, "weighted_sum");

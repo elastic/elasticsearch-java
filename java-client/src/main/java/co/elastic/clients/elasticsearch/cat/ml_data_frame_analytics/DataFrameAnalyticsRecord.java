@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.ml_data_frame_analytics;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.DataFrameAnalyticsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_data_frame_analytics/types.ts#L22-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataFrameAnalyticsRecord implements JsonpSerializable {
+public class DataFrameAnalyticsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -90,7 +97,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataFrameAnalyticsRecord(Builder builder) {
+	private DataFrameAnalyticsRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.type = builder.type;
@@ -111,8 +118,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 
 	}
 
-	public DataFrameAnalyticsRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataFrameAnalyticsRecord of(Function<Builder, ObjectBuilder<DataFrameAnalyticsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -121,7 +128,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -131,7 +138,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -141,7 +148,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public String createTime() {
+	public final String createTime() {
 		return this.createTime;
 	}
 
@@ -151,7 +158,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -161,7 +168,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code source_index}
 	 */
 	@Nullable
-	public String sourceIndex() {
+	public final String sourceIndex() {
 		return this.sourceIndex;
 	}
 
@@ -171,7 +178,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code dest_index}
 	 */
 	@Nullable
-	public String destIndex() {
+	public final String destIndex() {
 		return this.destIndex;
 	}
 
@@ -181,7 +188,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -191,7 +198,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
-	public String modelMemoryLimit() {
+	public final String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -201,7 +208,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code state}
 	 */
 	@Nullable
-	public String state() {
+	public final String state() {
 		return this.state;
 	}
 
@@ -211,7 +218,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code failure_reason}
 	 */
 	@Nullable
-	public String failureReason() {
+	public final String failureReason() {
 		return this.failureReason;
 	}
 
@@ -221,7 +228,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code progress}
 	 */
 	@Nullable
-	public String progress() {
+	public final String progress() {
 		return this.progress;
 	}
 
@@ -231,7 +238,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code assignment_explanation}
 	 */
 	@Nullable
-	public String assignmentExplanation() {
+	public final String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
 
@@ -241,7 +248,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code node.id}
 	 */
 	@Nullable
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
@@ -251,7 +258,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code node.name}
 	 */
 	@Nullable
-	public String nodeName() {
+	public final String nodeName() {
 		return this.nodeName;
 	}
 
@@ -261,7 +268,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code node.ephemeral_id}
 	 */
 	@Nullable
-	public String nodeEphemeralId() {
+	public final String nodeEphemeralId() {
 		return this.nodeEphemeralId;
 	}
 
@@ -271,7 +278,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * API name: {@code node.address}
 	 */
 	@Nullable
-	public String nodeAddress() {
+	public final String nodeAddress() {
 		return this.nodeAddress;
 	}
 
@@ -287,97 +294,81 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
 		}
 		if (this.createTime != null) {
-
 			generator.writeKey("create_time");
 			generator.write(this.createTime);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.sourceIndex != null) {
-
 			generator.writeKey("source_index");
 			generator.write(this.sourceIndex);
 
 		}
 		if (this.destIndex != null) {
-
 			generator.writeKey("dest_index");
 			generator.write(this.destIndex);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.modelMemoryLimit != null) {
-
 			generator.writeKey("model_memory_limit");
 			generator.write(this.modelMemoryLimit);
 
 		}
 		if (this.state != null) {
-
 			generator.writeKey("state");
 			generator.write(this.state);
 
 		}
 		if (this.failureReason != null) {
-
 			generator.writeKey("failure_reason");
 			generator.write(this.failureReason);
 
 		}
 		if (this.progress != null) {
-
 			generator.writeKey("progress");
 			generator.write(this.progress);
 
 		}
 		if (this.assignmentExplanation != null) {
-
 			generator.writeKey("assignment_explanation");
 			generator.write(this.assignmentExplanation);
 
 		}
 		if (this.nodeId != null) {
-
 			generator.writeKey("node.id");
 			generator.write(this.nodeId);
 
 		}
 		if (this.nodeName != null) {
-
 			generator.writeKey("node.name");
 			generator.write(this.nodeName);
 
 		}
 		if (this.nodeEphemeralId != null) {
-
 			generator.writeKey("node.ephemeral_id");
 			generator.write(this.nodeEphemeralId);
 
 		}
 		if (this.nodeAddress != null) {
-
 			generator.writeKey("node.address");
 			generator.write(this.nodeAddress);
 
@@ -390,7 +381,8 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataFrameAnalyticsRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<DataFrameAnalyticsRecord> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataFrameAnalyticsRecord> {
 		@Nullable
 		private String id;
 
@@ -444,7 +436,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -454,7 +446,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -464,7 +456,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(@Nullable String value) {
+		public final Builder createTime(@Nullable String value) {
 			this.createTime = value;
 			return this;
 		}
@@ -474,7 +466,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -484,7 +476,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code source_index}
 		 */
-		public Builder sourceIndex(@Nullable String value) {
+		public final Builder sourceIndex(@Nullable String value) {
 			this.sourceIndex = value;
 			return this;
 		}
@@ -494,7 +486,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code dest_index}
 		 */
-		public Builder destIndex(@Nullable String value) {
+		public final Builder destIndex(@Nullable String value) {
 			this.destIndex = value;
 			return this;
 		}
@@ -504,7 +496,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -514,7 +506,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(@Nullable String value) {
+		public final Builder modelMemoryLimit(@Nullable String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -524,7 +516,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code state}
 		 */
-		public Builder state(@Nullable String value) {
+		public final Builder state(@Nullable String value) {
 			this.state = value;
 			return this;
 		}
@@ -534,7 +526,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code failure_reason}
 		 */
-		public Builder failureReason(@Nullable String value) {
+		public final Builder failureReason(@Nullable String value) {
 			this.failureReason = value;
 			return this;
 		}
@@ -544,7 +536,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code progress}
 		 */
-		public Builder progress(@Nullable String value) {
+		public final Builder progress(@Nullable String value) {
 			this.progress = value;
 			return this;
 		}
@@ -554,7 +546,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code assignment_explanation}
 		 */
-		public Builder assignmentExplanation(@Nullable String value) {
+		public final Builder assignmentExplanation(@Nullable String value) {
 			this.assignmentExplanation = value;
 			return this;
 		}
@@ -564,7 +556,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.id}
 		 */
-		public Builder nodeId(@Nullable String value) {
+		public final Builder nodeId(@Nullable String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -574,7 +566,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.name}
 		 */
-		public Builder nodeName(@Nullable String value) {
+		public final Builder nodeName(@Nullable String value) {
 			this.nodeName = value;
 			return this;
 		}
@@ -584,7 +576,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.ephemeral_id}
 		 */
-		public Builder nodeEphemeralId(@Nullable String value) {
+		public final Builder nodeEphemeralId(@Nullable String value) {
 			this.nodeEphemeralId = value;
 			return this;
 		}
@@ -594,7 +586,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node.address}
 		 */
-		public Builder nodeAddress(@Nullable String value) {
+		public final Builder nodeAddress(@Nullable String value) {
 			this.nodeAddress = value;
 			return this;
 		}
@@ -606,6 +598,7 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataFrameAnalyticsRecord build() {
+			_checkSingleUse();
 
 			return new DataFrameAnalyticsRecord(this);
 		}
@@ -617,10 +610,10 @@ public final class DataFrameAnalyticsRecord implements JsonpSerializable {
 	 * Json deserializer for {@link DataFrameAnalyticsRecord}
 	 */
 	public static final JsonpDeserializer<DataFrameAnalyticsRecord> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataFrameAnalyticsRecord::setupDataFrameAnalyticsRecordDeserializer, Builder::build);
+			.lazy(Builder::new, DataFrameAnalyticsRecord::setupDataFrameAnalyticsRecordDeserializer);
 
 	protected static void setupDataFrameAnalyticsRecordDeserializer(
-			DelegatingDeserializer<DataFrameAnalyticsRecord.Builder> op) {
+			ObjectDeserializer<DataFrameAnalyticsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "t");

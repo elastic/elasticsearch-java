@@ -25,11 +25,11 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.InlineGet;
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -41,7 +41,14 @@ import javax.annotation.Nullable;
 
 // typedef: _global.update.Response
 
-public final class UpdateResponse<TDocument> extends WriteResponseBase {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/update/UpdateResponse.ts#L23-L27">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class UpdateResponse<TDocument> extends WriteResponseBase {
 	@Nullable
 	private final InlineGet<TDocument> get;
 
@@ -50,7 +57,7 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateResponse(Builder<TDocument> builder) {
+	private UpdateResponse(Builder<TDocument> builder) {
 		super(builder);
 
 		this.get = builder.get;
@@ -58,15 +65,16 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 
 	}
 
-	public UpdateResponse(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> UpdateResponse<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<UpdateResponse<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * API name: {@code get}
 	 */
 	@Nullable
-	public InlineGet<TDocument> get() {
+	public final InlineGet<TDocument> get() {
 		return this.get;
 	}
 
@@ -74,7 +82,6 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.get != null) {
-
 			generator.writeKey("get");
 			this.get.serialize(generator, mapper);
 
@@ -87,6 +94,7 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 	/**
 	 * Builder for {@link UpdateResponse}.
 	 */
+
 	public static class Builder<TDocument> extends WriteResponseBase.AbstractBuilder<Builder<TDocument>>
 			implements
 				ObjectBuilder<UpdateResponse<TDocument>> {
@@ -99,7 +107,7 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 		/**
 		 * API name: {@code get}
 		 */
-		public Builder<TDocument> get(@Nullable InlineGet<TDocument> value) {
+		public final Builder<TDocument> get(@Nullable InlineGet<TDocument> value) {
 			this.get = value;
 			return this;
 		}
@@ -107,7 +115,8 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 		/**
 		 * API name: {@code get}
 		 */
-		public Builder<TDocument> get(Function<InlineGet.Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
+		public final Builder<TDocument> get(
+				Function<InlineGet.Builder<TDocument>, ObjectBuilder<InlineGet<TDocument>>> fn) {
 			return this.get(fn.apply(new InlineGet.Builder<TDocument>()).build());
 		}
 
@@ -115,7 +124,7 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -132,6 +141,7 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public UpdateResponse<TDocument> build() {
+			_checkSingleUse();
 
 			return new UpdateResponse<TDocument>(this);
 		}
@@ -140,7 +150,7 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for UpdateResponse
+	 * Create a JSON deserializer for UpdateResponse
 	 */
 	public static <TDocument> JsonpDeserializer<UpdateResponse<TDocument>> createUpdateResponseDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
@@ -148,8 +158,15 @@ public final class UpdateResponse<TDocument> extends WriteResponseBase {
 				op -> UpdateResponse.setupUpdateResponseDeserializer(op, tDocumentDeserializer));
 	};
 
+	/**
+	 * Json deserializer for {@link UpdateResponse} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<UpdateResponse<Object>> _DESERIALIZER = createUpdateResponseDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.TDocument"));
+
 	protected static <TDocument> void setupUpdateResponseDeserializer(
-			DelegatingDeserializer<UpdateResponse.Builder<TDocument>> op,
+			ObjectDeserializer<UpdateResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 		op.add(Builder::get, InlineGet.createInlineGetDeserializer(tDocumentDeserializer), "get");

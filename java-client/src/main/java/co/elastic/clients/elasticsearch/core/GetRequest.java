@@ -23,25 +23,23 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
+import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,7 +50,22 @@ import javax.annotation.Nullable;
 
 // typedef: _global.get.Request
 
+/**
+ * Returns a document.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get/GetRequest.ts#L31-L86">API
+ *      specification</a>
+ */
+
 public class GetRequest extends RequestBase {
+	@Nullable
+	private final SourceConfigParam source;
+
+	private final List<String> sourceExcludes;
+
+	private final List<String> sourceIncludes;
+
 	private final String id;
 
 	private final String index;
@@ -69,16 +82,6 @@ public class GetRequest extends RequestBase {
 	@Nullable
 	private final String routing;
 
-	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
-
-	@Nullable
-	private final List<String> sourceExcludes;
-
-	@Nullable
-	private final List<String> sourceIncludes;
-
-	@Nullable
 	private final List<String> storedFields;
 
 	@Nullable
@@ -89,21 +92,54 @@ public class GetRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRequest(AbstractBuilder<?> builder) {
+	private GetRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.source = builder.source;
+		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.storedFields = ModelTypeHelper.unmodifiable(builder.storedFields);
+		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
+	}
+
+	public static GetRequest of(Function<Builder, ObjectBuilder<GetRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * True or false to return the _source field or not, or a list of fields to
+	 * return.
+	 * <p>
+	 * API name: {@code _source}
+	 */
+	@Nullable
+	public final SourceConfigParam source() {
+		return this.source;
+	}
+
+	/**
+	 * A comma-separated list of source fields to exclude in the response.
+	 * <p>
+	 * API name: {@code _source_excludes}
+	 */
+	public final List<String> sourceExcludes() {
+		return this.sourceExcludes;
+	}
+
+	/**
+	 * A comma-separated list of source fields to include in the response.
+	 * <p>
+	 * API name: {@code _source_includes}
+	 */
+	public final List<String> sourceIncludes() {
+		return this.sourceIncludes;
 	}
 
 	/**
@@ -111,7 +147,7 @@ public class GetRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -120,7 +156,7 @@ public class GetRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -131,7 +167,7 @@ public class GetRequest extends RequestBase {
 	 * API name: {@code preference}
 	 */
 	@Nullable
-	public String preference() {
+	public final String preference() {
 		return this.preference;
 	}
 
@@ -141,7 +177,7 @@ public class GetRequest extends RequestBase {
 	 * API name: {@code realtime}
 	 */
 	@Nullable
-	public Boolean realtime() {
+	public final Boolean realtime() {
 		return this.realtime;
 	}
 
@@ -152,7 +188,7 @@ public class GetRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public Boolean refresh() {
+	public final Boolean refresh() {
 		return this.refresh;
 	}
 
@@ -162,39 +198,8 @@ public class GetRequest extends RequestBase {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
-	}
-
-	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return.
-	 * <p>
-	 * API name: {@code _source}
-	 */
-	@Nullable
-	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
-		return this.source;
-	}
-
-	/**
-	 * A comma-separated list of source fields to exclude in the response.
-	 * <p>
-	 * API name: {@code _source_excludes}
-	 */
-	@Nullable
-	public List<String> sourceExcludes() {
-		return this.sourceExcludes;
-	}
-
-	/**
-	 * A comma-separated list of source fields to include in the response.
-	 * <p>
-	 * API name: {@code _source_includes}
-	 */
-	@Nullable
-	public List<String> sourceIncludes() {
-		return this.sourceIncludes;
 	}
 
 	/**
@@ -202,8 +207,7 @@ public class GetRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code stored_fields}
 	 */
-	@Nullable
-	public List<String> storedFields() {
+	public final List<String> storedFields() {
 		return this.storedFields;
 	}
 
@@ -214,7 +218,7 @@ public class GetRequest extends RequestBase {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -224,7 +228,7 @@ public class GetRequest extends RequestBase {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -233,25 +237,17 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRequest}.
 	 */
-	public static class Builder extends GetRequest.AbstractBuilder<Builder> implements ObjectBuilder<GetRequest> {
-		@Override
-		protected Builder self() {
-			return this;
-		}
 
-		/**
-		 * Builds a {@link GetRequest}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public GetRequest build() {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRequest> {
+		@Nullable
+		private SourceConfigParam source;
 
-			return new GetRequest(this);
-		}
-	}
+		@Nullable
+		private List<String> sourceExcludes;
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+		@Nullable
+		private List<String> sourceIncludes;
+
 		private String id;
 
 		private String index;
@@ -269,15 +265,6 @@ public class GetRequest extends RequestBase {
 		private String routing;
 
 		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
-
-		@Nullable
-		private List<String> sourceExcludes;
-
-		@Nullable
-		private List<String> sourceIncludes;
-
-		@Nullable
 		private List<String> storedFields;
 
 		@Nullable
@@ -287,65 +274,14 @@ public class GetRequest extends RequestBase {
 		private VersionType versionType;
 
 		/**
-		 * Required - Unique identifier of the document.
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return.
 		 * <p>
-		 * API name: {@code id}
+		 * API name: {@code _source}
 		 */
-		public BuilderT id(String value) {
-			this.id = value;
-			return self();
-		}
-
-		/**
-		 * Required - Name of the index that contains the document.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public BuilderT index(String value) {
-			this.index = value;
-			return self();
-		}
-
-		/**
-		 * Specifies the node or shard the operation should be performed on. Random by
-		 * default.
-		 * <p>
-		 * API name: {@code preference}
-		 */
-		public BuilderT preference(@Nullable String value) {
-			this.preference = value;
-			return self();
-		}
-
-		/**
-		 * Boolean) If true, the request is real-time as opposed to near-real-time.
-		 * <p>
-		 * API name: {@code realtime}
-		 */
-		public BuilderT realtime(@Nullable Boolean value) {
-			this.realtime = value;
-			return self();
-		}
-
-		/**
-		 * If true, Elasticsearch refreshes the affected shards to make this operation
-		 * visible to search. If false, do nothing with refreshes.
-		 * <p>
-		 * API name: {@code refresh}
-		 */
-		public BuilderT refresh(@Nullable Boolean value) {
-			this.refresh = value;
-			return self();
-		}
-
-		/**
-		 * Target the specified primary shard.
-		 * <p>
-		 * API name: {@code routing}
-		 */
-		public BuilderT routing(@Nullable String value) {
-			this.routing = value;
-			return self();
+		public final Builder source(@Nullable SourceConfigParam value) {
+			this.source = value;
+			return this;
 		}
 
 		/**
@@ -354,102 +290,142 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public BuilderT source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
-			this.source = value;
-			return self();
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
 		}
 
 		/**
 		 * A comma-separated list of source fields to exclude in the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
 		 */
-		public BuilderT sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
-			return self();
+		public final Builder sourceExcludes(List<String> list) {
+			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
+			return this;
 		}
 
 		/**
 		 * A comma-separated list of source fields to exclude in the response.
 		 * <p>
 		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds one or more values to <code>sourceExcludes</code>.
 		 */
-		public BuilderT sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
-			return self();
-		}
-
-		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
-		 */
-		public BuilderT addSourceExcludes(String value) {
-			if (this.sourceExcludes == null) {
-				this.sourceExcludes = new ArrayList<>();
-			}
-			this.sourceExcludes.add(value);
-			return self();
+		public final Builder sourceExcludes(String value, String... values) {
+			this.sourceExcludes = _listAdd(this.sourceExcludes, value, values);
+			return this;
 		}
 
 		/**
 		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
 		 */
-		public BuilderT sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
-			return self();
+		public final Builder sourceIncludes(List<String> list) {
+			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
+			return this;
 		}
 
 		/**
 		 * A comma-separated list of source fields to include in the response.
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds one or more values to <code>sourceIncludes</code>.
 		 */
-		public BuilderT sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
-			return self();
+		public final Builder sourceIncludes(String value, String... values) {
+			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
+			return this;
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
+		 * Required - Unique identifier of the document.
+		 * <p>
+		 * API name: {@code id}
 		 */
-		public BuilderT addSourceIncludes(String value) {
-			if (this.sourceIncludes == null) {
-				this.sourceIncludes = new ArrayList<>();
-			}
-			this.sourceIncludes.add(value);
-			return self();
+		public final Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * Required - Name of the index that contains the document.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public final Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the node or shard the operation should be performed on. Random by
+		 * default.
+		 * <p>
+		 * API name: {@code preference}
+		 */
+		public final Builder preference(@Nullable String value) {
+			this.preference = value;
+			return this;
+		}
+
+		/**
+		 * Boolean) If true, the request is real-time as opposed to near-real-time.
+		 * <p>
+		 * API name: {@code realtime}
+		 */
+		public final Builder realtime(@Nullable Boolean value) {
+			this.realtime = value;
+			return this;
+		}
+
+		/**
+		 * If true, Elasticsearch refreshes the affected shards to make this operation
+		 * visible to search. If false, do nothing with refreshes.
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public final Builder refresh(@Nullable Boolean value) {
+			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * Target the specified primary shard.
+		 * <p>
+		 * API name: {@code routing}
+		 */
+		public final Builder routing(@Nullable String value) {
+			this.routing = value;
+			return this;
 		}
 
 		/**
 		 * A comma-separated list of stored fields to return in the response
 		 * <p>
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
 		 */
-		public BuilderT storedFields(@Nullable List<String> value) {
-			this.storedFields = value;
-			return self();
+		public final Builder storedFields(List<String> list) {
+			this.storedFields = _listAddAll(this.storedFields, list);
+			return this;
 		}
 
 		/**
 		 * A comma-separated list of stored fields to return in the response
 		 * <p>
 		 * API name: {@code stored_fields}
+		 * <p>
+		 * Adds one or more values to <code>storedFields</code>.
 		 */
-		public BuilderT storedFields(String... value) {
-			this.storedFields = Arrays.asList(value);
-			return self();
-		}
-
-		/**
-		 * Add a value to {@link #storedFields(List)}, creating the list if needed.
-		 */
-		public BuilderT addStoredFields(String value) {
-			if (this.storedFields == null) {
-				this.storedFields = new ArrayList<>();
-			}
-			this.storedFields.add(value);
-			return self();
+		public final Builder storedFields(String value, String... values) {
+			this.storedFields = _listAdd(this.storedFields, value, values);
+			return this;
 		}
 
 		/**
@@ -458,9 +434,9 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public BuilderT version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
-			return self();
+			return this;
 		}
 
 		/**
@@ -468,13 +444,22 @@ public class GetRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version_type}
 		 */
-		public BuilderT versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
-			return self();
+			return this;
 		}
 
-		protected abstract BuilderT self();
+		/**
+		 * Builds a {@link GetRequest}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public GetRequest build() {
+			_checkSingleUse();
 
+			return new GetRequest(this);
+		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -482,7 +467,8 @@ public class GetRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code get}".
 	 */
-	private static final SimpleEndpoint<GetRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<GetRequest, ?> _ENDPOINT = new SimpleEndpoint<>("es/get",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -491,13 +477,13 @@ public class GetRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _id;
 				propsSet |= _index;
+				propsSet |= _id;
 
 				if (propsSet == (_index | _id)) {
 					StringBuilder buf = new StringBuilder();
@@ -515,48 +501,48 @@ public class GetRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.preference != null) {
-					params.put("preference", request.preference);
+				if (request.routing != null) {
+					params.put("routing", request.routing);
 				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
 				}
+				if (request.versionType != null) {
+					params.put("version_type", request.versionType.jsonValue());
+				}
+				if (ApiTypeHelper.isDefined(request.storedFields)) {
+					params.put("stored_fields",
+							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.preference != null) {
+					params.put("preference", request.preference);
+				}
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
-				}
 				if (request.source != null) {
-					params.put("_source", JsonpUtils.toString(request.source));
+					params.put("_source", request.source._toJsonString());
 				}
-				if (request.sourceExcludes != null) {
+				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.sourceIncludes != null) {
+				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.storedFields != null) {
-					params.put("stored_fields",
-							request.storedFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
 				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
-				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), false, null);
+			}, SimpleEndpoint.emptyMap(), false, GetResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code get}" endpoint.
 	 */
-	public static <TDocument> Endpoint<GetRequest, GetResponse<TDocument>, ElasticsearchError> createGetEndpoint(
+	public static <TDocument> Endpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> createGetEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(GetResponse.createGetResponseDeserializer(tDocumentDeserializer));
+		return _ENDPOINT.withResponseDeserializer(GetResponse.createGetResponseDeserializer(tDocumentDeserializer));
 	}
 }

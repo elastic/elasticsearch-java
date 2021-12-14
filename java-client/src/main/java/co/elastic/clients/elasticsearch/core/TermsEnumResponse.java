@@ -24,28 +24,33 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.terms_enum.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/terms_enum/TermsEnumResponse.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TermsEnumResponse implements JsonpSerializable {
+public class TermsEnumResponse implements JsonpSerializable {
 	private final ShardStatistics shards;
 
 	private final List<String> terms;
@@ -54,36 +59,36 @@ public final class TermsEnumResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermsEnumResponse(Builder builder) {
+	private TermsEnumResponse(Builder builder) {
 
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
-		this.terms = ModelTypeHelper.unmodifiableNonNull(builder.terms, "terms");
-		this.complete = Objects.requireNonNull(builder.complete, "complete");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.terms = ApiTypeHelper.unmodifiableRequired(builder.terms, this, "terms");
+		this.complete = ApiTypeHelper.requireNonNull(builder.complete, this, "complete");
 
 	}
 
-	public TermsEnumResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermsEnumResponse of(Function<Builder, ObjectBuilder<TermsEnumResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
 	 * Required - API name: {@code terms}
 	 */
-	public List<String> terms() {
+	public final List<String> terms() {
 		return this.terms;
 	}
 
 	/**
 	 * Required - API name: {@code complete}
 	 */
-	public boolean complete() {
+	public final boolean complete() {
 		return this.complete;
 	}
 
@@ -101,14 +106,16 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
-		generator.writeKey("terms");
-		generator.writeStartArray();
-		for (String item0 : this.terms) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.terms)) {
+			generator.writeKey("terms");
+			generator.writeStartArray();
+			for (String item0 : this.terms) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("complete");
 		generator.write(this.complete);
 
@@ -119,7 +126,8 @@ public final class TermsEnumResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link TermsEnumResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<TermsEnumResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsEnumResponse> {
 		private ShardStatistics shards;
 
 		private List<String> terms;
@@ -129,7 +137,7 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(ShardStatistics value) {
+		public final Builder shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -137,41 +145,34 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>terms</code>.
 		 */
-		public Builder terms(List<String> value) {
-			this.terms = value;
+		public final Builder terms(List<String> list) {
+			this.terms = _listAddAll(this.terms, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code terms}
+		 * <p>
+		 * Adds one or more values to <code>terms</code>.
 		 */
-		public Builder terms(String... value) {
-			this.terms = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #terms(List)}, creating the list if needed.
-		 */
-		public Builder addTerms(String value) {
-			if (this.terms == null) {
-				this.terms = new ArrayList<>();
-			}
-			this.terms.add(value);
+		public final Builder terms(String value, String... values) {
+			this.terms = _listAdd(this.terms, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code complete}
 		 */
-		public Builder complete(boolean value) {
+		public final Builder complete(boolean value) {
 			this.complete = value;
 			return this;
 		}
@@ -183,6 +184,7 @@ public final class TermsEnumResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TermsEnumResponse build() {
+			_checkSingleUse();
 
 			return new TermsEnumResponse(this);
 		}
@@ -194,9 +196,9 @@ public final class TermsEnumResponse implements JsonpSerializable {
 	 * Json deserializer for {@link TermsEnumResponse}
 	 */
 	public static final JsonpDeserializer<TermsEnumResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TermsEnumResponse::setupTermsEnumResponseDeserializer, Builder::build);
+			.lazy(Builder::new, TermsEnumResponse::setupTermsEnumResponseDeserializer);
 
-	protected static void setupTermsEnumResponseDeserializer(DelegatingDeserializer<TermsEnumResponse.Builder> op) {
+	protected static void setupTermsEnumResponseDeserializer(ObjectDeserializer<TermsEnumResponse.Builder> op) {
 
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::terms, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "terms");

@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -40,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Transport
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L221-L229">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Transport implements JsonpSerializable {
+public class Transport implements JsonpSerializable {
 	private final long rxCount;
 
 	private final String rxSize;
@@ -58,68 +66,68 @@ public final class Transport implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Transport(Builder builder) {
+	private Transport(Builder builder) {
 
-		this.rxCount = Objects.requireNonNull(builder.rxCount, "rx_count");
-		this.rxSize = Objects.requireNonNull(builder.rxSize, "rx_size");
-		this.rxSizeInBytes = Objects.requireNonNull(builder.rxSizeInBytes, "rx_size_in_bytes");
-		this.serverOpen = Objects.requireNonNull(builder.serverOpen, "server_open");
-		this.txCount = Objects.requireNonNull(builder.txCount, "tx_count");
-		this.txSize = Objects.requireNonNull(builder.txSize, "tx_size");
-		this.txSizeInBytes = Objects.requireNonNull(builder.txSizeInBytes, "tx_size_in_bytes");
+		this.rxCount = ApiTypeHelper.requireNonNull(builder.rxCount, this, "rxCount");
+		this.rxSize = ApiTypeHelper.requireNonNull(builder.rxSize, this, "rxSize");
+		this.rxSizeInBytes = ApiTypeHelper.requireNonNull(builder.rxSizeInBytes, this, "rxSizeInBytes");
+		this.serverOpen = ApiTypeHelper.requireNonNull(builder.serverOpen, this, "serverOpen");
+		this.txCount = ApiTypeHelper.requireNonNull(builder.txCount, this, "txCount");
+		this.txSize = ApiTypeHelper.requireNonNull(builder.txSize, this, "txSize");
+		this.txSizeInBytes = ApiTypeHelper.requireNonNull(builder.txSizeInBytes, this, "txSizeInBytes");
 
 	}
 
-	public Transport(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Transport of(Function<Builder, ObjectBuilder<Transport>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code rx_count}
 	 */
-	public long rxCount() {
+	public final long rxCount() {
 		return this.rxCount;
 	}
 
 	/**
 	 * Required - API name: {@code rx_size}
 	 */
-	public String rxSize() {
+	public final String rxSize() {
 		return this.rxSize;
 	}
 
 	/**
 	 * Required - API name: {@code rx_size_in_bytes}
 	 */
-	public long rxSizeInBytes() {
+	public final long rxSizeInBytes() {
 		return this.rxSizeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code server_open}
 	 */
-	public int serverOpen() {
+	public final int serverOpen() {
 		return this.serverOpen;
 	}
 
 	/**
 	 * Required - API name: {@code tx_count}
 	 */
-	public long txCount() {
+	public final long txCount() {
 		return this.txCount;
 	}
 
 	/**
 	 * Required - API name: {@code tx_size}
 	 */
-	public String txSize() {
+	public final String txSize() {
 		return this.txSize;
 	}
 
 	/**
 	 * Required - API name: {@code tx_size_in_bytes}
 	 */
-	public long txSizeInBytes() {
+	public final long txSizeInBytes() {
 		return this.txSizeInBytes;
 	}
 
@@ -162,7 +170,8 @@ public final class Transport implements JsonpSerializable {
 	/**
 	 * Builder for {@link Transport}.
 	 */
-	public static class Builder implements ObjectBuilder<Transport> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Transport> {
 		private Long rxCount;
 
 		private String rxSize;
@@ -180,7 +189,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rx_count}
 		 */
-		public Builder rxCount(long value) {
+		public final Builder rxCount(long value) {
 			this.rxCount = value;
 			return this;
 		}
@@ -188,7 +197,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rx_size}
 		 */
-		public Builder rxSize(String value) {
+		public final Builder rxSize(String value) {
 			this.rxSize = value;
 			return this;
 		}
@@ -196,7 +205,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rx_size_in_bytes}
 		 */
-		public Builder rxSizeInBytes(long value) {
+		public final Builder rxSizeInBytes(long value) {
 			this.rxSizeInBytes = value;
 			return this;
 		}
@@ -204,7 +213,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code server_open}
 		 */
-		public Builder serverOpen(int value) {
+		public final Builder serverOpen(int value) {
 			this.serverOpen = value;
 			return this;
 		}
@@ -212,7 +221,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tx_count}
 		 */
-		public Builder txCount(long value) {
+		public final Builder txCount(long value) {
 			this.txCount = value;
 			return this;
 		}
@@ -220,7 +229,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tx_size}
 		 */
-		public Builder txSize(String value) {
+		public final Builder txSize(String value) {
 			this.txSize = value;
 			return this;
 		}
@@ -228,7 +237,7 @@ public final class Transport implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tx_size_in_bytes}
 		 */
-		public Builder txSizeInBytes(long value) {
+		public final Builder txSizeInBytes(long value) {
 			this.txSizeInBytes = value;
 			return this;
 		}
@@ -240,6 +249,7 @@ public final class Transport implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Transport build() {
+			_checkSingleUse();
 
 			return new Transport(this);
 		}
@@ -251,9 +261,9 @@ public final class Transport implements JsonpSerializable {
 	 * Json deserializer for {@link Transport}
 	 */
 	public static final JsonpDeserializer<Transport> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Transport::setupTransportDeserializer, Builder::build);
+			Transport::setupTransportDeserializer);
 
-	protected static void setupTransportDeserializer(DelegatingDeserializer<Transport.Builder> op) {
+	protected static void setupTransportDeserializer(ObjectDeserializer<Transport.Builder> op) {
 
 		op.add(Builder::rxCount, JsonpDeserializer.longDeserializer(), "rx_count");
 		op.add(Builder::rxSize, JsonpDeserializer.stringDeserializer(), "rx_size");

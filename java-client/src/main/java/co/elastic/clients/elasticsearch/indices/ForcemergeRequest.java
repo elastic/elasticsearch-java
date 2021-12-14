@@ -23,23 +23,22 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,21 +49,27 @@ import javax.annotation.Nullable;
 
 // typedef: indices.forcemerge.Request
 
-public final class ForcemergeRequest extends RequestBase {
-	@Nullable
-	private final List<String> index;
+/**
+ * Performs the force merge operation on one or more indices.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/forcemerge/IndicesForceMergeRequest.ts#L24-L41">API
+ *      specification</a>
+ */
 
+public class ForcemergeRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean flush;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
+
+	private final List<String> index;
 
 	@Nullable
 	private final Long maxNumSegments;
@@ -74,31 +79,20 @@ public final class ForcemergeRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ForcemergeRequest(Builder builder) {
+	private ForcemergeRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flush = builder.flush;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.maxNumSegments = builder.maxNumSegments;
 		this.onlyExpungeDeletes = builder.onlyExpungeDeletes;
 
 	}
 
-	public ForcemergeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
+	public static ForcemergeRequest of(Function<Builder, ObjectBuilder<ForcemergeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,7 +103,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -119,8 +113,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -131,7 +124,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code flush}
 	 */
 	@Nullable
-	public Boolean flush() {
+	public final Boolean flush() {
 		return this.flush;
 	}
 
@@ -142,8 +135,18 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -152,7 +155,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code max_num_segments}
 	 */
 	@Nullable
-	public Long maxNumSegments() {
+	public final Long maxNumSegments() {
 		return this.maxNumSegments;
 	}
 
@@ -162,7 +165,7 @@ public final class ForcemergeRequest extends RequestBase {
 	 * API name: {@code only_expunge_deletes}
 	 */
 	@Nullable
-	public Boolean onlyExpungeDeletes() {
+	public final Boolean onlyExpungeDeletes() {
 		return this.onlyExpungeDeletes;
 	}
 
@@ -171,15 +174,13 @@ public final class ForcemergeRequest extends RequestBase {
 	/**
 	 * Builder for {@link ForcemergeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ForcemergeRequest> {
-		@Nullable
-		private List<String> index;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ForcemergeRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean flush;
@@ -188,43 +189,13 @@ public final class ForcemergeRequest extends RequestBase {
 		private Boolean ignoreUnavailable;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Long maxNumSegments;
 
 		@Nullable
 		private Boolean onlyExpungeDeletes;
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -233,7 +204,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -243,9 +214,11 @@ public final class ForcemergeRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -254,20 +227,11 @@ public final class ForcemergeRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -277,7 +241,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code flush}
 		 */
-		public Builder flush(@Nullable Boolean value) {
+		public final Builder flush(@Nullable Boolean value) {
 			this.flush = value;
 			return this;
 		}
@@ -288,8 +252,34 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -298,7 +288,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code max_num_segments}
 		 */
-		public Builder maxNumSegments(@Nullable Long value) {
+		public final Builder maxNumSegments(@Nullable Long value) {
 			this.maxNumSegments = value;
 			return this;
 		}
@@ -308,7 +298,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code only_expunge_deletes}
 		 */
-		public Builder onlyExpungeDeletes(@Nullable Boolean value) {
+		public final Builder onlyExpungeDeletes(@Nullable Boolean value) {
 			this.onlyExpungeDeletes = value;
 			return this;
 		}
@@ -320,6 +310,7 @@ public final class ForcemergeRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ForcemergeRequest build() {
+			_checkSingleUse();
 
 			return new ForcemergeRequest(this);
 		}
@@ -330,7 +321,9 @@ public final class ForcemergeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.forcemerge}".
 	 */
-	public static final Endpoint<ForcemergeRequest, ForcemergeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.forcemerge",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -343,7 +336,7 @@ public final class ForcemergeRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -365,24 +358,24 @@ public final class ForcemergeRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.expandWildcards != null) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
-				}
 				if (request.flush != null) {
 					params.put("flush", String.valueOf(request.flush));
+				}
+				if (request.onlyExpungeDeletes != null) {
+					params.put("only_expunge_deletes", String.valueOf(request.onlyExpungeDeletes));
+				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				}
 				if (request.maxNumSegments != null) {
 					params.put("max_num_segments", String.valueOf(request.maxNumSegments));
-				}
-				if (request.onlyExpungeDeletes != null) {
-					params.put("only_expunge_deletes", String.valueOf(request.onlyExpungeDeletes));
 				}
 				return params;
 

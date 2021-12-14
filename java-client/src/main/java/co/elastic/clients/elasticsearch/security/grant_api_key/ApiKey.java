@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security.grant_api_key;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,12 +31,11 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -44,34 +43,40 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.grant_api_key.ApiKey
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/grant_api_key/types.ts#L25-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ApiKey implements JsonpSerializable {
+public class ApiKey implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
-	private final String expiration;
+	private final Time expiration;
 
-	@Nullable
 	private final List<Map<String, JsonData>> roleDescriptors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ApiKey(Builder builder) {
+	private ApiKey(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.expiration = builder.expiration;
-		this.roleDescriptors = ModelTypeHelper.unmodifiable(builder.roleDescriptors);
+		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 
 	}
 
-	public ApiKey(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ApiKey of(Function<Builder, ObjectBuilder<ApiKey>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -79,15 +84,14 @@ public final class ApiKey implements JsonpSerializable {
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public String expiration() {
+	public final Time expiration() {
 		return this.expiration;
 	}
 
 	/**
 	 * API name: {@code role_descriptors}
 	 */
-	@Nullable
-	public List<Map<String, JsonData>> roleDescriptors() {
+	public final List<Map<String, JsonData>> roleDescriptors() {
 		return this.roleDescriptors;
 	}
 
@@ -106,21 +110,21 @@ public final class ApiKey implements JsonpSerializable {
 		generator.write(this.name);
 
 		if (this.expiration != null) {
-
 			generator.writeKey("expiration");
-			generator.write(this.expiration);
+			this.expiration.serialize(generator, mapper);
 
 		}
-		if (this.roleDescriptors != null) {
-
+		if (ApiTypeHelper.isDefined(this.roleDescriptors)) {
 			generator.writeKey("role_descriptors");
 			generator.writeStartArray();
 			for (Map<String, JsonData> item0 : this.roleDescriptors) {
 				generator.writeStartObject();
-				for (Map.Entry<String, JsonData> item1 : item0.entrySet()) {
-					generator.writeKey(item1.getKey());
-					item1.getValue().serialize(generator, mapper);
+				if (item0 != null) {
+					for (Map.Entry<String, JsonData> item1 : item0.entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
 
+					}
 				}
 				generator.writeEnd();
 
@@ -136,11 +140,12 @@ public final class ApiKey implements JsonpSerializable {
 	/**
 	 * Builder for {@link ApiKey}.
 	 */
-	public static class Builder implements ObjectBuilder<ApiKey> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApiKey> {
 		private String name;
 
 		@Nullable
-		private String expiration;
+		private Time expiration;
 
 		@Nullable
 		private List<Map<String, JsonData>> roleDescriptors;
@@ -148,7 +153,7 @@ public final class ApiKey implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -156,35 +161,35 @@ public final class ApiKey implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public Builder expiration(@Nullable String value) {
+		public final Builder expiration(@Nullable Time value) {
 			this.expiration = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code role_descriptors}
+		 * API name: {@code expiration}
 		 */
-		public Builder roleDescriptors(@Nullable List<Map<String, JsonData>> value) {
-			this.roleDescriptors = value;
+		public final Builder expiration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expiration(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roleDescriptors</code>.
+		 */
+		public final Builder roleDescriptors(List<Map<String, JsonData>> list) {
+			this.roleDescriptors = _listAddAll(this.roleDescriptors, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds one or more values to <code>roleDescriptors</code>.
 		 */
-		public Builder roleDescriptors(Map<String, JsonData>... value) {
-			this.roleDescriptors = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #roleDescriptors(List)}, creating the list if needed.
-		 */
-		public Builder addRoleDescriptors(Map<String, JsonData> value) {
-			if (this.roleDescriptors == null) {
-				this.roleDescriptors = new ArrayList<>();
-			}
-			this.roleDescriptors.add(value);
+		public final Builder roleDescriptors(Map<String, JsonData> value, Map<String, JsonData>... values) {
+			this.roleDescriptors = _listAdd(this.roleDescriptors, value, values);
 			return this;
 		}
 
@@ -195,6 +200,7 @@ public final class ApiKey implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ApiKey build() {
+			_checkSingleUse();
 
 			return new ApiKey(this);
 		}
@@ -206,12 +212,12 @@ public final class ApiKey implements JsonpSerializable {
 	 * Json deserializer for {@link ApiKey}
 	 */
 	public static final JsonpDeserializer<ApiKey> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ApiKey::setupApiKeyDeserializer, Builder::build);
+			ApiKey::setupApiKeyDeserializer);
 
-	protected static void setupApiKeyDeserializer(DelegatingDeserializer<ApiKey.Builder> op) {
+	protected static void setupApiKeyDeserializer(ObjectDeserializer<ApiKey.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::expiration, JsonpDeserializer.stringDeserializer(), "expiration");
+		op.add(Builder::expiration, Time._DESERIALIZER, "expiration");
 		op.add(Builder::roleDescriptors,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)),
 				"role_descriptors");

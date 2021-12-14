@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,28 @@ import javax.annotation.Nullable;
 
 // typedef: eql.delete.Request
 
-public final class EqlDeleteRequest extends RequestBase {
+/**
+ * Deletes an async EQL search by ID. If the search is still running, the search
+ * request will be cancelled. Otherwise, the saved search results are deleted.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/delete/EqlDeleteRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
+public class EqlDeleteRequest extends RequestBase {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EqlDeleteRequest(Builder builder) {
+	private EqlDeleteRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public EqlDeleteRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EqlDeleteRequest of(Function<Builder, ObjectBuilder<EqlDeleteRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +72,7 @@ public final class EqlDeleteRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -70,7 +81,8 @@ public final class EqlDeleteRequest extends RequestBase {
 	/**
 	 * Builder for {@link EqlDeleteRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<EqlDeleteRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlDeleteRequest> {
 		private String id;
 
 		/**
@@ -78,7 +90,7 @@ public final class EqlDeleteRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -90,6 +102,7 @@ public final class EqlDeleteRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public EqlDeleteRequest build() {
+			_checkSingleUse();
 
 			return new EqlDeleteRequest(this);
 		}
@@ -100,7 +113,9 @@ public final class EqlDeleteRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code eql.delete}".
 	 */
-	public static final Endpoint<EqlDeleteRequest, EqlDeleteResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<EqlDeleteRequest, EqlDeleteResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/eql.delete",
+
 			// Request method
 			request -> {
 				return "DELETE";

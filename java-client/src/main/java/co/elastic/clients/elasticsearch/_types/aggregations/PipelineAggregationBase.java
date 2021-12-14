@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,9 +37,16 @@ import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PipelineAggregationBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L27-L31">API
+ *      specification</a>
+ */
+
 public abstract class PipelineAggregationBase extends AggregationBase {
 	@Nullable
-	private final String bucketsPath;
+	private final BucketsPath bucketsPath;
 
 	@Nullable
 	private final String format;
@@ -50,7 +56,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PipelineAggregationBase(AbstractBuilder<?> builder) {
+	protected PipelineAggregationBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.bucketsPath = builder.bucketsPath;
@@ -63,7 +69,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	 * API name: {@code buckets_path}
 	 */
 	@Nullable
-	public String bucketsPath() {
+	public final BucketsPath bucketsPath() {
 		return this.bucketsPath;
 	}
 
@@ -71,7 +77,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -79,7 +85,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	 * API name: {@code gap_policy}
 	 */
 	@Nullable
-	public GapPolicy gapPolicy() {
+	public final GapPolicy gapPolicy() {
 		return this.gapPolicy;
 	}
 
@@ -87,19 +93,16 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.bucketsPath != null) {
-
 			generator.writeKey("buckets_path");
-			generator.write(this.bucketsPath);
+			this.bucketsPath.serialize(generator, mapper);
 
 		}
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.gapPolicy != null) {
-
 			generator.writeKey("gap_policy");
 			this.gapPolicy.serialize(generator, mapper);
 		}
@@ -110,7 +113,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 			extends
 				AggregationBase.AbstractBuilder<BuilderT> {
 		@Nullable
-		private String bucketsPath;
+		private BucketsPath bucketsPath;
 
 		@Nullable
 		private String format;
@@ -121,15 +124,22 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 		/**
 		 * API name: {@code buckets_path}
 		 */
-		public BuilderT bucketsPath(@Nullable String value) {
+		public final BuilderT bucketsPath(@Nullable BucketsPath value) {
 			this.bucketsPath = value;
 			return self();
 		}
 
 		/**
+		 * API name: {@code buckets_path}
+		 */
+		public final BuilderT bucketsPath(Function<BucketsPath.Builder, ObjectBuilder<BucketsPath>> fn) {
+			return this.bucketsPath(fn.apply(new BucketsPath.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code format}
 		 */
-		public BuilderT format(@Nullable String value) {
+		public final BuilderT format(@Nullable String value) {
 			this.format = value;
 			return self();
 		}
@@ -137,7 +147,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 		/**
 		 * API name: {@code gap_policy}
 		 */
-		public BuilderT gapPolicy(@Nullable GapPolicy value) {
+		public final BuilderT gapPolicy(@Nullable GapPolicy value) {
 			this.gapPolicy = value;
 			return self();
 		}
@@ -146,9 +156,9 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPipelineAggregationBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		AggregationBase.setupAggregationBaseDeserializer(op);
-		op.add(AbstractBuilder::bucketsPath, JsonpDeserializer.stringDeserializer(), "buckets_path");
+		op.add(AbstractBuilder::bucketsPath, BucketsPath._DESERIALIZER, "buckets_path");
 		op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(AbstractBuilder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
 

@@ -23,28 +23,33 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.IntervalsAllOf
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L49-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
+public class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVariant, JsonpSerializable {
 	private final List<Intervals> intervals;
 
 	@Nullable
@@ -58,31 +63,39 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IntervalsAllOf(Builder builder) {
+	private IntervalsAllOf(Builder builder) {
 
-		this.intervals = ModelTypeHelper.unmodifiableNonNull(builder.intervals, "intervals");
+		this.intervals = ApiTypeHelper.unmodifiableRequired(builder.intervals, this, "intervals");
 		this.maxGaps = builder.maxGaps;
 		this.ordered = builder.ordered;
 		this.filter = builder.filter;
 
 	}
 
-	public IntervalsAllOf(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IntervalsAllOf of(Function<Builder, ObjectBuilder<IntervalsAllOf>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link IntervalsQuery}, {@link Intervals} variant type
+	 * IntervalsQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "all_of";
+	public IntervalsQuery.Kind _intervalsQueryKind() {
+		return IntervalsQuery.Kind.AllOf;
+	}
+
+	/**
+	 * Intervals variant kind.
+	 */
+	@Override
+	public Intervals.Kind _intervalsKind() {
+		return Intervals.Kind.AllOf;
 	}
 
 	/**
 	 * Required - API name: {@code intervals}
 	 */
-	public List<Intervals> intervals() {
+	public final List<Intervals> intervals() {
 		return this.intervals;
 	}
 
@@ -90,7 +103,7 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 	 * API name: {@code max_gaps}
 	 */
 	@Nullable
-	public Integer maxGaps() {
+	public final Integer maxGaps() {
 		return this.maxGaps;
 	}
 
@@ -98,7 +111,7 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 	 * API name: {@code ordered}
 	 */
 	@Nullable
-	public Boolean ordered() {
+	public final Boolean ordered() {
 		return this.ordered;
 	}
 
@@ -106,7 +119,7 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public IntervalsFilter filter() {
+	public final IntervalsFilter filter() {
 		return this.filter;
 	}
 
@@ -121,28 +134,27 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("intervals");
-		generator.writeStartArray();
-		for (Intervals item0 : this.intervals) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.intervals)) {
+			generator.writeKey("intervals");
+			generator.writeStartArray();
+			for (Intervals item0 : this.intervals) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.maxGaps != null) {
-
 			generator.writeKey("max_gaps");
 			generator.write(this.maxGaps);
 
 		}
 		if (this.ordered != null) {
-
 			generator.writeKey("ordered");
 			generator.write(this.ordered);
 
 		}
 		if (this.filter != null) {
-
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
 
@@ -155,7 +167,8 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 	/**
 	 * Builder for {@link IntervalsAllOf}.
 	 */
-	public static class Builder implements ObjectBuilder<IntervalsAllOf> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsAllOf> {
 		private List<Intervals> intervals;
 
 		@Nullable
@@ -169,49 +182,37 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 
 		/**
 		 * Required - API name: {@code intervals}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>intervals</code>.
 		 */
-		public Builder intervals(List<Intervals> value) {
-			this.intervals = value;
+		public final Builder intervals(List<Intervals> list) {
+			this.intervals = _listAddAll(this.intervals, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code intervals}
+		 * <p>
+		 * Adds one or more values to <code>intervals</code>.
 		 */
-		public Builder intervals(Intervals... value) {
-			this.intervals = Arrays.asList(value);
+		public final Builder intervals(Intervals value, Intervals... values) {
+			this.intervals = _listAdd(this.intervals, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #intervals(List)}, creating the list if needed.
+		 * Required - API name: {@code intervals}
+		 * <p>
+		 * Adds a value to <code>intervals</code> using a builder lambda.
 		 */
-		public Builder addIntervals(Intervals value) {
-			if (this.intervals == null) {
-				this.intervals = new ArrayList<>();
-			}
-			this.intervals.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #intervals(List)} to a singleton list.
-		 */
-		public Builder intervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
-			return this.intervals(fn.apply(new Intervals.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #intervals(List)}, creating the list if needed.
-		 */
-		public Builder addIntervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
-			return this.addIntervals(fn.apply(new Intervals.Builder()).build());
+		public final Builder intervals(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+			return intervals(fn.apply(new Intervals.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code max_gaps}
 		 */
-		public Builder maxGaps(@Nullable Integer value) {
+		public final Builder maxGaps(@Nullable Integer value) {
 			this.maxGaps = value;
 			return this;
 		}
@@ -219,7 +220,7 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 		/**
 		 * API name: {@code ordered}
 		 */
-		public Builder ordered(@Nullable Boolean value) {
+		public final Builder ordered(@Nullable Boolean value) {
 			this.ordered = value;
 			return this;
 		}
@@ -227,7 +228,7 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable IntervalsFilter value) {
+		public final Builder filter(@Nullable IntervalsFilter value) {
 			this.filter = value;
 			return this;
 		}
@@ -235,7 +236,7 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
+		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
 			return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
 		}
 
@@ -246,6 +247,7 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 		 *             if some of the required fields are null.
 		 */
 		public IntervalsAllOf build() {
+			_checkSingleUse();
 
 			return new IntervalsAllOf(this);
 		}
@@ -257,9 +259,9 @@ public final class IntervalsAllOf implements IntervalsQueryVariant, IntervalsVar
 	 * Json deserializer for {@link IntervalsAllOf}
 	 */
 	public static final JsonpDeserializer<IntervalsAllOf> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IntervalsAllOf::setupIntervalsAllOfDeserializer, Builder::build);
+			IntervalsAllOf::setupIntervalsAllOfDeserializer);
 
-	protected static void setupIntervalsAllOfDeserializer(DelegatingDeserializer<IntervalsAllOf.Builder> op) {
+	protected static void setupIntervalsAllOfDeserializer(ObjectDeserializer<IntervalsAllOf.Builder> op) {
 
 		op.add(Builder::intervals, JsonpDeserializer.arrayDeserializer(Intervals._DESERIALIZER), "intervals");
 		op.add(Builder::maxGaps, JsonpDeserializer.integerDeserializer(), "max_gaps");

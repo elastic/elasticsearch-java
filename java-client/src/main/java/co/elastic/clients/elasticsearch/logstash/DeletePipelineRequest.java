@@ -23,17 +23,19 @@
 
 package co.elastic.clients.elasticsearch.logstash;
 
-import co.elastic.clients.base.BooleanEndpoint;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.BooleanEndpoint;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -43,19 +45,27 @@ import javax.annotation.Nullable;
 
 // typedef: logstash.delete_pipeline.Request
 
-public final class DeletePipelineRequest extends RequestBase {
+/**
+ * Deletes Logstash Pipelines used by Central Management
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/logstash/delete_pipeline/LogstashDeletePipelineRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class DeletePipelineRequest extends RequestBase {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeletePipelineRequest(Builder builder) {
+	private DeletePipelineRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public DeletePipelineRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeletePipelineRequest of(Function<Builder, ObjectBuilder<DeletePipelineRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +73,7 @@ public final class DeletePipelineRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -72,7 +82,8 @@ public final class DeletePipelineRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeletePipelineRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeletePipelineRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePipelineRequest> {
 		private String id;
 
 		/**
@@ -80,7 +91,7 @@ public final class DeletePipelineRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -92,6 +103,7 @@ public final class DeletePipelineRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeletePipelineRequest build() {
+			_checkSingleUse();
 
 			return new DeletePipelineRequest(this);
 		}
@@ -102,7 +114,9 @@ public final class DeletePipelineRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code logstash.delete_pipeline}".
 	 */
-	public static final Endpoint<DeletePipelineRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/logstash.delete_pipeline",
+
 			// Request method
 			request -> {
 				return "DELETE";

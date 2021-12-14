@@ -23,24 +23,23 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,44 +49,68 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: graph.explore.Request
+
+/**
+ * Explore extracted and summarized information about the documents and terms in
+ * an index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/explore/GraphExploreRequest.ts#L28-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ExploreRequest extends RequestBase implements JsonpSerializable {
-	private final List<String> index;
-
-	@Nullable
-	private final String routing;
-
-	@Nullable
-	private final String timeout;
-
+public class ExploreRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Hop connections;
 
 	@Nullable
 	private final ExploreControls controls;
 
+	private final List<String> index;
+
 	@Nullable
 	private final Query query;
 
 	@Nullable
+	private final String routing;
+
+	@Nullable
+	private final Time timeout;
+
 	private final List<VertexDefinition> vertices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExploreRequest(Builder builder) {
+	private ExploreRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
-		this.routing = builder.routing;
-		this.timeout = builder.timeout;
 		this.connections = builder.connections;
 		this.controls = builder.controls;
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
-		this.vertices = ModelTypeHelper.unmodifiable(builder.vertices);
+		this.routing = builder.routing;
+		this.timeout = builder.timeout;
+		this.vertices = ApiTypeHelper.unmodifiable(builder.vertices);
 
 	}
 
-	public ExploreRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExploreRequest of(Function<Builder, ObjectBuilder<ExploreRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code connections}
+	 */
+	@Nullable
+	public final Hop connections() {
+		return this.connections;
+	}
+
+	/**
+	 * API name: {@code controls}
+	 */
+	@Nullable
+	public final ExploreControls controls() {
+		return this.controls;
 	}
 
 	/**
@@ -96,8 +119,16 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
+	}
+
+	/**
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public final Query query() {
+		return this.query;
 	}
 
 	/**
@@ -106,7 +137,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -116,39 +147,14 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
-	}
-
-	/**
-	 * API name: {@code connections}
-	 */
-	@Nullable
-	public Hop connections() {
-		return this.connections;
-	}
-
-	/**
-	 * API name: {@code controls}
-	 */
-	@Nullable
-	public ExploreControls controls() {
-		return this.controls;
-	}
-
-	/**
-	 * API name: {@code query}
-	 */
-	@Nullable
-	public Query query() {
-		return this.query;
 	}
 
 	/**
 	 * API name: {@code vertices}
 	 */
-	@Nullable
-	public List<VertexDefinition> vertices() {
+	public final List<VertexDefinition> vertices() {
 		return this.vertices;
 	}
 
@@ -164,25 +170,21 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.connections != null) {
-
 			generator.writeKey("connections");
 			this.connections.serialize(generator, mapper);
 
 		}
 		if (this.controls != null) {
-
 			generator.writeKey("controls");
 			this.controls.serialize(generator, mapper);
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
-		if (this.vertices != null) {
-
+		if (ApiTypeHelper.isDefined(this.vertices)) {
 			generator.writeKey("vertices");
 			generator.writeStartArray();
 			for (VertexDefinition item0 : this.vertices) {
@@ -200,35 +202,68 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link ExploreRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExploreRequest> {
-		private List<String> index;
 
-		@Nullable
-		private String routing;
-
-		@Nullable
-		private String timeout;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreRequest> {
 		@Nullable
 		private Hop connections;
 
 		@Nullable
 		private ExploreControls controls;
 
+		private List<String> index;
+
 		@Nullable
 		private Query query;
+
+		@Nullable
+		private String routing;
+
+		@Nullable
+		private Time timeout;
 
 		@Nullable
 		private List<VertexDefinition> vertices;
 
 		/**
+		 * API name: {@code connections}
+		 */
+		public final Builder connections(@Nullable Hop value) {
+			this.connections = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code connections}
+		 */
+		public final Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
+			return this.connections(fn.apply(new Hop.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code controls}
+		 */
+		public final Builder controls(@Nullable ExploreControls value) {
+			this.controls = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code controls}
+		 */
+		public final Builder controls(Function<ExploreControls.Builder, ObjectBuilder<ExploreControls>> fn) {
+			return this.controls(fn.apply(new ExploreControls.Builder()).build());
+		}
+
+		/**
 		 * Required - A comma-separated list of index names to search; use
 		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -237,21 +272,27 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		 * <code>_all</code> or empty string to perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * API name: {@code query}
 		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
+		public final Builder query(@Nullable Query value) {
+			this.query = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -259,7 +300,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -269,95 +310,47 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code connections}
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
 		 */
-		public Builder connections(@Nullable Hop value) {
-			this.connections = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code connections}
-		 */
-		public Builder connections(Function<Hop.Builder, ObjectBuilder<Hop>> fn) {
-			return this.connections(fn.apply(new Hop.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code controls}
-		 */
-		public Builder controls(@Nullable ExploreControls value) {
-			this.controls = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code controls}
-		 */
-		public Builder controls(Function<ExploreControls.Builder, ObjectBuilder<ExploreControls>> fn) {
-			return this.controls(fn.apply(new ExploreControls.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code query}
-		 */
-		public Builder query(@Nullable Query value) {
-			this.query = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code query}
-		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code vertices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>vertices</code>.
 		 */
-		public Builder vertices(@Nullable List<VertexDefinition> value) {
-			this.vertices = value;
+		public final Builder vertices(List<VertexDefinition> list) {
+			this.vertices = _listAddAll(this.vertices, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code vertices}
+		 * <p>
+		 * Adds one or more values to <code>vertices</code>.
 		 */
-		public Builder vertices(VertexDefinition... value) {
-			this.vertices = Arrays.asList(value);
+		public final Builder vertices(VertexDefinition value, VertexDefinition... values) {
+			this.vertices = _listAdd(this.vertices, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
+		 * API name: {@code vertices}
+		 * <p>
+		 * Adds a value to <code>vertices</code> using a builder lambda.
 		 */
-		public Builder addVertices(VertexDefinition value) {
-			if (this.vertices == null) {
-				this.vertices = new ArrayList<>();
-			}
-			this.vertices.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #vertices(List)} to a singleton list.
-		 */
-		public Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
-			return this.vertices(fn.apply(new VertexDefinition.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #vertices(List)}, creating the list if needed.
-		 */
-		public Builder addVertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
-			return this.addVertices(fn.apply(new VertexDefinition.Builder()).build());
+		public final Builder vertices(Function<VertexDefinition.Builder, ObjectBuilder<VertexDefinition>> fn) {
+			return vertices(fn.apply(new VertexDefinition.Builder()).build());
 		}
 
 		/**
@@ -367,6 +360,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public ExploreRequest build() {
+			_checkSingleUse();
 
 			return new ExploreRequest(this);
 		}
@@ -378,9 +372,9 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link ExploreRequest}
 	 */
 	public static final JsonpDeserializer<ExploreRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ExploreRequest::setupExploreRequestDeserializer, Builder::build);
+			ExploreRequest::setupExploreRequestDeserializer);
 
-	protected static void setupExploreRequestDeserializer(DelegatingDeserializer<ExploreRequest.Builder> op) {
+	protected static void setupExploreRequestDeserializer(ObjectDeserializer<ExploreRequest.Builder> op) {
 
 		op.add(Builder::connections, Hop._DESERIALIZER, "connections");
 		op.add(Builder::controls, ExploreControls._DESERIALIZER, "controls");
@@ -394,7 +388,9 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code graph.explore}".
 	 */
-	public static final Endpoint<ExploreRequest, ExploreResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ExploreRequest, ExploreResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/graph.explore",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -428,7 +424,7 @@ public final class ExploreRequest extends RequestBase implements JsonpSerializab
 					params.put("routing", request.routing);
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

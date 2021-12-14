@@ -23,26 +23,30 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.DateProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L178-L184">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DateProcessor extends ProcessorBase implements ProcessorVariant {
+public class DateProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	private final List<String> formats;
@@ -58,40 +62,40 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DateProcessor(Builder builder) {
+	private DateProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.formats = ModelTypeHelper.unmodifiableNonNull(builder.formats, "formats");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.formats = ApiTypeHelper.unmodifiableRequired(builder.formats, this, "formats");
 		this.locale = builder.locale;
 		this.targetField = builder.targetField;
 		this.timezone = builder.timezone;
 
 	}
 
-	public DateProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DateProcessor of(Function<Builder, ObjectBuilder<DateProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "date";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Date;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code formats}
 	 */
-	public List<String> formats() {
+	public final List<String> formats() {
 		return this.formats;
 	}
 
@@ -99,7 +103,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 	 * API name: {@code locale}
 	 */
 	@Nullable
-	public String locale() {
+	public final String locale() {
 		return this.locale;
 	}
 
@@ -107,7 +111,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 	 * API name: {@code target_field}
 	 */
 	@Nullable
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
@@ -115,39 +119,37 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 	 * API name: {@code timezone}
 	 */
 	@Nullable
-	public String timezone() {
+	public final String timezone() {
 		return this.timezone;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("formats");
-		generator.writeStartArray();
-		for (String item0 : this.formats) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.formats)) {
+			generator.writeKey("formats");
+			generator.writeStartArray();
+			for (String item0 : this.formats) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.locale != null) {
-
 			generator.writeKey("locale");
 			generator.write(this.locale);
 
 		}
 		if (this.targetField != null) {
-
 			generator.writeKey("target_field");
 			generator.write(this.targetField);
 
 		}
 		if (this.timezone != null) {
-
 			generator.writeKey("timezone");
 			generator.write(this.timezone);
 
@@ -160,6 +162,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 	/**
 	 * Builder for {@link DateProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<DateProcessor> {
 		private String field;
 
@@ -177,42 +180,35 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code formats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>formats</code>.
 		 */
-		public Builder formats(List<String> value) {
-			this.formats = value;
+		public final Builder formats(List<String> list) {
+			this.formats = _listAddAll(this.formats, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code formats}
+		 * <p>
+		 * Adds one or more values to <code>formats</code>.
 		 */
-		public Builder formats(String... value) {
-			this.formats = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #formats(List)}, creating the list if needed.
-		 */
-		public Builder addFormats(String value) {
-			if (this.formats == null) {
-				this.formats = new ArrayList<>();
-			}
-			this.formats.add(value);
+		public final Builder formats(String value, String... values) {
+			this.formats = _listAdd(this.formats, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code locale}
 		 */
-		public Builder locale(@Nullable String value) {
+		public final Builder locale(@Nullable String value) {
 			this.locale = value;
 			return this;
 		}
@@ -220,7 +216,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * API name: {@code target_field}
 		 */
-		public Builder targetField(@Nullable String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -228,7 +224,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 		/**
 		 * API name: {@code timezone}
 		 */
-		public Builder timezone(@Nullable String value) {
+		public final Builder timezone(@Nullable String value) {
 			this.timezone = value;
 			return this;
 		}
@@ -245,6 +241,7 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 		 *             if some of the required fields are null.
 		 */
 		public DateProcessor build() {
+			_checkSingleUse();
 
 			return new DateProcessor(this);
 		}
@@ -256,9 +253,9 @@ public final class DateProcessor extends ProcessorBase implements ProcessorVaria
 	 * Json deserializer for {@link DateProcessor}
 	 */
 	public static final JsonpDeserializer<DateProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DateProcessor::setupDateProcessorDeserializer, Builder::build);
+			DateProcessor::setupDateProcessorDeserializer);
 
-	protected static void setupDateProcessorDeserializer(DelegatingDeserializer<DateProcessor.Builder> op) {
+	protected static void setupDateProcessorDeserializer(ObjectDeserializer<DateProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::formats, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

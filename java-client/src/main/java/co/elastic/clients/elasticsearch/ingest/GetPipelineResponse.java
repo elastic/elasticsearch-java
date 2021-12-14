@@ -23,12 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.base.DictionaryResponse;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,17 +35,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ingest.get_pipeline.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/get_pipeline/GetPipelineResponse.ts#L23-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
+public class GetPipelineResponse extends DictionaryResponse<String, Pipeline> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPipelineResponse(Builder builder) {
+	private GetPipelineResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetPipelineResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPipelineResponse of(Function<Builder, ObjectBuilder<GetPipelineResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +60,7 @@ public final class GetPipelineResponse extends DictionaryResponse<String, Pipeli
 	/**
 	 * Builder for {@link GetPipelineResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Pipeline, Builder>
 			implements
 				ObjectBuilder<GetPipelineResponse> {
@@ -69,6 +76,7 @@ public final class GetPipelineResponse extends DictionaryResponse<String, Pipeli
 		 *             if some of the required fields are null.
 		 */
 		public GetPipelineResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -82,9 +90,9 @@ public final class GetPipelineResponse extends DictionaryResponse<String, Pipeli
 	 * Json deserializer for {@link GetPipelineResponse}
 	 */
 	public static final JsonpDeserializer<GetPipelineResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetPipelineResponse::setupGetPipelineResponseDeserializer);
 
-	protected static void setupGetPipelineResponseDeserializer(DelegatingDeserializer<GetPipelineResponse.Builder> op) {
+	protected static void setupGetPipelineResponseDeserializer(ObjectDeserializer<GetPipelineResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				Pipeline._DESERIALIZER);
 

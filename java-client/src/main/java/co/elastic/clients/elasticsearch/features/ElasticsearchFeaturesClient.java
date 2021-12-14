@@ -23,20 +23,33 @@
 
 package co.elastic.clients.elasticsearch.features;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 /**
  * Client for the features namespace.
  */
-public class ElasticsearchFeaturesClient extends ApiClient {
+public class ElasticsearchFeaturesClient extends ApiClient<ElasticsearchTransport, ElasticsearchFeaturesClient> {
 
-	public ElasticsearchFeaturesClient(Transport transport) {
-		super(transport);
+	public ElasticsearchFeaturesClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchFeaturesClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchFeaturesClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchFeaturesClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: features.get_features
@@ -49,8 +62,9 @@ public class ElasticsearchFeaturesClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-features-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetFeaturesResponse getFeatures() throws IOException {
-		return this.transport.performRequest(GetFeaturesRequest._INSTANCE, GetFeaturesRequest.ENDPOINT);
+	public GetFeaturesResponse getFeatures() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(GetFeaturesRequest._INSTANCE, GetFeaturesRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: features.reset_features
@@ -62,8 +76,9 @@ public class ElasticsearchFeaturesClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-snapshots.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public ResetFeaturesResponse resetFeatures() throws IOException {
-		return this.transport.performRequest(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest.ENDPOINT);
+	public ResetFeaturesResponse resetFeatures() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(ResetFeaturesRequest._INSTANCE, ResetFeaturesRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

@@ -23,55 +23,60 @@
 
 package co.elastic.clients.elasticsearch.license.post;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Acknowledgement
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post/types.ts#L20-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Acknowledgement implements JsonpSerializable {
+public class Acknowledgement implements JsonpSerializable {
 	private final List<String> license;
 
 	private final String message;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Acknowledgement(Builder builder) {
+	private Acknowledgement(Builder builder) {
 
-		this.license = ModelTypeHelper.unmodifiableNonNull(builder.license, "license");
-		this.message = Objects.requireNonNull(builder.message, "message");
+		this.license = ApiTypeHelper.unmodifiableRequired(builder.license, this, "license");
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 
 	}
 
-	public Acknowledgement(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Acknowledgement of(Function<Builder, ObjectBuilder<Acknowledgement>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code license}
 	 */
-	public List<String> license() {
+	public final List<String> license() {
 		return this.license;
 	}
 
 	/**
 	 * Required - API name: {@code message}
 	 */
-	public String message() {
+	public final String message() {
 		return this.message;
 	}
 
@@ -86,14 +91,16 @@ public final class Acknowledgement implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("license");
-		generator.writeStartArray();
-		for (String item0 : this.license) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.license)) {
+			generator.writeKey("license");
+			generator.writeStartArray();
+			for (String item0 : this.license) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("message");
 		generator.write(this.message);
 
@@ -104,42 +111,36 @@ public final class Acknowledgement implements JsonpSerializable {
 	/**
 	 * Builder for {@link Acknowledgement}.
 	 */
-	public static class Builder implements ObjectBuilder<Acknowledgement> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Acknowledgement> {
 		private List<String> license;
 
 		private String message;
 
 		/**
 		 * Required - API name: {@code license}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>license</code>.
 		 */
-		public Builder license(List<String> value) {
-			this.license = value;
+		public final Builder license(List<String> list) {
+			this.license = _listAddAll(this.license, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code license}
+		 * <p>
+		 * Adds one or more values to <code>license</code>.
 		 */
-		public Builder license(String... value) {
-			this.license = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #license(List)}, creating the list if needed.
-		 */
-		public Builder addLicense(String value) {
-			if (this.license == null) {
-				this.license = new ArrayList<>();
-			}
-			this.license.add(value);
+		public final Builder license(String value, String... values) {
+			this.license = _listAdd(this.license, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public Builder message(String value) {
+		public final Builder message(String value) {
 			this.message = value;
 			return this;
 		}
@@ -151,6 +152,7 @@ public final class Acknowledgement implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Acknowledgement build() {
+			_checkSingleUse();
 
 			return new Acknowledgement(this);
 		}
@@ -162,9 +164,9 @@ public final class Acknowledgement implements JsonpSerializable {
 	 * Json deserializer for {@link Acknowledgement}
 	 */
 	public static final JsonpDeserializer<Acknowledgement> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Acknowledgement::setupAcknowledgementDeserializer, Builder::build);
+			Acknowledgement::setupAcknowledgementDeserializer);
 
-	protected static void setupAcknowledgementDeserializer(DelegatingDeserializer<Acknowledgement.Builder> op) {
+	protected static void setupAcknowledgementDeserializer(ObjectDeserializer<Acknowledgement.Builder> op) {
 
 		op.add(Builder::license, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"license");

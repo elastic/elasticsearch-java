@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,39 +36,45 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MedianAbsoluteDeviationAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L90-L92">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationBase
-		implements
-			AggregationVariant {
+public class MedianAbsoluteDeviationAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Double compression;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MedianAbsoluteDeviationAggregation(Builder builder) {
+	private MedianAbsoluteDeviationAggregation(Builder builder) {
 		super(builder);
 
 		this.compression = builder.compression;
 
 	}
 
-	public MedianAbsoluteDeviationAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MedianAbsoluteDeviationAggregation of(
+			Function<Builder, ObjectBuilder<MedianAbsoluteDeviationAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "median_absolute_deviation";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.MedianAbsoluteDeviation;
 	}
 
 	/**
 	 * API name: {@code compression}
 	 */
 	@Nullable
-	public Double compression() {
+	public final Double compression() {
 		return this.compression;
 	}
 
@@ -77,7 +82,6 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 
 		super.serializeInternal(generator, mapper);
 		if (this.compression != null) {
-
 			generator.writeKey("compression");
 			generator.write(this.compression);
 
@@ -90,6 +94,7 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 	/**
 	 * Builder for {@link MedianAbsoluteDeviationAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MedianAbsoluteDeviationAggregation> {
@@ -99,7 +104,7 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 		/**
 		 * API name: {@code compression}
 		 */
-		public Builder compression(@Nullable Double value) {
+		public final Builder compression(@Nullable Double value) {
 			this.compression = value;
 			return this;
 		}
@@ -116,6 +121,7 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 		 *             if some of the required fields are null.
 		 */
 		public MedianAbsoluteDeviationAggregation build() {
+			_checkSingleUse();
 
 			return new MedianAbsoluteDeviationAggregation(this);
 		}
@@ -127,11 +133,11 @@ public final class MedianAbsoluteDeviationAggregation extends FormatMetricAggreg
 	 * Json deserializer for {@link MedianAbsoluteDeviationAggregation}
 	 */
 	public static final JsonpDeserializer<MedianAbsoluteDeviationAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MedianAbsoluteDeviationAggregation::setupMedianAbsoluteDeviationAggregationDeserializer,
-					Builder::build);
+			.lazy(Builder::new,
+					MedianAbsoluteDeviationAggregation::setupMedianAbsoluteDeviationAggregationDeserializer);
 
 	protected static void setupMedianAbsoluteDeviationAggregationDeserializer(
-			DelegatingDeserializer<MedianAbsoluteDeviationAggregation.Builder> op) {
+			ObjectDeserializer<MedianAbsoluteDeviationAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 		op.add(Builder::compression, JsonpDeserializer.doubleDeserializer(), "compression");
 

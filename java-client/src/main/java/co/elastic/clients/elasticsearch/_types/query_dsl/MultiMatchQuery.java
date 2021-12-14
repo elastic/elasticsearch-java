@@ -23,29 +23,33 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.MultiMatchQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L191-L217">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MultiMatchQuery extends QueryBase implements QueryVariant {
+public class MultiMatchQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final String analyzer;
 
@@ -55,7 +59,6 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	@Nullable
 	private final Double cutoffFrequency;
 
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
@@ -98,13 +101,13 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MultiMatchQuery(Builder builder) {
+	private MultiMatchQuery(Builder builder) {
 		super(builder);
 
 		this.analyzer = builder.analyzer;
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.cutoffFrequency = builder.cutoffFrequency;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.fuzziness = builder.fuzziness;
 		this.fuzzyRewrite = builder.fuzzyRewrite;
 		this.fuzzyTranspositions = builder.fuzzyTranspositions;
@@ -113,7 +116,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.operator = builder.operator;
 		this.prefixLength = builder.prefixLength;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.slop = builder.slop;
 		this.tieBreaker = builder.tieBreaker;
 		this.type = builder.type;
@@ -121,23 +124,23 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public MultiMatchQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MultiMatchQuery of(Function<Builder, ObjectBuilder<MultiMatchQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "multi_match";
+	public Query.Kind _queryKind() {
+		return Query.Kind.MultiMatch;
 	}
 
 	/**
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -145,23 +148,25 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code auto_generate_synonyms_phrase_query}
 	 */
 	@Nullable
-	public Boolean autoGenerateSynonymsPhraseQuery() {
+	public final Boolean autoGenerateSynonymsPhraseQuery() {
 		return this.autoGenerateSynonymsPhraseQuery;
 	}
 
 	/**
 	 * API name: {@code cutoff_frequency}
+	 * 
+	 * @deprecated 7.3.0
 	 */
+	@Deprecated
 	@Nullable
-	public Double cutoffFrequency() {
+	public final Double cutoffFrequency() {
 		return this.cutoffFrequency;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -169,7 +174,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzziness}
 	 */
 	@Nullable
-	public String fuzziness() {
+	public final String fuzziness() {
 		return this.fuzziness;
 	}
 
@@ -177,7 +182,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzzy_rewrite}
 	 */
 	@Nullable
-	public String fuzzyRewrite() {
+	public final String fuzzyRewrite() {
 		return this.fuzzyRewrite;
 	}
 
@@ -185,7 +190,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code fuzzy_transpositions}
 	 */
 	@Nullable
-	public Boolean fuzzyTranspositions() {
+	public final Boolean fuzzyTranspositions() {
 		return this.fuzzyTranspositions;
 	}
 
@@ -193,7 +198,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code lenient}
 	 */
 	@Nullable
-	public Boolean lenient() {
+	public final Boolean lenient() {
 		return this.lenient;
 	}
 
@@ -201,7 +206,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code max_expansions}
 	 */
 	@Nullable
-	public Integer maxExpansions() {
+	public final Integer maxExpansions() {
 		return this.maxExpansions;
 	}
 
@@ -209,7 +214,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public String minimumShouldMatch() {
+	public final String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
@@ -217,7 +222,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code operator}
 	 */
 	@Nullable
-	public Operator operator() {
+	public final Operator operator() {
 		return this.operator;
 	}
 
@@ -225,14 +230,14 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
-	public Integer prefixLength() {
+	public final Integer prefixLength() {
 		return this.prefixLength;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -240,7 +245,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code slop}
 	 */
 	@Nullable
-	public Integer slop() {
+	public final Integer slop() {
 		return this.slop;
 	}
 
@@ -248,7 +253,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code tie_breaker}
 	 */
 	@Nullable
-	public Double tieBreaker() {
+	public final Double tieBreaker() {
 		return this.tieBreaker;
 	}
 
@@ -256,7 +261,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public TextQueryType type() {
+	public final TextQueryType type() {
 		return this.type;
 	}
 
@@ -264,7 +269,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code zero_terms_query}
 	 */
 	@Nullable
-	public ZeroTermsQuery zeroTermsQuery() {
+	public final ZeroTermsQuery zeroTermsQuery() {
 		return this.zeroTermsQuery;
 	}
 
@@ -272,25 +277,21 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.autoGenerateSynonymsPhraseQuery != null) {
-
 			generator.writeKey("auto_generate_synonyms_phrase_query");
 			generator.write(this.autoGenerateSynonymsPhraseQuery);
 
 		}
 		if (this.cutoffFrequency != null) {
-
 			generator.writeKey("cutoff_frequency");
 			generator.write(this.cutoffFrequency);
 
 		}
-		if (this.fields != null) {
-
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (String item0 : this.fields) {
@@ -301,75 +302,62 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 
 		}
 		if (this.fuzziness != null) {
-
 			generator.writeKey("fuzziness");
 			generator.write(this.fuzziness);
 
 		}
 		if (this.fuzzyRewrite != null) {
-
 			generator.writeKey("fuzzy_rewrite");
 			generator.write(this.fuzzyRewrite);
 
 		}
 		if (this.fuzzyTranspositions != null) {
-
 			generator.writeKey("fuzzy_transpositions");
 			generator.write(this.fuzzyTranspositions);
 
 		}
 		if (this.lenient != null) {
-
 			generator.writeKey("lenient");
 			generator.write(this.lenient);
 
 		}
 		if (this.maxExpansions != null) {
-
 			generator.writeKey("max_expansions");
 			generator.write(this.maxExpansions);
 
 		}
 		if (this.minimumShouldMatch != null) {
-
 			generator.writeKey("minimum_should_match");
 			generator.write(this.minimumShouldMatch);
 
 		}
 		if (this.operator != null) {
-
 			generator.writeKey("operator");
 			this.operator.serialize(generator, mapper);
 		}
 		if (this.prefixLength != null) {
-
 			generator.writeKey("prefix_length");
 			generator.write(this.prefixLength);
 
 		}
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
 		if (this.slop != null) {
-
 			generator.writeKey("slop");
 			generator.write(this.slop);
 
 		}
 		if (this.tieBreaker != null) {
-
 			generator.writeKey("tie_breaker");
 			generator.write(this.tieBreaker);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			this.type.serialize(generator, mapper);
 		}
 		if (this.zeroTermsQuery != null) {
-
 			generator.writeKey("zero_terms_query");
 			this.zeroTermsQuery.serialize(generator, mapper);
 		}
@@ -381,6 +369,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link MultiMatchQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<MultiMatchQuery> {
 		@Nullable
 		private String analyzer;
@@ -435,7 +424,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -443,50 +432,46 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code auto_generate_synonyms_phrase_query}
 		 */
-		public Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
+		public final Builder autoGenerateSynonymsPhraseQuery(@Nullable Boolean value) {
 			this.autoGenerateSynonymsPhraseQuery = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code cutoff_frequency}
+		 * 
+		 * @deprecated 7.3.0
 		 */
-		public Builder cutoffFrequency(@Nullable Double value) {
+		@Deprecated
+		public final Builder cutoffFrequency(@Nullable Double value) {
 			this.cutoffFrequency = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fuzziness}
 		 */
-		public Builder fuzziness(@Nullable String value) {
+		public final Builder fuzziness(@Nullable String value) {
 			this.fuzziness = value;
 			return this;
 		}
@@ -494,7 +479,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fuzzy_rewrite}
 		 */
-		public Builder fuzzyRewrite(@Nullable String value) {
+		public final Builder fuzzyRewrite(@Nullable String value) {
 			this.fuzzyRewrite = value;
 			return this;
 		}
@@ -502,7 +487,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code fuzzy_transpositions}
 		 */
-		public Builder fuzzyTranspositions(@Nullable Boolean value) {
+		public final Builder fuzzyTranspositions(@Nullable Boolean value) {
 			this.fuzzyTranspositions = value;
 			return this;
 		}
@@ -510,7 +495,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(@Nullable Boolean value) {
+		public final Builder lenient(@Nullable Boolean value) {
 			this.lenient = value;
 			return this;
 		}
@@ -518,7 +503,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code max_expansions}
 		 */
-		public Builder maxExpansions(@Nullable Integer value) {
+		public final Builder maxExpansions(@Nullable Integer value) {
 			this.maxExpansions = value;
 			return this;
 		}
@@ -526,7 +511,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable String value) {
+		public final Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -534,7 +519,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code operator}
 		 */
-		public Builder operator(@Nullable Operator value) {
+		public final Builder operator(@Nullable Operator value) {
 			this.operator = value;
 			return this;
 		}
@@ -542,7 +527,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(@Nullable Integer value) {
+		public final Builder prefixLength(@Nullable Integer value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -550,7 +535,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -558,7 +543,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code slop}
 		 */
-		public Builder slop(@Nullable Integer value) {
+		public final Builder slop(@Nullable Integer value) {
 			this.slop = value;
 			return this;
 		}
@@ -566,7 +551,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code tie_breaker}
 		 */
-		public Builder tieBreaker(@Nullable Double value) {
+		public final Builder tieBreaker(@Nullable Double value) {
 			this.tieBreaker = value;
 			return this;
 		}
@@ -574,7 +559,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable TextQueryType value) {
+		public final Builder type(@Nullable TextQueryType value) {
 			this.type = value;
 			return this;
 		}
@@ -582,7 +567,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code zero_terms_query}
 		 */
-		public Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
+		public final Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
 			this.zeroTermsQuery = value;
 			return this;
 		}
@@ -599,6 +584,7 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public MultiMatchQuery build() {
+			_checkSingleUse();
 
 			return new MultiMatchQuery(this);
 		}
@@ -610,9 +596,9 @@ public final class MultiMatchQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link MultiMatchQuery}
 	 */
 	public static final JsonpDeserializer<MultiMatchQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MultiMatchQuery::setupMultiMatchQueryDeserializer, Builder::build);
+			MultiMatchQuery::setupMultiMatchQueryDeserializer);
 
-	protected static void setupMultiMatchQueryDeserializer(DelegatingDeserializer<MultiMatchQuery.Builder> op) {
+	protected static void setupMultiMatchQueryDeserializer(ObjectDeserializer<MultiMatchQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpDeserializer.booleanDeserializer(),

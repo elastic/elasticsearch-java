@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.LetterTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L66-L68">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class LetterTokenizer extends TokenizerBase implements TokenizerVariant {
+public class LetterTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public LetterTokenizer(Builder builder) {
+	private LetterTokenizer(Builder builder) {
 		super(builder);
 
 	}
 
-	public LetterTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LetterTokenizer of(Function<Builder, ObjectBuilder<LetterTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "letter";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.Letter;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class LetterTokenizer extends TokenizerBase implements TokenizerVar
 	/**
 	 * Builder for {@link LetterTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LetterTokenizer> {
@@ -83,6 +90,7 @@ public final class LetterTokenizer extends TokenizerBase implements TokenizerVar
 		 *             if some of the required fields are null.
 		 */
 		public LetterTokenizer build() {
+			_checkSingleUse();
 
 			return new LetterTokenizer(this);
 		}
@@ -94,9 +102,9 @@ public final class LetterTokenizer extends TokenizerBase implements TokenizerVar
 	 * Json deserializer for {@link LetterTokenizer}
 	 */
 	public static final JsonpDeserializer<LetterTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			LetterTokenizer::setupLetterTokenizerDeserializer, Builder::build);
+			LetterTokenizer::setupLetterTokenizerDeserializer);
 
-	protected static void setupLetterTokenizerDeserializer(DelegatingDeserializer<LetterTokenizer.Builder> op) {
+	protected static void setupLetterTokenizerDeserializer(ObjectDeserializer<LetterTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 
 		op.ignore("type");

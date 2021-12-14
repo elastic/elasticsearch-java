@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,27 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.get_watch.Request
 
-public final class GetWatchRequest extends RequestBase {
+/**
+ * Retrieves a watch by its ID.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/get_watch/GetWatchRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class GetWatchRequest extends RequestBase {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetWatchRequest(Builder builder) {
+	private GetWatchRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public GetWatchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetWatchRequest of(Function<Builder, ObjectBuilder<GetWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +71,7 @@ public final class GetWatchRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -70,7 +80,8 @@ public final class GetWatchRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetWatchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetWatchRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetWatchRequest> {
 		private String id;
 
 		/**
@@ -78,7 +89,7 @@ public final class GetWatchRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -90,6 +101,7 @@ public final class GetWatchRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetWatchRequest build() {
+			_checkSingleUse();
 
 			return new GetWatchRequest(this);
 		}
@@ -100,7 +112,9 @@ public final class GetWatchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.get_watch}".
 	 */
-	public static final Endpoint<GetWatchRequest, GetWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetWatchRequest, GetWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.get_watch",
+
 			// Request method
 			request -> {
 				return "GET";

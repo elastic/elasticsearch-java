@@ -23,23 +23,30 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: _global.info.Request
 
-public final class InfoRequest extends RequestBase {
+/**
+ * Returns basic information about the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/info/RootNodeInfoRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class InfoRequest extends RequestBase {
 	public InfoRequest() {
 	}
 
@@ -53,7 +60,8 @@ public final class InfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code info}".
 	 */
-	public static final Endpoint<InfoRequest, InfoResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<InfoRequest, InfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>("es/info",
+
 			// Request method
 			request -> {
 				return "GET";

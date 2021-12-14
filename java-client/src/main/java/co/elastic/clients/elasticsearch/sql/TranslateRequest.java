@@ -23,19 +23,20 @@
 
 package co.elastic.clients.elasticsearch.sql;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -45,8 +46,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.translate.Request
+
+/**
+ * Translates SQL into Elasticsearch queries
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/sql/translate/TranslateSqlRequest.ts#L24-L36">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TranslateRequest extends RequestBase implements JsonpSerializable {
+public class TranslateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Integer fetchSize;
 
@@ -60,24 +69,24 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TranslateRequest(Builder builder) {
+	private TranslateRequest(Builder builder) {
 
 		this.fetchSize = builder.fetchSize;
 		this.filter = builder.filter;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.timeZone = builder.timeZone;
 
 	}
 
-	public TranslateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TranslateRequest of(Function<Builder, ObjectBuilder<TranslateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
-	public Integer fetchSize() {
+	public final Integer fetchSize() {
 		return this.fetchSize;
 	}
 
@@ -85,14 +94,14 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code filter}
 	 */
 	@Nullable
-	public Query filter() {
+	public final Query filter() {
 		return this.filter;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -100,7 +109,7 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 	 * API name: {@code time_zone}
 	 */
 	@Nullable
-	public String timeZone() {
+	public final String timeZone() {
 		return this.timeZone;
 	}
 
@@ -116,23 +125,19 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.fetchSize != null) {
-
 			generator.writeKey("fetch_size");
 			generator.write(this.fetchSize);
 
 		}
 		if (this.filter != null) {
-
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
 		if (this.timeZone != null) {
-
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
 
@@ -145,7 +150,8 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Builder for {@link TranslateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<TranslateRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslateRequest> {
 		@Nullable
 		private Integer fetchSize;
 
@@ -160,7 +166,7 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code fetch_size}
 		 */
-		public Builder fetchSize(@Nullable Integer value) {
+		public final Builder fetchSize(@Nullable Integer value) {
 			this.fetchSize = value;
 			return this;
 		}
@@ -168,7 +174,7 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(@Nullable Query value) {
+		public final Builder filter(@Nullable Query value) {
 			this.filter = value;
 			return this;
 		}
@@ -176,14 +182,14 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code filter}
 		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -191,7 +197,7 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 		/**
 		 * API name: {@code time_zone}
 		 */
-		public Builder timeZone(@Nullable String value) {
+		public final Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
 			return this;
 		}
@@ -203,6 +209,7 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 		 *             if some of the required fields are null.
 		 */
 		public TranslateRequest build() {
+			_checkSingleUse();
 
 			return new TranslateRequest(this);
 		}
@@ -214,9 +221,9 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 	 * Json deserializer for {@link TranslateRequest}
 	 */
 	public static final JsonpDeserializer<TranslateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TranslateRequest::setupTranslateRequestDeserializer, Builder::build);
+			TranslateRequest::setupTranslateRequestDeserializer);
 
-	protected static void setupTranslateRequestDeserializer(DelegatingDeserializer<TranslateRequest.Builder> op) {
+	protected static void setupTranslateRequestDeserializer(ObjectDeserializer<TranslateRequest.Builder> op) {
 
 		op.add(Builder::fetchSize, JsonpDeserializer.integerDeserializer(), "fetch_size");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
@@ -230,7 +237,9 @@ public final class TranslateRequest extends RequestBase implements JsonpSerializ
 	/**
 	 * Endpoint "{@code sql.translate}".
 	 */
-	public static final Endpoint<TranslateRequest, TranslateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<TranslateRequest, TranslateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/sql.translate",
+
 			// Request method
 			request -> {
 				return "POST";

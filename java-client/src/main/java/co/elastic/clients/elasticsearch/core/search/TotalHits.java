@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TotalHits
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/hits.ts#L94-L97">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TotalHits implements JsonpSerializable {
+public class TotalHits implements JsonpSerializable {
 	private final TotalHitsRelation relation;
 
 	private final long value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TotalHits(Builder builder) {
+	private TotalHits(Builder builder) {
 
-		this.relation = Objects.requireNonNull(builder.relation, "relation");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.relation = ApiTypeHelper.requireNonNull(builder.relation, this, "relation");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public TotalHits(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TotalHits of(Function<Builder, ObjectBuilder<TotalHits>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code relation}
 	 */
-	public TotalHitsRelation relation() {
+	public final TotalHitsRelation relation() {
 		return this.relation;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public long value() {
+	public final long value() {
 		return this.value;
 	}
 
@@ -84,7 +92,6 @@ public final class TotalHits implements JsonpSerializable {
 
 		generator.writeKey("relation");
 		this.relation.serialize(generator, mapper);
-
 		generator.writeKey("value");
 		generator.write(this.value);
 
@@ -95,7 +102,8 @@ public final class TotalHits implements JsonpSerializable {
 	/**
 	 * Builder for {@link TotalHits}.
 	 */
-	public static class Builder implements ObjectBuilder<TotalHits> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TotalHits> {
 		private TotalHitsRelation relation;
 
 		private Long value;
@@ -103,7 +111,7 @@ public final class TotalHits implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code relation}
 		 */
-		public Builder relation(TotalHitsRelation value) {
+		public final Builder relation(TotalHitsRelation value) {
 			this.relation = value;
 			return this;
 		}
@@ -111,7 +119,7 @@ public final class TotalHits implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(long value) {
+		public final Builder value(long value) {
 			this.value = value;
 			return this;
 		}
@@ -123,6 +131,7 @@ public final class TotalHits implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TotalHits build() {
+			_checkSingleUse();
 
 			return new TotalHits(this);
 		}
@@ -134,9 +143,9 @@ public final class TotalHits implements JsonpSerializable {
 	 * Json deserializer for {@link TotalHits}
 	 */
 	public static final JsonpDeserializer<TotalHits> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TotalHits::setupTotalHitsDeserializer, Builder::build);
+			TotalHits::setupTotalHitsDeserializer);
 
-	protected static void setupTotalHitsDeserializer(DelegatingDeserializer<TotalHits.Builder> op) {
+	protected static void setupTotalHitsDeserializer(ObjectDeserializer<TotalHits.Builder> op) {
 
 		op.add(Builder::relation, TotalHitsRelation._DESERIALIZER, "relation");
 		op.add(Builder::value, JsonpDeserializer.longDeserializer(), "value");

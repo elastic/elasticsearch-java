@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.autoscaling;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -34,10 +40,22 @@ import javax.annotation.Nullable;
 /**
  * Client for the autoscaling namespace.
  */
-public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
+public class ElasticsearchAutoscalingAsyncClient
+		extends
+			ApiClient<ElasticsearchTransport, ElasticsearchAutoscalingAsyncClient> {
 
-	public ElasticsearchAutoscalingAsyncClient(Transport transport) {
-		super(transport);
+	public ElasticsearchAutoscalingAsyncClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchAutoscalingAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchAutoscalingAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchAutoscalingAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: autoscaling.delete_autoscaling_policy
@@ -52,8 +70,11 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<DeleteAutoscalingPolicyResponse> deleteAutoscalingPolicy(
-			DeleteAutoscalingPolicyRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeleteAutoscalingPolicyRequest.ENDPOINT);
+			DeleteAutoscalingPolicyRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteAutoscalingPolicyRequest, DeleteAutoscalingPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteAutoscalingPolicyRequest, DeleteAutoscalingPolicyResponse, ErrorResponse>) DeleteAutoscalingPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -61,9 +82,8 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 	 * Direct use is not supported.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteAutoscalingPolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-delete-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
@@ -71,7 +91,7 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 
 	public final CompletableFuture<DeleteAutoscalingPolicyResponse> deleteAutoscalingPolicy(
 			Function<DeleteAutoscalingPolicyRequest.Builder, ObjectBuilder<DeleteAutoscalingPolicyRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteAutoscalingPolicy(fn.apply(new DeleteAutoscalingPolicyRequest.Builder()).build());
 	}
 
@@ -86,9 +106,10 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetAutoscalingCapacityResponse> getAutoscalingCapacity() throws IOException {
+	public CompletableFuture<GetAutoscalingCapacityResponse> getAutoscalingCapacity()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(GetAutoscalingCapacityRequest._INSTANCE,
-				GetAutoscalingCapacityRequest.ENDPOINT);
+				GetAutoscalingCapacityRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: autoscaling.get_autoscaling_policy
@@ -103,8 +124,11 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<GetAutoscalingPolicyResponse> getAutoscalingPolicy(GetAutoscalingPolicyRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, GetAutoscalingPolicyRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetAutoscalingPolicyRequest, GetAutoscalingPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAutoscalingPolicyRequest, GetAutoscalingPolicyResponse, ErrorResponse>) GetAutoscalingPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -112,9 +136,8 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 	 * ECK. Direct use is not supported.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetAutoscalingPolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
@@ -122,7 +145,7 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 
 	public final CompletableFuture<GetAutoscalingPolicyResponse> getAutoscalingPolicy(
 			Function<GetAutoscalingPolicyRequest.Builder, ObjectBuilder<GetAutoscalingPolicyRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getAutoscalingPolicy(fn.apply(new GetAutoscalingPolicyRequest.Builder()).build());
 	}
 
@@ -138,8 +161,11 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<PutAutoscalingPolicyResponse> putAutoscalingPolicy(PutAutoscalingPolicyRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, PutAutoscalingPolicyRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse>) PutAutoscalingPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -147,9 +173,8 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 	 * ECK. Direct use is not supported.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutAutoscalingPolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-put-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
@@ -157,7 +182,7 @@ public class ElasticsearchAutoscalingAsyncClient extends ApiClient {
 
 	public final CompletableFuture<PutAutoscalingPolicyResponse> putAutoscalingPolicy(
 			Function<PutAutoscalingPolicyRequest.Builder, ObjectBuilder<PutAutoscalingPolicyRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putAutoscalingPolicy(fn.apply(new PutAutoscalingPolicyRequest.Builder()).build());
 	}
 

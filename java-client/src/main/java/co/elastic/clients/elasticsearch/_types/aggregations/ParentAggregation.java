@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ParentAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L249-L251">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ParentAggregation extends BucketAggregationBase implements AggregationVariant {
+public class ParentAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ParentAggregation(Builder builder) {
+	private ParentAggregation(Builder builder) {
 		super(builder);
 
 		this.type = builder.type;
 
 	}
 
-	public ParentAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ParentAggregation of(Function<Builder, ObjectBuilder<ParentAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "parent";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Parent;
 	}
 
 	/**
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -75,7 +81,6 @@ public final class ParentAggregation extends BucketAggregationBase implements Ag
 
 		super.serializeInternal(generator, mapper);
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
@@ -88,6 +93,7 @@ public final class ParentAggregation extends BucketAggregationBase implements Ag
 	/**
 	 * Builder for {@link ParentAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ParentAggregation> {
@@ -97,7 +103,7 @@ public final class ParentAggregation extends BucketAggregationBase implements Ag
 		/**
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -114,6 +120,7 @@ public final class ParentAggregation extends BucketAggregationBase implements Ag
 		 *             if some of the required fields are null.
 		 */
 		public ParentAggregation build() {
+			_checkSingleUse();
 
 			return new ParentAggregation(this);
 		}
@@ -125,9 +132,9 @@ public final class ParentAggregation extends BucketAggregationBase implements Ag
 	 * Json deserializer for {@link ParentAggregation}
 	 */
 	public static final JsonpDeserializer<ParentAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ParentAggregation::setupParentAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, ParentAggregation::setupParentAggregationDeserializer);
 
-	protected static void setupParentAggregationDeserializer(DelegatingDeserializer<ParentAggregation.Builder> op) {
+	protected static void setupParentAggregationDeserializer(ObjectDeserializer<ParentAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 

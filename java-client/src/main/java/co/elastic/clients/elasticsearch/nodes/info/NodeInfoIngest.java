@@ -23,44 +23,49 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngest
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L209-L211">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoIngest implements JsonpSerializable {
+public class NodeInfoIngest implements JsonpSerializable {
 	private final List<NodeInfoIngestProcessor> processors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoIngest(Builder builder) {
+	private NodeInfoIngest(Builder builder) {
 
-		this.processors = ModelTypeHelper.unmodifiableNonNull(builder.processors, "processors");
+		this.processors = ApiTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
 
 	}
 
-	public NodeInfoIngest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoIngest of(Function<Builder, ObjectBuilder<NodeInfoIngest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code processors}
 	 */
-	public List<NodeInfoIngestProcessor> processors() {
+	public final List<NodeInfoIngestProcessor> processors() {
 		return this.processors;
 	}
 
@@ -75,13 +80,16 @@ public final class NodeInfoIngest implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("processors");
-		generator.writeStartArray();
-		for (NodeInfoIngestProcessor item0 : this.processors) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.processors)) {
+			generator.writeKey("processors");
+			generator.writeStartArray();
+			for (NodeInfoIngestProcessor item0 : this.processors) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,50 +98,38 @@ public final class NodeInfoIngest implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoIngest}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoIngest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngest> {
 		private List<NodeInfoIngestProcessor> processors;
 
 		/**
 		 * Required - API name: {@code processors}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>processors</code>.
 		 */
-		public Builder processors(List<NodeInfoIngestProcessor> value) {
-			this.processors = value;
+		public final Builder processors(List<NodeInfoIngestProcessor> list) {
+			this.processors = _listAddAll(this.processors, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code processors}
+		 * <p>
+		 * Adds one or more values to <code>processors</code>.
 		 */
-		public Builder processors(NodeInfoIngestProcessor... value) {
-			this.processors = Arrays.asList(value);
+		public final Builder processors(NodeInfoIngestProcessor value, NodeInfoIngestProcessor... values) {
+			this.processors = _listAdd(this.processors, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
+		 * Required - API name: {@code processors}
+		 * <p>
+		 * Adds a value to <code>processors</code> using a builder lambda.
 		 */
-		public Builder addProcessors(NodeInfoIngestProcessor value) {
-			if (this.processors == null) {
-				this.processors = new ArrayList<>();
-			}
-			this.processors.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #processors(List)} to a singleton list.
-		 */
-		public Builder processors(
+		public final Builder processors(
 				Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn) {
-			return this.processors(fn.apply(new NodeInfoIngestProcessor.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #processors(List)}, creating the list if needed.
-		 */
-		public Builder addProcessors(
-				Function<NodeInfoIngestProcessor.Builder, ObjectBuilder<NodeInfoIngestProcessor>> fn) {
-			return this.addProcessors(fn.apply(new NodeInfoIngestProcessor.Builder()).build());
+			return processors(fn.apply(new NodeInfoIngestProcessor.Builder()).build());
 		}
 
 		/**
@@ -143,6 +139,7 @@ public final class NodeInfoIngest implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoIngest build() {
+			_checkSingleUse();
 
 			return new NodeInfoIngest(this);
 		}
@@ -154,9 +151,9 @@ public final class NodeInfoIngest implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoIngest}
 	 */
 	public static final JsonpDeserializer<NodeInfoIngest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoIngest::setupNodeInfoIngestDeserializer, Builder::build);
+			NodeInfoIngest::setupNodeInfoIngestDeserializer);
 
-	protected static void setupNodeInfoIngestDeserializer(DelegatingDeserializer<NodeInfoIngest.Builder> op) {
+	protected static void setupNodeInfoIngestDeserializer(ObjectDeserializer<NodeInfoIngest.Builder> op) {
 
 		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(NodeInfoIngestProcessor._DESERIALIZER),
 				"processors");

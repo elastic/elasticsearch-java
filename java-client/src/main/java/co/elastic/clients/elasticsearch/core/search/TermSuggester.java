@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch._types.SuggestMode;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.TermSuggester
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L221-L234">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TermSuggester extends SuggesterBase implements SuggestVariant {
+public class TermSuggester extends SuggesterBase implements FieldSuggesterVariant {
 	@Nullable
 	private final Boolean lowercaseTerms;
 
@@ -81,7 +87,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermSuggester(Builder builder) {
+	private TermSuggester(Builder builder) {
 		super(builder);
 
 		this.lowercaseTerms = builder.lowercaseTerms;
@@ -99,23 +105,23 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 
 	}
 
-	public TermSuggester(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermSuggester of(Function<Builder, ObjectBuilder<TermSuggester>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Suggest} variant type
+	 * FieldSuggester variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "term";
+	public FieldSuggester.Kind _fieldSuggesterKind() {
+		return FieldSuggester.Kind.Term;
 	}
 
 	/**
 	 * API name: {@code lowercase_terms}
 	 */
 	@Nullable
-	public Boolean lowercaseTerms() {
+	public final Boolean lowercaseTerms() {
 		return this.lowercaseTerms;
 	}
 
@@ -123,7 +129,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code max_edits}
 	 */
 	@Nullable
-	public Integer maxEdits() {
+	public final Integer maxEdits() {
 		return this.maxEdits;
 	}
 
@@ -131,7 +137,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code max_inspections}
 	 */
 	@Nullable
-	public Integer maxInspections() {
+	public final Integer maxInspections() {
 		return this.maxInspections;
 	}
 
@@ -139,7 +145,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code max_term_freq}
 	 */
 	@Nullable
-	public Float maxTermFreq() {
+	public final Float maxTermFreq() {
 		return this.maxTermFreq;
 	}
 
@@ -147,7 +153,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code min_doc_freq}
 	 */
 	@Nullable
-	public Float minDocFreq() {
+	public final Float minDocFreq() {
 		return this.minDocFreq;
 	}
 
@@ -155,7 +161,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code min_word_length}
 	 */
 	@Nullable
-	public Integer minWordLength() {
+	public final Integer minWordLength() {
 		return this.minWordLength;
 	}
 
@@ -163,7 +169,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
-	public Integer prefixLength() {
+	public final Integer prefixLength() {
 		return this.prefixLength;
 	}
 
@@ -171,7 +177,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -179,7 +185,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public SuggestSort sort() {
+	public final SuggestSort sort() {
 		return this.sort;
 	}
 
@@ -187,7 +193,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code string_distance}
 	 */
 	@Nullable
-	public StringDistance stringDistance() {
+	public final StringDistance stringDistance() {
 		return this.stringDistance;
 	}
 
@@ -195,7 +201,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code suggest_mode}
 	 */
 	@Nullable
-	public SuggestMode suggestMode() {
+	public final SuggestMode suggestMode() {
 		return this.suggestMode;
 	}
 
@@ -203,7 +209,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * API name: {@code text}
 	 */
 	@Nullable
-	public String text() {
+	public final String text() {
 		return this.text;
 	}
 
@@ -211,70 +217,58 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 
 		super.serializeInternal(generator, mapper);
 		if (this.lowercaseTerms != null) {
-
 			generator.writeKey("lowercase_terms");
 			generator.write(this.lowercaseTerms);
 
 		}
 		if (this.maxEdits != null) {
-
 			generator.writeKey("max_edits");
 			generator.write(this.maxEdits);
 
 		}
 		if (this.maxInspections != null) {
-
 			generator.writeKey("max_inspections");
 			generator.write(this.maxInspections);
 
 		}
 		if (this.maxTermFreq != null) {
-
 			generator.writeKey("max_term_freq");
 			generator.write(this.maxTermFreq);
 
 		}
 		if (this.minDocFreq != null) {
-
 			generator.writeKey("min_doc_freq");
 			generator.write(this.minDocFreq);
 
 		}
 		if (this.minWordLength != null) {
-
 			generator.writeKey("min_word_length");
 			generator.write(this.minWordLength);
 
 		}
 		if (this.prefixLength != null) {
-
 			generator.writeKey("prefix_length");
 			generator.write(this.prefixLength);
 
 		}
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
 		}
 		if (this.sort != null) {
-
 			generator.writeKey("sort");
 			this.sort.serialize(generator, mapper);
 		}
 		if (this.stringDistance != null) {
-
 			generator.writeKey("string_distance");
 			this.stringDistance.serialize(generator, mapper);
 		}
 		if (this.suggestMode != null) {
-
 			generator.writeKey("suggest_mode");
 			this.suggestMode.serialize(generator, mapper);
 		}
 		if (this.text != null) {
-
 			generator.writeKey("text");
 			generator.write(this.text);
 
@@ -287,6 +281,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	/**
 	 * Builder for {@link TermSuggester}.
 	 */
+
 	public static class Builder extends SuggesterBase.AbstractBuilder<Builder> implements ObjectBuilder<TermSuggester> {
 		@Nullable
 		private Boolean lowercaseTerms;
@@ -327,7 +322,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code lowercase_terms}
 		 */
-		public Builder lowercaseTerms(@Nullable Boolean value) {
+		public final Builder lowercaseTerms(@Nullable Boolean value) {
 			this.lowercaseTerms = value;
 			return this;
 		}
@@ -335,7 +330,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code max_edits}
 		 */
-		public Builder maxEdits(@Nullable Integer value) {
+		public final Builder maxEdits(@Nullable Integer value) {
 			this.maxEdits = value;
 			return this;
 		}
@@ -343,7 +338,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code max_inspections}
 		 */
-		public Builder maxInspections(@Nullable Integer value) {
+		public final Builder maxInspections(@Nullable Integer value) {
 			this.maxInspections = value;
 			return this;
 		}
@@ -351,7 +346,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code max_term_freq}
 		 */
-		public Builder maxTermFreq(@Nullable Float value) {
+		public final Builder maxTermFreq(@Nullable Float value) {
 			this.maxTermFreq = value;
 			return this;
 		}
@@ -359,7 +354,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code min_doc_freq}
 		 */
-		public Builder minDocFreq(@Nullable Float value) {
+		public final Builder minDocFreq(@Nullable Float value) {
 			this.minDocFreq = value;
 			return this;
 		}
@@ -367,7 +362,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code min_word_length}
 		 */
-		public Builder minWordLength(@Nullable Integer value) {
+		public final Builder minWordLength(@Nullable Integer value) {
 			this.minWordLength = value;
 			return this;
 		}
@@ -375,7 +370,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(@Nullable Integer value) {
+		public final Builder prefixLength(@Nullable Integer value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -383,7 +378,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -391,7 +386,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable SuggestSort value) {
+		public final Builder sort(@Nullable SuggestSort value) {
 			this.sort = value;
 			return this;
 		}
@@ -399,7 +394,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code string_distance}
 		 */
-		public Builder stringDistance(@Nullable StringDistance value) {
+		public final Builder stringDistance(@Nullable StringDistance value) {
 			this.stringDistance = value;
 			return this;
 		}
@@ -407,7 +402,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code suggest_mode}
 		 */
-		public Builder suggestMode(@Nullable SuggestMode value) {
+		public final Builder suggestMode(@Nullable SuggestMode value) {
 			this.suggestMode = value;
 			return this;
 		}
@@ -415,7 +410,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		/**
 		 * API name: {@code text}
 		 */
-		public Builder text(@Nullable String value) {
+		public final Builder text(@Nullable String value) {
 			this.text = value;
 			return this;
 		}
@@ -432,6 +427,7 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 		 *             if some of the required fields are null.
 		 */
 		public TermSuggester build() {
+			_checkSingleUse();
 
 			return new TermSuggester(this);
 		}
@@ -443,9 +439,9 @@ public final class TermSuggester extends SuggesterBase implements SuggestVariant
 	 * Json deserializer for {@link TermSuggester}
 	 */
 	public static final JsonpDeserializer<TermSuggester> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermSuggester::setupTermSuggesterDeserializer, Builder::build);
+			TermSuggester::setupTermSuggesterDeserializer);
 
-	protected static void setupTermSuggesterDeserializer(DelegatingDeserializer<TermSuggester.Builder> op) {
+	protected static void setupTermSuggesterDeserializer(ObjectDeserializer<TermSuggester.Builder> op) {
 		SuggesterBase.setupSuggesterBaseDeserializer(op);
 		op.add(Builder::lowercaseTerms, JsonpDeserializer.booleanDeserializer(), "lowercase_terms");
 		op.add(Builder::maxEdits, JsonpDeserializer.integerDeserializer(), "max_edits");

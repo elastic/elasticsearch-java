@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch.core.explain.Explanation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,17 +33,13 @@ import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -54,7 +49,14 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Hit
 
-public final class Hit<TDocument> implements JsonpSerializable {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/hits.ts#L41-L64">API
+ *      specification</a>
+ */
+
+public class Hit<TDocument> implements JsonpSerializable {
 	private final String index;
 
 	private final String id;
@@ -68,22 +70,17 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final Explanation explanation;
 
-	@Nullable
 	private final Map<String, JsonData> fields;
 
-	@Nullable
 	private final Map<String, List<String>> highlight;
 
-	@Nullable
 	private final Map<String, InnerHitsResult> innerHits;
 
-	@Nullable
 	private final List<String> matchedQueries;
 
 	@Nullable
 	private final NestedIdentity nested;
 
-	@Nullable
 	private final List<String> ignored;
 
 	@Nullable
@@ -99,7 +96,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	private final TDocument source;
 
 	@Nullable
-	private final Integer seqNo;
+	private final Long seqNo;
 
 	@Nullable
 	private final Long primaryTerm;
@@ -107,7 +104,6 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final Long version;
 
-	@Nullable
 	private final List<String> sort;
 
 	@Nullable
@@ -115,19 +111,19 @@ public final class Hit<TDocument> implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Hit(Builder<TDocument> builder) {
+	private Hit(Builder<TDocument> builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "_index");
-		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.score = builder.score;
 		this.type = builder.type;
 		this.explanation = builder.explanation;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
-		this.highlight = ModelTypeHelper.unmodifiable(builder.highlight);
-		this.innerHits = ModelTypeHelper.unmodifiable(builder.innerHits);
-		this.matchedQueries = ModelTypeHelper.unmodifiable(builder.matchedQueries);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.highlight = ApiTypeHelper.unmodifiable(builder.highlight);
+		this.innerHits = ApiTypeHelper.unmodifiable(builder.innerHits);
+		this.matchedQueries = ApiTypeHelper.unmodifiable(builder.matchedQueries);
 		this.nested = builder.nested;
-		this.ignored = ModelTypeHelper.unmodifiable(builder.ignored);
+		this.ignored = ApiTypeHelper.unmodifiable(builder.ignored);
 		this.shard = builder.shard;
 		this.node = builder.node;
 		this.routing = builder.routing;
@@ -135,26 +131,26 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		this.seqNo = builder.seqNo;
 		this.primaryTerm = builder.primaryTerm;
 		this.version = builder.version;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public Hit(Function<Builder<TDocument>, Builder<TDocument>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <TDocument> Hit<TDocument> of(Function<Builder<TDocument>, ObjectBuilder<Hit<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -162,7 +158,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _score}
 	 */
 	@Nullable
-	public Double score() {
+	public final Double score() {
 		return this.score;
 	}
 
@@ -170,7 +166,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -178,39 +174,35 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _explanation}
 	 */
 	@Nullable
-	public Explanation explanation() {
+	public final Explanation explanation() {
 		return this.explanation;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public Map<String, JsonData> fields() {
+	public final Map<String, JsonData> fields() {
 		return this.fields;
 	}
 
 	/**
 	 * API name: {@code highlight}
 	 */
-	@Nullable
-	public Map<String, List<String>> highlight() {
+	public final Map<String, List<String>> highlight() {
 		return this.highlight;
 	}
 
 	/**
 	 * API name: {@code inner_hits}
 	 */
-	@Nullable
-	public Map<String, InnerHitsResult> innerHits() {
+	public final Map<String, InnerHitsResult> innerHits() {
 		return this.innerHits;
 	}
 
 	/**
 	 * API name: {@code matched_queries}
 	 */
-	@Nullable
-	public List<String> matchedQueries() {
+	public final List<String> matchedQueries() {
 		return this.matchedQueries;
 	}
 
@@ -218,15 +210,14 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _nested}
 	 */
 	@Nullable
-	public NestedIdentity nested() {
+	public final NestedIdentity nested() {
 		return this.nested;
 	}
 
 	/**
 	 * API name: {@code _ignored}
 	 */
-	@Nullable
-	public List<String> ignored() {
+	public final List<String> ignored() {
 		return this.ignored;
 	}
 
@@ -234,7 +225,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _shard}
 	 */
 	@Nullable
-	public String shard() {
+	public final String shard() {
 		return this.shard;
 	}
 
@@ -242,7 +233,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _node}
 	 */
 	@Nullable
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
@@ -250,7 +241,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -258,7 +249,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public TDocument source() {
+	public final TDocument source() {
 		return this.source;
 	}
 
@@ -266,7 +257,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Integer seqNo() {
+	public final Long seqNo() {
 		return this.seqNo;
 	}
 
@@ -274,7 +265,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
-	public Long primaryTerm() {
+	public final Long primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -282,15 +273,14 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	 * API name: {@code _version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
 	/**
 	 * API name: {@code sort}
 	 */
-	@Nullable
-	public List<String> sort() {
+	public final List<String> sort() {
 		return this.sort;
 	}
 
@@ -312,25 +302,21 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		generator.write(this.id);
 
 		if (this.score != null) {
-
 			generator.writeKey("_score");
 			generator.write(this.score);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("_type");
 			generator.write(this.type);
 
 		}
 		if (this.explanation != null) {
-
 			generator.writeKey("_explanation");
 			this.explanation.serialize(generator, mapper);
 
 		}
-		if (this.fields != null) {
-
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fields.entrySet()) {
@@ -341,16 +327,17 @@ public final class Hit<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.highlight != null) {
-
+		if (ApiTypeHelper.isDefined(this.highlight)) {
 			generator.writeKey("highlight");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.highlight.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.writeStartArray();
-				for (String item1 : item0.getValue()) {
-					generator.write(item1);
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
 
+					}
 				}
 				generator.writeEnd();
 
@@ -358,8 +345,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.innerHits != null) {
-
+		if (ApiTypeHelper.isDefined(this.innerHits)) {
 			generator.writeKey("inner_hits");
 			generator.writeStartObject();
 			for (Map.Entry<String, InnerHitsResult> item0 : this.innerHits.entrySet()) {
@@ -370,8 +356,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.matchedQueries != null) {
-
+		if (ApiTypeHelper.isDefined(this.matchedQueries)) {
 			generator.writeKey("matched_queries");
 			generator.writeStartArray();
 			for (String item0 : this.matchedQueries) {
@@ -382,13 +367,11 @@ public final class Hit<TDocument> implements JsonpSerializable {
 
 		}
 		if (this.nested != null) {
-
 			generator.writeKey("_nested");
 			this.nested.serialize(generator, mapper);
 
 		}
-		if (this.ignored != null) {
-
+		if (ApiTypeHelper.isDefined(this.ignored)) {
 			generator.writeKey("_ignored");
 			generator.writeStartArray();
 			for (String item0 : this.ignored) {
@@ -399,49 +382,41 @@ public final class Hit<TDocument> implements JsonpSerializable {
 
 		}
 		if (this.shard != null) {
-
 			generator.writeKey("_shard");
 			generator.write(this.shard);
 
 		}
 		if (this.node != null) {
-
 			generator.writeKey("_node");
 			generator.write(this.node);
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("_routing");
 			generator.write(this.routing);
 
 		}
 		if (this.source != null) {
-
 			generator.writeKey("_source");
 			JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
 
 		}
 		if (this.seqNo != null) {
-
 			generator.writeKey("_seq_no");
 			generator.write(this.seqNo);
 
 		}
 		if (this.primaryTerm != null) {
-
 			generator.writeKey("_primary_term");
 			generator.write(this.primaryTerm);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("_version");
 			generator.write(this.version);
 
 		}
-		if (this.sort != null) {
-
+		if (ApiTypeHelper.isDefined(this.sort)) {
 			generator.writeKey("sort");
 			generator.writeStartArray();
 			for (String item0 : this.sort) {
@@ -459,7 +434,8 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	/**
 	 * Builder for {@link Hit}.
 	 */
-	public static class Builder<TDocument> implements ObjectBuilder<Hit<TDocument>> {
+
+	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<Hit<TDocument>> {
 		private String index;
 
 		private String id;
@@ -504,7 +480,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		private TDocument source;
 
 		@Nullable
-		private Integer seqNo;
+		private Long seqNo;
 
 		@Nullable
 		private Long primaryTerm;
@@ -521,7 +497,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _index}
 		 */
-		public Builder<TDocument> index(String value) {
+		public final Builder<TDocument> index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -529,7 +505,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder<TDocument> id(String value) {
+		public final Builder<TDocument> id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -537,7 +513,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _score}
 		 */
-		public Builder<TDocument> score(@Nullable Double value) {
+		public final Builder<TDocument> score(@Nullable Double value) {
 			this.score = value;
 			return this;
 		}
@@ -545,7 +521,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _type}
 		 */
-		public Builder<TDocument> type(@Nullable String value) {
+		public final Builder<TDocument> type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -553,7 +529,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _explanation}
 		 */
-		public Builder<TDocument> explanation(@Nullable Explanation value) {
+		public final Builder<TDocument> explanation(@Nullable Explanation value) {
 			this.explanation = value;
 			return this;
 		}
@@ -561,114 +537,104 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _explanation}
 		 */
-		public Builder<TDocument> explanation(Function<Explanation.Builder, ObjectBuilder<Explanation>> fn) {
+		public final Builder<TDocument> explanation(Function<Explanation.Builder, ObjectBuilder<Explanation>> fn) {
 			return this.explanation(fn.apply(new Explanation.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public Builder<TDocument> fields(@Nullable Map<String, JsonData> value) {
-			this.fields = value;
+		public final Builder<TDocument> fields(Map<String, JsonData> map) {
+			this.fields = _mapPutAll(this.fields, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
 		 */
-		public Builder<TDocument> putFields(String key, JsonData value) {
-			if (this.fields == null) {
-				this.fields = new HashMap<>();
-			}
-			this.fields.put(key, value);
+		public final Builder<TDocument> fields(String key, JsonData value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code highlight}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>highlight</code>.
 		 */
-		public Builder<TDocument> highlight(@Nullable Map<String, List<String>> value) {
-			this.highlight = value;
+		public final Builder<TDocument> highlight(Map<String, List<String>> map) {
+			this.highlight = _mapPutAll(this.highlight, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #highlight(Map)}, creating the map if needed.
+		 * API name: {@code highlight}
+		 * <p>
+		 * Adds an entry to <code>highlight</code>.
 		 */
-		public Builder<TDocument> putHighlight(String key, List<String> value) {
-			if (this.highlight == null) {
-				this.highlight = new HashMap<>();
-			}
-			this.highlight.put(key, value);
+		public final Builder<TDocument> highlight(String key, List<String> value) {
+			this.highlight = _mapPut(this.highlight, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code inner_hits}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>innerHits</code>.
 		 */
-		public Builder<TDocument> innerHits(@Nullable Map<String, InnerHitsResult> value) {
-			this.innerHits = value;
+		public final Builder<TDocument> innerHits(Map<String, InnerHitsResult> map) {
+			this.innerHits = _mapPutAll(this.innerHits, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #innerHits(Map)}, creating the map if needed.
+		 * API name: {@code inner_hits}
+		 * <p>
+		 * Adds an entry to <code>innerHits</code>.
 		 */
-		public Builder<TDocument> putInnerHits(String key, InnerHitsResult value) {
-			if (this.innerHits == null) {
-				this.innerHits = new HashMap<>();
-			}
-			this.innerHits.put(key, value);
+		public final Builder<TDocument> innerHits(String key, InnerHitsResult value) {
+			this.innerHits = _mapPut(this.innerHits, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #innerHits(Map)} to a singleton map.
+		 * API name: {@code inner_hits}
+		 * <p>
+		 * Adds an entry to <code>innerHits</code> using a builder lambda.
 		 */
-		public Builder<TDocument> innerHits(String key,
+		public final Builder<TDocument> innerHits(String key,
 				Function<InnerHitsResult.Builder, ObjectBuilder<InnerHitsResult>> fn) {
-			return this.innerHits(Collections.singletonMap(key, fn.apply(new InnerHitsResult.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #innerHits(Map)}, creating the map if needed.
-		 */
-		public Builder<TDocument> putInnerHits(String key,
-				Function<InnerHitsResult.Builder, ObjectBuilder<InnerHitsResult>> fn) {
-			return this.putInnerHits(key, fn.apply(new InnerHitsResult.Builder()).build());
+			return innerHits(key, fn.apply(new InnerHitsResult.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code matched_queries}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>matchedQueries</code>.
 		 */
-		public Builder<TDocument> matchedQueries(@Nullable List<String> value) {
-			this.matchedQueries = value;
+		public final Builder<TDocument> matchedQueries(List<String> list) {
+			this.matchedQueries = _listAddAll(this.matchedQueries, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code matched_queries}
+		 * <p>
+		 * Adds one or more values to <code>matchedQueries</code>.
 		 */
-		public Builder<TDocument> matchedQueries(String... value) {
-			this.matchedQueries = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #matchedQueries(List)}, creating the list if needed.
-		 */
-		public Builder<TDocument> addMatchedQueries(String value) {
-			if (this.matchedQueries == null) {
-				this.matchedQueries = new ArrayList<>();
-			}
-			this.matchedQueries.add(value);
+		public final Builder<TDocument> matchedQueries(String value, String... values) {
+			this.matchedQueries = _listAdd(this.matchedQueries, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _nested}
 		 */
-		public Builder<TDocument> nested(@Nullable NestedIdentity value) {
+		public final Builder<TDocument> nested(@Nullable NestedIdentity value) {
 			this.nested = value;
 			return this;
 		}
@@ -676,41 +642,34 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _nested}
 		 */
-		public Builder<TDocument> nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
+		public final Builder<TDocument> nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
 			return this.nested(fn.apply(new NestedIdentity.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _ignored}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ignored</code>.
 		 */
-		public Builder<TDocument> ignored(@Nullable List<String> value) {
-			this.ignored = value;
+		public final Builder<TDocument> ignored(List<String> list) {
+			this.ignored = _listAddAll(this.ignored, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _ignored}
+		 * <p>
+		 * Adds one or more values to <code>ignored</code>.
 		 */
-		public Builder<TDocument> ignored(String... value) {
-			this.ignored = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #ignored(List)}, creating the list if needed.
-		 */
-		public Builder<TDocument> addIgnored(String value) {
-			if (this.ignored == null) {
-				this.ignored = new ArrayList<>();
-			}
-			this.ignored.add(value);
+		public final Builder<TDocument> ignored(String value, String... values) {
+			this.ignored = _listAdd(this.ignored, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code _shard}
 		 */
-		public Builder<TDocument> shard(@Nullable String value) {
+		public final Builder<TDocument> shard(@Nullable String value) {
 			this.shard = value;
 			return this;
 		}
@@ -718,7 +677,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _node}
 		 */
-		public Builder<TDocument> node(@Nullable String value) {
+		public final Builder<TDocument> node(@Nullable String value) {
 			this.node = value;
 			return this;
 		}
@@ -726,7 +685,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _routing}
 		 */
-		public Builder<TDocument> routing(@Nullable String value) {
+		public final Builder<TDocument> routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -734,7 +693,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _source}
 		 */
-		public Builder<TDocument> source(@Nullable TDocument value) {
+		public final Builder<TDocument> source(@Nullable TDocument value) {
 			this.source = value;
 			return this;
 		}
@@ -742,7 +701,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder<TDocument> seqNo(@Nullable Integer value) {
+		public final Builder<TDocument> seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -750,7 +709,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder<TDocument> primaryTerm(@Nullable Long value) {
+		public final Builder<TDocument> primaryTerm(@Nullable Long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -758,35 +717,28 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder<TDocument> version(@Nullable Long value) {
+		public final Builder<TDocument> version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public Builder<TDocument> sort(@Nullable List<String> value) {
-			this.sort = value;
+		public final Builder<TDocument> sort(List<String> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public Builder<TDocument> sort(String... value) {
-			this.sort = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
-		 */
-		public Builder<TDocument> addSort(String value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
+		public final Builder<TDocument> sort(String value, String... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
@@ -794,7 +746,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
@@ -806,6 +758,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Hit<TDocument> build() {
+			_checkSingleUse();
 
 			return new Hit<TDocument>(this);
 		}
@@ -814,7 +767,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for Hit
+	 * Create a JSON deserializer for Hit
 	 */
 	public static <TDocument> JsonpDeserializer<Hit<TDocument>> createHitDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
@@ -822,7 +775,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 				op -> Hit.setupHitDeserializer(op, tDocumentDeserializer));
 	};
 
-	protected static <TDocument> void setupHitDeserializer(DelegatingDeserializer<Hit.Builder<TDocument>> op,
+	protected static <TDocument> void setupHitDeserializer(ObjectDeserializer<Hit.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
@@ -844,7 +797,7 @@ public final class Hit<TDocument> implements JsonpSerializable {
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "_node");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
-		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "sort");

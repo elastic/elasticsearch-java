@@ -23,25 +23,24 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -49,43 +48,56 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shrink.Request
+
+/**
+ * Allow to shrink an existing index into a new index with fewer primary shards.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/shrink/IndicesShrinkRequest.ts#L27-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShrinkRequest extends RequestBase implements JsonpSerializable {
+public class ShrinkRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, Alias> aliases;
+
 	private final String index;
+
+	@Nullable
+	private final Time masterTimeout;
+
+	private final Map<String, JsonData> settings;
 
 	private final String target;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time timeout;
 
 	@Nullable
-	private final String timeout;
-
-	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
-	@Nullable
-	private final Map<String, Alias> aliases;
-
-	@Nullable
-	private final Map<String, JsonData> settings;
+	private final WaitForActiveShards waitForActiveShards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShrinkRequest(Builder builder) {
+	private ShrinkRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.target = Objects.requireNonNull(builder.target, "target");
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
+		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
+		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
-		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 
 	}
 
-	public ShrinkRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShrinkRequest of(Function<Builder, ObjectBuilder<ShrinkRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code aliases}
+	 */
+	public final Map<String, Alias> aliases() {
+		return this.aliases;
 	}
 
 	/**
@@ -93,17 +105,8 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
-	}
-
-	/**
-	 * Required - The name of the target index to shrink into
-	 * <p>
-	 * API name: {@code target}
-	 */
-	public String target() {
-		return this.target;
 	}
 
 	/**
@@ -112,8 +115,24 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * API name: {@code settings}
+	 */
+	public final Map<String, JsonData> settings() {
+		return this.settings;
+	}
+
+	/**
+	 * Required - The name of the target index to shrink into
+	 * <p>
+	 * API name: {@code target}
+	 */
+	public final String target() {
+		return this.target;
 	}
 
 	/**
@@ -122,7 +141,7 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -133,24 +152,8 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final WaitForActiveShards waitForActiveShards() {
 		return this.waitForActiveShards;
-	}
-
-	/**
-	 * API name: {@code aliases}
-	 */
-	@Nullable
-	public Map<String, Alias> aliases() {
-		return this.aliases;
-	}
-
-	/**
-	 * API name: {@code settings}
-	 */
-	@Nullable
-	public Map<String, JsonData> settings() {
-		return this.settings;
 	}
 
 	/**
@@ -164,8 +167,7 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.aliases != null) {
-
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
@@ -176,8 +178,7 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 			generator.writeEnd();
 
 		}
-		if (this.settings != null) {
-
+		if (ApiTypeHelper.isDefined(this.settings)) {
 			generator.writeKey("settings");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
@@ -196,43 +197,63 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link ShrinkRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ShrinkRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShrinkRequest> {
+		@Nullable
+		private Map<String, Alias> aliases;
+
 		private String index;
+
+		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
+		private Map<String, JsonData> settings;
 
 		private String target;
 
 		@Nullable
-		private String masterTimeout;
+		private Time timeout;
 
 		@Nullable
-		private String timeout;
+		private WaitForActiveShards waitForActiveShards;
 
-		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
+		 */
+		public final Builder aliases(Map<String, Alias> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
+			return this;
+		}
 
-		@Nullable
-		private Map<String, Alias> aliases;
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, Alias value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
 
-		@Nullable
-		private Map<String, JsonData> settings;
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
+			return aliases(key, fn.apply(new Alias.Builder()).build());
+		}
 
 		/**
 		 * Required - The name of the source index to shrink
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Required - The name of the target index to shrink into
-		 * <p>
-		 * API name: {@code target}
-		 */
-		public Builder target(String value) {
-			this.target = value;
 			return this;
 		}
 
@@ -241,8 +262,47 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code settings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>settings</code>.
+		 */
+		public final Builder settings(Map<String, JsonData> map) {
+			this.settings = _mapPutAll(this.settings, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code settings}
+		 * <p>
+		 * Adds an entry to <code>settings</code>.
+		 */
+		public final Builder settings(String key, JsonData value) {
+			this.settings = _mapPut(this.settings, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - The name of the target index to shrink into
+		 * <p>
+		 * API name: {@code target}
+		 */
+		public final Builder target(String value) {
+			this.target = value;
 			return this;
 		}
 
@@ -251,8 +311,28 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Set the number of active shards to wait for on the shrunken index before the
+		 * operation returns.
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
+			this.waitForActiveShards = value;
 			return this;
 		}
 
@@ -262,61 +342,9 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
-			this.waitForActiveShards = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code aliases}
-		 */
-		public Builder aliases(@Nullable Map<String, Alias> value) {
-			this.aliases = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Alias value) {
-			if (this.aliases == null) {
-				this.aliases = new HashMap<>();
-			}
-			this.aliases.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #aliases(Map)} to a singleton map.
-		 */
-		public Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.aliases(Collections.singletonMap(key, fn.apply(new Alias.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.putAliases(key, fn.apply(new Alias.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code settings}
-		 */
-		public Builder settings(@Nullable Map<String, JsonData> value) {
-			this.settings = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
-		 */
-		public Builder putSettings(String key, JsonData value) {
-			if (this.settings == null) {
-				this.settings = new HashMap<>();
-			}
-			this.settings.put(key, value);
-			return this;
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -326,6 +354,7 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public ShrinkRequest build() {
+			_checkSingleUse();
 
 			return new ShrinkRequest(this);
 		}
@@ -337,9 +366,9 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link ShrinkRequest}
 	 */
 	public static final JsonpDeserializer<ShrinkRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShrinkRequest::setupShrinkRequestDeserializer, Builder::build);
+			ShrinkRequest::setupShrinkRequestDeserializer);
 
-	protected static void setupShrinkRequestDeserializer(DelegatingDeserializer<ShrinkRequest.Builder> op) {
+	protected static void setupShrinkRequestDeserializer(ObjectDeserializer<ShrinkRequest.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
@@ -351,7 +380,9 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code indices.shrink}".
 	 */
-	public static final Endpoint<ShrinkRequest, ShrinkResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ShrinkRequest, ShrinkResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.shrink",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -385,13 +416,13 @@ public final class ShrinkRequest extends RequestBase implements JsonpSerializabl
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

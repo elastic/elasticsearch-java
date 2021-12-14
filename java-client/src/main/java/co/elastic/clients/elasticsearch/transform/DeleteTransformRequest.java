@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,44 +45,51 @@ import javax.annotation.Nullable;
 
 // typedef: transform.delete_transform.Request
 
-public final class DeleteTransformRequest extends RequestBase {
-	private final String transformId;
+/**
+ * Deletes a transform.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/delete_transform/DeleteTransformRequest.ts#L23-L45">API
+ *      specification</a>
+ */
 
+public class DeleteTransformRequest extends RequestBase {
 	@Nullable
 	private final Boolean force;
 
+	private final String transformId;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteTransformRequest(Builder builder) {
+	private DeleteTransformRequest(Builder builder) {
 
-		this.transformId = Objects.requireNonNull(builder.transformId, "transform_id");
 		this.force = builder.force;
+		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
-	public DeleteTransformRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The id of the transform to delete
-	 * <p>
-	 * API name: {@code transform_id}
-	 */
-	public String transformId() {
-		return this.transformId;
+	public static DeleteTransformRequest of(Function<Builder, ObjectBuilder<DeleteTransformRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * When <code>true</code>, the transform is deleted regardless of its current
-	 * state. The default value is <code>false</code>, meaning that the transform
-	 * must be <code>stopped</code> before it can be deleted.
+	 * If this value is false, the transform must be stopped before it can be
+	 * deleted. If true, the transform is deleted regardless of its current state.
 	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
-	public Boolean force() {
+	public final Boolean force() {
 		return this.force;
+	}
+
+	/**
+	 * Required - Identifier for the transform.
+	 * <p>
+	 * API name: {@code transform_id}
+	 */
+	public final String transformId() {
+		return this.transformId;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -88,31 +97,31 @@ public final class DeleteTransformRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteTransformRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteTransformRequest> {
-		private String transformId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTransformRequest> {
 		@Nullable
 		private Boolean force;
 
+		private String transformId;
+
 		/**
-		 * Required - The id of the transform to delete
+		 * If this value is false, the transform must be stopped before it can be
+		 * deleted. If true, the transform is deleted regardless of its current state.
 		 * <p>
-		 * API name: {@code transform_id}
+		 * API name: {@code force}
 		 */
-		public Builder transformId(String value) {
-			this.transformId = value;
+		public final Builder force(@Nullable Boolean value) {
+			this.force = value;
 			return this;
 		}
 
 		/**
-		 * When <code>true</code>, the transform is deleted regardless of its current
-		 * state. The default value is <code>false</code>, meaning that the transform
-		 * must be <code>stopped</code> before it can be deleted.
+		 * Required - Identifier for the transform.
 		 * <p>
-		 * API name: {@code force}
+		 * API name: {@code transform_id}
 		 */
-		public Builder force(@Nullable Boolean value) {
-			this.force = value;
+		public final Builder transformId(String value) {
+			this.transformId = value;
 			return this;
 		}
 
@@ -123,6 +132,7 @@ public final class DeleteTransformRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteTransformRequest build() {
+			_checkSingleUse();
 
 			return new DeleteTransformRequest(this);
 		}
@@ -133,7 +143,9 @@ public final class DeleteTransformRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code transform.delete_transform}".
 	 */
-	public static final Endpoint<DeleteTransformRequest, DeleteTransformResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/transform.delete_transform",
+
 			// Request method
 			request -> {
 				return "DELETE";

@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.MlCounter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L210-L212">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MlCounter implements JsonpSerializable {
+public class MlCounter implements JsonpSerializable {
 	private final long count;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlCounter(Builder builder) {
+	private MlCounter(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 
 	}
 
-	public MlCounter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlCounter of(Function<Builder, ObjectBuilder<MlCounter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -81,13 +89,14 @@ public final class MlCounter implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlCounter}.
 	 */
-	public static class Builder implements ObjectBuilder<MlCounter> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlCounter> {
 		private Long count;
 
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class MlCounter implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MlCounter build() {
+			_checkSingleUse();
 
 			return new MlCounter(this);
 		}
@@ -110,9 +120,9 @@ public final class MlCounter implements JsonpSerializable {
 	 * Json deserializer for {@link MlCounter}
 	 */
 	public static final JsonpDeserializer<MlCounter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MlCounter::setupMlCounterDeserializer, Builder::build);
+			MlCounter::setupMlCounterDeserializer);
 
-	protected static void setupMlCounterDeserializer(DelegatingDeserializer<MlCounter.Builder> op) {
+	protected static void setupMlCounterDeserializer(ObjectDeserializer<MlCounter.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.AverageBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L46-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AverageBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class AverageBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public AverageBucketAggregation(Builder builder) {
+	private AverageBucketAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public AverageBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AverageBucketAggregation of(Function<Builder, ObjectBuilder<AverageBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "avg_bucket";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.AvgBucket;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class AverageBucketAggregation extends PipelineAggregationBase impl
 	/**
 	 * Builder for {@link AverageBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AverageBucketAggregation> {
@@ -75,6 +82,7 @@ public final class AverageBucketAggregation extends PipelineAggregationBase impl
 		 *             if some of the required fields are null.
 		 */
 		public AverageBucketAggregation build() {
+			_checkSingleUse();
 
 			return new AverageBucketAggregation(this);
 		}
@@ -86,10 +94,10 @@ public final class AverageBucketAggregation extends PipelineAggregationBase impl
 	 * Json deserializer for {@link AverageBucketAggregation}
 	 */
 	public static final JsonpDeserializer<AverageBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AverageBucketAggregation::setupAverageBucketAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, AverageBucketAggregation::setupAverageBucketAggregationDeserializer);
 
 	protected static void setupAverageBucketAggregationDeserializer(
-			DelegatingDeserializer<AverageBucketAggregation.Builder> op) {
+			ObjectDeserializer<AverageBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

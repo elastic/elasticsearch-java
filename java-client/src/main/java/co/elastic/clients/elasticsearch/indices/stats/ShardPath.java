@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardPath
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L116-L120">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShardPath implements JsonpSerializable {
+public class ShardPath implements JsonpSerializable {
 	private final String dataPath;
 
 	private final boolean isCustomDataPath;
@@ -49,36 +57,36 @@ public final class ShardPath implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardPath(Builder builder) {
+	private ShardPath(Builder builder) {
 
-		this.dataPath = Objects.requireNonNull(builder.dataPath, "data_path");
-		this.isCustomDataPath = Objects.requireNonNull(builder.isCustomDataPath, "is_custom_data_path");
-		this.statePath = Objects.requireNonNull(builder.statePath, "state_path");
+		this.dataPath = ApiTypeHelper.requireNonNull(builder.dataPath, this, "dataPath");
+		this.isCustomDataPath = ApiTypeHelper.requireNonNull(builder.isCustomDataPath, this, "isCustomDataPath");
+		this.statePath = ApiTypeHelper.requireNonNull(builder.statePath, this, "statePath");
 
 	}
 
-	public ShardPath(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardPath of(Function<Builder, ObjectBuilder<ShardPath>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code data_path}
 	 */
-	public String dataPath() {
+	public final String dataPath() {
 		return this.dataPath;
 	}
 
 	/**
 	 * Required - API name: {@code is_custom_data_path}
 	 */
-	public boolean isCustomDataPath() {
+	public final boolean isCustomDataPath() {
 		return this.isCustomDataPath;
 	}
 
 	/**
 	 * Required - API name: {@code state_path}
 	 */
-	public String statePath() {
+	public final String statePath() {
 		return this.statePath;
 	}
 
@@ -109,7 +117,8 @@ public final class ShardPath implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardPath}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardPath> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardPath> {
 		private String dataPath;
 
 		private Boolean isCustomDataPath;
@@ -119,7 +128,7 @@ public final class ShardPath implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_path}
 		 */
-		public Builder dataPath(String value) {
+		public final Builder dataPath(String value) {
 			this.dataPath = value;
 			return this;
 		}
@@ -127,7 +136,7 @@ public final class ShardPath implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code is_custom_data_path}
 		 */
-		public Builder isCustomDataPath(boolean value) {
+		public final Builder isCustomDataPath(boolean value) {
 			this.isCustomDataPath = value;
 			return this;
 		}
@@ -135,7 +144,7 @@ public final class ShardPath implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state_path}
 		 */
-		public Builder statePath(String value) {
+		public final Builder statePath(String value) {
 			this.statePath = value;
 			return this;
 		}
@@ -147,6 +156,7 @@ public final class ShardPath implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardPath build() {
+			_checkSingleUse();
 
 			return new ShardPath(this);
 		}
@@ -158,9 +168,9 @@ public final class ShardPath implements JsonpSerializable {
 	 * Json deserializer for {@link ShardPath}
 	 */
 	public static final JsonpDeserializer<ShardPath> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardPath::setupShardPathDeserializer, Builder::build);
+			ShardPath::setupShardPathDeserializer);
 
-	protected static void setupShardPathDeserializer(DelegatingDeserializer<ShardPath.Builder> op) {
+	protected static void setupShardPathDeserializer(ObjectDeserializer<ShardPath.Builder> op) {
 
 		op.add(Builder::dataPath, JsonpDeserializer.stringDeserializer(), "data_path");
 		op.add(Builder::isCustomDataPath, JsonpDeserializer.booleanDeserializer(), "is_custom_data_path");

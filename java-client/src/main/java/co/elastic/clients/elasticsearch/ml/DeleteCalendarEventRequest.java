@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,22 +43,30 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_calendar_event.Request
 
-public final class DeleteCalendarEventRequest extends RequestBase {
+/**
+ * Deletes scheduled events from a calendar.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_calendar_event/MlDeleteCalendarEventRequest.ts#L23-L34">API
+ *      specification</a>
+ */
+
+public class DeleteCalendarEventRequest extends RequestBase {
 	private final String calendarId;
 
 	private final String eventId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteCalendarEventRequest(Builder builder) {
+	private DeleteCalendarEventRequest(Builder builder) {
 
-		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
-		this.eventId = Objects.requireNonNull(builder.eventId, "event_id");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.eventId = ApiTypeHelper.requireNonNull(builder.eventId, this, "eventId");
 
 	}
 
-	public DeleteCalendarEventRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteCalendarEventRequest of(Function<Builder, ObjectBuilder<DeleteCalendarEventRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +74,7 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
-	public String calendarId() {
+	public final String calendarId() {
 		return this.calendarId;
 	}
 
@@ -73,7 +83,7 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code event_id}
 	 */
-	public String eventId() {
+	public final String eventId() {
 		return this.eventId;
 	}
 
@@ -82,7 +92,8 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteCalendarEventRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteCalendarEventRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteCalendarEventRequest> {
 		private String calendarId;
 
 		private String eventId;
@@ -92,7 +103,7 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(String value) {
+		public final Builder calendarId(String value) {
 			this.calendarId = value;
 			return this;
 		}
@@ -102,7 +113,7 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code event_id}
 		 */
-		public Builder eventId(String value) {
+		public final Builder eventId(String value) {
 			this.eventId = value;
 			return this;
 		}
@@ -114,6 +125,7 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteCalendarEventRequest build() {
+			_checkSingleUse();
 
 			return new DeleteCalendarEventRequest(this);
 		}
@@ -124,7 +136,9 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_calendar_event}".
 	 */
-	public static final Endpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_calendar_event",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -133,13 +147,13 @@ public final class DeleteCalendarEventRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _calendarId = 1 << 0;
-				final int _eventId = 1 << 1;
+				final int _eventId = 1 << 0;
+				final int _calendarId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _calendarId;
 				propsSet |= _eventId;
+				propsSet |= _calendarId;
 
 				if (propsSet == (_calendarId | _eventId)) {
 					StringBuilder buf = new StringBuilder();

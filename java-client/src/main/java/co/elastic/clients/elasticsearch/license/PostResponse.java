@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.elasticsearch.license.post.Acknowledgement;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license.post.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post/PostLicenseResponse.ts#L23-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PostResponse implements JsonpSerializable {
+public class PostResponse implements JsonpSerializable {
 	@Nullable
 	private final Acknowledgement acknowledge;
 
@@ -50,37 +58,37 @@ public final class PostResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PostResponse(Builder builder) {
+	private PostResponse(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
-		this.acknowledged = Objects.requireNonNull(builder.acknowledged, "acknowledged");
-		this.licenseStatus = Objects.requireNonNull(builder.licenseStatus, "license_status");
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
+		this.licenseStatus = ApiTypeHelper.requireNonNull(builder.licenseStatus, this, "licenseStatus");
 
 	}
 
-	public PostResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PostResponse of(Function<Builder, ObjectBuilder<PostResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code acknowledge}
 	 */
 	@Nullable
-	public Acknowledgement acknowledge() {
+	public final Acknowledgement acknowledge() {
 		return this.acknowledge;
 	}
 
 	/**
 	 * Required - API name: {@code acknowledged}
 	 */
-	public boolean acknowledged() {
+	public final boolean acknowledged() {
 		return this.acknowledged;
 	}
 
 	/**
 	 * Required - API name: {@code license_status}
 	 */
-	public LicenseStatus licenseStatus() {
+	public final LicenseStatus licenseStatus() {
 		return this.licenseStatus;
 	}
 
@@ -96,12 +104,10 @@ public final class PostResponse implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.acknowledge != null) {
-
 			generator.writeKey("acknowledge");
 			this.acknowledge.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("acknowledged");
 		generator.write(this.acknowledged);
 
@@ -115,7 +121,8 @@ public final class PostResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PostResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PostResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostResponse> {
 		@Nullable
 		private Acknowledgement acknowledge;
 
@@ -126,7 +133,7 @@ public final class PostResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code acknowledge}
 		 */
-		public Builder acknowledge(@Nullable Acknowledgement value) {
+		public final Builder acknowledge(@Nullable Acknowledgement value) {
 			this.acknowledge = value;
 			return this;
 		}
@@ -134,14 +141,14 @@ public final class PostResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code acknowledge}
 		 */
-		public Builder acknowledge(Function<Acknowledgement.Builder, ObjectBuilder<Acknowledgement>> fn) {
+		public final Builder acknowledge(Function<Acknowledgement.Builder, ObjectBuilder<Acknowledgement>> fn) {
 			return this.acknowledge(fn.apply(new Acknowledgement.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code acknowledged}
 		 */
-		public Builder acknowledged(boolean value) {
+		public final Builder acknowledged(boolean value) {
 			this.acknowledged = value;
 			return this;
 		}
@@ -149,7 +156,7 @@ public final class PostResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code license_status}
 		 */
-		public Builder licenseStatus(LicenseStatus value) {
+		public final Builder licenseStatus(LicenseStatus value) {
 			this.licenseStatus = value;
 			return this;
 		}
@@ -161,6 +168,7 @@ public final class PostResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PostResponse build() {
+			_checkSingleUse();
 
 			return new PostResponse(this);
 		}
@@ -172,9 +180,9 @@ public final class PostResponse implements JsonpSerializable {
 	 * Json deserializer for {@link PostResponse}
 	 */
 	public static final JsonpDeserializer<PostResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PostResponse::setupPostResponseDeserializer, Builder::build);
+			PostResponse::setupPostResponseDeserializer);
 
-	protected static void setupPostResponseDeserializer(DelegatingDeserializer<PostResponse.Builder> op) {
+	protected static void setupPostResponseDeserializer(ObjectDeserializer<PostResponse.Builder> op) {
 
 		op.add(Builder::acknowledge, Acknowledgement._DESERIALIZER, "acknowledge");
 		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");

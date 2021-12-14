@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.migration;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -33,10 +39,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the migration namespace.
  */
-public class ElasticsearchMigrationClient extends ApiClient {
+public class ElasticsearchMigrationClient extends ApiClient<ElasticsearchTransport, ElasticsearchMigrationClient> {
 
-	public ElasticsearchMigrationClient(Transport transport) {
-		super(transport);
+	public ElasticsearchMigrationClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchMigrationClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchMigrationClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchMigrationClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: migration.deprecations
@@ -51,8 +66,11 @@ public class ElasticsearchMigrationClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeprecationsResponse deprecations(DeprecationsRequest request) throws IOException {
-		return this.transport.performRequest(request, DeprecationsRequest.ENDPOINT);
+	public DeprecationsResponse deprecations(DeprecationsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse> endpoint = (JsonEndpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse>) DeprecationsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -61,16 +79,16 @@ public class ElasticsearchMigrationClient extends ApiClient {
 	 * major version.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeprecationsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-deprecation.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeprecationsResponse deprecations(
-			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn) throws IOException {
+			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deprecations(fn.apply(new DeprecationsRequest.Builder()).build());
 	}
 
@@ -84,8 +102,9 @@ public class ElasticsearchMigrationClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeprecationsResponse deprecations() throws IOException {
-		return this.transport.performRequest(new DeprecationsRequest.Builder().build(), DeprecationsRequest.ENDPOINT);
+	public DeprecationsResponse deprecations() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new DeprecationsRequest.Builder().build(), DeprecationsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

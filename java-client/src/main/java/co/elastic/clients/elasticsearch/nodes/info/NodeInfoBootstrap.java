@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoBootstrap
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L186-L188">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoBootstrap implements JsonpSerializable {
+public class NodeInfoBootstrap implements JsonpSerializable {
 	private final String memoryLock;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoBootstrap(Builder builder) {
+	private NodeInfoBootstrap(Builder builder) {
 
-		this.memoryLock = Objects.requireNonNull(builder.memoryLock, "memory_lock");
+		this.memoryLock = ApiTypeHelper.requireNonNull(builder.memoryLock, this, "memoryLock");
 
 	}
 
-	public NodeInfoBootstrap(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoBootstrap of(Function<Builder, ObjectBuilder<NodeInfoBootstrap>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code memory_lock}
 	 */
-	public String memoryLock() {
+	public final String memoryLock() {
 		return this.memoryLock;
 	}
 
@@ -82,13 +90,14 @@ public final class NodeInfoBootstrap implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoBootstrap}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoBootstrap> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoBootstrap> {
 		private String memoryLock;
 
 		/**
 		 * Required - API name: {@code memory_lock}
 		 */
-		public Builder memoryLock(String value) {
+		public final Builder memoryLock(String value) {
 			this.memoryLock = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class NodeInfoBootstrap implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoBootstrap build() {
+			_checkSingleUse();
 
 			return new NodeInfoBootstrap(this);
 		}
@@ -111,9 +121,9 @@ public final class NodeInfoBootstrap implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoBootstrap}
 	 */
 	public static final JsonpDeserializer<NodeInfoBootstrap> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoBootstrap::setupNodeInfoBootstrapDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoBootstrap::setupNodeInfoBootstrapDeserializer);
 
-	protected static void setupNodeInfoBootstrapDeserializer(DelegatingDeserializer<NodeInfoBootstrap.Builder> op) {
+	protected static void setupNodeInfoBootstrapDeserializer(ObjectDeserializer<NodeInfoBootstrap.Builder> op) {
 
 		op.add(Builder::memoryLock, JsonpDeserializer.stringDeserializer(), "memory_lock");
 

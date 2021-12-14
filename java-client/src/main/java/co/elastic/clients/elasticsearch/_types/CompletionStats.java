@@ -23,54 +23,58 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.CompletionStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L52-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CompletionStats implements JsonpSerializable {
+public class CompletionStats implements JsonpSerializable {
 	private final long sizeInBytes;
 
 	@Nullable
 	private final String size;
 
-	@Nullable
 	private final Map<String, FieldSizeUsage> fields;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompletionStats(Builder builder) {
+	private CompletionStats(Builder builder) {
 
-		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 		this.size = builder.size;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 
 	}
 
-	public CompletionStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CompletionStats of(Function<Builder, ObjectBuilder<CompletionStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code size_in_bytes}
 	 */
-	public long sizeInBytes() {
+	public final long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -78,15 +82,14 @@ public final class CompletionStats implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public String size() {
+	public final String size() {
 		return this.size;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public Map<String, FieldSizeUsage> fields() {
+	public final Map<String, FieldSizeUsage> fields() {
 		return this.fields;
 	}
 
@@ -105,13 +108,11 @@ public final class CompletionStats implements JsonpSerializable {
 		generator.write(this.sizeInBytes);
 
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-		if (this.fields != null) {
-
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartObject();
 			for (Map.Entry<String, FieldSizeUsage> item0 : this.fields.entrySet()) {
@@ -130,7 +131,8 @@ public final class CompletionStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CompletionStats}.
 	 */
-	public static class Builder implements ObjectBuilder<CompletionStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompletionStats> {
 		private Long sizeInBytes;
 
 		@Nullable
@@ -142,7 +144,7 @@ public final class CompletionStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(long value) {
+		public final Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -150,42 +152,38 @@ public final class CompletionStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable String value) {
+		public final Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fields</code>.
 		 */
-		public Builder fields(@Nullable Map<String, FieldSizeUsage> value) {
-			this.fields = value;
+		public final Builder fields(Map<String, FieldSizeUsage> map) {
+			this.fields = _mapPutAll(this.fields, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code>.
 		 */
-		public Builder putFields(String key, FieldSizeUsage value) {
-			if (this.fields == null) {
-				this.fields = new HashMap<>();
-			}
-			this.fields.put(key, value);
+		public final Builder fields(String key, FieldSizeUsage value) {
+			this.fields = _mapPut(this.fields, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #fields(Map)} to a singleton map.
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds an entry to <code>fields</code> using a builder lambda.
 		 */
-		public Builder fields(String key, Function<FieldSizeUsage.Builder, ObjectBuilder<FieldSizeUsage>> fn) {
-			return this.fields(Collections.singletonMap(key, fn.apply(new FieldSizeUsage.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #fields(Map)}, creating the map if needed.
-		 */
-		public Builder putFields(String key, Function<FieldSizeUsage.Builder, ObjectBuilder<FieldSizeUsage>> fn) {
-			return this.putFields(key, fn.apply(new FieldSizeUsage.Builder()).build());
+		public final Builder fields(String key, Function<FieldSizeUsage.Builder, ObjectBuilder<FieldSizeUsage>> fn) {
+			return fields(key, fn.apply(new FieldSizeUsage.Builder()).build());
 		}
 
 		/**
@@ -195,6 +193,7 @@ public final class CompletionStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CompletionStats build() {
+			_checkSingleUse();
 
 			return new CompletionStats(this);
 		}
@@ -206,9 +205,9 @@ public final class CompletionStats implements JsonpSerializable {
 	 * Json deserializer for {@link CompletionStats}
 	 */
 	public static final JsonpDeserializer<CompletionStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CompletionStats::setupCompletionStatsDeserializer, Builder::build);
+			CompletionStats::setupCompletionStatsDeserializer);
 
-	protected static void setupCompletionStatsDeserializer(DelegatingDeserializer<CompletionStats.Builder> op) {
+	protected static void setupCompletionStatsDeserializer(ObjectDeserializer<CompletionStats.Builder> op) {
 
 		op.add(Builder::sizeInBytes, JsonpDeserializer.longDeserializer(), "size_in_bytes");
 		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");

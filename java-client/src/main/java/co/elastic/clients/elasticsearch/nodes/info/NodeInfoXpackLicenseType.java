@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoXpackLicenseType
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L262-L264">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoXpackLicenseType implements JsonpSerializable {
+public class NodeInfoXpackLicenseType implements JsonpSerializable {
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoXpackLicenseType(Builder builder) {
+	private NodeInfoXpackLicenseType(Builder builder) {
 
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public NodeInfoXpackLicenseType(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoXpackLicenseType of(Function<Builder, ObjectBuilder<NodeInfoXpackLicenseType>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -82,13 +90,14 @@ public final class NodeInfoXpackLicenseType implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoXpackLicenseType}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoXpackLicenseType> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackLicenseType> {
 		private String type;
 
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class NodeInfoXpackLicenseType implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoXpackLicenseType build() {
+			_checkSingleUse();
 
 			return new NodeInfoXpackLicenseType(this);
 		}
@@ -111,10 +121,10 @@ public final class NodeInfoXpackLicenseType implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoXpackLicenseType}
 	 */
 	public static final JsonpDeserializer<NodeInfoXpackLicenseType> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoXpackLicenseType::setupNodeInfoXpackLicenseTypeDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoXpackLicenseType::setupNodeInfoXpackLicenseTypeDeserializer);
 
 	protected static void setupNodeInfoXpackLicenseTypeDeserializer(
-			DelegatingDeserializer<NodeInfoXpackLicenseType.Builder> op) {
+			ObjectDeserializer<NodeInfoXpackLicenseType.Builder> op) {
 
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 

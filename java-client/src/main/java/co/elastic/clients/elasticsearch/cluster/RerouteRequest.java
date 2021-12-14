@@ -23,25 +23,24 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.cluster.reroute.Command;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -51,8 +50,18 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Request
+
+/**
+ * Allows to manually change the allocation of individual shards in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/ClusterRerouteRequest.ts#L25-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RerouteRequest extends RequestBase implements JsonpSerializable {
+public class RerouteRequest extends RequestBase implements JsonpSerializable {
+	private final List<Command> commands;
+
 	@Nullable
 	private final Boolean dryRun;
 
@@ -60,36 +69,41 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	private final Boolean explain;
 
 	@Nullable
+	private final Time masterTimeout;
+
 	private final List<String> metric;
 
 	@Nullable
 	private final Boolean retryFailed;
 
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final String timeout;
-
-	@Nullable
-	private final List<Command> commands;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RerouteRequest(Builder builder) {
+	private RerouteRequest(Builder builder) {
 
+		this.commands = ApiTypeHelper.unmodifiable(builder.commands);
 		this.dryRun = builder.dryRun;
 		this.explain = builder.explain;
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
-		this.retryFailed = builder.retryFailed;
 		this.masterTimeout = builder.masterTimeout;
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
+		this.retryFailed = builder.retryFailed;
 		this.timeout = builder.timeout;
-		this.commands = ModelTypeHelper.unmodifiable(builder.commands);
 
 	}
 
-	public RerouteRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RerouteRequest of(Function<Builder, ObjectBuilder<RerouteRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Defines the commands to perform.
+	 * <p>
+	 * API name: {@code commands}
+	 */
+	public final List<Command> commands() {
+		return this.commands;
 	}
 
 	/**
@@ -99,7 +113,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code dry_run}
 	 */
 	@Nullable
-	public Boolean dryRun() {
+	public final Boolean dryRun() {
 		return this.dryRun;
 	}
 
@@ -110,8 +124,19 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code explain}
 	 */
 	@Nullable
-	public Boolean explain() {
+	public final Boolean explain() {
 		return this.explain;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -119,8 +144,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * <p>
 	 * API name: {@code metric}
 	 */
-	@Nullable
-	public List<String> metric() {
+	public final List<String> metric() {
 		return this.metric;
 	}
 
@@ -131,19 +155,8 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code retry_failed}
 	 */
 	@Nullable
-	public Boolean retryFailed() {
+	public final Boolean retryFailed() {
 		return this.retryFailed;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
 	}
 
 	/**
@@ -153,18 +166,8 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
-	}
-
-	/**
-	 * Defines the commands to perform.
-	 * <p>
-	 * API name: {@code commands}
-	 */
-	@Nullable
-	public List<Command> commands() {
-		return this.commands;
 	}
 
 	/**
@@ -178,8 +181,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.commands != null) {
-
+		if (ApiTypeHelper.isDefined(this.commands)) {
 			generator.writeKey("commands");
 			generator.writeStartArray();
 			for (Command item0 : this.commands) {
@@ -197,12 +199,19 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link RerouteRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<RerouteRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteRequest> {
+		@Nullable
+		private List<Command> commands;
+
 		@Nullable
 		private Boolean dryRun;
 
 		@Nullable
 		private Boolean explain;
+
+		@Nullable
+		private Time masterTimeout;
 
 		@Nullable
 		private List<String> metric;
@@ -211,13 +220,42 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		private Boolean retryFailed;
 
 		@Nullable
-		private String masterTimeout;
+		private Time timeout;
 
-		@Nullable
-		private String timeout;
+		/**
+		 * Defines the commands to perform.
+		 * <p>
+		 * API name: {@code commands}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>commands</code>.
+		 */
+		public final Builder commands(List<Command> list) {
+			this.commands = _listAddAll(this.commands, list);
+			return this;
+		}
 
-		@Nullable
-		private List<Command> commands;
+		/**
+		 * Defines the commands to perform.
+		 * <p>
+		 * API name: {@code commands}
+		 * <p>
+		 * Adds one or more values to <code>commands</code>.
+		 */
+		public final Builder commands(Command value, Command... values) {
+			this.commands = _listAdd(this.commands, value, values);
+			return this;
+		}
+
+		/**
+		 * Defines the commands to perform.
+		 * <p>
+		 * API name: {@code commands}
+		 * <p>
+		 * Adds a value to <code>commands</code> using a builder lambda.
+		 */
+		public final Builder commands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
+			return commands(fn.apply(new Command.Builder()).build());
+		}
 
 		/**
 		 * If true, then the request simulates the operation only and returns the
@@ -225,7 +263,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code dry_run}
 		 */
-		public Builder dryRun(@Nullable Boolean value) {
+		public final Builder dryRun(@Nullable Boolean value) {
 			this.dryRun = value;
 			return this;
 		}
@@ -236,50 +274,8 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code explain}
 		 */
-		public Builder explain(@Nullable Boolean value) {
+		public final Builder explain(@Nullable Boolean value) {
 			this.explain = value;
-			return this;
-		}
-
-		/**
-		 * Limits the information returned to the specified metrics.
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(@Nullable List<String> value) {
-			this.metric = value;
-			return this;
-		}
-
-		/**
-		 * Limits the information returned to the specified metrics.
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
-			return this;
-		}
-
-		/**
-		 * If true, then retries allocation of shards that are blocked due to too many
-		 * subsequent allocation failures.
-		 * <p>
-		 * API name: {@code retry_failed}
-		 */
-		public Builder retryFailed(@Nullable Boolean value) {
-			this.retryFailed = value;
 			return this;
 		}
 
@@ -289,8 +285,53 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Limits the information returned to the specified metrics.
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
+		 */
+		public final Builder metric(List<String> list) {
+			this.metric = _listAddAll(this.metric, list);
+			return this;
+		}
+
+		/**
+		 * Limits the information returned to the specified metrics.
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
+		 */
+		public final Builder metric(String value, String... values) {
+			this.metric = _listAdd(this.metric, value, values);
+			return this;
+		}
+
+		/**
+		 * If true, then retries allocation of shards that are blocked due to too many
+		 * subsequent allocation failures.
+		 * <p>
+		 * API name: {@code retry_failed}
+		 */
+		public final Builder retryFailed(@Nullable Boolean value) {
+			this.retryFailed = value;
 			return this;
 		}
 
@@ -300,54 +341,19 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
 		}
 
 		/**
-		 * Defines the commands to perform.
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
-		 * API name: {@code commands}
+		 * API name: {@code timeout}
 		 */
-		public Builder commands(@Nullable List<Command> value) {
-			this.commands = value;
-			return this;
-		}
-
-		/**
-		 * Defines the commands to perform.
-		 * <p>
-		 * API name: {@code commands}
-		 */
-		public Builder commands(Command... value) {
-			this.commands = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #commands(List)}, creating the list if needed.
-		 */
-		public Builder addCommands(Command value) {
-			if (this.commands == null) {
-				this.commands = new ArrayList<>();
-			}
-			this.commands.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #commands(List)} to a singleton list.
-		 */
-		public Builder commands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
-			return this.commands(fn.apply(new Command.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #commands(List)}, creating the list if needed.
-		 */
-		public Builder addCommands(Function<Command.Builder, ObjectBuilder<Command>> fn) {
-			return this.addCommands(fn.apply(new Command.Builder()).build());
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -357,6 +363,7 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public RerouteRequest build() {
+			_checkSingleUse();
 
 			return new RerouteRequest(this);
 		}
@@ -368,9 +375,9 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link RerouteRequest}
 	 */
 	public static final JsonpDeserializer<RerouteRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RerouteRequest::setupRerouteRequestDeserializer, Builder::build);
+			RerouteRequest::setupRerouteRequestDeserializer);
 
-	protected static void setupRerouteRequestDeserializer(DelegatingDeserializer<RerouteRequest.Builder> op) {
+	protected static void setupRerouteRequestDeserializer(ObjectDeserializer<RerouteRequest.Builder> op) {
 
 		op.add(Builder::commands, JsonpDeserializer.arrayDeserializer(Command._DESERIALIZER), "commands");
 
@@ -381,7 +388,9 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code cluster.reroute}".
 	 */
-	public static final Endpoint<RerouteRequest, RerouteResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RerouteRequest, RerouteResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cluster.reroute",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -397,23 +406,23 @@ public final class RerouteRequest extends RequestBase implements JsonpSerializab
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.dryRun != null) {
-					params.put("dry_run", String.valueOf(request.dryRun));
-				}
 				if (request.explain != null) {
 					params.put("explain", String.valueOf(request.explain));
 				}
-				if (request.metric != null) {
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (ApiTypeHelper.isDefined(request.metric)) {
 					params.put("metric", request.metric.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.dryRun != null) {
+					params.put("dry_run", String.valueOf(request.dryRun));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				if (request.retryFailed != null) {
 					params.put("retry_failed", String.valueOf(request.retryFailed));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
 				}
 				return params;
 

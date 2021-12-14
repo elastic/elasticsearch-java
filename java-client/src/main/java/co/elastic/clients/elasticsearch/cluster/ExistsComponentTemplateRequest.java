@@ -23,23 +23,23 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.BooleanEndpoint;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.BooleanEndpoint;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,48 +50,36 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.exists_component_template.Request
 
-public final class ExistsComponentTemplateRequest extends RequestBase {
-	private final List<String> name;
+/**
+ * Returns information about whether a particular component template exist
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/exists_component_template/ClusterComponentTemplateExistsRequest.ts#L24-L52">API
+ *      specification</a>
+ */
 
-	@Nullable
-	private final String masterTimeout;
-
+public class ExistsComponentTemplateRequest extends RequestBase {
 	@Nullable
 	private final Boolean local;
 
+	@Nullable
+	private final Time masterTimeout;
+
+	private final List<String> name;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public ExistsComponentTemplateRequest(Builder builder) {
+	private ExistsComponentTemplateRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
-		this.masterTimeout = builder.masterTimeout;
 		this.local = builder.local;
+		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 
 	}
 
-	public ExistsComponentTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Comma-separated list of component template names used to limit the
-	 * request. Wildcard (*) expressions are supported.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public List<String> name() {
-		return this.name;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
+	public static ExistsComponentTemplateRequest of(
+			Function<Builder, ObjectBuilder<ExistsComponentTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,8 +89,29 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
+	}
+
+	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - Comma-separated list of component template names used to limit the
+	 * request. Wildcard (*) expressions are supported.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final List<String> name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -110,45 +119,24 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExistsComponentTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExistsComponentTemplateRequest> {
-		private List<String> name;
 
-		@Nullable
-		private String masterTimeout;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsComponentTemplateRequest> {
 		@Nullable
 		private Boolean local;
 
-		/**
-		 * Required - Comma-separated list of component template names used to limit the
-		 * request. Wildcard (*) expressions are supported.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(List<String> value) {
-			this.name = value;
-			return this;
-		}
+		@Nullable
+		private Time masterTimeout;
+
+		private List<String> name;
 
 		/**
-		 * Required - Comma-separated list of component template names used to limit the
-		 * request. Wildcard (*) expressions are supported.
+		 * If true, the request retrieves information from the local node only. Defaults
+		 * to false, which means information is retrieved from the master node.
 		 * <p>
-		 * API name: {@code name}
+		 * API name: {@code local}
 		 */
-		public Builder name(String... value) {
-			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
+		public final Builder local(@Nullable Boolean value) {
+			this.local = value;
 			return this;
 		}
 
@@ -158,19 +146,44 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
-		 * If true, the request retrieves information from the local node only. Defaults
-		 * to false, which means information is retrieved from the master node.
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
-		 * API name: {@code local}
+		 * API name: {@code master_timeout}
 		 */
-		public Builder local(@Nullable Boolean value) {
-			this.local = value;
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - Comma-separated list of component template names used to limit the
+		 * request. Wildcard (*) expressions are supported.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
+		 */
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list of component template names used to limit the
+		 * request. Wildcard (*) expressions are supported.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -181,6 +194,7 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ExistsComponentTemplateRequest build() {
+			_checkSingleUse();
 
 			return new ExistsComponentTemplateRequest(this);
 		}
@@ -191,7 +205,9 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.exists_component_template}".
 	 */
-	public static final Endpoint<ExistsComponentTemplateRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<ExistsComponentTemplateRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/cluster.exists_component_template",
+
 			// Request method
 			request -> {
 				return "HEAD";
@@ -221,7 +237,7 @@ public final class ExistsComponentTemplateRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));

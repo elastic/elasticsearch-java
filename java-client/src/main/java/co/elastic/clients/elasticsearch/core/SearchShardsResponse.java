@@ -26,20 +26,17 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.NodeAttributes;
 import co.elastic.clients.elasticsearch._types.NodeShard;
 import co.elastic.clients.elasticsearch.core.search_shards.ShardStoreIndex;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -47,8 +44,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search_shards.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search_shards/SearchShardsResponse.ts#L25-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SearchShardsResponse implements JsonpSerializable {
+public class SearchShardsResponse implements JsonpSerializable {
 	private final Map<String, NodeAttributes> nodes;
 
 	private final List<List<NodeShard>> shards;
@@ -57,36 +61,36 @@ public final class SearchShardsResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchShardsResponse(Builder builder) {
+	private SearchShardsResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
-		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public SearchShardsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchShardsResponse of(Function<Builder, ObjectBuilder<SearchShardsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public Map<String, NodeAttributes> nodes() {
+	public final Map<String, NodeAttributes> nodes() {
 		return this.nodes;
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public List<List<NodeShard>> shards() {
+	public final List<List<NodeShard>> shards() {
 		return this.shards;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public Map<String, ShardStoreIndex> indices() {
+	public final Map<String, ShardStoreIndex> indices() {
 		return this.indices;
 	}
 
@@ -101,36 +105,45 @@ public final class SearchShardsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("nodes");
-		generator.writeStartObject();
-		for (Map.Entry<String, NodeAttributes> item0 : this.nodes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("shards");
-		generator.writeStartArray();
-		for (List<NodeShard> item0 : this.shards) {
-			generator.writeStartArray();
-			for (NodeShard item1 : item0) {
-				item1.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, NodeAttributes> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.shards)) {
+			generator.writeKey("shards");
+			generator.writeStartArray();
+			for (List<NodeShard> item0 : this.shards) {
+				generator.writeStartArray();
+				if (item0 != null) {
+					for (NodeShard item1 : item0) {
+						item1.serialize(generator, mapper);
 
-		generator.writeKey("indices");
-		generator.writeStartObject();
-		for (Map.Entry<String, ShardStoreIndex> item0 : this.indices.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartObject();
+			for (Map.Entry<String, ShardStoreIndex> item0 : this.indices.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -139,7 +152,8 @@ public final class SearchShardsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link SearchShardsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchShardsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchShardsResponse> {
 		private Map<String, NodeAttributes> nodes;
 
 		private List<List<NodeShard>> shards;
@@ -148,95 +162,80 @@ public final class SearchShardsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
-		public Builder nodes(Map<String, NodeAttributes> value) {
-			this.nodes = value;
+		public final Builder nodes(Map<String, NodeAttributes> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
 		 */
-		public Builder putNodes(String key, NodeAttributes value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
+		public final Builder nodes(String key, NodeAttributes value) {
+			this.nodes = _mapPut(this.nodes, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #nodes(Map)} to a singleton map.
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
 		 */
-		public Builder nodes(String key, Function<NodeAttributes.Builder, ObjectBuilder<NodeAttributes>> fn) {
-			return this.nodes(Collections.singletonMap(key, fn.apply(new NodeAttributes.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, Function<NodeAttributes.Builder, ObjectBuilder<NodeAttributes>> fn) {
-			return this.putNodes(key, fn.apply(new NodeAttributes.Builder()).build());
+		public final Builder nodes(String key, Function<NodeAttributes.Builder, ObjectBuilder<NodeAttributes>> fn) {
+			return nodes(key, fn.apply(new NodeAttributes.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>shards</code>.
 		 */
-		public Builder shards(List<List<NodeShard>> value) {
-			this.shards = value;
+		public final Builder shards(List<List<NodeShard>> list) {
+			this.shards = _listAddAll(this.shards, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds one or more values to <code>shards</code>.
 		 */
-		public Builder shards(List<NodeShard>... value) {
-			this.shards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
-		 */
-		public Builder addShards(List<NodeShard> value) {
-			if (this.shards == null) {
-				this.shards = new ArrayList<>();
-			}
-			this.shards.add(value);
+		public final Builder shards(List<NodeShard> value, List<NodeShard>... values) {
+			this.shards = _listAdd(this.shards, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>indices</code>.
 		 */
-		public Builder indices(Map<String, ShardStoreIndex> value) {
-			this.indices = value;
+		public final Builder indices(Map<String, ShardStoreIndex> map) {
+			this.indices = _mapPutAll(this.indices, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code>.
 		 */
-		public Builder putIndices(String key, ShardStoreIndex value) {
-			if (this.indices == null) {
-				this.indices = new HashMap<>();
-			}
-			this.indices.put(key, value);
+		public final Builder indices(String key, ShardStoreIndex value) {
+			this.indices = _mapPut(this.indices, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #indices(Map)} to a singleton map.
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds an entry to <code>indices</code> using a builder lambda.
 		 */
-		public Builder indices(String key, Function<ShardStoreIndex.Builder, ObjectBuilder<ShardStoreIndex>> fn) {
-			return this.indices(Collections.singletonMap(key, fn.apply(new ShardStoreIndex.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #indices(Map)}, creating the map if needed.
-		 */
-		public Builder putIndices(String key, Function<ShardStoreIndex.Builder, ObjectBuilder<ShardStoreIndex>> fn) {
-			return this.putIndices(key, fn.apply(new ShardStoreIndex.Builder()).build());
+		public final Builder indices(String key, Function<ShardStoreIndex.Builder, ObjectBuilder<ShardStoreIndex>> fn) {
+			return indices(key, fn.apply(new ShardStoreIndex.Builder()).build());
 		}
 
 		/**
@@ -246,6 +245,7 @@ public final class SearchShardsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SearchShardsResponse build() {
+			_checkSingleUse();
 
 			return new SearchShardsResponse(this);
 		}
@@ -257,10 +257,9 @@ public final class SearchShardsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link SearchShardsResponse}
 	 */
 	public static final JsonpDeserializer<SearchShardsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchShardsResponse::setupSearchShardsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, SearchShardsResponse::setupSearchShardsResponseDeserializer);
 
-	protected static void setupSearchShardsResponseDeserializer(
-			DelegatingDeserializer<SearchShardsResponse.Builder> op) {
+	protected static void setupSearchShardsResponseDeserializer(ObjectDeserializer<SearchShardsResponse.Builder> op) {
 
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeAttributes._DESERIALIZER), "nodes");
 		op.add(Builder::shards,

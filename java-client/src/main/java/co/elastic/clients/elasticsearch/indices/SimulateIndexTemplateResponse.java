@@ -30,11 +30,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: indices.simulate_index_template.Response
 
-public final class SimulateIndexTemplateResponse {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/simulate_index_template/IndicesSimulateIndexTemplateResponse.ts#L20-L22">API
+ *      specification</a>
+ */
+
+public class SimulateIndexTemplateResponse {
 	public SimulateIndexTemplateResponse() {
 	}
 

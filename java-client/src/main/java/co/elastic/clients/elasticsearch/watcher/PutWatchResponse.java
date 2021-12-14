@@ -23,17 +23,17 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
@@ -41,66 +41,73 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.put_watch.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/put_watch/WatcherPutWatchResponse.ts#L23-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutWatchResponse implements JsonpSerializable {
+public class PutWatchResponse implements JsonpSerializable {
 	private final boolean created;
 
 	private final String id;
 
 	private final long primaryTerm;
 
-	private final int seqNo;
+	private final long seqNo;
 
 	private final long version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutWatchResponse(Builder builder) {
+	private PutWatchResponse(Builder builder) {
 
-		this.created = Objects.requireNonNull(builder.created, "created");
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.primaryTerm = Objects.requireNonNull(builder.primaryTerm, "_primary_term");
-		this.seqNo = Objects.requireNonNull(builder.seqNo, "_seq_no");
-		this.version = Objects.requireNonNull(builder.version, "_version");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
+		this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public PutWatchResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutWatchResponse of(Function<Builder, ObjectBuilder<PutWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code created}
 	 */
-	public boolean created() {
+	public final boolean created() {
 		return this.created;
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code _primary_term}
 	 */
-	public long primaryTerm() {
+	public final long primaryTerm() {
 		return this.primaryTerm;
 	}
 
 	/**
 	 * Required - API name: {@code _seq_no}
 	 */
-	public int seqNo() {
+	public final long seqNo() {
 		return this.seqNo;
 	}
 
 	/**
 	 * Required - API name: {@code _version}
 	 */
-	public long version() {
+	public final long version() {
 		return this.version;
 	}
 
@@ -137,21 +144,22 @@ public final class PutWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutWatchResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutWatchResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutWatchResponse> {
 		private Boolean created;
 
 		private String id;
 
 		private Long primaryTerm;
 
-		private Integer seqNo;
+		private Long seqNo;
 
 		private Long version;
 
 		/**
 		 * Required - API name: {@code created}
 		 */
-		public Builder created(boolean value) {
+		public final Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -159,7 +167,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -167,7 +175,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _primary_term}
 		 */
-		public Builder primaryTerm(long value) {
+		public final Builder primaryTerm(long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -175,7 +183,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _seq_no}
 		 */
-		public Builder seqNo(int value) {
+		public final Builder seqNo(long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -183,7 +191,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _version}
 		 */
-		public Builder version(long value) {
+		public final Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -195,6 +203,7 @@ public final class PutWatchResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutWatchResponse build() {
+			_checkSingleUse();
 
 			return new PutWatchResponse(this);
 		}
@@ -206,14 +215,14 @@ public final class PutWatchResponse implements JsonpSerializable {
 	 * Json deserializer for {@link PutWatchResponse}
 	 */
 	public static final JsonpDeserializer<PutWatchResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutWatchResponse::setupPutWatchResponseDeserializer, Builder::build);
+			PutWatchResponse::setupPutWatchResponseDeserializer);
 
-	protected static void setupPutWatchResponseDeserializer(DelegatingDeserializer<PutWatchResponse.Builder> op) {
+	protected static void setupPutWatchResponseDeserializer(ObjectDeserializer<PutWatchResponse.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "_primary_term");
-		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
 
 	}

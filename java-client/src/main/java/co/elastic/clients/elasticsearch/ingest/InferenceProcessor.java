@@ -23,31 +23,35 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.InferenceProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L236-L241">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class InferenceProcessor extends ProcessorBase implements ProcessorVariant {
+public class InferenceProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String modelId;
 
 	private final String targetField;
 
-	@Nullable
 	private final Map<String, JsonData> fieldMap;
 
 	@Nullable
@@ -55,47 +59,46 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InferenceProcessor(Builder builder) {
+	private InferenceProcessor(Builder builder) {
 		super(builder);
 
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
-		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
-		this.fieldMap = ModelTypeHelper.unmodifiable(builder.fieldMap);
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
+		this.fieldMap = ApiTypeHelper.unmodifiable(builder.fieldMap);
 		this.inferenceConfig = builder.inferenceConfig;
 
 	}
 
-	public InferenceProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InferenceProcessor of(Function<Builder, ObjectBuilder<InferenceProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "inference";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Inference;
 	}
 
 	/**
 	 * Required - API name: {@code model_id}
 	 */
-	public String modelId() {
+	public final String modelId() {
 		return this.modelId;
 	}
 
 	/**
 	 * Required - API name: {@code target_field}
 	 */
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	/**
 	 * API name: {@code field_map}
 	 */
-	@Nullable
-	public Map<String, JsonData> fieldMap() {
+	public final Map<String, JsonData> fieldMap() {
 		return this.fieldMap;
 	}
 
@@ -103,22 +106,20 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 	 * API name: {@code inference_config}
 	 */
 	@Nullable
-	public InferenceConfig inferenceConfig() {
+	public final InferenceConfig inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
 
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
 
-		if (this.fieldMap != null) {
-
+		if (ApiTypeHelper.isDefined(this.fieldMap)) {
 			generator.writeKey("field_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.fieldMap.entrySet()) {
@@ -130,7 +131,6 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 
 		}
 		if (this.inferenceConfig != null) {
-
 			generator.writeKey("inference_config");
 			this.inferenceConfig.serialize(generator, mapper);
 
@@ -143,6 +143,7 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 	/**
 	 * Builder for {@link InferenceProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<InferenceProcessor> {
@@ -159,7 +160,7 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		/**
 		 * Required - API name: {@code model_id}
 		 */
-		public Builder modelId(String value) {
+		public final Builder modelId(String value) {
 			this.modelId = value;
 			return this;
 		}
@@ -167,34 +168,35 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		/**
 		 * Required - API name: {@code target_field}
 		 */
-		public Builder targetField(String value) {
+		public final Builder targetField(String value) {
 			this.targetField = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code field_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>fieldMap</code>.
 		 */
-		public Builder fieldMap(@Nullable Map<String, JsonData> value) {
-			this.fieldMap = value;
+		public final Builder fieldMap(Map<String, JsonData> map) {
+			this.fieldMap = _mapPutAll(this.fieldMap, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #fieldMap(Map)}, creating the map if needed.
+		 * API name: {@code field_map}
+		 * <p>
+		 * Adds an entry to <code>fieldMap</code>.
 		 */
-		public Builder putFieldMap(String key, JsonData value) {
-			if (this.fieldMap == null) {
-				this.fieldMap = new HashMap<>();
-			}
-			this.fieldMap.put(key, value);
+		public final Builder fieldMap(String key, JsonData value) {
+			this.fieldMap = _mapPut(this.fieldMap, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(@Nullable InferenceConfig value) {
+		public final Builder inferenceConfig(@Nullable InferenceConfig value) {
 			this.inferenceConfig = value;
 			return this;
 		}
@@ -202,7 +204,7 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		/**
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
 			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
@@ -218,6 +220,7 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 		 *             if some of the required fields are null.
 		 */
 		public InferenceProcessor build() {
+			_checkSingleUse();
 
 			return new InferenceProcessor(this);
 		}
@@ -229,9 +232,9 @@ public final class InferenceProcessor extends ProcessorBase implements Processor
 	 * Json deserializer for {@link InferenceProcessor}
 	 */
 	public static final JsonpDeserializer<InferenceProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, InferenceProcessor::setupInferenceProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, InferenceProcessor::setupInferenceProcessorDeserializer);
 
-	protected static void setupInferenceProcessorDeserializer(DelegatingDeserializer<InferenceProcessor.Builder> op) {
+	protected static void setupInferenceProcessorDeserializer(ObjectDeserializer<InferenceProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
 		op.add(Builder::targetField, JsonpDeserializer.stringDeserializer(), "target_field");

@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.MlInferenceTrainedModelsCount
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L202-L208">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
+public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	private final long total;
 
 	private final long prepackaged;
@@ -51,52 +59,52 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlInferenceTrainedModelsCount(Builder builder) {
+	private MlInferenceTrainedModelsCount(Builder builder) {
 
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.prepackaged = Objects.requireNonNull(builder.prepackaged, "prepackaged");
-		this.other = Objects.requireNonNull(builder.other, "other");
-		this.regression = Objects.requireNonNull(builder.regression, "regression");
-		this.classification = Objects.requireNonNull(builder.classification, "classification");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.prepackaged = ApiTypeHelper.requireNonNull(builder.prepackaged, this, "prepackaged");
+		this.other = ApiTypeHelper.requireNonNull(builder.other, this, "other");
+		this.regression = ApiTypeHelper.requireNonNull(builder.regression, this, "regression");
+		this.classification = ApiTypeHelper.requireNonNull(builder.classification, this, "classification");
 
 	}
 
-	public MlInferenceTrainedModelsCount(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlInferenceTrainedModelsCount of(Function<Builder, ObjectBuilder<MlInferenceTrainedModelsCount>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public long total() {
+	public final long total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code prepackaged}
 	 */
-	public long prepackaged() {
+	public final long prepackaged() {
 		return this.prepackaged;
 	}
 
 	/**
 	 * Required - API name: {@code other}
 	 */
-	public long other() {
+	public final long other() {
 		return this.other;
 	}
 
 	/**
 	 * Required - API name: {@code regression}
 	 */
-	public long regression() {
+	public final long regression() {
 		return this.regression;
 	}
 
 	/**
 	 * Required - API name: {@code classification}
 	 */
-	public long classification() {
+	public final long classification() {
 		return this.classification;
 	}
 
@@ -133,7 +141,8 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInferenceTrainedModelsCount}.
 	 */
-	public static class Builder implements ObjectBuilder<MlInferenceTrainedModelsCount> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInferenceTrainedModelsCount> {
 		private Long total;
 
 		private Long prepackaged;
@@ -147,7 +156,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(long value) {
+		public final Builder total(long value) {
 			this.total = value;
 			return this;
 		}
@@ -155,7 +164,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code prepackaged}
 		 */
-		public Builder prepackaged(long value) {
+		public final Builder prepackaged(long value) {
 			this.prepackaged = value;
 			return this;
 		}
@@ -163,7 +172,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code other}
 		 */
-		public Builder other(long value) {
+		public final Builder other(long value) {
 			this.other = value;
 			return this;
 		}
@@ -171,7 +180,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code regression}
 		 */
-		public Builder regression(long value) {
+		public final Builder regression(long value) {
 			this.regression = value;
 			return this;
 		}
@@ -179,7 +188,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code classification}
 		 */
-		public Builder classification(long value) {
+		public final Builder classification(long value) {
 			this.classification = value;
 			return this;
 		}
@@ -191,6 +200,7 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MlInferenceTrainedModelsCount build() {
+			_checkSingleUse();
 
 			return new MlInferenceTrainedModelsCount(this);
 		}
@@ -201,12 +211,11 @@ public final class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link MlInferenceTrainedModelsCount}
 	 */
-	public static final JsonpDeserializer<MlInferenceTrainedModelsCount> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, MlInferenceTrainedModelsCount::setupMlInferenceTrainedModelsCountDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<MlInferenceTrainedModelsCount> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MlInferenceTrainedModelsCount::setupMlInferenceTrainedModelsCountDeserializer);
 
 	protected static void setupMlInferenceTrainedModelsCountDeserializer(
-			DelegatingDeserializer<MlInferenceTrainedModelsCount.Builder> op) {
+			ObjectDeserializer<MlInferenceTrainedModelsCount.Builder> op) {
 
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::prepackaged, JsonpDeserializer.longDeserializer(), "prepackaged");

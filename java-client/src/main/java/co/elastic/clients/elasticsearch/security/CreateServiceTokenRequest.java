@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,25 +43,43 @@ import javax.annotation.Nullable;
 
 // typedef: security.create_service_token.Request
 
-public final class CreateServiceTokenRequest extends RequestBase {
+/**
+ * Creates a service account token for access without requiring basic
+ * authentication.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_service_token/CreateServiceTokenRequest.ts#L23-L34">API
+ *      specification</a>
+ */
+
+public class CreateServiceTokenRequest extends RequestBase {
+	private final String name;
+
 	private final String namespace;
 
 	private final String service;
 
-	private final String name;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateServiceTokenRequest(Builder builder) {
+	private CreateServiceTokenRequest(Builder builder) {
 
-		this.namespace = Objects.requireNonNull(builder.namespace, "namespace");
-		this.service = Objects.requireNonNull(builder.service, "service");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
 
-	public CreateServiceTokenRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateServiceTokenRequest of(Function<Builder, ObjectBuilder<CreateServiceTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - An identifier for the token name
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final String name() {
+		return this.name;
 	}
 
 	/**
@@ -67,7 +87,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code namespace}
 	 */
-	public String namespace() {
+	public final String namespace() {
 		return this.namespace;
 	}
 
@@ -76,17 +96,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code service}
 	 */
-	public String service() {
+	public final String service() {
 		return this.service;
-	}
-
-	/**
-	 * Required - An identifier for the token name
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public String name() {
-		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -94,19 +105,30 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	/**
 	 * Builder for {@link CreateServiceTokenRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateServiceTokenRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateServiceTokenRequest> {
+		private String name;
+
 		private String namespace;
 
 		private String service;
 
-		private String name;
+		/**
+		 * Required - An identifier for the token name
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
+			return this;
+		}
 
 		/**
 		 * Required - An identifier for the namespace
 		 * <p>
 		 * API name: {@code namespace}
 		 */
-		public Builder namespace(String value) {
+		public final Builder namespace(String value) {
 			this.namespace = value;
 			return this;
 		}
@@ -116,18 +138,8 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code service}
 		 */
-		public Builder service(String value) {
+		public final Builder service(String value) {
 			this.service = value;
-			return this;
-		}
-
-		/**
-		 * Required - An identifier for the token name
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String value) {
-			this.name = value;
 			return this;
 		}
 
@@ -138,6 +150,7 @@ public final class CreateServiceTokenRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public CreateServiceTokenRequest build() {
+			_checkSingleUse();
 
 			return new CreateServiceTokenRequest(this);
 		}
@@ -148,17 +161,19 @@ public final class CreateServiceTokenRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.create_service_token}".
 	 */
-	public static final Endpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CreateServiceTokenRequest, CreateServiceTokenResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.create_service_token",
+
 			// Request method
 			request -> {
-				final int _namespace = 1 << 0;
-				final int _service = 1 << 1;
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
 				final int _name = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _namespace;
 				propsSet |= _service;
+				propsSet |= _namespace;
 				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name))
@@ -171,14 +186,14 @@ public final class CreateServiceTokenRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _namespace = 1 << 0;
-				final int _service = 1 << 1;
+				final int _service = 1 << 0;
+				final int _namespace = 1 << 1;
 				final int _name = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _namespace;
 				propsSet |= _service;
+				propsSet |= _namespace;
 				propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name)) {

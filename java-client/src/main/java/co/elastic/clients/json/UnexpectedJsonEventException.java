@@ -23,12 +23,18 @@ import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
 
+import java.util.EnumSet;
+
 public class UnexpectedJsonEventException extends JsonParsingException {
     public UnexpectedJsonEventException(JsonParser parser, Event event) {
-        super("Unexpected JSON event [" + event + "]", parser.getLocation());
+        super("Unexpected JSON event '" + event + "'", parser.getLocation());
     }
 
     public UnexpectedJsonEventException(JsonParser parser, Event event, Event expected) {
-        super("Unexpected JSON event [" + event + "] instead of [" + expected + "]", parser.getLocation());
+        super("Unexpected JSON event '" + event + "' instead of '" + expected + "'", parser.getLocation());
+    }
+
+    public UnexpectedJsonEventException(JsonParser parser, Event event, EnumSet<Event> expected) {
+        super("Unexpected JSON event '" + event + "' instead of '" + expected + "'", parser.getLocation());
     }
 }

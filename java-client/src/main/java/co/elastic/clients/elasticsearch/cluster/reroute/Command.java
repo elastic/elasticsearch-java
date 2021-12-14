@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,14 +30,25 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.Command
+
+/**
+ *
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cluster-reroute.html#cluster-reroute-api-request-body">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/types.ts#L23-L45">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Command implements JsonpSerializable {
+public class Command implements JsonpSerializable {
 	@Nullable
 	private final CommandCancelAction cancel;
 
@@ -56,7 +66,7 @@ public final class Command implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Command(Builder builder) {
+	private Command(Builder builder) {
 
 		this.cancel = builder.cancel;
 		this.move = builder.move;
@@ -66,8 +76,8 @@ public final class Command implements JsonpSerializable {
 
 	}
 
-	public Command(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Command of(Function<Builder, ObjectBuilder<Command>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,7 +93,7 @@ public final class Command implements JsonpSerializable {
 	 * API name: {@code cancel}
 	 */
 	@Nullable
-	public CommandCancelAction cancel() {
+	public final CommandCancelAction cancel() {
 		return this.cancel;
 	}
 
@@ -95,7 +105,7 @@ public final class Command implements JsonpSerializable {
 	 * API name: {@code move}
 	 */
 	@Nullable
-	public CommandMoveAction move() {
+	public final CommandMoveAction move() {
 		return this.move;
 	}
 
@@ -107,7 +117,7 @@ public final class Command implements JsonpSerializable {
 	 * API name: {@code allocate_replica}
 	 */
 	@Nullable
-	public CommandAllocateReplicaAction allocateReplica() {
+	public final CommandAllocateReplicaAction allocateReplica() {
 		return this.allocateReplica;
 	}
 
@@ -124,7 +134,7 @@ public final class Command implements JsonpSerializable {
 	 * API name: {@code allocate_stale_primary}
 	 */
 	@Nullable
-	public CommandAllocatePrimaryAction allocateStalePrimary() {
+	public final CommandAllocatePrimaryAction allocateStalePrimary() {
 		return this.allocateStalePrimary;
 	}
 
@@ -140,7 +150,7 @@ public final class Command implements JsonpSerializable {
 	 * API name: {@code allocate_empty_primary}
 	 */
 	@Nullable
-	public CommandAllocatePrimaryAction allocateEmptyPrimary() {
+	public final CommandAllocatePrimaryAction allocateEmptyPrimary() {
 		return this.allocateEmptyPrimary;
 	}
 
@@ -156,31 +166,26 @@ public final class Command implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.cancel != null) {
-
 			generator.writeKey("cancel");
 			this.cancel.serialize(generator, mapper);
 
 		}
 		if (this.move != null) {
-
 			generator.writeKey("move");
 			this.move.serialize(generator, mapper);
 
 		}
 		if (this.allocateReplica != null) {
-
 			generator.writeKey("allocate_replica");
 			this.allocateReplica.serialize(generator, mapper);
 
 		}
 		if (this.allocateStalePrimary != null) {
-
 			generator.writeKey("allocate_stale_primary");
 			this.allocateStalePrimary.serialize(generator, mapper);
 
 		}
 		if (this.allocateEmptyPrimary != null) {
-
 			generator.writeKey("allocate_empty_primary");
 			this.allocateEmptyPrimary.serialize(generator, mapper);
 
@@ -193,7 +198,8 @@ public final class Command implements JsonpSerializable {
 	/**
 	 * Builder for {@link Command}.
 	 */
-	public static class Builder implements ObjectBuilder<Command> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Command> {
 		@Nullable
 		private CommandCancelAction cancel;
 
@@ -221,7 +227,7 @@ public final class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cancel}
 		 */
-		public Builder cancel(@Nullable CommandCancelAction value) {
+		public final Builder cancel(@Nullable CommandCancelAction value) {
 			this.cancel = value;
 			return this;
 		}
@@ -238,7 +244,7 @@ public final class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cancel}
 		 */
-		public Builder cancel(Function<CommandCancelAction.Builder, ObjectBuilder<CommandCancelAction>> fn) {
+		public final Builder cancel(Function<CommandCancelAction.Builder, ObjectBuilder<CommandCancelAction>> fn) {
 			return this.cancel(fn.apply(new CommandCancelAction.Builder()).build());
 		}
 
@@ -249,7 +255,7 @@ public final class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code move}
 		 */
-		public Builder move(@Nullable CommandMoveAction value) {
+		public final Builder move(@Nullable CommandMoveAction value) {
 			this.move = value;
 			return this;
 		}
@@ -261,7 +267,7 @@ public final class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code move}
 		 */
-		public Builder move(Function<CommandMoveAction.Builder, ObjectBuilder<CommandMoveAction>> fn) {
+		public final Builder move(Function<CommandMoveAction.Builder, ObjectBuilder<CommandMoveAction>> fn) {
 			return this.move(fn.apply(new CommandMoveAction.Builder()).build());
 		}
 
@@ -272,7 +278,7 @@ public final class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocate_replica}
 		 */
-		public Builder allocateReplica(@Nullable CommandAllocateReplicaAction value) {
+		public final Builder allocateReplica(@Nullable CommandAllocateReplicaAction value) {
 			this.allocateReplica = value;
 			return this;
 		}
@@ -284,7 +290,7 @@ public final class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocate_replica}
 		 */
-		public Builder allocateReplica(
+		public final Builder allocateReplica(
 				Function<CommandAllocateReplicaAction.Builder, ObjectBuilder<CommandAllocateReplicaAction>> fn) {
 			return this.allocateReplica(fn.apply(new CommandAllocateReplicaAction.Builder()).build());
 		}
@@ -301,7 +307,7 @@ public final class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocate_stale_primary}
 		 */
-		public Builder allocateStalePrimary(@Nullable CommandAllocatePrimaryAction value) {
+		public final Builder allocateStalePrimary(@Nullable CommandAllocatePrimaryAction value) {
 			this.allocateStalePrimary = value;
 			return this;
 		}
@@ -318,7 +324,7 @@ public final class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocate_stale_primary}
 		 */
-		public Builder allocateStalePrimary(
+		public final Builder allocateStalePrimary(
 				Function<CommandAllocatePrimaryAction.Builder, ObjectBuilder<CommandAllocatePrimaryAction>> fn) {
 			return this.allocateStalePrimary(fn.apply(new CommandAllocatePrimaryAction.Builder()).build());
 		}
@@ -334,7 +340,7 @@ public final class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocate_empty_primary}
 		 */
-		public Builder allocateEmptyPrimary(@Nullable CommandAllocatePrimaryAction value) {
+		public final Builder allocateEmptyPrimary(@Nullable CommandAllocatePrimaryAction value) {
 			this.allocateEmptyPrimary = value;
 			return this;
 		}
@@ -350,7 +356,7 @@ public final class Command implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocate_empty_primary}
 		 */
-		public Builder allocateEmptyPrimary(
+		public final Builder allocateEmptyPrimary(
 				Function<CommandAllocatePrimaryAction.Builder, ObjectBuilder<CommandAllocatePrimaryAction>> fn) {
 			return this.allocateEmptyPrimary(fn.apply(new CommandAllocatePrimaryAction.Builder()).build());
 		}
@@ -362,6 +368,7 @@ public final class Command implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Command build() {
+			_checkSingleUse();
 
 			return new Command(this);
 		}
@@ -373,9 +380,9 @@ public final class Command implements JsonpSerializable {
 	 * Json deserializer for {@link Command}
 	 */
 	public static final JsonpDeserializer<Command> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Command::setupCommandDeserializer, Builder::build);
+			Command::setupCommandDeserializer);
 
-	protected static void setupCommandDeserializer(DelegatingDeserializer<Command.Builder> op) {
+	protected static void setupCommandDeserializer(ObjectDeserializer<Command.Builder> op) {
 
 		op.add(Builder::cancel, CommandCancelAction._DESERIALIZER, "cancel");
 		op.add(Builder::move, CommandMoveAction._DESERIALIZER, "move");

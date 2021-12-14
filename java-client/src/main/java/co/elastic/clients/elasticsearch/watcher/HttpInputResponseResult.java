@@ -23,19 +23,18 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -43,8 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.HttpInputResponseResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L205-L209">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class HttpInputResponseResult implements JsonpSerializable {
+public class HttpInputResponseResult implements JsonpSerializable {
 	private final String body;
 
 	private final Map<String, List<String>> headers;
@@ -53,36 +59,36 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HttpInputResponseResult(Builder builder) {
+	private HttpInputResponseResult(Builder builder) {
 
-		this.body = Objects.requireNonNull(builder.body, "body");
-		this.headers = ModelTypeHelper.unmodifiableNonNull(builder.headers, "headers");
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.body = ApiTypeHelper.requireNonNull(builder.body, this, "body");
+		this.headers = ApiTypeHelper.unmodifiableRequired(builder.headers, this, "headers");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public HttpInputResponseResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HttpInputResponseResult of(Function<Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code body}
 	 */
-	public String body() {
+	public final String body() {
 		return this.body;
 	}
 
 	/**
 	 * Required - API name: {@code headers}
 	 */
-	public Map<String, List<String>> headers() {
+	public final Map<String, List<String>> headers() {
 		return this.headers;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public int status() {
+	public final int status() {
 		return this.status;
 	}
 
@@ -100,20 +106,24 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 		generator.writeKey("body");
 		generator.write(this.body);
 
-		generator.writeKey("headers");
-		generator.writeStartObject();
-		for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.writeStartArray();
-			for (String item1 : item0.getValue()) {
-				generator.write(item1);
+		if (ApiTypeHelper.isDefined(this.headers)) {
+			generator.writeKey("headers");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("status");
 		generator.write(this.status);
 
@@ -124,7 +134,8 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link HttpInputResponseResult}.
 	 */
-	public static class Builder implements ObjectBuilder<HttpInputResponseResult> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInputResponseResult> {
 		private String body;
 
 		private Map<String, List<String>> headers;
@@ -134,34 +145,35 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code body}
 		 */
-		public Builder body(String value) {
+		public final Builder body(String value) {
 			this.body = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
 		 */
-		public Builder headers(Map<String, List<String>> value) {
-			this.headers = value;
+		public final Builder headers(Map<String, List<String>> map) {
+			this.headers = _mapPutAll(this.headers, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #headers(Map)}, creating the map if needed.
+		 * Required - API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
 		 */
-		public Builder putHeaders(String key, List<String> value) {
-			if (this.headers == null) {
-				this.headers = new HashMap<>();
-			}
-			this.headers.put(key, value);
+		public final Builder headers(String key, List<String> value) {
+			this.headers = _mapPut(this.headers, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(int value) {
+		public final Builder status(int value) {
 			this.status = value;
 			return this;
 		}
@@ -173,6 +185,7 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public HttpInputResponseResult build() {
+			_checkSingleUse();
 
 			return new HttpInputResponseResult(this);
 		}
@@ -184,10 +197,10 @@ public final class HttpInputResponseResult implements JsonpSerializable {
 	 * Json deserializer for {@link HttpInputResponseResult}
 	 */
 	public static final JsonpDeserializer<HttpInputResponseResult> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HttpInputResponseResult::setupHttpInputResponseResultDeserializer, Builder::build);
+			.lazy(Builder::new, HttpInputResponseResult::setupHttpInputResponseResultDeserializer);
 
 	protected static void setupHttpInputResponseResultDeserializer(
-			DelegatingDeserializer<HttpInputResponseResult.Builder> op) {
+			ObjectDeserializer<HttpInputResponseResult.Builder> op) {
 
 		op.add(Builder::body, JsonpDeserializer.stringDeserializer(), "body");
 		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(

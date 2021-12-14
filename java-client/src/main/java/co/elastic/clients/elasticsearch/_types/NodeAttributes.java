@@ -23,20 +23,17 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -44,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeAttributes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Node.ts#L38-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeAttributes implements JsonpSerializable {
+public class NodeAttributes implements JsonpSerializable {
 	private final Map<String, String> attributes;
 
 	private final String ephemeralId;
@@ -57,24 +61,23 @@ public final class NodeAttributes implements JsonpSerializable {
 
 	private final String transportAddress;
 
-	@Nullable
 	private final List<NodeRole> roles;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeAttributes(Builder builder) {
+	private NodeAttributes(Builder builder) {
 
-		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
-		this.ephemeralId = Objects.requireNonNull(builder.ephemeralId, "ephemeral_id");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.ephemeralId = ApiTypeHelper.requireNonNull(builder.ephemeralId, this, "ephemeralId");
 		this.id = builder.id;
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
-		this.roles = ModelTypeHelper.unmodifiable(builder.roles);
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
+		this.roles = ApiTypeHelper.unmodifiable(builder.roles);
 
 	}
 
-	public NodeAttributes(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeAttributes of(Function<Builder, ObjectBuilder<NodeAttributes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -82,7 +85,7 @@ public final class NodeAttributes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code attributes}
 	 */
-	public Map<String, String> attributes() {
+	public final Map<String, String> attributes() {
 		return this.attributes;
 	}
 
@@ -91,7 +94,7 @@ public final class NodeAttributes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code ephemeral_id}
 	 */
-	public String ephemeralId() {
+	public final String ephemeralId() {
 		return this.ephemeralId;
 	}
 
@@ -101,7 +104,7 @@ public final class NodeAttributes implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -110,7 +113,7 @@ public final class NodeAttributes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -119,15 +122,14 @@ public final class NodeAttributes implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code transport_address}
 	 */
-	public String transportAddress() {
+	public final String transportAddress() {
 		return this.transportAddress;
 	}
 
 	/**
 	 * API name: {@code roles}
 	 */
-	@Nullable
-	public List<NodeRole> roles() {
+	public final List<NodeRole> roles() {
 		return this.roles;
 	}
 
@@ -142,33 +144,32 @@ public final class NodeAttributes implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("attributes");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ApiTypeHelper.isDefined(this.attributes)) {
+			generator.writeKey("attributes");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.attributes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("ephemeral_id");
 		generator.write(this.ephemeralId);
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
-
 		generator.writeKey("name");
 		generator.write(this.name);
 
 		generator.writeKey("transport_address");
 		generator.write(this.transportAddress);
 
-		if (this.roles != null) {
-
+		if (ApiTypeHelper.isDefined(this.roles)) {
 			generator.writeKey("roles");
 			generator.writeStartArray();
 			for (NodeRole item0 : this.roles) {
@@ -185,7 +186,8 @@ public final class NodeAttributes implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeAttributes}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeAttributes> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeAttributes> {
 		private Map<String, String> attributes;
 
 		private String ephemeralId;
@@ -204,20 +206,23 @@ public final class NodeAttributes implements JsonpSerializable {
 		 * Required - Lists node attributes.
 		 * <p>
 		 * API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
-		public Builder attributes(Map<String, String> value) {
-			this.attributes = value;
+		public final Builder attributes(Map<String, String> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #attributes(Map)}, creating the map if needed.
+		 * Required - Lists node attributes.
+		 * <p>
+		 * API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
 		 */
-		public Builder putAttributes(String key, String value) {
-			if (this.attributes == null) {
-				this.attributes = new HashMap<>();
-			}
-			this.attributes.put(key, value);
+		public final Builder attributes(String key, String value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return this;
 		}
 
@@ -226,7 +231,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ephemeral_id}
 		 */
-		public Builder ephemeralId(String value) {
+		public final Builder ephemeralId(String value) {
 			this.ephemeralId = value;
 			return this;
 		}
@@ -236,7 +241,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -246,7 +251,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -256,35 +261,28 @@ public final class NodeAttributes implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code transport_address}
 		 */
-		public Builder transportAddress(String value) {
+		public final Builder transportAddress(String value) {
 			this.transportAddress = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roles</code>.
 		 */
-		public Builder roles(@Nullable List<NodeRole> value) {
-			this.roles = value;
+		public final Builder roles(List<NodeRole> list) {
+			this.roles = _listAddAll(this.roles, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code roles}
+		 * <p>
+		 * Adds one or more values to <code>roles</code>.
 		 */
-		public Builder roles(NodeRole... value) {
-			this.roles = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #roles(List)}, creating the list if needed.
-		 */
-		public Builder addRoles(NodeRole value) {
-			if (this.roles == null) {
-				this.roles = new ArrayList<>();
-			}
-			this.roles.add(value);
+		public final Builder roles(NodeRole value, NodeRole... values) {
+			this.roles = _listAdd(this.roles, value, values);
 			return this;
 		}
 
@@ -295,6 +293,7 @@ public final class NodeAttributes implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeAttributes build() {
+			_checkSingleUse();
 
 			return new NodeAttributes(this);
 		}
@@ -306,9 +305,9 @@ public final class NodeAttributes implements JsonpSerializable {
 	 * Json deserializer for {@link NodeAttributes}
 	 */
 	public static final JsonpDeserializer<NodeAttributes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeAttributes::setupNodeAttributesDeserializer, Builder::build);
+			NodeAttributes::setupNodeAttributesDeserializer);
 
-	protected static void setupNodeAttributesDeserializer(DelegatingDeserializer<NodeAttributes.Builder> op) {
+	protected static void setupNodeAttributesDeserializer(ObjectDeserializer<NodeAttributes.Builder> op) {
 
 		op.add(Builder::attributes, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"attributes");

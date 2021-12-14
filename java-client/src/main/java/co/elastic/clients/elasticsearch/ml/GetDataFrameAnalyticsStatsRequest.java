@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -44,15 +45,23 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_data_frame_analytics_stats.Request
 
-public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
-	@Nullable
-	private final String id;
+/**
+ * Retrieves usage information for data frame analytics jobs.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_data_frame_analytics_stats/MlGetDataFrameAnalyticsStatsRequest.ts#L24-L72">API
+ *      specification</a>
+ */
 
+public class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
 	@Nullable
 	private final Integer from;
+
+	@Nullable
+	private final String id;
 
 	@Nullable
 	private final Integer size;
@@ -62,18 +71,51 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetDataFrameAnalyticsStatsRequest(Builder builder) {
+	private GetDataFrameAnalyticsStatsRequest(Builder builder) {
 
-		this.id = builder.id;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
+		this.id = builder.id;
 		this.size = builder.size;
 		this.verbose = builder.verbose;
 
 	}
 
-	public GetDataFrameAnalyticsStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetDataFrameAnalyticsStatsRequest of(
+			Function<Builder, ObjectBuilder<GetDataFrameAnalyticsStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no data frame analytics jobs
+	 * that match.</li>
+	 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+	 * matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
+	 * <p>
+	 * The default value returns an empty data_frame_analytics array when there are
+	 * no matches and the subset of results when there are partial matches. If this
+	 * parameter is <code>false</code>, the request returns a 404 status code when
+	 * there are no matches or only partial matches.
+	 * <p>
+	 * API name: {@code allow_no_match}
+	 */
+	@Nullable
+	public final Boolean allowNoMatch() {
+		return this.allowNoMatch;
+	}
+
+	/**
+	 * Skips the specified number of data frame analytics jobs.
+	 * <p>
+	 * API name: {@code from}
+	 */
+	@Nullable
+	public final Integer from() {
+		return this.from;
 	}
 
 	/**
@@ -84,30 +126,8 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
-	}
-
-	/**
-	 * Whether to ignore if a wildcard expression matches no data frame analytics.
-	 * (This includes <code>_all</code> string or when no data frame analytics have
-	 * been specified)
-	 * <p>
-	 * API name: {@code allow_no_match}
-	 */
-	@Nullable
-	public Boolean allowNoMatch() {
-		return this.allowNoMatch;
-	}
-
-	/**
-	 * Skips the specified number of data frame analytics jobs.
-	 * <p>
-	 * API name: {@code from}
-	 */
-	@Nullable
-	public Integer from() {
-		return this.from;
 	}
 
 	/**
@@ -116,7 +136,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -126,7 +146,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	 * API name: {@code verbose}
 	 */
 	@Nullable
-	public Boolean verbose() {
+	public final Boolean verbose() {
 		return this.verbose;
 	}
 
@@ -135,15 +155,16 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetDataFrameAnalyticsStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetDataFrameAnalyticsStatsRequest> {
-		@Nullable
-		private String id;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataFrameAnalyticsStatsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
 		private Integer from;
+
+		@Nullable
+		private String id;
 
 		@Nullable
 		private Integer size;
@@ -152,25 +173,23 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		private Boolean verbose;
 
 		/**
-		 * Identifier for the data frame analytics job. If you do not specify this
-		 * option, the API returns information for the first hundred data frame
-		 * analytics jobs.
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no data frame analytics jobs
+		 * that match.</li>
+		 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+		 * matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
 		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Whether to ignore if a wildcard expression matches no data frame analytics.
-		 * (This includes <code>_all</code> string or when no data frame analytics have
-		 * been specified)
+		 * The default value returns an empty data_frame_analytics array when there are
+		 * no matches and the subset of results when there are partial matches. If this
+		 * parameter is <code>false</code>, the request returns a 404 status code when
+		 * there are no matches or only partial matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -180,8 +199,20 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
+			return this;
+		}
+
+		/**
+		 * Identifier for the data frame analytics job. If you do not specify this
+		 * option, the API returns information for the first hundred data frame
+		 * analytics jobs.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public final Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -190,7 +221,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -200,7 +231,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code verbose}
 		 */
-		public Builder verbose(@Nullable Boolean value) {
+		public final Builder verbose(@Nullable Boolean value) {
 			this.verbose = value;
 			return this;
 		}
@@ -212,6 +243,7 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetDataFrameAnalyticsStatsRequest build() {
+			_checkSingleUse();
 
 			return new GetDataFrameAnalyticsStatsRequest(this);
 		}
@@ -222,7 +254,9 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_data_frame_analytics_stats}".
 	 */
-	public static final Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_data_frame_analytics_stats",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -263,14 +297,14 @@ public final class GetDataFrameAnalyticsStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				if (request.verbose != null) {
 					params.put("verbose", String.valueOf(request.verbose));

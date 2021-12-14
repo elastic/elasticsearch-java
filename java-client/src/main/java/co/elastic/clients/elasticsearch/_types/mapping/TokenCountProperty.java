@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.TokenCountProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L87-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TokenCountProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class TokenCountProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final String analyzer;
 
@@ -58,7 +64,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TokenCountProperty(Builder builder) {
+	private TokenCountProperty(Builder builder) {
 		super(builder);
 
 		this.analyzer = builder.analyzer;
@@ -69,23 +75,23 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 
 	}
 
-	public TokenCountProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TokenCountProperty of(Function<Builder, ObjectBuilder<TokenCountProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "token_count";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.TokenCount;
 	}
 
 	/**
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -93,7 +99,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Double boost() {
+	public final Double boost() {
 		return this.boost;
 	}
 
@@ -101,7 +107,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -109,7 +115,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public Double nullValue() {
+	public final Double nullValue() {
 		return this.nullValue;
 	}
 
@@ -117,7 +123,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 	 * API name: {@code enable_position_increments}
 	 */
 	@Nullable
-	public Boolean enablePositionIncrements() {
+	public final Boolean enablePositionIncrements() {
 		return this.enablePositionIncrements;
 	}
 
@@ -126,31 +132,26 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 		generator.write("type", "token_count");
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
 		}
 		if (this.enablePositionIncrements != null) {
-
 			generator.writeKey("enable_position_increments");
 			generator.write(this.enablePositionIncrements);
 
@@ -163,6 +164,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 	/**
 	 * Builder for {@link TokenCountProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TokenCountProperty> {
@@ -184,7 +186,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -192,7 +194,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code boost}
 		 */
-		public Builder boost(@Nullable Double value) {
+		public final Builder boost(@Nullable Double value) {
 			this.boost = value;
 			return this;
 		}
@@ -200,7 +202,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable Boolean value) {
+		public final Builder index(@Nullable Boolean value) {
 			this.index = value;
 			return this;
 		}
@@ -208,7 +210,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable Double value) {
+		public final Builder nullValue(@Nullable Double value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -216,7 +218,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 		/**
 		 * API name: {@code enable_position_increments}
 		 */
-		public Builder enablePositionIncrements(@Nullable Boolean value) {
+		public final Builder enablePositionIncrements(@Nullable Boolean value) {
 			this.enablePositionIncrements = value;
 			return this;
 		}
@@ -233,6 +235,7 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 		 *             if some of the required fields are null.
 		 */
 		public TokenCountProperty build() {
+			_checkSingleUse();
 
 			return new TokenCountProperty(this);
 		}
@@ -244,9 +247,9 @@ public final class TokenCountProperty extends DocValuesPropertyBase implements P
 	 * Json deserializer for {@link TokenCountProperty}
 	 */
 	public static final JsonpDeserializer<TokenCountProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TokenCountProperty::setupTokenCountPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, TokenCountProperty::setupTokenCountPropertyDeserializer);
 
-	protected static void setupTokenCountPropertyDeserializer(DelegatingDeserializer<TokenCountProperty.Builder> op) {
+	protected static void setupTokenCountPropertyDeserializer(ObjectDeserializer<TokenCountProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::boost, JsonpDeserializer.doubleDeserializer(), "boost");

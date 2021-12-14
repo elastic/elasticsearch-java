@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ingest._types.DropProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L198-L198">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DropProcessor extends ProcessorBase implements ProcessorVariant {
+public class DropProcessor extends ProcessorBase implements ProcessorVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public DropProcessor(Builder builder) {
+	private DropProcessor(Builder builder) {
 		super(builder);
 
 	}
 
-	public DropProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DropProcessor of(Function<Builder, ObjectBuilder<DropProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "drop";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Drop;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class DropProcessor extends ProcessorBase implements ProcessorVaria
 	/**
 	 * Builder for {@link DropProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder> implements ObjectBuilder<DropProcessor> {
 		@Override
 		protected Builder self() {
@@ -73,6 +80,7 @@ public final class DropProcessor extends ProcessorBase implements ProcessorVaria
 		 *             if some of the required fields are null.
 		 */
 		public DropProcessor build() {
+			_checkSingleUse();
 
 			return new DropProcessor(this);
 		}
@@ -84,9 +92,9 @@ public final class DropProcessor extends ProcessorBase implements ProcessorVaria
 	 * Json deserializer for {@link DropProcessor}
 	 */
 	public static final JsonpDeserializer<DropProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DropProcessor::setupDropProcessorDeserializer, Builder::build);
+			DropProcessor::setupDropProcessorDeserializer);
 
-	protected static void setupDropProcessorDeserializer(DelegatingDeserializer<DropProcessor.Builder> op) {
+	protected static void setupDropProcessorDeserializer(ObjectDeserializer<DropProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 
 	}

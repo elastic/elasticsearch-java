@@ -23,48 +23,56 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.search._types.StupidBackoffSmoothingModel
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L202-L204">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StupidBackoffSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
+public class StupidBackoffSmoothingModel implements SmoothingModelVariant, JsonpSerializable {
 	private final double discount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StupidBackoffSmoothingModel(Builder builder) {
+	private StupidBackoffSmoothingModel(Builder builder) {
 
-		this.discount = Objects.requireNonNull(builder.discount, "discount");
+		this.discount = ApiTypeHelper.requireNonNull(builder.discount, this, "discount");
 
 	}
 
-	public StupidBackoffSmoothingModel(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StupidBackoffSmoothingModel of(Function<Builder, ObjectBuilder<StupidBackoffSmoothingModel>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link SmoothingModel} variant type
+	 * SmoothingModel variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stupid_backoff";
+	public SmoothingModel.Kind _smoothingModelKind() {
+		return SmoothingModel.Kind.StupidBackoff;
 	}
 
 	/**
 	 * Required - API name: {@code discount}
 	 */
-	public double discount() {
+	public final double discount() {
 		return this.discount;
 	}
 
@@ -89,13 +97,14 @@ public final class StupidBackoffSmoothingModel implements SmoothingModelVariant,
 	/**
 	 * Builder for {@link StupidBackoffSmoothingModel}.
 	 */
-	public static class Builder implements ObjectBuilder<StupidBackoffSmoothingModel> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StupidBackoffSmoothingModel> {
 		private Double discount;
 
 		/**
 		 * Required - API name: {@code discount}
 		 */
-		public Builder discount(double value) {
+		public final Builder discount(double value) {
 			this.discount = value;
 			return this;
 		}
@@ -107,6 +116,7 @@ public final class StupidBackoffSmoothingModel implements SmoothingModelVariant,
 		 *             if some of the required fields are null.
 		 */
 		public StupidBackoffSmoothingModel build() {
+			_checkSingleUse();
 
 			return new StupidBackoffSmoothingModel(this);
 		}
@@ -117,11 +127,11 @@ public final class StupidBackoffSmoothingModel implements SmoothingModelVariant,
 	/**
 	 * Json deserializer for {@link StupidBackoffSmoothingModel}
 	 */
-	public static final JsonpDeserializer<StupidBackoffSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, StupidBackoffSmoothingModel::setupStupidBackoffSmoothingModelDeserializer, Builder::build);
+	public static final JsonpDeserializer<StupidBackoffSmoothingModel> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StupidBackoffSmoothingModel::setupStupidBackoffSmoothingModelDeserializer);
 
 	protected static void setupStupidBackoffSmoothingModelDeserializer(
-			DelegatingDeserializer<StupidBackoffSmoothingModel.Builder> op) {
+			ObjectDeserializer<StupidBackoffSmoothingModel.Builder> op) {
 
 		op.add(Builder::discount, JsonpDeserializer.doubleDeserializer(), "discount");
 

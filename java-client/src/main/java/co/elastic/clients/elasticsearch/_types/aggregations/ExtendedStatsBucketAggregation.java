@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,45 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ExtendedStatsBucketAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L69-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ExtendedStatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class ExtendedStatsBucketAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Double sigma;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExtendedStatsBucketAggregation(Builder builder) {
+	private ExtendedStatsBucketAggregation(Builder builder) {
 		super(builder);
 
 		this.sigma = builder.sigma;
 
 	}
 
-	public ExtendedStatsBucketAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExtendedStatsBucketAggregation of(
+			Function<Builder, ObjectBuilder<ExtendedStatsBucketAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "extended_stats_bucket";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.ExtendedStatsBucket;
 	}
 
 	/**
 	 * API name: {@code sigma}
 	 */
 	@Nullable
-	public Double sigma() {
+	public final Double sigma() {
 		return this.sigma;
 	}
 
@@ -75,7 +82,6 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 
 		super.serializeInternal(generator, mapper);
 		if (this.sigma != null) {
-
 			generator.writeKey("sigma");
 			generator.write(this.sigma);
 
@@ -88,6 +94,7 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 	/**
 	 * Builder for {@link ExtendedStatsBucketAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExtendedStatsBucketAggregation> {
@@ -97,7 +104,7 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 		/**
 		 * API name: {@code sigma}
 		 */
-		public Builder sigma(@Nullable Double value) {
+		public final Builder sigma(@Nullable Double value) {
 			this.sigma = value;
 			return this;
 		}
@@ -114,6 +121,7 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 		 *             if some of the required fields are null.
 		 */
 		public ExtendedStatsBucketAggregation build() {
+			_checkSingleUse();
 
 			return new ExtendedStatsBucketAggregation(this);
 		}
@@ -125,11 +133,10 @@ public final class ExtendedStatsBucketAggregation extends PipelineAggregationBas
 	 * Json deserializer for {@link ExtendedStatsBucketAggregation}
 	 */
 	public static final JsonpDeserializer<ExtendedStatsBucketAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExtendedStatsBucketAggregation::setupExtendedStatsBucketAggregationDeserializer,
-					Builder::build);
+			.lazy(Builder::new, ExtendedStatsBucketAggregation::setupExtendedStatsBucketAggregationDeserializer);
 
 	protected static void setupExtendedStatsBucketAggregationDeserializer(
-			DelegatingDeserializer<ExtendedStatsBucketAggregation.Builder> op) {
+			ObjectDeserializer<ExtendedStatsBucketAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::sigma, JsonpDeserializer.doubleDeserializer(), "sigma");
 

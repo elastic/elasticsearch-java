@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -38,8 +39,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: graph._types.Connection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/graph/_types/Connection.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Connection implements JsonpSerializable {
+public class Connection implements JsonpSerializable {
 	private final long docCount;
 
 	private final long source;
@@ -50,44 +58,44 @@ public final class Connection implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Connection(Builder builder) {
+	private Connection(Builder builder) {
 
-		this.docCount = Objects.requireNonNull(builder.docCount, "doc_count");
-		this.source = Objects.requireNonNull(builder.source, "source");
-		this.target = Objects.requireNonNull(builder.target, "target");
-		this.weight = Objects.requireNonNull(builder.weight, "weight");
+		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
+		this.weight = ApiTypeHelper.requireNonNull(builder.weight, this, "weight");
 
 	}
 
-	public Connection(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Connection of(Function<Builder, ObjectBuilder<Connection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code doc_count}
 	 */
-	public long docCount() {
+	public final long docCount() {
 		return this.docCount;
 	}
 
 	/**
 	 * Required - API name: {@code source}
 	 */
-	public long source() {
+	public final long source() {
 		return this.source;
 	}
 
 	/**
 	 * Required - API name: {@code target}
 	 */
-	public long target() {
+	public final long target() {
 		return this.target;
 	}
 
 	/**
 	 * Required - API name: {@code weight}
 	 */
-	public double weight() {
+	public final double weight() {
 		return this.weight;
 	}
 
@@ -121,7 +129,8 @@ public final class Connection implements JsonpSerializable {
 	/**
 	 * Builder for {@link Connection}.
 	 */
-	public static class Builder implements ObjectBuilder<Connection> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Connection> {
 		private Long docCount;
 
 		private Long source;
@@ -133,7 +142,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code doc_count}
 		 */
-		public Builder docCount(long value) {
+		public final Builder docCount(long value) {
 			this.docCount = value;
 			return this;
 		}
@@ -141,7 +150,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public Builder source(long value) {
+		public final Builder source(long value) {
 			this.source = value;
 			return this;
 		}
@@ -149,7 +158,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code target}
 		 */
-		public Builder target(long value) {
+		public final Builder target(long value) {
 			this.target = value;
 			return this;
 		}
@@ -157,7 +166,7 @@ public final class Connection implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code weight}
 		 */
-		public Builder weight(double value) {
+		public final Builder weight(double value) {
 			this.weight = value;
 			return this;
 		}
@@ -169,6 +178,7 @@ public final class Connection implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Connection build() {
+			_checkSingleUse();
 
 			return new Connection(this);
 		}
@@ -180,9 +190,9 @@ public final class Connection implements JsonpSerializable {
 	 * Json deserializer for {@link Connection}
 	 */
 	public static final JsonpDeserializer<Connection> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Connection::setupConnectionDeserializer, Builder::build);
+			Connection::setupConnectionDeserializer);
 
-	protected static void setupConnectionDeserializer(DelegatingDeserializer<Connection.Builder> op) {
+	protected static void setupConnectionDeserializer(ObjectDeserializer<Connection.Builder> op) {
 
 		op.add(Builder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
 		op.add(Builder::source, JsonpDeserializer.longDeserializer(), "source");

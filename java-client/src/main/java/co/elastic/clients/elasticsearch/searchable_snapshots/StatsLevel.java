@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch.searchable_snapshots;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/_types/stats.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum StatsLevel implements StringEnum {
-	Cluster("cluster"), Indices("indices"), Shards("shards");
+public enum StatsLevel implements JsonEnum {
+	Cluster("cluster"),
+
+	Indices("indices"),
+
+	Shards("shards"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +53,6 @@ public enum StatsLevel implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<StatsLevel> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<StatsLevel> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			StatsLevel.values());
 }

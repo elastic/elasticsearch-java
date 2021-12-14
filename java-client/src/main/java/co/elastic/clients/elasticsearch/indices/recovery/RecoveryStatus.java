@@ -23,44 +23,49 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.recovery.RecoveryStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/types.ts#L91-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RecoveryStatus implements JsonpSerializable {
+public class RecoveryStatus implements JsonpSerializable {
 	private final List<ShardRecovery> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryStatus(Builder builder) {
+	private RecoveryStatus(Builder builder) {
 
-		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
-	public RecoveryStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryStatus of(Function<Builder, ObjectBuilder<RecoveryStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public List<ShardRecovery> shards() {
+	public final List<ShardRecovery> shards() {
 		return this.shards;
 	}
 
@@ -75,13 +80,16 @@ public final class RecoveryStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("shards");
-		generator.writeStartArray();
-		for (ShardRecovery item0 : this.shards) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.shards)) {
+			generator.writeKey("shards");
+			generator.writeStartArray();
+			for (ShardRecovery item0 : this.shards) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,48 +98,37 @@ public final class RecoveryStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link RecoveryStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryStatus> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryStatus> {
 		private List<ShardRecovery> shards;
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>shards</code>.
 		 */
-		public Builder shards(List<ShardRecovery> value) {
-			this.shards = value;
+		public final Builder shards(List<ShardRecovery> list) {
+			this.shards = _listAddAll(this.shards, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds one or more values to <code>shards</code>.
 		 */
-		public Builder shards(ShardRecovery... value) {
-			this.shards = Arrays.asList(value);
+		public final Builder shards(ShardRecovery value, ShardRecovery... values) {
+			this.shards = _listAdd(this.shards, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
+		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds a value to <code>shards</code> using a builder lambda.
 		 */
-		public Builder addShards(ShardRecovery value) {
-			if (this.shards == null) {
-				this.shards = new ArrayList<>();
-			}
-			this.shards.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #shards(List)} to a singleton list.
-		 */
-		public Builder shards(Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>> fn) {
-			return this.shards(fn.apply(new ShardRecovery.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
-		 */
-		public Builder addShards(Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>> fn) {
-			return this.addShards(fn.apply(new ShardRecovery.Builder()).build());
+		public final Builder shards(Function<ShardRecovery.Builder, ObjectBuilder<ShardRecovery>> fn) {
+			return shards(fn.apply(new ShardRecovery.Builder()).build());
 		}
 
 		/**
@@ -141,6 +138,7 @@ public final class RecoveryStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryStatus build() {
+			_checkSingleUse();
 
 			return new RecoveryStatus(this);
 		}
@@ -152,9 +150,9 @@ public final class RecoveryStatus implements JsonpSerializable {
 	 * Json deserializer for {@link RecoveryStatus}
 	 */
 	public static final JsonpDeserializer<RecoveryStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryStatus::setupRecoveryStatusDeserializer, Builder::build);
+			RecoveryStatus::setupRecoveryStatusDeserializer);
 
-	protected static void setupRecoveryStatusDeserializer(DelegatingDeserializer<RecoveryStatus.Builder> op) {
+	protected static void setupRecoveryStatusDeserializer(ObjectDeserializer<RecoveryStatus.Builder> op) {
 
 		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardRecovery._DESERIALIZER), "shards");
 

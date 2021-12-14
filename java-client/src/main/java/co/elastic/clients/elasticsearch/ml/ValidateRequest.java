@@ -23,18 +23,18 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -44,11 +44,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.validate.Request
-@JsonpDeserializable
-public final class ValidateRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final String jobId;
 
+/**
+ * Validates an anomaly detection job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/validate/MlValidateJobRequest.ts#L27-L44">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class ValidateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final AnalysisConfig analysisConfig;
 
@@ -62,6 +67,9 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	private final String description;
 
 	@Nullable
+	private final String jobId;
+
+	@Nullable
 	private final ModelPlotConfig modelPlot;
 
 	@Nullable
@@ -72,36 +80,28 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ValidateRequest(Builder builder) {
+	private ValidateRequest(Builder builder) {
 
-		this.jobId = builder.jobId;
 		this.analysisConfig = builder.analysisConfig;
 		this.analysisLimits = builder.analysisLimits;
 		this.dataDescription = builder.dataDescription;
 		this.description = builder.description;
+		this.jobId = builder.jobId;
 		this.modelPlot = builder.modelPlot;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.resultsIndexName = builder.resultsIndexName;
 
 	}
 
-	public ValidateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * API name: {@code job_id}
-	 */
-	@Nullable
-	public String jobId() {
-		return this.jobId;
+	public static ValidateRequest of(Function<Builder, ObjectBuilder<ValidateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code analysis_config}
 	 */
 	@Nullable
-	public AnalysisConfig analysisConfig() {
+	public final AnalysisConfig analysisConfig() {
 		return this.analysisConfig;
 	}
 
@@ -109,7 +109,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code analysis_limits}
 	 */
 	@Nullable
-	public AnalysisLimits analysisLimits() {
+	public final AnalysisLimits analysisLimits() {
 		return this.analysisLimits;
 	}
 
@@ -117,7 +117,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code data_description}
 	 */
 	@Nullable
-	public DataDescription dataDescription() {
+	public final DataDescription dataDescription() {
 		return this.dataDescription;
 	}
 
@@ -125,15 +125,23 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
+	}
+
+	/**
+	 * API name: {@code job_id}
+	 */
+	@Nullable
+	public final String jobId() {
+		return this.jobId;
 	}
 
 	/**
 	 * API name: {@code model_plot}
 	 */
 	@Nullable
-	public ModelPlotConfig modelPlot() {
+	public final ModelPlotConfig modelPlot() {
 		return this.modelPlot;
 	}
 
@@ -141,7 +149,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code model_snapshot_retention_days}
 	 */
 	@Nullable
-	public Long modelSnapshotRetentionDays() {
+	public final Long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
@@ -149,7 +157,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code results_index_name}
 	 */
 	@Nullable
-	public String resultsIndexName() {
+	public final String resultsIndexName() {
 		return this.resultsIndexName;
 	}
 
@@ -164,50 +172,42 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.jobId != null) {
-
-			generator.writeKey("job_id");
-			generator.write(this.jobId);
-
-		}
 		if (this.analysisConfig != null) {
-
 			generator.writeKey("analysis_config");
 			this.analysisConfig.serialize(generator, mapper);
 
 		}
 		if (this.analysisLimits != null) {
-
 			generator.writeKey("analysis_limits");
 			this.analysisLimits.serialize(generator, mapper);
 
 		}
 		if (this.dataDescription != null) {
-
 			generator.writeKey("data_description");
 			this.dataDescription.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-		if (this.modelPlot != null) {
+		if (this.jobId != null) {
+			generator.writeKey("job_id");
+			generator.write(this.jobId);
 
+		}
+		if (this.modelPlot != null) {
 			generator.writeKey("model_plot");
 			this.modelPlot.serialize(generator, mapper);
 
 		}
 		if (this.modelSnapshotRetentionDays != null) {
-
 			generator.writeKey("model_snapshot_retention_days");
 			generator.write(this.modelSnapshotRetentionDays);
 
 		}
 		if (this.resultsIndexName != null) {
-
 			generator.writeKey("results_index_name");
 			generator.write(this.resultsIndexName);
 
@@ -220,10 +220,8 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link ValidateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ValidateRequest> {
-		@Nullable
-		private String jobId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateRequest> {
 		@Nullable
 		private AnalysisConfig analysisConfig;
 
@@ -237,6 +235,9 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		private String description;
 
 		@Nullable
+		private String jobId;
+
+		@Nullable
 		private ModelPlotConfig modelPlot;
 
 		@Nullable
@@ -246,17 +247,9 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		private String resultsIndexName;
 
 		/**
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(@Nullable String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(@Nullable AnalysisConfig value) {
+		public final Builder analysisConfig(@Nullable AnalysisConfig value) {
 			this.analysisConfig = value;
 			return this;
 		}
@@ -264,14 +257,14 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
+		public final Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
 			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code analysis_limits}
 		 */
-		public Builder analysisLimits(@Nullable AnalysisLimits value) {
+		public final Builder analysisLimits(@Nullable AnalysisLimits value) {
 			this.analysisLimits = value;
 			return this;
 		}
@@ -279,14 +272,14 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code analysis_limits}
 		 */
-		public Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
+		public final Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
 			return this.analysisLimits(fn.apply(new AnalysisLimits.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code data_description}
 		 */
-		public Builder dataDescription(@Nullable DataDescription value) {
+		public final Builder dataDescription(@Nullable DataDescription value) {
 			this.dataDescription = value;
 			return this;
 		}
@@ -294,22 +287,30 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code data_description}
 		 */
-		public Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
+		public final Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
 			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code job_id}
+		 */
+		public final Builder jobId(@Nullable String value) {
+			this.jobId = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code model_plot}
 		 */
-		public Builder modelPlot(@Nullable ModelPlotConfig value) {
+		public final Builder modelPlot(@Nullable ModelPlotConfig value) {
 			this.modelPlot = value;
 			return this;
 		}
@@ -317,14 +318,14 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code model_plot}
 		 */
-		public Builder modelPlot(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+		public final Builder modelPlot(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
 			return this.modelPlot(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(@Nullable Long value) {
+		public final Builder modelSnapshotRetentionDays(@Nullable Long value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -332,7 +333,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code results_index_name}
 		 */
-		public Builder resultsIndexName(@Nullable String value) {
+		public final Builder resultsIndexName(@Nullable String value) {
 			this.resultsIndexName = value;
 			return this;
 		}
@@ -344,6 +345,7 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public ValidateRequest build() {
+			_checkSingleUse();
 
 			return new ValidateRequest(this);
 		}
@@ -355,15 +357,15 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	 * Json deserializer for {@link ValidateRequest}
 	 */
 	public static final JsonpDeserializer<ValidateRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ValidateRequest::setupValidateRequestDeserializer, Builder::build);
+			ValidateRequest::setupValidateRequestDeserializer);
 
-	protected static void setupValidateRequestDeserializer(DelegatingDeserializer<ValidateRequest.Builder> op) {
+	protected static void setupValidateRequestDeserializer(ObjectDeserializer<ValidateRequest.Builder> op) {
 
-		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::analysisConfig, AnalysisConfig._DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
 		op.add(Builder::dataDescription, DataDescription._DESERIALIZER, "data_description");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::modelPlot, ModelPlotConfig._DESERIALIZER, "model_plot");
 		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.longDeserializer(),
 				"model_snapshot_retention_days");
@@ -376,7 +378,9 @@ public final class ValidateRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code ml.validate}".
 	 */
-	public static final Endpoint<ValidateRequest, ValidateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ValidateRequest, ValidateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.validate",
+
 			// Request method
 			request -> {
 				return "POST";

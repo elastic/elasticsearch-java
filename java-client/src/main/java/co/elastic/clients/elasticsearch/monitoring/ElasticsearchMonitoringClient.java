@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.monitoring;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -33,10 +39,20 @@ import javax.annotation.Nullable;
 /**
  * Client for the monitoring namespace.
  */
-public class ElasticsearchMonitoringClient extends ApiClient {
+public class ElasticsearchMonitoringClient extends ApiClient<ElasticsearchTransport, ElasticsearchMonitoringClient> {
 
-	public ElasticsearchMonitoringClient(Transport transport) {
-		super(transport);
+	public ElasticsearchMonitoringClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchMonitoringClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchMonitoringClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchMonitoringClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: monitoring.bulk
@@ -49,25 +65,27 @@ public class ElasticsearchMonitoringClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TSource> BulkResponse bulk(BulkRequest<TSource> request) throws IOException {
-		return this.transport.performRequest(request, BulkRequest.ENDPOINT);
+	public BulkResponse bulk(BulkRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<BulkRequest, BulkResponse, ErrorResponse> endpoint = (JsonEndpoint<BulkRequest, BulkResponse, ErrorResponse>) BulkRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Used by the monitoring features to send monitoring data.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link BulkRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/monitor-elasticsearch-cluster.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final <TSource> BulkResponse bulk(
-			Function<BulkRequest.Builder<TSource>, ObjectBuilder<BulkRequest<TSource>>> fn) throws IOException {
-		return bulk(fn.apply(new BulkRequest.Builder<TSource>()).build());
+	public final BulkResponse bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return bulk(fn.apply(new BulkRequest.Builder()).build());
 	}
 
 }

@@ -23,23 +23,22 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,14 +49,19 @@ import javax.annotation.Nullable;
 
 // typedef: indices.disk_usage.Request
 
-public final class DiskUsageRequest extends RequestBase {
-	private final String index;
+/**
+ * Analyzes the disk usage of each field of an index or data stream
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/disk_usage/IndicesDiskUsageRequest.ts#L24-L77">API
+ *      specification</a>
+ */
 
+public class DiskUsageRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
 
-	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean flush;
@@ -65,48 +69,38 @@ public final class DiskUsageRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	private final String index;
+
 	@Nullable
 	private final TimeUnit masterTimeout;
 
 	@Nullable
-	private final TimeUnit timeout;
+	private final Boolean runExpensiveTasks;
 
 	@Nullable
-	private final Boolean runExpensiveTasks;
+	private final TimeUnit timeout;
 
 	@Nullable
 	private final String waitForActiveShards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DiskUsageRequest(Builder builder) {
+	private DiskUsageRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
 		this.allowNoIndices = builder.allowNoIndices;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flush = builder.flush;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
 		this.runExpensiveTasks = builder.runExpensiveTasks;
+		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
 
-	public DiskUsageRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Comma-separated list of data streams, indices, and aliases used to
-	 * limit the request. It’s recommended to execute this API with a single index
-	 * (or the latest backing index of a data stream) as the API consumes resources
-	 * significantly.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
+	public static DiskUsageRequest of(Function<Builder, ObjectBuilder<DiskUsageRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -119,7 +113,7 @@ public final class DiskUsageRequest extends RequestBase {
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
 	}
 
@@ -130,8 +124,7 @@ public final class DiskUsageRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -142,7 +135,7 @@ public final class DiskUsageRequest extends RequestBase {
 	 * API name: {@code flush}
 	 */
 	@Nullable
-	public Boolean flush() {
+	public final Boolean flush() {
 		return this.flush;
 	}
 
@@ -152,8 +145,20 @@ public final class DiskUsageRequest extends RequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * Required - Comma-separated list of data streams, indices, and aliases used to
+	 * limit the request. It’s recommended to execute this API with a single index
+	 * (or the latest backing index of a data stream) as the API consumes resources
+	 * significantly.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final String index() {
+		return this.index;
 	}
 
 	/**
@@ -163,19 +168,8 @@ public final class DiskUsageRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public TimeUnit masterTimeout() {
+	public final TimeUnit masterTimeout() {
 		return this.masterTimeout;
-	}
-
-	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public TimeUnit timeout() {
-		return this.timeout;
 	}
 
 	/**
@@ -185,8 +179,19 @@ public final class DiskUsageRequest extends RequestBase {
 	 * API name: {@code run_expensive_tasks}
 	 */
 	@Nullable
-	public Boolean runExpensiveTasks() {
+	public final Boolean runExpensiveTasks() {
 		return this.runExpensiveTasks;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final TimeUnit timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -197,7 +202,7 @@ public final class DiskUsageRequest extends RequestBase {
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public String waitForActiveShards() {
+	public final String waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -206,14 +211,13 @@ public final class DiskUsageRequest extends RequestBase {
 	/**
 	 * Builder for {@link DiskUsageRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DiskUsageRequest> {
-		private String index;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiskUsageRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean flush;
@@ -221,30 +225,19 @@ public final class DiskUsageRequest extends RequestBase {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
-		@Nullable
-		private TimeUnit masterTimeout;
+		private String index;
 
 		@Nullable
-		private TimeUnit timeout;
+		private TimeUnit masterTimeout;
 
 		@Nullable
 		private Boolean runExpensiveTasks;
 
 		@Nullable
-		private String waitForActiveShards;
+		private TimeUnit timeout;
 
-		/**
-		 * Required - Comma-separated list of data streams, indices, and aliases used to
-		 * limit the request. It’s recommended to execute this API with a single index
-		 * (or the latest backing index of a data stream) as the API consumes resources
-		 * significantly.
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
+		@Nullable
+		private String waitForActiveShards;
 
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
@@ -255,7 +248,7 @@ public final class DiskUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
 			return this;
 		}
@@ -266,9 +259,11 @@ public final class DiskUsageRequest extends RequestBase {
 		 * hidden data streams. Supports comma-separated values, such as open,hidden.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -278,20 +273,11 @@ public final class DiskUsageRequest extends RequestBase {
 		 * hidden data streams. Supports comma-separated values, such as open,hidden.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -301,7 +287,7 @@ public final class DiskUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code flush}
 		 */
-		public Builder flush(@Nullable Boolean value) {
+		public final Builder flush(@Nullable Boolean value) {
 			this.flush = value;
 			return this;
 		}
@@ -311,8 +297,21 @@ public final class DiskUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list of data streams, indices, and aliases used to
+		 * limit the request. It’s recommended to execute this API with a single index
+		 * (or the latest backing index of a data stream) as the API consumes resources
+		 * significantly.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public final Builder index(String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -322,19 +321,8 @@ public final class DiskUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable TimeUnit value) {
+		public final Builder masterTimeout(@Nullable TimeUnit value) {
 			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable TimeUnit value) {
-			this.timeout = value;
 			return this;
 		}
 
@@ -344,8 +332,19 @@ public final class DiskUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code run_expensive_tasks}
 		 */
-		public Builder runExpensiveTasks(@Nullable Boolean value) {
+		public final Builder runExpensiveTasks(@Nullable Boolean value) {
 			this.runExpensiveTasks = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable TimeUnit value) {
+			this.timeout = value;
 			return this;
 		}
 
@@ -356,7 +355,7 @@ public final class DiskUsageRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable String value) {
+		public final Builder waitForActiveShards(@Nullable String value) {
 			this.waitForActiveShards = value;
 			return this;
 		}
@@ -368,6 +367,7 @@ public final class DiskUsageRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DiskUsageRequest build() {
+			_checkSingleUse();
 
 			return new DiskUsageRequest(this);
 		}
@@ -378,7 +378,9 @@ public final class DiskUsageRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.disk_usage}".
 	 */
-	public static final Endpoint<DiskUsageRequest, DiskUsageResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.disk_usage",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -407,30 +409,30 @@ public final class DiskUsageRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
-				}
-				if (request.expandWildcards != null) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout.jsonValue());
 				}
 				if (request.flush != null) {
 					params.put("flush", String.valueOf(request.flush));
 				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.toString());
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout.toString());
+				if (request.waitForActiveShards != null) {
+					params.put("wait_for_active_shards", request.waitForActiveShards);
 				}
 				if (request.runExpensiveTasks != null) {
 					params.put("run_expensive_tasks", String.valueOf(request.runExpensiveTasks));
 				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards);
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout.jsonValue());
 				}
 				return params;
 

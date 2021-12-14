@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,17 +33,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: watcher._types.HttpInputRequestResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L203-L203">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class HttpInputRequestResult extends HttpInputRequestDefinition {
+public class HttpInputRequestResult extends HttpInputRequestDefinition {
 	// ---------------------------------------------------------------------------------------------
 
-	public HttpInputRequestResult(Builder builder) {
+	private HttpInputRequestResult(Builder builder) {
 		super(builder);
 
 	}
 
-	public HttpInputRequestResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HttpInputRequestResult of(Function<Builder, ObjectBuilder<HttpInputRequestResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +58,7 @@ public final class HttpInputRequestResult extends HttpInputRequestDefinition {
 	/**
 	 * Builder for {@link HttpInputRequestResult}.
 	 */
+
 	public static class Builder extends HttpInputRequestDefinition.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HttpInputRequestResult> {
@@ -67,6 +74,7 @@ public final class HttpInputRequestResult extends HttpInputRequestDefinition {
 		 *             if some of the required fields are null.
 		 */
 		public HttpInputRequestResult build() {
+			_checkSingleUse();
 
 			return new HttpInputRequestResult(this);
 		}
@@ -78,10 +86,10 @@ public final class HttpInputRequestResult extends HttpInputRequestDefinition {
 	 * Json deserializer for {@link HttpInputRequestResult}
 	 */
 	public static final JsonpDeserializer<HttpInputRequestResult> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HttpInputRequestResult::setupHttpInputRequestResultDeserializer, Builder::build);
+			.lazy(Builder::new, HttpInputRequestResult::setupHttpInputRequestResultDeserializer);
 
 	protected static void setupHttpInputRequestResultDeserializer(
-			DelegatingDeserializer<HttpInputRequestResult.Builder> op) {
+			ObjectDeserializer<HttpInputRequestResult.Builder> op) {
 		HttpInputRequestDefinition.setupHttpInputRequestDefinitionDeserializer(op);
 
 	}

@@ -29,27 +29,32 @@ import co.elastic.clients.elasticsearch._types.FielddataStats;
 import co.elastic.clients.elasticsearch._types.QueryCacheStats;
 import co.elastic.clients.elasticsearch._types.SegmentsStats;
 import co.elastic.clients.elasticsearch._types.StoreStats;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterIndices
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L62-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterIndices implements JsonpSerializable {
+public class ClusterIndices implements JsonpSerializable {
 	private final CompletionStats completion;
 
 	private final long count;
@@ -70,29 +75,28 @@ public final class ClusterIndices implements JsonpSerializable {
 
 	private final CharFilterTypes analysis;
 
-	@Nullable
 	private final List<IndicesVersions> versions;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterIndices(Builder builder) {
+	private ClusterIndices(Builder builder) {
 
-		this.completion = Objects.requireNonNull(builder.completion, "completion");
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.docs = Objects.requireNonNull(builder.docs, "docs");
-		this.fielddata = Objects.requireNonNull(builder.fielddata, "fielddata");
-		this.queryCache = Objects.requireNonNull(builder.queryCache, "query_cache");
-		this.segments = Objects.requireNonNull(builder.segments, "segments");
-		this.shards = Objects.requireNonNull(builder.shards, "shards");
-		this.store = Objects.requireNonNull(builder.store, "store");
-		this.mappings = Objects.requireNonNull(builder.mappings, "mappings");
-		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
-		this.versions = ModelTypeHelper.unmodifiable(builder.versions);
+		this.completion = ApiTypeHelper.requireNonNull(builder.completion, this, "completion");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.docs = ApiTypeHelper.requireNonNull(builder.docs, this, "docs");
+		this.fielddata = ApiTypeHelper.requireNonNull(builder.fielddata, this, "fielddata");
+		this.queryCache = ApiTypeHelper.requireNonNull(builder.queryCache, this, "queryCache");
+		this.segments = ApiTypeHelper.requireNonNull(builder.segments, this, "segments");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.store = ApiTypeHelper.requireNonNull(builder.store, this, "store");
+		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
+		this.versions = ApiTypeHelper.unmodifiable(builder.versions);
 
 	}
 
-	public ClusterIndices(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterIndices of(Function<Builder, ObjectBuilder<ClusterIndices>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -101,7 +105,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code completion}
 	 */
-	public CompletionStats completion() {
+	public final CompletionStats completion() {
 		return this.completion;
 	}
 
@@ -110,7 +114,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -119,7 +123,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code docs}
 	 */
-	public DocStats docs() {
+	public final DocStats docs() {
 		return this.docs;
 	}
 
@@ -128,7 +132,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code fielddata}
 	 */
-	public FielddataStats fielddata() {
+	public final FielddataStats fielddata() {
 		return this.fielddata;
 	}
 
@@ -137,7 +141,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code query_cache}
 	 */
-	public QueryCacheStats queryCache() {
+	public final QueryCacheStats queryCache() {
 		return this.queryCache;
 	}
 
@@ -146,7 +150,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code segments}
 	 */
-	public SegmentsStats segments() {
+	public final SegmentsStats segments() {
 		return this.segments;
 	}
 
@@ -156,7 +160,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code shards}
 	 */
-	public ClusterIndicesShards shards() {
+	public final ClusterIndicesShards shards() {
 		return this.shards;
 	}
 
@@ -166,7 +170,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code store}
 	 */
-	public StoreStats store() {
+	public final StoreStats store() {
 		return this.store;
 	}
 
@@ -175,7 +179,7 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code mappings}
 	 */
-	public FieldTypesMappings mappings() {
+	public final FieldTypesMappings mappings() {
 		return this.mappings;
 	}
 
@@ -185,15 +189,14 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code analysis}
 	 */
-	public CharFilterTypes analysis() {
+	public final CharFilterTypes analysis() {
 		return this.analysis;
 	}
 
 	/**
 	 * API name: {@code versions}
 	 */
-	@Nullable
-	public List<IndicesVersions> versions() {
+	public final List<IndicesVersions> versions() {
 		return this.versions;
 	}
 
@@ -238,8 +241,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		generator.writeKey("analysis");
 		this.analysis.serialize(generator, mapper);
 
-		if (this.versions != null) {
-
+		if (ApiTypeHelper.isDefined(this.versions)) {
 			generator.writeKey("versions");
 			generator.writeStartArray();
 			for (IndicesVersions item0 : this.versions) {
@@ -257,7 +259,8 @@ public final class ClusterIndices implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterIndices}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterIndices> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIndices> {
 		private CompletionStats completion;
 
 		private Long count;
@@ -287,7 +290,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completion}
 		 */
-		public Builder completion(CompletionStats value) {
+		public final Builder completion(CompletionStats value) {
 			this.completion = value;
 			return this;
 		}
@@ -298,7 +301,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completion}
 		 */
-		public Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
+		public final Builder completion(Function<CompletionStats.Builder, ObjectBuilder<CompletionStats>> fn) {
 			return this.completion(fn.apply(new CompletionStats.Builder()).build());
 		}
 
@@ -307,7 +310,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -317,7 +320,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs}
 		 */
-		public Builder docs(DocStats value) {
+		public final Builder docs(DocStats value) {
 			this.docs = value;
 			return this;
 		}
@@ -327,7 +330,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs}
 		 */
-		public Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
+		public final Builder docs(Function<DocStats.Builder, ObjectBuilder<DocStats>> fn) {
 			return this.docs(fn.apply(new DocStats.Builder()).build());
 		}
 
@@ -336,7 +339,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata}
 		 */
-		public Builder fielddata(FielddataStats value) {
+		public final Builder fielddata(FielddataStats value) {
 			this.fielddata = value;
 			return this;
 		}
@@ -346,7 +349,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata}
 		 */
-		public Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
+		public final Builder fielddata(Function<FielddataStats.Builder, ObjectBuilder<FielddataStats>> fn) {
 			return this.fielddata(fn.apply(new FielddataStats.Builder()).build());
 		}
 
@@ -355,7 +358,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache}
 		 */
-		public Builder queryCache(QueryCacheStats value) {
+		public final Builder queryCache(QueryCacheStats value) {
 			this.queryCache = value;
 			return this;
 		}
@@ -365,7 +368,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache}
 		 */
-		public Builder queryCache(Function<QueryCacheStats.Builder, ObjectBuilder<QueryCacheStats>> fn) {
+		public final Builder queryCache(Function<QueryCacheStats.Builder, ObjectBuilder<QueryCacheStats>> fn) {
 			return this.queryCache(fn.apply(new QueryCacheStats.Builder()).build());
 		}
 
@@ -374,7 +377,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments}
 		 */
-		public Builder segments(SegmentsStats value) {
+		public final Builder segments(SegmentsStats value) {
 			this.segments = value;
 			return this;
 		}
@@ -384,7 +387,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments}
 		 */
-		public Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
+		public final Builder segments(Function<SegmentsStats.Builder, ObjectBuilder<SegmentsStats>> fn) {
 			return this.segments(fn.apply(new SegmentsStats.Builder()).build());
 		}
 
@@ -394,7 +397,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shards}
 		 */
-		public Builder shards(ClusterIndicesShards value) {
+		public final Builder shards(ClusterIndicesShards value) {
 			this.shards = value;
 			return this;
 		}
@@ -405,7 +408,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shards}
 		 */
-		public Builder shards(Function<ClusterIndicesShards.Builder, ObjectBuilder<ClusterIndicesShards>> fn) {
+		public final Builder shards(Function<ClusterIndicesShards.Builder, ObjectBuilder<ClusterIndicesShards>> fn) {
 			return this.shards(fn.apply(new ClusterIndicesShards.Builder()).build());
 		}
 
@@ -415,7 +418,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code store}
 		 */
-		public Builder store(StoreStats value) {
+		public final Builder store(StoreStats value) {
 			this.store = value;
 			return this;
 		}
@@ -426,7 +429,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code store}
 		 */
-		public Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
+		public final Builder store(Function<StoreStats.Builder, ObjectBuilder<StoreStats>> fn) {
 			return this.store(fn.apply(new StoreStats.Builder()).build());
 		}
 
@@ -435,7 +438,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code mappings}
 		 */
-		public Builder mappings(FieldTypesMappings value) {
+		public final Builder mappings(FieldTypesMappings value) {
 			this.mappings = value;
 			return this;
 		}
@@ -445,7 +448,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code mappings}
 		 */
-		public Builder mappings(Function<FieldTypesMappings.Builder, ObjectBuilder<FieldTypesMappings>> fn) {
+		public final Builder mappings(Function<FieldTypesMappings.Builder, ObjectBuilder<FieldTypesMappings>> fn) {
 			return this.mappings(fn.apply(new FieldTypesMappings.Builder()).build());
 		}
 
@@ -455,7 +458,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(CharFilterTypes value) {
+		public final Builder analysis(CharFilterTypes value) {
 			this.analysis = value;
 			return this;
 		}
@@ -466,49 +469,37 @@ public final class ClusterIndices implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code analysis}
 		 */
-		public Builder analysis(Function<CharFilterTypes.Builder, ObjectBuilder<CharFilterTypes>> fn) {
+		public final Builder analysis(Function<CharFilterTypes.Builder, ObjectBuilder<CharFilterTypes>> fn) {
 			return this.analysis(fn.apply(new CharFilterTypes.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code versions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>versions</code>.
 		 */
-		public Builder versions(@Nullable List<IndicesVersions> value) {
-			this.versions = value;
+		public final Builder versions(List<IndicesVersions> list) {
+			this.versions = _listAddAll(this.versions, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code versions}
+		 * <p>
+		 * Adds one or more values to <code>versions</code>.
 		 */
-		public Builder versions(IndicesVersions... value) {
-			this.versions = Arrays.asList(value);
+		public final Builder versions(IndicesVersions value, IndicesVersions... values) {
+			this.versions = _listAdd(this.versions, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
+		 * API name: {@code versions}
+		 * <p>
+		 * Adds a value to <code>versions</code> using a builder lambda.
 		 */
-		public Builder addVersions(IndicesVersions value) {
-			if (this.versions == null) {
-				this.versions = new ArrayList<>();
-			}
-			this.versions.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #versions(List)} to a singleton list.
-		 */
-		public Builder versions(Function<IndicesVersions.Builder, ObjectBuilder<IndicesVersions>> fn) {
-			return this.versions(fn.apply(new IndicesVersions.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
-		 */
-		public Builder addVersions(Function<IndicesVersions.Builder, ObjectBuilder<IndicesVersions>> fn) {
-			return this.addVersions(fn.apply(new IndicesVersions.Builder()).build());
+		public final Builder versions(Function<IndicesVersions.Builder, ObjectBuilder<IndicesVersions>> fn) {
+			return versions(fn.apply(new IndicesVersions.Builder()).build());
 		}
 
 		/**
@@ -518,6 +509,7 @@ public final class ClusterIndices implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterIndices build() {
+			_checkSingleUse();
 
 			return new ClusterIndices(this);
 		}
@@ -529,9 +521,9 @@ public final class ClusterIndices implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterIndices}
 	 */
 	public static final JsonpDeserializer<ClusterIndices> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ClusterIndices::setupClusterIndicesDeserializer, Builder::build);
+			ClusterIndices::setupClusterIndicesDeserializer);
 
-	protected static void setupClusterIndicesDeserializer(DelegatingDeserializer<ClusterIndices.Builder> op) {
+	protected static void setupClusterIndicesDeserializer(ObjectDeserializer<ClusterIndices.Builder> op) {
 
 		op.add(Builder::completion, CompletionStats._DESERIALIZER, "completion");
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");

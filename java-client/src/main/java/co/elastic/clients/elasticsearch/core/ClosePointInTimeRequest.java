@@ -23,18 +23,19 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -43,26 +44,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.close_point_in_time.Request
+
+/**
+ * Close a point in time
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/close_point_in_time/ClosePointInTimeRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClosePointInTimeRequest extends RequestBase implements JsonpSerializable {
+public class ClosePointInTimeRequest extends RequestBase implements JsonpSerializable {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClosePointInTimeRequest(Builder builder) {
+	private ClosePointInTimeRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public ClosePointInTimeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClosePointInTimeRequest of(Function<Builder, ObjectBuilder<ClosePointInTimeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -87,13 +96,14 @@ public final class ClosePointInTimeRequest extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link ClosePointInTimeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClosePointInTimeRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClosePointInTimeRequest> {
 		private String id;
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -105,6 +115,7 @@ public final class ClosePointInTimeRequest extends RequestBase implements JsonpS
 		 *             if some of the required fields are null.
 		 */
 		public ClosePointInTimeRequest build() {
+			_checkSingleUse();
 
 			return new ClosePointInTimeRequest(this);
 		}
@@ -116,10 +127,10 @@ public final class ClosePointInTimeRequest extends RequestBase implements JsonpS
 	 * Json deserializer for {@link ClosePointInTimeRequest}
 	 */
 	public static final JsonpDeserializer<ClosePointInTimeRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClosePointInTimeRequest::setupClosePointInTimeRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ClosePointInTimeRequest::setupClosePointInTimeRequestDeserializer);
 
 	protected static void setupClosePointInTimeRequestDeserializer(
-			DelegatingDeserializer<ClosePointInTimeRequest.Builder> op) {
+			ObjectDeserializer<ClosePointInTimeRequest.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
@@ -130,7 +141,9 @@ public final class ClosePointInTimeRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code close_point_in_time}".
 	 */
-	public static final Endpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/close_point_in_time",
+
 			// Request method
 			request -> {
 				return "DELETE";

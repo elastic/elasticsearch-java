@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeThreadPoolInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L279-L286">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeThreadPoolInfo implements JsonpSerializable {
+public class NodeThreadPoolInfo implements JsonpSerializable {
 	@Nullable
 	private final Integer core;
 
@@ -59,26 +67,26 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeThreadPoolInfo(Builder builder) {
+	private NodeThreadPoolInfo(Builder builder) {
 
 		this.core = builder.core;
 		this.keepAlive = builder.keepAlive;
 		this.max = builder.max;
-		this.queueSize = Objects.requireNonNull(builder.queueSize, "queue_size");
+		this.queueSize = ApiTypeHelper.requireNonNull(builder.queueSize, this, "queueSize");
 		this.size = builder.size;
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public NodeThreadPoolInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeThreadPoolInfo of(Function<Builder, ObjectBuilder<NodeThreadPoolInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code core}
 	 */
 	@Nullable
-	public Integer core() {
+	public final Integer core() {
 		return this.core;
 	}
 
@@ -86,7 +94,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public String keepAlive() {
+	public final String keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -94,14 +102,14 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	 * API name: {@code max}
 	 */
 	@Nullable
-	public Integer max() {
+	public final Integer max() {
 		return this.max;
 	}
 
 	/**
 	 * Required - API name: {@code queue_size}
 	 */
-	public int queueSize() {
+	public final int queueSize() {
 		return this.queueSize;
 	}
 
@@ -109,14 +117,14 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -132,34 +140,28 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.core != null) {
-
 			generator.writeKey("core");
 			generator.write(this.core);
 
 		}
 		if (this.keepAlive != null) {
-
 			generator.writeKey("keep_alive");
 			generator.write(this.keepAlive);
 
 		}
 		if (this.max != null) {
-
 			generator.writeKey("max");
 			generator.write(this.max);
 
 		}
-
 		generator.writeKey("queue_size");
 		generator.write(this.queueSize);
 
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-
 		generator.writeKey("type");
 		generator.write(this.type);
 
@@ -170,7 +172,8 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeThreadPoolInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeThreadPoolInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeThreadPoolInfo> {
 		@Nullable
 		private Integer core;
 
@@ -190,7 +193,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code core}
 		 */
-		public Builder core(@Nullable Integer value) {
+		public final Builder core(@Nullable Integer value) {
 			this.core = value;
 			return this;
 		}
@@ -198,7 +201,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable String value) {
 			this.keepAlive = value;
 			return this;
 		}
@@ -206,7 +209,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code max}
 		 */
-		public Builder max(@Nullable Integer value) {
+		public final Builder max(@Nullable Integer value) {
 			this.max = value;
 			return this;
 		}
@@ -214,7 +217,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code queue_size}
 		 */
-		public Builder queueSize(int value) {
+		public final Builder queueSize(int value) {
 			this.queueSize = value;
 			return this;
 		}
@@ -222,7 +225,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -230,7 +233,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -242,6 +245,7 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeThreadPoolInfo build() {
+			_checkSingleUse();
 
 			return new NodeThreadPoolInfo(this);
 		}
@@ -253,9 +257,9 @@ public final class NodeThreadPoolInfo implements JsonpSerializable {
 	 * Json deserializer for {@link NodeThreadPoolInfo}
 	 */
 	public static final JsonpDeserializer<NodeThreadPoolInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer, Builder::build);
+			.lazy(Builder::new, NodeThreadPoolInfo::setupNodeThreadPoolInfoDeserializer);
 
-	protected static void setupNodeThreadPoolInfoDeserializer(DelegatingDeserializer<NodeThreadPoolInfo.Builder> op) {
+	protected static void setupNodeThreadPoolInfoDeserializer(ObjectDeserializer<NodeThreadPoolInfo.Builder> op) {
 
 		op.add(Builder::core, JsonpDeserializer.integerDeserializer(), "core");
 		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");

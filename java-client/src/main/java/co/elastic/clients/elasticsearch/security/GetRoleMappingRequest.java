@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,20 +42,28 @@ import javax.annotation.Nullable;
 
 // typedef: security.get_role_mapping.Request
 
-public final class GetRoleMappingRequest extends RequestBase {
+/**
+ * Retrieves role mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role_mapping/SecurityGetRoleMappingRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class GetRoleMappingRequest extends RequestBase {
 	@Nullable
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRoleMappingRequest(Builder builder) {
+	private GetRoleMappingRequest(Builder builder) {
 
 		this.name = builder.name;
 
 	}
 
-	public GetRoleMappingRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRoleMappingRequest of(Function<Builder, ObjectBuilder<GetRoleMappingRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +72,7 @@ public final class GetRoleMappingRequest extends RequestBase {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -72,7 +81,8 @@ public final class GetRoleMappingRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetRoleMappingRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetRoleMappingRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRoleMappingRequest> {
 		@Nullable
 		private String name;
 
@@ -81,7 +91,7 @@ public final class GetRoleMappingRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -93,6 +103,7 @@ public final class GetRoleMappingRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetRoleMappingRequest build() {
+			_checkSingleUse();
 
 			return new GetRoleMappingRequest(this);
 		}
@@ -103,7 +114,9 @@ public final class GetRoleMappingRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.get_role_mapping}".
 	 */
-	public static final Endpoint<GetRoleMappingRequest, GetRoleMappingResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetRoleMappingRequest, GetRoleMappingResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_role_mapping",
+
 			// Request method
 			request -> {
 				return "GET";

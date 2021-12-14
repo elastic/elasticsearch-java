@@ -24,18 +24,18 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 /**
- * A {@code JsonpMapper} combines a jsonp provider and object serialization/deserialization based on jsonp events.
+ * A {@code JsonpMapper} combines a JSON-P provider and object serialization/deserialization based on JSON-P events.
  */
 
-// Note: we could have used jsonb for object mapping, but this API lacks an important feature: it only works with
-// bytes and character streams, and not jsonp events. Since we process request and response as jsonb streams, using
-// jsonb would require to serialize the incoming json events and pass them to jsonb that would parse them again.
+// Note: we could have used JSON-B for object mapping, but this API lacks an important feature: it only works with
+// bytes and character streams, and not JSON-P events. Since we process request and response as JSON-P streams, using
+// JSON-B would require to serialize the incoming JSON events and pass them to JSON-B that would parse them again.
 // Since this is very inefficient, this API allows for faster implementations that bypass this serialization/reparsing
 // phase (e.g. JacksonJsonpMapper)
 
 public interface JsonpMapper {
     /**
-     * Return the jsonp provider, to create JSON parsers and generators.
+     * Return the JSON-P provider, to create JSON parsers and generators.
      */
     JsonProvider jsonProvider();
 
@@ -56,5 +56,27 @@ public interface JsonpMapper {
      */
     default boolean ignoreUnknownFields() {
         return true;
+    }
+
+    /**
+     * Get a named attribute associated to this mapper.
+     */
+    default <T> T attribute(String name) {
+        return null;
+    }
+
+    /**
+     * Get a named attribute associated to this mapper, with a default value.
+     */
+    default <T> T attribute(String name, T defaultValue) {
+        T v = attribute(name);
+        return v != null ? v : defaultValue;
+    }
+
+    /**
+     * Create a new mapper with a named attribute that delegates to this one.
+     */
+    default <T> JsonpMapper withAttribute(String name, T value) {
+        return new AttributedJsonpMapper(this, name, value);
     }
 }

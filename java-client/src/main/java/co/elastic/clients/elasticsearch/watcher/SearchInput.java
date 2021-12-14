@@ -23,69 +23,73 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SearchInput
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L114-L118">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SearchInput implements InputVariant, JsonpSerializable {
-	@Nullable
+public class SearchInput implements InputVariant, JsonpSerializable {
 	private final List<String> extract;
 
 	private final SearchInputRequestDefinition request;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchInput(Builder builder) {
+	private SearchInput(Builder builder) {
 
-		this.extract = ModelTypeHelper.unmodifiable(builder.extract);
-		this.request = Objects.requireNonNull(builder.request, "request");
+		this.extract = ApiTypeHelper.unmodifiable(builder.extract);
+		this.request = ApiTypeHelper.requireNonNull(builder.request, this, "request");
 		this.timeout = builder.timeout;
 
 	}
 
-	public SearchInput(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchInput of(Function<Builder, ObjectBuilder<SearchInput>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Input} variant type
+	 * Input variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "search";
+	public Input.Kind _inputKind() {
+		return Input.Kind.Search;
 	}
 
 	/**
 	 * API name: {@code extract}
 	 */
-	@Nullable
-	public List<String> extract() {
+	public final List<String> extract() {
 		return this.extract;
 	}
 
 	/**
 	 * Required - API name: {@code request}
 	 */
-	public SearchInputRequestDefinition request() {
+	public final SearchInputRequestDefinition request() {
 		return this.request;
 	}
 
@@ -93,7 +97,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -108,8 +112,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.extract != null) {
-
+		if (ApiTypeHelper.isDefined(this.extract)) {
 			generator.writeKey("extract");
 			generator.writeStartArray();
 			for (String item0 : this.extract) {
@@ -119,14 +122,12 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("request");
 		this.request.serialize(generator, mapper);
 
 		if (this.timeout != null) {
-
 			generator.writeKey("timeout");
-			generator.write(this.timeout);
+			this.timeout.serialize(generator, mapper);
 
 		}
 
@@ -137,46 +138,40 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link SearchInput}.
 	 */
-	public static class Builder implements ObjectBuilder<SearchInput> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchInput> {
 		@Nullable
 		private List<String> extract;
 
 		private SearchInputRequestDefinition request;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * API name: {@code extract}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>extract</code>.
 		 */
-		public Builder extract(@Nullable List<String> value) {
-			this.extract = value;
+		public final Builder extract(List<String> list) {
+			this.extract = _listAddAll(this.extract, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code extract}
+		 * <p>
+		 * Adds one or more values to <code>extract</code>.
 		 */
-		public Builder extract(String... value) {
-			this.extract = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #extract(List)}, creating the list if needed.
-		 */
-		public Builder addExtract(String value) {
-			if (this.extract == null) {
-				this.extract = new ArrayList<>();
-			}
-			this.extract.add(value);
+		public final Builder extract(String value, String... values) {
+			this.extract = _listAdd(this.extract, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public Builder request(SearchInputRequestDefinition value) {
+		public final Builder request(SearchInputRequestDefinition value) {
 			this.request = value;
 			return this;
 		}
@@ -184,7 +179,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		/**
 		 * Required - API name: {@code request}
 		 */
-		public Builder request(
+		public final Builder request(
 				Function<SearchInputRequestDefinition.Builder, ObjectBuilder<SearchInputRequestDefinition>> fn) {
 			return this.request(fn.apply(new SearchInputRequestDefinition.Builder()).build());
 		}
@@ -192,9 +187,16 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		/**
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -204,6 +206,7 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SearchInput build() {
+			_checkSingleUse();
 
 			return new SearchInput(this);
 		}
@@ -215,14 +218,14 @@ public final class SearchInput implements InputVariant, JsonpSerializable {
 	 * Json deserializer for {@link SearchInput}
 	 */
 	public static final JsonpDeserializer<SearchInput> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SearchInput::setupSearchInputDeserializer, Builder::build);
+			SearchInput::setupSearchInputDeserializer);
 
-	protected static void setupSearchInputDeserializer(DelegatingDeserializer<SearchInput.Builder> op) {
+	protected static void setupSearchInputDeserializer(ObjectDeserializer<SearchInput.Builder> op) {
 
 		op.add(Builder::extract, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"extract");
 		op.add(Builder::request, SearchInputRequestDefinition._DESERIALIZER, "request");
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 

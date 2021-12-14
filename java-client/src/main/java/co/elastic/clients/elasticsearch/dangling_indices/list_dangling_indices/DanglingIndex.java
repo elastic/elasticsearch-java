@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.dangling_indices.list_dangling_indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: dangling_indices.list_dangling_indices.DanglingIndex
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/dangling_indices/list_dangling_indices/ListDanglingIndicesResponse.ts#L29-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DanglingIndex implements JsonpSerializable {
+public class DanglingIndex implements JsonpSerializable {
 	private final String indexName;
 
 	private final String indexUuid;
@@ -54,44 +59,44 @@ public final class DanglingIndex implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DanglingIndex(Builder builder) {
+	private DanglingIndex(Builder builder) {
 
-		this.indexName = Objects.requireNonNull(builder.indexName, "index_name");
-		this.indexUuid = Objects.requireNonNull(builder.indexUuid, "index_uuid");
-		this.creationDateMillis = Objects.requireNonNull(builder.creationDateMillis, "creation_date_millis");
-		this.nodeIds = ModelTypeHelper.unmodifiableNonNull(builder.nodeIds, "node_ids");
+		this.indexName = ApiTypeHelper.requireNonNull(builder.indexName, this, "indexName");
+		this.indexUuid = ApiTypeHelper.requireNonNull(builder.indexUuid, this, "indexUuid");
+		this.creationDateMillis = ApiTypeHelper.requireNonNull(builder.creationDateMillis, this, "creationDateMillis");
+		this.nodeIds = ApiTypeHelper.unmodifiableRequired(builder.nodeIds, this, "nodeIds");
 
 	}
 
-	public DanglingIndex(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DanglingIndex of(Function<Builder, ObjectBuilder<DanglingIndex>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index_name}
 	 */
-	public String indexName() {
+	public final String indexName() {
 		return this.indexName;
 	}
 
 	/**
 	 * Required - API name: {@code index_uuid}
 	 */
-	public String indexUuid() {
+	public final String indexUuid() {
 		return this.indexUuid;
 	}
 
 	/**
 	 * Required - API name: {@code creation_date_millis}
 	 */
-	public String creationDateMillis() {
+	public final String creationDateMillis() {
 		return this.creationDateMillis;
 	}
 
 	/**
 	 * Required - API name: {@code node_ids}
 	 */
-	public List<String> nodeIds() {
+	public final List<String> nodeIds() {
 		return this.nodeIds;
 	}
 
@@ -115,13 +120,16 @@ public final class DanglingIndex implements JsonpSerializable {
 		generator.writeKey("creation_date_millis");
 		generator.write(this.creationDateMillis);
 
-		generator.writeKey("node_ids");
-		generator.writeStartArray();
-		for (String item0 : this.nodeIds) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.nodeIds)) {
+			generator.writeKey("node_ids");
+			generator.writeStartArray();
+			for (String item0 : this.nodeIds) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -130,7 +138,8 @@ public final class DanglingIndex implements JsonpSerializable {
 	/**
 	 * Builder for {@link DanglingIndex}.
 	 */
-	public static class Builder implements ObjectBuilder<DanglingIndex> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DanglingIndex> {
 		private String indexName;
 
 		private String indexUuid;
@@ -142,7 +151,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_name}
 		 */
-		public Builder indexName(String value) {
+		public final Builder indexName(String value) {
 			this.indexName = value;
 			return this;
 		}
@@ -150,7 +159,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_uuid}
 		 */
-		public Builder indexUuid(String value) {
+		public final Builder indexUuid(String value) {
 			this.indexUuid = value;
 			return this;
 		}
@@ -158,35 +167,28 @@ public final class DanglingIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code creation_date_millis}
 		 */
-		public Builder creationDateMillis(String value) {
+		public final Builder creationDateMillis(String value) {
 			this.creationDateMillis = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code node_ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeIds</code>.
 		 */
-		public Builder nodeIds(List<String> value) {
-			this.nodeIds = value;
+		public final Builder nodeIds(List<String> list) {
+			this.nodeIds = _listAddAll(this.nodeIds, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code node_ids}
+		 * <p>
+		 * Adds one or more values to <code>nodeIds</code>.
 		 */
-		public Builder nodeIds(String... value) {
-			this.nodeIds = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeIds(List)}, creating the list if needed.
-		 */
-		public Builder addNodeIds(String value) {
-			if (this.nodeIds == null) {
-				this.nodeIds = new ArrayList<>();
-			}
-			this.nodeIds.add(value);
+		public final Builder nodeIds(String value, String... values) {
+			this.nodeIds = _listAdd(this.nodeIds, value, values);
 			return this;
 		}
 
@@ -197,6 +199,7 @@ public final class DanglingIndex implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DanglingIndex build() {
+			_checkSingleUse();
 
 			return new DanglingIndex(this);
 		}
@@ -208,9 +211,9 @@ public final class DanglingIndex implements JsonpSerializable {
 	 * Json deserializer for {@link DanglingIndex}
 	 */
 	public static final JsonpDeserializer<DanglingIndex> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DanglingIndex::setupDanglingIndexDeserializer, Builder::build);
+			DanglingIndex::setupDanglingIndexDeserializer);
 
-	protected static void setupDanglingIndexDeserializer(DelegatingDeserializer<DanglingIndex.Builder> op) {
+	protected static void setupDanglingIndexDeserializer(ObjectDeserializer<DanglingIndex.Builder> op) {
 
 		op.add(Builder::indexName, JsonpDeserializer.stringDeserializer(), "index_name");
 		op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");

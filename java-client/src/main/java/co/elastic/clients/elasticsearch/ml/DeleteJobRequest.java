@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,55 +45,70 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_job.Request
 
-public final class DeleteJobRequest extends RequestBase {
-	private final String jobId;
+/**
+ * Deletes an existing anomaly detection job. All job configuration, model state
+ * and results are deleted. It is not currently possible to delete multiple jobs
+ * using wildcards or a comma separated list. If you delete a job that has a
+ * datafeed, the request first tries to delete the datafeed. This behavior is
+ * equivalent to calling the delete datafeed API with the same timeout and force
+ * parameters as the delete job request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_job/MlDeleteJobRequest.ts#L23-L56">API
+ *      specification</a>
+ */
 
+public class DeleteJobRequest extends RequestBase {
 	@Nullable
 	private final Boolean force;
+
+	private final String jobId;
 
 	@Nullable
 	private final Boolean waitForCompletion;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteJobRequest(Builder builder) {
+	private DeleteJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.force = builder.force;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public DeleteJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteJobRequest of(Function<Builder, ObjectBuilder<DeleteJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the job to delete
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
-	}
-
-	/**
-	 * True if the job should be forcefully deleted
+	 * Use to forcefully delete an opened job; this method is quicker than closing
+	 * and deleting the job.
 	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
-	public Boolean force() {
+	public final Boolean force() {
 		return this.force;
 	}
 
 	/**
-	 * Should this request wait until the operation has completed before returning
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public final String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * Specifies whether the request should return immediately or wait until the job
+	 * deletion completes.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -100,41 +117,44 @@ public final class DeleteJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteJobRequest> {
-		private String jobId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteJobRequest> {
 		@Nullable
 		private Boolean force;
+
+		private String jobId;
 
 		@Nullable
 		private Boolean waitForCompletion;
 
 		/**
-		 * Required - The ID of the job to delete
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
-		 * True if the job should be forcefully deleted
+		 * Use to forcefully delete an opened job; this method is quicker than closing
+		 * and deleting the job.
 		 * <p>
 		 * API name: {@code force}
 		 */
-		public Builder force(@Nullable Boolean value) {
+		public final Builder force(@Nullable Boolean value) {
 			this.force = value;
 			return this;
 		}
 
 		/**
-		 * Should this request wait until the operation has completed before returning
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public final Builder jobId(String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
+		 * Specifies whether the request should return immediately or wait until the job
+		 * deletion completes.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -146,6 +166,7 @@ public final class DeleteJobRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteJobRequest build() {
+			_checkSingleUse();
 
 			return new DeleteJobRequest(this);
 		}
@@ -156,7 +177,9 @@ public final class DeleteJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_job}".
 	 */
-	public static final Endpoint<DeleteJobRequest, DeleteJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_job",
+
 			// Request method
 			request -> {
 				return "DELETE";

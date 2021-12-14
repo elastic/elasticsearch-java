@@ -23,21 +23,20 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,10 +47,15 @@ import javax.annotation.Nullable;
 
 // typedef: cat.recovery.Request
 
-public final class RecoveryRequest extends CatRequestBase {
-	@Nullable
-	private final List<String> index;
+/**
+ * Returns information about index shard recoveries, both on-going completed.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/recovery/CatRecoveryRequest.ts#L23-L37">API
+ *      specification</a>
+ */
 
+public class RecoveryRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean activeOnly;
 
@@ -61,30 +65,21 @@ public final class RecoveryRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean detailed;
 
+	private final List<String> index;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryRequest(Builder builder) {
+	private RecoveryRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.activeOnly = builder.activeOnly;
 		this.bytes = builder.bytes;
 		this.detailed = builder.detailed;
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 
 	}
 
-	public RecoveryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list or wildcard expression of index names to limit the
-	 * returned information
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
+	public static RecoveryRequest of(Function<Builder, ObjectBuilder<RecoveryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -93,7 +88,7 @@ public final class RecoveryRequest extends CatRequestBase {
 	 * API name: {@code active_only}
 	 */
 	@Nullable
-	public Boolean activeOnly() {
+	public final Boolean activeOnly() {
 		return this.activeOnly;
 	}
 
@@ -103,7 +98,7 @@ public final class RecoveryRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -114,8 +109,18 @@ public final class RecoveryRequest extends CatRequestBase {
 	 * API name: {@code detailed}
 	 */
 	@Nullable
-	public Boolean detailed() {
+	public final Boolean detailed() {
 		return this.detailed;
+	}
+
+	/**
+	 * Comma-separated list or wildcard expression of index names to limit the
+	 * returned information
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -123,10 +128,8 @@ public final class RecoveryRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link RecoveryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<RecoveryRequest> {
-		@Nullable
-		private List<String> index;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RecoveryRequest> {
 		@Nullable
 		private Boolean activeOnly;
 
@@ -136,45 +139,15 @@ public final class RecoveryRequest extends CatRequestBase {
 		@Nullable
 		private Boolean detailed;
 
-		/**
-		 * Comma-separated list or wildcard expression of index names to limit the
-		 * returned information
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * Comma-separated list or wildcard expression of index names to limit the
-		 * returned information
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> index;
 
 		/**
 		 * If <code>true</code>, the response only includes ongoing shard recoveries
 		 * <p>
 		 * API name: {@code active_only}
 		 */
-		public Builder activeOnly(@Nullable Boolean value) {
+		public final Builder activeOnly(@Nullable Boolean value) {
 			this.activeOnly = value;
 			return this;
 		}
@@ -184,7 +157,7 @@ public final class RecoveryRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
@@ -195,8 +168,34 @@ public final class RecoveryRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code detailed}
 		 */
-		public Builder detailed(@Nullable Boolean value) {
+		public final Builder detailed(@Nullable Boolean value) {
 			this.detailed = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list or wildcard expression of index names to limit the
+		 * returned information
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list or wildcard expression of index names to limit the
+		 * returned information
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -207,6 +206,7 @@ public final class RecoveryRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryRequest build() {
+			_checkSingleUse();
 
 			return new RecoveryRequest(this);
 		}
@@ -217,7 +217,9 @@ public final class RecoveryRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.recovery}".
 	 */
-	public static final Endpoint<RecoveryRequest, RecoveryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.recovery",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -230,7 +232,7 @@ public final class RecoveryRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -254,14 +256,15 @@ public final class RecoveryRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
+				if (request.detailed != null) {
+					params.put("detailed", String.valueOf(request.detailed));
+				}
 				if (request.activeOnly != null) {
 					params.put("active_only", String.valueOf(request.activeOnly));
 				}
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
-				}
-				if (request.detailed != null) {
-					params.put("detailed", String.valueOf(request.detailed));
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				return params;
 

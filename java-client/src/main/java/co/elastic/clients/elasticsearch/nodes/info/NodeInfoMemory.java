@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,36 +40,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoMemory
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L308-L311">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoMemory implements JsonpSerializable {
+public class NodeInfoMemory implements JsonpSerializable {
 	private final String total;
 
 	private final long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoMemory(Builder builder) {
+	private NodeInfoMemory(Builder builder) {
 
-		this.total = Objects.requireNonNull(builder.total, "total");
-		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 
 	}
 
-	public NodeInfoMemory(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoMemory of(Function<Builder, ObjectBuilder<NodeInfoMemory>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public String total() {
+	public final String total() {
 		return this.total;
 	}
 
 	/**
 	 * Required - API name: {@code total_in_bytes}
 	 */
-	public long totalInBytes() {
+	public final long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -96,7 +104,8 @@ public final class NodeInfoMemory implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoMemory}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoMemory> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoMemory> {
 		private String total;
 
 		private Long totalInBytes;
@@ -104,7 +113,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(String value) {
+		public final Builder total(String value) {
 			this.total = value;
 			return this;
 		}
@@ -112,7 +121,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(long value) {
+		public final Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -124,6 +133,7 @@ public final class NodeInfoMemory implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoMemory build() {
+			_checkSingleUse();
 
 			return new NodeInfoMemory(this);
 		}
@@ -135,9 +145,9 @@ public final class NodeInfoMemory implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoMemory}
 	 */
 	public static final JsonpDeserializer<NodeInfoMemory> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoMemory::setupNodeInfoMemoryDeserializer, Builder::build);
+			NodeInfoMemory::setupNodeInfoMemoryDeserializer);
 
-	protected static void setupNodeInfoMemoryDeserializer(DelegatingDeserializer<NodeInfoMemory.Builder> op) {
+	protected static void setupNodeInfoMemoryDeserializer(ObjectDeserializer<NodeInfoMemory.Builder> op) {
 
 		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
 		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");

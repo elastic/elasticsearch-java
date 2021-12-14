@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ilm.put_lifecycle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/put_lifecycle/PutLifecycleResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutLifecycleResponse extends AcknowledgedResponseBase {
+public class PutLifecycleResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutLifecycleResponse(Builder builder) {
+	private PutLifecycleResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutLifecycleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutLifecycleResponse of(Function<Builder, ObjectBuilder<PutLifecycleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutLifecycleResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutLifecycleResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutLifecycleResponse> {
@@ -68,6 +75,7 @@ public final class PutLifecycleResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutLifecycleResponse build() {
+			_checkSingleUse();
 
 			return new PutLifecycleResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class PutLifecycleResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutLifecycleResponse}
 	 */
 	public static final JsonpDeserializer<PutLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutLifecycleResponse::setupPutLifecycleResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutLifecycleResponse::setupPutLifecycleResponseDeserializer);
 
-	protected static void setupPutLifecycleResponseDeserializer(
-			DelegatingDeserializer<PutLifecycleResponse.Builder> op) {
+	protected static void setupPutLifecycleResponseDeserializer(ObjectDeserializer<PutLifecycleResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,8 +36,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RandomScoreFunction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L72-L75">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RandomScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+public class RandomScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
 	@Nullable
 	private final String field;
 
@@ -47,7 +53,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RandomScoreFunction(Builder builder) {
+	private RandomScoreFunction(Builder builder) {
 		super(builder);
 
 		this.field = builder.field;
@@ -55,23 +61,23 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 
 	}
 
-	public RandomScoreFunction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RandomScoreFunction of(Function<Builder, ObjectBuilder<RandomScoreFunction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link FunctionScore} variant type
+	 * FunctionScore variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "random_score";
+	public FunctionScore.Kind _functionScoreKind() {
+		return FunctionScore.Kind.RandomScore;
 	}
 
 	/**
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -79,7 +85,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 	 * API name: {@code seed}
 	 */
 	@Nullable
-	public String seed() {
+	public final String seed() {
 		return this.seed;
 	}
 
@@ -87,13 +93,11 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 
 		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.seed != null) {
-
 			generator.writeKey("seed");
 			generator.write(this.seed);
 
@@ -106,6 +110,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 	/**
 	 * Builder for {@link RandomScoreFunction}.
 	 */
+
 	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RandomScoreFunction> {
@@ -118,7 +123,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -126,7 +131,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 		/**
 		 * API name: {@code seed}
 		 */
-		public Builder seed(@Nullable String value) {
+		public final Builder seed(@Nullable String value) {
 			this.seed = value;
 			return this;
 		}
@@ -143,6 +148,7 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 		 *             if some of the required fields are null.
 		 */
 		public RandomScoreFunction build() {
+			_checkSingleUse();
 
 			return new RandomScoreFunction(this);
 		}
@@ -154,9 +160,9 @@ public final class RandomScoreFunction extends ScoreFunctionBase implements Func
 	 * Json deserializer for {@link RandomScoreFunction}
 	 */
 	public static final JsonpDeserializer<RandomScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RandomScoreFunction::setupRandomScoreFunctionDeserializer, Builder::build);
+			.lazy(Builder::new, RandomScoreFunction::setupRandomScoreFunctionDeserializer);
 
-	protected static void setupRandomScoreFunctionDeserializer(DelegatingDeserializer<RandomScoreFunction.Builder> op) {
+	protected static void setupRandomScoreFunctionDeserializer(ObjectDeserializer<RandomScoreFunction.Builder> op) {
 		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::seed, JsonpDeserializer.stringDeserializer(), "seed");

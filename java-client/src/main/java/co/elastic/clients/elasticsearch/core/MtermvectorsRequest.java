@@ -23,27 +23,25 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.elasticsearch.core.mtermvectors.Operation;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.mtermvectors.MultiTermVectorsOperation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,16 +51,27 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Request
-@JsonpDeserializable
-public final class MtermvectorsRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final String index;
 
-	@Nullable
-	private final List<String> fields;
+/**
+ * Returns multiple termvectors in one request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mtermvectors/MultiTermVectorsRequest.ts#L31-L58">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class MtermvectorsRequest extends RequestBase implements JsonpSerializable {
+	private final List<MultiTermVectorsOperation> docs;
 
 	@Nullable
 	private final Boolean fieldStatistics;
+
+	private final List<String> fields;
+
+	private final List<String> ids;
+
+	@Nullable
+	private final String index;
 
 	@Nullable
 	private final Boolean offsets;
@@ -91,19 +100,15 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	private final VersionType versionType;
 
-	@Nullable
-	private final List<Operation> docs;
-
-	@Nullable
-	private final List<String> ids;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public MtermvectorsRequest(Builder builder) {
+	private MtermvectorsRequest(Builder builder) {
 
-		this.index = builder.index;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.docs = ApiTypeHelper.unmodifiable(builder.docs);
 		this.fieldStatistics = builder.fieldStatistics;
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.ids = ApiTypeHelper.unmodifiable(builder.ids);
+		this.index = builder.index;
 		this.offsets = builder.offsets;
 		this.payloads = builder.payloads;
 		this.positions = builder.positions;
@@ -113,34 +118,18 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		this.termStatistics = builder.termStatistics;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
-		this.docs = ModelTypeHelper.unmodifiable(builder.docs);
-		this.ids = ModelTypeHelper.unmodifiable(builder.ids);
 
 	}
 
-	public MtermvectorsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The index in which the document resides.
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public String index() {
-		return this.index;
+	public static MtermvectorsRequest of(Function<Builder, ObjectBuilder<MtermvectorsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * A comma-separated list of fields to return. Applies to all returned documents
-	 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
-	 * <p>
-	 * API name: {@code fields}
+	 * API name: {@code docs}
 	 */
-	@Nullable
-	public List<String> fields() {
-		return this.fields;
+	public final List<MultiTermVectorsOperation> docs() {
+		return this.docs;
 	}
 
 	/**
@@ -151,8 +140,35 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code field_statistics}
 	 */
 	@Nullable
-	public Boolean fieldStatistics() {
+	public final Boolean fieldStatistics() {
 		return this.fieldStatistics;
+	}
+
+	/**
+	 * A comma-separated list of fields to return. Applies to all returned documents
+	 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+	 * <p>
+	 * API name: {@code fields}
+	 */
+	public final List<String> fields() {
+		return this.fields;
+	}
+
+	/**
+	 * API name: {@code ids}
+	 */
+	public final List<String> ids() {
+		return this.ids;
+	}
+
+	/**
+	 * The index in which the document resides.
+	 * <p>
+	 * API name: {@code index}
+	 */
+	@Nullable
+	public final String index() {
+		return this.index;
 	}
 
 	/**
@@ -163,7 +179,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code offsets}
 	 */
 	@Nullable
-	public Boolean offsets() {
+	public final Boolean offsets() {
 		return this.offsets;
 	}
 
@@ -175,7 +191,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code payloads}
 	 */
 	@Nullable
-	public Boolean payloads() {
+	public final Boolean payloads() {
 		return this.payloads;
 	}
 
@@ -187,7 +203,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code positions}
 	 */
 	@Nullable
-	public Boolean positions() {
+	public final Boolean positions() {
 		return this.positions;
 	}
 
@@ -199,7 +215,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code preference}
 	 */
 	@Nullable
-	public String preference() {
+	public final String preference() {
 		return this.preference;
 	}
 
@@ -210,7 +226,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code realtime}
 	 */
 	@Nullable
-	public Boolean realtime() {
+	public final Boolean realtime() {
 		return this.realtime;
 	}
 
@@ -221,7 +237,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -233,7 +249,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code term_statistics}
 	 */
 	@Nullable
-	public Boolean termStatistics() {
+	public final Boolean termStatistics() {
 		return this.termStatistics;
 	}
 
@@ -243,7 +259,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -253,24 +269,8 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
-	}
-
-	/**
-	 * API name: {@code docs}
-	 */
-	@Nullable
-	public List<Operation> docs() {
-		return this.docs;
-	}
-
-	/**
-	 * API name: {@code ids}
-	 */
-	@Nullable
-	public List<String> ids() {
-		return this.ids;
 	}
 
 	/**
@@ -284,19 +284,17 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.docs != null) {
-
+		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
-			for (Operation item0 : this.docs) {
+			for (MultiTermVectorsOperation item0 : this.docs) {
 				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
 
 		}
-		if (this.ids != null) {
-
+		if (ApiTypeHelper.isDefined(this.ids)) {
 			generator.writeKey("ids");
 			generator.writeStartArray();
 			for (String item0 : this.ids) {
@@ -314,15 +312,22 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link MtermvectorsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MtermvectorsRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MtermvectorsRequest> {
 		@Nullable
-		private String index;
+		private List<MultiTermVectorsOperation> docs;
+
+		@Nullable
+		private Boolean fieldStatistics;
 
 		@Nullable
 		private List<String> fields;
 
 		@Nullable
-		private Boolean fieldStatistics;
+		private List<String> ids;
+
+		@Nullable
+		private String index;
 
 		@Nullable
 		private Boolean offsets;
@@ -351,53 +356,34 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private VersionType versionType;
 
-		@Nullable
-		private List<Operation> docs;
-
-		@Nullable
-		private List<String> ids;
-
 		/**
-		 * The index in which the document resides.
+		 * API name: {@code docs}
 		 * <p>
-		 * API name: {@code index}
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 */
-		public Builder index(@Nullable String value) {
-			this.index = value;
+		public final Builder docs(List<MultiTermVectorsOperation> list) {
+			this.docs = _listAddAll(this.docs, list);
 			return this;
 		}
 
 		/**
-		 * A comma-separated list of fields to return. Applies to all returned documents
-		 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * API name: {@code docs}
 		 * <p>
-		 * API name: {@code fields}
+		 * Adds one or more values to <code>docs</code>.
 		 */
-		public Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder docs(MultiTermVectorsOperation value, MultiTermVectorsOperation... values) {
+			this.docs = _listAdd(this.docs, value, values);
 			return this;
 		}
 
 		/**
-		 * A comma-separated list of fields to return. Applies to all returned documents
-		 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * API name: {@code docs}
 		 * <p>
-		 * API name: {@code fields}
+		 * Adds a value to <code>docs</code> using a builder lambda.
 		 */
-		public Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
-			return this;
+		public final Builder docs(
+				Function<MultiTermVectorsOperation.Builder, ObjectBuilder<MultiTermVectorsOperation>> fn) {
+			return docs(fn.apply(new MultiTermVectorsOperation.Builder()).build());
 		}
 
 		/**
@@ -407,8 +393,64 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code field_statistics}
 		 */
-		public Builder fieldStatistics(@Nullable Boolean value) {
+		public final Builder fieldStatistics(@Nullable Boolean value) {
 			this.fieldStatistics = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of fields to return. Applies to all returned documents
+		 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
+		 */
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of fields to return. Applies to all returned documents
+		 * unless otherwise specified in body &quot;params&quot; or &quot;docs&quot;.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
+		 */
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code ids}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ids</code>.
+		 */
+		public final Builder ids(List<String> list) {
+			this.ids = _listAddAll(this.ids, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code ids}
+		 * <p>
+		 * Adds one or more values to <code>ids</code>.
+		 */
+		public final Builder ids(String value, String... values) {
+			this.ids = _listAdd(this.ids, value, values);
+			return this;
+		}
+
+		/**
+		 * The index in which the document resides.
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public final Builder index(@Nullable String value) {
+			this.index = value;
 			return this;
 		}
 
@@ -419,7 +461,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code offsets}
 		 */
-		public Builder offsets(@Nullable Boolean value) {
+		public final Builder offsets(@Nullable Boolean value) {
 			this.offsets = value;
 			return this;
 		}
@@ -431,7 +473,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code payloads}
 		 */
-		public Builder payloads(@Nullable Boolean value) {
+		public final Builder payloads(@Nullable Boolean value) {
 			this.payloads = value;
 			return this;
 		}
@@ -443,7 +485,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code positions}
 		 */
-		public Builder positions(@Nullable Boolean value) {
+		public final Builder positions(@Nullable Boolean value) {
 			this.positions = value;
 			return this;
 		}
@@ -455,7 +497,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code preference}
 		 */
-		public Builder preference(@Nullable String value) {
+		public final Builder preference(@Nullable String value) {
 			this.preference = value;
 			return this;
 		}
@@ -466,7 +508,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code realtime}
 		 */
-		public Builder realtime(@Nullable Boolean value) {
+		public final Builder realtime(@Nullable Boolean value) {
 			this.realtime = value;
 			return this;
 		}
@@ -477,7 +519,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -489,7 +531,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code term_statistics}
 		 */
-		public Builder termStatistics(@Nullable Boolean value) {
+		public final Builder termStatistics(@Nullable Boolean value) {
 			this.termStatistics = value;
 			return this;
 		}
@@ -499,7 +541,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -509,76 +551,8 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code docs}
-		 */
-		public Builder docs(@Nullable List<Operation> value) {
-			this.docs = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code docs}
-		 */
-		public Builder docs(Operation... value) {
-			this.docs = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder addDocs(Operation value) {
-			if (this.docs == null) {
-				this.docs = new ArrayList<>();
-			}
-			this.docs.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #docs(List)} to a singleton list.
-		 */
-		public Builder docs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
-			return this.docs(fn.apply(new Operation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder addDocs(Function<Operation.Builder, ObjectBuilder<Operation>> fn) {
-			return this.addDocs(fn.apply(new Operation.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code ids}
-		 */
-		public Builder ids(@Nullable List<String> value) {
-			this.ids = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code ids}
-		 */
-		public Builder ids(String... value) {
-			this.ids = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #ids(List)}, creating the list if needed.
-		 */
-		public Builder addIds(String value) {
-			if (this.ids == null) {
-				this.ids = new ArrayList<>();
-			}
-			this.ids.add(value);
 			return this;
 		}
 
@@ -589,6 +563,7 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public MtermvectorsRequest build() {
+			_checkSingleUse();
 
 			return new MtermvectorsRequest(this);
 		}
@@ -600,11 +575,11 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	 * Json deserializer for {@link MtermvectorsRequest}
 	 */
 	public static final JsonpDeserializer<MtermvectorsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MtermvectorsRequest::setupMtermvectorsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, MtermvectorsRequest::setupMtermvectorsRequestDeserializer);
 
-	protected static void setupMtermvectorsRequestDeserializer(DelegatingDeserializer<MtermvectorsRequest.Builder> op) {
+	protected static void setupMtermvectorsRequestDeserializer(ObjectDeserializer<MtermvectorsRequest.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(Operation._DESERIALIZER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(MultiTermVectorsOperation._DESERIALIZER), "docs");
 		op.add(Builder::ids, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "ids");
 
 	}
@@ -614,7 +589,9 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code mtermvectors}".
 	 */
-	public static final Endpoint<MtermvectorsRequest, MtermvectorsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/mtermvectors",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -649,11 +626,14 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.fields != null) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.routing != null) {
+					params.put("routing", request.routing);
 				}
-				if (request.fieldStatistics != null) {
-					params.put("field_statistics", String.valueOf(request.fieldStatistics));
+				if (request.realtime != null) {
+					params.put("realtime", String.valueOf(request.realtime));
+				}
+				if (request.termStatistics != null) {
+					params.put("term_statistics", String.valueOf(request.termStatistics));
 				}
 				if (request.offsets != null) {
 					params.put("offsets", String.valueOf(request.offsets));
@@ -661,26 +641,23 @@ public final class MtermvectorsRequest extends RequestBase implements JsonpSeria
 				if (request.payloads != null) {
 					params.put("payloads", String.valueOf(request.payloads));
 				}
-				if (request.positions != null) {
-					params.put("positions", String.valueOf(request.positions));
+				if (request.versionType != null) {
+					params.put("version_type", request.versionType.jsonValue());
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
 				}
-				if (request.realtime != null) {
-					params.put("realtime", String.valueOf(request.realtime));
+				if (request.positions != null) {
+					params.put("positions", String.valueOf(request.positions));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
+				if (request.fieldStatistics != null) {
+					params.put("field_statistics", String.valueOf(request.fieldStatistics));
 				}
-				if (request.termStatistics != null) {
-					params.put("term_statistics", String.valueOf(request.termStatistics));
+				if (ApiTypeHelper.isDefined(request.fields)) {
+					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
-				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
 				}
 				return params;
 

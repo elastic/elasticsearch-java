@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.IndexResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L171-L173">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexResult implements JsonpSerializable {
+public class IndexResult implements JsonpSerializable {
 	private final IndexResultSummary response;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexResult(Builder builder) {
+	private IndexResult(Builder builder) {
 
-		this.response = Objects.requireNonNull(builder.response, "response");
+		this.response = ApiTypeHelper.requireNonNull(builder.response, this, "response");
 
 	}
 
-	public IndexResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexResult of(Function<Builder, ObjectBuilder<IndexResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code response}
 	 */
-	public IndexResultSummary response() {
+	public final IndexResultSummary response() {
 		return this.response;
 	}
 
@@ -81,13 +89,14 @@ public final class IndexResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexResult}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexResult> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexResult> {
 		private IndexResultSummary response;
 
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public Builder response(IndexResultSummary value) {
+		public final Builder response(IndexResultSummary value) {
 			this.response = value;
 			return this;
 		}
@@ -95,7 +104,7 @@ public final class IndexResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code response}
 		 */
-		public Builder response(Function<IndexResultSummary.Builder, ObjectBuilder<IndexResultSummary>> fn) {
+		public final Builder response(Function<IndexResultSummary.Builder, ObjectBuilder<IndexResultSummary>> fn) {
 			return this.response(fn.apply(new IndexResultSummary.Builder()).build());
 		}
 
@@ -106,6 +115,7 @@ public final class IndexResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexResult build() {
+			_checkSingleUse();
 
 			return new IndexResult(this);
 		}
@@ -117,9 +127,9 @@ public final class IndexResult implements JsonpSerializable {
 	 * Json deserializer for {@link IndexResult}
 	 */
 	public static final JsonpDeserializer<IndexResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexResult::setupIndexResultDeserializer, Builder::build);
+			IndexResult::setupIndexResultDeserializer);
 
-	protected static void setupIndexResultDeserializer(DelegatingDeserializer<IndexResult.Builder> op) {
+	protected static void setupIndexResultDeserializer(ObjectDeserializer<IndexResult.Builder> op) {
 
 		op.add(Builder::response, IndexResultSummary._DESERIALIZER, "response");
 

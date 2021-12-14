@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardsOperationResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.forcemerge.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/forcemerge/IndicesForceMergeResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ForcemergeResponse extends ShardsOperationResponseBase {
+public class ForcemergeResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ForcemergeResponse(Builder builder) {
+	private ForcemergeResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ForcemergeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ForcemergeResponse of(Function<Builder, ObjectBuilder<ForcemergeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class ForcemergeResponse extends ShardsOperationResponseBase {
 	/**
 	 * Builder for {@link ForcemergeResponse}.
 	 */
+
 	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ForcemergeResponse> {
@@ -68,6 +75,7 @@ public final class ForcemergeResponse extends ShardsOperationResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ForcemergeResponse build() {
+			_checkSingleUse();
 
 			return new ForcemergeResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class ForcemergeResponse extends ShardsOperationResponseBase {
 	 * Json deserializer for {@link ForcemergeResponse}
 	 */
 	public static final JsonpDeserializer<ForcemergeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ForcemergeResponse::setupForcemergeResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ForcemergeResponse::setupForcemergeResponseDeserializer);
 
-	protected static void setupForcemergeResponseDeserializer(DelegatingDeserializer<ForcemergeResponse.Builder> op) {
+	protected static void setupForcemergeResponseDeserializer(ObjectDeserializer<ForcemergeResponse.Builder> op) {
 		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
 	}

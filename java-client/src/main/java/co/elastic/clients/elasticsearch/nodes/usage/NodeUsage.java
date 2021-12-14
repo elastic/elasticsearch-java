@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.nodes.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,20 +30,27 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.usage.NodeUsage
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/usage/types.ts#L25-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeUsage implements JsonpSerializable {
+public class NodeUsage implements JsonpSerializable {
 	private final Map<String, Integer> restActions;
 
 	private final String since;
@@ -55,44 +61,44 @@ public final class NodeUsage implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeUsage(Builder builder) {
+	private NodeUsage(Builder builder) {
 
-		this.restActions = ModelTypeHelper.unmodifiableNonNull(builder.restActions, "rest_actions");
-		this.since = Objects.requireNonNull(builder.since, "since");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
-		this.aggregations = ModelTypeHelper.unmodifiableNonNull(builder.aggregations, "aggregations");
+		this.restActions = ApiTypeHelper.unmodifiableRequired(builder.restActions, this, "restActions");
+		this.since = ApiTypeHelper.requireNonNull(builder.since, this, "since");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
 
 	}
 
-	public NodeUsage(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeUsage of(Function<Builder, ObjectBuilder<NodeUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code rest_actions}
 	 */
-	public Map<String, Integer> restActions() {
+	public final Map<String, Integer> restActions() {
 		return this.restActions;
 	}
 
 	/**
 	 * Required - API name: {@code since}
 	 */
-	public String since() {
+	public final String since() {
 		return this.since;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
 	/**
 	 * Required - API name: {@code aggregations}
 	 */
-	public Map<String, JsonData> aggregations() {
+	public final Map<String, JsonData> aggregations() {
 		return this.aggregations;
 	}
 
@@ -107,29 +113,34 @@ public final class NodeUsage implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("rest_actions");
-		generator.writeStartObject();
-		for (Map.Entry<String, Integer> item0 : this.restActions.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ApiTypeHelper.isDefined(this.restActions)) {
+			generator.writeKey("rest_actions");
+			generator.writeStartObject();
+			for (Map.Entry<String, Integer> item0 : this.restActions.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("since");
 		generator.write(this.since);
 
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
-		generator.writeKey("aggregations");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.aggregations.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
+			generator.writeKey("aggregations");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.aggregations.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -138,7 +149,8 @@ public final class NodeUsage implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeUsage}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeUsage> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeUsage> {
 		private Map<String, Integer> restActions;
 
 		private String since;
@@ -149,27 +161,28 @@ public final class NodeUsage implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code rest_actions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>restActions</code>.
 		 */
-		public Builder restActions(Map<String, Integer> value) {
-			this.restActions = value;
+		public final Builder restActions(Map<String, Integer> map) {
+			this.restActions = _mapPutAll(this.restActions, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #restActions(Map)}, creating the map if needed.
+		 * Required - API name: {@code rest_actions}
+		 * <p>
+		 * Adds an entry to <code>restActions</code>.
 		 */
-		public Builder putRestActions(String key, Integer value) {
-			if (this.restActions == null) {
-				this.restActions = new HashMap<>();
-			}
-			this.restActions.put(key, value);
+		public final Builder restActions(String key, Integer value) {
+			this.restActions = _mapPut(this.restActions, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code since}
 		 */
-		public Builder since(String value) {
+		public final Builder since(String value) {
 			this.since = value;
 			return this;
 		}
@@ -177,27 +190,28 @@ public final class NodeUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(String value) {
 			this.timestamp = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
-		public Builder aggregations(Map<String, JsonData> value) {
-			this.aggregations = value;
+		public final Builder aggregations(Map<String, JsonData> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #aggregations(Map)}, creating the map if needed.
+		 * Required - API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
 		 */
-		public Builder putAggregations(String key, JsonData value) {
-			if (this.aggregations == null) {
-				this.aggregations = new HashMap<>();
-			}
-			this.aggregations.put(key, value);
+		public final Builder aggregations(String key, JsonData value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
 			return this;
 		}
 
@@ -208,6 +222,7 @@ public final class NodeUsage implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeUsage build() {
+			_checkSingleUse();
 
 			return new NodeUsage(this);
 		}
@@ -219,9 +234,9 @@ public final class NodeUsage implements JsonpSerializable {
 	 * Json deserializer for {@link NodeUsage}
 	 */
 	public static final JsonpDeserializer<NodeUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeUsage::setupNodeUsageDeserializer, Builder::build);
+			NodeUsage::setupNodeUsageDeserializer);
 
-	protected static void setupNodeUsageDeserializer(DelegatingDeserializer<NodeUsage.Builder> op) {
+	protected static void setupNodeUsageDeserializer(ObjectDeserializer<NodeUsage.Builder> op) {
 
 		op.add(Builder::restActions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
 				"rest_actions");

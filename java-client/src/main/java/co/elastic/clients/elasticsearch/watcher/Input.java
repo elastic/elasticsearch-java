@@ -23,67 +23,104 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.InputContainer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Input.ts#L92-L100">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class Input implements TaggedUnion<Object>, JsonpSerializable {
+public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable {
 
-	public static final String CHAIN = "chain";
-	public static final String HTTP = "http";
-	public static final String SEARCH = "search";
-	public static final String SIMPLE = "simple";
+	/**
+	 * {@link Input} variant kinds.
+	 */
+	/**
+	 * {@link Input} variant kinds.
+	 */
 
-	// Tagged union implementation
+	public enum Kind implements JsonEnum {
+		Chain("chain"),
 
-	private final String _type;
+		Http("http"),
+
+		Search("search"),
+
+		Simple("simple"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public Input(InputVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._inputKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends InputVariant> Input(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Input(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Input(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Input of(Function<Builder, ObjectBuilder<Input>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code chain}?
+	 */
+	public boolean isChain() {
+		return _kind == Kind.Chain;
 	}
 
 	/**
@@ -93,7 +130,14 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code chain} kind.
 	 */
 	public ChainInput chain() {
-		return TaggedUnionUtils.get(this, CHAIN);
+		return TaggedUnionUtils.get(this, Kind.Chain);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code http}?
+	 */
+	public boolean isHttp() {
+		return _kind == Kind.Http;
 	}
 
 	/**
@@ -103,7 +147,14 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code http} kind.
 	 */
 	public HttpInput http() {
-		return TaggedUnionUtils.get(this, HTTP);
+		return TaggedUnionUtils.get(this, Kind.Http);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code search}?
+	 */
+	public boolean isSearch() {
+		return _kind == Kind.Search;
 	}
 
 	/**
@@ -113,7 +164,14 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code search} kind.
 	 */
 	public SearchInput search() {
-		return TaggedUnionUtils.get(this, SEARCH);
+		return TaggedUnionUtils.get(this, Kind.Search);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code simple}?
+	 */
+	public boolean isSimple() {
+		return _kind == Kind.Simple;
 	}
 
 	/**
@@ -123,20 +181,21 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code simple} kind.
 	 */
 	public Map<String, JsonData> simple() {
-		return TaggedUnionUtils.get(this, SIMPLE);
+		return TaggedUnionUtils.get(this, Kind.Simple);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case SIMPLE :
+			switch (_kind) {
+				case Simple :
 					generator.writeStartObject();
 					for (Map.Entry<String, JsonData> item0 : ((Map<String, JsonData>) this._value).entrySet()) {
 						generator.writeKey(item0.getKey());
@@ -150,55 +209,57 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 		}
 
 		generator.writeEnd();
+
 	}
 
-	public static class Builder implements ObjectBuilder<Input> {
-		private String _type;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Input> {
+		private Kind _kind;
 		private Object _value;
 
-		public Builder chain(ChainInput v) {
-			this._type = CHAIN;
+		public ObjectBuilder<Input> chain(ChainInput v) {
+			this._kind = Kind.Chain;
 			this._value = v;
 			return this;
 		}
 
-		public Builder chain(Function<ChainInput.Builder, ObjectBuilder<ChainInput>> f) {
-			return this.chain(f.apply(new ChainInput.Builder()).build());
+		public ObjectBuilder<Input> chain(Function<ChainInput.Builder, ObjectBuilder<ChainInput>> fn) {
+			return this.chain(fn.apply(new ChainInput.Builder()).build());
 		}
 
-		public Builder http(HttpInput v) {
-			this._type = HTTP;
+		public ObjectBuilder<Input> http(HttpInput v) {
+			this._kind = Kind.Http;
 			this._value = v;
 			return this;
 		}
 
-		public Builder http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> f) {
-			return this.http(f.apply(new HttpInput.Builder()).build());
+		public ObjectBuilder<Input> http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> fn) {
+			return this.http(fn.apply(new HttpInput.Builder()).build());
 		}
 
-		public Builder search(SearchInput v) {
-			this._type = SEARCH;
+		public ObjectBuilder<Input> search(SearchInput v) {
+			this._kind = Kind.Search;
 			this._value = v;
 			return this;
 		}
 
-		public Builder search(Function<SearchInput.Builder, ObjectBuilder<SearchInput>> f) {
-			return this.search(f.apply(new SearchInput.Builder()).build());
+		public ObjectBuilder<Input> search(Function<SearchInput.Builder, ObjectBuilder<SearchInput>> fn) {
+			return this.search(fn.apply(new SearchInput.Builder()).build());
 		}
 
-		public Builder simple(Map<String, JsonData> v) {
-			this._type = SIMPLE;
+		public ObjectBuilder<Input> simple(Map<String, JsonData> v) {
+			this._kind = Kind.Simple;
 			this._value = v;
 			return this;
 		}
 
 		public Input build() {
+			_checkSingleUse();
 			return new Input(this);
 		}
 
 	}
 
-	protected static void setupInputDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupInputDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::chain, ChainInput._DESERIALIZER, "chain");
 		op.add(Builder::http, HttpInput._DESERIALIZER, "http");
@@ -207,6 +268,6 @@ public class Input implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<Input> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Input> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Input::setupInputDeserializer, Builder::build);
 }

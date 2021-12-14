@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ccr.follow.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/follow/CreateFollowIndexResponse.ts#L20-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FollowResponse implements JsonpSerializable {
+public class FollowResponse implements JsonpSerializable {
 	private final boolean followIndexCreated;
 
 	private final boolean followIndexShardsAcked;
@@ -47,37 +55,38 @@ public final class FollowResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FollowResponse(Builder builder) {
+	private FollowResponse(Builder builder) {
 
-		this.followIndexCreated = Objects.requireNonNull(builder.followIndexCreated, "follow_index_created");
-		this.followIndexShardsAcked = Objects.requireNonNull(builder.followIndexShardsAcked,
-				"follow_index_shards_acked");
-		this.indexFollowingStarted = Objects.requireNonNull(builder.indexFollowingStarted, "index_following_started");
+		this.followIndexCreated = ApiTypeHelper.requireNonNull(builder.followIndexCreated, this, "followIndexCreated");
+		this.followIndexShardsAcked = ApiTypeHelper.requireNonNull(builder.followIndexShardsAcked, this,
+				"followIndexShardsAcked");
+		this.indexFollowingStarted = ApiTypeHelper.requireNonNull(builder.indexFollowingStarted, this,
+				"indexFollowingStarted");
 
 	}
 
-	public FollowResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FollowResponse of(Function<Builder, ObjectBuilder<FollowResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code follow_index_created}
 	 */
-	public boolean followIndexCreated() {
+	public final boolean followIndexCreated() {
 		return this.followIndexCreated;
 	}
 
 	/**
 	 * Required - API name: {@code follow_index_shards_acked}
 	 */
-	public boolean followIndexShardsAcked() {
+	public final boolean followIndexShardsAcked() {
 		return this.followIndexShardsAcked;
 	}
 
 	/**
 	 * Required - API name: {@code index_following_started}
 	 */
-	public boolean indexFollowingStarted() {
+	public final boolean indexFollowingStarted() {
 		return this.indexFollowingStarted;
 	}
 
@@ -108,7 +117,8 @@ public final class FollowResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<FollowResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowResponse> {
 		private Boolean followIndexCreated;
 
 		private Boolean followIndexShardsAcked;
@@ -118,7 +128,7 @@ public final class FollowResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code follow_index_created}
 		 */
-		public Builder followIndexCreated(boolean value) {
+		public final Builder followIndexCreated(boolean value) {
 			this.followIndexCreated = value;
 			return this;
 		}
@@ -126,7 +136,7 @@ public final class FollowResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code follow_index_shards_acked}
 		 */
-		public Builder followIndexShardsAcked(boolean value) {
+		public final Builder followIndexShardsAcked(boolean value) {
 			this.followIndexShardsAcked = value;
 			return this;
 		}
@@ -134,7 +144,7 @@ public final class FollowResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_following_started}
 		 */
-		public Builder indexFollowingStarted(boolean value) {
+		public final Builder indexFollowingStarted(boolean value) {
 			this.indexFollowingStarted = value;
 			return this;
 		}
@@ -146,6 +156,7 @@ public final class FollowResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FollowResponse build() {
+			_checkSingleUse();
 
 			return new FollowResponse(this);
 		}
@@ -157,9 +168,9 @@ public final class FollowResponse implements JsonpSerializable {
 	 * Json deserializer for {@link FollowResponse}
 	 */
 	public static final JsonpDeserializer<FollowResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FollowResponse::setupFollowResponseDeserializer, Builder::build);
+			FollowResponse::setupFollowResponseDeserializer);
 
-	protected static void setupFollowResponseDeserializer(DelegatingDeserializer<FollowResponse.Builder> op) {
+	protected static void setupFollowResponseDeserializer(ObjectDeserializer<FollowResponse.Builder> op) {
 
 		op.add(Builder::followIndexCreated, JsonpDeserializer.booleanDeserializer(), "follow_index_created");
 		op.add(Builder::followIndexShardsAcked, JsonpDeserializer.booleanDeserializer(), "follow_index_shards_acked");

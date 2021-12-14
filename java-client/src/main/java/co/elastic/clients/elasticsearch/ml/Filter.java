@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Filter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Filter.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Filter implements JsonpSerializable {
+public class Filter implements JsonpSerializable {
 	@Nullable
 	private final String description;
 
@@ -53,37 +58,37 @@ public final class Filter implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Filter(Builder builder) {
+	private Filter(Builder builder) {
 
 		this.description = builder.description;
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
-		this.items = ModelTypeHelper.unmodifiableNonNull(builder.items, "items");
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
+		this.items = ApiTypeHelper.unmodifiableRequired(builder.items, this, "items");
 
 	}
 
-	public Filter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Filter of(Function<Builder, ObjectBuilder<Filter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code filter_id}
 	 */
-	public String filterId() {
+	public final String filterId() {
 		return this.filterId;
 	}
 
 	/**
 	 * Required - API name: {@code items}
 	 */
-	public List<String> items() {
+	public final List<String> items() {
 		return this.items;
 	}
 
@@ -99,22 +104,23 @@ public final class Filter implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-
 		generator.writeKey("filter_id");
 		generator.write(this.filterId);
 
-		generator.writeKey("items");
-		generator.writeStartArray();
-		for (String item0 : this.items) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.items)) {
+			generator.writeKey("items");
+			generator.writeStartArray();
+			for (String item0 : this.items) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -123,7 +129,8 @@ public final class Filter implements JsonpSerializable {
 	/**
 	 * Builder for {@link Filter}.
 	 */
-	public static class Builder implements ObjectBuilder<Filter> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Filter> {
 		@Nullable
 		private String description;
 
@@ -134,7 +141,7 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -142,35 +149,28 @@ public final class Filter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code filter_id}
 		 */
-		public Builder filterId(String value) {
+		public final Builder filterId(String value) {
 			this.filterId = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code items}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>items</code>.
 		 */
-		public Builder items(List<String> value) {
-			this.items = value;
+		public final Builder items(List<String> list) {
+			this.items = _listAddAll(this.items, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code items}
+		 * <p>
+		 * Adds one or more values to <code>items</code>.
 		 */
-		public Builder items(String... value) {
-			this.items = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #items(List)}, creating the list if needed.
-		 */
-		public Builder addItems(String value) {
-			if (this.items == null) {
-				this.items = new ArrayList<>();
-			}
-			this.items.add(value);
+		public final Builder items(String value, String... values) {
+			this.items = _listAdd(this.items, value, values);
 			return this;
 		}
 
@@ -181,6 +181,7 @@ public final class Filter implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Filter build() {
+			_checkSingleUse();
 
 			return new Filter(this);
 		}
@@ -192,9 +193,9 @@ public final class Filter implements JsonpSerializable {
 	 * Json deserializer for {@link Filter}
 	 */
 	public static final JsonpDeserializer<Filter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Filter::setupFilterDeserializer, Builder::build);
+			Filter::setupFilterDeserializer);
 
-	protected static void setupFilterDeserializer(DelegatingDeserializer<Filter.Builder> op) {
+	protected static void setupFilterDeserializer(ObjectDeserializer<Filter.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::filterId, JsonpDeserializer.stringDeserializer(), "filter_id");

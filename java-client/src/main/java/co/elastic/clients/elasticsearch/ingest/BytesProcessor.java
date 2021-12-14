@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.BytesProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L121-L125">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class BytesProcessor extends ProcessorBase implements ProcessorVariant {
+public class BytesProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
 	@Nullable
@@ -50,31 +57,31 @@ public final class BytesProcessor extends ProcessorBase implements ProcessorVari
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BytesProcessor(Builder builder) {
+	private BytesProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.ignoreMissing = builder.ignoreMissing;
 		this.targetField = builder.targetField;
 
 	}
 
-	public BytesProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BytesProcessor of(Function<Builder, ObjectBuilder<BytesProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "bytes";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Bytes;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -82,7 +89,7 @@ public final class BytesProcessor extends ProcessorBase implements ProcessorVari
 	 * API name: {@code ignore_missing}
 	 */
 	@Nullable
-	public Boolean ignoreMissing() {
+	public final Boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
@@ -90,25 +97,22 @@ public final class BytesProcessor extends ProcessorBase implements ProcessorVari
 	 * API name: {@code target_field}
 	 */
 	@Nullable
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.ignoreMissing != null) {
-
 			generator.writeKey("ignore_missing");
 			generator.write(this.ignoreMissing);
 
 		}
 		if (this.targetField != null) {
-
 			generator.writeKey("target_field");
 			generator.write(this.targetField);
 
@@ -121,6 +125,7 @@ public final class BytesProcessor extends ProcessorBase implements ProcessorVari
 	/**
 	 * Builder for {@link BytesProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BytesProcessor> {
@@ -135,7 +140,7 @@ public final class BytesProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -143,7 +148,7 @@ public final class BytesProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(@Nullable Boolean value) {
+		public final Builder ignoreMissing(@Nullable Boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -151,7 +156,7 @@ public final class BytesProcessor extends ProcessorBase implements ProcessorVari
 		/**
 		 * API name: {@code target_field}
 		 */
-		public Builder targetField(@Nullable String value) {
+		public final Builder targetField(@Nullable String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -168,6 +173,7 @@ public final class BytesProcessor extends ProcessorBase implements ProcessorVari
 		 *             if some of the required fields are null.
 		 */
 		public BytesProcessor build() {
+			_checkSingleUse();
 
 			return new BytesProcessor(this);
 		}
@@ -179,9 +185,9 @@ public final class BytesProcessor extends ProcessorBase implements ProcessorVari
 	 * Json deserializer for {@link BytesProcessor}
 	 */
 	public static final JsonpDeserializer<BytesProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BytesProcessor::setupBytesProcessorDeserializer, Builder::build);
+			BytesProcessor::setupBytesProcessorDeserializer);
 
-	protected static void setupBytesProcessorDeserializer(DelegatingDeserializer<BytesProcessor.Builder> op) {
+	protected static void setupBytesProcessorDeserializer(ObjectDeserializer<BytesProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::ignoreMissing, JsonpDeserializer.booleanDeserializer(), "ignore_missing");

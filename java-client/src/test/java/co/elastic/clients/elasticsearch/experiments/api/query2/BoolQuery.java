@@ -25,7 +25,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.Union2;
 import jakarta.json.stream.JsonGenerator;
 
 import javax.annotation.Nullable;
@@ -46,8 +45,8 @@ public class BoolQuery implements Query.Variant, JsonpSerializable {
     }
 
     @Override
-    public String _variantType() {
-        return "bool";
+    public Query.Kind _variantType() {
+        return Query.Kind.Bool;
     }
 
     public Collection<Query> should() {

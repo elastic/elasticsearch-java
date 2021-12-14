@@ -23,36 +23,39 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.PhraseSuggester
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L160-L174">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PhraseSuggester extends SuggesterBase implements SuggestVariant {
+public class PhraseSuggester extends SuggesterBase implements FieldSuggesterVariant {
 	@Nullable
 	private final PhraseSuggestCollate collate;
 
 	@Nullable
 	private final Double confidence;
 
-	@Nullable
 	private final List<DirectGenerator> directGenerator;
 
 	@Nullable
@@ -87,12 +90,12 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PhraseSuggester(Builder builder) {
+	private PhraseSuggester(Builder builder) {
 		super(builder);
 
 		this.collate = builder.collate;
 		this.confidence = builder.confidence;
-		this.directGenerator = ModelTypeHelper.unmodifiable(builder.directGenerator);
+		this.directGenerator = ApiTypeHelper.unmodifiable(builder.directGenerator);
 		this.forceUnigrams = builder.forceUnigrams;
 		this.gramSize = builder.gramSize;
 		this.highlight = builder.highlight;
@@ -106,23 +109,23 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 
 	}
 
-	public PhraseSuggester(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PhraseSuggester of(Function<Builder, ObjectBuilder<PhraseSuggester>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Suggest} variant type
+	 * FieldSuggester variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "phrase";
+	public FieldSuggester.Kind _fieldSuggesterKind() {
+		return FieldSuggester.Kind.Phrase;
 	}
 
 	/**
 	 * API name: {@code collate}
 	 */
 	@Nullable
-	public PhraseSuggestCollate collate() {
+	public final PhraseSuggestCollate collate() {
 		return this.collate;
 	}
 
@@ -130,15 +133,14 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code confidence}
 	 */
 	@Nullable
-	public Double confidence() {
+	public final Double confidence() {
 		return this.confidence;
 	}
 
 	/**
 	 * API name: {@code direct_generator}
 	 */
-	@Nullable
-	public List<DirectGenerator> directGenerator() {
+	public final List<DirectGenerator> directGenerator() {
 		return this.directGenerator;
 	}
 
@@ -146,7 +148,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code force_unigrams}
 	 */
 	@Nullable
-	public Boolean forceUnigrams() {
+	public final Boolean forceUnigrams() {
 		return this.forceUnigrams;
 	}
 
@@ -154,7 +156,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code gram_size}
 	 */
 	@Nullable
-	public Integer gramSize() {
+	public final Integer gramSize() {
 		return this.gramSize;
 	}
 
@@ -162,7 +164,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code highlight}
 	 */
 	@Nullable
-	public PhraseSuggestHighlight highlight() {
+	public final PhraseSuggestHighlight highlight() {
 		return this.highlight;
 	}
 
@@ -170,7 +172,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code max_errors}
 	 */
 	@Nullable
-	public Double maxErrors() {
+	public final Double maxErrors() {
 		return this.maxErrors;
 	}
 
@@ -178,7 +180,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code real_word_error_likelihood}
 	 */
 	@Nullable
-	public Double realWordErrorLikelihood() {
+	public final Double realWordErrorLikelihood() {
 		return this.realWordErrorLikelihood;
 	}
 
@@ -186,7 +188,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code separator}
 	 */
 	@Nullable
-	public String separator() {
+	public final String separator() {
 		return this.separator;
 	}
 
@@ -194,7 +196,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -202,7 +204,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code smoothing}
 	 */
 	@Nullable
-	public SmoothingModel smoothing() {
+	public final SmoothingModel smoothing() {
 		return this.smoothing;
 	}
 
@@ -210,7 +212,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code text}
 	 */
 	@Nullable
-	public String text() {
+	public final String text() {
 		return this.text;
 	}
 
@@ -218,7 +220,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * API name: {@code token_limit}
 	 */
 	@Nullable
-	public Integer tokenLimit() {
+	public final Integer tokenLimit() {
 		return this.tokenLimit;
 	}
 
@@ -226,19 +228,16 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 
 		super.serializeInternal(generator, mapper);
 		if (this.collate != null) {
-
 			generator.writeKey("collate");
 			this.collate.serialize(generator, mapper);
 
 		}
 		if (this.confidence != null) {
-
 			generator.writeKey("confidence");
 			generator.write(this.confidence);
 
 		}
-		if (this.directGenerator != null) {
-
+		if (ApiTypeHelper.isDefined(this.directGenerator)) {
 			generator.writeKey("direct_generator");
 			generator.writeStartArray();
 			for (DirectGenerator item0 : this.directGenerator) {
@@ -249,61 +248,51 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 
 		}
 		if (this.forceUnigrams != null) {
-
 			generator.writeKey("force_unigrams");
 			generator.write(this.forceUnigrams);
 
 		}
 		if (this.gramSize != null) {
-
 			generator.writeKey("gram_size");
 			generator.write(this.gramSize);
 
 		}
 		if (this.highlight != null) {
-
 			generator.writeKey("highlight");
 			this.highlight.serialize(generator, mapper);
 
 		}
 		if (this.maxErrors != null) {
-
 			generator.writeKey("max_errors");
 			generator.write(this.maxErrors);
 
 		}
 		if (this.realWordErrorLikelihood != null) {
-
 			generator.writeKey("real_word_error_likelihood");
 			generator.write(this.realWordErrorLikelihood);
 
 		}
 		if (this.separator != null) {
-
 			generator.writeKey("separator");
 			generator.write(this.separator);
 
 		}
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
 		}
 		if (this.smoothing != null) {
-
 			generator.writeKey("smoothing");
 			this.smoothing.serialize(generator, mapper);
 
 		}
 		if (this.text != null) {
-
 			generator.writeKey("text");
 			generator.write(this.text);
 
 		}
 		if (this.tokenLimit != null) {
-
 			generator.writeKey("token_limit");
 			generator.write(this.tokenLimit);
 
@@ -316,6 +305,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	/**
 	 * Builder for {@link PhraseSuggester}.
 	 */
+
 	public static class Builder extends SuggesterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PhraseSuggester> {
@@ -361,7 +351,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code collate}
 		 */
-		public Builder collate(@Nullable PhraseSuggestCollate value) {
+		public final Builder collate(@Nullable PhraseSuggestCollate value) {
 			this.collate = value;
 			return this;
 		}
@@ -369,63 +359,51 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code collate}
 		 */
-		public Builder collate(Function<PhraseSuggestCollate.Builder, ObjectBuilder<PhraseSuggestCollate>> fn) {
+		public final Builder collate(Function<PhraseSuggestCollate.Builder, ObjectBuilder<PhraseSuggestCollate>> fn) {
 			return this.collate(fn.apply(new PhraseSuggestCollate.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code confidence}
 		 */
-		public Builder confidence(@Nullable Double value) {
+		public final Builder confidence(@Nullable Double value) {
 			this.confidence = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code direct_generator}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>directGenerator</code>.
 		 */
-		public Builder directGenerator(@Nullable List<DirectGenerator> value) {
-			this.directGenerator = value;
+		public final Builder directGenerator(List<DirectGenerator> list) {
+			this.directGenerator = _listAddAll(this.directGenerator, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code direct_generator}
+		 * <p>
+		 * Adds one or more values to <code>directGenerator</code>.
 		 */
-		public Builder directGenerator(DirectGenerator... value) {
-			this.directGenerator = Arrays.asList(value);
+		public final Builder directGenerator(DirectGenerator value, DirectGenerator... values) {
+			this.directGenerator = _listAdd(this.directGenerator, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #directGenerator(List)}, creating the list if needed.
+		 * API name: {@code direct_generator}
+		 * <p>
+		 * Adds a value to <code>directGenerator</code> using a builder lambda.
 		 */
-		public Builder addDirectGenerator(DirectGenerator value) {
-			if (this.directGenerator == null) {
-				this.directGenerator = new ArrayList<>();
-			}
-			this.directGenerator.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #directGenerator(List)} to a singleton list.
-		 */
-		public Builder directGenerator(Function<DirectGenerator.Builder, ObjectBuilder<DirectGenerator>> fn) {
-			return this.directGenerator(fn.apply(new DirectGenerator.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #directGenerator(List)}, creating the list if needed.
-		 */
-		public Builder addDirectGenerator(Function<DirectGenerator.Builder, ObjectBuilder<DirectGenerator>> fn) {
-			return this.addDirectGenerator(fn.apply(new DirectGenerator.Builder()).build());
+		public final Builder directGenerator(Function<DirectGenerator.Builder, ObjectBuilder<DirectGenerator>> fn) {
+			return directGenerator(fn.apply(new DirectGenerator.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code force_unigrams}
 		 */
-		public Builder forceUnigrams(@Nullable Boolean value) {
+		public final Builder forceUnigrams(@Nullable Boolean value) {
 			this.forceUnigrams = value;
 			return this;
 		}
@@ -433,7 +411,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code gram_size}
 		 */
-		public Builder gramSize(@Nullable Integer value) {
+		public final Builder gramSize(@Nullable Integer value) {
 			this.gramSize = value;
 			return this;
 		}
@@ -441,7 +419,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code highlight}
 		 */
-		public Builder highlight(@Nullable PhraseSuggestHighlight value) {
+		public final Builder highlight(@Nullable PhraseSuggestHighlight value) {
 			this.highlight = value;
 			return this;
 		}
@@ -449,14 +427,15 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code highlight}
 		 */
-		public Builder highlight(Function<PhraseSuggestHighlight.Builder, ObjectBuilder<PhraseSuggestHighlight>> fn) {
+		public final Builder highlight(
+				Function<PhraseSuggestHighlight.Builder, ObjectBuilder<PhraseSuggestHighlight>> fn) {
 			return this.highlight(fn.apply(new PhraseSuggestHighlight.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code max_errors}
 		 */
-		public Builder maxErrors(@Nullable Double value) {
+		public final Builder maxErrors(@Nullable Double value) {
 			this.maxErrors = value;
 			return this;
 		}
@@ -464,7 +443,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code real_word_error_likelihood}
 		 */
-		public Builder realWordErrorLikelihood(@Nullable Double value) {
+		public final Builder realWordErrorLikelihood(@Nullable Double value) {
 			this.realWordErrorLikelihood = value;
 			return this;
 		}
@@ -472,7 +451,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code separator}
 		 */
-		public Builder separator(@Nullable String value) {
+		public final Builder separator(@Nullable String value) {
 			this.separator = value;
 			return this;
 		}
@@ -480,7 +459,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -488,7 +467,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code smoothing}
 		 */
-		public Builder smoothing(@Nullable SmoothingModel value) {
+		public final Builder smoothing(@Nullable SmoothingModel value) {
 			this.smoothing = value;
 			return this;
 		}
@@ -496,14 +475,14 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code smoothing}
 		 */
-		public Builder smoothing(Function<SmoothingModel.Builder, ObjectBuilder<SmoothingModel>> fn) {
+		public final Builder smoothing(Function<SmoothingModel.Builder, ObjectBuilder<SmoothingModel>> fn) {
 			return this.smoothing(fn.apply(new SmoothingModel.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code text}
 		 */
-		public Builder text(@Nullable String value) {
+		public final Builder text(@Nullable String value) {
 			this.text = value;
 			return this;
 		}
@@ -511,7 +490,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		/**
 		 * API name: {@code token_limit}
 		 */
-		public Builder tokenLimit(@Nullable Integer value) {
+		public final Builder tokenLimit(@Nullable Integer value) {
 			this.tokenLimit = value;
 			return this;
 		}
@@ -528,6 +507,7 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 		 *             if some of the required fields are null.
 		 */
 		public PhraseSuggester build() {
+			_checkSingleUse();
 
 			return new PhraseSuggester(this);
 		}
@@ -539,9 +519,9 @@ public final class PhraseSuggester extends SuggesterBase implements SuggestVaria
 	 * Json deserializer for {@link PhraseSuggester}
 	 */
 	public static final JsonpDeserializer<PhraseSuggester> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PhraseSuggester::setupPhraseSuggesterDeserializer, Builder::build);
+			PhraseSuggester::setupPhraseSuggesterDeserializer);
 
-	protected static void setupPhraseSuggesterDeserializer(DelegatingDeserializer<PhraseSuggester.Builder> op) {
+	protected static void setupPhraseSuggesterDeserializer(ObjectDeserializer<PhraseSuggester.Builder> op) {
 		SuggesterBase.setupSuggesterBaseDeserializer(op);
 		op.add(Builder::collate, PhraseSuggestCollate._DESERIALIZER, "collate");
 		op.add(Builder::confidence, JsonpDeserializer.doubleDeserializer(), "confidence");

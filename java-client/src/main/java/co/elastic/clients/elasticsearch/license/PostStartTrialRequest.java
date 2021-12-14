@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +44,15 @@ import javax.annotation.Nullable;
 
 // typedef: license.post_start_trial.Request
 
-public final class PostStartTrialRequest extends RequestBase {
+/**
+ * starts a limited time trial license.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post_start_trial/StartTrialLicenseRequest.ts#L22-L32">API
+ *      specification</a>
+ */
+
+public class PostStartTrialRequest extends RequestBase {
 	@Nullable
 	private final Boolean acknowledge;
 
@@ -52,15 +61,15 @@ public final class PostStartTrialRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PostStartTrialRequest(Builder builder) {
+	private PostStartTrialRequest(Builder builder) {
 
 		this.acknowledge = builder.acknowledge;
 		this.typeQueryString = builder.typeQueryString;
 
 	}
 
-	public PostStartTrialRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PostStartTrialRequest of(Function<Builder, ObjectBuilder<PostStartTrialRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +78,7 @@ public final class PostStartTrialRequest extends RequestBase {
 	 * API name: {@code acknowledge}
 	 */
 	@Nullable
-	public Boolean acknowledge() {
+	public final Boolean acknowledge() {
 		return this.acknowledge;
 	}
 
@@ -77,7 +86,7 @@ public final class PostStartTrialRequest extends RequestBase {
 	 * API name: {@code type_query_string}
 	 */
 	@Nullable
-	public String typeQueryString() {
+	public final String typeQueryString() {
 		return this.typeQueryString;
 	}
 
@@ -86,7 +95,8 @@ public final class PostStartTrialRequest extends RequestBase {
 	/**
 	 * Builder for {@link PostStartTrialRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PostStartTrialRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostStartTrialRequest> {
 		@Nullable
 		private Boolean acknowledge;
 
@@ -98,7 +108,7 @@ public final class PostStartTrialRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */
-		public Builder acknowledge(@Nullable Boolean value) {
+		public final Builder acknowledge(@Nullable Boolean value) {
 			this.acknowledge = value;
 			return this;
 		}
@@ -106,7 +116,7 @@ public final class PostStartTrialRequest extends RequestBase {
 		/**
 		 * API name: {@code type_query_string}
 		 */
-		public Builder typeQueryString(@Nullable String value) {
+		public final Builder typeQueryString(@Nullable String value) {
 			this.typeQueryString = value;
 			return this;
 		}
@@ -118,6 +128,7 @@ public final class PostStartTrialRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public PostStartTrialRequest build() {
+			_checkSingleUse();
 
 			return new PostStartTrialRequest(this);
 		}
@@ -128,7 +139,9 @@ public final class PostStartTrialRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code license.post_start_trial}".
 	 */
-	public static final Endpoint<PostStartTrialRequest, PostStartTrialResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PostStartTrialRequest, PostStartTrialResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/license.post_start_trial",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -144,11 +157,11 @@ public final class PostStartTrialRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.acknowledge != null) {
-					params.put("acknowledge", String.valueOf(request.acknowledge));
-				}
 				if (request.typeQueryString != null) {
 					params.put("type_query_string", request.typeQueryString);
+				}
+				if (request.acknowledge != null) {
+					params.put("acknowledge", String.valueOf(request.acknowledge));
 				}
 				return params;
 

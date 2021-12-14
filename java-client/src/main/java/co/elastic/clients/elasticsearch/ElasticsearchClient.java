@@ -23,9 +23,9 @@
 
 package co.elastic.clients.elasticsearch;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch.async_search.ElasticsearchAsyncSearchClient;
 import co.elastic.clients.elasticsearch.autoscaling.ElasticsearchAutoscalingClient;
 import co.elastic.clients.elasticsearch.cat.ElasticsearchCatClient;
@@ -69,6 +69,8 @@ import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
 import co.elastic.clients.elasticsearch.core.InfoRequest;
 import co.elastic.clients.elasticsearch.core.InfoResponse;
+import co.elastic.clients.elasticsearch.core.KnnSearchRequest;
+import co.elastic.clients.elasticsearch.core.KnnSearchResponse;
 import co.elastic.clients.elasticsearch.core.MgetRequest;
 import co.elastic.clients.elasticsearch.core.MgetResponse;
 import co.elastic.clients.elasticsearch.core.MsearchRequest;
@@ -88,10 +90,12 @@ import co.elastic.clients.elasticsearch.core.ReindexRequest;
 import co.elastic.clients.elasticsearch.core.ReindexResponse;
 import co.elastic.clients.elasticsearch.core.ReindexRethrottleRequest;
 import co.elastic.clients.elasticsearch.core.ReindexRethrottleResponse;
+import co.elastic.clients.elasticsearch.core.RenderSearchTemplateRequest;
+import co.elastic.clients.elasticsearch.core.RenderSearchTemplateResponse;
 import co.elastic.clients.elasticsearch.core.ScriptsPainlessExecuteRequest;
 import co.elastic.clients.elasticsearch.core.ScriptsPainlessExecuteResponse;
-import co.elastic.clients.elasticsearch.core.SearchMvtRequest;
-import co.elastic.clients.elasticsearch.core.SearchMvtResponse;
+import co.elastic.clients.elasticsearch.core.ScrollRequest;
+import co.elastic.clients.elasticsearch.core.ScrollResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.SearchShardsRequest;
@@ -131,10 +135,16 @@ import co.elastic.clients.elasticsearch.snapshot.ElasticsearchSnapshotClient;
 import co.elastic.clients.elasticsearch.sql.ElasticsearchSqlClient;
 import co.elastic.clients.elasticsearch.ssl.ElasticsearchSslClient;
 import co.elastic.clients.elasticsearch.tasks.ElasticsearchTasksClient;
-import co.elastic.clients.elasticsearch.text_structure.ElasticsearchTextStructureClient;
 import co.elastic.clients.elasticsearch.transform.ElasticsearchTransformClient;
 import co.elastic.clients.elasticsearch.watcher.ElasticsearchWatcherClient;
 import co.elastic.clients.elasticsearch.xpack.ElasticsearchXpackClient;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -143,140 +153,145 @@ import javax.annotation.Nullable;
 /**
  * Client for the namespace.
  */
-public class ElasticsearchClient extends ApiClient {
+public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, ElasticsearchClient> {
 
-	public ElasticsearchClient(Transport transport) {
-		super(transport);
+	public ElasticsearchClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchClient(this.transport, transportOptions);
 	}
 
 	// ----- Child clients
 
 	public ElasticsearchAsyncSearchClient asyncSearch() {
-		return new ElasticsearchAsyncSearchClient(this.transport);
+		return new ElasticsearchAsyncSearchClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchAutoscalingClient autoscaling() {
-		return new ElasticsearchAutoscalingClient(this.transport);
+		return new ElasticsearchAutoscalingClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchCatClient cat() {
-		return new ElasticsearchCatClient(this.transport);
+		return new ElasticsearchCatClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchCcrClient ccr() {
-		return new ElasticsearchCcrClient(this.transport);
+		return new ElasticsearchCcrClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchClusterClient cluster() {
-		return new ElasticsearchClusterClient(this.transport);
+		return new ElasticsearchClusterClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchDanglingIndicesClient danglingIndices() {
-		return new ElasticsearchDanglingIndicesClient(this.transport);
+		return new ElasticsearchDanglingIndicesClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchEnrichClient enrich() {
-		return new ElasticsearchEnrichClient(this.transport);
+		return new ElasticsearchEnrichClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchEqlClient eql() {
-		return new ElasticsearchEqlClient(this.transport);
+		return new ElasticsearchEqlClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchFeaturesClient features() {
-		return new ElasticsearchFeaturesClient(this.transport);
+		return new ElasticsearchFeaturesClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchGraphClient graph() {
-		return new ElasticsearchGraphClient(this.transport);
+		return new ElasticsearchGraphClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchIlmClient ilm() {
-		return new ElasticsearchIlmClient(this.transport);
+		return new ElasticsearchIlmClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchIndicesClient indices() {
-		return new ElasticsearchIndicesClient(this.transport);
+		return new ElasticsearchIndicesClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchIngestClient ingest() {
-		return new ElasticsearchIngestClient(this.transport);
+		return new ElasticsearchIngestClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchLicenseClient license() {
-		return new ElasticsearchLicenseClient(this.transport);
+		return new ElasticsearchLicenseClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchLogstashClient logstash() {
-		return new ElasticsearchLogstashClient(this.transport);
+		return new ElasticsearchLogstashClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchMigrationClient migration() {
-		return new ElasticsearchMigrationClient(this.transport);
+		return new ElasticsearchMigrationClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchMlClient ml() {
-		return new ElasticsearchMlClient(this.transport);
+		return new ElasticsearchMlClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchMonitoringClient monitoring() {
-		return new ElasticsearchMonitoringClient(this.transport);
+		return new ElasticsearchMonitoringClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchNodesClient nodes() {
-		return new ElasticsearchNodesClient(this.transport);
+		return new ElasticsearchNodesClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchRollupClient rollup() {
-		return new ElasticsearchRollupClient(this.transport);
+		return new ElasticsearchRollupClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSearchableSnapshotsClient searchableSnapshots() {
-		return new ElasticsearchSearchableSnapshotsClient(this.transport);
+		return new ElasticsearchSearchableSnapshotsClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSecurityClient security() {
-		return new ElasticsearchSecurityClient(this.transport);
+		return new ElasticsearchSecurityClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchShutdownClient shutdown() {
-		return new ElasticsearchShutdownClient(this.transport);
+		return new ElasticsearchShutdownClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSlmClient slm() {
-		return new ElasticsearchSlmClient(this.transport);
+		return new ElasticsearchSlmClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSnapshotClient snapshot() {
-		return new ElasticsearchSnapshotClient(this.transport);
+		return new ElasticsearchSnapshotClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSqlClient sql() {
-		return new ElasticsearchSqlClient(this.transport);
+		return new ElasticsearchSqlClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchSslClient ssl() {
-		return new ElasticsearchSslClient(this.transport);
+		return new ElasticsearchSslClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchTasksClient tasks() {
-		return new ElasticsearchTasksClient(this.transport);
-	}
-
-	public ElasticsearchTextStructureClient textStructure() {
-		return new ElasticsearchTextStructureClient(this.transport);
+		return new ElasticsearchTasksClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchTransformClient transform() {
-		return new ElasticsearchTransformClient(this.transport);
+		return new ElasticsearchTransformClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchWatcherClient watcher() {
-		return new ElasticsearchWatcherClient(this.transport);
+		return new ElasticsearchWatcherClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchXpackClient xpack() {
-		return new ElasticsearchXpackClient(this.transport);
+		return new ElasticsearchXpackClient(this.transport, this.transportOptions);
 	}
 
 	// ----- Endpoint: bulk
@@ -290,8 +305,11 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TSource> BulkResponse bulk(BulkRequest<TSource> request) throws IOException {
-		return this.transport.performRequest(request, BulkRequest.ENDPOINT);
+	public BulkResponse bulk(BulkRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<BulkRequest, BulkResponse, ErrorResponse> endpoint = (JsonEndpoint<BulkRequest, BulkResponse, ErrorResponse>) BulkRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -299,17 +317,30 @@ public class ElasticsearchClient extends ApiClient {
 	 * request.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link BulkRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final <TSource> BulkResponse bulk(
-			Function<BulkRequest.Builder<TSource>, ObjectBuilder<BulkRequest<TSource>>> fn) throws IOException {
-		return bulk(fn.apply(new BulkRequest.Builder<TSource>()).build());
+	public final BulkResponse bulk(Function<BulkRequest.Builder, ObjectBuilder<BulkRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return bulk(fn.apply(new BulkRequest.Builder()).build());
+	}
+
+	/**
+	 * Allows to perform multiple index/update/delete operations in a single
+	 * request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public BulkResponse bulk() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new BulkRequest.Builder().build(), BulkRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: clear_scroll
@@ -322,24 +353,27 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException {
-		return this.transport.performRequest(request, ClearScrollRequest.ENDPOINT);
+	public ClearScrollResponse clearScroll(ClearScrollRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearScrollRequest, ClearScrollResponse, ErrorResponse>) ClearScrollRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Explicitly clears the search context for a scroll.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClearScrollRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ClearScrollResponse clearScroll(
-			Function<ClearScrollRequest.Builder, ObjectBuilder<ClearScrollRequest>> fn) throws IOException {
+			Function<ClearScrollRequest.Builder, ObjectBuilder<ClearScrollRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return clearScroll(fn.apply(new ClearScrollRequest.Builder()).build());
 	}
 
@@ -351,8 +385,9 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ClearScrollResponse clearScroll() throws IOException {
-		return this.transport.performRequest(new ClearScrollRequest.Builder().build(), ClearScrollRequest.ENDPOINT);
+	public ClearScrollResponse clearScroll() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new ClearScrollRequest.Builder().build(), ClearScrollRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: close_point_in_time
@@ -365,24 +400,28 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ClosePointInTimeResponse closePointInTime(ClosePointInTimeRequest request) throws IOException {
-		return this.transport.performRequest(request, ClosePointInTimeRequest.ENDPOINT);
+	public ClosePointInTimeResponse closePointInTime(ClosePointInTimeRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse> endpoint = (JsonEndpoint<ClosePointInTimeRequest, ClosePointInTimeResponse, ErrorResponse>) ClosePointInTimeRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Close a point in time
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ClosePointInTimeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ClosePointInTimeResponse closePointInTime(
-			Function<ClosePointInTimeRequest.Builder, ObjectBuilder<ClosePointInTimeRequest>> fn) throws IOException {
+			Function<ClosePointInTimeRequest.Builder, ObjectBuilder<ClosePointInTimeRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return closePointInTime(fn.apply(new ClosePointInTimeRequest.Builder()).build());
 	}
 
@@ -396,24 +435,26 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CountResponse count(CountRequest request) throws IOException {
-		return this.transport.performRequest(request, CountRequest.ENDPOINT);
+	public CountResponse count(CountRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CountRequest, CountResponse, ErrorResponse> endpoint = (JsonEndpoint<CountRequest, CountResponse, ErrorResponse>) CountRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns number of documents matching a query.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CountRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-count.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CountResponse count(Function<CountRequest.Builder, ObjectBuilder<CountRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return count(fn.apply(new CountRequest.Builder()).build());
 	}
 
@@ -425,8 +466,9 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CountResponse count() throws IOException {
-		return this.transport.performRequest(new CountRequest.Builder().build(), CountRequest.ENDPOINT);
+	public CountResponse count() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new CountRequest.Builder().build(), CountRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: create
@@ -442,8 +484,12 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TDocument> CreateResponse create(CreateRequest<TDocument> request) throws IOException {
-		return this.transport.performRequest(request, CreateRequest.ENDPOINT);
+	public <TDocument> CreateResponse create(CreateRequest<TDocument> request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CreateRequest<?>, CreateResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateRequest<?>, CreateResponse, ErrorResponse>) CreateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -453,16 +499,16 @@ public class ElasticsearchClient extends ApiClient {
 	 * index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link CreateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> CreateResponse create(
-			Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn) throws IOException {
+			Function<CreateRequest.Builder<TDocument>, ObjectBuilder<CreateRequest<TDocument>>> fn)
+			throws IOException, ElasticsearchException {
 		return create(fn.apply(new CreateRequest.Builder<TDocument>()).build());
 	}
 
@@ -476,24 +522,26 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteResponse delete(DeleteRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteRequest.ENDPOINT);
+	public DeleteResponse delete(DeleteRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteRequest, DeleteResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteRequest, DeleteResponse, ErrorResponse>) DeleteRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Removes a document from the index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteResponse delete(Function<DeleteRequest.Builder, ObjectBuilder<DeleteRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return delete(fn.apply(new DeleteRequest.Builder()).build());
 	}
 
@@ -507,24 +555,28 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteByQueryResponse deleteByQuery(DeleteByQueryRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteByQueryRequest.ENDPOINT);
+	public DeleteByQueryResponse deleteByQuery(DeleteByQueryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse>) DeleteByQueryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes documents matching the provided query.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteByQueryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-delete-by-query.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteByQueryResponse deleteByQuery(
-			Function<DeleteByQueryRequest.Builder, ObjectBuilder<DeleteByQueryRequest>> fn) throws IOException {
+			Function<DeleteByQueryRequest.Builder, ObjectBuilder<DeleteByQueryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteByQuery(fn.apply(new DeleteByQueryRequest.Builder()).build());
 	}
 
@@ -540,8 +592,11 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public DeleteByQueryRethrottleResponse deleteByQueryRethrottle(DeleteByQueryRethrottleRequest request)
-			throws IOException {
-		return this.transport.performRequest(request, DeleteByQueryRethrottleRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteByQueryRethrottleRequest, DeleteByQueryRethrottleResponse, ErrorResponse>) DeleteByQueryRethrottleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -549,9 +604,8 @@ public class ElasticsearchClient extends ApiClient {
 	 * operation.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteByQueryRethrottleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-delete-by-query.html">Documentation
 	 *      on elastic.co</a>
@@ -559,7 +613,7 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final DeleteByQueryRethrottleResponse deleteByQueryRethrottle(
 			Function<DeleteByQueryRethrottleRequest.Builder, ObjectBuilder<DeleteByQueryRethrottleRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteByQueryRethrottle(fn.apply(new DeleteByQueryRethrottleRequest.Builder()).build());
 	}
 
@@ -573,24 +627,27 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException {
-		return this.transport.performRequest(request, DeleteScriptRequest.ENDPOINT);
+	public DeleteScriptResponse deleteScript(DeleteScriptRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteScriptRequest, DeleteScriptResponse, ErrorResponse>) DeleteScriptRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes a script.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteScriptRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final DeleteScriptResponse deleteScript(
-			Function<DeleteScriptRequest.Builder, ObjectBuilder<DeleteScriptRequest>> fn) throws IOException {
+			Function<DeleteScriptRequest.Builder, ObjectBuilder<DeleteScriptRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteScript(fn.apply(new DeleteScriptRequest.Builder()).build());
 	}
 
@@ -604,24 +661,26 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse exists(ExistsRequest request) throws IOException {
-		return this.transport.performRequest(request, ExistsRequest.ENDPOINT);
+	public BooleanResponse exists(ExistsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse>) ExistsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about whether a document exists in an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final BooleanResponse exists(Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return exists(fn.apply(new ExistsRequest.Builder()).build());
 	}
 
@@ -635,24 +694,27 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException {
-		return this.transport.performRequest(request, ExistsSourceRequest.ENDPOINT);
+	public BooleanResponse existsSource(ExistsSourceRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse>) ExistsSourceRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about whether a document source exists in an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExistsSourceRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final BooleanResponse existsSource(
-			Function<ExistsSourceRequest.Builder, ObjectBuilder<ExistsSourceRequest>> fn) throws IOException {
+			Function<ExistsSourceRequest.Builder, ObjectBuilder<ExistsSourceRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return existsSource(fn.apply(new ExistsSourceRequest.Builder()).build());
 	}
 
@@ -667,18 +729,21 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public <TDocument> ExplainResponse<TDocument> explain(ExplainRequest request, Class<TDocument> tDocumentClass)
-			throws IOException {
-		return this.transport.performRequest(request,
-				ExplainRequest.createExplainEndpoint(getDeserializer(tDocumentClass)));
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ExplainRequest, ExplainResponse<TDocument>, ErrorResponse>) ExplainRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.explain.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about why a specific matches (or doesn't match) a query.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExplainRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-explain.html">Documentation
 	 *      on elastic.co</a>
@@ -686,7 +751,7 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final <TDocument> ExplainResponse<TDocument> explain(
 			Function<ExplainRequest.Builder, ObjectBuilder<ExplainRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return explain(fn.apply(new ExplainRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -701,8 +766,11 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException {
-		return this.transport.performRequest(request, FieldCapsRequest.ENDPOINT);
+	public FieldCapsResponse fieldCaps(FieldCapsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse> endpoint = (JsonEndpoint<FieldCapsRequest, FieldCapsResponse, ErrorResponse>) FieldCapsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -710,16 +778,15 @@ public class ElasticsearchClient extends ApiClient {
 	 * indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link FieldCapsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final FieldCapsResponse fieldCaps(Function<FieldCapsRequest.Builder, ObjectBuilder<FieldCapsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return fieldCaps(fn.apply(new FieldCapsRequest.Builder()).build());
 	}
 
@@ -732,8 +799,9 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public FieldCapsResponse fieldCaps() throws IOException {
-		return this.transport.performRequest(new FieldCapsRequest.Builder().build(), FieldCapsRequest.ENDPOINT);
+	public FieldCapsResponse fieldCaps() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new FieldCapsRequest.Builder().build(), FieldCapsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: get
@@ -747,24 +815,28 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public <TDocument> GetResponse<TDocument> get(GetRequest request, Class<TDocument> tDocumentClass)
-			throws IOException {
-		return this.transport.performRequest(request, GetRequest.createGetEndpoint(getDeserializer(tDocumentClass)));
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetRequest, GetResponse<TDocument>, ErrorResponse>) GetRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.get.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns a document.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> GetResponse<TDocument> get(Function<GetRequest.Builder, ObjectBuilder<GetRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return get(fn.apply(new GetRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -778,24 +850,26 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetScriptResponse getScript(GetScriptRequest request) throws IOException {
-		return this.transport.performRequest(request, GetScriptRequest.ENDPOINT);
+	public GetScriptResponse getScript(GetScriptRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetScriptRequest, GetScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<GetScriptRequest, GetScriptResponse, ErrorResponse>) GetScriptRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns a script.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetScriptRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final GetScriptResponse getScript(Function<GetScriptRequest.Builder, ObjectBuilder<GetScriptRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getScript(fn.apply(new GetScriptRequest.Builder()).build());
 	}
 
@@ -808,8 +882,9 @@ public class ElasticsearchClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-contexts.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetScriptContextResponse getScriptContext() throws IOException {
-		return this.transport.performRequest(GetScriptContextRequest._INSTANCE, GetScriptContextRequest.ENDPOINT);
+	public GetScriptContextResponse getScriptContext() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(GetScriptContextRequest._INSTANCE, GetScriptContextRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: get_script_languages
@@ -821,8 +896,9 @@ public class ElasticsearchClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public GetScriptLanguagesResponse getScriptLanguages() throws IOException {
-		return this.transport.performRequest(GetScriptLanguagesRequest._INSTANCE, GetScriptLanguagesRequest.ENDPOINT);
+	public GetScriptLanguagesResponse getScriptLanguages() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(GetScriptLanguagesRequest._INSTANCE, GetScriptLanguagesRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: get_source
@@ -836,18 +912,21 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public <TDocument> GetSourceResponse<TDocument> getSource(GetSourceRequest request, Class<TDocument> tDocumentClass)
-			throws IOException {
-		return this.transport.performRequest(request,
-				GetSourceRequest.createGetSourceEndpoint(getDeserializer(tDocumentClass)));
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetSourceRequest, GetSourceResponse<TDocument>, ErrorResponse>) GetSourceRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.get_source.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns the source of a document.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetSourceRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-get.html">Documentation
 	 *      on elastic.co</a>
@@ -855,7 +934,7 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final <TDocument> GetSourceResponse<TDocument> getSource(
 			Function<GetSourceRequest.Builder, ObjectBuilder<GetSourceRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getSource(fn.apply(new GetSourceRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -869,24 +948,27 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException {
-		return this.transport.performRequest(request, IndexRequest.ENDPOINT);
+	public <TDocument> IndexResponse index(IndexRequest<TDocument> request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<IndexRequest<?>, IndexResponse, ErrorResponse> endpoint = (JsonEndpoint<IndexRequest<?>, IndexResponse, ErrorResponse>) IndexRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates or updates a document in an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link IndexRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-index_.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> IndexResponse index(
-			Function<IndexRequest.Builder<TDocument>, ObjectBuilder<IndexRequest<TDocument>>> fn) throws IOException {
+			Function<IndexRequest.Builder<TDocument>, ObjectBuilder<IndexRequest<TDocument>>> fn)
+			throws IOException, ElasticsearchException {
 		return index(fn.apply(new IndexRequest.Builder<TDocument>()).build());
 	}
 
@@ -899,8 +981,45 @@ public class ElasticsearchClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public InfoResponse info() throws IOException {
-		return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest.ENDPOINT);
+	public InfoResponse info() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(InfoRequest._INSTANCE, InfoRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: knn_search
+
+	/**
+	 * Performs a kNN search.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> KnnSearchResponse<TDocument> knnSearch(KnnSearchRequest request, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<KnnSearchRequest, KnnSearchResponse<TDocument>, ErrorResponse>) KnnSearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.knn_search.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Performs a kNN search.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link KnnSearchRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> KnnSearchResponse<TDocument> knnSearch(
+			Function<KnnSearchRequest.Builder, ObjectBuilder<KnnSearchRequest>> fn, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		return knnSearch(fn.apply(new KnnSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: mget
@@ -914,24 +1033,28 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public <TDocument> MgetResponse<TDocument> mget(MgetRequest request, Class<TDocument> tDocumentClass)
-			throws IOException {
-		return this.transport.performRequest(request, MgetRequest.createMgetEndpoint(getDeserializer(tDocumentClass)));
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MgetRequest, MgetResponse<TDocument>, ErrorResponse>) MgetRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.mget.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Allows to get multiple documents in one request.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MgetRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-get.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final <TDocument> MgetResponse<TDocument> mget(Function<MgetRequest.Builder, ObjectBuilder<MgetRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return mget(fn.apply(new MgetRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -946,18 +1069,21 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public <TDocument> MsearchResponse<TDocument> msearch(MsearchRequest request, Class<TDocument> tDocumentClass)
-			throws IOException {
-		return this.transport.performRequest(request,
-				MsearchRequest.createMsearchEndpoint(getDeserializer(tDocumentClass)));
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchRequest, MsearchResponse<TDocument>, ErrorResponse>) MsearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.msearch.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Allows to execute several search operations in one request.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MsearchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-multi-search.html">Documentation
 	 *      on elastic.co</a>
@@ -965,7 +1091,7 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final <TDocument> MsearchResponse<TDocument> msearch(
 			Function<MsearchRequest.Builder, ObjectBuilder<MsearchRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return msearch(fn.apply(new MsearchRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -980,18 +1106,21 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(MsearchTemplateRequest request,
-			Class<TDocument> tDocumentClass) throws IOException {
-		return this.transport.performRequest(request,
-				MsearchTemplateRequest.createMsearchTemplateEndpoint(getDeserializer(tDocumentClass)));
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse>) MsearchTemplateRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.msearch_template.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Allows to execute several search template operations in one request.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MsearchTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-multi-search.html">Documentation
 	 *      on elastic.co</a>
@@ -999,7 +1128,7 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final <TDocument> MsearchTemplateResponse<TDocument> msearchTemplate(
 			Function<MsearchTemplateRequest.Builder, ObjectBuilder<MsearchTemplateRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return msearchTemplate(fn.apply(new MsearchTemplateRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -1013,24 +1142,27 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException {
-		return this.transport.performRequest(request, MtermvectorsRequest.ENDPOINT);
+	public MtermvectorsResponse mtermvectors(MtermvectorsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse> endpoint = (JsonEndpoint<MtermvectorsRequest, MtermvectorsResponse, ErrorResponse>) MtermvectorsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns multiple termvectors in one request.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link MtermvectorsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-multi-termvectors.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final MtermvectorsResponse mtermvectors(
-			Function<MtermvectorsRequest.Builder, ObjectBuilder<MtermvectorsRequest>> fn) throws IOException {
+			Function<MtermvectorsRequest.Builder, ObjectBuilder<MtermvectorsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return mtermvectors(fn.apply(new MtermvectorsRequest.Builder()).build());
 	}
 
@@ -1042,8 +1174,9 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public MtermvectorsResponse mtermvectors() throws IOException {
-		return this.transport.performRequest(new MtermvectorsRequest.Builder().build(), MtermvectorsRequest.ENDPOINT);
+	public MtermvectorsResponse mtermvectors() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new MtermvectorsRequest.Builder().build(), MtermvectorsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: open_point_in_time
@@ -1056,24 +1189,28 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public OpenPointInTimeResponse openPointInTime(OpenPointInTimeRequest request) throws IOException {
-		return this.transport.performRequest(request, OpenPointInTimeRequest.ENDPOINT);
+	public OpenPointInTimeResponse openPointInTime(OpenPointInTimeRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse> endpoint = (JsonEndpoint<OpenPointInTimeRequest, OpenPointInTimeResponse, ErrorResponse>) OpenPointInTimeRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Open a point in time that can be used in subsequent searches
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link OpenPointInTimeRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final OpenPointInTimeResponse openPointInTime(
-			Function<OpenPointInTimeRequest.Builder, ObjectBuilder<OpenPointInTimeRequest>> fn) throws IOException {
+			Function<OpenPointInTimeRequest.Builder, ObjectBuilder<OpenPointInTimeRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return openPointInTime(fn.apply(new OpenPointInTimeRequest.Builder()).build());
 	}
 
@@ -1086,8 +1223,8 @@ public class ElasticsearchClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public BooleanResponse ping() throws IOException {
-		return this.transport.performRequest(PingRequest._INSTANCE, PingRequest.ENDPOINT);
+	public BooleanResponse ping() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(PingRequest._INSTANCE, PingRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: put_script
@@ -1100,24 +1237,26 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutScriptResponse putScript(PutScriptRequest request) throws IOException {
-		return this.transport.performRequest(request, PutScriptRequest.ENDPOINT);
+	public PutScriptResponse putScript(PutScriptRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutScriptRequest, PutScriptResponse, ErrorResponse> endpoint = (JsonEndpoint<PutScriptRequest, PutScriptResponse, ErrorResponse>) PutScriptRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates or updates a script.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutScriptRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-scripting.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PutScriptResponse putScript(Function<PutScriptRequest.Builder, ObjectBuilder<PutScriptRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putScript(fn.apply(new PutScriptRequest.Builder()).build());
 	}
 
@@ -1132,8 +1271,11 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public RankEvalResponse rankEval(RankEvalRequest request) throws IOException {
-		return this.transport.performRequest(request, RankEvalRequest.ENDPOINT);
+	public RankEvalResponse rankEval(RankEvalRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RankEvalRequest, RankEvalResponse, ErrorResponse> endpoint = (JsonEndpoint<RankEvalRequest, RankEvalResponse, ErrorResponse>) RankEvalRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1141,16 +1283,15 @@ public class ElasticsearchClient extends ApiClient {
 	 * search queries
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link RankEvalRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-rank-eval.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final RankEvalResponse rankEval(Function<RankEvalRequest.Builder, ObjectBuilder<RankEvalRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return rankEval(fn.apply(new RankEvalRequest.Builder()).build());
 	}
 
@@ -1166,8 +1307,11 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ReindexResponse reindex(ReindexRequest request) throws IOException {
-		return this.transport.performRequest(request, ReindexRequest.ENDPOINT);
+	public ReindexResponse reindex(ReindexRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse> endpoint = (JsonEndpoint<ReindexRequest, ReindexResponse, ErrorResponse>) ReindexRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1176,16 +1320,15 @@ public class ElasticsearchClient extends ApiClient {
 	 * fetching the documents from a remote cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ReindexRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ReindexResponse reindex(Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return reindex(fn.apply(new ReindexRequest.Builder()).build());
 	}
 
@@ -1199,8 +1342,9 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ReindexResponse reindex() throws IOException {
-		return this.transport.performRequest(new ReindexRequest.Builder().build(), ReindexRequest.ENDPOINT);
+	public ReindexResponse reindex() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new ReindexRequest.Builder().build(), ReindexRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: reindex_rethrottle
@@ -1213,25 +1357,77 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request) throws IOException {
-		return this.transport.performRequest(request, ReindexRethrottleRequest.ENDPOINT);
+	public ReindexRethrottleResponse reindexRethrottle(ReindexRethrottleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<ReindexRethrottleRequest, ReindexRethrottleResponse, ErrorResponse>) ReindexRethrottleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Changes the number of requests per second for a particular Reindex operation.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ReindexRethrottleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ReindexRethrottleResponse reindexRethrottle(
-			Function<ReindexRethrottleRequest.Builder, ObjectBuilder<ReindexRethrottleRequest>> fn) throws IOException {
+			Function<ReindexRethrottleRequest.Builder, ObjectBuilder<ReindexRethrottleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return reindexRethrottle(fn.apply(new ReindexRethrottleRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: render_search_template
+
+	/**
+	 * Allows to use the Mustache language to pre-render a search definition.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public RenderSearchTemplateResponse renderSearchTemplate(RenderSearchTemplateRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<RenderSearchTemplateRequest, RenderSearchTemplateResponse, ErrorResponse>) RenderSearchTemplateRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to use the Mustache language to pre-render a search definition.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link RenderSearchTemplateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final RenderSearchTemplateResponse renderSearchTemplate(
+			Function<RenderSearchTemplateRequest.Builder, ObjectBuilder<RenderSearchTemplateRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return renderSearchTemplate(fn.apply(new RenderSearchTemplateRequest.Builder()).build());
+	}
+
+	/**
+	 * Allows to use the Mustache language to pre-render a search definition.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/render-search-template-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public RenderSearchTemplateResponse renderSearchTemplate() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new RenderSearchTemplateRequest.Builder().build(),
+				RenderSearchTemplateRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: scripts_painless_execute
@@ -1245,18 +1441,23 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
-			ScriptsPainlessExecuteRequest request, Class<TResult> tResultClass) throws IOException {
-		return this.transport.performRequest(request,
-				ScriptsPainlessExecuteRequest.createScriptsPainlessExecuteEndpoint(getDeserializer(tResultClass)));
+			ScriptsPainlessExecuteRequest request, Class<TResult> tResultClass)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse> endpoint = (JsonEndpoint<ScriptsPainlessExecuteRequest, ScriptsPainlessExecuteResponse<TResult>, ErrorResponse>) ScriptsPainlessExecuteRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult",
+				getDeserializer(tResultClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Allows an arbitrary script to be executed and a result to be returned
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ScriptsPainlessExecuteRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/painless/master/painless-execute-api.html">Documentation
 	 *      on elastic.co</a>
@@ -1264,8 +1465,45 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final <TResult> ScriptsPainlessExecuteResponse<TResult> scriptsPainlessExecute(
 			Function<ScriptsPainlessExecuteRequest.Builder, ObjectBuilder<ScriptsPainlessExecuteRequest>> fn,
-			Class<TResult> tResultClass) throws IOException {
+			Class<TResult> tResultClass) throws IOException, ElasticsearchException {
 		return scriptsPainlessExecute(fn.apply(new ScriptsPainlessExecuteRequest.Builder()).build(), tResultClass);
+	}
+
+	// ----- Endpoint: scroll
+
+	/**
+	 * Allows to retrieve a large numbers of results from a single search request.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public <TDocument> ScrollResponse<TDocument> scroll(ScrollRequest request, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<ScrollRequest, ScrollResponse<TDocument>, ErrorResponse>) ScrollRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.scroll.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Allows to retrieve a large numbers of results from a single search request.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ScrollRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-request-body.html#request-body-search-scroll">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final <TDocument> ScrollResponse<TDocument> scroll(
+			Function<ScrollRequest.Builder, ObjectBuilder<ScrollRequest>> fn, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		return scroll(fn.apply(new ScrollRequest.Builder()).build(), tDocumentClass);
 	}
 
 	// ----- Endpoint: search
@@ -1279,18 +1517,21 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public <TDocument> SearchResponse<TDocument> search(SearchRequest request, Class<TDocument> tDocumentClass)
-			throws IOException {
-		return this.transport.performRequest(request,
-				SearchRequest.createSearchEndpoint(getDeserializer(tDocumentClass)));
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchRequest, SearchResponse<TDocument>, ErrorResponse>) SearchRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.search.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns results matching a query.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SearchRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-search.html">Documentation
 	 *      on elastic.co</a>
@@ -1298,41 +1539,8 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final <TDocument> SearchResponse<TDocument> search(
 			Function<SearchRequest.Builder, ObjectBuilder<SearchRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return search(fn.apply(new SearchRequest.Builder()).build(), tDocumentClass);
-	}
-
-	// ----- Endpoint: search_mvt
-
-	/**
-	 * Searches a vector tile for geospatial values. Returns results as a binary
-	 * Mapbox vector tile.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public SearchMvtResponse searchMvt(SearchMvtRequest request) throws IOException {
-		return this.transport.performRequest(request, SearchMvtRequest.ENDPOINT);
-	}
-
-	/**
-	 * Searches a vector tile for geospatial values. Returns results as a binary
-	 * Mapbox vector tile.
-	 * 
-	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-vector-tile-api.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final SearchMvtResponse searchMvt(Function<SearchMvtRequest.Builder, ObjectBuilder<SearchMvtRequest>> fn)
-			throws IOException {
-		return searchMvt(fn.apply(new SearchMvtRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: search_shards
@@ -1346,8 +1554,11 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException {
-		return this.transport.performRequest(request, SearchShardsRequest.ENDPOINT);
+	public SearchShardsResponse searchShards(SearchShardsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse> endpoint = (JsonEndpoint<SearchShardsRequest, SearchShardsResponse, ErrorResponse>) SearchShardsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1355,16 +1566,16 @@ public class ElasticsearchClient extends ApiClient {
 	 * be executed against.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SearchShardsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-shards.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final SearchShardsResponse searchShards(
-			Function<SearchShardsRequest.Builder, ObjectBuilder<SearchShardsRequest>> fn) throws IOException {
+			Function<SearchShardsRequest.Builder, ObjectBuilder<SearchShardsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return searchShards(fn.apply(new SearchShardsRequest.Builder()).build());
 	}
 
@@ -1377,8 +1588,9 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public SearchShardsResponse searchShards() throws IOException {
-		return this.transport.performRequest(new SearchShardsRequest.Builder().build(), SearchShardsRequest.ENDPOINT);
+	public SearchShardsResponse searchShards() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new SearchShardsRequest.Builder().build(), SearchShardsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: search_template
@@ -1392,18 +1604,21 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public <TDocument> SearchTemplateResponse<TDocument> searchTemplate(SearchTemplateRequest request,
-			Class<TDocument> tDocumentClass) throws IOException {
-		return this.transport.performRequest(request,
-				SearchTemplateRequest.createSearchTemplateEndpoint(getDeserializer(tDocumentClass)));
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SearchTemplateRequest, SearchTemplateResponse<TDocument>, ErrorResponse>) SearchTemplateRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.search_template.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Allows to use the Mustache language to pre-render a search definition.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link SearchTemplateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html">Documentation
 	 *      on elastic.co</a>
@@ -1411,7 +1626,7 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final <TDocument> SearchTemplateResponse<TDocument> searchTemplate(
 			Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return searchTemplate(fn.apply(new SearchTemplateRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -1427,8 +1642,11 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException {
-		return this.transport.performRequest(request, TermsEnumRequest.ENDPOINT);
+	public TermsEnumResponse termsEnum(TermsEnumRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse> endpoint = (JsonEndpoint<TermsEnumRequest, TermsEnumResponse, ErrorResponse>) TermsEnumRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1437,16 +1655,15 @@ public class ElasticsearchClient extends ApiClient {
 	 * auto-complete scenarios.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link TermsEnumRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-terms-enum.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final TermsEnumResponse termsEnum(Function<TermsEnumRequest.Builder, ObjectBuilder<TermsEnumRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return termsEnum(fn.apply(new TermsEnumRequest.Builder()).build());
 	}
 
@@ -1461,8 +1678,12 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public <TDocument> TermvectorsResponse termvectors(TermvectorsRequest<TDocument> request) throws IOException {
-		return this.transport.performRequest(request, TermvectorsRequest.ENDPOINT);
+	public <TDocument> TermvectorsResponse termvectors(TermvectorsRequest<TDocument> request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse> endpoint = (JsonEndpoint<TermvectorsRequest<?>, TermvectorsResponse, ErrorResponse>) TermvectorsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1470,9 +1691,8 @@ public class ElasticsearchClient extends ApiClient {
 	 * document.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link TermvectorsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-termvectors.html">Documentation
 	 *      on elastic.co</a>
@@ -1480,7 +1700,7 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final <TDocument> TermvectorsResponse termvectors(
 			Function<TermvectorsRequest.Builder<TDocument>, ObjectBuilder<TermvectorsRequest<TDocument>>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return termvectors(fn.apply(new TermvectorsRequest.Builder<TDocument>()).build());
 	}
 
@@ -1495,18 +1715,22 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
-			UpdateRequest<TDocument, TPartialDocument> request, Class<TDocument> tDocumentClass) throws IOException {
-		return this.transport.performRequest(request,
-				UpdateRequest.createUpdateEndpoint(getDeserializer(tDocumentClass)));
+			UpdateRequest<TDocument, TPartialDocument> request, Class<TDocument> tDocumentClass)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<UpdateRequest<?, ?>, UpdateResponse<TDocument>, ErrorResponse>) UpdateRequest._ENDPOINT;
+		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
+				"co.elastic.clients:Deserializer:_global.update.TDocument", getDeserializer(tDocumentClass));
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Updates a document with a script or partial document.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update.html">Documentation
 	 *      on elastic.co</a>
@@ -1514,7 +1738,7 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final <TDocument, TPartialDocument> UpdateResponse<TDocument> update(
 			Function<UpdateRequest.Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateRequest<TDocument, TPartialDocument>>> fn,
-			Class<TDocument> tDocumentClass) throws IOException {
+			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
 		return update(fn.apply(new UpdateRequest.Builder<TDocument, TPartialDocument>()).build(), tDocumentClass);
 	}
 
@@ -1529,8 +1753,12 @@ public class ElasticsearchClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UpdateByQueryResponse updateByQuery(UpdateByQueryRequest request) throws IOException {
-		return this.transport.performRequest(request, UpdateByQueryRequest.ENDPOINT);
+	public UpdateByQueryResponse updateByQuery(UpdateByQueryRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateByQueryRequest, UpdateByQueryResponse, ErrorResponse>) UpdateByQueryRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1538,16 +1766,16 @@ public class ElasticsearchClient extends ApiClient {
 	 * source, for example to pick up a mapping change.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateByQueryRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-update-by-query.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final UpdateByQueryResponse updateByQuery(
-			Function<UpdateByQueryRequest.Builder, ObjectBuilder<UpdateByQueryRequest>> fn) throws IOException {
+			Function<UpdateByQueryRequest.Builder, ObjectBuilder<UpdateByQueryRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return updateByQuery(fn.apply(new UpdateByQueryRequest.Builder()).build());
 	}
 
@@ -1563,8 +1791,11 @@ public class ElasticsearchClient extends ApiClient {
 	 */
 
 	public UpdateByQueryRethrottleResponse updateByQueryRethrottle(UpdateByQueryRethrottleRequest request)
-			throws IOException {
-		return this.transport.performRequest(request, UpdateByQueryRethrottleRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateByQueryRethrottleRequest, UpdateByQueryRethrottleResponse, ErrorResponse>) UpdateByQueryRethrottleRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -1572,9 +1803,8 @@ public class ElasticsearchClient extends ApiClient {
 	 * operation.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateByQueryRethrottleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/docs-update-by-query.html">Documentation
 	 *      on elastic.co</a>
@@ -1582,7 +1812,7 @@ public class ElasticsearchClient extends ApiClient {
 
 	public final UpdateByQueryRethrottleResponse updateByQueryRethrottle(
 			Function<UpdateByQueryRethrottleRequest.Builder, ObjectBuilder<UpdateByQueryRethrottleRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return updateByQueryRethrottle(fn.apply(new UpdateByQueryRethrottleRequest.Builder()).build());
 	}
 

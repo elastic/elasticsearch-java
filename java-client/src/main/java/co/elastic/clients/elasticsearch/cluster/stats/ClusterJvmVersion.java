@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -40,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvmVersion
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L160-L168">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterJvmVersion implements JsonpSerializable {
+public class ClusterJvmVersion implements JsonpSerializable {
 	private final boolean bundledJdk;
 
 	private final int count;
@@ -58,68 +66,68 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterJvmVersion(Builder builder) {
+	private ClusterJvmVersion(Builder builder) {
 
-		this.bundledJdk = Objects.requireNonNull(builder.bundledJdk, "bundled_jdk");
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.usingBundledJdk = Objects.requireNonNull(builder.usingBundledJdk, "using_bundled_jdk");
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.vmName = Objects.requireNonNull(builder.vmName, "vm_name");
-		this.vmVendor = Objects.requireNonNull(builder.vmVendor, "vm_vendor");
-		this.vmVersion = Objects.requireNonNull(builder.vmVersion, "vm_version");
+		this.bundledJdk = ApiTypeHelper.requireNonNull(builder.bundledJdk, this, "bundledJdk");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.usingBundledJdk = ApiTypeHelper.requireNonNull(builder.usingBundledJdk, this, "usingBundledJdk");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.vmName = ApiTypeHelper.requireNonNull(builder.vmName, this, "vmName");
+		this.vmVendor = ApiTypeHelper.requireNonNull(builder.vmVendor, this, "vmVendor");
+		this.vmVersion = ApiTypeHelper.requireNonNull(builder.vmVersion, this, "vmVersion");
 
 	}
 
-	public ClusterJvmVersion(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterJvmVersion of(Function<Builder, ObjectBuilder<ClusterJvmVersion>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code bundled_jdk}
 	 */
-	public boolean bundledJdk() {
+	public final boolean bundledJdk() {
 		return this.bundledJdk;
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code using_bundled_jdk}
 	 */
-	public boolean usingBundledJdk() {
+	public final boolean usingBundledJdk() {
 		return this.usingBundledJdk;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
 	/**
 	 * Required - API name: {@code vm_name}
 	 */
-	public String vmName() {
+	public final String vmName() {
 		return this.vmName;
 	}
 
 	/**
 	 * Required - API name: {@code vm_vendor}
 	 */
-	public String vmVendor() {
+	public final String vmVendor() {
 		return this.vmVendor;
 	}
 
 	/**
 	 * Required - API name: {@code vm_version}
 	 */
-	public String vmVersion() {
+	public final String vmVersion() {
 		return this.vmVersion;
 	}
 
@@ -162,7 +170,8 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterJvmVersion}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterJvmVersion> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterJvmVersion> {
 		private Boolean bundledJdk;
 
 		private Integer count;
@@ -180,7 +189,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bundled_jdk}
 		 */
-		public Builder bundledJdk(boolean value) {
+		public final Builder bundledJdk(boolean value) {
 			this.bundledJdk = value;
 			return this;
 		}
@@ -188,7 +197,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -196,7 +205,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code using_bundled_jdk}
 		 */
-		public Builder usingBundledJdk(boolean value) {
+		public final Builder usingBundledJdk(boolean value) {
 			this.usingBundledJdk = value;
 			return this;
 		}
@@ -204,7 +213,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(String value) {
 			this.version = value;
 			return this;
 		}
@@ -212,7 +221,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vm_name}
 		 */
-		public Builder vmName(String value) {
+		public final Builder vmName(String value) {
 			this.vmName = value;
 			return this;
 		}
@@ -220,7 +229,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vm_vendor}
 		 */
-		public Builder vmVendor(String value) {
+		public final Builder vmVendor(String value) {
 			this.vmVendor = value;
 			return this;
 		}
@@ -228,7 +237,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code vm_version}
 		 */
-		public Builder vmVersion(String value) {
+		public final Builder vmVersion(String value) {
 			this.vmVersion = value;
 			return this;
 		}
@@ -240,6 +249,7 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterJvmVersion build() {
+			_checkSingleUse();
 
 			return new ClusterJvmVersion(this);
 		}
@@ -251,9 +261,9 @@ public final class ClusterJvmVersion implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterJvmVersion}
 	 */
 	public static final JsonpDeserializer<ClusterJvmVersion> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterJvmVersion::setupClusterJvmVersionDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterJvmVersion::setupClusterJvmVersionDeserializer);
 
-	protected static void setupClusterJvmVersionDeserializer(DelegatingDeserializer<ClusterJvmVersion.Builder> op) {
+	protected static void setupClusterJvmVersionDeserializer(ObjectDeserializer<ClusterJvmVersion.Builder> op) {
 
 		op.add(Builder::bundledJdk, JsonpDeserializer.booleanDeserializer(), "bundled_jdk");
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");

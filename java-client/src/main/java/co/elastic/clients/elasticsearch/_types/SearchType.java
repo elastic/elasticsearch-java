@@ -23,22 +23,31 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/common.ts#L243-L248">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum SearchType implements StringEnum {
+public enum SearchType implements JsonEnum {
 	/**
 	 * Documents are scored using local term and document frequencies for the shard.
 	 * This is usually faster but less accurate.
 	 */
 	QueryThenFetch("query_then_fetch"),
+
 	/**
 	 * Documents are scored using global term and document frequencies across all
 	 * shards. This is usually slower but more accurate.
 	 */
-	DfsQueryThenFetch("dfs_query_then_fetch");
+	DfsQueryThenFetch("dfs_query_then_fetch"),
+
+	;
 
 	private final String jsonValue;
 
@@ -50,6 +59,6 @@ public enum SearchType implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<SearchType> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<SearchType> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			SearchType.values());
 }

@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,28 @@ import javax.annotation.Nullable;
 
 // typedef: indices.promote_data_stream.Request
 
-public final class PromoteDataStreamRequest extends RequestBase {
+/**
+ * Promotes a data stream from a replicated data stream managed by CCR to a
+ * regular data stream
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/promote_data_stream/IndicesPromoteDataStreamRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class PromoteDataStreamRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PromoteDataStreamRequest(Builder builder) {
+	private PromoteDataStreamRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public PromoteDataStreamRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PromoteDataStreamRequest of(Function<Builder, ObjectBuilder<PromoteDataStreamRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +72,7 @@ public final class PromoteDataStreamRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -70,7 +81,8 @@ public final class PromoteDataStreamRequest extends RequestBase {
 	/**
 	 * Builder for {@link PromoteDataStreamRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PromoteDataStreamRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PromoteDataStreamRequest> {
 		private String name;
 
 		/**
@@ -78,7 +90,7 @@ public final class PromoteDataStreamRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -90,6 +102,7 @@ public final class PromoteDataStreamRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public PromoteDataStreamRequest build() {
+			_checkSingleUse();
 
 			return new PromoteDataStreamRequest(this);
 		}
@@ -100,7 +113,9 @@ public final class PromoteDataStreamRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.promote_data_stream}".
 	 */
-	public static final Endpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.promote_data_stream",
+
 			// Request method
 			request -> {
 				return "POST";

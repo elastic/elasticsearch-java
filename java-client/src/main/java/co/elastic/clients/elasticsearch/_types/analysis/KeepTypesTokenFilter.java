@@ -23,63 +23,69 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeepTypesTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L216-L220">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KeepTypesTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+	@Nullable
 	private final KeepTypesMode mode;
 
 	private final List<String> types;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KeepTypesTokenFilter(Builder builder) {
+	private KeepTypesTokenFilter(Builder builder) {
 		super(builder);
 
-		this.mode = Objects.requireNonNull(builder.mode, "mode");
-		this.types = ModelTypeHelper.unmodifiableNonNull(builder.types, "types");
+		this.mode = builder.mode;
+		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
 	}
 
-	public KeepTypesTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KeepTypesTokenFilter of(Function<Builder, ObjectBuilder<KeepTypesTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "keep_types";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.KeepTypes;
 	}
 
 	/**
-	 * Required - API name: {@code mode}
+	 * API name: {@code mode}
 	 */
-	public KeepTypesMode mode() {
+	@Nullable
+	public final KeepTypesMode mode() {
 		return this.mode;
 	}
 
 	/**
-	 * Required - API name: {@code types}
+	 * API name: {@code types}
 	 */
-	public List<String> types() {
+	public final List<String> types() {
 		return this.types;
 	}
 
@@ -87,17 +93,20 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "keep_types");
 		super.serializeInternal(generator, mapper);
+		if (this.mode != null) {
+			generator.writeKey("mode");
+			this.mode.serialize(generator, mapper);
+		}
+		if (ApiTypeHelper.isDefined(this.types)) {
+			generator.writeKey("types");
+			generator.writeStartArray();
+			for (String item0 : this.types) {
+				generator.write(item0);
 
-		generator.writeKey("mode");
-		this.mode.serialize(generator, mapper);
-
-		generator.writeKey("types");
-		generator.writeStartArray();
-		for (String item0 : this.types) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -106,45 +115,41 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Builder for {@link KeepTypesTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeepTypesTokenFilter> {
+		@Nullable
 		private KeepTypesMode mode;
 
+		@Nullable
 		private List<String> types;
 
 		/**
-		 * Required - API name: {@code mode}
+		 * API name: {@code mode}
 		 */
-		public Builder mode(KeepTypesMode value) {
+		public final Builder mode(@Nullable KeepTypesMode value) {
 			this.mode = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code types}
+		 * API name: {@code types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>types</code>.
 		 */
-		public Builder types(List<String> value) {
-			this.types = value;
+		public final Builder types(List<String> list) {
+			this.types = _listAddAll(this.types, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code types}
+		 * API name: {@code types}
+		 * <p>
+		 * Adds one or more values to <code>types</code>.
 		 */
-		public Builder types(String... value) {
-			this.types = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed.
-		 */
-		public Builder addTypes(String value) {
-			if (this.types == null) {
-				this.types = new ArrayList<>();
-			}
-			this.types.add(value);
+		public final Builder types(String value, String... values) {
+			this.types = _listAdd(this.types, value, values);
 			return this;
 		}
 
@@ -160,6 +165,7 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public KeepTypesTokenFilter build() {
+			_checkSingleUse();
 
 			return new KeepTypesTokenFilter(this);
 		}
@@ -171,10 +177,9 @@ public final class KeepTypesTokenFilter extends TokenFilterBase implements Token
 	 * Json deserializer for {@link KeepTypesTokenFilter}
 	 */
 	public static final JsonpDeserializer<KeepTypesTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KeepTypesTokenFilter::setupKeepTypesTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, KeepTypesTokenFilter::setupKeepTypesTokenFilterDeserializer);
 
-	protected static void setupKeepTypesTokenFilterDeserializer(
-			DelegatingDeserializer<KeepTypesTokenFilter.Builder> op) {
+	protected static void setupKeepTypesTokenFilterDeserializer(ObjectDeserializer<KeepTypesTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::mode, KeepTypesMode._DESERIALIZER, "mode");
 		op.add(Builder::types, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "types");

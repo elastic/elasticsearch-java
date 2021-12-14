@@ -23,26 +23,25 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
-import co.elastic.clients.json.JsonData;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
+import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -50,51 +49,70 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.create.Request
+
+/**
+ * Creates an index with optional settings and mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/create/IndicesCreateRequest.ts#L28-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CreateIndexRequest extends RequestBase implements JsonpSerializable {
-	private final String index;
+public class CreateIndexRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, Alias> aliases;
 
 	@Nullable
 	private final Boolean includeTypeName;
 
-	@Nullable
-	private final String masterTimeout;
+	private final String index;
 
 	@Nullable
-	private final String timeout;
+	private final TypeMapping mappings;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	private final Time masterTimeout;
 
 	@Nullable
-	private final Map<String, Alias> aliases;
+	private final IndexSettings settings;
 
 	@Nullable
-	private final JsonValue /*
-							 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
-							 * false) | _types.mapping.TypeMapping)
-							 */ mappings;
+	private final Time timeout;
 
 	@Nullable
-	private final Map<String, JsonData> settings;
+	private final WaitForActiveShards waitForActiveShards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateIndexRequest(Builder builder) {
+	private CreateIndexRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.includeTypeName = builder.includeTypeName;
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
+		this.settings = builder.settings;
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
-		this.aliases = ModelTypeHelper.unmodifiable(builder.aliases);
-		this.mappings = builder.mappings;
-		this.settings = ModelTypeHelper.unmodifiable(builder.settings);
 
 	}
 
-	public CreateIndexRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateIndexRequest of(Function<Builder, ObjectBuilder<CreateIndexRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code aliases}
+	 */
+	public final Map<String, Alias> aliases() {
+		return this.aliases;
+	}
+
+	/**
+	 * API name: {@code include_type_name}
+	 */
+	@Nullable
+	public final Boolean includeTypeName() {
+		return this.includeTypeName;
 	}
 
 	/**
@@ -102,54 +120,8 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
-	}
-
-	/**
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public Boolean includeTypeName() {
-		return this.includeTypeName;
-	}
-
-	/**
-	 * Specify timeout for connection to master
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public String masterTimeout() {
-		return this.masterTimeout;
-	}
-
-	/**
-	 * Explicit operation timeout
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public String timeout() {
-		return this.timeout;
-	}
-
-	/**
-	 * Set the number of active shards to wait for before the operation returns.
-	 * <p>
-	 * API name: {@code wait_for_active_shards}
-	 */
-	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
-		return this.waitForActiveShards;
-	}
-
-	/**
-	 * API name: {@code aliases}
-	 */
-	@Nullable
-	public Map<String, Alias> aliases() {
-		return this.aliases;
 	}
 
 	/**
@@ -163,19 +135,46 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code mappings}
 	 */
 	@Nullable
-	public JsonValue /*
-						 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
-						 * false) | _types.mapping.TypeMapping)
-						 */ mappings() {
+	public final TypeMapping mappings() {
 		return this.mappings;
+	}
+
+	/**
+	 * Specify timeout for connection to master
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
 	 * API name: {@code settings}
 	 */
 	@Nullable
-	public Map<String, JsonData> settings() {
+	public final IndexSettings settings() {
 		return this.settings;
+	}
+
+	/**
+	 * Explicit operation timeout
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * Set the number of active shards to wait for before the operation returns.
+	 * <p>
+	 * API name: {@code wait_for_active_shards}
+	 */
+	@Nullable
+	public final WaitForActiveShards waitForActiveShards() {
+		return this.waitForActiveShards;
 	}
 
 	/**
@@ -189,8 +188,7 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.aliases != null) {
-
+		if (ApiTypeHelper.isDefined(this.aliases)) {
 			generator.writeKey("aliases");
 			generator.writeStartObject();
 			for (Map.Entry<String, Alias> item0 : this.aliases.entrySet()) {
@@ -202,21 +200,13 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 
 		}
 		if (this.mappings != null) {
-
 			generator.writeKey("mappings");
-			generator.write(this.mappings);
+			this.mappings.serialize(generator, mapper);
 
 		}
 		if (this.settings != null) {
-
 			generator.writeKey("settings");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
+			this.settings.serialize(generator, mapper);
 
 		}
 
@@ -227,112 +217,76 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link CreateIndexRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateIndexRequest> {
-		private String index;
 
-		@Nullable
-		private Boolean includeTypeName;
-
-		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
-
-		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateIndexRequest> {
 		@Nullable
 		private Map<String, Alias> aliases;
 
 		@Nullable
-		private JsonValue /*
-							 * Union(Dictionary<internal.string, _types.mapping.TypeMapping> (singleKey =
-							 * false) | _types.mapping.TypeMapping)
-							 */ mappings;
+		private Boolean includeTypeName;
+
+		private String index;
 
 		@Nullable
-		private Map<String, JsonData> settings;
+		private TypeMapping mappings;
+
+		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
+		private IndexSettings settings;
+
+		@Nullable
+		private Time timeout;
+
+		@Nullable
+		private WaitForActiveShards waitForActiveShards;
+
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aliases</code>.
+		 */
+		public final Builder aliases(Map<String, Alias> map) {
+			this.aliases = _mapPutAll(this.aliases, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code>.
+		 */
+		public final Builder aliases(String key, Alias value) {
+			this.aliases = _mapPut(this.aliases, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aliases}
+		 * <p>
+		 * Adds an entry to <code>aliases</code> using a builder lambda.
+		 */
+		public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
+			return aliases(key, fn.apply(new Alias.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code include_type_name}
+		 */
+		public final Builder includeTypeName(@Nullable Boolean value) {
+			this.includeTypeName = value;
+			return this;
+		}
 
 		/**
 		 * Required - The name of the index
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code include_type_name}
-		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
-			return this;
-		}
-
-		/**
-		 * Specify timeout for connection to master
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * Set the number of active shards to wait for before the operation returns.
-		 * <p>
-		 * API name: {@code wait_for_active_shards}
-		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
-			this.waitForActiveShards = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code aliases}
-		 */
-		public Builder aliases(@Nullable Map<String, Alias> value) {
-			this.aliases = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Alias value) {
-			if (this.aliases == null) {
-				this.aliases = new HashMap<>();
-			}
-			this.aliases.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #aliases(Map)} to a singleton map.
-		 */
-		public Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.aliases(Collections.singletonMap(key, fn.apply(new Alias.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #aliases(Map)}, creating the map if needed.
-		 */
-		public Builder putAliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
-			return this.putAliases(key, fn.apply(new Alias.Builder()).build());
 		}
 
 		/**
@@ -345,31 +299,96 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code mappings}
 		 */
-		public Builder mappings(@Nullable JsonValue /*
-													 * Union(Dictionary<internal.string, _types.mapping.TypeMapping>
-													 * (singleKey = false) | _types.mapping.TypeMapping)
-													 */ value) {
+		public final Builder mappings(@Nullable TypeMapping value) {
 			this.mappings = value;
+			return this;
+		}
+
+		/**
+		 * Mapping for fields in the index. If specified, this mapping can include:
+		 * <ul>
+		 * <li>Field names</li>
+		 * <li>Field data types</li>
+		 * <li>Mapping parameters</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code mappings}
+		 */
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code settings}
+		 */
+		public final Builder settings(@Nullable IndexSettings value) {
+			this.settings = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code settings}
 		 */
-		public Builder settings(@Nullable Map<String, JsonData> value) {
-			this.settings = value;
+		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
+		}
+
+		/**
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #settings(Map)}, creating the map if needed.
+		 * Explicit operation timeout
+		 * <p>
+		 * API name: {@code timeout}
 		 */
-		public Builder putSettings(String key, JsonData value) {
-			if (this.settings == null) {
-				this.settings = new HashMap<>();
-			}
-			this.settings.put(key, value);
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Set the number of active shards to wait for before the operation returns.
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
+			this.waitForActiveShards = value;
 			return this;
+		}
+
+		/**
+		 * Set the number of active shards to wait for before the operation returns.
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -379,6 +398,7 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public CreateIndexRequest build() {
+			_checkSingleUse();
 
 			return new CreateIndexRequest(this);
 		}
@@ -390,13 +410,13 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 	 * Json deserializer for {@link CreateIndexRequest}
 	 */
 	public static final JsonpDeserializer<CreateIndexRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateIndexRequest::setupCreateIndexRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CreateIndexRequest::setupCreateIndexRequestDeserializer);
 
-	protected static void setupCreateIndexRequestDeserializer(DelegatingDeserializer<CreateIndexRequest.Builder> op) {
+	protected static void setupCreateIndexRequestDeserializer(ObjectDeserializer<CreateIndexRequest.Builder> op) {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
-		op.add(Builder::mappings, JsonpDeserializer.jsonValueDeserializer(), "mappings");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
+		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 
 	}
 
@@ -405,7 +425,9 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code indices.create}".
 	 */
-	public static final Endpoint<CreateIndexRequest, CreateIndexResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.create",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -433,17 +455,17 @@ public final class CreateIndexRequest extends RequestBase implements JsonpSerial
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+				if (request.waitForActiveShards != null) {
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
-				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

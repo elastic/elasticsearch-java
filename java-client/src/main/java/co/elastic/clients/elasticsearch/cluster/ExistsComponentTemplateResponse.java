@@ -30,11 +30,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: cluster.exists_component_template.Response
 
-public final class ExistsComponentTemplateResponse {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/exists_component_template/ClusterComponentTemplateExistsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
+public class ExistsComponentTemplateResponse {
 	public ExistsComponentTemplateResponse() {
 	}
 

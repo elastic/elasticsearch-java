@@ -23,23 +23,32 @@
 
 package co.elastic.clients.elasticsearch.autoscaling;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: autoscaling.get_autoscaling_capacity.Request
 
-public final class GetAutoscalingCapacityRequest extends RequestBase {
+/**
+ * Gets the current autoscaling capacity based on the configured autoscaling
+ * policy. Designed for indirect use by ECE/ESS and ECK. Direct use is not
+ * supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class GetAutoscalingCapacityRequest extends RequestBase {
 	public GetAutoscalingCapacityRequest() {
 	}
 
@@ -53,7 +62,9 @@ public final class GetAutoscalingCapacityRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code autoscaling.get_autoscaling_capacity}".
 	 */
-	public static final Endpoint<GetAutoscalingCapacityRequest, GetAutoscalingCapacityResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetAutoscalingCapacityRequest, GetAutoscalingCapacityResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/autoscaling.get_autoscaling_capacity",
+
 			// Request method
 			request -> {
 				return "GET";

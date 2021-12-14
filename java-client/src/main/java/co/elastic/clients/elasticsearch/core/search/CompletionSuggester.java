@@ -23,33 +23,33 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.CompletionSuggester
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L98-L104">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CompletionSuggester extends SuggesterBase implements SuggestVariant {
-	@Nullable
-	private final Map<String, JsonValue /*
-										 * Union(Array<_global.search._types.SuggestContextQuery> | Array<_types.double>
-										 * | Array<internal.string> | _types.query_dsl.TwoDimensionalPoint |
-										 * internal.string | internal.string)
-										 */> contexts;
+public class CompletionSuggester extends SuggesterBase implements FieldSuggesterVariant {
+	private final Map<String, List<CompletionContext>> contexts;
 
 	@Nullable
 	private final SuggestFuzziness fuzzy;
@@ -65,10 +65,10 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CompletionSuggester(Builder builder) {
+	private CompletionSuggester(Builder builder) {
 		super(builder);
 
-		this.contexts = ModelTypeHelper.unmodifiable(builder.contexts);
+		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
 		this.fuzzy = builder.fuzzy;
 		this.prefix = builder.prefix;
 		this.regex = builder.regex;
@@ -76,27 +76,22 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 
 	}
 
-	public CompletionSuggester(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CompletionSuggester of(Function<Builder, ObjectBuilder<CompletionSuggester>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Suggest} variant type
+	 * FieldSuggester variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "completion";
+	public FieldSuggester.Kind _fieldSuggesterKind() {
+		return FieldSuggester.Kind.Completion;
 	}
 
 	/**
 	 * API name: {@code contexts}
 	 */
-	@Nullable
-	public Map<String, JsonValue /*
-									 * Union(Array<_global.search._types.SuggestContextQuery> | Array<_types.double>
-									 * | Array<internal.string> | _types.query_dsl.TwoDimensionalPoint |
-									 * internal.string | internal.string)
-									 */> contexts() {
+	public final Map<String, List<CompletionContext>> contexts() {
 		return this.contexts;
 	}
 
@@ -104,7 +99,7 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 	 * API name: {@code fuzzy}
 	 */
 	@Nullable
-	public SuggestFuzziness fuzzy() {
+	public final SuggestFuzziness fuzzy() {
 		return this.fuzzy;
 	}
 
@@ -112,7 +107,7 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 	 * API name: {@code prefix}
 	 */
 	@Nullable
-	public String prefix() {
+	public final String prefix() {
 		return this.prefix;
 	}
 
@@ -120,7 +115,7 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 	 * API name: {@code regex}
 	 */
 	@Nullable
-	public String regex() {
+	public final String regex() {
 		return this.regex;
 	}
 
@@ -128,50 +123,47 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 	 * API name: {@code skip_duplicates}
 	 */
 	@Nullable
-	public Boolean skipDuplicates() {
+	public final Boolean skipDuplicates() {
 		return this.skipDuplicates;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.contexts != null) {
-
+		if (ApiTypeHelper.isDefined(this.contexts)) {
 			generator.writeKey("contexts");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonValue /*
-												 * Union(Array<_global.search._types.SuggestContextQuery> |
-												 * Array<_types.double> | Array<internal.string> |
-												 * _types.query_dsl.TwoDimensionalPoint | internal.string |
-												 * internal.string)
-												 */> item0 : this.contexts.entrySet()) {
+			for (Map.Entry<String, List<CompletionContext>> item0 : this.contexts.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.write(item0.getValue());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (CompletionContext item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
 
 		}
 		if (this.fuzzy != null) {
-
 			generator.writeKey("fuzzy");
 			this.fuzzy.serialize(generator, mapper);
 
 		}
 		if (this.prefix != null) {
-
 			generator.writeKey("prefix");
 			generator.write(this.prefix);
 
 		}
 		if (this.regex != null) {
-
 			generator.writeKey("regex");
 			generator.write(this.regex);
 
 		}
 		if (this.skipDuplicates != null) {
-
 			generator.writeKey("skip_duplicates");
 			generator.write(this.skipDuplicates);
 
@@ -184,15 +176,12 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 	/**
 	 * Builder for {@link CompletionSuggester}.
 	 */
+
 	public static class Builder extends SuggesterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CompletionSuggester> {
 		@Nullable
-		private Map<String, JsonValue /*
-										 * Union(Array<_global.search._types.SuggestContextQuery> | Array<_types.double>
-										 * | Array<internal.string> | _types.query_dsl.TwoDimensionalPoint |
-										 * internal.string | internal.string)
-										 */> contexts;
+		private Map<String, List<CompletionContext>> contexts;
 
 		@Nullable
 		private SuggestFuzziness fuzzy;
@@ -208,38 +197,28 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 
 		/**
 		 * API name: {@code contexts}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>contexts</code>.
 		 */
-		public Builder contexts(
-				@Nullable Map<String, JsonValue /*
-												 * Union(Array<_global.search._types.SuggestContextQuery> |
-												 * Array<_types.double> | Array<internal.string> |
-												 * _types.query_dsl.TwoDimensionalPoint | internal.string |
-												 * internal.string)
-												 */> value) {
-			this.contexts = value;
+		public final Builder contexts(Map<String, List<CompletionContext>> map) {
+			this.contexts = _mapPutAll(this.contexts, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #contexts(Map)}, creating the map if needed.
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds an entry to <code>contexts</code>.
 		 */
-		public Builder putContexts(String key,
-				JsonValue /*
-							 * Union(Array<_global.search._types.SuggestContextQuery> | Array<_types.double>
-							 * | Array<internal.string> | _types.query_dsl.TwoDimensionalPoint |
-							 * internal.string | internal.string)
-							 */ value) {
-			if (this.contexts == null) {
-				this.contexts = new HashMap<>();
-			}
-			this.contexts.put(key, value);
+		public final Builder contexts(String key, List<CompletionContext> value) {
+			this.contexts = _mapPut(this.contexts, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fuzzy}
 		 */
-		public Builder fuzzy(@Nullable SuggestFuzziness value) {
+		public final Builder fuzzy(@Nullable SuggestFuzziness value) {
 			this.fuzzy = value;
 			return this;
 		}
@@ -247,14 +226,14 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 		/**
 		 * API name: {@code fuzzy}
 		 */
-		public Builder fuzzy(Function<SuggestFuzziness.Builder, ObjectBuilder<SuggestFuzziness>> fn) {
+		public final Builder fuzzy(Function<SuggestFuzziness.Builder, ObjectBuilder<SuggestFuzziness>> fn) {
 			return this.fuzzy(fn.apply(new SuggestFuzziness.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code prefix}
 		 */
-		public Builder prefix(@Nullable String value) {
+		public final Builder prefix(@Nullable String value) {
 			this.prefix = value;
 			return this;
 		}
@@ -262,7 +241,7 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 		/**
 		 * API name: {@code regex}
 		 */
-		public Builder regex(@Nullable String value) {
+		public final Builder regex(@Nullable String value) {
 			this.regex = value;
 			return this;
 		}
@@ -270,7 +249,7 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 		/**
 		 * API name: {@code skip_duplicates}
 		 */
-		public Builder skipDuplicates(@Nullable Boolean value) {
+		public final Builder skipDuplicates(@Nullable Boolean value) {
 			this.skipDuplicates = value;
 			return this;
 		}
@@ -287,6 +266,7 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 		 *             if some of the required fields are null.
 		 */
 		public CompletionSuggester build() {
+			_checkSingleUse();
 
 			return new CompletionSuggester(this);
 		}
@@ -298,12 +278,12 @@ public final class CompletionSuggester extends SuggesterBase implements SuggestV
 	 * Json deserializer for {@link CompletionSuggester}
 	 */
 	public static final JsonpDeserializer<CompletionSuggester> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CompletionSuggester::setupCompletionSuggesterDeserializer, Builder::build);
+			.lazy(Builder::new, CompletionSuggester::setupCompletionSuggesterDeserializer);
 
-	protected static void setupCompletionSuggesterDeserializer(DelegatingDeserializer<CompletionSuggester.Builder> op) {
+	protected static void setupCompletionSuggesterDeserializer(ObjectDeserializer<CompletionSuggester.Builder> op) {
 		SuggesterBase.setupSuggesterBaseDeserializer(op);
-		op.add(Builder::contexts, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"contexts");
+		op.add(Builder::contexts, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(CompletionContext._DESERIALIZER)), "contexts");
 		op.add(Builder::fuzzy, SuggestFuzziness._DESERIALIZER, "fuzzy");
 		op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
 		op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");

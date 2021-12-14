@@ -23,28 +23,34 @@
 
 package co.elastic.clients.elasticsearch.cluster.health;
 
-import co.elastic.clients.elasticsearch._types.Health;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.HealthStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.health.IndexHealthStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/health/types.ts#L24-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexHealthStats implements JsonpSerializable {
+public class IndexHealthStats implements JsonpSerializable {
 	private final int activePrimaryShards;
 
 	private final int activeShards;
@@ -57,94 +63,93 @@ public final class IndexHealthStats implements JsonpSerializable {
 
 	private final int relocatingShards;
 
-	@Nullable
 	private final Map<String, ShardHealthStats> shards;
 
-	private final Health status;
+	private final HealthStatus status;
 
 	private final int unassignedShards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexHealthStats(Builder builder) {
+	private IndexHealthStats(Builder builder) {
 
-		this.activePrimaryShards = Objects.requireNonNull(builder.activePrimaryShards, "active_primary_shards");
-		this.activeShards = Objects.requireNonNull(builder.activeShards, "active_shards");
-		this.initializingShards = Objects.requireNonNull(builder.initializingShards, "initializing_shards");
-		this.numberOfReplicas = Objects.requireNonNull(builder.numberOfReplicas, "number_of_replicas");
-		this.numberOfShards = Objects.requireNonNull(builder.numberOfShards, "number_of_shards");
-		this.relocatingShards = Objects.requireNonNull(builder.relocatingShards, "relocating_shards");
-		this.shards = ModelTypeHelper.unmodifiable(builder.shards);
-		this.status = Objects.requireNonNull(builder.status, "status");
-		this.unassignedShards = Objects.requireNonNull(builder.unassignedShards, "unassigned_shards");
+		this.activePrimaryShards = ApiTypeHelper.requireNonNull(builder.activePrimaryShards, this,
+				"activePrimaryShards");
+		this.activeShards = ApiTypeHelper.requireNonNull(builder.activeShards, this, "activeShards");
+		this.initializingShards = ApiTypeHelper.requireNonNull(builder.initializingShards, this, "initializingShards");
+		this.numberOfReplicas = ApiTypeHelper.requireNonNull(builder.numberOfReplicas, this, "numberOfReplicas");
+		this.numberOfShards = ApiTypeHelper.requireNonNull(builder.numberOfShards, this, "numberOfShards");
+		this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
+		this.shards = ApiTypeHelper.unmodifiable(builder.shards);
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.unassignedShards = ApiTypeHelper.requireNonNull(builder.unassignedShards, this, "unassignedShards");
 
 	}
 
-	public IndexHealthStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexHealthStats of(Function<Builder, ObjectBuilder<IndexHealthStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code active_primary_shards}
 	 */
-	public int activePrimaryShards() {
+	public final int activePrimaryShards() {
 		return this.activePrimaryShards;
 	}
 
 	/**
 	 * Required - API name: {@code active_shards}
 	 */
-	public int activeShards() {
+	public final int activeShards() {
 		return this.activeShards;
 	}
 
 	/**
 	 * Required - API name: {@code initializing_shards}
 	 */
-	public int initializingShards() {
+	public final int initializingShards() {
 		return this.initializingShards;
 	}
 
 	/**
 	 * Required - API name: {@code number_of_replicas}
 	 */
-	public int numberOfReplicas() {
+	public final int numberOfReplicas() {
 		return this.numberOfReplicas;
 	}
 
 	/**
 	 * Required - API name: {@code number_of_shards}
 	 */
-	public int numberOfShards() {
+	public final int numberOfShards() {
 		return this.numberOfShards;
 	}
 
 	/**
 	 * Required - API name: {@code relocating_shards}
 	 */
-	public int relocatingShards() {
+	public final int relocatingShards() {
 		return this.relocatingShards;
 	}
 
 	/**
 	 * API name: {@code shards}
 	 */
-	@Nullable
-	public Map<String, ShardHealthStats> shards() {
+	public final Map<String, ShardHealthStats> shards() {
 		return this.shards;
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public Health status() {
+	public final HealthStatus status() {
 		return this.status;
 	}
 
 	/**
 	 * Required - API name: {@code unassigned_shards}
 	 */
-	public int unassignedShards() {
+	public final int unassignedShards() {
 		return this.unassignedShards;
 	}
 
@@ -177,8 +182,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		generator.writeKey("relocating_shards");
 		generator.write(this.relocatingShards);
 
-		if (this.shards != null) {
-
+		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
 			for (Map.Entry<String, ShardHealthStats> item0 : this.shards.entrySet()) {
@@ -189,10 +193,8 @@ public final class IndexHealthStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
-
 		generator.writeKey("unassigned_shards");
 		generator.write(this.unassignedShards);
 
@@ -203,7 +205,8 @@ public final class IndexHealthStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexHealthStats}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexHealthStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexHealthStats> {
 		private Integer activePrimaryShards;
 
 		private Integer activeShards;
@@ -219,14 +222,14 @@ public final class IndexHealthStats implements JsonpSerializable {
 		@Nullable
 		private Map<String, ShardHealthStats> shards;
 
-		private Health status;
+		private HealthStatus status;
 
 		private Integer unassignedShards;
 
 		/**
 		 * Required - API name: {@code active_primary_shards}
 		 */
-		public Builder activePrimaryShards(int value) {
+		public final Builder activePrimaryShards(int value) {
 			this.activePrimaryShards = value;
 			return this;
 		}
@@ -234,7 +237,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code active_shards}
 		 */
-		public Builder activeShards(int value) {
+		public final Builder activeShards(int value) {
 			this.activeShards = value;
 			return this;
 		}
@@ -242,7 +245,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code initializing_shards}
 		 */
-		public Builder initializingShards(int value) {
+		public final Builder initializingShards(int value) {
 			this.initializingShards = value;
 			return this;
 		}
@@ -250,7 +253,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code number_of_replicas}
 		 */
-		public Builder numberOfReplicas(int value) {
+		public final Builder numberOfReplicas(int value) {
 			this.numberOfReplicas = value;
 			return this;
 		}
@@ -258,7 +261,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code number_of_shards}
 		 */
-		public Builder numberOfShards(int value) {
+		public final Builder numberOfShards(int value) {
 			this.numberOfShards = value;
 			return this;
 		}
@@ -266,48 +269,45 @@ public final class IndexHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code relocating_shards}
 		 */
-		public Builder relocatingShards(int value) {
+		public final Builder relocatingShards(int value) {
 			this.relocatingShards = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code shards}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>shards</code>.
 		 */
-		public Builder shards(@Nullable Map<String, ShardHealthStats> value) {
-			this.shards = value;
+		public final Builder shards(Map<String, ShardHealthStats> map) {
+			this.shards = _mapPutAll(this.shards, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #shards(Map)}, creating the map if needed.
+		 * API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code>.
 		 */
-		public Builder putShards(String key, ShardHealthStats value) {
-			if (this.shards == null) {
-				this.shards = new HashMap<>();
-			}
-			this.shards.put(key, value);
+		public final Builder shards(String key, ShardHealthStats value) {
+			this.shards = _mapPut(this.shards, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #shards(Map)} to a singleton map.
+		 * API name: {@code shards}
+		 * <p>
+		 * Adds an entry to <code>shards</code> using a builder lambda.
 		 */
-		public Builder shards(String key, Function<ShardHealthStats.Builder, ObjectBuilder<ShardHealthStats>> fn) {
-			return this.shards(Collections.singletonMap(key, fn.apply(new ShardHealthStats.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #shards(Map)}, creating the map if needed.
-		 */
-		public Builder putShards(String key, Function<ShardHealthStats.Builder, ObjectBuilder<ShardHealthStats>> fn) {
-			return this.putShards(key, fn.apply(new ShardHealthStats.Builder()).build());
+		public final Builder shards(String key,
+				Function<ShardHealthStats.Builder, ObjectBuilder<ShardHealthStats>> fn) {
+			return shards(key, fn.apply(new ShardHealthStats.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(Health value) {
+		public final Builder status(HealthStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -315,7 +315,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code unassigned_shards}
 		 */
-		public Builder unassignedShards(int value) {
+		public final Builder unassignedShards(int value) {
 			this.unassignedShards = value;
 			return this;
 		}
@@ -327,6 +327,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexHealthStats build() {
+			_checkSingleUse();
 
 			return new IndexHealthStats(this);
 		}
@@ -338,9 +339,9 @@ public final class IndexHealthStats implements JsonpSerializable {
 	 * Json deserializer for {@link IndexHealthStats}
 	 */
 	public static final JsonpDeserializer<IndexHealthStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexHealthStats::setupIndexHealthStatsDeserializer, Builder::build);
+			IndexHealthStats::setupIndexHealthStatsDeserializer);
 
-	protected static void setupIndexHealthStatsDeserializer(DelegatingDeserializer<IndexHealthStats.Builder> op) {
+	protected static void setupIndexHealthStatsDeserializer(ObjectDeserializer<IndexHealthStats.Builder> op) {
 
 		op.add(Builder::activePrimaryShards, JsonpDeserializer.integerDeserializer(), "active_primary_shards");
 		op.add(Builder::activeShards, JsonpDeserializer.integerDeserializer(), "active_shards");
@@ -349,7 +350,7 @@ public final class IndexHealthStats implements JsonpSerializable {
 		op.add(Builder::numberOfShards, JsonpDeserializer.integerDeserializer(), "number_of_shards");
 		op.add(Builder::relocatingShards, JsonpDeserializer.integerDeserializer(), "relocating_shards");
 		op.add(Builder::shards, JsonpDeserializer.stringMapDeserializer(ShardHealthStats._DESERIALIZER), "shards");
-		op.add(Builder::status, Health._DESERIALIZER, "status");
+		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
 		op.add(Builder::unassignedShards, JsonpDeserializer.integerDeserializer(), "unassigned_shards");
 
 	}

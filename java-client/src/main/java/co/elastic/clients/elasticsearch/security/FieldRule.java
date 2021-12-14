@@ -23,14 +23,17 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -42,58 +45,92 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.FieldRule
-@JsonpDeserializable
-public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, JsonpSerializable {
 
-	public static final String USERNAME = "username";
-	public static final String DN = "dn";
-	public static final String GROUPS = "groups";
-	public static final String METADATA = "metadata";
-	public static final String REALM = "realm";
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/RoleMappingRule.ts#L33-L42">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappingRuleVariant, JsonpSerializable {
 
 	/**
-	 * {@link RoleMappingRule} variant type
+	 * {@link FieldRule} variant kinds.
 	 */
-	@Override
-	public String _variantType() {
-		return "field";
+	/**
+	 * {@link FieldRule} variant kinds.
+	 */
+
+	public enum Kind implements JsonEnum {
+		Username("username"),
+
+		Dn("dn"),
+
+		Groups("groups"),
+
+		Metadata("metadata"),
+
+		Realm("realm"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
 	}
 
-	// Tagged union implementation
+	/**
+	 * RoleMappingRule variant kind.
+	 */
+	@Override
+	public RoleMappingRule.Kind _roleMappingRuleKind() {
+		return RoleMappingRule.Kind.Field;
+	}
 
-	private final String _type;
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public FieldRule(FieldRuleVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._fieldRuleKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends FieldRuleVariant> FieldRule(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private FieldRule(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public FieldRule(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldRule of(Function<Builder, ObjectBuilder<FieldRule>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code username}?
+	 */
+	public boolean isUsername() {
+		return _kind == Kind.Username;
 	}
 
 	/**
@@ -103,7 +140,14 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	 *             if the current variant is not of the {@code username} kind.
 	 */
 	public String username() {
-		return TaggedUnionUtils.get(this, USERNAME);
+		return TaggedUnionUtils.get(this, Kind.Username);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code dn}?
+	 */
+	public boolean isDn() {
+		return _kind == Kind.Dn;
 	}
 
 	/**
@@ -113,7 +157,14 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	 *             if the current variant is not of the {@code dn} kind.
 	 */
 	public List<String> dn() {
-		return TaggedUnionUtils.get(this, DN);
+		return TaggedUnionUtils.get(this, Kind.Dn);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code groups}?
+	 */
+	public boolean isGroups() {
+		return _kind == Kind.Groups;
 	}
 
 	/**
@@ -123,7 +174,14 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	 *             if the current variant is not of the {@code groups} kind.
 	 */
 	public List<String> groups() {
-		return TaggedUnionUtils.get(this, GROUPS);
+		return TaggedUnionUtils.get(this, Kind.Groups);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code metadata}?
+	 */
+	public boolean isMetadata() {
+		return _kind == Kind.Metadata;
 	}
 
 	/**
@@ -133,7 +191,14 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	 *             if the current variant is not of the {@code metadata} kind.
 	 */
 	public JsonData metadata() {
-		return TaggedUnionUtils.get(this, METADATA);
+		return TaggedUnionUtils.get(this, Kind.Metadata);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code realm}?
+	 */
+	public boolean isRealm() {
+		return _kind == Kind.Realm;
 	}
 
 	/**
@@ -143,24 +208,25 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 	 *             if the current variant is not of the {@code realm} kind.
 	 */
 	public Realm realm() {
-		return TaggedUnionUtils.get(this, REALM);
+		return TaggedUnionUtils.get(this, Kind.Realm);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case USERNAME :
+			switch (_kind) {
+				case Username :
 					generator.write(((String) this._value));
 
 					break;
-				case DN :
+				case Dn :
 					generator.writeStartArray();
 					for (String item0 : ((List<String>) this._value)) {
 						generator.write(item0);
@@ -169,7 +235,7 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 					generator.writeEnd();
 
 					break;
-				case GROUPS :
+				case Groups :
 					generator.writeStartArray();
 					for (String item0 : ((List<String>) this._value)) {
 						generator.write(item0);
@@ -178,7 +244,7 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 					generator.writeEnd();
 
 					break;
-				case METADATA :
+				case Metadata :
 					((JsonData) this._value).serialize(generator, mapper);
 
 					break;
@@ -186,53 +252,55 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 		}
 
 		generator.writeEnd();
+
 	}
 
-	public static class Builder implements ObjectBuilder<FieldRule> {
-		private String _type;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldRule> {
+		private Kind _kind;
 		private Object _value;
 
-		public Builder username(String v) {
-			this._type = USERNAME;
+		public ObjectBuilder<FieldRule> username(String v) {
+			this._kind = Kind.Username;
 			this._value = v;
 			return this;
 		}
 
-		public Builder dn(List<String> v) {
-			this._type = DN;
+		public ObjectBuilder<FieldRule> dn(List<String> v) {
+			this._kind = Kind.Dn;
 			this._value = v;
 			return this;
 		}
 
-		public Builder groups(List<String> v) {
-			this._type = GROUPS;
+		public ObjectBuilder<FieldRule> groups(List<String> v) {
+			this._kind = Kind.Groups;
 			this._value = v;
 			return this;
 		}
 
-		public Builder metadata(JsonData v) {
-			this._type = METADATA;
+		public ObjectBuilder<FieldRule> metadata(JsonData v) {
+			this._kind = Kind.Metadata;
 			this._value = v;
 			return this;
 		}
 
-		public Builder realm(Realm v) {
-			this._type = REALM;
+		public ObjectBuilder<FieldRule> realm(Realm v) {
+			this._kind = Kind.Realm;
 			this._value = v;
 			return this;
 		}
 
-		public Builder realm(Function<Realm.Builder, ObjectBuilder<Realm>> f) {
-			return this.realm(f.apply(new Realm.Builder()).build());
+		public ObjectBuilder<FieldRule> realm(Function<Realm.Builder, ObjectBuilder<Realm>> fn) {
+			return this.realm(fn.apply(new Realm.Builder()).build());
 		}
 
 		public FieldRule build() {
+			_checkSingleUse();
 			return new FieldRule(this);
 		}
 
 	}
 
-	protected static void setupFieldRuleDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupFieldRuleDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::dn, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "dn");
@@ -242,6 +310,6 @@ public class FieldRule implements TaggedUnion<Object>, RoleMappingRuleVariant, J
 
 	}
 
-	public static final JsonpDeserializer<FieldRule> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<FieldRule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			FieldRule::setupFieldRuleDeserializer, Builder::build);
 }

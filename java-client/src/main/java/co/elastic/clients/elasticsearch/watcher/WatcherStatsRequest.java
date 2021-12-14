@@ -23,21 +23,20 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.watcher.stats.WatcherMetric;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,34 +47,31 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.stats.Request
 
-public final class WatcherStatsRequest extends RequestBase {
-	@Nullable
-	private final List<WatcherMetric> metric;
+/**
+ * Retrieves the current Watcher metrics.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/WatcherStatsRequest.ts#L23-L46">API
+ *      specification</a>
+ */
 
+public class WatcherStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean emitStacktraces;
 
+	private final List<WatcherMetric> metric;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public WatcherStatsRequest(Builder builder) {
+	private WatcherStatsRequest(Builder builder) {
 
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.emitStacktraces = builder.emitStacktraces;
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
 
 	}
 
-	public WatcherStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Defines which additional metrics are included in the response.
-	 * <p>
-	 * API name: {@code metric}
-	 */
-	@Nullable
-	public List<WatcherMetric> metric() {
-		return this.metric;
+	public static WatcherStatsRequest of(Function<Builder, ObjectBuilder<WatcherStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -84,8 +80,17 @@ public final class WatcherStatsRequest extends RequestBase {
 	 * API name: {@code emit_stacktraces}
 	 */
 	@Nullable
-	public Boolean emitStacktraces() {
+	public final Boolean emitStacktraces() {
 		return this.emitStacktraces;
+	}
+
+	/**
+	 * Defines which additional metrics are included in the response.
+	 * <p>
+	 * API name: {@code metric}
+	 */
+	public final List<WatcherMetric> metric() {
+		return this.metric;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -93,51 +98,45 @@ public final class WatcherStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link WatcherStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<WatcherStatsRequest> {
-		@Nullable
-		private List<WatcherMetric> metric;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherStatsRequest> {
 		@Nullable
 		private Boolean emitStacktraces;
 
-		/**
-		 * Defines which additional metrics are included in the response.
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(@Nullable List<WatcherMetric> value) {
-			this.metric = value;
-			return this;
-		}
-
-		/**
-		 * Defines which additional metrics are included in the response.
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(WatcherMetric... value) {
-			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(WatcherMetric value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
-			return this;
-		}
+		@Nullable
+		private List<WatcherMetric> metric;
 
 		/**
 		 * Defines whether stack traces are generated for each watch that is running.
 		 * <p>
 		 * API name: {@code emit_stacktraces}
 		 */
-		public Builder emitStacktraces(@Nullable Boolean value) {
+		public final Builder emitStacktraces(@Nullable Boolean value) {
 			this.emitStacktraces = value;
+			return this;
+		}
+
+		/**
+		 * Defines which additional metrics are included in the response.
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
+		 */
+		public final Builder metric(List<WatcherMetric> list) {
+			this.metric = _listAddAll(this.metric, list);
+			return this;
+		}
+
+		/**
+		 * Defines which additional metrics are included in the response.
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
+		 */
+		public final Builder metric(WatcherMetric value, WatcherMetric... values) {
+			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 
@@ -148,6 +147,7 @@ public final class WatcherStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public WatcherStatsRequest build() {
+			_checkSingleUse();
 
 			return new WatcherStatsRequest(this);
 		}
@@ -158,7 +158,9 @@ public final class WatcherStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.stats}".
 	 */
-	public static final Endpoint<WatcherStatsRequest, WatcherStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.stats",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -171,7 +173,7 @@ public final class WatcherStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.metric() != null)
+				if (ApiTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
 
 				if (propsSet == 0) {
@@ -186,7 +188,7 @@ public final class WatcherStatsRequest extends RequestBase {
 					buf.append("/stats");
 					buf.append("/");
 					SimpleEndpoint.pathEncode(
-							request.metric.stream().map(v -> v.toString()).collect(Collectors.joining(",")), buf);
+							request.metric.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

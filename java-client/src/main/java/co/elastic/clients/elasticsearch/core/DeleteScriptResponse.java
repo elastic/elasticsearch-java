@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.delete_script.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete_script/DeleteScriptResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteScriptResponse extends AcknowledgedResponseBase {
+public class DeleteScriptResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteScriptResponse(Builder builder) {
+	private DeleteScriptResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteScriptResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteScriptResponse of(Function<Builder, ObjectBuilder<DeleteScriptResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteScriptResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteScriptResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteScriptResponse> {
@@ -68,6 +75,7 @@ public final class DeleteScriptResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteScriptResponse build() {
+			_checkSingleUse();
 
 			return new DeleteScriptResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class DeleteScriptResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteScriptResponse}
 	 */
 	public static final JsonpDeserializer<DeleteScriptResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteScriptResponse::setupDeleteScriptResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteScriptResponse::setupDeleteScriptResponseDeserializer);
 
-	protected static void setupDeleteScriptResponseDeserializer(
-			DelegatingDeserializer<DeleteScriptResponse.Builder> op) {
+	protected static void setupDeleteScriptResponseDeserializer(ObjectDeserializer<DeleteScriptResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

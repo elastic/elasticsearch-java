@@ -23,26 +23,30 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.DisMaxQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L46-L50">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DisMaxQuery extends QueryBase implements QueryVariant {
+public class DisMaxQuery extends QueryBase implements QueryVariant {
 	private final List<Query> queries;
 
 	@Nullable
@@ -50,30 +54,30 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DisMaxQuery(Builder builder) {
+	private DisMaxQuery(Builder builder) {
 		super(builder);
 
-		this.queries = ModelTypeHelper.unmodifiableNonNull(builder.queries, "queries");
+		this.queries = ApiTypeHelper.unmodifiableRequired(builder.queries, this, "queries");
 		this.tieBreaker = builder.tieBreaker;
 
 	}
 
-	public DisMaxQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DisMaxQuery of(Function<Builder, ObjectBuilder<DisMaxQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "dis_max";
+	public Query.Kind _queryKind() {
+		return Query.Kind.DisMax;
 	}
 
 	/**
 	 * Required - API name: {@code queries}
 	 */
-	public List<Query> queries() {
+	public final List<Query> queries() {
 		return this.queries;
 	}
 
@@ -81,24 +85,24 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code tie_breaker}
 	 */
 	@Nullable
-	public Double tieBreaker() {
+	public final Double tieBreaker() {
 		return this.tieBreaker;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.queries)) {
+			generator.writeKey("queries");
+			generator.writeStartArray();
+			for (Query item0 : this.queries) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("queries");
-		generator.writeStartArray();
-		for (Query item0 : this.queries) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.tieBreaker != null) {
-
 			generator.writeKey("tie_breaker");
 			generator.write(this.tieBreaker);
 
@@ -111,6 +115,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link DisMaxQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<DisMaxQuery> {
 		private List<Query> queries;
 
@@ -119,49 +124,37 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>queries</code>.
 		 */
-		public Builder queries(List<Query> value) {
-			this.queries = value;
+		public final Builder queries(List<Query> list) {
+			this.queries = _listAddAll(this.queries, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds one or more values to <code>queries</code>.
 		 */
-		public Builder queries(Query... value) {
-			this.queries = Arrays.asList(value);
+		public final Builder queries(Query value, Query... values) {
+			this.queries = _listAdd(this.queries, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #queries(List)}, creating the list if needed.
+		 * Required - API name: {@code queries}
+		 * <p>
+		 * Adds a value to <code>queries</code> using a builder lambda.
 		 */
-		public Builder addQueries(Query value) {
-			if (this.queries == null) {
-				this.queries = new ArrayList<>();
-			}
-			this.queries.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #queries(List)} to a singleton list.
-		 */
-		public Builder queries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.queries(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #queries(List)}, creating the list if needed.
-		 */
-		public Builder addQueries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addQueries(fn.apply(new Query.Builder()).build());
+		public final Builder queries(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return queries(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code tie_breaker}
 		 */
-		public Builder tieBreaker(@Nullable Double value) {
+		public final Builder tieBreaker(@Nullable Double value) {
 			this.tieBreaker = value;
 			return this;
 		}
@@ -178,6 +171,7 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public DisMaxQuery build() {
+			_checkSingleUse();
 
 			return new DisMaxQuery(this);
 		}
@@ -189,9 +183,9 @@ public final class DisMaxQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link DisMaxQuery}
 	 */
 	public static final JsonpDeserializer<DisMaxQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DisMaxQuery::setupDisMaxQueryDeserializer, Builder::build);
+			DisMaxQuery::setupDisMaxQueryDeserializer);
 
-	protected static void setupDisMaxQueryDeserializer(DelegatingDeserializer<DisMaxQuery.Builder> op) {
+	protected static void setupDisMaxQueryDeserializer(ObjectDeserializer<DisMaxQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::queries, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "queries");
 		op.add(Builder::tieBreaker, JsonpDeserializer.doubleDeserializer(), "tie_breaker");

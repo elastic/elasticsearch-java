@@ -25,33 +25,21 @@ package co.elastic.clients.elasticsearch._types.analysis;
 
 /**
  * Builders for {@link CharFilter} variants.
+ * <p>
+ * Variants <code>name</code> are not available here as they don't have a
+ * dedicated class. Use {@link CharFilter}'s builder for these.
+ * 
  */
 public class CharFilterBuilders {
 	private CharFilterBuilders() {
 	}
 
 	/**
-	 * Creates a builder for the {@link HtmlStripCharFilter html_strip}
+	 * Creates a builder for the {@link CharFilterDefinition definition}
 	 * {@code CharFilter} variant.
 	 */
-	public static HtmlStripCharFilter.Builder htmlStrip() {
-		return new HtmlStripCharFilter.Builder();
-	}
-
-	/**
-	 * Creates a builder for the {@link MappingCharFilter mapping}
-	 * {@code CharFilter} variant.
-	 */
-	public static MappingCharFilter.Builder mapping() {
-		return new MappingCharFilter.Builder();
-	}
-
-	/**
-	 * Creates a builder for the {@link PatternReplaceTokenFilter pattern_replace}
-	 * {@code CharFilter} variant.
-	 */
-	public static PatternReplaceTokenFilter.Builder patternReplace() {
-		return new PatternReplaceTokenFilter.Builder();
+	public static CharFilterDefinition.Builder definition() {
+		return new CharFilterDefinition.Builder();
 	}
 
 }

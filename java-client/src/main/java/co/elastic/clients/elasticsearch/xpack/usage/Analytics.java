@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,34 +36,40 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Analytics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L285-L287">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Analytics extends Base {
+public class Analytics extends Base {
 	private final AnalyticsStatistics stats;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Analytics(Builder builder) {
+	private Analytics(Builder builder) {
 		super(builder);
 
-		this.stats = Objects.requireNonNull(builder.stats, "stats");
+		this.stats = ApiTypeHelper.requireNonNull(builder.stats, this, "stats");
 
 	}
 
-	public Analytics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Analytics of(Function<Builder, ObjectBuilder<Analytics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code stats}
 	 */
-	public AnalyticsStatistics stats() {
+	public final AnalyticsStatistics stats() {
 		return this.stats;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("stats");
 		this.stats.serialize(generator, mapper);
 
@@ -74,13 +80,14 @@ public final class Analytics extends Base {
 	/**
 	 * Builder for {@link Analytics}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Analytics> {
 		private AnalyticsStatistics stats;
 
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public Builder stats(AnalyticsStatistics value) {
+		public final Builder stats(AnalyticsStatistics value) {
 			this.stats = value;
 			return this;
 		}
@@ -88,7 +95,7 @@ public final class Analytics extends Base {
 		/**
 		 * Required - API name: {@code stats}
 		 */
-		public Builder stats(Function<AnalyticsStatistics.Builder, ObjectBuilder<AnalyticsStatistics>> fn) {
+		public final Builder stats(Function<AnalyticsStatistics.Builder, ObjectBuilder<AnalyticsStatistics>> fn) {
 			return this.stats(fn.apply(new AnalyticsStatistics.Builder()).build());
 		}
 
@@ -104,6 +111,7 @@ public final class Analytics extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Analytics build() {
+			_checkSingleUse();
 
 			return new Analytics(this);
 		}
@@ -115,9 +123,9 @@ public final class Analytics extends Base {
 	 * Json deserializer for {@link Analytics}
 	 */
 	public static final JsonpDeserializer<Analytics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Analytics::setupAnalyticsDeserializer, Builder::build);
+			Analytics::setupAnalyticsDeserializer);
 
-	protected static void setupAnalyticsDeserializer(DelegatingDeserializer<Analytics.Builder> op) {
+	protected static void setupAnalyticsDeserializer(ObjectDeserializer<Analytics.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::stats, AnalyticsStatistics._DESERIALIZER, "stats");
 

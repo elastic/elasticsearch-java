@@ -23,42 +23,47 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ValidationLoss
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L423-L428">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ValidationLoss implements JsonpSerializable {
+public class ValidationLoss implements JsonpSerializable {
 	private final List<String> foldValues;
 
 	private final String lossType;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ValidationLoss(Builder builder) {
+	private ValidationLoss(Builder builder) {
 
-		this.foldValues = ModelTypeHelper.unmodifiableNonNull(builder.foldValues, "fold_values");
-		this.lossType = Objects.requireNonNull(builder.lossType, "loss_type");
+		this.foldValues = ApiTypeHelper.unmodifiableRequired(builder.foldValues, this, "foldValues");
+		this.lossType = ApiTypeHelper.requireNonNull(builder.lossType, this, "lossType");
 
 	}
 
-	public ValidationLoss(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ValidationLoss of(Function<Builder, ObjectBuilder<ValidationLoss>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +72,7 @@ public final class ValidationLoss implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code fold_values}
 	 */
-	public List<String> foldValues() {
+	public final List<String> foldValues() {
 		return this.foldValues;
 	}
 
@@ -76,7 +81,7 @@ public final class ValidationLoss implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code loss_type}
 	 */
-	public String lossType() {
+	public final String lossType() {
 		return this.lossType;
 	}
 
@@ -91,14 +96,16 @@ public final class ValidationLoss implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("fold_values");
-		generator.writeStartArray();
-		for (String item0 : this.foldValues) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.foldValues)) {
+			generator.writeKey("fold_values");
+			generator.writeStartArray();
+			for (String item0 : this.foldValues) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("loss_type");
 		generator.write(this.lossType);
 
@@ -109,7 +116,8 @@ public final class ValidationLoss implements JsonpSerializable {
 	/**
 	 * Builder for {@link ValidationLoss}.
 	 */
-	public static class Builder implements ObjectBuilder<ValidationLoss> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidationLoss> {
 		private List<String> foldValues;
 
 		private String lossType;
@@ -119,9 +127,11 @@ public final class ValidationLoss implements JsonpSerializable {
 		 * forest growing procedure.
 		 * <p>
 		 * API name: {@code fold_values}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>foldValues</code>.
 		 */
-		public Builder foldValues(List<String> value) {
-			this.foldValues = value;
+		public final Builder foldValues(List<String> list) {
+			this.foldValues = _listAddAll(this.foldValues, list);
 			return this;
 		}
 
@@ -130,20 +140,11 @@ public final class ValidationLoss implements JsonpSerializable {
 		 * forest growing procedure.
 		 * <p>
 		 * API name: {@code fold_values}
+		 * <p>
+		 * Adds one or more values to <code>foldValues</code>.
 		 */
-		public Builder foldValues(String... value) {
-			this.foldValues = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #foldValues(List)}, creating the list if needed.
-		 */
-		public Builder addFoldValues(String value) {
-			if (this.foldValues == null) {
-				this.foldValues = new ArrayList<>();
-			}
-			this.foldValues.add(value);
+		public final Builder foldValues(String value, String... values) {
+			this.foldValues = _listAdd(this.foldValues, value, values);
 			return this;
 		}
 
@@ -152,7 +153,7 @@ public final class ValidationLoss implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code loss_type}
 		 */
-		public Builder lossType(String value) {
+		public final Builder lossType(String value) {
 			this.lossType = value;
 			return this;
 		}
@@ -164,6 +165,7 @@ public final class ValidationLoss implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ValidationLoss build() {
+			_checkSingleUse();
 
 			return new ValidationLoss(this);
 		}
@@ -175,9 +177,9 @@ public final class ValidationLoss implements JsonpSerializable {
 	 * Json deserializer for {@link ValidationLoss}
 	 */
 	public static final JsonpDeserializer<ValidationLoss> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ValidationLoss::setupValidationLossDeserializer, Builder::build);
+			ValidationLoss::setupValidationLossDeserializer);
 
-	protected static void setupValidationLossDeserializer(DelegatingDeserializer<ValidationLoss.Builder> op) {
+	protected static void setupValidationLossDeserializer(ObjectDeserializer<ValidationLoss.Builder> op) {
 
 		op.add(Builder::foldValues, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"fold_values");

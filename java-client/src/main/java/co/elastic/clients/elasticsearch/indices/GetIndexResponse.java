@@ -23,12 +23,11 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.DictionaryResponse;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,17 +35,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.get.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get/IndicesGetResponse.ts#L24-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetIndexResponse extends DictionaryResponse<String, IndexState> {
+public class GetIndexResponse extends DictionaryResponse<String, IndexState> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetIndexResponse(Builder builder) {
+	private GetIndexResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetIndexResponse of(Function<Builder, ObjectBuilder<GetIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +60,7 @@ public final class GetIndexResponse extends DictionaryResponse<String, IndexStat
 	/**
 	 * Builder for {@link GetIndexResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexState, Builder>
 			implements
 				ObjectBuilder<GetIndexResponse> {
@@ -69,6 +76,7 @@ public final class GetIndexResponse extends DictionaryResponse<String, IndexStat
 		 *             if some of the required fields are null.
 		 */
 		public GetIndexResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -82,9 +90,9 @@ public final class GetIndexResponse extends DictionaryResponse<String, IndexStat
 	 * Json deserializer for {@link GetIndexResponse}
 	 */
 	public static final JsonpDeserializer<GetIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetIndexResponse::setupGetIndexResponseDeserializer, Builder::build);
+			GetIndexResponse::setupGetIndexResponseDeserializer);
 
-	protected static void setupGetIndexResponseDeserializer(DelegatingDeserializer<GetIndexResponse.Builder> op) {
+	protected static void setupGetIndexResponseDeserializer(ObjectDeserializer<GetIndexResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				IndexState._DESERIALIZER);
 

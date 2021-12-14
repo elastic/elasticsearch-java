@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.enrich.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.stats.CacheStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/stats/types.ts#L37-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CacheStats implements JsonpSerializable {
+public class CacheStats implements JsonpSerializable {
 	private final String nodeId;
 
 	private final int count;
@@ -53,52 +61,52 @@ public final class CacheStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CacheStats(Builder builder) {
+	private CacheStats(Builder builder) {
 
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.hits = Objects.requireNonNull(builder.hits, "hits");
-		this.misses = Objects.requireNonNull(builder.misses, "misses");
-		this.evictions = Objects.requireNonNull(builder.evictions, "evictions");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
+		this.misses = ApiTypeHelper.requireNonNull(builder.misses, this, "misses");
+		this.evictions = ApiTypeHelper.requireNonNull(builder.evictions, this, "evictions");
 
 	}
 
-	public CacheStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CacheStats of(Function<Builder, ObjectBuilder<CacheStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code hits}
 	 */
-	public int hits() {
+	public final int hits() {
 		return this.hits;
 	}
 
 	/**
 	 * Required - API name: {@code misses}
 	 */
-	public int misses() {
+	public final int misses() {
 		return this.misses;
 	}
 
 	/**
 	 * Required - API name: {@code evictions}
 	 */
-	public int evictions() {
+	public final int evictions() {
 		return this.evictions;
 	}
 
@@ -135,7 +143,8 @@ public final class CacheStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link CacheStats}.
 	 */
-	public static class Builder implements ObjectBuilder<CacheStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CacheStats> {
 		private String nodeId;
 
 		private Integer count;
@@ -149,7 +158,7 @@ public final class CacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -157,7 +166,7 @@ public final class CacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -165,7 +174,7 @@ public final class CacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder hits(int value) {
+		public final Builder hits(int value) {
 			this.hits = value;
 			return this;
 		}
@@ -173,7 +182,7 @@ public final class CacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code misses}
 		 */
-		public Builder misses(int value) {
+		public final Builder misses(int value) {
 			this.misses = value;
 			return this;
 		}
@@ -181,7 +190,7 @@ public final class CacheStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code evictions}
 		 */
-		public Builder evictions(int value) {
+		public final Builder evictions(int value) {
 			this.evictions = value;
 			return this;
 		}
@@ -193,6 +202,7 @@ public final class CacheStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CacheStats build() {
+			_checkSingleUse();
 
 			return new CacheStats(this);
 		}
@@ -204,9 +214,9 @@ public final class CacheStats implements JsonpSerializable {
 	 * Json deserializer for {@link CacheStats}
 	 */
 	public static final JsonpDeserializer<CacheStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CacheStats::setupCacheStatsDeserializer, Builder::build);
+			CacheStats::setupCacheStatsDeserializer);
 
-	protected static void setupCacheStatsDeserializer(DelegatingDeserializer<CacheStats.Builder> op) {
+	protected static void setupCacheStatsDeserializer(ObjectDeserializer<CacheStats.Builder> op) {
 
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");

@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,34 +46,31 @@ import javax.annotation.Nullable;
 
 // typedef: cat.snapshots.Request
 
-public final class SnapshotsRequest extends CatRequestBase {
-	@Nullable
-	private final List<String> repository;
+/**
+ * Returns all snapshots in a specific repository.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/snapshots/CatSnapshotsRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
+public class SnapshotsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	private final List<String> repository;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public SnapshotsRequest(Builder builder) {
+	private SnapshotsRequest(Builder builder) {
 
-		this.repository = ModelTypeHelper.unmodifiable(builder.repository);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.repository = ApiTypeHelper.unmodifiable(builder.repository);
 
 	}
 
-	public SnapshotsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Name of repository from which to fetch the snapshot information
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	@Nullable
-	public List<String> repository() {
-		return this.repository;
+	public static SnapshotsRequest of(Function<Builder, ObjectBuilder<SnapshotsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,8 +79,17 @@ public final class SnapshotsRequest extends CatRequestBase {
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * Name of repository from which to fetch the snapshot information
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	public final List<String> repository() {
+		return this.repository;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -92,51 +97,45 @@ public final class SnapshotsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link SnapshotsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<SnapshotsRequest> {
-		@Nullable
-		private List<String> repository;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsRequest> {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
-		/**
-		 * Name of repository from which to fetch the snapshot information
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(@Nullable List<String> value) {
-			this.repository = value;
-			return this;
-		}
-
-		/**
-		 * Name of repository from which to fetch the snapshot information
-		 * <p>
-		 * API name: {@code repository}
-		 */
-		public Builder repository(String... value) {
-			this.repository = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #repository(List)}, creating the list if needed.
-		 */
-		public Builder addRepository(String value) {
-			if (this.repository == null) {
-				this.repository = new ArrayList<>();
-			}
-			this.repository.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> repository;
 
 		/**
 		 * Set to true to ignore unavailable snapshots
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Name of repository from which to fetch the snapshot information
+		 * <p>
+		 * API name: {@code repository}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>repository</code>.
+		 */
+		public final Builder repository(List<String> list) {
+			this.repository = _listAddAll(this.repository, list);
+			return this;
+		}
+
+		/**
+		 * Name of repository from which to fetch the snapshot information
+		 * <p>
+		 * API name: {@code repository}
+		 * <p>
+		 * Adds one or more values to <code>repository</code>.
+		 */
+		public final Builder repository(String value, String... values) {
+			this.repository = _listAdd(this.repository, value, values);
 			return this;
 		}
 
@@ -147,6 +146,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public SnapshotsRequest build() {
+			_checkSingleUse();
 
 			return new SnapshotsRequest(this);
 		}
@@ -157,7 +157,9 @@ public final class SnapshotsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.snapshots}".
 	 */
-	public static final Endpoint<SnapshotsRequest, SnapshotsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<SnapshotsRequest, SnapshotsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.snapshots",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -170,7 +172,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.repository() != null)
+				if (ApiTypeHelper.isDefined(request.repository()))
 					propsSet |= _repository;
 
 				if (propsSet == 0) {
@@ -195,6 +197,7 @@ public final class SnapshotsRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}

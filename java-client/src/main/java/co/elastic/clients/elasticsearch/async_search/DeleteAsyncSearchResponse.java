@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: async_search.delete.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/delete/AsyncSearchDeleteResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteAsyncSearchResponse extends AcknowledgedResponseBase {
+public class DeleteAsyncSearchResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAsyncSearchResponse(Builder builder) {
+	private DeleteAsyncSearchResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteAsyncSearchResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAsyncSearchResponse of(Function<Builder, ObjectBuilder<DeleteAsyncSearchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteAsyncSearchResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteAsyncSearchResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteAsyncSearchResponse> {
@@ -68,6 +75,7 @@ public final class DeleteAsyncSearchResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAsyncSearchResponse build() {
+			_checkSingleUse();
 
 			return new DeleteAsyncSearchResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class DeleteAsyncSearchResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteAsyncSearchResponse}
 	 */
 	public static final JsonpDeserializer<DeleteAsyncSearchResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteAsyncSearchResponse::setupDeleteAsyncSearchResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteAsyncSearchResponse::setupDeleteAsyncSearchResponseDeserializer);
 
 	protected static void setupDeleteAsyncSearchResponseDeserializer(
-			DelegatingDeserializer<DeleteAsyncSearchResponse.Builder> op) {
+			ObjectDeserializer<DeleteAsyncSearchResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,39 +43,50 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_model_snapshot.Request
 
-public final class DeleteModelSnapshotRequest extends RequestBase {
+/**
+ * Deletes an existing model snapshot. You cannot delete the active model
+ * snapshot. To delete that snapshot, first revert to a different one. To
+ * identify the active model snapshot, refer to the
+ * <code>model_snapshot_id</code> in the results from the get jobs API.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_model_snapshot/MlDeleteModelSnapshotRequest.ts#L23-L44">API
+ *      specification</a>
+ */
+
+public class DeleteModelSnapshotRequest extends RequestBase {
 	private final String jobId;
 
 	private final String snapshotId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteModelSnapshotRequest(Builder builder) {
+	private DeleteModelSnapshotRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.snapshotId = Objects.requireNonNull(builder.snapshotId, "snapshot_id");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
 
 	}
 
-	public DeleteModelSnapshotRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteModelSnapshotRequest of(Function<Builder, ObjectBuilder<DeleteModelSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the job to fetch
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * Required - The ID of the snapshot to delete
+	 * Required - Identifier for the model snapshot.
 	 * <p>
 	 * API name: {@code snapshot_id}
 	 */
-	public String snapshotId() {
+	public final String snapshotId() {
 		return this.snapshotId;
 	}
 
@@ -82,27 +95,28 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteModelSnapshotRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteModelSnapshotRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteModelSnapshotRequest> {
 		private String jobId;
 
 		private String snapshotId;
 
 		/**
-		 * Required - The ID of the job to fetch
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
-		 * Required - The ID of the snapshot to delete
+		 * Required - Identifier for the model snapshot.
 		 * <p>
 		 * API name: {@code snapshot_id}
 		 */
-		public Builder snapshotId(String value) {
+		public final Builder snapshotId(String value) {
 			this.snapshotId = value;
 			return this;
 		}
@@ -114,6 +128,7 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteModelSnapshotRequest build() {
+			_checkSingleUse();
 
 			return new DeleteModelSnapshotRequest(this);
 		}
@@ -124,7 +139,9 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_model_snapshot}".
 	 */
-	public static final Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_model_snapshot",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -133,13 +150,13 @@ public final class DeleteModelSnapshotRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _jobId = 1 << 0;
-				final int _snapshotId = 1 << 1;
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _jobId;
 				propsSet |= _snapshotId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();

@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -40,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggestFuzziness
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L106-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SuggestFuzziness implements JsonpSerializable {
+public class SuggestFuzziness implements JsonpSerializable {
 	private final String fuzziness;
 
 	private final int minLength;
@@ -54,52 +62,52 @@ public final class SuggestFuzziness implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SuggestFuzziness(Builder builder) {
+	private SuggestFuzziness(Builder builder) {
 
-		this.fuzziness = Objects.requireNonNull(builder.fuzziness, "fuzziness");
-		this.minLength = Objects.requireNonNull(builder.minLength, "min_length");
-		this.prefixLength = Objects.requireNonNull(builder.prefixLength, "prefix_length");
-		this.transpositions = Objects.requireNonNull(builder.transpositions, "transpositions");
-		this.unicodeAware = Objects.requireNonNull(builder.unicodeAware, "unicode_aware");
+		this.fuzziness = ApiTypeHelper.requireNonNull(builder.fuzziness, this, "fuzziness");
+		this.minLength = ApiTypeHelper.requireNonNull(builder.minLength, this, "minLength");
+		this.prefixLength = ApiTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength");
+		this.transpositions = ApiTypeHelper.requireNonNull(builder.transpositions, this, "transpositions");
+		this.unicodeAware = ApiTypeHelper.requireNonNull(builder.unicodeAware, this, "unicodeAware");
 
 	}
 
-	public SuggestFuzziness(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SuggestFuzziness of(Function<Builder, ObjectBuilder<SuggestFuzziness>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code fuzziness}
 	 */
-	public String fuzziness() {
+	public final String fuzziness() {
 		return this.fuzziness;
 	}
 
 	/**
 	 * Required - API name: {@code min_length}
 	 */
-	public int minLength() {
+	public final int minLength() {
 		return this.minLength;
 	}
 
 	/**
 	 * Required - API name: {@code prefix_length}
 	 */
-	public int prefixLength() {
+	public final int prefixLength() {
 		return this.prefixLength;
 	}
 
 	/**
 	 * Required - API name: {@code transpositions}
 	 */
-	public boolean transpositions() {
+	public final boolean transpositions() {
 		return this.transpositions;
 	}
 
 	/**
 	 * Required - API name: {@code unicode_aware}
 	 */
-	public boolean unicodeAware() {
+	public final boolean unicodeAware() {
 		return this.unicodeAware;
 	}
 
@@ -136,7 +144,8 @@ public final class SuggestFuzziness implements JsonpSerializable {
 	/**
 	 * Builder for {@link SuggestFuzziness}.
 	 */
-	public static class Builder implements ObjectBuilder<SuggestFuzziness> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SuggestFuzziness> {
 		private String fuzziness;
 
 		private Integer minLength;
@@ -150,7 +159,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fuzziness}
 		 */
-		public Builder fuzziness(String value) {
+		public final Builder fuzziness(String value) {
 			this.fuzziness = value;
 			return this;
 		}
@@ -158,7 +167,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code min_length}
 		 */
-		public Builder minLength(int value) {
+		public final Builder minLength(int value) {
 			this.minLength = value;
 			return this;
 		}
@@ -166,7 +175,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(int value) {
+		public final Builder prefixLength(int value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -174,7 +183,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transpositions}
 		 */
-		public Builder transpositions(boolean value) {
+		public final Builder transpositions(boolean value) {
 			this.transpositions = value;
 			return this;
 		}
@@ -182,7 +191,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code unicode_aware}
 		 */
-		public Builder unicodeAware(boolean value) {
+		public final Builder unicodeAware(boolean value) {
 			this.unicodeAware = value;
 			return this;
 		}
@@ -194,6 +203,7 @@ public final class SuggestFuzziness implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SuggestFuzziness build() {
+			_checkSingleUse();
 
 			return new SuggestFuzziness(this);
 		}
@@ -205,9 +215,9 @@ public final class SuggestFuzziness implements JsonpSerializable {
 	 * Json deserializer for {@link SuggestFuzziness}
 	 */
 	public static final JsonpDeserializer<SuggestFuzziness> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SuggestFuzziness::setupSuggestFuzzinessDeserializer, Builder::build);
+			SuggestFuzziness::setupSuggestFuzzinessDeserializer);
 
-	protected static void setupSuggestFuzzinessDeserializer(DelegatingDeserializer<SuggestFuzziness.Builder> op) {
+	protected static void setupSuggestFuzzinessDeserializer(ObjectDeserializer<SuggestFuzziness.Builder> op) {
 
 		op.add(Builder::fuzziness, JsonpDeserializer.stringDeserializer(), "fuzziness");
 		op.add(Builder::minLength, JsonpDeserializer.integerDeserializer(), "min_length");

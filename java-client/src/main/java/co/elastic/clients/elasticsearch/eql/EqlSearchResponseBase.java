@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.eql;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +30,9 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -41,6 +42,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: eql._types.EqlSearchResponseBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html#eql-search-api-response-body">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/_types/EqlSearchResponseBase.ts#L24-L52">API
+ *      specification</a>
+ */
 
 public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable {
 	@Nullable
@@ -65,14 +76,14 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EqlSearchResponseBase(AbstractBuilder<TEvent, ?> builder) {
+	protected EqlSearchResponseBase(AbstractBuilder<TEvent, ?> builder) {
 
 		this.id = builder.id;
 		this.isPartial = builder.isPartial;
 		this.isRunning = builder.isRunning;
 		this.took = builder.took;
 		this.timedOut = builder.timedOut;
-		this.hits = Objects.requireNonNull(builder.hits, "hits");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 		this.tEventSerializer = builder.tEventSerializer;
 
 	}
@@ -83,7 +94,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -93,7 +104,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	 * API name: {@code is_partial}
 	 */
 	@Nullable
-	public Boolean isPartial() {
+	public final Boolean isPartial() {
 		return this.isPartial;
 	}
 
@@ -103,7 +114,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	 * API name: {@code is_running}
 	 */
 	@Nullable
-	public Boolean isRunning() {
+	public final Boolean isRunning() {
 		return this.isRunning;
 	}
 
@@ -113,7 +124,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	 * API name: {@code took}
 	 */
 	@Nullable
-	public Integer took() {
+	public final Integer took() {
 		return this.took;
 	}
 
@@ -123,7 +134,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	 * API name: {@code timed_out}
 	 */
 	@Nullable
-	public Boolean timedOut() {
+	public final Boolean timedOut() {
 		return this.timedOut;
 	}
 
@@ -133,7 +144,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	 * <p>
 	 * API name: {@code hits}
 	 */
-	public EqlHits<TEvent> hits() {
+	public final EqlHits<TEvent> hits() {
 		return this.hits;
 	}
 
@@ -149,42 +160,38 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.isPartial != null) {
-
 			generator.writeKey("is_partial");
 			generator.write(this.isPartial);
 
 		}
 		if (this.isRunning != null) {
-
 			generator.writeKey("is_running");
 			generator.write(this.isRunning);
 
 		}
 		if (this.took != null) {
-
 			generator.writeKey("took");
 			generator.write(this.took);
 
 		}
 		if (this.timedOut != null) {
-
 			generator.writeKey("timed_out");
 			generator.write(this.timedOut);
 
 		}
-
 		generator.writeKey("hits");
 		this.hits.serialize(generator, mapper);
 
 	}
 
-	protected abstract static class AbstractBuilder<TEvent, BuilderT extends AbstractBuilder<TEvent, BuilderT>> {
+	protected abstract static class AbstractBuilder<TEvent, BuilderT extends AbstractBuilder<TEvent, BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private String id;
 
@@ -210,7 +217,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public BuilderT id(@Nullable String value) {
+		public final BuilderT id(@Nullable String value) {
 			this.id = value;
 			return self();
 		}
@@ -220,7 +227,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code is_partial}
 		 */
-		public BuilderT isPartial(@Nullable Boolean value) {
+		public final BuilderT isPartial(@Nullable Boolean value) {
 			this.isPartial = value;
 			return self();
 		}
@@ -230,7 +237,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code is_running}
 		 */
-		public BuilderT isRunning(@Nullable Boolean value) {
+		public final BuilderT isRunning(@Nullable Boolean value) {
 			this.isRunning = value;
 			return self();
 		}
@@ -240,7 +247,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code took}
 		 */
-		public BuilderT took(@Nullable Integer value) {
+		public final BuilderT took(@Nullable Integer value) {
 			this.took = value;
 			return self();
 		}
@@ -250,7 +257,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code timed_out}
 		 */
-		public BuilderT timedOut(@Nullable Boolean value) {
+		public final BuilderT timedOut(@Nullable Boolean value) {
 			this.timedOut = value;
 			return self();
 		}
@@ -261,7 +268,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code hits}
 		 */
-		public BuilderT hits(EqlHits<TEvent> value) {
+		public final BuilderT hits(EqlHits<TEvent> value) {
 			this.hits = value;
 			return self();
 		}
@@ -272,7 +279,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code hits}
 		 */
-		public BuilderT hits(Function<EqlHits.Builder<TEvent>, ObjectBuilder<EqlHits<TEvent>>> fn) {
+		public final BuilderT hits(Function<EqlHits.Builder<TEvent>, ObjectBuilder<EqlHits<TEvent>>> fn) {
 			return this.hits(fn.apply(new EqlHits.Builder<TEvent>()).build());
 		}
 
@@ -280,7 +287,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * Serializer for TEvent. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public BuilderT tEventSerializer(@Nullable JsonpSerializer<TEvent> value) {
+		public final BuilderT tEventSerializer(@Nullable JsonpSerializer<TEvent> value) {
 			this.tEventSerializer = value;
 			return self();
 		}
@@ -291,7 +298,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <TEvent, BuilderT extends AbstractBuilder<TEvent, BuilderT>> void setupEqlSearchResponseBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op, JsonpDeserializer<TEvent> tEventDeserializer) {
+			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TEvent> tEventDeserializer) {
 
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(AbstractBuilder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");

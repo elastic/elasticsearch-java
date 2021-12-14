@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.cluster.reroute;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.reroute.RerouteDecision
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/types.ts#L88-L92">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RerouteDecision implements JsonpSerializable {
+public class RerouteDecision implements JsonpSerializable {
 	private final String decider;
 
 	private final String decision;
@@ -48,36 +56,36 @@ public final class RerouteDecision implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RerouteDecision(Builder builder) {
+	private RerouteDecision(Builder builder) {
 
-		this.decider = Objects.requireNonNull(builder.decider, "decider");
-		this.decision = Objects.requireNonNull(builder.decision, "decision");
-		this.explanation = Objects.requireNonNull(builder.explanation, "explanation");
+		this.decider = ApiTypeHelper.requireNonNull(builder.decider, this, "decider");
+		this.decision = ApiTypeHelper.requireNonNull(builder.decision, this, "decision");
+		this.explanation = ApiTypeHelper.requireNonNull(builder.explanation, this, "explanation");
 
 	}
 
-	public RerouteDecision(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RerouteDecision of(Function<Builder, ObjectBuilder<RerouteDecision>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code decider}
 	 */
-	public String decider() {
+	public final String decider() {
 		return this.decider;
 	}
 
 	/**
 	 * Required - API name: {@code decision}
 	 */
-	public String decision() {
+	public final String decision() {
 		return this.decision;
 	}
 
 	/**
 	 * Required - API name: {@code explanation}
 	 */
-	public String explanation() {
+	public final String explanation() {
 		return this.explanation;
 	}
 
@@ -108,7 +116,8 @@ public final class RerouteDecision implements JsonpSerializable {
 	/**
 	 * Builder for {@link RerouteDecision}.
 	 */
-	public static class Builder implements ObjectBuilder<RerouteDecision> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteDecision> {
 		private String decider;
 
 		private String decision;
@@ -118,7 +127,7 @@ public final class RerouteDecision implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code decider}
 		 */
-		public Builder decider(String value) {
+		public final Builder decider(String value) {
 			this.decider = value;
 			return this;
 		}
@@ -126,7 +135,7 @@ public final class RerouteDecision implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code decision}
 		 */
-		public Builder decision(String value) {
+		public final Builder decision(String value) {
 			this.decision = value;
 			return this;
 		}
@@ -134,7 +143,7 @@ public final class RerouteDecision implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code explanation}
 		 */
-		public Builder explanation(String value) {
+		public final Builder explanation(String value) {
 			this.explanation = value;
 			return this;
 		}
@@ -146,6 +155,7 @@ public final class RerouteDecision implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RerouteDecision build() {
+			_checkSingleUse();
 
 			return new RerouteDecision(this);
 		}
@@ -157,9 +167,9 @@ public final class RerouteDecision implements JsonpSerializable {
 	 * Json deserializer for {@link RerouteDecision}
 	 */
 	public static final JsonpDeserializer<RerouteDecision> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RerouteDecision::setupRerouteDecisionDeserializer, Builder::build);
+			RerouteDecision::setupRerouteDecisionDeserializer);
 
-	protected static void setupRerouteDecisionDeserializer(DelegatingDeserializer<RerouteDecision.Builder> op) {
+	protected static void setupRerouteDecisionDeserializer(ObjectDeserializer<RerouteDecision.Builder> op) {
 
 		op.add(Builder::decider, JsonpDeserializer.stringDeserializer(), "decider");
 		op.add(Builder::decision, JsonpDeserializer.stringDeserializer(), "decision");

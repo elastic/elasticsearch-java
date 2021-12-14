@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -46,32 +45,31 @@ import javax.annotation.Nullable;
 
 // typedef: watcher.ack_watch.Request
 
-public final class AckWatchRequest extends RequestBase {
-	private final String watchId;
+/**
+ * Acknowledges a watch, manually throttling the execution of the watch's
+ * actions.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/ack_watch/WatcherAckWatchRequest.ts#L23-L33">API
+ *      specification</a>
+ */
 
-	@Nullable
+public class AckWatchRequest extends RequestBase {
 	private final List<String> actionId;
+
+	private final String watchId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AckWatchRequest(Builder builder) {
+	private AckWatchRequest(Builder builder) {
 
-		this.watchId = Objects.requireNonNull(builder.watchId, "watch_id");
-		this.actionId = ModelTypeHelper.unmodifiable(builder.actionId);
+		this.actionId = ApiTypeHelper.unmodifiable(builder.actionId);
+		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
 
 	}
 
-	public AckWatchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Watch ID
-	 * <p>
-	 * API name: {@code watch_id}
-	 */
-	public String watchId() {
-		return this.watchId;
+	public static AckWatchRequest of(Function<Builder, ObjectBuilder<AckWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,9 +77,17 @@ public final class AckWatchRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code action_id}
 	 */
-	@Nullable
-	public List<String> actionId() {
+	public final List<String> actionId() {
 		return this.actionId;
+	}
+
+	/**
+	 * Required - Watch ID
+	 * <p>
+	 * API name: {@code watch_id}
+	 */
+	public final String watchId() {
+		return this.watchId;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -89,50 +95,44 @@ public final class AckWatchRequest extends RequestBase {
 	/**
 	 * Builder for {@link AckWatchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<AckWatchRequest> {
-		private String watchId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AckWatchRequest> {
 		@Nullable
 		private List<String> actionId;
+
+		private String watchId;
+
+		/**
+		 * A comma-separated list of the action ids to be acked
+		 * <p>
+		 * API name: {@code action_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>actionId</code>.
+		 */
+		public final Builder actionId(List<String> list) {
+			this.actionId = _listAddAll(this.actionId, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of the action ids to be acked
+		 * <p>
+		 * API name: {@code action_id}
+		 * <p>
+		 * Adds one or more values to <code>actionId</code>.
+		 */
+		public final Builder actionId(String value, String... values) {
+			this.actionId = _listAdd(this.actionId, value, values);
+			return this;
+		}
 
 		/**
 		 * Required - Watch ID
 		 * <p>
 		 * API name: {@code watch_id}
 		 */
-		public Builder watchId(String value) {
+		public final Builder watchId(String value) {
 			this.watchId = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of the action ids to be acked
-		 * <p>
-		 * API name: {@code action_id}
-		 */
-		public Builder actionId(@Nullable List<String> value) {
-			this.actionId = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of the action ids to be acked
-		 * <p>
-		 * API name: {@code action_id}
-		 */
-		public Builder actionId(String... value) {
-			this.actionId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #actionId(List)}, creating the list if needed.
-		 */
-		public Builder addActionId(String value) {
-			if (this.actionId == null) {
-				this.actionId = new ArrayList<>();
-			}
-			this.actionId.add(value);
 			return this;
 		}
 
@@ -143,6 +143,7 @@ public final class AckWatchRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public AckWatchRequest build() {
+			_checkSingleUse();
 
 			return new AckWatchRequest(this);
 		}
@@ -153,7 +154,9 @@ public final class AckWatchRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code watcher.ack_watch}".
 	 */
-	public static final Endpoint<AckWatchRequest, AckWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<AckWatchRequest, AckWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.ack_watch",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -168,7 +171,7 @@ public final class AckWatchRequest extends RequestBase {
 				int propsSet = 0;
 
 				propsSet |= _watchId;
-				if (request.actionId() != null)
+				if (ApiTypeHelper.isDefined(request.actionId()))
 					propsSet |= _actionId;
 
 				if (propsSet == (_watchId)) {

@@ -23,18 +23,19 @@
 
 package co.elastic.clients.elasticsearch.sql;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -43,26 +44,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.clear_cursor.Request
+
+/**
+ * Clears the SQL cursor
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/sql/clear_cursor/ClearSqlCursorRequest.ts#L22-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClearCursorRequest extends RequestBase implements JsonpSerializable {
+public class ClearCursorRequest extends RequestBase implements JsonpSerializable {
 	private final String cursor;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCursorRequest(Builder builder) {
+	private ClearCursorRequest(Builder builder) {
 
-		this.cursor = Objects.requireNonNull(builder.cursor, "cursor");
+		this.cursor = ApiTypeHelper.requireNonNull(builder.cursor, this, "cursor");
 
 	}
 
-	public ClearCursorRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCursorRequest of(Function<Builder, ObjectBuilder<ClearCursorRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cursor}
 	 */
-	public String cursor() {
+	public final String cursor() {
 		return this.cursor;
 	}
 
@@ -87,13 +96,14 @@ public final class ClearCursorRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Builder for {@link ClearCursorRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearCursorRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearCursorRequest> {
 		private String cursor;
 
 		/**
 		 * Required - API name: {@code cursor}
 		 */
-		public Builder cursor(String value) {
+		public final Builder cursor(String value) {
 			this.cursor = value;
 			return this;
 		}
@@ -105,6 +115,7 @@ public final class ClearCursorRequest extends RequestBase implements JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public ClearCursorRequest build() {
+			_checkSingleUse();
 
 			return new ClearCursorRequest(this);
 		}
@@ -116,9 +127,9 @@ public final class ClearCursorRequest extends RequestBase implements JsonpSerial
 	 * Json deserializer for {@link ClearCursorRequest}
 	 */
 	public static final JsonpDeserializer<ClearCursorRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClearCursorRequest::setupClearCursorRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ClearCursorRequest::setupClearCursorRequestDeserializer);
 
-	protected static void setupClearCursorRequestDeserializer(DelegatingDeserializer<ClearCursorRequest.Builder> op) {
+	protected static void setupClearCursorRequestDeserializer(ObjectDeserializer<ClearCursorRequest.Builder> op) {
 
 		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
 
@@ -129,7 +140,9 @@ public final class ClearCursorRequest extends RequestBase implements JsonpSerial
 	/**
 	 * Endpoint "{@code sql.clear_cursor}".
 	 */
-	public static final Endpoint<ClearCursorRequest, ClearCursorResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/sql.clear_cursor",
+
 			// Request method
 			request -> {
 				return "POST";

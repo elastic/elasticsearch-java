@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,18 @@ import javax.annotation.Nullable;
 
 // typedef: ml.reset_job.Request
 
-public final class ResetJobRequest extends RequestBase {
+/**
+ * Resets an existing anomaly detection job. All model state and results are
+ * deleted. The job is ready to start over as if it had just been created. It is
+ * not currently possible to reset multiple jobs using wildcards or a comma
+ * separated list.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/reset_job/MlResetJobRequest.ts#L23-L49">API
+ *      specification</a>
+ */
+
+public class ResetJobRequest extends RequestBase {
 	private final String jobId;
 
 	@Nullable
@@ -51,15 +64,15 @@ public final class ResetJobRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResetJobRequest(Builder builder) {
+	private ResetJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
-	public ResetJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResetJobRequest of(Function<Builder, ObjectBuilder<ResetJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +80,7 @@ public final class ResetJobRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -77,7 +90,7 @@ public final class ResetJobRequest extends RequestBase {
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
 	}
 
@@ -86,7 +99,8 @@ public final class ResetJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link ResetJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ResetJobRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResetJobRequest> {
 		private String jobId;
 
 		@Nullable
@@ -97,7 +111,7 @@ public final class ResetJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -107,7 +121,7 @@ public final class ResetJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
 		}
@@ -119,6 +133,7 @@ public final class ResetJobRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ResetJobRequest build() {
+			_checkSingleUse();
 
 			return new ResetJobRequest(this);
 		}
@@ -129,7 +144,9 @@ public final class ResetJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.reset_job}".
 	 */
-	public static final Endpoint<ResetJobRequest, ResetJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ResetJobRequest, ResetJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.reset_job",
+
 			// Request method
 			request -> {
 				return "POST";

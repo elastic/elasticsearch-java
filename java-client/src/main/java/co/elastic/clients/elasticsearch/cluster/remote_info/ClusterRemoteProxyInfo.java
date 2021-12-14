@@ -23,14 +23,16 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -40,11 +42,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteProxyInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L42-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
+public class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, JsonpSerializable {
 	private final boolean connected;
 
-	private final String initialConnectTimeout;
+	private final Time initialConnectTimeout;
 
 	private final boolean skipUnavailable;
 
@@ -58,78 +67,79 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterRemoteProxyInfo(Builder builder) {
+	private ClusterRemoteProxyInfo(Builder builder) {
 
-		this.connected = Objects.requireNonNull(builder.connected, "connected");
-		this.initialConnectTimeout = Objects.requireNonNull(builder.initialConnectTimeout, "initial_connect_timeout");
-		this.skipUnavailable = Objects.requireNonNull(builder.skipUnavailable, "skip_unavailable");
-		this.proxyAddress = Objects.requireNonNull(builder.proxyAddress, "proxy_address");
-		this.serverName = Objects.requireNonNull(builder.serverName, "server_name");
-		this.numProxySocketsConnected = Objects.requireNonNull(builder.numProxySocketsConnected,
-				"num_proxy_sockets_connected");
-		this.maxProxySocketConnections = Objects.requireNonNull(builder.maxProxySocketConnections,
-				"max_proxy_socket_connections");
+		this.connected = ApiTypeHelper.requireNonNull(builder.connected, this, "connected");
+		this.initialConnectTimeout = ApiTypeHelper.requireNonNull(builder.initialConnectTimeout, this,
+				"initialConnectTimeout");
+		this.skipUnavailable = ApiTypeHelper.requireNonNull(builder.skipUnavailable, this, "skipUnavailable");
+		this.proxyAddress = ApiTypeHelper.requireNonNull(builder.proxyAddress, this, "proxyAddress");
+		this.serverName = ApiTypeHelper.requireNonNull(builder.serverName, this, "serverName");
+		this.numProxySocketsConnected = ApiTypeHelper.requireNonNull(builder.numProxySocketsConnected, this,
+				"numProxySocketsConnected");
+		this.maxProxySocketConnections = ApiTypeHelper.requireNonNull(builder.maxProxySocketConnections, this,
+				"maxProxySocketConnections");
 
 	}
 
-	public ClusterRemoteProxyInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterRemoteProxyInfo of(Function<Builder, ObjectBuilder<ClusterRemoteProxyInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link ClusterRemoteInfo} variant type
+	 * ClusterRemoteInfo variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "proxy";
+	public ClusterRemoteInfo.Kind _clusterRemoteInfoKind() {
+		return ClusterRemoteInfo.Kind.Proxy;
 	}
 
 	/**
 	 * Required - API name: {@code connected}
 	 */
-	public boolean connected() {
+	public final boolean connected() {
 		return this.connected;
 	}
 
 	/**
 	 * Required - API name: {@code initial_connect_timeout}
 	 */
-	public String initialConnectTimeout() {
+	public final Time initialConnectTimeout() {
 		return this.initialConnectTimeout;
 	}
 
 	/**
 	 * Required - API name: {@code skip_unavailable}
 	 */
-	public boolean skipUnavailable() {
+	public final boolean skipUnavailable() {
 		return this.skipUnavailable;
 	}
 
 	/**
 	 * Required - API name: {@code proxy_address}
 	 */
-	public String proxyAddress() {
+	public final String proxyAddress() {
 		return this.proxyAddress;
 	}
 
 	/**
 	 * Required - API name: {@code server_name}
 	 */
-	public String serverName() {
+	public final String serverName() {
 		return this.serverName;
 	}
 
 	/**
 	 * Required - API name: {@code num_proxy_sockets_connected}
 	 */
-	public int numProxySocketsConnected() {
+	public final int numProxySocketsConnected() {
 		return this.numProxySocketsConnected;
 	}
 
 	/**
 	 * Required - API name: {@code max_proxy_socket_connections}
 	 */
-	public int maxProxySocketConnections() {
+	public final int maxProxySocketConnections() {
 		return this.maxProxySocketConnections;
 	}
 
@@ -150,7 +160,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		generator.write(this.connected);
 
 		generator.writeKey("initial_connect_timeout");
-		generator.write(this.initialConnectTimeout);
+		this.initialConnectTimeout.serialize(generator, mapper);
 
 		generator.writeKey("skip_unavailable");
 		generator.write(this.skipUnavailable);
@@ -174,10 +184,11 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 	/**
 	 * Builder for {@link ClusterRemoteProxyInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterRemoteProxyInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterRemoteProxyInfo> {
 		private Boolean connected;
 
-		private String initialConnectTimeout;
+		private Time initialConnectTimeout;
 
 		private Boolean skipUnavailable;
 
@@ -192,7 +203,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code connected}
 		 */
-		public Builder connected(boolean value) {
+		public final Builder connected(boolean value) {
 			this.connected = value;
 			return this;
 		}
@@ -200,15 +211,22 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code initial_connect_timeout}
 		 */
-		public Builder initialConnectTimeout(String value) {
+		public final Builder initialConnectTimeout(Time value) {
 			this.initialConnectTimeout = value;
 			return this;
 		}
 
 		/**
+		 * Required - API name: {@code initial_connect_timeout}
+		 */
+		public final Builder initialConnectTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.initialConnectTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code skip_unavailable}
 		 */
-		public Builder skipUnavailable(boolean value) {
+		public final Builder skipUnavailable(boolean value) {
 			this.skipUnavailable = value;
 			return this;
 		}
@@ -216,7 +234,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code proxy_address}
 		 */
-		public Builder proxyAddress(String value) {
+		public final Builder proxyAddress(String value) {
 			this.proxyAddress = value;
 			return this;
 		}
@@ -224,7 +242,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code server_name}
 		 */
-		public Builder serverName(String value) {
+		public final Builder serverName(String value) {
 			this.serverName = value;
 			return this;
 		}
@@ -232,7 +250,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code num_proxy_sockets_connected}
 		 */
-		public Builder numProxySocketsConnected(int value) {
+		public final Builder numProxySocketsConnected(int value) {
 			this.numProxySocketsConnected = value;
 			return this;
 		}
@@ -240,7 +258,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		/**
 		 * Required - API name: {@code max_proxy_socket_connections}
 		 */
-		public Builder maxProxySocketConnections(int value) {
+		public final Builder maxProxySocketConnections(int value) {
 			this.maxProxySocketConnections = value;
 			return this;
 		}
@@ -252,6 +270,7 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 		 *             if some of the required fields are null.
 		 */
 		public ClusterRemoteProxyInfo build() {
+			_checkSingleUse();
 
 			return new ClusterRemoteProxyInfo(this);
 		}
@@ -263,13 +282,13 @@ public final class ClusterRemoteProxyInfo implements ClusterRemoteInfoVariant, J
 	 * Json deserializer for {@link ClusterRemoteProxyInfo}
 	 */
 	public static final JsonpDeserializer<ClusterRemoteProxyInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterRemoteProxyInfo::setupClusterRemoteProxyInfoDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterRemoteProxyInfo::setupClusterRemoteProxyInfoDeserializer);
 
 	protected static void setupClusterRemoteProxyInfoDeserializer(
-			DelegatingDeserializer<ClusterRemoteProxyInfo.Builder> op) {
+			ObjectDeserializer<ClusterRemoteProxyInfo.Builder> op) {
 
 		op.add(Builder::connected, JsonpDeserializer.booleanDeserializer(), "connected");
-		op.add(Builder::initialConnectTimeout, JsonpDeserializer.stringDeserializer(), "initial_connect_timeout");
+		op.add(Builder::initialConnectTimeout, Time._DESERIALIZER, "initial_connect_timeout");
 		op.add(Builder::skipUnavailable, JsonpDeserializer.booleanDeserializer(), "skip_unavailable");
 		op.add(Builder::proxyAddress, JsonpDeserializer.stringDeserializer(), "proxy_address");
 		op.add(Builder::serverName, JsonpDeserializer.stringDeserializer(), "server_name");

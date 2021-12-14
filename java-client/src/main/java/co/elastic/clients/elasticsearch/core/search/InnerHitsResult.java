@@ -23,40 +23,49 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.InnerHitsResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/hits.ts#L84-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class InnerHitsResult implements JsonpSerializable {
-	private final InnerHitsMetadata hits;
+public class InnerHitsResult implements JsonpSerializable {
+	private final HitsMetadata<JsonData> hits;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public InnerHitsResult(Builder builder) {
+	private InnerHitsResult(Builder builder) {
 
-		this.hits = Objects.requireNonNull(builder.hits, "hits");
+		this.hits = ApiTypeHelper.requireNonNull(builder.hits, this, "hits");
 
 	}
 
-	public InnerHitsResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static InnerHitsResult of(Function<Builder, ObjectBuilder<InnerHitsResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code hits}
 	 */
-	public InnerHitsMetadata hits() {
+	public final HitsMetadata<JsonData> hits() {
 		return this.hits;
 	}
 
@@ -81,13 +90,14 @@ public final class InnerHitsResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link InnerHitsResult}.
 	 */
-	public static class Builder implements ObjectBuilder<InnerHitsResult> {
-		private InnerHitsMetadata hits;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InnerHitsResult> {
+		private HitsMetadata<JsonData> hits;
 
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder hits(InnerHitsMetadata value) {
+		public final Builder hits(HitsMetadata<JsonData> value) {
 			this.hits = value;
 			return this;
 		}
@@ -95,8 +105,8 @@ public final class InnerHitsResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code hits}
 		 */
-		public Builder hits(Function<InnerHitsMetadata.Builder, ObjectBuilder<InnerHitsMetadata>> fn) {
-			return this.hits(fn.apply(new InnerHitsMetadata.Builder()).build());
+		public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
+			return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
 		}
 
 		/**
@@ -106,6 +116,7 @@ public final class InnerHitsResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public InnerHitsResult build() {
+			_checkSingleUse();
 
 			return new InnerHitsResult(this);
 		}
@@ -117,11 +128,11 @@ public final class InnerHitsResult implements JsonpSerializable {
 	 * Json deserializer for {@link InnerHitsResult}
 	 */
 	public static final JsonpDeserializer<InnerHitsResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InnerHitsResult::setupInnerHitsResultDeserializer, Builder::build);
+			InnerHitsResult::setupInnerHitsResultDeserializer);
 
-	protected static void setupInnerHitsResultDeserializer(DelegatingDeserializer<InnerHitsResult.Builder> op) {
+	protected static void setupInnerHitsResultDeserializer(ObjectDeserializer<InnerHitsResult.Builder> op) {
 
-		op.add(Builder::hits, InnerHitsMetadata._DESERIALIZER, "hits");
+		op.add(Builder::hits, HitsMetadata.createHitsMetadataDeserializer(JsonData._DESERIALIZER), "hits");
 
 	}
 

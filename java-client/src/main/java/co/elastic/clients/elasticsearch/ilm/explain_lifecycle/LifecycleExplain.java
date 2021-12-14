@@ -23,13 +23,16 @@
 
 package co.elastic.clients.elasticsearch.ilm.explain_lifecycle;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -38,47 +41,81 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.explain_lifecycle.LifecycleExplain
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/explain_lifecycle/types.ts#L50-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class LifecycleExplain
+		implements
+			TaggedUnion<LifecycleExplain.Kind, LifecycleExplainVariant>,
+			JsonpSerializable {
 
-	public static final String TRUE = "true";
-	public static final String FALSE = "false";
+	/**
+	 * {@link LifecycleExplain} variant kinds.
+	 */
+	/**
+	 * {@link LifecycleExplain} variant kinds.
+	 */
 
-	// Tagged union implementation
+	public enum Kind implements JsonEnum {
+		True("true"),
 
-	private final String _type;
-	private final JsonpSerializable _value;
+		False("false"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final LifecycleExplainVariant _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final LifecycleExplainVariant _get() {
 		return _value;
 	}
 
 	public LifecycleExplain(LifecycleExplainVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._lifecycleExplainKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends LifecycleExplainVariant> LifecycleExplain(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private LifecycleExplain(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public LifecycleExplain(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LifecycleExplain of(Function<Builder, ObjectBuilder<LifecycleExplain>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code true}?
+	 */
+	public boolean isTrue() {
+		return _kind == Kind.True;
 	}
 
 	/**
@@ -88,7 +125,14 @@ public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSe
 	 *             if the current variant is not of the {@code true} kind.
 	 */
 	public LifecycleExplainManaged true_() {
-		return TaggedUnionUtils.get(this, TRUE);
+		return TaggedUnionUtils.get(this, Kind.True);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code false}?
+	 */
+	public boolean isFalse() {
+		return _kind == Kind.False;
 	}
 
 	/**
@@ -98,55 +142,58 @@ public class LifecycleExplain implements TaggedUnion<JsonpSerializable>, JsonpSe
 	 *             if the current variant is not of the {@code false} kind.
 	 */
 	public LifecycleExplainUnmanaged false_() {
-		return TaggedUnionUtils.get(this, FALSE);
+		return TaggedUnionUtils.get(this, Kind.False);
 	}
 
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		_value.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
-	public static class Builder implements ObjectBuilder<LifecycleExplain> {
-		private String _type;
-		private JsonpSerializable _value;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplain> {
+		private Kind _kind;
+		private LifecycleExplainVariant _value;
 
-		public Builder true_(LifecycleExplainManaged v) {
-			this._type = TRUE;
+		public ObjectBuilder<LifecycleExplain> true_(LifecycleExplainManaged v) {
+			this._kind = Kind.True;
 			this._value = v;
 			return this;
 		}
 
-		public Builder true_(Function<LifecycleExplainManaged.Builder, ObjectBuilder<LifecycleExplainManaged>> f) {
-			return this.true_(f.apply(new LifecycleExplainManaged.Builder()).build());
+		public ObjectBuilder<LifecycleExplain> true_(
+				Function<LifecycleExplainManaged.Builder, ObjectBuilder<LifecycleExplainManaged>> fn) {
+			return this.true_(fn.apply(new LifecycleExplainManaged.Builder()).build());
 		}
 
-		public Builder false_(LifecycleExplainUnmanaged v) {
-			this._type = FALSE;
+		public ObjectBuilder<LifecycleExplain> false_(LifecycleExplainUnmanaged v) {
+			this._kind = Kind.False;
 			this._value = v;
 			return this;
 		}
 
-		public Builder false_(Function<LifecycleExplainUnmanaged.Builder, ObjectBuilder<LifecycleExplainUnmanaged>> f) {
-			return this.false_(f.apply(new LifecycleExplainUnmanaged.Builder()).build());
+		public ObjectBuilder<LifecycleExplain> false_(
+				Function<LifecycleExplainUnmanaged.Builder, ObjectBuilder<LifecycleExplainUnmanaged>> fn) {
+			return this.false_(fn.apply(new LifecycleExplainUnmanaged.Builder()).build());
 		}
 
 		public LifecycleExplain build() {
+			_checkSingleUse();
 			return new LifecycleExplain(this);
 		}
 
 	}
 
-	protected static void setupLifecycleExplainDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupLifecycleExplainDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::true_, LifecycleExplainManaged._DESERIALIZER, "true");
 		op.add(Builder::false_, LifecycleExplainUnmanaged._DESERIALIZER, "false");
 
-		op.setTypeProperty("managed");
+		op.setTypeProperty("managed", null);
 
 	}
 
-	public static final JsonpDeserializer<LifecycleExplain> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<LifecycleExplain> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			LifecycleExplain::setupLifecycleExplainDeserializer, Builder::build);
 }

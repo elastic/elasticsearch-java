@@ -30,11 +30,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: indices.exists_index_template.Response
 
-public final class ExistsIndexTemplateResponse {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/exists_index_template/IndicesExistsIndexTemplateResponse.ts#L22-L29">API
+ *      specification</a>
+ */
+
+public class ExistsIndexTemplateResponse {
 	public ExistsIndexTemplateResponse() {
 	}
 

@@ -33,7 +33,7 @@ import java.util.Map;
 import java.util.function.Function;
 
 /**
- * Describes the variants of a base class, providing their name and parsers. It is representation-agnostic.
+ * Describes the variants of a transport class, providing their name and parsers. It is representation-agnostic.
  */
 public class Variants<T> {
 
@@ -113,14 +113,15 @@ public class Variants<T> {
      * Creates a parser for externally tagged variants
      */
     public static <T> JsonpDeserializer<T> pparser(Variants<T> variants) {
-      return JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, params, event) -> {
+      return JsonpDeserializer.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, params) -> {
+        JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_OBJECT);
         JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
 
         String variant = parser.getString();
         JsonpDeserializer<? extends T> variantParser = variants.variantParser(variant);
 
         if (variantParser == null) {
-          throw new JsonParsingException("Unknown variant [" + variant + "]", parser.getLocation());
+          throw new JsonParsingException("Unknown variant '" + variant + "'", parser.getLocation());
         }
 
         T result = variantParser.deserialize(parser, params);

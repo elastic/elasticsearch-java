@@ -36,7 +36,7 @@ import java.io.IOException;
  * object (e.g. START_OBJECT, VALUE_NUMBER, etc).
  */
 class JsonValueParser {
-    JsonProvider provider = JsonProvider.provider();
+    private final JsonProvider provider = JsonProvider.provider();
 
     public JsonObject parseObject(JsonParser parser) throws IOException {
 
@@ -100,7 +100,7 @@ class JsonValueParser {
                 }
 
             default:
-                throw new JsonParsingException("Unexpected token " + parser.currentToken(), new JacksonJsonpLocation(parser));
+                throw new JsonParsingException("Unexpected token '" + parser.currentToken() + "'", new JacksonJsonpLocation(parser));
 
         }
     }

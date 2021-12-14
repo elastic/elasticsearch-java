@@ -23,13 +23,16 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,48 +42,80 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.TransformContainer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Transform.ts#L27-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class Transform implements TaggedUnion<Object>, JsonpSerializable {
+public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSerializable {
 
-	public static final String CHAIN = "chain";
-	public static final String SCRIPT = "script";
-	public static final String SEARCH = "search";
+	/**
+	 * {@link Transform} variant kinds.
+	 */
+	/**
+	 * {@link Transform} variant kinds.
+	 */
 
-	// Tagged union implementation
+	public enum Kind implements JsonEnum {
+		Chain("chain"),
 
-	private final String _type;
+		Script("script"),
+
+		Search("search"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public Transform(TransformVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._transformKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends TransformVariant> Transform(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private Transform(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public Transform(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Transform of(Function<Builder, ObjectBuilder<Transform>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code chain}?
+	 */
+	public boolean isChain() {
+		return _kind == Kind.Chain;
 	}
 
 	/**
@@ -90,7 +125,14 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code chain} kind.
 	 */
 	public ChainTransform chain() {
-		return TaggedUnionUtils.get(this, CHAIN);
+		return TaggedUnionUtils.get(this, Kind.Chain);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code script}?
+	 */
+	public boolean isScript() {
+		return _kind == Kind.Script;
 	}
 
 	/**
@@ -100,7 +142,14 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code script} kind.
 	 */
 	public ScriptTransform script() {
-		return TaggedUnionUtils.get(this, SCRIPT);
+		return TaggedUnionUtils.get(this, Kind.Script);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code search}?
+	 */
+	public boolean isSearch() {
+		return _kind == Kind.Search;
 	}
 
 	/**
@@ -110,63 +159,66 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code search} kind.
 	 */
 	public SearchTransform search() {
-		return TaggedUnionUtils.get(this, SEARCH);
+		return TaggedUnionUtils.get(this, Kind.Search);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
 		generator.writeEnd();
+
 	}
 
-	public static class Builder implements ObjectBuilder<Transform> {
-		private String _type;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Transform> {
+		private Kind _kind;
 		private Object _value;
 
-		public Builder chain(ChainTransform v) {
-			this._type = CHAIN;
+		public ObjectBuilder<Transform> chain(ChainTransform v) {
+			this._kind = Kind.Chain;
 			this._value = v;
 			return this;
 		}
 
-		public Builder chain(Function<ChainTransform.Builder, ObjectBuilder<ChainTransform>> f) {
-			return this.chain(f.apply(new ChainTransform.Builder()).build());
+		public ObjectBuilder<Transform> chain(Function<ChainTransform.Builder, ObjectBuilder<ChainTransform>> fn) {
+			return this.chain(fn.apply(new ChainTransform.Builder()).build());
 		}
 
-		public Builder script(ScriptTransform v) {
-			this._type = SCRIPT;
+		public ObjectBuilder<Transform> script(ScriptTransform v) {
+			this._kind = Kind.Script;
 			this._value = v;
 			return this;
 		}
 
-		public Builder script(Function<ScriptTransform.Builder, ObjectBuilder<ScriptTransform>> f) {
-			return this.script(f.apply(new ScriptTransform.Builder()).build());
+		public ObjectBuilder<Transform> script(Function<ScriptTransform.Builder, ObjectBuilder<ScriptTransform>> fn) {
+			return this.script(fn.apply(new ScriptTransform.Builder()).build());
 		}
 
-		public Builder search(SearchTransform v) {
-			this._type = SEARCH;
+		public ObjectBuilder<Transform> search(SearchTransform v) {
+			this._kind = Kind.Search;
 			this._value = v;
 			return this;
 		}
 
-		public Builder search(Function<SearchTransform.Builder, ObjectBuilder<SearchTransform>> f) {
-			return this.search(f.apply(new SearchTransform.Builder()).build());
+		public ObjectBuilder<Transform> search(Function<SearchTransform.Builder, ObjectBuilder<SearchTransform>> fn) {
+			return this.search(fn.apply(new SearchTransform.Builder()).build());
 		}
 
 		public Transform build() {
+			_checkSingleUse();
 			return new Transform(this);
 		}
 
 	}
 
-	protected static void setupTransformDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupTransformDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::chain, ChainTransform._DESERIALIZER, "chain");
 		op.add(Builder::script, ScriptTransform._DESERIALIZER, "script");
@@ -174,6 +226,6 @@ public class Transform implements TaggedUnion<Object>, JsonpSerializable {
 
 	}
 
-	public static final JsonpDeserializer<Transform> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<Transform> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Transform::setupTransformDeserializer, Builder::build);
 }

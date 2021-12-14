@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml._types.JobStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Job.ts#L39-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class JobStatistics implements JsonpSerializable {
+public class JobStatistics implements JsonpSerializable {
 	private final double avg;
 
 	private final double max;
@@ -49,44 +57,44 @@ public final class JobStatistics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public JobStatistics(Builder builder) {
+	private JobStatistics(Builder builder) {
 
-		this.avg = Objects.requireNonNull(builder.avg, "avg");
-		this.max = Objects.requireNonNull(builder.max, "max");
-		this.min = Objects.requireNonNull(builder.min, "min");
-		this.total = Objects.requireNonNull(builder.total, "total");
+		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
 	}
 
-	public JobStatistics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static JobStatistics of(Function<Builder, ObjectBuilder<JobStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code avg}
 	 */
-	public double avg() {
+	public final double avg() {
 		return this.avg;
 	}
 
 	/**
 	 * Required - API name: {@code max}
 	 */
-	public double max() {
+	public final double max() {
 		return this.max;
 	}
 
 	/**
 	 * Required - API name: {@code min}
 	 */
-	public double min() {
+	public final double min() {
 		return this.min;
 	}
 
 	/**
 	 * Required - API name: {@code total}
 	 */
-	public double total() {
+	public final double total() {
 		return this.total;
 	}
 
@@ -120,7 +128,8 @@ public final class JobStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link JobStatistics}.
 	 */
-	public static class Builder implements ObjectBuilder<JobStatistics> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobStatistics> {
 		private Double avg;
 
 		private Double max;
@@ -132,7 +141,7 @@ public final class JobStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code avg}
 		 */
-		public Builder avg(double value) {
+		public final Builder avg(double value) {
 			this.avg = value;
 			return this;
 		}
@@ -140,7 +149,7 @@ public final class JobStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max}
 		 */
-		public Builder max(double value) {
+		public final Builder max(double value) {
 			this.max = value;
 			return this;
 		}
@@ -148,7 +157,7 @@ public final class JobStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code min}
 		 */
-		public Builder min(double value) {
+		public final Builder min(double value) {
 			this.min = value;
 			return this;
 		}
@@ -156,7 +165,7 @@ public final class JobStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total}
 		 */
-		public Builder total(double value) {
+		public final Builder total(double value) {
 			this.total = value;
 			return this;
 		}
@@ -168,6 +177,7 @@ public final class JobStatistics implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public JobStatistics build() {
+			_checkSingleUse();
 
 			return new JobStatistics(this);
 		}
@@ -179,9 +189,9 @@ public final class JobStatistics implements JsonpSerializable {
 	 * Json deserializer for {@link JobStatistics}
 	 */
 	public static final JsonpDeserializer<JobStatistics> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JobStatistics::setupJobStatisticsDeserializer, Builder::build);
+			JobStatistics::setupJobStatisticsDeserializer);
 
-	protected static void setupJobStatisticsDeserializer(DelegatingDeserializer<JobStatistics.Builder> op) {
+	protected static void setupJobStatisticsDeserializer(ObjectDeserializer<JobStatistics.Builder> op) {
 
 		op.add(Builder::avg, JsonpDeserializer.doubleDeserializer(), "avg");
 		op.add(Builder::max, JsonpDeserializer.doubleDeserializer(), "max");

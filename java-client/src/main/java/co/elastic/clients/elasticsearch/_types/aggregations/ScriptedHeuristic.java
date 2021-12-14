@@ -23,41 +23,49 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.ScriptedHeuristic
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L301-L303">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ScriptedHeuristic implements JsonpSerializable {
-	private final JsonValue /* _types.Script */ script;
+public class ScriptedHeuristic implements JsonpSerializable {
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptedHeuristic(Builder builder) {
+	private ScriptedHeuristic(Builder builder) {
 
-		this.script = Objects.requireNonNull(builder.script, "script");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
-	public ScriptedHeuristic(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScriptedHeuristic of(Function<Builder, ObjectBuilder<ScriptedHeuristic>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -73,7 +81,7 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("script");
-		generator.write(this.script);
+		this.script.serialize(generator, mapper);
 
 	}
 
@@ -82,15 +90,23 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 	/**
 	 * Builder for {@link ScriptedHeuristic}.
 	 */
-	public static class Builder implements ObjectBuilder<ScriptedHeuristic> {
-		private JsonValue /* _types.Script */ script;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptedHeuristic> {
+		private Script script;
 
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -100,6 +116,7 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ScriptedHeuristic build() {
+			_checkSingleUse();
 
 			return new ScriptedHeuristic(this);
 		}
@@ -111,11 +128,11 @@ public final class ScriptedHeuristic implements JsonpSerializable {
 	 * Json deserializer for {@link ScriptedHeuristic}
 	 */
 	public static final JsonpDeserializer<ScriptedHeuristic> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ScriptedHeuristic::setupScriptedHeuristicDeserializer, Builder::build);
+			.lazy(Builder::new, ScriptedHeuristic::setupScriptedHeuristicDeserializer);
 
-	protected static void setupScriptedHeuristicDeserializer(DelegatingDeserializer<ScriptedHeuristic.Builder> op) {
+	protected static void setupScriptedHeuristicDeserializer(ObjectDeserializer<ScriptedHeuristic.Builder> op) {
 
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
 

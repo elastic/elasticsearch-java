@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
@@ -38,8 +38,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.CommonTermsQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L33-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CommonTermsQuery extends QueryBase implements QueryVariant {
+public class CommonTermsQuery extends QueryBase implements QueryVariant {
+	// Single key dictionary
 	private final String field;
 
 	@Nullable
@@ -61,37 +69,35 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CommonTermsQuery(Builder builder) {
+	private CommonTermsQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.analyzer = builder.analyzer;
 		this.cutoffFrequency = builder.cutoffFrequency;
 		this.highFreqOperator = builder.highFreqOperator;
 		this.lowFreqOperator = builder.lowFreqOperator;
 		this.minimumShouldMatch = builder.minimumShouldMatch;
-		this.query = Objects.requireNonNull(builder.query, "query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 
 	}
 
-	public CommonTermsQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CommonTermsQuery of(Function<Builder, ObjectBuilder<CommonTermsQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "common";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Common;
 	}
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -99,7 +105,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -107,7 +113,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code cutoff_frequency}
 	 */
 	@Nullable
-	public Double cutoffFrequency() {
+	public final Double cutoffFrequency() {
 		return this.cutoffFrequency;
 	}
 
@@ -115,7 +121,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code high_freq_operator}
 	 */
 	@Nullable
-	public Operator highFreqOperator() {
+	public final Operator highFreqOperator() {
 		return this.highFreqOperator;
 	}
 
@@ -123,7 +129,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code low_freq_operator}
 	 */
 	@Nullable
-	public Operator lowFreqOperator() {
+	public final Operator lowFreqOperator() {
 		return this.lowFreqOperator;
 	}
 
@@ -131,14 +137,14 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public String minimumShouldMatch() {
+	public final String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
 	/**
 	 * Required - API name: {@code query}
 	 */
-	public String query() {
+	public final String query() {
 		return this.query;
 	}
 
@@ -147,38 +153,33 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.cutoffFrequency != null) {
-
 			generator.writeKey("cutoff_frequency");
 			generator.write(this.cutoffFrequency);
 
 		}
 		if (this.highFreqOperator != null) {
-
 			generator.writeKey("high_freq_operator");
 			this.highFreqOperator.serialize(generator, mapper);
 		}
 		if (this.lowFreqOperator != null) {
-
 			generator.writeKey("low_freq_operator");
 			this.lowFreqOperator.serialize(generator, mapper);
 		}
 		if (this.minimumShouldMatch != null) {
-
 			generator.writeKey("minimum_should_match");
 			generator.write(this.minimumShouldMatch);
 
 		}
-
 		generator.writeKey("query");
 		generator.write(this.query);
 
 		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -186,15 +187,14 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link CommonTermsQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<CommonTermsQuery> {
 		private String field;
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -219,7 +219,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -227,7 +227,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code cutoff_frequency}
 		 */
-		public Builder cutoffFrequency(@Nullable Double value) {
+		public final Builder cutoffFrequency(@Nullable Double value) {
 			this.cutoffFrequency = value;
 			return this;
 		}
@@ -235,7 +235,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code high_freq_operator}
 		 */
-		public Builder highFreqOperator(@Nullable Operator value) {
+		public final Builder highFreqOperator(@Nullable Operator value) {
 			this.highFreqOperator = value;
 			return this;
 		}
@@ -243,7 +243,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code low_freq_operator}
 		 */
-		public Builder lowFreqOperator(@Nullable Operator value) {
+		public final Builder lowFreqOperator(@Nullable Operator value) {
 			this.lowFreqOperator = value;
 			return this;
 		}
@@ -251,7 +251,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable String value) {
+		public final Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
@@ -259,7 +259,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code query}
 		 */
-		public Builder query(String value) {
+		public final Builder query(String value) {
 			this.query = value;
 			return this;
 		}
@@ -276,6 +276,7 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public CommonTermsQuery build() {
+			_checkSingleUse();
 
 			return new CommonTermsQuery(this);
 		}
@@ -287,9 +288,9 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link CommonTermsQuery}
 	 */
 	public static final JsonpDeserializer<CommonTermsQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CommonTermsQuery::setupCommonTermsQueryDeserializer, Builder::build);
+			CommonTermsQuery::setupCommonTermsQueryDeserializer);
 
-	protected static void setupCommonTermsQueryDeserializer(DelegatingDeserializer<CommonTermsQuery.Builder> op) {
+	protected static void setupCommonTermsQueryDeserializer(ObjectDeserializer<CommonTermsQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::cutoffFrequency, JsonpDeserializer.doubleDeserializer(), "cutoff_frequency");
@@ -298,7 +299,8 @@ public final class CommonTermsQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+		op.shortcutProperty("query");
 
 	}
 

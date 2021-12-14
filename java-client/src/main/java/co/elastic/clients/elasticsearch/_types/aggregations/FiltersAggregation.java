@@ -23,14 +23,13 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,13 +38,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.FiltersAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L164-L169">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FiltersAggregation extends BucketAggregationBase implements AggregationVariant {
+public class FiltersAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
-	private final JsonValue /*
-							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-							 * _types.query_dsl.QueryContainer> (singleKey = false))
-							 */ filters;
+	private final Buckets<Query> filters;
 
 	@Nullable
 	private final Boolean otherBucket;
@@ -58,7 +61,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FiltersAggregation(Builder builder) {
+	private FiltersAggregation(Builder builder) {
 		super(builder);
 
 		this.filters = builder.filters;
@@ -68,26 +71,23 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 
 	}
 
-	public FiltersAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FiltersAggregation of(Function<Builder, ObjectBuilder<FiltersAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "filters";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Filters;
 	}
 
 	/**
 	 * API name: {@code filters}
 	 */
 	@Nullable
-	public JsonValue /*
-						 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-						 * _types.query_dsl.QueryContainer> (singleKey = false))
-						 */ filters() {
+	public final Buckets<Query> filters() {
 		return this.filters;
 	}
 
@@ -95,7 +95,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 	 * API name: {@code other_bucket}
 	 */
 	@Nullable
-	public Boolean otherBucket() {
+	public final Boolean otherBucket() {
 		return this.otherBucket;
 	}
 
@@ -103,7 +103,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 	 * API name: {@code other_bucket_key}
 	 */
 	@Nullable
-	public String otherBucketKey() {
+	public final String otherBucketKey() {
 		return this.otherBucketKey;
 	}
 
@@ -111,7 +111,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 	 * API name: {@code keyed}
 	 */
 	@Nullable
-	public Boolean keyed() {
+	public final Boolean keyed() {
 		return this.keyed;
 	}
 
@@ -119,25 +119,21 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 
 		super.serializeInternal(generator, mapper);
 		if (this.filters != null) {
-
 			generator.writeKey("filters");
-			generator.write(this.filters);
+			this.filters.serialize(generator, mapper);
 
 		}
 		if (this.otherBucket != null) {
-
 			generator.writeKey("other_bucket");
 			generator.write(this.otherBucket);
 
 		}
 		if (this.otherBucketKey != null) {
-
 			generator.writeKey("other_bucket_key");
 			generator.write(this.otherBucketKey);
 
 		}
 		if (this.keyed != null) {
-
 			generator.writeKey("keyed");
 			generator.write(this.keyed);
 
@@ -150,14 +146,12 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 	/**
 	 * Builder for {@link FiltersAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FiltersAggregation> {
 		@Nullable
-		private JsonValue /*
-							 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-							 * _types.query_dsl.QueryContainer> (singleKey = false))
-							 */ filters;
+		private Buckets<Query> filters;
 
 		@Nullable
 		private Boolean otherBucket;
@@ -171,19 +165,22 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code filters}
 		 */
-		public Builder filters(
-				@Nullable JsonValue /*
-									 * Union(Array<_types.query_dsl.QueryContainer> | Dictionary<internal.string,
-									 * _types.query_dsl.QueryContainer> (singleKey = false))
-									 */ value) {
+		public final Builder filters(@Nullable Buckets<Query> value) {
 			this.filters = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code filters}
+		 */
+		public final Builder filters(Function<Buckets.Builder<Query>, ObjectBuilder<Buckets<Query>>> fn) {
+			return this.filters(fn.apply(new Buckets.Builder<Query>()).build());
+		}
+
+		/**
 		 * API name: {@code other_bucket}
 		 */
-		public Builder otherBucket(@Nullable Boolean value) {
+		public final Builder otherBucket(@Nullable Boolean value) {
 			this.otherBucket = value;
 			return this;
 		}
@@ -191,7 +188,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code other_bucket_key}
 		 */
-		public Builder otherBucketKey(@Nullable String value) {
+		public final Builder otherBucketKey(@Nullable String value) {
 			this.otherBucketKey = value;
 			return this;
 		}
@@ -199,7 +196,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code keyed}
 		 */
-		public Builder keyed(@Nullable Boolean value) {
+		public final Builder keyed(@Nullable Boolean value) {
 			this.keyed = value;
 			return this;
 		}
@@ -216,6 +213,7 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 		 *             if some of the required fields are null.
 		 */
 		public FiltersAggregation build() {
+			_checkSingleUse();
 
 			return new FiltersAggregation(this);
 		}
@@ -227,11 +225,11 @@ public final class FiltersAggregation extends BucketAggregationBase implements A
 	 * Json deserializer for {@link FiltersAggregation}
 	 */
 	public static final JsonpDeserializer<FiltersAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FiltersAggregation::setupFiltersAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, FiltersAggregation::setupFiltersAggregationDeserializer);
 
-	protected static void setupFiltersAggregationDeserializer(DelegatingDeserializer<FiltersAggregation.Builder> op) {
+	protected static void setupFiltersAggregationDeserializer(ObjectDeserializer<FiltersAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
-		op.add(Builder::filters, JsonpDeserializer.jsonValueDeserializer(), "filters");
+		op.add(Builder::filters, Buckets.createBucketsDeserializer(Query._DESERIALIZER), "filters");
 		op.add(Builder::otherBucket, JsonpDeserializer.booleanDeserializer(), "other_bucket");
 		op.add(Builder::otherBucketKey, JsonpDeserializer.stringDeserializer(), "other_bucket_key");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");

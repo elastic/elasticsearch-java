@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoSettingsClusterElection
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L137-L139">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoSettingsClusterElection implements JsonpSerializable {
+public class NodeInfoSettingsClusterElection implements JsonpSerializable {
 	private final String strategy;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoSettingsClusterElection(Builder builder) {
+	private NodeInfoSettingsClusterElection(Builder builder) {
 
-		this.strategy = Objects.requireNonNull(builder.strategy, "strategy");
+		this.strategy = ApiTypeHelper.requireNonNull(builder.strategy, this, "strategy");
 
 	}
 
-	public NodeInfoSettingsClusterElection(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoSettingsClusterElection of(
+			Function<Builder, ObjectBuilder<NodeInfoSettingsClusterElection>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code strategy}
 	 */
-	public String strategy() {
+	public final String strategy() {
 		return this.strategy;
 	}
 
@@ -82,13 +91,14 @@ public final class NodeInfoSettingsClusterElection implements JsonpSerializable 
 	/**
 	 * Builder for {@link NodeInfoSettingsClusterElection}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoSettingsClusterElection> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsClusterElection> {
 		private String strategy;
 
 		/**
 		 * Required - API name: {@code strategy}
 		 */
-		public Builder strategy(String value) {
+		public final Builder strategy(String value) {
 			this.strategy = value;
 			return this;
 		}
@@ -100,6 +110,7 @@ public final class NodeInfoSettingsClusterElection implements JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoSettingsClusterElection build() {
+			_checkSingleUse();
 
 			return new NodeInfoSettingsClusterElection(this);
 		}
@@ -111,11 +122,10 @@ public final class NodeInfoSettingsClusterElection implements JsonpSerializable 
 	 * Json deserializer for {@link NodeInfoSettingsClusterElection}
 	 */
 	public static final JsonpDeserializer<NodeInfoSettingsClusterElection> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer,
-					Builder::build);
+			.lazy(Builder::new, NodeInfoSettingsClusterElection::setupNodeInfoSettingsClusterElectionDeserializer);
 
 	protected static void setupNodeInfoSettingsClusterElectionDeserializer(
-			DelegatingDeserializer<NodeInfoSettingsClusterElection.Builder> op) {
+			ObjectDeserializer<NodeInfoSettingsClusterElection.Builder> op) {
 
 		op.add(Builder::strategy, JsonpDeserializer.stringDeserializer(), "strategy");
 

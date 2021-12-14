@@ -23,13 +23,12 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps.IndexCapabilities;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,17 +36,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: rollup.get_rollup_index_caps.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_rollup_index_caps/GetRollupIndexCapabilitiesResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetRollupIndexCapsResponse extends DictionaryResponse<String, IndexCapabilities> {
+public class GetRollupIndexCapsResponse extends DictionaryResponse<String, IndexCapabilities> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRollupIndexCapsResponse(Builder builder) {
+	private GetRollupIndexCapsResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetRollupIndexCapsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRollupIndexCapsResponse of(Function<Builder, ObjectBuilder<GetRollupIndexCapsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +61,7 @@ public final class GetRollupIndexCapsResponse extends DictionaryResponse<String,
 	/**
 	 * Builder for {@link GetRollupIndexCapsResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexCapabilities, Builder>
 			implements
 				ObjectBuilder<GetRollupIndexCapsResponse> {
@@ -70,6 +77,7 @@ public final class GetRollupIndexCapsResponse extends DictionaryResponse<String,
 		 *             if some of the required fields are null.
 		 */
 		public GetRollupIndexCapsResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -82,11 +90,11 @@ public final class GetRollupIndexCapsResponse extends DictionaryResponse<String,
 	/**
 	 * Json deserializer for {@link GetRollupIndexCapsResponse}
 	 */
-	public static final JsonpDeserializer<GetRollupIndexCapsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, GetRollupIndexCapsResponse::setupGetRollupIndexCapsResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<GetRollupIndexCapsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetRollupIndexCapsResponse::setupGetRollupIndexCapsResponseDeserializer);
 
 	protected static void setupGetRollupIndexCapsResponseDeserializer(
-			DelegatingDeserializer<GetRollupIndexCapsResponse.Builder> op) {
+			ObjectDeserializer<GetRollupIndexCapsResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				IndexCapabilities._DESERIALIZER);
 

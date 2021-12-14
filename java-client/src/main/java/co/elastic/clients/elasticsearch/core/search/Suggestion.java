@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,14 +30,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,12 +44,19 @@ import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Suggest
 
-public final class Suggestion<T> implements JsonpSerializable {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L35-L40">API
+ *      specification</a>
+ */
+
+public class Suggestion<T> implements JsonpSerializable {
 	private final int length;
 
 	private final int offset;
 
-	private final List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> options;
+	private final List<SuggestOption<T>> options;
 
 	private final String text;
 
@@ -61,45 +65,45 @@ public final class Suggestion<T> implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Suggestion(Builder<T> builder) {
+	private Suggestion(Builder<T> builder) {
 
-		this.length = Objects.requireNonNull(builder.length, "length");
-		this.offset = Objects.requireNonNull(builder.offset, "offset");
-		this.options = ModelTypeHelper.unmodifiableNonNull(builder.options, "options");
-		this.text = Objects.requireNonNull(builder.text, "text");
+		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
+		this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
+		this.options = ApiTypeHelper.unmodifiableRequired(builder.options, this, "options");
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
 		this.tSerializer = builder.tSerializer;
 
 	}
 
-	public Suggestion(Function<Builder<T>, Builder<T>> fn) {
-		this(fn.apply(new Builder<>()));
+	public static <T> Suggestion<T> of(Function<Builder<T>, ObjectBuilder<Suggestion<T>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
 	 * Required - API name: {@code length}
 	 */
-	public int length() {
+	public final int length() {
 		return this.length;
 	}
 
 	/**
 	 * Required - API name: {@code offset}
 	 */
-	public int offset() {
+	public final int offset() {
 		return this.offset;
 	}
 
 	/**
 	 * Required - API name: {@code options}
 	 */
-	public List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> options() {
+	public final List<SuggestOption<T>> options() {
 		return this.options;
 	}
 
 	/**
 	 * Required - API name: {@code text}
 	 */
-	public String text() {
+	public final String text() {
 		return this.text;
 	}
 
@@ -120,14 +124,16 @@ public final class Suggestion<T> implements JsonpSerializable {
 		generator.writeKey("offset");
 		generator.write(this.offset);
 
-		generator.writeKey("options");
-		generator.writeStartArray();
-		for (JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */ item0 : this.options) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.options)) {
+			generator.writeKey("options");
+			generator.writeStartArray();
+			for (SuggestOption<T> item0 : this.options) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("text");
 		generator.write(this.text);
 
@@ -138,12 +144,13 @@ public final class Suggestion<T> implements JsonpSerializable {
 	/**
 	 * Builder for {@link Suggestion}.
 	 */
-	public static class Builder<T> implements ObjectBuilder<Suggestion<T>> {
+
+	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<Suggestion<T>> {
 		private Integer length;
 
 		private Integer offset;
 
-		private List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> options;
+		private List<SuggestOption<T>> options;
 
 		private String text;
 
@@ -153,7 +160,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code length}
 		 */
-		public Builder<T> length(int value) {
+		public final Builder<T> length(int value) {
 			this.length = value;
 			return this;
 		}
@@ -161,45 +168,44 @@ public final class Suggestion<T> implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code offset}
 		 */
-		public Builder<T> offset(int value) {
+		public final Builder<T> offset(int value) {
 			this.offset = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>options</code>.
 		 */
-		public Builder<T> options(
-				List<JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */> value) {
-			this.options = value;
+		public final Builder<T> options(List<SuggestOption<T>> list) {
+			this.options = _listAddAll(this.options, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds one or more values to <code>options</code>.
 		 */
-		public Builder<T> options(
-				JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */... value) {
-			this.options = Arrays.asList(value);
+		public final Builder<T> options(SuggestOption<T> value, SuggestOption<T>... values) {
+			this.options = _listAdd(this.options, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #options(List)}, creating the list if needed.
+		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds a value to <code>options</code> using a builder lambda.
 		 */
-		public Builder<T> addOptions(
-				JsonValue /* _global.search._types.SuggestOption<_global.search._types.T> */ value) {
-			if (this.options == null) {
-				this.options = new ArrayList<>();
-			}
-			this.options.add(value);
-			return this;
+		public final Builder<T> options(Function<SuggestOption.Builder<T>, ObjectBuilder<SuggestOption<T>>> fn) {
+			return options(fn.apply(new SuggestOption.Builder<T>()).build());
 		}
 
 		/**
 		 * Required - API name: {@code text}
 		 */
-		public Builder<T> text(String value) {
+		public final Builder<T> text(String value) {
 			this.text = value;
 			return this;
 		}
@@ -208,7 +214,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		 * Serializer for T. If not set, an attempt will be made to find a serializer
 		 * from the JSON context.
 		 */
-		public Builder<T> tSerializer(@Nullable JsonpSerializer<T> value) {
+		public final Builder<T> tSerializer(@Nullable JsonpSerializer<T> value) {
 			this.tSerializer = value;
 			return this;
 		}
@@ -220,6 +226,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Suggestion<T> build() {
+			_checkSingleUse();
 
 			return new Suggestion<T>(this);
 		}
@@ -228,7 +235,7 @@ public final class Suggestion<T> implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a json deserializer for Suggestion
+	 * Create a JSON deserializer for Suggestion
 	 */
 	public static <T> JsonpDeserializer<Suggestion<T>> createSuggestionDeserializer(
 			JsonpDeserializer<T> tDeserializer) {
@@ -236,12 +243,13 @@ public final class Suggestion<T> implements JsonpSerializable {
 				op -> Suggestion.setupSuggestionDeserializer(op, tDeserializer));
 	};
 
-	protected static <T> void setupSuggestionDeserializer(DelegatingDeserializer<Suggestion.Builder<T>> op,
+	protected static <T> void setupSuggestionDeserializer(ObjectDeserializer<Suggestion.Builder<T>> op,
 			JsonpDeserializer<T> tDeserializer) {
 
 		op.add(Builder::length, JsonpDeserializer.integerDeserializer(), "length");
 		op.add(Builder::offset, JsonpDeserializer.integerDeserializer(), "offset");
-		op.add(Builder::options, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::options,
+				JsonpDeserializer.arrayDeserializer(SuggestOption.createSuggestOptionDeserializer(tDeserializer)),
 				"options");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 

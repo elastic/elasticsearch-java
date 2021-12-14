@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,37 +33,47 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UaxEmailUrlTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L109-L112">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerVariant {
-	private final int maxTokenLength;
+public class UaxEmailUrlTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+	@Nullable
+	private final Integer maxTokenLength;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UaxEmailUrlTokenizer(Builder builder) {
+	private UaxEmailUrlTokenizer(Builder builder) {
 		super(builder);
 
-		this.maxTokenLength = Objects.requireNonNull(builder.maxTokenLength, "max_token_length");
+		this.maxTokenLength = builder.maxTokenLength;
 
 	}
 
-	public UaxEmailUrlTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UaxEmailUrlTokenizer of(Function<Builder, ObjectBuilder<UaxEmailUrlTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "uax_url_email";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.UaxUrlEmail;
 	}
 
 	/**
-	 * Required - API name: {@code max_token_length}
+	 * API name: {@code max_token_length}
 	 */
-	public int maxTokenLength() {
+	@Nullable
+	public final Integer maxTokenLength() {
 		return this.maxTokenLength;
 	}
 
@@ -72,9 +81,11 @@ public final class UaxEmailUrlTokenizer extends TokenizerBase implements Tokeniz
 
 		generator.write("type", "uax_url_email");
 		super.serializeInternal(generator, mapper);
+		if (this.maxTokenLength != null) {
+			generator.writeKey("max_token_length");
+			generator.write(this.maxTokenLength);
 
-		generator.writeKey("max_token_length");
-		generator.write(this.maxTokenLength);
+		}
 
 	}
 
@@ -83,15 +94,17 @@ public final class UaxEmailUrlTokenizer extends TokenizerBase implements Tokeniz
 	/**
 	 * Builder for {@link UaxEmailUrlTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UaxEmailUrlTokenizer> {
+		@Nullable
 		private Integer maxTokenLength;
 
 		/**
-		 * Required - API name: {@code max_token_length}
+		 * API name: {@code max_token_length}
 		 */
-		public Builder maxTokenLength(int value) {
+		public final Builder maxTokenLength(@Nullable Integer value) {
 			this.maxTokenLength = value;
 			return this;
 		}
@@ -108,6 +121,7 @@ public final class UaxEmailUrlTokenizer extends TokenizerBase implements Tokeniz
 		 *             if some of the required fields are null.
 		 */
 		public UaxEmailUrlTokenizer build() {
+			_checkSingleUse();
 
 			return new UaxEmailUrlTokenizer(this);
 		}
@@ -119,10 +133,9 @@ public final class UaxEmailUrlTokenizer extends TokenizerBase implements Tokeniz
 	 * Json deserializer for {@link UaxEmailUrlTokenizer}
 	 */
 	public static final JsonpDeserializer<UaxEmailUrlTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UaxEmailUrlTokenizer::setupUaxEmailUrlTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, UaxEmailUrlTokenizer::setupUaxEmailUrlTokenizerDeserializer);
 
-	protected static void setupUaxEmailUrlTokenizerDeserializer(
-			DelegatingDeserializer<UaxEmailUrlTokenizer.Builder> op) {
+	protected static void setupUaxEmailUrlTokenizerDeserializer(ObjectDeserializer<UaxEmailUrlTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::maxTokenLength, JsonpDeserializer.integerDeserializer(), "max_token_length");
 

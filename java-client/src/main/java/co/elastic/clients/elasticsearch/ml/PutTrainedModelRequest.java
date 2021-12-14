@@ -23,14 +23,11 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
 import co.elastic.clients.elasticsearch.ml.put_trained_model.Definition;
 import co.elastic.clients.elasticsearch.ml.put_trained_model.Input;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -38,12 +35,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -51,10 +49,17 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Request
-@JsonpDeserializable
-public final class PutTrainedModelRequest extends RequestBase implements JsonpSerializable {
-	private final String modelId;
 
+/**
+ * The create trained model API enables you to supply a trained model that is
+ * not created by data frame analytics.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/MlPutTrainedModelRequest.ts#L27-L82">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class PutTrainedModelRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String compressedDefinition;
 
@@ -71,35 +76,31 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	@Nullable
 	private final JsonData metadata;
 
+	private final String modelId;
+
 	@Nullable
+	private final TrainedModelType modelType;
+
 	private final List<String> tags;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutTrainedModelRequest(Builder builder) {
+	private PutTrainedModelRequest(Builder builder) {
 
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
 		this.compressedDefinition = builder.compressedDefinition;
 		this.definition = builder.definition;
 		this.description = builder.description;
-		this.inferenceConfig = Objects.requireNonNull(builder.inferenceConfig, "inference_config");
-		this.input = Objects.requireNonNull(builder.input, "input");
+		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.metadata = builder.metadata;
-		this.tags = ModelTypeHelper.unmodifiable(builder.tags);
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelType = builder.modelType;
+		this.tags = ApiTypeHelper.unmodifiable(builder.tags);
 
 	}
 
-	public PutTrainedModelRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The unique identifier of the trained model.
-	 * <p>
-	 * API name: {@code model_id}
-	 */
-	public String modelId() {
-		return this.modelId;
+	public static PutTrainedModelRequest of(Function<Builder, ObjectBuilder<PutTrainedModelRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -110,7 +111,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	 * API name: {@code compressed_definition}
 	 */
 	@Nullable
-	public String compressedDefinition() {
+	public final String compressedDefinition() {
 		return this.compressedDefinition;
 	}
 
@@ -121,7 +122,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	 * API name: {@code definition}
 	 */
 	@Nullable
-	public Definition definition() {
+	public final Definition definition() {
 		return this.definition;
 	}
 
@@ -131,7 +132,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -142,7 +143,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	 * <p>
 	 * API name: {@code inference_config}
 	 */
-	public InferenceConfig inferenceConfig() {
+	public final InferenceConfig inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
@@ -151,7 +152,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	 * <p>
 	 * API name: {@code input}
 	 */
-	public Input input() {
+	public final Input input() {
 		return this.input;
 	}
 
@@ -161,8 +162,27 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public JsonData metadata() {
+	public final JsonData metadata() {
 		return this.metadata;
+	}
+
+	/**
+	 * Required - The unique identifier of the trained model.
+	 * <p>
+	 * API name: {@code model_id}
+	 */
+	public final String modelId() {
+		return this.modelId;
+	}
+
+	/**
+	 * The model type.
+	 * <p>
+	 * API name: {@code model_type}
+	 */
+	@Nullable
+	public final TrainedModelType modelType() {
+		return this.modelType;
 	}
 
 	/**
@@ -170,8 +190,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	 * <p>
 	 * API name: {@code tags}
 	 */
-	@Nullable
-	public List<String> tags() {
+	public final List<String> tags() {
 		return this.tags;
 	}
 
@@ -187,24 +206,20 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.compressedDefinition != null) {
-
 			generator.writeKey("compressed_definition");
 			generator.write(this.compressedDefinition);
 
 		}
 		if (this.definition != null) {
-
 			generator.writeKey("definition");
 			this.definition.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-
 		generator.writeKey("inference_config");
 		this.inferenceConfig.serialize(generator, mapper);
 
@@ -212,13 +227,15 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		this.input.serialize(generator, mapper);
 
 		if (this.metadata != null) {
-
 			generator.writeKey("metadata");
 			this.metadata.serialize(generator, mapper);
 
 		}
-		if (this.tags != null) {
-
+		if (this.modelType != null) {
+			generator.writeKey("model_type");
+			this.modelType.serialize(generator, mapper);
+		}
+		if (ApiTypeHelper.isDefined(this.tags)) {
 			generator.writeKey("tags");
 			generator.writeStartArray();
 			for (String item0 : this.tags) {
@@ -236,9 +253,8 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link PutTrainedModelRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutTrainedModelRequest> {
-		private String modelId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTrainedModelRequest> {
 		@Nullable
 		private String compressedDefinition;
 
@@ -255,18 +271,13 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		@Nullable
 		private JsonData metadata;
 
+		private String modelId;
+
+		@Nullable
+		private TrainedModelType modelType;
+
 		@Nullable
 		private List<String> tags;
-
-		/**
-		 * Required - The unique identifier of the trained model.
-		 * <p>
-		 * API name: {@code model_id}
-		 */
-		public Builder modelId(String value) {
-			this.modelId = value;
-			return this;
-		}
 
 		/**
 		 * The compressed (GZipped and Base64 encoded) inference definition of the
@@ -275,7 +286,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code compressed_definition}
 		 */
-		public Builder compressedDefinition(@Nullable String value) {
+		public final Builder compressedDefinition(@Nullable String value) {
 			this.compressedDefinition = value;
 			return this;
 		}
@@ -286,7 +297,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code definition}
 		 */
-		public Builder definition(@Nullable Definition value) {
+		public final Builder definition(@Nullable Definition value) {
 			this.definition = value;
 			return this;
 		}
@@ -297,7 +308,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code definition}
 		 */
-		public Builder definition(Function<Definition.Builder, ObjectBuilder<Definition>> fn) {
+		public final Builder definition(Function<Definition.Builder, ObjectBuilder<Definition>> fn) {
 			return this.definition(fn.apply(new Definition.Builder()).build());
 		}
 
@@ -306,7 +317,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -318,7 +329,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(InferenceConfig value) {
+		public final Builder inferenceConfig(InferenceConfig value) {
 			this.inferenceConfig = value;
 			return this;
 		}
@@ -330,7 +341,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
 			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
@@ -339,7 +350,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code input}
 		 */
-		public Builder input(Input value) {
+		public final Builder input(Input value) {
 			this.input = value;
 			return this;
 		}
@@ -349,7 +360,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code input}
 		 */
-		public Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
+		public final Builder input(Function<Input.Builder, ObjectBuilder<Input>> fn) {
 			return this.input(fn.apply(new Input.Builder()).build());
 		}
 
@@ -358,18 +369,28 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable JsonData value) {
+		public final Builder metadata(@Nullable JsonData value) {
 			this.metadata = value;
 			return this;
 		}
 
 		/**
-		 * An array of tags to organize the model.
+		 * Required - The unique identifier of the trained model.
 		 * <p>
-		 * API name: {@code tags}
+		 * API name: {@code model_id}
 		 */
-		public Builder tags(@Nullable List<String> value) {
-			this.tags = value;
+		public final Builder modelId(String value) {
+			this.modelId = value;
+			return this;
+		}
+
+		/**
+		 * The model type.
+		 * <p>
+		 * API name: {@code model_type}
+		 */
+		public final Builder modelType(@Nullable TrainedModelType value) {
+			this.modelType = value;
 			return this;
 		}
 
@@ -377,20 +398,23 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 * An array of tags to organize the model.
 		 * <p>
 		 * API name: {@code tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tags</code>.
 		 */
-		public Builder tags(String... value) {
-			this.tags = Arrays.asList(value);
+		public final Builder tags(List<String> list) {
+			this.tags = _listAddAll(this.tags, list);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #tags(List)}, creating the list if needed.
+		 * An array of tags to organize the model.
+		 * <p>
+		 * API name: {@code tags}
+		 * <p>
+		 * Adds one or more values to <code>tags</code>.
 		 */
-		public Builder addTags(String value) {
-			if (this.tags == null) {
-				this.tags = new ArrayList<>();
-			}
-			this.tags.add(value);
+		public final Builder tags(String value, String... values) {
+			this.tags = _listAdd(this.tags, value, values);
 			return this;
 		}
 
@@ -401,6 +425,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		 *             if some of the required fields are null.
 		 */
 		public PutTrainedModelRequest build() {
+			_checkSingleUse();
 
 			return new PutTrainedModelRequest(this);
 		}
@@ -412,10 +437,10 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	 * Json deserializer for {@link PutTrainedModelRequest}
 	 */
 	public static final JsonpDeserializer<PutTrainedModelRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutTrainedModelRequest::setupPutTrainedModelRequestDeserializer);
 
 	protected static void setupPutTrainedModelRequestDeserializer(
-			DelegatingDeserializer<PutTrainedModelRequest.Builder> op) {
+			ObjectDeserializer<PutTrainedModelRequest.Builder> op) {
 
 		op.add(Builder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
 		op.add(Builder::definition, Definition._DESERIALIZER, "definition");
@@ -423,6 +448,7 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
 		op.add(Builder::input, Input._DESERIALIZER, "input");
 		op.add(Builder::metadata, JsonData._DESERIALIZER, "metadata");
+		op.add(Builder::modelType, TrainedModelType._DESERIALIZER, "model_type");
 		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
 
 	}
@@ -432,7 +458,9 @@ public final class PutTrainedModelRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code ml.put_trained_model}".
 	 */
-	public static final Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_trained_model",
+
 			// Request method
 			request -> {
 				return "PUT";

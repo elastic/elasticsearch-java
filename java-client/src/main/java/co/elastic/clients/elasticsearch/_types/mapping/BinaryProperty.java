@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.BinaryProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L91-L93">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class BinaryProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class BinaryProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public BinaryProperty(Builder builder) {
+	private BinaryProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public BinaryProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BinaryProperty of(Function<Builder, ObjectBuilder<BinaryProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "binary";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Binary;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class BinaryProperty extends DocValuesPropertyBase implements Prope
 	/**
 	 * Builder for {@link BinaryProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<BinaryProperty> {
@@ -83,6 +90,7 @@ public final class BinaryProperty extends DocValuesPropertyBase implements Prope
 		 *             if some of the required fields are null.
 		 */
 		public BinaryProperty build() {
+			_checkSingleUse();
 
 			return new BinaryProperty(this);
 		}
@@ -94,9 +102,9 @@ public final class BinaryProperty extends DocValuesPropertyBase implements Prope
 	 * Json deserializer for {@link BinaryProperty}
 	 */
 	public static final JsonpDeserializer<BinaryProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BinaryProperty::setupBinaryPropertyDeserializer, Builder::build);
+			BinaryProperty::setupBinaryPropertyDeserializer);
 
-	protected static void setupBinaryPropertyDeserializer(DelegatingDeserializer<BinaryProperty.Builder> op) {
+	protected static void setupBinaryPropertyDeserializer(ObjectDeserializer<BinaryProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 
 		op.ignore("type");

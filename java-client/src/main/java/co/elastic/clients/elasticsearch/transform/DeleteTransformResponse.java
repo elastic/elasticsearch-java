@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: transform.delete_transform.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/delete_transform/DeleteTransformResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteTransformResponse extends AcknowledgedResponseBase {
+public class DeleteTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteTransformResponse(Builder builder) {
+	private DeleteTransformResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteTransformResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteTransformResponse of(Function<Builder, ObjectBuilder<DeleteTransformResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteTransformResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteTransformResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteTransformResponse> {
@@ -68,6 +75,7 @@ public final class DeleteTransformResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteTransformResponse build() {
+			_checkSingleUse();
 
 			return new DeleteTransformResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class DeleteTransformResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteTransformResponse}
 	 */
 	public static final JsonpDeserializer<DeleteTransformResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteTransformResponse::setupDeleteTransformResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteTransformResponse::setupDeleteTransformResponseDeserializer);
 
 	protected static void setupDeleteTransformResponseDeserializer(
-			DelegatingDeserializer<DeleteTransformResponse.Builder> op) {
+			ObjectDeserializer<DeleteTransformResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

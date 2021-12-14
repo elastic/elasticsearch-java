@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.security.has_privileges;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.has_privileges.ApplicationPrivilegesCheck
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/has_privileges/types.ts#L24-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ApplicationPrivilegesCheck implements JsonpSerializable {
+public class ApplicationPrivilegesCheck implements JsonpSerializable {
 	private final String application;
 
 	private final List<String> privileges;
@@ -52,36 +57,36 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ApplicationPrivilegesCheck(Builder builder) {
+	private ApplicationPrivilegesCheck(Builder builder) {
 
-		this.application = Objects.requireNonNull(builder.application, "application");
-		this.privileges = ModelTypeHelper.unmodifiableNonNull(builder.privileges, "privileges");
-		this.resources = ModelTypeHelper.unmodifiableNonNull(builder.resources, "resources");
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
+		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
+		this.resources = ApiTypeHelper.unmodifiableRequired(builder.resources, this, "resources");
 
 	}
 
-	public ApplicationPrivilegesCheck(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ApplicationPrivilegesCheck of(Function<Builder, ObjectBuilder<ApplicationPrivilegesCheck>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code application}
 	 */
-	public String application() {
+	public final String application() {
 		return this.application;
 	}
 
 	/**
 	 * Required - API name: {@code privileges}
 	 */
-	public List<String> privileges() {
+	public final List<String> privileges() {
 		return this.privileges;
 	}
 
 	/**
 	 * Required - API name: {@code resources}
 	 */
-	public List<String> resources() {
+	public final List<String> resources() {
 		return this.resources;
 	}
 
@@ -99,21 +104,26 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		generator.writeKey("application");
 		generator.write(this.application);
 
-		generator.writeKey("privileges");
-		generator.writeStartArray();
-		for (String item0 : this.privileges) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.privileges)) {
+			generator.writeKey("privileges");
+			generator.writeStartArray();
+			for (String item0 : this.privileges) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.resources)) {
+			generator.writeKey("resources");
+			generator.writeStartArray();
+			for (String item0 : this.resources) {
+				generator.write(item0);
 
-		generator.writeKey("resources");
-		generator.writeStartArray();
-		for (String item0 : this.resources) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -122,7 +132,8 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 	/**
 	 * Builder for {@link ApplicationPrivilegesCheck}.
 	 */
-	public static class Builder implements ObjectBuilder<ApplicationPrivilegesCheck> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApplicationPrivilegesCheck> {
 		private String application;
 
 		private List<String> privileges;
@@ -132,62 +143,48 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code application}
 		 */
-		public Builder application(String value) {
+		public final Builder application(String value) {
 			this.application = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code privileges}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>privileges</code>.
 		 */
-		public Builder privileges(List<String> value) {
-			this.privileges = value;
+		public final Builder privileges(List<String> list) {
+			this.privileges = _listAddAll(this.privileges, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code privileges}
+		 * <p>
+		 * Adds one or more values to <code>privileges</code>.
 		 */
-		public Builder privileges(String... value) {
-			this.privileges = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #privileges(List)}, creating the list if needed.
-		 */
-		public Builder addPrivileges(String value) {
-			if (this.privileges == null) {
-				this.privileges = new ArrayList<>();
-			}
-			this.privileges.add(value);
+		public final Builder privileges(String value, String... values) {
+			this.privileges = _listAdd(this.privileges, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code resources}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>resources</code>.
 		 */
-		public Builder resources(List<String> value) {
-			this.resources = value;
+		public final Builder resources(List<String> list) {
+			this.resources = _listAddAll(this.resources, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code resources}
+		 * <p>
+		 * Adds one or more values to <code>resources</code>.
 		 */
-		public Builder resources(String... value) {
-			this.resources = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #resources(List)}, creating the list if needed.
-		 */
-		public Builder addResources(String value) {
-			if (this.resources == null) {
-				this.resources = new ArrayList<>();
-			}
-			this.resources.add(value);
+		public final Builder resources(String value, String... values) {
+			this.resources = _listAdd(this.resources, value, values);
 			return this;
 		}
 
@@ -198,6 +195,7 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ApplicationPrivilegesCheck build() {
+			_checkSingleUse();
 
 			return new ApplicationPrivilegesCheck(this);
 		}
@@ -208,11 +206,11 @@ public final class ApplicationPrivilegesCheck implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ApplicationPrivilegesCheck}
 	 */
-	public static final JsonpDeserializer<ApplicationPrivilegesCheck> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ApplicationPrivilegesCheck::setupApplicationPrivilegesCheckDeserializer, Builder::build);
+	public static final JsonpDeserializer<ApplicationPrivilegesCheck> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ApplicationPrivilegesCheck::setupApplicationPrivilegesCheckDeserializer);
 
 	protected static void setupApplicationPrivilegesCheckDeserializer(
-			DelegatingDeserializer<ApplicationPrivilegesCheck.Builder> op) {
+			ObjectDeserializer<ApplicationPrivilegesCheck.Builder> op) {
 
 		op.add(Builder::application, JsonpDeserializer.stringDeserializer(), "application");
 		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

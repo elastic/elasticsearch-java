@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.rollup.delete_job;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.TaskFailureReason
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/delete_job/types.ts#L29-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TaskFailureReason implements JsonpSerializable {
+public class TaskFailureReason implements JsonpSerializable {
 	private final String type;
 
 	private final String reason;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TaskFailureReason(Builder builder) {
+	private TaskFailureReason(Builder builder) {
 
-		this.type = Objects.requireNonNull(builder.type, "type");
-		this.reason = Objects.requireNonNull(builder.reason, "reason");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 
 	}
 
-	public TaskFailureReason(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TaskFailureReason of(Function<Builder, ObjectBuilder<TaskFailureReason>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
 	/**
 	 * Required - API name: {@code reason}
 	 */
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
@@ -95,7 +103,8 @@ public final class TaskFailureReason implements JsonpSerializable {
 	/**
 	 * Builder for {@link TaskFailureReason}.
 	 */
-	public static class Builder implements ObjectBuilder<TaskFailureReason> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TaskFailureReason> {
 		private String type;
 
 		private String reason;
@@ -103,7 +112,7 @@ public final class TaskFailureReason implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class TaskFailureReason implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public Builder reason(String value) {
+		public final Builder reason(String value) {
 			this.reason = value;
 			return this;
 		}
@@ -123,6 +132,7 @@ public final class TaskFailureReason implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TaskFailureReason build() {
+			_checkSingleUse();
 
 			return new TaskFailureReason(this);
 		}
@@ -134,9 +144,9 @@ public final class TaskFailureReason implements JsonpSerializable {
 	 * Json deserializer for {@link TaskFailureReason}
 	 */
 	public static final JsonpDeserializer<TaskFailureReason> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TaskFailureReason::setupTaskFailureReasonDeserializer, Builder::build);
+			.lazy(Builder::new, TaskFailureReason::setupTaskFailureReasonDeserializer);
 
-	protected static void setupTaskFailureReasonDeserializer(DelegatingDeserializer<TaskFailureReason.Builder> op) {
+	protected static void setupTaskFailureReasonDeserializer(ObjectDeserializer<TaskFailureReason.Builder> op) {
 
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");

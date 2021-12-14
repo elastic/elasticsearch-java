@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,10 +32,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricRatingTreshold
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L34-L40">API
+ *      specification</a>
+ */
 
 public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 	@Nullable
@@ -44,7 +49,7 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricRatingTreshold(AbstractBuilder<?> builder) {
+	protected RankEvalMetricRatingTreshold(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.relevantRatingThreshold = builder.relevantRatingThreshold;
@@ -58,7 +63,7 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 	 * API name: {@code relevant_rating_threshold}
 	 */
 	@Nullable
-	public Integer relevantRatingThreshold() {
+	public final Integer relevantRatingThreshold() {
 		return this.relevantRatingThreshold;
 	}
 
@@ -66,7 +71,6 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.relevantRatingThreshold != null) {
-
 			generator.writeKey("relevant_rating_threshold");
 			generator.write(this.relevantRatingThreshold);
 
@@ -86,7 +90,7 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 		 * <p>
 		 * API name: {@code relevant_rating_threshold}
 		 */
-		public BuilderT relevantRatingThreshold(@Nullable Integer value) {
+		public final BuilderT relevantRatingThreshold(@Nullable Integer value) {
 			this.relevantRatingThreshold = value;
 			return self();
 		}
@@ -95,7 +99,7 @@ public abstract class RankEvalMetricRatingTreshold extends RankEvalMetricBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricRatingTresholdDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		RankEvalMetricBase.setupRankEvalMetricBaseDeserializer(op);
 		op.add(AbstractBuilder::relevantRatingThreshold, JsonpDeserializer.integerDeserializer(),
 				"relevant_rating_threshold");

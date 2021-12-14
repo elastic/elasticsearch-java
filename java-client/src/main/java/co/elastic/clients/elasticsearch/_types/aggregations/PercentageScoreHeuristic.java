@@ -30,6 +30,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L299-L299">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class PercentageScoreHeuristic implements JsonpSerializable {
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.NestedAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L245-L247">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NestedAggregation extends BucketAggregationBase implements AggregationVariant {
+public class NestedAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final String path;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NestedAggregation(Builder builder) {
+	private NestedAggregation(Builder builder) {
 		super(builder);
 
 		this.path = builder.path;
 
 	}
 
-	public NestedAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NestedAggregation of(Function<Builder, ObjectBuilder<NestedAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "nested";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Nested;
 	}
 
 	/**
 	 * API name: {@code path}
 	 */
 	@Nullable
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
@@ -75,7 +81,6 @@ public final class NestedAggregation extends BucketAggregationBase implements Ag
 
 		super.serializeInternal(generator, mapper);
 		if (this.path != null) {
-
 			generator.writeKey("path");
 			generator.write(this.path);
 
@@ -88,6 +93,7 @@ public final class NestedAggregation extends BucketAggregationBase implements Ag
 	/**
 	 * Builder for {@link NestedAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NestedAggregation> {
@@ -97,7 +103,7 @@ public final class NestedAggregation extends BucketAggregationBase implements Ag
 		/**
 		 * API name: {@code path}
 		 */
-		public Builder path(@Nullable String value) {
+		public final Builder path(@Nullable String value) {
 			this.path = value;
 			return this;
 		}
@@ -114,6 +120,7 @@ public final class NestedAggregation extends BucketAggregationBase implements Ag
 		 *             if some of the required fields are null.
 		 */
 		public NestedAggregation build() {
+			_checkSingleUse();
 
 			return new NestedAggregation(this);
 		}
@@ -125,9 +132,9 @@ public final class NestedAggregation extends BucketAggregationBase implements Ag
 	 * Json deserializer for {@link NestedAggregation}
 	 */
 	public static final JsonpDeserializer<NestedAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NestedAggregation::setupNestedAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, NestedAggregation::setupNestedAggregationDeserializer);
 
-	protected static void setupNestedAggregationDeserializer(DelegatingDeserializer<NestedAggregation.Builder> op) {
+	protected static void setupNestedAggregationDeserializer(ObjectDeserializer<NestedAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 

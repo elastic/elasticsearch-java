@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -41,8 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.get_watch.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/get_watch/GetWatchResponse.ts#L24-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetWatchResponse implements JsonpSerializable {
+public class GetWatchResponse implements JsonpSerializable {
 	private final boolean found;
 
 	private final String id;
@@ -57,17 +65,17 @@ public final class GetWatchResponse implements JsonpSerializable {
 	private final Integer primaryTerm;
 
 	@Nullable
-	private final Integer seqNo;
+	private final Long seqNo;
 
 	@Nullable
 	private final Long version;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetWatchResponse(Builder builder) {
+	private GetWatchResponse(Builder builder) {
 
-		this.found = Objects.requireNonNull(builder.found, "found");
-		this.id = Objects.requireNonNull(builder.id, "_id");
+		this.found = ApiTypeHelper.requireNonNull(builder.found, this, "found");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.status = builder.status;
 		this.watch = builder.watch;
 		this.primaryTerm = builder.primaryTerm;
@@ -76,21 +84,21 @@ public final class GetWatchResponse implements JsonpSerializable {
 
 	}
 
-	public GetWatchResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetWatchResponse of(Function<Builder, ObjectBuilder<GetWatchResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code found}
 	 */
-	public boolean found() {
+	public final boolean found() {
 		return this.found;
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -98,7 +106,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public WatchStatus status() {
+	public final WatchStatus status() {
 		return this.status;
 	}
 
@@ -106,7 +114,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 	 * API name: {@code watch}
 	 */
 	@Nullable
-	public Watch watch() {
+	public final Watch watch() {
 		return this.watch;
 	}
 
@@ -114,7 +122,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 	 * API name: {@code _primary_term}
 	 */
 	@Nullable
-	public Integer primaryTerm() {
+	public final Integer primaryTerm() {
 		return this.primaryTerm;
 	}
 
@@ -122,7 +130,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 	 * API name: {@code _seq_no}
 	 */
 	@Nullable
-	public Integer seqNo() {
+	public final Long seqNo() {
 		return this.seqNo;
 	}
 
@@ -130,7 +138,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 	 * API name: {@code _version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -152,31 +160,26 @@ public final class GetWatchResponse implements JsonpSerializable {
 		generator.write(this.id);
 
 		if (this.status != null) {
-
 			generator.writeKey("status");
 			this.status.serialize(generator, mapper);
 
 		}
 		if (this.watch != null) {
-
 			generator.writeKey("watch");
 			this.watch.serialize(generator, mapper);
 
 		}
 		if (this.primaryTerm != null) {
-
 			generator.writeKey("_primary_term");
 			generator.write(this.primaryTerm);
 
 		}
 		if (this.seqNo != null) {
-
 			generator.writeKey("_seq_no");
 			generator.write(this.seqNo);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("_version");
 			generator.write(this.version);
 
@@ -189,7 +192,8 @@ public final class GetWatchResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetWatchResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetWatchResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetWatchResponse> {
 		private Boolean found;
 
 		private String id;
@@ -204,7 +208,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		private Integer primaryTerm;
 
 		@Nullable
-		private Integer seqNo;
+		private Long seqNo;
 
 		@Nullable
 		private Long version;
@@ -212,7 +216,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code found}
 		 */
-		public Builder found(boolean value) {
+		public final Builder found(boolean value) {
 			this.found = value;
 			return this;
 		}
@@ -220,7 +224,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -228,7 +232,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable WatchStatus value) {
+		public final Builder status(@Nullable WatchStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -236,14 +240,14 @@ public final class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code status}
 		 */
-		public Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
+		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
 			return this.status(fn.apply(new WatchStatus.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code watch}
 		 */
-		public Builder watch(@Nullable Watch value) {
+		public final Builder watch(@Nullable Watch value) {
 			this.watch = value;
 			return this;
 		}
@@ -251,14 +255,14 @@ public final class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code watch}
 		 */
-		public Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
+		public final Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
 			return this.watch(fn.apply(new Watch.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code _primary_term}
 		 */
-		public Builder primaryTerm(@Nullable Integer value) {
+		public final Builder primaryTerm(@Nullable Integer value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -266,7 +270,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _seq_no}
 		 */
-		public Builder seqNo(@Nullable Integer value) {
+		public final Builder seqNo(@Nullable Long value) {
 			this.seqNo = value;
 			return this;
 		}
@@ -274,7 +278,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code _version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -286,6 +290,7 @@ public final class GetWatchResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetWatchResponse build() {
+			_checkSingleUse();
 
 			return new GetWatchResponse(this);
 		}
@@ -297,16 +302,16 @@ public final class GetWatchResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetWatchResponse}
 	 */
 	public static final JsonpDeserializer<GetWatchResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetWatchResponse::setupGetWatchResponseDeserializer, Builder::build);
+			GetWatchResponse::setupGetWatchResponseDeserializer);
 
-	protected static void setupGetWatchResponseDeserializer(DelegatingDeserializer<GetWatchResponse.Builder> op) {
+	protected static void setupGetWatchResponseDeserializer(ObjectDeserializer<GetWatchResponse.Builder> op) {
 
 		op.add(Builder::found, JsonpDeserializer.booleanDeserializer(), "found");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::status, WatchStatus._DESERIALIZER, "status");
 		op.add(Builder::watch, Watch._DESERIALIZER, "watch");
 		op.add(Builder::primaryTerm, JsonpDeserializer.integerDeserializer(), "_primary_term");
-		op.add(Builder::seqNo, JsonpDeserializer.integerDeserializer(), "_seq_no");
+		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
 
 	}

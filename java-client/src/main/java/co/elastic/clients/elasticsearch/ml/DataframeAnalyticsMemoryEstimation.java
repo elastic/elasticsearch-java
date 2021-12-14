@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,25 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsMemoryEstimation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L69-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializable {
+public class DataframeAnalyticsMemoryEstimation implements JsonpSerializable {
 	private final String expectedMemoryWithDisk;
 
 	private final String expectedMemoryWithoutDisk;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalyticsMemoryEstimation(Builder builder) {
+	private DataframeAnalyticsMemoryEstimation(Builder builder) {
 
-		this.expectedMemoryWithDisk = Objects.requireNonNull(builder.expectedMemoryWithDisk,
-				"expected_memory_with_disk");
-		this.expectedMemoryWithoutDisk = Objects.requireNonNull(builder.expectedMemoryWithoutDisk,
-				"expected_memory_without_disk");
+		this.expectedMemoryWithDisk = ApiTypeHelper.requireNonNull(builder.expectedMemoryWithDisk, this,
+				"expectedMemoryWithDisk");
+		this.expectedMemoryWithoutDisk = ApiTypeHelper.requireNonNull(builder.expectedMemoryWithoutDisk, this,
+				"expectedMemoryWithoutDisk");
 
 	}
 
-	public DataframeAnalyticsMemoryEstimation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalyticsMemoryEstimation of(
+			Function<Builder, ObjectBuilder<DataframeAnalyticsMemoryEstimation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +76,7 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 	 * <p>
 	 * API name: {@code expected_memory_with_disk}
 	 */
-	public String expectedMemoryWithDisk() {
+	public final String expectedMemoryWithDisk() {
 		return this.expectedMemoryWithDisk;
 	}
 
@@ -77,7 +86,7 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 	 * <p>
 	 * API name: {@code expected_memory_without_disk}
 	 */
-	public String expectedMemoryWithoutDisk() {
+	public final String expectedMemoryWithoutDisk() {
 		return this.expectedMemoryWithoutDisk;
 	}
 
@@ -105,7 +114,8 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 	/**
 	 * Builder for {@link DataframeAnalyticsMemoryEstimation}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalyticsMemoryEstimation> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsMemoryEstimation> {
 		private String expectedMemoryWithDisk;
 
 		private String expectedMemoryWithoutDisk;
@@ -118,7 +128,7 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 		 * <p>
 		 * API name: {@code expected_memory_with_disk}
 		 */
-		public Builder expectedMemoryWithDisk(String value) {
+		public final Builder expectedMemoryWithDisk(String value) {
 			this.expectedMemoryWithDisk = value;
 			return this;
 		}
@@ -129,7 +139,7 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 		 * <p>
 		 * API name: {@code expected_memory_without_disk}
 		 */
-		public Builder expectedMemoryWithoutDisk(String value) {
+		public final Builder expectedMemoryWithoutDisk(String value) {
 			this.expectedMemoryWithoutDisk = value;
 			return this;
 		}
@@ -141,6 +151,7 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalyticsMemoryEstimation build() {
+			_checkSingleUse();
 
 			return new DataframeAnalyticsMemoryEstimation(this);
 		}
@@ -152,11 +163,11 @@ public final class DataframeAnalyticsMemoryEstimation implements JsonpSerializab
 	 * Json deserializer for {@link DataframeAnalyticsMemoryEstimation}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsMemoryEstimation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeAnalyticsMemoryEstimation::setupDataframeAnalyticsMemoryEstimationDeserializer,
-					Builder::build);
+			.lazy(Builder::new,
+					DataframeAnalyticsMemoryEstimation::setupDataframeAnalyticsMemoryEstimationDeserializer);
 
 	protected static void setupDataframeAnalyticsMemoryEstimationDeserializer(
-			DelegatingDeserializer<DataframeAnalyticsMemoryEstimation.Builder> op) {
+			ObjectDeserializer<DataframeAnalyticsMemoryEstimation.Builder> op) {
 
 		op.add(Builder::expectedMemoryWithDisk, JsonpDeserializer.stringDeserializer(), "expected_memory_with_disk");
 		op.add(Builder::expectedMemoryWithoutDisk, JsonpDeserializer.stringDeserializer(),

@@ -23,27 +23,25 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.analysis.CharFilter;
 import co.elastic.clients.elasticsearch._types.analysis.TokenFilter;
 import co.elastic.clients.elasticsearch._types.analysis.Tokenizer;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -51,18 +49,22 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.Request
-@JsonpDeserializable
-public final class AnalyzeRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final String index;
 
+/**
+ * Performs the analysis process on a text and return the tokens breakdown of
+ * the text.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/analyze/IndicesAnalyzeRequest.ts#L27-L47">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class AnalyzeRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String analyzer;
 
-	@Nullable
 	private final List<String> attributes;
 
-	@Nullable
 	private final List<CharFilter> charFilter;
 
 	@Nullable
@@ -71,13 +73,14 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	@Nullable
 	private final String field;
 
-	@Nullable
 	private final List<TokenFilter> filter;
+
+	@Nullable
+	private final String index;
 
 	@Nullable
 	private final String normalizer;
 
-	@Nullable
 	private final List<String> text;
 
 	@Nullable
@@ -85,23 +88,68 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AnalyzeRequest(Builder builder) {
+	private AnalyzeRequest(Builder builder) {
 
-		this.index = builder.index;
 		this.analyzer = builder.analyzer;
-		this.attributes = ModelTypeHelper.unmodifiable(builder.attributes);
-		this.charFilter = ModelTypeHelper.unmodifiable(builder.charFilter);
+		this.attributes = ApiTypeHelper.unmodifiable(builder.attributes);
+		this.charFilter = ApiTypeHelper.unmodifiable(builder.charFilter);
 		this.explain = builder.explain;
 		this.field = builder.field;
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
+		this.index = builder.index;
 		this.normalizer = builder.normalizer;
-		this.text = ModelTypeHelper.unmodifiable(builder.text);
+		this.text = ApiTypeHelper.unmodifiable(builder.text);
 		this.tokenizer = builder.tokenizer;
 
 	}
 
-	public AnalyzeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AnalyzeRequest of(Function<Builder, ObjectBuilder<AnalyzeRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code analyzer}
+	 */
+	@Nullable
+	public final String analyzer() {
+		return this.analyzer;
+	}
+
+	/**
+	 * API name: {@code attributes}
+	 */
+	public final List<String> attributes() {
+		return this.attributes;
+	}
+
+	/**
+	 * API name: {@code char_filter}
+	 */
+	public final List<CharFilter> charFilter() {
+		return this.charFilter;
+	}
+
+	/**
+	 * API name: {@code explain}
+	 */
+	@Nullable
+	public final Boolean explain() {
+		return this.explain;
+	}
+
+	/**
+	 * API name: {@code field}
+	 */
+	@Nullable
+	public final String field() {
+		return this.field;
+	}
+
+	/**
+	 * API name: {@code filter}
+	 */
+	public final List<TokenFilter> filter() {
+		return this.filter;
 	}
 
 	/**
@@ -110,71 +158,22 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
-	}
-
-	/**
-	 * API name: {@code analyzer}
-	 */
-	@Nullable
-	public String analyzer() {
-		return this.analyzer;
-	}
-
-	/**
-	 * API name: {@code attributes}
-	 */
-	@Nullable
-	public List<String> attributes() {
-		return this.attributes;
-	}
-
-	/**
-	 * API name: {@code char_filter}
-	 */
-	@Nullable
-	public List<CharFilter> charFilter() {
-		return this.charFilter;
-	}
-
-	/**
-	 * API name: {@code explain}
-	 */
-	@Nullable
-	public Boolean explain() {
-		return this.explain;
-	}
-
-	/**
-	 * API name: {@code field}
-	 */
-	@Nullable
-	public String field() {
-		return this.field;
-	}
-
-	/**
-	 * API name: {@code filter}
-	 */
-	@Nullable
-	public List<TokenFilter> filter() {
-		return this.filter;
 	}
 
 	/**
 	 * API name: {@code normalizer}
 	 */
 	@Nullable
-	public String normalizer() {
+	public final String normalizer() {
 		return this.normalizer;
 	}
 
 	/**
 	 * API name: {@code text}
 	 */
-	@Nullable
-	public List<String> text() {
+	public final List<String> text() {
 		return this.text;
 	}
 
@@ -182,7 +181,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code tokenizer}
 	 */
 	@Nullable
-	public Tokenizer tokenizer() {
+	public final Tokenizer tokenizer() {
 		return this.tokenizer;
 	}
 
@@ -198,13 +197,11 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
-		if (this.attributes != null) {
-
+		if (ApiTypeHelper.isDefined(this.attributes)) {
 			generator.writeKey("attributes");
 			generator.writeStartArray();
 			for (String item0 : this.attributes) {
@@ -214,8 +211,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 			generator.writeEnd();
 
 		}
-		if (this.charFilter != null) {
-
+		if (ApiTypeHelper.isDefined(this.charFilter)) {
 			generator.writeKey("char_filter");
 			generator.writeStartArray();
 			for (CharFilter item0 : this.charFilter) {
@@ -226,19 +222,16 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.explain != null) {
-
 			generator.writeKey("explain");
 			generator.write(this.explain);
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
-		if (this.filter != null) {
-
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (TokenFilter item0 : this.filter) {
@@ -249,13 +242,11 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.normalizer != null) {
-
 			generator.writeKey("normalizer");
 			generator.write(this.normalizer);
 
 		}
-		if (this.text != null) {
-
+		if (ApiTypeHelper.isDefined(this.text)) {
 			generator.writeKey("text");
 			generator.writeStartArray();
 			for (String item0 : this.text) {
@@ -266,7 +257,6 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 
 		}
 		if (this.tokenizer != null) {
-
 			generator.writeKey("tokenizer");
 			this.tokenizer.serialize(generator, mapper);
 
@@ -279,10 +269,8 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link AnalyzeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<AnalyzeRequest> {
-		@Nullable
-		private String index;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeRequest> {
 		@Nullable
 		private String analyzer;
 
@@ -302,6 +290,9 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		private List<TokenFilter> filter;
 
 		@Nullable
+		private String index;
+
+		@Nullable
 		private String normalizer;
 
 		@Nullable
@@ -311,95 +302,66 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		private Tokenizer tokenizer;
 
 		/**
-		 * The name of the index to scope the operation
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code attributes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>attributes</code>.
 		 */
-		public Builder attributes(@Nullable List<String> value) {
-			this.attributes = value;
+		public final Builder attributes(List<String> list) {
+			this.attributes = _listAddAll(this.attributes, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code attributes}
+		 * <p>
+		 * Adds one or more values to <code>attributes</code>.
 		 */
-		public Builder attributes(String... value) {
-			this.attributes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #attributes(List)}, creating the list if needed.
-		 */
-		public Builder addAttributes(String value) {
-			if (this.attributes == null) {
-				this.attributes = new ArrayList<>();
-			}
-			this.attributes.add(value);
+		public final Builder attributes(String value, String... values) {
+			this.attributes = _listAdd(this.attributes, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>charFilter</code>.
 		 */
-		public Builder charFilter(@Nullable List<CharFilter> value) {
-			this.charFilter = value;
+		public final Builder charFilter(List<CharFilter> list) {
+			this.charFilter = _listAddAll(this.charFilter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds one or more values to <code>charFilter</code>.
 		 */
-		public Builder charFilter(CharFilter... value) {
-			this.charFilter = Arrays.asList(value);
+		public final Builder charFilter(CharFilter value, CharFilter... values) {
+			this.charFilter = _listAdd(this.charFilter, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
+		 * API name: {@code char_filter}
+		 * <p>
+		 * Adds a value to <code>charFilter</code> using a builder lambda.
 		 */
-		public Builder addCharFilter(CharFilter value) {
-			if (this.charFilter == null) {
-				this.charFilter = new ArrayList<>();
-			}
-			this.charFilter.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #charFilter(List)} to a singleton list.
-		 */
-		public Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
-			return this.charFilter(fn.apply(new CharFilter.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #charFilter(List)}, creating the list if needed.
-		 */
-		public Builder addCharFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
-			return this.addCharFilter(fn.apply(new CharFilter.Builder()).build());
+		public final Builder charFilter(Function<CharFilter.Builder, ObjectBuilder<CharFilter>> fn) {
+			return charFilter(fn.apply(new CharFilter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code explain}
 		 */
-		public Builder explain(@Nullable Boolean value) {
+		public final Builder explain(@Nullable Boolean value) {
 			this.explain = value;
 			return this;
 		}
@@ -407,91 +369,82 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 */
-		public Builder filter(@Nullable List<TokenFilter> value) {
-			this.filter = value;
+		public final Builder filter(List<TokenFilter> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public Builder filter(TokenFilter... value) {
-			this.filter = Arrays.asList(value);
+		public final Builder filter(TokenFilter value, TokenFilter... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds a value to <code>filter</code> using a builder lambda.
 		 */
-		public Builder addFilter(TokenFilter value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
-			}
-			this.filter.add(value);
+		public final Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
+			return filter(fn.apply(new TokenFilter.Builder()).build());
+		}
+
+		/**
+		 * The name of the index to scope the operation
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public final Builder index(@Nullable String value) {
+			this.index = value;
 			return this;
-		}
-
-		/**
-		 * Set {@link #filter(List)} to a singleton list.
-		 */
-		public Builder filter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
-			return this.filter(fn.apply(new TokenFilter.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(Function<TokenFilter.Builder, ObjectBuilder<TokenFilter>> fn) {
-			return this.addFilter(fn.apply(new TokenFilter.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code normalizer}
 		 */
-		public Builder normalizer(@Nullable String value) {
+		public final Builder normalizer(@Nullable String value) {
 			this.normalizer = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code text}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>text</code>.
 		 */
-		public Builder text(@Nullable List<String> value) {
-			this.text = value;
+		public final Builder text(List<String> list) {
+			this.text = _listAddAll(this.text, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code text}
+		 * <p>
+		 * Adds one or more values to <code>text</code>.
 		 */
-		public Builder text(String... value) {
-			this.text = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #text(List)}, creating the list if needed.
-		 */
-		public Builder addText(String value) {
-			if (this.text == null) {
-				this.text = new ArrayList<>();
-			}
-			this.text.add(value);
+		public final Builder text(String value, String... values) {
+			this.text = _listAdd(this.text, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(@Nullable Tokenizer value) {
+		public final Builder tokenizer(@Nullable Tokenizer value) {
 			this.tokenizer = value;
 			return this;
 		}
@@ -499,7 +452,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * API name: {@code tokenizer}
 		 */
-		public Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
+		public final Builder tokenizer(Function<Tokenizer.Builder, ObjectBuilder<Tokenizer>> fn) {
 			return this.tokenizer(fn.apply(new Tokenizer.Builder()).build());
 		}
 
@@ -510,6 +463,7 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public AnalyzeRequest build() {
+			_checkSingleUse();
 
 			return new AnalyzeRequest(this);
 		}
@@ -521,9 +475,9 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link AnalyzeRequest}
 	 */
 	public static final JsonpDeserializer<AnalyzeRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AnalyzeRequest::setupAnalyzeRequestDeserializer, Builder::build);
+			AnalyzeRequest::setupAnalyzeRequestDeserializer);
 
-	protected static void setupAnalyzeRequestDeserializer(DelegatingDeserializer<AnalyzeRequest.Builder> op) {
+	protected static void setupAnalyzeRequestDeserializer(ObjectDeserializer<AnalyzeRequest.Builder> op) {
 
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::attributes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -543,7 +497,9 @@ public final class AnalyzeRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code indices.analyze}".
 	 */
-	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.analyze",
+
 			// Request method
 			request -> {
 				return "POST";

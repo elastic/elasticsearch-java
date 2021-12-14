@@ -23,21 +23,20 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,24 +47,38 @@ import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.Request
 
-public final class DataStreamsStatsRequest extends RequestBase {
+/**
+ * Provides statistics on operations happening in a data stream.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/data_streams_stats/IndicesDataStreamsStatsRequest.ts#L23-L35">API
+ *      specification</a>
+ */
+
+public class DataStreamsStatsRequest extends RequestBase {
+	private final List<ExpandWildcard> expandWildcards;
+
 	@Nullable
 	private final String name;
 
-	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public DataStreamsStatsRequest(Builder builder) {
+	private DataStreamsStatsRequest(Builder builder) {
 
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.name = builder.name;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
 
 	}
 
-	public DataStreamsStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataStreamsStatsRequest of(Function<Builder, ObjectBuilder<DataStreamsStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code expand_wildcards}
+	 */
+	public final List<ExpandWildcard> expandWildcards() {
+		return this.expandWildcards;
 	}
 
 	/**
@@ -75,16 +88,8 @@ public final class DataStreamsStatsRequest extends RequestBase {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
-	}
-
-	/**
-	 * API name: {@code expand_wildcards}
-	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
-		return this.expandWildcards;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -92,12 +97,33 @@ public final class DataStreamsStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DataStreamsStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DataStreamsStatsRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStreamsStatsRequest> {
+		@Nullable
+		private List<ExpandWildcard> expandWildcards;
+
 		@Nullable
 		private String name;
 
-		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		/**
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
+		 */
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
 
 		/**
 		 * A comma-separated list of data stream names; use <code>_all</code> or empty
@@ -105,35 +131,8 @@ public final class DataStreamsStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code expand_wildcards}
-		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code expand_wildcards}
-		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
 			return this;
 		}
 
@@ -144,6 +143,7 @@ public final class DataStreamsStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DataStreamsStatsRequest build() {
+			_checkSingleUse();
 
 			return new DataStreamsStatsRequest(this);
 		}
@@ -154,7 +154,9 @@ public final class DataStreamsStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.data_streams_stats}".
 	 */
-	public static final Endpoint<DataStreamsStatsRequest, DataStreamsStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DataStreamsStatsRequest, DataStreamsStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.data_streams_stats",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -191,9 +193,9 @@ public final class DataStreamsStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.expandWildcards != null) {
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				return params;
 

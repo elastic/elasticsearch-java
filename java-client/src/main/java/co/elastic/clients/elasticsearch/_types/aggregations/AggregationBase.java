@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,20 +30,25 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.Aggregation
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregation.ts#L23-L26">API
+ *      specification</a>
+ */
+
 public abstract class AggregationBase implements JsonpSerializable {
-	@Nullable
 	private final Map<String, JsonData> meta;
 
 	@Nullable
@@ -52,9 +56,9 @@ public abstract class AggregationBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AggregationBase(AbstractBuilder<?> builder) {
+	protected AggregationBase(AbstractBuilder<?> builder) {
 
-		this.meta = ModelTypeHelper.unmodifiable(builder.meta);
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.name = builder.name;
 
 	}
@@ -62,8 +66,7 @@ public abstract class AggregationBase implements JsonpSerializable {
 	/**
 	 * API name: {@code meta}
 	 */
-	@Nullable
-	public Map<String, JsonData> meta() {
+	public final Map<String, JsonData> meta() {
 		return this.meta;
 	}
 
@@ -71,7 +74,7 @@ public abstract class AggregationBase implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -86,8 +89,7 @@ public abstract class AggregationBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.meta != null) {
-
+		if (ApiTypeHelper.isDefined(this.meta)) {
 			generator.writeKey("meta");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
@@ -99,7 +101,6 @@ public abstract class AggregationBase implements JsonpSerializable {
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
@@ -107,7 +108,9 @@ public abstract class AggregationBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private Map<String, JsonData> meta;
 
@@ -116,27 +119,28 @@ public abstract class AggregationBase implements JsonpSerializable {
 
 		/**
 		 * API name: {@code meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public BuilderT meta(@Nullable Map<String, JsonData> value) {
-			this.meta = value;
+		public final BuilderT meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
 			return self();
 		}
 
 		/**
-		 * Add a key/value to {@link #meta(Map)}, creating the map if needed.
+		 * API name: {@code meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
 		 */
-		public BuilderT putMeta(String key, JsonData value) {
-			if (this.meta == null) {
-				this.meta = new HashMap<>();
-			}
-			this.meta.put(key, value);
+		public final BuilderT meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return self();
 		}
 
 		/**
 		 * API name: {@code name}
 		 */
-		public BuilderT name(@Nullable String value) {
+		public final BuilderT name(@Nullable String value) {
 			this.name = value;
 			return self();
 		}
@@ -147,7 +151,7 @@ public abstract class AggregationBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupAggregationBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "meta");
 		op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");

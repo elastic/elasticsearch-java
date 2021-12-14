@@ -23,85 +23,94 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L80-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NoriTokenizer extends TokenizerBase implements TokenizerVariant {
+public class NoriTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
+	@Nullable
 	private final NoriDecompoundMode decompoundMode;
 
-	private final boolean discardPunctuation;
+	@Nullable
+	private final Boolean discardPunctuation;
 
+	@Nullable
 	private final String userDictionary;
 
 	private final List<String> userDictionaryRules;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NoriTokenizer(Builder builder) {
+	private NoriTokenizer(Builder builder) {
 		super(builder);
 
-		this.decompoundMode = Objects.requireNonNull(builder.decompoundMode, "decompound_mode");
-		this.discardPunctuation = Objects.requireNonNull(builder.discardPunctuation, "discard_punctuation");
-		this.userDictionary = Objects.requireNonNull(builder.userDictionary, "user_dictionary");
-		this.userDictionaryRules = ModelTypeHelper.unmodifiableNonNull(builder.userDictionaryRules,
-				"user_dictionary_rules");
+		this.decompoundMode = builder.decompoundMode;
+		this.discardPunctuation = builder.discardPunctuation;
+		this.userDictionary = builder.userDictionary;
+		this.userDictionaryRules = ApiTypeHelper.unmodifiable(builder.userDictionaryRules);
 
 	}
 
-	public NoriTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NoriTokenizer of(Function<Builder, ObjectBuilder<NoriTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "nori_tokenizer";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.NoriTokenizer;
 	}
 
 	/**
-	 * Required - API name: {@code decompound_mode}
+	 * API name: {@code decompound_mode}
 	 */
-	public NoriDecompoundMode decompoundMode() {
+	@Nullable
+	public final NoriDecompoundMode decompoundMode() {
 		return this.decompoundMode;
 	}
 
 	/**
-	 * Required - API name: {@code discard_punctuation}
+	 * API name: {@code discard_punctuation}
 	 */
-	public boolean discardPunctuation() {
+	@Nullable
+	public final Boolean discardPunctuation() {
 		return this.discardPunctuation;
 	}
 
 	/**
-	 * Required - API name: {@code user_dictionary}
+	 * API name: {@code user_dictionary}
 	 */
-	public String userDictionary() {
+	@Nullable
+	public final String userDictionary() {
 		return this.userDictionary;
 	}
 
 	/**
-	 * Required - API name: {@code user_dictionary_rules}
+	 * API name: {@code user_dictionary_rules}
 	 */
-	public List<String> userDictionaryRules() {
+	public final List<String> userDictionaryRules() {
 		return this.userDictionaryRules;
 	}
 
@@ -109,23 +118,30 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 
 		generator.write("type", "nori_tokenizer");
 		super.serializeInternal(generator, mapper);
-
-		generator.writeKey("decompound_mode");
-		this.decompoundMode.serialize(generator, mapper);
-
-		generator.writeKey("discard_punctuation");
-		generator.write(this.discardPunctuation);
-
-		generator.writeKey("user_dictionary");
-		generator.write(this.userDictionary);
-
-		generator.writeKey("user_dictionary_rules");
-		generator.writeStartArray();
-		for (String item0 : this.userDictionaryRules) {
-			generator.write(item0);
+		if (this.decompoundMode != null) {
+			generator.writeKey("decompound_mode");
+			this.decompoundMode.serialize(generator, mapper);
+		}
+		if (this.discardPunctuation != null) {
+			generator.writeKey("discard_punctuation");
+			generator.write(this.discardPunctuation);
 
 		}
-		generator.writeEnd();
+		if (this.userDictionary != null) {
+			generator.writeKey("user_dictionary");
+			generator.write(this.userDictionary);
+
+		}
+		if (ApiTypeHelper.isDefined(this.userDictionaryRules)) {
+			generator.writeKey("user_dictionary_rules");
+			generator.writeStartArray();
+			for (String item0 : this.userDictionaryRules) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -134,64 +150,61 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 	/**
 	 * Builder for {@link NoriTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder> implements ObjectBuilder<NoriTokenizer> {
+		@Nullable
 		private NoriDecompoundMode decompoundMode;
 
+		@Nullable
 		private Boolean discardPunctuation;
 
+		@Nullable
 		private String userDictionary;
 
+		@Nullable
 		private List<String> userDictionaryRules;
 
 		/**
-		 * Required - API name: {@code decompound_mode}
+		 * API name: {@code decompound_mode}
 		 */
-		public Builder decompoundMode(NoriDecompoundMode value) {
+		public final Builder decompoundMode(@Nullable NoriDecompoundMode value) {
 			this.decompoundMode = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code discard_punctuation}
+		 * API name: {@code discard_punctuation}
 		 */
-		public Builder discardPunctuation(boolean value) {
+		public final Builder discardPunctuation(@Nullable Boolean value) {
 			this.discardPunctuation = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code user_dictionary}
+		 * API name: {@code user_dictionary}
 		 */
-		public Builder userDictionary(String value) {
+		public final Builder userDictionary(@Nullable String value) {
 			this.userDictionary = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code user_dictionary_rules}
+		 * API name: {@code user_dictionary_rules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>userDictionaryRules</code>.
 		 */
-		public Builder userDictionaryRules(List<String> value) {
-			this.userDictionaryRules = value;
+		public final Builder userDictionaryRules(List<String> list) {
+			this.userDictionaryRules = _listAddAll(this.userDictionaryRules, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code user_dictionary_rules}
+		 * API name: {@code user_dictionary_rules}
+		 * <p>
+		 * Adds one or more values to <code>userDictionaryRules</code>.
 		 */
-		public Builder userDictionaryRules(String... value) {
-			this.userDictionaryRules = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #userDictionaryRules(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addUserDictionaryRules(String value) {
-			if (this.userDictionaryRules == null) {
-				this.userDictionaryRules = new ArrayList<>();
-			}
-			this.userDictionaryRules.add(value);
+		public final Builder userDictionaryRules(String value, String... values) {
+			this.userDictionaryRules = _listAdd(this.userDictionaryRules, value, values);
 			return this;
 		}
 
@@ -207,6 +220,7 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 		 *             if some of the required fields are null.
 		 */
 		public NoriTokenizer build() {
+			_checkSingleUse();
 
 			return new NoriTokenizer(this);
 		}
@@ -218,9 +232,9 @@ public final class NoriTokenizer extends TokenizerBase implements TokenizerVaria
 	 * Json deserializer for {@link NoriTokenizer}
 	 */
 	public static final JsonpDeserializer<NoriTokenizer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NoriTokenizer::setupNoriTokenizerDeserializer, Builder::build);
+			NoriTokenizer::setupNoriTokenizerDeserializer);
 
-	protected static void setupNoriTokenizerDeserializer(DelegatingDeserializer<NoriTokenizer.Builder> op) {
+	protected static void setupNoriTokenizerDeserializer(ObjectDeserializer<NoriTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::decompoundMode, NoriDecompoundMode._DESERIALIZER, "decompound_mode");
 		op.add(Builder::discardPunctuation, JsonpDeserializer.booleanDeserializer(), "discard_punctuation");

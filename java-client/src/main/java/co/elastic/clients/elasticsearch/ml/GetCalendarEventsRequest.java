@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -43,11 +45,16 @@ import javax.annotation.Nullable;
 
 // typedef: ml.get_calendar_events.Request
 
-public final class GetCalendarEventsRequest extends RequestBase {
-	private final String calendarId;
+/**
+ * Retrieves information about the scheduled events in calendars.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_calendar_events/MlGetCalendarEventsRequest.ts#L25-L53">API
+ *      specification</a>
+ */
 
-	@Nullable
-	private final String jobId;
+public class GetCalendarEventsRequest extends RequestBase {
+	private final String calendarId;
 
 	@Nullable
 	private final String end;
@@ -56,85 +63,93 @@ public final class GetCalendarEventsRequest extends RequestBase {
 	private final Integer from;
 
 	@Nullable
-	private final String start;
+	private final String jobId;
 
 	@Nullable
 	private final Integer size;
 
+	@Nullable
+	private final String start;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public GetCalendarEventsRequest(Builder builder) {
+	private GetCalendarEventsRequest(Builder builder) {
 
-		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
-		this.jobId = builder.jobId;
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
 		this.end = builder.end;
 		this.from = builder.from;
-		this.start = builder.start;
+		this.jobId = builder.jobId;
 		this.size = builder.size;
+		this.start = builder.start;
 
 	}
 
-	public GetCalendarEventsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetCalendarEventsRequest of(Function<Builder, ObjectBuilder<GetCalendarEventsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the calendar containing the events
+	 * Required - A string that uniquely identifies a calendar. You can get
+	 * information for multiple calendars by using a comma-separated list of ids or
+	 * a wildcard expression. You can get information for all calendars by using
+	 * <code>_all</code> or <code>*</code> or by omitting the calendar identifier.
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
-	public String calendarId() {
+	public final String calendarId() {
 		return this.calendarId;
 	}
 
 	/**
-	 * Get events for the job. When this option is used calendar_id must be '_all'
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	@Nullable
-	public String jobId() {
-		return this.jobId;
-	}
-
-	/**
-	 * Get events before this time
+	 * Specifies to get events with timestamps earlier than this time.
 	 * <p>
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public String end() {
+	public final String end() {
 		return this.end;
 	}
 
 	/**
-	 * Skips a number of events
+	 * Skips the specified number of events.
 	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
 	/**
-	 * Get events after this time
+	 * Specifies to get events for a specific anomaly detection job identifier or
+	 * job group. It must be used with a calendar identifier of <code>_all</code> or
+	 * <code>*</code>.
 	 * <p>
-	 * API name: {@code start}
+	 * API name: {@code job_id}
 	 */
 	@Nullable
-	public String start() {
-		return this.start;
+	public final String jobId() {
+		return this.jobId;
 	}
 
 	/**
-	 * Specifies a max number of events to get
+	 * Specifies the maximum number of events to obtain.
 	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
+	}
+
+	/**
+	 * Specifies to get events with timestamps after this time.
+	 * <p>
+	 * API name: {@code start}
+	 */
+	@Nullable
+	public final String start() {
+		return this.start;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -142,11 +157,9 @@ public final class GetCalendarEventsRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetCalendarEventsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetCalendarEventsRequest> {
-		private String calendarId;
 
-		@Nullable
-		private String jobId;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCalendarEventsRequest> {
+		private String calendarId;
 
 		@Nullable
 		private String end;
@@ -155,68 +168,76 @@ public final class GetCalendarEventsRequest extends RequestBase {
 		private Integer from;
 
 		@Nullable
-		private String start;
+		private String jobId;
 
 		@Nullable
 		private Integer size;
 
+		@Nullable
+		private String start;
+
 		/**
-		 * Required - The ID of the calendar containing the events
+		 * Required - A string that uniquely identifies a calendar. You can get
+		 * information for multiple calendars by using a comma-separated list of ids or
+		 * a wildcard expression. You can get information for all calendars by using
+		 * <code>_all</code> or <code>*</code> or by omitting the calendar identifier.
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(String value) {
+		public final Builder calendarId(String value) {
 			this.calendarId = value;
 			return this;
 		}
 
 		/**
-		 * Get events for the job. When this option is used calendar_id must be '_all'
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(@Nullable String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
-		 * Get events before this time
+		 * Specifies to get events with timestamps earlier than this time.
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public Builder end(@Nullable String value) {
+		public final Builder end(@Nullable String value) {
 			this.end = value;
 			return this;
 		}
 
 		/**
-		 * Skips a number of events
+		 * Skips the specified number of events.
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
-		 * Get events after this time
+		 * Specifies to get events for a specific anomaly detection job identifier or
+		 * job group. It must be used with a calendar identifier of <code>_all</code> or
+		 * <code>*</code>.
 		 * <p>
-		 * API name: {@code start}
+		 * API name: {@code job_id}
 		 */
-		public Builder start(@Nullable String value) {
-			this.start = value;
+		public final Builder jobId(@Nullable String value) {
+			this.jobId = value;
 			return this;
 		}
 
 		/**
-		 * Specifies a max number of events to get
+		 * Specifies the maximum number of events to obtain.
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		/**
+		 * Specifies to get events with timestamps after this time.
+		 * <p>
+		 * API name: {@code start}
+		 */
+		public final Builder start(@Nullable String value) {
+			this.start = value;
 			return this;
 		}
 
@@ -227,6 +248,7 @@ public final class GetCalendarEventsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetCalendarEventsRequest build() {
+			_checkSingleUse();
 
 			return new GetCalendarEventsRequest(this);
 		}
@@ -237,7 +259,9 @@ public final class GetCalendarEventsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.get_calendar_events}".
 	 */
-	public static final Endpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_calendar_events",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -268,20 +292,20 @@ public final class GetCalendarEventsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
+				}
 				if (request.jobId != null) {
 					params.put("job_id", request.jobId);
+				}
+				if (request.start != null) {
+					params.put("start", request.start);
 				}
 				if (request.end != null) {
 					params.put("end", request.end);
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
-				}
-				if (request.start != null) {
-					params.put("start", request.start);
-				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
 				}
 				return params;
 

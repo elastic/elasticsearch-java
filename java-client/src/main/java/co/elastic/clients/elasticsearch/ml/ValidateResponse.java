@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.validate.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/validate/MlValidateJobResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ValidateResponse extends AcknowledgedResponseBase {
+public class ValidateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ValidateResponse(Builder builder) {
+	private ValidateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ValidateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ValidateResponse of(Function<Builder, ObjectBuilder<ValidateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class ValidateResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link ValidateResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ValidateResponse> {
@@ -68,6 +75,7 @@ public final class ValidateResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ValidateResponse build() {
+			_checkSingleUse();
 
 			return new ValidateResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class ValidateResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link ValidateResponse}
 	 */
 	public static final JsonpDeserializer<ValidateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ValidateResponse::setupValidateResponseDeserializer, Builder::build);
+			ValidateResponse::setupValidateResponseDeserializer);
 
-	protected static void setupValidateResponseDeserializer(DelegatingDeserializer<ValidateResponse.Builder> op) {
+	protected static void setupValidateResponseDeserializer(ObjectDeserializer<ValidateResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

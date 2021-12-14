@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,8 +37,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.CardinalityAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L54-L57">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CardinalityAggregation extends MetricAggregationBase implements AggregationVariant {
+public class CardinalityAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Integer precisionThreshold;
 
@@ -48,7 +54,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CardinalityAggregation(Builder builder) {
+	private CardinalityAggregation(Builder builder) {
 		super(builder);
 
 		this.precisionThreshold = builder.precisionThreshold;
@@ -56,23 +62,23 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 
 	}
 
-	public CardinalityAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CardinalityAggregation of(Function<Builder, ObjectBuilder<CardinalityAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "cardinality";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Cardinality;
 	}
 
 	/**
 	 * API name: {@code precision_threshold}
 	 */
 	@Nullable
-	public Integer precisionThreshold() {
+	public final Integer precisionThreshold() {
 		return this.precisionThreshold;
 	}
 
@@ -80,7 +86,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 	 * API name: {@code rehash}
 	 */
 	@Nullable
-	public Boolean rehash() {
+	public final Boolean rehash() {
 		return this.rehash;
 	}
 
@@ -88,13 +94,11 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 
 		super.serializeInternal(generator, mapper);
 		if (this.precisionThreshold != null) {
-
 			generator.writeKey("precision_threshold");
 			generator.write(this.precisionThreshold);
 
 		}
 		if (this.rehash != null) {
-
 			generator.writeKey("rehash");
 			generator.write(this.rehash);
 
@@ -107,6 +111,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 	/**
 	 * Builder for {@link CardinalityAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CardinalityAggregation> {
@@ -119,7 +124,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 		/**
 		 * API name: {@code precision_threshold}
 		 */
-		public Builder precisionThreshold(@Nullable Integer value) {
+		public final Builder precisionThreshold(@Nullable Integer value) {
 			this.precisionThreshold = value;
 			return this;
 		}
@@ -127,7 +132,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 		/**
 		 * API name: {@code rehash}
 		 */
-		public Builder rehash(@Nullable Boolean value) {
+		public final Builder rehash(@Nullable Boolean value) {
 			this.rehash = value;
 			return this;
 		}
@@ -144,6 +149,7 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public CardinalityAggregation build() {
+			_checkSingleUse();
 
 			return new CardinalityAggregation(this);
 		}
@@ -155,10 +161,10 @@ public final class CardinalityAggregation extends MetricAggregationBase implemen
 	 * Json deserializer for {@link CardinalityAggregation}
 	 */
 	public static final JsonpDeserializer<CardinalityAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CardinalityAggregation::setupCardinalityAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, CardinalityAggregation::setupCardinalityAggregationDeserializer);
 
 	protected static void setupCardinalityAggregationDeserializer(
-			DelegatingDeserializer<CardinalityAggregation.Builder> op) {
+			ObjectDeserializer<CardinalityAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::precisionThreshold, JsonpDeserializer.integerDeserializer(), "precision_threshold");
 		op.add(Builder::rehash, JsonpDeserializer.booleanDeserializer(), "rehash");

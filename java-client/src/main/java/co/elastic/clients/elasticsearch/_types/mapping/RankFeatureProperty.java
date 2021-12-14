@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RankFeatureProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L223-L226">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankFeatureProperty extends PropertyBase implements PropertyVariant {
+public class RankFeatureProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean positiveScoreImpact;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankFeatureProperty(Builder builder) {
+	private RankFeatureProperty(Builder builder) {
 		super(builder);
 
 		this.positiveScoreImpact = builder.positiveScoreImpact;
 
 	}
 
-	public RankFeatureProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankFeatureProperty of(Function<Builder, ObjectBuilder<RankFeatureProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "rank_feature";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.RankFeature;
 	}
 
 	/**
 	 * API name: {@code positive_score_impact}
 	 */
 	@Nullable
-	public Boolean positiveScoreImpact() {
+	public final Boolean positiveScoreImpact() {
 		return this.positiveScoreImpact;
 	}
 
@@ -76,7 +82,6 @@ public final class RankFeatureProperty extends PropertyBase implements PropertyV
 		generator.write("type", "rank_feature");
 		super.serializeInternal(generator, mapper);
 		if (this.positiveScoreImpact != null) {
-
 			generator.writeKey("positive_score_impact");
 			generator.write(this.positiveScoreImpact);
 
@@ -89,6 +94,7 @@ public final class RankFeatureProperty extends PropertyBase implements PropertyV
 	/**
 	 * Builder for {@link RankFeatureProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankFeatureProperty> {
@@ -98,7 +104,7 @@ public final class RankFeatureProperty extends PropertyBase implements PropertyV
 		/**
 		 * API name: {@code positive_score_impact}
 		 */
-		public Builder positiveScoreImpact(@Nullable Boolean value) {
+		public final Builder positiveScoreImpact(@Nullable Boolean value) {
 			this.positiveScoreImpact = value;
 			return this;
 		}
@@ -115,6 +121,7 @@ public final class RankFeatureProperty extends PropertyBase implements PropertyV
 		 *             if some of the required fields are null.
 		 */
 		public RankFeatureProperty build() {
+			_checkSingleUse();
 
 			return new RankFeatureProperty(this);
 		}
@@ -126,9 +133,9 @@ public final class RankFeatureProperty extends PropertyBase implements PropertyV
 	 * Json deserializer for {@link RankFeatureProperty}
 	 */
 	public static final JsonpDeserializer<RankFeatureProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankFeatureProperty::setupRankFeaturePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, RankFeatureProperty::setupRankFeaturePropertyDeserializer);
 
-	protected static void setupRankFeaturePropertyDeserializer(DelegatingDeserializer<RankFeatureProperty.Builder> op) {
+	protected static void setupRankFeaturePropertyDeserializer(ObjectDeserializer<RankFeatureProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::positiveScoreImpact, JsonpDeserializer.booleanDeserializer(), "positive_score_impact");
 

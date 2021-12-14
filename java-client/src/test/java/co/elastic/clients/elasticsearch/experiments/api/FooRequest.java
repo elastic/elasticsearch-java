@@ -19,15 +19,15 @@
 
 package co.elastic.clients.elasticsearch.experiments.api;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch.experiments.api.query.Query;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch.experiments.api.query2.Query;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
@@ -290,15 +290,16 @@ public class FooRequest implements JsonpSerializable {
     op.add(Builder::bar, Bar.parser(), "bar");
     op.add(Builder::query, Query.parser(), "query");
 
-    PARSER = new ObjectBuilderDeserializer<FooRequest>(op);
+    PARSER = new ObjectBuilderDeserializer<>(op);
   }
 
   //===========================================
   // Endpoint
   //===========================================
 
-  public static final Endpoint<FooRequest, FooResponse, ElasticsearchError> ENDPOINT =
+  public static final Endpoint<FooRequest, FooResponse, ErrorResponse> ENDPOINT =
     new SimpleEndpoint<>(
+      "foo",
       r -> "POST",
       r -> "/foo",
       SimpleEndpoint.emptyMap(),

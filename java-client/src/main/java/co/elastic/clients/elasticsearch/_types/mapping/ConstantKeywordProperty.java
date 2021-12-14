@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.ConstantKeywordProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L45-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ConstantKeywordProperty extends PropertyBase implements PropertyVariant {
+public class ConstantKeywordProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
 	private final JsonData value;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ConstantKeywordProperty(Builder builder) {
+	private ConstantKeywordProperty(Builder builder) {
 		super(builder);
 
 		this.value = builder.value;
 
 	}
 
-	public ConstantKeywordProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ConstantKeywordProperty of(Function<Builder, ObjectBuilder<ConstantKeywordProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "constant_keyword";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.ConstantKeyword;
 	}
 
 	/**
 	 * API name: {@code value}
 	 */
 	@Nullable
-	public JsonData value() {
+	public final JsonData value() {
 		return this.value;
 	}
 
@@ -76,7 +82,6 @@ public final class ConstantKeywordProperty extends PropertyBase implements Prope
 		generator.write("type", "constant_keyword");
 		super.serializeInternal(generator, mapper);
 		if (this.value != null) {
-
 			generator.writeKey("value");
 			this.value.serialize(generator, mapper);
 
@@ -89,6 +94,7 @@ public final class ConstantKeywordProperty extends PropertyBase implements Prope
 	/**
 	 * Builder for {@link ConstantKeywordProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ConstantKeywordProperty> {
@@ -98,7 +104,7 @@ public final class ConstantKeywordProperty extends PropertyBase implements Prope
 		/**
 		 * API name: {@code value}
 		 */
-		public Builder value(@Nullable JsonData value) {
+		public final Builder value(@Nullable JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -115,6 +121,7 @@ public final class ConstantKeywordProperty extends PropertyBase implements Prope
 		 *             if some of the required fields are null.
 		 */
 		public ConstantKeywordProperty build() {
+			_checkSingleUse();
 
 			return new ConstantKeywordProperty(this);
 		}
@@ -126,10 +133,10 @@ public final class ConstantKeywordProperty extends PropertyBase implements Prope
 	 * Json deserializer for {@link ConstantKeywordProperty}
 	 */
 	public static final JsonpDeserializer<ConstantKeywordProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ConstantKeywordProperty::setupConstantKeywordPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, ConstantKeywordProperty::setupConstantKeywordPropertyDeserializer);
 
 	protected static void setupConstantKeywordPropertyDeserializer(
-			DelegatingDeserializer<ConstantKeywordProperty.Builder> op) {
+			ObjectDeserializer<ConstantKeywordProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::value, JsonData._DESERIALIZER, "value");
 

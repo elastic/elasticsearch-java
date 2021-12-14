@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.AggregationRange
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L261-L265">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AggregationRange implements JsonpSerializable {
+public class AggregationRange implements JsonpSerializable {
 	@Nullable
 	private final String from;
 
@@ -51,7 +58,7 @@ public final class AggregationRange implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AggregationRange(Builder builder) {
+	private AggregationRange(Builder builder) {
 
 		this.from = builder.from;
 		this.key = builder.key;
@@ -59,15 +66,15 @@ public final class AggregationRange implements JsonpSerializable {
 
 	}
 
-	public AggregationRange(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AggregationRange of(Function<Builder, ObjectBuilder<AggregationRange>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public String from() {
+	public final String from() {
 		return this.from;
 	}
 
@@ -75,7 +82,7 @@ public final class AggregationRange implements JsonpSerializable {
 	 * API name: {@code key}
 	 */
 	@Nullable
-	public String key() {
+	public final String key() {
 		return this.key;
 	}
 
@@ -83,7 +90,7 @@ public final class AggregationRange implements JsonpSerializable {
 	 * API name: {@code to}
 	 */
 	@Nullable
-	public String to() {
+	public final String to() {
 		return this.to;
 	}
 
@@ -99,19 +106,16 @@ public final class AggregationRange implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.from != null) {
-
 			generator.writeKey("from");
 			generator.write(this.from);
 
 		}
 		if (this.key != null) {
-
 			generator.writeKey("key");
 			generator.write(this.key);
 
 		}
 		if (this.to != null) {
-
 			generator.writeKey("to");
 			generator.write(this.to);
 
@@ -124,7 +128,8 @@ public final class AggregationRange implements JsonpSerializable {
 	/**
 	 * Builder for {@link AggregationRange}.
 	 */
-	public static class Builder implements ObjectBuilder<AggregationRange> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregationRange> {
 		@Nullable
 		private String from;
 
@@ -137,7 +142,7 @@ public final class AggregationRange implements JsonpSerializable {
 		/**
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable String value) {
+		public final Builder from(@Nullable String value) {
 			this.from = value;
 			return this;
 		}
@@ -145,7 +150,7 @@ public final class AggregationRange implements JsonpSerializable {
 		/**
 		 * API name: {@code key}
 		 */
-		public Builder key(@Nullable String value) {
+		public final Builder key(@Nullable String value) {
 			this.key = value;
 			return this;
 		}
@@ -153,7 +158,7 @@ public final class AggregationRange implements JsonpSerializable {
 		/**
 		 * API name: {@code to}
 		 */
-		public Builder to(@Nullable String value) {
+		public final Builder to(@Nullable String value) {
 			this.to = value;
 			return this;
 		}
@@ -165,6 +170,7 @@ public final class AggregationRange implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AggregationRange build() {
+			_checkSingleUse();
 
 			return new AggregationRange(this);
 		}
@@ -176,9 +182,9 @@ public final class AggregationRange implements JsonpSerializable {
 	 * Json deserializer for {@link AggregationRange}
 	 */
 	public static final JsonpDeserializer<AggregationRange> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AggregationRange::setupAggregationRangeDeserializer, Builder::build);
+			AggregationRange::setupAggregationRangeDeserializer);
 
-	protected static void setupAggregationRangeDeserializer(DelegatingDeserializer<AggregationRange.Builder> op) {
+	protected static void setupAggregationRangeDeserializer(ObjectDeserializer<AggregationRange.Builder> op) {
 
 		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
 		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");

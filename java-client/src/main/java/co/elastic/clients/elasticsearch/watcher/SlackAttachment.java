@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackAttachment
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L80-L96">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SlackAttachment implements JsonpSerializable {
+public class SlackAttachment implements JsonpSerializable {
 	@Nullable
 	private final String authorIcon;
 
@@ -58,7 +63,6 @@ public final class SlackAttachment implements JsonpSerializable {
 	@Nullable
 	private final String fallback;
 
-	@Nullable
 	private final List<SlackAttachmentField> fields;
 
 	@Nullable
@@ -89,35 +93,35 @@ public final class SlackAttachment implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SlackAttachment(Builder builder) {
+	private SlackAttachment(Builder builder) {
 
 		this.authorIcon = builder.authorIcon;
 		this.authorLink = builder.authorLink;
-		this.authorName = Objects.requireNonNull(builder.authorName, "author_name");
+		this.authorName = ApiTypeHelper.requireNonNull(builder.authorName, this, "authorName");
 		this.color = builder.color;
 		this.fallback = builder.fallback;
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.footer = builder.footer;
 		this.footerIcon = builder.footerIcon;
 		this.imageUrl = builder.imageUrl;
 		this.pretext = builder.pretext;
 		this.text = builder.text;
 		this.thumbUrl = builder.thumbUrl;
-		this.title = Objects.requireNonNull(builder.title, "title");
+		this.title = ApiTypeHelper.requireNonNull(builder.title, this, "title");
 		this.titleLink = builder.titleLink;
 		this.ts = builder.ts;
 
 	}
 
-	public SlackAttachment(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SlackAttachment of(Function<Builder, ObjectBuilder<SlackAttachment>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code author_icon}
 	 */
 	@Nullable
-	public String authorIcon() {
+	public final String authorIcon() {
 		return this.authorIcon;
 	}
 
@@ -125,14 +129,14 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code author_link}
 	 */
 	@Nullable
-	public String authorLink() {
+	public final String authorLink() {
 		return this.authorLink;
 	}
 
 	/**
 	 * Required - API name: {@code author_name}
 	 */
-	public String authorName() {
+	public final String authorName() {
 		return this.authorName;
 	}
 
@@ -140,7 +144,7 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code color}
 	 */
 	@Nullable
-	public String color() {
+	public final String color() {
 		return this.color;
 	}
 
@@ -148,15 +152,14 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code fallback}
 	 */
 	@Nullable
-	public String fallback() {
+	public final String fallback() {
 		return this.fallback;
 	}
 
 	/**
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<SlackAttachmentField> fields() {
+	public final List<SlackAttachmentField> fields() {
 		return this.fields;
 	}
 
@@ -164,7 +167,7 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code footer}
 	 */
 	@Nullable
-	public String footer() {
+	public final String footer() {
 		return this.footer;
 	}
 
@@ -172,7 +175,7 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code footer_icon}
 	 */
 	@Nullable
-	public String footerIcon() {
+	public final String footerIcon() {
 		return this.footerIcon;
 	}
 
@@ -180,7 +183,7 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code image_url}
 	 */
 	@Nullable
-	public String imageUrl() {
+	public final String imageUrl() {
 		return this.imageUrl;
 	}
 
@@ -188,7 +191,7 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code pretext}
 	 */
 	@Nullable
-	public String pretext() {
+	public final String pretext() {
 		return this.pretext;
 	}
 
@@ -196,7 +199,7 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code text}
 	 */
 	@Nullable
-	public String text() {
+	public final String text() {
 		return this.text;
 	}
 
@@ -204,14 +207,14 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code thumb_url}
 	 */
 	@Nullable
-	public String thumbUrl() {
+	public final String thumbUrl() {
 		return this.thumbUrl;
 	}
 
 	/**
 	 * Required - API name: {@code title}
 	 */
-	public String title() {
+	public final String title() {
 		return this.title;
 	}
 
@@ -219,7 +222,7 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code title_link}
 	 */
 	@Nullable
-	public String titleLink() {
+	public final String titleLink() {
 		return this.titleLink;
 	}
 
@@ -227,7 +230,7 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code ts}
 	 */
 	@Nullable
-	public String ts() {
+	public final String ts() {
 		return this.ts;
 	}
 
@@ -243,35 +246,29 @@ public final class SlackAttachment implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.authorIcon != null) {
-
 			generator.writeKey("author_icon");
 			generator.write(this.authorIcon);
 
 		}
 		if (this.authorLink != null) {
-
 			generator.writeKey("author_link");
 			generator.write(this.authorLink);
 
 		}
-
 		generator.writeKey("author_name");
 		generator.write(this.authorName);
 
 		if (this.color != null) {
-
 			generator.writeKey("color");
 			generator.write(this.color);
 
 		}
 		if (this.fallback != null) {
-
 			generator.writeKey("fallback");
 			generator.write(this.fallback);
 
 		}
-		if (this.fields != null) {
-
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
 			generator.writeStartArray();
 			for (SlackAttachmentField item0 : this.fields) {
@@ -282,53 +279,44 @@ public final class SlackAttachment implements JsonpSerializable {
 
 		}
 		if (this.footer != null) {
-
 			generator.writeKey("footer");
 			generator.write(this.footer);
 
 		}
 		if (this.footerIcon != null) {
-
 			generator.writeKey("footer_icon");
 			generator.write(this.footerIcon);
 
 		}
 		if (this.imageUrl != null) {
-
 			generator.writeKey("image_url");
 			generator.write(this.imageUrl);
 
 		}
 		if (this.pretext != null) {
-
 			generator.writeKey("pretext");
 			generator.write(this.pretext);
 
 		}
 		if (this.text != null) {
-
 			generator.writeKey("text");
 			generator.write(this.text);
 
 		}
 		if (this.thumbUrl != null) {
-
 			generator.writeKey("thumb_url");
 			generator.write(this.thumbUrl);
 
 		}
-
 		generator.writeKey("title");
 		generator.write(this.title);
 
 		if (this.titleLink != null) {
-
 			generator.writeKey("title_link");
 			generator.write(this.titleLink);
 
 		}
 		if (this.ts != null) {
-
 			generator.writeKey("ts");
 			generator.write(this.ts);
 
@@ -341,7 +329,8 @@ public final class SlackAttachment implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackAttachment}.
 	 */
-	public static class Builder implements ObjectBuilder<SlackAttachment> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackAttachment> {
 		@Nullable
 		private String authorIcon;
 
@@ -388,7 +377,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code author_icon}
 		 */
-		public Builder authorIcon(@Nullable String value) {
+		public final Builder authorIcon(@Nullable String value) {
 			this.authorIcon = value;
 			return this;
 		}
@@ -396,7 +385,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code author_link}
 		 */
-		public Builder authorLink(@Nullable String value) {
+		public final Builder authorLink(@Nullable String value) {
 			this.authorLink = value;
 			return this;
 		}
@@ -404,7 +393,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code author_name}
 		 */
-		public Builder authorName(String value) {
+		public final Builder authorName(String value) {
 			this.authorName = value;
 			return this;
 		}
@@ -412,7 +401,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code color}
 		 */
-		public Builder color(@Nullable String value) {
+		public final Builder color(@Nullable String value) {
 			this.color = value;
 			return this;
 		}
@@ -420,56 +409,44 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code fallback}
 		 */
-		public Builder fallback(@Nullable String value) {
+		public final Builder fallback(@Nullable String value) {
 			this.fallback = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public Builder fields(@Nullable List<SlackAttachmentField> value) {
-			this.fields = value;
+		public final Builder fields(List<SlackAttachmentField> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public Builder fields(SlackAttachmentField... value) {
-			this.fields = Arrays.asList(value);
+		public final Builder fields(SlackAttachmentField value, SlackAttachmentField... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds a value to <code>fields</code> using a builder lambda.
 		 */
-		public Builder addFields(SlackAttachmentField value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #fields(List)} to a singleton list.
-		 */
-		public Builder fields(Function<SlackAttachmentField.Builder, ObjectBuilder<SlackAttachmentField>> fn) {
-			return this.fields(fn.apply(new SlackAttachmentField.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(Function<SlackAttachmentField.Builder, ObjectBuilder<SlackAttachmentField>> fn) {
-			return this.addFields(fn.apply(new SlackAttachmentField.Builder()).build());
+		public final Builder fields(Function<SlackAttachmentField.Builder, ObjectBuilder<SlackAttachmentField>> fn) {
+			return fields(fn.apply(new SlackAttachmentField.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code footer}
 		 */
-		public Builder footer(@Nullable String value) {
+		public final Builder footer(@Nullable String value) {
 			this.footer = value;
 			return this;
 		}
@@ -477,7 +454,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code footer_icon}
 		 */
-		public Builder footerIcon(@Nullable String value) {
+		public final Builder footerIcon(@Nullable String value) {
 			this.footerIcon = value;
 			return this;
 		}
@@ -485,7 +462,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code image_url}
 		 */
-		public Builder imageUrl(@Nullable String value) {
+		public final Builder imageUrl(@Nullable String value) {
 			this.imageUrl = value;
 			return this;
 		}
@@ -493,7 +470,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code pretext}
 		 */
-		public Builder pretext(@Nullable String value) {
+		public final Builder pretext(@Nullable String value) {
 			this.pretext = value;
 			return this;
 		}
@@ -501,7 +478,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code text}
 		 */
-		public Builder text(@Nullable String value) {
+		public final Builder text(@Nullable String value) {
 			this.text = value;
 			return this;
 		}
@@ -509,7 +486,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code thumb_url}
 		 */
-		public Builder thumbUrl(@Nullable String value) {
+		public final Builder thumbUrl(@Nullable String value) {
 			this.thumbUrl = value;
 			return this;
 		}
@@ -517,7 +494,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code title}
 		 */
-		public Builder title(String value) {
+		public final Builder title(String value) {
 			this.title = value;
 			return this;
 		}
@@ -525,7 +502,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code title_link}
 		 */
-		public Builder titleLink(@Nullable String value) {
+		public final Builder titleLink(@Nullable String value) {
 			this.titleLink = value;
 			return this;
 		}
@@ -533,7 +510,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code ts}
 		 */
-		public Builder ts(@Nullable String value) {
+		public final Builder ts(@Nullable String value) {
 			this.ts = value;
 			return this;
 		}
@@ -545,6 +522,7 @@ public final class SlackAttachment implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SlackAttachment build() {
+			_checkSingleUse();
 
 			return new SlackAttachment(this);
 		}
@@ -556,9 +534,9 @@ public final class SlackAttachment implements JsonpSerializable {
 	 * Json deserializer for {@link SlackAttachment}
 	 */
 	public static final JsonpDeserializer<SlackAttachment> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SlackAttachment::setupSlackAttachmentDeserializer, Builder::build);
+			SlackAttachment::setupSlackAttachmentDeserializer);
 
-	protected static void setupSlackAttachmentDeserializer(DelegatingDeserializer<SlackAttachment.Builder> op) {
+	protected static void setupSlackAttachmentDeserializer(ObjectDeserializer<SlackAttachment.Builder> op) {
 
 		op.add(Builder::authorIcon, JsonpDeserializer.stringDeserializer(), "author_icon");
 		op.add(Builder::authorLink, JsonpDeserializer.stringDeserializer(), "author_link");

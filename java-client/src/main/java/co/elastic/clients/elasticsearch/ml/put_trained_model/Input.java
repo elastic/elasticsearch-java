@@ -23,45 +23,50 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.Input
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L56-L58">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Input implements JsonpSerializable {
+public class Input implements JsonpSerializable {
 	private final List<String> fieldNames;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Input(Builder builder) {
+	private Input(Builder builder) {
 
-		this.fieldNames = ModelTypeHelper.unmodifiableNonNull(builder.fieldNames, "field_names");
+		this.fieldNames = ApiTypeHelper.unmodifiableRequired(builder.fieldNames, this, "fieldNames");
 
 	}
 
-	public Input(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Input of(Function<Builder, ObjectBuilder<Input>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field_names}
 	 */
-	public List<String> fieldNames() {
+	public final List<String> fieldNames() {
 		return this.fieldNames;
 	}
 
@@ -76,13 +81,16 @@ public final class Input implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("field_names");
-		generator.writeStartArray();
-		for (String item0 : this.fieldNames) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.fieldNames)) {
+			generator.writeKey("field_names");
+			generator.writeStartArray();
+			for (String item0 : this.fieldNames) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,33 +99,27 @@ public final class Input implements JsonpSerializable {
 	/**
 	 * Builder for {@link Input}.
 	 */
-	public static class Builder implements ObjectBuilder<Input> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Input> {
 		private List<String> fieldNames;
 
 		/**
 		 * Required - API name: {@code field_names}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fieldNames</code>.
 		 */
-		public Builder fieldNames(List<String> value) {
-			this.fieldNames = value;
+		public final Builder fieldNames(List<String> list) {
+			this.fieldNames = _listAddAll(this.fieldNames, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code field_names}
+		 * <p>
+		 * Adds one or more values to <code>fieldNames</code>.
 		 */
-		public Builder fieldNames(String... value) {
-			this.fieldNames = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fieldNames(List)}, creating the list if needed.
-		 */
-		public Builder addFieldNames(String value) {
-			if (this.fieldNames == null) {
-				this.fieldNames = new ArrayList<>();
-			}
-			this.fieldNames.add(value);
+		public final Builder fieldNames(String value, String... values) {
+			this.fieldNames = _listAdd(this.fieldNames, value, values);
 			return this;
 		}
 
@@ -128,6 +130,7 @@ public final class Input implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Input build() {
+			_checkSingleUse();
 
 			return new Input(this);
 		}
@@ -139,9 +142,9 @@ public final class Input implements JsonpSerializable {
 	 * Json deserializer for {@link Input}
 	 */
 	public static final JsonpDeserializer<Input> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Input::setupInputDeserializer, Builder::build);
+			Input::setupInputDeserializer);
 
-	protected static void setupInputDeserializer(DelegatingDeserializer<Input.Builder> op) {
+	protected static void setupInputDeserializer(ObjectDeserializer<Input.Builder> op) {
 
 		op.add(Builder::fieldNames, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"field_names");

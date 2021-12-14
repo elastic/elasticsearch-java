@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -36,34 +36,40 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.Flattened
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L308-L310">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Flattened extends Base {
+public class Flattened extends Base {
 	private final int fieldCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Flattened(Builder builder) {
+	private Flattened(Builder builder) {
 		super(builder);
 
-		this.fieldCount = Objects.requireNonNull(builder.fieldCount, "field_count");
+		this.fieldCount = ApiTypeHelper.requireNonNull(builder.fieldCount, this, "fieldCount");
 
 	}
 
-	public Flattened(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Flattened of(Function<Builder, ObjectBuilder<Flattened>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field_count}
 	 */
-	public int fieldCount() {
+	public final int fieldCount() {
 		return this.fieldCount;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field_count");
 		generator.write(this.fieldCount);
 
@@ -74,13 +80,14 @@ public final class Flattened extends Base {
 	/**
 	 * Builder for {@link Flattened}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Flattened> {
 		private Integer fieldCount;
 
 		/**
 		 * Required - API name: {@code field_count}
 		 */
-		public Builder fieldCount(int value) {
+		public final Builder fieldCount(int value) {
 			this.fieldCount = value;
 			return this;
 		}
@@ -97,6 +104,7 @@ public final class Flattened extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Flattened build() {
+			_checkSingleUse();
 
 			return new Flattened(this);
 		}
@@ -108,9 +116,9 @@ public final class Flattened extends Base {
 	 * Json deserializer for {@link Flattened}
 	 */
 	public static final JsonpDeserializer<Flattened> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Flattened::setupFlattenedDeserializer, Builder::build);
+			Flattened::setupFlattenedDeserializer);
 
-	protected static void setupFlattenedDeserializer(DelegatingDeserializer<Flattened.Builder> op) {
+	protected static void setupFlattenedDeserializer(ObjectDeserializer<Flattened.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::fieldCount, JsonpDeserializer.integerDeserializer(), "field_count");
 

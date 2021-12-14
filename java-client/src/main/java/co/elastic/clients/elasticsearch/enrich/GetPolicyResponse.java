@@ -23,44 +23,49 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: enrich.get_policy.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/get_policy/GetEnrichPolicyResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetPolicyResponse implements JsonpSerializable {
-	private final List<Summary> policies;
+public class GetPolicyResponse implements JsonpSerializable {
+	private final List<EnrichSummary> policies;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetPolicyResponse(Builder builder) {
+	private GetPolicyResponse(Builder builder) {
 
-		this.policies = ModelTypeHelper.unmodifiableNonNull(builder.policies, "policies");
+		this.policies = ApiTypeHelper.unmodifiableRequired(builder.policies, this, "policies");
 
 	}
 
-	public GetPolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetPolicyResponse of(Function<Builder, ObjectBuilder<GetPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code policies}
 	 */
-	public List<Summary> policies() {
+	public final List<EnrichSummary> policies() {
 		return this.policies;
 	}
 
@@ -75,13 +80,16 @@ public final class GetPolicyResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("policies");
-		generator.writeStartArray();
-		for (Summary item0 : this.policies) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.policies)) {
+			generator.writeKey("policies");
+			generator.writeStartArray();
+			for (EnrichSummary item0 : this.policies) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,48 +98,37 @@ public final class GetPolicyResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetPolicyResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetPolicyResponse> {
-		private List<Summary> policies;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPolicyResponse> {
+		private List<EnrichSummary> policies;
 
 		/**
 		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>policies</code>.
 		 */
-		public Builder policies(List<Summary> value) {
-			this.policies = value;
+		public final Builder policies(List<EnrichSummary> list) {
+			this.policies = _listAddAll(this.policies, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds one or more values to <code>policies</code>.
 		 */
-		public Builder policies(Summary... value) {
-			this.policies = Arrays.asList(value);
+		public final Builder policies(EnrichSummary value, EnrichSummary... values) {
+			this.policies = _listAdd(this.policies, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #policies(List)}, creating the list if needed.
+		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds a value to <code>policies</code> using a builder lambda.
 		 */
-		public Builder addPolicies(Summary value) {
-			if (this.policies == null) {
-				this.policies = new ArrayList<>();
-			}
-			this.policies.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #policies(List)} to a singleton list.
-		 */
-		public Builder policies(Function<Summary.Builder, ObjectBuilder<Summary>> fn) {
-			return this.policies(fn.apply(new Summary.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #policies(List)}, creating the list if needed.
-		 */
-		public Builder addPolicies(Function<Summary.Builder, ObjectBuilder<Summary>> fn) {
-			return this.addPolicies(fn.apply(new Summary.Builder()).build());
+		public final Builder policies(Function<EnrichSummary.Builder, ObjectBuilder<EnrichSummary>> fn) {
+			return policies(fn.apply(new EnrichSummary.Builder()).build());
 		}
 
 		/**
@@ -141,6 +138,7 @@ public final class GetPolicyResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetPolicyResponse build() {
+			_checkSingleUse();
 
 			return new GetPolicyResponse(this);
 		}
@@ -152,11 +150,11 @@ public final class GetPolicyResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetPolicyResponse}
 	 */
 	public static final JsonpDeserializer<GetPolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetPolicyResponse::setupGetPolicyResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetPolicyResponse::setupGetPolicyResponseDeserializer);
 
-	protected static void setupGetPolicyResponseDeserializer(DelegatingDeserializer<GetPolicyResponse.Builder> op) {
+	protected static void setupGetPolicyResponseDeserializer(ObjectDeserializer<GetPolicyResponse.Builder> op) {
 
-		op.add(Builder::policies, JsonpDeserializer.arrayDeserializer(Summary._DESERIALIZER), "policies");
+		op.add(Builder::policies, JsonpDeserializer.arrayDeserializer(EnrichSummary._DESERIALIZER), "policies");
 
 	}
 

@@ -23,13 +23,31 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L63-L70">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum MinimumInterval implements StringEnum {
-	Second("second"), Minute("minute"), Hour("hour"), Day("day"), Month("month"), Year("year");
+public enum MinimumInterval implements JsonEnum {
+	Second("second"),
+
+	Minute("minute"),
+
+	Hour("hour"),
+
+	Day("day"),
+
+	Month("month"),
+
+	Year("year"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +59,6 @@ public enum MinimumInterval implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<MinimumInterval> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<MinimumInterval> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			MinimumInterval.values());
 }

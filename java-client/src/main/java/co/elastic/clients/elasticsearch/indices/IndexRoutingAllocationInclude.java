@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices._types.IndexRoutingAllocationInclude
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexRouting.ts#L52-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexRoutingAllocationInclude implements JsonpSerializable {
+public class IndexRoutingAllocationInclude implements JsonpSerializable {
 	@Nullable
 	private final String tierPreference;
 
@@ -48,22 +55,22 @@ public final class IndexRoutingAllocationInclude implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexRoutingAllocationInclude(Builder builder) {
+	private IndexRoutingAllocationInclude(Builder builder) {
 
 		this.tierPreference = builder.tierPreference;
 		this.id = builder.id;
 
 	}
 
-	public IndexRoutingAllocationInclude(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexRoutingAllocationInclude of(Function<Builder, ObjectBuilder<IndexRoutingAllocationInclude>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code _tier_preference}
 	 */
 	@Nullable
-	public String tierPreference() {
+	public final String tierPreference() {
 		return this.tierPreference;
 	}
 
@@ -71,7 +78,7 @@ public final class IndexRoutingAllocationInclude implements JsonpSerializable {
 	 * API name: {@code _id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -87,13 +94,11 @@ public final class IndexRoutingAllocationInclude implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.tierPreference != null) {
-
 			generator.writeKey("_tier_preference");
 			generator.write(this.tierPreference);
 
 		}
 		if (this.id != null) {
-
 			generator.writeKey("_id");
 			generator.write(this.id);
 
@@ -106,7 +111,8 @@ public final class IndexRoutingAllocationInclude implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexRoutingAllocationInclude}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexRoutingAllocationInclude> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationInclude> {
 		@Nullable
 		private String tierPreference;
 
@@ -116,7 +122,7 @@ public final class IndexRoutingAllocationInclude implements JsonpSerializable {
 		/**
 		 * API name: {@code _tier_preference}
 		 */
-		public Builder tierPreference(@Nullable String value) {
+		public final Builder tierPreference(@Nullable String value) {
 			this.tierPreference = value;
 			return this;
 		}
@@ -124,7 +130,7 @@ public final class IndexRoutingAllocationInclude implements JsonpSerializable {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -136,6 +142,7 @@ public final class IndexRoutingAllocationInclude implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexRoutingAllocationInclude build() {
+			_checkSingleUse();
 
 			return new IndexRoutingAllocationInclude(this);
 		}
@@ -146,12 +153,11 @@ public final class IndexRoutingAllocationInclude implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link IndexRoutingAllocationInclude}
 	 */
-	public static final JsonpDeserializer<IndexRoutingAllocationInclude> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, IndexRoutingAllocationInclude::setupIndexRoutingAllocationIncludeDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<IndexRoutingAllocationInclude> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, IndexRoutingAllocationInclude::setupIndexRoutingAllocationIncludeDeserializer);
 
 	protected static void setupIndexRoutingAllocationIncludeDeserializer(
-			DelegatingDeserializer<IndexRoutingAllocationInclude.Builder> op) {
+			ObjectDeserializer<IndexRoutingAllocationInclude.Builder> op) {
 
 		op.add(Builder::tierPreference, JsonpDeserializer.stringDeserializer(), "_tier_preference");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");

@@ -23,61 +23,68 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.stats.ShardSequenceNumber
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L152-L156">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShardSequenceNumber implements JsonpSerializable {
+public class ShardSequenceNumber implements JsonpSerializable {
 	private final long globalCheckpoint;
 
 	private final long localCheckpoint;
 
-	private final int maxSeqNo;
+	private final long maxSeqNo;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardSequenceNumber(Builder builder) {
+	private ShardSequenceNumber(Builder builder) {
 
-		this.globalCheckpoint = Objects.requireNonNull(builder.globalCheckpoint, "global_checkpoint");
-		this.localCheckpoint = Objects.requireNonNull(builder.localCheckpoint, "local_checkpoint");
-		this.maxSeqNo = Objects.requireNonNull(builder.maxSeqNo, "max_seq_no");
+		this.globalCheckpoint = ApiTypeHelper.requireNonNull(builder.globalCheckpoint, this, "globalCheckpoint");
+		this.localCheckpoint = ApiTypeHelper.requireNonNull(builder.localCheckpoint, this, "localCheckpoint");
+		this.maxSeqNo = ApiTypeHelper.requireNonNull(builder.maxSeqNo, this, "maxSeqNo");
 
 	}
 
-	public ShardSequenceNumber(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardSequenceNumber of(Function<Builder, ObjectBuilder<ShardSequenceNumber>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code global_checkpoint}
 	 */
-	public long globalCheckpoint() {
+	public final long globalCheckpoint() {
 		return this.globalCheckpoint;
 	}
 
 	/**
 	 * Required - API name: {@code local_checkpoint}
 	 */
-	public long localCheckpoint() {
+	public final long localCheckpoint() {
 		return this.localCheckpoint;
 	}
 
 	/**
 	 * Required - API name: {@code max_seq_no}
 	 */
-	public int maxSeqNo() {
+	public final long maxSeqNo() {
 		return this.maxSeqNo;
 	}
 
@@ -108,17 +115,18 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardSequenceNumber}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardSequenceNumber> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardSequenceNumber> {
 		private Long globalCheckpoint;
 
 		private Long localCheckpoint;
 
-		private Integer maxSeqNo;
+		private Long maxSeqNo;
 
 		/**
 		 * Required - API name: {@code global_checkpoint}
 		 */
-		public Builder globalCheckpoint(long value) {
+		public final Builder globalCheckpoint(long value) {
 			this.globalCheckpoint = value;
 			return this;
 		}
@@ -126,7 +134,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code local_checkpoint}
 		 */
-		public Builder localCheckpoint(long value) {
+		public final Builder localCheckpoint(long value) {
 			this.localCheckpoint = value;
 			return this;
 		}
@@ -134,7 +142,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_seq_no}
 		 */
-		public Builder maxSeqNo(int value) {
+		public final Builder maxSeqNo(long value) {
 			this.maxSeqNo = value;
 			return this;
 		}
@@ -146,6 +154,7 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardSequenceNumber build() {
+			_checkSingleUse();
 
 			return new ShardSequenceNumber(this);
 		}
@@ -157,13 +166,13 @@ public final class ShardSequenceNumber implements JsonpSerializable {
 	 * Json deserializer for {@link ShardSequenceNumber}
 	 */
 	public static final JsonpDeserializer<ShardSequenceNumber> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardSequenceNumber::setupShardSequenceNumberDeserializer, Builder::build);
+			.lazy(Builder::new, ShardSequenceNumber::setupShardSequenceNumberDeserializer);
 
-	protected static void setupShardSequenceNumberDeserializer(DelegatingDeserializer<ShardSequenceNumber.Builder> op) {
+	protected static void setupShardSequenceNumberDeserializer(ObjectDeserializer<ShardSequenceNumber.Builder> op) {
 
 		op.add(Builder::globalCheckpoint, JsonpDeserializer.longDeserializer(), "global_checkpoint");
 		op.add(Builder::localCheckpoint, JsonpDeserializer.longDeserializer(), "local_checkpoint");
-		op.add(Builder::maxSeqNo, JsonpDeserializer.integerDeserializer(), "max_seq_no");
+		op.add(Builder::maxSeqNo, JsonpDeserializer.longDeserializer(), "max_seq_no");
 
 	}
 

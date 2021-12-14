@@ -23,45 +23,50 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.elasticsearch.core.mtermvectors.TermVectorsResult;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.mtermvectors.MultiTermVectorsResult;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.mtermvectors.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mtermvectors/MultiTermVectorsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MtermvectorsResponse implements JsonpSerializable {
-	private final List<TermVectorsResult> docs;
+public class MtermvectorsResponse implements JsonpSerializable {
+	private final List<MultiTermVectorsResult> docs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MtermvectorsResponse(Builder builder) {
+	private MtermvectorsResponse(Builder builder) {
 
-		this.docs = ModelTypeHelper.unmodifiableNonNull(builder.docs, "docs");
+		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 
 	}
 
-	public MtermvectorsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MtermvectorsResponse of(Function<Builder, ObjectBuilder<MtermvectorsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code docs}
 	 */
-	public List<TermVectorsResult> docs() {
+	public final List<MultiTermVectorsResult> docs() {
 		return this.docs;
 	}
 
@@ -76,13 +81,16 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("docs");
-		generator.writeStartArray();
-		for (TermVectorsResult item0 : this.docs) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.docs)) {
+			generator.writeKey("docs");
+			generator.writeStartArray();
+			for (MultiTermVectorsResult item0 : this.docs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,48 +99,37 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MtermvectorsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<MtermvectorsResponse> {
-		private List<TermVectorsResult> docs;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MtermvectorsResponse> {
+		private List<MultiTermVectorsResult> docs;
 
 		/**
 		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 */
-		public Builder docs(List<TermVectorsResult> value) {
-			this.docs = value;
+		public final Builder docs(List<MultiTermVectorsResult> list) {
+			this.docs = _listAddAll(this.docs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds one or more values to <code>docs</code>.
 		 */
-		public Builder docs(TermVectorsResult... value) {
-			this.docs = Arrays.asList(value);
+		public final Builder docs(MultiTermVectorsResult value, MultiTermVectorsResult... values) {
+			this.docs = _listAdd(this.docs, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
+		 * Required - API name: {@code docs}
+		 * <p>
+		 * Adds a value to <code>docs</code> using a builder lambda.
 		 */
-		public Builder addDocs(TermVectorsResult value) {
-			if (this.docs == null) {
-				this.docs = new ArrayList<>();
-			}
-			this.docs.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #docs(List)} to a singleton list.
-		 */
-		public Builder docs(Function<TermVectorsResult.Builder, ObjectBuilder<TermVectorsResult>> fn) {
-			return this.docs(fn.apply(new TermVectorsResult.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #docs(List)}, creating the list if needed.
-		 */
-		public Builder addDocs(Function<TermVectorsResult.Builder, ObjectBuilder<TermVectorsResult>> fn) {
-			return this.addDocs(fn.apply(new TermVectorsResult.Builder()).build());
+		public final Builder docs(Function<MultiTermVectorsResult.Builder, ObjectBuilder<MultiTermVectorsResult>> fn) {
+			return docs(fn.apply(new MultiTermVectorsResult.Builder()).build());
 		}
 
 		/**
@@ -142,6 +139,7 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MtermvectorsResponse build() {
+			_checkSingleUse();
 
 			return new MtermvectorsResponse(this);
 		}
@@ -153,12 +151,11 @@ public final class MtermvectorsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link MtermvectorsResponse}
 	 */
 	public static final JsonpDeserializer<MtermvectorsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MtermvectorsResponse::setupMtermvectorsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, MtermvectorsResponse::setupMtermvectorsResponseDeserializer);
 
-	protected static void setupMtermvectorsResponseDeserializer(
-			DelegatingDeserializer<MtermvectorsResponse.Builder> op) {
+	protected static void setupMtermvectorsResponseDeserializer(ObjectDeserializer<MtermvectorsResponse.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(TermVectorsResult._DESERIALIZER), "docs");
+		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(MultiTermVectorsResult._DESERIALIZER), "docs");
 
 	}
 

@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -34,10 +40,20 @@ import javax.annotation.Nullable;
 /**
  * Client for the nodes namespace.
  */
-public class ElasticsearchNodesAsyncClient extends ApiClient {
+public class ElasticsearchNodesAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchNodesAsyncClient> {
 
-	public ElasticsearchNodesAsyncClient(Transport transport) {
-		super(transport);
+	public ElasticsearchNodesAsyncClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchNodesAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchNodesAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchNodesAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: nodes.hot_threads
@@ -50,24 +66,28 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HotThreadsResponse> hotThreads(HotThreadsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, HotThreadsRequest.ENDPOINT);
+	public CompletableFuture<HotThreadsResponse> hotThreads(HotThreadsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse> endpoint = (JsonEndpoint<HotThreadsRequest, HotThreadsResponse, ErrorResponse>) HotThreadsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about hot threads on each node in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link HotThreadsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-hot-threads.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<HotThreadsResponse> hotThreads(
-			Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn) throws IOException {
+			Function<HotThreadsRequest.Builder, ObjectBuilder<HotThreadsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return hotThreads(fn.apply(new HotThreadsRequest.Builder()).build());
 	}
 
@@ -79,8 +99,9 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<HotThreadsResponse> hotThreads() throws IOException {
-		return this.transport.performRequestAsync(new HotThreadsRequest.Builder().build(), HotThreadsRequest.ENDPOINT);
+	public CompletableFuture<HotThreadsResponse> hotThreads() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new HotThreadsRequest.Builder().build(), HotThreadsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: nodes.info
@@ -93,24 +114,28 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<NodesInfoResponse> info(NodesInfoRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, NodesInfoRequest.ENDPOINT);
+	public CompletableFuture<NodesInfoResponse> info(NodesInfoRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse>) NodesInfoRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns information about nodes in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link NodesInfoRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<NodesInfoResponse> info(
-			Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn) throws IOException {
+			Function<NodesInfoRequest.Builder, ObjectBuilder<NodesInfoRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return info(fn.apply(new NodesInfoRequest.Builder()).build());
 	}
 
@@ -122,8 +147,9 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<NodesInfoResponse> info() throws IOException {
-		return this.transport.performRequestAsync(new NodesInfoRequest.Builder().build(), NodesInfoRequest.ENDPOINT);
+	public CompletableFuture<NodesInfoResponse> info() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new NodesInfoRequest.Builder().build(), NodesInfoRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: nodes.reload_secure_settings
@@ -137,17 +163,19 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(ReloadSecureSettingsRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, ReloadSecureSettingsRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<ReloadSecureSettingsRequest, ReloadSecureSettingsResponse, ErrorResponse>) ReloadSecureSettingsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Reloads secure settings.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ReloadSecureSettingsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/secure-settings.html#reloadable-secure-settings">Documentation
 	 *      on elastic.co</a>
@@ -155,7 +183,7 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 
 	public final CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings(
 			Function<ReloadSecureSettingsRequest.Builder, ObjectBuilder<ReloadSecureSettingsRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return reloadSecureSettings(fn.apply(new ReloadSecureSettingsRequest.Builder()).build());
 	}
 
@@ -167,9 +195,10 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings() throws IOException {
+	public CompletableFuture<ReloadSecureSettingsResponse> reloadSecureSettings()
+			throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new ReloadSecureSettingsRequest.Builder().build(),
-				ReloadSecureSettingsRequest.ENDPOINT);
+				ReloadSecureSettingsRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: nodes.stats
@@ -182,24 +211,28 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<NodesStatsResponse> stats(NodesStatsRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, NodesStatsRequest.ENDPOINT);
+	public CompletableFuture<NodesStatsResponse> stats(NodesStatsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesStatsRequest, NodesStatsResponse, ErrorResponse>) NodesStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns statistical information about nodes in the cluster.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link NodesStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<NodesStatsResponse> stats(
-			Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn) throws IOException {
+			Function<NodesStatsRequest.Builder, ObjectBuilder<NodesStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return stats(fn.apply(new NodesStatsRequest.Builder()).build());
 	}
 
@@ -211,8 +244,9 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<NodesStatsResponse> stats() throws IOException {
-		return this.transport.performRequestAsync(new NodesStatsRequest.Builder().build(), NodesStatsRequest.ENDPOINT);
+	public CompletableFuture<NodesStatsResponse> stats() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new NodesStatsRequest.Builder().build(), NodesStatsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: nodes.usage
@@ -225,25 +259,29 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UsageResponse> usage(UsageRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, UsageRequest.ENDPOINT);
+	public CompletableFuture<NodesUsageResponse> usage(NodesUsageRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<NodesUsageRequest, NodesUsageResponse, ErrorResponse>) NodesUsageRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Returns low-level information about REST actions usage on nodes.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link NodesUsageRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cluster-nodes-usage.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<UsageResponse> usage(Function<UsageRequest.Builder, ObjectBuilder<UsageRequest>> fn)
-			throws IOException {
-		return usage(fn.apply(new UsageRequest.Builder()).build());
+	public final CompletableFuture<NodesUsageResponse> usage(
+			Function<NodesUsageRequest.Builder, ObjectBuilder<NodesUsageRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return usage(fn.apply(new NodesUsageRequest.Builder()).build());
 	}
 
 	/**
@@ -254,8 +292,9 @@ public class ElasticsearchNodesAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UsageResponse> usage() throws IOException {
-		return this.transport.performRequestAsync(new UsageRequest.Builder().build(), UsageRequest.ENDPOINT);
+	public CompletableFuture<NodesUsageResponse> usage() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new NodesUsageRequest.Builder().build(), NodesUsageRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

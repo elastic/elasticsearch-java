@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,13 +30,20 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L26-L32">API
+ *      specification</a>
+ */
 
 public abstract class RankEvalMetricBase implements JsonpSerializable {
 	@Nullable
@@ -45,7 +51,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricBase(AbstractBuilder<?> builder) {
+	protected RankEvalMetricBase(AbstractBuilder<?> builder) {
 
 		this.k = builder.k;
 
@@ -58,7 +64,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 	 * API name: {@code k}
 	 */
 	@Nullable
-	public Integer k() {
+	public final Integer k() {
 		return this.k;
 	}
 
@@ -74,7 +80,6 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.k != null) {
-
 			generator.writeKey("k");
 			generator.write(this.k);
 
@@ -82,7 +87,9 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private Integer k;
 
@@ -92,7 +99,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code k}
 		 */
-		public BuilderT k(@Nullable Integer value) {
+		public final BuilderT k(@Nullable Integer value) {
 			this.k = value;
 			return self();
 		}
@@ -103,7 +110,7 @@ public abstract class RankEvalMetricBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRankEvalMetricBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::k, JsonpDeserializer.integerDeserializer(), "k");
 

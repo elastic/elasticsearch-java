@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,22 +43,30 @@ import javax.annotation.Nullable;
 
 // typedef: ml.put_calendar_job.Request
 
-public final class PutCalendarJobRequest extends RequestBase {
+/**
+ * Adds an anomaly detection job to a calendar.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_calendar_job/MlPutCalendarJobRequest.ts#L23-L37">API
+ *      specification</a>
+ */
+
+public class PutCalendarJobRequest extends RequestBase {
 	private final String calendarId;
 
 	private final String jobId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutCalendarJobRequest(Builder builder) {
+	private PutCalendarJobRequest(Builder builder) {
 
-		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 
 	}
 
-	public PutCalendarJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutCalendarJobRequest of(Function<Builder, ObjectBuilder<PutCalendarJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +74,7 @@ public final class PutCalendarJobRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
-	public String calendarId() {
+	public final String calendarId() {
 		return this.calendarId;
 	}
 
@@ -74,7 +84,7 @@ public final class PutCalendarJobRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -83,7 +93,8 @@ public final class PutCalendarJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link PutCalendarJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutCalendarJobRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutCalendarJobRequest> {
 		private String calendarId;
 
 		private String jobId;
@@ -93,7 +104,7 @@ public final class PutCalendarJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(String value) {
+		public final Builder calendarId(String value) {
 			this.calendarId = value;
 			return this;
 		}
@@ -104,7 +115,7 @@ public final class PutCalendarJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -116,6 +127,7 @@ public final class PutCalendarJobRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutCalendarJobRequest build() {
+			_checkSingleUse();
 
 			return new PutCalendarJobRequest(this);
 		}
@@ -126,7 +138,9 @@ public final class PutCalendarJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.put_calendar_job}".
 	 */
-	public static final Endpoint<PutCalendarJobRequest, PutCalendarJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutCalendarJobRequest, PutCalendarJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_calendar_job",
+
 			// Request method
 			request -> {
 				return "PUT";

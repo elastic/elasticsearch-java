@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.EqlFeaturesPipes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L115-L118">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class EqlFeaturesPipes implements JsonpSerializable {
+public class EqlFeaturesPipes implements JsonpSerializable {
 	private final Number pipeTail;
 
 	private final Number pipeHead;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EqlFeaturesPipes(Builder builder) {
+	private EqlFeaturesPipes(Builder builder) {
 
-		this.pipeTail = Objects.requireNonNull(builder.pipeTail, "pipe_tail");
-		this.pipeHead = Objects.requireNonNull(builder.pipeHead, "pipe_head");
+		this.pipeTail = ApiTypeHelper.requireNonNull(builder.pipeTail, this, "pipeTail");
+		this.pipeHead = ApiTypeHelper.requireNonNull(builder.pipeHead, this, "pipeHead");
 
 	}
 
-	public EqlFeaturesPipes(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EqlFeaturesPipes of(Function<Builder, ObjectBuilder<EqlFeaturesPipes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code pipe_tail}
 	 */
-	public Number pipeTail() {
+	public final Number pipeTail() {
 		return this.pipeTail;
 	}
 
 	/**
 	 * Required - API name: {@code pipe_head}
 	 */
-	public Number pipeHead() {
+	public final Number pipeHead() {
 		return this.pipeHead;
 	}
 
@@ -95,7 +103,8 @@ public final class EqlFeaturesPipes implements JsonpSerializable {
 	/**
 	 * Builder for {@link EqlFeaturesPipes}.
 	 */
-	public static class Builder implements ObjectBuilder<EqlFeaturesPipes> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlFeaturesPipes> {
 		private Number pipeTail;
 
 		private Number pipeHead;
@@ -103,7 +112,7 @@ public final class EqlFeaturesPipes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipe_tail}
 		 */
-		public Builder pipeTail(Number value) {
+		public final Builder pipeTail(Number value) {
 			this.pipeTail = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class EqlFeaturesPipes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code pipe_head}
 		 */
-		public Builder pipeHead(Number value) {
+		public final Builder pipeHead(Number value) {
 			this.pipeHead = value;
 			return this;
 		}
@@ -123,6 +132,7 @@ public final class EqlFeaturesPipes implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public EqlFeaturesPipes build() {
+			_checkSingleUse();
 
 			return new EqlFeaturesPipes(this);
 		}
@@ -134,9 +144,9 @@ public final class EqlFeaturesPipes implements JsonpSerializable {
 	 * Json deserializer for {@link EqlFeaturesPipes}
 	 */
 	public static final JsonpDeserializer<EqlFeaturesPipes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			EqlFeaturesPipes::setupEqlFeaturesPipesDeserializer, Builder::build);
+			EqlFeaturesPipes::setupEqlFeaturesPipesDeserializer);
 
-	protected static void setupEqlFeaturesPipesDeserializer(DelegatingDeserializer<EqlFeaturesPipes.Builder> op) {
+	protected static void setupEqlFeaturesPipesDeserializer(ObjectDeserializer<EqlFeaturesPipes.Builder> op) {
 
 		op.add(Builder::pipeTail, JsonpDeserializer.numberDeserializer(), "pipe_tail");
 		op.add(Builder::pipeHead, JsonpDeserializer.numberDeserializer(), "pipe_head");

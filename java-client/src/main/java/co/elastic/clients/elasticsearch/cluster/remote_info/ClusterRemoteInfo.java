@@ -23,13 +23,16 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -38,47 +41,81 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.remote_info.ClusterRemoteInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L29-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpSerializable {
+public class ClusterRemoteInfo
+		implements
+			TaggedUnion<ClusterRemoteInfo.Kind, ClusterRemoteInfoVariant>,
+			JsonpSerializable {
 
-	public static final String PROXY = "proxy";
-	public static final String SNIFF = "sniff";
+	/**
+	 * {@link ClusterRemoteInfo} variant kinds.
+	 */
+	/**
+	 * {@link ClusterRemoteInfo} variant kinds.
+	 */
 
-	// Tagged union implementation
+	public enum Kind implements JsonEnum {
+		Proxy("proxy"),
 
-	private final String _type;
-	private final JsonpSerializable _value;
+		Sniff("sniff"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final ClusterRemoteInfoVariant _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public JsonpSerializable _get() {
+	public final ClusterRemoteInfoVariant _get() {
 		return _value;
 	}
 
 	public ClusterRemoteInfo(ClusterRemoteInfoVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._clusterRemoteInfoKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends ClusterRemoteInfoVariant> ClusterRemoteInfo(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private ClusterRemoteInfo(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public ClusterRemoteInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterRemoteInfo of(Function<Builder, ObjectBuilder<ClusterRemoteInfo>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code proxy}?
+	 */
+	public boolean isProxy() {
+		return _kind == Kind.Proxy;
 	}
 
 	/**
@@ -88,7 +125,14 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 	 *             if the current variant is not of the {@code proxy} kind.
 	 */
 	public ClusterRemoteProxyInfo proxy() {
-		return TaggedUnionUtils.get(this, PROXY);
+		return TaggedUnionUtils.get(this, Kind.Proxy);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code sniff}?
+	 */
+	public boolean isSniff() {
+		return _kind == Kind.Sniff;
 	}
 
 	/**
@@ -98,55 +142,58 @@ public class ClusterRemoteInfo implements TaggedUnion<JsonpSerializable>, JsonpS
 	 *             if the current variant is not of the {@code sniff} kind.
 	 */
 	public ClusterRemoteSniffInfo sniff() {
-		return TaggedUnionUtils.get(this, SNIFF);
+		return TaggedUnionUtils.get(this, Kind.Sniff);
 	}
 
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
-		_value.serialize(generator, mapper);
+		mapper.serialize(_value, generator);
 
 	}
 
-	public static class Builder implements ObjectBuilder<ClusterRemoteInfo> {
-		private String _type;
-		private JsonpSerializable _value;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterRemoteInfo> {
+		private Kind _kind;
+		private ClusterRemoteInfoVariant _value;
 
-		public Builder proxy(ClusterRemoteProxyInfo v) {
-			this._type = PROXY;
+		public ObjectBuilder<ClusterRemoteInfo> proxy(ClusterRemoteProxyInfo v) {
+			this._kind = Kind.Proxy;
 			this._value = v;
 			return this;
 		}
 
-		public Builder proxy(Function<ClusterRemoteProxyInfo.Builder, ObjectBuilder<ClusterRemoteProxyInfo>> f) {
-			return this.proxy(f.apply(new ClusterRemoteProxyInfo.Builder()).build());
+		public ObjectBuilder<ClusterRemoteInfo> proxy(
+				Function<ClusterRemoteProxyInfo.Builder, ObjectBuilder<ClusterRemoteProxyInfo>> fn) {
+			return this.proxy(fn.apply(new ClusterRemoteProxyInfo.Builder()).build());
 		}
 
-		public Builder sniff(ClusterRemoteSniffInfo v) {
-			this._type = SNIFF;
+		public ObjectBuilder<ClusterRemoteInfo> sniff(ClusterRemoteSniffInfo v) {
+			this._kind = Kind.Sniff;
 			this._value = v;
 			return this;
 		}
 
-		public Builder sniff(Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> f) {
-			return this.sniff(f.apply(new ClusterRemoteSniffInfo.Builder()).build());
+		public ObjectBuilder<ClusterRemoteInfo> sniff(
+				Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> fn) {
+			return this.sniff(fn.apply(new ClusterRemoteSniffInfo.Builder()).build());
 		}
 
 		public ClusterRemoteInfo build() {
+			_checkSingleUse();
 			return new ClusterRemoteInfo(this);
 		}
 
 	}
 
-	protected static void setupClusterRemoteInfoDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupClusterRemoteInfoDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::proxy, ClusterRemoteProxyInfo._DESERIALIZER, "proxy");
 		op.add(Builder::sniff, ClusterRemoteSniffInfo._DESERIALIZER, "sniff");
 
-		op.setTypeProperty("mode");
+		op.setTypeProperty("mode", null);
 
 	}
 
-	public static final JsonpDeserializer<ClusterRemoteInfo> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
-			ClusterRemoteInfo::setupClusterRemoteInfoDeserializer, Builder::build);
+	public static final JsonpDeserializer<ClusterRemoteInfo> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ClusterRemoteInfo::setupClusterRemoteInfoDeserializer, Builder::build);
 }

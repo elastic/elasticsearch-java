@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cat.snapshots;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.snapshots.SnapshotsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/snapshots/types.ts#L22-L88">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SnapshotsRecord implements JsonpSerializable {
+public class SnapshotsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -62,7 +70,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	private final String endTime;
 
 	@Nullable
-	private final String duration;
+	private final Time duration;
 
 	@Nullable
 	private final String indices;
@@ -81,7 +89,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SnapshotsRecord(Builder builder) {
+	private SnapshotsRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.repository = builder.repository;
@@ -99,8 +107,8 @@ public final class SnapshotsRecord implements JsonpSerializable {
 
 	}
 
-	public SnapshotsRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SnapshotsRecord of(Function<Builder, ObjectBuilder<SnapshotsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -109,7 +117,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -119,7 +127,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code repository}
 	 */
 	@Nullable
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
@@ -129,7 +137,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code status}
 	 */
 	@Nullable
-	public String status() {
+	public final String status() {
 		return this.status;
 	}
 
@@ -139,7 +147,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code start_epoch}
 	 */
 	@Nullable
-	public String startEpoch() {
+	public final String startEpoch() {
 		return this.startEpoch;
 	}
 
@@ -149,7 +157,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code start_time}
 	 */
 	@Nullable
-	public String startTime() {
+	public final String startTime() {
 		return this.startTime;
 	}
 
@@ -159,7 +167,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code end_epoch}
 	 */
 	@Nullable
-	public String endEpoch() {
+	public final String endEpoch() {
 		return this.endEpoch;
 	}
 
@@ -169,7 +177,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code end_time}
 	 */
 	@Nullable
-	public String endTime() {
+	public final String endTime() {
 		return this.endTime;
 	}
 
@@ -179,7 +187,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code duration}
 	 */
 	@Nullable
-	public String duration() {
+	public final Time duration() {
 		return this.duration;
 	}
 
@@ -189,7 +197,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code indices}
 	 */
 	@Nullable
-	public String indices() {
+	public final String indices() {
 		return this.indices;
 	}
 
@@ -199,7 +207,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code successful_shards}
 	 */
 	@Nullable
-	public String successfulShards() {
+	public final String successfulShards() {
 		return this.successfulShards;
 	}
 
@@ -209,7 +217,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code failed_shards}
 	 */
 	@Nullable
-	public String failedShards() {
+	public final String failedShards() {
 		return this.failedShards;
 	}
 
@@ -219,7 +227,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code total_shards}
 	 */
 	@Nullable
-	public String totalShards() {
+	public final String totalShards() {
 		return this.totalShards;
 	}
 
@@ -229,7 +237,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code reason}
 	 */
 	@Nullable
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
@@ -245,79 +253,66 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.repository != null) {
-
 			generator.writeKey("repository");
 			generator.write(this.repository);
 
 		}
 		if (this.status != null) {
-
 			generator.writeKey("status");
 			generator.write(this.status);
 
 		}
 		if (this.startEpoch != null) {
-
 			generator.writeKey("start_epoch");
 			generator.write(this.startEpoch);
 
 		}
 		if (this.startTime != null) {
-
 			generator.writeKey("start_time");
 			generator.write(this.startTime);
 
 		}
 		if (this.endEpoch != null) {
-
 			generator.writeKey("end_epoch");
 			generator.write(this.endEpoch);
 
 		}
 		if (this.endTime != null) {
-
 			generator.writeKey("end_time");
 			generator.write(this.endTime);
 
 		}
 		if (this.duration != null) {
-
 			generator.writeKey("duration");
-			generator.write(this.duration);
+			this.duration.serialize(generator, mapper);
 
 		}
 		if (this.indices != null) {
-
 			generator.writeKey("indices");
 			generator.write(this.indices);
 
 		}
 		if (this.successfulShards != null) {
-
 			generator.writeKey("successful_shards");
 			generator.write(this.successfulShards);
 
 		}
 		if (this.failedShards != null) {
-
 			generator.writeKey("failed_shards");
 			generator.write(this.failedShards);
 
 		}
 		if (this.totalShards != null) {
-
 			generator.writeKey("total_shards");
 			generator.write(this.totalShards);
 
 		}
 		if (this.reason != null) {
-
 			generator.writeKey("reason");
 			generator.write(this.reason);
 
@@ -330,7 +325,8 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link SnapshotsRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<SnapshotsRecord> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsRecord> {
 		@Nullable
 		private String id;
 
@@ -353,7 +349,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		private String endTime;
 
 		@Nullable
-		private String duration;
+		private Time duration;
 
 		@Nullable
 		private String indices;
@@ -375,7 +371,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -385,7 +381,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder repository(@Nullable String value) {
+		public final Builder repository(@Nullable String value) {
 			this.repository = value;
 			return this;
 		}
@@ -395,7 +391,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code status}
 		 */
-		public Builder status(@Nullable String value) {
+		public final Builder status(@Nullable String value) {
 			this.status = value;
 			return this;
 		}
@@ -405,7 +401,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_epoch}
 		 */
-		public Builder startEpoch(@Nullable String value) {
+		public final Builder startEpoch(@Nullable String value) {
 			this.startEpoch = value;
 			return this;
 		}
@@ -415,7 +411,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time}
 		 */
-		public Builder startTime(@Nullable String value) {
+		public final Builder startTime(@Nullable String value) {
 			this.startTime = value;
 			return this;
 		}
@@ -425,7 +421,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code end_epoch}
 		 */
-		public Builder endEpoch(@Nullable String value) {
+		public final Builder endEpoch(@Nullable String value) {
 			this.endEpoch = value;
 			return this;
 		}
@@ -435,7 +431,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code end_time}
 		 */
-		public Builder endTime(@Nullable String value) {
+		public final Builder endTime(@Nullable String value) {
 			this.endTime = value;
 			return this;
 		}
@@ -445,9 +441,18 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code duration}
 		 */
-		public Builder duration(@Nullable String value) {
+		public final Builder duration(@Nullable Time value) {
 			this.duration = value;
 			return this;
+		}
+
+		/**
+		 * duration
+		 * <p>
+		 * API name: {@code duration}
+		 */
+		public final Builder duration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.duration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -455,7 +460,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indices}
 		 */
-		public Builder indices(@Nullable String value) {
+		public final Builder indices(@Nullable String value) {
 			this.indices = value;
 			return this;
 		}
@@ -465,7 +470,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code successful_shards}
 		 */
-		public Builder successfulShards(@Nullable String value) {
+		public final Builder successfulShards(@Nullable String value) {
 			this.successfulShards = value;
 			return this;
 		}
@@ -475,7 +480,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code failed_shards}
 		 */
-		public Builder failedShards(@Nullable String value) {
+		public final Builder failedShards(@Nullable String value) {
 			this.failedShards = value;
 			return this;
 		}
@@ -485,7 +490,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total_shards}
 		 */
-		public Builder totalShards(@Nullable String value) {
+		public final Builder totalShards(@Nullable String value) {
 			this.totalShards = value;
 			return this;
 		}
@@ -495,7 +500,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code reason}
 		 */
-		public Builder reason(@Nullable String value) {
+		public final Builder reason(@Nullable String value) {
 			this.reason = value;
 			return this;
 		}
@@ -507,6 +512,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SnapshotsRecord build() {
+			_checkSingleUse();
 
 			return new SnapshotsRecord(this);
 		}
@@ -518,9 +524,9 @@ public final class SnapshotsRecord implements JsonpSerializable {
 	 * Json deserializer for {@link SnapshotsRecord}
 	 */
 	public static final JsonpDeserializer<SnapshotsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SnapshotsRecord::setupSnapshotsRecordDeserializer, Builder::build);
+			SnapshotsRecord::setupSnapshotsRecordDeserializer);
 
-	protected static void setupSnapshotsRecordDeserializer(DelegatingDeserializer<SnapshotsRecord.Builder> op) {
+	protected static void setupSnapshotsRecordDeserializer(ObjectDeserializer<SnapshotsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id", "snapshot");
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository", "re", "repo");
@@ -529,7 +535,7 @@ public final class SnapshotsRecord implements JsonpSerializable {
 		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time", "sti", "startTime");
 		op.add(Builder::endEpoch, JsonpDeserializer.stringDeserializer(), "end_epoch", "ete", "endEpoch");
 		op.add(Builder::endTime, JsonpDeserializer.stringDeserializer(), "end_time", "eti", "endTime");
-		op.add(Builder::duration, JsonpDeserializer.stringDeserializer(), "duration", "dur");
+		op.add(Builder::duration, Time._DESERIALIZER, "duration", "dur");
 		op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices", "i");
 		op.add(Builder::successfulShards, JsonpDeserializer.stringDeserializer(), "successful_shards", "ss");
 		op.add(Builder::failedShards, JsonpDeserializer.stringDeserializer(), "failed_shards", "fs");

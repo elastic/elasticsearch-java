@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.migration;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,20 +42,30 @@ import javax.annotation.Nullable;
 
 // typedef: migration.deprecations.Request
 
-public final class DeprecationsRequest extends RequestBase {
+/**
+ * Retrieves information about different cluster, node, and index level settings
+ * that use deprecated features that will be removed or changed in the next
+ * major version.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/migration/deprecations/DeprecationInfoRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
+public class DeprecationsRequest extends RequestBase {
 	@Nullable
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeprecationsRequest(Builder builder) {
+	private DeprecationsRequest(Builder builder) {
 
 		this.index = builder.index;
 
 	}
 
-	public DeprecationsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeprecationsRequest of(Function<Builder, ObjectBuilder<DeprecationsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -64,7 +75,7 @@ public final class DeprecationsRequest extends RequestBase {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -73,7 +84,8 @@ public final class DeprecationsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeprecationsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeprecationsRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeprecationsRequest> {
 		@Nullable
 		private String index;
 
@@ -83,7 +95,7 @@ public final class DeprecationsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -95,6 +107,7 @@ public final class DeprecationsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeprecationsRequest build() {
+			_checkSingleUse();
 
 			return new DeprecationsRequest(this);
 		}
@@ -105,7 +118,9 @@ public final class DeprecationsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code migration.deprecations}".
 	 */
-	public static final Endpoint<DeprecationsRequest, DeprecationsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/migration.deprecations",
+
 			// Request method
 			request -> {
 				return "GET";

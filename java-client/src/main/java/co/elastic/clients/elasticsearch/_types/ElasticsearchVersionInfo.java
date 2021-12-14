@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ElasticsearchVersionInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Base.ts#L58-L68">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ElasticsearchVersionInfo implements JsonpSerializable {
+public class ElasticsearchVersionInfo implements JsonpSerializable {
 	private final String buildDate;
 
 	private final String buildFlavor;
@@ -61,86 +69,86 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ElasticsearchVersionInfo(Builder builder) {
+	private ElasticsearchVersionInfo(Builder builder) {
 
-		this.buildDate = Objects.requireNonNull(builder.buildDate, "build_date");
-		this.buildFlavor = Objects.requireNonNull(builder.buildFlavor, "build_flavor");
-		this.buildHash = Objects.requireNonNull(builder.buildHash, "build_hash");
-		this.buildSnapshot = Objects.requireNonNull(builder.buildSnapshot, "build_snapshot");
-		this.buildType = Objects.requireNonNull(builder.buildType, "build_type");
-		this.luceneVersion = Objects.requireNonNull(builder.luceneVersion, "lucene_version");
-		this.minimumIndexCompatibilityVersion = Objects.requireNonNull(builder.minimumIndexCompatibilityVersion,
-				"minimum_index_compatibility_version");
-		this.minimumWireCompatibilityVersion = Objects.requireNonNull(builder.minimumWireCompatibilityVersion,
-				"minimum_wire_compatibility_version");
-		this.number = Objects.requireNonNull(builder.number, "number");
+		this.buildDate = ApiTypeHelper.requireNonNull(builder.buildDate, this, "buildDate");
+		this.buildFlavor = ApiTypeHelper.requireNonNull(builder.buildFlavor, this, "buildFlavor");
+		this.buildHash = ApiTypeHelper.requireNonNull(builder.buildHash, this, "buildHash");
+		this.buildSnapshot = ApiTypeHelper.requireNonNull(builder.buildSnapshot, this, "buildSnapshot");
+		this.buildType = ApiTypeHelper.requireNonNull(builder.buildType, this, "buildType");
+		this.luceneVersion = ApiTypeHelper.requireNonNull(builder.luceneVersion, this, "luceneVersion");
+		this.minimumIndexCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumIndexCompatibilityVersion,
+				this, "minimumIndexCompatibilityVersion");
+		this.minimumWireCompatibilityVersion = ApiTypeHelper.requireNonNull(builder.minimumWireCompatibilityVersion,
+				this, "minimumWireCompatibilityVersion");
+		this.number = ApiTypeHelper.requireNonNull(builder.number, this, "number");
 
 	}
 
-	public ElasticsearchVersionInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ElasticsearchVersionInfo of(Function<Builder, ObjectBuilder<ElasticsearchVersionInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code build_date}
 	 */
-	public String buildDate() {
+	public final String buildDate() {
 		return this.buildDate;
 	}
 
 	/**
 	 * Required - API name: {@code build_flavor}
 	 */
-	public String buildFlavor() {
+	public final String buildFlavor() {
 		return this.buildFlavor;
 	}
 
 	/**
 	 * Required - API name: {@code build_hash}
 	 */
-	public String buildHash() {
+	public final String buildHash() {
 		return this.buildHash;
 	}
 
 	/**
 	 * Required - API name: {@code build_snapshot}
 	 */
-	public boolean buildSnapshot() {
+	public final boolean buildSnapshot() {
 		return this.buildSnapshot;
 	}
 
 	/**
 	 * Required - API name: {@code build_type}
 	 */
-	public String buildType() {
+	public final String buildType() {
 		return this.buildType;
 	}
 
 	/**
 	 * Required - API name: {@code lucene_version}
 	 */
-	public String luceneVersion() {
+	public final String luceneVersion() {
 		return this.luceneVersion;
 	}
 
 	/**
 	 * Required - API name: {@code minimum_index_compatibility_version}
 	 */
-	public String minimumIndexCompatibilityVersion() {
+	public final String minimumIndexCompatibilityVersion() {
 		return this.minimumIndexCompatibilityVersion;
 	}
 
 	/**
 	 * Required - API name: {@code minimum_wire_compatibility_version}
 	 */
-	public String minimumWireCompatibilityVersion() {
+	public final String minimumWireCompatibilityVersion() {
 		return this.minimumWireCompatibilityVersion;
 	}
 
 	/**
 	 * Required - API name: {@code number}
 	 */
-	public String number() {
+	public final String number() {
 		return this.number;
 	}
 
@@ -189,7 +197,8 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link ElasticsearchVersionInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<ElasticsearchVersionInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ElasticsearchVersionInfo> {
 		private String buildDate;
 
 		private String buildFlavor;
@@ -211,7 +220,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build_date}
 		 */
-		public Builder buildDate(String value) {
+		public final Builder buildDate(String value) {
 			this.buildDate = value;
 			return this;
 		}
@@ -219,7 +228,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build_flavor}
 		 */
-		public Builder buildFlavor(String value) {
+		public final Builder buildFlavor(String value) {
 			this.buildFlavor = value;
 			return this;
 		}
@@ -227,7 +236,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build_hash}
 		 */
-		public Builder buildHash(String value) {
+		public final Builder buildHash(String value) {
 			this.buildHash = value;
 			return this;
 		}
@@ -235,7 +244,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build_snapshot}
 		 */
-		public Builder buildSnapshot(boolean value) {
+		public final Builder buildSnapshot(boolean value) {
 			this.buildSnapshot = value;
 			return this;
 		}
@@ -243,7 +252,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build_type}
 		 */
-		public Builder buildType(String value) {
+		public final Builder buildType(String value) {
 			this.buildType = value;
 			return this;
 		}
@@ -251,7 +260,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code lucene_version}
 		 */
-		public Builder luceneVersion(String value) {
+		public final Builder luceneVersion(String value) {
 			this.luceneVersion = value;
 			return this;
 		}
@@ -259,7 +268,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code minimum_index_compatibility_version}
 		 */
-		public Builder minimumIndexCompatibilityVersion(String value) {
+		public final Builder minimumIndexCompatibilityVersion(String value) {
 			this.minimumIndexCompatibilityVersion = value;
 			return this;
 		}
@@ -267,7 +276,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code minimum_wire_compatibility_version}
 		 */
-		public Builder minimumWireCompatibilityVersion(String value) {
+		public final Builder minimumWireCompatibilityVersion(String value) {
 			this.minimumWireCompatibilityVersion = value;
 			return this;
 		}
@@ -275,7 +284,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code number}
 		 */
-		public Builder number(String value) {
+		public final Builder number(String value) {
 			this.number = value;
 			return this;
 		}
@@ -287,6 +296,7 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ElasticsearchVersionInfo build() {
+			_checkSingleUse();
 
 			return new ElasticsearchVersionInfo(this);
 		}
@@ -298,10 +308,10 @@ public final class ElasticsearchVersionInfo implements JsonpSerializable {
 	 * Json deserializer for {@link ElasticsearchVersionInfo}
 	 */
 	public static final JsonpDeserializer<ElasticsearchVersionInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer, Builder::build);
+			.lazy(Builder::new, ElasticsearchVersionInfo::setupElasticsearchVersionInfoDeserializer);
 
 	protected static void setupElasticsearchVersionInfoDeserializer(
-			DelegatingDeserializer<ElasticsearchVersionInfo.Builder> op) {
+			ObjectDeserializer<ElasticsearchVersionInfo.Builder> op) {
 
 		op.add(Builder::buildDate, JsonpDeserializer.stringDeserializer(), "build_date");
 		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");

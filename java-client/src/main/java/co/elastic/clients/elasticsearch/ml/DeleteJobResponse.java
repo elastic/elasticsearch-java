@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.delete_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_job/MlDeleteJobResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteJobResponse extends AcknowledgedResponseBase {
+public class DeleteJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteJobResponse(Builder builder) {
+	private DeleteJobResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteJobResponse of(Function<Builder, ObjectBuilder<DeleteJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteJobResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteJobResponse> {
@@ -68,6 +75,7 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteJobResponse build() {
+			_checkSingleUse();
 
 			return new DeleteJobResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class DeleteJobResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteJobResponse}
 	 */
 	public static final JsonpDeserializer<DeleteJobResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteJobResponse::setupDeleteJobResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteJobResponse::setupDeleteJobResponseDeserializer);
 
-	protected static void setupDeleteJobResponseDeserializer(DelegatingDeserializer<DeleteJobResponse.Builder> op) {
+	protected static void setupDeleteJobResponseDeserializer(ObjectDeserializer<DeleteJobResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

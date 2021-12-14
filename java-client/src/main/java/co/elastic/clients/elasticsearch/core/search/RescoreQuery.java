@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.RescoreQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/rescoring.ts#L28-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RescoreQuery implements JsonpSerializable {
+public class RescoreQuery implements JsonpSerializable {
 	private final Query query;
 
 	@Nullable
@@ -54,23 +62,23 @@ public final class RescoreQuery implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RescoreQuery(Builder builder) {
+	private RescoreQuery(Builder builder) {
 
-		this.query = Objects.requireNonNull(builder.query, "rescore_query");
+		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.queryWeight = builder.queryWeight;
 		this.rescoreQueryWeight = builder.rescoreQueryWeight;
 		this.scoreMode = builder.scoreMode;
 
 	}
 
-	public RescoreQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RescoreQuery of(Function<Builder, ObjectBuilder<RescoreQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code rescore_query}
 	 */
-	public Query query() {
+	public final Query query() {
 		return this.query;
 	}
 
@@ -78,7 +86,7 @@ public final class RescoreQuery implements JsonpSerializable {
 	 * API name: {@code query_weight}
 	 */
 	@Nullable
-	public Double queryWeight() {
+	public final Double queryWeight() {
 		return this.queryWeight;
 	}
 
@@ -86,7 +94,7 @@ public final class RescoreQuery implements JsonpSerializable {
 	 * API name: {@code rescore_query_weight}
 	 */
 	@Nullable
-	public Double rescoreQueryWeight() {
+	public final Double rescoreQueryWeight() {
 		return this.rescoreQueryWeight;
 	}
 
@@ -94,7 +102,7 @@ public final class RescoreQuery implements JsonpSerializable {
 	 * API name: {@code score_mode}
 	 */
 	@Nullable
-	public ScoreMode scoreMode() {
+	public final ScoreMode scoreMode() {
 		return this.scoreMode;
 	}
 
@@ -113,19 +121,16 @@ public final class RescoreQuery implements JsonpSerializable {
 		this.query.serialize(generator, mapper);
 
 		if (this.queryWeight != null) {
-
 			generator.writeKey("query_weight");
 			generator.write(this.queryWeight);
 
 		}
 		if (this.rescoreQueryWeight != null) {
-
 			generator.writeKey("rescore_query_weight");
 			generator.write(this.rescoreQueryWeight);
 
 		}
 		if (this.scoreMode != null) {
-
 			generator.writeKey("score_mode");
 			this.scoreMode.serialize(generator, mapper);
 		}
@@ -137,7 +142,8 @@ public final class RescoreQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link RescoreQuery}.
 	 */
-	public static class Builder implements ObjectBuilder<RescoreQuery> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RescoreQuery> {
 		private Query query;
 
 		@Nullable
@@ -152,7 +158,7 @@ public final class RescoreQuery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rescore_query}
 		 */
-		public Builder query(Query value) {
+		public final Builder query(Query value) {
 			this.query = value;
 			return this;
 		}
@@ -160,14 +166,14 @@ public final class RescoreQuery implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code rescore_query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code query_weight}
 		 */
-		public Builder queryWeight(@Nullable Double value) {
+		public final Builder queryWeight(@Nullable Double value) {
 			this.queryWeight = value;
 			return this;
 		}
@@ -175,7 +181,7 @@ public final class RescoreQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code rescore_query_weight}
 		 */
-		public Builder rescoreQueryWeight(@Nullable Double value) {
+		public final Builder rescoreQueryWeight(@Nullable Double value) {
 			this.rescoreQueryWeight = value;
 			return this;
 		}
@@ -183,7 +189,7 @@ public final class RescoreQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code score_mode}
 		 */
-		public Builder scoreMode(@Nullable ScoreMode value) {
+		public final Builder scoreMode(@Nullable ScoreMode value) {
 			this.scoreMode = value;
 			return this;
 		}
@@ -195,6 +201,7 @@ public final class RescoreQuery implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RescoreQuery build() {
+			_checkSingleUse();
 
 			return new RescoreQuery(this);
 		}
@@ -206,9 +213,9 @@ public final class RescoreQuery implements JsonpSerializable {
 	 * Json deserializer for {@link RescoreQuery}
 	 */
 	public static final JsonpDeserializer<RescoreQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RescoreQuery::setupRescoreQueryDeserializer, Builder::build);
+			RescoreQuery::setupRescoreQueryDeserializer);
 
-	protected static void setupRescoreQueryDeserializer(DelegatingDeserializer<RescoreQuery.Builder> op) {
+	protected static void setupRescoreQueryDeserializer(ObjectDeserializer<RescoreQuery.Builder> op) {
 
 		op.add(Builder::query, Query._DESERIALIZER, "rescore_query");
 		op.add(Builder::queryWeight, JsonpDeserializer.doubleDeserializer(), "query_weight");

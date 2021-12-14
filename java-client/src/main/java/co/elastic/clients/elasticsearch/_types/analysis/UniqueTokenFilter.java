@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,37 +33,47 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.analysis.UniqueTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L331-L334">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UniqueTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final boolean onlyOnSamePosition;
+public class UniqueTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+	@Nullable
+	private final Boolean onlyOnSamePosition;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UniqueTokenFilter(Builder builder) {
+	private UniqueTokenFilter(Builder builder) {
 		super(builder);
 
-		this.onlyOnSamePosition = Objects.requireNonNull(builder.onlyOnSamePosition, "only_on_same_position");
+		this.onlyOnSamePosition = builder.onlyOnSamePosition;
 
 	}
 
-	public UniqueTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UniqueTokenFilter of(Function<Builder, ObjectBuilder<UniqueTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "unique";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Unique;
 	}
 
 	/**
-	 * Required - API name: {@code only_on_same_position}
+	 * API name: {@code only_on_same_position}
 	 */
-	public boolean onlyOnSamePosition() {
+	@Nullable
+	public final Boolean onlyOnSamePosition() {
 		return this.onlyOnSamePosition;
 	}
 
@@ -72,9 +81,11 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 
 		generator.write("type", "unique");
 		super.serializeInternal(generator, mapper);
+		if (this.onlyOnSamePosition != null) {
+			generator.writeKey("only_on_same_position");
+			generator.write(this.onlyOnSamePosition);
 
-		generator.writeKey("only_on_same_position");
-		generator.write(this.onlyOnSamePosition);
+		}
 
 	}
 
@@ -83,15 +94,17 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 	/**
 	 * Builder for {@link UniqueTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UniqueTokenFilter> {
+		@Nullable
 		private Boolean onlyOnSamePosition;
 
 		/**
-		 * Required - API name: {@code only_on_same_position}
+		 * API name: {@code only_on_same_position}
 		 */
-		public Builder onlyOnSamePosition(boolean value) {
+		public final Builder onlyOnSamePosition(@Nullable Boolean value) {
 			this.onlyOnSamePosition = value;
 			return this;
 		}
@@ -108,6 +121,7 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 		 *             if some of the required fields are null.
 		 */
 		public UniqueTokenFilter build() {
+			_checkSingleUse();
 
 			return new UniqueTokenFilter(this);
 		}
@@ -119,9 +133,9 @@ public final class UniqueTokenFilter extends TokenFilterBase implements TokenFil
 	 * Json deserializer for {@link UniqueTokenFilter}
 	 */
 	public static final JsonpDeserializer<UniqueTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UniqueTokenFilter::setupUniqueTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, UniqueTokenFilter::setupUniqueTokenFilterDeserializer);
 
-	protected static void setupUniqueTokenFilterDeserializer(DelegatingDeserializer<UniqueTokenFilter.Builder> op) {
+	protected static void setupUniqueTokenFilterDeserializer(ObjectDeserializer<UniqueTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::onlyOnSamePosition, JsonpDeserializer.booleanDeserializer(), "only_on_same_position");
 

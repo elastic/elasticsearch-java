@@ -25,72 +25,78 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
 import co.elastic.clients.elasticsearch.indices.add_block.IndicesBlockStatus;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.add_block.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/add_block/IndicesAddBlockResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AddBlockResponse extends AcknowledgedResponseBase {
+public class AddBlockResponse extends AcknowledgedResponseBase {
 	private final boolean shardsAcknowledged;
 
 	private final List<IndicesBlockStatus> indices;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AddBlockResponse(Builder builder) {
+	private AddBlockResponse(Builder builder) {
 		super(builder);
 
-		this.shardsAcknowledged = Objects.requireNonNull(builder.shardsAcknowledged, "shards_acknowledged");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
+		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
 	}
 
-	public AddBlockResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AddBlockResponse of(Function<Builder, ObjectBuilder<AddBlockResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code shards_acknowledged}
 	 */
-	public boolean shardsAcknowledged() {
+	public final boolean shardsAcknowledged() {
 		return this.shardsAcknowledged;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<IndicesBlockStatus> indices() {
+	public final List<IndicesBlockStatus> indices() {
 		return this.indices;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (IndicesBlockStatus item0 : this.indices) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (IndicesBlockStatus item0 : this.indices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -99,6 +105,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link AddBlockResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AddBlockResponse> {
@@ -109,50 +116,38 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		/**
 		 * Required - API name: {@code shards_acknowledged}
 		 */
-		public Builder shardsAcknowledged(boolean value) {
+		public final Builder shardsAcknowledged(boolean value) {
 			this.shardsAcknowledged = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public Builder indices(List<IndicesBlockStatus> value) {
-			this.indices = value;
+		public final Builder indices(List<IndicesBlockStatus> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public Builder indices(IndicesBlockStatus... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(IndicesBlockStatus value, IndicesBlockStatus... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public Builder addIndices(IndicesBlockStatus value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #indices(List)} to a singleton list.
-		 */
-		public Builder indices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
-			return this.indices(fn.apply(new IndicesBlockStatus.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
-			return this.addIndices(fn.apply(new IndicesBlockStatus.Builder()).build());
+		public final Builder indices(Function<IndicesBlockStatus.Builder, ObjectBuilder<IndicesBlockStatus>> fn) {
+			return indices(fn.apply(new IndicesBlockStatus.Builder()).build());
 		}
 
 		@Override
@@ -167,6 +162,7 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public AddBlockResponse build() {
+			_checkSingleUse();
 
 			return new AddBlockResponse(this);
 		}
@@ -178,9 +174,9 @@ public final class AddBlockResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link AddBlockResponse}
 	 */
 	public static final JsonpDeserializer<AddBlockResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			AddBlockResponse::setupAddBlockResponseDeserializer, Builder::build);
+			AddBlockResponse::setupAddBlockResponseDeserializer);
 
-	protected static void setupAddBlockResponseDeserializer(DelegatingDeserializer<AddBlockResponse.Builder> op) {
+	protected static void setupAddBlockResponseDeserializer(ObjectDeserializer<AddBlockResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesBlockStatus._DESERIALIZER), "indices");

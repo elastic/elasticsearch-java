@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.WildcardProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L278-L282">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class WildcardProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class WildcardProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final String nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WildcardProperty(Builder builder) {
+	private WildcardProperty(Builder builder) {
 		super(builder);
 
 		this.nullValue = builder.nullValue;
 
 	}
 
-	public WildcardProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WildcardProperty of(Function<Builder, ObjectBuilder<WildcardProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "wildcard";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Wildcard;
 	}
 
 	/**
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public String nullValue() {
+	public final String nullValue() {
 		return this.nullValue;
 	}
 
@@ -76,7 +82,6 @@ public final class WildcardProperty extends DocValuesPropertyBase implements Pro
 		generator.write("type", "wildcard");
 		super.serializeInternal(generator, mapper);
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
 			generator.write(this.nullValue);
 
@@ -89,6 +94,7 @@ public final class WildcardProperty extends DocValuesPropertyBase implements Pro
 	/**
 	 * Builder for {@link WildcardProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WildcardProperty> {
@@ -98,7 +104,7 @@ public final class WildcardProperty extends DocValuesPropertyBase implements Pro
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable String value) {
+		public final Builder nullValue(@Nullable String value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -115,6 +121,7 @@ public final class WildcardProperty extends DocValuesPropertyBase implements Pro
 		 *             if some of the required fields are null.
 		 */
 		public WildcardProperty build() {
+			_checkSingleUse();
 
 			return new WildcardProperty(this);
 		}
@@ -126,9 +133,9 @@ public final class WildcardProperty extends DocValuesPropertyBase implements Pro
 	 * Json deserializer for {@link WildcardProperty}
 	 */
 	public static final JsonpDeserializer<WildcardProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			WildcardProperty::setupWildcardPropertyDeserializer, Builder::build);
+			WildcardProperty::setupWildcardPropertyDeserializer);
 
-	protected static void setupWildcardPropertyDeserializer(DelegatingDeserializer<WildcardProperty.Builder> op) {
+	protected static void setupWildcardPropertyDeserializer(ObjectDeserializer<WildcardProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
 

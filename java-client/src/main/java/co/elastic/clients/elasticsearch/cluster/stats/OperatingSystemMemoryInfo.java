@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -38,8 +39,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: cluster.stats.OperatingSystemMemoryInfo
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L278-L284">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class OperatingSystemMemoryInfo implements JsonpSerializable {
+public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	private final long freeInBytes;
 
 	private final int freePercent;
@@ -52,52 +60,52 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OperatingSystemMemoryInfo(Builder builder) {
+	private OperatingSystemMemoryInfo(Builder builder) {
 
-		this.freeInBytes = Objects.requireNonNull(builder.freeInBytes, "free_in_bytes");
-		this.freePercent = Objects.requireNonNull(builder.freePercent, "free_percent");
-		this.totalInBytes = Objects.requireNonNull(builder.totalInBytes, "total_in_bytes");
-		this.usedInBytes = Objects.requireNonNull(builder.usedInBytes, "used_in_bytes");
-		this.usedPercent = Objects.requireNonNull(builder.usedPercent, "used_percent");
+		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
+		this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
+		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
+		this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
 
 	}
 
-	public OperatingSystemMemoryInfo(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OperatingSystemMemoryInfo of(Function<Builder, ObjectBuilder<OperatingSystemMemoryInfo>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code free_in_bytes}
 	 */
-	public long freeInBytes() {
+	public final long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code free_percent}
 	 */
-	public int freePercent() {
+	public final int freePercent() {
 		return this.freePercent;
 	}
 
 	/**
 	 * Required - API name: {@code total_in_bytes}
 	 */
-	public long totalInBytes() {
+	public final long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code used_in_bytes}
 	 */
-	public long usedInBytes() {
+	public final long usedInBytes() {
 		return this.usedInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code used_percent}
 	 */
-	public int usedPercent() {
+	public final int usedPercent() {
 		return this.usedPercent;
 	}
 
@@ -134,7 +142,8 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 	/**
 	 * Builder for {@link OperatingSystemMemoryInfo}.
 	 */
-	public static class Builder implements ObjectBuilder<OperatingSystemMemoryInfo> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OperatingSystemMemoryInfo> {
 		private Long freeInBytes;
 
 		private Integer freePercent;
@@ -148,7 +157,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code free_in_bytes}
 		 */
-		public Builder freeInBytes(long value) {
+		public final Builder freeInBytes(long value) {
 			this.freeInBytes = value;
 			return this;
 		}
@@ -156,7 +165,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code free_percent}
 		 */
-		public Builder freePercent(int value) {
+		public final Builder freePercent(int value) {
 			this.freePercent = value;
 			return this;
 		}
@@ -164,7 +173,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_in_bytes}
 		 */
-		public Builder totalInBytes(long value) {
+		public final Builder totalInBytes(long value) {
 			this.totalInBytes = value;
 			return this;
 		}
@@ -172,7 +181,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code used_in_bytes}
 		 */
-		public Builder usedInBytes(long value) {
+		public final Builder usedInBytes(long value) {
 			this.usedInBytes = value;
 			return this;
 		}
@@ -180,7 +189,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code used_percent}
 		 */
-		public Builder usedPercent(int value) {
+		public final Builder usedPercent(int value) {
 			this.usedPercent = value;
 			return this;
 		}
@@ -192,6 +201,7 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public OperatingSystemMemoryInfo build() {
+			_checkSingleUse();
 
 			return new OperatingSystemMemoryInfo(this);
 		}
@@ -203,10 +213,10 @@ public final class OperatingSystemMemoryInfo implements JsonpSerializable {
 	 * Json deserializer for {@link OperatingSystemMemoryInfo}
 	 */
 	public static final JsonpDeserializer<OperatingSystemMemoryInfo> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, OperatingSystemMemoryInfo::setupOperatingSystemMemoryInfoDeserializer, Builder::build);
+			.lazy(Builder::new, OperatingSystemMemoryInfo::setupOperatingSystemMemoryInfoDeserializer);
 
 	protected static void setupOperatingSystemMemoryInfoDeserializer(
-			DelegatingDeserializer<OperatingSystemMemoryInfo.Builder> op) {
+			ObjectDeserializer<OperatingSystemMemoryInfo.Builder> op) {
 
 		op.add(Builder::freeInBytes, JsonpDeserializer.longDeserializer(), "free_in_bytes");
 		op.add(Builder::freePercent, JsonpDeserializer.integerDeserializer(), "free_percent");

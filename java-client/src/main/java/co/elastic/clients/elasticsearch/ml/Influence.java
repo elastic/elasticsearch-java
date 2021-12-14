@@ -23,56 +23,62 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.Influence
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Anomaly.ts#L66-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Influence implements JsonpSerializable {
+public class Influence implements JsonpSerializable {
 	private final String influencerFieldName;
 
 	private final List<String> influencerFieldValues;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Influence(Builder builder) {
+	private Influence(Builder builder) {
 
-		this.influencerFieldName = Objects.requireNonNull(builder.influencerFieldName, "influencer_field_name");
-		this.influencerFieldValues = ModelTypeHelper.unmodifiableNonNull(builder.influencerFieldValues,
-				"influencer_field_values");
+		this.influencerFieldName = ApiTypeHelper.requireNonNull(builder.influencerFieldName, this,
+				"influencerFieldName");
+		this.influencerFieldValues = ApiTypeHelper.unmodifiableRequired(builder.influencerFieldValues, this,
+				"influencerFieldValues");
 
 	}
 
-	public Influence(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Influence of(Function<Builder, ObjectBuilder<Influence>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code influencer_field_name}
 	 */
-	public String influencerFieldName() {
+	public final String influencerFieldName() {
 		return this.influencerFieldName;
 	}
 
 	/**
 	 * Required - API name: {@code influencer_field_values}
 	 */
-	public List<String> influencerFieldValues() {
+	public final List<String> influencerFieldValues() {
 		return this.influencerFieldValues;
 	}
 
@@ -90,13 +96,16 @@ public final class Influence implements JsonpSerializable {
 		generator.writeKey("influencer_field_name");
 		generator.write(this.influencerFieldName);
 
-		generator.writeKey("influencer_field_values");
-		generator.writeStartArray();
-		for (String item0 : this.influencerFieldValues) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.influencerFieldValues)) {
+			generator.writeKey("influencer_field_values");
+			generator.writeStartArray();
+			for (String item0 : this.influencerFieldValues) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -105,7 +114,8 @@ public final class Influence implements JsonpSerializable {
 	/**
 	 * Builder for {@link Influence}.
 	 */
-	public static class Builder implements ObjectBuilder<Influence> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Influence> {
 		private String influencerFieldName;
 
 		private List<String> influencerFieldValues;
@@ -113,36 +123,28 @@ public final class Influence implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code influencer_field_name}
 		 */
-		public Builder influencerFieldName(String value) {
+		public final Builder influencerFieldName(String value) {
 			this.influencerFieldName = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code influencer_field_values}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>influencerFieldValues</code>.
 		 */
-		public Builder influencerFieldValues(List<String> value) {
-			this.influencerFieldValues = value;
+		public final Builder influencerFieldValues(List<String> list) {
+			this.influencerFieldValues = _listAddAll(this.influencerFieldValues, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code influencer_field_values}
+		 * <p>
+		 * Adds one or more values to <code>influencerFieldValues</code>.
 		 */
-		public Builder influencerFieldValues(String... value) {
-			this.influencerFieldValues = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #influencerFieldValues(List)}, creating the list if
-		 * needed.
-		 */
-		public Builder addInfluencerFieldValues(String value) {
-			if (this.influencerFieldValues == null) {
-				this.influencerFieldValues = new ArrayList<>();
-			}
-			this.influencerFieldValues.add(value);
+		public final Builder influencerFieldValues(String value, String... values) {
+			this.influencerFieldValues = _listAdd(this.influencerFieldValues, value, values);
 			return this;
 		}
 
@@ -153,6 +155,7 @@ public final class Influence implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Influence build() {
+			_checkSingleUse();
 
 			return new Influence(this);
 		}
@@ -164,9 +167,9 @@ public final class Influence implements JsonpSerializable {
 	 * Json deserializer for {@link Influence}
 	 */
 	public static final JsonpDeserializer<Influence> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Influence::setupInfluenceDeserializer, Builder::build);
+			Influence::setupInfluenceDeserializer);
 
-	protected static void setupInfluenceDeserializer(DelegatingDeserializer<Influence.Builder> op) {
+	protected static void setupInfluenceDeserializer(ObjectDeserializer<Influence.Builder> op) {
 
 		op.add(Builder::influencerFieldName, JsonpDeserializer.stringDeserializer(), "influencer_field_name");
 		op.add(Builder::influencerFieldValues,

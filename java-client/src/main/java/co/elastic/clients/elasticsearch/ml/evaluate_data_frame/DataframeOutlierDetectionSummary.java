@@ -23,83 +23,84 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeOutlierDetectionSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L24-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataframeOutlierDetectionSummary implements JsonpSerializable {
+public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationSummaryAucRoc aucRoc;
 
-	@Nullable
 	private final Map<String, Double> precision;
 
-	@Nullable
 	private final Map<String, Double> recall;
 
-	@Nullable
 	private final Map<String, ConfusionMatrixThreshold> confusionMatrix;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeOutlierDetectionSummary(Builder builder) {
+	private DataframeOutlierDetectionSummary(Builder builder) {
 
 		this.aucRoc = builder.aucRoc;
-		this.precision = ModelTypeHelper.unmodifiable(builder.precision);
-		this.recall = ModelTypeHelper.unmodifiable(builder.recall);
-		this.confusionMatrix = ModelTypeHelper.unmodifiable(builder.confusionMatrix);
+		this.precision = ApiTypeHelper.unmodifiable(builder.precision);
+		this.recall = ApiTypeHelper.unmodifiable(builder.recall);
+		this.confusionMatrix = ApiTypeHelper.unmodifiable(builder.confusionMatrix);
 
 	}
 
-	public DataframeOutlierDetectionSummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeOutlierDetectionSummary of(
+			Function<Builder, ObjectBuilder<DataframeOutlierDetectionSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code auc_roc}
 	 */
 	@Nullable
-	public DataframeEvaluationSummaryAucRoc aucRoc() {
+	public final DataframeEvaluationSummaryAucRoc aucRoc() {
 		return this.aucRoc;
 	}
 
 	/**
 	 * API name: {@code precision}
 	 */
-	@Nullable
-	public Map<String, Double> precision() {
+	public final Map<String, Double> precision() {
 		return this.precision;
 	}
 
 	/**
 	 * API name: {@code recall}
 	 */
-	@Nullable
-	public Map<String, Double> recall() {
+	public final Map<String, Double> recall() {
 		return this.recall;
 	}
 
 	/**
 	 * API name: {@code confusion_matrix}
 	 */
-	@Nullable
-	public Map<String, ConfusionMatrixThreshold> confusionMatrix() {
+	public final Map<String, ConfusionMatrixThreshold> confusionMatrix() {
 		return this.confusionMatrix;
 	}
 
@@ -115,13 +116,11 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aucRoc != null) {
-
 			generator.writeKey("auc_roc");
 			this.aucRoc.serialize(generator, mapper);
 
 		}
-		if (this.precision != null) {
-
+		if (ApiTypeHelper.isDefined(this.precision)) {
 			generator.writeKey("precision");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.precision.entrySet()) {
@@ -132,8 +131,7 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 			generator.writeEnd();
 
 		}
-		if (this.recall != null) {
-
+		if (ApiTypeHelper.isDefined(this.recall)) {
 			generator.writeKey("recall");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.recall.entrySet()) {
@@ -144,8 +142,7 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 			generator.writeEnd();
 
 		}
-		if (this.confusionMatrix != null) {
-
+		if (ApiTypeHelper.isDefined(this.confusionMatrix)) {
 			generator.writeKey("confusion_matrix");
 			generator.writeStartObject();
 			for (Map.Entry<String, ConfusionMatrixThreshold> item0 : this.confusionMatrix.entrySet()) {
@@ -164,7 +161,8 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 	/**
 	 * Builder for {@link DataframeOutlierDetectionSummary}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeOutlierDetectionSummary> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeOutlierDetectionSummary> {
 		@Nullable
 		private DataframeEvaluationSummaryAucRoc aucRoc;
 
@@ -180,7 +178,7 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 		/**
 		 * API name: {@code auc_roc}
 		 */
-		public Builder aucRoc(@Nullable DataframeEvaluationSummaryAucRoc value) {
+		public final Builder aucRoc(@Nullable DataframeEvaluationSummaryAucRoc value) {
 			this.aucRoc = value;
 			return this;
 		}
@@ -188,83 +186,79 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 		/**
 		 * API name: {@code auc_roc}
 		 */
-		public Builder aucRoc(
+		public final Builder aucRoc(
 				Function<DataframeEvaluationSummaryAucRoc.Builder, ObjectBuilder<DataframeEvaluationSummaryAucRoc>> fn) {
 			return this.aucRoc(fn.apply(new DataframeEvaluationSummaryAucRoc.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code precision}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>precision</code>.
 		 */
-		public Builder precision(@Nullable Map<String, Double> value) {
-			this.precision = value;
+		public final Builder precision(Map<String, Double> map) {
+			this.precision = _mapPutAll(this.precision, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #precision(Map)}, creating the map if needed.
+		 * API name: {@code precision}
+		 * <p>
+		 * Adds an entry to <code>precision</code>.
 		 */
-		public Builder putPrecision(String key, Double value) {
-			if (this.precision == null) {
-				this.precision = new HashMap<>();
-			}
-			this.precision.put(key, value);
+		public final Builder precision(String key, Double value) {
+			this.precision = _mapPut(this.precision, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code recall}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>recall</code>.
 		 */
-		public Builder recall(@Nullable Map<String, Double> value) {
-			this.recall = value;
+		public final Builder recall(Map<String, Double> map) {
+			this.recall = _mapPutAll(this.recall, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #recall(Map)}, creating the map if needed.
+		 * API name: {@code recall}
+		 * <p>
+		 * Adds an entry to <code>recall</code>.
 		 */
-		public Builder putRecall(String key, Double value) {
-			if (this.recall == null) {
-				this.recall = new HashMap<>();
-			}
-			this.recall.put(key, value);
+		public final Builder recall(String key, Double value) {
+			this.recall = _mapPut(this.recall, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>confusionMatrix</code>.
 		 */
-		public Builder confusionMatrix(@Nullable Map<String, ConfusionMatrixThreshold> value) {
-			this.confusionMatrix = value;
+		public final Builder confusionMatrix(Map<String, ConfusionMatrixThreshold> map) {
+			this.confusionMatrix = _mapPutAll(this.confusionMatrix, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #confusionMatrix(Map)}, creating the map if needed.
+		 * API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds an entry to <code>confusionMatrix</code>.
 		 */
-		public Builder putConfusionMatrix(String key, ConfusionMatrixThreshold value) {
-			if (this.confusionMatrix == null) {
-				this.confusionMatrix = new HashMap<>();
-			}
-			this.confusionMatrix.put(key, value);
+		public final Builder confusionMatrix(String key, ConfusionMatrixThreshold value) {
+			this.confusionMatrix = _mapPut(this.confusionMatrix, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #confusionMatrix(Map)} to a singleton map.
+		 * API name: {@code confusion_matrix}
+		 * <p>
+		 * Adds an entry to <code>confusionMatrix</code> using a builder lambda.
 		 */
-		public Builder confusionMatrix(String key,
+		public final Builder confusionMatrix(String key,
 				Function<ConfusionMatrixThreshold.Builder, ObjectBuilder<ConfusionMatrixThreshold>> fn) {
-			return this.confusionMatrix(
-					Collections.singletonMap(key, fn.apply(new ConfusionMatrixThreshold.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #confusionMatrix(Map)}, creating the map if needed.
-		 */
-		public Builder putConfusionMatrix(String key,
-				Function<ConfusionMatrixThreshold.Builder, ObjectBuilder<ConfusionMatrixThreshold>> fn) {
-			return this.putConfusionMatrix(key, fn.apply(new ConfusionMatrixThreshold.Builder()).build());
+			return confusionMatrix(key, fn.apply(new ConfusionMatrixThreshold.Builder()).build());
 		}
 
 		/**
@@ -274,6 +268,7 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 		 *             if some of the required fields are null.
 		 */
 		public DataframeOutlierDetectionSummary build() {
+			_checkSingleUse();
 
 			return new DataframeOutlierDetectionSummary(this);
 		}
@@ -285,11 +280,10 @@ public final class DataframeOutlierDetectionSummary implements JsonpSerializable
 	 * Json deserializer for {@link DataframeOutlierDetectionSummary}
 	 */
 	public static final JsonpDeserializer<DataframeOutlierDetectionSummary> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeOutlierDetectionSummary::setupDataframeOutlierDetectionSummaryDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DataframeOutlierDetectionSummary::setupDataframeOutlierDetectionSummaryDeserializer);
 
 	protected static void setupDataframeOutlierDetectionSummaryDeserializer(
-			DelegatingDeserializer<DataframeOutlierDetectionSummary.Builder> op) {
+			ObjectDeserializer<DataframeOutlierDetectionSummary.Builder> op) {
 
 		op.add(Builder::aucRoc, DataframeEvaluationSummaryAucRoc._DESERIALIZER, "auc_roc");
 		op.add(Builder::precision, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),

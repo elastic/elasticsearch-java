@@ -23,77 +23,77 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.SetSecurityUserProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L311-L314">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SetSecurityUserProcessor extends ProcessorBase implements ProcessorVariant {
+public class SetSecurityUserProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String field;
 
-	@Nullable
 	private final List<String> properties;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SetSecurityUserProcessor(Builder builder) {
+	private SetSecurityUserProcessor(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.properties = ModelTypeHelper.unmodifiable(builder.properties);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 
 	}
 
-	public SetSecurityUserProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SetSecurityUserProcessor of(Function<Builder, ObjectBuilder<SetSecurityUserProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "set_security_user";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.SetSecurityUser;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * API name: {@code properties}
 	 */
-	@Nullable
-	public List<String> properties() {
+	public final List<String> properties() {
 		return this.properties;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		if (this.properties != null) {
-
+		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartArray();
 			for (String item0 : this.properties) {
@@ -111,6 +111,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 	/**
 	 * Builder for {@link SetSecurityUserProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SetSecurityUserProcessor> {
@@ -122,35 +123,28 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>properties</code>.
 		 */
-		public Builder properties(@Nullable List<String> value) {
-			this.properties = value;
+		public final Builder properties(List<String> list) {
+			this.properties = _listAddAll(this.properties, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code properties}
+		 * <p>
+		 * Adds one or more values to <code>properties</code>.
 		 */
-		public Builder properties(String... value) {
-			this.properties = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #properties(List)}, creating the list if needed.
-		 */
-		public Builder addProperties(String value) {
-			if (this.properties == null) {
-				this.properties = new ArrayList<>();
-			}
-			this.properties.add(value);
+		public final Builder properties(String value, String... values) {
+			this.properties = _listAdd(this.properties, value, values);
 			return this;
 		}
 
@@ -166,6 +160,7 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 		 *             if some of the required fields are null.
 		 */
 		public SetSecurityUserProcessor build() {
+			_checkSingleUse();
 
 			return new SetSecurityUserProcessor(this);
 		}
@@ -177,10 +172,10 @@ public final class SetSecurityUserProcessor extends ProcessorBase implements Pro
 	 * Json deserializer for {@link SetSecurityUserProcessor}
 	 */
 	public static final JsonpDeserializer<SetSecurityUserProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, SetSecurityUserProcessor::setupSetSecurityUserProcessorDeserializer);
 
 	protected static void setupSetSecurityUserProcessorDeserializer(
-			DelegatingDeserializer<SetSecurityUserProcessor.Builder> op) {
+			ObjectDeserializer<SetSecurityUserProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::properties, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

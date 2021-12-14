@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,37 +39,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoScript
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L266-L269">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoScript implements JsonpSerializable {
+public class NodeInfoScript implements JsonpSerializable {
 	private final String allowedTypes;
 
 	private final String disableMaxCompilationsRate;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoScript(Builder builder) {
+	private NodeInfoScript(Builder builder) {
 
-		this.allowedTypes = Objects.requireNonNull(builder.allowedTypes, "allowed_types");
-		this.disableMaxCompilationsRate = Objects.requireNonNull(builder.disableMaxCompilationsRate,
-				"disable_max_compilations_rate");
+		this.allowedTypes = ApiTypeHelper.requireNonNull(builder.allowedTypes, this, "allowedTypes");
+		this.disableMaxCompilationsRate = ApiTypeHelper.requireNonNull(builder.disableMaxCompilationsRate, this,
+				"disableMaxCompilationsRate");
 
 	}
 
-	public NodeInfoScript(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoScript of(Function<Builder, ObjectBuilder<NodeInfoScript>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code allowed_types}
 	 */
-	public String allowedTypes() {
+	public final String allowedTypes() {
 		return this.allowedTypes;
 	}
 
 	/**
 	 * Required - API name: {@code disable_max_compilations_rate}
 	 */
-	public String disableMaxCompilationsRate() {
+	public final String disableMaxCompilationsRate() {
 		return this.disableMaxCompilationsRate;
 	}
 
@@ -96,7 +104,8 @@ public final class NodeInfoScript implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoScript}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoScript> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoScript> {
 		private String allowedTypes;
 
 		private String disableMaxCompilationsRate;
@@ -104,7 +113,7 @@ public final class NodeInfoScript implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code allowed_types}
 		 */
-		public Builder allowedTypes(String value) {
+		public final Builder allowedTypes(String value) {
 			this.allowedTypes = value;
 			return this;
 		}
@@ -112,7 +121,7 @@ public final class NodeInfoScript implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code disable_max_compilations_rate}
 		 */
-		public Builder disableMaxCompilationsRate(String value) {
+		public final Builder disableMaxCompilationsRate(String value) {
 			this.disableMaxCompilationsRate = value;
 			return this;
 		}
@@ -124,6 +133,7 @@ public final class NodeInfoScript implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoScript build() {
+			_checkSingleUse();
 
 			return new NodeInfoScript(this);
 		}
@@ -135,9 +145,9 @@ public final class NodeInfoScript implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoScript}
 	 */
 	public static final JsonpDeserializer<NodeInfoScript> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoScript::setupNodeInfoScriptDeserializer, Builder::build);
+			NodeInfoScript::setupNodeInfoScriptDeserializer);
 
-	protected static void setupNodeInfoScriptDeserializer(DelegatingDeserializer<NodeInfoScript.Builder> op) {
+	protected static void setupNodeInfoScriptDeserializer(ObjectDeserializer<NodeInfoScript.Builder> op) {
 
 		op.add(Builder::allowedTypes, JsonpDeserializer.stringDeserializer(), "allowed_types");
 		op.add(Builder::disableMaxCompilationsRate, JsonpDeserializer.stringDeserializer(),

@@ -24,67 +24,70 @@
 package co.elastic.clients.elasticsearch.security.create_api_key;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.RoleDescriptor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_api_key/types.ts#L26-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RoleDescriptor implements JsonpSerializable {
+public class RoleDescriptor implements JsonpSerializable {
 	private final List<String> cluster;
 
 	private final List<IndexPrivileges> index;
 
-	@Nullable
 	private final List<ApplicationPrivileges> applications;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RoleDescriptor(Builder builder) {
+	private RoleDescriptor(Builder builder) {
 
-		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
-		this.applications = ModelTypeHelper.unmodifiable(builder.applications);
+		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
+		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
 
 	}
 
-	public RoleDescriptor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RoleDescriptor of(Function<Builder, ObjectBuilder<RoleDescriptor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cluster}
 	 */
-	public List<String> cluster() {
+	public final List<String> cluster() {
 		return this.cluster;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public List<IndexPrivileges> index() {
+	public final List<IndexPrivileges> index() {
 		return this.index;
 	}
 
 	/**
 	 * API name: {@code applications}
 	 */
-	@Nullable
-	public List<ApplicationPrivileges> applications() {
+	public final List<ApplicationPrivileges> applications() {
 		return this.applications;
 	}
 
@@ -99,24 +102,27 @@ public final class RoleDescriptor implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("cluster");
-		generator.writeStartArray();
-		for (String item0 : this.cluster) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.cluster)) {
+			generator.writeKey("cluster");
+			generator.writeStartArray();
+			for (String item0 : this.cluster) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.index)) {
+			generator.writeKey("index");
+			generator.writeStartArray();
+			for (IndexPrivileges item0 : this.index) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("index");
-		generator.writeStartArray();
-		for (IndexPrivileges item0 : this.index) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		if (this.applications != null) {
-
+		if (ApiTypeHelper.isDefined(this.applications)) {
 			generator.writeKey("applications");
 			generator.writeStartArray();
 			for (ApplicationPrivileges item0 : this.applications) {
@@ -134,7 +140,8 @@ public final class RoleDescriptor implements JsonpSerializable {
 	/**
 	 * Builder for {@link RoleDescriptor}.
 	 */
-	public static class Builder implements ObjectBuilder<RoleDescriptor> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleDescriptor> {
 		private List<String> cluster;
 
 		private List<IndexPrivileges> index;
@@ -144,112 +151,81 @@ public final class RoleDescriptor implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 */
-		public Builder cluster(List<String> value) {
-			this.cluster = value;
+		public final Builder cluster(List<String> list) {
+			this.cluster = _listAddAll(this.cluster, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds one or more values to <code>cluster</code>.
 		 */
-		public Builder cluster(String... value) {
-			this.cluster = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
-		 */
-		public Builder addCluster(String value) {
-			if (this.cluster == null) {
-				this.cluster = new ArrayList<>();
-			}
-			this.cluster.add(value);
+		public final Builder cluster(String value, String... values) {
+			this.cluster = _listAdd(this.cluster, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public Builder index(List<IndexPrivileges> value) {
-			this.index = value;
+		public final Builder index(List<IndexPrivileges> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public Builder index(IndexPrivileges... value) {
-			this.index = Arrays.asList(value);
+		public final Builder index(IndexPrivileges value, IndexPrivileges... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * Required - API name: {@code index}
+		 * <p>
+		 * Adds a value to <code>index</code> using a builder lambda.
 		 */
-		public Builder addIndex(IndexPrivileges value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #index(List)} to a singleton list.
-		 */
-		public Builder index(Function<IndexPrivileges.Builder, ObjectBuilder<IndexPrivileges>> fn) {
-			return this.index(fn.apply(new IndexPrivileges.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(Function<IndexPrivileges.Builder, ObjectBuilder<IndexPrivileges>> fn) {
-			return this.addIndex(fn.apply(new IndexPrivileges.Builder()).build());
+		public final Builder index(Function<IndexPrivileges.Builder, ObjectBuilder<IndexPrivileges>> fn) {
+			return index(fn.apply(new IndexPrivileges.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 */
-		public Builder applications(@Nullable List<ApplicationPrivileges> value) {
-			this.applications = value;
+		public final Builder applications(List<ApplicationPrivileges> list) {
+			this.applications = _listAddAll(this.applications, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code applications}
+		 * <p>
+		 * Adds one or more values to <code>applications</code>.
 		 */
-		public Builder applications(ApplicationPrivileges... value) {
-			this.applications = Arrays.asList(value);
+		public final Builder applications(ApplicationPrivileges value, ApplicationPrivileges... values) {
+			this.applications = _listAdd(this.applications, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * API name: {@code applications}
+		 * <p>
+		 * Adds a value to <code>applications</code> using a builder lambda.
 		 */
-		public Builder addApplications(ApplicationPrivileges value) {
-			if (this.applications == null) {
-				this.applications = new ArrayList<>();
-			}
-			this.applications.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #applications(List)} to a singleton list.
-		 */
-		public Builder applications(Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
-			return this.applications(fn.apply(new ApplicationPrivileges.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
-		 */
-		public Builder addApplications(
+		public final Builder applications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
-			return this.addApplications(fn.apply(new ApplicationPrivileges.Builder()).build());
+			return applications(fn.apply(new ApplicationPrivileges.Builder()).build());
 		}
 
 		/**
@@ -259,6 +235,7 @@ public final class RoleDescriptor implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RoleDescriptor build() {
+			_checkSingleUse();
 
 			return new RoleDescriptor(this);
 		}
@@ -270,9 +247,9 @@ public final class RoleDescriptor implements JsonpSerializable {
 	 * Json deserializer for {@link RoleDescriptor}
 	 */
 	public static final JsonpDeserializer<RoleDescriptor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RoleDescriptor::setupRoleDescriptorDeserializer, Builder::build);
+			RoleDescriptor::setupRoleDescriptorDeserializer);
 
-	protected static void setupRoleDescriptorDeserializer(DelegatingDeserializer<RoleDescriptor.Builder> op) {
+	protected static void setupRoleDescriptorDeserializer(ObjectDeserializer<RoleDescriptor.Builder> op) {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");

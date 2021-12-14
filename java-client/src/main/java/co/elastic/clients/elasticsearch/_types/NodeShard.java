@@ -25,28 +25,34 @@ package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.UnassignedInformation;
 import co.elastic.clients.elasticsearch.indices.stats.ShardRoutingState;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.NodeShard
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Node.ts#L52-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeShard implements JsonpSerializable {
+public class NodeShard implements JsonpSerializable {
 	private final ShardRoutingState state;
 
 	private final boolean primary;
@@ -58,10 +64,8 @@ public final class NodeShard implements JsonpSerializable {
 
 	private final String index;
 
-	@Nullable
 	private final Map<String, String> allocationId;
 
-	@Nullable
 	private final Map<String, String> recoverySource;
 
 	@Nullable
@@ -69,34 +73,34 @@ public final class NodeShard implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeShard(Builder builder) {
+	private NodeShard(Builder builder) {
 
-		this.state = Objects.requireNonNull(builder.state, "state");
-		this.primary = Objects.requireNonNull(builder.primary, "primary");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
 		this.node = builder.node;
-		this.shard = Objects.requireNonNull(builder.shard, "shard");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.allocationId = ModelTypeHelper.unmodifiable(builder.allocationId);
-		this.recoverySource = ModelTypeHelper.unmodifiable(builder.recoverySource);
+		this.shard = ApiTypeHelper.requireNonNull(builder.shard, this, "shard");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.allocationId = ApiTypeHelper.unmodifiable(builder.allocationId);
+		this.recoverySource = ApiTypeHelper.unmodifiable(builder.recoverySource);
 		this.unassignedInfo = builder.unassignedInfo;
 
 	}
 
-	public NodeShard(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeShard of(Function<Builder, ObjectBuilder<NodeShard>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public ShardRoutingState state() {
+	public final ShardRoutingState state() {
 		return this.state;
 	}
 
 	/**
 	 * Required - API name: {@code primary}
 	 */
-	public boolean primary() {
+	public final boolean primary() {
 		return this.primary;
 	}
 
@@ -104,37 +108,35 @@ public final class NodeShard implements JsonpSerializable {
 	 * API name: {@code node}
 	 */
 	@Nullable
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
 	/**
 	 * Required - API name: {@code shard}
 	 */
-	public int shard() {
+	public final int shard() {
 		return this.shard;
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * API name: {@code allocation_id}
 	 */
-	@Nullable
-	public Map<String, String> allocationId() {
+	public final Map<String, String> allocationId() {
 		return this.allocationId;
 	}
 
 	/**
 	 * API name: {@code recovery_source}
 	 */
-	@Nullable
-	public Map<String, String> recoverySource() {
+	public final Map<String, String> recoverySource() {
 		return this.recoverySource;
 	}
 
@@ -142,7 +144,7 @@ public final class NodeShard implements JsonpSerializable {
 	 * API name: {@code unassigned_info}
 	 */
 	@Nullable
-	public UnassignedInformation unassignedInfo() {
+	public final UnassignedInformation unassignedInfo() {
 		return this.unassignedInfo;
 	}
 
@@ -159,25 +161,21 @@ public final class NodeShard implements JsonpSerializable {
 
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
-
 		generator.writeKey("primary");
 		generator.write(this.primary);
 
 		if (this.node != null) {
-
 			generator.writeKey("node");
 			generator.write(this.node);
 
 		}
-
 		generator.writeKey("shard");
 		generator.write(this.shard);
 
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		if (this.allocationId != null) {
-
+		if (ApiTypeHelper.isDefined(this.allocationId)) {
 			generator.writeKey("allocation_id");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.allocationId.entrySet()) {
@@ -188,8 +186,7 @@ public final class NodeShard implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.recoverySource != null) {
-
+		if (ApiTypeHelper.isDefined(this.recoverySource)) {
 			generator.writeKey("recovery_source");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.recoverySource.entrySet()) {
@@ -201,7 +198,6 @@ public final class NodeShard implements JsonpSerializable {
 
 		}
 		if (this.unassignedInfo != null) {
-
 			generator.writeKey("unassigned_info");
 			this.unassignedInfo.serialize(generator, mapper);
 
@@ -214,7 +210,8 @@ public final class NodeShard implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeShard}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeShard> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeShard> {
 		private ShardRoutingState state;
 
 		private Boolean primary;
@@ -238,7 +235,7 @@ public final class NodeShard implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(ShardRoutingState value) {
+		public final Builder state(ShardRoutingState value) {
 			this.state = value;
 			return this;
 		}
@@ -246,7 +243,7 @@ public final class NodeShard implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primary}
 		 */
-		public Builder primary(boolean value) {
+		public final Builder primary(boolean value) {
 			this.primary = value;
 			return this;
 		}
@@ -254,7 +251,7 @@ public final class NodeShard implements JsonpSerializable {
 		/**
 		 * API name: {@code node}
 		 */
-		public Builder node(@Nullable String value) {
+		public final Builder node(@Nullable String value) {
 			this.node = value;
 			return this;
 		}
@@ -262,7 +259,7 @@ public final class NodeShard implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard}
 		 */
-		public Builder shard(int value) {
+		public final Builder shard(int value) {
 			this.shard = value;
 			return this;
 		}
@@ -270,53 +267,55 @@ public final class NodeShard implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code allocation_id}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>allocationId</code>.
 		 */
-		public Builder allocationId(@Nullable Map<String, String> value) {
-			this.allocationId = value;
+		public final Builder allocationId(Map<String, String> map) {
+			this.allocationId = _mapPutAll(this.allocationId, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #allocationId(Map)}, creating the map if needed.
+		 * API name: {@code allocation_id}
+		 * <p>
+		 * Adds an entry to <code>allocationId</code>.
 		 */
-		public Builder putAllocationId(String key, String value) {
-			if (this.allocationId == null) {
-				this.allocationId = new HashMap<>();
-			}
-			this.allocationId.put(key, value);
+		public final Builder allocationId(String key, String value) {
+			this.allocationId = _mapPut(this.allocationId, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code recovery_source}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>recoverySource</code>.
 		 */
-		public Builder recoverySource(@Nullable Map<String, String> value) {
-			this.recoverySource = value;
+		public final Builder recoverySource(Map<String, String> map) {
+			this.recoverySource = _mapPutAll(this.recoverySource, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #recoverySource(Map)}, creating the map if needed.
+		 * API name: {@code recovery_source}
+		 * <p>
+		 * Adds an entry to <code>recoverySource</code>.
 		 */
-		public Builder putRecoverySource(String key, String value) {
-			if (this.recoverySource == null) {
-				this.recoverySource = new HashMap<>();
-			}
-			this.recoverySource.put(key, value);
+		public final Builder recoverySource(String key, String value) {
+			this.recoverySource = _mapPut(this.recoverySource, key, value);
 			return this;
 		}
 
 		/**
 		 * API name: {@code unassigned_info}
 		 */
-		public Builder unassignedInfo(@Nullable UnassignedInformation value) {
+		public final Builder unassignedInfo(@Nullable UnassignedInformation value) {
 			this.unassignedInfo = value;
 			return this;
 		}
@@ -324,7 +323,7 @@ public final class NodeShard implements JsonpSerializable {
 		/**
 		 * API name: {@code unassigned_info}
 		 */
-		public Builder unassignedInfo(
+		public final Builder unassignedInfo(
 				Function<UnassignedInformation.Builder, ObjectBuilder<UnassignedInformation>> fn) {
 			return this.unassignedInfo(fn.apply(new UnassignedInformation.Builder()).build());
 		}
@@ -336,6 +335,7 @@ public final class NodeShard implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeShard build() {
+			_checkSingleUse();
 
 			return new NodeShard(this);
 		}
@@ -347,9 +347,9 @@ public final class NodeShard implements JsonpSerializable {
 	 * Json deserializer for {@link NodeShard}
 	 */
 	public static final JsonpDeserializer<NodeShard> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeShard::setupNodeShardDeserializer, Builder::build);
+			NodeShard::setupNodeShardDeserializer);
 
-	protected static void setupNodeShardDeserializer(DelegatingDeserializer<NodeShard.Builder> op) {
+	protected static void setupNodeShardDeserializer(ObjectDeserializer<NodeShard.Builder> op) {
 
 		op.add(Builder::state, ShardRoutingState._DESERIALIZER, "state");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");

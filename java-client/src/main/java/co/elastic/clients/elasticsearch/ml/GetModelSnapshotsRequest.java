@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -46,77 +48,80 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_model_snapshots.Request
+
+/**
+ * Retrieves information about model snapshots.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_model_snapshots/MlGetModelSnapshotsRequest.ts#L26-L96">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetModelSnapshotsRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
-	@Nullable
-	private final String snapshotId;
-
+public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean desc;
 
 	@Nullable
+	private final Time end;
+
+	@Nullable
 	private final Integer from;
+
+	private final String jobId;
+
+	@Nullable
+	private final Page page;
 
 	@Nullable
 	private final Integer size;
 
 	@Nullable
+	private final String snapshotId;
+
+	@Nullable
 	private final String sort;
 
 	@Nullable
-	private final String start;
-
-	@Nullable
-	private final String end;
+	private final Time start;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetModelSnapshotsRequest(Builder builder) {
+	private GetModelSnapshotsRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.snapshotId = builder.snapshotId;
 		this.desc = builder.desc;
+		this.end = builder.end;
 		this.from = builder.from;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.page = builder.page;
 		this.size = builder.size;
+		this.snapshotId = builder.snapshotId;
 		this.sort = builder.sort;
 		this.start = builder.start;
-		this.end = builder.end;
 
 	}
 
-	public GetModelSnapshotsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the anomaly detection job.
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
+	public static GetModelSnapshotsRequest of(Function<Builder, ObjectBuilder<GetModelSnapshotsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * A numerical character string that uniquely identifies the model snapshot.
-	 * <p>
-	 * API name: {@code snapshot_id}
-	 */
-	@Nullable
-	public String snapshotId() {
-		return this.snapshotId;
-	}
-
-	/**
-	 * If true, the results are sorted in descending order.
+	 * Refer to the description for the <code>desc</code> query parameter.
 	 * <p>
 	 * API name: {@code desc}
 	 */
 	@Nullable
-	public Boolean desc() {
+	public final Boolean desc() {
 		return this.desc;
+	}
+
+	/**
+	 * Refer to the description for the <code>end</code> query parameter.
+	 * <p>
+	 * API name: {@code end}
+	 */
+	@Nullable
+	public final Time end() {
+		return this.end;
 	}
 
 	/**
@@ -125,8 +130,25 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
+	}
+
+	/**
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public final String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * API name: {@code page}
+	 */
+	@Nullable
+	public final Page page() {
+		return this.page;
 	}
 
 	/**
@@ -135,35 +157,42 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
 	/**
-	 * Specifies the sort field for the requested snapshots. By default, the
-	 * snapshots are sorted by their timestamp.
+	 * A numerical character string that uniquely identifies the model snapshot. You
+	 * can get information for multiple snapshots by using a comma-separated list or
+	 * a wildcard expression. You can get all snapshots by using <code>_all</code>,
+	 * by specifying <code>*</code> as the snapshot ID, or by omitting the snapshot
+	 * ID.
+	 * <p>
+	 * API name: {@code snapshot_id}
+	 */
+	@Nullable
+	public final String snapshotId() {
+		return this.snapshotId;
+	}
+
+	/**
+	 * Refer to the description for the <code>sort</code> query parameter.
 	 * <p>
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public String sort() {
+	public final String sort() {
 		return this.sort;
 	}
 
 	/**
+	 * Refer to the description for the <code>start</code> query parameter.
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public String start() {
+	public final Time start() {
 		return this.start;
-	}
-
-	/**
-	 * API name: {@code end}
-	 */
-	@Nullable
-	public String end() {
-		return this.end;
 	}
 
 	/**
@@ -177,16 +206,29 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.start != null) {
-
-			generator.writeKey("start");
-			generator.write(this.start);
+		if (this.desc != null) {
+			generator.writeKey("desc");
+			generator.write(this.desc);
 
 		}
 		if (this.end != null) {
-
 			generator.writeKey("end");
-			generator.write(this.end);
+			this.end.serialize(generator, mapper);
+
+		}
+		if (this.page != null) {
+			generator.writeKey("page");
+			this.page.serialize(generator, mapper);
+
+		}
+		if (this.sort != null) {
+			generator.writeKey("sort");
+			generator.write(this.sort);
+
+		}
+		if (this.start != null) {
+			generator.writeKey("start");
+			this.start.serialize(generator, mapper);
 
 		}
 
@@ -197,58 +239,61 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	/**
 	 * Builder for {@link GetModelSnapshotsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetModelSnapshotsRequest> {
-		private String jobId;
 
-		@Nullable
-		private String snapshotId;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetModelSnapshotsRequest> {
 		@Nullable
 		private Boolean desc;
 
 		@Nullable
+		private Time end;
+
+		@Nullable
 		private Integer from;
+
+		private String jobId;
+
+		@Nullable
+		private Page page;
 
 		@Nullable
 		private Integer size;
 
 		@Nullable
+		private String snapshotId;
+
+		@Nullable
 		private String sort;
 
 		@Nullable
-		private String start;
-
-		@Nullable
-		private String end;
+		private Time start;
 
 		/**
-		 * Required - Identifier for the anomaly detection job.
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
-		 * A numerical character string that uniquely identifies the model snapshot.
-		 * <p>
-		 * API name: {@code snapshot_id}
-		 */
-		public Builder snapshotId(@Nullable String value) {
-			this.snapshotId = value;
-			return this;
-		}
-
-		/**
-		 * If true, the results are sorted in descending order.
+		 * Refer to the description for the <code>desc</code> query parameter.
 		 * <p>
 		 * API name: {@code desc}
 		 */
-		public Builder desc(@Nullable Boolean value) {
+		public final Builder desc(@Nullable Boolean value) {
 			this.desc = value;
 			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(@Nullable Time value) {
+			this.end = value;
+			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -256,9 +301,34 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
+		}
+
+		/**
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public final Builder jobId(String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code page}
+		 */
+		public final Builder page(@Nullable Page value) {
+			this.page = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code page}
+		 */
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+			return this.page(fn.apply(new Page.Builder()).build());
 		}
 
 		/**
@@ -266,36 +336,52 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
 
 		/**
-		 * Specifies the sort field for the requested snapshots. By default, the
-		 * snapshots are sorted by their timestamp.
+		 * A numerical character string that uniquely identifies the model snapshot. You
+		 * can get information for multiple snapshots by using a comma-separated list or
+		 * a wildcard expression. You can get all snapshots by using <code>_all</code>,
+		 * by specifying <code>*</code> as the snapshot ID, or by omitting the snapshot
+		 * ID.
+		 * <p>
+		 * API name: {@code snapshot_id}
+		 */
+		public final Builder snapshotId(@Nullable String value) {
+			this.snapshotId = value;
+			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>sort</code> query parameter.
 		 * <p>
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable String value) {
+		public final Builder sort(@Nullable String value) {
 			this.sort = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>start</code> query parameter.
+		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable String value) {
+		public final Builder start(@Nullable Time value) {
 			this.start = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code end}
+		 * Refer to the description for the <code>start</code> query parameter.
+		 * <p>
+		 * API name: {@code start}
 		 */
-		public Builder end(@Nullable String value) {
-			this.end = value;
-			return this;
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -305,6 +391,7 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 		 *             if some of the required fields are null.
 		 */
 		public GetModelSnapshotsRequest build() {
+			_checkSingleUse();
 
 			return new GetModelSnapshotsRequest(this);
 		}
@@ -316,13 +403,16 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	 * Json deserializer for {@link GetModelSnapshotsRequest}
 	 */
 	public static final JsonpDeserializer<GetModelSnapshotsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetModelSnapshotsRequest::setupGetModelSnapshotsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetModelSnapshotsRequest::setupGetModelSnapshotsRequestDeserializer);
 
 	protected static void setupGetModelSnapshotsRequestDeserializer(
-			DelegatingDeserializer<GetModelSnapshotsRequest.Builder> op) {
+			ObjectDeserializer<GetModelSnapshotsRequest.Builder> op) {
 
-		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
+		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");
+		op.add(Builder::end, Time._DESERIALIZER, "end");
+		op.add(Builder::page, Page._DESERIALIZER, "page");
+		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
+		op.add(Builder::start, Time._DESERIALIZER, "start");
 
 	}
 
@@ -331,7 +421,9 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 	/**
 	 * Endpoint "{@code ml.get_model_snapshots}".
 	 */
-	public static final Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_model_snapshots",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -340,14 +432,14 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 
 			// Request path
 			request -> {
-				final int _jobId = 1 << 0;
-				final int _snapshotId = 1 << 1;
+				final int _snapshotId = 1 << 0;
+				final int _jobId = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _jobId;
 				if (request.snapshotId() != null)
 					propsSet |= _snapshotId;
+				propsSet |= _jobId;
 
 				if (propsSet == (_jobId | _snapshotId)) {
 					StringBuilder buf = new StringBuilder();
@@ -376,17 +468,11 @@ public final class GetModelSnapshotsRequest extends RequestBase implements Jsonp
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.desc != null) {
-					params.put("desc", String.valueOf(request.desc));
-				}
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
-				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
 				}
-				if (request.sort != null) {
-					params.put("sort", request.sort);
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
 				}
 				return params;
 

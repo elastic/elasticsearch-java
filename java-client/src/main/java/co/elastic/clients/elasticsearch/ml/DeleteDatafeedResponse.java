@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.delete_datafeed.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_datafeed/MlDeleteDatafeedResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteDatafeedResponse extends AcknowledgedResponseBase {
+public class DeleteDatafeedResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteDatafeedResponse(Builder builder) {
+	private DeleteDatafeedResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteDatafeedResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteDatafeedResponse of(Function<Builder, ObjectBuilder<DeleteDatafeedResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteDatafeedResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteDatafeedResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteDatafeedResponse> {
@@ -68,6 +75,7 @@ public final class DeleteDatafeedResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteDatafeedResponse build() {
+			_checkSingleUse();
 
 			return new DeleteDatafeedResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class DeleteDatafeedResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteDatafeedResponse}
 	 */
 	public static final JsonpDeserializer<DeleteDatafeedResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteDatafeedResponse::setupDeleteDatafeedResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteDatafeedResponse::setupDeleteDatafeedResponseDeserializer);
 
 	protected static void setupDeleteDatafeedResponseDeserializer(
-			DelegatingDeserializer<DeleteDatafeedResponse.Builder> op) {
+			ObjectDeserializer<DeleteDatafeedResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

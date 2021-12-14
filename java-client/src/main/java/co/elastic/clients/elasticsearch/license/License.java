@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: license._types.License
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/_types/License.ts#L42-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class License implements JsonpSerializable {
+public class License implements JsonpSerializable {
 	private final String expiryDateInMillis;
 
 	private final String issueDateInMillis;
@@ -65,50 +73,50 @@ public final class License implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public License(Builder builder) {
+	private License(Builder builder) {
 
-		this.expiryDateInMillis = Objects.requireNonNull(builder.expiryDateInMillis, "expiry_date_in_millis");
-		this.issueDateInMillis = Objects.requireNonNull(builder.issueDateInMillis, "issue_date_in_millis");
-		this.issuedTo = Objects.requireNonNull(builder.issuedTo, "issued_to");
-		this.issuer = Objects.requireNonNull(builder.issuer, "issuer");
+		this.expiryDateInMillis = ApiTypeHelper.requireNonNull(builder.expiryDateInMillis, this, "expiryDateInMillis");
+		this.issueDateInMillis = ApiTypeHelper.requireNonNull(builder.issueDateInMillis, this, "issueDateInMillis");
+		this.issuedTo = ApiTypeHelper.requireNonNull(builder.issuedTo, this, "issuedTo");
+		this.issuer = ApiTypeHelper.requireNonNull(builder.issuer, this, "issuer");
 		this.maxNodes = builder.maxNodes;
 		this.maxResourceUnits = builder.maxResourceUnits;
-		this.signature = Objects.requireNonNull(builder.signature, "signature");
-		this.startDateInMillis = Objects.requireNonNull(builder.startDateInMillis, "start_date_in_millis");
-		this.type = Objects.requireNonNull(builder.type, "type");
-		this.uid = Objects.requireNonNull(builder.uid, "uid");
+		this.signature = ApiTypeHelper.requireNonNull(builder.signature, this, "signature");
+		this.startDateInMillis = ApiTypeHelper.requireNonNull(builder.startDateInMillis, this, "startDateInMillis");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
 
 	}
 
-	public License(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static License of(Function<Builder, ObjectBuilder<License>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code expiry_date_in_millis}
 	 */
-	public String expiryDateInMillis() {
+	public final String expiryDateInMillis() {
 		return this.expiryDateInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code issue_date_in_millis}
 	 */
-	public String issueDateInMillis() {
+	public final String issueDateInMillis() {
 		return this.issueDateInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code issued_to}
 	 */
-	public String issuedTo() {
+	public final String issuedTo() {
 		return this.issuedTo;
 	}
 
 	/**
 	 * Required - API name: {@code issuer}
 	 */
-	public String issuer() {
+	public final String issuer() {
 		return this.issuer;
 	}
 
@@ -116,7 +124,7 @@ public final class License implements JsonpSerializable {
 	 * API name: {@code max_nodes}
 	 */
 	@Nullable
-	public Long maxNodes() {
+	public final Long maxNodes() {
 		return this.maxNodes;
 	}
 
@@ -124,35 +132,35 @@ public final class License implements JsonpSerializable {
 	 * API name: {@code max_resource_units}
 	 */
 	@Nullable
-	public Long maxResourceUnits() {
+	public final Long maxResourceUnits() {
 		return this.maxResourceUnits;
 	}
 
 	/**
 	 * Required - API name: {@code signature}
 	 */
-	public String signature() {
+	public final String signature() {
 		return this.signature;
 	}
 
 	/**
 	 * Required - API name: {@code start_date_in_millis}
 	 */
-	public String startDateInMillis() {
+	public final String startDateInMillis() {
 		return this.startDateInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public LicenseType type() {
+	public final LicenseType type() {
 		return this.type;
 	}
 
 	/**
 	 * Required - API name: {@code uid}
 	 */
-	public String uid() {
+	public final String uid() {
 		return this.uid;
 	}
 
@@ -180,18 +188,15 @@ public final class License implements JsonpSerializable {
 		generator.write(this.issuer);
 
 		if (this.maxNodes != null) {
-
 			generator.writeKey("max_nodes");
 			generator.write(this.maxNodes);
 
 		}
 		if (this.maxResourceUnits != null) {
-
 			generator.writeKey("max_resource_units");
 			generator.write(this.maxResourceUnits);
 
 		}
-
 		generator.writeKey("signature");
 		generator.write(this.signature);
 
@@ -200,7 +205,6 @@ public final class License implements JsonpSerializable {
 
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
-
 		generator.writeKey("uid");
 		generator.write(this.uid);
 
@@ -211,7 +215,8 @@ public final class License implements JsonpSerializable {
 	/**
 	 * Builder for {@link License}.
 	 */
-	public static class Builder implements ObjectBuilder<License> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<License> {
 		private String expiryDateInMillis;
 
 		private String issueDateInMillis;
@@ -237,7 +242,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code expiry_date_in_millis}
 		 */
-		public Builder expiryDateInMillis(String value) {
+		public final Builder expiryDateInMillis(String value) {
 			this.expiryDateInMillis = value;
 			return this;
 		}
@@ -245,7 +250,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code issue_date_in_millis}
 		 */
-		public Builder issueDateInMillis(String value) {
+		public final Builder issueDateInMillis(String value) {
 			this.issueDateInMillis = value;
 			return this;
 		}
@@ -253,7 +258,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code issued_to}
 		 */
-		public Builder issuedTo(String value) {
+		public final Builder issuedTo(String value) {
 			this.issuedTo = value;
 			return this;
 		}
@@ -261,7 +266,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code issuer}
 		 */
-		public Builder issuer(String value) {
+		public final Builder issuer(String value) {
 			this.issuer = value;
 			return this;
 		}
@@ -269,7 +274,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * API name: {@code max_nodes}
 		 */
-		public Builder maxNodes(@Nullable Long value) {
+		public final Builder maxNodes(@Nullable Long value) {
 			this.maxNodes = value;
 			return this;
 		}
@@ -277,7 +282,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * API name: {@code max_resource_units}
 		 */
-		public Builder maxResourceUnits(@Nullable Long value) {
+		public final Builder maxResourceUnits(@Nullable Long value) {
 			this.maxResourceUnits = value;
 			return this;
 		}
@@ -285,7 +290,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code signature}
 		 */
-		public Builder signature(String value) {
+		public final Builder signature(String value) {
 			this.signature = value;
 			return this;
 		}
@@ -293,7 +298,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code start_date_in_millis}
 		 */
-		public Builder startDateInMillis(String value) {
+		public final Builder startDateInMillis(String value) {
 			this.startDateInMillis = value;
 			return this;
 		}
@@ -301,7 +306,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(LicenseType value) {
+		public final Builder type(LicenseType value) {
 			this.type = value;
 			return this;
 		}
@@ -309,7 +314,7 @@ public final class License implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code uid}
 		 */
-		public Builder uid(String value) {
+		public final Builder uid(String value) {
 			this.uid = value;
 			return this;
 		}
@@ -321,6 +326,7 @@ public final class License implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public License build() {
+			_checkSingleUse();
 
 			return new License(this);
 		}
@@ -332,9 +338,9 @@ public final class License implements JsonpSerializable {
 	 * Json deserializer for {@link License}
 	 */
 	public static final JsonpDeserializer<License> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			License::setupLicenseDeserializer, Builder::build);
+			License::setupLicenseDeserializer);
 
-	protected static void setupLicenseDeserializer(DelegatingDeserializer<License.Builder> op) {
+	protected static void setupLicenseDeserializer(ObjectDeserializer<License.Builder> op) {
 
 		op.add(Builder::expiryDateInMillis, JsonpDeserializer.stringDeserializer(), "expiry_date_in_millis");
 		op.add(Builder::issueDateInMillis, JsonpDeserializer.stringDeserializer(), "issue_date_in_millis");

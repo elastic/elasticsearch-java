@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: slm.stop.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/stop/StopSnapshotLifecycleManagementResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StopSlmResponse extends AcknowledgedResponseBase {
+public class StopSlmResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public StopSlmResponse(Builder builder) {
+	private StopSlmResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public StopSlmResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopSlmResponse of(Function<Builder, ObjectBuilder<StopSlmResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class StopSlmResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link StopSlmResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StopSlmResponse> {
@@ -68,6 +75,7 @@ public final class StopSlmResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public StopSlmResponse build() {
+			_checkSingleUse();
 
 			return new StopSlmResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class StopSlmResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link StopSlmResponse}
 	 */
 	public static final JsonpDeserializer<StopSlmResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StopSlmResponse::setupStopSlmResponseDeserializer, Builder::build);
+			StopSlmResponse::setupStopSlmResponseDeserializer);
 
-	protected static void setupStopSlmResponseDeserializer(DelegatingDeserializer<StopSlmResponse.Builder> op) {
+	protected static void setupStopSlmResponseDeserializer(ObjectDeserializer<StopSlmResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

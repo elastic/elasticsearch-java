@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.SlackAttachmentField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L98-L102">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SlackAttachmentField implements JsonpSerializable {
+public class SlackAttachmentField implements JsonpSerializable {
 	private final boolean short_;
 
 	private final String title;
@@ -49,36 +57,36 @@ public final class SlackAttachmentField implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SlackAttachmentField(Builder builder) {
+	private SlackAttachmentField(Builder builder) {
 
-		this.short_ = Objects.requireNonNull(builder.short_, "short");
-		this.title = Objects.requireNonNull(builder.title, "title");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.short_ = ApiTypeHelper.requireNonNull(builder.short_, this, "short_");
+		this.title = ApiTypeHelper.requireNonNull(builder.title, this, "title");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public SlackAttachmentField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SlackAttachmentField of(Function<Builder, ObjectBuilder<SlackAttachmentField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code short}
 	 */
-	public boolean short_() {
+	public final boolean short_() {
 		return this.short_;
 	}
 
 	/**
 	 * Required - API name: {@code title}
 	 */
-	public String title() {
+	public final String title() {
 		return this.title;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public String value() {
+	public final String value() {
 		return this.value;
 	}
 
@@ -109,7 +117,8 @@ public final class SlackAttachmentField implements JsonpSerializable {
 	/**
 	 * Builder for {@link SlackAttachmentField}.
 	 */
-	public static class Builder implements ObjectBuilder<SlackAttachmentField> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackAttachmentField> {
 		private Boolean short_;
 
 		private String title;
@@ -119,7 +128,7 @@ public final class SlackAttachmentField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code short}
 		 */
-		public Builder short_(boolean value) {
+		public final Builder short_(boolean value) {
 			this.short_ = value;
 			return this;
 		}
@@ -127,7 +136,7 @@ public final class SlackAttachmentField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code title}
 		 */
-		public Builder title(String value) {
+		public final Builder title(String value) {
 			this.title = value;
 			return this;
 		}
@@ -135,7 +144,7 @@ public final class SlackAttachmentField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(String value) {
+		public final Builder value(String value) {
 			this.value = value;
 			return this;
 		}
@@ -147,6 +156,7 @@ public final class SlackAttachmentField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SlackAttachmentField build() {
+			_checkSingleUse();
 
 			return new SlackAttachmentField(this);
 		}
@@ -158,10 +168,9 @@ public final class SlackAttachmentField implements JsonpSerializable {
 	 * Json deserializer for {@link SlackAttachmentField}
 	 */
 	public static final JsonpDeserializer<SlackAttachmentField> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SlackAttachmentField::setupSlackAttachmentFieldDeserializer, Builder::build);
+			.lazy(Builder::new, SlackAttachmentField::setupSlackAttachmentFieldDeserializer);
 
-	protected static void setupSlackAttachmentFieldDeserializer(
-			DelegatingDeserializer<SlackAttachmentField.Builder> op) {
+	protected static void setupSlackAttachmentFieldDeserializer(ObjectDeserializer<SlackAttachmentField.Builder> op) {
 
 		op.add(Builder::short_, JsonpDeserializer.booleanDeserializer(), "short");
 		op.add(Builder::title, JsonpDeserializer.stringDeserializer(), "title");

@@ -26,14 +26,15 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch.ml.info.Defaults;
 import co.elastic.clients.elasticsearch.ml.info.Limits;
 import co.elastic.clients.elasticsearch.ml.info.NativeCode;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -41,8 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.info.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/info/MlInfoResponse.ts#L22-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MlInfoResponse implements JsonpSerializable {
+public class MlInfoResponse implements JsonpSerializable {
 	private final Defaults defaults;
 
 	private final Limits limits;
@@ -53,44 +61,44 @@ public final class MlInfoResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlInfoResponse(Builder builder) {
+	private MlInfoResponse(Builder builder) {
 
-		this.defaults = Objects.requireNonNull(builder.defaults, "defaults");
-		this.limits = Objects.requireNonNull(builder.limits, "limits");
-		this.upgradeMode = Objects.requireNonNull(builder.upgradeMode, "upgrade_mode");
-		this.nativeCode = Objects.requireNonNull(builder.nativeCode, "native_code");
+		this.defaults = ApiTypeHelper.requireNonNull(builder.defaults, this, "defaults");
+		this.limits = ApiTypeHelper.requireNonNull(builder.limits, this, "limits");
+		this.upgradeMode = ApiTypeHelper.requireNonNull(builder.upgradeMode, this, "upgradeMode");
+		this.nativeCode = ApiTypeHelper.requireNonNull(builder.nativeCode, this, "nativeCode");
 
 	}
 
-	public MlInfoResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlInfoResponse of(Function<Builder, ObjectBuilder<MlInfoResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code defaults}
 	 */
-	public Defaults defaults() {
+	public final Defaults defaults() {
 		return this.defaults;
 	}
 
 	/**
 	 * Required - API name: {@code limits}
 	 */
-	public Limits limits() {
+	public final Limits limits() {
 		return this.limits;
 	}
 
 	/**
 	 * Required - API name: {@code upgrade_mode}
 	 */
-	public boolean upgradeMode() {
+	public final boolean upgradeMode() {
 		return this.upgradeMode;
 	}
 
 	/**
 	 * Required - API name: {@code native_code}
 	 */
-	public NativeCode nativeCode() {
+	public final NativeCode nativeCode() {
 		return this.nativeCode;
 	}
 
@@ -124,7 +132,8 @@ public final class MlInfoResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link MlInfoResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<MlInfoResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInfoResponse> {
 		private Defaults defaults;
 
 		private Limits limits;
@@ -136,7 +145,7 @@ public final class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code defaults}
 		 */
-		public Builder defaults(Defaults value) {
+		public final Builder defaults(Defaults value) {
 			this.defaults = value;
 			return this;
 		}
@@ -144,14 +153,14 @@ public final class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code defaults}
 		 */
-		public Builder defaults(Function<Defaults.Builder, ObjectBuilder<Defaults>> fn) {
+		public final Builder defaults(Function<Defaults.Builder, ObjectBuilder<Defaults>> fn) {
 			return this.defaults(fn.apply(new Defaults.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code limits}
 		 */
-		public Builder limits(Limits value) {
+		public final Builder limits(Limits value) {
 			this.limits = value;
 			return this;
 		}
@@ -159,14 +168,14 @@ public final class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code limits}
 		 */
-		public Builder limits(Function<Limits.Builder, ObjectBuilder<Limits>> fn) {
+		public final Builder limits(Function<Limits.Builder, ObjectBuilder<Limits>> fn) {
 			return this.limits(fn.apply(new Limits.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code upgrade_mode}
 		 */
-		public Builder upgradeMode(boolean value) {
+		public final Builder upgradeMode(boolean value) {
 			this.upgradeMode = value;
 			return this;
 		}
@@ -174,7 +183,7 @@ public final class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code native_code}
 		 */
-		public Builder nativeCode(NativeCode value) {
+		public final Builder nativeCode(NativeCode value) {
 			this.nativeCode = value;
 			return this;
 		}
@@ -182,7 +191,7 @@ public final class MlInfoResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code native_code}
 		 */
-		public Builder nativeCode(Function<NativeCode.Builder, ObjectBuilder<NativeCode>> fn) {
+		public final Builder nativeCode(Function<NativeCode.Builder, ObjectBuilder<NativeCode>> fn) {
 			return this.nativeCode(fn.apply(new NativeCode.Builder()).build());
 		}
 
@@ -193,6 +202,7 @@ public final class MlInfoResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public MlInfoResponse build() {
+			_checkSingleUse();
 
 			return new MlInfoResponse(this);
 		}
@@ -204,9 +214,9 @@ public final class MlInfoResponse implements JsonpSerializable {
 	 * Json deserializer for {@link MlInfoResponse}
 	 */
 	public static final JsonpDeserializer<MlInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			MlInfoResponse::setupMlInfoResponseDeserializer, Builder::build);
+			MlInfoResponse::setupMlInfoResponseDeserializer);
 
-	protected static void setupMlInfoResponseDeserializer(DelegatingDeserializer<MlInfoResponse.Builder> op) {
+	protected static void setupMlInfoResponseDeserializer(ObjectDeserializer<MlInfoResponse.Builder> op) {
 
 		op.add(Builder::defaults, Defaults._DESERIALIZER, "defaults");
 		op.add(Builder::limits, Limits._DESERIALIZER, "limits");

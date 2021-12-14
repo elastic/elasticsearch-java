@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/geo.ts#L52-L55">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum GeoStrategy implements StringEnum {
-	Recursive("recursive"), Term("term");
+public enum GeoStrategy implements JsonEnum {
+	Recursive("recursive"),
+
+	Term("term"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum GeoStrategy implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<GeoStrategy> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<GeoStrategy> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			GeoStrategy.values());
 }

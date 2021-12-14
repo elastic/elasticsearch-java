@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,8 +39,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.ModelPlotConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-job-resource.html#ml-apimodelplotconfig">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/ModelPlot.ts#L23-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ModelPlotConfig implements JsonpSerializable {
+public class ModelPlotConfig implements JsonpSerializable {
 	@Nullable
 	private final Boolean annotationsEnabled;
 
@@ -52,7 +62,7 @@ public final class ModelPlotConfig implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ModelPlotConfig(Builder builder) {
+	private ModelPlotConfig(Builder builder) {
 
 		this.annotationsEnabled = builder.annotationsEnabled;
 		this.enabled = builder.enabled;
@@ -60,8 +70,8 @@ public final class ModelPlotConfig implements JsonpSerializable {
 
 	}
 
-	public ModelPlotConfig(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ModelPlotConfig of(Function<Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +81,7 @@ public final class ModelPlotConfig implements JsonpSerializable {
 	 * API name: {@code annotations_enabled}
 	 */
 	@Nullable
-	public Boolean annotationsEnabled() {
+	public final Boolean annotationsEnabled() {
 		return this.annotationsEnabled;
 	}
 
@@ -82,7 +92,7 @@ public final class ModelPlotConfig implements JsonpSerializable {
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public Boolean enabled() {
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
@@ -95,7 +105,7 @@ public final class ModelPlotConfig implements JsonpSerializable {
 	 * API name: {@code terms}
 	 */
 	@Nullable
-	public String terms() {
+	public final String terms() {
 		return this.terms;
 	}
 
@@ -111,19 +121,16 @@ public final class ModelPlotConfig implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.annotationsEnabled != null) {
-
 			generator.writeKey("annotations_enabled");
 			generator.write(this.annotationsEnabled);
 
 		}
 		if (this.enabled != null) {
-
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
 
 		}
 		if (this.terms != null) {
-
 			generator.writeKey("terms");
 			generator.write(this.terms);
 
@@ -136,7 +143,8 @@ public final class ModelPlotConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link ModelPlotConfig}.
 	 */
-	public static class Builder implements ObjectBuilder<ModelPlotConfig> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ModelPlotConfig> {
 		@Nullable
 		private Boolean annotationsEnabled;
 
@@ -152,7 +160,7 @@ public final class ModelPlotConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code annotations_enabled}
 		 */
-		public Builder annotationsEnabled(@Nullable Boolean value) {
+		public final Builder annotationsEnabled(@Nullable Boolean value) {
 			this.annotationsEnabled = value;
 			return this;
 		}
@@ -163,7 +171,7 @@ public final class ModelPlotConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -176,7 +184,7 @@ public final class ModelPlotConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code terms}
 		 */
-		public Builder terms(@Nullable String value) {
+		public final Builder terms(@Nullable String value) {
 			this.terms = value;
 			return this;
 		}
@@ -188,6 +196,7 @@ public final class ModelPlotConfig implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ModelPlotConfig build() {
+			_checkSingleUse();
 
 			return new ModelPlotConfig(this);
 		}
@@ -199,9 +208,9 @@ public final class ModelPlotConfig implements JsonpSerializable {
 	 * Json deserializer for {@link ModelPlotConfig}
 	 */
 	public static final JsonpDeserializer<ModelPlotConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ModelPlotConfig::setupModelPlotConfigDeserializer, Builder::build);
+			ModelPlotConfig::setupModelPlotConfigDeserializer);
 
-	protected static void setupModelPlotConfigDeserializer(DelegatingDeserializer<ModelPlotConfig.Builder> op) {
+	protected static void setupModelPlotConfigDeserializer(ObjectDeserializer<ModelPlotConfig.Builder> op) {
 
 		op.add(Builder::annotationsEnabled, JsonpDeserializer.booleanDeserializer(), "annotations_enabled");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,25 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: autoscaling.delete_autoscaling_policy.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/delete_autoscaling_policy/DeleteAutoscalingPolicyResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteAutoscalingPolicyResponse extends AcknowledgedResponseBase {
+public class DeleteAutoscalingPolicyResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAutoscalingPolicyResponse(Builder builder) {
+	private DeleteAutoscalingPolicyResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteAutoscalingPolicyResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAutoscalingPolicyResponse of(
+			Function<Builder, ObjectBuilder<DeleteAutoscalingPolicyResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public final class DeleteAutoscalingPolicyResponse extends AcknowledgedResponseB
 	/**
 	 * Builder for {@link DeleteAutoscalingPolicyResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteAutoscalingPolicyResponse> {
@@ -68,6 +76,7 @@ public final class DeleteAutoscalingPolicyResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAutoscalingPolicyResponse build() {
+			_checkSingleUse();
 
 			return new DeleteAutoscalingPolicyResponse(this);
 		}
@@ -79,11 +88,10 @@ public final class DeleteAutoscalingPolicyResponse extends AcknowledgedResponseB
 	 * Json deserializer for {@link DeleteAutoscalingPolicyResponse}
 	 */
 	public static final JsonpDeserializer<DeleteAutoscalingPolicyResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteAutoscalingPolicyResponse::setupDeleteAutoscalingPolicyResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DeleteAutoscalingPolicyResponse::setupDeleteAutoscalingPolicyResponseDeserializer);
 
 	protected static void setupDeleteAutoscalingPolicyResponseDeserializer(
-			DelegatingDeserializer<DeleteAutoscalingPolicyResponse.Builder> op) {
+			ObjectDeserializer<DeleteAutoscalingPolicyResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

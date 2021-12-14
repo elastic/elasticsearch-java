@@ -23,27 +23,25 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.BooleanEndpoint;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.VersionType;
+import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.BooleanEndpoint;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -54,13 +52,25 @@ import javax.annotation.Nullable;
 
 // typedef: _global.exists_source.Request
 
-public final class ExistsSourceRequest extends RequestBase {
+/**
+ * Returns information about whether a document source exists in an index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/exists_source/SourceExistsRequest.ts#L32-L54">API
+ *      specification</a>
+ */
+
+public class ExistsSourceRequest extends RequestBase {
+	@Nullable
+	private final SourceConfigParam source;
+
+	private final List<String> sourceExcludes;
+
+	private final List<String> sourceIncludes;
+
 	private final String id;
 
 	private final String index;
-
-	@Nullable
-	private final String type;
 
 	@Nullable
 	private final String preference;
@@ -75,13 +85,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	private final String routing;
 
 	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
-
-	@Nullable
-	private final List<String> sourceExcludes;
-
-	@Nullable
-	private final List<String> sourceIncludes;
+	private final String type;
 
 	@Nullable
 	private final Long version;
@@ -91,94 +95,25 @@ public final class ExistsSourceRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExistsSourceRequest(Builder builder) {
+	private ExistsSourceRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.type = builder.type;
+		this.source = builder.source;
+		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.preference = builder.preference;
 		this.realtime = builder.realtime;
 		this.refresh = builder.refresh;
 		this.routing = builder.routing;
-		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
+		this.type = builder.type;
 		this.version = builder.version;
 		this.versionType = builder.versionType;
 
 	}
 
-	public ExistsSourceRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The document ID
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
-	}
-
-	/**
-	 * Required - The name of the index
-	 * <p>
-	 * API name: {@code index}
-	 */
-	public String index() {
-		return this.index;
-	}
-
-	/**
-	 * The type of the document; deprecated and optional starting with 7.0
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public String type() {
-		return this.type;
-	}
-
-	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
-	 * <p>
-	 * API name: {@code preference}
-	 */
-	@Nullable
-	public String preference() {
-		return this.preference;
-	}
-
-	/**
-	 * Specify whether to perform the operation in realtime or search mode
-	 * <p>
-	 * API name: {@code realtime}
-	 */
-	@Nullable
-	public Boolean realtime() {
-		return this.realtime;
-	}
-
-	/**
-	 * Refresh the shard containing the document before performing the operation
-	 * <p>
-	 * API name: {@code refresh}
-	 */
-	@Nullable
-	public Boolean refresh() {
-		return this.refresh;
-	}
-
-	/**
-	 * Specific routing value
-	 * <p>
-	 * API name: {@code routing}
-	 */
-	@Nullable
-	public String routing() {
-		return this.routing;
+	public static ExistsSourceRequest of(Function<Builder, ObjectBuilder<ExistsSourceRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -188,7 +123,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code _source}
 	 */
 	@Nullable
-	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
+	public final SourceConfigParam source() {
 		return this.source;
 	}
 
@@ -197,8 +132,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
-	@Nullable
-	public List<String> sourceExcludes() {
+	public final List<String> sourceExcludes() {
 		return this.sourceExcludes;
 	}
 
@@ -207,9 +141,77 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
-	@Nullable
-	public List<String> sourceIncludes() {
+	public final List<String> sourceIncludes() {
 		return this.sourceIncludes;
+	}
+
+	/**
+	 * Required - The document ID
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public final String id() {
+		return this.id;
+	}
+
+	/**
+	 * Required - The name of the index
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final String index() {
+		return this.index;
+	}
+
+	/**
+	 * Specify the node or shard the operation should be performed on (default:
+	 * random)
+	 * <p>
+	 * API name: {@code preference}
+	 */
+	@Nullable
+	public final String preference() {
+		return this.preference;
+	}
+
+	/**
+	 * Specify whether to perform the operation in realtime or search mode
+	 * <p>
+	 * API name: {@code realtime}
+	 */
+	@Nullable
+	public final Boolean realtime() {
+		return this.realtime;
+	}
+
+	/**
+	 * Refresh the shard containing the document before performing the operation
+	 * <p>
+	 * API name: {@code refresh}
+	 */
+	@Nullable
+	public final Boolean refresh() {
+		return this.refresh;
+	}
+
+	/**
+	 * Specific routing value
+	 * <p>
+	 * API name: {@code routing}
+	 */
+	@Nullable
+	public final String routing() {
+		return this.routing;
+	}
+
+	/**
+	 * The type of the document; deprecated and optional starting with 7.0
+	 * <p>
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public final String type() {
+		return this.type;
 	}
 
 	/**
@@ -218,7 +220,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Long version() {
+	public final Long version() {
 		return this.version;
 	}
 
@@ -228,7 +230,7 @@ public final class ExistsSourceRequest extends RequestBase {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -237,13 +239,20 @@ public final class ExistsSourceRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExistsSourceRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExistsSourceRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsSourceRequest> {
+		@Nullable
+		private SourceConfigParam source;
+
+		@Nullable
+		private List<String> sourceExcludes;
+
+		@Nullable
+		private List<String> sourceIncludes;
+
 		private String id;
 
 		private String index;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private String preference;
@@ -258,13 +267,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		private String routing;
 
 		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
-
-		@Nullable
-		private List<String> sourceExcludes;
-
-		@Nullable
-		private List<String> sourceIncludes;
+		private String type;
 
 		@Nullable
 		private Long version;
@@ -273,73 +276,13 @@ public final class ExistsSourceRequest extends RequestBase {
 		private VersionType versionType;
 
 		/**
-		 * Required - The document ID
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
 		 * <p>
-		 * API name: {@code id}
+		 * API name: {@code _source}
 		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * Required - The name of the index
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * The type of the document; deprecated and optional starting with 7.0
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
-		 * <p>
-		 * API name: {@code preference}
-		 */
-		public Builder preference(@Nullable String value) {
-			this.preference = value;
-			return this;
-		}
-
-		/**
-		 * Specify whether to perform the operation in realtime or search mode
-		 * <p>
-		 * API name: {@code realtime}
-		 */
-		public Builder realtime(@Nullable Boolean value) {
-			this.realtime = value;
-			return this;
-		}
-
-		/**
-		 * Refresh the shard containing the document before performing the operation
-		 * <p>
-		 * API name: {@code refresh}
-		 */
-		public Builder refresh(@Nullable Boolean value) {
-			this.refresh = value;
-			return this;
-		}
-
-		/**
-		 * Specific routing value
-		 * <p>
-		 * API name: {@code routing}
-		 */
-		public Builder routing(@Nullable String value) {
-			this.routing = value;
+		public final Builder source(@Nullable SourceConfigParam value) {
+			this.source = value;
 			return this;
 		}
 
@@ -349,8 +292,19 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code _source}
 		 */
-		public Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
-			this.source = value;
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
+		}
+
+		/**
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
+		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
+		 */
+		public final Builder sourceExcludes(List<String> list) {
+			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
 			return this;
 		}
 
@@ -358,30 +312,11 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * A list of fields to exclude from the returned _source field
 		 * <p>
 		 * API name: {@code _source_excludes}
-		 */
-		public Builder sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
-			return this;
-		}
-
-		/**
-		 * A list of fields to exclude from the returned _source field
 		 * <p>
-		 * API name: {@code _source_excludes}
+		 * Adds one or more values to <code>sourceExcludes</code>.
 		 */
-		public Builder sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceExcludes(String value) {
-			if (this.sourceExcludes == null) {
-				this.sourceExcludes = new ArrayList<>();
-			}
-			this.sourceExcludes.add(value);
+		public final Builder sourceExcludes(String value, String... values) {
+			this.sourceExcludes = _listAdd(this.sourceExcludes, value, values);
 			return this;
 		}
 
@@ -389,9 +324,11 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * A list of fields to extract and return from the _source field
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
 		 */
-		public Builder sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
+		public final Builder sourceIncludes(List<String> list) {
+			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
 			return this;
 		}
 
@@ -399,20 +336,82 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * A list of fields to extract and return from the _source field
 		 * <p>
 		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds one or more values to <code>sourceIncludes</code>.
 		 */
-		public Builder sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
+		public final Builder sourceIncludes(String value, String... values) {
+			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
+		 * Required - The document ID
+		 * <p>
+		 * API name: {@code id}
 		 */
-		public Builder addSourceIncludes(String value) {
-			if (this.sourceIncludes == null) {
-				this.sourceIncludes = new ArrayList<>();
-			}
-			this.sourceIncludes.add(value);
+		public final Builder id(String value) {
+			this.id = value;
+			return this;
+		}
+
+		/**
+		 * Required - The name of the index
+		 * <p>
+		 * API name: {@code index}
+		 */
+		public final Builder index(String value) {
+			this.index = value;
+			return this;
+		}
+
+		/**
+		 * Specify the node or shard the operation should be performed on (default:
+		 * random)
+		 * <p>
+		 * API name: {@code preference}
+		 */
+		public final Builder preference(@Nullable String value) {
+			this.preference = value;
+			return this;
+		}
+
+		/**
+		 * Specify whether to perform the operation in realtime or search mode
+		 * <p>
+		 * API name: {@code realtime}
+		 */
+		public final Builder realtime(@Nullable Boolean value) {
+			this.realtime = value;
+			return this;
+		}
+
+		/**
+		 * Refresh the shard containing the document before performing the operation
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public final Builder refresh(@Nullable Boolean value) {
+			this.refresh = value;
+			return this;
+		}
+
+		/**
+		 * Specific routing value
+		 * <p>
+		 * API name: {@code routing}
+		 */
+		public final Builder routing(@Nullable String value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
+		 * The type of the document; deprecated and optional starting with 7.0
+		 * <p>
+		 * API name: {@code type}
+		 */
+		public final Builder type(@Nullable String value) {
+			this.type = value;
 			return this;
 		}
 
@@ -421,7 +420,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Long value) {
+		public final Builder version(@Nullable Long value) {
 			this.version = value;
 			return this;
 		}
@@ -431,7 +430,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -443,6 +442,7 @@ public final class ExistsSourceRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ExistsSourceRequest build() {
+			_checkSingleUse();
 
 			return new ExistsSourceRequest(this);
 		}
@@ -453,7 +453,9 @@ public final class ExistsSourceRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code exists_source}".
 	 */
-	public static final Endpoint<ExistsSourceRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<ExistsSourceRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/exists_source",
+
 			// Request method
 			request -> {
 				return "HEAD";
@@ -462,14 +464,14 @@ public final class ExistsSourceRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _id = 1 << 0;
-				final int _index = 1 << 1;
+				final int _index = 1 << 0;
+				final int _id = 1 << 1;
 				final int _type = 1 << 2;
 
 				int propsSet = 0;
 
-				propsSet |= _id;
 				propsSet |= _index;
+				propsSet |= _id;
 				if (request.type() != null)
 					propsSet |= _type;
 
@@ -500,34 +502,34 @@ public final class ExistsSourceRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.preference != null) {
-					params.put("preference", request.preference);
+				if (request.routing != null) {
+					params.put("routing", request.routing);
 				}
 				if (request.realtime != null) {
 					params.put("realtime", String.valueOf(request.realtime));
 				}
+				if (request.versionType != null) {
+					params.put("version_type", request.versionType.jsonValue());
+				}
+				if (request.preference != null) {
+					params.put("preference", request.preference);
+				}
 				if (request.refresh != null) {
 					params.put("refresh", String.valueOf(request.refresh));
 				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
-				}
 				if (request.source != null) {
-					params.put("_source", JsonpUtils.toString(request.source));
+					params.put("_source", request.source._toJsonString());
 				}
-				if (request.sourceExcludes != null) {
+				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
 					params.put("_source_excludes",
 							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.sourceIncludes != null) {
+				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
 					params.put("_source_includes",
 							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
-				}
-				if (request.versionType != null) {
-					params.put("version_type", request.versionType.toString());
 				}
 				return params;
 

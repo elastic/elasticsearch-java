@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoBoundsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L63-L65">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GeoBoundsAggregation extends MetricAggregationBase implements AggregationVariant {
+public class GeoBoundsAggregation extends MetricAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Boolean wrapLongitude;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoBoundsAggregation(Builder builder) {
+	private GeoBoundsAggregation(Builder builder) {
 		super(builder);
 
 		this.wrapLongitude = builder.wrapLongitude;
 
 	}
 
-	public GeoBoundsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoBoundsAggregation of(Function<Builder, ObjectBuilder<GeoBoundsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geo_bounds";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.GeoBounds;
 	}
 
 	/**
 	 * API name: {@code wrap_longitude}
 	 */
 	@Nullable
-	public Boolean wrapLongitude() {
+	public final Boolean wrapLongitude() {
 		return this.wrapLongitude;
 	}
 
@@ -75,7 +81,6 @@ public final class GeoBoundsAggregation extends MetricAggregationBase implements
 
 		super.serializeInternal(generator, mapper);
 		if (this.wrapLongitude != null) {
-
 			generator.writeKey("wrap_longitude");
 			generator.write(this.wrapLongitude);
 
@@ -88,6 +93,7 @@ public final class GeoBoundsAggregation extends MetricAggregationBase implements
 	/**
 	 * Builder for {@link GeoBoundsAggregation}.
 	 */
+
 	public static class Builder extends MetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoBoundsAggregation> {
@@ -97,7 +103,7 @@ public final class GeoBoundsAggregation extends MetricAggregationBase implements
 		/**
 		 * API name: {@code wrap_longitude}
 		 */
-		public Builder wrapLongitude(@Nullable Boolean value) {
+		public final Builder wrapLongitude(@Nullable Boolean value) {
 			this.wrapLongitude = value;
 			return this;
 		}
@@ -114,6 +120,7 @@ public final class GeoBoundsAggregation extends MetricAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public GeoBoundsAggregation build() {
+			_checkSingleUse();
 
 			return new GeoBoundsAggregation(this);
 		}
@@ -125,10 +132,9 @@ public final class GeoBoundsAggregation extends MetricAggregationBase implements
 	 * Json deserializer for {@link GeoBoundsAggregation}
 	 */
 	public static final JsonpDeserializer<GeoBoundsAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoBoundsAggregation::setupGeoBoundsAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, GeoBoundsAggregation::setupGeoBoundsAggregationDeserializer);
 
-	protected static void setupGeoBoundsAggregationDeserializer(
-			DelegatingDeserializer<GeoBoundsAggregation.Builder> op) {
+	protected static void setupGeoBoundsAggregationDeserializer(ObjectDeserializer<GeoBoundsAggregation.Builder> op) {
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::wrapLongitude, JsonpDeserializer.booleanDeserializer(), "wrap_longitude");
 

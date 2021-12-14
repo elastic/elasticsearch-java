@@ -30,15 +30,21 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Conditions.ts#L70-L70">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class NeverCondition implements ConditionVariant, JsonpSerializable {
 
 	/**
-	 * {@link Condition} variant type
+	 * Condition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "never";
+	public Condition.Kind _conditionKind() {
+		return Condition.Kind.Never;
 	}
 
 	public static final class Builder implements ObjectBuilder<NeverCondition> {

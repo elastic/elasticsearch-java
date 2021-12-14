@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: rollup.put_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/put_job/CreateRollupJobResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutJobResponse extends AcknowledgedResponseBase {
+public class PutJobResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutJobResponse(Builder builder) {
+	private PutJobResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutJobResponse of(Function<Builder, ObjectBuilder<PutJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutJobResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutJobResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutJobResponse> {
@@ -68,6 +75,7 @@ public final class PutJobResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutJobResponse build() {
+			_checkSingleUse();
 
 			return new PutJobResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class PutJobResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutJobResponse}
 	 */
 	public static final JsonpDeserializer<PutJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutJobResponse::setupPutJobResponseDeserializer, Builder::build);
+			PutJobResponse::setupPutJobResponseDeserializer);
 
-	protected static void setupPutJobResponseDeserializer(DelegatingDeserializer<PutJobResponse.Builder> op) {
+	protected static void setupPutJobResponseDeserializer(ObjectDeserializer<PutJobResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

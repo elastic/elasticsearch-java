@@ -23,35 +23,41 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.BucketSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Bucket.ts#L24-L66">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class BucketSummary implements JsonpSerializable {
+public class BucketSummary implements JsonpSerializable {
 	private final double anomalyScore;
 
 	private final List<BucketInfluencer> bucketInfluencers;
 
-	private final String bucketSpan;
+	private final Time bucketSpan;
 
 	private final long eventCount;
 
@@ -61,112 +67,130 @@ public final class BucketSummary implements JsonpSerializable {
 
 	private final String jobId;
 
-	@Nullable
-	private final List<PartitionScore> partitionScores;
-
 	private final double processingTimeMs;
 
 	private final String resultType;
 
-	private final String timestamp;
+	private final Time timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BucketSummary(Builder builder) {
+	private BucketSummary(Builder builder) {
 
-		this.anomalyScore = Objects.requireNonNull(builder.anomalyScore, "anomaly_score");
-		this.bucketInfluencers = ModelTypeHelper.unmodifiableNonNull(builder.bucketInfluencers, "bucket_influencers");
-		this.bucketSpan = Objects.requireNonNull(builder.bucketSpan, "bucket_span");
-		this.eventCount = Objects.requireNonNull(builder.eventCount, "event_count");
-		this.initialAnomalyScore = Objects.requireNonNull(builder.initialAnomalyScore, "initial_anomaly_score");
-		this.isInterim = Objects.requireNonNull(builder.isInterim, "is_interim");
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.partitionScores = ModelTypeHelper.unmodifiable(builder.partitionScores);
-		this.processingTimeMs = Objects.requireNonNull(builder.processingTimeMs, "processing_time_ms");
-		this.resultType = Objects.requireNonNull(builder.resultType, "result_type");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.anomalyScore = ApiTypeHelper.requireNonNull(builder.anomalyScore, this, "anomalyScore");
+		this.bucketInfluencers = ApiTypeHelper.unmodifiableRequired(builder.bucketInfluencers, this,
+				"bucketInfluencers");
+		this.bucketSpan = ApiTypeHelper.requireNonNull(builder.bucketSpan, this, "bucketSpan");
+		this.eventCount = ApiTypeHelper.requireNonNull(builder.eventCount, this, "eventCount");
+		this.initialAnomalyScore = ApiTypeHelper.requireNonNull(builder.initialAnomalyScore, this,
+				"initialAnomalyScore");
+		this.isInterim = ApiTypeHelper.requireNonNull(builder.isInterim, this, "isInterim");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
+		this.processingTimeMs = ApiTypeHelper.requireNonNull(builder.processingTimeMs, this, "processingTimeMs");
+		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public BucketSummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BucketSummary of(Function<Builder, ObjectBuilder<BucketSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code anomaly_score}
+	 * Required - The maximum anomaly score, between 0-100, for any of the bucket
+	 * influencers. This is an overall, rate-limited score for the job. All the
+	 * anomaly records in the bucket contribute to this score. This value might be
+	 * updated as new data is analyzed.
+	 * <p>
+	 * API name: {@code anomaly_score}
 	 */
-	public double anomalyScore() {
+	public final double anomalyScore() {
 		return this.anomalyScore;
 	}
 
 	/**
 	 * Required - API name: {@code bucket_influencers}
 	 */
-	public List<BucketInfluencer> bucketInfluencers() {
+	public final List<BucketInfluencer> bucketInfluencers() {
 		return this.bucketInfluencers;
 	}
 
 	/**
-	 * Required - API name: {@code bucket_span}
+	 * Required - The length of the bucket in seconds. This value matches the bucket
+	 * span that is specified in the job.
+	 * <p>
+	 * API name: {@code bucket_span}
 	 */
-	public String bucketSpan() {
+	public final Time bucketSpan() {
 		return this.bucketSpan;
 	}
 
 	/**
-	 * Required - API name: {@code event_count}
+	 * Required - The number of input data records processed in this bucket.
+	 * <p>
+	 * API name: {@code event_count}
 	 */
-	public long eventCount() {
+	public final long eventCount() {
 		return this.eventCount;
 	}
 
 	/**
-	 * Required - API name: {@code initial_anomaly_score}
+	 * Required - The maximum anomaly score for any of the bucket influencers. This
+	 * is the initial value that was calculated at the time the bucket was
+	 * processed.
+	 * <p>
+	 * API name: {@code initial_anomaly_score}
 	 */
-	public double initialAnomalyScore() {
+	public final double initialAnomalyScore() {
 		return this.initialAnomalyScore;
 	}
 
 	/**
-	 * Required - API name: {@code is_interim}
+	 * Required - If true, this is an interim result. In other words, the results
+	 * are calculated based on partial input data.
+	 * <p>
+	 * API name: {@code is_interim}
 	 */
-	public boolean isInterim() {
+	public final boolean isInterim() {
 		return this.isInterim;
 	}
 
 	/**
-	 * Required - API name: {@code job_id}
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
-	 * API name: {@code partition_scores}
+	 * Required - The amount of time, in milliseconds, that it took to analyze the
+	 * bucket contents and calculate results.
+	 * <p>
+	 * API name: {@code processing_time_ms}
 	 */
-	@Nullable
-	public List<PartitionScore> partitionScores() {
-		return this.partitionScores;
-	}
-
-	/**
-	 * Required - API name: {@code processing_time_ms}
-	 */
-	public double processingTimeMs() {
+	public final double processingTimeMs() {
 		return this.processingTimeMs;
 	}
 
 	/**
-	 * Required - API name: {@code result_type}
+	 * Required - Internal. This value is always set to bucket.
+	 * <p>
+	 * API name: {@code result_type}
 	 */
-	public String resultType() {
+	public final String resultType() {
 		return this.resultType;
 	}
 
 	/**
-	 * Required - API name: {@code timestamp}
+	 * Required - The start time of the bucket. This timestamp uniquely identifies
+	 * the bucket. Events that occur exactly at the timestamp of the bucket are
+	 * included in the results for the bucket.
+	 * <p>
+	 * API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final Time timestamp() {
 		return this.timestamp;
 	}
 
@@ -184,16 +208,18 @@ public final class BucketSummary implements JsonpSerializable {
 		generator.writeKey("anomaly_score");
 		generator.write(this.anomalyScore);
 
-		generator.writeKey("bucket_influencers");
-		generator.writeStartArray();
-		for (BucketInfluencer item0 : this.bucketInfluencers) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.bucketInfluencers)) {
+			generator.writeKey("bucket_influencers");
+			generator.writeStartArray();
+			for (BucketInfluencer item0 : this.bucketInfluencers) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("bucket_span");
-		generator.write(this.bucketSpan);
+		this.bucketSpan.serialize(generator, mapper);
 
 		generator.writeKey("event_count");
 		generator.write(this.eventCount);
@@ -207,18 +233,6 @@ public final class BucketSummary implements JsonpSerializable {
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
-		if (this.partitionScores != null) {
-
-			generator.writeKey("partition_scores");
-			generator.writeStartArray();
-			for (PartitionScore item0 : this.partitionScores) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
-
 		generator.writeKey("processing_time_ms");
 		generator.write(this.processingTimeMs);
 
@@ -226,7 +240,7 @@ public final class BucketSummary implements JsonpSerializable {
 		generator.write(this.resultType);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+		this.timestamp.serialize(generator, mapper);
 
 	}
 
@@ -235,12 +249,13 @@ public final class BucketSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link BucketSummary}.
 	 */
-	public static class Builder implements ObjectBuilder<BucketSummary> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketSummary> {
 		private Double anomalyScore;
 
 		private List<BucketInfluencer> bucketInfluencers;
 
-		private String bucketSpan;
+		private Time bucketSpan;
 
 		private Long eventCount;
 
@@ -250,167 +265,160 @@ public final class BucketSummary implements JsonpSerializable {
 
 		private String jobId;
 
-		@Nullable
-		private List<PartitionScore> partitionScores;
-
 		private Double processingTimeMs;
 
 		private String resultType;
 
-		private String timestamp;
+		private Time timestamp;
 
 		/**
-		 * Required - API name: {@code anomaly_score}
+		 * Required - The maximum anomaly score, between 0-100, for any of the bucket
+		 * influencers. This is an overall, rate-limited score for the job. All the
+		 * anomaly records in the bucket contribute to this score. This value might be
+		 * updated as new data is analyzed.
+		 * <p>
+		 * API name: {@code anomaly_score}
 		 */
-		public Builder anomalyScore(double value) {
+		public final Builder anomalyScore(double value) {
 			this.anomalyScore = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code bucket_influencers}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>bucketInfluencers</code>.
 		 */
-		public Builder bucketInfluencers(List<BucketInfluencer> value) {
-			this.bucketInfluencers = value;
+		public final Builder bucketInfluencers(List<BucketInfluencer> list) {
+			this.bucketInfluencers = _listAddAll(this.bucketInfluencers, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code bucket_influencers}
+		 * <p>
+		 * Adds one or more values to <code>bucketInfluencers</code>.
 		 */
-		public Builder bucketInfluencers(BucketInfluencer... value) {
-			this.bucketInfluencers = Arrays.asList(value);
+		public final Builder bucketInfluencers(BucketInfluencer value, BucketInfluencer... values) {
+			this.bucketInfluencers = _listAdd(this.bucketInfluencers, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #bucketInfluencers(List)}, creating the list if needed.
+		 * Required - API name: {@code bucket_influencers}
+		 * <p>
+		 * Adds a value to <code>bucketInfluencers</code> using a builder lambda.
 		 */
-		public Builder addBucketInfluencers(BucketInfluencer value) {
-			if (this.bucketInfluencers == null) {
-				this.bucketInfluencers = new ArrayList<>();
-			}
-			this.bucketInfluencers.add(value);
-			return this;
+		public final Builder bucketInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
+			return bucketInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
 		}
 
 		/**
-		 * Set {@link #bucketInfluencers(List)} to a singleton list.
+		 * Required - The length of the bucket in seconds. This value matches the bucket
+		 * span that is specified in the job.
+		 * <p>
+		 * API name: {@code bucket_span}
 		 */
-		public Builder bucketInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
-			return this.bucketInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #bucketInfluencers(List)}, creating the list if needed.
-		 */
-		public Builder addBucketInfluencers(Function<BucketInfluencer.Builder, ObjectBuilder<BucketInfluencer>> fn) {
-			return this.addBucketInfluencers(fn.apply(new BucketInfluencer.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code bucket_span}
-		 */
-		public Builder bucketSpan(String value) {
+		public final Builder bucketSpan(Time value) {
 			this.bucketSpan = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code event_count}
+		 * Required - The length of the bucket in seconds. This value matches the bucket
+		 * span that is specified in the job.
+		 * <p>
+		 * API name: {@code bucket_span}
 		 */
-		public Builder eventCount(long value) {
+		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.bucketSpan(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - The number of input data records processed in this bucket.
+		 * <p>
+		 * API name: {@code event_count}
+		 */
+		public final Builder eventCount(long value) {
 			this.eventCount = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code initial_anomaly_score}
+		 * Required - The maximum anomaly score for any of the bucket influencers. This
+		 * is the initial value that was calculated at the time the bucket was
+		 * processed.
+		 * <p>
+		 * API name: {@code initial_anomaly_score}
 		 */
-		public Builder initialAnomalyScore(double value) {
+		public final Builder initialAnomalyScore(double value) {
 			this.initialAnomalyScore = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code is_interim}
+		 * Required - If true, this is an interim result. In other words, the results
+		 * are calculated based on partial input data.
+		 * <p>
+		 * API name: {@code is_interim}
 		 */
-		public Builder isInterim(boolean value) {
+		public final Builder isInterim(boolean value) {
 			this.isInterim = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code job_id}
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code partition_scores}
+		 * Required - The amount of time, in milliseconds, that it took to analyze the
+		 * bucket contents and calculate results.
+		 * <p>
+		 * API name: {@code processing_time_ms}
 		 */
-		public Builder partitionScores(@Nullable List<PartitionScore> value) {
-			this.partitionScores = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code partition_scores}
-		 */
-		public Builder partitionScores(PartitionScore... value) {
-			this.partitionScores = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #partitionScores(List)}, creating the list if needed.
-		 */
-		public Builder addPartitionScores(PartitionScore value) {
-			if (this.partitionScores == null) {
-				this.partitionScores = new ArrayList<>();
-			}
-			this.partitionScores.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #partitionScores(List)} to a singleton list.
-		 */
-		public Builder partitionScores(Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>> fn) {
-			return this.partitionScores(fn.apply(new PartitionScore.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #partitionScores(List)}, creating the list if needed.
-		 */
-		public Builder addPartitionScores(Function<PartitionScore.Builder, ObjectBuilder<PartitionScore>> fn) {
-			return this.addPartitionScores(fn.apply(new PartitionScore.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code processing_time_ms}
-		 */
-		public Builder processingTimeMs(double value) {
+		public final Builder processingTimeMs(double value) {
 			this.processingTimeMs = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code result_type}
+		 * Required - Internal. This value is always set to bucket.
+		 * <p>
+		 * API name: {@code result_type}
 		 */
-		public Builder resultType(String value) {
+		public final Builder resultType(String value) {
 			this.resultType = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code timestamp}
+		 * Required - The start time of the bucket. This timestamp uniquely identifies
+		 * the bucket. Events that occur exactly at the timestamp of the bucket are
+		 * included in the results for the bucket.
+		 * <p>
+		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(Time value) {
 			this.timestamp = value;
 			return this;
+		}
+
+		/**
+		 * Required - The start time of the bucket. This timestamp uniquely identifies
+		 * the bucket. Events that occur exactly at the timestamp of the bucket are
+		 * included in the results for the bucket.
+		 * <p>
+		 * API name: {@code timestamp}
+		 */
+		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timestamp(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -420,6 +428,7 @@ public final class BucketSummary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public BucketSummary build() {
+			_checkSingleUse();
 
 			return new BucketSummary(this);
 		}
@@ -431,23 +440,21 @@ public final class BucketSummary implements JsonpSerializable {
 	 * Json deserializer for {@link BucketSummary}
 	 */
 	public static final JsonpDeserializer<BucketSummary> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BucketSummary::setupBucketSummaryDeserializer, Builder::build);
+			BucketSummary::setupBucketSummaryDeserializer);
 
-	protected static void setupBucketSummaryDeserializer(DelegatingDeserializer<BucketSummary.Builder> op) {
+	protected static void setupBucketSummaryDeserializer(ObjectDeserializer<BucketSummary.Builder> op) {
 
 		op.add(Builder::anomalyScore, JsonpDeserializer.doubleDeserializer(), "anomaly_score");
 		op.add(Builder::bucketInfluencers, JsonpDeserializer.arrayDeserializer(BucketInfluencer._DESERIALIZER),
 				"bucket_influencers");
-		op.add(Builder::bucketSpan, JsonpDeserializer.stringDeserializer(), "bucket_span");
+		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
 		op.add(Builder::eventCount, JsonpDeserializer.longDeserializer(), "event_count");
 		op.add(Builder::initialAnomalyScore, JsonpDeserializer.doubleDeserializer(), "initial_anomaly_score");
 		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::partitionScores, JsonpDeserializer.arrayDeserializer(PartitionScore._DESERIALIZER),
-				"partition_scores");
 		op.add(Builder::processingTimeMs, JsonpDeserializer.doubleDeserializer(), "processing_time_ms");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::timestamp, Time._DESERIALIZER, "timestamp");
 
 	}
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,20 +30,27 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalysisFeatureProcessorTargetMeanEncoding
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L294-L303">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
+public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		implements
 			DataframeAnalysisFeatureProcessorVariant,
 			JsonpSerializable {
@@ -58,25 +64,26 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalysisFeatureProcessorTargetMeanEncoding(Builder builder) {
+	private DataframeAnalysisFeatureProcessorTargetMeanEncoding(Builder builder) {
 
-		this.defaultValue = Objects.requireNonNull(builder.defaultValue, "default_value");
-		this.featureName = Objects.requireNonNull(builder.featureName, "feature_name");
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.targetMap = ModelTypeHelper.unmodifiableNonNull(builder.targetMap, "target_map");
+		this.defaultValue = ApiTypeHelper.requireNonNull(builder.defaultValue, this, "defaultValue");
+		this.featureName = ApiTypeHelper.requireNonNull(builder.featureName, this, "featureName");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.targetMap = ApiTypeHelper.unmodifiableRequired(builder.targetMap, this, "targetMap");
 
 	}
 
-	public DataframeAnalysisFeatureProcessorTargetMeanEncoding(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalysisFeatureProcessorTargetMeanEncoding of(
+			Function<Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link DataframeAnalysisFeatureProcessor} variant type
+	 * DataframeAnalysisFeatureProcessor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "target_mean_encoding";
+	public DataframeAnalysisFeatureProcessor.Kind _dataframeAnalysisFeatureProcessorKind() {
+		return DataframeAnalysisFeatureProcessor.Kind.TargetMeanEncoding;
 	}
 
 	/**
@@ -84,7 +91,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 * <p>
 	 * API name: {@code default_value}
 	 */
-	public int defaultValue() {
+	public final int defaultValue() {
 		return this.defaultValue;
 	}
 
@@ -93,7 +100,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 * <p>
 	 * API name: {@code feature_name}
 	 */
-	public String featureName() {
+	public final String featureName() {
 		return this.featureName;
 	}
 
@@ -102,7 +109,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 * <p>
 	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -111,7 +118,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 * <p>
 	 * API name: {@code target_map}
 	 */
-	public Map<String, JsonData> targetMap() {
+	public final Map<String, JsonData> targetMap() {
 		return this.targetMap;
 	}
 
@@ -135,14 +142,17 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("target_map");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.targetMap.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.targetMap)) {
+			generator.writeKey("target_map");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.targetMap.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -151,7 +161,10 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	/**
 	 * Builder for {@link DataframeAnalysisFeatureProcessorTargetMeanEncoding}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding> {
+
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding> {
 		private Integer defaultValue;
 
 		private String featureName;
@@ -165,7 +178,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 * <p>
 		 * API name: {@code default_value}
 		 */
-		public Builder defaultValue(int value) {
+		public final Builder defaultValue(int value) {
 			this.defaultValue = value;
 			return this;
 		}
@@ -175,7 +188,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 * <p>
 		 * API name: {@code feature_name}
 		 */
-		public Builder featureName(String value) {
+		public final Builder featureName(String value) {
 			this.featureName = value;
 			return this;
 		}
@@ -185,7 +198,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 * <p>
 		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -194,20 +207,23 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 * Required - The field value to target mean transition map.
 		 * <p>
 		 * API name: {@code target_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>targetMap</code>.
 		 */
-		public Builder targetMap(Map<String, JsonData> value) {
-			this.targetMap = value;
+		public final Builder targetMap(Map<String, JsonData> map) {
+			this.targetMap = _mapPutAll(this.targetMap, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #targetMap(Map)}, creating the map if needed.
+		 * Required - The field value to target mean transition map.
+		 * <p>
+		 * API name: {@code target_map}
+		 * <p>
+		 * Adds an entry to <code>targetMap</code>.
 		 */
-		public Builder putTargetMap(String key, JsonData value) {
-			if (this.targetMap == null) {
-				this.targetMap = new HashMap<>();
-			}
-			this.targetMap.put(key, value);
+		public final Builder targetMap(String key, JsonData value) {
+			this.targetMap = _mapPut(this.targetMap, key, value);
 			return this;
 		}
 
@@ -218,6 +234,7 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalysisFeatureProcessorTargetMeanEncoding build() {
+			_checkSingleUse();
 
 			return new DataframeAnalysisFeatureProcessorTargetMeanEncoding(this);
 		}
@@ -231,11 +248,10 @@ public final class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 */
 	public static final JsonpDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					DataframeAnalysisFeatureProcessorTargetMeanEncoding::setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer,
-					Builder::build);
+					DataframeAnalysisFeatureProcessorTargetMeanEncoding::setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer);
 
 	protected static void setupDataframeAnalysisFeatureProcessorTargetMeanEncodingDeserializer(
-			DelegatingDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> op) {
+			ObjectDeserializer<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder> op) {
 
 		op.add(Builder::defaultValue, JsonpDeserializer.integerDeserializer(), "default_value");
 		op.add(Builder::featureName, JsonpDeserializer.stringDeserializer(), "feature_name");

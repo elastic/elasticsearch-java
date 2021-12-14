@@ -23,16 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -43,12 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.HistogramAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L202-L214">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class HistogramAggregation extends BucketAggregationBase
-		implements
-			AggregationVariant,
-			PivotGroupByVariant,
-			CompositeAggregationSourceVariant {
+public class HistogramAggregation extends BucketAggregationBase implements AggregationVariant, PivotGroupByVariant {
 	@Nullable
 	private final ExtendedBounds<Double> extendedBounds;
 
@@ -74,7 +76,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	private final HistogramOrder order;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	@Nullable
 	private final String format;
@@ -84,7 +86,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 
 	// ---------------------------------------------------------------------------------------------
 
-	public HistogramAggregation(Builder builder) {
+	private HistogramAggregation(Builder builder) {
 		super(builder);
 
 		this.extendedBounds = builder.extendedBounds;
@@ -101,24 +103,31 @@ public final class HistogramAggregation extends BucketAggregationBase
 
 	}
 
-	public HistogramAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HistogramAggregation of(Function<Builder, ObjectBuilder<HistogramAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation}, {@link PivotGroupBy}, {@link CompositeAggregationSource}
-	 * variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "histogram";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Histogram;
+	}
+
+	/**
+	 * PivotGroupBy variant kind.
+	 */
+	@Override
+	public PivotGroupBy.Kind _pivotGroupByKind() {
+		return PivotGroupBy.Kind.Histogram;
 	}
 
 	/**
 	 * API name: {@code extended_bounds}
 	 */
 	@Nullable
-	public ExtendedBounds<Double> extendedBounds() {
+	public final ExtendedBounds<Double> extendedBounds() {
 		return this.extendedBounds;
 	}
 
@@ -126,7 +135,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * API name: {@code hard_bounds}
 	 */
 	@Nullable
-	public ExtendedBounds<Double> hardBounds() {
+	public final ExtendedBounds<Double> hardBounds() {
 		return this.hardBounds;
 	}
 
@@ -134,7 +143,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -142,7 +151,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * API name: {@code interval}
 	 */
 	@Nullable
-	public Double interval() {
+	public final Double interval() {
 		return this.interval;
 	}
 
@@ -150,7 +159,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * API name: {@code min_doc_count}
 	 */
 	@Nullable
-	public Integer minDocCount() {
+	public final Integer minDocCount() {
 		return this.minDocCount;
 	}
 
@@ -158,7 +167,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public Double missing() {
+	public final Double missing() {
 		return this.missing;
 	}
 
@@ -166,7 +175,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * API name: {@code offset}
 	 */
 	@Nullable
-	public Double offset() {
+	public final Double offset() {
 		return this.offset;
 	}
 
@@ -174,7 +183,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * API name: {@code order}
 	 */
 	@Nullable
-	public HistogramOrder order() {
+	public final HistogramOrder order() {
 		return this.order;
 	}
 
@@ -182,7 +191,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -190,7 +199,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -198,7 +207,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * API name: {@code keyed}
 	 */
 	@Nullable
-	public Boolean keyed() {
+	public final Boolean keyed() {
 		return this.keyed;
 	}
 
@@ -206,67 +215,56 @@ public final class HistogramAggregation extends BucketAggregationBase
 
 		super.serializeInternal(generator, mapper);
 		if (this.extendedBounds != null) {
-
 			generator.writeKey("extended_bounds");
 			this.extendedBounds.serialize(generator, mapper);
 
 		}
 		if (this.hardBounds != null) {
-
 			generator.writeKey("hard_bounds");
 			this.hardBounds.serialize(generator, mapper);
 
 		}
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.interval != null) {
-
 			generator.writeKey("interval");
 			generator.write(this.interval);
 
 		}
 		if (this.minDocCount != null) {
-
 			generator.writeKey("min_doc_count");
 			generator.write(this.minDocCount);
 
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
 			generator.write(this.missing);
 
 		}
 		if (this.offset != null) {
-
 			generator.writeKey("offset");
 			generator.write(this.offset);
 
 		}
 		if (this.order != null) {
-
 			generator.writeKey("order");
 			this.order.serialize(generator, mapper);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.keyed != null) {
-
 			generator.writeKey("keyed");
 			generator.write(this.keyed);
 
@@ -279,6 +277,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 	/**
 	 * Builder for {@link HistogramAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HistogramAggregation> {
@@ -307,7 +306,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		private HistogramOrder order;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		@Nullable
 		private String format;
@@ -318,7 +317,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code extended_bounds}
 		 */
-		public Builder extendedBounds(@Nullable ExtendedBounds<Double> value) {
+		public final Builder extendedBounds(@Nullable ExtendedBounds<Double> value) {
 			this.extendedBounds = value;
 			return this;
 		}
@@ -326,7 +325,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code extended_bounds}
 		 */
-		public Builder extendedBounds(
+		public final Builder extendedBounds(
 				Function<ExtendedBounds.Builder<Double>, ObjectBuilder<ExtendedBounds<Double>>> fn) {
 			return this.extendedBounds(fn.apply(new ExtendedBounds.Builder<Double>()).build());
 		}
@@ -334,7 +333,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code hard_bounds}
 		 */
-		public Builder hardBounds(@Nullable ExtendedBounds<Double> value) {
+		public final Builder hardBounds(@Nullable ExtendedBounds<Double> value) {
 			this.hardBounds = value;
 			return this;
 		}
@@ -342,14 +341,15 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code hard_bounds}
 		 */
-		public Builder hardBounds(Function<ExtendedBounds.Builder<Double>, ObjectBuilder<ExtendedBounds<Double>>> fn) {
+		public final Builder hardBounds(
+				Function<ExtendedBounds.Builder<Double>, ObjectBuilder<ExtendedBounds<Double>>> fn) {
 			return this.hardBounds(fn.apply(new ExtendedBounds.Builder<Double>()).build());
 		}
 
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -357,7 +357,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code interval}
 		 */
-		public Builder interval(@Nullable Double value) {
+		public final Builder interval(@Nullable Double value) {
 			this.interval = value;
 			return this;
 		}
@@ -365,7 +365,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code min_doc_count}
 		 */
-		public Builder minDocCount(@Nullable Integer value) {
+		public final Builder minDocCount(@Nullable Integer value) {
 			this.minDocCount = value;
 			return this;
 		}
@@ -373,7 +373,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable Double value) {
+		public final Builder missing(@Nullable Double value) {
 			this.missing = value;
 			return this;
 		}
@@ -381,7 +381,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code offset}
 		 */
-		public Builder offset(@Nullable Double value) {
+		public final Builder offset(@Nullable Double value) {
 			this.offset = value;
 			return this;
 		}
@@ -389,7 +389,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(@Nullable HistogramOrder value) {
+		public final Builder order(@Nullable HistogramOrder value) {
 			this.order = value;
 			return this;
 		}
@@ -397,22 +397,29 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code order}
 		 */
-		public Builder order(Function<HistogramOrder.Builder, ObjectBuilder<HistogramOrder>> fn) {
+		public final Builder order(Function<HistogramOrder.Builder, ObjectBuilder<HistogramOrder>> fn) {
 			return this.order(fn.apply(new HistogramOrder.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -420,7 +427,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		/**
 		 * API name: {@code keyed}
 		 */
-		public Builder keyed(@Nullable Boolean value) {
+		public final Builder keyed(@Nullable Boolean value) {
 			this.keyed = value;
 			return this;
 		}
@@ -437,6 +444,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		 *             if some of the required fields are null.
 		 */
 		public HistogramAggregation build() {
+			_checkSingleUse();
 
 			return new HistogramAggregation(this);
 		}
@@ -448,10 +456,9 @@ public final class HistogramAggregation extends BucketAggregationBase
 	 * Json deserializer for {@link HistogramAggregation}
 	 */
 	public static final JsonpDeserializer<HistogramAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HistogramAggregation::setupHistogramAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, HistogramAggregation::setupHistogramAggregationDeserializer);
 
-	protected static void setupHistogramAggregationDeserializer(
-			DelegatingDeserializer<HistogramAggregation.Builder> op) {
+	protected static void setupHistogramAggregationDeserializer(ObjectDeserializer<HistogramAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::extendedBounds,
 				ExtendedBounds.createExtendedBoundsDeserializer(JsonpDeserializer.doubleDeserializer()),
@@ -464,7 +471,7 @@ public final class HistogramAggregation extends BucketAggregationBase
 		op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
 		op.add(Builder::offset, JsonpDeserializer.doubleDeserializer(), "offset");
 		op.add(Builder::order, HistogramOrder._DESERIALIZER, "order");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
 

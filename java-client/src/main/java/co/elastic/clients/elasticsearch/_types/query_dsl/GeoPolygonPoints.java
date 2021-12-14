@@ -23,45 +23,50 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoPolygonPoints
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/geo.ts#L59-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GeoPolygonPoints implements JsonpSerializable {
-	private final List<JsonValue /* _types.query_dsl.GeoLocation */> points;
+public class GeoPolygonPoints implements JsonpSerializable {
+	private final List<GeoLocation> points;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoPolygonPoints(Builder builder) {
+	private GeoPolygonPoints(Builder builder) {
 
-		this.points = ModelTypeHelper.unmodifiableNonNull(builder.points, "points");
+		this.points = ApiTypeHelper.unmodifiableRequired(builder.points, this, "points");
 
 	}
 
-	public GeoPolygonPoints(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoPolygonPoints of(Function<Builder, ObjectBuilder<GeoPolygonPoints>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code points}
 	 */
-	public List<JsonValue /* _types.query_dsl.GeoLocation */> points() {
+	public final List<GeoLocation> points() {
 		return this.points;
 	}
 
@@ -76,13 +81,16 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("points");
-		generator.writeStartArray();
-		for (JsonValue /* _types.query_dsl.GeoLocation */ item0 : this.points) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.points)) {
+			generator.writeKey("points");
+			generator.writeStartArray();
+			for (GeoLocation item0 : this.points) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,34 +99,37 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoPolygonPoints}.
 	 */
-	public static class Builder implements ObjectBuilder<GeoPolygonPoints> {
-		private List<JsonValue /* _types.query_dsl.GeoLocation */> points;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoPolygonPoints> {
+		private List<GeoLocation> points;
 
 		/**
 		 * Required - API name: {@code points}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>points</code>.
 		 */
-		public Builder points(List<JsonValue /* _types.query_dsl.GeoLocation */> value) {
-			this.points = value;
+		public final Builder points(List<GeoLocation> list) {
+			this.points = _listAddAll(this.points, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code points}
+		 * <p>
+		 * Adds one or more values to <code>points</code>.
 		 */
-		public Builder points(JsonValue /* _types.query_dsl.GeoLocation */... value) {
-			this.points = Arrays.asList(value);
+		public final Builder points(GeoLocation value, GeoLocation... values) {
+			this.points = _listAdd(this.points, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #points(List)}, creating the list if needed.
+		 * Required - API name: {@code points}
+		 * <p>
+		 * Adds a value to <code>points</code> using a builder lambda.
 		 */
-		public Builder addPoints(JsonValue /* _types.query_dsl.GeoLocation */ value) {
-			if (this.points == null) {
-				this.points = new ArrayList<>();
-			}
-			this.points.add(value);
-			return this;
+		public final Builder points(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return points(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		/**
@@ -128,6 +139,7 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GeoPolygonPoints build() {
+			_checkSingleUse();
 
 			return new GeoPolygonPoints(this);
 		}
@@ -139,12 +151,11 @@ public final class GeoPolygonPoints implements JsonpSerializable {
 	 * Json deserializer for {@link GeoPolygonPoints}
 	 */
 	public static final JsonpDeserializer<GeoPolygonPoints> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoPolygonPoints::setupGeoPolygonPointsDeserializer, Builder::build);
+			GeoPolygonPoints::setupGeoPolygonPointsDeserializer);
 
-	protected static void setupGeoPolygonPointsDeserializer(DelegatingDeserializer<GeoPolygonPoints.Builder> op) {
+	protected static void setupGeoPolygonPointsDeserializer(ObjectDeserializer<GeoPolygonPoints.Builder> op) {
 
-		op.add(Builder::points, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
-				"points");
+		op.add(Builder::points, JsonpDeserializer.arrayDeserializer(GeoLocation._DESERIALIZER), "points");
 
 	}
 

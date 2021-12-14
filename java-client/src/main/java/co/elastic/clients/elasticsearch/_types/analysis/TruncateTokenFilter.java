@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -36,35 +36,42 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.TruncateTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L326-L329">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TruncateTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final int length;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TruncateTokenFilter(Builder builder) {
+	private TruncateTokenFilter(Builder builder) {
 		super(builder);
 
-		this.length = Objects.requireNonNull(builder.length, "length");
+		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
 
 	}
 
-	public TruncateTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TruncateTokenFilter of(Function<Builder, ObjectBuilder<TruncateTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "truncate";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Truncate;
 	}
 
 	/**
 	 * Required - API name: {@code length}
 	 */
-	public int length() {
+	public final int length() {
 		return this.length;
 	}
 
@@ -72,7 +79,6 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 
 		generator.write("type", "truncate");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("length");
 		generator.write(this.length);
 
@@ -83,6 +89,7 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 	/**
 	 * Builder for {@link TruncateTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TruncateTokenFilter> {
@@ -91,7 +98,7 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 		/**
 		 * Required - API name: {@code length}
 		 */
-		public Builder length(int value) {
+		public final Builder length(int value) {
 			this.length = value;
 			return this;
 		}
@@ -108,6 +115,7 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 		 *             if some of the required fields are null.
 		 */
 		public TruncateTokenFilter build() {
+			_checkSingleUse();
 
 			return new TruncateTokenFilter(this);
 		}
@@ -119,9 +127,9 @@ public final class TruncateTokenFilter extends TokenFilterBase implements TokenF
 	 * Json deserializer for {@link TruncateTokenFilter}
 	 */
 	public static final JsonpDeserializer<TruncateTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TruncateTokenFilter::setupTruncateTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, TruncateTokenFilter::setupTruncateTokenFilterDeserializer);
 
-	protected static void setupTruncateTokenFilterDeserializer(DelegatingDeserializer<TruncateTokenFilter.Builder> op) {
+	protected static void setupTruncateTokenFilterDeserializer(ObjectDeserializer<TruncateTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::length, JsonpDeserializer.integerDeserializer(), "length");
 

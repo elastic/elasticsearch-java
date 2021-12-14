@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,27 +34,35 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.HyphenationDecompounderTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L57-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase
+public class HyphenationDecompounderTokenFilter extends CompoundWordTokenFilterBase
 		implements
-			TokenFilterVariant {
+			TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public HyphenationDecompounderTokenFilter(Builder builder) {
+	private HyphenationDecompounderTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public HyphenationDecompounderTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static HyphenationDecompounderTokenFilter of(
+			Function<Builder, ObjectBuilder<HyphenationDecompounderTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "hyphenation_decompounder";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.HyphenationDecompounder;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -70,6 +77,7 @@ public final class HyphenationDecompounderTokenFilter extends CompoundWordTokenF
 	/**
 	 * Builder for {@link HyphenationDecompounderTokenFilter}.
 	 */
+
 	public static class Builder extends CompoundWordTokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HyphenationDecompounderTokenFilter> {
@@ -85,6 +93,7 @@ public final class HyphenationDecompounderTokenFilter extends CompoundWordTokenF
 		 *             if some of the required fields are null.
 		 */
 		public HyphenationDecompounderTokenFilter build() {
+			_checkSingleUse();
 
 			return new HyphenationDecompounderTokenFilter(this);
 		}
@@ -96,11 +105,11 @@ public final class HyphenationDecompounderTokenFilter extends CompoundWordTokenF
 	 * Json deserializer for {@link HyphenationDecompounderTokenFilter}
 	 */
 	public static final JsonpDeserializer<HyphenationDecompounderTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, HyphenationDecompounderTokenFilter::setupHyphenationDecompounderTokenFilterDeserializer,
-					Builder::build);
+			.lazy(Builder::new,
+					HyphenationDecompounderTokenFilter::setupHyphenationDecompounderTokenFilterDeserializer);
 
 	protected static void setupHyphenationDecompounderTokenFilterDeserializer(
-			DelegatingDeserializer<HyphenationDecompounderTokenFilter.Builder> op) {
+			ObjectDeserializer<HyphenationDecompounderTokenFilter.Builder> op) {
 		CompoundWordTokenFilterBase.setupCompoundWordTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.GeoLineSort
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L80-L82">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GeoLineSort implements JsonpSerializable {
+public class GeoLineSort implements JsonpSerializable {
 	private final String field;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoLineSort(Builder builder) {
+	private GeoLineSort(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 	}
 
-	public GeoLineSort(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoLineSort of(Function<Builder, ObjectBuilder<GeoLineSort>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -82,13 +90,14 @@ public final class GeoLineSort implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoLineSort}.
 	 */
-	public static class Builder implements ObjectBuilder<GeoLineSort> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLineSort> {
 		private String field;
 
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class GeoLineSort implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GeoLineSort build() {
+			_checkSingleUse();
 
 			return new GeoLineSort(this);
 		}
@@ -111,9 +121,9 @@ public final class GeoLineSort implements JsonpSerializable {
 	 * Json deserializer for {@link GeoLineSort}
 	 */
 	public static final JsonpDeserializer<GeoLineSort> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoLineSort::setupGeoLineSortDeserializer, Builder::build);
+			GeoLineSort::setupGeoLineSortDeserializer);
 
-	protected static void setupGeoLineSortDeserializer(DelegatingDeserializer<GeoLineSort.Builder> op) {
+	protected static void setupGeoLineSortDeserializer(ObjectDeserializer<GeoLineSort.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 

@@ -23,37 +23,49 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotShardsStatsStage.ts#L20-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum ShardsStatsStage implements StringEnum {
+public enum ShardsStatsStage implements JsonEnum {
 	/**
 	 * Number of shards in the snapshot that were successfully stored in the
 	 * repository.
 	 */
 	Done("DONE"),
+
 	/**
 	 * Number of shards in the snapshot that were not successfully stored in the
 	 * repository.
 	 */
 	Failure("FAILURE"),
+
 	/**
 	 * Number of shards in the snapshot that are in the finalizing stage of being
 	 * stored in the repository.
 	 */
 	Finalize("FINALIZE"),
+
 	/**
 	 * Number of shards in the snapshot that are in the initializing stage of being
 	 * stored in the repository.
 	 */
 	Init("INIT"),
+
 	/**
 	 * Number of shards in the snapshot that are in the started stage of being
 	 * stored in the repository.
 	 */
-	Started("STARTED");
+	Started("STARTED"),
+
+	;
 
 	private final String jsonValue;
 
@@ -65,6 +77,6 @@ public enum ShardsStatsStage implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ShardsStatsStage> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ShardsStatsStage> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ShardsStatsStage.values());
 }

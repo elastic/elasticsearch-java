@@ -30,11 +30,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: security.change_password.Response
 
-public final class ChangePasswordResponse {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/change_password/SecurityChangePasswordResponse.ts#L20-L22">API
+ *      specification</a>
+ */
+
+public class ChangePasswordResponse {
 	public ChangePasswordResponse() {
 	}
 

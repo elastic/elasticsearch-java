@@ -23,18 +23,18 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -43,55 +43,86 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.preview_datafeed.Request
+
+/**
+ * Previews a datafeed. This API returns the first &quot;page&quot; of search
+ * results from a datafeed. You can preview an existing datafeed or provide
+ * configuration details for a datafeed and anomaly detection job in the API.
+ * The preview shows the structure of the data that will be passed to the
+ * anomaly detection engine. IMPORTANT: When Elasticsearch security features are
+ * enabled, the preview uses the credentials of the user that called the API.
+ * However, when the datafeed starts it uses the roles of the last user that
+ * created or updated the datafeed. To get a preview that accurately reflects
+ * the behavior of the datafeed, use the appropriate credentials. You can also
+ * use secondary authorization headers to supply the credentials.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/preview_datafeed/MlPreviewDatafeedRequest.ts#L25-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PreviewDatafeedRequest extends RequestBase implements JsonpSerializable {
+public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final DatafeedConfig datafeedConfig;
+
 	@Nullable
 	private final String datafeedId;
 
 	@Nullable
 	private final JobConfig jobConfig;
 
-	@Nullable
-	private final DatafeedConfig datafeedConfig;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public PreviewDatafeedRequest(Builder builder) {
+	private PreviewDatafeedRequest(Builder builder) {
 
+		this.datafeedConfig = builder.datafeedConfig;
 		this.datafeedId = builder.datafeedId;
 		this.jobConfig = builder.jobConfig;
-		this.datafeedConfig = builder.datafeedConfig;
 
 	}
 
-	public PreviewDatafeedRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PreviewDatafeedRequest of(Function<Builder, ObjectBuilder<PreviewDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * The ID of the datafeed to preview
+	 * The datafeed definition to preview.
+	 * <p>
+	 * API name: {@code datafeed_config}
+	 */
+	@Nullable
+	public final DatafeedConfig datafeedConfig() {
+		return this.datafeedConfig;
+	}
+
+	/**
+	 * A numerical character string that uniquely identifies the datafeed. This
+	 * identifier can contain lowercase alphanumeric characters (a-z and 0-9),
+	 * hyphens, and underscores. It must start and end with alphanumeric characters.
+	 * NOTE: If you use this path parameter, you cannot provide datafeed or anomaly
+	 * detection job configuration details in the request body.
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
 	@Nullable
-	public String datafeedId() {
+	public final String datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
+	 * The configuration details for the anomaly detection job that is associated
+	 * with the datafeed. If the <code>datafeed_config</code> object does not
+	 * include a <code>job_id</code> that references an existing anomaly detection
+	 * job, you must supply this <code>job_config</code> object. If you include both
+	 * a <code>job_id</code> and a <code>job_config</code>, the latter information
+	 * is used. You cannot specify a <code>job_config</code> object unless you also
+	 * supply a <code>datafeed_config</code> object.
+	 * <p>
 	 * API name: {@code job_config}
 	 */
 	@Nullable
-	public JobConfig jobConfig() {
+	public final JobConfig jobConfig() {
 		return this.jobConfig;
-	}
-
-	/**
-	 * API name: {@code datafeed_config}
-	 */
-	@Nullable
-	public DatafeedConfig datafeedConfig() {
-		return this.datafeedConfig;
 	}
 
 	/**
@@ -105,16 +136,14 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.jobConfig != null) {
-
-			generator.writeKey("job_config");
-			this.jobConfig.serialize(generator, mapper);
-
-		}
 		if (this.datafeedConfig != null) {
-
 			generator.writeKey("datafeed_config");
 			this.datafeedConfig.serialize(generator, mapper);
+
+		}
+		if (this.jobConfig != null) {
+			generator.writeKey("job_config");
+			this.jobConfig.serialize(generator, mapper);
 
 		}
 
@@ -125,54 +154,79 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link PreviewDatafeedRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PreviewDatafeedRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDatafeedRequest> {
+		@Nullable
+		private DatafeedConfig datafeedConfig;
+
 		@Nullable
 		private String datafeedId;
 
 		@Nullable
 		private JobConfig jobConfig;
 
-		@Nullable
-		private DatafeedConfig datafeedConfig;
-
 		/**
-		 * The ID of the datafeed to preview
+		 * The datafeed definition to preview.
 		 * <p>
-		 * API name: {@code datafeed_id}
-		 */
-		public Builder datafeedId(@Nullable String value) {
-			this.datafeedId = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code job_config}
-		 */
-		public Builder jobConfig(@Nullable JobConfig value) {
-			this.jobConfig = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code job_config}
-		 */
-		public Builder jobConfig(Function<JobConfig.Builder, ObjectBuilder<JobConfig>> fn) {
-			return this.jobConfig(fn.apply(new JobConfig.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(@Nullable DatafeedConfig value) {
+		public final Builder datafeedConfig(@Nullable DatafeedConfig value) {
 			this.datafeedConfig = value;
 			return this;
 		}
 
 		/**
+		 * The datafeed definition to preview.
+		 * <p>
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
+		public final Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
 			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
+		}
+
+		/**
+		 * A numerical character string that uniquely identifies the datafeed. This
+		 * identifier can contain lowercase alphanumeric characters (a-z and 0-9),
+		 * hyphens, and underscores. It must start and end with alphanumeric characters.
+		 * NOTE: If you use this path parameter, you cannot provide datafeed or anomaly
+		 * detection job configuration details in the request body.
+		 * <p>
+		 * API name: {@code datafeed_id}
+		 */
+		public final Builder datafeedId(@Nullable String value) {
+			this.datafeedId = value;
+			return this;
+		}
+
+		/**
+		 * The configuration details for the anomaly detection job that is associated
+		 * with the datafeed. If the <code>datafeed_config</code> object does not
+		 * include a <code>job_id</code> that references an existing anomaly detection
+		 * job, you must supply this <code>job_config</code> object. If you include both
+		 * a <code>job_id</code> and a <code>job_config</code>, the latter information
+		 * is used. You cannot specify a <code>job_config</code> object unless you also
+		 * supply a <code>datafeed_config</code> object.
+		 * <p>
+		 * API name: {@code job_config}
+		 */
+		public final Builder jobConfig(@Nullable JobConfig value) {
+			this.jobConfig = value;
+			return this;
+		}
+
+		/**
+		 * The configuration details for the anomaly detection job that is associated
+		 * with the datafeed. If the <code>datafeed_config</code> object does not
+		 * include a <code>job_id</code> that references an existing anomaly detection
+		 * job, you must supply this <code>job_config</code> object. If you include both
+		 * a <code>job_id</code> and a <code>job_config</code>, the latter information
+		 * is used. You cannot specify a <code>job_config</code> object unless you also
+		 * supply a <code>datafeed_config</code> object.
+		 * <p>
+		 * API name: {@code job_config}
+		 */
+		public final Builder jobConfig(Function<JobConfig.Builder, ObjectBuilder<JobConfig>> fn) {
+			return this.jobConfig(fn.apply(new JobConfig.Builder()).build());
 		}
 
 		/**
@@ -182,6 +236,7 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 		 *             if some of the required fields are null.
 		 */
 		public PreviewDatafeedRequest build() {
+			_checkSingleUse();
 
 			return new PreviewDatafeedRequest(this);
 		}
@@ -193,13 +248,13 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	 * Json deserializer for {@link PreviewDatafeedRequest}
 	 */
 	public static final JsonpDeserializer<PreviewDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PreviewDatafeedRequest::setupPreviewDatafeedRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PreviewDatafeedRequest::setupPreviewDatafeedRequestDeserializer);
 
 	protected static void setupPreviewDatafeedRequestDeserializer(
-			DelegatingDeserializer<PreviewDatafeedRequest.Builder> op) {
+			ObjectDeserializer<PreviewDatafeedRequest.Builder> op) {
 
-		op.add(Builder::jobConfig, JobConfig._DESERIALIZER, "job_config");
 		op.add(Builder::datafeedConfig, DatafeedConfig._DESERIALIZER, "datafeed_config");
+		op.add(Builder::jobConfig, JobConfig._DESERIALIZER, "job_config");
 
 	}
 
@@ -208,7 +263,9 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code ml.preview_datafeed}".
 	 */
-	private static final SimpleEndpoint<PreviewDatafeedRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<PreviewDatafeedRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.preview_datafeed",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -248,14 +305,14 @@ public final class PreviewDatafeedRequest extends RequestBase implements JsonpSe
 			request -> {
 				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, PreviewDatafeedResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code ml.preview_datafeed}" endpoint.
 	 */
-	public static <TDocument> Endpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ElasticsearchError> createPreviewDatafeedEndpoint(
+	public static <TDocument> Endpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse> createPreviewDatafeedEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				PreviewDatafeedResponse.createPreviewDatafeedResponseDeserializer(tDocumentDeserializer));
 	}
 }

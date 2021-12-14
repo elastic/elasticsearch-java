@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.core.get_script_context;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.get_script_context.ContextMethod
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_context/types.ts#L27-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ContextMethod implements JsonpSerializable {
+public class ContextMethod implements JsonpSerializable {
 	private final String name;
 
 	private final String returnType;
@@ -52,36 +57,36 @@ public final class ContextMethod implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ContextMethod(Builder builder) {
+	private ContextMethod(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.returnType = Objects.requireNonNull(builder.returnType, "return_type");
-		this.params = ModelTypeHelper.unmodifiableNonNull(builder.params, "params");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.returnType = ApiTypeHelper.requireNonNull(builder.returnType, this, "returnType");
+		this.params = ApiTypeHelper.unmodifiableRequired(builder.params, this, "params");
 
 	}
 
-	public ContextMethod(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ContextMethod of(Function<Builder, ObjectBuilder<ContextMethod>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code return_type}
 	 */
-	public String returnType() {
+	public final String returnType() {
 		return this.returnType;
 	}
 
 	/**
 	 * Required - API name: {@code params}
 	 */
-	public List<ContextMethodParam> params() {
+	public final List<ContextMethodParam> params() {
 		return this.params;
 	}
 
@@ -102,13 +107,16 @@ public final class ContextMethod implements JsonpSerializable {
 		generator.writeKey("return_type");
 		generator.write(this.returnType);
 
-		generator.writeKey("params");
-		generator.writeStartArray();
-		for (ContextMethodParam item0 : this.params) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.params)) {
+			generator.writeKey("params");
+			generator.writeStartArray();
+			for (ContextMethodParam item0 : this.params) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -117,7 +125,8 @@ public final class ContextMethod implements JsonpSerializable {
 	/**
 	 * Builder for {@link ContextMethod}.
 	 */
-	public static class Builder implements ObjectBuilder<ContextMethod> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ContextMethod> {
 		private String name;
 
 		private String returnType;
@@ -127,7 +136,7 @@ public final class ContextMethod implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -135,50 +144,38 @@ public final class ContextMethod implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code return_type}
 		 */
-		public Builder returnType(String value) {
+		public final Builder returnType(String value) {
 			this.returnType = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code params}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>params</code>.
 		 */
-		public Builder params(List<ContextMethodParam> value) {
-			this.params = value;
+		public final Builder params(List<ContextMethodParam> list) {
+			this.params = _listAddAll(this.params, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code params}
+		 * <p>
+		 * Adds one or more values to <code>params</code>.
 		 */
-		public Builder params(ContextMethodParam... value) {
-			this.params = Arrays.asList(value);
+		public final Builder params(ContextMethodParam value, ContextMethodParam... values) {
+			this.params = _listAdd(this.params, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #params(List)}, creating the list if needed.
+		 * Required - API name: {@code params}
+		 * <p>
+		 * Adds a value to <code>params</code> using a builder lambda.
 		 */
-		public Builder addParams(ContextMethodParam value) {
-			if (this.params == null) {
-				this.params = new ArrayList<>();
-			}
-			this.params.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #params(List)} to a singleton list.
-		 */
-		public Builder params(Function<ContextMethodParam.Builder, ObjectBuilder<ContextMethodParam>> fn) {
-			return this.params(fn.apply(new ContextMethodParam.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #params(List)}, creating the list if needed.
-		 */
-		public Builder addParams(Function<ContextMethodParam.Builder, ObjectBuilder<ContextMethodParam>> fn) {
-			return this.addParams(fn.apply(new ContextMethodParam.Builder()).build());
+		public final Builder params(Function<ContextMethodParam.Builder, ObjectBuilder<ContextMethodParam>> fn) {
+			return params(fn.apply(new ContextMethodParam.Builder()).build());
 		}
 
 		/**
@@ -188,6 +185,7 @@ public final class ContextMethod implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ContextMethod build() {
+			_checkSingleUse();
 
 			return new ContextMethod(this);
 		}
@@ -199,9 +197,9 @@ public final class ContextMethod implements JsonpSerializable {
 	 * Json deserializer for {@link ContextMethod}
 	 */
 	public static final JsonpDeserializer<ContextMethod> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ContextMethod::setupContextMethodDeserializer, Builder::build);
+			ContextMethod::setupContextMethodDeserializer);
 
-	protected static void setupContextMethodDeserializer(DelegatingDeserializer<ContextMethod.Builder> op) {
+	protected static void setupContextMethodDeserializer(ObjectDeserializer<ContextMethod.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::returnType, JsonpDeserializer.stringDeserializer(), "return_type");

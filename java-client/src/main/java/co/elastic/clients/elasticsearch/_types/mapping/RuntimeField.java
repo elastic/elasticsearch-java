@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,35 +40,42 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RuntimeField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/RuntimeFields.ts#L26-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RuntimeField implements JsonpSerializable {
+public class RuntimeField implements JsonpSerializable {
 	@Nullable
 	private final String format;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	private final RuntimeFieldType type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RuntimeField(Builder builder) {
+	private RuntimeField(Builder builder) {
 
 		this.format = builder.format;
 		this.script = builder.script;
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public RuntimeField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RuntimeField of(Function<Builder, ObjectBuilder<RuntimeField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code format}
 	 */
 	@Nullable
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
@@ -75,14 +83,14 @@ public final class RuntimeField implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public RuntimeFieldType type() {
+	public final RuntimeFieldType type() {
 		return this.type;
 	}
 
@@ -98,18 +106,15 @@ public final class RuntimeField implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.format != null) {
-
 			generator.writeKey("format");
 			generator.write(this.format);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 
@@ -120,19 +125,20 @@ public final class RuntimeField implements JsonpSerializable {
 	/**
 	 * Builder for {@link RuntimeField}.
 	 */
-	public static class Builder implements ObjectBuilder<RuntimeField> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuntimeField> {
 		@Nullable
 		private String format;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		private RuntimeFieldType type;
 
 		/**
 		 * API name: {@code format}
 		 */
-		public Builder format(@Nullable String value) {
+		public final Builder format(@Nullable String value) {
 			this.format = value;
 			return this;
 		}
@@ -140,15 +146,22 @@ public final class RuntimeField implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(RuntimeFieldType value) {
+		public final Builder type(RuntimeFieldType value) {
 			this.type = value;
 			return this;
 		}
@@ -160,6 +173,7 @@ public final class RuntimeField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RuntimeField build() {
+			_checkSingleUse();
 
 			return new RuntimeField(this);
 		}
@@ -171,12 +185,12 @@ public final class RuntimeField implements JsonpSerializable {
 	 * Json deserializer for {@link RuntimeField}
 	 */
 	public static final JsonpDeserializer<RuntimeField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RuntimeField::setupRuntimeFieldDeserializer, Builder::build);
+			RuntimeField::setupRuntimeFieldDeserializer);
 
-	protected static void setupRuntimeFieldDeserializer(DelegatingDeserializer<RuntimeField.Builder> op) {
+	protected static void setupRuntimeFieldDeserializer(ObjectDeserializer<RuntimeField.Builder> op) {
 
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::type, RuntimeFieldType._DESERIALIZER, "type");
 
 	}

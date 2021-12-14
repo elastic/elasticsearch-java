@@ -23,23 +23,31 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: security.authenticate.Request
 
-public final class AuthenticateRequest extends RequestBase {
+/**
+ * Enables you to submit a request with a basic auth header to authenticate a
+ * user and retrieve information about the authenticated user.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/authenticate/SecurityAuthenticateRequest.ts#L22-L28">API
+ *      specification</a>
+ */
+
+public class AuthenticateRequest extends RequestBase {
 	public AuthenticateRequest() {
 	}
 
@@ -53,7 +61,9 @@ public final class AuthenticateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.authenticate}".
 	 */
-	public static final Endpoint<AuthenticateRequest, AuthenticateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<AuthenticateRequest, AuthenticateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.authenticate",
+
 			// Request method
 			request -> {
 				return "GET";

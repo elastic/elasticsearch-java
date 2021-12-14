@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,10 +30,11 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -42,23 +42,28 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeEvaluationMetrics
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeEvaluation.ts#L64-L71">API
+ *      specification</a>
+ */
+
 public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	@Nullable
 	private final DataframeEvaluationClassificationMetricsAucRoc aucRoc;
 
-	@Nullable
 	private final Map<String, JsonData> precision;
 
-	@Nullable
 	private final Map<String, JsonData> recall;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationMetrics(AbstractBuilder<?> builder) {
+	protected DataframeEvaluationMetrics(AbstractBuilder<?> builder) {
 
 		this.aucRoc = builder.aucRoc;
-		this.precision = ModelTypeHelper.unmodifiable(builder.precision);
-		this.recall = ModelTypeHelper.unmodifiable(builder.recall);
+		this.precision = ApiTypeHelper.unmodifiable(builder.precision);
+		this.recall = ApiTypeHelper.unmodifiable(builder.recall);
 
 	}
 
@@ -70,7 +75,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	 * API name: {@code auc_roc}
 	 */
 	@Nullable
-	public DataframeEvaluationClassificationMetricsAucRoc aucRoc() {
+	public final DataframeEvaluationClassificationMetricsAucRoc aucRoc() {
 		return this.aucRoc;
 	}
 
@@ -79,8 +84,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code precision}
 	 */
-	@Nullable
-	public Map<String, JsonData> precision() {
+	public final Map<String, JsonData> precision() {
 		return this.precision;
 	}
 
@@ -89,8 +93,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code recall}
 	 */
-	@Nullable
-	public Map<String, JsonData> recall() {
+	public final Map<String, JsonData> recall() {
 		return this.recall;
 	}
 
@@ -106,13 +109,11 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.aucRoc != null) {
-
 			generator.writeKey("auc_roc");
 			this.aucRoc.serialize(generator, mapper);
 
 		}
-		if (this.precision != null) {
-
+		if (ApiTypeHelper.isDefined(this.precision)) {
 			generator.writeKey("precision");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.precision.entrySet()) {
@@ -123,8 +124,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.recall != null) {
-
+		if (ApiTypeHelper.isDefined(this.recall)) {
 			generator.writeKey("recall");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.recall.entrySet()) {
@@ -138,7 +138,9 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		@Nullable
 		private DataframeEvaluationClassificationMetricsAucRoc aucRoc;
 
@@ -155,7 +157,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code auc_roc}
 		 */
-		public BuilderT aucRoc(@Nullable DataframeEvaluationClassificationMetricsAucRoc value) {
+		public final BuilderT aucRoc(@Nullable DataframeEvaluationClassificationMetricsAucRoc value) {
 			this.aucRoc = value;
 			return self();
 		}
@@ -167,7 +169,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code auc_roc}
 		 */
-		public BuilderT aucRoc(
+		public final BuilderT aucRoc(
 				Function<DataframeEvaluationClassificationMetricsAucRoc.Builder, ObjectBuilder<DataframeEvaluationClassificationMetricsAucRoc>> fn) {
 			return this.aucRoc(fn.apply(new DataframeEvaluationClassificationMetricsAucRoc.Builder()).build());
 		}
@@ -176,20 +178,23 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * Precision of predictions (per-class and average).
 		 * <p>
 		 * API name: {@code precision}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>precision</code>.
 		 */
-		public BuilderT precision(@Nullable Map<String, JsonData> value) {
-			this.precision = value;
+		public final BuilderT precision(Map<String, JsonData> map) {
+			this.precision = _mapPutAll(this.precision, map);
 			return self();
 		}
 
 		/**
-		 * Add a key/value to {@link #precision(Map)}, creating the map if needed.
+		 * Precision of predictions (per-class and average).
+		 * <p>
+		 * API name: {@code precision}
+		 * <p>
+		 * Adds an entry to <code>precision</code>.
 		 */
-		public BuilderT putPrecision(String key, JsonData value) {
-			if (this.precision == null) {
-				this.precision = new HashMap<>();
-			}
-			this.precision.put(key, value);
+		public final BuilderT precision(String key, JsonData value) {
+			this.precision = _mapPut(this.precision, key, value);
 			return self();
 		}
 
@@ -197,20 +202,23 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 		 * Recall of predictions (per-class and average).
 		 * <p>
 		 * API name: {@code recall}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>recall</code>.
 		 */
-		public BuilderT recall(@Nullable Map<String, JsonData> value) {
-			this.recall = value;
+		public final BuilderT recall(Map<String, JsonData> map) {
+			this.recall = _mapPutAll(this.recall, map);
 			return self();
 		}
 
 		/**
-		 * Add a key/value to {@link #recall(Map)}, creating the map if needed.
+		 * Recall of predictions (per-class and average).
+		 * <p>
+		 * API name: {@code recall}
+		 * <p>
+		 * Adds an entry to <code>recall</code>.
 		 */
-		public BuilderT putRecall(String key, JsonData value) {
-			if (this.recall == null) {
-				this.recall = new HashMap<>();
-			}
-			this.recall.put(key, value);
+		public final BuilderT recall(String key, JsonData value) {
+			this.recall = _mapPut(this.recall, key, value);
 			return self();
 		}
 
@@ -220,7 +228,7 @@ public abstract class DataframeEvaluationMetrics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDataframeEvaluationMetricsDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::aucRoc, DataframeEvaluationClassificationMetricsAucRoc._DESERIALIZER, "auc_roc");
 		op.add(AbstractBuilder::precision, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),

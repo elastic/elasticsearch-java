@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: rollup.start_job.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/start_job/StartRollupJobResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StartJobResponse implements JsonpSerializable {
+public class StartJobResponse implements JsonpSerializable {
 	private final boolean started;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartJobResponse(Builder builder) {
+	private StartJobResponse(Builder builder) {
 
-		this.started = Objects.requireNonNull(builder.started, "started");
+		this.started = ApiTypeHelper.requireNonNull(builder.started, this, "started");
 
 	}
 
-	public StartJobResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartJobResponse of(Function<Builder, ObjectBuilder<StartJobResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code started}
 	 */
-	public boolean started() {
+	public final boolean started() {
 		return this.started;
 	}
 
@@ -81,13 +89,14 @@ public final class StartJobResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StartJobResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<StartJobResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartJobResponse> {
 		private Boolean started;
 
 		/**
 		 * Required - API name: {@code started}
 		 */
-		public Builder started(boolean value) {
+		public final Builder started(boolean value) {
 			this.started = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class StartJobResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StartJobResponse build() {
+			_checkSingleUse();
 
 			return new StartJobResponse(this);
 		}
@@ -110,9 +120,9 @@ public final class StartJobResponse implements JsonpSerializable {
 	 * Json deserializer for {@link StartJobResponse}
 	 */
 	public static final JsonpDeserializer<StartJobResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StartJobResponse::setupStartJobResponseDeserializer, Builder::build);
+			StartJobResponse::setupStartJobResponseDeserializer);
 
-	protected static void setupStartJobResponseDeserializer(DelegatingDeserializer<StartJobResponse.Builder> op) {
+	protected static void setupStartJobResponseDeserializer(ObjectDeserializer<StartJobResponse.Builder> op) {
 
 		op.add(Builder::started, JsonpDeserializer.booleanDeserializer(), "started");
 

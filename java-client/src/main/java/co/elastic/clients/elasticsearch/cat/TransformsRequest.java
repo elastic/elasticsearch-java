@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -43,10 +44,15 @@ import javax.annotation.Nullable;
 
 // typedef: cat.transforms.Request
 
-public final class TransformsRequest extends CatRequestBase {
-	@Nullable
-	private final String transformId;
+/**
+ * Gets configuration and usage information about transforms.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/transforms/CatTransformsRequest.ts#L24-L38">API
+ *      specification</a>
+ */
 
+public class TransformsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -56,30 +62,22 @@ public final class TransformsRequest extends CatRequestBase {
 	@Nullable
 	private final Integer size;
 
+	@Nullable
+	private final String transformId;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public TransformsRequest(Builder builder) {
+	private TransformsRequest(Builder builder) {
 
-		this.transformId = builder.transformId;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
 		this.size = builder.size;
+		this.transformId = builder.transformId;
 
 	}
 
-	public TransformsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The id of the transform for which to get stats. '_all' or '*' implies all
-	 * transforms
-	 * <p>
-	 * API name: {@code transform_id}
-	 */
-	@Nullable
-	public String transformId() {
-		return this.transformId;
+	public static TransformsRequest of(Function<Builder, ObjectBuilder<TransformsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -89,7 +87,7 @@ public final class TransformsRequest extends CatRequestBase {
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -99,7 +97,7 @@ public final class TransformsRequest extends CatRequestBase {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
@@ -109,8 +107,19 @@ public final class TransformsRequest extends CatRequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
+	}
+
+	/**
+	 * The id of the transform for which to get stats. '_all' or '*' implies all
+	 * transforms
+	 * <p>
+	 * API name: {@code transform_id}
+	 */
+	@Nullable
+	public final String transformId() {
+		return this.transformId;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -118,10 +127,8 @@ public final class TransformsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link TransformsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<TransformsRequest> {
-		@Nullable
-		private String transformId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -131,16 +138,8 @@ public final class TransformsRequest extends CatRequestBase {
 		@Nullable
 		private Integer size;
 
-		/**
-		 * The id of the transform for which to get stats. '_all' or '*' implies all
-		 * transforms
-		 * <p>
-		 * API name: {@code transform_id}
-		 */
-		public Builder transformId(@Nullable String value) {
-			this.transformId = value;
-			return this;
-		}
+		@Nullable
+		private String transformId;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no transforms. (This
@@ -148,7 +147,7 @@ public final class TransformsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -158,7 +157,7 @@ public final class TransformsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
@@ -168,8 +167,19 @@ public final class TransformsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		/**
+		 * The id of the transform for which to get stats. '_all' or '*' implies all
+		 * transforms
+		 * <p>
+		 * API name: {@code transform_id}
+		 */
+		public final Builder transformId(@Nullable String value) {
+			this.transformId = value;
 			return this;
 		}
 
@@ -180,6 +190,7 @@ public final class TransformsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public TransformsRequest build() {
+			_checkSingleUse();
 
 			return new TransformsRequest(this);
 		}
@@ -190,7 +201,9 @@ public final class TransformsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.transforms}".
 	 */
-	public static final Endpoint<TransformsRequest, TransformsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<TransformsRequest, TransformsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.transforms",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -227,14 +240,15 @@ public final class TransformsRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				params.put("format", "json");
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

@@ -23,21 +23,21 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,10 +48,15 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_template.Request
 
-public final class GetTemplateRequest extends RequestBase {
-	@Nullable
-	private final List<String> name;
+/**
+ * Returns an index template.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_template/IndicesGetTemplateRequest.ts#L24-L39">API
+ *      specification</a>
+ */
 
+public class GetTemplateRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
@@ -62,32 +67,24 @@ public final class GetTemplateRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
+
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTemplateRequest(Builder builder) {
+	private GetTemplateRequest(Builder builder) {
 
-		this.name = ModelTypeHelper.unmodifiable(builder.name);
 		this.flatSettings = builder.flatSettings;
 		this.includeTypeName = builder.includeTypeName;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
-	public GetTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The comma separated names of the index templates
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public List<String> name() {
-		return this.name;
+	public static GetTemplateRequest of(Function<Builder, ObjectBuilder<GetTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -96,7 +93,7 @@ public final class GetTemplateRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -104,7 +101,7 @@ public final class GetTemplateRequest extends RequestBase {
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
-	public Boolean includeTypeName() {
+	public final Boolean includeTypeName() {
 		return this.includeTypeName;
 	}
 
@@ -115,7 +112,7 @@ public final class GetTemplateRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -125,8 +122,17 @@ public final class GetTemplateRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * The comma separated names of the index templates
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final List<String> name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -134,10 +140,8 @@ public final class GetTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetTemplateRequest> {
-		@Nullable
-		private List<String> name;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -148,45 +152,17 @@ public final class GetTemplateRequest extends RequestBase {
 		private Boolean local;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
-		/**
-		 * The comma separated names of the index templates
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(@Nullable List<String> value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * The comma separated names of the index templates
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String... value) {
-			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> name;
 
 		/**
 		 * Return settings in flat format (default: false)
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -194,7 +170,7 @@ public final class GetTemplateRequest extends RequestBase {
 		/**
 		 * API name: {@code include_type_name}
 		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
+		public final Builder includeTypeName(@Nullable Boolean value) {
 			this.includeTypeName = value;
 			return this;
 		}
@@ -205,7 +181,7 @@ public final class GetTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -215,8 +191,41 @@ public final class GetTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The comma separated names of the index templates
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
+		 */
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * The comma separated names of the index templates
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -227,6 +236,7 @@ public final class GetTemplateRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetTemplateRequest build() {
+			_checkSingleUse();
 
 			return new GetTemplateRequest(this);
 		}
@@ -237,7 +247,9 @@ public final class GetTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_template}".
 	 */
-	public static final Endpoint<GetTemplateRequest, GetTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.get_template",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -250,7 +262,7 @@ public final class GetTemplateRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == 0) {
@@ -272,17 +284,17 @@ public final class GetTemplateRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
+				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 

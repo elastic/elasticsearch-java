@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,20 +42,29 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.get_lifecycle.Request
 
-public final class GetLifecycleRequest extends RequestBase {
+/**
+ * Returns the specified policy definition. Includes the policy version and last
+ * modified date.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/get_lifecycle/GetLifecycleRequest.ts#L23-L33">API
+ *      specification</a>
+ */
+
+public class GetLifecycleRequest extends RequestBase {
 	@Nullable
-	private final String policy;
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetLifecycleRequest(Builder builder) {
+	private GetLifecycleRequest(Builder builder) {
 
-		this.policy = builder.policy;
+		this.name = builder.name;
 
 	}
 
-	public GetLifecycleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetLifecycleRequest of(Function<Builder, ObjectBuilder<GetLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,8 +73,8 @@ public final class GetLifecycleRequest extends RequestBase {
 	 * API name: {@code policy}
 	 */
 	@Nullable
-	public String policy() {
-		return this.policy;
+	public final String name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -72,17 +82,18 @@ public final class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetLifecycleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetLifecycleRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLifecycleRequest> {
 		@Nullable
-		private String policy;
+		private String name;
 
 		/**
 		 * The name of the index lifecycle policy
 		 * <p>
 		 * API name: {@code policy}
 		 */
-		public Builder policy(@Nullable String value) {
-			this.policy = value;
+		public final Builder name(@Nullable String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -93,6 +104,7 @@ public final class GetLifecycleRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetLifecycleRequest build() {
+			_checkSingleUse();
 
 			return new GetLifecycleRequest(this);
 		}
@@ -103,7 +115,9 @@ public final class GetLifecycleRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.get_lifecycle}".
 	 */
-	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.get_lifecycle",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -112,19 +126,19 @@ public final class GetLifecycleRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _policy = 1 << 0;
+				final int _name = 1 << 0;
 
 				int propsSet = 0;
 
-				if (request.policy() != null)
-					propsSet |= _policy;
+				if (request.name() != null)
+					propsSet |= _name;
 
-				if (propsSet == (_policy)) {
+				if (propsSet == (_name)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ilm");
 					buf.append("/policy");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.policy, buf);
+					SimpleEndpoint.pathEncode(request.name, buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {

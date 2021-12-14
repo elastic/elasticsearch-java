@@ -23,29 +23,35 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.Cpu
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L86-L95">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Cpu implements JsonpSerializable {
+public class Cpu implements JsonpSerializable {
 	private final int percent;
 
 	@Nullable
@@ -66,32 +72,31 @@ public final class Cpu implements JsonpSerializable {
 	@Nullable
 	private final Long userInMillis;
 
-	@Nullable
 	private final Map<String, Double> loadAverage;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Cpu(Builder builder) {
+	private Cpu(Builder builder) {
 
-		this.percent = Objects.requireNonNull(builder.percent, "percent");
+		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
 		this.sys = builder.sys;
 		this.sysInMillis = builder.sysInMillis;
 		this.total = builder.total;
 		this.totalInMillis = builder.totalInMillis;
 		this.user = builder.user;
 		this.userInMillis = builder.userInMillis;
-		this.loadAverage = ModelTypeHelper.unmodifiable(builder.loadAverage);
+		this.loadAverage = ApiTypeHelper.unmodifiable(builder.loadAverage);
 
 	}
 
-	public Cpu(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Cpu of(Function<Builder, ObjectBuilder<Cpu>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code percent}
 	 */
-	public int percent() {
+	public final int percent() {
 		return this.percent;
 	}
 
@@ -99,7 +104,7 @@ public final class Cpu implements JsonpSerializable {
 	 * API name: {@code sys}
 	 */
 	@Nullable
-	public String sys() {
+	public final String sys() {
 		return this.sys;
 	}
 
@@ -107,7 +112,7 @@ public final class Cpu implements JsonpSerializable {
 	 * API name: {@code sys_in_millis}
 	 */
 	@Nullable
-	public Long sysInMillis() {
+	public final Long sysInMillis() {
 		return this.sysInMillis;
 	}
 
@@ -115,7 +120,7 @@ public final class Cpu implements JsonpSerializable {
 	 * API name: {@code total}
 	 */
 	@Nullable
-	public String total() {
+	public final String total() {
 		return this.total;
 	}
 
@@ -123,7 +128,7 @@ public final class Cpu implements JsonpSerializable {
 	 * API name: {@code total_in_millis}
 	 */
 	@Nullable
-	public Long totalInMillis() {
+	public final Long totalInMillis() {
 		return this.totalInMillis;
 	}
 
@@ -131,7 +136,7 @@ public final class Cpu implements JsonpSerializable {
 	 * API name: {@code user}
 	 */
 	@Nullable
-	public String user() {
+	public final String user() {
 		return this.user;
 	}
 
@@ -139,15 +144,14 @@ public final class Cpu implements JsonpSerializable {
 	 * API name: {@code user_in_millis}
 	 */
 	@Nullable
-	public Long userInMillis() {
+	public final Long userInMillis() {
 		return this.userInMillis;
 	}
 
 	/**
 	 * API name: {@code load_average}
 	 */
-	@Nullable
-	public Map<String, Double> loadAverage() {
+	public final Map<String, Double> loadAverage() {
 		return this.loadAverage;
 	}
 
@@ -166,43 +170,36 @@ public final class Cpu implements JsonpSerializable {
 		generator.write(this.percent);
 
 		if (this.sys != null) {
-
 			generator.writeKey("sys");
 			generator.write(this.sys);
 
 		}
 		if (this.sysInMillis != null) {
-
 			generator.writeKey("sys_in_millis");
 			generator.write(this.sysInMillis);
 
 		}
 		if (this.total != null) {
-
 			generator.writeKey("total");
 			generator.write(this.total);
 
 		}
 		if (this.totalInMillis != null) {
-
 			generator.writeKey("total_in_millis");
 			generator.write(this.totalInMillis);
 
 		}
 		if (this.user != null) {
-
 			generator.writeKey("user");
 			generator.write(this.user);
 
 		}
 		if (this.userInMillis != null) {
-
 			generator.writeKey("user_in_millis");
 			generator.write(this.userInMillis);
 
 		}
-		if (this.loadAverage != null) {
-
+		if (ApiTypeHelper.isDefined(this.loadAverage)) {
 			generator.writeKey("load_average");
 			generator.writeStartObject();
 			for (Map.Entry<String, Double> item0 : this.loadAverage.entrySet()) {
@@ -221,7 +218,8 @@ public final class Cpu implements JsonpSerializable {
 	/**
 	 * Builder for {@link Cpu}.
 	 */
-	public static class Builder implements ObjectBuilder<Cpu> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Cpu> {
 		private Integer percent;
 
 		@Nullable
@@ -248,7 +246,7 @@ public final class Cpu implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code percent}
 		 */
-		public Builder percent(int value) {
+		public final Builder percent(int value) {
 			this.percent = value;
 			return this;
 		}
@@ -256,7 +254,7 @@ public final class Cpu implements JsonpSerializable {
 		/**
 		 * API name: {@code sys}
 		 */
-		public Builder sys(@Nullable String value) {
+		public final Builder sys(@Nullable String value) {
 			this.sys = value;
 			return this;
 		}
@@ -264,7 +262,7 @@ public final class Cpu implements JsonpSerializable {
 		/**
 		 * API name: {@code sys_in_millis}
 		 */
-		public Builder sysInMillis(@Nullable Long value) {
+		public final Builder sysInMillis(@Nullable Long value) {
 			this.sysInMillis = value;
 			return this;
 		}
@@ -272,7 +270,7 @@ public final class Cpu implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public Builder total(@Nullable String value) {
+		public final Builder total(@Nullable String value) {
 			this.total = value;
 			return this;
 		}
@@ -280,7 +278,7 @@ public final class Cpu implements JsonpSerializable {
 		/**
 		 * API name: {@code total_in_millis}
 		 */
-		public Builder totalInMillis(@Nullable Long value) {
+		public final Builder totalInMillis(@Nullable Long value) {
 			this.totalInMillis = value;
 			return this;
 		}
@@ -288,7 +286,7 @@ public final class Cpu implements JsonpSerializable {
 		/**
 		 * API name: {@code user}
 		 */
-		public Builder user(@Nullable String value) {
+		public final Builder user(@Nullable String value) {
 			this.user = value;
 			return this;
 		}
@@ -296,27 +294,28 @@ public final class Cpu implements JsonpSerializable {
 		/**
 		 * API name: {@code user_in_millis}
 		 */
-		public Builder userInMillis(@Nullable Long value) {
+		public final Builder userInMillis(@Nullable Long value) {
 			this.userInMillis = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code load_average}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>loadAverage</code>.
 		 */
-		public Builder loadAverage(@Nullable Map<String, Double> value) {
-			this.loadAverage = value;
+		public final Builder loadAverage(Map<String, Double> map) {
+			this.loadAverage = _mapPutAll(this.loadAverage, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #loadAverage(Map)}, creating the map if needed.
+		 * API name: {@code load_average}
+		 * <p>
+		 * Adds an entry to <code>loadAverage</code>.
 		 */
-		public Builder putLoadAverage(String key, Double value) {
-			if (this.loadAverage == null) {
-				this.loadAverage = new HashMap<>();
-			}
-			this.loadAverage.put(key, value);
+		public final Builder loadAverage(String key, Double value) {
+			this.loadAverage = _mapPut(this.loadAverage, key, value);
 			return this;
 		}
 
@@ -327,6 +326,7 @@ public final class Cpu implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Cpu build() {
+			_checkSingleUse();
 
 			return new Cpu(this);
 		}
@@ -338,9 +338,9 @@ public final class Cpu implements JsonpSerializable {
 	 * Json deserializer for {@link Cpu}
 	 */
 	public static final JsonpDeserializer<Cpu> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Cpu::setupCpuDeserializer, Builder::build);
+			Cpu::setupCpuDeserializer);
 
-	protected static void setupCpuDeserializer(DelegatingDeserializer<Cpu.Builder> op) {
+	protected static void setupCpuDeserializer(ObjectDeserializer<Cpu.Builder> op) {
 
 		op.add(Builder::percent, JsonpDeserializer.integerDeserializer(), "percent");
 		op.add(Builder::sys, JsonpDeserializer.stringDeserializer(), "sys");

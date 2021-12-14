@@ -23,13 +23,29 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Job.ts#L31-L37">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum JobState implements StringEnum {
-	Closing("closing"), Closed("closed"), Opened("opened"), Failed("failed"), Opening("opening");
+public enum JobState implements JsonEnum {
+	Closing("closing"),
+
+	Closed("closed"),
+
+	Opened("opened"),
+
+	Failed("failed"),
+
+	Opening("opening"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +57,5 @@ public enum JobState implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<JobState> _DESERIALIZER = new StringEnum.Deserializer<>(
-			JobState.values());
+	public static final JsonEnum.Deserializer<JobState> _DESERIALIZER = new JsonEnum.Deserializer<>(JobState.values());
 }

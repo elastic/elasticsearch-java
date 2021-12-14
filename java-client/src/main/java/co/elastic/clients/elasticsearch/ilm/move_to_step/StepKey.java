@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ilm.move_to_step;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ilm.move_to_step.StepKey
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/move_to_step/types.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StepKey implements JsonpSerializable {
+public class StepKey implements JsonpSerializable {
 	private final String action;
 
 	private final String name;
@@ -48,36 +56,36 @@ public final class StepKey implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StepKey(Builder builder) {
+	private StepKey(Builder builder) {
 
-		this.action = Objects.requireNonNull(builder.action, "action");
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.phase = Objects.requireNonNull(builder.phase, "phase");
+		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.phase = ApiTypeHelper.requireNonNull(builder.phase, this, "phase");
 
 	}
 
-	public StepKey(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StepKey of(Function<Builder, ObjectBuilder<StepKey>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code action}
 	 */
-	public String action() {
+	public final String action() {
 		return this.action;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code phase}
 	 */
-	public String phase() {
+	public final String phase() {
 		return this.phase;
 	}
 
@@ -108,7 +116,8 @@ public final class StepKey implements JsonpSerializable {
 	/**
 	 * Builder for {@link StepKey}.
 	 */
-	public static class Builder implements ObjectBuilder<StepKey> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StepKey> {
 		private String action;
 
 		private String name;
@@ -118,7 +127,7 @@ public final class StepKey implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code action}
 		 */
-		public Builder action(String value) {
+		public final Builder action(String value) {
 			this.action = value;
 			return this;
 		}
@@ -126,7 +135,7 @@ public final class StepKey implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -134,7 +143,7 @@ public final class StepKey implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code phase}
 		 */
-		public Builder phase(String value) {
+		public final Builder phase(String value) {
 			this.phase = value;
 			return this;
 		}
@@ -146,6 +155,7 @@ public final class StepKey implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StepKey build() {
+			_checkSingleUse();
 
 			return new StepKey(this);
 		}
@@ -157,9 +167,9 @@ public final class StepKey implements JsonpSerializable {
 	 * Json deserializer for {@link StepKey}
 	 */
 	public static final JsonpDeserializer<StepKey> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StepKey::setupStepKeyDeserializer, Builder::build);
+			StepKey::setupStepKeyDeserializer);
 
-	protected static void setupStepKeyDeserializer(DelegatingDeserializer<StepKey.Builder> op) {
+	protected static void setupStepKeyDeserializer(ObjectDeserializer<StepKey.Builder> op) {
 
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");

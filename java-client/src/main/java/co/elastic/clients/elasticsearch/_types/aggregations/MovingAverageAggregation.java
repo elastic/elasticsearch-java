@@ -23,231 +23,270 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
-import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingAverageAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L115-L121">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MovingAverageAggregation extends PipelineAggregationBase implements AggregationVariant {
-	@Nullable
-	private final Boolean minimize;
-
-	@Nullable
-	private final MovingAverageModel model;
-
-	private final JsonValue /* _types.aggregations.MovingAverageSettings */ settings;
-
-	@Nullable
-	private final Integer predict;
-
-	@Nullable
-	private final Integer window;
-
-	// ---------------------------------------------------------------------------------------------
-
-	public MovingAverageAggregation(Builder builder) {
-		super(builder);
-
-		this.minimize = builder.minimize;
-		this.model = builder.model;
-		this.settings = Objects.requireNonNull(builder.settings, "settings");
-		this.predict = builder.predict;
-		this.window = builder.window;
-
-	}
-
-	public MovingAverageAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
+public class MovingAverageAggregation
+		implements
+			TaggedUnion<MovingAverageAggregation.Kind, MovingAverageAggregationVariant>,
+			JsonpSerializable {
 
 	/**
-	 * {@link Aggregation} variant type
+	 * {@link MovingAverageAggregation} variant kinds.
 	 */
+	/**
+	 * {@link MovingAverageAggregation} variant kinds.
+	 */
+
+	public enum Kind implements JsonEnum {
+		Ewma("ewma"),
+
+		Holt("holt"),
+
+		HoltWinters("holt_winters"),
+
+		Linear("linear"),
+
+		Simple("simple"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final MovingAverageAggregationVariant _value;
+
 	@Override
-	public String _variantType() {
-		return "moving_avg";
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final MovingAverageAggregationVariant _get() {
+		return _value;
+	}
+
+	public MovingAverageAggregation(MovingAverageAggregationVariant value) {
+
+		this._kind = ApiTypeHelper.requireNonNull(value._movingAverageAggregationKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+	}
+
+	private MovingAverageAggregation(Builder builder) {
+
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
+	}
+
+	public static MovingAverageAggregation of(Function<Builder, ObjectBuilder<MovingAverageAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code minimize}
+	 * Is this variant instance of kind {@code ewma}?
 	 */
-	@Nullable
-	public Boolean minimize() {
-		return this.minimize;
+	public boolean isEwma() {
+		return _kind == Kind.Ewma;
 	}
 
 	/**
-	 * API name: {@code model}
+	 * Get the {@code ewma} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code ewma} kind.
 	 */
-	@Nullable
-	public MovingAverageModel model() {
-		return this.model;
+	public EwmaMovingAverageAggregation ewma() {
+		return TaggedUnionUtils.get(this, Kind.Ewma);
 	}
 
 	/**
-	 * Required - API name: {@code settings}
+	 * Is this variant instance of kind {@code holt}?
 	 */
-	public JsonValue /* _types.aggregations.MovingAverageSettings */ settings() {
-		return this.settings;
+	public boolean isHolt() {
+		return _kind == Kind.Holt;
 	}
 
 	/**
-	 * API name: {@code predict}
+	 * Get the {@code holt} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code holt} kind.
 	 */
-	@Nullable
-	public Integer predict() {
-		return this.predict;
+	public HoltMovingAverageAggregation holt() {
+		return TaggedUnionUtils.get(this, Kind.Holt);
 	}
 
 	/**
-	 * API name: {@code window}
+	 * Is this variant instance of kind {@code holt_winters}?
 	 */
-	@Nullable
-	public Integer window() {
-		return this.window;
+	public boolean isHoltWinters() {
+		return _kind == Kind.HoltWinters;
 	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		super.serializeInternal(generator, mapper);
-		if (this.minimize != null) {
-
-			generator.writeKey("minimize");
-			generator.write(this.minimize);
-
-		}
-		if (this.model != null) {
-
-			generator.writeKey("model");
-			this.model.serialize(generator, mapper);
-		}
-
-		generator.writeKey("settings");
-		generator.write(this.settings);
-
-		if (this.predict != null) {
-
-			generator.writeKey("predict");
-			generator.write(this.predict);
-
-		}
-		if (this.window != null) {
-
-			generator.writeKey("window");
-			generator.write(this.window);
-
-		}
-
-	}
-
-	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link MovingAverageAggregation}.
+	 * Get the {@code holt_winters} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code holt_winters} kind.
 	 */
-	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<MovingAverageAggregation> {
-		@Nullable
-		private Boolean minimize;
+	public HoltWintersMovingAverageAggregation holtWinters() {
+		return TaggedUnionUtils.get(this, Kind.HoltWinters);
+	}
 
-		@Nullable
-		private MovingAverageModel model;
+	/**
+	 * Is this variant instance of kind {@code linear}?
+	 */
+	public boolean isLinear() {
+		return _kind == Kind.Linear;
+	}
 
-		private JsonValue /* _types.aggregations.MovingAverageSettings */ settings;
+	/**
+	 * Get the {@code linear} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code linear} kind.
+	 */
+	public LinearMovingAverageAggregation linear() {
+		return TaggedUnionUtils.get(this, Kind.Linear);
+	}
 
-		@Nullable
-		private Integer predict;
+	/**
+	 * Is this variant instance of kind {@code simple}?
+	 */
+	public boolean isSimple() {
+		return _kind == Kind.Simple;
+	}
 
-		@Nullable
-		private Integer window;
+	/**
+	 * Get the {@code simple} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code simple} kind.
+	 */
+	public SimpleMovingAverageAggregation simple() {
+		return TaggedUnionUtils.get(this, Kind.Simple);
+	}
 
-		/**
-		 * API name: {@code minimize}
-		 */
-		public Builder minimize(@Nullable Boolean value) {
-			this.minimize = value;
+	@Override
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
+		mapper.serialize(_value, generator);
+
+	}
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MovingAverageAggregation> {
+		private Kind _kind;
+		private MovingAverageAggregationVariant _value;
+
+		public ObjectBuilder<MovingAverageAggregation> ewma(EwmaMovingAverageAggregation v) {
+			this._kind = Kind.Ewma;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * API name: {@code model}
-		 */
-		public Builder model(@Nullable MovingAverageModel value) {
-			this.model = value;
+		public ObjectBuilder<MovingAverageAggregation> ewma(
+				Function<EwmaMovingAverageAggregation.Builder, ObjectBuilder<EwmaMovingAverageAggregation>> fn) {
+			return this.ewma(fn.apply(new EwmaMovingAverageAggregation.Builder()).build());
+		}
+
+		public ObjectBuilder<MovingAverageAggregation> holt(HoltMovingAverageAggregation v) {
+			this._kind = Kind.Holt;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Required - API name: {@code settings}
-		 */
-		public Builder settings(JsonValue /* _types.aggregations.MovingAverageSettings */ value) {
-			this.settings = value;
+		public ObjectBuilder<MovingAverageAggregation> holt(
+				Function<HoltMovingAverageAggregation.Builder, ObjectBuilder<HoltMovingAverageAggregation>> fn) {
+			return this.holt(fn.apply(new HoltMovingAverageAggregation.Builder()).build());
+		}
+
+		public ObjectBuilder<MovingAverageAggregation> holtWinters(HoltWintersMovingAverageAggregation v) {
+			this._kind = Kind.HoltWinters;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * API name: {@code predict}
-		 */
-		public Builder predict(@Nullable Integer value) {
-			this.predict = value;
+		public ObjectBuilder<MovingAverageAggregation> holtWinters(
+				Function<HoltWintersMovingAverageAggregation.Builder, ObjectBuilder<HoltWintersMovingAverageAggregation>> fn) {
+			return this.holtWinters(fn.apply(new HoltWintersMovingAverageAggregation.Builder()).build());
+		}
+
+		public ObjectBuilder<MovingAverageAggregation> linear(LinearMovingAverageAggregation v) {
+			this._kind = Kind.Linear;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * API name: {@code window}
-		 */
-		public Builder window(@Nullable Integer value) {
-			this.window = value;
+		public ObjectBuilder<MovingAverageAggregation> linear(
+				Function<LinearMovingAverageAggregation.Builder, ObjectBuilder<LinearMovingAverageAggregation>> fn) {
+			return this.linear(fn.apply(new LinearMovingAverageAggregation.Builder()).build());
+		}
+
+		public ObjectBuilder<MovingAverageAggregation> simple(SimpleMovingAverageAggregation v) {
+			this._kind = Kind.Simple;
+			this._value = v;
 			return this;
 		}
 
-		@Override
-		protected Builder self() {
-			return this;
+		public ObjectBuilder<MovingAverageAggregation> simple(
+				Function<SimpleMovingAverageAggregation.Builder, ObjectBuilder<SimpleMovingAverageAggregation>> fn) {
+			return this.simple(fn.apply(new SimpleMovingAverageAggregation.Builder()).build());
 		}
 
-		/**
-		 * Builds a {@link MovingAverageAggregation}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
 		public MovingAverageAggregation build() {
-
+			_checkSingleUse();
 			return new MovingAverageAggregation(this);
 		}
+
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	protected static void setupMovingAverageAggregationDeserializer(ObjectDeserializer<Builder> op) {
 
-	/**
-	 * Json deserializer for {@link MovingAverageAggregation}
-	 */
+		op.add(Builder::ewma, EwmaMovingAverageAggregation._DESERIALIZER, "ewma");
+		op.add(Builder::holt, HoltMovingAverageAggregation._DESERIALIZER, "holt");
+		op.add(Builder::holtWinters, HoltWintersMovingAverageAggregation._DESERIALIZER, "holt_winters");
+		op.add(Builder::linear, LinearMovingAverageAggregation._DESERIALIZER, "linear");
+		op.add(Builder::simple, SimpleMovingAverageAggregation._DESERIALIZER, "simple");
+
+		op.setTypeProperty("model", null);
+
+	}
+
 	public static final JsonpDeserializer<MovingAverageAggregation> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new, MovingAverageAggregation::setupMovingAverageAggregationDeserializer, Builder::build);
-
-	protected static void setupMovingAverageAggregationDeserializer(
-			DelegatingDeserializer<MovingAverageAggregation.Builder> op) {
-		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
-		op.add(Builder::minimize, JsonpDeserializer.booleanDeserializer(), "minimize");
-		op.add(Builder::model, MovingAverageModel._DESERIALIZER, "model");
-		op.add(Builder::settings, JsonpDeserializer.jsonValueDeserializer(), "settings");
-		op.add(Builder::predict, JsonpDeserializer.integerDeserializer(), "predict");
-		op.add(Builder::window, JsonpDeserializer.integerDeserializer(), "window");
-
-	}
-
 }

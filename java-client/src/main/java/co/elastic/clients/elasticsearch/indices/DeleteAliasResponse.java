@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.delete_alias.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/delete_alias/IndicesDeleteAliasResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteAliasResponse extends AcknowledgedResponseBase {
+public class DeleteAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAliasResponse(Builder builder) {
+	private DeleteAliasResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteAliasResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAliasResponse of(Function<Builder, ObjectBuilder<DeleteAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteAliasResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteAliasResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteAliasResponse> {
@@ -68,6 +75,7 @@ public final class DeleteAliasResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAliasResponse build() {
+			_checkSingleUse();
 
 			return new DeleteAliasResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class DeleteAliasResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteAliasResponse}
 	 */
 	public static final JsonpDeserializer<DeleteAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteAliasResponse::setupDeleteAliasResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteAliasResponse::setupDeleteAliasResponseDeserializer);
 
-	protected static void setupDeleteAliasResponseDeserializer(DelegatingDeserializer<DeleteAliasResponse.Builder> op) {
+	protected static void setupDeleteAliasResponseDeserializer(ObjectDeserializer<DeleteAliasResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

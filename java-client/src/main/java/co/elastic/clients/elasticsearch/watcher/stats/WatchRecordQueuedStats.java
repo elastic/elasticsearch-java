@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.watcher.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,22 +39,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.stats.WatchRecordQueuedStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/types.ts#L50-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class WatchRecordQueuedStats implements JsonpSerializable {
 	private final String executionTime;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WatchRecordQueuedStats(AbstractBuilder<?> builder) {
+	protected WatchRecordQueuedStats(AbstractBuilder<?> builder) {
 
-		this.executionTime = Objects.requireNonNull(builder.executionTime, "execution_time");
+		this.executionTime = ApiTypeHelper.requireNonNull(builder.executionTime, this, "executionTime");
 
+	}
+
+	public static WatchRecordQueuedStats watchRecordQueuedStatsOf(
+			Function<Builder, ObjectBuilder<WatchRecordQueuedStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code execution_time}
 	 */
-	public String executionTime() {
+	public final String executionTime() {
 		return this.executionTime;
 	}
 
@@ -78,6 +91,7 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link WatchRecordQueuedStats}.
 	 */
+
 	public static class Builder extends WatchRecordQueuedStats.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<WatchRecordQueuedStats> {
@@ -93,18 +107,21 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WatchRecordQueuedStats build() {
+			_checkSingleUse();
 
 			return new WatchRecordQueuedStats(this);
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private String executionTime;
 
 		/**
 		 * Required - API name: {@code execution_time}
 		 */
-		public BuilderT executionTime(String value) {
+		public final BuilderT executionTime(String value) {
 			this.executionTime = value;
 			return self();
 		}
@@ -119,10 +136,10 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 	 * Json deserializer for {@link WatchRecordQueuedStats}
 	 */
 	public static final JsonpDeserializer<WatchRecordQueuedStats> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WatchRecordQueuedStats::setupWatchRecordQueuedStatsDeserializer, Builder::build);
+			.lazy(Builder::new, WatchRecordQueuedStats::setupWatchRecordQueuedStatsDeserializer);
 
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWatchRecordQueuedStatsDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::executionTime, JsonpDeserializer.stringDeserializer(), "execution_time");
 

@@ -23,27 +23,28 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
-import co.elastic.clients.elasticsearch.core.msearch_template.TemplateItem;
+import co.elastic.clients.elasticsearch.core.msearch_template.RequestItem;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -52,13 +53,20 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.msearch_template.Request
-@JsonpDeserializable
-public final class MsearchTemplateRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final List<String> index;
 
+/**
+ * Allows to execute several search template operations in one request.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/msearch_template/MultiSearchTemplateRequest.ts#L25-L44">API
+ *      specification</a>
+ */
+
+public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
 	@Nullable
 	private final Boolean ccsMinimizeRoundtrips;
+
+	private final List<String> index;
 
 	@Nullable
 	private final Long maxConcurrentSearches;
@@ -66,38 +74,28 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	@Nullable
 	private final SearchType searchType;
 
-	@Nullable
-	private final Boolean typedKeys;
-
-	private final List<TemplateItem> searchTemplates;
+	private final List<RequestItem> searchTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MsearchTemplateRequest(Builder builder) {
+	private MsearchTemplateRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.searchType = builder.searchType;
-		this.typedKeys = builder.typedKeys;
-		this.searchTemplates = ModelTypeHelper.unmodifiableNonNull(builder.searchTemplates, "_value_body");
+		this.searchTemplates = ApiTypeHelper.unmodifiableRequired(builder.searchTemplates, this, "searchTemplates");
 
 	}
 
-	public MsearchTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MsearchTemplateRequest of(Function<Builder, ObjectBuilder<MsearchTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
-	/**
-	 * A comma-separated list of index names to use as default
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
+	@Override
+	public Iterator<?> _serializables() {
+		return this.searchTemplates.iterator();
 	}
-
 	/**
 	 * Indicates whether network round-trips should be minimized as part of
 	 * cross-cluster search requests execution
@@ -105,8 +103,17 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	 * API name: {@code ccs_minimize_roundtrips}
 	 */
 	@Nullable
-	public Boolean ccsMinimizeRoundtrips() {
+	public final Boolean ccsMinimizeRoundtrips() {
 		return this.ccsMinimizeRoundtrips;
+	}
+
+	/**
+	 * A comma-separated list of index names to use as default
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -116,7 +123,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	 * API name: {@code max_concurrent_searches}
 	 */
 	@Nullable
-	public Long maxConcurrentSearches() {
+	public final Long maxConcurrentSearches() {
 		return this.maxConcurrentSearches;
 	}
 
@@ -126,19 +133,8 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public SearchType searchType() {
+	public final SearchType searchType() {
 		return this.searchType;
-	}
-
-	/**
-	 * Specify whether aggregation and suggester names should be prefixed by their
-	 * respective types in the response
-	 * <p>
-	 * API name: {@code typed_keys}
-	 */
-	@Nullable
-	public Boolean typedKeys() {
-		return this.typedKeys;
 	}
 
 	/**
@@ -146,7 +142,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<TemplateItem> searchTemplates() {
+	public final List<RequestItem> searchTemplates() {
 		return this.searchTemplates;
 	}
 
@@ -155,7 +151,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeStartArray();
-		for (TemplateItem item0 : this.searchTemplates) {
+		for (RequestItem item0 : this.searchTemplates) {
 			item0.serialize(generator, mapper);
 
 		}
@@ -168,12 +164,13 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	/**
 	 * Builder for {@link MsearchTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MsearchTemplateRequest> {
-		@Nullable
-		private List<String> index;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MsearchTemplateRequest> {
 		@Nullable
 		private Boolean ccsMinimizeRoundtrips;
+
+		@Nullable
+		private List<String> index;
 
 		@Nullable
 		private Long maxConcurrentSearches;
@@ -181,41 +178,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		@Nullable
 		private SearchType searchType;
 
-		@Nullable
-		private Boolean typedKeys;
-
-		private List<TemplateItem> searchTemplates;
-
-		/**
-		 * A comma-separated list of index names to use as default
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names to use as default
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
+		private List<RequestItem> searchTemplates;
 
 		/**
 		 * Indicates whether network round-trips should be minimized as part of
@@ -223,8 +186,32 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code ccs_minimize_roundtrips}
 		 */
-		public Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
+		public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
 			this.ccsMinimizeRoundtrips = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to use as default
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to use as default
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -234,7 +221,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code max_concurrent_searches}
 		 */
-		public Builder maxConcurrentSearches(@Nullable Long value) {
+		public final Builder maxConcurrentSearches(@Nullable Long value) {
 			this.maxConcurrentSearches = value;
 			return this;
 		}
@@ -244,19 +231,20 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		 * <p>
 		 * API name: {@code search_type}
 		 */
-		public Builder searchType(@Nullable SearchType value) {
+		public final Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
 			return this;
 		}
 
 		/**
-		 * Specify whether aggregation and suggester names should be prefixed by their
-		 * respective types in the response
+		 * Required - Request body.
 		 * <p>
-		 * API name: {@code typed_keys}
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>searchTemplates</code>.
 		 */
-		public Builder typedKeys(@Nullable Boolean value) {
-			this.typedKeys = value;
+		public final Builder searchTemplates(List<RequestItem> list) {
+			this.searchTemplates = _listAddAll(this.searchTemplates, list);
 			return this;
 		}
 
@@ -264,9 +252,11 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>searchTemplates</code>.
 		 */
-		public Builder searchTemplates(List<TemplateItem> value) {
-			this.searchTemplates = value;
+		public final Builder searchTemplates(RequestItem value, RequestItem... values) {
+			this.searchTemplates = _listAdd(this.searchTemplates, value, values);
 			return this;
 		}
 
@@ -274,35 +264,11 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		 * Required - Request body.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>searchTemplates</code> using a builder lambda.
 		 */
-		public Builder searchTemplates(TemplateItem... value) {
-			this.searchTemplates = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #searchTemplates(List)}, creating the list if needed.
-		 */
-		public Builder addSearchTemplates(TemplateItem value) {
-			if (this.searchTemplates == null) {
-				this.searchTemplates = new ArrayList<>();
-			}
-			this.searchTemplates.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #searchTemplates(List)} to a singleton list.
-		 */
-		public Builder searchTemplates(Function<TemplateItem.Builder, ObjectBuilder<TemplateItem>> fn) {
-			return this.searchTemplates(fn.apply(new TemplateItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #searchTemplates(List)}, creating the list if needed.
-		 */
-		public Builder addSearchTemplates(Function<TemplateItem.Builder, ObjectBuilder<TemplateItem>> fn) {
-			return this.addSearchTemplates(fn.apply(new TemplateItem.Builder()).build());
+		public final Builder searchTemplates(Function<RequestItem.Builder, ObjectBuilder<RequestItem>> fn) {
+			return searchTemplates(fn.apply(new RequestItem.Builder()).build());
 		}
 
 		/**
@@ -312,19 +278,10 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 		 *             if some of the required fields are null.
 		 */
 		public MsearchTemplateRequest build() {
+			_checkSingleUse();
 
 			return new MsearchTemplateRequest(this);
 		}
-	}
-
-	public static final JsonpDeserializer<MsearchTemplateRequest> _DESERIALIZER = createMsearchTemplateRequestDeserializer();
-	protected static JsonpDeserializer<MsearchTemplateRequest> createMsearchTemplateRequestDeserializer() {
-
-		JsonpDeserializer<List<TemplateItem>> valueDeserializer = JsonpDeserializer
-				.arrayDeserializer(TemplateItem._DESERIALIZER);
-
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.searchTemplates(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -332,7 +289,9 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 	/**
 	 * Endpoint "{@code msearch_template}".
 	 */
-	private static final SimpleEndpoint<MsearchTemplateRequest, Void> ENDPOINT = new SimpleEndpoint<>(
+	public static final SimpleEndpoint<MsearchTemplateRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+			"es/msearch_template",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -345,7 +304,7 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -369,28 +328,26 @@ public final class MsearchTemplateRequest extends RequestBase implements JsonpSe
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.ccsMinimizeRoundtrips != null) {
-					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
-				}
+				params.put("typed_keys", "true");
 				if (request.maxConcurrentSearches != null) {
 					params.put("max_concurrent_searches", String.valueOf(request.maxConcurrentSearches));
 				}
 				if (request.searchType != null) {
-					params.put("search_type", request.searchType.toString());
+					params.put("search_type", request.searchType.jsonValue());
 				}
-				if (request.typedKeys != null) {
-					params.put("typed_keys", String.valueOf(request.typedKeys));
+				if (request.ccsMinimizeRoundtrips != null) {
+					params.put("ccs_minimize_roundtrips", String.valueOf(request.ccsMinimizeRoundtrips));
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, null);
+			}, SimpleEndpoint.emptyMap(), true, MsearchTemplateResponse._DESERIALIZER);
 
 	/**
 	 * Create an "{@code msearch_template}" endpoint.
 	 */
-	public static <TDocument> Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ElasticsearchError> createMsearchTemplateEndpoint(
+	public static <TDocument> Endpoint<MsearchTemplateRequest, MsearchTemplateResponse<TDocument>, ErrorResponse> createMsearchTemplateEndpoint(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ENDPOINT.withResponseDeserializer(
+		return _ENDPOINT.withResponseDeserializer(
 				MsearchTemplateResponse.createMsearchTemplateResponseDeserializer(tDocumentDeserializer));
 	}
 }

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,25 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ccr.delete_auto_follow_pattern.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/delete_auto_follow_pattern/DeleteAutoFollowPatternResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteAutoFollowPatternResponse extends AcknowledgedResponseBase {
+public class DeleteAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAutoFollowPatternResponse(Builder builder) {
+	private DeleteAutoFollowPatternResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteAutoFollowPatternResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAutoFollowPatternResponse of(
+			Function<Builder, ObjectBuilder<DeleteAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public final class DeleteAutoFollowPatternResponse extends AcknowledgedResponseB
 	/**
 	 * Builder for {@link DeleteAutoFollowPatternResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteAutoFollowPatternResponse> {
@@ -68,6 +76,7 @@ public final class DeleteAutoFollowPatternResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAutoFollowPatternResponse build() {
+			_checkSingleUse();
 
 			return new DeleteAutoFollowPatternResponse(this);
 		}
@@ -79,11 +88,10 @@ public final class DeleteAutoFollowPatternResponse extends AcknowledgedResponseB
 	 * Json deserializer for {@link DeleteAutoFollowPatternResponse}
 	 */
 	public static final JsonpDeserializer<DeleteAutoFollowPatternResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteAutoFollowPatternResponse::setupDeleteAutoFollowPatternResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DeleteAutoFollowPatternResponse::setupDeleteAutoFollowPatternResponseDeserializer);
 
 	protected static void setupDeleteAutoFollowPatternResponseDeserializer(
-			DelegatingDeserializer<DeleteAutoFollowPatternResponse.Builder> op) {
+			ObjectDeserializer<DeleteAutoFollowPatternResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

@@ -23,22 +23,20 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -46,9 +44,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelConfig
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L58-L88">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TrainedModelConfig implements JsonpSerializable {
+public class TrainedModelConfig implements JsonpSerializable {
 	private final String modelId;
+
+	private final TrainedModelType modelType;
 
 	private final List<String> tags;
 
@@ -62,9 +69,8 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	private final String createdBy;
 
 	@Nullable
-	private final String createTime;
+	private final Time createTime;
 
-	@Nullable
 	private final Map<String, String> defaultFieldMap;
 
 	@Nullable
@@ -88,27 +94,28 @@ public final class TrainedModelConfig implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TrainedModelConfig(Builder builder) {
+	protected TrainedModelConfig(AbstractBuilder<?> builder) {
 
-		this.modelId = Objects.requireNonNull(builder.modelId, "model_id");
-		this.tags = ModelTypeHelper.unmodifiableNonNull(builder.tags, "tags");
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelType = ApiTypeHelper.requireNonNull(builder.modelType, this, "modelType");
+		this.tags = ApiTypeHelper.unmodifiableRequired(builder.tags, this, "tags");
 		this.version = builder.version;
 		this.compressedDefinition = builder.compressedDefinition;
 		this.createdBy = builder.createdBy;
 		this.createTime = builder.createTime;
-		this.defaultFieldMap = ModelTypeHelper.unmodifiable(builder.defaultFieldMap);
+		this.defaultFieldMap = ApiTypeHelper.unmodifiable(builder.defaultFieldMap);
 		this.description = builder.description;
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.estimatedOperations = builder.estimatedOperations;
-		this.inferenceConfig = Objects.requireNonNull(builder.inferenceConfig, "inference_config");
-		this.input = Objects.requireNonNull(builder.input, "input");
+		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
+		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.licenseLevel = builder.licenseLevel;
 		this.metadata = builder.metadata;
 
 	}
 
-	public TrainedModelConfig(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TrainedModelConfig trainedModelConfigOf(Function<Builder, ObjectBuilder<TrainedModelConfig>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -116,8 +123,17 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	public String modelId() {
+	public final String modelId() {
 		return this.modelId;
+	}
+
+	/**
+	 * Required - The model type
+	 * <p>
+	 * API name: {@code model_type}
+	 */
+	public final TrainedModelType modelType() {
+		return this.modelType;
 	}
 
 	/**
@@ -126,7 +142,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code tags}
 	 */
-	public List<String> tags() {
+	public final List<String> tags() {
 		return this.tags;
 	}
 
@@ -136,7 +152,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -144,7 +160,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code compressed_definition}
 	 */
 	@Nullable
-	public String compressedDefinition() {
+	public final String compressedDefinition() {
 		return this.compressedDefinition;
 	}
 
@@ -154,7 +170,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code created_by}
 	 */
 	@Nullable
-	public String createdBy() {
+	public final String createdBy() {
 		return this.createdBy;
 	}
 
@@ -164,7 +180,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public String createTime() {
+	public final Time createTime() {
 		return this.createTime;
 	}
 
@@ -173,8 +189,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code default_field_map}
 	 */
-	@Nullable
-	public Map<String, String> defaultFieldMap() {
+	public final Map<String, String> defaultFieldMap() {
 		return this.defaultFieldMap;
 	}
 
@@ -184,7 +199,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -194,7 +209,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code estimated_heap_memory_usage_bytes}
 	 */
 	@Nullable
-	public Integer estimatedHeapMemoryUsageBytes() {
+	public final Integer estimatedHeapMemoryUsageBytes() {
 		return this.estimatedHeapMemoryUsageBytes;
 	}
 
@@ -204,7 +219,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code estimated_operations}
 	 */
 	@Nullable
-	public Integer estimatedOperations() {
+	public final Integer estimatedOperations() {
 		return this.estimatedOperations;
 	}
 
@@ -215,7 +230,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code inference_config}
 	 */
-	public InferenceConfig inferenceConfig() {
+	public final InferenceConfig inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
@@ -224,7 +239,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code input}
 	 */
-	public TrainedModelConfigInput input() {
+	public final TrainedModelConfigInput input() {
 		return this.input;
 	}
 
@@ -234,7 +249,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code license_level}
 	 */
 	@Nullable
-	public String licenseLevel() {
+	public final String licenseLevel() {
 		return this.licenseLevel;
 	}
 
@@ -245,7 +260,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code metadata}
 	 */
 	@Nullable
-	public TrainedModelConfigMetadata metadata() {
+	public final TrainedModelConfigMetadata metadata() {
 		return this.metadata;
 	}
 
@@ -263,40 +278,39 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
 
-		generator.writeKey("tags");
-		generator.writeStartArray();
-		for (String item0 : this.tags) {
-			generator.write(item0);
+		generator.writeKey("model_type");
+		this.modelType.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.tags)) {
+			generator.writeKey("tags");
+			generator.writeStartArray();
+			for (String item0 : this.tags) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.compressedDefinition != null) {
-
 			generator.writeKey("compressed_definition");
 			generator.write(this.compressedDefinition);
 
 		}
 		if (this.createdBy != null) {
-
 			generator.writeKey("created_by");
 			generator.write(this.createdBy);
 
 		}
 		if (this.createTime != null) {
-
 			generator.writeKey("create_time");
-			generator.write(this.createTime);
+			this.createTime.serialize(generator, mapper);
 
 		}
-		if (this.defaultFieldMap != null) {
-
+		if (ApiTypeHelper.isDefined(this.defaultFieldMap)) {
 			generator.writeKey("default_field_map");
 			generator.writeStartObject();
 			for (Map.Entry<String, String> item0 : this.defaultFieldMap.entrySet()) {
@@ -308,24 +322,20 @@ public final class TrainedModelConfig implements JsonpSerializable {
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.estimatedHeapMemoryUsageBytes != null) {
-
 			generator.writeKey("estimated_heap_memory_usage_bytes");
 			generator.write(this.estimatedHeapMemoryUsageBytes);
 
 		}
 		if (this.estimatedOperations != null) {
-
 			generator.writeKey("estimated_operations");
 			generator.write(this.estimatedOperations);
 
 		}
-
 		generator.writeKey("inference_config");
 		this.inferenceConfig.serialize(generator, mapper);
 
@@ -333,13 +343,11 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		this.input.serialize(generator, mapper);
 
 		if (this.licenseLevel != null) {
-
 			generator.writeKey("license_level");
 			generator.write(this.licenseLevel);
 
 		}
 		if (this.metadata != null) {
-
 			generator.writeKey("metadata");
 			this.metadata.serialize(generator, mapper);
 
@@ -352,8 +360,34 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelConfig}.
 	 */
-	public static class Builder implements ObjectBuilder<TrainedModelConfig> {
+
+	public static class Builder extends TrainedModelConfig.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<TrainedModelConfig> {
+		@Override
+		protected Builder self() {
+			return this;
+		}
+
+		/**
+		 * Builds a {@link TrainedModelConfig}.
+		 *
+		 * @throws NullPointerException
+		 *             if some of the required fields are null.
+		 */
+		public TrainedModelConfig build() {
+			_checkSingleUse();
+
+			return new TrainedModelConfig(this);
+		}
+	}
+
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private String modelId;
+
+		private TrainedModelType modelType;
 
 		private List<String> tags;
 
@@ -367,7 +401,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		private String createdBy;
 
 		@Nullable
-		private String createTime;
+		private Time createTime;
 
 		@Nullable
 		private Map<String, String> defaultFieldMap;
@@ -396,9 +430,19 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code model_id}
 		 */
-		public Builder modelId(String value) {
+		public final BuilderT modelId(String value) {
 			this.modelId = value;
-			return this;
+			return self();
+		}
+
+		/**
+		 * Required - The model type
+		 * <p>
+		 * API name: {@code model_type}
+		 */
+		public final BuilderT modelType(TrainedModelType value) {
+			this.modelType = value;
+			return self();
 		}
 
 		/**
@@ -406,10 +450,12 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * tags, or none.
 		 * <p>
 		 * API name: {@code tags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tags</code>.
 		 */
-		public Builder tags(List<String> value) {
-			this.tags = value;
-			return this;
+		public final BuilderT tags(List<String> list) {
+			this.tags = _listAddAll(this.tags, list);
+			return self();
 		}
 
 		/**
@@ -417,21 +463,12 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * tags, or none.
 		 * <p>
 		 * API name: {@code tags}
+		 * <p>
+		 * Adds one or more values to <code>tags</code>.
 		 */
-		public Builder tags(String... value) {
-			this.tags = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #tags(List)}, creating the list if needed.
-		 */
-		public Builder addTags(String value) {
-			if (this.tags == null) {
-				this.tags = new ArrayList<>();
-			}
-			this.tags.add(value);
-			return this;
+		public final BuilderT tags(String value, String... values) {
+			this.tags = _listAdd(this.tags, value, values);
+			return self();
 		}
 
 		/**
@@ -439,17 +476,17 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final BuilderT version(@Nullable String value) {
 			this.version = value;
-			return this;
+			return self();
 		}
 
 		/**
 		 * API name: {@code compressed_definition}
 		 */
-		public Builder compressedDefinition(@Nullable String value) {
+		public final BuilderT compressedDefinition(@Nullable String value) {
 			this.compressedDefinition = value;
-			return this;
+			return self();
 		}
 
 		/**
@@ -457,9 +494,9 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code created_by}
 		 */
-		public Builder createdBy(@Nullable String value) {
+		public final BuilderT createdBy(@Nullable String value) {
 			this.createdBy = value;
-			return this;
+			return self();
 		}
 
 		/**
@@ -467,30 +504,42 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(@Nullable String value) {
+		public final BuilderT createTime(@Nullable Time value) {
 			this.createTime = value;
-			return this;
+			return self();
+		}
+
+		/**
+		 * The time when the trained model was created.
+		 * <p>
+		 * API name: {@code create_time}
+		 */
+		public final BuilderT createTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.createTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
 		 * Any field map described in the inference configuration takes precedence.
 		 * <p>
 		 * API name: {@code default_field_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>defaultFieldMap</code>.
 		 */
-		public Builder defaultFieldMap(@Nullable Map<String, String> value) {
-			this.defaultFieldMap = value;
-			return this;
+		public final BuilderT defaultFieldMap(Map<String, String> map) {
+			this.defaultFieldMap = _mapPutAll(this.defaultFieldMap, map);
+			return self();
 		}
 
 		/**
-		 * Add a key/value to {@link #defaultFieldMap(Map)}, creating the map if needed.
+		 * Any field map described in the inference configuration takes precedence.
+		 * <p>
+		 * API name: {@code default_field_map}
+		 * <p>
+		 * Adds an entry to <code>defaultFieldMap</code>.
 		 */
-		public Builder putDefaultFieldMap(String key, String value) {
-			if (this.defaultFieldMap == null) {
-				this.defaultFieldMap = new HashMap<>();
-			}
-			this.defaultFieldMap.put(key, value);
-			return this;
+		public final BuilderT defaultFieldMap(String key, String value) {
+			this.defaultFieldMap = _mapPut(this.defaultFieldMap, key, value);
+			return self();
 		}
 
 		/**
@@ -498,9 +547,9 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final BuilderT description(@Nullable String value) {
 			this.description = value;
-			return this;
+			return self();
 		}
 
 		/**
@@ -508,9 +557,9 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code estimated_heap_memory_usage_bytes}
 		 */
-		public Builder estimatedHeapMemoryUsageBytes(@Nullable Integer value) {
+		public final BuilderT estimatedHeapMemoryUsageBytes(@Nullable Integer value) {
 			this.estimatedHeapMemoryUsageBytes = value;
-			return this;
+			return self();
 		}
 
 		/**
@@ -518,9 +567,9 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code estimated_operations}
 		 */
-		public Builder estimatedOperations(@Nullable Integer value) {
+		public final BuilderT estimatedOperations(@Nullable Integer value) {
 			this.estimatedOperations = value;
-			return this;
+			return self();
 		}
 
 		/**
@@ -530,9 +579,9 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(InferenceConfig value) {
+		public final BuilderT inferenceConfig(InferenceConfig value) {
 			this.inferenceConfig = value;
-			return this;
+			return self();
 		}
 
 		/**
@@ -542,7 +591,7 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
+		public final BuilderT inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
 			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
 		}
 
@@ -551,9 +600,9 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code input}
 		 */
-		public Builder input(TrainedModelConfigInput value) {
+		public final BuilderT input(TrainedModelConfigInput value) {
 			this.input = value;
-			return this;
+			return self();
 		}
 
 		/**
@@ -561,7 +610,8 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code input}
 		 */
-		public Builder input(Function<TrainedModelConfigInput.Builder, ObjectBuilder<TrainedModelConfigInput>> fn) {
+		public final BuilderT input(
+				Function<TrainedModelConfigInput.Builder, ObjectBuilder<TrainedModelConfigInput>> fn) {
 			return this.input(fn.apply(new TrainedModelConfigInput.Builder()).build());
 		}
 
@@ -570,9 +620,9 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code license_level}
 		 */
-		public Builder licenseLevel(@Nullable String value) {
+		public final BuilderT licenseLevel(@Nullable String value) {
 			this.licenseLevel = value;
-			return this;
+			return self();
 		}
 
 		/**
@@ -581,9 +631,9 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(@Nullable TrainedModelConfigMetadata value) {
+		public final BuilderT metadata(@Nullable TrainedModelConfigMetadata value) {
 			this.metadata = value;
-			return this;
+			return self();
 		}
 
 		/**
@@ -592,21 +642,13 @@ public final class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code metadata}
 		 */
-		public Builder metadata(
+		public final BuilderT metadata(
 				Function<TrainedModelConfigMetadata.Builder, ObjectBuilder<TrainedModelConfigMetadata>> fn) {
 			return this.metadata(fn.apply(new TrainedModelConfigMetadata.Builder()).build());
 		}
 
-		/**
-		 * Builds a {@link TrainedModelConfig}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public TrainedModelConfig build() {
+		protected abstract BuilderT self();
 
-			return new TrainedModelConfig(this);
-		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -615,26 +657,29 @@ public final class TrainedModelConfig implements JsonpSerializable {
 	 * Json deserializer for {@link TrainedModelConfig}
 	 */
 	public static final JsonpDeserializer<TrainedModelConfig> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelConfig::setupTrainedModelConfigDeserializer, Builder::build);
+			.lazy(Builder::new, TrainedModelConfig::setupTrainedModelConfigDeserializer);
 
-	protected static void setupTrainedModelConfigDeserializer(DelegatingDeserializer<TrainedModelConfig.Builder> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupTrainedModelConfigDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
-		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-		op.add(Builder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
-		op.add(Builder::createdBy, JsonpDeserializer.stringDeserializer(), "created_by");
-		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time");
-		op.add(Builder::defaultFieldMap,
+		op.add(AbstractBuilder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+		op.add(AbstractBuilder::modelType, TrainedModelType._DESERIALIZER, "model_type");
+		op.add(AbstractBuilder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"tags");
+		op.add(AbstractBuilder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(AbstractBuilder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
+		op.add(AbstractBuilder::createdBy, JsonpDeserializer.stringDeserializer(), "created_by");
+		op.add(AbstractBuilder::createTime, Time._DESERIALIZER, "create_time");
+		op.add(AbstractBuilder::defaultFieldMap,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "default_field_map");
-		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::estimatedHeapMemoryUsageBytes, JsonpDeserializer.integerDeserializer(),
+		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(AbstractBuilder::estimatedHeapMemoryUsageBytes, JsonpDeserializer.integerDeserializer(),
 				"estimated_heap_memory_usage_bytes");
-		op.add(Builder::estimatedOperations, JsonpDeserializer.integerDeserializer(), "estimated_operations");
-		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
-		op.add(Builder::input, TrainedModelConfigInput._DESERIALIZER, "input");
-		op.add(Builder::licenseLevel, JsonpDeserializer.stringDeserializer(), "license_level");
-		op.add(Builder::metadata, TrainedModelConfigMetadata._DESERIALIZER, "metadata");
+		op.add(AbstractBuilder::estimatedOperations, JsonpDeserializer.integerDeserializer(), "estimated_operations");
+		op.add(AbstractBuilder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
+		op.add(AbstractBuilder::input, TrainedModelConfigInput._DESERIALIZER, "input");
+		op.add(AbstractBuilder::licenseLevel, JsonpDeserializer.stringDeserializer(), "license_level");
+		op.add(AbstractBuilder::metadata, TrainedModelConfigMetadata._DESERIALIZER, "metadata");
 
 	}
 

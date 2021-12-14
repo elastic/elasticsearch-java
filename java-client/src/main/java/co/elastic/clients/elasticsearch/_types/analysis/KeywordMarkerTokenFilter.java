@@ -23,84 +23,94 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.KeywordMarkerTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L229-L235">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFilterVariant {
-	private final boolean ignoreCase;
+public class KeywordMarkerTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+	@Nullable
+	private final Boolean ignoreCase;
 
 	private final List<String> keywords;
 
+	@Nullable
 	private final String keywordsPath;
 
+	@Nullable
 	private final String keywordsPattern;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public KeywordMarkerTokenFilter(Builder builder) {
+	private KeywordMarkerTokenFilter(Builder builder) {
 		super(builder);
 
-		this.ignoreCase = Objects.requireNonNull(builder.ignoreCase, "ignore_case");
-		this.keywords = ModelTypeHelper.unmodifiableNonNull(builder.keywords, "keywords");
-		this.keywordsPath = Objects.requireNonNull(builder.keywordsPath, "keywords_path");
-		this.keywordsPattern = Objects.requireNonNull(builder.keywordsPattern, "keywords_pattern");
+		this.ignoreCase = builder.ignoreCase;
+		this.keywords = ApiTypeHelper.unmodifiable(builder.keywords);
+		this.keywordsPath = builder.keywordsPath;
+		this.keywordsPattern = builder.keywordsPattern;
 
 	}
 
-	public KeywordMarkerTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KeywordMarkerTokenFilter of(Function<Builder, ObjectBuilder<KeywordMarkerTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "keyword_marker";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.KeywordMarker;
 	}
 
 	/**
-	 * Required - API name: {@code ignore_case}
+	 * API name: {@code ignore_case}
 	 */
-	public boolean ignoreCase() {
+	@Nullable
+	public final Boolean ignoreCase() {
 		return this.ignoreCase;
 	}
 
 	/**
-	 * Required - API name: {@code keywords}
+	 * API name: {@code keywords}
 	 */
-	public List<String> keywords() {
+	public final List<String> keywords() {
 		return this.keywords;
 	}
 
 	/**
-	 * Required - API name: {@code keywords_path}
+	 * API name: {@code keywords_path}
 	 */
-	public String keywordsPath() {
+	@Nullable
+	public final String keywordsPath() {
 		return this.keywordsPath;
 	}
 
 	/**
-	 * Required - API name: {@code keywords_pattern}
+	 * API name: {@code keywords_pattern}
 	 */
-	public String keywordsPattern() {
+	@Nullable
+	public final String keywordsPattern() {
 		return this.keywordsPattern;
 	}
 
@@ -108,23 +118,31 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 
 		generator.write("type", "keyword_marker");
 		super.serializeInternal(generator, mapper);
-
-		generator.writeKey("ignore_case");
-		generator.write(this.ignoreCase);
-
-		generator.writeKey("keywords");
-		generator.writeStartArray();
-		for (String item0 : this.keywords) {
-			generator.write(item0);
+		if (this.ignoreCase != null) {
+			generator.writeKey("ignore_case");
+			generator.write(this.ignoreCase);
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.keywords)) {
+			generator.writeKey("keywords");
+			generator.writeStartArray();
+			for (String item0 : this.keywords) {
+				generator.write(item0);
 
-		generator.writeKey("keywords_path");
-		generator.write(this.keywordsPath);
+			}
+			generator.writeEnd();
 
-		generator.writeKey("keywords_pattern");
-		generator.write(this.keywordsPattern);
+		}
+		if (this.keywordsPath != null) {
+			generator.writeKey("keywords_path");
+			generator.write(this.keywordsPath);
+
+		}
+		if (this.keywordsPattern != null) {
+			generator.writeKey("keywords_pattern");
+			generator.write(this.keywordsPattern);
+
+		}
 
 	}
 
@@ -133,64 +151,62 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 	/**
 	 * Builder for {@link KeywordMarkerTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KeywordMarkerTokenFilter> {
+		@Nullable
 		private Boolean ignoreCase;
 
+		@Nullable
 		private List<String> keywords;
 
+		@Nullable
 		private String keywordsPath;
 
+		@Nullable
 		private String keywordsPattern;
 
 		/**
-		 * Required - API name: {@code ignore_case}
+		 * API name: {@code ignore_case}
 		 */
-		public Builder ignoreCase(boolean value) {
+		public final Builder ignoreCase(@Nullable Boolean value) {
 			this.ignoreCase = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code keywords}
+		 * API name: {@code keywords}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>keywords</code>.
 		 */
-		public Builder keywords(List<String> value) {
-			this.keywords = value;
+		public final Builder keywords(List<String> list) {
+			this.keywords = _listAddAll(this.keywords, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code keywords}
+		 * API name: {@code keywords}
+		 * <p>
+		 * Adds one or more values to <code>keywords</code>.
 		 */
-		public Builder keywords(String... value) {
-			this.keywords = Arrays.asList(value);
+		public final Builder keywords(String value, String... values) {
+			this.keywords = _listAdd(this.keywords, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #keywords(List)}, creating the list if needed.
+		 * API name: {@code keywords_path}
 		 */
-		public Builder addKeywords(String value) {
-			if (this.keywords == null) {
-				this.keywords = new ArrayList<>();
-			}
-			this.keywords.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code keywords_path}
-		 */
-		public Builder keywordsPath(String value) {
+		public final Builder keywordsPath(@Nullable String value) {
 			this.keywordsPath = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code keywords_pattern}
+		 * API name: {@code keywords_pattern}
 		 */
-		public Builder keywordsPattern(String value) {
+		public final Builder keywordsPattern(@Nullable String value) {
 			this.keywordsPattern = value;
 			return this;
 		}
@@ -207,6 +223,7 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 		 *             if some of the required fields are null.
 		 */
 		public KeywordMarkerTokenFilter build() {
+			_checkSingleUse();
 
 			return new KeywordMarkerTokenFilter(this);
 		}
@@ -218,10 +235,10 @@ public final class KeywordMarkerTokenFilter extends TokenFilterBase implements T
 	 * Json deserializer for {@link KeywordMarkerTokenFilter}
 	 */
 	public static final JsonpDeserializer<KeywordMarkerTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, KeywordMarkerTokenFilter::setupKeywordMarkerTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, KeywordMarkerTokenFilter::setupKeywordMarkerTokenFilterDeserializer);
 
 	protected static void setupKeywordMarkerTokenFilterDeserializer(
-			DelegatingDeserializer<KeywordMarkerTokenFilter.Builder> op) {
+			ObjectDeserializer<KeywordMarkerTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::ignoreCase, JsonpDeserializer.booleanDeserializer(), "ignore_case");
 		op.add(Builder::keywords, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

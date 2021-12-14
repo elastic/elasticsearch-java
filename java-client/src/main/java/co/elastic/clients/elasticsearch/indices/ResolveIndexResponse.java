@@ -26,26 +26,31 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch.indices.resolve_index.ResolveIndexAliasItem;
 import co.elastic.clients.elasticsearch.indices.resolve_index.ResolveIndexDataStreamsItem;
 import co.elastic.clients.elasticsearch.indices.resolve_index.ResolveIndexItem;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/resolve_index/ResolveIndexResponse.ts#L22-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ResolveIndexResponse implements JsonpSerializable {
+public class ResolveIndexResponse implements JsonpSerializable {
 	private final List<ResolveIndexItem> indices;
 
 	private final List<ResolveIndexAliasItem> aliases;
@@ -54,36 +59,36 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResolveIndexResponse(Builder builder) {
+	private ResolveIndexResponse(Builder builder) {
 
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.aliases = ModelTypeHelper.unmodifiableNonNull(builder.aliases, "aliases");
-		this.dataStreams = ModelTypeHelper.unmodifiableNonNull(builder.dataStreams, "data_streams");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
+		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 
 	}
 
-	public ResolveIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResolveIndexResponse of(Function<Builder, ObjectBuilder<ResolveIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<ResolveIndexItem> indices() {
+	public final List<ResolveIndexItem> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code aliases}
 	 */
-	public List<ResolveIndexAliasItem> aliases() {
+	public final List<ResolveIndexAliasItem> aliases() {
 		return this.aliases;
 	}
 
 	/**
 	 * Required - API name: {@code data_streams}
 	 */
-	public List<ResolveIndexDataStreamsItem> dataStreams() {
+	public final List<ResolveIndexDataStreamsItem> dataStreams() {
 		return this.dataStreams;
 	}
 
@@ -98,29 +103,36 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (ResolveIndexItem item0 : this.indices) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (ResolveIndexItem item0 : this.indices) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.aliases)) {
+			generator.writeKey("aliases");
+			generator.writeStartArray();
+			for (ResolveIndexAliasItem item0 : this.aliases) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("aliases");
-		generator.writeStartArray();
-		for (ResolveIndexAliasItem item0 : this.aliases) {
-			item0.serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("data_streams");
-		generator.writeStartArray();
-		for (ResolveIndexDataStreamsItem item0 : this.dataStreams) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.dataStreams)) {
+			generator.writeKey("data_streams");
+			generator.writeStartArray();
+			for (ResolveIndexDataStreamsItem item0 : this.dataStreams) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -129,7 +141,8 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResolveIndexResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ResolveIndexResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexResponse> {
 		private List<ResolveIndexItem> indices;
 
 		private List<ResolveIndexAliasItem> aliases;
@@ -138,127 +151,90 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public Builder indices(List<ResolveIndexItem> value) {
-			this.indices = value;
+		public final Builder indices(List<ResolveIndexItem> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public Builder indices(ResolveIndexItem... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(ResolveIndexItem value, ResolveIndexItem... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public Builder addIndices(ResolveIndexItem value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #indices(List)} to a singleton list.
-		 */
-		public Builder indices(Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>> fn) {
-			return this.indices(fn.apply(new ResolveIndexItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>> fn) {
-			return this.addIndices(fn.apply(new ResolveIndexItem.Builder()).build());
+		public final Builder indices(Function<ResolveIndexItem.Builder, ObjectBuilder<ResolveIndexItem>> fn) {
+			return indices(fn.apply(new ResolveIndexItem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>aliases</code>.
 		 */
-		public Builder aliases(List<ResolveIndexAliasItem> value) {
-			this.aliases = value;
+		public final Builder aliases(List<ResolveIndexAliasItem> list) {
+			this.aliases = _listAddAll(this.aliases, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds one or more values to <code>aliases</code>.
 		 */
-		public Builder aliases(ResolveIndexAliasItem... value) {
-			this.aliases = Arrays.asList(value);
+		public final Builder aliases(ResolveIndexAliasItem value, ResolveIndexAliasItem... values) {
+			this.aliases = _listAdd(this.aliases, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed.
+		 * Required - API name: {@code aliases}
+		 * <p>
+		 * Adds a value to <code>aliases</code> using a builder lambda.
 		 */
-		public Builder addAliases(ResolveIndexAliasItem value) {
-			if (this.aliases == null) {
-				this.aliases = new ArrayList<>();
-			}
-			this.aliases.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #aliases(List)} to a singleton list.
-		 */
-		public Builder aliases(Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>> fn) {
-			return this.aliases(fn.apply(new ResolveIndexAliasItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #aliases(List)}, creating the list if needed.
-		 */
-		public Builder addAliases(Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>> fn) {
-			return this.addAliases(fn.apply(new ResolveIndexAliasItem.Builder()).build());
+		public final Builder aliases(Function<ResolveIndexAliasItem.Builder, ObjectBuilder<ResolveIndexAliasItem>> fn) {
+			return aliases(fn.apply(new ResolveIndexAliasItem.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataStreams</code>.
 		 */
-		public Builder dataStreams(List<ResolveIndexDataStreamsItem> value) {
-			this.dataStreams = value;
+		public final Builder dataStreams(List<ResolveIndexDataStreamsItem> list) {
+			this.dataStreams = _listAddAll(this.dataStreams, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds one or more values to <code>dataStreams</code>.
 		 */
-		public Builder dataStreams(ResolveIndexDataStreamsItem... value) {
-			this.dataStreams = Arrays.asList(value);
+		public final Builder dataStreams(ResolveIndexDataStreamsItem value, ResolveIndexDataStreamsItem... values) {
+			this.dataStreams = _listAdd(this.dataStreams, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
+		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds a value to <code>dataStreams</code> using a builder lambda.
 		 */
-		public Builder addDataStreams(ResolveIndexDataStreamsItem value) {
-			if (this.dataStreams == null) {
-				this.dataStreams = new ArrayList<>();
-			}
-			this.dataStreams.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #dataStreams(List)} to a singleton list.
-		 */
-		public Builder dataStreams(
+		public final Builder dataStreams(
 				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn) {
-			return this.dataStreams(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
-		 */
-		public Builder addDataStreams(
-				Function<ResolveIndexDataStreamsItem.Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn) {
-			return this.addDataStreams(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
+			return dataStreams(fn.apply(new ResolveIndexDataStreamsItem.Builder()).build());
 		}
 
 		/**
@@ -268,6 +244,7 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ResolveIndexResponse build() {
+			_checkSingleUse();
 
 			return new ResolveIndexResponse(this);
 		}
@@ -279,10 +256,9 @@ public final class ResolveIndexResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ResolveIndexResponse}
 	 */
 	public static final JsonpDeserializer<ResolveIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ResolveIndexResponse::setupResolveIndexResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ResolveIndexResponse::setupResolveIndexResponseDeserializer);
 
-	protected static void setupResolveIndexResponseDeserializer(
-			DelegatingDeserializer<ResolveIndexResponse.Builder> op) {
+	protected static void setupResolveIndexResponseDeserializer(ObjectDeserializer<ResolveIndexResponse.Builder> op) {
 
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(ResolveIndexItem._DESERIALIZER), "indices");
 		op.add(Builder::aliases, JsonpDeserializer.arrayDeserializer(ResolveIndexAliasItem._DESERIALIZER), "aliases");

@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardRetentionLeases
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L132-L136">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShardRetentionLeases implements JsonpSerializable {
+public class ShardRetentionLeases implements JsonpSerializable {
 	private final long primaryTerm;
 
 	private final long version;
@@ -52,36 +57,36 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardRetentionLeases(Builder builder) {
+	private ShardRetentionLeases(Builder builder) {
 
-		this.primaryTerm = Objects.requireNonNull(builder.primaryTerm, "primary_term");
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.leases = ModelTypeHelper.unmodifiableNonNull(builder.leases, "leases");
+		this.primaryTerm = ApiTypeHelper.requireNonNull(builder.primaryTerm, this, "primaryTerm");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.leases = ApiTypeHelper.unmodifiableRequired(builder.leases, this, "leases");
 
 	}
 
-	public ShardRetentionLeases(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardRetentionLeases of(Function<Builder, ObjectBuilder<ShardRetentionLeases>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code primary_term}
 	 */
-	public long primaryTerm() {
+	public final long primaryTerm() {
 		return this.primaryTerm;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public long version() {
+	public final long version() {
 		return this.version;
 	}
 
 	/**
 	 * Required - API name: {@code leases}
 	 */
-	public List<ShardLease> leases() {
+	public final List<ShardLease> leases() {
 		return this.leases;
 	}
 
@@ -102,13 +107,16 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		generator.writeKey("version");
 		generator.write(this.version);
 
-		generator.writeKey("leases");
-		generator.writeStartArray();
-		for (ShardLease item0 : this.leases) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.leases)) {
+			generator.writeKey("leases");
+			generator.writeStartArray();
+			for (ShardLease item0 : this.leases) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -117,7 +125,8 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardRetentionLeases}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardRetentionLeases> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardRetentionLeases> {
 		private Long primaryTerm;
 
 		private Long version;
@@ -127,7 +136,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primary_term}
 		 */
-		public Builder primaryTerm(long value) {
+		public final Builder primaryTerm(long value) {
 			this.primaryTerm = value;
 			return this;
 		}
@@ -135,50 +144,38 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(long value) {
+		public final Builder version(long value) {
 			this.version = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code leases}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>leases</code>.
 		 */
-		public Builder leases(List<ShardLease> value) {
-			this.leases = value;
+		public final Builder leases(List<ShardLease> list) {
+			this.leases = _listAddAll(this.leases, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code leases}
+		 * <p>
+		 * Adds one or more values to <code>leases</code>.
 		 */
-		public Builder leases(ShardLease... value) {
-			this.leases = Arrays.asList(value);
+		public final Builder leases(ShardLease value, ShardLease... values) {
+			this.leases = _listAdd(this.leases, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #leases(List)}, creating the list if needed.
+		 * Required - API name: {@code leases}
+		 * <p>
+		 * Adds a value to <code>leases</code> using a builder lambda.
 		 */
-		public Builder addLeases(ShardLease value) {
-			if (this.leases == null) {
-				this.leases = new ArrayList<>();
-			}
-			this.leases.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #leases(List)} to a singleton list.
-		 */
-		public Builder leases(Function<ShardLease.Builder, ObjectBuilder<ShardLease>> fn) {
-			return this.leases(fn.apply(new ShardLease.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #leases(List)}, creating the list if needed.
-		 */
-		public Builder addLeases(Function<ShardLease.Builder, ObjectBuilder<ShardLease>> fn) {
-			return this.addLeases(fn.apply(new ShardLease.Builder()).build());
+		public final Builder leases(Function<ShardLease.Builder, ObjectBuilder<ShardLease>> fn) {
+			return leases(fn.apply(new ShardLease.Builder()).build());
 		}
 
 		/**
@@ -188,6 +185,7 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardRetentionLeases build() {
+			_checkSingleUse();
 
 			return new ShardRetentionLeases(this);
 		}
@@ -199,10 +197,9 @@ public final class ShardRetentionLeases implements JsonpSerializable {
 	 * Json deserializer for {@link ShardRetentionLeases}
 	 */
 	public static final JsonpDeserializer<ShardRetentionLeases> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardRetentionLeases::setupShardRetentionLeasesDeserializer, Builder::build);
+			.lazy(Builder::new, ShardRetentionLeases::setupShardRetentionLeasesDeserializer);
 
-	protected static void setupShardRetentionLeasesDeserializer(
-			DelegatingDeserializer<ShardRetentionLeases.Builder> op) {
+	protected static void setupShardRetentionLeasesDeserializer(ObjectDeserializer<ShardRetentionLeases.Builder> op) {
 
 		op.add(Builder::primaryTerm, JsonpDeserializer.longDeserializer(), "primary_term");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");

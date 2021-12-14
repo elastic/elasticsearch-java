@@ -23,44 +23,49 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.post_calendar_events.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/post_calendar_events/MlPostCalendarEventsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PostCalendarEventsResponse implements JsonpSerializable {
+public class PostCalendarEventsResponse implements JsonpSerializable {
 	private final List<CalendarEvent> events;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PostCalendarEventsResponse(Builder builder) {
+	private PostCalendarEventsResponse(Builder builder) {
 
-		this.events = ModelTypeHelper.unmodifiableNonNull(builder.events, "events");
+		this.events = ApiTypeHelper.unmodifiableRequired(builder.events, this, "events");
 
 	}
 
-	public PostCalendarEventsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PostCalendarEventsResponse of(Function<Builder, ObjectBuilder<PostCalendarEventsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code events}
 	 */
-	public List<CalendarEvent> events() {
+	public final List<CalendarEvent> events() {
 		return this.events;
 	}
 
@@ -75,13 +80,16 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("events");
-		generator.writeStartArray();
-		for (CalendarEvent item0 : this.events) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.events)) {
+			generator.writeKey("events");
+			generator.writeStartArray();
+			for (CalendarEvent item0 : this.events) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,48 +98,37 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PostCalendarEventsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PostCalendarEventsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostCalendarEventsResponse> {
 		private List<CalendarEvent> events;
 
 		/**
 		 * Required - API name: {@code events}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>events</code>.
 		 */
-		public Builder events(List<CalendarEvent> value) {
-			this.events = value;
+		public final Builder events(List<CalendarEvent> list) {
+			this.events = _listAddAll(this.events, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code events}
+		 * <p>
+		 * Adds one or more values to <code>events</code>.
 		 */
-		public Builder events(CalendarEvent... value) {
-			this.events = Arrays.asList(value);
+		public final Builder events(CalendarEvent value, CalendarEvent... values) {
+			this.events = _listAdd(this.events, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
+		 * Required - API name: {@code events}
+		 * <p>
+		 * Adds a value to <code>events</code> using a builder lambda.
 		 */
-		public Builder addEvents(CalendarEvent value) {
-			if (this.events == null) {
-				this.events = new ArrayList<>();
-			}
-			this.events.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #events(List)} to a singleton list.
-		 */
-		public Builder events(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
-			return this.events(fn.apply(new CalendarEvent.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #events(List)}, creating the list if needed.
-		 */
-		public Builder addEvents(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
-			return this.addEvents(fn.apply(new CalendarEvent.Builder()).build());
+		public final Builder events(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
+			return events(fn.apply(new CalendarEvent.Builder()).build());
 		}
 
 		/**
@@ -141,6 +138,7 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PostCalendarEventsResponse build() {
+			_checkSingleUse();
 
 			return new PostCalendarEventsResponse(this);
 		}
@@ -151,11 +149,11 @@ public final class PostCalendarEventsResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PostCalendarEventsResponse}
 	 */
-	public static final JsonpDeserializer<PostCalendarEventsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PostCalendarEventsResponse::setupPostCalendarEventsResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<PostCalendarEventsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PostCalendarEventsResponse::setupPostCalendarEventsResponseDeserializer);
 
 	protected static void setupPostCalendarEventsResponseDeserializer(
-			DelegatingDeserializer<PostCalendarEventsResponse.Builder> op) {
+			ObjectDeserializer<PostCalendarEventsResponse.Builder> op) {
 
 		op.add(Builder::events, JsonpDeserializer.arrayDeserializer(CalendarEvent._DESERIALIZER), "events");
 

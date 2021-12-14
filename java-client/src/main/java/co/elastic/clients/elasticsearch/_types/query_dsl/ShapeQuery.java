@@ -23,71 +23,92 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ShapeQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L178-L183">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShapeQuery extends QueryBase implements QueryVariant {
+public class ShapeQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	private final ShapeFieldQuery shape;
 
+	@Nullable
+	private final Boolean ignoreUnmapped;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public ShapeQuery(Builder builder) {
+	private ShapeQuery(Builder builder) {
 		super(builder);
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.shape = ApiTypeHelper.requireNonNull(builder.shape, this, "shape");
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.shape = Objects.requireNonNull(builder.shape, "shape");
+		this.ignoreUnmapped = builder.ignoreUnmapped;
 
 	}
 
-	public ShapeQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShapeQuery of(Function<Builder, ObjectBuilder<ShapeQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "shape";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Shape;
 	}
 
 	/**
 	 * Required -
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required -
 	 */
-	public ShapeFieldQuery shape() {
+	public final ShapeFieldQuery shape() {
 		return this.shape;
 	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+	/**
+	 * API name: {@code ignore_unmapped}
+	 */
+	@Nullable
+	public final Boolean ignoreUnmapped() {
+		return this.ignoreUnmapped;
+	}
 
-		// >> AdditionalProperty start
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 		generator.writeKey(this.field);
 		this.shape.serialize(generator, mapper);
 
-		// << AdditionalProperty start
-
 		super.serializeInternal(generator, mapper);
+		if (this.ignoreUnmapped != null) {
+			generator.writeKey("ignore_unmapped");
+			generator.write(this.ignoreUnmapped);
+
+		}
 
 	}
 
@@ -96,6 +117,7 @@ public final class ShapeQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link ShapeQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<ShapeQuery> {
 		private String field;
 
@@ -104,7 +126,7 @@ public final class ShapeQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -112,7 +134,7 @@ public final class ShapeQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public Builder shape(ShapeFieldQuery value) {
+		public final Builder shape(ShapeFieldQuery value) {
 			this.shape = value;
 			return this;
 		}
@@ -120,8 +142,19 @@ public final class ShapeQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required -
 		 */
-		public Builder shape(Function<ShapeFieldQuery.Builder, ObjectBuilder<ShapeFieldQuery>> fn) {
+		public final Builder shape(Function<ShapeFieldQuery.Builder, ObjectBuilder<ShapeFieldQuery>> fn) {
 			return this.shape(fn.apply(new ShapeFieldQuery.Builder()).build());
+		}
+
+		@Nullable
+		private Boolean ignoreUnmapped;
+
+		/**
+		 * API name: {@code ignore_unmapped}
+		 */
+		public final Builder ignoreUnmapped(@Nullable Boolean value) {
+			this.ignoreUnmapped = value;
+			return this;
 		}
 
 		@Override
@@ -136,6 +169,7 @@ public final class ShapeQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public ShapeQuery build() {
+			_checkSingleUse();
 
 			return new ShapeQuery(this);
 		}
@@ -147,10 +181,11 @@ public final class ShapeQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link ShapeQuery}
 	 */
 	public static final JsonpDeserializer<ShapeQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShapeQuery::setupShapeQueryDeserializer, Builder::build);
+			ShapeQuery::setupShapeQueryDeserializer);
 
-	protected static void setupShapeQueryDeserializer(DelegatingDeserializer<ShapeQuery.Builder> op) {
+	protected static void setupShapeQueryDeserializer(ObjectDeserializer<ShapeQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
+		op.add(Builder::ignoreUnmapped, JsonpDeserializer.booleanDeserializer(), "ignore_unmapped");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
 			builder.field(name);

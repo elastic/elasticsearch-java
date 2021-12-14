@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.UppercaseTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L336-L338">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UppercaseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class UppercaseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public UppercaseTokenFilter(Builder builder) {
+	private UppercaseTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public UppercaseTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UppercaseTokenFilter of(Function<Builder, ObjectBuilder<UppercaseTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "uppercase";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Uppercase;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class UppercaseTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Builder for {@link UppercaseTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UppercaseTokenFilter> {
@@ -83,6 +90,7 @@ public final class UppercaseTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public UppercaseTokenFilter build() {
+			_checkSingleUse();
 
 			return new UppercaseTokenFilter(this);
 		}
@@ -94,10 +102,9 @@ public final class UppercaseTokenFilter extends TokenFilterBase implements Token
 	 * Json deserializer for {@link UppercaseTokenFilter}
 	 */
 	public static final JsonpDeserializer<UppercaseTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UppercaseTokenFilter::setupUppercaseTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, UppercaseTokenFilter::setupUppercaseTokenFilterDeserializer);
 
-	protected static void setupUppercaseTokenFilterDeserializer(
-			DelegatingDeserializer<UppercaseTokenFilter.Builder> op) {
+	protected static void setupUppercaseTokenFilterDeserializer(ObjectDeserializer<UppercaseTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

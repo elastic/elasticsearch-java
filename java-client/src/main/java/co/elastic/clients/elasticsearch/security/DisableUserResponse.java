@@ -30,11 +30,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: security.disable_user.Response
 
-public final class DisableUserResponse {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/disable_user/SecurityDisableUserResponse.ts#L20-L22">API
+ *      specification</a>
+ */
+
+public class DisableUserResponse {
 	public DisableUserResponse() {
 	}
 

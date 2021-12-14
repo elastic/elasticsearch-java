@@ -23,17 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -41,37 +39,42 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.JoinProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L125-L128">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class JoinProperty extends PropertyBase implements PropertyVariant {
-	@Nullable
+public class JoinProperty extends PropertyBase implements PropertyVariant {
 	private final Map<String, List<String>> relations;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public JoinProperty(Builder builder) {
+	private JoinProperty(Builder builder) {
 		super(builder);
 
-		this.relations = ModelTypeHelper.unmodifiable(builder.relations);
+		this.relations = ApiTypeHelper.unmodifiable(builder.relations);
 
 	}
 
-	public JoinProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static JoinProperty of(Function<Builder, ObjectBuilder<JoinProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "join";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Join;
 	}
 
 	/**
 	 * API name: {@code relations}
 	 */
-	@Nullable
-	public Map<String, List<String>> relations() {
+	public final Map<String, List<String>> relations() {
 		return this.relations;
 	}
 
@@ -79,16 +82,17 @@ public final class JoinProperty extends PropertyBase implements PropertyVariant 
 
 		generator.write("type", "join");
 		super.serializeInternal(generator, mapper);
-		if (this.relations != null) {
-
+		if (ApiTypeHelper.isDefined(this.relations)) {
 			generator.writeKey("relations");
 			generator.writeStartObject();
 			for (Map.Entry<String, List<String>> item0 : this.relations.entrySet()) {
 				generator.writeKey(item0.getKey());
 				generator.writeStartArray();
-				for (String item1 : item0.getValue()) {
-					generator.write(item1);
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
 
+					}
 				}
 				generator.writeEnd();
 
@@ -104,26 +108,28 @@ public final class JoinProperty extends PropertyBase implements PropertyVariant 
 	/**
 	 * Builder for {@link JoinProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder> implements ObjectBuilder<JoinProperty> {
 		@Nullable
 		private Map<String, List<String>> relations;
 
 		/**
 		 * API name: {@code relations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>relations</code>.
 		 */
-		public Builder relations(@Nullable Map<String, List<String>> value) {
-			this.relations = value;
+		public final Builder relations(Map<String, List<String>> map) {
+			this.relations = _mapPutAll(this.relations, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #relations(Map)}, creating the map if needed.
+		 * API name: {@code relations}
+		 * <p>
+		 * Adds an entry to <code>relations</code>.
 		 */
-		public Builder putRelations(String key, List<String> value) {
-			if (this.relations == null) {
-				this.relations = new HashMap<>();
-			}
-			this.relations.put(key, value);
+		public final Builder relations(String key, List<String> value) {
+			this.relations = _mapPut(this.relations, key, value);
 			return this;
 		}
 
@@ -139,6 +145,7 @@ public final class JoinProperty extends PropertyBase implements PropertyVariant 
 		 *             if some of the required fields are null.
 		 */
 		public JoinProperty build() {
+			_checkSingleUse();
 
 			return new JoinProperty(this);
 		}
@@ -150,9 +157,9 @@ public final class JoinProperty extends PropertyBase implements PropertyVariant 
 	 * Json deserializer for {@link JoinProperty}
 	 */
 	public static final JsonpDeserializer<JoinProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			JoinProperty::setupJoinPropertyDeserializer, Builder::build);
+			JoinProperty::setupJoinPropertyDeserializer);
 
-	protected static void setupJoinPropertyDeserializer(DelegatingDeserializer<JoinProperty.Builder> op) {
+	protected static void setupJoinPropertyDeserializer(ObjectDeserializer<JoinProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::relations, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "relations");

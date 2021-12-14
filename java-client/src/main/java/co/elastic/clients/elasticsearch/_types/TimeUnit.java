@@ -23,13 +23,33 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Time.ts#L70-L85">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum TimeUnit implements StringEnum {
-	NanoSeconds("nanos"), MicroSeconds("micros"), MilliSeconds("ms"), Seconds("s"), Minutes("m"), Hours("h"), Days("d");
+public enum TimeUnit implements JsonEnum {
+	Nanoseconds("nanos"),
+
+	Microseconds("micros"),
+
+	Milliseconds("ms"),
+
+	Seconds("s"),
+
+	Minutes("m"),
+
+	Hours("h"),
+
+	Days("d"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +61,5 @@ public enum TimeUnit implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<TimeUnit> _DESERIALIZER = new StringEnum.Deserializer<>(
-			TimeUnit.values());
+	public static final JsonEnum.Deserializer<TimeUnit> _DESERIALIZER = new JsonEnum.Deserializer<>(TimeUnit.values());
 }

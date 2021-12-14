@@ -23,83 +23,94 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriAnalyzer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L66-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
+public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
+	@Nullable
 	private final String version;
 
+	@Nullable
 	private final NoriDecompoundMode decompoundMode;
 
 	private final List<String> stoptags;
 
+	@Nullable
 	private final String userDictionary;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NoriAnalyzer(Builder builder) {
+	private NoriAnalyzer(Builder builder) {
 
-		this.version = Objects.requireNonNull(builder.version, "version");
-		this.decompoundMode = Objects.requireNonNull(builder.decompoundMode, "decompound_mode");
-		this.stoptags = ModelTypeHelper.unmodifiableNonNull(builder.stoptags, "stoptags");
-		this.userDictionary = Objects.requireNonNull(builder.userDictionary, "user_dictionary");
+		this.version = builder.version;
+		this.decompoundMode = builder.decompoundMode;
+		this.stoptags = ApiTypeHelper.unmodifiable(builder.stoptags);
+		this.userDictionary = builder.userDictionary;
 
 	}
 
-	public NoriAnalyzer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NoriAnalyzer of(Function<Builder, ObjectBuilder<NoriAnalyzer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Analyzer} variant type
+	 * Analyzer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "nori";
+	public Analyzer.Kind _analyzerKind() {
+		return Analyzer.Kind.Nori;
 	}
 
 	/**
-	 * Required - API name: {@code version}
+	 * API name: {@code version}
 	 */
-	public String version() {
+	@Nullable
+	public final String version() {
 		return this.version;
 	}
 
 	/**
-	 * Required - API name: {@code decompound_mode}
+	 * API name: {@code decompound_mode}
 	 */
-	public NoriDecompoundMode decompoundMode() {
+	@Nullable
+	public final NoriDecompoundMode decompoundMode() {
 		return this.decompoundMode;
 	}
 
 	/**
-	 * Required - API name: {@code stoptags}
+	 * API name: {@code stoptags}
 	 */
-	public List<String> stoptags() {
+	public final List<String> stoptags() {
 		return this.stoptags;
 	}
 
 	/**
-	 * Required - API name: {@code user_dictionary}
+	 * API name: {@code user_dictionary}
 	 */
-	public String userDictionary() {
+	@Nullable
+	public final String userDictionary() {
 		return this.userDictionary;
 	}
 
@@ -116,22 +127,30 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 
 		generator.write("type", "nori");
 
-		generator.writeKey("version");
-		generator.write(this.version);
-
-		generator.writeKey("decompound_mode");
-		this.decompoundMode.serialize(generator, mapper);
-
-		generator.writeKey("stoptags");
-		generator.writeStartArray();
-		for (String item0 : this.stoptags) {
-			generator.write(item0);
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
 
 		}
-		generator.writeEnd();
+		if (this.decompoundMode != null) {
+			generator.writeKey("decompound_mode");
+			this.decompoundMode.serialize(generator, mapper);
+		}
+		if (ApiTypeHelper.isDefined(this.stoptags)) {
+			generator.writeKey("stoptags");
+			generator.writeStartArray();
+			for (String item0 : this.stoptags) {
+				generator.write(item0);
 
-		generator.writeKey("user_dictionary");
-		generator.write(this.userDictionary);
+			}
+			generator.writeEnd();
+
+		}
+		if (this.userDictionary != null) {
+			generator.writeKey("user_dictionary");
+			generator.write(this.userDictionary);
+
+		}
 
 	}
 
@@ -140,62 +159,60 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	/**
 	 * Builder for {@link NoriAnalyzer}.
 	 */
-	public static class Builder implements ObjectBuilder<NoriAnalyzer> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NoriAnalyzer> {
+		@Nullable
 		private String version;
 
+		@Nullable
 		private NoriDecompoundMode decompoundMode;
 
+		@Nullable
 		private List<String> stoptags;
 
+		@Nullable
 		private String userDictionary;
 
 		/**
-		 * Required - API name: {@code version}
+		 * API name: {@code version}
 		 */
-		public Builder version(String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code decompound_mode}
+		 * API name: {@code decompound_mode}
 		 */
-		public Builder decompoundMode(NoriDecompoundMode value) {
+		public final Builder decompoundMode(@Nullable NoriDecompoundMode value) {
 			this.decompoundMode = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stoptags}
+		 * API name: {@code stoptags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stoptags</code>.
 		 */
-		public Builder stoptags(List<String> value) {
-			this.stoptags = value;
+		public final Builder stoptags(List<String> list) {
+			this.stoptags = _listAddAll(this.stoptags, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code stoptags}
+		 * API name: {@code stoptags}
+		 * <p>
+		 * Adds one or more values to <code>stoptags</code>.
 		 */
-		public Builder stoptags(String... value) {
-			this.stoptags = Arrays.asList(value);
+		public final Builder stoptags(String value, String... values) {
+			this.stoptags = _listAdd(this.stoptags, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #stoptags(List)}, creating the list if needed.
+		 * API name: {@code user_dictionary}
 		 */
-		public Builder addStoptags(String value) {
-			if (this.stoptags == null) {
-				this.stoptags = new ArrayList<>();
-			}
-			this.stoptags.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code user_dictionary}
-		 */
-		public Builder userDictionary(String value) {
+		public final Builder userDictionary(@Nullable String value) {
 			this.userDictionary = value;
 			return this;
 		}
@@ -207,6 +224,7 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NoriAnalyzer build() {
+			_checkSingleUse();
 
 			return new NoriAnalyzer(this);
 		}
@@ -218,9 +236,9 @@ public final class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Json deserializer for {@link NoriAnalyzer}
 	 */
 	public static final JsonpDeserializer<NoriAnalyzer> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NoriAnalyzer::setupNoriAnalyzerDeserializer, Builder::build);
+			NoriAnalyzer::setupNoriAnalyzerDeserializer);
 
-	protected static void setupNoriAnalyzerDeserializer(DelegatingDeserializer<NoriAnalyzer.Builder> op) {
+	protected static void setupNoriAnalyzerDeserializer(ObjectDeserializer<NoriAnalyzer.Builder> op) {
 
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::decompoundMode, NoriDecompoundMode._DESERIALIZER, "decompound_mode");

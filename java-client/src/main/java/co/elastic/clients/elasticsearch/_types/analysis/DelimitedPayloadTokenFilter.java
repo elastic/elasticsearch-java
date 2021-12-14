@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,45 +37,52 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.DelimitedPayloadTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L67-L71">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DelimitedPayloadTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class DelimitedPayloadTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final String delimiter;
 
 	private final DelimitedPayloadEncoding encoding;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DelimitedPayloadTokenFilter(Builder builder) {
+	private DelimitedPayloadTokenFilter(Builder builder) {
 		super(builder);
 
-		this.delimiter = Objects.requireNonNull(builder.delimiter, "delimiter");
-		this.encoding = Objects.requireNonNull(builder.encoding, "encoding");
+		this.delimiter = ApiTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
+		this.encoding = ApiTypeHelper.requireNonNull(builder.encoding, this, "encoding");
 
 	}
 
-	public DelimitedPayloadTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DelimitedPayloadTokenFilter of(Function<Builder, ObjectBuilder<DelimitedPayloadTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "delimited_payload";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.DelimitedPayload;
 	}
 
 	/**
 	 * Required - API name: {@code delimiter}
 	 */
-	public String delimiter() {
+	public final String delimiter() {
 		return this.delimiter;
 	}
 
 	/**
 	 * Required - API name: {@code encoding}
 	 */
-	public DelimitedPayloadEncoding encoding() {
+	public final DelimitedPayloadEncoding encoding() {
 		return this.encoding;
 	}
 
@@ -83,7 +90,6 @@ public final class DelimitedPayloadTokenFilter extends TokenFilterBase implement
 
 		generator.write("type", "delimited_payload");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("delimiter");
 		generator.write(this.delimiter);
 
@@ -97,6 +103,7 @@ public final class DelimitedPayloadTokenFilter extends TokenFilterBase implement
 	/**
 	 * Builder for {@link DelimitedPayloadTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DelimitedPayloadTokenFilter> {
@@ -107,7 +114,7 @@ public final class DelimitedPayloadTokenFilter extends TokenFilterBase implement
 		/**
 		 * Required - API name: {@code delimiter}
 		 */
-		public Builder delimiter(String value) {
+		public final Builder delimiter(String value) {
 			this.delimiter = value;
 			return this;
 		}
@@ -115,7 +122,7 @@ public final class DelimitedPayloadTokenFilter extends TokenFilterBase implement
 		/**
 		 * Required - API name: {@code encoding}
 		 */
-		public Builder encoding(DelimitedPayloadEncoding value) {
+		public final Builder encoding(DelimitedPayloadEncoding value) {
 			this.encoding = value;
 			return this;
 		}
@@ -132,6 +139,7 @@ public final class DelimitedPayloadTokenFilter extends TokenFilterBase implement
 		 *             if some of the required fields are null.
 		 */
 		public DelimitedPayloadTokenFilter build() {
+			_checkSingleUse();
 
 			return new DelimitedPayloadTokenFilter(this);
 		}
@@ -142,11 +150,11 @@ public final class DelimitedPayloadTokenFilter extends TokenFilterBase implement
 	/**
 	 * Json deserializer for {@link DelimitedPayloadTokenFilter}
 	 */
-	public static final JsonpDeserializer<DelimitedPayloadTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DelimitedPayloadTokenFilter::setupDelimitedPayloadTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<DelimitedPayloadTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DelimitedPayloadTokenFilter::setupDelimitedPayloadTokenFilterDeserializer);
 
 	protected static void setupDelimitedPayloadTokenFilterDeserializer(
-			DelegatingDeserializer<DelimitedPayloadTokenFilter.Builder> op) {
+			ObjectDeserializer<DelimitedPayloadTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::delimiter, JsonpDeserializer.stringDeserializer(), "delimiter");
 		op.add(Builder::encoding, DelimitedPayloadEncoding._DESERIALIZER, "encoding");

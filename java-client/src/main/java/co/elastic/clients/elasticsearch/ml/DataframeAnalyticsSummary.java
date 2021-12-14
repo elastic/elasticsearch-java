@@ -23,15 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -42,8 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.DataframeAnalyticsSummary
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L305-L317">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataframeAnalyticsSummary implements JsonpSerializable {
+public class DataframeAnalyticsSummary implements JsonpSerializable {
 	private final String id;
 
 	private final DataframeAnalyticsSource source;
@@ -62,7 +69,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	private final Integer maxNumThreads;
 
 	@Nullable
-	private final JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+	private final DataframeAnalysisAnalyzedFields analyzedFields;
 
 	@Nullable
 	private final Boolean allowLazyStart;
@@ -75,12 +82,12 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeAnalyticsSummary(Builder builder) {
+	private DataframeAnalyticsSummary(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.source = Objects.requireNonNull(builder.source, "source");
-		this.dest = Objects.requireNonNull(builder.dest, "dest");
-		this.analysis = Objects.requireNonNull(builder.analysis, "analysis");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.analysis = ApiTypeHelper.requireNonNull(builder.analysis, this, "analysis");
 		this.description = builder.description;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 		this.maxNumThreads = builder.maxNumThreads;
@@ -91,35 +98,35 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 
 	}
 
-	public DataframeAnalyticsSummary(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeAnalyticsSummary of(Function<Builder, ObjectBuilder<DataframeAnalyticsSummary>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code source}
 	 */
-	public DataframeAnalyticsSource source() {
+	public final DataframeAnalyticsSource source() {
 		return this.source;
 	}
 
 	/**
 	 * Required - API name: {@code dest}
 	 */
-	public DataframeAnalyticsDestination dest() {
+	public final DataframeAnalyticsDestination dest() {
 		return this.dest;
 	}
 
 	/**
 	 * Required - API name: {@code analysis}
 	 */
-	public DataframeAnalysis analysis() {
+	public final DataframeAnalysis analysis() {
 		return this.analysis;
 	}
 
@@ -127,7 +134,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -135,7 +142,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code model_memory_limit}
 	 */
 	@Nullable
-	public String modelMemoryLimit() {
+	public final String modelMemoryLimit() {
 		return this.modelMemoryLimit;
 	}
 
@@ -143,7 +150,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code max_num_threads}
 	 */
 	@Nullable
-	public Integer maxNumThreads() {
+	public final Integer maxNumThreads() {
 		return this.maxNumThreads;
 	}
 
@@ -151,7 +158,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code analyzed_fields}
 	 */
 	@Nullable
-	public JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields() {
+	public final DataframeAnalysisAnalyzedFields analyzedFields() {
 		return this.analyzedFields;
 	}
 
@@ -159,7 +166,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code allow_lazy_start}
 	 */
 	@Nullable
-	public Boolean allowLazyStart() {
+	public final Boolean allowLazyStart() {
 		return this.allowLazyStart;
 	}
 
@@ -167,7 +174,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public Long createTime() {
+	public final Long createTime() {
 		return this.createTime;
 	}
 
@@ -175,7 +182,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -203,43 +210,36 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		this.analysis.serialize(generator, mapper);
 
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.modelMemoryLimit != null) {
-
 			generator.writeKey("model_memory_limit");
 			generator.write(this.modelMemoryLimit);
 
 		}
 		if (this.maxNumThreads != null) {
-
 			generator.writeKey("max_num_threads");
 			generator.write(this.maxNumThreads);
 
 		}
 		if (this.analyzedFields != null) {
-
 			generator.writeKey("analyzed_fields");
-			generator.write(this.analyzedFields);
+			this.analyzedFields.serialize(generator, mapper);
 
 		}
 		if (this.allowLazyStart != null) {
-
 			generator.writeKey("allow_lazy_start");
 			generator.write(this.allowLazyStart);
 
 		}
 		if (this.createTime != null) {
-
 			generator.writeKey("create_time");
 			generator.write(this.createTime);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
@@ -252,7 +252,8 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataframeAnalyticsSummary}.
 	 */
-	public static class Builder implements ObjectBuilder<DataframeAnalyticsSummary> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsSummary> {
 		private String id;
 
 		private DataframeAnalyticsSource source;
@@ -271,7 +272,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		private Integer maxNumThreads;
 
 		@Nullable
-		private JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ analyzedFields;
+		private DataframeAnalysisAnalyzedFields analyzedFields;
 
 		@Nullable
 		private Boolean allowLazyStart;
@@ -285,7 +286,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -293,7 +294,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public Builder source(DataframeAnalyticsSource value) {
+		public final Builder source(DataframeAnalyticsSource value) {
 			this.source = value;
 			return this;
 		}
@@ -301,14 +302,15 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source}
 		 */
-		public Builder source(Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
+		public final Builder source(
+				Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
 			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code dest}
 		 */
-		public Builder dest(DataframeAnalyticsDestination value) {
+		public final Builder dest(DataframeAnalyticsDestination value) {
 			this.dest = value;
 			return this;
 		}
@@ -316,7 +318,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code dest}
 		 */
-		public Builder dest(
+		public final Builder dest(
 				Function<DataframeAnalyticsDestination.Builder, ObjectBuilder<DataframeAnalyticsDestination>> fn) {
 			return this.dest(fn.apply(new DataframeAnalyticsDestination.Builder()).build());
 		}
@@ -324,7 +326,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis}
 		 */
-		public Builder analysis(DataframeAnalysis value) {
+		public final Builder analysis(DataframeAnalysis value) {
 			this.analysis = value;
 			return this;
 		}
@@ -332,14 +334,14 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code analysis}
 		 */
-		public Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
+		public final Builder analysis(Function<DataframeAnalysis.Builder, ObjectBuilder<DataframeAnalysis>> fn) {
 			return this.analysis(fn.apply(new DataframeAnalysis.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -347,7 +349,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code model_memory_limit}
 		 */
-		public Builder modelMemoryLimit(@Nullable String value) {
+		public final Builder modelMemoryLimit(@Nullable String value) {
 			this.modelMemoryLimit = value;
 			return this;
 		}
@@ -355,7 +357,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code max_num_threads}
 		 */
-		public Builder maxNumThreads(@Nullable Integer value) {
+		public final Builder maxNumThreads(@Nullable Integer value) {
 			this.maxNumThreads = value;
 			return this;
 		}
@@ -363,15 +365,23 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzed_fields}
 		 */
-		public Builder analyzedFields(@Nullable JsonValue /* ml._types.DataframeAnalysisAnalyzedFields */ value) {
+		public final Builder analyzedFields(@Nullable DataframeAnalysisAnalyzedFields value) {
 			this.analyzedFields = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code analyzed_fields}
+		 */
+		public final Builder analyzedFields(
+				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
+			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code allow_lazy_start}
 		 */
-		public Builder allowLazyStart(@Nullable Boolean value) {
+		public final Builder allowLazyStart(@Nullable Boolean value) {
 			this.allowLazyStart = value;
 			return this;
 		}
@@ -379,7 +389,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code create_time}
 		 */
-		public Builder createTime(@Nullable Long value) {
+		public final Builder createTime(@Nullable Long value) {
 			this.createTime = value;
 			return this;
 		}
@@ -387,7 +397,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -399,6 +409,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataframeAnalyticsSummary build() {
+			_checkSingleUse();
 
 			return new DataframeAnalyticsSummary(this);
 		}
@@ -410,10 +421,10 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 	 * Json deserializer for {@link DataframeAnalyticsSummary}
 	 */
 	public static final JsonpDeserializer<DataframeAnalyticsSummary> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeAnalyticsSummary::setupDataframeAnalyticsSummaryDeserializer, Builder::build);
+			.lazy(Builder::new, DataframeAnalyticsSummary::setupDataframeAnalyticsSummaryDeserializer);
 
 	protected static void setupDataframeAnalyticsSummaryDeserializer(
-			DelegatingDeserializer<DataframeAnalyticsSummary.Builder> op) {
+			ObjectDeserializer<DataframeAnalyticsSummary.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
@@ -422,7 +433,7 @@ public final class DataframeAnalyticsSummary implements JsonpSerializable {
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
-		op.add(Builder::analyzedFields, JsonpDeserializer.jsonValueDeserializer(), "analyzed_fields");
+		op.add(Builder::analyzedFields, DataframeAnalysisAnalyzedFields._DESERIALIZER, "analyzed_fields");
 		op.add(Builder::allowLazyStart, JsonpDeserializer.booleanDeserializer(), "allow_lazy_start");
 		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");

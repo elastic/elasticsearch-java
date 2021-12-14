@@ -36,6 +36,11 @@ class JsonDataImpl implements JsonData {
     }
 
     @Override
+    public String toString() {
+        return value.toString();
+    }
+
+    @Override
     public JsonValue toJson() {
         return toJson(null);
     }
@@ -53,7 +58,9 @@ class JsonDataImpl implements JsonData {
                 "' that cannot be converted to a JsonValue without a mapper");
         }
 
-        return getParser(mapper).getValue();
+        final JsonParser parser = getParser(mapper);
+        parser.next(); // move to first event
+        return parser.getValue();
     }
 
     @Override

@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,27 @@ import javax.annotation.Nullable;
 
 // typedef: ilm.retry.Request
 
-public final class RetryRequest extends RequestBase {
+/**
+ * Retries executing the policy for an index that is in the ERROR step.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/retry/RetryIlmRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class RetryRequest extends RequestBase {
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RetryRequest(Builder builder) {
+	private RetryRequest(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public RetryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RetryRequest of(Function<Builder, ObjectBuilder<RetryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +72,7 @@ public final class RetryRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -71,7 +81,8 @@ public final class RetryRequest extends RequestBase {
 	/**
 	 * Builder for {@link RetryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<RetryRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RetryRequest> {
 		private String index;
 
 		/**
@@ -80,7 +91,7 @@ public final class RetryRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -92,6 +103,7 @@ public final class RetryRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public RetryRequest build() {
+			_checkSingleUse();
 
 			return new RetryRequest(this);
 		}
@@ -102,7 +114,9 @@ public final class RetryRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ilm.retry}".
 	 */
-	public static final Endpoint<RetryRequest, RetryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RetryRequest, RetryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ilm.retry",
+
 			// Request method
 			request -> {
 				return "POST";

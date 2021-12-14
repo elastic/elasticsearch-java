@@ -23,24 +23,40 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/geo.ts#L30-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum GeoOrientation implements StringEnum {
-	Right("right"), Counterclockwise("counterclockwise"), Ccw("ccw"), Left("left"), Clockwise("clockwise"), Cw("cw");
+public enum GeoOrientation implements JsonEnum {
+	Right("right", "RIGHT", "counterclockwise", "ccw"),
+
+	Left("left", "LEFT", "clockwise", "cw"),
+
+	;
 
 	private final String jsonValue;
+	private final String[] aliases;
 
-	GeoOrientation(String jsonValue) {
+	GeoOrientation(String jsonValue, String... aliases) {
 		this.jsonValue = jsonValue;
+		this.aliases = aliases;
 	}
 
 	public String jsonValue() {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<GeoOrientation> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public String[] aliases() {
+		return this.aliases;
+	}
+
+	public static final JsonEnum.Deserializer<GeoOrientation> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			GeoOrientation.values());
 }

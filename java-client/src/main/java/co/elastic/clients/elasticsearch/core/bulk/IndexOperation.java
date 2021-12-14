@@ -23,36 +23,69 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.Arrays;
+import java.util.Iterator;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _global.bulk.IndexOperation
-@JsonpDeserializable
-public final class IndexOperation extends OperationBase implements OperationVariant {
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/types.ts#L76-L76">API
+ *      specification</a>
+ */
+
+public class IndexOperation<TDocument> extends WriteOperation implements NdJsonpSerializable, BulkOperationVariant {
+	private final TDocument document;
+
+	@Nullable
+	private final JsonpSerializer<TDocument> tDocumentSerializer;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexOperation(Builder builder) {
+	private IndexOperation(Builder<TDocument> builder) {
 		super(builder);
+		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
+
+		this.tDocumentSerializer = builder.tDocumentSerializer;
 
 	}
 
-	public IndexOperation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static <TDocument> IndexOperation<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<IndexOperation<TDocument>>> fn) {
+		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
-	 * {@link Operation} variant type
+	 * BulkOperation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "index";
+	public BulkOperation.Kind _bulkOperationKind() {
+		return BulkOperation.Kind.Index;
+	}
+
+	/**
+	 * Required - API name: {@code document}
+	 */
+	public final TDocument document() {
+		return this.document;
+	}
+
+	@Override
+	public Iterator<?> _serializables() {
+		return Arrays.asList(this, this.document).iterator();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,11 +93,34 @@ public final class IndexOperation extends OperationBase implements OperationVari
 	/**
 	 * Builder for {@link IndexOperation}.
 	 */
-	public static class Builder extends OperationBase.AbstractBuilder<Builder>
+
+	public static class Builder<TDocument> extends WriteOperation.AbstractBuilder<Builder<TDocument>>
 			implements
-				ObjectBuilder<IndexOperation> {
+				ObjectBuilder<IndexOperation<TDocument>> {
+		private TDocument document;
+
+		/**
+		 * Required - API name: {@code document}
+		 */
+		public final Builder<TDocument> document(TDocument value) {
+			this.document = value;
+			return this;
+		}
+
+		@Nullable
+		private JsonpSerializer<TDocument> tDocumentSerializer;
+
+		/**
+		 * Serializer for TDocument. If not set, an attempt will be made to find a
+		 * serializer from the JSON context.
+		 */
+		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+			this.tDocumentSerializer = value;
+			return this;
+		}
+
 		@Override
-		protected Builder self() {
+		protected Builder<TDocument> self() {
 			return this;
 		}
 
@@ -74,23 +130,11 @@ public final class IndexOperation extends OperationBase implements OperationVari
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IndexOperation build() {
+		public IndexOperation<TDocument> build() {
+			_checkSingleUse();
 
-			return new IndexOperation(this);
+			return new IndexOperation<TDocument>(this);
 		}
-	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link IndexOperation}
-	 */
-	public static final JsonpDeserializer<IndexOperation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexOperation::setupIndexOperationDeserializer, Builder::build);
-
-	protected static void setupIndexOperationDeserializer(DelegatingDeserializer<IndexOperation.Builder> op) {
-		OperationBase.setupOperationBaseDeserializer(op);
-
 	}
 
 }

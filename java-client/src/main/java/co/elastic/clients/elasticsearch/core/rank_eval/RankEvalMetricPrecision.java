@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,22 +36,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalMetricPrecision
+
+/**
+ * Precision at K (P@k)
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#k-precision">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L42-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
+public class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold {
 	@Nullable
 	private final Boolean ignoreUnlabeled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricPrecision(Builder builder) {
+	private RankEvalMetricPrecision(Builder builder) {
 		super(builder);
 
 		this.ignoreUnlabeled = builder.ignoreUnlabeled;
 
 	}
 
-	public RankEvalMetricPrecision(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricPrecision of(Function<Builder, ObjectBuilder<RankEvalMetricPrecision>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -63,7 +73,7 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 	 * API name: {@code ignore_unlabeled}
 	 */
 	@Nullable
-	public Boolean ignoreUnlabeled() {
+	public final Boolean ignoreUnlabeled() {
 		return this.ignoreUnlabeled;
 	}
 
@@ -71,7 +81,6 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreUnlabeled != null) {
-
 			generator.writeKey("ignore_unlabeled");
 			generator.write(this.ignoreUnlabeled);
 
@@ -84,6 +93,7 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 	/**
 	 * Builder for {@link RankEvalMetricPrecision}.
 	 */
+
 	public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankEvalMetricPrecision> {
@@ -97,7 +107,7 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 		 * <p>
 		 * API name: {@code ignore_unlabeled}
 		 */
-		public Builder ignoreUnlabeled(@Nullable Boolean value) {
+		public final Builder ignoreUnlabeled(@Nullable Boolean value) {
 			this.ignoreUnlabeled = value;
 			return this;
 		}
@@ -114,6 +124,7 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricPrecision build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricPrecision(this);
 		}
@@ -125,10 +136,10 @@ public final class RankEvalMetricPrecision extends RankEvalMetricRatingTreshold 
 	 * Json deserializer for {@link RankEvalMetricPrecision}
 	 */
 	public static final JsonpDeserializer<RankEvalMetricPrecision> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankEvalMetricPrecision::setupRankEvalMetricPrecisionDeserializer, Builder::build);
+			.lazy(Builder::new, RankEvalMetricPrecision::setupRankEvalMetricPrecisionDeserializer);
 
 	protected static void setupRankEvalMetricPrecisionDeserializer(
-			DelegatingDeserializer<RankEvalMetricPrecision.Builder> op) {
+			ObjectDeserializer<RankEvalMetricPrecision.Builder> op) {
 		RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
 		op.add(Builder::ignoreUnlabeled, JsonpDeserializer.booleanDeserializer(), "ignore_unlabeled");
 

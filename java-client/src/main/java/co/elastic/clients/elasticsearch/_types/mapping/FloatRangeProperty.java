@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.FloatRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L46-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FloatRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class FloatRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public FloatRangeProperty(Builder builder) {
+	private FloatRangeProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public FloatRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FloatRangeProperty of(Function<Builder, ObjectBuilder<FloatRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "float_range";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.FloatRange;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class FloatRangeProperty extends RangePropertyBase implements Prope
 	/**
 	 * Builder for {@link FloatRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FloatRangeProperty> {
@@ -83,6 +90,7 @@ public final class FloatRangeProperty extends RangePropertyBase implements Prope
 		 *             if some of the required fields are null.
 		 */
 		public FloatRangeProperty build() {
+			_checkSingleUse();
 
 			return new FloatRangeProperty(this);
 		}
@@ -94,9 +102,9 @@ public final class FloatRangeProperty extends RangePropertyBase implements Prope
 	 * Json deserializer for {@link FloatRangeProperty}
 	 */
 	public static final JsonpDeserializer<FloatRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FloatRangeProperty::setupFloatRangePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, FloatRangeProperty::setupFloatRangePropertyDeserializer);
 
-	protected static void setupFloatRangePropertyDeserializer(DelegatingDeserializer<FloatRangeProperty.Builder> op) {
+	protected static void setupFloatRangePropertyDeserializer(ObjectDeserializer<FloatRangeProperty.Builder> op) {
 		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
 		op.ignore("type");

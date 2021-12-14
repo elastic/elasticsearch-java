@@ -23,33 +23,32 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Conflicts;
-import co.elastic.clients.elasticsearch._types.DefaultOperator;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
+import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -59,30 +58,42 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: _global.delete_by_query.Request
+
+/**
+ * Deletes documents matching the provided query.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete_by_query/DeleteByQueryRequest.ts#L37-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteByQueryRequest extends RequestBase implements JsonpSerializable {
-	private final List<String> index;
+public class DeleteByQueryRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final SourceConfigParam source;
+
+	private final List<String> sourceExcludes;
+
+	private final List<String> sourceIncludes;
 
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final String analyzer;
+	private final Boolean analyzeWildcard;
 
 	@Nullable
-	private final Boolean analyzeWildcard;
+	private final String analyzer;
 
 	@Nullable
 	private final Conflicts conflicts;
 
 	@Nullable
-	private final DefaultOperator defaultOperator;
+	private final Operator defaultOperator;
 
 	@Nullable
 	private final String df;
 
-	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Long from;
@@ -90,11 +101,22 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
+	private final List<String> index;
+
 	@Nullable
 	private final Boolean lenient;
 
 	@Nullable
+	private final Long maxDocs;
+
+	@Nullable
 	private final String preference;
+
+	@Nullable
+	private final String q;
+
+	@Nullable
+	private final Query query;
 
 	@Nullable
 	private final Boolean refresh;
@@ -109,16 +131,13 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	private final String routing;
 
 	@Nullable
-	private final String q;
-
-	@Nullable
-	private final String scroll;
+	private final Time scroll;
 
 	@Nullable
 	private final Long scrollSize;
 
 	@Nullable
-	private final String searchTimeout;
+	private final Time searchTimeout;
 
 	@Nullable
 	private final SearchType searchType;
@@ -127,102 +146,104 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	private final Long size;
 
 	@Nullable
+	private final SlicedScroll slice;
+
+	@Nullable
 	private final Long slices;
 
-	@Nullable
 	private final List<String> sort;
 
-	@Nullable
-	private final JsonValue /* Union(_types.Fields | internal.boolean) */ source;
-
-	@Nullable
-	private final List<String> sourceExcludes;
-
-	@Nullable
-	private final List<String> sourceIncludes;
-
-	@Nullable
 	private final List<String> stats;
 
 	@Nullable
 	private final Long terminateAfter;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	@Nullable
 	private final Boolean version;
 
 	@Nullable
-	private final JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+	private final WaitForActiveShards waitForActiveShards;
 
 	@Nullable
 	private final Boolean waitForCompletion;
 
-	@Nullable
-	private final Long maxDocs;
-
-	@Nullable
-	private final Query query;
-
-	@Nullable
-	private final SlicedScroll slice;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteByQueryRequest(Builder builder) {
+	private DeleteByQueryRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.source = builder.source;
+		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
+		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.allowNoIndices = builder.allowNoIndices;
-		this.analyzer = builder.analyzer;
 		this.analyzeWildcard = builder.analyzeWildcard;
+		this.analyzer = builder.analyzer;
 		this.conflicts = builder.conflicts;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.from = builder.from;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.lenient = builder.lenient;
+		this.maxDocs = builder.maxDocs;
 		this.preference = builder.preference;
+		this.q = builder.q;
+		this.query = builder.query;
 		this.refresh = builder.refresh;
 		this.requestCache = builder.requestCache;
 		this.requestsPerSecond = builder.requestsPerSecond;
 		this.routing = builder.routing;
-		this.q = builder.q;
 		this.scroll = builder.scroll;
 		this.scrollSize = builder.scrollSize;
 		this.searchTimeout = builder.searchTimeout;
 		this.searchType = builder.searchType;
 		this.size = builder.size;
+		this.slice = builder.slice;
 		this.slices = builder.slices;
-		this.sort = ModelTypeHelper.unmodifiable(builder.sort);
-		this.source = builder.source;
-		this.sourceExcludes = ModelTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ModelTypeHelper.unmodifiable(builder.sourceIncludes);
-		this.stats = ModelTypeHelper.unmodifiable(builder.stats);
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
+		this.stats = ApiTypeHelper.unmodifiable(builder.stats);
 		this.terminateAfter = builder.terminateAfter;
 		this.timeout = builder.timeout;
 		this.version = builder.version;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.waitForCompletion = builder.waitForCompletion;
-		this.maxDocs = builder.maxDocs;
-		this.query = builder.query;
-		this.slice = builder.slice;
 
 	}
 
-	public DeleteByQueryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteByQueryRequest of(Function<Builder, ObjectBuilder<DeleteByQueryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - A comma-separated list of index names to search; use
-	 * <code>_all</code> or empty string to perform the operation on all indices
+	 * True or false to return the _source field or not, or a list of fields to
+	 * return
 	 * <p>
-	 * API name: {@code index}
+	 * API name: {@code _source}
 	 */
-	public List<String> index() {
-		return this.index;
+	@Nullable
+	public final SourceConfigParam source() {
+		return this.source;
+	}
+
+	/**
+	 * A list of fields to exclude from the returned _source field
+	 * <p>
+	 * API name: {@code _source_excludes}
+	 */
+	public final List<String> sourceExcludes() {
+		return this.sourceExcludes;
+	}
+
+	/**
+	 * A list of fields to extract and return from the _source field
+	 * <p>
+	 * API name: {@code _source_includes}
+	 */
+	public final List<String> sourceIncludes() {
+		return this.sourceIncludes;
 	}
 
 	/**
@@ -233,18 +254,8 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
-	}
-
-	/**
-	 * The analyzer to use for the query string
-	 * <p>
-	 * API name: {@code analyzer}
-	 */
-	@Nullable
-	public String analyzer() {
-		return this.analyzer;
 	}
 
 	/**
@@ -254,8 +265,18 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
-	public Boolean analyzeWildcard() {
+	public final Boolean analyzeWildcard() {
 		return this.analyzeWildcard;
+	}
+
+	/**
+	 * The analyzer to use for the query string
+	 * <p>
+	 * API name: {@code analyzer}
+	 */
+	@Nullable
+	public final String analyzer() {
+		return this.analyzer;
 	}
 
 	/**
@@ -264,7 +285,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code conflicts}
 	 */
 	@Nullable
-	public Conflicts conflicts() {
+	public final Conflicts conflicts() {
 		return this.conflicts;
 	}
 
@@ -274,7 +295,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public DefaultOperator defaultOperator() {
+	public final Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -285,7 +306,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code df}
 	 */
 	@Nullable
-	public String df() {
+	public final String df() {
 		return this.df;
 	}
 
@@ -295,8 +316,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -306,7 +326,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Long from() {
+	public final Long from() {
 		return this.from;
 	}
 
@@ -317,8 +337,18 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * Required - A comma-separated list of index names to search; use
+	 * <code>_all</code> or empty string to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -328,8 +358,16 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code lenient}
 	 */
 	@Nullable
-	public Boolean lenient() {
+	public final Boolean lenient() {
 		return this.lenient;
+	}
+
+	/**
+	 * API name: {@code max_docs}
+	 */
+	@Nullable
+	public final Long maxDocs() {
+		return this.maxDocs;
 	}
 
 	/**
@@ -339,8 +377,26 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code preference}
 	 */
 	@Nullable
-	public String preference() {
+	public final String preference() {
 		return this.preference;
+	}
+
+	/**
+	 * Query in the Lucene query string syntax
+	 * <p>
+	 * API name: {@code q}
+	 */
+	@Nullable
+	public final String q() {
+		return this.q;
+	}
+
+	/**
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public final Query query() {
+		return this.query;
 	}
 
 	/**
@@ -349,7 +405,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public Boolean refresh() {
+	public final Boolean refresh() {
 		return this.refresh;
 	}
 
@@ -360,7 +416,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code request_cache}
 	 */
 	@Nullable
-	public Boolean requestCache() {
+	public final Boolean requestCache() {
 		return this.requestCache;
 	}
 
@@ -371,7 +427,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
-	public Long requestsPerSecond() {
+	public final Long requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -381,18 +437,8 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
-	}
-
-	/**
-	 * Query in the Lucene query string syntax
-	 * <p>
-	 * API name: {@code q}
-	 */
-	@Nullable
-	public String q() {
-		return this.q;
 	}
 
 	/**
@@ -402,7 +448,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code scroll}
 	 */
 	@Nullable
-	public String scroll() {
+	public final Time scroll() {
 		return this.scroll;
 	}
 
@@ -412,7 +458,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code scroll_size}
 	 */
 	@Nullable
-	public Long scrollSize() {
+	public final Long scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -422,7 +468,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code search_timeout}
 	 */
 	@Nullable
-	public String searchTimeout() {
+	public final Time searchTimeout() {
 		return this.searchTimeout;
 	}
 
@@ -432,7 +478,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code search_type}
 	 */
 	@Nullable
-	public SearchType searchType() {
+	public final SearchType searchType() {
 		return this.searchType;
 	}
 
@@ -440,8 +486,16 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Long size() {
+	public final Long size() {
 		return this.size;
+	}
+
+	/**
+	 * API name: {@code slice}
+	 */
+	@Nullable
+	public final SlicedScroll slice() {
+		return this.slice;
 	}
 
 	/**
@@ -451,7 +505,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code slices}
 	 */
 	@Nullable
-	public Long slices() {
+	public final Long slices() {
 		return this.slices;
 	}
 
@@ -460,40 +514,8 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code sort}
 	 */
-	@Nullable
-	public List<String> sort() {
+	public final List<String> sort() {
 		return this.sort;
-	}
-
-	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return
-	 * <p>
-	 * API name: {@code _source}
-	 */
-	@Nullable
-	public JsonValue /* Union(_types.Fields | internal.boolean) */ source() {
-		return this.source;
-	}
-
-	/**
-	 * A list of fields to exclude from the returned _source field
-	 * <p>
-	 * API name: {@code _source_excludes}
-	 */
-	@Nullable
-	public List<String> sourceExcludes() {
-		return this.sourceExcludes;
-	}
-
-	/**
-	 * A list of fields to extract and return from the _source field
-	 * <p>
-	 * API name: {@code _source_includes}
-	 */
-	@Nullable
-	public List<String> sourceIncludes() {
-		return this.sourceIncludes;
 	}
 
 	/**
@@ -501,8 +523,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code stats}
 	 */
-	@Nullable
-	public List<String> stats() {
+	public final List<String> stats() {
 		return this.stats;
 	}
 
@@ -513,7 +534,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code terminate_after}
 	 */
 	@Nullable
-	public Long terminateAfter() {
+	public final Long terminateAfter() {
 		return this.terminateAfter;
 	}
 
@@ -524,7 +545,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -534,7 +555,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public Boolean version() {
+	public final Boolean version() {
 		return this.version;
 	}
 
@@ -548,7 +569,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code wait_for_active_shards}
 	 */
 	@Nullable
-	public JsonValue /* _types.WaitForActiveShards */ waitForActiveShards() {
+	public final WaitForActiveShards waitForActiveShards() {
 		return this.waitForActiveShards;
 	}
 
@@ -558,32 +579,8 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code wait_for_completion}
 	 */
 	@Nullable
-	public Boolean waitForCompletion() {
+	public final Boolean waitForCompletion() {
 		return this.waitForCompletion;
-	}
-
-	/**
-	 * API name: {@code max_docs}
-	 */
-	@Nullable
-	public Long maxDocs() {
-		return this.maxDocs;
-	}
-
-	/**
-	 * API name: {@code query}
-	 */
-	@Nullable
-	public Query query() {
-		return this.query;
-	}
-
-	/**
-	 * API name: {@code slice}
-	 */
-	@Nullable
-	public SlicedScroll slice() {
-		return this.slice;
 	}
 
 	/**
@@ -598,19 +595,16 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.maxDocs != null) {
-
 			generator.writeKey("max_docs");
 			generator.write(this.maxDocs);
 
 		}
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
 		}
 		if (this.slice != null) {
-
 			generator.writeKey("slice");
 			this.slice.serialize(generator, mapper);
 
@@ -623,29 +617,37 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link DeleteByQueryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteByQueryRequest> {
-		private List<String> index;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteByQueryRequest> {
+		@Nullable
+		private SourceConfigParam source;
+
+		@Nullable
+		private List<String> sourceExcludes;
+
+		@Nullable
+		private List<String> sourceIncludes;
 
 		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private String analyzer;
+		private Boolean analyzeWildcard;
 
 		@Nullable
-		private Boolean analyzeWildcard;
+		private String analyzer;
 
 		@Nullable
 		private Conflicts conflicts;
 
 		@Nullable
-		private DefaultOperator defaultOperator;
+		private Operator defaultOperator;
 
 		@Nullable
 		private String df;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Long from;
@@ -653,11 +655,22 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		@Nullable
 		private Boolean ignoreUnavailable;
 
+		private List<String> index;
+
 		@Nullable
 		private Boolean lenient;
 
 		@Nullable
+		private Long maxDocs;
+
+		@Nullable
 		private String preference;
+
+		@Nullable
+		private String q;
+
+		@Nullable
+		private Query query;
 
 		@Nullable
 		private Boolean refresh;
@@ -672,16 +685,13 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		private String routing;
 
 		@Nullable
-		private String q;
-
-		@Nullable
-		private String scroll;
+		private Time scroll;
 
 		@Nullable
 		private Long scrollSize;
 
 		@Nullable
-		private String searchTimeout;
+		private Time searchTimeout;
 
 		@Nullable
 		private SearchType searchType;
@@ -690,19 +700,13 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		private Long size;
 
 		@Nullable
+		private SlicedScroll slice;
+
+		@Nullable
 		private Long slices;
 
 		@Nullable
 		private List<String> sort;
-
-		@Nullable
-		private JsonValue /* Union(_types.Fields | internal.boolean) */ source;
-
-		@Nullable
-		private List<String> sourceExcludes;
-
-		@Nullable
-		private List<String> sourceIncludes;
 
 		@Nullable
 		private List<String> stats;
@@ -711,56 +715,83 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		private Long terminateAfter;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		@Nullable
 		private Boolean version;
 
 		@Nullable
-		private JsonValue /* _types.WaitForActiveShards */ waitForActiveShards;
+		private WaitForActiveShards waitForActiveShards;
 
 		@Nullable
 		private Boolean waitForCompletion;
 
-		@Nullable
-		private Long maxDocs;
-
-		@Nullable
-		private Query query;
-
-		@Nullable
-		private SlicedScroll slice;
-
 		/**
-		 * Required - A comma-separated list of index names to search; use
-		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
 		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code _source}
 		 */
-		public Builder index(List<String> value) {
-			this.index = value;
+		public final Builder source(@Nullable SourceConfigParam value) {
+			this.source = value;
 			return this;
 		}
 
 		/**
-		 * Required - A comma-separated list of index names to search; use
-		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * True or false to return the _source field or not, or a list of fields to
+		 * return
 		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code _source}
 		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
+		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
+			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
+		}
+
+		/**
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
+		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
+		 */
+		public final Builder sourceExcludes(List<String> list) {
+			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
+		 * A list of fields to exclude from the returned _source field
+		 * <p>
+		 * API name: {@code _source_excludes}
+		 * <p>
+		 * Adds one or more values to <code>sourceExcludes</code>.
 		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
+		public final Builder sourceExcludes(String value, String... values) {
+			this.sourceExcludes = _listAdd(this.sourceExcludes, value, values);
+			return this;
+		}
+
+		/**
+		 * A list of fields to extract and return from the _source field
+		 * <p>
+		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
+		 */
+		public final Builder sourceIncludes(List<String> list) {
+			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
+			return this;
+		}
+
+		/**
+		 * A list of fields to extract and return from the _source field
+		 * <p>
+		 * API name: {@code _source_includes}
+		 * <p>
+		 * Adds one or more values to <code>sourceIncludes</code>.
+		 */
+		public final Builder sourceIncludes(String value, String... values) {
+			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
 			return this;
 		}
 
@@ -771,18 +802,8 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
-			return this;
-		}
-
-		/**
-		 * The analyzer to use for the query string
-		 * <p>
-		 * API name: {@code analyzer}
-		 */
-		public Builder analyzer(@Nullable String value) {
-			this.analyzer = value;
 			return this;
 		}
 
@@ -792,8 +813,18 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
-		public Builder analyzeWildcard(@Nullable Boolean value) {
+		public final Builder analyzeWildcard(@Nullable Boolean value) {
 			this.analyzeWildcard = value;
+			return this;
+		}
+
+		/**
+		 * The analyzer to use for the query string
+		 * <p>
+		 * API name: {@code analyzer}
+		 */
+		public final Builder analyzer(@Nullable String value) {
+			this.analyzer = value;
 			return this;
 		}
 
@@ -802,7 +833,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code conflicts}
 		 */
-		public Builder conflicts(@Nullable Conflicts value) {
+		public final Builder conflicts(@Nullable Conflicts value) {
 			this.conflicts = value;
 			return this;
 		}
@@ -812,7 +843,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable DefaultOperator value) {
+		public final Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -823,7 +854,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code df}
 		 */
-		public Builder df(@Nullable String value) {
+		public final Builder df(@Nullable String value) {
 			this.df = value;
 			return this;
 		}
@@ -833,9 +864,11 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -844,20 +877,11 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -866,7 +890,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Long value) {
+		public final Builder from(@Nullable Long value) {
 			this.from = value;
 			return this;
 		}
@@ -877,8 +901,34 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of index names to search; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of index names to search; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -888,8 +938,16 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(@Nullable Boolean value) {
+		public final Builder lenient(@Nullable Boolean value) {
 			this.lenient = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_docs}
+		 */
+		public final Builder maxDocs(@Nullable Long value) {
+			this.maxDocs = value;
 			return this;
 		}
 
@@ -899,9 +957,34 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code preference}
 		 */
-		public Builder preference(@Nullable String value) {
+		public final Builder preference(@Nullable String value) {
 			this.preference = value;
 			return this;
+		}
+
+		/**
+		 * Query in the Lucene query string syntax
+		 * <p>
+		 * API name: {@code q}
+		 */
+		public final Builder q(@Nullable String value) {
+			this.q = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public final Builder query(@Nullable Query value) {
+			this.query = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -909,7 +992,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable Boolean value) {
+		public final Builder refresh(@Nullable Boolean value) {
 			this.refresh = value;
 			return this;
 		}
@@ -920,7 +1003,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code request_cache}
 		 */
-		public Builder requestCache(@Nullable Boolean value) {
+		public final Builder requestCache(@Nullable Boolean value) {
 			this.requestCache = value;
 			return this;
 		}
@@ -931,7 +1014,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
-		public Builder requestsPerSecond(@Nullable Long value) {
+		public final Builder requestsPerSecond(@Nullable Long value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -941,18 +1024,8 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
-			return this;
-		}
-
-		/**
-		 * Query in the Lucene query string syntax
-		 * <p>
-		 * API name: {@code q}
-		 */
-		public Builder q(@Nullable String value) {
-			this.q = value;
 			return this;
 		}
 
@@ -962,9 +1035,19 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code scroll}
 		 */
-		public Builder scroll(@Nullable String value) {
+		public final Builder scroll(@Nullable Time value) {
 			this.scroll = value;
 			return this;
+		}
+
+		/**
+		 * Specify how long a consistent view of the index should be maintained for
+		 * scrolled search
+		 * <p>
+		 * API name: {@code scroll}
+		 */
+		public final Builder scroll(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scroll(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -972,7 +1055,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(@Nullable Long value) {
+		public final Builder scrollSize(@Nullable Long value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -982,9 +1065,18 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code search_timeout}
 		 */
-		public Builder searchTimeout(@Nullable String value) {
+		public final Builder searchTimeout(@Nullable Time value) {
 			this.searchTimeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit timeout for each search request. Defaults to no timeout.
+		 * <p>
+		 * API name: {@code search_timeout}
+		 */
+		public final Builder searchTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.searchTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -992,7 +1084,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code search_type}
 		 */
-		public Builder searchType(@Nullable SearchType value) {
+		public final Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
 			return this;
 		}
@@ -1000,9 +1092,24 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Long value) {
+		public final Builder size(@Nullable Long value) {
 			this.size = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code slice}
+		 */
+		public final Builder slice(@Nullable SlicedScroll value) {
+			this.slice = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code slice}
+		 */
+		public final Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
+			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
 		}
 
 		/**
@@ -1011,7 +1118,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code slices}
 		 */
-		public Builder slices(@Nullable Long value) {
+		public final Builder slices(@Nullable Long value) {
 			this.slices = value;
 			return this;
 		}
@@ -1020,9 +1127,11 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
 		 * <p>
 		 * API name: {@code sort}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
-		public Builder sort(@Nullable List<String> value) {
-			this.sort = value;
+		public final Builder sort(List<String> list) {
+			this.sort = _listAddAll(this.sort, list);
 			return this;
 		}
 
@@ -1030,93 +1139,11 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * A comma-separated list of &lt;field&gt;:&lt;direction&gt; pairs
 		 * <p>
 		 * API name: {@code sort}
-		 */
-		public Builder sort(String... value) {
-			this.sort = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sort(List)}, creating the list if needed.
-		 */
-		public Builder addSort(String value) {
-			if (this.sort == null) {
-				this.sort = new ArrayList<>();
-			}
-			this.sort.add(value);
-			return this;
-		}
-
-		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return
 		 * <p>
-		 * API name: {@code _source}
+		 * Adds one or more values to <code>sort</code>.
 		 */
-		public Builder source(@Nullable JsonValue /* Union(_types.Fields | internal.boolean) */ value) {
-			this.source = value;
-			return this;
-		}
-
-		/**
-		 * A list of fields to exclude from the returned _source field
-		 * <p>
-		 * API name: {@code _source_excludes}
-		 */
-		public Builder sourceExcludes(@Nullable List<String> value) {
-			this.sourceExcludes = value;
-			return this;
-		}
-
-		/**
-		 * A list of fields to exclude from the returned _source field
-		 * <p>
-		 * API name: {@code _source_excludes}
-		 */
-		public Builder sourceExcludes(String... value) {
-			this.sourceExcludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceExcludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceExcludes(String value) {
-			if (this.sourceExcludes == null) {
-				this.sourceExcludes = new ArrayList<>();
-			}
-			this.sourceExcludes.add(value);
-			return this;
-		}
-
-		/**
-		 * A list of fields to extract and return from the _source field
-		 * <p>
-		 * API name: {@code _source_includes}
-		 */
-		public Builder sourceIncludes(@Nullable List<String> value) {
-			this.sourceIncludes = value;
-			return this;
-		}
-
-		/**
-		 * A list of fields to extract and return from the _source field
-		 * <p>
-		 * API name: {@code _source_includes}
-		 */
-		public Builder sourceIncludes(String... value) {
-			this.sourceIncludes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #sourceIncludes(List)}, creating the list if needed.
-		 */
-		public Builder addSourceIncludes(String value) {
-			if (this.sourceIncludes == null) {
-				this.sourceIncludes = new ArrayList<>();
-			}
-			this.sourceIncludes.add(value);
+		public final Builder sort(String value, String... values) {
+			this.sort = _listAdd(this.sort, value, values);
 			return this;
 		}
 
@@ -1124,9 +1151,11 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * Specific 'tag' of the request for logging and statistical purposes
 		 * <p>
 		 * API name: {@code stats}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stats</code>.
 		 */
-		public Builder stats(@Nullable List<String> value) {
-			this.stats = value;
+		public final Builder stats(List<String> list) {
+			this.stats = _listAddAll(this.stats, list);
 			return this;
 		}
 
@@ -1134,20 +1163,11 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * Specific 'tag' of the request for logging and statistical purposes
 		 * <p>
 		 * API name: {@code stats}
+		 * <p>
+		 * Adds one or more values to <code>stats</code>.
 		 */
-		public Builder stats(String... value) {
-			this.stats = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #stats(List)}, creating the list if needed.
-		 */
-		public Builder addStats(String value) {
-			if (this.stats == null) {
-				this.stats = new ArrayList<>();
-			}
-			this.stats.add(value);
+		public final Builder stats(String value, String... values) {
+			this.stats = _listAdd(this.stats, value, values);
 			return this;
 		}
 
@@ -1157,7 +1177,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code terminate_after}
 		 */
-		public Builder terminateAfter(@Nullable Long value) {
+		public final Builder terminateAfter(@Nullable Long value) {
 			this.terminateAfter = value;
 			return this;
 		}
@@ -1168,9 +1188,19 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Time each individual bulk request should wait for shards that are
+		 * unavailable.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -1178,7 +1208,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable Boolean value) {
+		public final Builder version(@Nullable Boolean value) {
 			this.version = value;
 			return this;
 		}
@@ -1192,9 +1222,23 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code wait_for_active_shards}
 		 */
-		public Builder waitForActiveShards(@Nullable JsonValue /* _types.WaitForActiveShards */ value) {
+		public final Builder waitForActiveShards(@Nullable WaitForActiveShards value) {
 			this.waitForActiveShards = value;
 			return this;
+		}
+
+		/**
+		 * Sets the number of shard copies that must be active before proceeding with
+		 * the delete by query operation. Defaults to 1, meaning the primary shard only.
+		 * Set to <code>all</code> for all shard copies, otherwise set to any
+		 * non-negative value less than or equal to the total number of copies for the
+		 * shard (number of replicas + 1)
+		 * <p>
+		 * API name: {@code wait_for_active_shards}
+		 */
+		public final Builder waitForActiveShards(
+				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
+			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
 		}
 
 		/**
@@ -1202,47 +1246,9 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
-		public Builder waitForCompletion(@Nullable Boolean value) {
+		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code max_docs}
-		 */
-		public Builder maxDocs(@Nullable Long value) {
-			this.maxDocs = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code query}
-		 */
-		public Builder query(@Nullable Query value) {
-			this.query = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code query}
-		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code slice}
-		 */
-		public Builder slice(@Nullable SlicedScroll value) {
-			this.slice = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code slice}
-		 */
-		public Builder slice(Function<SlicedScroll.Builder, ObjectBuilder<SlicedScroll>> fn) {
-			return this.slice(fn.apply(new SlicedScroll.Builder()).build());
 		}
 
 		/**
@@ -1252,6 +1258,7 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public DeleteByQueryRequest build() {
+			_checkSingleUse();
 
 			return new DeleteByQueryRequest(this);
 		}
@@ -1263,10 +1270,9 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	 * Json deserializer for {@link DeleteByQueryRequest}
 	 */
 	public static final JsonpDeserializer<DeleteByQueryRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteByQueryRequest::setupDeleteByQueryRequestDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteByQueryRequest::setupDeleteByQueryRequestDeserializer);
 
-	protected static void setupDeleteByQueryRequestDeserializer(
-			DelegatingDeserializer<DeleteByQueryRequest.Builder> op) {
+	protected static void setupDeleteByQueryRequestDeserializer(ObjectDeserializer<DeleteByQueryRequest.Builder> op) {
 
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
@@ -1279,7 +1285,9 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code delete_by_query}".
 	 */
-	public static final Endpoint<DeleteByQueryRequest, DeleteByQueryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteByQueryRequest, DeleteByQueryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/delete_by_query",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -1308,104 +1316,104 @@ public final class DeleteByQueryRequest extends RequestBase implements JsonpSeri
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.slices != null) {
+					params.put("slices", String.valueOf(request.slices));
+				}
+				if (request.df != null) {
+					params.put("df", request.df);
+				}
+				if (request.terminateAfter != null) {
+					params.put("terminate_after", String.valueOf(request.terminateAfter));
+				}
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				}
+				if (request.lenient != null) {
+					params.put("lenient", String.valueOf(request.lenient));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				if (request.routing != null) {
+					params.put("routing", request.routing);
+				}
+				if (request.requestsPerSecond != null) {
+					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (ApiTypeHelper.isDefined(request.stats)) {
+					params.put("stats", request.stats.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.analyzer != null) {
 					params.put("analyzer", request.analyzer);
 				}
-				if (request.analyzeWildcard != null) {
-					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
-				}
 				if (request.conflicts != null) {
-					params.put("conflicts", request.conflicts.toString());
-				}
-				if (request.defaultOperator != null) {
-					params.put("default_operator", request.defaultOperator.toString());
-				}
-				if (request.df != null) {
-					params.put("df", request.df);
-				}
-				if (request.expandWildcards != null) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
+					params.put("conflicts", request.conflicts.jsonValue());
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.ignoreUnavailable != null) {
-					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-				}
-				if (request.lenient != null) {
-					params.put("lenient", String.valueOf(request.lenient));
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.preference != null) {
 					params.put("preference", request.preference);
 				}
-				if (request.refresh != null) {
-					params.put("refresh", String.valueOf(request.refresh));
+				if (request.searchTimeout != null) {
+					params.put("search_timeout", request.searchTimeout._toJsonString());
 				}
-				if (request.requestCache != null) {
-					params.put("request_cache", String.valueOf(request.requestCache));
-				}
-				if (request.requestsPerSecond != null) {
-					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));
-				}
-				if (request.routing != null) {
-					params.put("routing", request.routing);
-				}
-				if (request.q != null) {
-					params.put("q", request.q);
+				if (request.analyzeWildcard != null) {
+					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
 				}
 				if (request.scroll != null) {
-					params.put("scroll", request.scroll);
+					params.put("scroll", request.scroll._toJsonString());
 				}
 				if (request.scrollSize != null) {
 					params.put("scroll_size", String.valueOf(request.scrollSize));
 				}
-				if (request.searchTimeout != null) {
-					params.put("search_timeout", request.searchTimeout);
+				if (request.refresh != null) {
+					params.put("refresh", String.valueOf(request.refresh));
 				}
-				if (request.searchType != null) {
-					params.put("search_type", request.searchType.toString());
-				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
-				}
-				if (request.slices != null) {
-					params.put("slices", String.valueOf(request.slices));
-				}
-				if (request.sort != null) {
+				if (ApiTypeHelper.isDefined(request.sort)) {
 					params.put("sort", request.sort.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.source != null) {
-					params.put("_source", JsonpUtils.toString(request.source));
-				}
-				if (request.sourceExcludes != null) {
-					params.put("_source_excludes",
-							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.sourceIncludes != null) {
-					params.put("_source_includes",
-							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.stats != null) {
-					params.put("stats", request.stats.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				if (request.terminateAfter != null) {
-					params.put("terminate_after", String.valueOf(request.terminateAfter));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+				if (request.searchType != null) {
+					params.put("search_type", request.searchType.jsonValue());
 				}
 				if (request.version != null) {
 					params.put("version", String.valueOf(request.version));
 				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", JsonpUtils.toString(request.waitForActiveShards));
+				if (request.q != null) {
+					params.put("q", request.q);
 				}
-				if (request.waitForCompletion != null) {
-					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
+				if (request.defaultOperator != null) {
+					params.put("default_operator", request.defaultOperator.jsonValue());
+				}
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
+				}
+				if (request.waitForActiveShards != null) {
+					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
+				}
+				if (request.source != null) {
+					params.put("_source", request.source._toJsonString());
+				}
+				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
+					params.put("_source_excludes",
+							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.requestCache != null) {
+					params.put("request_cache", String.valueOf(request.requestCache));
+				}
+				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
+					params.put("_source_includes",
+							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

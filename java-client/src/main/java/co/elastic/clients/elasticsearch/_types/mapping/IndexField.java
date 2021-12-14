@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.IndexField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/meta-fields.ts#L46-L48">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexField implements JsonpSerializable {
+public class IndexField implements JsonpSerializable {
 	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexField(Builder builder) {
+	private IndexField(Builder builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
-	public IndexField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexField of(Function<Builder, ObjectBuilder<IndexField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -81,13 +89,14 @@ public final class IndexField implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexField}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexField> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexField> {
 		private Boolean enabled;
 
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(boolean value) {
+		public final Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class IndexField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexField build() {
+			_checkSingleUse();
 
 			return new IndexField(this);
 		}
@@ -110,9 +120,9 @@ public final class IndexField implements JsonpSerializable {
 	 * Json deserializer for {@link IndexField}
 	 */
 	public static final JsonpDeserializer<IndexField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexField::setupIndexFieldDeserializer, Builder::build);
+			IndexField::setupIndexFieldDeserializer);
 
-	protected static void setupIndexFieldDeserializer(DelegatingDeserializer<IndexField.Builder> op) {
+	protected static void setupIndexFieldDeserializer(ObjectDeserializer<IndexField.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 

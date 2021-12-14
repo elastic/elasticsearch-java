@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.PerPartitionCategorization
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Analysis.ts#L92-L101">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PerPartitionCategorization implements JsonpSerializable {
+public class PerPartitionCategorization implements JsonpSerializable {
 	@Nullable
 	private final Boolean enabled;
 
@@ -48,15 +55,15 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PerPartitionCategorization(Builder builder) {
+	private PerPartitionCategorization(Builder builder) {
 
 		this.enabled = builder.enabled;
 		this.stopOnWarn = builder.stopOnWarn;
 
 	}
 
-	public PerPartitionCategorization(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PerPartitionCategorization of(Function<Builder, ObjectBuilder<PerPartitionCategorization>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -68,7 +75,7 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 	 * API name: {@code enabled}
 	 */
 	@Nullable
-	public Boolean enabled() {
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
@@ -83,7 +90,7 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 	 * API name: {@code stop_on_warn}
 	 */
 	@Nullable
-	public Boolean stopOnWarn() {
+	public final Boolean stopOnWarn() {
 		return this.stopOnWarn;
 	}
 
@@ -99,13 +106,11 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.enabled != null) {
-
 			generator.writeKey("enabled");
 			generator.write(this.enabled);
 
 		}
 		if (this.stopOnWarn != null) {
-
 			generator.writeKey("stop_on_warn");
 			generator.write(this.stopOnWarn);
 
@@ -118,7 +123,8 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 	/**
 	 * Builder for {@link PerPartitionCategorization}.
 	 */
-	public static class Builder implements ObjectBuilder<PerPartitionCategorization> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PerPartitionCategorization> {
 		@Nullable
 		private Boolean enabled;
 
@@ -133,7 +139,7 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code enabled}
 		 */
-		public Builder enabled(@Nullable Boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -148,7 +154,7 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stop_on_warn}
 		 */
-		public Builder stopOnWarn(@Nullable Boolean value) {
+		public final Builder stopOnWarn(@Nullable Boolean value) {
 			this.stopOnWarn = value;
 			return this;
 		}
@@ -160,6 +166,7 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PerPartitionCategorization build() {
+			_checkSingleUse();
 
 			return new PerPartitionCategorization(this);
 		}
@@ -170,11 +177,11 @@ public final class PerPartitionCategorization implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link PerPartitionCategorization}
 	 */
-	public static final JsonpDeserializer<PerPartitionCategorization> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PerPartitionCategorization::setupPerPartitionCategorizationDeserializer, Builder::build);
+	public static final JsonpDeserializer<PerPartitionCategorization> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PerPartitionCategorization::setupPerPartitionCategorizationDeserializer);
 
 	protected static void setupPerPartitionCategorizationDeserializer(
-			DelegatingDeserializer<PerPartitionCategorization.Builder> op) {
+			ObjectDeserializer<PerPartitionCategorization.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 		op.add(Builder::stopOnWarn, JsonpDeserializer.booleanDeserializer(), "stop_on_warn");

@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ml.evaluate_data_frame;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,34 +37,40 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.evaluate_data_frame.DataframeEvaluationClass
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/types.ts#L75-L77">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataframeEvaluationClass extends DataframeEvaluationValue {
+public class DataframeEvaluationClass extends DataframeEvaluationValue {
 	private final String className;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataframeEvaluationClass(Builder builder) {
+	private DataframeEvaluationClass(Builder builder) {
 		super(builder);
 
-		this.className = Objects.requireNonNull(builder.className, "class_name");
+		this.className = ApiTypeHelper.requireNonNull(builder.className, this, "className");
 
 	}
 
-	public DataframeEvaluationClass(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataframeEvaluationClass of(Function<Builder, ObjectBuilder<DataframeEvaluationClass>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code class_name}
 	 */
-	public String className() {
+	public final String className() {
 		return this.className;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("class_name");
 		generator.write(this.className);
 
@@ -75,6 +81,7 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 	/**
 	 * Builder for {@link DataframeEvaluationClass}.
 	 */
+
 	public static class Builder extends DataframeEvaluationValue.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DataframeEvaluationClass> {
@@ -83,7 +90,7 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 		/**
 		 * Required - API name: {@code class_name}
 		 */
-		public Builder className(String value) {
+		public final Builder className(String value) {
 			this.className = value;
 			return this;
 		}
@@ -100,6 +107,7 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 		 *             if some of the required fields are null.
 		 */
 		public DataframeEvaluationClass build() {
+			_checkSingleUse();
 
 			return new DataframeEvaluationClass(this);
 		}
@@ -111,10 +119,10 @@ public final class DataframeEvaluationClass extends DataframeEvaluationValue {
 	 * Json deserializer for {@link DataframeEvaluationClass}
 	 */
 	public static final JsonpDeserializer<DataframeEvaluationClass> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataframeEvaluationClass::setupDataframeEvaluationClassDeserializer, Builder::build);
+			.lazy(Builder::new, DataframeEvaluationClass::setupDataframeEvaluationClassDeserializer);
 
 	protected static void setupDataframeEvaluationClassDeserializer(
-			DelegatingDeserializer<DataframeEvaluationClass.Builder> op) {
+			ObjectDeserializer<DataframeEvaluationClass.Builder> op) {
 		DataframeEvaluationValue.setupDataframeEvaluationValueDeserializer(op);
 		op.add(Builder::className, JsonpDeserializer.stringDeserializer(), "class_name");
 

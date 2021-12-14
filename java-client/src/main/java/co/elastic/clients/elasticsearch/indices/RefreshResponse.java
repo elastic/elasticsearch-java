@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardsOperationResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.refresh.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/refresh/IndicesRefreshResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RefreshResponse extends ShardsOperationResponseBase {
+public class RefreshResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public RefreshResponse(Builder builder) {
+	private RefreshResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public RefreshResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RefreshResponse of(Function<Builder, ObjectBuilder<RefreshResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class RefreshResponse extends ShardsOperationResponseBase {
 	/**
 	 * Builder for {@link RefreshResponse}.
 	 */
+
 	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RefreshResponse> {
@@ -68,6 +75,7 @@ public final class RefreshResponse extends ShardsOperationResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public RefreshResponse build() {
+			_checkSingleUse();
 
 			return new RefreshResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class RefreshResponse extends ShardsOperationResponseBase {
 	 * Json deserializer for {@link RefreshResponse}
 	 */
 	public static final JsonpDeserializer<RefreshResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RefreshResponse::setupRefreshResponseDeserializer, Builder::build);
+			RefreshResponse::setupRefreshResponseDeserializer);
 
-	protected static void setupRefreshResponseDeserializer(DelegatingDeserializer<RefreshResponse.Builder> op) {
+	protected static void setupRefreshResponseDeserializer(ObjectDeserializer<RefreshResponse.Builder> op) {
 		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
 	}

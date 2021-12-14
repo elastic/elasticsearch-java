@@ -25,14 +25,15 @@ package co.elastic.clients.elasticsearch.core.reindex;
 
 import co.elastic.clients.elasticsearch._types.OpType;
 import co.elastic.clients.elasticsearch._types.VersionType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -40,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.reindex.Destination
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/reindex/types.ts#L38-L44">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Destination implements JsonpSerializable {
+public class Destination implements JsonpSerializable {
 	private final String index;
 
 	@Nullable
@@ -58,9 +66,9 @@ public final class Destination implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Destination(Builder builder) {
+	private Destination(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.opType = builder.opType;
 		this.pipeline = builder.pipeline;
 		this.routing = builder.routing;
@@ -68,14 +76,14 @@ public final class Destination implements JsonpSerializable {
 
 	}
 
-	public Destination(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Destination of(Function<Builder, ObjectBuilder<Destination>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -83,7 +91,7 @@ public final class Destination implements JsonpSerializable {
 	 * API name: {@code op_type}
 	 */
 	@Nullable
-	public OpType opType() {
+	public final OpType opType() {
 		return this.opType;
 	}
 
@@ -91,7 +99,7 @@ public final class Destination implements JsonpSerializable {
 	 * API name: {@code pipeline}
 	 */
 	@Nullable
-	public String pipeline() {
+	public final String pipeline() {
 		return this.pipeline;
 	}
 
@@ -99,7 +107,7 @@ public final class Destination implements JsonpSerializable {
 	 * API name: {@code routing}
 	 */
 	@Nullable
-	public String routing() {
+	public final String routing() {
 		return this.routing;
 	}
 
@@ -107,7 +115,7 @@ public final class Destination implements JsonpSerializable {
 	 * API name: {@code version_type}
 	 */
 	@Nullable
-	public VersionType versionType() {
+	public final VersionType versionType() {
 		return this.versionType;
 	}
 
@@ -126,24 +134,20 @@ public final class Destination implements JsonpSerializable {
 		generator.write(this.index);
 
 		if (this.opType != null) {
-
 			generator.writeKey("op_type");
 			this.opType.serialize(generator, mapper);
 		}
 		if (this.pipeline != null) {
-
 			generator.writeKey("pipeline");
 			generator.write(this.pipeline);
 
 		}
 		if (this.routing != null) {
-
 			generator.writeKey("routing");
 			generator.write(this.routing);
 
 		}
 		if (this.versionType != null) {
-
 			generator.writeKey("version_type");
 			this.versionType.serialize(generator, mapper);
 		}
@@ -155,7 +159,8 @@ public final class Destination implements JsonpSerializable {
 	/**
 	 * Builder for {@link Destination}.
 	 */
-	public static class Builder implements ObjectBuilder<Destination> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Destination> {
 		private String index;
 
 		@Nullable
@@ -173,7 +178,7 @@ public final class Destination implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -181,7 +186,7 @@ public final class Destination implements JsonpSerializable {
 		/**
 		 * API name: {@code op_type}
 		 */
-		public Builder opType(@Nullable OpType value) {
+		public final Builder opType(@Nullable OpType value) {
 			this.opType = value;
 			return this;
 		}
@@ -189,7 +194,7 @@ public final class Destination implements JsonpSerializable {
 		/**
 		 * API name: {@code pipeline}
 		 */
-		public Builder pipeline(@Nullable String value) {
+		public final Builder pipeline(@Nullable String value) {
 			this.pipeline = value;
 			return this;
 		}
@@ -197,7 +202,7 @@ public final class Destination implements JsonpSerializable {
 		/**
 		 * API name: {@code routing}
 		 */
-		public Builder routing(@Nullable String value) {
+		public final Builder routing(@Nullable String value) {
 			this.routing = value;
 			return this;
 		}
@@ -205,7 +210,7 @@ public final class Destination implements JsonpSerializable {
 		/**
 		 * API name: {@code version_type}
 		 */
-		public Builder versionType(@Nullable VersionType value) {
+		public final Builder versionType(@Nullable VersionType value) {
 			this.versionType = value;
 			return this;
 		}
@@ -217,6 +222,7 @@ public final class Destination implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Destination build() {
+			_checkSingleUse();
 
 			return new Destination(this);
 		}
@@ -228,9 +234,9 @@ public final class Destination implements JsonpSerializable {
 	 * Json deserializer for {@link Destination}
 	 */
 	public static final JsonpDeserializer<Destination> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Destination::setupDestinationDeserializer, Builder::build);
+			Destination::setupDestinationDeserializer);
 
-	protected static void setupDestinationDeserializer(DelegatingDeserializer<Destination.Builder> op) {
+	protected static void setupDestinationDeserializer(ObjectDeserializer<Destination.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::opType, OpType._DESERIALIZER, "op_type");

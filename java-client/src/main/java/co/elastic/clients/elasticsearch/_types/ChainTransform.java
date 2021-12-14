@@ -23,52 +23,57 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ChainTransform
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Transform.ts#L36-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ChainTransform implements TransformVariant, JsonpSerializable {
+public class ChainTransform implements TransformVariant, JsonpSerializable {
 	private final List<Transform> transforms;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ChainTransform(Builder builder) {
+	private ChainTransform(Builder builder) {
 
-		this.transforms = ModelTypeHelper.unmodifiableNonNull(builder.transforms, "transforms");
+		this.transforms = ApiTypeHelper.unmodifiableRequired(builder.transforms, this, "transforms");
 
 	}
 
-	public ChainTransform(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ChainTransform of(Function<Builder, ObjectBuilder<ChainTransform>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Transform} variant type
+	 * Transform variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "chain";
+	public Transform.Kind _transformKind() {
+		return Transform.Kind.Chain;
 	}
 
 	/**
 	 * Required - API name: {@code transforms}
 	 */
-	public List<Transform> transforms() {
+	public final List<Transform> transforms() {
 		return this.transforms;
 	}
 
@@ -83,13 +88,16 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("transforms");
-		generator.writeStartArray();
-		for (Transform item0 : this.transforms) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.transforms)) {
+			generator.writeKey("transforms");
+			generator.writeStartArray();
+			for (Transform item0 : this.transforms) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -98,48 +106,37 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 	/**
 	 * Builder for {@link ChainTransform}.
 	 */
-	public static class Builder implements ObjectBuilder<ChainTransform> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChainTransform> {
 		private List<Transform> transforms;
 
 		/**
 		 * Required - API name: {@code transforms}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>transforms</code>.
 		 */
-		public Builder transforms(List<Transform> value) {
-			this.transforms = value;
+		public final Builder transforms(List<Transform> list) {
+			this.transforms = _listAddAll(this.transforms, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transforms}
+		 * <p>
+		 * Adds one or more values to <code>transforms</code>.
 		 */
-		public Builder transforms(Transform... value) {
-			this.transforms = Arrays.asList(value);
+		public final Builder transforms(Transform value, Transform... values) {
+			this.transforms = _listAdd(this.transforms, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed.
+		 * Required - API name: {@code transforms}
+		 * <p>
+		 * Adds a value to <code>transforms</code> using a builder lambda.
 		 */
-		public Builder addTransforms(Transform value) {
-			if (this.transforms == null) {
-				this.transforms = new ArrayList<>();
-			}
-			this.transforms.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #transforms(List)} to a singleton list.
-		 */
-		public Builder transforms(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
-			return this.transforms(fn.apply(new Transform.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #transforms(List)}, creating the list if needed.
-		 */
-		public Builder addTransforms(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
-			return this.addTransforms(fn.apply(new Transform.Builder()).build());
+		public final Builder transforms(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
+			return transforms(fn.apply(new Transform.Builder()).build());
 		}
 
 		/**
@@ -149,6 +146,7 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 		 *             if some of the required fields are null.
 		 */
 		public ChainTransform build() {
+			_checkSingleUse();
 
 			return new ChainTransform(this);
 		}
@@ -160,9 +158,9 @@ public final class ChainTransform implements TransformVariant, JsonpSerializable
 	 * Json deserializer for {@link ChainTransform}
 	 */
 	public static final JsonpDeserializer<ChainTransform> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ChainTransform::setupChainTransformDeserializer, Builder::build);
+			ChainTransform::setupChainTransformDeserializer);
 
-	protected static void setupChainTransformDeserializer(DelegatingDeserializer<ChainTransform.Builder> op) {
+	protected static void setupChainTransformDeserializer(ObjectDeserializer<ChainTransform.Builder> op) {
 
 		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(Transform._DESERIALIZER), "transforms");
 

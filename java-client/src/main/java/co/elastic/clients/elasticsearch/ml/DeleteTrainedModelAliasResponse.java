@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,25 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.delete_trained_model_alias.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_trained_model_alias/MlDeleteTrainedModelAliasResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
+public class DeleteTrainedModelAliasResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteTrainedModelAliasResponse(Builder builder) {
+	private DeleteTrainedModelAliasResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteTrainedModelAliasResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteTrainedModelAliasResponse of(
+			Function<Builder, ObjectBuilder<DeleteTrainedModelAliasResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public final class DeleteTrainedModelAliasResponse extends AcknowledgedResponseB
 	/**
 	 * Builder for {@link DeleteTrainedModelAliasResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteTrainedModelAliasResponse> {
@@ -68,6 +76,7 @@ public final class DeleteTrainedModelAliasResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public DeleteTrainedModelAliasResponse build() {
+			_checkSingleUse();
 
 			return new DeleteTrainedModelAliasResponse(this);
 		}
@@ -79,11 +88,10 @@ public final class DeleteTrainedModelAliasResponse extends AcknowledgedResponseB
 	 * Json deserializer for {@link DeleteTrainedModelAliasResponse}
 	 */
 	public static final JsonpDeserializer<DeleteTrainedModelAliasResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteTrainedModelAliasResponse::setupDeleteTrainedModelAliasResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DeleteTrainedModelAliasResponse::setupDeleteTrainedModelAliasResponseDeserializer);
 
 	protected static void setupDeleteTrainedModelAliasResponseDeserializer(
-			DelegatingDeserializer<DeleteTrainedModelAliasResponse.Builder> op) {
+			ObjectDeserializer<DeleteTrainedModelAliasResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

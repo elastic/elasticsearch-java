@@ -23,27 +23,25 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.DefaultOperator;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -53,34 +51,35 @@ import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.validate_query.Request
-@JsonpDeserializable
-public final class ValidateQueryRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final List<String> index;
 
+/**
+ * Allows a user to validate a potentially expensive query without executing it.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/validate_query/IndicesValidateQueryRequest.ts#L25-L52">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class ValidateQueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final List<String> type;
+	private final Boolean allShards;
 
 	@Nullable
 	private final Boolean allowNoIndices;
 
 	@Nullable
-	private final Boolean allShards;
+	private final Boolean analyzeWildcard;
 
 	@Nullable
 	private final String analyzer;
 
 	@Nullable
-	private final Boolean analyzeWildcard;
-
-	@Nullable
-	private final DefaultOperator defaultOperator;
+	private final Operator defaultOperator;
 
 	@Nullable
 	private final String df;
 
-	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
 	@Nullable
 	private final Boolean explain;
@@ -88,11 +87,10 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	@Nullable
-	private final Boolean lenient;
+	private final List<String> index;
 
 	@Nullable
-	private final Boolean rewrite;
+	private final Boolean lenient;
 
 	@Nullable
 	private final String q;
@@ -100,52 +98,45 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	@Nullable
 	private final Query query;
 
+	@Nullable
+	private final Boolean rewrite;
+
+	private final List<String> type;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public ValidateQueryRequest(Builder builder) {
+	private ValidateQueryRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.type = ModelTypeHelper.unmodifiable(builder.type);
-		this.allowNoIndices = builder.allowNoIndices;
 		this.allShards = builder.allShards;
-		this.analyzer = builder.analyzer;
+		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzeWildcard = builder.analyzeWildcard;
+		this.analyzer = builder.analyzer;
 		this.defaultOperator = builder.defaultOperator;
 		this.df = builder.df;
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.explain = builder.explain;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.lenient = builder.lenient;
-		this.rewrite = builder.rewrite;
 		this.q = builder.q;
 		this.query = builder.query;
+		this.rewrite = builder.rewrite;
+		this.type = ApiTypeHelper.unmodifiable(builder.type);
 
 	}
 
-	public ValidateQueryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names to restrict the operation; use
-	 * <code>_all</code> or empty string to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
+	public static ValidateQueryRequest of(Function<Builder, ObjectBuilder<ValidateQueryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * A comma-separated list of document types to restrict the operation; leave
-	 * empty to perform the operation on all types
+	 * Execute validation on all shards instead of one random shard per index
 	 * <p>
-	 * API name: {@code type}
+	 * API name: {@code all_shards}
 	 */
 	@Nullable
-	public List<String> type() {
-		return this.type;
+	public final Boolean allShards() {
+		return this.allShards;
 	}
 
 	/**
@@ -156,28 +147,8 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code allow_no_indices}
 	 */
 	@Nullable
-	public Boolean allowNoIndices() {
+	public final Boolean allowNoIndices() {
 		return this.allowNoIndices;
-	}
-
-	/**
-	 * Execute validation on all shards instead of one random shard per index
-	 * <p>
-	 * API name: {@code all_shards}
-	 */
-	@Nullable
-	public Boolean allShards() {
-		return this.allShards;
-	}
-
-	/**
-	 * The analyzer to use for the query string
-	 * <p>
-	 * API name: {@code analyzer}
-	 */
-	@Nullable
-	public String analyzer() {
-		return this.analyzer;
 	}
 
 	/**
@@ -187,8 +158,18 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code analyze_wildcard}
 	 */
 	@Nullable
-	public Boolean analyzeWildcard() {
+	public final Boolean analyzeWildcard() {
 		return this.analyzeWildcard;
+	}
+
+	/**
+	 * The analyzer to use for the query string
+	 * <p>
+	 * API name: {@code analyzer}
+	 */
+	@Nullable
+	public final String analyzer() {
+		return this.analyzer;
 	}
 
 	/**
@@ -197,7 +178,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code default_operator}
 	 */
 	@Nullable
-	public DefaultOperator defaultOperator() {
+	public final Operator defaultOperator() {
 		return this.defaultOperator;
 	}
 
@@ -208,7 +189,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code df}
 	 */
 	@Nullable
-	public String df() {
+	public final String df() {
 		return this.df;
 	}
 
@@ -218,8 +199,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -229,7 +209,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code explain}
 	 */
 	@Nullable
-	public Boolean explain() {
+	public final Boolean explain() {
 		return this.explain;
 	}
 
@@ -240,8 +220,18 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code ignore_unavailable}
 	 */
 	@Nullable
-	public Boolean ignoreUnavailable() {
+	public final Boolean ignoreUnavailable() {
 		return this.ignoreUnavailable;
+	}
+
+	/**
+	 * A comma-separated list of index names to restrict the operation; use
+	 * <code>_all</code> or empty string to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -251,8 +241,26 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code lenient}
 	 */
 	@Nullable
-	public Boolean lenient() {
+	public final Boolean lenient() {
 		return this.lenient;
+	}
+
+	/**
+	 * Query in the Lucene query string syntax
+	 * <p>
+	 * API name: {@code q}
+	 */
+	@Nullable
+	public final String q() {
+		return this.q;
+	}
+
+	/**
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public final Query query() {
+		return this.query;
 	}
 
 	/**
@@ -262,26 +270,18 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
-	public Boolean rewrite() {
+	public final Boolean rewrite() {
 		return this.rewrite;
 	}
 
 	/**
-	 * Query in the Lucene query string syntax
+	 * A comma-separated list of document types to restrict the operation; leave
+	 * empty to perform the operation on all types
 	 * <p>
-	 * API name: {@code q}
+	 * API name: {@code type}
 	 */
-	@Nullable
-	public String q() {
-		return this.q;
-	}
-
-	/**
-	 * API name: {@code query}
-	 */
-	@Nullable
-	public Query query() {
-		return this.query;
+	public final List<String> type() {
+		return this.type;
 	}
 
 	/**
@@ -296,7 +296,6 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.query != null) {
-
 			generator.writeKey("query");
 			this.query.serialize(generator, mapper);
 
@@ -309,33 +308,28 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Builder for {@link ValidateQueryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ValidateQueryRequest> {
-		@Nullable
-		private List<String> index;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateQueryRequest> {
 		@Nullable
-		private List<String> type;
+		private Boolean allShards;
 
 		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
-		private Boolean allShards;
+		private Boolean analyzeWildcard;
 
 		@Nullable
 		private String analyzer;
 
 		@Nullable
-		private Boolean analyzeWildcard;
-
-		@Nullable
-		private DefaultOperator defaultOperator;
+		private Operator defaultOperator;
 
 		@Nullable
 		private String df;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private Boolean explain;
@@ -344,10 +338,10 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		private Boolean ignoreUnavailable;
 
 		@Nullable
-		private Boolean lenient;
+		private List<String> index;
 
 		@Nullable
-		private Boolean rewrite;
+		private Boolean lenient;
 
 		@Nullable
 		private String q;
@@ -355,69 +349,19 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		@Nullable
 		private Query query;
 
+		@Nullable
+		private Boolean rewrite;
+
+		@Nullable
+		private List<String> type;
+
 		/**
-		 * A comma-separated list of index names to restrict the operation; use
-		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * Execute validation on all shards instead of one random shard per index
 		 * <p>
-		 * API name: {@code index}
+		 * API name: {@code all_shards}
 		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names to restrict the operation; use
-		 * <code>_all</code> or empty string to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types to restrict the operation; leave
-		 * empty to perform the operation on all types
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(@Nullable List<String> value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types to restrict the operation; leave
-		 * empty to perform the operation on all types
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public Builder type(String... value) {
-			this.type = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #type(List)}, creating the list if needed.
-		 */
-		public Builder addType(String value) {
-			if (this.type == null) {
-				this.type = new ArrayList<>();
-			}
-			this.type.add(value);
+		public final Builder allShards(@Nullable Boolean value) {
+			this.allShards = value;
 			return this;
 		}
 
@@ -428,28 +372,8 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
-		public Builder allowNoIndices(@Nullable Boolean value) {
+		public final Builder allowNoIndices(@Nullable Boolean value) {
 			this.allowNoIndices = value;
-			return this;
-		}
-
-		/**
-		 * Execute validation on all shards instead of one random shard per index
-		 * <p>
-		 * API name: {@code all_shards}
-		 */
-		public Builder allShards(@Nullable Boolean value) {
-			this.allShards = value;
-			return this;
-		}
-
-		/**
-		 * The analyzer to use for the query string
-		 * <p>
-		 * API name: {@code analyzer}
-		 */
-		public Builder analyzer(@Nullable String value) {
-			this.analyzer = value;
 			return this;
 		}
 
@@ -459,8 +383,18 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code analyze_wildcard}
 		 */
-		public Builder analyzeWildcard(@Nullable Boolean value) {
+		public final Builder analyzeWildcard(@Nullable Boolean value) {
 			this.analyzeWildcard = value;
+			return this;
+		}
+
+		/**
+		 * The analyzer to use for the query string
+		 * <p>
+		 * API name: {@code analyzer}
+		 */
+		public final Builder analyzer(@Nullable String value) {
+			this.analyzer = value;
 			return this;
 		}
 
@@ -469,7 +403,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code default_operator}
 		 */
-		public Builder defaultOperator(@Nullable DefaultOperator value) {
+		public final Builder defaultOperator(@Nullable Operator value) {
 			this.defaultOperator = value;
 			return this;
 		}
@@ -480,7 +414,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code df}
 		 */
-		public Builder df(@Nullable String value) {
+		public final Builder df(@Nullable String value) {
 			this.df = value;
 			return this;
 		}
@@ -490,9 +424,11 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -501,20 +437,11 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -523,7 +450,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code explain}
 		 */
-		public Builder explain(@Nullable Boolean value) {
+		public final Builder explain(@Nullable Boolean value) {
 			this.explain = value;
 			return this;
 		}
@@ -534,8 +461,34 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code ignore_unavailable}
 		 */
-		public Builder ignoreUnavailable(@Nullable Boolean value) {
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
 			this.ignoreUnavailable = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to restrict the operation; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to restrict the operation; use
+		 * <code>_all</code> or empty string to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -545,19 +498,8 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code lenient}
 		 */
-		public Builder lenient(@Nullable Boolean value) {
+		public final Builder lenient(@Nullable Boolean value) {
 			this.lenient = value;
-			return this;
-		}
-
-		/**
-		 * Provide a more detailed explanation showing the actual Lucene query that will
-		 * be executed.
-		 * <p>
-		 * API name: {@code rewrite}
-		 */
-		public Builder rewrite(@Nullable Boolean value) {
-			this.rewrite = value;
 			return this;
 		}
 
@@ -566,7 +508,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 * <p>
 		 * API name: {@code q}
 		 */
-		public Builder q(@Nullable String value) {
+		public final Builder q(@Nullable String value) {
 			this.q = value;
 			return this;
 		}
@@ -574,7 +516,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(@Nullable Query value) {
+		public final Builder query(@Nullable Query value) {
 			this.query = value;
 			return this;
 		}
@@ -582,8 +524,45 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		/**
 		 * API name: {@code query}
 		 */
-		public Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * Provide a more detailed explanation showing the actual Lucene query that will
+		 * be executed.
+		 * <p>
+		 * API name: {@code rewrite}
+		 */
+		public final Builder rewrite(@Nullable Boolean value) {
+			this.rewrite = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of document types to restrict the operation; leave
+		 * empty to perform the operation on all types
+		 * <p>
+		 * API name: {@code type}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>type</code>.
+		 */
+		public final Builder type(List<String> list) {
+			this.type = _listAddAll(this.type, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of document types to restrict the operation; leave
+		 * empty to perform the operation on all types
+		 * <p>
+		 * API name: {@code type}
+		 * <p>
+		 * Adds one or more values to <code>type</code>.
+		 */
+		public final Builder type(String value, String... values) {
+			this.type = _listAdd(this.type, value, values);
+			return this;
 		}
 
 		/**
@@ -593,6 +572,7 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 		 *             if some of the required fields are null.
 		 */
 		public ValidateQueryRequest build() {
+			_checkSingleUse();
 
 			return new ValidateQueryRequest(this);
 		}
@@ -604,10 +584,9 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	 * Json deserializer for {@link ValidateQueryRequest}
 	 */
 	public static final JsonpDeserializer<ValidateQueryRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ValidateQueryRequest::setupValidateQueryRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ValidateQueryRequest::setupValidateQueryRequestDeserializer);
 
-	protected static void setupValidateQueryRequestDeserializer(
-			DelegatingDeserializer<ValidateQueryRequest.Builder> op) {
+	protected static void setupValidateQueryRequestDeserializer(ObjectDeserializer<ValidateQueryRequest.Builder> op) {
 
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 
@@ -618,7 +597,9 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 	/**
 	 * Endpoint "{@code indices.validate_query}".
 	 */
-	public static final Endpoint<ValidateQueryRequest, ValidateQueryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.validate_query",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -632,9 +613,9 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
-				if (request.type() != null)
+				if (ApiTypeHelper.isDefined(request.type()))
 					propsSet |= _type;
 
 				if (propsSet == 0) {
@@ -668,11 +649,30 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoIndices != null) {
-					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
+				if (request.explain != null) {
+					params.put("explain", String.valueOf(request.explain));
+				}
+				if (request.q != null) {
+					params.put("q", request.q);
+				}
+				if (request.df != null) {
+					params.put("df", request.df);
+				}
+				if (request.defaultOperator != null) {
+					params.put("default_operator", request.defaultOperator.jsonValue());
 				}
 				if (request.allShards != null) {
 					params.put("all_shards", String.valueOf(request.allShards));
+				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
+				if (request.allowNoIndices != null) {
+					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
 				if (request.analyzer != null) {
 					params.put("analyzer", request.analyzer);
@@ -680,30 +680,11 @@ public final class ValidateQueryRequest extends RequestBase implements JsonpSeri
 				if (request.analyzeWildcard != null) {
 					params.put("analyze_wildcard", String.valueOf(request.analyzeWildcard));
 				}
-				if (request.defaultOperator != null) {
-					params.put("default_operator", request.defaultOperator.toString());
-				}
-				if (request.df != null) {
-					params.put("df", request.df);
-				}
-				if (request.expandWildcards != null) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
-				}
-				if (request.explain != null) {
-					params.put("explain", String.valueOf(request.explain));
-				}
-				if (request.ignoreUnavailable != null) {
-					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
-				}
 				if (request.lenient != null) {
 					params.put("lenient", String.valueOf(request.lenient));
 				}
 				if (request.rewrite != null) {
 					params.put("rewrite", String.valueOf(request.rewrite));
-				}
-				if (request.q != null) {
-					params.put("q", request.q);
 				}
 				return params;
 

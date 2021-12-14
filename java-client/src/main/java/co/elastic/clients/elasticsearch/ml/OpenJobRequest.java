@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -43,40 +45,55 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.open_job.Request
+
+/**
+ * Opens one or more anomaly detection jobs. An anomaly detection job must be
+ * opened in order for it to be ready to receive and analyze data. It can be
+ * opened and closed multiple times throughout its lifecycle. When you open a
+ * new job, it starts with an empty model. When you open an existing job, the
+ * most recent model state is automatically loaded. The job is ready to resume
+ * its analysis from where it left off, once new data is received.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/open_job/MlOpenJobRequest.ts#L24-L59">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class OpenJobRequest extends RequestBase implements JsonpSerializable {
+public class OpenJobRequest extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OpenJobRequest(Builder builder) {
+	private OpenJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.timeout = builder.timeout;
 
 	}
 
-	public OpenJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OpenJobRequest of(Function<Builder, ObjectBuilder<OpenJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the job to open
+	 * Required - Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
 	/**
+	 * Refer to the description for the <code>timeout</code> query parameter.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -92,9 +109,8 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.timeout != null) {
-
 			generator.writeKey("timeout");
-			generator.write(this.timeout);
+			this.timeout.serialize(generator, mapper);
 
 		}
 
@@ -105,28 +121,40 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Builder for {@link OpenJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<OpenJobRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenJobRequest> {
 		private String jobId;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
-		 * Required - The ID of the job to open
+		 * Required - Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>timeout</code> query parameter.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>timeout</code> query parameter.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -136,6 +164,7 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 		 *             if some of the required fields are null.
 		 */
 		public OpenJobRequest build() {
+			_checkSingleUse();
 
 			return new OpenJobRequest(this);
 		}
@@ -147,11 +176,11 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 	 * Json deserializer for {@link OpenJobRequest}
 	 */
 	public static final JsonpDeserializer<OpenJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			OpenJobRequest::setupOpenJobRequestDeserializer, Builder::build);
+			OpenJobRequest::setupOpenJobRequestDeserializer);
 
-	protected static void setupOpenJobRequestDeserializer(DelegatingDeserializer<OpenJobRequest.Builder> op) {
+	protected static void setupOpenJobRequestDeserializer(ObjectDeserializer<OpenJobRequest.Builder> op) {
 
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 
@@ -160,7 +189,9 @@ public final class OpenJobRequest extends RequestBase implements JsonpSerializab
 	/**
 	 * Endpoint "{@code ml.open_job}".
 	 */
-	public static final Endpoint<OpenJobRequest, OpenJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<OpenJobRequest, OpenJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.open_job",
+
 			// Request method
 			request -> {
 				return "POST";

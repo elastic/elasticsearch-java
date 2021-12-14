@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,39 +43,48 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_calendar_job.Request
 
-public final class DeleteCalendarJobRequest extends RequestBase {
+/**
+ * Deletes anomaly detection jobs from a calendar.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_calendar_job/MlDeleteCalendarJobRequest.ts#L23-L37">API
+ *      specification</a>
+ */
+
+public class DeleteCalendarJobRequest extends RequestBase {
 	private final String calendarId;
 
 	private final String jobId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteCalendarJobRequest(Builder builder) {
+	private DeleteCalendarJobRequest(Builder builder) {
 
-		this.calendarId = Objects.requireNonNull(builder.calendarId, "calendar_id");
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
+		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 
 	}
 
-	public DeleteCalendarJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteCalendarJobRequest of(Function<Builder, ObjectBuilder<DeleteCalendarJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the calendar to modify
+	 * Required - A string that uniquely identifies a calendar.
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
-	public String calendarId() {
+	public final String calendarId() {
 		return this.calendarId;
 	}
 
 	/**
-	 * Required - The ID of the job to remove from the calendar
+	 * Required - An identifier for the anomaly detection jobs. It can be a job
+	 * identifier, a group name, or a comma-separated list of jobs or groups.
 	 * <p>
 	 * API name: {@code job_id}
 	 */
-	public String jobId() {
+	public final String jobId() {
 		return this.jobId;
 	}
 
@@ -82,27 +93,29 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteCalendarJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteCalendarJobRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteCalendarJobRequest> {
 		private String calendarId;
 
 		private String jobId;
 
 		/**
-		 * Required - The ID of the calendar to modify
+		 * Required - A string that uniquely identifies a calendar.
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(String value) {
+		public final Builder calendarId(String value) {
 			this.calendarId = value;
 			return this;
 		}
 
 		/**
-		 * Required - The ID of the job to remove from the calendar
+		 * Required - An identifier for the anomaly detection jobs. It can be a job
+		 * identifier, a group name, or a comma-separated list of jobs or groups.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(String value) {
+		public final Builder jobId(String value) {
 			this.jobId = value;
 			return this;
 		}
@@ -114,6 +127,7 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteCalendarJobRequest build() {
+			_checkSingleUse();
 
 			return new DeleteCalendarJobRequest(this);
 		}
@@ -124,7 +138,9 @@ public final class DeleteCalendarJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_calendar_job}".
 	 */
-	public static final Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_calendar_job",
+
 			// Request method
 			request -> {
 				return "DELETE";

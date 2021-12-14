@@ -23,14 +23,39 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L75-L86">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum UserAgentProperty implements StringEnum {
-	Name("NAME"), Major("MAJOR"), Minor("MINOR"), Patch("PATCH"), Os("OS"), OsName("OS_NAME"), OsMajor(
-			"OS_MAJOR"), OsMinor("OS_MINOR"), Device("DEVICE"), Build("BUILD");
+public enum UserAgentProperty implements JsonEnum {
+	Name("NAME"),
+
+	Major("MAJOR"),
+
+	Minor("MINOR"),
+
+	Patch("PATCH"),
+
+	Os("OS"),
+
+	OsName("OS_NAME"),
+
+	OsMajor("OS_MAJOR"),
+
+	OsMinor("OS_MINOR"),
+
+	Device("DEVICE"),
+
+	Build("BUILD"),
+
+	;
 
 	private final String jsonValue;
 
@@ -42,6 +67,6 @@ public enum UserAgentProperty implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<UserAgentProperty> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<UserAgentProperty> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			UserAgentProperty.values());
 }

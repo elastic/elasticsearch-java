@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.GeoShapeRelation;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,14 +32,22 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.GeoShapeFieldQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/geo.ts#L78-L82">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GeoShapeFieldQuery implements JsonpSerializable {
+public class GeoShapeFieldQuery implements JsonpSerializable {
 	@Nullable
 	private final JsonData shape;
 
@@ -52,7 +59,7 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoShapeFieldQuery(Builder builder) {
+	private GeoShapeFieldQuery(Builder builder) {
 
 		this.shape = builder.shape;
 		this.indexedShape = builder.indexedShape;
@@ -60,15 +67,15 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 
 	}
 
-	public GeoShapeFieldQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoShapeFieldQuery of(Function<Builder, ObjectBuilder<GeoShapeFieldQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code shape}
 	 */
 	@Nullable
-	public JsonData shape() {
+	public final JsonData shape() {
 		return this.shape;
 	}
 
@@ -76,7 +83,7 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 	 * API name: {@code indexed_shape}
 	 */
 	@Nullable
-	public FieldLookup indexedShape() {
+	public final FieldLookup indexedShape() {
 		return this.indexedShape;
 	}
 
@@ -84,7 +91,7 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 	 * API name: {@code relation}
 	 */
 	@Nullable
-	public GeoShapeRelation relation() {
+	public final GeoShapeRelation relation() {
 		return this.relation;
 	}
 
@@ -100,19 +107,16 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.shape != null) {
-
 			generator.writeKey("shape");
 			this.shape.serialize(generator, mapper);
 
 		}
 		if (this.indexedShape != null) {
-
 			generator.writeKey("indexed_shape");
 			this.indexedShape.serialize(generator, mapper);
 
 		}
 		if (this.relation != null) {
-
 			generator.writeKey("relation");
 			this.relation.serialize(generator, mapper);
 		}
@@ -124,7 +128,8 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 	/**
 	 * Builder for {@link GeoShapeFieldQuery}.
 	 */
-	public static class Builder implements ObjectBuilder<GeoShapeFieldQuery> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoShapeFieldQuery> {
 		@Nullable
 		private JsonData shape;
 
@@ -137,7 +142,7 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code shape}
 		 */
-		public Builder shape(@Nullable JsonData value) {
+		public final Builder shape(@Nullable JsonData value) {
 			this.shape = value;
 			return this;
 		}
@@ -145,7 +150,7 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code indexed_shape}
 		 */
-		public Builder indexedShape(@Nullable FieldLookup value) {
+		public final Builder indexedShape(@Nullable FieldLookup value) {
 			this.indexedShape = value;
 			return this;
 		}
@@ -153,14 +158,14 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 		/**
 		 * API name: {@code indexed_shape}
 		 */
-		public Builder indexedShape(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
+		public final Builder indexedShape(Function<FieldLookup.Builder, ObjectBuilder<FieldLookup>> fn) {
 			return this.indexedShape(fn.apply(new FieldLookup.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code relation}
 		 */
-		public Builder relation(@Nullable GeoShapeRelation value) {
+		public final Builder relation(@Nullable GeoShapeRelation value) {
 			this.relation = value;
 			return this;
 		}
@@ -172,6 +177,7 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GeoShapeFieldQuery build() {
+			_checkSingleUse();
 
 			return new GeoShapeFieldQuery(this);
 		}
@@ -183,9 +189,9 @@ public final class GeoShapeFieldQuery implements JsonpSerializable {
 	 * Json deserializer for {@link GeoShapeFieldQuery}
 	 */
 	public static final JsonpDeserializer<GeoShapeFieldQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GeoShapeFieldQuery::setupGeoShapeFieldQueryDeserializer, Builder::build);
+			.lazy(Builder::new, GeoShapeFieldQuery::setupGeoShapeFieldQueryDeserializer);
 
-	protected static void setupGeoShapeFieldQueryDeserializer(DelegatingDeserializer<GeoShapeFieldQuery.Builder> op) {
+	protected static void setupGeoShapeFieldQueryDeserializer(ObjectDeserializer<GeoShapeFieldQuery.Builder> op) {
 
 		op.add(Builder::shape, JsonData._DESERIALIZER, "shape");
 		op.add(Builder::indexedShape, FieldLookup._DESERIALIZER, "indexed_shape");

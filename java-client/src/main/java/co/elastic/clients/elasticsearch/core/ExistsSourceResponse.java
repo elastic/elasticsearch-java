@@ -30,11 +30,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: _global.exists_source.Response
 
-public final class ExistsSourceResponse {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/exists_source/SourceExistsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
+public class ExistsSourceResponse {
 	public ExistsSourceResponse() {
 	}
 

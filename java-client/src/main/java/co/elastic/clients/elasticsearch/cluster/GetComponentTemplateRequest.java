@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,10 +45,15 @@ import javax.annotation.Nullable;
 
 // typedef: cluster.get_component_template.Request
 
-public final class GetComponentTemplateRequest extends RequestBase {
-	@Nullable
-	private final String name;
+/**
+ * Returns one or more component templates
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/get_component_template/ClusterGetComponentTemplateRequest.ts#L24-L41">API
+ *      specification</a>
+ */
 
+public class GetComponentTemplateRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
@@ -54,38 +61,31 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	private final Boolean local;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
+
+	@Nullable
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetComponentTemplateRequest(Builder builder) {
+	private GetComponentTemplateRequest(Builder builder) {
 
-		this.name = builder.name;
 		this.flatSettings = builder.flatSettings;
 		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.name = builder.name;
 
 	}
 
-	public GetComponentTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The comma separated names of the component templates
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public String name() {
-		return this.name;
+	public static GetComponentTemplateRequest of(Function<Builder, ObjectBuilder<GetComponentTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -96,7 +96,7 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -106,8 +106,18 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * The comma separated names of the component templates
+	 * <p>
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public final String name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -115,10 +125,8 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetComponentTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetComponentTemplateRequest> {
-		@Nullable
-		private String name;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -126,22 +134,15 @@ public final class GetComponentTemplateRequest extends RequestBase {
 		private Boolean local;
 
 		@Nullable
-		private String masterTimeout;
+		private Time masterTimeout;
 
-		/**
-		 * The comma separated names of the component templates
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(@Nullable String value) {
-			this.name = value;
-			return this;
-		}
+		@Nullable
+		private String name;
 
 		/**
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -152,7 +153,7 @@ public final class GetComponentTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -162,8 +163,27 @@ public final class GetComponentTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * The comma separated names of the component templates
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public final Builder name(@Nullable String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -174,6 +194,7 @@ public final class GetComponentTemplateRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetComponentTemplateRequest build() {
+			_checkSingleUse();
 
 			return new GetComponentTemplateRequest(this);
 		}
@@ -184,7 +205,9 @@ public final class GetComponentTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.get_component_template}".
 	 */
-	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetComponentTemplateRequest, GetComponentTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cluster.get_component_template",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -219,14 +242,14 @@ public final class GetComponentTemplateRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
-				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
 				}
 				return params;
 

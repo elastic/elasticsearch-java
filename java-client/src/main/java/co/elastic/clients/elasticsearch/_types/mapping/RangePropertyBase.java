@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,10 +33,16 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.RangePropertyBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L23-L27">API
+ *      specification</a>
+ */
 
 public abstract class RangePropertyBase extends DocValuesPropertyBase {
 	@Nullable
@@ -51,7 +56,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RangePropertyBase(AbstractBuilder<?> builder) {
+	protected RangePropertyBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.boost = builder.boost;
@@ -64,7 +69,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 	 * API name: {@code boost}
 	 */
 	@Nullable
-	public Double boost() {
+	public final Double boost() {
 		return this.boost;
 	}
 
@@ -72,7 +77,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 	 * API name: {@code coerce}
 	 */
 	@Nullable
-	public Boolean coerce() {
+	public final Boolean coerce() {
 		return this.coerce;
 	}
 
@@ -80,7 +85,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -88,19 +93,16 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.boost != null) {
-
 			generator.writeKey("boost");
 			generator.write(this.boost);
 
 		}
 		if (this.coerce != null) {
-
 			generator.writeKey("coerce");
 			generator.write(this.coerce);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
@@ -123,7 +125,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 		/**
 		 * API name: {@code boost}
 		 */
-		public BuilderT boost(@Nullable Double value) {
+		public final BuilderT boost(@Nullable Double value) {
 			this.boost = value;
 			return self();
 		}
@@ -131,7 +133,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 		/**
 		 * API name: {@code coerce}
 		 */
-		public BuilderT coerce(@Nullable Boolean value) {
+		public final BuilderT coerce(@Nullable Boolean value) {
 			this.coerce = value;
 			return self();
 		}
@@ -139,7 +141,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 		/**
 		 * API name: {@code index}
 		 */
-		public BuilderT index(@Nullable Boolean value) {
+		public final BuilderT index(@Nullable Boolean value) {
 			this.index = value;
 			return self();
 		}
@@ -148,7 +150,7 @@ public abstract class RangePropertyBase extends DocValuesPropertyBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupRangePropertyBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(AbstractBuilder::boost, JsonpDeserializer.doubleDeserializer(), "boost");
 		op.add(AbstractBuilder::coerce, JsonpDeserializer.booleanDeserializer(), "coerce");

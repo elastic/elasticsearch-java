@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch._types.SuggestMode;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.Integer;
@@ -41,8 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.DirectGenerator
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L135-L147">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DirectGenerator implements JsonpSerializable {
+public class DirectGenerator implements JsonpSerializable {
 	private final String field;
 
 	@Nullable
@@ -77,9 +85,9 @@ public final class DirectGenerator implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DirectGenerator(Builder builder) {
+	private DirectGenerator(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.maxEdits = builder.maxEdits;
 		this.maxInspections = builder.maxInspections;
 		this.maxTermFreq = builder.maxTermFreq;
@@ -93,14 +101,14 @@ public final class DirectGenerator implements JsonpSerializable {
 
 	}
 
-	public DirectGenerator(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DirectGenerator of(Function<Builder, ObjectBuilder<DirectGenerator>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -108,7 +116,7 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * API name: {@code max_edits}
 	 */
 	@Nullable
-	public Integer maxEdits() {
+	public final Integer maxEdits() {
 		return this.maxEdits;
 	}
 
@@ -116,7 +124,7 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * API name: {@code max_inspections}
 	 */
 	@Nullable
-	public Float maxInspections() {
+	public final Float maxInspections() {
 		return this.maxInspections;
 	}
 
@@ -124,7 +132,7 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * API name: {@code max_term_freq}
 	 */
 	@Nullable
-	public Float maxTermFreq() {
+	public final Float maxTermFreq() {
 		return this.maxTermFreq;
 	}
 
@@ -132,7 +140,7 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * API name: {@code min_doc_freq}
 	 */
 	@Nullable
-	public Float minDocFreq() {
+	public final Float minDocFreq() {
 		return this.minDocFreq;
 	}
 
@@ -140,7 +148,7 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * API name: {@code min_word_length}
 	 */
 	@Nullable
-	public Integer minWordLength() {
+	public final Integer minWordLength() {
 		return this.minWordLength;
 	}
 
@@ -148,7 +156,7 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * API name: {@code post_filter}
 	 */
 	@Nullable
-	public String postFilter() {
+	public final String postFilter() {
 		return this.postFilter;
 	}
 
@@ -156,7 +164,7 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * API name: {@code pre_filter}
 	 */
 	@Nullable
-	public String preFilter() {
+	public final String preFilter() {
 		return this.preFilter;
 	}
 
@@ -164,7 +172,7 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * API name: {@code prefix_length}
 	 */
 	@Nullable
-	public Integer prefixLength() {
+	public final Integer prefixLength() {
 		return this.prefixLength;
 	}
 
@@ -172,7 +180,7 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -180,7 +188,7 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * API name: {@code suggest_mode}
 	 */
 	@Nullable
-	public SuggestMode suggestMode() {
+	public final SuggestMode suggestMode() {
 		return this.suggestMode;
 	}
 
@@ -199,61 +207,51 @@ public final class DirectGenerator implements JsonpSerializable {
 		generator.write(this.field);
 
 		if (this.maxEdits != null) {
-
 			generator.writeKey("max_edits");
 			generator.write(this.maxEdits);
 
 		}
 		if (this.maxInspections != null) {
-
 			generator.writeKey("max_inspections");
 			generator.write(this.maxInspections);
 
 		}
 		if (this.maxTermFreq != null) {
-
 			generator.writeKey("max_term_freq");
 			generator.write(this.maxTermFreq);
 
 		}
 		if (this.minDocFreq != null) {
-
 			generator.writeKey("min_doc_freq");
 			generator.write(this.minDocFreq);
 
 		}
 		if (this.minWordLength != null) {
-
 			generator.writeKey("min_word_length");
 			generator.write(this.minWordLength);
 
 		}
 		if (this.postFilter != null) {
-
 			generator.writeKey("post_filter");
 			generator.write(this.postFilter);
 
 		}
 		if (this.preFilter != null) {
-
 			generator.writeKey("pre_filter");
 			generator.write(this.preFilter);
 
 		}
 		if (this.prefixLength != null) {
-
 			generator.writeKey("prefix_length");
 			generator.write(this.prefixLength);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
 		if (this.suggestMode != null) {
-
 			generator.writeKey("suggest_mode");
 			this.suggestMode.serialize(generator, mapper);
 		}
@@ -265,7 +263,8 @@ public final class DirectGenerator implements JsonpSerializable {
 	/**
 	 * Builder for {@link DirectGenerator}.
 	 */
-	public static class Builder implements ObjectBuilder<DirectGenerator> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DirectGenerator> {
 		private String field;
 
 		@Nullable
@@ -301,7 +300,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -309,7 +308,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * API name: {@code max_edits}
 		 */
-		public Builder maxEdits(@Nullable Integer value) {
+		public final Builder maxEdits(@Nullable Integer value) {
 			this.maxEdits = value;
 			return this;
 		}
@@ -317,7 +316,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * API name: {@code max_inspections}
 		 */
-		public Builder maxInspections(@Nullable Float value) {
+		public final Builder maxInspections(@Nullable Float value) {
 			this.maxInspections = value;
 			return this;
 		}
@@ -325,7 +324,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * API name: {@code max_term_freq}
 		 */
-		public Builder maxTermFreq(@Nullable Float value) {
+		public final Builder maxTermFreq(@Nullable Float value) {
 			this.maxTermFreq = value;
 			return this;
 		}
@@ -333,7 +332,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * API name: {@code min_doc_freq}
 		 */
-		public Builder minDocFreq(@Nullable Float value) {
+		public final Builder minDocFreq(@Nullable Float value) {
 			this.minDocFreq = value;
 			return this;
 		}
@@ -341,7 +340,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * API name: {@code min_word_length}
 		 */
-		public Builder minWordLength(@Nullable Integer value) {
+		public final Builder minWordLength(@Nullable Integer value) {
 			this.minWordLength = value;
 			return this;
 		}
@@ -349,7 +348,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * API name: {@code post_filter}
 		 */
-		public Builder postFilter(@Nullable String value) {
+		public final Builder postFilter(@Nullable String value) {
 			this.postFilter = value;
 			return this;
 		}
@@ -357,7 +356,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * API name: {@code pre_filter}
 		 */
-		public Builder preFilter(@Nullable String value) {
+		public final Builder preFilter(@Nullable String value) {
 			this.preFilter = value;
 			return this;
 		}
@@ -365,7 +364,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * API name: {@code prefix_length}
 		 */
-		public Builder prefixLength(@Nullable Integer value) {
+		public final Builder prefixLength(@Nullable Integer value) {
 			this.prefixLength = value;
 			return this;
 		}
@@ -373,7 +372,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -381,7 +380,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		/**
 		 * API name: {@code suggest_mode}
 		 */
-		public Builder suggestMode(@Nullable SuggestMode value) {
+		public final Builder suggestMode(@Nullable SuggestMode value) {
 			this.suggestMode = value;
 			return this;
 		}
@@ -393,6 +392,7 @@ public final class DirectGenerator implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DirectGenerator build() {
+			_checkSingleUse();
 
 			return new DirectGenerator(this);
 		}
@@ -404,9 +404,9 @@ public final class DirectGenerator implements JsonpSerializable {
 	 * Json deserializer for {@link DirectGenerator}
 	 */
 	public static final JsonpDeserializer<DirectGenerator> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DirectGenerator::setupDirectGeneratorDeserializer, Builder::build);
+			DirectGenerator::setupDirectGeneratorDeserializer);
 
-	protected static void setupDirectGeneratorDeserializer(DelegatingDeserializer<DirectGenerator.Builder> op) {
+	protected static void setupDirectGeneratorDeserializer(ObjectDeserializer<DirectGenerator.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::maxEdits, JsonpDeserializer.integerDeserializer(), "max_edits");

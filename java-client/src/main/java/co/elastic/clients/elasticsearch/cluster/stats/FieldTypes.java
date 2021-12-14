@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.FieldTypes
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L100-L106">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FieldTypes implements JsonpSerializable {
+public class FieldTypes implements JsonpSerializable {
 	private final String name;
 
 	private final int count;
@@ -52,37 +60,37 @@ public final class FieldTypes implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldTypes(Builder builder) {
+	private FieldTypes(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.indexCount = Objects.requireNonNull(builder.indexCount, "index_count");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
 		this.scriptCount = builder.scriptCount;
 
 	}
 
-	public FieldTypes(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldTypes of(Function<Builder, ObjectBuilder<FieldTypes>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public int count() {
+	public final int count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code index_count}
 	 */
-	public int indexCount() {
+	public final int indexCount() {
 		return this.indexCount;
 	}
 
@@ -90,7 +98,7 @@ public final class FieldTypes implements JsonpSerializable {
 	 * API name: {@code script_count}
 	 */
 	@Nullable
-	public Integer scriptCount() {
+	public final Integer scriptCount() {
 		return this.scriptCount;
 	}
 
@@ -115,7 +123,6 @@ public final class FieldTypes implements JsonpSerializable {
 		generator.write(this.indexCount);
 
 		if (this.scriptCount != null) {
-
 			generator.writeKey("script_count");
 			generator.write(this.scriptCount);
 
@@ -128,7 +135,8 @@ public final class FieldTypes implements JsonpSerializable {
 	/**
 	 * Builder for {@link FieldTypes}.
 	 */
-	public static class Builder implements ObjectBuilder<FieldTypes> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldTypes> {
 		private String name;
 
 		private Integer count;
@@ -141,7 +149,7 @@ public final class FieldTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -149,7 +157,7 @@ public final class FieldTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(int value) {
+		public final Builder count(int value) {
 			this.count = value;
 			return this;
 		}
@@ -157,7 +165,7 @@ public final class FieldTypes implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_count}
 		 */
-		public Builder indexCount(int value) {
+		public final Builder indexCount(int value) {
 			this.indexCount = value;
 			return this;
 		}
@@ -165,7 +173,7 @@ public final class FieldTypes implements JsonpSerializable {
 		/**
 		 * API name: {@code script_count}
 		 */
-		public Builder scriptCount(@Nullable Integer value) {
+		public final Builder scriptCount(@Nullable Integer value) {
 			this.scriptCount = value;
 			return this;
 		}
@@ -177,6 +185,7 @@ public final class FieldTypes implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FieldTypes build() {
+			_checkSingleUse();
 
 			return new FieldTypes(this);
 		}
@@ -188,9 +197,9 @@ public final class FieldTypes implements JsonpSerializable {
 	 * Json deserializer for {@link FieldTypes}
 	 */
 	public static final JsonpDeserializer<FieldTypes> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FieldTypes::setupFieldTypesDeserializer, Builder::build);
+			FieldTypes::setupFieldTypesDeserializer);
 
-	protected static void setupFieldTypesDeserializer(DelegatingDeserializer<FieldTypes.Builder> op) {
+	protected static void setupFieldTypesDeserializer(ObjectDeserializer<FieldTypes.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::count, JsonpDeserializer.integerDeserializer(), "count");

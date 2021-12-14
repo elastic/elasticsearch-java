@@ -23,18 +23,19 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -47,24 +48,25 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_buckets.Request
+
+/**
+ * Retrieves anomaly detection job results for one or more buckets. The API
+ * presents a chronological view of the records, grouped by bucket.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_buckets/MlGetBucketsRequest.ts#L26-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetBucketsRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
-
-	@Nullable
-	private final String timestamp;
-
-	@Nullable
-	private final Integer from;
-
-	@Nullable
-	private final Integer size;
-
+public class GetBucketsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Double anomalyScore;
 
 	@Nullable
 	private final Boolean desc;
+
+	@Nullable
+	private final String end;
 
 	@Nullable
 	private final Boolean excludeInterim;
@@ -73,7 +75,15 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	private final Boolean expand;
 
 	@Nullable
+	private final Integer from;
+
+	private final String jobId;
+
+	@Nullable
 	private final Page page;
+
+	@Nullable
+	private final Integer size;
 
 	@Nullable
 	private final String sort;
@@ -82,132 +92,148 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	private final String start;
 
 	@Nullable
-	private final String end;
+	private final String timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetBucketsRequest(Builder builder) {
+	private GetBucketsRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.timestamp = builder.timestamp;
-		this.from = builder.from;
-		this.size = builder.size;
 		this.anomalyScore = builder.anomalyScore;
 		this.desc = builder.desc;
+		this.end = builder.end;
 		this.excludeInterim = builder.excludeInterim;
 		this.expand = builder.expand;
+		this.from = builder.from;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.page = builder.page;
+		this.size = builder.size;
 		this.sort = builder.sort;
 		this.start = builder.start;
-		this.end = builder.end;
+		this.timestamp = builder.timestamp;
 
 	}
 
-	public GetBucketsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetBucketsRequest of(Function<Builder, ObjectBuilder<GetBucketsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - ID of the job to get bucket results from
+	 * Refer to the description for the <code>anomaly_score</code> query parameter.
 	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
-	}
-
-	/**
-	 * The timestamp of the desired single bucket result
-	 * <p>
-	 * API name: {@code timestamp}
-	 */
-	@Nullable
-	public String timestamp() {
-		return this.timestamp;
-	}
-
-	/**
-	 * skips a number of buckets
-	 * <p>
-	 * API name: {@code from}
-	 */
-	@Nullable
-	public Integer from() {
-		return this.from;
-	}
-
-	/**
-	 * specifies a max number of buckets to get
-	 * <p>
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public Integer size() {
-		return this.size;
-	}
-
-	/**
 	 * API name: {@code anomaly_score}
 	 */
 	@Nullable
-	public Double anomalyScore() {
+	public final Double anomalyScore() {
 		return this.anomalyScore;
 	}
 
 	/**
+	 * Refer to the description for the <code>desc</code> query parameter.
+	 * <p>
 	 * API name: {@code desc}
 	 */
 	@Nullable
-	public Boolean desc() {
+	public final Boolean desc() {
 		return this.desc;
 	}
 
 	/**
+	 * Refer to the description for the <code>end</code> query parameter.
+	 * <p>
+	 * API name: {@code end}
+	 */
+	@Nullable
+	public final String end() {
+		return this.end;
+	}
+
+	/**
+	 * Refer to the description for the <code>exclude_interim</code> query
+	 * parameter.
+	 * <p>
 	 * API name: {@code exclude_interim}
 	 */
 	@Nullable
-	public Boolean excludeInterim() {
+	public final Boolean excludeInterim() {
 		return this.excludeInterim;
 	}
 
 	/**
+	 * Refer to the description for the <code>expand</code> query parameter.
+	 * <p>
 	 * API name: {@code expand}
 	 */
 	@Nullable
-	public Boolean expand() {
+	public final Boolean expand() {
 		return this.expand;
+	}
+
+	/**
+	 * Skips the specified number of buckets.
+	 * <p>
+	 * API name: {@code from}
+	 */
+	@Nullable
+	public final Integer from() {
+		return this.from;
+	}
+
+	/**
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public final String jobId() {
+		return this.jobId;
 	}
 
 	/**
 	 * API name: {@code page}
 	 */
 	@Nullable
-	public Page page() {
+	public final Page page() {
 		return this.page;
 	}
 
 	/**
+	 * Specifies the maximum number of buckets to obtain.
+	 * <p>
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public final Integer size() {
+		return this.size;
+	}
+
+	/**
+	 * Refer to the desription for the <code>sort</code> query parameter.
+	 * <p>
 	 * API name: {@code sort}
 	 */
 	@Nullable
-	public String sort() {
+	public final String sort() {
 		return this.sort;
 	}
 
 	/**
+	 * Refer to the description for the <code>start</code> query parameter.
+	 * <p>
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public String start() {
+	public final String start() {
 		return this.start;
 	}
 
 	/**
-	 * API name: {@code end}
+	 * The timestamp of a single bucket result. If you do not specify this
+	 * parameter, the API returns information about all buckets.
+	 * <p>
+	 * API name: {@code timestamp}
 	 */
 	@Nullable
-	public String end() {
-		return this.end;
+	public final String timestamp() {
+		return this.timestamp;
 	}
 
 	/**
@@ -222,51 +248,43 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.anomalyScore != null) {
-
 			generator.writeKey("anomaly_score");
 			generator.write(this.anomalyScore);
 
 		}
 		if (this.desc != null) {
-
 			generator.writeKey("desc");
 			generator.write(this.desc);
 
 		}
-		if (this.excludeInterim != null) {
+		if (this.end != null) {
+			generator.writeKey("end");
+			generator.write(this.end);
 
+		}
+		if (this.excludeInterim != null) {
 			generator.writeKey("exclude_interim");
 			generator.write(this.excludeInterim);
 
 		}
 		if (this.expand != null) {
-
 			generator.writeKey("expand");
 			generator.write(this.expand);
 
 		}
 		if (this.page != null) {
-
 			generator.writeKey("page");
 			this.page.serialize(generator, mapper);
 
 		}
 		if (this.sort != null) {
-
 			generator.writeKey("sort");
 			generator.write(this.sort);
 
 		}
 		if (this.start != null) {
-
 			generator.writeKey("start");
 			generator.write(this.start);
-
-		}
-		if (this.end != null) {
-
-			generator.writeKey("end");
-			generator.write(this.end);
 
 		}
 
@@ -277,23 +295,16 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Builder for {@link GetBucketsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetBucketsRequest> {
-		private String jobId;
 
-		@Nullable
-		private String timestamp;
-
-		@Nullable
-		private Integer from;
-
-		@Nullable
-		private Integer size;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetBucketsRequest> {
 		@Nullable
 		private Double anomalyScore;
 
 		@Nullable
 		private Boolean desc;
+
+		@Nullable
+		private String end;
 
 		@Nullable
 		private Boolean excludeInterim;
@@ -302,7 +313,15 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		private Boolean expand;
 
 		@Nullable
+		private Integer from;
+
+		private String jobId;
+
+		@Nullable
 		private Page page;
+
+		@Nullable
+		private Integer size;
 
 		@Nullable
 		private String sort;
@@ -311,84 +330,83 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		private String start;
 
 		@Nullable
-		private String end;
+		private String timestamp;
 
 		/**
-		 * Required - ID of the job to get bucket results from
+		 * Refer to the description for the <code>anomaly_score</code> query parameter.
 		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
-		 * The timestamp of the desired single bucket result
-		 * <p>
-		 * API name: {@code timestamp}
-		 */
-		public Builder timestamp(@Nullable String value) {
-			this.timestamp = value;
-			return this;
-		}
-
-		/**
-		 * skips a number of buckets
-		 * <p>
-		 * API name: {@code from}
-		 */
-		public Builder from(@Nullable Integer value) {
-			this.from = value;
-			return this;
-		}
-
-		/**
-		 * specifies a max number of buckets to get
-		 * <p>
-		 * API name: {@code size}
-		 */
-		public Builder size(@Nullable Integer value) {
-			this.size = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code anomaly_score}
 		 */
-		public Builder anomalyScore(@Nullable Double value) {
+		public final Builder anomalyScore(@Nullable Double value) {
 			this.anomalyScore = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>desc</code> query parameter.
+		 * <p>
 		 * API name: {@code desc}
 		 */
-		public Builder desc(@Nullable Boolean value) {
+		public final Builder desc(@Nullable Boolean value) {
 			this.desc = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>end</code> query parameter.
+		 * <p>
+		 * API name: {@code end}
+		 */
+		public final Builder end(@Nullable String value) {
+			this.end = value;
+			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>exclude_interim</code> query
+		 * parameter.
+		 * <p>
 		 * API name: {@code exclude_interim}
 		 */
-		public Builder excludeInterim(@Nullable Boolean value) {
+		public final Builder excludeInterim(@Nullable Boolean value) {
 			this.excludeInterim = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>expand</code> query parameter.
+		 * <p>
 		 * API name: {@code expand}
 		 */
-		public Builder expand(@Nullable Boolean value) {
+		public final Builder expand(@Nullable Boolean value) {
 			this.expand = value;
+			return this;
+		}
+
+		/**
+		 * Skips the specified number of buckets.
+		 * <p>
+		 * API name: {@code from}
+		 */
+		public final Builder from(@Nullable Integer value) {
+			this.from = value;
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public final Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code page}
 		 */
-		public Builder page(@Nullable Page value) {
+		public final Builder page(@Nullable Page value) {
 			this.page = value;
 			return this;
 		}
@@ -396,31 +414,48 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code page}
 		 */
-		public Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
 			return this.page(fn.apply(new Page.Builder()).build());
 		}
 
 		/**
+		 * Specifies the maximum number of buckets to obtain.
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public final Builder size(@Nullable Integer value) {
+			this.size = value;
+			return this;
+		}
+
+		/**
+		 * Refer to the desription for the <code>sort</code> query parameter.
+		 * <p>
 		 * API name: {@code sort}
 		 */
-		public Builder sort(@Nullable String value) {
+		public final Builder sort(@Nullable String value) {
 			this.sort = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>start</code> query parameter.
+		 * <p>
 		 * API name: {@code start}
 		 */
-		public Builder start(@Nullable String value) {
+		public final Builder start(@Nullable String value) {
 			this.start = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code end}
+		 * The timestamp of a single bucket result. If you do not specify this
+		 * parameter, the API returns information about all buckets.
+		 * <p>
+		 * API name: {@code timestamp}
 		 */
-		public Builder end(@Nullable String value) {
-			this.end = value;
+		public final Builder timestamp(@Nullable String value) {
+			this.timestamp = value;
 			return this;
 		}
 
@@ -431,6 +466,7 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 		 *             if some of the required fields are null.
 		 */
 		public GetBucketsRequest build() {
+			_checkSingleUse();
 
 			return new GetBucketsRequest(this);
 		}
@@ -442,18 +478,18 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	 * Json deserializer for {@link GetBucketsRequest}
 	 */
 	public static final JsonpDeserializer<GetBucketsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetBucketsRequest::setupGetBucketsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetBucketsRequest::setupGetBucketsRequestDeserializer);
 
-	protected static void setupGetBucketsRequestDeserializer(DelegatingDeserializer<GetBucketsRequest.Builder> op) {
+	protected static void setupGetBucketsRequestDeserializer(ObjectDeserializer<GetBucketsRequest.Builder> op) {
 
 		op.add(Builder::anomalyScore, JsonpDeserializer.doubleDeserializer(), "anomaly_score");
 		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");
+		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
 		op.add(Builder::expand, JsonpDeserializer.booleanDeserializer(), "expand");
 		op.add(Builder::page, Page._DESERIALIZER, "page");
 		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
 		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
 
 	}
 
@@ -462,7 +498,9 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 	/**
 	 * Endpoint "{@code ml.get_buckets}".
 	 */
-	public static final Endpoint<GetBucketsRequest, GetBucketsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_buckets",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -509,11 +547,11 @@ public final class GetBucketsRequest extends RequestBase implements JsonpSeriali
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
-				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
 				}
 				return params;
 

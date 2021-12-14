@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,17 +33,28 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.rank_eval.RankEvalMetricRecall
+
+/**
+ * Recall at K (R@k)
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#k-recall">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L54-L58">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
+public class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricRecall(Builder builder) {
+	private RankEvalMetricRecall(Builder builder) {
 		super(builder);
 
 	}
 
-	public RankEvalMetricRecall(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricRecall of(Function<Builder, ObjectBuilder<RankEvalMetricRecall>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +62,7 @@ public final class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 	/**
 	 * Builder for {@link RankEvalMetricRecall}.
 	 */
+
 	public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankEvalMetricRecall> {
@@ -67,6 +78,7 @@ public final class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricRecall build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricRecall(this);
 		}
@@ -78,10 +90,9 @@ public final class RankEvalMetricRecall extends RankEvalMetricRatingTreshold {
 	 * Json deserializer for {@link RankEvalMetricRecall}
 	 */
 	public static final JsonpDeserializer<RankEvalMetricRecall> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankEvalMetricRecall::setupRankEvalMetricRecallDeserializer, Builder::build);
+			.lazy(Builder::new, RankEvalMetricRecall::setupRankEvalMetricRecallDeserializer);
 
-	protected static void setupRankEvalMetricRecallDeserializer(
-			DelegatingDeserializer<RankEvalMetricRecall.Builder> op) {
+	protected static void setupRankEvalMetricRecallDeserializer(ObjectDeserializer<RankEvalMetricRecall.Builder> op) {
 		RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
 
 	}

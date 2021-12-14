@@ -23,55 +23,60 @@
 
 package co.elastic.clients.elasticsearch.indices.analyze;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.analyze.TokenDetail
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/analyze/types.ts#L63-L66">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TokenDetail implements JsonpSerializable {
+public class TokenDetail implements JsonpSerializable {
 	private final String name;
 
 	private final List<ExplainAnalyzeToken> tokens;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TokenDetail(Builder builder) {
+	private TokenDetail(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.tokens = ModelTypeHelper.unmodifiableNonNull(builder.tokens, "tokens");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
 
 	}
 
-	public TokenDetail(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TokenDetail of(Function<Builder, ObjectBuilder<TokenDetail>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code tokens}
 	 */
-	public List<ExplainAnalyzeToken> tokens() {
+	public final List<ExplainAnalyzeToken> tokens() {
 		return this.tokens;
 	}
 
@@ -89,13 +94,16 @@ public final class TokenDetail implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
-		generator.writeKey("tokens");
-		generator.writeStartArray();
-		for (ExplainAnalyzeToken item0 : this.tokens) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.tokens)) {
+			generator.writeKey("tokens");
+			generator.writeStartArray();
+			for (ExplainAnalyzeToken item0 : this.tokens) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +112,8 @@ public final class TokenDetail implements JsonpSerializable {
 	/**
 	 * Builder for {@link TokenDetail}.
 	 */
-	public static class Builder implements ObjectBuilder<TokenDetail> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TokenDetail> {
 		private String name;
 
 		private List<ExplainAnalyzeToken> tokens;
@@ -112,50 +121,38 @@ public final class TokenDetail implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>tokens</code>.
 		 */
-		public Builder tokens(List<ExplainAnalyzeToken> value) {
-			this.tokens = value;
+		public final Builder tokens(List<ExplainAnalyzeToken> list) {
+			this.tokens = _listAddAll(this.tokens, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds one or more values to <code>tokens</code>.
 		 */
-		public Builder tokens(ExplainAnalyzeToken... value) {
-			this.tokens = Arrays.asList(value);
+		public final Builder tokens(ExplainAnalyzeToken value, ExplainAnalyzeToken... values) {
+			this.tokens = _listAdd(this.tokens, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
+		 * Required - API name: {@code tokens}
+		 * <p>
+		 * Adds a value to <code>tokens</code> using a builder lambda.
 		 */
-		public Builder addTokens(ExplainAnalyzeToken value) {
-			if (this.tokens == null) {
-				this.tokens = new ArrayList<>();
-			}
-			this.tokens.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #tokens(List)} to a singleton list.
-		 */
-		public Builder tokens(Function<ExplainAnalyzeToken.Builder, ObjectBuilder<ExplainAnalyzeToken>> fn) {
-			return this.tokens(fn.apply(new ExplainAnalyzeToken.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #tokens(List)}, creating the list if needed.
-		 */
-		public Builder addTokens(Function<ExplainAnalyzeToken.Builder, ObjectBuilder<ExplainAnalyzeToken>> fn) {
-			return this.addTokens(fn.apply(new ExplainAnalyzeToken.Builder()).build());
+		public final Builder tokens(Function<ExplainAnalyzeToken.Builder, ObjectBuilder<ExplainAnalyzeToken>> fn) {
+			return tokens(fn.apply(new ExplainAnalyzeToken.Builder()).build());
 		}
 
 		/**
@@ -165,6 +162,7 @@ public final class TokenDetail implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TokenDetail build() {
+			_checkSingleUse();
 
 			return new TokenDetail(this);
 		}
@@ -176,9 +174,9 @@ public final class TokenDetail implements JsonpSerializable {
 	 * Json deserializer for {@link TokenDetail}
 	 */
 	public static final JsonpDeserializer<TokenDetail> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TokenDetail::setupTokenDetailDeserializer, Builder::build);
+			TokenDetail::setupTokenDetailDeserializer);
 
-	protected static void setupTokenDetailDeserializer(DelegatingDeserializer<TokenDetail.Builder> op) {
+	protected static void setupTokenDetailDeserializer(ObjectDeserializer<TokenDetail.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::tokens, JsonpDeserializer.arrayDeserializer(ExplainAnalyzeToken._DESERIALIZER), "tokens");

@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Lifecycle.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum LifecycleOperationMode implements StringEnum {
-	Running("RUNNING"), Stopping("STOPPING"), Stopped("STOPPED");
+public enum LifecycleOperationMode implements JsonEnum {
+	Running("RUNNING"),
+
+	Stopping("STOPPING"),
+
+	Stopped("STOPPED"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +53,6 @@ public enum LifecycleOperationMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<LifecycleOperationMode> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<LifecycleOperationMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			LifecycleOperationMode.values());
 }

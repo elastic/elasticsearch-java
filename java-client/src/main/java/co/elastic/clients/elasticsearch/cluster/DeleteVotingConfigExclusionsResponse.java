@@ -30,11 +30,17 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: cluster.delete_voting_config_exclusions.Response
 
-public final class DeleteVotingConfigExclusionsResponse {
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/delete_voting_config_exclusions/ClusterDeleteVotingConfigExclusionsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
+
+public class DeleteVotingConfigExclusionsResponse {
 	public DeleteVotingConfigExclusionsResponse() {
 	}
 

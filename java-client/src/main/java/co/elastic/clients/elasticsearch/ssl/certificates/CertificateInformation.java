@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ssl.certificates;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ssl.certificates.CertificateInformation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ssl/certificates/types.ts#L22-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CertificateInformation implements JsonpSerializable {
+public class CertificateInformation implements JsonpSerializable {
 	@Nullable
 	private final String alias;
 
@@ -58,69 +66,69 @@ public final class CertificateInformation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CertificateInformation(Builder builder) {
+	private CertificateInformation(Builder builder) {
 
 		this.alias = builder.alias;
-		this.expiry = Objects.requireNonNull(builder.expiry, "expiry");
-		this.format = Objects.requireNonNull(builder.format, "format");
-		this.hasPrivateKey = Objects.requireNonNull(builder.hasPrivateKey, "has_private_key");
-		this.path = Objects.requireNonNull(builder.path, "path");
-		this.serialNumber = Objects.requireNonNull(builder.serialNumber, "serial_number");
-		this.subjectDn = Objects.requireNonNull(builder.subjectDn, "subject_dn");
+		this.expiry = ApiTypeHelper.requireNonNull(builder.expiry, this, "expiry");
+		this.format = ApiTypeHelper.requireNonNull(builder.format, this, "format");
+		this.hasPrivateKey = ApiTypeHelper.requireNonNull(builder.hasPrivateKey, this, "hasPrivateKey");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.serialNumber = ApiTypeHelper.requireNonNull(builder.serialNumber, this, "serialNumber");
+		this.subjectDn = ApiTypeHelper.requireNonNull(builder.subjectDn, this, "subjectDn");
 
 	}
 
-	public CertificateInformation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CertificateInformation of(Function<Builder, ObjectBuilder<CertificateInformation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code alias}
 	 */
 	@Nullable
-	public String alias() {
+	public final String alias() {
 		return this.alias;
 	}
 
 	/**
 	 * Required - API name: {@code expiry}
 	 */
-	public String expiry() {
+	public final String expiry() {
 		return this.expiry;
 	}
 
 	/**
 	 * Required - API name: {@code format}
 	 */
-	public String format() {
+	public final String format() {
 		return this.format;
 	}
 
 	/**
 	 * Required - API name: {@code has_private_key}
 	 */
-	public boolean hasPrivateKey() {
+	public final boolean hasPrivateKey() {
 		return this.hasPrivateKey;
 	}
 
 	/**
 	 * Required - API name: {@code path}
 	 */
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
 	/**
 	 * Required - API name: {@code serial_number}
 	 */
-	public String serialNumber() {
+	public final String serialNumber() {
 		return this.serialNumber;
 	}
 
 	/**
 	 * Required - API name: {@code subject_dn}
 	 */
-	public String subjectDn() {
+	public final String subjectDn() {
 		return this.subjectDn;
 	}
 
@@ -136,12 +144,10 @@ public final class CertificateInformation implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.alias != null) {
-
 			generator.writeKey("alias");
 			generator.write(this.alias);
 
 		}
-
 		generator.writeKey("expiry");
 		generator.write(this.expiry);
 
@@ -167,7 +173,8 @@ public final class CertificateInformation implements JsonpSerializable {
 	/**
 	 * Builder for {@link CertificateInformation}.
 	 */
-	public static class Builder implements ObjectBuilder<CertificateInformation> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CertificateInformation> {
 		@Nullable
 		private String alias;
 
@@ -186,7 +193,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code alias}
 		 */
-		public Builder alias(@Nullable String value) {
+		public final Builder alias(@Nullable String value) {
 			this.alias = value;
 			return this;
 		}
@@ -194,7 +201,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code expiry}
 		 */
-		public Builder expiry(String value) {
+		public final Builder expiry(String value) {
 			this.expiry = value;
 			return this;
 		}
@@ -202,7 +209,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code format}
 		 */
-		public Builder format(String value) {
+		public final Builder format(String value) {
 			this.format = value;
 			return this;
 		}
@@ -210,7 +217,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code has_private_key}
 		 */
-		public Builder hasPrivateKey(boolean value) {
+		public final Builder hasPrivateKey(boolean value) {
 			this.hasPrivateKey = value;
 			return this;
 		}
@@ -218,7 +225,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code path}
 		 */
-		public Builder path(String value) {
+		public final Builder path(String value) {
 			this.path = value;
 			return this;
 		}
@@ -226,7 +233,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code serial_number}
 		 */
-		public Builder serialNumber(String value) {
+		public final Builder serialNumber(String value) {
 			this.serialNumber = value;
 			return this;
 		}
@@ -234,7 +241,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code subject_dn}
 		 */
-		public Builder subjectDn(String value) {
+		public final Builder subjectDn(String value) {
 			this.subjectDn = value;
 			return this;
 		}
@@ -246,6 +253,7 @@ public final class CertificateInformation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CertificateInformation build() {
+			_checkSingleUse();
 
 			return new CertificateInformation(this);
 		}
@@ -257,10 +265,10 @@ public final class CertificateInformation implements JsonpSerializable {
 	 * Json deserializer for {@link CertificateInformation}
 	 */
 	public static final JsonpDeserializer<CertificateInformation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CertificateInformation::setupCertificateInformationDeserializer, Builder::build);
+			.lazy(Builder::new, CertificateInformation::setupCertificateInformationDeserializer);
 
 	protected static void setupCertificateInformationDeserializer(
-			DelegatingDeserializer<CertificateInformation.Builder> op) {
+			ObjectDeserializer<CertificateInformation.Builder> op) {
 
 		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
 		op.add(Builder::expiry, JsonpDeserializer.stringDeserializer(), "expiry");

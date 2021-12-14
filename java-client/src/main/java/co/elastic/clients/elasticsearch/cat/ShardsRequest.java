@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,34 +46,31 @@ import javax.annotation.Nullable;
 
 // typedef: cat.shards.Request
 
-public final class ShardsRequest extends CatRequestBase {
-	@Nullable
-	private final List<String> index;
+/**
+ * Provides a detailed view of shard allocation on nodes.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/shards/CatShardsRequest.ts#L23-L35">API
+ *      specification</a>
+ */
 
+public class ShardsRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
+	private final List<String> index;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardsRequest(Builder builder) {
+	private ShardsRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
 		this.bytes = builder.bytes;
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 
 	}
 
-	public ShardsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * A comma-separated list of index names to limit the returned information
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
+	public static ShardsRequest of(Function<Builder, ObjectBuilder<ShardsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -83,8 +79,17 @@ public final class ShardsRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
+	}
+
+	/**
+	 * A comma-separated list of index names to limit the returned information
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -92,51 +97,45 @@ public final class ShardsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link ShardsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardsRequest> {
-		@Nullable
-		private List<String> index;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsRequest> {
 		@Nullable
 		private Bytes bytes;
 
-		/**
-		 * A comma-separated list of index names to limit the returned information
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names to limit the returned information
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
+		@Nullable
+		private List<String> index;
 
 		/**
 		 * The unit in which to display byte values
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names to limit the returned information
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -147,6 +146,7 @@ public final class ShardsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ShardsRequest build() {
+			_checkSingleUse();
 
 			return new ShardsRequest(this);
 		}
@@ -157,7 +157,9 @@ public final class ShardsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.shards}".
 	 */
-	public static final Endpoint<ShardsRequest, ShardsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ShardsRequest, ShardsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.shards",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -170,7 +172,7 @@ public final class ShardsRequest extends CatRequestBase {
 
 				int propsSet = 0;
 
-				if (request.index() != null)
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -194,8 +196,9 @@ public final class ShardsRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				return params;
 

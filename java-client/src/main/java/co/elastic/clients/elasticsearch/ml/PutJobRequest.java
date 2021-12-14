@@ -23,25 +23,25 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -49,10 +49,18 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_job.Request
-@JsonpDeserializable
-public final class PutJobRequest extends RequestBase implements JsonpSerializable {
-	private final String jobId;
 
+/**
+ * Instantiates an anomaly detection job. If you include a
+ * <code>datafeed_config</code>, you must have read index privileges on the
+ * source index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_job/MlPutJobRequest.ts#L30-L111">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowLazyOpen;
 
@@ -61,10 +69,10 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final AnalysisLimits analysisLimits;
 
-	private final String backgroundPersistInterval;
+	private final Time backgroundPersistInterval;
 
 	@Nullable
-	private final CustomSettings customSettings;
+	private final JsonData customSettings;
 
 	@Nullable
 	private final Long dailyModelSnapshotRetentionAfterDays;
@@ -77,8 +85,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final String description;
 
-	@Nullable
 	private final List<String> groups;
+
+	private final String jobId;
 
 	@Nullable
 	private final ModelPlotConfig modelPlotConfig;
@@ -97,20 +106,20 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutJobRequest(Builder builder) {
+	private PutJobRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
 		this.allowLazyOpen = builder.allowLazyOpen;
-		this.analysisConfig = Objects.requireNonNull(builder.analysisConfig, "analysis_config");
+		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = builder.analysisLimits;
-		this.backgroundPersistInterval = Objects.requireNonNull(builder.backgroundPersistInterval,
-				"background_persist_interval");
+		this.backgroundPersistInterval = ApiTypeHelper.requireNonNull(builder.backgroundPersistInterval, this,
+				"backgroundPersistInterval");
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
-		this.dataDescription = Objects.requireNonNull(builder.dataDescription, "data_description");
+		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
 		this.datafeedConfig = builder.datafeedConfig;
 		this.description = builder.description;
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.renormalizationWindowDays = builder.renormalizationWindowDays;
@@ -119,19 +128,8 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 	}
 
-	public PutJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - The identifier for the anomaly detection job. This identifier can
-	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-	 * underscores. It must start and end with alphanumeric characters.
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
+	public static PutJobRequest of(Function<Builder, ObjectBuilder<PutJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -148,7 +146,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code allow_lazy_open}
 	 */
 	@Nullable
-	public Boolean allowLazyOpen() {
+	public final Boolean allowLazyOpen() {
 		return this.allowLazyOpen;
 	}
 
@@ -159,7 +157,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code analysis_config}
 	 */
-	public AnalysisConfig analysisConfig() {
+	public final AnalysisConfig analysisConfig() {
 		return this.analysisConfig;
 	}
 
@@ -172,7 +170,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code analysis_limits}
 	 */
 	@Nullable
-	public AnalysisLimits analysisLimits() {
+	public final AnalysisLimits analysisLimits() {
 		return this.analysisLimits;
 	}
 
@@ -186,7 +184,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code background_persist_interval}
 	 */
-	public String backgroundPersistInterval() {
+	public final Time backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
 
@@ -196,7 +194,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code custom_settings}
 	 */
 	@Nullable
-	public CustomSettings customSettings() {
+	public final JsonData customSettings() {
 		return this.customSettings;
 	}
 
@@ -210,7 +208,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code daily_model_snapshot_retention_after_days}
 	 */
 	@Nullable
-	public Long dailyModelSnapshotRetentionAfterDays() {
+	public final Long dailyModelSnapshotRetentionAfterDays() {
 		return this.dailyModelSnapshotRetentionAfterDays;
 	}
 
@@ -223,17 +221,21 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code data_description}
 	 */
-	public DataDescription dataDescription() {
+	public final DataDescription dataDescription() {
 		return this.dataDescription;
 	}
 
 	/**
-	 * Defines a datafeed for the anomaly detection job.
+	 * Defines a datafeed for the anomaly detection job. If Elasticsearch security
+	 * features are enabled, your datafeed remembers which roles the user who
+	 * created it had at the time of creation and runs the query using those same
+	 * roles. If you provide secondary authorization headers, those credentials are
+	 * used instead.
 	 * <p>
 	 * API name: {@code datafeed_config}
 	 */
 	@Nullable
-	public DatafeedConfig datafeedConfig() {
+	public final DatafeedConfig datafeedConfig() {
 		return this.datafeedConfig;
 	}
 
@@ -243,7 +245,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -252,9 +254,19 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * <p>
 	 * API name: {@code groups}
 	 */
-	@Nullable
-	public List<String> groups() {
+	public final List<String> groups() {
 		return this.groups;
+	}
+
+	/**
+	 * Required - The identifier for the anomaly detection job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public final String jobId() {
+		return this.jobId;
 	}
 
 	/**
@@ -271,7 +283,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code model_plot_config}
 	 */
 	@Nullable
-	public ModelPlotConfig modelPlotConfig() {
+	public final ModelPlotConfig modelPlotConfig() {
 		return this.modelPlotConfig;
 	}
 
@@ -285,7 +297,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code model_snapshot_retention_days}
 	 */
 	@Nullable
-	public Long modelSnapshotRetentionDays() {
+	public final Long modelSnapshotRetentionDays() {
 		return this.modelSnapshotRetentionDays;
 	}
 
@@ -297,18 +309,18 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * API name: {@code renormalization_window_days}
 	 */
 	@Nullable
-	public Long renormalizationWindowDays() {
+	public final Long renormalizationWindowDays() {
 		return this.renormalizationWindowDays;
 	}
 
 	/**
 	 * A text string that affects the name of the machine learning results index. By
-	 * default, the job generates an index named .ml-anomalies-shared.
+	 * default, the job generates an index named <code>.ml-anomalies-shared</code>.
 	 * <p>
 	 * API name: {@code results_index_name}
 	 */
 	@Nullable
-	public String resultsIndexName() {
+	public final String resultsIndexName() {
 		return this.resultsIndexName;
 	}
 
@@ -318,12 +330,14 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * result. If this property has a non-null value, once per day at 00:30 (server
 	 * time), results that are the specified number of days older than the latest
 	 * bucket result are deleted from Elasticsearch. The default value is null,
-	 * which means all results are retained.
+	 * which means all results are retained. Annotations generated by the system
+	 * also count as results for retention purposes; they are deleted after the same
+	 * number of days as results. Annotations added by users are retained forever.
 	 * <p>
 	 * API name: {@code results_retention_days}
 	 */
 	@Nullable
-	public Long resultsRetentionDays() {
+	public final Long resultsRetentionDays() {
 		return this.resultsRetentionDays;
 	}
 
@@ -339,55 +353,45 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.allowLazyOpen != null) {
-
 			generator.writeKey("allow_lazy_open");
 			generator.write(this.allowLazyOpen);
 
 		}
-
 		generator.writeKey("analysis_config");
 		this.analysisConfig.serialize(generator, mapper);
 
 		if (this.analysisLimits != null) {
-
 			generator.writeKey("analysis_limits");
 			this.analysisLimits.serialize(generator, mapper);
 
 		}
-
 		generator.writeKey("background_persist_interval");
-		generator.write(this.backgroundPersistInterval);
+		this.backgroundPersistInterval.serialize(generator, mapper);
 
 		if (this.customSettings != null) {
-
 			generator.writeKey("custom_settings");
 			this.customSettings.serialize(generator, mapper);
 
 		}
 		if (this.dailyModelSnapshotRetentionAfterDays != null) {
-
 			generator.writeKey("daily_model_snapshot_retention_after_days");
 			generator.write(this.dailyModelSnapshotRetentionAfterDays);
 
 		}
-
 		generator.writeKey("data_description");
 		this.dataDescription.serialize(generator, mapper);
 
 		if (this.datafeedConfig != null) {
-
 			generator.writeKey("datafeed_config");
 			this.datafeedConfig.serialize(generator, mapper);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
-		if (this.groups != null) {
-
+		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
 			generator.writeStartArray();
 			for (String item0 : this.groups) {
@@ -398,31 +402,26 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 		}
 		if (this.modelPlotConfig != null) {
-
 			generator.writeKey("model_plot_config");
 			this.modelPlotConfig.serialize(generator, mapper);
 
 		}
 		if (this.modelSnapshotRetentionDays != null) {
-
 			generator.writeKey("model_snapshot_retention_days");
 			generator.write(this.modelSnapshotRetentionDays);
 
 		}
 		if (this.renormalizationWindowDays != null) {
-
 			generator.writeKey("renormalization_window_days");
 			generator.write(this.renormalizationWindowDays);
 
 		}
 		if (this.resultsIndexName != null) {
-
 			generator.writeKey("results_index_name");
 			generator.write(this.resultsIndexName);
 
 		}
 		if (this.resultsRetentionDays != null) {
-
 			generator.writeKey("results_retention_days");
 			generator.write(this.resultsRetentionDays);
 
@@ -435,9 +434,8 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Builder for {@link PutJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutJobRequest> {
-		private String jobId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutJobRequest> {
 		@Nullable
 		private Boolean allowLazyOpen;
 
@@ -446,10 +444,10 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private AnalysisLimits analysisLimits;
 
-		private String backgroundPersistInterval;
+		private Time backgroundPersistInterval;
 
 		@Nullable
-		private CustomSettings customSettings;
+		private JsonData customSettings;
 
 		@Nullable
 		private Long dailyModelSnapshotRetentionAfterDays;
@@ -464,6 +462,8 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private List<String> groups;
+
+		private String jobId;
 
 		@Nullable
 		private ModelPlotConfig modelPlotConfig;
@@ -481,18 +481,6 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		private Long resultsRetentionDays;
 
 		/**
-		 * Required - The identifier for the anomaly detection job. This identifier can
-		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
-		 * underscores. It must start and end with alphanumeric characters.
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
 		 * Advanced configuration option. Specifies whether this job can open when there
 		 * is insufficient machine learning node capacity for it to be immediately
 		 * assigned to a node. By default, if a machine learning node with capacity to
@@ -505,7 +493,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code allow_lazy_open}
 		 */
-		public Builder allowLazyOpen(@Nullable Boolean value) {
+		public final Builder allowLazyOpen(@Nullable Boolean value) {
 			this.allowLazyOpen = value;
 			return this;
 		}
@@ -517,7 +505,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(AnalysisConfig value) {
+		public final Builder analysisConfig(AnalysisConfig value) {
 			this.analysisConfig = value;
 			return this;
 		}
@@ -529,7 +517,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
+		public final Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
 			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
 		}
 
@@ -541,7 +529,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code analysis_limits}
 		 */
-		public Builder analysisLimits(@Nullable AnalysisLimits value) {
+		public final Builder analysisLimits(@Nullable AnalysisLimits value) {
 			this.analysisLimits = value;
 			return this;
 		}
@@ -554,7 +542,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code analysis_limits}
 		 */
-		public Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
+		public final Builder analysisLimits(Function<AnalysisLimits.Builder, ObjectBuilder<AnalysisLimits>> fn) {
 			return this.analysisLimits(fn.apply(new AnalysisLimits.Builder()).build());
 		}
 
@@ -568,19 +556,23 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
-		public Builder backgroundPersistInterval(String value) {
+		public final Builder backgroundPersistInterval(Time value) {
 			this.backgroundPersistInterval = value;
 			return this;
 		}
 
 		/**
-		 * Advanced configuration option. Contains custom meta data about the job.
+		 * Required - Advanced configuration option. The time between each periodic
+		 * persistence of the model. The default value is a randomized value between 3
+		 * to 4 hours, which avoids all jobs persisting at exactly the same time. The
+		 * smallest allowed value is 1 hour. For very large models (several GB),
+		 * persistence could take 10-20 minutes, so do not set the
+		 * <code>background_persist_interval</code> value too low.
 		 * <p>
-		 * API name: {@code custom_settings}
+		 * API name: {@code background_persist_interval}
 		 */
-		public Builder customSettings(@Nullable CustomSettings value) {
-			this.customSettings = value;
-			return this;
+		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -588,8 +580,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code custom_settings}
 		 */
-		public Builder customSettings(Function<CustomSettings.Builder, ObjectBuilder<CustomSettings>> fn) {
-			return this.customSettings(fn.apply(new CustomSettings.Builder()).build());
+		public final Builder customSettings(@Nullable JsonData value) {
+			this.customSettings = value;
+			return this;
 		}
 
 		/**
@@ -601,7 +594,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code daily_model_snapshot_retention_after_days}
 		 */
-		public Builder dailyModelSnapshotRetentionAfterDays(@Nullable Long value) {
+		public final Builder dailyModelSnapshotRetentionAfterDays(@Nullable Long value) {
 			this.dailyModelSnapshotRetentionAfterDays = value;
 			return this;
 		}
@@ -615,7 +608,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code data_description}
 		 */
-		public Builder dataDescription(DataDescription value) {
+		public final Builder dataDescription(DataDescription value) {
 			this.dataDescription = value;
 			return this;
 		}
@@ -629,26 +622,34 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code data_description}
 		 */
-		public Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
+		public final Builder dataDescription(Function<DataDescription.Builder, ObjectBuilder<DataDescription>> fn) {
 			return this.dataDescription(fn.apply(new DataDescription.Builder()).build());
 		}
 
 		/**
-		 * Defines a datafeed for the anomaly detection job.
+		 * Defines a datafeed for the anomaly detection job. If Elasticsearch security
+		 * features are enabled, your datafeed remembers which roles the user who
+		 * created it had at the time of creation and runs the query using those same
+		 * roles. If you provide secondary authorization headers, those credentials are
+		 * used instead.
 		 * <p>
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(@Nullable DatafeedConfig value) {
+		public final Builder datafeedConfig(@Nullable DatafeedConfig value) {
 			this.datafeedConfig = value;
 			return this;
 		}
 
 		/**
-		 * Defines a datafeed for the anomaly detection job.
+		 * Defines a datafeed for the anomaly detection job. If Elasticsearch security
+		 * features are enabled, your datafeed remembers which roles the user who
+		 * created it had at the time of creation and runs the query using those same
+		 * roles. If you provide secondary authorization headers, those credentials are
+		 * used instead.
 		 * <p>
 		 * API name: {@code datafeed_config}
 		 */
-		public Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
+		public final Builder datafeedConfig(Function<DatafeedConfig.Builder, ObjectBuilder<DatafeedConfig>> fn) {
 			return this.datafeedConfig(fn.apply(new DatafeedConfig.Builder()).build());
 		}
 
@@ -657,7 +658,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -666,9 +667,11 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * A list of job groups. A job can belong to no groups or many.
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>groups</code>.
 		 */
-		public Builder groups(@Nullable List<String> value) {
-			this.groups = value;
+		public final Builder groups(List<String> list) {
+			this.groups = _listAddAll(this.groups, list);
 			return this;
 		}
 
@@ -676,20 +679,23 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * A list of job groups. A job can belong to no groups or many.
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds one or more values to <code>groups</code>.
 		 */
-		public Builder groups(String... value) {
-			this.groups = Arrays.asList(value);
+		public final Builder groups(String value, String... values) {
+			this.groups = _listAdd(this.groups, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
+		 * Required - The identifier for the anomaly detection job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
+		 * <p>
+		 * API name: {@code job_id}
 		 */
-		public Builder addGroups(String value) {
-			if (this.groups == null) {
-				this.groups = new ArrayList<>();
-			}
-			this.groups.add(value);
+		public final Builder jobId(String value) {
+			this.jobId = value;
 			return this;
 		}
 
@@ -706,7 +712,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code model_plot_config}
 		 */
-		public Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
+		public final Builder modelPlotConfig(@Nullable ModelPlotConfig value) {
 			this.modelPlotConfig = value;
 			return this;
 		}
@@ -724,7 +730,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code model_plot_config}
 		 */
-		public Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
+		public final Builder modelPlotConfig(Function<ModelPlotConfig.Builder, ObjectBuilder<ModelPlotConfig>> fn) {
 			return this.modelPlotConfig(fn.apply(new ModelPlotConfig.Builder()).build());
 		}
 
@@ -737,7 +743,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code model_snapshot_retention_days}
 		 */
-		public Builder modelSnapshotRetentionDays(@Nullable Long value) {
+		public final Builder modelSnapshotRetentionDays(@Nullable Long value) {
 			this.modelSnapshotRetentionDays = value;
 			return this;
 		}
@@ -749,18 +755,18 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * <p>
 		 * API name: {@code renormalization_window_days}
 		 */
-		public Builder renormalizationWindowDays(@Nullable Long value) {
+		public final Builder renormalizationWindowDays(@Nullable Long value) {
 			this.renormalizationWindowDays = value;
 			return this;
 		}
 
 		/**
 		 * A text string that affects the name of the machine learning results index. By
-		 * default, the job generates an index named .ml-anomalies-shared.
+		 * default, the job generates an index named <code>.ml-anomalies-shared</code>.
 		 * <p>
 		 * API name: {@code results_index_name}
 		 */
-		public Builder resultsIndexName(@Nullable String value) {
+		public final Builder resultsIndexName(@Nullable String value) {
 			this.resultsIndexName = value;
 			return this;
 		}
@@ -771,11 +777,13 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 * result. If this property has a non-null value, once per day at 00:30 (server
 		 * time), results that are the specified number of days older than the latest
 		 * bucket result are deleted from Elasticsearch. The default value is null,
-		 * which means all results are retained.
+		 * which means all results are retained. Annotations generated by the system
+		 * also count as results for retention purposes; they are deleted after the same
+		 * number of days as results. Annotations added by users are retained forever.
 		 * <p>
 		 * API name: {@code results_retention_days}
 		 */
-		public Builder resultsRetentionDays(@Nullable Long value) {
+		public final Builder resultsRetentionDays(@Nullable Long value) {
 			this.resultsRetentionDays = value;
 			return this;
 		}
@@ -787,6 +795,7 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 		 *             if some of the required fields are null.
 		 */
 		public PutJobRequest build() {
+			_checkSingleUse();
 
 			return new PutJobRequest(this);
 		}
@@ -798,16 +807,15 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	 * Json deserializer for {@link PutJobRequest}
 	 */
 	public static final JsonpDeserializer<PutJobRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutJobRequest::setupPutJobRequestDeserializer, Builder::build);
+			PutJobRequest::setupPutJobRequestDeserializer);
 
-	protected static void setupPutJobRequestDeserializer(DelegatingDeserializer<PutJobRequest.Builder> op) {
+	protected static void setupPutJobRequestDeserializer(ObjectDeserializer<PutJobRequest.Builder> op) {
 
 		op.add(Builder::allowLazyOpen, JsonpDeserializer.booleanDeserializer(), "allow_lazy_open");
 		op.add(Builder::analysisConfig, AnalysisConfig._DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
-		op.add(Builder::backgroundPersistInterval, JsonpDeserializer.stringDeserializer(),
-				"background_persist_interval");
-		op.add(Builder::customSettings, CustomSettings._DESERIALIZER, "custom_settings");
+		op.add(Builder::backgroundPersistInterval, Time._DESERIALIZER, "background_persist_interval");
+		op.add(Builder::customSettings, JsonData._DESERIALIZER, "custom_settings");
 		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.longDeserializer(),
 				"daily_model_snapshot_retention_after_days");
 		op.add(Builder::dataDescription, DataDescription._DESERIALIZER, "data_description");
@@ -828,7 +836,9 @@ public final class PutJobRequest extends RequestBase implements JsonpSerializabl
 	/**
 	 * Endpoint "{@code ml.put_job}".
 	 */
-	public static final Endpoint<PutJobRequest, PutJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutJobRequest, PutJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.put_job",
+
 			// Request method
 			request -> {
 				return "PUT";

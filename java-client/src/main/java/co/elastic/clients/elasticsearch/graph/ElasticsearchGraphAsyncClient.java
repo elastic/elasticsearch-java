@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.graph;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -34,10 +40,20 @@ import javax.annotation.Nullable;
 /**
  * Client for the graph namespace.
  */
-public class ElasticsearchGraphAsyncClient extends ApiClient {
+public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchGraphAsyncClient> {
 
-	public ElasticsearchGraphAsyncClient(Transport transport) {
-		super(transport);
+	public ElasticsearchGraphAsyncClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchGraphAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchGraphAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchGraphAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: graph.explore
@@ -51,8 +67,12 @@ public class ElasticsearchGraphAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ExploreResponse> explore(ExploreRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ExploreRequest.ENDPOINT);
+	public CompletableFuture<ExploreResponse> explore(ExploreRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExploreRequest, ExploreResponse, ErrorResponse> endpoint = (JsonEndpoint<ExploreRequest, ExploreResponse, ErrorResponse>) ExploreRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -60,16 +80,16 @@ public class ElasticsearchGraphAsyncClient extends ApiClient {
 	 * an index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExploreRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/graph-explore-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ExploreResponse> explore(
-			Function<ExploreRequest.Builder, ObjectBuilder<ExploreRequest>> fn) throws IOException {
+			Function<ExploreRequest.Builder, ObjectBuilder<ExploreRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return explore(fn.apply(new ExploreRequest.Builder()).build());
 	}
 

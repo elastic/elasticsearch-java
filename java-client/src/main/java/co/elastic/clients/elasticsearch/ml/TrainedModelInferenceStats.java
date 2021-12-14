@@ -23,24 +23,32 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelInferenceStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L42-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TrainedModelInferenceStats implements JsonpSerializable {
+public class TrainedModelInferenceStats implements JsonpSerializable {
 	private final long failureCount;
 
 	private final long inferenceCount;
@@ -49,22 +57,23 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 
 	private final long missingAllFieldsCount;
 
-	private final String timestamp;
+	private final Time timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TrainedModelInferenceStats(Builder builder) {
+	private TrainedModelInferenceStats(Builder builder) {
 
-		this.failureCount = Objects.requireNonNull(builder.failureCount, "failure_count");
-		this.inferenceCount = Objects.requireNonNull(builder.inferenceCount, "inference_count");
-		this.cacheMissCount = Objects.requireNonNull(builder.cacheMissCount, "cache_miss_count");
-		this.missingAllFieldsCount = Objects.requireNonNull(builder.missingAllFieldsCount, "missing_all_fields_count");
-		this.timestamp = Objects.requireNonNull(builder.timestamp, "timestamp");
+		this.failureCount = ApiTypeHelper.requireNonNull(builder.failureCount, this, "failureCount");
+		this.inferenceCount = ApiTypeHelper.requireNonNull(builder.inferenceCount, this, "inferenceCount");
+		this.cacheMissCount = ApiTypeHelper.requireNonNull(builder.cacheMissCount, this, "cacheMissCount");
+		this.missingAllFieldsCount = ApiTypeHelper.requireNonNull(builder.missingAllFieldsCount, this,
+				"missingAllFieldsCount");
+		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
 
 	}
 
-	public TrainedModelInferenceStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TrainedModelInferenceStats of(Function<Builder, ObjectBuilder<TrainedModelInferenceStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -72,7 +81,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code failure_count}
 	 */
-	public long failureCount() {
+	public final long failureCount() {
 		return this.failureCount;
 	}
 
@@ -82,7 +91,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code inference_count}
 	 */
-	public long inferenceCount() {
+	public final long inferenceCount() {
 		return this.inferenceCount;
 	}
 
@@ -95,7 +104,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code cache_miss_count}
 	 */
-	public long cacheMissCount() {
+	public final long cacheMissCount() {
 		return this.cacheMissCount;
 	}
 
@@ -105,7 +114,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code missing_all_fields_count}
 	 */
-	public long missingAllFieldsCount() {
+	public final long missingAllFieldsCount() {
 		return this.missingAllFieldsCount;
 	}
 
@@ -114,7 +123,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public String timestamp() {
+	public final Time timestamp() {
 		return this.timestamp;
 	}
 
@@ -142,7 +151,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		generator.write(this.missingAllFieldsCount);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+		this.timestamp.serialize(generator, mapper);
 
 	}
 
@@ -151,7 +160,8 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link TrainedModelInferenceStats}.
 	 */
-	public static class Builder implements ObjectBuilder<TrainedModelInferenceStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelInferenceStats> {
 		private Long failureCount;
 
 		private Long inferenceCount;
@@ -160,14 +170,14 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 
 		private Long missingAllFieldsCount;
 
-		private String timestamp;
+		private Time timestamp;
 
 		/**
 		 * Required - The number of failures when using the model for inference.
 		 * <p>
 		 * API name: {@code failure_count}
 		 */
-		public Builder failureCount(long value) {
+		public final Builder failureCount(long value) {
 			this.failureCount = value;
 			return this;
 		}
@@ -178,7 +188,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_count}
 		 */
-		public Builder inferenceCount(long value) {
+		public final Builder inferenceCount(long value) {
 			this.inferenceCount = value;
 			return this;
 		}
@@ -192,7 +202,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code cache_miss_count}
 		 */
-		public Builder cacheMissCount(long value) {
+		public final Builder cacheMissCount(long value) {
 			this.cacheMissCount = value;
 			return this;
 		}
@@ -203,7 +213,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code missing_all_fields_count}
 		 */
-		public Builder missingAllFieldsCount(long value) {
+		public final Builder missingAllFieldsCount(long value) {
 			this.missingAllFieldsCount = value;
 			return this;
 		}
@@ -213,9 +223,18 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public Builder timestamp(String value) {
+		public final Builder timestamp(Time value) {
 			this.timestamp = value;
 			return this;
+		}
+
+		/**
+		 * Required - The time when the statistics were last updated.
+		 * <p>
+		 * API name: {@code timestamp}
+		 */
+		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timestamp(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -225,6 +244,7 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TrainedModelInferenceStats build() {
+			_checkSingleUse();
 
 			return new TrainedModelInferenceStats(this);
 		}
@@ -235,17 +255,17 @@ public final class TrainedModelInferenceStats implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link TrainedModelInferenceStats}
 	 */
-	public static final JsonpDeserializer<TrainedModelInferenceStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, TrainedModelInferenceStats::setupTrainedModelInferenceStatsDeserializer, Builder::build);
+	public static final JsonpDeserializer<TrainedModelInferenceStats> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TrainedModelInferenceStats::setupTrainedModelInferenceStatsDeserializer);
 
 	protected static void setupTrainedModelInferenceStatsDeserializer(
-			DelegatingDeserializer<TrainedModelInferenceStats.Builder> op) {
+			ObjectDeserializer<TrainedModelInferenceStats.Builder> op) {
 
 		op.add(Builder::failureCount, JsonpDeserializer.longDeserializer(), "failure_count");
 		op.add(Builder::inferenceCount, JsonpDeserializer.longDeserializer(), "inference_count");
 		op.add(Builder::cacheMissCount, JsonpDeserializer.longDeserializer(), "cache_miss_count");
 		op.add(Builder::missingAllFieldsCount, JsonpDeserializer.longDeserializer(), "missing_all_fields_count");
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::timestamp, Time._DESERIALIZER, "timestamp");
 
 	}
 

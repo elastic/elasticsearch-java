@@ -23,53 +23,57 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.NoriPartOfSpeechTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L271-L274">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> stoptags;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NoriPartOfSpeechTokenFilter(Builder builder) {
+	private NoriPartOfSpeechTokenFilter(Builder builder) {
 		super(builder);
 
-		this.stoptags = ModelTypeHelper.unmodifiableNonNull(builder.stoptags, "stoptags");
+		this.stoptags = ApiTypeHelper.unmodifiableRequired(builder.stoptags, this, "stoptags");
 
 	}
 
-	public NoriPartOfSpeechTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NoriPartOfSpeechTokenFilter of(Function<Builder, ObjectBuilder<NoriPartOfSpeechTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "nori_part_of_speech";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.NoriPartOfSpeech;
 	}
 
 	/**
 	 * Required - API name: {@code stoptags}
 	 */
-	public List<String> stoptags() {
+	public final List<String> stoptags() {
 		return this.stoptags;
 	}
 
@@ -77,14 +81,16 @@ public final class NoriPartOfSpeechTokenFilter extends TokenFilterBase implement
 
 		generator.write("type", "nori_part_of_speech");
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.stoptags)) {
+			generator.writeKey("stoptags");
+			generator.writeStartArray();
+			for (String item0 : this.stoptags) {
+				generator.write(item0);
 
-		generator.writeKey("stoptags");
-		generator.writeStartArray();
-		for (String item0 : this.stoptags) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -93,6 +99,7 @@ public final class NoriPartOfSpeechTokenFilter extends TokenFilterBase implement
 	/**
 	 * Builder for {@link NoriPartOfSpeechTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NoriPartOfSpeechTokenFilter> {
@@ -100,28 +107,21 @@ public final class NoriPartOfSpeechTokenFilter extends TokenFilterBase implement
 
 		/**
 		 * Required - API name: {@code stoptags}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stoptags</code>.
 		 */
-		public Builder stoptags(List<String> value) {
-			this.stoptags = value;
+		public final Builder stoptags(List<String> list) {
+			this.stoptags = _listAddAll(this.stoptags, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stoptags}
+		 * <p>
+		 * Adds one or more values to <code>stoptags</code>.
 		 */
-		public Builder stoptags(String... value) {
-			this.stoptags = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #stoptags(List)}, creating the list if needed.
-		 */
-		public Builder addStoptags(String value) {
-			if (this.stoptags == null) {
-				this.stoptags = new ArrayList<>();
-			}
-			this.stoptags.add(value);
+		public final Builder stoptags(String value, String... values) {
+			this.stoptags = _listAdd(this.stoptags, value, values);
 			return this;
 		}
 
@@ -137,6 +137,7 @@ public final class NoriPartOfSpeechTokenFilter extends TokenFilterBase implement
 		 *             if some of the required fields are null.
 		 */
 		public NoriPartOfSpeechTokenFilter build() {
+			_checkSingleUse();
 
 			return new NoriPartOfSpeechTokenFilter(this);
 		}
@@ -147,11 +148,11 @@ public final class NoriPartOfSpeechTokenFilter extends TokenFilterBase implement
 	/**
 	 * Json deserializer for {@link NoriPartOfSpeechTokenFilter}
 	 */
-	public static final JsonpDeserializer<NoriPartOfSpeechTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, NoriPartOfSpeechTokenFilter::setupNoriPartOfSpeechTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<NoriPartOfSpeechTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, NoriPartOfSpeechTokenFilter::setupNoriPartOfSpeechTokenFilterDeserializer);
 
 	protected static void setupNoriPartOfSpeechTokenFilterDeserializer(
-			DelegatingDeserializer<NoriPartOfSpeechTokenFilter.Builder> op) {
+			ObjectDeserializer<NoriPartOfSpeechTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::stoptags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stoptags");

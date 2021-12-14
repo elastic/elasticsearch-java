@@ -23,44 +23,49 @@
 
 package co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.IndexCapabilities
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_rollup_index_caps/types.ts#L24-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexCapabilities implements JsonpSerializable {
+public class IndexCapabilities implements JsonpSerializable {
 	private final List<RollupJobSummary> rollupJobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexCapabilities(Builder builder) {
+	private IndexCapabilities(Builder builder) {
 
-		this.rollupJobs = ModelTypeHelper.unmodifiableNonNull(builder.rollupJobs, "rollup_jobs");
+		this.rollupJobs = ApiTypeHelper.unmodifiableRequired(builder.rollupJobs, this, "rollupJobs");
 
 	}
 
-	public IndexCapabilities(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexCapabilities of(Function<Builder, ObjectBuilder<IndexCapabilities>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code rollup_jobs}
 	 */
-	public List<RollupJobSummary> rollupJobs() {
+	public final List<RollupJobSummary> rollupJobs() {
 		return this.rollupJobs;
 	}
 
@@ -75,13 +80,16 @@ public final class IndexCapabilities implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("rollup_jobs");
-		generator.writeStartArray();
-		for (RollupJobSummary item0 : this.rollupJobs) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.rollupJobs)) {
+			generator.writeKey("rollup_jobs");
+			generator.writeStartArray();
+			for (RollupJobSummary item0 : this.rollupJobs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,48 +98,37 @@ public final class IndexCapabilities implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexCapabilities}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexCapabilities> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexCapabilities> {
 		private List<RollupJobSummary> rollupJobs;
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rollupJobs</code>.
 		 */
-		public Builder rollupJobs(List<RollupJobSummary> value) {
-			this.rollupJobs = value;
+		public final Builder rollupJobs(List<RollupJobSummary> list) {
+			this.rollupJobs = _listAddAll(this.rollupJobs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds one or more values to <code>rollupJobs</code>.
 		 */
-		public Builder rollupJobs(RollupJobSummary... value) {
-			this.rollupJobs = Arrays.asList(value);
+		public final Builder rollupJobs(RollupJobSummary value, RollupJobSummary... values) {
+			this.rollupJobs = _listAdd(this.rollupJobs, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed.
+		 * Required - API name: {@code rollup_jobs}
+		 * <p>
+		 * Adds a value to <code>rollupJobs</code> using a builder lambda.
 		 */
-		public Builder addRollupJobs(RollupJobSummary value) {
-			if (this.rollupJobs == null) {
-				this.rollupJobs = new ArrayList<>();
-			}
-			this.rollupJobs.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #rollupJobs(List)} to a singleton list.
-		 */
-		public Builder rollupJobs(Function<RollupJobSummary.Builder, ObjectBuilder<RollupJobSummary>> fn) {
-			return this.rollupJobs(fn.apply(new RollupJobSummary.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #rollupJobs(List)}, creating the list if needed.
-		 */
-		public Builder addRollupJobs(Function<RollupJobSummary.Builder, ObjectBuilder<RollupJobSummary>> fn) {
-			return this.addRollupJobs(fn.apply(new RollupJobSummary.Builder()).build());
+		public final Builder rollupJobs(Function<RollupJobSummary.Builder, ObjectBuilder<RollupJobSummary>> fn) {
+			return rollupJobs(fn.apply(new RollupJobSummary.Builder()).build());
 		}
 
 		/**
@@ -141,6 +138,7 @@ public final class IndexCapabilities implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexCapabilities build() {
+			_checkSingleUse();
 
 			return new IndexCapabilities(this);
 		}
@@ -152,9 +150,9 @@ public final class IndexCapabilities implements JsonpSerializable {
 	 * Json deserializer for {@link IndexCapabilities}
 	 */
 	public static final JsonpDeserializer<IndexCapabilities> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IndexCapabilities::setupIndexCapabilitiesDeserializer, Builder::build);
+			.lazy(Builder::new, IndexCapabilities::setupIndexCapabilitiesDeserializer);
 
-	protected static void setupIndexCapabilitiesDeserializer(DelegatingDeserializer<IndexCapabilities.Builder> op) {
+	protected static void setupIndexCapabilitiesDeserializer(ObjectDeserializer<IndexCapabilities.Builder> op) {
 
 		op.add(Builder::rollupJobs, JsonpDeserializer.arrayDeserializer(RollupJobSummary._DESERIALIZER), "rollup_jobs");
 

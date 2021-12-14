@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.SearchAsYouTypeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L232-L242">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SearchAsYouTypeProperty extends CorePropertyBase implements PropertyVariant {
+public class SearchAsYouTypeProperty extends CorePropertyBase implements PropertyVariant {
 	@Nullable
 	private final String analyzer;
 
@@ -67,7 +73,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SearchAsYouTypeProperty(Builder builder) {
+	private SearchAsYouTypeProperty(Builder builder) {
 		super(builder);
 
 		this.analyzer = builder.analyzer;
@@ -81,23 +87,23 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 
 	}
 
-	public SearchAsYouTypeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SearchAsYouTypeProperty of(Function<Builder, ObjectBuilder<SearchAsYouTypeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "search_as_you_type";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.SearchAsYouType;
 	}
 
 	/**
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -105,7 +111,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public Boolean index() {
+	public final Boolean index() {
 		return this.index;
 	}
 
@@ -113,7 +119,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 	 * API name: {@code index_options}
 	 */
 	@Nullable
-	public IndexOptions indexOptions() {
+	public final IndexOptions indexOptions() {
 		return this.indexOptions;
 	}
 
@@ -121,7 +127,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 	 * API name: {@code max_shingle_size}
 	 */
 	@Nullable
-	public Integer maxShingleSize() {
+	public final Integer maxShingleSize() {
 		return this.maxShingleSize;
 	}
 
@@ -129,7 +135,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 	 * API name: {@code norms}
 	 */
 	@Nullable
-	public Boolean norms() {
+	public final Boolean norms() {
 		return this.norms;
 	}
 
@@ -137,7 +143,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 	 * API name: {@code search_analyzer}
 	 */
 	@Nullable
-	public String searchAnalyzer() {
+	public final String searchAnalyzer() {
 		return this.searchAnalyzer;
 	}
 
@@ -145,7 +151,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 	 * API name: {@code search_quote_analyzer}
 	 */
 	@Nullable
-	public String searchQuoteAnalyzer() {
+	public final String searchQuoteAnalyzer() {
 		return this.searchQuoteAnalyzer;
 	}
 
@@ -153,7 +159,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 	 * API name: {@code term_vector}
 	 */
 	@Nullable
-	public TermVectorOption termVector() {
+	public final TermVectorOption termVector() {
 		return this.termVector;
 	}
 
@@ -162,48 +168,40 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		generator.write("type", "search_as_you_type");
 		super.serializeInternal(generator, mapper);
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.indexOptions != null) {
-
 			generator.writeKey("index_options");
 			this.indexOptions.serialize(generator, mapper);
 		}
 		if (this.maxShingleSize != null) {
-
 			generator.writeKey("max_shingle_size");
 			generator.write(this.maxShingleSize);
 
 		}
 		if (this.norms != null) {
-
 			generator.writeKey("norms");
 			generator.write(this.norms);
 
 		}
 		if (this.searchAnalyzer != null) {
-
 			generator.writeKey("search_analyzer");
 			generator.write(this.searchAnalyzer);
 
 		}
 		if (this.searchQuoteAnalyzer != null) {
-
 			generator.writeKey("search_quote_analyzer");
 			generator.write(this.searchQuoteAnalyzer);
 
 		}
 		if (this.termVector != null) {
-
 			generator.writeKey("term_vector");
 			this.termVector.serialize(generator, mapper);
 		}
@@ -215,6 +213,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 	/**
 	 * Builder for {@link SearchAsYouTypeProperty}.
 	 */
+
 	public static class Builder extends CorePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SearchAsYouTypeProperty> {
@@ -245,7 +244,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public Builder analyzer(@Nullable String value) {
+		public final Builder analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return this;
 		}
@@ -253,7 +252,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		/**
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable Boolean value) {
+		public final Builder index(@Nullable Boolean value) {
 			this.index = value;
 			return this;
 		}
@@ -261,7 +260,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		/**
 		 * API name: {@code index_options}
 		 */
-		public Builder indexOptions(@Nullable IndexOptions value) {
+		public final Builder indexOptions(@Nullable IndexOptions value) {
 			this.indexOptions = value;
 			return this;
 		}
@@ -269,7 +268,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		/**
 		 * API name: {@code max_shingle_size}
 		 */
-		public Builder maxShingleSize(@Nullable Integer value) {
+		public final Builder maxShingleSize(@Nullable Integer value) {
 			this.maxShingleSize = value;
 			return this;
 		}
@@ -277,7 +276,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		/**
 		 * API name: {@code norms}
 		 */
-		public Builder norms(@Nullable Boolean value) {
+		public final Builder norms(@Nullable Boolean value) {
 			this.norms = value;
 			return this;
 		}
@@ -285,7 +284,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		/**
 		 * API name: {@code search_analyzer}
 		 */
-		public Builder searchAnalyzer(@Nullable String value) {
+		public final Builder searchAnalyzer(@Nullable String value) {
 			this.searchAnalyzer = value;
 			return this;
 		}
@@ -293,7 +292,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		/**
 		 * API name: {@code search_quote_analyzer}
 		 */
-		public Builder searchQuoteAnalyzer(@Nullable String value) {
+		public final Builder searchQuoteAnalyzer(@Nullable String value) {
 			this.searchQuoteAnalyzer = value;
 			return this;
 		}
@@ -301,7 +300,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		/**
 		 * API name: {@code term_vector}
 		 */
-		public Builder termVector(@Nullable TermVectorOption value) {
+		public final Builder termVector(@Nullable TermVectorOption value) {
 			this.termVector = value;
 			return this;
 		}
@@ -318,6 +317,7 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 		 *             if some of the required fields are null.
 		 */
 		public SearchAsYouTypeProperty build() {
+			_checkSingleUse();
 
 			return new SearchAsYouTypeProperty(this);
 		}
@@ -329,10 +329,10 @@ public final class SearchAsYouTypeProperty extends CorePropertyBase implements P
 	 * Json deserializer for {@link SearchAsYouTypeProperty}
 	 */
 	public static final JsonpDeserializer<SearchAsYouTypeProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SearchAsYouTypeProperty::setupSearchAsYouTypePropertyDeserializer, Builder::build);
+			.lazy(Builder::new, SearchAsYouTypeProperty::setupSearchAsYouTypePropertyDeserializer);
 
 	protected static void setupSearchAsYouTypePropertyDeserializer(
-			DelegatingDeserializer<SearchAsYouTypeProperty.Builder> op) {
+			ObjectDeserializer<SearchAsYouTypeProperty.Builder> op) {
 		CorePropertyBase.setupCorePropertyBaseDeserializer(op);
 		op.add(Builder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");

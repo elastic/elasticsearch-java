@@ -23,15 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -39,30 +39,37 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.ScriptField
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Scripting.ts#L61-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ScriptField implements JsonpSerializable {
-	private final JsonValue /* _types.Script */ script;
+public class ScriptField implements JsonpSerializable {
+	private final Script script;
 
 	@Nullable
 	private final Boolean ignoreFailure;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptField(Builder builder) {
+	private ScriptField(Builder builder) {
 
-		this.script = Objects.requireNonNull(builder.script, "script");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 		this.ignoreFailure = builder.ignoreFailure;
 
 	}
 
-	public ScriptField(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScriptField of(Function<Builder, ObjectBuilder<ScriptField>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -70,7 +77,7 @@ public final class ScriptField implements JsonpSerializable {
 	 * API name: {@code ignore_failure}
 	 */
 	@Nullable
-	public Boolean ignoreFailure() {
+	public final Boolean ignoreFailure() {
 		return this.ignoreFailure;
 	}
 
@@ -86,10 +93,9 @@ public final class ScriptField implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("script");
-		generator.write(this.script);
+		this.script.serialize(generator, mapper);
 
 		if (this.ignoreFailure != null) {
-
 			generator.writeKey("ignore_failure");
 			generator.write(this.ignoreFailure);
 
@@ -102,8 +108,9 @@ public final class ScriptField implements JsonpSerializable {
 	/**
 	 * Builder for {@link ScriptField}.
 	 */
-	public static class Builder implements ObjectBuilder<ScriptField> {
-		private JsonValue /* _types.Script */ script;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptField> {
+		private Script script;
 
 		@Nullable
 		private Boolean ignoreFailure;
@@ -111,15 +118,22 @@ public final class ScriptField implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
 		}
 
 		/**
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code ignore_failure}
 		 */
-		public Builder ignoreFailure(@Nullable Boolean value) {
+		public final Builder ignoreFailure(@Nullable Boolean value) {
 			this.ignoreFailure = value;
 			return this;
 		}
@@ -131,6 +145,7 @@ public final class ScriptField implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ScriptField build() {
+			_checkSingleUse();
 
 			return new ScriptField(this);
 		}
@@ -142,11 +157,11 @@ public final class ScriptField implements JsonpSerializable {
 	 * Json deserializer for {@link ScriptField}
 	 */
 	public static final JsonpDeserializer<ScriptField> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ScriptField::setupScriptFieldDeserializer, Builder::build);
+			ScriptField::setupScriptFieldDeserializer);
 
-	protected static void setupScriptFieldDeserializer(DelegatingDeserializer<ScriptField.Builder> op) {
+	protected static void setupScriptFieldDeserializer(ObjectDeserializer<ScriptField.Builder> op) {
 
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::ignoreFailure, JsonpDeserializer.booleanDeserializer(), "ignore_failure");
 
 	}

@@ -23,13 +23,23 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/NumericFielddataFormat.ts#L20-L23">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum NumericFielddataFormat implements StringEnum {
-	Array("array"), Disabled("disabled");
+public enum NumericFielddataFormat implements JsonEnum {
+	Array("array"),
+
+	Disabled("disabled"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +51,6 @@ public enum NumericFielddataFormat implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<NumericFielddataFormat> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<NumericFielddataFormat> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			NumericFielddataFormat.values());
 }

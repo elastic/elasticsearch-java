@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: cluster.stats.ClusterShardMetrics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L266-L270">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterShardMetrics implements JsonpSerializable {
+public class ClusterShardMetrics implements JsonpSerializable {
 	private final double avg;
 
 	private final double max;
@@ -47,36 +55,36 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterShardMetrics(Builder builder) {
+	private ClusterShardMetrics(Builder builder) {
 
-		this.avg = Objects.requireNonNull(builder.avg, "avg");
-		this.max = Objects.requireNonNull(builder.max, "max");
-		this.min = Objects.requireNonNull(builder.min, "min");
+		this.avg = ApiTypeHelper.requireNonNull(builder.avg, this, "avg");
+		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
+		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
 
 	}
 
-	public ClusterShardMetrics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterShardMetrics of(Function<Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code avg}
 	 */
-	public double avg() {
+	public final double avg() {
 		return this.avg;
 	}
 
 	/**
 	 * Required - API name: {@code max}
 	 */
-	public double max() {
+	public final double max() {
 		return this.max;
 	}
 
 	/**
 	 * Required - API name: {@code min}
 	 */
-	public double min() {
+	public final double min() {
 		return this.min;
 	}
 
@@ -107,7 +115,8 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterShardMetrics}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterShardMetrics> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterShardMetrics> {
 		private Double avg;
 
 		private Double max;
@@ -117,7 +126,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code avg}
 		 */
-		public Builder avg(double value) {
+		public final Builder avg(double value) {
 			this.avg = value;
 			return this;
 		}
@@ -125,7 +134,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max}
 		 */
-		public Builder max(double value) {
+		public final Builder max(double value) {
 			this.max = value;
 			return this;
 		}
@@ -133,7 +142,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code min}
 		 */
-		public Builder min(double value) {
+		public final Builder min(double value) {
 			this.min = value;
 			return this;
 		}
@@ -145,6 +154,7 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterShardMetrics build() {
+			_checkSingleUse();
 
 			return new ClusterShardMetrics(this);
 		}
@@ -156,9 +166,9 @@ public final class ClusterShardMetrics implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterShardMetrics}
 	 */
 	public static final JsonpDeserializer<ClusterShardMetrics> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClusterShardMetrics::setupClusterShardMetricsDeserializer, Builder::build);
+			.lazy(Builder::new, ClusterShardMetrics::setupClusterShardMetricsDeserializer);
 
-	protected static void setupClusterShardMetricsDeserializer(DelegatingDeserializer<ClusterShardMetrics.Builder> op) {
+	protected static void setupClusterShardMetricsDeserializer(ObjectDeserializer<ClusterShardMetrics.Builder> op) {
 
 		op.add(Builder::avg, JsonpDeserializer.doubleDeserializer(), "avg");
 		op.add(Builder::max, JsonpDeserializer.doubleDeserializer(), "max");

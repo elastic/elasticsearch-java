@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.security.get_role;
 
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,14 +32,11 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -48,8 +44,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_role.Role
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role/types.ts#L27-L35">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Role implements JsonpSerializable {
+public class Role implements JsonpSerializable {
 	private final List<String> cluster;
 
 	private final List<IndicesPrivileges> indices;
@@ -62,74 +65,72 @@ public final class Role implements JsonpSerializable {
 
 	private final List<ApplicationPrivileges> applications;
 
-	@Nullable
-	private final List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates;
+	private final List<RoleTemplate> roleTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Role(Builder builder) {
+	private Role(Builder builder) {
 
-		this.cluster = ModelTypeHelper.unmodifiableNonNull(builder.cluster, "cluster");
-		this.indices = ModelTypeHelper.unmodifiableNonNull(builder.indices, "indices");
-		this.metadata = ModelTypeHelper.unmodifiableNonNull(builder.metadata, "metadata");
-		this.runAs = ModelTypeHelper.unmodifiableNonNull(builder.runAs, "run_as");
-		this.transientMetadata = Objects.requireNonNull(builder.transientMetadata, "transient_metadata");
-		this.applications = ModelTypeHelper.unmodifiableNonNull(builder.applications, "applications");
-		this.roleTemplates = ModelTypeHelper.unmodifiable(builder.roleTemplates);
+		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
+		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
+		this.runAs = ApiTypeHelper.unmodifiableRequired(builder.runAs, this, "runAs");
+		this.transientMetadata = ApiTypeHelper.requireNonNull(builder.transientMetadata, this, "transientMetadata");
+		this.applications = ApiTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
+		this.roleTemplates = ApiTypeHelper.unmodifiable(builder.roleTemplates);
 
 	}
 
-	public Role(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Role of(Function<Builder, ObjectBuilder<Role>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code cluster}
 	 */
-	public List<String> cluster() {
+	public final List<String> cluster() {
 		return this.cluster;
 	}
 
 	/**
 	 * Required - API name: {@code indices}
 	 */
-	public List<IndicesPrivileges> indices() {
+	public final List<IndicesPrivileges> indices() {
 		return this.indices;
 	}
 
 	/**
 	 * Required - API name: {@code metadata}
 	 */
-	public Map<String, JsonData> metadata() {
+	public final Map<String, JsonData> metadata() {
 		return this.metadata;
 	}
 
 	/**
 	 * Required - API name: {@code run_as}
 	 */
-	public List<String> runAs() {
+	public final List<String> runAs() {
 		return this.runAs;
 	}
 
 	/**
 	 * Required - API name: {@code transient_metadata}
 	 */
-	public TransientMetadata transientMetadata() {
+	public final TransientMetadata transientMetadata() {
 		return this.transientMetadata;
 	}
 
 	/**
 	 * Required - API name: {@code applications}
 	 */
-	public List<ApplicationPrivileges> applications() {
+	public final List<ApplicationPrivileges> applications() {
 		return this.applications;
 	}
 
 	/**
 	 * API name: {@code role_templates}
 	 */
-	@Nullable
-	public List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates() {
+	public final List<RoleTemplate> roleTemplates() {
 		return this.roleTemplates;
 	}
 
@@ -144,56 +145,65 @@ public final class Role implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("cluster");
-		generator.writeStartArray();
-		for (String item0 : this.cluster) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.cluster)) {
+			generator.writeKey("cluster");
+			generator.writeStartArray();
+			for (String item0 : this.cluster) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.indices)) {
+			generator.writeKey("indices");
+			generator.writeStartArray();
+			for (IndicesPrivileges item0 : this.indices) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("indices");
-		generator.writeStartArray();
-		for (IndicesPrivileges item0 : this.indices) {
-			item0.serialize(generator, mapper);
-
-		}
-		generator.writeEnd();
-
-		generator.writeKey("metadata");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.metadata)) {
+			generator.writeKey("metadata");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
-		generator.writeKey("run_as");
-		generator.writeStartArray();
-		for (String item0 : this.runAs) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.runAs)) {
+			generator.writeKey("run_as");
+			generator.writeStartArray();
+			for (String item0 : this.runAs) {
+				generator.write(item0);
 
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("transient_metadata");
 		this.transientMetadata.serialize(generator, mapper);
 
-		generator.writeKey("applications");
-		generator.writeStartArray();
-		for (ApplicationPrivileges item0 : this.applications) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.applications)) {
+			generator.writeKey("applications");
+			generator.writeStartArray();
+			for (ApplicationPrivileges item0 : this.applications) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		if (this.roleTemplates != null) {
-
+		if (ApiTypeHelper.isDefined(this.roleTemplates)) {
 			generator.writeKey("role_templates");
 			generator.writeStartArray();
-			for (JsonValue /* security.get_role.RoleTemplate */ item0 : this.roleTemplates) {
-				generator.write(item0);
+			for (RoleTemplate item0 : this.roleTemplates) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -207,7 +217,8 @@ public final class Role implements JsonpSerializable {
 	/**
 	 * Builder for {@link Role}.
 	 */
-	public static class Builder implements ObjectBuilder<Role> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Role> {
 		private List<String> cluster;
 
 		private List<IndicesPrivileges> indices;
@@ -221,126 +232,101 @@ public final class Role implements JsonpSerializable {
 		private List<ApplicationPrivileges> applications;
 
 		@Nullable
-		private List<JsonValue /* security.get_role.RoleTemplate */> roleTemplates;
+		private List<RoleTemplate> roleTemplates;
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 */
-		public Builder cluster(List<String> value) {
-			this.cluster = value;
+		public final Builder cluster(List<String> list) {
+			this.cluster = _listAddAll(this.cluster, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code cluster}
+		 * <p>
+		 * Adds one or more values to <code>cluster</code>.
 		 */
-		public Builder cluster(String... value) {
-			this.cluster = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #cluster(List)}, creating the list if needed.
-		 */
-		public Builder addCluster(String value) {
-			if (this.cluster == null) {
-				this.cluster = new ArrayList<>();
-			}
-			this.cluster.add(value);
+		public final Builder cluster(String value, String... values) {
+			this.cluster = _listAdd(this.cluster, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
-		public Builder indices(List<IndicesPrivileges> value) {
-			this.indices = value;
+		public final Builder indices(List<IndicesPrivileges> list) {
+			this.indices = _listAddAll(this.indices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds one or more values to <code>indices</code>.
 		 */
-		public Builder indices(IndicesPrivileges... value) {
-			this.indices = Arrays.asList(value);
+		public final Builder indices(IndicesPrivileges value, IndicesPrivileges... values) {
+			this.indices = _listAdd(this.indices, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
+		 * Required - API name: {@code indices}
+		 * <p>
+		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */
-		public Builder addIndices(IndicesPrivileges value) {
-			if (this.indices == null) {
-				this.indices = new ArrayList<>();
-			}
-			this.indices.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #indices(List)} to a singleton list.
-		 */
-		public Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
-			return this.indices(fn.apply(new IndicesPrivileges.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #indices(List)}, creating the list if needed.
-		 */
-		public Builder addIndices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
-			return this.addIndices(fn.apply(new IndicesPrivileges.Builder()).build());
+		public final Builder indices(Function<IndicesPrivileges.Builder, ObjectBuilder<IndicesPrivileges>> fn) {
+			return indices(fn.apply(new IndicesPrivileges.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
-		public Builder metadata(Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
+		 * Required - API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
 		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code run_as}
-		 */
-		public Builder runAs(List<String> value) {
-			this.runAs = value;
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code run_as}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>runAs</code>.
 		 */
-		public Builder runAs(String... value) {
-			this.runAs = Arrays.asList(value);
+		public final Builder runAs(List<String> list) {
+			this.runAs = _listAddAll(this.runAs, list);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #runAs(List)}, creating the list if needed.
+		 * Required - API name: {@code run_as}
+		 * <p>
+		 * Adds one or more values to <code>runAs</code>.
 		 */
-		public Builder addRunAs(String value) {
-			if (this.runAs == null) {
-				this.runAs = new ArrayList<>();
-			}
-			this.runAs.add(value);
+		public final Builder runAs(String value, String... values) {
+			this.runAs = _listAdd(this.runAs, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code transient_metadata}
 		 */
-		public Builder transientMetadata(TransientMetadata value) {
+		public final Builder transientMetadata(TransientMetadata value) {
 			this.transientMetadata = value;
 			return this;
 		}
@@ -348,77 +334,68 @@ public final class Role implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transient_metadata}
 		 */
-		public Builder transientMetadata(Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
+		public final Builder transientMetadata(
+				Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
 			return this.transientMetadata(fn.apply(new TransientMetadata.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code applications}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>applications</code>.
 		 */
-		public Builder applications(List<ApplicationPrivileges> value) {
-			this.applications = value;
+		public final Builder applications(List<ApplicationPrivileges> list) {
+			this.applications = _listAddAll(this.applications, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code applications}
+		 * <p>
+		 * Adds one or more values to <code>applications</code>.
 		 */
-		public Builder applications(ApplicationPrivileges... value) {
-			this.applications = Arrays.asList(value);
+		public final Builder applications(ApplicationPrivileges value, ApplicationPrivileges... values) {
+			this.applications = _listAdd(this.applications, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
+		 * Required - API name: {@code applications}
+		 * <p>
+		 * Adds a value to <code>applications</code> using a builder lambda.
 		 */
-		public Builder addApplications(ApplicationPrivileges value) {
-			if (this.applications == null) {
-				this.applications = new ArrayList<>();
-			}
-			this.applications.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #applications(List)} to a singleton list.
-		 */
-		public Builder applications(Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
-			return this.applications(fn.apply(new ApplicationPrivileges.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #applications(List)}, creating the list if needed.
-		 */
-		public Builder addApplications(
+		public final Builder applications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
-			return this.addApplications(fn.apply(new ApplicationPrivileges.Builder()).build());
+			return applications(fn.apply(new ApplicationPrivileges.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code role_templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>roleTemplates</code>.
 		 */
-		public Builder roleTemplates(@Nullable List<JsonValue /* security.get_role.RoleTemplate */> value) {
-			this.roleTemplates = value;
+		public final Builder roleTemplates(List<RoleTemplate> list) {
+			this.roleTemplates = _listAddAll(this.roleTemplates, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code role_templates}
+		 * <p>
+		 * Adds one or more values to <code>roleTemplates</code>.
 		 */
-		public Builder roleTemplates(JsonValue /* security.get_role.RoleTemplate */... value) {
-			this.roleTemplates = Arrays.asList(value);
+		public final Builder roleTemplates(RoleTemplate value, RoleTemplate... values) {
+			this.roleTemplates = _listAdd(this.roleTemplates, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #roleTemplates(List)}, creating the list if needed.
+		 * API name: {@code role_templates}
+		 * <p>
+		 * Adds a value to <code>roleTemplates</code> using a builder lambda.
 		 */
-		public Builder addRoleTemplates(JsonValue /* security.get_role.RoleTemplate */ value) {
-			if (this.roleTemplates == null) {
-				this.roleTemplates = new ArrayList<>();
-			}
-			this.roleTemplates.add(value);
-			return this;
+		public final Builder roleTemplates(Function<RoleTemplate.Builder, ObjectBuilder<RoleTemplate>> fn) {
+			return roleTemplates(fn.apply(new RoleTemplate.Builder()).build());
 		}
 
 		/**
@@ -428,6 +405,7 @@ public final class Role implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Role build() {
+			_checkSingleUse();
 
 			return new Role(this);
 		}
@@ -439,9 +417,9 @@ public final class Role implements JsonpSerializable {
 	 * Json deserializer for {@link Role}
 	 */
 	public static final JsonpDeserializer<Role> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Role::setupRoleDeserializer, Builder::build);
+			Role::setupRoleDeserializer);
 
-	protected static void setupRoleDeserializer(DelegatingDeserializer<Role.Builder> op) {
+	protected static void setupRoleDeserializer(ObjectDeserializer<Role.Builder> op) {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");
@@ -451,7 +429,7 @@ public final class Role implements JsonpSerializable {
 		op.add(Builder::transientMetadata, TransientMetadata._DESERIALIZER, "transient_metadata");
 		op.add(Builder::applications, JsonpDeserializer.arrayDeserializer(ApplicationPrivileges._DESERIALIZER),
 				"applications");
-		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.jsonValueDeserializer()),
+		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(RoleTemplate._DESERIALIZER),
 				"role_templates");
 
 	}

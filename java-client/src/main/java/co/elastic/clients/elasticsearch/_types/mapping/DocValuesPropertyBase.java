@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,10 +32,16 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.DocValuesPropertyBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L67-L69">API
+ *      specification</a>
+ */
 
 public abstract class DocValuesPropertyBase extends CorePropertyBase {
 	@Nullable
@@ -44,7 +49,7 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DocValuesPropertyBase(AbstractBuilder<?> builder) {
+	protected DocValuesPropertyBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.docValues = builder.docValues;
@@ -55,7 +60,7 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 	 * API name: {@code doc_values}
 	 */
 	@Nullable
-	public Boolean docValues() {
+	public final Boolean docValues() {
 		return this.docValues;
 	}
 
@@ -63,7 +68,6 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.docValues != null) {
-
 			generator.writeKey("doc_values");
 			generator.write(this.docValues);
 
@@ -80,7 +84,7 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 		/**
 		 * API name: {@code doc_values}
 		 */
-		public BuilderT docValues(@Nullable Boolean value) {
+		public final BuilderT docValues(@Nullable Boolean value) {
 			this.docValues = value;
 			return self();
 		}
@@ -89,7 +93,7 @@ public abstract class DocValuesPropertyBase extends CorePropertyBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDocValuesPropertyBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		CorePropertyBase.setupCorePropertyBaseDeserializer(op);
 		op.add(AbstractBuilder::docValues, JsonpDeserializer.booleanDeserializer(), "doc_values");
 

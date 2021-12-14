@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SamplerAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L281-L283">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SamplerAggregation extends BucketAggregationBase implements AggregationVariant {
+public class SamplerAggregation extends BucketAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Integer shardSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SamplerAggregation(Builder builder) {
+	private SamplerAggregation(Builder builder) {
 		super(builder);
 
 		this.shardSize = builder.shardSize;
 
 	}
 
-	public SamplerAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SamplerAggregation of(Function<Builder, ObjectBuilder<SamplerAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "sampler";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Sampler;
 	}
 
 	/**
 	 * API name: {@code shard_size}
 	 */
 	@Nullable
-	public Integer shardSize() {
+	public final Integer shardSize() {
 		return this.shardSize;
 	}
 
@@ -75,7 +81,6 @@ public final class SamplerAggregation extends BucketAggregationBase implements A
 
 		super.serializeInternal(generator, mapper);
 		if (this.shardSize != null) {
-
 			generator.writeKey("shard_size");
 			generator.write(this.shardSize);
 
@@ -88,6 +93,7 @@ public final class SamplerAggregation extends BucketAggregationBase implements A
 	/**
 	 * Builder for {@link SamplerAggregation}.
 	 */
+
 	public static class Builder extends BucketAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SamplerAggregation> {
@@ -97,7 +103,7 @@ public final class SamplerAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code shard_size}
 		 */
-		public Builder shardSize(@Nullable Integer value) {
+		public final Builder shardSize(@Nullable Integer value) {
 			this.shardSize = value;
 			return this;
 		}
@@ -114,6 +120,7 @@ public final class SamplerAggregation extends BucketAggregationBase implements A
 		 *             if some of the required fields are null.
 		 */
 		public SamplerAggregation build() {
+			_checkSingleUse();
 
 			return new SamplerAggregation(this);
 		}
@@ -125,9 +132,9 @@ public final class SamplerAggregation extends BucketAggregationBase implements A
 	 * Json deserializer for {@link SamplerAggregation}
 	 */
 	public static final JsonpDeserializer<SamplerAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SamplerAggregation::setupSamplerAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, SamplerAggregation::setupSamplerAggregationDeserializer);
 
-	protected static void setupSamplerAggregationDeserializer(DelegatingDeserializer<SamplerAggregation.Builder> op) {
+	protected static void setupSamplerAggregationDeserializer(ObjectDeserializer<SamplerAggregation.Builder> op) {
 		BucketAggregationBase.setupBucketAggregationBaseDeserializer(op);
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.IndicesResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.put_mapping.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_mapping/IndicesPutMappingResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutMappingResponse extends IndicesResponseBase {
+public class PutMappingResponse extends IndicesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutMappingResponse(Builder builder) {
+	private PutMappingResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutMappingResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutMappingResponse of(Function<Builder, ObjectBuilder<PutMappingResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutMappingResponse extends IndicesResponseBase {
 	/**
 	 * Builder for {@link PutMappingResponse}.
 	 */
+
 	public static class Builder extends IndicesResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutMappingResponse> {
@@ -68,6 +75,7 @@ public final class PutMappingResponse extends IndicesResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutMappingResponse build() {
+			_checkSingleUse();
 
 			return new PutMappingResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class PutMappingResponse extends IndicesResponseBase {
 	 * Json deserializer for {@link PutMappingResponse}
 	 */
 	public static final JsonpDeserializer<PutMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutMappingResponse::setupPutMappingResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutMappingResponse::setupPutMappingResponseDeserializer);
 
-	protected static void setupPutMappingResponseDeserializer(DelegatingDeserializer<PutMappingResponse.Builder> op) {
+	protected static void setupPutMappingResponseDeserializer(ObjectDeserializer<PutMappingResponse.Builder> op) {
 		IndicesResponseBase.setupIndicesResponseBaseDeserializer(op);
 
 	}

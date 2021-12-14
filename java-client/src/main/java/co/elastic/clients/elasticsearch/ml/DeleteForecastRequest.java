@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,71 +46,86 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_forecast.Request
 
-public final class DeleteForecastRequest extends RequestBase {
-	private final String jobId;
+/**
+ * Deletes forecasts from a machine learning job. By default, forecasts are
+ * retained for 14 days. You can specify a different retention period with the
+ * <code>expires_in</code> parameter in the forecast jobs API. The delete
+ * forecast API enables you to delete one or more forecasts before they expire.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_forecast/MlDeleteForecastRequest.ts#L24-L65">API
+ *      specification</a>
+ */
 
-	@Nullable
-	private final String forecastId;
-
+public class DeleteForecastRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoForecasts;
 
 	@Nullable
-	private final String timeout;
+	private final String forecastId;
+
+	private final String jobId;
+
+	@Nullable
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteForecastRequest(Builder builder) {
+	private DeleteForecastRequest(Builder builder) {
 
-		this.jobId = Objects.requireNonNull(builder.jobId, "job_id");
-		this.forecastId = builder.forecastId;
 		this.allowNoForecasts = builder.allowNoForecasts;
+		this.forecastId = builder.forecastId;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.timeout = builder.timeout;
 
 	}
 
-	public DeleteForecastRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteForecastRequest of(Function<Builder, ObjectBuilder<DeleteForecastRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the job from which to delete forecasts
-	 * <p>
-	 * API name: {@code job_id}
-	 */
-	public String jobId() {
-		return this.jobId;
-	}
-
-	/**
-	 * The ID of the forecast to delete, can be comma delimited list. Leaving blank
-	 * implies <code>_all</code>
-	 * <p>
-	 * API name: {@code forecast_id}
-	 */
-	@Nullable
-	public String forecastId() {
-		return this.forecastId;
-	}
-
-	/**
-	 * Whether to ignore if <code>_all</code> matches no forecasts
+	 * Specifies whether an error occurs when there are no forecasts. In particular,
+	 * if this parameter is set to <code>false</code> and there are no forecasts
+	 * associated with the job, attempts to delete all forecasts return an error.
 	 * <p>
 	 * API name: {@code allow_no_forecasts}
 	 */
 	@Nullable
-	public Boolean allowNoForecasts() {
+	public final Boolean allowNoForecasts() {
 		return this.allowNoForecasts;
 	}
 
 	/**
-	 * Controls the time to wait until the forecast(s) are deleted. Default to 30
-	 * seconds
+	 * A comma-separated list of forecast identifiers. If you do not specify this
+	 * optional parameter or if you specify <code>_all</code> or <code>*</code> the
+	 * API deletes all forecasts from the job.
+	 * <p>
+	 * API name: {@code forecast_id}
+	 */
+	@Nullable
+	public final String forecastId() {
+		return this.forecastId;
+	}
+
+	/**
+	 * Required - Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	public final String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * Specifies the period of time to wait for the completion of the delete
+	 * operation. When this period of time elapses, the API fails and returns an
+	 * error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -116,58 +134,74 @@ public final class DeleteForecastRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteForecastRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteForecastRequest> {
-		private String jobId;
 
-		@Nullable
-		private String forecastId;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteForecastRequest> {
 		@Nullable
 		private Boolean allowNoForecasts;
 
 		@Nullable
-		private String timeout;
+		private String forecastId;
+
+		private String jobId;
+
+		@Nullable
+		private Time timeout;
 
 		/**
-		 * Required - The ID of the job from which to delete forecasts
-		 * <p>
-		 * API name: {@code job_id}
-		 */
-		public Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
-		 * The ID of the forecast to delete, can be comma delimited list. Leaving blank
-		 * implies <code>_all</code>
-		 * <p>
-		 * API name: {@code forecast_id}
-		 */
-		public Builder forecastId(@Nullable String value) {
-			this.forecastId = value;
-			return this;
-		}
-
-		/**
-		 * Whether to ignore if <code>_all</code> matches no forecasts
+		 * Specifies whether an error occurs when there are no forecasts. In particular,
+		 * if this parameter is set to <code>false</code> and there are no forecasts
+		 * associated with the job, attempts to delete all forecasts return an error.
 		 * <p>
 		 * API name: {@code allow_no_forecasts}
 		 */
-		public Builder allowNoForecasts(@Nullable Boolean value) {
+		public final Builder allowNoForecasts(@Nullable Boolean value) {
 			this.allowNoForecasts = value;
 			return this;
 		}
 
 		/**
-		 * Controls the time to wait until the forecast(s) are deleted. Default to 30
-		 * seconds
+		 * A comma-separated list of forecast identifiers. If you do not specify this
+		 * optional parameter or if you specify <code>_all</code> or <code>*</code> the
+		 * API deletes all forecasts from the job.
+		 * <p>
+		 * API name: {@code forecast_id}
+		 */
+		public final Builder forecastId(@Nullable String value) {
+			this.forecastId = value;
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the anomaly detection job.
+		 * <p>
+		 * API name: {@code job_id}
+		 */
+		public final Builder jobId(String value) {
+			this.jobId = value;
+			return this;
+		}
+
+		/**
+		 * Specifies the period of time to wait for the completion of the delete
+		 * operation. When this period of time elapses, the API fails and returns an
+		 * error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Specifies the period of time to wait for the completion of the delete
+		 * operation. When this period of time elapses, the API fails and returns an
+		 * error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -177,6 +211,7 @@ public final class DeleteForecastRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteForecastRequest build() {
+			_checkSingleUse();
 
 			return new DeleteForecastRequest(this);
 		}
@@ -187,7 +222,9 @@ public final class DeleteForecastRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_forecast}".
 	 */
-	public static final Endpoint<DeleteForecastRequest, DeleteForecastResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_forecast",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -236,7 +273,7 @@ public final class DeleteForecastRequest extends RequestBase {
 					params.put("allow_no_forecasts", String.valueOf(request.allowNoForecasts));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

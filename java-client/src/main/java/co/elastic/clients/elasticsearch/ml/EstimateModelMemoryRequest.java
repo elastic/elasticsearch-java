@@ -23,75 +23,99 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.estimate_model_memory.Request
+
+/**
+ * Makes an estimation of the memory usage for an anomaly detection job model.
+ * It is based on analysis configuration details for the job and cardinality
+ * estimates for the fields it references.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/estimate_model_memory/MlEstimateModelMemoryRequest.ts#L26-L61">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class EstimateModelMemoryRequest extends RequestBase implements JsonpSerializable {
+public class EstimateModelMemoryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final AnalysisConfig analysisConfig;
 
-	@Nullable
 	private final Map<String, Long> maxBucketCardinality;
 
-	@Nullable
 	private final Map<String, Long> overallCardinality;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EstimateModelMemoryRequest(Builder builder) {
+	private EstimateModelMemoryRequest(Builder builder) {
 
 		this.analysisConfig = builder.analysisConfig;
-		this.maxBucketCardinality = ModelTypeHelper.unmodifiable(builder.maxBucketCardinality);
-		this.overallCardinality = ModelTypeHelper.unmodifiable(builder.overallCardinality);
+		this.maxBucketCardinality = ApiTypeHelper.unmodifiable(builder.maxBucketCardinality);
+		this.overallCardinality = ApiTypeHelper.unmodifiable(builder.overallCardinality);
 
 	}
 
-	public EstimateModelMemoryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EstimateModelMemoryRequest of(Function<Builder, ObjectBuilder<EstimateModelMemoryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
+	 * For a list of the properties that you can specify in the
+	 * <code>analysis_config</code> component of the body of this API.
+	 * <p>
 	 * API name: {@code analysis_config}
 	 */
 	@Nullable
-	public AnalysisConfig analysisConfig() {
+	public final AnalysisConfig analysisConfig() {
 		return this.analysisConfig;
 	}
 
 	/**
+	 * Estimates of the highest cardinality in a single bucket that is observed for
+	 * influencer fields over the time period that the job analyzes data. To produce
+	 * a good answer, values must be provided for all influencer fields. Providing
+	 * values for fields that are not listed as <code>influencers</code> has no
+	 * effect on the estimation.
+	 * <p>
 	 * API name: {@code max_bucket_cardinality}
 	 */
-	@Nullable
-	public Map<String, Long> maxBucketCardinality() {
+	public final Map<String, Long> maxBucketCardinality() {
 		return this.maxBucketCardinality;
 	}
 
 	/**
+	 * Estimates of the cardinality that is observed for fields over the whole time
+	 * period that the job analyzes data. To produce a good answer, values must be
+	 * provided for fields referenced in the <code>by_field_name</code>,
+	 * <code>over_field_name</code> and <code>partition_field_name</code> of any
+	 * detectors. Providing values for other fields has no effect on the estimation.
+	 * It can be omitted from the request if no detectors have a
+	 * <code>by_field_name</code>, <code>over_field_name</code> or
+	 * <code>partition_field_name</code>.
+	 * <p>
 	 * API name: {@code overall_cardinality}
 	 */
-	@Nullable
-	public Map<String, Long> overallCardinality() {
+	public final Map<String, Long> overallCardinality() {
 		return this.overallCardinality;
 	}
 
@@ -107,13 +131,11 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.analysisConfig != null) {
-
 			generator.writeKey("analysis_config");
 			this.analysisConfig.serialize(generator, mapper);
 
 		}
-		if (this.maxBucketCardinality != null) {
-
+		if (ApiTypeHelper.isDefined(this.maxBucketCardinality)) {
 			generator.writeKey("max_bucket_cardinality");
 			generator.writeStartObject();
 			for (Map.Entry<String, Long> item0 : this.maxBucketCardinality.entrySet()) {
@@ -124,8 +146,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 			generator.writeEnd();
 
 		}
-		if (this.overallCardinality != null) {
-
+		if (ApiTypeHelper.isDefined(this.overallCardinality)) {
 			generator.writeKey("overall_cardinality");
 			generator.writeStartObject();
 			for (Map.Entry<String, Long> item0 : this.overallCardinality.entrySet()) {
@@ -144,7 +165,8 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	/**
 	 * Builder for {@link EstimateModelMemoryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<EstimateModelMemoryRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EstimateModelMemoryRequest> {
 		@Nullable
 		private AnalysisConfig analysisConfig;
 
@@ -155,57 +177,93 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		private Map<String, Long> overallCardinality;
 
 		/**
+		 * For a list of the properties that you can specify in the
+		 * <code>analysis_config</code> component of the body of this API.
+		 * <p>
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(@Nullable AnalysisConfig value) {
+		public final Builder analysisConfig(@Nullable AnalysisConfig value) {
 			this.analysisConfig = value;
 			return this;
 		}
 
 		/**
+		 * For a list of the properties that you can specify in the
+		 * <code>analysis_config</code> component of the body of this API.
+		 * <p>
 		 * API name: {@code analysis_config}
 		 */
-		public Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
+		public final Builder analysisConfig(Function<AnalysisConfig.Builder, ObjectBuilder<AnalysisConfig>> fn) {
 			return this.analysisConfig(fn.apply(new AnalysisConfig.Builder()).build());
 		}
 
 		/**
+		 * Estimates of the highest cardinality in a single bucket that is observed for
+		 * influencer fields over the time period that the job analyzes data. To produce
+		 * a good answer, values must be provided for all influencer fields. Providing
+		 * values for fields that are not listed as <code>influencers</code> has no
+		 * effect on the estimation.
+		 * <p>
 		 * API name: {@code max_bucket_cardinality}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>maxBucketCardinality</code>.
 		 */
-		public Builder maxBucketCardinality(@Nullable Map<String, Long> value) {
-			this.maxBucketCardinality = value;
+		public final Builder maxBucketCardinality(Map<String, Long> map) {
+			this.maxBucketCardinality = _mapPutAll(this.maxBucketCardinality, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #maxBucketCardinality(Map)}, creating the map if
-		 * needed.
+		 * Estimates of the highest cardinality in a single bucket that is observed for
+		 * influencer fields over the time period that the job analyzes data. To produce
+		 * a good answer, values must be provided for all influencer fields. Providing
+		 * values for fields that are not listed as <code>influencers</code> has no
+		 * effect on the estimation.
+		 * <p>
+		 * API name: {@code max_bucket_cardinality}
+		 * <p>
+		 * Adds an entry to <code>maxBucketCardinality</code>.
 		 */
-		public Builder putMaxBucketCardinality(String key, Long value) {
-			if (this.maxBucketCardinality == null) {
-				this.maxBucketCardinality = new HashMap<>();
-			}
-			this.maxBucketCardinality.put(key, value);
+		public final Builder maxBucketCardinality(String key, Long value) {
+			this.maxBucketCardinality = _mapPut(this.maxBucketCardinality, key, value);
 			return this;
 		}
 
 		/**
+		 * Estimates of the cardinality that is observed for fields over the whole time
+		 * period that the job analyzes data. To produce a good answer, values must be
+		 * provided for fields referenced in the <code>by_field_name</code>,
+		 * <code>over_field_name</code> and <code>partition_field_name</code> of any
+		 * detectors. Providing values for other fields has no effect on the estimation.
+		 * It can be omitted from the request if no detectors have a
+		 * <code>by_field_name</code>, <code>over_field_name</code> or
+		 * <code>partition_field_name</code>.
+		 * <p>
 		 * API name: {@code overall_cardinality}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>overallCardinality</code>.
 		 */
-		public Builder overallCardinality(@Nullable Map<String, Long> value) {
-			this.overallCardinality = value;
+		public final Builder overallCardinality(Map<String, Long> map) {
+			this.overallCardinality = _mapPutAll(this.overallCardinality, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #overallCardinality(Map)}, creating the map if
-		 * needed.
+		 * Estimates of the cardinality that is observed for fields over the whole time
+		 * period that the job analyzes data. To produce a good answer, values must be
+		 * provided for fields referenced in the <code>by_field_name</code>,
+		 * <code>over_field_name</code> and <code>partition_field_name</code> of any
+		 * detectors. Providing values for other fields has no effect on the estimation.
+		 * It can be omitted from the request if no detectors have a
+		 * <code>by_field_name</code>, <code>over_field_name</code> or
+		 * <code>partition_field_name</code>.
+		 * <p>
+		 * API name: {@code overall_cardinality}
+		 * <p>
+		 * Adds an entry to <code>overallCardinality</code>.
 		 */
-		public Builder putOverallCardinality(String key, Long value) {
-			if (this.overallCardinality == null) {
-				this.overallCardinality = new HashMap<>();
-			}
-			this.overallCardinality.put(key, value);
+		public final Builder overallCardinality(String key, Long value) {
+			this.overallCardinality = _mapPut(this.overallCardinality, key, value);
 			return this;
 		}
 
@@ -216,6 +274,7 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 		 *             if some of the required fields are null.
 		 */
 		public EstimateModelMemoryRequest build() {
+			_checkSingleUse();
 
 			return new EstimateModelMemoryRequest(this);
 		}
@@ -226,11 +285,11 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	/**
 	 * Json deserializer for {@link EstimateModelMemoryRequest}
 	 */
-	public static final JsonpDeserializer<EstimateModelMemoryRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, EstimateModelMemoryRequest::setupEstimateModelMemoryRequestDeserializer, Builder::build);
+	public static final JsonpDeserializer<EstimateModelMemoryRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, EstimateModelMemoryRequest::setupEstimateModelMemoryRequestDeserializer);
 
 	protected static void setupEstimateModelMemoryRequestDeserializer(
-			DelegatingDeserializer<EstimateModelMemoryRequest.Builder> op) {
+			ObjectDeserializer<EstimateModelMemoryRequest.Builder> op) {
 
 		op.add(Builder::analysisConfig, AnalysisConfig._DESERIALIZER, "analysis_config");
 		op.add(Builder::maxBucketCardinality,
@@ -246,7 +305,9 @@ public final class EstimateModelMemoryRequest extends RequestBase implements Jso
 	/**
 	 * Endpoint "{@code ml.estimate_model_memory}".
 	 */
-	public static final Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.estimate_model_memory",
+
 			// Request method
 			request -> {
 				return "POST";

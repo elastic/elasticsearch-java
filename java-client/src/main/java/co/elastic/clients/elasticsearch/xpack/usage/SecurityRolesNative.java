@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -38,8 +39,15 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.SecurityRolesNative
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L257-L261">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SecurityRolesNative implements JsonpSerializable {
+public class SecurityRolesNative implements JsonpSerializable {
 	private final boolean dls;
 
 	private final boolean fls;
@@ -48,36 +56,36 @@ public final class SecurityRolesNative implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SecurityRolesNative(Builder builder) {
+	private SecurityRolesNative(Builder builder) {
 
-		this.dls = Objects.requireNonNull(builder.dls, "dls");
-		this.fls = Objects.requireNonNull(builder.fls, "fls");
-		this.size = Objects.requireNonNull(builder.size, "size");
+		this.dls = ApiTypeHelper.requireNonNull(builder.dls, this, "dls");
+		this.fls = ApiTypeHelper.requireNonNull(builder.fls, this, "fls");
+		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
 
 	}
 
-	public SecurityRolesNative(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SecurityRolesNative of(Function<Builder, ObjectBuilder<SecurityRolesNative>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code dls}
 	 */
-	public boolean dls() {
+	public final boolean dls() {
 		return this.dls;
 	}
 
 	/**
 	 * Required - API name: {@code fls}
 	 */
-	public boolean fls() {
+	public final boolean fls() {
 		return this.fls;
 	}
 
 	/**
 	 * Required - API name: {@code size}
 	 */
-	public long size() {
+	public final long size() {
 		return this.size;
 	}
 
@@ -108,7 +116,8 @@ public final class SecurityRolesNative implements JsonpSerializable {
 	/**
 	 * Builder for {@link SecurityRolesNative}.
 	 */
-	public static class Builder implements ObjectBuilder<SecurityRolesNative> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SecurityRolesNative> {
 		private Boolean dls;
 
 		private Boolean fls;
@@ -118,7 +127,7 @@ public final class SecurityRolesNative implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code dls}
 		 */
-		public Builder dls(boolean value) {
+		public final Builder dls(boolean value) {
 			this.dls = value;
 			return this;
 		}
@@ -126,7 +135,7 @@ public final class SecurityRolesNative implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code fls}
 		 */
-		public Builder fls(boolean value) {
+		public final Builder fls(boolean value) {
 			this.fls = value;
 			return this;
 		}
@@ -134,7 +143,7 @@ public final class SecurityRolesNative implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size}
 		 */
-		public Builder size(long value) {
+		public final Builder size(long value) {
 			this.size = value;
 			return this;
 		}
@@ -146,6 +155,7 @@ public final class SecurityRolesNative implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public SecurityRolesNative build() {
+			_checkSingleUse();
 
 			return new SecurityRolesNative(this);
 		}
@@ -157,9 +167,9 @@ public final class SecurityRolesNative implements JsonpSerializable {
 	 * Json deserializer for {@link SecurityRolesNative}
 	 */
 	public static final JsonpDeserializer<SecurityRolesNative> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SecurityRolesNative::setupSecurityRolesNativeDeserializer, Builder::build);
+			.lazy(Builder::new, SecurityRolesNative::setupSecurityRolesNativeDeserializer);
 
-	protected static void setupSecurityRolesNativeDeserializer(DelegatingDeserializer<SecurityRolesNative.Builder> op) {
+	protected static void setupSecurityRolesNativeDeserializer(ObjectDeserializer<SecurityRolesNative.Builder> op) {
 
 		op.add(Builder::dls, JsonpDeserializer.booleanDeserializer(), "dls");
 		op.add(Builder::fls, JsonpDeserializer.booleanDeserializer(), "fls");

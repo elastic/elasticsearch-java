@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ArrayCompareCondition
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Conditions.ts#L25-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ArrayCompareCondition implements ConditionVariant, JsonpSerializable {
+public class ArrayCompareCondition implements ConditionVariant, JsonpSerializable {
 	private final String arrayPath;
 
 	private final String comparison;
@@ -53,60 +61,60 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ArrayCompareCondition(Builder builder) {
+	private ArrayCompareCondition(Builder builder) {
 
-		this.arrayPath = Objects.requireNonNull(builder.arrayPath, "array_path");
-		this.comparison = Objects.requireNonNull(builder.comparison, "comparison");
-		this.path = Objects.requireNonNull(builder.path, "path");
-		this.quantifier = Objects.requireNonNull(builder.quantifier, "quantifier");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.arrayPath = ApiTypeHelper.requireNonNull(builder.arrayPath, this, "arrayPath");
+		this.comparison = ApiTypeHelper.requireNonNull(builder.comparison, this, "comparison");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.quantifier = ApiTypeHelper.requireNonNull(builder.quantifier, this, "quantifier");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public ArrayCompareCondition(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ArrayCompareCondition of(Function<Builder, ObjectBuilder<ArrayCompareCondition>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Condition} variant type
+	 * Condition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "array_compare";
+	public Condition.Kind _conditionKind() {
+		return Condition.Kind.ArrayCompare;
 	}
 
 	/**
 	 * Required - API name: {@code array_path}
 	 */
-	public String arrayPath() {
+	public final String arrayPath() {
 		return this.arrayPath;
 	}
 
 	/**
 	 * Required - API name: {@code comparison}
 	 */
-	public String comparison() {
+	public final String comparison() {
 		return this.comparison;
 	}
 
 	/**
 	 * Required - API name: {@code path}
 	 */
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
 	/**
 	 * Required - API name: {@code quantifier}
 	 */
-	public Quantifier quantifier() {
+	public final Quantifier quantifier() {
 		return this.quantifier;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public JsonData value() {
+	public final JsonData value() {
 		return this.value;
 	}
 
@@ -132,7 +140,6 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 
 		generator.writeKey("quantifier");
 		this.quantifier.serialize(generator, mapper);
-
 		generator.writeKey("value");
 		this.value.serialize(generator, mapper);
 
@@ -143,7 +150,8 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 	/**
 	 * Builder for {@link ArrayCompareCondition}.
 	 */
-	public static class Builder implements ObjectBuilder<ArrayCompareCondition> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ArrayCompareCondition> {
 		private String arrayPath;
 
 		private String comparison;
@@ -157,7 +165,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		/**
 		 * Required - API name: {@code array_path}
 		 */
-		public Builder arrayPath(String value) {
+		public final Builder arrayPath(String value) {
 			this.arrayPath = value;
 			return this;
 		}
@@ -165,7 +173,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		/**
 		 * Required - API name: {@code comparison}
 		 */
-		public Builder comparison(String value) {
+		public final Builder comparison(String value) {
 			this.comparison = value;
 			return this;
 		}
@@ -173,7 +181,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		/**
 		 * Required - API name: {@code path}
 		 */
-		public Builder path(String value) {
+		public final Builder path(String value) {
 			this.path = value;
 			return this;
 		}
@@ -181,7 +189,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		/**
 		 * Required - API name: {@code quantifier}
 		 */
-		public Builder quantifier(Quantifier value) {
+		public final Builder quantifier(Quantifier value) {
 			this.quantifier = value;
 			return this;
 		}
@@ -189,7 +197,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(JsonData value) {
+		public final Builder value(JsonData value) {
 			this.value = value;
 			return this;
 		}
@@ -201,6 +209,7 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public ArrayCompareCondition build() {
+			_checkSingleUse();
 
 			return new ArrayCompareCondition(this);
 		}
@@ -212,10 +221,9 @@ public final class ArrayCompareCondition implements ConditionVariant, JsonpSeria
 	 * Json deserializer for {@link ArrayCompareCondition}
 	 */
 	public static final JsonpDeserializer<ArrayCompareCondition> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ArrayCompareCondition::setupArrayCompareConditionDeserializer, Builder::build);
+			.lazy(Builder::new, ArrayCompareCondition::setupArrayCompareConditionDeserializer);
 
-	protected static void setupArrayCompareConditionDeserializer(
-			DelegatingDeserializer<ArrayCompareCondition.Builder> op) {
+	protected static void setupArrayCompareConditionDeserializer(ObjectDeserializer<ArrayCompareCondition.Builder> op) {
 
 		op.add(Builder::arrayPath, JsonpDeserializer.stringDeserializer(), "array_path");
 		op.add(Builder::comparison, JsonpDeserializer.stringDeserializer(), "comparison");

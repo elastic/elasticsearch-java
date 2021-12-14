@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.DerivativeAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L67-L67">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DerivativeAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class DerivativeAggregation extends PipelineAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public DerivativeAggregation(Builder builder) {
+	private DerivativeAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public DerivativeAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DerivativeAggregation of(Function<Builder, ObjectBuilder<DerivativeAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "derivative";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Derivative;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class DerivativeAggregation extends PipelineAggregationBase impleme
 	/**
 	 * Builder for {@link DerivativeAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DerivativeAggregation> {
@@ -75,6 +82,7 @@ public final class DerivativeAggregation extends PipelineAggregationBase impleme
 		 *             if some of the required fields are null.
 		 */
 		public DerivativeAggregation build() {
+			_checkSingleUse();
 
 			return new DerivativeAggregation(this);
 		}
@@ -86,10 +94,9 @@ public final class DerivativeAggregation extends PipelineAggregationBase impleme
 	 * Json deserializer for {@link DerivativeAggregation}
 	 */
 	public static final JsonpDeserializer<DerivativeAggregation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DerivativeAggregation::setupDerivativeAggregationDeserializer, Builder::build);
+			.lazy(Builder::new, DerivativeAggregation::setupDerivativeAggregationDeserializer);
 
-	protected static void setupDerivativeAggregationDeserializer(
-			DelegatingDeserializer<DerivativeAggregation.Builder> op) {
+	protected static void setupDerivativeAggregationDeserializer(ObjectDeserializer<DerivativeAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 
 	}

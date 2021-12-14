@@ -23,13 +23,25 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Model.ts#L76-L80">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum MemoryStatus implements StringEnum {
-	Ok("ok"), SoftLimit("soft_limit"), HardLimit("hard_limit");
+public enum MemoryStatus implements JsonEnum {
+	Ok("ok"),
+
+	SoftLimit("soft_limit"),
+
+	HardLimit("hard_limit"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +53,6 @@ public enum MemoryStatus implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<MemoryStatus> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<MemoryStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			MemoryStatus.values());
 }

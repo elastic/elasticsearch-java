@@ -23,12 +23,11 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.base.DictionaryResponse;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -36,17 +35,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: slm.get_lifecycle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/get_lifecycle/GetSnapshotLifecycleResponse.ts#L24-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLifecycle> {
+public class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLifecycle> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetLifecycleResponse(Builder builder) {
+	private GetLifecycleResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetLifecycleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetLifecycleResponse of(Function<Builder, ObjectBuilder<GetLifecycleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -54,6 +60,7 @@ public final class GetLifecycleResponse extends DictionaryResponse<String, Snaps
 	/**
 	 * Builder for {@link GetLifecycleResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, SnapshotLifecycle, Builder>
 			implements
 				ObjectBuilder<GetLifecycleResponse> {
@@ -69,6 +76,7 @@ public final class GetLifecycleResponse extends DictionaryResponse<String, Snaps
 		 *             if some of the required fields are null.
 		 */
 		public GetLifecycleResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -82,10 +90,9 @@ public final class GetLifecycleResponse extends DictionaryResponse<String, Snaps
 	 * Json deserializer for {@link GetLifecycleResponse}
 	 */
 	public static final JsonpDeserializer<GetLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer);
 
-	protected static void setupGetLifecycleResponseDeserializer(
-			DelegatingDeserializer<GetLifecycleResponse.Builder> op) {
+	protected static void setupGetLifecycleResponseDeserializer(ObjectDeserializer<GetLifecycleResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				SnapshotLifecycle._DESERIALIZER);
 

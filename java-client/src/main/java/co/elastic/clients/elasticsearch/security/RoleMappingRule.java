@@ -23,13 +23,16 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -40,57 +43,94 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.RoleMappingRule
-@JsonpDeserializable
-public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVariant, JsonpSerializable {
 
-	public static final String ANY = "any";
-	public static final String ALL = "all";
-	public static final String FIELD = "field";
-	public static final String EXCEPT = "except";
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/RoleMappingRule.ts#L23-L31">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class RoleMappingRule
+		implements
+			TaggedUnion<RoleMappingRule.Kind, Object>,
+			RoleMappingRuleVariant,
+			JsonpSerializable {
 
 	/**
-	 * {@link RoleMappingRule} variant type
+	 * {@link RoleMappingRule} variant kinds.
 	 */
-	@Override
-	public String _variantType() {
-		return "except";
+	/**
+	 * {@link RoleMappingRule} variant kinds.
+	 */
+
+	public enum Kind implements JsonEnum {
+		Any("any"),
+
+		All("all"),
+
+		Field("field"),
+
+		Except("except"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
 	}
 
-	// Tagged union implementation
+	/**
+	 * RoleMappingRule variant kind.
+	 */
+	@Override
+	public RoleMappingRule.Kind _roleMappingRuleKind() {
+		return RoleMappingRule.Kind.Except;
+	}
 
-	private final String _type;
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public RoleMappingRule(RoleMappingRuleVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._roleMappingRuleKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends RoleMappingRuleVariant> RoleMappingRule(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private RoleMappingRule(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public RoleMappingRule(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RoleMappingRule of(Function<Builder, ObjectBuilder<RoleMappingRule>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code any}?
+	 */
+	public boolean isAny() {
+		return _kind == Kind.Any;
 	}
 
 	/**
@@ -100,7 +140,14 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 	 *             if the current variant is not of the {@code any} kind.
 	 */
 	public List<RoleMappingRule> any() {
-		return TaggedUnionUtils.get(this, ANY);
+		return TaggedUnionUtils.get(this, Kind.Any);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code all}?
+	 */
+	public boolean isAll() {
+		return _kind == Kind.All;
 	}
 
 	/**
@@ -110,7 +157,14 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 	 *             if the current variant is not of the {@code all} kind.
 	 */
 	public List<RoleMappingRule> all() {
-		return TaggedUnionUtils.get(this, ALL);
+		return TaggedUnionUtils.get(this, Kind.All);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code field}?
+	 */
+	public boolean isField() {
+		return _kind == Kind.Field;
 	}
 
 	/**
@@ -120,7 +174,14 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 	 *             if the current variant is not of the {@code field} kind.
 	 */
 	public FieldRule field() {
-		return TaggedUnionUtils.get(this, FIELD);
+		return TaggedUnionUtils.get(this, Kind.Field);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code except}?
+	 */
+	public boolean isExcept() {
+		return _kind == Kind.Except;
 	}
 
 	/**
@@ -130,20 +191,21 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 	 *             if the current variant is not of the {@code except} kind.
 	 */
 	public RoleMappingRule except() {
-		return TaggedUnionUtils.get(this, EXCEPT);
+		return TaggedUnionUtils.get(this, Kind.Except);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		} else {
-			switch (_type) {
-				case ANY :
+			switch (_kind) {
+				case Any :
 					generator.writeStartArray();
 					for (RoleMappingRule item0 : ((List<RoleMappingRule>) this._value)) {
 						item0.serialize(generator, mapper);
@@ -152,7 +214,7 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 					generator.writeEnd();
 
 					break;
-				case ALL :
+				case All :
 					generator.writeStartArray();
 					for (RoleMappingRule item0 : ((List<RoleMappingRule>) this._value)) {
 						item0.serialize(generator, mapper);
@@ -165,51 +227,54 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 		}
 
 		generator.writeEnd();
+
 	}
 
-	public static class Builder implements ObjectBuilder<RoleMappingRule> {
-		private String _type;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleMappingRule> {
+		private Kind _kind;
 		private Object _value;
 
-		public Builder any(List<RoleMappingRule> v) {
-			this._type = ANY;
+		public ObjectBuilder<RoleMappingRule> any(List<RoleMappingRule> v) {
+			this._kind = Kind.Any;
 			this._value = v;
 			return this;
 		}
 
-		public Builder all(List<RoleMappingRule> v) {
-			this._type = ALL;
+		public ObjectBuilder<RoleMappingRule> all(List<RoleMappingRule> v) {
+			this._kind = Kind.All;
 			this._value = v;
 			return this;
 		}
 
-		public Builder field(FieldRule v) {
-			this._type = FIELD;
+		public ObjectBuilder<RoleMappingRule> field(FieldRule v) {
+			this._kind = Kind.Field;
 			this._value = v;
 			return this;
 		}
 
-		public Builder field(Function<FieldRule.Builder, ObjectBuilder<FieldRule>> f) {
-			return this.field(f.apply(new FieldRule.Builder()).build());
+		public ObjectBuilder<RoleMappingRule> field(Function<FieldRule.Builder, ObjectBuilder<FieldRule>> fn) {
+			return this.field(fn.apply(new FieldRule.Builder()).build());
 		}
 
-		public Builder except(RoleMappingRule v) {
-			this._type = EXCEPT;
+		public ObjectBuilder<RoleMappingRule> except(RoleMappingRule v) {
+			this._kind = Kind.Except;
 			this._value = v;
 			return this;
 		}
 
-		public Builder except(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> f) {
-			return this.except(f.apply(new RoleMappingRule.Builder()).build());
+		public ObjectBuilder<RoleMappingRule> except(
+				Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
+			return this.except(fn.apply(new RoleMappingRule.Builder()).build());
 		}
 
 		public RoleMappingRule build() {
+			_checkSingleUse();
 			return new RoleMappingRule(this);
 		}
 
 	}
 
-	protected static void setupRoleMappingRuleDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupRoleMappingRuleDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::any, JsonpDeserializer.arrayDeserializer(RoleMappingRule._DESERIALIZER), "any");
 		op.add(Builder::all, JsonpDeserializer.arrayDeserializer(RoleMappingRule._DESERIALIZER), "all");
@@ -218,6 +283,6 @@ public class RoleMappingRule implements TaggedUnion<Object>, RoleMappingRuleVari
 
 	}
 
-	public static final JsonpDeserializer<RoleMappingRule> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<RoleMappingRule> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			RoleMappingRule::setupRoleMappingRuleDeserializer, Builder::build);
 }

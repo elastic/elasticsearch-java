@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,8 +37,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L156-L164">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankFeatureQuery extends QueryBase implements QueryVariant {
+public class RankFeatureQuery extends QueryBase implements QueryVariant {
 	private final String field;
 
 	@Nullable
@@ -55,10 +62,10 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankFeatureQuery(Builder builder) {
+	private RankFeatureQuery(Builder builder) {
 		super(builder);
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.saturation = builder.saturation;
 		this.log = builder.log;
 		this.linear = builder.linear;
@@ -66,22 +73,22 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 
 	}
 
-	public RankFeatureQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankFeatureQuery of(Function<Builder, ObjectBuilder<RankFeatureQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "rank_feature";
+	public Query.Kind _queryKind() {
+		return Query.Kind.RankFeature;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -89,7 +96,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code saturation}
 	 */
 	@Nullable
-	public RankFeatureFunctionSaturation saturation() {
+	public final RankFeatureFunctionSaturation saturation() {
 		return this.saturation;
 	}
 
@@ -97,7 +104,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code log}
 	 */
 	@Nullable
-	public RankFeatureFunctionLogarithm log() {
+	public final RankFeatureFunctionLogarithm log() {
 		return this.log;
 	}
 
@@ -105,7 +112,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code linear}
 	 */
 	@Nullable
-	public RankFeatureFunctionLinear linear() {
+	public final RankFeatureFunctionLinear linear() {
 		return this.linear;
 	}
 
@@ -113,37 +120,32 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code sigmoid}
 	 */
 	@Nullable
-	public RankFeatureFunctionSigmoid sigmoid() {
+	public final RankFeatureFunctionSigmoid sigmoid() {
 		return this.sigmoid;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("field");
 		generator.write(this.field);
 
 		if (this.saturation != null) {
-
 			generator.writeKey("saturation");
 			this.saturation.serialize(generator, mapper);
 
 		}
 		if (this.log != null) {
-
 			generator.writeKey("log");
 			this.log.serialize(generator, mapper);
 
 		}
 		if (this.linear != null) {
-
 			generator.writeKey("linear");
 			this.linear.serialize(generator, mapper);
 
 		}
 		if (this.sigmoid != null) {
-
 			generator.writeKey("sigmoid");
 			this.sigmoid.serialize(generator, mapper);
 
@@ -156,6 +158,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link RankFeatureQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RankFeatureQuery> {
 		private String field;
 
@@ -174,7 +177,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -182,7 +185,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code saturation}
 		 */
-		public Builder saturation(@Nullable RankFeatureFunctionSaturation value) {
+		public final Builder saturation(@Nullable RankFeatureFunctionSaturation value) {
 			this.saturation = value;
 			return this;
 		}
@@ -190,7 +193,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code saturation}
 		 */
-		public Builder saturation(
+		public final Builder saturation(
 				Function<RankFeatureFunctionSaturation.Builder, ObjectBuilder<RankFeatureFunctionSaturation>> fn) {
 			return this.saturation(fn.apply(new RankFeatureFunctionSaturation.Builder()).build());
 		}
@@ -198,7 +201,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code log}
 		 */
-		public Builder log(@Nullable RankFeatureFunctionLogarithm value) {
+		public final Builder log(@Nullable RankFeatureFunctionLogarithm value) {
 			this.log = value;
 			return this;
 		}
@@ -206,7 +209,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code log}
 		 */
-		public Builder log(
+		public final Builder log(
 				Function<RankFeatureFunctionLogarithm.Builder, ObjectBuilder<RankFeatureFunctionLogarithm>> fn) {
 			return this.log(fn.apply(new RankFeatureFunctionLogarithm.Builder()).build());
 		}
@@ -214,7 +217,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code linear}
 		 */
-		public Builder linear(@Nullable RankFeatureFunctionLinear value) {
+		public final Builder linear(@Nullable RankFeatureFunctionLinear value) {
 			this.linear = value;
 			return this;
 		}
@@ -222,7 +225,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code linear}
 		 */
-		public Builder linear(
+		public final Builder linear(
 				Function<RankFeatureFunctionLinear.Builder, ObjectBuilder<RankFeatureFunctionLinear>> fn) {
 			return this.linear(fn.apply(new RankFeatureFunctionLinear.Builder()).build());
 		}
@@ -230,7 +233,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code sigmoid}
 		 */
-		public Builder sigmoid(@Nullable RankFeatureFunctionSigmoid value) {
+		public final Builder sigmoid(@Nullable RankFeatureFunctionSigmoid value) {
 			this.sigmoid = value;
 			return this;
 		}
@@ -238,7 +241,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code sigmoid}
 		 */
-		public Builder sigmoid(
+		public final Builder sigmoid(
 				Function<RankFeatureFunctionSigmoid.Builder, ObjectBuilder<RankFeatureFunctionSigmoid>> fn) {
 			return this.sigmoid(fn.apply(new RankFeatureFunctionSigmoid.Builder()).build());
 		}
@@ -255,6 +258,7 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public RankFeatureQuery build() {
+			_checkSingleUse();
 
 			return new RankFeatureQuery(this);
 		}
@@ -266,9 +270,9 @@ public final class RankFeatureQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link RankFeatureQuery}
 	 */
 	public static final JsonpDeserializer<RankFeatureQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RankFeatureQuery::setupRankFeatureQueryDeserializer, Builder::build);
+			RankFeatureQuery::setupRankFeatureQueryDeserializer);
 
-	protected static void setupRankFeatureQueryDeserializer(DelegatingDeserializer<RankFeatureQuery.Builder> op) {
+	protected static void setupRankFeatureQueryDeserializer(ObjectDeserializer<RankFeatureQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::saturation, RankFeatureFunctionSaturation._DESERIALIZER, "saturation");

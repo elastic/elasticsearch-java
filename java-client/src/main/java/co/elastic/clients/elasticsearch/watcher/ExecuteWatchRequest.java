@@ -23,11 +23,8 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -35,8 +32,11 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -47,19 +47,25 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher.execute_watch.Request
+
+/**
+ * Forces the execution of a stored watch.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/execute_watch/WatcherExecuteWatchRequest.ts#L28-L49">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ExecuteWatchRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final String id;
+public class ExecuteWatchRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, ActionExecutionMode> actionModes;
+
+	private final Map<String, JsonData> alternativeInput;
 
 	@Nullable
 	private final Boolean debug;
 
 	@Nullable
-	private final Map<String, ActionExecutionMode> actionModes;
-
-	@Nullable
-	private final Map<String, JsonData> alternativeInput;
+	private final String id;
 
 	@Nullable
 	private final Boolean ignoreCondition;
@@ -78,12 +84,12 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecuteWatchRequest(Builder builder) {
+	private ExecuteWatchRequest(Builder builder) {
 
-		this.id = builder.id;
+		this.actionModes = ApiTypeHelper.unmodifiable(builder.actionModes);
+		this.alternativeInput = ApiTypeHelper.unmodifiable(builder.alternativeInput);
 		this.debug = builder.debug;
-		this.actionModes = ModelTypeHelper.unmodifiable(builder.actionModes);
-		this.alternativeInput = ModelTypeHelper.unmodifiable(builder.alternativeInput);
+		this.id = builder.id;
 		this.ignoreCondition = builder.ignoreCondition;
 		this.recordExecution = builder.recordExecution;
 		this.simulatedActions = builder.simulatedActions;
@@ -92,18 +98,22 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 
 	}
 
-	public ExecuteWatchRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecuteWatchRequest of(Function<Builder, ObjectBuilder<ExecuteWatchRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Watch ID
-	 * <p>
-	 * API name: {@code id}
+	 * API name: {@code action_modes}
 	 */
-	@Nullable
-	public String id() {
-		return this.id;
+	public final Map<String, ActionExecutionMode> actionModes() {
+		return this.actionModes;
+	}
+
+	/**
+	 * API name: {@code alternative_input}
+	 */
+	public final Map<String, JsonData> alternativeInput() {
+		return this.alternativeInput;
 	}
 
 	/**
@@ -112,31 +122,25 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code debug}
 	 */
 	@Nullable
-	public Boolean debug() {
+	public final Boolean debug() {
 		return this.debug;
 	}
 
 	/**
-	 * API name: {@code action_modes}
+	 * Watch ID
+	 * <p>
+	 * API name: {@code id}
 	 */
 	@Nullable
-	public Map<String, ActionExecutionMode> actionModes() {
-		return this.actionModes;
-	}
-
-	/**
-	 * API name: {@code alternative_input}
-	 */
-	@Nullable
-	public Map<String, JsonData> alternativeInput() {
-		return this.alternativeInput;
+	public final String id() {
+		return this.id;
 	}
 
 	/**
 	 * API name: {@code ignore_condition}
 	 */
 	@Nullable
-	public Boolean ignoreCondition() {
+	public final Boolean ignoreCondition() {
 		return this.ignoreCondition;
 	}
 
@@ -144,7 +148,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code record_execution}
 	 */
 	@Nullable
-	public Boolean recordExecution() {
+	public final Boolean recordExecution() {
 		return this.recordExecution;
 	}
 
@@ -152,7 +156,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code simulated_actions}
 	 */
 	@Nullable
-	public SimulatedActions simulatedActions() {
+	public final SimulatedActions simulatedActions() {
 		return this.simulatedActions;
 	}
 
@@ -160,7 +164,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code trigger_data}
 	 */
 	@Nullable
-	public ScheduleTriggerEvent triggerData() {
+	public final ScheduleTriggerEvent triggerData() {
 		return this.triggerData;
 	}
 
@@ -168,7 +172,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code watch}
 	 */
 	@Nullable
-	public Watch watch() {
+	public final Watch watch() {
 		return this.watch;
 	}
 
@@ -183,8 +187,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.actionModes != null) {
-
+		if (ApiTypeHelper.isDefined(this.actionModes)) {
 			generator.writeKey("action_modes");
 			generator.writeStartObject();
 			for (Map.Entry<String, ActionExecutionMode> item0 : this.actionModes.entrySet()) {
@@ -194,8 +197,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 			generator.writeEnd();
 
 		}
-		if (this.alternativeInput != null) {
-
+		if (ApiTypeHelper.isDefined(this.alternativeInput)) {
 			generator.writeKey("alternative_input");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.alternativeInput.entrySet()) {
@@ -207,31 +209,26 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 
 		}
 		if (this.ignoreCondition != null) {
-
 			generator.writeKey("ignore_condition");
 			generator.write(this.ignoreCondition);
 
 		}
 		if (this.recordExecution != null) {
-
 			generator.writeKey("record_execution");
 			generator.write(this.recordExecution);
 
 		}
 		if (this.simulatedActions != null) {
-
 			generator.writeKey("simulated_actions");
 			this.simulatedActions.serialize(generator, mapper);
 
 		}
 		if (this.triggerData != null) {
-
 			generator.writeKey("trigger_data");
 			this.triggerData.serialize(generator, mapper);
 
 		}
 		if (this.watch != null) {
-
 			generator.writeKey("watch");
 			this.watch.serialize(generator, mapper);
 
@@ -244,18 +241,19 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link ExecuteWatchRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecuteWatchRequest> {
-		@Nullable
-		private String id;
 
-		@Nullable
-		private Boolean debug;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteWatchRequest> {
 		@Nullable
 		private Map<String, ActionExecutionMode> actionModes;
 
 		@Nullable
 		private Map<String, JsonData> alternativeInput;
+
+		@Nullable
+		private Boolean debug;
+
+		@Nullable
+		private String id;
 
 		@Nullable
 		private Boolean ignoreCondition;
@@ -273,12 +271,42 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 		private Watch watch;
 
 		/**
-		 * Watch ID
+		 * API name: {@code action_modes}
 		 * <p>
-		 * API name: {@code id}
+		 * Adds all entries of <code>map</code> to <code>actionModes</code>.
 		 */
-		public Builder id(@Nullable String value) {
-			this.id = value;
+		public final Builder actionModes(Map<String, ActionExecutionMode> map) {
+			this.actionModes = _mapPutAll(this.actionModes, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code action_modes}
+		 * <p>
+		 * Adds an entry to <code>actionModes</code>.
+		 */
+		public final Builder actionModes(String key, ActionExecutionMode value) {
+			this.actionModes = _mapPut(this.actionModes, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code alternative_input}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>alternativeInput</code>.
+		 */
+		public final Builder alternativeInput(Map<String, JsonData> map) {
+			this.alternativeInput = _mapPutAll(this.alternativeInput, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code alternative_input}
+		 * <p>
+		 * Adds an entry to <code>alternativeInput</code>.
+		 */
+		public final Builder alternativeInput(String key, JsonData value) {
+			this.alternativeInput = _mapPut(this.alternativeInput, key, value);
 			return this;
 		}
 
@@ -287,54 +315,25 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code debug}
 		 */
-		public Builder debug(@Nullable Boolean value) {
+		public final Builder debug(@Nullable Boolean value) {
 			this.debug = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code action_modes}
+		 * Watch ID
+		 * <p>
+		 * API name: {@code id}
 		 */
-		public Builder actionModes(@Nullable Map<String, ActionExecutionMode> value) {
-			this.actionModes = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #actionModes(Map)}, creating the map if needed.
-		 */
-		public Builder putActionModes(String key, ActionExecutionMode value) {
-			if (this.actionModes == null) {
-				this.actionModes = new HashMap<>();
-			}
-			this.actionModes.put(key, value);
-			return this;
-		}
-
-		/**
-		 * API name: {@code alternative_input}
-		 */
-		public Builder alternativeInput(@Nullable Map<String, JsonData> value) {
-			this.alternativeInput = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #alternativeInput(Map)}, creating the map if
-		 * needed.
-		 */
-		public Builder putAlternativeInput(String key, JsonData value) {
-			if (this.alternativeInput == null) {
-				this.alternativeInput = new HashMap<>();
-			}
-			this.alternativeInput.put(key, value);
+		public final Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code ignore_condition}
 		 */
-		public Builder ignoreCondition(@Nullable Boolean value) {
+		public final Builder ignoreCondition(@Nullable Boolean value) {
 			this.ignoreCondition = value;
 			return this;
 		}
@@ -342,7 +341,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code record_execution}
 		 */
-		public Builder recordExecution(@Nullable Boolean value) {
+		public final Builder recordExecution(@Nullable Boolean value) {
 			this.recordExecution = value;
 			return this;
 		}
@@ -350,7 +349,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code simulated_actions}
 		 */
-		public Builder simulatedActions(@Nullable SimulatedActions value) {
+		public final Builder simulatedActions(@Nullable SimulatedActions value) {
 			this.simulatedActions = value;
 			return this;
 		}
@@ -358,14 +357,14 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code simulated_actions}
 		 */
-		public Builder simulatedActions(Function<SimulatedActions.Builder, ObjectBuilder<SimulatedActions>> fn) {
+		public final Builder simulatedActions(Function<SimulatedActions.Builder, ObjectBuilder<SimulatedActions>> fn) {
 			return this.simulatedActions(fn.apply(new SimulatedActions.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code trigger_data}
 		 */
-		public Builder triggerData(@Nullable ScheduleTriggerEvent value) {
+		public final Builder triggerData(@Nullable ScheduleTriggerEvent value) {
 			this.triggerData = value;
 			return this;
 		}
@@ -373,14 +372,15 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code trigger_data}
 		 */
-		public Builder triggerData(Function<ScheduleTriggerEvent.Builder, ObjectBuilder<ScheduleTriggerEvent>> fn) {
+		public final Builder triggerData(
+				Function<ScheduleTriggerEvent.Builder, ObjectBuilder<ScheduleTriggerEvent>> fn) {
 			return this.triggerData(fn.apply(new ScheduleTriggerEvent.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code watch}
 		 */
-		public Builder watch(@Nullable Watch value) {
+		public final Builder watch(@Nullable Watch value) {
 			this.watch = value;
 			return this;
 		}
@@ -388,7 +388,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 		/**
 		 * API name: {@code watch}
 		 */
-		public Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
+		public final Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
 			return this.watch(fn.apply(new Watch.Builder()).build());
 		}
 
@@ -399,6 +399,7 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public ExecuteWatchRequest build() {
+			_checkSingleUse();
 
 			return new ExecuteWatchRequest(this);
 		}
@@ -410,9 +411,9 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	 * Json deserializer for {@link ExecuteWatchRequest}
 	 */
 	public static final JsonpDeserializer<ExecuteWatchRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExecuteWatchRequest::setupExecuteWatchRequestDeserializer, Builder::build);
+			.lazy(Builder::new, ExecuteWatchRequest::setupExecuteWatchRequestDeserializer);
 
-	protected static void setupExecuteWatchRequestDeserializer(DelegatingDeserializer<ExecuteWatchRequest.Builder> op) {
+	protected static void setupExecuteWatchRequestDeserializer(ObjectDeserializer<ExecuteWatchRequest.Builder> op) {
 
 		op.add(Builder::actionModes, JsonpDeserializer.stringMapDeserializer(ActionExecutionMode._DESERIALIZER),
 				"action_modes");
@@ -431,7 +432,9 @@ public final class ExecuteWatchRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code watcher.execute_watch}".
 	 */
-	public static final Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/watcher.execute_watch",
+
 			// Request method
 			request -> {
 				return "PUT";

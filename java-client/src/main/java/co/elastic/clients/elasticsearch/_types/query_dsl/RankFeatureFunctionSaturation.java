@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
@@ -38,28 +38,35 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RankFeatureFunctionSaturation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L147-L149">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankFeatureFunctionSaturation extends RankFeatureFunction implements JsonpSerializable {
+public class RankFeatureFunctionSaturation extends RankFeatureFunction implements JsonpSerializable {
 	@Nullable
 	private final Float pivot;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankFeatureFunctionSaturation(Builder builder) {
+	private RankFeatureFunctionSaturation(Builder builder) {
 
 		this.pivot = builder.pivot;
 
 	}
 
-	public RankFeatureFunctionSaturation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankFeatureFunctionSaturation of(Function<Builder, ObjectBuilder<RankFeatureFunctionSaturation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code pivot}
 	 */
 	@Nullable
-	public Float pivot() {
+	public final Float pivot() {
 		return this.pivot;
 	}
 
@@ -75,7 +82,6 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.pivot != null) {
-
 			generator.writeKey("pivot");
 			generator.write(this.pivot);
 
@@ -88,14 +94,15 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 	/**
 	 * Builder for {@link RankFeatureFunctionSaturation}.
 	 */
-	public static class Builder implements ObjectBuilder<RankFeatureFunctionSaturation> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankFeatureFunctionSaturation> {
 		@Nullable
 		private Float pivot;
 
 		/**
 		 * API name: {@code pivot}
 		 */
-		public Builder pivot(@Nullable Float value) {
+		public final Builder pivot(@Nullable Float value) {
 			this.pivot = value;
 			return this;
 		}
@@ -107,6 +114,7 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 		 *             if some of the required fields are null.
 		 */
 		public RankFeatureFunctionSaturation build() {
+			_checkSingleUse();
 
 			return new RankFeatureFunctionSaturation(this);
 		}
@@ -117,12 +125,11 @@ public final class RankFeatureFunctionSaturation extends RankFeatureFunction imp
 	/**
 	 * Json deserializer for {@link RankFeatureFunctionSaturation}
 	 */
-	public static final JsonpDeserializer<RankFeatureFunctionSaturation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, RankFeatureFunctionSaturation::setupRankFeatureFunctionSaturationDeserializer,
-			Builder::build);
+	public static final JsonpDeserializer<RankFeatureFunctionSaturation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RankFeatureFunctionSaturation::setupRankFeatureFunctionSaturationDeserializer);
 
 	protected static void setupRankFeatureFunctionSaturationDeserializer(
-			DelegatingDeserializer<RankFeatureFunctionSaturation.Builder> op) {
+			ObjectDeserializer<RankFeatureFunctionSaturation.Builder> op) {
 
 		op.add(Builder::pivot, JsonpDeserializer.floatDeserializer(), "pivot");
 

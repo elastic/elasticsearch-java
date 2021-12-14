@@ -23,55 +23,60 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_job_stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_job_stats/MlGetJobStatsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetJobStatsResponse implements JsonpSerializable {
+public class GetJobStatsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<JobStats> jobs;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetJobStatsResponse(Builder builder) {
+	private GetJobStatsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.jobs = ModelTypeHelper.unmodifiableNonNull(builder.jobs, "jobs");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.jobs = ApiTypeHelper.unmodifiableRequired(builder.jobs, this, "jobs");
 
 	}
 
-	public GetJobStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetJobStatsResponse of(Function<Builder, ObjectBuilder<GetJobStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code jobs}
 	 */
-	public List<JobStats> jobs() {
+	public final List<JobStats> jobs() {
 		return this.jobs;
 	}
 
@@ -89,13 +94,16 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("jobs");
-		generator.writeStartArray();
-		for (JobStats item0 : this.jobs) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.jobs)) {
+			generator.writeKey("jobs");
+			generator.writeStartArray();
+			for (JobStats item0 : this.jobs) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +112,8 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetJobStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetJobStatsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetJobStatsResponse> {
 		private Long count;
 
 		private List<JobStats> jobs;
@@ -112,50 +121,38 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code jobs}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>jobs</code>.
 		 */
-		public Builder jobs(List<JobStats> value) {
-			this.jobs = value;
+		public final Builder jobs(List<JobStats> list) {
+			this.jobs = _listAddAll(this.jobs, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code jobs}
+		 * <p>
+		 * Adds one or more values to <code>jobs</code>.
 		 */
-		public Builder jobs(JobStats... value) {
-			this.jobs = Arrays.asList(value);
+		public final Builder jobs(JobStats value, JobStats... values) {
+			this.jobs = _listAdd(this.jobs, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed.
+		 * Required - API name: {@code jobs}
+		 * <p>
+		 * Adds a value to <code>jobs</code> using a builder lambda.
 		 */
-		public Builder addJobs(JobStats value) {
-			if (this.jobs == null) {
-				this.jobs = new ArrayList<>();
-			}
-			this.jobs.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #jobs(List)} to a singleton list.
-		 */
-		public Builder jobs(Function<JobStats.Builder, ObjectBuilder<JobStats>> fn) {
-			return this.jobs(fn.apply(new JobStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #jobs(List)}, creating the list if needed.
-		 */
-		public Builder addJobs(Function<JobStats.Builder, ObjectBuilder<JobStats>> fn) {
-			return this.addJobs(fn.apply(new JobStats.Builder()).build());
+		public final Builder jobs(Function<JobStats.Builder, ObjectBuilder<JobStats>> fn) {
+			return jobs(fn.apply(new JobStats.Builder()).build());
 		}
 
 		/**
@@ -165,6 +162,7 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetJobStatsResponse build() {
+			_checkSingleUse();
 
 			return new GetJobStatsResponse(this);
 		}
@@ -176,9 +174,9 @@ public final class GetJobStatsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetJobStatsResponse}
 	 */
 	public static final JsonpDeserializer<GetJobStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetJobStatsResponse::setupGetJobStatsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetJobStatsResponse::setupGetJobStatsResponseDeserializer);
 
-	protected static void setupGetJobStatsResponseDeserializer(DelegatingDeserializer<GetJobStatsResponse.Builder> op) {
+	protected static void setupGetJobStatsResponseDeserializer(ObjectDeserializer<GetJobStatsResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::jobs, JsonpDeserializer.arrayDeserializer(JobStats._DESERIALIZER), "jobs");

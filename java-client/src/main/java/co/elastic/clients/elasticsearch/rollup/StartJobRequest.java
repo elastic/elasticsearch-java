@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,27 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.start_job.Request
 
-public final class StartJobRequest extends RequestBase {
+/**
+ * Starts an existing, stopped rollup job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/start_job/StartRollupJobRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class StartJobRequest extends RequestBase {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartJobRequest(Builder builder) {
+	private StartJobRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public StartJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartJobRequest of(Function<Builder, ObjectBuilder<StartJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +71,7 @@ public final class StartJobRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -70,7 +80,8 @@ public final class StartJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StartJobRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartJobRequest> {
 		private String id;
 
 		/**
@@ -78,7 +89,7 @@ public final class StartJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -90,6 +101,7 @@ public final class StartJobRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public StartJobRequest build() {
+			_checkSingleUse();
 
 			return new StartJobRequest(this);
 		}
@@ -100,7 +112,9 @@ public final class StartJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code rollup.start_job}".
 	 */
-	public static final Endpoint<StartJobRequest, StartJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StartJobRequest, StartJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.start_job",
+
 			// Request method
 			request -> {
 				return "POST";

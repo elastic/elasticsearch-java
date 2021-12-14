@@ -19,49 +19,44 @@
 
 package co.elastic.clients.json;
 
-import co.elastic.clients.util.QuadConsumer;
 import jakarta.json.stream.JsonParser;
 
 import java.util.EnumSet;
-import java.util.function.BiConsumer;
 
-public abstract class DelegatingDeserializer<ObjectType> extends JsonpDeserializer<ObjectType> {
-    public DelegatingDeserializer(EnumSet<JsonParser.Event> acceptedEvents) {
-        super(acceptedEvents);
+public abstract class DelegatingDeserializer<T, U> implements JsonpDeserializer<T> {
+
+    protected abstract JsonpDeserializer<U> unwrap();
+
+    @Override
+    public EnumSet<JsonParser.Event> nativeEvents() {
+        return unwrap().nativeEvents();
     }
 
-    public abstract <FieldType> void add(
-        BiConsumer<ObjectType, FieldType> setter,
-        JsonpDeserializer<FieldType> valueParser,
-        String name, String... deprecatedNames
-    );
-
-    /**
-     * Used for SingleKeyDictionary properties where the JSON representation is a property name and a nested object.
-     * This structure is flattened in the corresponding Java classes, and this method should be used to register
-     * its setter.
-     *
-     * @param keySetter the key setter
-     */
-    public abstract void setKey(
-        BiConsumer<ObjectType, String> keySetter
-    );
-
-    /**
-     * Used for internally tagged variants containers to indicate the object's property that defines the variant type
-     * @param name
-     */
-    public abstract void setTypeProperty(String name);
-
-    /**
-     * Used for internally tagged variants items to ignore their variant type property.
-     * @param name
-     */
-    public void ignore(String name) {
-        throw new UnsupportedOperationException();
+    @Override
+    public EnumSet<JsonParser.Event> acceptedEvents() {
+        return unwrap().acceptedEvents();
     }
 
-    public void setUnknownFieldHandler(QuadConsumer<ObjectType, String, JsonParser, JsonpMapper> unknownFieldHandler) {
-        throw new UnsupportedOperationException();
+    public abstract static class SameType<T> extends DelegatingDeserializer<T, T> {
+        @Override
+        public T deserialize(JsonParser parser, JsonpMapper mapper) {
+            return unwrap().deserialize(parser, mapper);
+        }
+
+        @Override
+        public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+            return unwrap().deserialize(parser, mapper, event);
+        }
+    }
+
+    /**
+     * Unwraps a deserializer. The object type of the result may be different from that of {@code deserializer}
+     * and unwrapping can happen several times, until the result is no more a {@code DelegatingDeserializer}.
+     */
+    public static JsonpDeserializer<?> unwrap(JsonpDeserializer<?> deserializer) {
+        while (deserializer instanceof co.elastic.clients.json.DelegatingDeserializer) {
+            deserializer = ((co.elastic.clients.json.DelegatingDeserializer<?,?>) deserializer).unwrap();
+        }
+        return deserializer;
     }
 }

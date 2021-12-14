@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,27 +43,37 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_filter.Request
 
-public final class DeleteFilterRequest extends RequestBase {
+/**
+ * Deletes a filter. If an anomaly detection job references the filter, you
+ * cannot delete the filter. You must update or delete the job before you can
+ * delete the filter.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_filter/MlDeleteFilterRequest.ts#L23-L39">API
+ *      specification</a>
+ */
+
+public class DeleteFilterRequest extends RequestBase {
 	private final String filterId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteFilterRequest(Builder builder) {
+	private DeleteFilterRequest(Builder builder) {
 
-		this.filterId = Objects.requireNonNull(builder.filterId, "filter_id");
+		this.filterId = ApiTypeHelper.requireNonNull(builder.filterId, this, "filterId");
 
 	}
 
-	public DeleteFilterRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteFilterRequest of(Function<Builder, ObjectBuilder<DeleteFilterRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the filter to delete
+	 * Required - A string that uniquely identifies a filter.
 	 * <p>
 	 * API name: {@code filter_id}
 	 */
-	public String filterId() {
+	public final String filterId() {
 		return this.filterId;
 	}
 
@@ -70,15 +82,16 @@ public final class DeleteFilterRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteFilterRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteFilterRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteFilterRequest> {
 		private String filterId;
 
 		/**
-		 * Required - The ID of the filter to delete
+		 * Required - A string that uniquely identifies a filter.
 		 * <p>
 		 * API name: {@code filter_id}
 		 */
-		public Builder filterId(String value) {
+		public final Builder filterId(String value) {
 			this.filterId = value;
 			return this;
 		}
@@ -90,6 +103,7 @@ public final class DeleteFilterRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteFilterRequest build() {
+			_checkSingleUse();
 
 			return new DeleteFilterRequest(this);
 		}
@@ -100,7 +114,9 @@ public final class DeleteFilterRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_filter}".
 	 */
-	public static final Endpoint<DeleteFilterRequest, DeleteFilterResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteFilterRequest, DeleteFilterResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_filter",
+
 			// Request method
 			request -> {
 				return "DELETE";

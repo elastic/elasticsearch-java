@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,29 +30,37 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.LowercaseNormalizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/normalizers.ts#L26-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable {
+public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
-	public LowercaseNormalizer(Builder builder) {
+	private LowercaseNormalizer(Builder builder) {
 
 	}
 
-	public LowercaseNormalizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LowercaseNormalizer of(Function<Builder, ObjectBuilder<LowercaseNormalizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Normalizer} variant type
+	 * Normalizer variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "lowercase";
+	public Normalizer.Kind _normalizerKind() {
+		return Normalizer.Kind.Lowercase;
 	}
 
 	/**
@@ -76,7 +83,8 @@ public final class LowercaseNormalizer implements NormalizerVariant, JsonpSerial
 	/**
 	 * Builder for {@link LowercaseNormalizer}.
 	 */
-	public static class Builder implements ObjectBuilder<LowercaseNormalizer> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LowercaseNormalizer> {
 
 		/**
 		 * Builds a {@link LowercaseNormalizer}.
@@ -85,6 +93,7 @@ public final class LowercaseNormalizer implements NormalizerVariant, JsonpSerial
 		 *             if some of the required fields are null.
 		 */
 		public LowercaseNormalizer build() {
+			_checkSingleUse();
 
 			return new LowercaseNormalizer(this);
 		}
@@ -96,9 +105,9 @@ public final class LowercaseNormalizer implements NormalizerVariant, JsonpSerial
 	 * Json deserializer for {@link LowercaseNormalizer}
 	 */
 	public static final JsonpDeserializer<LowercaseNormalizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LowercaseNormalizer::setupLowercaseNormalizerDeserializer, Builder::build);
+			.lazy(Builder::new, LowercaseNormalizer::setupLowercaseNormalizerDeserializer);
 
-	protected static void setupLowercaseNormalizerDeserializer(DelegatingDeserializer<LowercaseNormalizer.Builder> op) {
+	protected static void setupLowercaseNormalizerDeserializer(ObjectDeserializer<LowercaseNormalizer.Builder> op) {
 
 		op.ignore("type");
 	}

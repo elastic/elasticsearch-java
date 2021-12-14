@@ -19,8 +19,8 @@
 
 package co.elastic.clients.elasticsearch.model;
 
-import co.elastic.clients.elasticsearch.core.GetSourceResponse;
 import co.elastic.clients.elasticsearch.cat.NodesResponse;
+import co.elastic.clients.elasticsearch.core.GetSourceResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapperBase;
@@ -66,7 +66,9 @@ public class SerializationTest extends ModelTestCase {
         ClassInfoList withDeserializer = scan.getAllClasses().filter((c) -> c.hasDeclaredField("_DESERIALIZER"));
         assertFalse("No classes with a _DESERIALIZER field", withDeserializer.isEmpty());
 
-// Disabled for now, empty response classes still need a deserializer
+// Disabled for now, empty response classes still need a deserializer object
+// e.g. ExistsIndexTemplateResponse, PingResponse, ExistsResponse, ExistsAliasResponse
+//
 //        Set<String> annotationNames = withAnnotation.stream().map(c -> c.getName()).collect(Collectors.toSet());
 //        Set<String> withFieldNames = withDeserializer.stream().map(c -> c.getName()).collect(Collectors.toSet());
 //
@@ -79,13 +81,9 @@ public class SerializationTest extends ModelTestCase {
     @Test
     public void testArrayValueBody() {
 
-        NodesResponse nr = new NodesResponse(_0 -> _0
-            .addValueBody(_1 -> _1
-                .bulkTotalOperations("1")
-            )
-            .addValueBody(_1 -> _1
-                .bulkTotalOperations("2")
-            )
+        NodesResponse nr = NodesResponse.of(_0 -> _0
+            .valueBody(_1 -> _1.bulkTotalOperations("1"))
+            .valueBody(_1 -> _1.bulkTotalOperations("2"))
         );
 
         checkJsonRoundtrip(nr, "[{\"bulk.total_operations\":\"1\"},{\"bulk.total_operations\":\"2\"}]");
@@ -98,7 +96,7 @@ public class SerializationTest extends ModelTestCase {
     @Test
     public void testGenericValueBody() {
 
-        GetSourceResponse<String> r = new GetSourceResponse<>(_0 -> _0
+        GetSourceResponse<String> r = GetSourceResponse.of(_0 -> _0
             .valueBody("The value")
         );
 

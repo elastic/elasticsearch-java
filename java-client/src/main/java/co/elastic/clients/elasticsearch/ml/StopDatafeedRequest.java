@@ -23,89 +23,106 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.stop_datafeed.Request
-@JsonpDeserializable
-public final class StopDatafeedRequest extends RequestBase implements JsonpSerializable {
-	private final String datafeedId;
 
+/**
+ * Stops one or more datafeeds. A datafeed that is stopped ceases to retrieve
+ * data from Elasticsearch. A datafeed can be started and stopped multiple times
+ * throughout its lifecycle.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/stop_datafeed/MlStopDatafeedRequest.ts#L24-L78">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class StopDatafeedRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean allowNoMatch;
+
+	private final String datafeedId;
 
 	@Nullable
 	private final Boolean force;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StopDatafeedRequest(Builder builder) {
+	private StopDatafeedRequest(Builder builder) {
 
-		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
 		this.allowNoMatch = builder.allowNoMatch;
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.force = builder.force;
 		this.timeout = builder.timeout;
 
 	}
 
-	public StopDatafeedRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopDatafeedRequest of(Function<Builder, ObjectBuilder<StopDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the datafeed to stop
-	 * <p>
-	 * API name: {@code datafeed_id}
-	 */
-	public String datafeedId() {
-		return this.datafeedId;
-	}
-
-	/**
-	 * Whether to ignore if a wildcard expression matches no datafeeds. (This
-	 * includes <code>_all</code> string or when no datafeeds have been specified)
+	 * Refer to the description for the <code>allow_no_match</code> query parameter.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
 	/**
+	 * Required - Identifier for the datafeed. You can stop multiple datafeeds in a
+	 * single API request by using a comma-separated list of datafeeds or a wildcard
+	 * expression. You can close all datafeeds by using <code>_all</code> or by
+	 * specifying <code>*</code> as the identifier.
+	 * <p>
+	 * API name: {@code datafeed_id}
+	 */
+	public final String datafeedId() {
+		return this.datafeedId;
+	}
+
+	/**
+	 * Refer to the description for the <code>force</code> query parameter.
+	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
-	public Boolean force() {
+	public final Boolean force() {
 		return this.force;
 	}
 
 	/**
+	 * Refer to the description for the <code>timeout</code> query parameter.
+	 * <p>
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -120,16 +137,19 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.force != null) {
+		if (this.allowNoMatch != null) {
+			generator.writeKey("allow_no_match");
+			generator.write(this.allowNoMatch);
 
+		}
+		if (this.force != null) {
 			generator.writeKey("force");
 			generator.write(this.force);
 
 		}
 		if (this.timeout != null) {
-
 			generator.writeKey("timeout");
-			generator.write(this.timeout);
+			this.timeout.serialize(generator, mapper);
 
 		}
 
@@ -140,53 +160,69 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link StopDatafeedRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StopDatafeedRequest> {
-		private String datafeedId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDatafeedRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
+
+		private String datafeedId;
 
 		@Nullable
 		private Boolean force;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
-		 * Required - The ID of the datafeed to stop
-		 * <p>
-		 * API name: {@code datafeed_id}
-		 */
-		public Builder datafeedId(String value) {
-			this.datafeedId = value;
-			return this;
-		}
-
-		/**
-		 * Whether to ignore if a wildcard expression matches no datafeeds. (This
-		 * includes <code>_all</code> string or when no datafeeds have been specified)
+		 * Refer to the description for the <code>allow_no_match</code> query parameter.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
 
 		/**
+		 * Required - Identifier for the datafeed. You can stop multiple datafeeds in a
+		 * single API request by using a comma-separated list of datafeeds or a wildcard
+		 * expression. You can close all datafeeds by using <code>_all</code> or by
+		 * specifying <code>*</code> as the identifier.
+		 * <p>
+		 * API name: {@code datafeed_id}
+		 */
+		public final Builder datafeedId(String value) {
+			this.datafeedId = value;
+			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>force</code> query parameter.
+		 * <p>
 		 * API name: {@code force}
 		 */
-		public Builder force(@Nullable Boolean value) {
+		public final Builder force(@Nullable Boolean value) {
 			this.force = value;
 			return this;
 		}
 
 		/**
+		 * Refer to the description for the <code>timeout</code> query parameter.
+		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Refer to the description for the <code>timeout</code> query parameter.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -196,6 +232,7 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public StopDatafeedRequest build() {
+			_checkSingleUse();
 
 			return new StopDatafeedRequest(this);
 		}
@@ -207,12 +244,13 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 	 * Json deserializer for {@link StopDatafeedRequest}
 	 */
 	public static final JsonpDeserializer<StopDatafeedRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer, Builder::build);
+			.lazy(Builder::new, StopDatafeedRequest::setupStopDatafeedRequestDeserializer);
 
-	protected static void setupStopDatafeedRequestDeserializer(DelegatingDeserializer<StopDatafeedRequest.Builder> op) {
+	protected static void setupStopDatafeedRequestDeserializer(ObjectDeserializer<StopDatafeedRequest.Builder> op) {
 
+		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
 		op.add(Builder::force, JsonpDeserializer.booleanDeserializer(), "force");
-		op.add(Builder::timeout, JsonpDeserializer.stringDeserializer(), "timeout");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 
@@ -221,7 +259,9 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code ml.stop_datafeed}".
 	 */
-	public static final Endpoint<StopDatafeedRequest, StopDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.stop_datafeed",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -251,11 +291,7 @@ public final class StopDatafeedRequest extends RequestBase implements JsonpSeria
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
-				}
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), true, StopDatafeedResponse._DESERIALIZER);
 }

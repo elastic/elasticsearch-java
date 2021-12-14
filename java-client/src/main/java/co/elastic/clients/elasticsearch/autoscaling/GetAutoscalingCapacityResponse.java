@@ -24,44 +24,51 @@
 package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.elasticsearch.autoscaling.get_autoscaling_capacity.AutoscalingDeciders;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: autoscaling.get_autoscaling_capacity.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L25-L29">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetAutoscalingCapacityResponse implements JsonpSerializable {
+public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 	private final Map<String, AutoscalingDeciders> policies;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetAutoscalingCapacityResponse(Builder builder) {
+	private GetAutoscalingCapacityResponse(Builder builder) {
 
-		this.policies = ModelTypeHelper.unmodifiableNonNull(builder.policies, "policies");
+		this.policies = ApiTypeHelper.unmodifiableRequired(builder.policies, this, "policies");
 
 	}
 
-	public GetAutoscalingCapacityResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetAutoscalingCapacityResponse of(
+			Function<Builder, ObjectBuilder<GetAutoscalingCapacityResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code policies}
 	 */
-	public Map<String, AutoscalingDeciders> policies() {
+	public final Map<String, AutoscalingDeciders> policies() {
 		return this.policies;
 	}
 
@@ -76,14 +83,17 @@ public final class GetAutoscalingCapacityResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("policies");
-		generator.writeStartObject();
-		for (Map.Entry<String, AutoscalingDeciders> item0 : this.policies.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.policies)) {
+			generator.writeKey("policies");
+			generator.writeStartObject();
+			for (Map.Entry<String, AutoscalingDeciders> item0 : this.policies.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -92,42 +102,38 @@ public final class GetAutoscalingCapacityResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetAutoscalingCapacityResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetAutoscalingCapacityResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoscalingCapacityResponse> {
 		private Map<String, AutoscalingDeciders> policies;
 
 		/**
 		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>policies</code>.
 		 */
-		public Builder policies(Map<String, AutoscalingDeciders> value) {
-			this.policies = value;
+		public final Builder policies(Map<String, AutoscalingDeciders> map) {
+			this.policies = _mapPutAll(this.policies, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #policies(Map)}, creating the map if needed.
+		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds an entry to <code>policies</code>.
 		 */
-		public Builder putPolicies(String key, AutoscalingDeciders value) {
-			if (this.policies == null) {
-				this.policies = new HashMap<>();
-			}
-			this.policies.put(key, value);
+		public final Builder policies(String key, AutoscalingDeciders value) {
+			this.policies = _mapPut(this.policies, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #policies(Map)} to a singleton map.
+		 * Required - API name: {@code policies}
+		 * <p>
+		 * Adds an entry to <code>policies</code> using a builder lambda.
 		 */
-		public Builder policies(String key,
+		public final Builder policies(String key,
 				Function<AutoscalingDeciders.Builder, ObjectBuilder<AutoscalingDeciders>> fn) {
-			return this.policies(Collections.singletonMap(key, fn.apply(new AutoscalingDeciders.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #policies(Map)}, creating the map if needed.
-		 */
-		public Builder putPolicies(String key,
-				Function<AutoscalingDeciders.Builder, ObjectBuilder<AutoscalingDeciders>> fn) {
-			return this.putPolicies(key, fn.apply(new AutoscalingDeciders.Builder()).build());
+			return policies(key, fn.apply(new AutoscalingDeciders.Builder()).build());
 		}
 
 		/**
@@ -137,6 +143,7 @@ public final class GetAutoscalingCapacityResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetAutoscalingCapacityResponse build() {
+			_checkSingleUse();
 
 			return new GetAutoscalingCapacityResponse(this);
 		}
@@ -148,11 +155,10 @@ public final class GetAutoscalingCapacityResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetAutoscalingCapacityResponse}
 	 */
 	public static final JsonpDeserializer<GetAutoscalingCapacityResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetAutoscalingCapacityResponse::setupGetAutoscalingCapacityResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, GetAutoscalingCapacityResponse::setupGetAutoscalingCapacityResponseDeserializer);
 
 	protected static void setupGetAutoscalingCapacityResponseDeserializer(
-			DelegatingDeserializer<GetAutoscalingCapacityResponse.Builder> op) {
+			ObjectDeserializer<GetAutoscalingCapacityResponse.Builder> op) {
 
 		op.add(Builder::policies, JsonpDeserializer.stringMapDeserializer(AutoscalingDeciders._DESERIALIZER),
 				"policies");

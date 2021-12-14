@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ingest.simulate;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,7 +30,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.simulate.Document
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/simulate/types.ts#L39-L43">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Document implements JsonpSerializable {
+public class Document implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -51,23 +59,23 @@ public final class Document implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Document(Builder builder) {
+	private Document(Builder builder) {
 
 		this.id = builder.id;
 		this.index = builder.index;
-		this.source = Objects.requireNonNull(builder.source, "_source");
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 
 	}
 
-	public Document(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Document of(Function<Builder, ObjectBuilder<Document>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code _id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -75,14 +83,14 @@ public final class Document implements JsonpSerializable {
 	 * API name: {@code _index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code _source}
 	 */
-	public JsonData source() {
+	public final JsonData source() {
 		return this.source;
 	}
 
@@ -98,18 +106,15 @@ public final class Document implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("_id");
 			generator.write(this.id);
 
 		}
 		if (this.index != null) {
-
 			generator.writeKey("_index");
 			generator.write(this.index);
 
 		}
-
 		generator.writeKey("_source");
 		this.source.serialize(generator, mapper);
 
@@ -120,7 +125,8 @@ public final class Document implements JsonpSerializable {
 	/**
 	 * Builder for {@link Document}.
 	 */
-	public static class Builder implements ObjectBuilder<Document> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Document> {
 		@Nullable
 		private String id;
 
@@ -132,7 +138,7 @@ public final class Document implements JsonpSerializable {
 		/**
 		 * API name: {@code _id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -140,7 +146,7 @@ public final class Document implements JsonpSerializable {
 		/**
 		 * API name: {@code _index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -148,7 +154,7 @@ public final class Document implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _source}
 		 */
-		public Builder source(JsonData value) {
+		public final Builder source(JsonData value) {
 			this.source = value;
 			return this;
 		}
@@ -160,6 +166,7 @@ public final class Document implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Document build() {
+			_checkSingleUse();
 
 			return new Document(this);
 		}
@@ -171,9 +178,9 @@ public final class Document implements JsonpSerializable {
 	 * Json deserializer for {@link Document}
 	 */
 	public static final JsonpDeserializer<Document> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Document::setupDocumentDeserializer, Builder::build);
+			Document::setupDocumentDeserializer);
 
-	protected static void setupDocumentDeserializer(DelegatingDeserializer<Document.Builder> op) {
+	protected static void setupDocumentDeserializer(ObjectDeserializer<Document.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

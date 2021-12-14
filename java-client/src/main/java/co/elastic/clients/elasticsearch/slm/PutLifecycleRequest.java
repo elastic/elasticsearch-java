@@ -23,18 +23,20 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -44,21 +46,26 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.put_lifecycle.Request
+
+/**
+ * Creates or updates a snapshot lifecycle policy.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/put_lifecycle/PutSnapshotLifecycleRequest.ts#L26-L72">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
-	private final String policyId;
+public class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final SlmConfiguration config;
 
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final String timeout;
-
-	@Nullable
-	private final Configuration config;
+	private final Time masterTimeout;
 
 	@Nullable
 	private final String name;
+
+	private final String policyId;
 
 	@Nullable
 	private final String repository;
@@ -69,32 +76,36 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	@Nullable
 	private final String schedule;
 
+	@Nullable
+	private final Time timeout;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public PutLifecycleRequest(Builder builder) {
+	private PutLifecycleRequest(Builder builder) {
 
-		this.policyId = Objects.requireNonNull(builder.policyId, "policy_id");
-		this.masterTimeout = builder.masterTimeout;
-		this.timeout = builder.timeout;
 		this.config = builder.config;
+		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
+		this.policyId = ApiTypeHelper.requireNonNull(builder.policyId, this, "policyId");
 		this.repository = builder.repository;
 		this.retention = builder.retention;
 		this.schedule = builder.schedule;
+		this.timeout = builder.timeout;
 
 	}
 
-	public PutLifecycleRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutLifecycleRequest of(Function<Builder, ObjectBuilder<PutLifecycleRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - ID for the snapshot lifecycle policy you want to create or update.
+	 * Configuration for each snapshot created by the policy.
 	 * <p>
-	 * API name: {@code policy_id}
+	 * API name: {@code config}
 	 */
-	public String policyId() {
-		return this.policyId;
+	@Nullable
+	public final SlmConfiguration config() {
+		return this.config;
 	}
 
 	/**
@@ -104,29 +115,8 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
-	}
-
-	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public String timeout() {
-		return this.timeout;
-	}
-
-	/**
-	 * Configuration for each snapshot created by the policy.
-	 * <p>
-	 * API name: {@code config}
-	 */
-	@Nullable
-	public Configuration config() {
-		return this.config;
 	}
 
 	/**
@@ -137,8 +127,17 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
+	}
+
+	/**
+	 * Required - ID for the snapshot lifecycle policy you want to create or update.
+	 * <p>
+	 * API name: {@code policy_id}
+	 */
+	public final String policyId() {
+		return this.policyId;
 	}
 
 	/**
@@ -149,7 +148,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code repository}
 	 */
 	@Nullable
-	public String repository() {
+	public final String repository() {
 		return this.repository;
 	}
 
@@ -159,7 +158,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code retention}
 	 */
 	@Nullable
-	public Retention retention() {
+	public final Retention retention() {
 		return this.retention;
 	}
 
@@ -170,8 +169,19 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code schedule}
 	 */
 	@Nullable
-	public String schedule() {
+	public final String schedule() {
 		return this.schedule;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -186,31 +196,26 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.config != null) {
-
 			generator.writeKey("config");
 			this.config.serialize(generator, mapper);
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.repository != null) {
-
 			generator.writeKey("repository");
 			generator.write(this.repository);
 
 		}
 		if (this.retention != null) {
-
 			generator.writeKey("retention");
 			this.retention.serialize(generator, mapper);
 
 		}
 		if (this.schedule != null) {
-
 			generator.writeKey("schedule");
 			generator.write(this.schedule);
 
@@ -223,20 +228,18 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link PutLifecycleRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<PutLifecycleRequest> {
-		private String policyId;
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutLifecycleRequest> {
+		@Nullable
+		private SlmConfiguration config;
 
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
-
-		@Nullable
-		private Configuration config;
+		private Time masterTimeout;
 
 		@Nullable
 		private String name;
+
+		private String policyId;
 
 		@Nullable
 		private String repository;
@@ -247,44 +250,15 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		@Nullable
 		private String schedule;
 
-		/**
-		 * Required - ID for the snapshot lifecycle policy you want to create or update.
-		 * <p>
-		 * API name: {@code policy_id}
-		 */
-		public Builder policyId(String value) {
-			this.policyId = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public Builder timeout(@Nullable String value) {
-			this.timeout = value;
-			return this;
-		}
+		@Nullable
+		private Time timeout;
 
 		/**
 		 * Configuration for each snapshot created by the policy.
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public Builder config(@Nullable Configuration value) {
+		public final Builder config(@Nullable SlmConfiguration value) {
 			this.config = value;
 			return this;
 		}
@@ -294,8 +268,29 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code config}
 		 */
-		public Builder config(Function<Configuration.Builder, ObjectBuilder<Configuration>> fn) {
-			return this.config(fn.apply(new Configuration.Builder()).build());
+		public final Builder config(Function<SlmConfiguration.Builder, ObjectBuilder<SlmConfiguration>> fn) {
+			return this.config(fn.apply(new SlmConfiguration.Builder()).build());
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -305,8 +300,18 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - ID for the snapshot lifecycle policy you want to create or update.
+		 * <p>
+		 * API name: {@code policy_id}
+		 */
+		public final Builder policyId(String value) {
+			this.policyId = value;
 			return this;
 		}
 
@@ -317,7 +322,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder repository(@Nullable String value) {
+		public final Builder repository(@Nullable String value) {
 			this.repository = value;
 			return this;
 		}
@@ -327,7 +332,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code retention}
 		 */
-		public Builder retention(@Nullable Retention value) {
+		public final Builder retention(@Nullable Retention value) {
 			this.retention = value;
 			return this;
 		}
@@ -337,7 +342,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code retention}
 		 */
-		public Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
+		public final Builder retention(Function<Retention.Builder, ObjectBuilder<Retention>> fn) {
 			return this.retention(fn.apply(new Retention.Builder()).build());
 		}
 
@@ -347,9 +352,30 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code schedule}
 		 */
-		public Builder schedule(@Nullable String value) {
+		public final Builder schedule(@Nullable String value) {
 			this.schedule = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -359,6 +385,7 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public PutLifecycleRequest build() {
+			_checkSingleUse();
 
 			return new PutLifecycleRequest(this);
 		}
@@ -370,11 +397,11 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	 * Json deserializer for {@link PutLifecycleRequest}
 	 */
 	public static final JsonpDeserializer<PutLifecycleRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer, Builder::build);
+			.lazy(Builder::new, PutLifecycleRequest::setupPutLifecycleRequestDeserializer);
 
-	protected static void setupPutLifecycleRequestDeserializer(DelegatingDeserializer<PutLifecycleRequest.Builder> op) {
+	protected static void setupPutLifecycleRequestDeserializer(ObjectDeserializer<PutLifecycleRequest.Builder> op) {
 
-		op.add(Builder::config, Configuration._DESERIALIZER, "config");
+		op.add(Builder::config, SlmConfiguration._DESERIALIZER, "config");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository");
 		op.add(Builder::retention, Retention._DESERIALIZER, "retention");
@@ -387,7 +414,9 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code slm.put_lifecycle}".
 	 */
-	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/slm.put_lifecycle",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -418,10 +447,10 @@ public final class PutLifecycleRequest extends RequestBase implements JsonpSeria
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

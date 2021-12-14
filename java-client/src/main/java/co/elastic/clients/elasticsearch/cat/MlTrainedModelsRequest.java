@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -44,10 +45,15 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.Request
 
-public final class MlTrainedModelsRequest extends CatRequestBase {
-	@Nullable
-	private final String modelId;
+/**
+ * Gets configuration and usage information about inference trained models.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_trained_models/CatTrainedModelsRequest.ts#L24-L39">API
+ *      specification</a>
+ */
 
+public class MlTrainedModelsRequest extends CatRequestBase {
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -58,32 +64,25 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 	private final Integer from;
 
 	@Nullable
+	private final String modelId;
+
+	@Nullable
 	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MlTrainedModelsRequest(Builder builder) {
+	private MlTrainedModelsRequest(Builder builder) {
 
-		this.modelId = builder.modelId;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
 		this.from = builder.from;
+		this.modelId = builder.modelId;
 		this.size = builder.size;
 
 	}
 
-	public MlTrainedModelsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * The ID of the trained models stats to fetch
-	 * <p>
-	 * API name: {@code model_id}
-	 */
-	@Nullable
-	public String modelId() {
-		return this.modelId;
+	public static MlTrainedModelsRequest of(Function<Builder, ObjectBuilder<MlTrainedModelsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -94,7 +93,7 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public Boolean allowNoMatch() {
+	public final Boolean allowNoMatch() {
 		return this.allowNoMatch;
 	}
 
@@ -104,7 +103,7 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
 	}
 
@@ -114,8 +113,18 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
+	}
+
+	/**
+	 * The ID of the trained models stats to fetch
+	 * <p>
+	 * API name: {@code model_id}
+	 */
+	@Nullable
+	public final String modelId() {
+		return this.modelId;
 	}
 
 	/**
@@ -124,7 +133,7 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -133,10 +142,8 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlTrainedModelsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MlTrainedModelsRequest> {
-		@Nullable
-		private String modelId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlTrainedModelsRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -147,17 +154,10 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 		private Integer from;
 
 		@Nullable
-		private Integer size;
+		private String modelId;
 
-		/**
-		 * The ID of the trained models stats to fetch
-		 * <p>
-		 * API name: {@code model_id}
-		 */
-		public Builder modelId(@Nullable String value) {
-			this.modelId = value;
-			return this;
-		}
+		@Nullable
+		private Integer size;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no trained models. (This
@@ -166,7 +166,7 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
-		public Builder allowNoMatch(@Nullable Boolean value) {
+		public final Builder allowNoMatch(@Nullable Boolean value) {
 			this.allowNoMatch = value;
 			return this;
 		}
@@ -176,7 +176,7 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code bytes}
 		 */
-		public Builder bytes(@Nullable Bytes value) {
+		public final Builder bytes(@Nullable Bytes value) {
 			this.bytes = value;
 			return this;
 		}
@@ -186,8 +186,18 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
+			return this;
+		}
+
+		/**
+		 * The ID of the trained models stats to fetch
+		 * <p>
+		 * API name: {@code model_id}
+		 */
+		public final Builder modelId(@Nullable String value) {
+			this.modelId = value;
 			return this;
 		}
 
@@ -196,7 +206,7 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable Integer value) {
+		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
 		}
@@ -208,6 +218,7 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public MlTrainedModelsRequest build() {
+			_checkSingleUse();
 
 			return new MlTrainedModelsRequest(this);
 		}
@@ -218,7 +229,9 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.ml_trained_models}".
 	 */
-	public static final Endpoint<MlTrainedModelsRequest, MlTrainedModelsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MlTrainedModelsRequest, MlTrainedModelsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.ml_trained_models",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -257,17 +270,18 @@ public final class MlTrainedModelsRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoMatch != null) {
-					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
+				params.put("format", "json");
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

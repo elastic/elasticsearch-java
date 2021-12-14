@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.delete_index_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/delete_index_template/IndicesDeleteIndexTemplateResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
+public class DeleteIndexTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteIndexTemplateResponse(Builder builder) {
+	private DeleteIndexTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteIndexTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteIndexTemplateResponse of(Function<Builder, ObjectBuilder<DeleteIndexTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase 
 	/**
 	 * Builder for {@link DeleteIndexTemplateResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteIndexTemplateResponse> {
@@ -68,6 +75,7 @@ public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public DeleteIndexTemplateResponse build() {
+			_checkSingleUse();
 
 			return new DeleteIndexTemplateResponse(this);
 		}
@@ -78,11 +86,11 @@ public final class DeleteIndexTemplateResponse extends AcknowledgedResponseBase 
 	/**
 	 * Json deserializer for {@link DeleteIndexTemplateResponse}
 	 */
-	public static final JsonpDeserializer<DeleteIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, DeleteIndexTemplateResponse::setupDeleteIndexTemplateResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<DeleteIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, DeleteIndexTemplateResponse::setupDeleteIndexTemplateResponseDeserializer);
 
 	protected static void setupDeleteIndexTemplateResponseDeserializer(
-			DelegatingDeserializer<DeleteIndexTemplateResponse.Builder> op) {
+			ObjectDeserializer<DeleteIndexTemplateResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

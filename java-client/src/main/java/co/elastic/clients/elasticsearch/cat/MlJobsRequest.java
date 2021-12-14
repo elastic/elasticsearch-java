@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,59 +45,95 @@ import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.Request
 
-public final class MlJobsRequest extends CatRequestBase {
-	@Nullable
-	private final String jobId;
+/**
+ * Returns configuration and usage information for anomaly detection jobs. This
+ * API returns a maximum of 10,000 jobs. If the Elasticsearch security features
+ * are enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
+ * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
+ * API.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_jobs/CatJobsRequest.ts#L24-L64">API
+ *      specification</a>
+ */
 
+public class MlJobsRequest extends CatRequestBase {
 	@Nullable
-	private final Boolean allowNoJobs;
+	private final Boolean allowNoMatch;
 
 	@Nullable
 	private final Bytes bytes;
 
+	@Nullable
+	private final String jobId;
+
+	@Nullable
+	private final TimeUnit time;
+
 	// ---------------------------------------------------------------------------------------------
 
-	public MlJobsRequest(Builder builder) {
+	private MlJobsRequest(Builder builder) {
 
-		this.jobId = builder.jobId;
-		this.allowNoJobs = builder.allowNoJobs;
+		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
+		this.jobId = builder.jobId;
+		this.time = builder.time;
 
 	}
 
-	public MlJobsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MlJobsRequest of(Function<Builder, ObjectBuilder<MlJobsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * The ID of the jobs stats to fetch
+	 * Specifies what to do when the request:
+	 * <ul>
+	 * <li>Contains wildcard expressions and there are no jobs that match.</li>
+	 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+	 * matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ul>
 	 * <p>
-	 * API name: {@code job_id}
+	 * If <code>true</code>, the API returns an empty jobs array when there are no
+	 * matches and the subset of results when there are partial matches. If
+	 * <code>false</code>, the API returns a 404 status code when there are no
+	 * matches or only partial matches.
+	 * <p>
+	 * API name: {@code allow_no_match}
 	 */
 	@Nullable
-	public String jobId() {
-		return this.jobId;
+	public final Boolean allowNoMatch() {
+		return this.allowNoMatch;
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-	 * <code>_all</code> string or when no jobs have been specified)
-	 * <p>
-	 * API name: {@code allow_no_jobs}
-	 */
-	@Nullable
-	public Boolean allowNoJobs() {
-		return this.allowNoJobs;
-	}
-
-	/**
-	 * The unit in which to display byte values
+	 * The unit used to display byte values.
 	 * <p>
 	 * API name: {@code bytes}
 	 */
 	@Nullable
-	public Bytes bytes() {
+	public final Bytes bytes() {
 		return this.bytes;
+	}
+
+	/**
+	 * Identifier for the anomaly detection job.
+	 * <p>
+	 * API name: {@code job_id}
+	 */
+	@Nullable
+	public final String jobId() {
+		return this.jobId;
+	}
+
+	/**
+	 * The unit used to display time values.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final TimeUnit time() {
+		return this.time;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -103,44 +141,68 @@ public final class MlJobsRequest extends CatRequestBase {
 	/**
 	 * Builder for {@link MlJobsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MlJobsRequest> {
-		@Nullable
-		private String jobId;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlJobsRequest> {
 		@Nullable
-		private Boolean allowNoJobs;
+		private Boolean allowNoMatch;
 
 		@Nullable
 		private Bytes bytes;
 
+		@Nullable
+		private String jobId;
+
+		@Nullable
+		private TimeUnit time;
+
 		/**
-		 * The ID of the jobs stats to fetch
+		 * Specifies what to do when the request:
+		 * <ul>
+		 * <li>Contains wildcard expressions and there are no jobs that match.</li>
+		 * <li>Contains the <code>_all</code> string or no identifiers and there are no
+		 * matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ul>
+		 * <p>
+		 * If <code>true</code>, the API returns an empty jobs array when there are no
+		 * matches and the subset of results when there are partial matches. If
+		 * <code>false</code>, the API returns a 404 status code when there are no
+		 * matches or only partial matches.
+		 * <p>
+		 * API name: {@code allow_no_match}
+		 */
+		public final Builder allowNoMatch(@Nullable Boolean value) {
+			this.allowNoMatch = value;
+			return this;
+		}
+
+		/**
+		 * The unit used to display byte values.
+		 * <p>
+		 * API name: {@code bytes}
+		 */
+		public final Builder bytes(@Nullable Bytes value) {
+			this.bytes = value;
+			return this;
+		}
+
+		/**
+		 * Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
 		 */
-		public Builder jobId(@Nullable String value) {
+		public final Builder jobId(@Nullable String value) {
 			this.jobId = value;
 			return this;
 		}
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no jobs. (This includes
-		 * <code>_all</code> string or when no jobs have been specified)
+		 * The unit used to display time values.
 		 * <p>
-		 * API name: {@code allow_no_jobs}
+		 * API name: {@code time}
 		 */
-		public Builder allowNoJobs(@Nullable Boolean value) {
-			this.allowNoJobs = value;
-			return this;
-		}
-
-		/**
-		 * The unit in which to display byte values
-		 * <p>
-		 * API name: {@code bytes}
-		 */
-		public Builder bytes(@Nullable Bytes value) {
-			this.bytes = value;
+		public final Builder time(@Nullable TimeUnit value) {
+			this.time = value;
 			return this;
 		}
 
@@ -151,6 +213,7 @@ public final class MlJobsRequest extends CatRequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public MlJobsRequest build() {
+			_checkSingleUse();
 
 			return new MlJobsRequest(this);
 		}
@@ -161,7 +224,9 @@ public final class MlJobsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.ml_jobs}".
 	 */
-	public static final Endpoint<MlJobsRequest, MlJobsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MlJobsRequest, MlJobsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.ml_jobs",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -200,11 +265,15 @@ public final class MlJobsRequest extends CatRequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.allowNoJobs != null) {
-					params.put("allow_no_jobs", String.valueOf(request.allowNoJobs));
-				}
+				params.put("format", "json");
 				if (request.bytes != null) {
-					params.put("bytes", request.bytes.toString());
+					params.put("bytes", request.bytes.jsonValue());
+				}
+				if (request.time != null) {
+					params.put("time", request.time.jsonValue());
+				}
+				if (request.allowNoMatch != null) {
+					params.put("allow_no_match", String.valueOf(request.allowNoMatch));
 				}
 				return params;
 

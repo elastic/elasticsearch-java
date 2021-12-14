@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.indices.resolve_index;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.resolve_index.ResolveIndexDataStreamsItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/resolve_index/ResolveIndexResponse.ts#L42-L46">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
+public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	private final String name;
 
 	private final String timestampField;
@@ -52,36 +57,36 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ResolveIndexDataStreamsItem(Builder builder) {
+	private ResolveIndexDataStreamsItem(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.timestampField = Objects.requireNonNull(builder.timestampField, "timestamp_field");
-		this.backingIndices = ModelTypeHelper.unmodifiableNonNull(builder.backingIndices, "backing_indices");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.timestampField = ApiTypeHelper.requireNonNull(builder.timestampField, this, "timestampField");
+		this.backingIndices = ApiTypeHelper.unmodifiableRequired(builder.backingIndices, this, "backingIndices");
 
 	}
 
-	public ResolveIndexDataStreamsItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ResolveIndexDataStreamsItem of(Function<Builder, ObjectBuilder<ResolveIndexDataStreamsItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp_field}
 	 */
-	public String timestampField() {
+	public final String timestampField() {
 		return this.timestampField;
 	}
 
 	/**
 	 * Required - API name: {@code backing_indices}
 	 */
-	public List<String> backingIndices() {
+	public final List<String> backingIndices() {
 		return this.backingIndices;
 	}
 
@@ -102,13 +107,16 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		generator.writeKey("timestamp_field");
 		generator.write(this.timestampField);
 
-		generator.writeKey("backing_indices");
-		generator.writeStartArray();
-		for (String item0 : this.backingIndices) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.backingIndices)) {
+			generator.writeKey("backing_indices");
+			generator.writeStartArray();
+			for (String item0 : this.backingIndices) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -117,7 +125,8 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link ResolveIndexDataStreamsItem}.
 	 */
-	public static class Builder implements ObjectBuilder<ResolveIndexDataStreamsItem> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexDataStreamsItem> {
 		private String name;
 
 		private String timestampField;
@@ -127,7 +136,7 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -135,35 +144,28 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp_field}
 		 */
-		public Builder timestampField(String value) {
+		public final Builder timestampField(String value) {
 			this.timestampField = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code backing_indices}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>backingIndices</code>.
 		 */
-		public Builder backingIndices(List<String> value) {
-			this.backingIndices = value;
+		public final Builder backingIndices(List<String> list) {
+			this.backingIndices = _listAddAll(this.backingIndices, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code backing_indices}
+		 * <p>
+		 * Adds one or more values to <code>backingIndices</code>.
 		 */
-		public Builder backingIndices(String... value) {
-			this.backingIndices = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #backingIndices(List)}, creating the list if needed.
-		 */
-		public Builder addBackingIndices(String value) {
-			if (this.backingIndices == null) {
-				this.backingIndices = new ArrayList<>();
-			}
-			this.backingIndices.add(value);
+		public final Builder backingIndices(String value, String... values) {
+			this.backingIndices = _listAdd(this.backingIndices, value, values);
 			return this;
 		}
 
@@ -174,6 +176,7 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ResolveIndexDataStreamsItem build() {
+			_checkSingleUse();
 
 			return new ResolveIndexDataStreamsItem(this);
 		}
@@ -184,11 +187,11 @@ public final class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link ResolveIndexDataStreamsItem}
 	 */
-	public static final JsonpDeserializer<ResolveIndexDataStreamsItem> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ResolveIndexDataStreamsItem::setupResolveIndexDataStreamsItemDeserializer, Builder::build);
+	public static final JsonpDeserializer<ResolveIndexDataStreamsItem> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ResolveIndexDataStreamsItem::setupResolveIndexDataStreamsItemDeserializer);
 
 	protected static void setupResolveIndexDataStreamsItemDeserializer(
-			DelegatingDeserializer<ResolveIndexDataStreamsItem.Builder> op) {
+			ObjectDeserializer<ResolveIndexDataStreamsItem.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");

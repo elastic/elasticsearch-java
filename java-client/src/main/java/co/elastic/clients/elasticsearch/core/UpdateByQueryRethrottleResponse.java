@@ -24,44 +24,51 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch.core.update_by_query_rethrottle.UpdateByQueryRethrottleNode;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.update_by_query_rethrottle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/update_by_query_rethrottle/UpdateByQueryRethrottleResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UpdateByQueryRethrottleResponse implements JsonpSerializable {
+public class UpdateByQueryRethrottleResponse implements JsonpSerializable {
 	private final Map<String, UpdateByQueryRethrottleNode> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateByQueryRethrottleResponse(Builder builder) {
+	private UpdateByQueryRethrottleResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public UpdateByQueryRethrottleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateByQueryRethrottleResponse of(
+			Function<Builder, ObjectBuilder<UpdateByQueryRethrottleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public Map<String, UpdateByQueryRethrottleNode> nodes() {
+	public final Map<String, UpdateByQueryRethrottleNode> nodes() {
 		return this.nodes;
 	}
 
@@ -76,14 +83,17 @@ public final class UpdateByQueryRethrottleResponse implements JsonpSerializable 
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("nodes");
-		generator.writeStartObject();
-		for (Map.Entry<String, UpdateByQueryRethrottleNode> item0 : this.nodes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, UpdateByQueryRethrottleNode> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -92,43 +102,38 @@ public final class UpdateByQueryRethrottleResponse implements JsonpSerializable 
 	/**
 	 * Builder for {@link UpdateByQueryRethrottleResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<UpdateByQueryRethrottleResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateByQueryRethrottleResponse> {
 		private Map<String, UpdateByQueryRethrottleNode> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
-		public Builder nodes(Map<String, UpdateByQueryRethrottleNode> value) {
-			this.nodes = value;
+		public final Builder nodes(Map<String, UpdateByQueryRethrottleNode> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
 		 */
-		public Builder putNodes(String key, UpdateByQueryRethrottleNode value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
+		public final Builder nodes(String key, UpdateByQueryRethrottleNode value) {
+			this.nodes = _mapPut(this.nodes, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #nodes(Map)} to a singleton map.
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
 		 */
-		public Builder nodes(String key,
+		public final Builder nodes(String key,
 				Function<UpdateByQueryRethrottleNode.Builder, ObjectBuilder<UpdateByQueryRethrottleNode>> fn) {
-			return this
-					.nodes(Collections.singletonMap(key, fn.apply(new UpdateByQueryRethrottleNode.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key,
-				Function<UpdateByQueryRethrottleNode.Builder, ObjectBuilder<UpdateByQueryRethrottleNode>> fn) {
-			return this.putNodes(key, fn.apply(new UpdateByQueryRethrottleNode.Builder()).build());
+			return nodes(key, fn.apply(new UpdateByQueryRethrottleNode.Builder()).build());
 		}
 
 		/**
@@ -138,6 +143,7 @@ public final class UpdateByQueryRethrottleResponse implements JsonpSerializable 
 		 *             if some of the required fields are null.
 		 */
 		public UpdateByQueryRethrottleResponse build() {
+			_checkSingleUse();
 
 			return new UpdateByQueryRethrottleResponse(this);
 		}
@@ -149,11 +155,10 @@ public final class UpdateByQueryRethrottleResponse implements JsonpSerializable 
 	 * Json deserializer for {@link UpdateByQueryRethrottleResponse}
 	 */
 	public static final JsonpDeserializer<UpdateByQueryRethrottleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateByQueryRethrottleResponse::setupUpdateByQueryRethrottleResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, UpdateByQueryRethrottleResponse::setupUpdateByQueryRethrottleResponseDeserializer);
 
 	protected static void setupUpdateByQueryRethrottleResponseDeserializer(
-			DelegatingDeserializer<UpdateByQueryRethrottleResponse.Builder> op) {
+			ObjectDeserializer<UpdateByQueryRethrottleResponse.Builder> op) {
 
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(UpdateByQueryRethrottleNode._DESERIALIZER),
 				"nodes");

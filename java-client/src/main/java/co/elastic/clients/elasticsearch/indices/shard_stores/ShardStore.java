@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,20 +30,27 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStore
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/shard_stores/types.ts#L29-L38">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShardStore implements JsonpSerializable {
+public class ShardStore implements JsonpSerializable {
 	private final ShardStoreAllocation allocation;
 
 	private final String allocationId;
@@ -63,76 +69,76 @@ public final class ShardStore implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardStore(Builder builder) {
+	private ShardStore(Builder builder) {
 
-		this.allocation = Objects.requireNonNull(builder.allocation, "allocation");
-		this.allocationId = Objects.requireNonNull(builder.allocationId, "allocation_id");
-		this.attributes = ModelTypeHelper.unmodifiableNonNull(builder.attributes, "attributes");
-		this.id = Objects.requireNonNull(builder.id, "id");
-		this.legacyVersion = Objects.requireNonNull(builder.legacyVersion, "legacy_version");
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.storeException = Objects.requireNonNull(builder.storeException, "store_exception");
-		this.transportAddress = Objects.requireNonNull(builder.transportAddress, "transport_address");
+		this.allocation = ApiTypeHelper.requireNonNull(builder.allocation, this, "allocation");
+		this.allocationId = ApiTypeHelper.requireNonNull(builder.allocationId, this, "allocationId");
+		this.attributes = ApiTypeHelper.unmodifiableRequired(builder.attributes, this, "attributes");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.legacyVersion = ApiTypeHelper.requireNonNull(builder.legacyVersion, this, "legacyVersion");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.storeException = ApiTypeHelper.requireNonNull(builder.storeException, this, "storeException");
+		this.transportAddress = ApiTypeHelper.requireNonNull(builder.transportAddress, this, "transportAddress");
 
 	}
 
-	public ShardStore(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardStore of(Function<Builder, ObjectBuilder<ShardStore>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code allocation}
 	 */
-	public ShardStoreAllocation allocation() {
+	public final ShardStoreAllocation allocation() {
 		return this.allocation;
 	}
 
 	/**
 	 * Required - API name: {@code allocation_id}
 	 */
-	public String allocationId() {
+	public final String allocationId() {
 		return this.allocationId;
 	}
 
 	/**
 	 * Required - API name: {@code attributes}
 	 */
-	public Map<String, JsonData> attributes() {
+	public final Map<String, JsonData> attributes() {
 		return this.attributes;
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code legacy_version}
 	 */
-	public long legacyVersion() {
+	public final long legacyVersion() {
 		return this.legacyVersion;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code store_exception}
 	 */
-	public ShardStoreException storeException() {
+	public final ShardStoreException storeException() {
 		return this.storeException;
 	}
 
 	/**
 	 * Required - API name: {@code transport_address}
 	 */
-	public String transportAddress() {
+	public final String transportAddress() {
 		return this.transportAddress;
 	}
 
@@ -149,19 +155,20 @@ public final class ShardStore implements JsonpSerializable {
 
 		generator.writeKey("allocation");
 		this.allocation.serialize(generator, mapper);
-
 		generator.writeKey("allocation_id");
 		generator.write(this.allocationId);
 
-		generator.writeKey("attributes");
-		generator.writeStartObject();
-		for (Map.Entry<String, JsonData> item0 : this.attributes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.attributes)) {
+			generator.writeKey("attributes");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.attributes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("id");
 		generator.write(this.id);
 
@@ -184,7 +191,8 @@ public final class ShardStore implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStore}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardStore> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStore> {
 		private ShardStoreAllocation allocation;
 
 		private String allocationId;
@@ -204,7 +212,7 @@ public final class ShardStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code allocation}
 		 */
-		public Builder allocation(ShardStoreAllocation value) {
+		public final Builder allocation(ShardStoreAllocation value) {
 			this.allocation = value;
 			return this;
 		}
@@ -212,34 +220,35 @@ public final class ShardStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code allocation_id}
 		 */
-		public Builder allocationId(String value) {
+		public final Builder allocationId(String value) {
 			this.allocationId = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
 		 */
-		public Builder attributes(Map<String, JsonData> value) {
-			this.attributes = value;
+		public final Builder attributes(Map<String, JsonData> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #attributes(Map)}, creating the map if needed.
+		 * Required - API name: {@code attributes}
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
 		 */
-		public Builder putAttributes(String key, JsonData value) {
-			if (this.attributes == null) {
-				this.attributes = new HashMap<>();
-			}
-			this.attributes.put(key, value);
+		public final Builder attributes(String key, JsonData value) {
+			this.attributes = _mapPut(this.attributes, key, value);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -247,7 +256,7 @@ public final class ShardStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code legacy_version}
 		 */
-		public Builder legacyVersion(long value) {
+		public final Builder legacyVersion(long value) {
 			this.legacyVersion = value;
 			return this;
 		}
@@ -255,7 +264,7 @@ public final class ShardStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -263,7 +272,7 @@ public final class ShardStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_exception}
 		 */
-		public Builder storeException(ShardStoreException value) {
+		public final Builder storeException(ShardStoreException value) {
 			this.storeException = value;
 			return this;
 		}
@@ -271,14 +280,15 @@ public final class ShardStore implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code store_exception}
 		 */
-		public Builder storeException(Function<ShardStoreException.Builder, ObjectBuilder<ShardStoreException>> fn) {
+		public final Builder storeException(
+				Function<ShardStoreException.Builder, ObjectBuilder<ShardStoreException>> fn) {
 			return this.storeException(fn.apply(new ShardStoreException.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code transport_address}
 		 */
-		public Builder transportAddress(String value) {
+		public final Builder transportAddress(String value) {
 			this.transportAddress = value;
 			return this;
 		}
@@ -290,6 +300,7 @@ public final class ShardStore implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardStore build() {
+			_checkSingleUse();
 
 			return new ShardStore(this);
 		}
@@ -301,9 +312,9 @@ public final class ShardStore implements JsonpSerializable {
 	 * Json deserializer for {@link ShardStore}
 	 */
 	public static final JsonpDeserializer<ShardStore> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardStore::setupShardStoreDeserializer, Builder::build);
+			ShardStore::setupShardStoreDeserializer);
 
-	protected static void setupShardStoreDeserializer(DelegatingDeserializer<ShardStore.Builder> op) {
+	protected static void setupShardStoreDeserializer(ObjectDeserializer<ShardStore.Builder> op) {
 
 		op.add(Builder::allocation, ShardStoreAllocation._DESERIALIZER, "allocation");
 		op.add(Builder::allocationId, JsonpDeserializer.stringDeserializer(), "allocation_id");

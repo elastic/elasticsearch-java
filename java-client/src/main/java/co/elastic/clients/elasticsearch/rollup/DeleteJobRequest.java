@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,27 @@ import javax.annotation.Nullable;
 
 // typedef: rollup.delete_job.Request
 
-public final class DeleteJobRequest extends RequestBase {
+/**
+ * Deletes an existing rollup job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/delete_job/DeleteRollupJobRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class DeleteJobRequest extends RequestBase {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteJobRequest(Builder builder) {
+	private DeleteJobRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public DeleteJobRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteJobRequest of(Function<Builder, ObjectBuilder<DeleteJobRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +71,7 @@ public final class DeleteJobRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -70,7 +80,8 @@ public final class DeleteJobRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteJobRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteJobRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteJobRequest> {
 		private String id;
 
 		/**
@@ -78,7 +89,7 @@ public final class DeleteJobRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -90,6 +101,7 @@ public final class DeleteJobRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteJobRequest build() {
+			_checkSingleUse();
 
 			return new DeleteJobRequest(this);
 		}
@@ -100,7 +112,9 @@ public final class DeleteJobRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code rollup.delete_job}".
 	 */
-	public static final Endpoint<DeleteJobRequest, DeleteJobResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/rollup.delete_job",
+
 			// Request method
 			request -> {
 				return "DELETE";

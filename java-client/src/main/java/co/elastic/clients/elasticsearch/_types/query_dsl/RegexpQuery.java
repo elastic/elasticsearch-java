@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,8 +39,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.RegexpQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L102-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RegexpQuery extends QueryBase implements QueryVariant {
+public class RegexpQuery extends QueryBase implements QueryVariant {
+	// Single key dictionary
 	private final String field;
 
 	@Nullable
@@ -59,36 +67,34 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RegexpQuery(Builder builder) {
+	private RegexpQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
 		this.caseInsensitive = builder.caseInsensitive;
 		this.flags = builder.flags;
 		this.maxDeterminizedStates = builder.maxDeterminizedStates;
 		this.rewrite = builder.rewrite;
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public RegexpQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RegexpQuery of(Function<Builder, ObjectBuilder<RegexpQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "regexp";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Regexp;
 	}
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -96,7 +102,7 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code case_insensitive}
 	 */
 	@Nullable
-	public Boolean caseInsensitive() {
+	public final Boolean caseInsensitive() {
 		return this.caseInsensitive;
 	}
 
@@ -104,7 +110,7 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code flags}
 	 */
 	@Nullable
-	public String flags() {
+	public final String flags() {
 		return this.flags;
 	}
 
@@ -112,7 +118,7 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code max_determinized_states}
 	 */
 	@Nullable
-	public Integer maxDeterminizedStates() {
+	public final Integer maxDeterminizedStates() {
 		return this.maxDeterminizedStates;
 	}
 
@@ -120,14 +126,14 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code rewrite}
 	 */
 	@Nullable
-	public String rewrite() {
+	public final String rewrite() {
 		return this.rewrite;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public String value() {
+	public final String value() {
 		return this.value;
 	}
 
@@ -136,34 +142,30 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 
 		super.serializeInternal(generator, mapper);
 		if (this.caseInsensitive != null) {
-
 			generator.writeKey("case_insensitive");
 			generator.write(this.caseInsensitive);
 
 		}
 		if (this.flags != null) {
-
 			generator.writeKey("flags");
 			generator.write(this.flags);
 
 		}
 		if (this.maxDeterminizedStates != null) {
-
 			generator.writeKey("max_determinized_states");
 			generator.write(this.maxDeterminizedStates);
 
 		}
 		if (this.rewrite != null) {
-
 			generator.writeKey("rewrite");
 			generator.write(this.rewrite);
 
 		}
-
 		generator.writeKey("value");
 		generator.write(this.value);
 
 		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -171,15 +173,14 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link RegexpQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<RegexpQuery> {
 		private String field;
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -201,7 +202,7 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code case_insensitive}
 		 */
-		public Builder caseInsensitive(@Nullable Boolean value) {
+		public final Builder caseInsensitive(@Nullable Boolean value) {
 			this.caseInsensitive = value;
 			return this;
 		}
@@ -209,7 +210,7 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code flags}
 		 */
-		public Builder flags(@Nullable String value) {
+		public final Builder flags(@Nullable String value) {
 			this.flags = value;
 			return this;
 		}
@@ -217,7 +218,7 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code max_determinized_states}
 		 */
-		public Builder maxDeterminizedStates(@Nullable Integer value) {
+		public final Builder maxDeterminizedStates(@Nullable Integer value) {
 			this.maxDeterminizedStates = value;
 			return this;
 		}
@@ -225,7 +226,7 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 		/**
 		 * API name: {@code rewrite}
 		 */
-		public Builder rewrite(@Nullable String value) {
+		public final Builder rewrite(@Nullable String value) {
 			this.rewrite = value;
 			return this;
 		}
@@ -233,7 +234,7 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(String value) {
+		public final Builder value(String value) {
 			this.value = value;
 			return this;
 		}
@@ -250,6 +251,7 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public RegexpQuery build() {
+			_checkSingleUse();
 
 			return new RegexpQuery(this);
 		}
@@ -261,9 +263,9 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link RegexpQuery}
 	 */
 	public static final JsonpDeserializer<RegexpQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RegexpQuery::setupRegexpQueryDeserializer, Builder::build);
+			RegexpQuery::setupRegexpQueryDeserializer);
 
-	protected static void setupRegexpQueryDeserializer(DelegatingDeserializer<RegexpQuery.Builder> op) {
+	protected static void setupRegexpQueryDeserializer(ObjectDeserializer<RegexpQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 		op.add(Builder::flags, JsonpDeserializer.stringDeserializer(), "flags");
@@ -271,7 +273,8 @@ public final class RegexpQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::rewrite, JsonpDeserializer.stringDeserializer(), "rewrite");
 		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+		op.shortcutProperty("value");
 
 	}
 

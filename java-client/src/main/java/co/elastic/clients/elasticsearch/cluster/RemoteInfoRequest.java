@@ -23,23 +23,32 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: cluster.remote_info.Request
 
-public final class RemoteInfoRequest extends RequestBase {
+/**
+ * The cluster remote info API allows you to retrieve all of the configured
+ * remote cluster information. It returns connection and endpoint information
+ * keyed by the configured remote cluster alias.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoRequest.ts#L23-L31">API
+ *      specification</a>
+ */
+
+public class RemoteInfoRequest extends RequestBase {
 	public RemoteInfoRequest() {
 	}
 
@@ -53,7 +62,9 @@ public final class RemoteInfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code cluster.remote_info}".
 	 */
-	public static final Endpoint<RemoteInfoRequest, RemoteInfoResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<RemoteInfoRequest, RemoteInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cluster.remote_info",
+
 			// Request method
 			request -> {
 				return "GET";

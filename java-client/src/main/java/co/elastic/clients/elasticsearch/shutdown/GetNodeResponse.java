@@ -24,44 +24,49 @@
 package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.elasticsearch.shutdown.get_node.NodeShutdownStatus;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/get_node/ShutdownGetNodeResponse.ts#L23-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetNodeResponse implements JsonpSerializable {
+public class GetNodeResponse implements JsonpSerializable {
 	private final List<NodeShutdownStatus> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetNodeResponse(Builder builder) {
+	private GetNodeResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public GetNodeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetNodeResponse of(Function<Builder, ObjectBuilder<GetNodeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public List<NodeShutdownStatus> nodes() {
+	public final List<NodeShutdownStatus> nodes() {
 		return this.nodes;
 	}
 
@@ -76,13 +81,16 @@ public final class GetNodeResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("nodes");
-		generator.writeStartArray();
-		for (NodeShutdownStatus item0 : this.nodes) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartArray();
+			for (NodeShutdownStatus item0 : this.nodes) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,48 +99,37 @@ public final class GetNodeResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetNodeResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetNodeResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetNodeResponse> {
 		private List<NodeShutdownStatus> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodes</code>.
 		 */
-		public Builder nodes(List<NodeShutdownStatus> value) {
-			this.nodes = value;
+		public final Builder nodes(List<NodeShutdownStatus> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds one or more values to <code>nodes</code>.
 		 */
-		public Builder nodes(NodeShutdownStatus... value) {
-			this.nodes = Arrays.asList(value);
+		public final Builder nodes(NodeShutdownStatus value, NodeShutdownStatus... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed.
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds a value to <code>nodes</code> using a builder lambda.
 		 */
-		public Builder addNodes(NodeShutdownStatus value) {
-			if (this.nodes == null) {
-				this.nodes = new ArrayList<>();
-			}
-			this.nodes.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #nodes(List)} to a singleton list.
-		 */
-		public Builder nodes(Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>> fn) {
-			return this.nodes(fn.apply(new NodeShutdownStatus.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed.
-		 */
-		public Builder addNodes(Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>> fn) {
-			return this.addNodes(fn.apply(new NodeShutdownStatus.Builder()).build());
+		public final Builder nodes(Function<NodeShutdownStatus.Builder, ObjectBuilder<NodeShutdownStatus>> fn) {
+			return nodes(fn.apply(new NodeShutdownStatus.Builder()).build());
 		}
 
 		/**
@@ -142,6 +139,7 @@ public final class GetNodeResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetNodeResponse build() {
+			_checkSingleUse();
 
 			return new GetNodeResponse(this);
 		}
@@ -153,9 +151,9 @@ public final class GetNodeResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetNodeResponse}
 	 */
 	public static final JsonpDeserializer<GetNodeResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetNodeResponse::setupGetNodeResponseDeserializer, Builder::build);
+			GetNodeResponse::setupGetNodeResponseDeserializer);
 
-	protected static void setupGetNodeResponseDeserializer(DelegatingDeserializer<GetNodeResponse.Builder> op) {
+	protected static void setupGetNodeResponseDeserializer(ObjectDeserializer<GetNodeResponse.Builder> op) {
 
 		op.add(Builder::nodes, JsonpDeserializer.arrayDeserializer(NodeShutdownStatus._DESERIALIZER), "nodes");
 

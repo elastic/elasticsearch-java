@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.StatsAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L136-L136">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class StatsAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public StatsAggregation(Builder builder) {
+	private StatsAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public StatsAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StatsAggregation of(Function<Builder, ObjectBuilder<StatsAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stats";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Stats;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class StatsAggregation extends FormatMetricAggregationBase implemen
 	/**
 	 * Builder for {@link StatsAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StatsAggregation> {
@@ -75,6 +82,7 @@ public final class StatsAggregation extends FormatMetricAggregationBase implemen
 		 *             if some of the required fields are null.
 		 */
 		public StatsAggregation build() {
+			_checkSingleUse();
 
 			return new StatsAggregation(this);
 		}
@@ -86,9 +94,9 @@ public final class StatsAggregation extends FormatMetricAggregationBase implemen
 	 * Json deserializer for {@link StatsAggregation}
 	 */
 	public static final JsonpDeserializer<StatsAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StatsAggregation::setupStatsAggregationDeserializer, Builder::build);
+			StatsAggregation::setupStatsAggregationDeserializer);
 
-	protected static void setupStatsAggregationDeserializer(DelegatingDeserializer<StatsAggregation.Builder> op) {
+	protected static void setupStatsAggregationDeserializer(ObjectDeserializer<StatsAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 
 	}

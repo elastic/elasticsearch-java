@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,31 +45,52 @@ import javax.annotation.Nullable;
 
 // typedef: ml.start_data_frame_analytics.Request
 
-public final class StartDataFrameAnalyticsRequest extends RequestBase {
+/**
+ * Starts a data frame analytics job. A data frame analytics job can be started
+ * and stopped multiple times throughout its lifecycle. If the destination index
+ * does not exist, it is created automatically the first time you start the data
+ * frame analytics job. The <code>index.number_of_shards</code> and
+ * <code>index.number_of_replicas</code> settings for the destination index are
+ * copied from the source index. If there are multiple source indices, the
+ * destination index copies the highest setting values. The mappings for the
+ * destination index are also copied from the source indices. If there are any
+ * mapping conflicts, the job fails to start. If the destination index exists,
+ * it is used as is. You can therefore set up the destination index in advance
+ * with custom settings and mappings.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/start_data_frame_analytics/MlStartDataFrameAnalyticsRequest.ts#L24-L60">API
+ *      specification</a>
+ */
+
+public class StartDataFrameAnalyticsRequest extends RequestBase {
 	private final String id;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StartDataFrameAnalyticsRequest(Builder builder) {
+	private StartDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 
 	}
 
-	public StartDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StartDataFrameAnalyticsRequest of(
+			Function<Builder, ObjectBuilder<StartDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the data frame analytics to start
+	 * Required - Identifier for the data frame analytics job. This identifier can
+	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+	 * underscores. It must start and end with alphanumeric characters.
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -77,7 +101,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -86,18 +110,21 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link StartDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<StartDataFrameAnalyticsRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDataFrameAnalyticsRequest> {
 		private String id;
 
 		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
-		 * Required - The ID of the data frame analytics to start
+		 * Required - Identifier for the data frame analytics job. This identifier can
+		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
+		 * underscores. It must start and end with alphanumeric characters.
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -108,9 +135,19 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Controls the amount of time to wait until the data frame analytics job
+		 * starts.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -120,6 +157,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public StartDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new StartDataFrameAnalyticsRequest(this);
 		}
@@ -130,7 +168,9 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.start_data_frame_analytics}".
 	 */
-	public static final Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.start_data_frame_analytics",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -163,7 +203,7 @@ public final class StartDataFrameAnalyticsRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

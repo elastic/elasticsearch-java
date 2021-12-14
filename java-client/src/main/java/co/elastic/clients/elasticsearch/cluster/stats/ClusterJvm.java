@@ -23,27 +23,32 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterJvm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L148-L153">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClusterJvm implements JsonpSerializable {
+public class ClusterJvm implements JsonpSerializable {
 	private final long maxUptimeInMillis;
 
 	private final ClusterJvmMemory mem;
@@ -54,44 +59,44 @@ public final class ClusterJvm implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClusterJvm(Builder builder) {
+	private ClusterJvm(Builder builder) {
 
-		this.maxUptimeInMillis = Objects.requireNonNull(builder.maxUptimeInMillis, "max_uptime_in_millis");
-		this.mem = Objects.requireNonNull(builder.mem, "mem");
-		this.threads = Objects.requireNonNull(builder.threads, "threads");
-		this.versions = ModelTypeHelper.unmodifiableNonNull(builder.versions, "versions");
+		this.maxUptimeInMillis = ApiTypeHelper.requireNonNull(builder.maxUptimeInMillis, this, "maxUptimeInMillis");
+		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
+		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
+		this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
 
 	}
 
-	public ClusterJvm(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClusterJvm of(Function<Builder, ObjectBuilder<ClusterJvm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code max_uptime_in_millis}
 	 */
-	public long maxUptimeInMillis() {
+	public final long maxUptimeInMillis() {
 		return this.maxUptimeInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code mem}
 	 */
-	public ClusterJvmMemory mem() {
+	public final ClusterJvmMemory mem() {
 		return this.mem;
 	}
 
 	/**
 	 * Required - API name: {@code threads}
 	 */
-	public long threads() {
+	public final long threads() {
 		return this.threads;
 	}
 
 	/**
 	 * Required - API name: {@code versions}
 	 */
-	public List<ClusterJvmVersion> versions() {
+	public final List<ClusterJvmVersion> versions() {
 		return this.versions;
 	}
 
@@ -115,13 +120,16 @@ public final class ClusterJvm implements JsonpSerializable {
 		generator.writeKey("threads");
 		generator.write(this.threads);
 
-		generator.writeKey("versions");
-		generator.writeStartArray();
-		for (ClusterJvmVersion item0 : this.versions) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.versions)) {
+			generator.writeKey("versions");
+			generator.writeStartArray();
+			for (ClusterJvmVersion item0 : this.versions) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -130,7 +138,8 @@ public final class ClusterJvm implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClusterJvm}.
 	 */
-	public static class Builder implements ObjectBuilder<ClusterJvm> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterJvm> {
 		private Long maxUptimeInMillis;
 
 		private ClusterJvmMemory mem;
@@ -142,7 +151,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_uptime_in_millis}
 		 */
-		public Builder maxUptimeInMillis(long value) {
+		public final Builder maxUptimeInMillis(long value) {
 			this.maxUptimeInMillis = value;
 			return this;
 		}
@@ -150,7 +159,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public Builder mem(ClusterJvmMemory value) {
+		public final Builder mem(ClusterJvmMemory value) {
 			this.mem = value;
 			return this;
 		}
@@ -158,57 +167,45 @@ public final class ClusterJvm implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code mem}
 		 */
-		public Builder mem(Function<ClusterJvmMemory.Builder, ObjectBuilder<ClusterJvmMemory>> fn) {
+		public final Builder mem(Function<ClusterJvmMemory.Builder, ObjectBuilder<ClusterJvmMemory>> fn) {
 			return this.mem(fn.apply(new ClusterJvmMemory.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code threads}
 		 */
-		public Builder threads(long value) {
+		public final Builder threads(long value) {
 			this.threads = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code versions}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>versions</code>.
 		 */
-		public Builder versions(List<ClusterJvmVersion> value) {
-			this.versions = value;
+		public final Builder versions(List<ClusterJvmVersion> list) {
+			this.versions = _listAddAll(this.versions, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code versions}
+		 * <p>
+		 * Adds one or more values to <code>versions</code>.
 		 */
-		public Builder versions(ClusterJvmVersion... value) {
-			this.versions = Arrays.asList(value);
+		public final Builder versions(ClusterJvmVersion value, ClusterJvmVersion... values) {
+			this.versions = _listAdd(this.versions, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
+		 * Required - API name: {@code versions}
+		 * <p>
+		 * Adds a value to <code>versions</code> using a builder lambda.
 		 */
-		public Builder addVersions(ClusterJvmVersion value) {
-			if (this.versions == null) {
-				this.versions = new ArrayList<>();
-			}
-			this.versions.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #versions(List)} to a singleton list.
-		 */
-		public Builder versions(Function<ClusterJvmVersion.Builder, ObjectBuilder<ClusterJvmVersion>> fn) {
-			return this.versions(fn.apply(new ClusterJvmVersion.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #versions(List)}, creating the list if needed.
-		 */
-		public Builder addVersions(Function<ClusterJvmVersion.Builder, ObjectBuilder<ClusterJvmVersion>> fn) {
-			return this.addVersions(fn.apply(new ClusterJvmVersion.Builder()).build());
+		public final Builder versions(Function<ClusterJvmVersion.Builder, ObjectBuilder<ClusterJvmVersion>> fn) {
+			return versions(fn.apply(new ClusterJvmVersion.Builder()).build());
 		}
 
 		/**
@@ -218,6 +215,7 @@ public final class ClusterJvm implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClusterJvm build() {
+			_checkSingleUse();
 
 			return new ClusterJvm(this);
 		}
@@ -229,9 +227,9 @@ public final class ClusterJvm implements JsonpSerializable {
 	 * Json deserializer for {@link ClusterJvm}
 	 */
 	public static final JsonpDeserializer<ClusterJvm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ClusterJvm::setupClusterJvmDeserializer, Builder::build);
+			ClusterJvm::setupClusterJvmDeserializer);
 
-	protected static void setupClusterJvmDeserializer(DelegatingDeserializer<ClusterJvm.Builder> op) {
+	protected static void setupClusterJvmDeserializer(ObjectDeserializer<ClusterJvm.Builder> op) {
 
 		op.add(Builder::maxUptimeInMillis, JsonpDeserializer.longDeserializer(), "max_uptime_in_millis");
 		op.add(Builder::mem, ClusterJvmMemory._DESERIALIZER, "mem");

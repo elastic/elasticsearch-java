@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.UnratedDocument
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L148-L151">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UnratedDocument implements JsonpSerializable {
+public class UnratedDocument implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UnratedDocument(Builder builder) {
+	private UnratedDocument(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "_id");
-		this.index = Objects.requireNonNull(builder.index, "_index");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
 	}
 
-	public UnratedDocument(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UnratedDocument of(Function<Builder, ObjectBuilder<UnratedDocument>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
 	/**
 	 * Required - API name: {@code _index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -95,7 +103,8 @@ public final class UnratedDocument implements JsonpSerializable {
 	/**
 	 * Builder for {@link UnratedDocument}.
 	 */
-	public static class Builder implements ObjectBuilder<UnratedDocument> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnratedDocument> {
 		private String id;
 
 		private String index;
@@ -103,7 +112,7 @@ public final class UnratedDocument implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class UnratedDocument implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
@@ -123,6 +132,7 @@ public final class UnratedDocument implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public UnratedDocument build() {
+			_checkSingleUse();
 
 			return new UnratedDocument(this);
 		}
@@ -134,9 +144,9 @@ public final class UnratedDocument implements JsonpSerializable {
 	 * Json deserializer for {@link UnratedDocument}
 	 */
 	public static final JsonpDeserializer<UnratedDocument> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			UnratedDocument::setupUnratedDocumentDeserializer, Builder::build);
+			UnratedDocument::setupUnratedDocumentDeserializer);
 
-	protected static void setupUnratedDocumentDeserializer(DelegatingDeserializer<UnratedDocument.Builder> op) {
+	protected static void setupUnratedDocumentDeserializer(ObjectDeserializer<UnratedDocument.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");

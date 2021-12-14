@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,25 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: cluster.delete_component_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/delete_component_template/ClusterDeleteComponentTemplateResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteComponentTemplateResponse extends AcknowledgedResponseBase {
+public class DeleteComponentTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteComponentTemplateResponse(Builder builder) {
+	private DeleteComponentTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteComponentTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteComponentTemplateResponse of(
+			Function<Builder, ObjectBuilder<DeleteComponentTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +60,7 @@ public final class DeleteComponentTemplateResponse extends AcknowledgedResponseB
 	/**
 	 * Builder for {@link DeleteComponentTemplateResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteComponentTemplateResponse> {
@@ -68,6 +76,7 @@ public final class DeleteComponentTemplateResponse extends AcknowledgedResponseB
 		 *             if some of the required fields are null.
 		 */
 		public DeleteComponentTemplateResponse build() {
+			_checkSingleUse();
 
 			return new DeleteComponentTemplateResponse(this);
 		}
@@ -79,11 +88,10 @@ public final class DeleteComponentTemplateResponse extends AcknowledgedResponseB
 	 * Json deserializer for {@link DeleteComponentTemplateResponse}
 	 */
 	public static final JsonpDeserializer<DeleteComponentTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteComponentTemplateResponse::setupDeleteComponentTemplateResponseDeserializer,
-					Builder::build);
+			.lazy(Builder::new, DeleteComponentTemplateResponse::setupDeleteComponentTemplateResponseDeserializer);
 
 	protected static void setupDeleteComponentTemplateResponseDeserializer(
-			DelegatingDeserializer<DeleteComponentTemplateResponse.Builder> op) {
+			ObjectDeserializer<DeleteComponentTemplateResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

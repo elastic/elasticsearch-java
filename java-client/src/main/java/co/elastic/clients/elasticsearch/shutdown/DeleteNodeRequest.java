@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.shutdown;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,28 @@ import javax.annotation.Nullable;
 
 // typedef: shutdown.delete_node.Request
 
-public final class DeleteNodeRequest extends RequestBase {
+/**
+ * Removes a node from the shutdown list. Designed for indirect use by ECE/ESS
+ * and ECK. Direct use is not supported.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/delete_node/ShutdownDeleteNodeRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class DeleteNodeRequest extends RequestBase {
 	private final String nodeId;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteNodeRequest(Builder builder) {
+	private DeleteNodeRequest(Builder builder) {
 
-		this.nodeId = Objects.requireNonNull(builder.nodeId, "node_id");
+		this.nodeId = ApiTypeHelper.requireNonNull(builder.nodeId, this, "nodeId");
 
 	}
 
-	public DeleteNodeRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteNodeRequest of(Function<Builder, ObjectBuilder<DeleteNodeRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +72,7 @@ public final class DeleteNodeRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code node_id}
 	 */
-	public String nodeId() {
+	public final String nodeId() {
 		return this.nodeId;
 	}
 
@@ -70,7 +81,8 @@ public final class DeleteNodeRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteNodeRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteNodeRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteNodeRequest> {
 		private String nodeId;
 
 		/**
@@ -78,7 +90,7 @@ public final class DeleteNodeRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code node_id}
 		 */
-		public Builder nodeId(String value) {
+		public final Builder nodeId(String value) {
 			this.nodeId = value;
 			return this;
 		}
@@ -90,6 +102,7 @@ public final class DeleteNodeRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteNodeRequest build() {
+			_checkSingleUse();
 
 			return new DeleteNodeRequest(this);
 		}
@@ -100,7 +113,9 @@ public final class DeleteNodeRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code shutdown.delete_node}".
 	 */
-	public static final Endpoint<DeleteNodeRequest, DeleteNodeResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteNodeRequest, DeleteNodeResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/shutdown.delete_node",
+
 			// Request method
 			request -> {
 				return "DELETE";

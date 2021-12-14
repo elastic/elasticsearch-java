@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,34 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.estimate_model_memory.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/estimate_model_memory/MlEstimateModelMemoryResponse.ts#L20-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class EstimateModelMemoryResponse implements JsonpSerializable {
+public class EstimateModelMemoryResponse implements JsonpSerializable {
 	private final String modelMemoryEstimate;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EstimateModelMemoryResponse(Builder builder) {
+	private EstimateModelMemoryResponse(Builder builder) {
 
-		this.modelMemoryEstimate = Objects.requireNonNull(builder.modelMemoryEstimate, "model_memory_estimate");
+		this.modelMemoryEstimate = ApiTypeHelper.requireNonNull(builder.modelMemoryEstimate, this,
+				"modelMemoryEstimate");
 
 	}
 
-	public EstimateModelMemoryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EstimateModelMemoryResponse of(Function<Builder, ObjectBuilder<EstimateModelMemoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code model_memory_estimate}
 	 */
-	public String modelMemoryEstimate() {
+	public final String modelMemoryEstimate() {
 		return this.modelMemoryEstimate;
 	}
 
@@ -82,13 +91,14 @@ public final class EstimateModelMemoryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link EstimateModelMemoryResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<EstimateModelMemoryResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EstimateModelMemoryResponse> {
 		private String modelMemoryEstimate;
 
 		/**
 		 * Required - API name: {@code model_memory_estimate}
 		 */
-		public Builder modelMemoryEstimate(String value) {
+		public final Builder modelMemoryEstimate(String value) {
 			this.modelMemoryEstimate = value;
 			return this;
 		}
@@ -100,6 +110,7 @@ public final class EstimateModelMemoryResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public EstimateModelMemoryResponse build() {
+			_checkSingleUse();
 
 			return new EstimateModelMemoryResponse(this);
 		}
@@ -110,11 +121,11 @@ public final class EstimateModelMemoryResponse implements JsonpSerializable {
 	/**
 	 * Json deserializer for {@link EstimateModelMemoryResponse}
 	 */
-	public static final JsonpDeserializer<EstimateModelMemoryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, EstimateModelMemoryResponse::setupEstimateModelMemoryResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<EstimateModelMemoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, EstimateModelMemoryResponse::setupEstimateModelMemoryResponseDeserializer);
 
 	protected static void setupEstimateModelMemoryResponseDeserializer(
-			DelegatingDeserializer<EstimateModelMemoryResponse.Builder> op) {
+			ObjectDeserializer<EstimateModelMemoryResponse.Builder> op) {
 
 		op.add(Builder::modelMemoryEstimate, JsonpDeserializer.stringDeserializer(), "model_memory_estimate");
 

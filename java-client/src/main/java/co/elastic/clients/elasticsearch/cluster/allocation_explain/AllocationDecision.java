@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.AllocationDecision
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L26-L30">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class AllocationDecision implements JsonpSerializable {
+public class AllocationDecision implements JsonpSerializable {
 	private final String decider;
 
 	private final AllocationExplainDecision decision;
@@ -48,36 +56,36 @@ public final class AllocationDecision implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public AllocationDecision(Builder builder) {
+	private AllocationDecision(Builder builder) {
 
-		this.decider = Objects.requireNonNull(builder.decider, "decider");
-		this.decision = Objects.requireNonNull(builder.decision, "decision");
-		this.explanation = Objects.requireNonNull(builder.explanation, "explanation");
+		this.decider = ApiTypeHelper.requireNonNull(builder.decider, this, "decider");
+		this.decision = ApiTypeHelper.requireNonNull(builder.decision, this, "decision");
+		this.explanation = ApiTypeHelper.requireNonNull(builder.explanation, this, "explanation");
 
 	}
 
-	public AllocationDecision(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static AllocationDecision of(Function<Builder, ObjectBuilder<AllocationDecision>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code decider}
 	 */
-	public String decider() {
+	public final String decider() {
 		return this.decider;
 	}
 
 	/**
 	 * Required - API name: {@code decision}
 	 */
-	public AllocationExplainDecision decision() {
+	public final AllocationExplainDecision decision() {
 		return this.decision;
 	}
 
 	/**
 	 * Required - API name: {@code explanation}
 	 */
-	public String explanation() {
+	public final String explanation() {
 		return this.explanation;
 	}
 
@@ -97,7 +105,6 @@ public final class AllocationDecision implements JsonpSerializable {
 
 		generator.writeKey("decision");
 		this.decision.serialize(generator, mapper);
-
 		generator.writeKey("explanation");
 		generator.write(this.explanation);
 
@@ -108,7 +115,8 @@ public final class AllocationDecision implements JsonpSerializable {
 	/**
 	 * Builder for {@link AllocationDecision}.
 	 */
-	public static class Builder implements ObjectBuilder<AllocationDecision> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationDecision> {
 		private String decider;
 
 		private AllocationExplainDecision decision;
@@ -118,7 +126,7 @@ public final class AllocationDecision implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code decider}
 		 */
-		public Builder decider(String value) {
+		public final Builder decider(String value) {
 			this.decider = value;
 			return this;
 		}
@@ -126,7 +134,7 @@ public final class AllocationDecision implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code decision}
 		 */
-		public Builder decision(AllocationExplainDecision value) {
+		public final Builder decision(AllocationExplainDecision value) {
 			this.decision = value;
 			return this;
 		}
@@ -134,7 +142,7 @@ public final class AllocationDecision implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code explanation}
 		 */
-		public Builder explanation(String value) {
+		public final Builder explanation(String value) {
 			this.explanation = value;
 			return this;
 		}
@@ -146,6 +154,7 @@ public final class AllocationDecision implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public AllocationDecision build() {
+			_checkSingleUse();
 
 			return new AllocationDecision(this);
 		}
@@ -157,9 +166,9 @@ public final class AllocationDecision implements JsonpSerializable {
 	 * Json deserializer for {@link AllocationDecision}
 	 */
 	public static final JsonpDeserializer<AllocationDecision> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, AllocationDecision::setupAllocationDecisionDeserializer, Builder::build);
+			.lazy(Builder::new, AllocationDecision::setupAllocationDecisionDeserializer);
 
-	protected static void setupAllocationDecisionDeserializer(DelegatingDeserializer<AllocationDecision.Builder> op) {
+	protected static void setupAllocationDecisionDeserializer(ObjectDeserializer<AllocationDecision.Builder> op) {
 
 		op.add(Builder::decider, JsonpDeserializer.stringDeserializer(), "decider");
 		op.add(Builder::decision, AllocationExplainDecision._DESERIALIZER, "decision");

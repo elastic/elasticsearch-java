@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.dangling_indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: dangling_indices.import_dangling_index.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/dangling_indices/import_dangling_index/ImportDanglingIndexResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
+public class ImportDanglingIndexResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ImportDanglingIndexResponse(Builder builder) {
+	private ImportDanglingIndexResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ImportDanglingIndexResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ImportDanglingIndexResponse of(Function<Builder, ObjectBuilder<ImportDanglingIndexResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class ImportDanglingIndexResponse extends AcknowledgedResponseBase 
 	/**
 	 * Builder for {@link ImportDanglingIndexResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ImportDanglingIndexResponse> {
@@ -68,6 +75,7 @@ public final class ImportDanglingIndexResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public ImportDanglingIndexResponse build() {
+			_checkSingleUse();
 
 			return new ImportDanglingIndexResponse(this);
 		}
@@ -78,11 +86,11 @@ public final class ImportDanglingIndexResponse extends AcknowledgedResponseBase 
 	/**
 	 * Json deserializer for {@link ImportDanglingIndexResponse}
 	 */
-	public static final JsonpDeserializer<ImportDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, ImportDanglingIndexResponse::setupImportDanglingIndexResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<ImportDanglingIndexResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, ImportDanglingIndexResponse::setupImportDanglingIndexResponseDeserializer);
 
 	protected static void setupImportDanglingIndexResponseDeserializer(
-			DelegatingDeserializer<ImportDanglingIndexResponse.Builder> op) {
+			ObjectDeserializer<ImportDanglingIndexResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

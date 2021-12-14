@@ -209,7 +209,7 @@ public class JacksonJsonpGenerator implements JsonGenerator {
             } else if (ctx.inArray()) {
                 generator.writeEndArray();
             } else {
-                throw new JsonGenerationException("Unexpected context: " + ctx.typeDesc());
+                throw new JsonGenerationException("Unexpected context: '" + ctx.typeDesc() + "'");
             }
         } catch (IOException e) {
             throw JacksonUtils.convertException(e);

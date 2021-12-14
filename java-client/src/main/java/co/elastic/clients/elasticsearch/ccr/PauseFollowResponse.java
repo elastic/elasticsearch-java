@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ccr.pause_follow.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/pause_follow/PauseFollowIndexResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PauseFollowResponse extends AcknowledgedResponseBase {
+public class PauseFollowResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PauseFollowResponse(Builder builder) {
+	private PauseFollowResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PauseFollowResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PauseFollowResponse of(Function<Builder, ObjectBuilder<PauseFollowResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PauseFollowResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PauseFollowResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PauseFollowResponse> {
@@ -68,6 +75,7 @@ public final class PauseFollowResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PauseFollowResponse build() {
+			_checkSingleUse();
 
 			return new PauseFollowResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class PauseFollowResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PauseFollowResponse}
 	 */
 	public static final JsonpDeserializer<PauseFollowResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PauseFollowResponse::setupPauseFollowResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PauseFollowResponse::setupPauseFollowResponseDeserializer);
 
-	protected static void setupPauseFollowResponseDeserializer(DelegatingDeserializer<PauseFollowResponse.Builder> op) {
+	protected static void setupPauseFollowResponseDeserializer(ObjectDeserializer<PauseFollowResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

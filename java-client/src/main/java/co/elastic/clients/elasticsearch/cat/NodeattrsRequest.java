@@ -23,22 +23,30 @@
 
 package co.elastic.clients.elasticsearch.cat;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
-import java.util.function.Function;
 
 // typedef: cat.nodeattrs.Request
 
-public final class NodeattrsRequest extends CatRequestBase {
+/**
+ * Returns information about custom node attributes.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/nodeattrs/CatNodeAttributesRequest.ts#L22-L27">API
+ *      specification</a>
+ */
+
+public class NodeattrsRequest extends CatRequestBase {
 	public NodeattrsRequest() {
 	}
 
@@ -52,7 +60,9 @@ public final class NodeattrsRequest extends CatRequestBase {
 	/**
 	 * Endpoint "{@code cat.nodeattrs}".
 	 */
-	public static final Endpoint<NodeattrsRequest, NodeattrsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<NodeattrsRequest, NodeattrsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/cat.nodeattrs",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -67,7 +77,9 @@ public final class NodeattrsRequest extends CatRequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				params.put("format", "json");
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, NodeattrsResponse._DESERIALIZER);
 }

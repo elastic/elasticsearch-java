@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.ml.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.info.Datafeeds
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/info/types.ts#L40-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Datafeeds implements JsonpSerializable {
+public class Datafeeds implements JsonpSerializable {
 	private final int scrollSize;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Datafeeds(Builder builder) {
+	private Datafeeds(Builder builder) {
 
-		this.scrollSize = Objects.requireNonNull(builder.scrollSize, "scroll_size");
+		this.scrollSize = ApiTypeHelper.requireNonNull(builder.scrollSize, this, "scrollSize");
 
 	}
 
-	public Datafeeds(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Datafeeds of(Function<Builder, ObjectBuilder<Datafeeds>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code scroll_size}
 	 */
-	public int scrollSize() {
+	public final int scrollSize() {
 		return this.scrollSize;
 	}
 
@@ -81,13 +89,14 @@ public final class Datafeeds implements JsonpSerializable {
 	/**
 	 * Builder for {@link Datafeeds}.
 	 */
-	public static class Builder implements ObjectBuilder<Datafeeds> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Datafeeds> {
 		private Integer scrollSize;
 
 		/**
 		 * Required - API name: {@code scroll_size}
 		 */
-		public Builder scrollSize(int value) {
+		public final Builder scrollSize(int value) {
 			this.scrollSize = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class Datafeeds implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Datafeeds build() {
+			_checkSingleUse();
 
 			return new Datafeeds(this);
 		}
@@ -110,9 +120,9 @@ public final class Datafeeds implements JsonpSerializable {
 	 * Json deserializer for {@link Datafeeds}
 	 */
 	public static final JsonpDeserializer<Datafeeds> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Datafeeds::setupDatafeedsDeserializer, Builder::build);
+			Datafeeds::setupDatafeedsDeserializer);
 
-	protected static void setupDatafeedsDeserializer(DelegatingDeserializer<Datafeeds.Builder> op) {
+	protected static void setupDatafeedsDeserializer(ObjectDeserializer<Datafeeds.Builder> op) {
 
 		op.add(Builder::scrollSize, JsonpDeserializer.integerDeserializer(), "scroll_size");
 

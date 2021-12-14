@@ -23,45 +23,50 @@
 
 package co.elastic.clients.elasticsearch.security.get_service_credentials;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_service_credentials.NodesCredentialsFileToken
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_credentials/types.ts#L30-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodesCredentialsFileToken implements JsonpSerializable {
+public class NodesCredentialsFileToken implements JsonpSerializable {
 	private final List<String> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodesCredentialsFileToken(Builder builder) {
+	private NodesCredentialsFileToken(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public NodesCredentialsFileToken(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodesCredentialsFileToken of(Function<Builder, ObjectBuilder<NodesCredentialsFileToken>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public List<String> nodes() {
+	public final List<String> nodes() {
 		return this.nodes;
 	}
 
@@ -76,13 +81,16 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("nodes");
-		generator.writeStartArray();
-		for (String item0 : this.nodes) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartArray();
+			for (String item0 : this.nodes) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,33 +99,27 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodesCredentialsFileToken}.
 	 */
-	public static class Builder implements ObjectBuilder<NodesCredentialsFileToken> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesCredentialsFileToken> {
 		private List<String> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodes</code>.
 		 */
-		public Builder nodes(List<String> value) {
-			this.nodes = value;
+		public final Builder nodes(List<String> list) {
+			this.nodes = _listAddAll(this.nodes, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds one or more values to <code>nodes</code>.
 		 */
-		public Builder nodes(String... value) {
-			this.nodes = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodes(List)}, creating the list if needed.
-		 */
-		public Builder addNodes(String value) {
-			if (this.nodes == null) {
-				this.nodes = new ArrayList<>();
-			}
-			this.nodes.add(value);
+		public final Builder nodes(String value, String... values) {
+			this.nodes = _listAdd(this.nodes, value, values);
 			return this;
 		}
 
@@ -128,6 +130,7 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodesCredentialsFileToken build() {
+			_checkSingleUse();
 
 			return new NodesCredentialsFileToken(this);
 		}
@@ -139,10 +142,10 @@ public final class NodesCredentialsFileToken implements JsonpSerializable {
 	 * Json deserializer for {@link NodesCredentialsFileToken}
 	 */
 	public static final JsonpDeserializer<NodesCredentialsFileToken> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodesCredentialsFileToken::setupNodesCredentialsFileTokenDeserializer, Builder::build);
+			.lazy(Builder::new, NodesCredentialsFileToken::setupNodesCredentialsFileTokenDeserializer);
 
 	protected static void setupNodesCredentialsFileTokenDeserializer(
-			DelegatingDeserializer<NodesCredentialsFileToken.Builder> op) {
+			ObjectDeserializer<NodesCredentialsFileToken.Builder> op) {
 
 		op.add(Builder::nodes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "nodes");
 

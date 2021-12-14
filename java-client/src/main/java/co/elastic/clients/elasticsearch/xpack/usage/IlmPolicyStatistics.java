@@ -24,14 +24,15 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.ilm.Phases;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -39,36 +40,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.IlmPolicyStatistics
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L143-L146">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IlmPolicyStatistics implements JsonpSerializable {
+public class IlmPolicyStatistics implements JsonpSerializable {
 	private final int indicesManaged;
 
 	private final Phases phases;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IlmPolicyStatistics(Builder builder) {
+	private IlmPolicyStatistics(Builder builder) {
 
-		this.indicesManaged = Objects.requireNonNull(builder.indicesManaged, "indices_managed");
-		this.phases = Objects.requireNonNull(builder.phases, "phases");
+		this.indicesManaged = ApiTypeHelper.requireNonNull(builder.indicesManaged, this, "indicesManaged");
+		this.phases = ApiTypeHelper.requireNonNull(builder.phases, this, "phases");
 
 	}
 
-	public IlmPolicyStatistics(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IlmPolicyStatistics of(Function<Builder, ObjectBuilder<IlmPolicyStatistics>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code indices_managed}
 	 */
-	public int indicesManaged() {
+	public final int indicesManaged() {
 		return this.indicesManaged;
 	}
 
 	/**
 	 * Required - API name: {@code phases}
 	 */
-	public Phases phases() {
+	public final Phases phases() {
 		return this.phases;
 	}
 
@@ -96,7 +104,8 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 	/**
 	 * Builder for {@link IlmPolicyStatistics}.
 	 */
-	public static class Builder implements ObjectBuilder<IlmPolicyStatistics> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IlmPolicyStatistics> {
 		private Integer indicesManaged;
 
 		private Phases phases;
@@ -104,7 +113,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code indices_managed}
 		 */
-		public Builder indicesManaged(int value) {
+		public final Builder indicesManaged(int value) {
 			this.indicesManaged = value;
 			return this;
 		}
@@ -112,7 +121,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code phases}
 		 */
-		public Builder phases(Phases value) {
+		public final Builder phases(Phases value) {
 			this.phases = value;
 			return this;
 		}
@@ -120,7 +129,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code phases}
 		 */
-		public Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
+		public final Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
 			return this.phases(fn.apply(new Phases.Builder()).build());
 		}
 
@@ -131,6 +140,7 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IlmPolicyStatistics build() {
+			_checkSingleUse();
 
 			return new IlmPolicyStatistics(this);
 		}
@@ -142,9 +152,9 @@ public final class IlmPolicyStatistics implements JsonpSerializable {
 	 * Json deserializer for {@link IlmPolicyStatistics}
 	 */
 	public static final JsonpDeserializer<IlmPolicyStatistics> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, IlmPolicyStatistics::setupIlmPolicyStatisticsDeserializer, Builder::build);
+			.lazy(Builder::new, IlmPolicyStatistics::setupIlmPolicyStatisticsDeserializer);
 
-	protected static void setupIlmPolicyStatisticsDeserializer(DelegatingDeserializer<IlmPolicyStatistics.Builder> op) {
+	protected static void setupIlmPolicyStatisticsDeserializer(ObjectDeserializer<IlmPolicyStatistics.Builder> op) {
 
 		op.add(Builder::indicesManaged, JsonpDeserializer.integerDeserializer(), "indices_managed");
 		op.add(Builder::phases, Phases._DESERIALIZER, "phases");

@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.shutdown.get_node;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: shutdown.get_node.PersistentTaskStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/get_node/ShutdownGetNodeResponse.ts#L56-L58">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PersistentTaskStatus implements JsonpSerializable {
+public class PersistentTaskStatus implements JsonpSerializable {
 	private final ShutdownStatus status;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PersistentTaskStatus(Builder builder) {
+	private PersistentTaskStatus(Builder builder) {
 
-		this.status = Objects.requireNonNull(builder.status, "status");
+		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 
 	}
 
-	public PersistentTaskStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PersistentTaskStatus of(Function<Builder, ObjectBuilder<PersistentTaskStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code status}
 	 */
-	public ShutdownStatus status() {
+	public final ShutdownStatus status() {
 		return this.status;
 	}
 
@@ -81,13 +89,14 @@ public final class PersistentTaskStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link PersistentTaskStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<PersistentTaskStatus> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PersistentTaskStatus> {
 		private ShutdownStatus status;
 
 		/**
 		 * Required - API name: {@code status}
 		 */
-		public Builder status(ShutdownStatus value) {
+		public final Builder status(ShutdownStatus value) {
 			this.status = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class PersistentTaskStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PersistentTaskStatus build() {
+			_checkSingleUse();
 
 			return new PersistentTaskStatus(this);
 		}
@@ -110,10 +120,9 @@ public final class PersistentTaskStatus implements JsonpSerializable {
 	 * Json deserializer for {@link PersistentTaskStatus}
 	 */
 	public static final JsonpDeserializer<PersistentTaskStatus> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PersistentTaskStatus::setupPersistentTaskStatusDeserializer, Builder::build);
+			.lazy(Builder::new, PersistentTaskStatus::setupPersistentTaskStatusDeserializer);
 
-	protected static void setupPersistentTaskStatusDeserializer(
-			DelegatingDeserializer<PersistentTaskStatus.Builder> op) {
+	protected static void setupPersistentTaskStatusDeserializer(ObjectDeserializer<PersistentTaskStatus.Builder> op) {
 
 		op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
 

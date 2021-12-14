@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.update_aliases.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/update_aliases/IndicesUpdateAliasesResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UpdateAliasesResponse extends AcknowledgedResponseBase {
+public class UpdateAliasesResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public UpdateAliasesResponse(Builder builder) {
+	private UpdateAliasesResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public UpdateAliasesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UpdateAliasesResponse of(Function<Builder, ObjectBuilder<UpdateAliasesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class UpdateAliasesResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link UpdateAliasesResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UpdateAliasesResponse> {
@@ -68,6 +75,7 @@ public final class UpdateAliasesResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public UpdateAliasesResponse build() {
+			_checkSingleUse();
 
 			return new UpdateAliasesResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class UpdateAliasesResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link UpdateAliasesResponse}
 	 */
 	public static final JsonpDeserializer<UpdateAliasesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UpdateAliasesResponse::setupUpdateAliasesResponseDeserializer, Builder::build);
+			.lazy(Builder::new, UpdateAliasesResponse::setupUpdateAliasesResponseDeserializer);
 
-	protected static void setupUpdateAliasesResponseDeserializer(
-			DelegatingDeserializer<UpdateAliasesResponse.Builder> op) {
+	protected static void setupUpdateAliasesResponseDeserializer(ObjectDeserializer<UpdateAliasesResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

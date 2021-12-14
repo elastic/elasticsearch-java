@@ -23,44 +23,49 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Profile
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/profile.ts#L92-L94">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Profile implements JsonpSerializable {
+public class Profile implements JsonpSerializable {
 	private final List<ShardProfile> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Profile(Builder builder) {
+	private Profile(Builder builder) {
 
-		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
-	public Profile(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Profile of(Function<Builder, ObjectBuilder<Profile>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public List<ShardProfile> shards() {
+	public final List<ShardProfile> shards() {
 		return this.shards;
 	}
 
@@ -75,13 +80,16 @@ public final class Profile implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("shards");
-		generator.writeStartArray();
-		for (ShardProfile item0 : this.shards) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.shards)) {
+			generator.writeKey("shards");
+			generator.writeStartArray();
+			for (ShardProfile item0 : this.shards) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,48 +98,37 @@ public final class Profile implements JsonpSerializable {
 	/**
 	 * Builder for {@link Profile}.
 	 */
-	public static class Builder implements ObjectBuilder<Profile> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Profile> {
 		private List<ShardProfile> shards;
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>shards</code>.
 		 */
-		public Builder shards(List<ShardProfile> value) {
-			this.shards = value;
+		public final Builder shards(List<ShardProfile> list) {
+			this.shards = _listAddAll(this.shards, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds one or more values to <code>shards</code>.
 		 */
-		public Builder shards(ShardProfile... value) {
-			this.shards = Arrays.asList(value);
+		public final Builder shards(ShardProfile value, ShardProfile... values) {
+			this.shards = _listAdd(this.shards, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
+		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds a value to <code>shards</code> using a builder lambda.
 		 */
-		public Builder addShards(ShardProfile value) {
-			if (this.shards == null) {
-				this.shards = new ArrayList<>();
-			}
-			this.shards.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #shards(List)} to a singleton list.
-		 */
-		public Builder shards(Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>> fn) {
-			return this.shards(fn.apply(new ShardProfile.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
-		 */
-		public Builder addShards(Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>> fn) {
-			return this.addShards(fn.apply(new ShardProfile.Builder()).build());
+		public final Builder shards(Function<ShardProfile.Builder, ObjectBuilder<ShardProfile>> fn) {
+			return shards(fn.apply(new ShardProfile.Builder()).build());
 		}
 
 		/**
@@ -141,6 +138,7 @@ public final class Profile implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Profile build() {
+			_checkSingleUse();
 
 			return new Profile(this);
 		}
@@ -152,9 +150,9 @@ public final class Profile implements JsonpSerializable {
 	 * Json deserializer for {@link Profile}
 	 */
 	public static final JsonpDeserializer<Profile> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Profile::setupProfileDeserializer, Builder::build);
+			Profile::setupProfileDeserializer);
 
-	protected static void setupProfileDeserializer(DelegatingDeserializer<Profile.Builder> op) {
+	protected static void setupProfileDeserializer(ObjectDeserializer<Profile.Builder> op) {
 
 		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardProfile._DESERIALIZER), "shards");
 

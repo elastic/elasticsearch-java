@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security._types.GlobalPrivilege
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/Privileges.ts#L123-L125">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GlobalPrivilege implements JsonpSerializable {
+public class GlobalPrivilege implements JsonpSerializable {
 	private final ApplicationGlobalUserPrivileges application;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GlobalPrivilege(Builder builder) {
+	private GlobalPrivilege(Builder builder) {
 
-		this.application = Objects.requireNonNull(builder.application, "application");
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
 
 	}
 
-	public GlobalPrivilege(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GlobalPrivilege of(Function<Builder, ObjectBuilder<GlobalPrivilege>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code application}
 	 */
-	public ApplicationGlobalUserPrivileges application() {
+	public final ApplicationGlobalUserPrivileges application() {
 		return this.application;
 	}
 
@@ -81,13 +89,14 @@ public final class GlobalPrivilege implements JsonpSerializable {
 	/**
 	 * Builder for {@link GlobalPrivilege}.
 	 */
-	public static class Builder implements ObjectBuilder<GlobalPrivilege> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GlobalPrivilege> {
 		private ApplicationGlobalUserPrivileges application;
 
 		/**
 		 * Required - API name: {@code application}
 		 */
-		public Builder application(ApplicationGlobalUserPrivileges value) {
+		public final Builder application(ApplicationGlobalUserPrivileges value) {
 			this.application = value;
 			return this;
 		}
@@ -95,7 +104,7 @@ public final class GlobalPrivilege implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code application}
 		 */
-		public Builder application(
+		public final Builder application(
 				Function<ApplicationGlobalUserPrivileges.Builder, ObjectBuilder<ApplicationGlobalUserPrivileges>> fn) {
 			return this.application(fn.apply(new ApplicationGlobalUserPrivileges.Builder()).build());
 		}
@@ -107,6 +116,7 @@ public final class GlobalPrivilege implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GlobalPrivilege build() {
+			_checkSingleUse();
 
 			return new GlobalPrivilege(this);
 		}
@@ -118,9 +128,9 @@ public final class GlobalPrivilege implements JsonpSerializable {
 	 * Json deserializer for {@link GlobalPrivilege}
 	 */
 	public static final JsonpDeserializer<GlobalPrivilege> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GlobalPrivilege::setupGlobalPrivilegeDeserializer, Builder::build);
+			GlobalPrivilege::setupGlobalPrivilegeDeserializer);
 
-	protected static void setupGlobalPrivilegeDeserializer(DelegatingDeserializer<GlobalPrivilege.Builder> op) {
+	protected static void setupGlobalPrivilegeDeserializer(ObjectDeserializer<GlobalPrivilege.Builder> op) {
 
 		op.add(Builder::application, ApplicationGlobalUserPrivileges._DESERIALIZER, "application");
 

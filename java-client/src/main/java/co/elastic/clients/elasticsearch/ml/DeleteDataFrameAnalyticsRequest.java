@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,36 +46,36 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_data_frame_analytics.Request
 
-public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
-	private final String id;
+/**
+ * Deletes an existing data frame analytics job.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_data_frame_analytics/MlDeleteDataFrameAnalyticsRequest.ts#L24-L48">API
+ *      specification</a>
+ */
 
+public class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	@Nullable
 	private final Boolean force;
 
+	private final String id;
+
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteDataFrameAnalyticsRequest(Builder builder) {
+	private DeleteDataFrameAnalyticsRequest(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
 		this.force = builder.force;
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.timeout = builder.timeout;
 
 	}
 
-	public DeleteDataFrameAnalyticsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Identifier for the data frame analytics job.
-	 * <p>
-	 * API name: {@code id}
-	 */
-	public String id() {
-		return this.id;
+	public static DeleteDataFrameAnalyticsRequest of(
+			Function<Builder, ObjectBuilder<DeleteDataFrameAnalyticsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -82,8 +85,17 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	 * API name: {@code force}
 	 */
 	@Nullable
-	public Boolean force() {
+	public final Boolean force() {
 		return this.force;
+	}
+
+	/**
+	 * Required - Identifier for the data frame analytics job.
+	 * <p>
+	 * API name: {@code id}
+	 */
+	public final String id() {
+		return this.id;
 	}
 
 	/**
@@ -92,7 +104,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -101,24 +113,15 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteDataFrameAnalyticsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteDataFrameAnalyticsRequest> {
-		private String id;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean force;
 
-		@Nullable
-		private String timeout;
+		private String id;
 
-		/**
-		 * Required - Identifier for the data frame analytics job.
-		 * <p>
-		 * API name: {@code id}
-		 */
-		public Builder id(String value) {
-			this.id = value;
-			return this;
-		}
+		@Nullable
+		private Time timeout;
 
 		/**
 		 * If <code>true</code>, it deletes a job that is not stopped; this method is
@@ -126,8 +129,18 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code force}
 		 */
-		public Builder force(@Nullable Boolean value) {
+		public final Builder force(@Nullable Boolean value) {
 			this.force = value;
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the data frame analytics job.
+		 * <p>
+		 * API name: {@code id}
+		 */
+		public final Builder id(String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -136,9 +149,18 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * The time to wait for the job to be deleted.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -148,6 +170,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteDataFrameAnalyticsRequest build() {
+			_checkSingleUse();
 
 			return new DeleteDataFrameAnalyticsRequest(this);
 		}
@@ -158,7 +181,9 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_data_frame_analytics}".
 	 */
-	public static final Endpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_data_frame_analytics",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -193,7 +218,7 @@ public final class DeleteDataFrameAnalyticsRequest extends RequestBase {
 					params.put("force", String.valueOf(request.force));
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

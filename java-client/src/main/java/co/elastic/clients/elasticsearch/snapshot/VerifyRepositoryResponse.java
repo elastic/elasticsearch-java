@@ -24,44 +24,50 @@
 package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch.snapshot.verify_repository.CompactNodeInfo;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot.verify_repository.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/verify_repository/SnapshotVerifyRepositoryResponse.ts#L23-L25">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class VerifyRepositoryResponse implements JsonpSerializable {
+public class VerifyRepositoryResponse implements JsonpSerializable {
 	private final Map<String, CompactNodeInfo> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public VerifyRepositoryResponse(Builder builder) {
+	private VerifyRepositoryResponse(Builder builder) {
 
-		this.nodes = ModelTypeHelper.unmodifiableNonNull(builder.nodes, "nodes");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public VerifyRepositoryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static VerifyRepositoryResponse of(Function<Builder, ObjectBuilder<VerifyRepositoryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code nodes}
 	 */
-	public Map<String, CompactNodeInfo> nodes() {
+	public final Map<String, CompactNodeInfo> nodes() {
 		return this.nodes;
 	}
 
@@ -76,14 +82,17 @@ public final class VerifyRepositoryResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("nodes");
-		generator.writeStartObject();
-		for (Map.Entry<String, CompactNodeInfo> item0 : this.nodes.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, CompactNodeInfo> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -92,40 +101,37 @@ public final class VerifyRepositoryResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link VerifyRepositoryResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<VerifyRepositoryResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VerifyRepositoryResponse> {
 		private Map<String, CompactNodeInfo> nodes;
 
 		/**
 		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
-		public Builder nodes(Map<String, CompactNodeInfo> value) {
-			this.nodes = value;
+		public final Builder nodes(Map<String, CompactNodeInfo> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code>.
 		 */
-		public Builder putNodes(String key, CompactNodeInfo value) {
-			if (this.nodes == null) {
-				this.nodes = new HashMap<>();
-			}
-			this.nodes.put(key, value);
+		public final Builder nodes(String key, CompactNodeInfo value) {
+			this.nodes = _mapPut(this.nodes, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #nodes(Map)} to a singleton map.
+		 * Required - API name: {@code nodes}
+		 * <p>
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
 		 */
-		public Builder nodes(String key, Function<CompactNodeInfo.Builder, ObjectBuilder<CompactNodeInfo>> fn) {
-			return this.nodes(Collections.singletonMap(key, fn.apply(new CompactNodeInfo.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #nodes(Map)}, creating the map if needed.
-		 */
-		public Builder putNodes(String key, Function<CompactNodeInfo.Builder, ObjectBuilder<CompactNodeInfo>> fn) {
-			return this.putNodes(key, fn.apply(new CompactNodeInfo.Builder()).build());
+		public final Builder nodes(String key, Function<CompactNodeInfo.Builder, ObjectBuilder<CompactNodeInfo>> fn) {
+			return nodes(key, fn.apply(new CompactNodeInfo.Builder()).build());
 		}
 
 		/**
@@ -135,6 +141,7 @@ public final class VerifyRepositoryResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public VerifyRepositoryResponse build() {
+			_checkSingleUse();
 
 			return new VerifyRepositoryResponse(this);
 		}
@@ -146,10 +153,10 @@ public final class VerifyRepositoryResponse implements JsonpSerializable {
 	 * Json deserializer for {@link VerifyRepositoryResponse}
 	 */
 	public static final JsonpDeserializer<VerifyRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, VerifyRepositoryResponse::setupVerifyRepositoryResponseDeserializer, Builder::build);
+			.lazy(Builder::new, VerifyRepositoryResponse::setupVerifyRepositoryResponseDeserializer);
 
 	protected static void setupVerifyRepositoryResponseDeserializer(
-			DelegatingDeserializer<VerifyRepositoryResponse.Builder> op) {
+			ObjectDeserializer<VerifyRepositoryResponse.Builder> op) {
 
 		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(CompactNodeInfo._DESERIALIZER), "nodes");
 

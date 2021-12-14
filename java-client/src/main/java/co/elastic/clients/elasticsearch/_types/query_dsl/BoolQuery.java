@@ -23,71 +23,70 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.BoolQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L28-L34">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class BoolQuery extends QueryBase implements QueryVariant {
-	@Nullable
+public class BoolQuery extends QueryBase implements QueryVariant {
 	private final List<Query> filter;
 
 	@Nullable
 	private final String minimumShouldMatch;
 
-	@Nullable
 	private final List<Query> must;
 
-	@Nullable
 	private final List<Query> mustNot;
 
-	@Nullable
 	private final List<Query> should;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public BoolQuery(Builder builder) {
+	private BoolQuery(Builder builder) {
 		super(builder);
 
-		this.filter = ModelTypeHelper.unmodifiable(builder.filter);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.minimumShouldMatch = builder.minimumShouldMatch;
-		this.must = ModelTypeHelper.unmodifiable(builder.must);
-		this.mustNot = ModelTypeHelper.unmodifiable(builder.mustNot);
-		this.should = ModelTypeHelper.unmodifiable(builder.should);
+		this.must = ApiTypeHelper.unmodifiable(builder.must);
+		this.mustNot = ApiTypeHelper.unmodifiable(builder.mustNot);
+		this.should = ApiTypeHelper.unmodifiable(builder.should);
 
 	}
 
-	public BoolQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static BoolQuery of(Function<Builder, ObjectBuilder<BoolQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "bool";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Bool;
 	}
 
 	/**
 	 * API name: {@code filter}
 	 */
-	@Nullable
-	public List<Query> filter() {
+	public final List<Query> filter() {
 		return this.filter;
 	}
 
@@ -95,39 +94,35 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public String minimumShouldMatch() {
+	public final String minimumShouldMatch() {
 		return this.minimumShouldMatch;
 	}
 
 	/**
 	 * API name: {@code must}
 	 */
-	@Nullable
-	public List<Query> must() {
+	public final List<Query> must() {
 		return this.must;
 	}
 
 	/**
 	 * API name: {@code must_not}
 	 */
-	@Nullable
-	public List<Query> mustNot() {
+	public final List<Query> mustNot() {
 		return this.mustNot;
 	}
 
 	/**
 	 * API name: {@code should}
 	 */
-	@Nullable
-	public List<Query> should() {
+	public final List<Query> should() {
 		return this.should;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.filter != null) {
-
+		if (ApiTypeHelper.isDefined(this.filter)) {
 			generator.writeKey("filter");
 			generator.writeStartArray();
 			for (Query item0 : this.filter) {
@@ -138,13 +133,11 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 
 		}
 		if (this.minimumShouldMatch != null) {
-
 			generator.writeKey("minimum_should_match");
 			generator.write(this.minimumShouldMatch);
 
 		}
-		if (this.must != null) {
-
+		if (ApiTypeHelper.isDefined(this.must)) {
 			generator.writeKey("must");
 			generator.writeStartArray();
 			for (Query item0 : this.must) {
@@ -154,8 +147,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 			generator.writeEnd();
 
 		}
-		if (this.mustNot != null) {
-
+		if (ApiTypeHelper.isDefined(this.mustNot)) {
 			generator.writeKey("must_not");
 			generator.writeStartArray();
 			for (Query item0 : this.mustNot) {
@@ -165,8 +157,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 			generator.writeEnd();
 
 		}
-		if (this.should != null) {
-
+		if (ApiTypeHelper.isDefined(this.should)) {
 			generator.writeKey("should");
 			generator.writeStartArray();
 			for (Query item0 : this.should) {
@@ -184,6 +175,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link BoolQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<BoolQuery> {
 		@Nullable
 		private List<Query> filter;
@@ -202,174 +194,126 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
 		 */
-		public Builder filter(@Nullable List<Query> value) {
-			this.filter = value;
+		public final Builder filter(List<Query> list) {
+			this.filter = _listAddAll(this.filter, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
 		 */
-		public Builder filter(Query... value) {
-			this.filter = Arrays.asList(value);
+		public final Builder filter(Query value, Query... values) {
+			this.filter = _listAdd(this.filter, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds a value to <code>filter</code> using a builder lambda.
 		 */
-		public Builder addFilter(Query value) {
-			if (this.filter == null) {
-				this.filter = new ArrayList<>();
-			}
-			this.filter.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #filter(List)} to a singleton list.
-		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #filter(List)}, creating the list if needed.
-		 */
-		public Builder addFilter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addFilter(fn.apply(new Query.Builder()).build());
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code minimum_should_match}
 		 */
-		public Builder minimumShouldMatch(@Nullable String value) {
+		public final Builder minimumShouldMatch(@Nullable String value) {
 			this.minimumShouldMatch = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code must}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>must</code>.
 		 */
-		public Builder must(@Nullable List<Query> value) {
-			this.must = value;
+		public final Builder must(List<Query> list) {
+			this.must = _listAddAll(this.must, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code must}
+		 * <p>
+		 * Adds one or more values to <code>must</code>.
 		 */
-		public Builder must(Query... value) {
-			this.must = Arrays.asList(value);
+		public final Builder must(Query value, Query... values) {
+			this.must = _listAdd(this.must, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #must(List)}, creating the list if needed.
+		 * API name: {@code must}
+		 * <p>
+		 * Adds a value to <code>must</code> using a builder lambda.
 		 */
-		public Builder addMust(Query value) {
-			if (this.must == null) {
-				this.must = new ArrayList<>();
-			}
-			this.must.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #must(List)} to a singleton list.
-		 */
-		public Builder must(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.must(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #must(List)}, creating the list if needed.
-		 */
-		public Builder addMust(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addMust(fn.apply(new Query.Builder()).build());
+		public final Builder must(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return must(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code must_not}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>mustNot</code>.
 		 */
-		public Builder mustNot(@Nullable List<Query> value) {
-			this.mustNot = value;
+		public final Builder mustNot(List<Query> list) {
+			this.mustNot = _listAddAll(this.mustNot, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code must_not}
+		 * <p>
+		 * Adds one or more values to <code>mustNot</code>.
 		 */
-		public Builder mustNot(Query... value) {
-			this.mustNot = Arrays.asList(value);
+		public final Builder mustNot(Query value, Query... values) {
+			this.mustNot = _listAdd(this.mustNot, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #mustNot(List)}, creating the list if needed.
+		 * API name: {@code must_not}
+		 * <p>
+		 * Adds a value to <code>mustNot</code> using a builder lambda.
 		 */
-		public Builder addMustNot(Query value) {
-			if (this.mustNot == null) {
-				this.mustNot = new ArrayList<>();
-			}
-			this.mustNot.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #mustNot(List)} to a singleton list.
-		 */
-		public Builder mustNot(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.mustNot(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #mustNot(List)}, creating the list if needed.
-		 */
-		public Builder addMustNot(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addMustNot(fn.apply(new Query.Builder()).build());
+		public final Builder mustNot(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return mustNot(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code should}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>should</code>.
 		 */
-		public Builder should(@Nullable List<Query> value) {
-			this.should = value;
+		public final Builder should(List<Query> list) {
+			this.should = _listAddAll(this.should, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code should}
+		 * <p>
+		 * Adds one or more values to <code>should</code>.
 		 */
-		public Builder should(Query... value) {
-			this.should = Arrays.asList(value);
+		public final Builder should(Query value, Query... values) {
+			this.should = _listAdd(this.should, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #should(List)}, creating the list if needed.
+		 * API name: {@code should}
+		 * <p>
+		 * Adds a value to <code>should</code> using a builder lambda.
 		 */
-		public Builder addShould(Query value) {
-			if (this.should == null) {
-				this.should = new ArrayList<>();
-			}
-			this.should.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #should(List)} to a singleton list.
-		 */
-		public Builder should(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.should(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #should(List)}, creating the list if needed.
-		 */
-		public Builder addShould(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.addShould(fn.apply(new Query.Builder()).build());
+		public final Builder should(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return should(fn.apply(new Query.Builder()).build());
 		}
 
 		@Override
@@ -384,6 +328,7 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public BoolQuery build() {
+			_checkSingleUse();
 
 			return new BoolQuery(this);
 		}
@@ -395,9 +340,9 @@ public final class BoolQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link BoolQuery}
 	 */
 	public static final JsonpDeserializer<BoolQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			BoolQuery::setupBoolQueryDeserializer, Builder::build);
+			BoolQuery::setupBoolQueryDeserializer);
 
-	protected static void setupBoolQueryDeserializer(DelegatingDeserializer<BoolQuery.Builder> op) {
+	protected static void setupBoolQueryDeserializer(ObjectDeserializer<BoolQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");

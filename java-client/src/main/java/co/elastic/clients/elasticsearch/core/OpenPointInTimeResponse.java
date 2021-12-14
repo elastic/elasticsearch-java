@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.open_point_in_time.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/open_point_in_time/OpenPointInTimeResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class OpenPointInTimeResponse implements JsonpSerializable {
+public class OpenPointInTimeResponse implements JsonpSerializable {
 	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OpenPointInTimeResponse(Builder builder) {
+	private OpenPointInTimeResponse(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 
 	}
 
-	public OpenPointInTimeResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OpenPointInTimeResponse of(Function<Builder, ObjectBuilder<OpenPointInTimeResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -82,13 +90,14 @@ public final class OpenPointInTimeResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link OpenPointInTimeResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<OpenPointInTimeResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenPointInTimeResponse> {
 		private String id;
 
 		/**
 		 * Required - API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class OpenPointInTimeResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public OpenPointInTimeResponse build() {
+			_checkSingleUse();
 
 			return new OpenPointInTimeResponse(this);
 		}
@@ -111,10 +121,10 @@ public final class OpenPointInTimeResponse implements JsonpSerializable {
 	 * Json deserializer for {@link OpenPointInTimeResponse}
 	 */
 	public static final JsonpDeserializer<OpenPointInTimeResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, OpenPointInTimeResponse::setupOpenPointInTimeResponseDeserializer, Builder::build);
+			.lazy(Builder::new, OpenPointInTimeResponse::setupOpenPointInTimeResponseDeserializer);
 
 	protected static void setupOpenPointInTimeResponseDeserializer(
-			DelegatingDeserializer<OpenPointInTimeResponse.Builder> op) {
+			ObjectDeserializer<OpenPointInTimeResponse.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 

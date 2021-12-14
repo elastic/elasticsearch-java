@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,37 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.FieldAliasProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/specialized.ts#L50-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FieldAliasProperty extends PropertyBase implements PropertyVariant {
+public class FieldAliasProperty extends PropertyBase implements PropertyVariant {
 	@Nullable
 	private final String path;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FieldAliasProperty(Builder builder) {
+	private FieldAliasProperty(Builder builder) {
 		super(builder);
 
 		this.path = builder.path;
 
 	}
 
-	public FieldAliasProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FieldAliasProperty of(Function<Builder, ObjectBuilder<FieldAliasProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "alias";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Alias;
 	}
 
 	/**
 	 * API name: {@code path}
 	 */
 	@Nullable
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
@@ -76,7 +82,6 @@ public final class FieldAliasProperty extends PropertyBase implements PropertyVa
 		generator.write("type", "alias");
 		super.serializeInternal(generator, mapper);
 		if (this.path != null) {
-
 			generator.writeKey("path");
 			generator.write(this.path);
 
@@ -89,6 +94,7 @@ public final class FieldAliasProperty extends PropertyBase implements PropertyVa
 	/**
 	 * Builder for {@link FieldAliasProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FieldAliasProperty> {
@@ -98,7 +104,7 @@ public final class FieldAliasProperty extends PropertyBase implements PropertyVa
 		/**
 		 * API name: {@code path}
 		 */
-		public Builder path(@Nullable String value) {
+		public final Builder path(@Nullable String value) {
 			this.path = value;
 			return this;
 		}
@@ -115,6 +121,7 @@ public final class FieldAliasProperty extends PropertyBase implements PropertyVa
 		 *             if some of the required fields are null.
 		 */
 		public FieldAliasProperty build() {
+			_checkSingleUse();
 
 			return new FieldAliasProperty(this);
 		}
@@ -126,9 +133,9 @@ public final class FieldAliasProperty extends PropertyBase implements PropertyVa
 	 * Json deserializer for {@link FieldAliasProperty}
 	 */
 	public static final JsonpDeserializer<FieldAliasProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, FieldAliasProperty::setupFieldAliasPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, FieldAliasProperty::setupFieldAliasPropertyDeserializer);
 
-	protected static void setupFieldAliasPropertyDeserializer(DelegatingDeserializer<FieldAliasProperty.Builder> op) {
+	protected static void setupFieldAliasPropertyDeserializer(ObjectDeserializer<FieldAliasProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 

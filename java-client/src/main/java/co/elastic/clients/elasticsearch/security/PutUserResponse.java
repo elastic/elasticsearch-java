@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.put_user.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_user/SecurityPutUserResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutUserResponse implements JsonpSerializable {
+public class PutUserResponse implements JsonpSerializable {
 	private final boolean created;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PutUserResponse(Builder builder) {
+	private PutUserResponse(Builder builder) {
 
-		this.created = Objects.requireNonNull(builder.created, "created");
+		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
 
 	}
 
-	public PutUserResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutUserResponse of(Function<Builder, ObjectBuilder<PutUserResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code created}
 	 */
-	public boolean created() {
+	public final boolean created() {
 		return this.created;
 	}
 
@@ -81,13 +89,14 @@ public final class PutUserResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link PutUserResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<PutUserResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutUserResponse> {
 		private Boolean created;
 
 		/**
 		 * Required - API name: {@code created}
 		 */
-		public Builder created(boolean value) {
+		public final Builder created(boolean value) {
 			this.created = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class PutUserResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PutUserResponse build() {
+			_checkSingleUse();
 
 			return new PutUserResponse(this);
 		}
@@ -110,9 +120,9 @@ public final class PutUserResponse implements JsonpSerializable {
 	 * Json deserializer for {@link PutUserResponse}
 	 */
 	public static final JsonpDeserializer<PutUserResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PutUserResponse::setupPutUserResponseDeserializer, Builder::build);
+			PutUserResponse::setupPutUserResponseDeserializer);
 
-	protected static void setupPutUserResponseDeserializer(DelegatingDeserializer<PutUserResponse.Builder> op) {
+	protected static void setupPutUserResponseDeserializer(ObjectDeserializer<PutUserResponse.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.booleanDeserializer(), "created");
 

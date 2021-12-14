@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ilm.retry.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/retry/RetryIlmResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RetryResponse extends AcknowledgedResponseBase {
+public class RetryResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public RetryResponse(Builder builder) {
+	private RetryResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public RetryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RetryResponse of(Function<Builder, ObjectBuilder<RetryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class RetryResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link RetryResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RetryResponse> {
@@ -68,6 +75,7 @@ public final class RetryResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public RetryResponse build() {
+			_checkSingleUse();
 
 			return new RetryResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class RetryResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link RetryResponse}
 	 */
 	public static final JsonpDeserializer<RetryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RetryResponse::setupRetryResponseDeserializer, Builder::build);
+			RetryResponse::setupRetryResponseDeserializer);
 
-	protected static void setupRetryResponseDeserializer(DelegatingDeserializer<RetryResponse.Builder> op) {
+	protected static void setupRetryResponseDeserializer(ObjectDeserializer<RetryResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

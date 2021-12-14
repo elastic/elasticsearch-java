@@ -30,31 +30,37 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ssl.certificates.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ssl/certificates/GetCertificatesResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CertificatesResponse implements JsonpSerializable {
+public class CertificatesResponse implements JsonpSerializable {
 	private final List<CertificateInformation> valueBody;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CertificatesResponse(Builder builder) {
+	private CertificatesResponse(Builder builder) {
 
-		this.valueBody = ModelTypeHelper.unmodifiableNonNull(builder.valueBody, "_value_body");
+		this.valueBody = ApiTypeHelper.unmodifiableRequired(builder.valueBody, this, "valueBody");
 
 	}
 
-	public CertificatesResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CertificatesResponse of(Function<Builder, ObjectBuilder<CertificatesResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +68,7 @@ public final class CertificatesResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public List<CertificateInformation> valueBody() {
+	public final List<CertificateInformation> valueBody() {
 		return this.valueBody;
 	}
 
@@ -84,16 +90,19 @@ public final class CertificatesResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link CertificatesResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<CertificatesResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CertificatesResponse> {
 		private List<CertificateInformation> valueBody;
 
 		/**
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 */
-		public Builder valueBody(List<CertificateInformation> value) {
-			this.valueBody = value;
+		public final Builder valueBody(List<CertificateInformation> list) {
+			this.valueBody = _listAddAll(this.valueBody, list);
 			return this;
 		}
 
@@ -101,36 +110,24 @@ public final class CertificatesResponse implements JsonpSerializable {
 		 * Required - Response value.
 		 * <p>
 		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds one or more values to <code>valueBody</code>.
 		 */
-		public Builder valueBody(CertificateInformation... value) {
-			this.valueBody = Arrays.asList(value);
+		public final Builder valueBody(CertificateInformation value, CertificateInformation... values) {
+			this.valueBody = _listAdd(this.valueBody, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds a value to <code>valueBody</code> using a builder lambda.
 		 */
-		public Builder addValueBody(CertificateInformation value) {
-			if (this.valueBody == null) {
-				this.valueBody = new ArrayList<>();
-			}
-			this.valueBody.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #valueBody(List)} to a singleton list.
-		 */
-		public Builder valueBody(Function<CertificateInformation.Builder, ObjectBuilder<CertificateInformation>> fn) {
-			return this.valueBody(fn.apply(new CertificateInformation.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #valueBody(List)}, creating the list if needed.
-		 */
-		public Builder addValueBody(
+		public final Builder valueBody(
 				Function<CertificateInformation.Builder, ObjectBuilder<CertificateInformation>> fn) {
-			return this.addValueBody(fn.apply(new CertificateInformation.Builder()).build());
+			return valueBody(fn.apply(new CertificateInformation.Builder()).build());
 		}
 
 		/**
@@ -140,6 +137,7 @@ public final class CertificatesResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public CertificatesResponse build() {
+			_checkSingleUse();
 
 			return new CertificatesResponse(this);
 		}
@@ -151,8 +149,8 @@ public final class CertificatesResponse implements JsonpSerializable {
 		JsonpDeserializer<List<CertificateInformation>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(CertificateInformation._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

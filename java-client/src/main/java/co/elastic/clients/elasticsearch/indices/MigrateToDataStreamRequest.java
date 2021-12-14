@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -41,19 +43,27 @@ import javax.annotation.Nullable;
 
 // typedef: indices.migrate_to_data_stream.Request
 
-public final class MigrateToDataStreamRequest extends RequestBase {
+/**
+ * Migrates an alias to a data stream
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/migrate_to_data_stream/IndicesMigrateToDataStreamRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class MigrateToDataStreamRequest extends RequestBase {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MigrateToDataStreamRequest(Builder builder) {
+	private MigrateToDataStreamRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public MigrateToDataStreamRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MigrateToDataStreamRequest of(Function<Builder, ObjectBuilder<MigrateToDataStreamRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -61,7 +71,7 @@ public final class MigrateToDataStreamRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -70,7 +80,8 @@ public final class MigrateToDataStreamRequest extends RequestBase {
 	/**
 	 * Builder for {@link MigrateToDataStreamRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<MigrateToDataStreamRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MigrateToDataStreamRequest> {
 		private String name;
 
 		/**
@@ -78,7 +89,7 @@ public final class MigrateToDataStreamRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -90,6 +101,7 @@ public final class MigrateToDataStreamRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public MigrateToDataStreamRequest build() {
+			_checkSingleUse();
 
 			return new MigrateToDataStreamRequest(this);
 		}
@@ -100,7 +112,9 @@ public final class MigrateToDataStreamRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.migrate_to_data_stream}".
 	 */
-	public static final Endpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.migrate_to_data_stream",
+
 			// Request method
 			request -> {
 				return "POST";

@@ -23,15 +23,16 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -42,7 +43,15 @@ import javax.annotation.Nullable;
 
 // typedef: license.get.Request
 
-public final class GetLicenseRequest extends RequestBase {
+/**
+ * Retrieves licensing information for the cluster
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/get/GetLicenseRequest.ts#L22-L32">API
+ *      specification</a>
+ */
+
+public class GetLicenseRequest extends RequestBase {
 	@Nullable
 	private final Boolean acceptEnterprise;
 
@@ -51,15 +60,15 @@ public final class GetLicenseRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetLicenseRequest(Builder builder) {
+	private GetLicenseRequest(Builder builder) {
 
 		this.acceptEnterprise = builder.acceptEnterprise;
 		this.local = builder.local;
 
 	}
 
-	public GetLicenseRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetLicenseRequest of(Function<Builder, ObjectBuilder<GetLicenseRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -69,7 +78,7 @@ public final class GetLicenseRequest extends RequestBase {
 	 * API name: {@code accept_enterprise}
 	 */
 	@Nullable
-	public Boolean acceptEnterprise() {
+	public final Boolean acceptEnterprise() {
 		return this.acceptEnterprise;
 	}
 
@@ -80,7 +89,7 @@ public final class GetLicenseRequest extends RequestBase {
 	 * API name: {@code local}
 	 */
 	@Nullable
-	public Boolean local() {
+	public final Boolean local() {
 		return this.local;
 	}
 
@@ -89,7 +98,8 @@ public final class GetLicenseRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetLicenseRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetLicenseRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLicenseRequest> {
 		@Nullable
 		private Boolean acceptEnterprise;
 
@@ -102,7 +112,7 @@ public final class GetLicenseRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code accept_enterprise}
 		 */
-		public Builder acceptEnterprise(@Nullable Boolean value) {
+		public final Builder acceptEnterprise(@Nullable Boolean value) {
 			this.acceptEnterprise = value;
 			return this;
 		}
@@ -113,7 +123,7 @@ public final class GetLicenseRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code local}
 		 */
-		public Builder local(@Nullable Boolean value) {
+		public final Builder local(@Nullable Boolean value) {
 			this.local = value;
 			return this;
 		}
@@ -125,6 +135,7 @@ public final class GetLicenseRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetLicenseRequest build() {
+			_checkSingleUse();
 
 			return new GetLicenseRequest(this);
 		}
@@ -135,7 +146,9 @@ public final class GetLicenseRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code license.get}".
 	 */
-	public static final Endpoint<GetLicenseRequest, GetLicenseResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetLicenseRequest, GetLicenseResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/license.get",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -151,11 +164,11 @@ public final class GetLicenseRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.acceptEnterprise != null) {
-					params.put("accept_enterprise", String.valueOf(request.acceptEnterprise));
-				}
 				if (request.local != null) {
 					params.put("local", String.valueOf(request.local));
+				}
+				if (request.acceptEnterprise != null) {
+					params.put("accept_enterprise", String.valueOf(request.acceptEnterprise));
 				}
 				return params;
 

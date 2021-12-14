@@ -23,13 +23,16 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
@@ -39,46 +42,76 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: transform._types.RetentionPolicyContainer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/_types/Transform.ts#L68-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public class RetentionPolicy implements TaggedUnion<Object>, JsonpSerializable {
+public class RetentionPolicy implements TaggedUnion<RetentionPolicy.Kind, Object>, JsonpSerializable {
 
-	public static final String TIME = "time";
+	/**
+	 * {@link RetentionPolicy} variant kinds.
+	 */
+	/**
+	 * {@link RetentionPolicy} variant kinds.
+	 */
 
-	// Tagged union implementation
+	public enum Kind implements JsonEnum {
+		Time("time"),
 
-	private final String _type;
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
 	private final Object _value;
 
 	@Override
-	public String _type() {
-		return _type;
+	public final Kind _kind() {
+		return _kind;
 	}
 
 	@Override
-	public Object _get() {
+	public final Object _get() {
 		return _value;
 	}
 
 	public RetentionPolicy(RetentionPolicyVariant value) {
 
-		this._type = Objects.requireNonNull(value._variantType(), "variant type");
-		this._value = Objects.requireNonNull(value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(value._retentionPolicyKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
-	}
-
-	public <T extends RetentionPolicyVariant> RetentionPolicy(ObjectBuilder<T> builder) {
-		this(builder.build());
 	}
 
 	private RetentionPolicy(Builder builder) {
 
-		this._type = Objects.requireNonNull(builder._type, "variant type");
-		this._value = Objects.requireNonNull(builder._value, "variant value");
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public RetentionPolicy(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RetentionPolicy of(Function<Builder, ObjectBuilder<RetentionPolicy>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code time}?
+	 */
+	public boolean isTime() {
+		return _kind == Kind.Time;
 	}
 
 	/**
@@ -88,48 +121,52 @@ public class RetentionPolicy implements TaggedUnion<Object>, JsonpSerializable {
 	 *             if the current variant is not of the {@code time} kind.
 	 */
 	public TimeRetentionPolicy time() {
-		return TaggedUnionUtils.get(this, TIME);
+		return TaggedUnionUtils.get(this, Kind.Time);
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
 
-		generator.writeKey(_type);
+		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
 
 		generator.writeEnd();
+
 	}
 
-	public static class Builder implements ObjectBuilder<RetentionPolicy> {
-		private String _type;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RetentionPolicy> {
+		private Kind _kind;
 		private Object _value;
 
-		public Builder time(TimeRetentionPolicy v) {
-			this._type = TIME;
+		public ObjectBuilder<RetentionPolicy> time(TimeRetentionPolicy v) {
+			this._kind = Kind.Time;
 			this._value = v;
 			return this;
 		}
 
-		public Builder time(Function<TimeRetentionPolicy.Builder, ObjectBuilder<TimeRetentionPolicy>> f) {
-			return this.time(f.apply(new TimeRetentionPolicy.Builder()).build());
+		public ObjectBuilder<RetentionPolicy> time(
+				Function<TimeRetentionPolicy.Builder, ObjectBuilder<TimeRetentionPolicy>> fn) {
+			return this.time(fn.apply(new TimeRetentionPolicy.Builder()).build());
 		}
 
 		public RetentionPolicy build() {
+			_checkSingleUse();
 			return new RetentionPolicy(this);
 		}
 
 	}
 
-	protected static void setupRetentionPolicyDeserializer(DelegatingDeserializer<Builder> op) {
+	protected static void setupRetentionPolicyDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::time, TimeRetentionPolicy._DESERIALIZER, "time");
 
 	}
 
-	public static final JsonpDeserializer<RetentionPolicy> _DESERIALIZER = JsonpDeserializer.lazy(Builder::new,
+	public static final JsonpDeserializer<RetentionPolicy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			RetentionPolicy::setupRetentionPolicyDeserializer, Builder::build);
 }

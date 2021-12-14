@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.migrate_to_data_stream.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/migrate_to_data_stream/IndicesMigrateToDataStreamResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MigrateToDataStreamResponse extends AcknowledgedResponseBase {
+public class MigrateToDataStreamResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public MigrateToDataStreamResponse(Builder builder) {
+	private MigrateToDataStreamResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public MigrateToDataStreamResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MigrateToDataStreamResponse of(Function<Builder, ObjectBuilder<MigrateToDataStreamResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class MigrateToDataStreamResponse extends AcknowledgedResponseBase 
 	/**
 	 * Builder for {@link MigrateToDataStreamResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MigrateToDataStreamResponse> {
@@ -68,6 +75,7 @@ public final class MigrateToDataStreamResponse extends AcknowledgedResponseBase 
 		 *             if some of the required fields are null.
 		 */
 		public MigrateToDataStreamResponse build() {
+			_checkSingleUse();
 
 			return new MigrateToDataStreamResponse(this);
 		}
@@ -78,11 +86,11 @@ public final class MigrateToDataStreamResponse extends AcknowledgedResponseBase 
 	/**
 	 * Json deserializer for {@link MigrateToDataStreamResponse}
 	 */
-	public static final JsonpDeserializer<MigrateToDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, MigrateToDataStreamResponse::setupMigrateToDataStreamResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<MigrateToDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MigrateToDataStreamResponse::setupMigrateToDataStreamResponseDeserializer);
 
 	protected static void setupMigrateToDataStreamResponseDeserializer(
-			DelegatingDeserializer<MigrateToDataStreamResponse.Builder> op) {
+			ObjectDeserializer<MigrateToDataStreamResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

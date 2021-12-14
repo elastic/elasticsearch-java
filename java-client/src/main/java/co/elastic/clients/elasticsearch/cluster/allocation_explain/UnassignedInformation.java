@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -40,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.UnassignedInformation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L117-L125">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class UnassignedInformation implements JsonpSerializable {
+public class UnassignedInformation implements JsonpSerializable {
 	private final String at;
 
 	@Nullable
@@ -63,11 +71,11 @@ public final class UnassignedInformation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public UnassignedInformation(Builder builder) {
+	private UnassignedInformation(Builder builder) {
 
-		this.at = Objects.requireNonNull(builder.at, "at");
+		this.at = ApiTypeHelper.requireNonNull(builder.at, this, "at");
 		this.lastAllocationStatus = builder.lastAllocationStatus;
-		this.reason = Objects.requireNonNull(builder.reason, "reason");
+		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.details = builder.details;
 		this.failedAllocationAttempts = builder.failedAllocationAttempts;
 		this.delayed = builder.delayed;
@@ -75,14 +83,14 @@ public final class UnassignedInformation implements JsonpSerializable {
 
 	}
 
-	public UnassignedInformation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static UnassignedInformation of(Function<Builder, ObjectBuilder<UnassignedInformation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code at}
 	 */
-	public String at() {
+	public final String at() {
 		return this.at;
 	}
 
@@ -90,14 +98,14 @@ public final class UnassignedInformation implements JsonpSerializable {
 	 * API name: {@code last_allocation_status}
 	 */
 	@Nullable
-	public String lastAllocationStatus() {
+	public final String lastAllocationStatus() {
 		return this.lastAllocationStatus;
 	}
 
 	/**
 	 * Required - API name: {@code reason}
 	 */
-	public UnassignedInformationReason reason() {
+	public final UnassignedInformationReason reason() {
 		return this.reason;
 	}
 
@@ -105,7 +113,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 	 * API name: {@code details}
 	 */
 	@Nullable
-	public String details() {
+	public final String details() {
 		return this.details;
 	}
 
@@ -113,7 +121,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 	 * API name: {@code failed_allocation_attempts}
 	 */
 	@Nullable
-	public Integer failedAllocationAttempts() {
+	public final Integer failedAllocationAttempts() {
 		return this.failedAllocationAttempts;
 	}
 
@@ -121,7 +129,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 	 * API name: {@code delayed}
 	 */
 	@Nullable
-	public Boolean delayed() {
+	public final Boolean delayed() {
 		return this.delayed;
 	}
 
@@ -129,7 +137,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 	 * API name: {@code allocation_status}
 	 */
 	@Nullable
-	public String allocationStatus() {
+	public final String allocationStatus() {
 		return this.allocationStatus;
 	}
 
@@ -148,34 +156,28 @@ public final class UnassignedInformation implements JsonpSerializable {
 		generator.write(this.at);
 
 		if (this.lastAllocationStatus != null) {
-
 			generator.writeKey("last_allocation_status");
 			generator.write(this.lastAllocationStatus);
 
 		}
-
 		generator.writeKey("reason");
 		this.reason.serialize(generator, mapper);
 		if (this.details != null) {
-
 			generator.writeKey("details");
 			generator.write(this.details);
 
 		}
 		if (this.failedAllocationAttempts != null) {
-
 			generator.writeKey("failed_allocation_attempts");
 			generator.write(this.failedAllocationAttempts);
 
 		}
 		if (this.delayed != null) {
-
 			generator.writeKey("delayed");
 			generator.write(this.delayed);
 
 		}
 		if (this.allocationStatus != null) {
-
 			generator.writeKey("allocation_status");
 			generator.write(this.allocationStatus);
 
@@ -188,7 +190,8 @@ public final class UnassignedInformation implements JsonpSerializable {
 	/**
 	 * Builder for {@link UnassignedInformation}.
 	 */
-	public static class Builder implements ObjectBuilder<UnassignedInformation> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnassignedInformation> {
 		private String at;
 
 		@Nullable
@@ -211,7 +214,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code at}
 		 */
-		public Builder at(String value) {
+		public final Builder at(String value) {
 			this.at = value;
 			return this;
 		}
@@ -219,7 +222,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code last_allocation_status}
 		 */
-		public Builder lastAllocationStatus(@Nullable String value) {
+		public final Builder lastAllocationStatus(@Nullable String value) {
 			this.lastAllocationStatus = value;
 			return this;
 		}
@@ -227,7 +230,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reason}
 		 */
-		public Builder reason(UnassignedInformationReason value) {
+		public final Builder reason(UnassignedInformationReason value) {
 			this.reason = value;
 			return this;
 		}
@@ -235,7 +238,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code details}
 		 */
-		public Builder details(@Nullable String value) {
+		public final Builder details(@Nullable String value) {
 			this.details = value;
 			return this;
 		}
@@ -243,7 +246,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code failed_allocation_attempts}
 		 */
-		public Builder failedAllocationAttempts(@Nullable Integer value) {
+		public final Builder failedAllocationAttempts(@Nullable Integer value) {
 			this.failedAllocationAttempts = value;
 			return this;
 		}
@@ -251,7 +254,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code delayed}
 		 */
-		public Builder delayed(@Nullable Boolean value) {
+		public final Builder delayed(@Nullable Boolean value) {
 			this.delayed = value;
 			return this;
 		}
@@ -259,7 +262,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code allocation_status}
 		 */
-		public Builder allocationStatus(@Nullable String value) {
+		public final Builder allocationStatus(@Nullable String value) {
 			this.allocationStatus = value;
 			return this;
 		}
@@ -271,6 +274,7 @@ public final class UnassignedInformation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public UnassignedInformation build() {
+			_checkSingleUse();
 
 			return new UnassignedInformation(this);
 		}
@@ -282,10 +286,9 @@ public final class UnassignedInformation implements JsonpSerializable {
 	 * Json deserializer for {@link UnassignedInformation}
 	 */
 	public static final JsonpDeserializer<UnassignedInformation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, UnassignedInformation::setupUnassignedInformationDeserializer, Builder::build);
+			.lazy(Builder::new, UnassignedInformation::setupUnassignedInformationDeserializer);
 
-	protected static void setupUnassignedInformationDeserializer(
-			DelegatingDeserializer<UnassignedInformation.Builder> op) {
+	protected static void setupUnassignedInformationDeserializer(ObjectDeserializer<UnassignedInformation.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.stringDeserializer(), "at");
 		op.add(Builder::lastAllocationStatus, JsonpDeserializer.stringDeserializer(), "last_allocation_status");

@@ -23,55 +23,60 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_records.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_records/MlGetAnomalyRecordsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetRecordsResponse implements JsonpSerializable {
+public class GetRecordsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<Anomaly> records;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetRecordsResponse(Builder builder) {
+	private GetRecordsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.records = ModelTypeHelper.unmodifiableNonNull(builder.records, "records");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.records = ApiTypeHelper.unmodifiableRequired(builder.records, this, "records");
 
 	}
 
-	public GetRecordsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetRecordsResponse of(Function<Builder, ObjectBuilder<GetRecordsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code records}
 	 */
-	public List<Anomaly> records() {
+	public final List<Anomaly> records() {
 		return this.records;
 	}
 
@@ -89,13 +94,16 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("records");
-		generator.writeStartArray();
-		for (Anomaly item0 : this.records) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.records)) {
+			generator.writeKey("records");
+			generator.writeStartArray();
+			for (Anomaly item0 : this.records) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +112,8 @@ public final class GetRecordsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetRecordsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetRecordsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRecordsResponse> {
 		private Long count;
 
 		private List<Anomaly> records;
@@ -112,50 +121,38 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code records}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>records</code>.
 		 */
-		public Builder records(List<Anomaly> value) {
-			this.records = value;
+		public final Builder records(List<Anomaly> list) {
+			this.records = _listAddAll(this.records, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code records}
+		 * <p>
+		 * Adds one or more values to <code>records</code>.
 		 */
-		public Builder records(Anomaly... value) {
-			this.records = Arrays.asList(value);
+		public final Builder records(Anomaly value, Anomaly... values) {
+			this.records = _listAdd(this.records, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #records(List)}, creating the list if needed.
+		 * Required - API name: {@code records}
+		 * <p>
+		 * Adds a value to <code>records</code> using a builder lambda.
 		 */
-		public Builder addRecords(Anomaly value) {
-			if (this.records == null) {
-				this.records = new ArrayList<>();
-			}
-			this.records.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #records(List)} to a singleton list.
-		 */
-		public Builder records(Function<Anomaly.Builder, ObjectBuilder<Anomaly>> fn) {
-			return this.records(fn.apply(new Anomaly.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #records(List)}, creating the list if needed.
-		 */
-		public Builder addRecords(Function<Anomaly.Builder, ObjectBuilder<Anomaly>> fn) {
-			return this.addRecords(fn.apply(new Anomaly.Builder()).build());
+		public final Builder records(Function<Anomaly.Builder, ObjectBuilder<Anomaly>> fn) {
+			return records(fn.apply(new Anomaly.Builder()).build());
 		}
 
 		/**
@@ -165,6 +162,7 @@ public final class GetRecordsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetRecordsResponse build() {
+			_checkSingleUse();
 
 			return new GetRecordsResponse(this);
 		}
@@ -176,9 +174,9 @@ public final class GetRecordsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetRecordsResponse}
 	 */
 	public static final JsonpDeserializer<GetRecordsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetRecordsResponse::setupGetRecordsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetRecordsResponse::setupGetRecordsResponseDeserializer);
 
-	protected static void setupGetRecordsResponseDeserializer(DelegatingDeserializer<GetRecordsResponse.Builder> op) {
+	protected static void setupGetRecordsResponseDeserializer(ObjectDeserializer<GetRecordsResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::records, JsonpDeserializer.arrayDeserializer(Anomaly._DESERIALIZER), "records");

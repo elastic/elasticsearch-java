@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.put_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_template/IndicesPutTemplateResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutTemplateResponse extends AcknowledgedResponseBase {
+public class PutTemplateResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutTemplateResponse(Builder builder) {
+	private PutTemplateResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutTemplateResponse of(Function<Builder, ObjectBuilder<PutTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutTemplateResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutTemplateResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutTemplateResponse> {
@@ -68,6 +75,7 @@ public final class PutTemplateResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutTemplateResponse build() {
+			_checkSingleUse();
 
 			return new PutTemplateResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class PutTemplateResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutTemplateResponse}
 	 */
 	public static final JsonpDeserializer<PutTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutTemplateResponse::setupPutTemplateResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutTemplateResponse::setupPutTemplateResponseDeserializer);
 
-	protected static void setupPutTemplateResponseDeserializer(DelegatingDeserializer<PutTemplateResponse.Builder> op) {
+	protected static void setupPutTemplateResponseDeserializer(ObjectDeserializer<PutTemplateResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

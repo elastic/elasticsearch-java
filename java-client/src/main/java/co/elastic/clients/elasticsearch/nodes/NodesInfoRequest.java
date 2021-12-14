@@ -23,21 +23,21 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -48,57 +48,42 @@ import javax.annotation.Nullable;
 
 // typedef: nodes.info.Request
 
-public final class NodesInfoRequest extends RequestBase {
-	@Nullable
-	private final List<String> nodeId;
+/**
+ * Returns information about nodes in the cluster.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/NodesInfoRequest.ts#L24-L53">API
+ *      specification</a>
+ */
 
-	@Nullable
-	private final List<String> metric;
-
+public class NodesInfoRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
+
+	private final List<String> metric;
+
+	private final List<String> nodeId;
 
 	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodesInfoRequest(Builder builder) {
+	private NodesInfoRequest(Builder builder) {
 
-		this.nodeId = ModelTypeHelper.unmodifiable(builder.nodeId);
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
 		this.flatSettings = builder.flatSettings;
 		this.masterTimeout = builder.masterTimeout;
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.timeout = builder.timeout;
 
 	}
 
-	public NodesInfoRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list of node IDs or names used to limit returned information.
-	 * <p>
-	 * API name: {@code node_id}
-	 */
-	@Nullable
-	public List<String> nodeId() {
-		return this.nodeId;
-	}
-
-	/**
-	 * Limits the information returned to the specific metrics. Supports a
-	 * comma-separated list, such as http,ingest.
-	 * <p>
-	 * API name: {@code metric}
-	 */
-	@Nullable
-	public List<String> metric() {
-		return this.metric;
+	public static NodesInfoRequest of(Function<Builder, ObjectBuilder<NodesInfoRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -107,7 +92,7 @@ public final class NodesInfoRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -118,8 +103,27 @@ public final class NodesInfoRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Limits the information returned to the specific metrics. Supports a
+	 * comma-separated list, such as http,ingest.
+	 * <p>
+	 * API name: {@code metric}
+	 */
+	public final List<String> metric() {
+		return this.metric;
+	}
+
+	/**
+	 * Comma-separated list of node IDs or names used to limit returned information.
+	 * <p>
+	 * API name: {@code node_id}
+	 */
+	public final List<String> nodeId() {
+		return this.nodeId;
 	}
 
 	/**
@@ -129,7 +133,7 @@ public final class NodesInfoRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -138,92 +142,29 @@ public final class NodesInfoRequest extends RequestBase {
 	/**
 	 * Builder for {@link NodesInfoRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<NodesInfoRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesInfoRequest> {
 		@Nullable
-		private List<String> nodeId;
+		private Boolean flatSettings;
+
+		@Nullable
+		private Time masterTimeout;
 
 		@Nullable
 		private List<String> metric;
 
 		@Nullable
-		private Boolean flatSettings;
+		private List<String> nodeId;
 
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
-
-		/**
-		 * Comma-separated list of node IDs or names used to limit returned information.
-		 * <p>
-		 * API name: {@code node_id}
-		 */
-		public Builder nodeId(@Nullable List<String> value) {
-			this.nodeId = value;
-			return this;
-		}
-
-		/**
-		 * Comma-separated list of node IDs or names used to limit returned information.
-		 * <p>
-		 * API name: {@code node_id}
-		 */
-		public Builder nodeId(String... value) {
-			this.nodeId = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #nodeId(List)}, creating the list if needed.
-		 */
-		public Builder addNodeId(String value) {
-			if (this.nodeId == null) {
-				this.nodeId = new ArrayList<>();
-			}
-			this.nodeId.add(value);
-			return this;
-		}
-
-		/**
-		 * Limits the information returned to the specific metrics. Supports a
-		 * comma-separated list, such as http,ingest.
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(@Nullable List<String> value) {
-			this.metric = value;
-			return this;
-		}
-
-		/**
-		 * Limits the information returned to the specific metrics. Supports a
-		 * comma-separated list, such as http,ingest.
-		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
-			return this;
-		}
+		private Time timeout;
 
 		/**
 		 * If true, returns settings in flat format.
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -234,8 +175,68 @@ public final class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Limits the information returned to the specific metrics. Supports a
+		 * comma-separated list, such as http,ingest.
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
+		 */
+		public final Builder metric(List<String> list) {
+			this.metric = _listAddAll(this.metric, list);
+			return this;
+		}
+
+		/**
+		 * Limits the information returned to the specific metrics. Supports a
+		 * comma-separated list, such as http,ingest.
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
+		 */
+		public final Builder metric(String value, String... values) {
+			this.metric = _listAdd(this.metric, value, values);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
 			return this;
 		}
 
@@ -245,9 +246,19 @@ public final class NodesInfoRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -257,6 +268,7 @@ public final class NodesInfoRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public NodesInfoRequest build() {
+			_checkSingleUse();
 
 			return new NodesInfoRequest(this);
 		}
@@ -267,7 +279,9 @@ public final class NodesInfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code nodes.info}".
 	 */
-	public static final Endpoint<NodesInfoRequest, NodesInfoResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<NodesInfoRequest, NodesInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/nodes.info",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -276,15 +290,15 @@ public final class NodesInfoRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _nodeId = 1 << 0;
-				final int _metric = 1 << 1;
+				final int _metric = 1 << 0;
+				final int _nodeId = 1 << 1;
 
 				int propsSet = 0;
 
-				if (request.nodeId() != null)
-					propsSet |= _nodeId;
-				if (request.metric() != null)
+				if (ApiTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
+				if (ApiTypeHelper.isDefined(request.nodeId()))
+					propsSet |= _nodeId;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -325,14 +339,14 @@ public final class NodesInfoRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
-				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

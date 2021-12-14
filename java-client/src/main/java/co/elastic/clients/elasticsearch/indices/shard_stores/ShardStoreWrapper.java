@@ -23,44 +23,49 @@
 
 package co.elastic.clients.elasticsearch.indices.shard_stores;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.shard_stores.ShardStoreWrapper
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/shard_stores/types.ts#L51-L53">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShardStoreWrapper implements JsonpSerializable {
+public class ShardStoreWrapper implements JsonpSerializable {
 	private final List<ShardStore> stores;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardStoreWrapper(Builder builder) {
+	private ShardStoreWrapper(Builder builder) {
 
-		this.stores = ModelTypeHelper.unmodifiableNonNull(builder.stores, "stores");
+		this.stores = ApiTypeHelper.unmodifiableRequired(builder.stores, this, "stores");
 
 	}
 
-	public ShardStoreWrapper(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardStoreWrapper of(Function<Builder, ObjectBuilder<ShardStoreWrapper>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code stores}
 	 */
-	public List<ShardStore> stores() {
+	public final List<ShardStore> stores() {
 		return this.stores;
 	}
 
@@ -75,13 +80,16 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("stores");
-		generator.writeStartArray();
-		for (ShardStore item0 : this.stores) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.stores)) {
+			generator.writeKey("stores");
+			generator.writeStartArray();
+			for (ShardStore item0 : this.stores) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -90,48 +98,37 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardStoreWrapper}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardStoreWrapper> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStoreWrapper> {
 		private List<ShardStore> stores;
 
 		/**
 		 * Required - API name: {@code stores}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>stores</code>.
 		 */
-		public Builder stores(List<ShardStore> value) {
-			this.stores = value;
+		public final Builder stores(List<ShardStore> list) {
+			this.stores = _listAddAll(this.stores, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code stores}
+		 * <p>
+		 * Adds one or more values to <code>stores</code>.
 		 */
-		public Builder stores(ShardStore... value) {
-			this.stores = Arrays.asList(value);
+		public final Builder stores(ShardStore value, ShardStore... values) {
+			this.stores = _listAdd(this.stores, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #stores(List)}, creating the list if needed.
+		 * Required - API name: {@code stores}
+		 * <p>
+		 * Adds a value to <code>stores</code> using a builder lambda.
 		 */
-		public Builder addStores(ShardStore value) {
-			if (this.stores == null) {
-				this.stores = new ArrayList<>();
-			}
-			this.stores.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #stores(List)} to a singleton list.
-		 */
-		public Builder stores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
-			return this.stores(fn.apply(new ShardStore.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #stores(List)}, creating the list if needed.
-		 */
-		public Builder addStores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
-			return this.addStores(fn.apply(new ShardStore.Builder()).build());
+		public final Builder stores(Function<ShardStore.Builder, ObjectBuilder<ShardStore>> fn) {
+			return stores(fn.apply(new ShardStore.Builder()).build());
 		}
 
 		/**
@@ -141,6 +138,7 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardStoreWrapper build() {
+			_checkSingleUse();
 
 			return new ShardStoreWrapper(this);
 		}
@@ -152,9 +150,9 @@ public final class ShardStoreWrapper implements JsonpSerializable {
 	 * Json deserializer for {@link ShardStoreWrapper}
 	 */
 	public static final JsonpDeserializer<ShardStoreWrapper> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ShardStoreWrapper::setupShardStoreWrapperDeserializer, Builder::build);
+			.lazy(Builder::new, ShardStoreWrapper::setupShardStoreWrapperDeserializer);
 
-	protected static void setupShardStoreWrapperDeserializer(DelegatingDeserializer<ShardStoreWrapper.Builder> op) {
+	protected static void setupShardStoreWrapperDeserializer(ObjectDeserializer<ShardStoreWrapper.Builder> op) {
 
 		op.add(Builder::stores, JsonpDeserializer.arrayDeserializer(ShardStore._DESERIALIZER), "stores");
 

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.plugins;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.plugins.PluginsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/plugins/types.ts#L22-L52">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PluginsRecord implements JsonpSerializable {
+public class PluginsRecord implements JsonpSerializable {
 	@Nullable
 	private final String id;
 
@@ -60,7 +67,7 @@ public final class PluginsRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PluginsRecord(Builder builder) {
+	private PluginsRecord(Builder builder) {
 
 		this.id = builder.id;
 		this.name = builder.name;
@@ -71,8 +78,8 @@ public final class PluginsRecord implements JsonpSerializable {
 
 	}
 
-	public PluginsRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PluginsRecord of(Function<Builder, ObjectBuilder<PluginsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,7 +88,7 @@ public final class PluginsRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -91,7 +98,7 @@ public final class PluginsRecord implements JsonpSerializable {
 	 * API name: {@code name}
 	 */
 	@Nullable
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -101,7 +108,7 @@ public final class PluginsRecord implements JsonpSerializable {
 	 * API name: {@code component}
 	 */
 	@Nullable
-	public String component() {
+	public final String component() {
 		return this.component;
 	}
 
@@ -111,7 +118,7 @@ public final class PluginsRecord implements JsonpSerializable {
 	 * API name: {@code version}
 	 */
 	@Nullable
-	public String version() {
+	public final String version() {
 		return this.version;
 	}
 
@@ -121,7 +128,7 @@ public final class PluginsRecord implements JsonpSerializable {
 	 * API name: {@code description}
 	 */
 	@Nullable
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
@@ -131,7 +138,7 @@ public final class PluginsRecord implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -147,37 +154,31 @@ public final class PluginsRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.name != null) {
-
 			generator.writeKey("name");
 			generator.write(this.name);
 
 		}
 		if (this.component != null) {
-
 			generator.writeKey("component");
 			generator.write(this.component);
 
 		}
 		if (this.version != null) {
-
 			generator.writeKey("version");
 			generator.write(this.version);
 
 		}
 		if (this.description != null) {
-
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
 		if (this.type != null) {
-
 			generator.writeKey("type");
 			generator.write(this.type);
 
@@ -190,7 +191,8 @@ public final class PluginsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link PluginsRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<PluginsRecord> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PluginsRecord> {
 		@Nullable
 		private String id;
 
@@ -214,7 +216,7 @@ public final class PluginsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -224,7 +226,7 @@ public final class PluginsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(@Nullable String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -234,7 +236,7 @@ public final class PluginsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code component}
 		 */
-		public Builder component(@Nullable String value) {
+		public final Builder component(@Nullable String value) {
 			this.component = value;
 			return this;
 		}
@@ -244,7 +246,7 @@ public final class PluginsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code version}
 		 */
-		public Builder version(@Nullable String value) {
+		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
 		}
@@ -254,7 +256,7 @@ public final class PluginsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public Builder description(@Nullable String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
@@ -264,7 +266,7 @@ public final class PluginsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public Builder type(@Nullable String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -276,6 +278,7 @@ public final class PluginsRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public PluginsRecord build() {
+			_checkSingleUse();
 
 			return new PluginsRecord(this);
 		}
@@ -287,9 +290,9 @@ public final class PluginsRecord implements JsonpSerializable {
 	 * Json deserializer for {@link PluginsRecord}
 	 */
 	public static final JsonpDeserializer<PluginsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			PluginsRecord::setupPluginsRecordDeserializer, Builder::build);
+			PluginsRecord::setupPluginsRecordDeserializer);
 
-	protected static void setupPluginsRecordDeserializer(DelegatingDeserializer<PluginsRecord.Builder> op) {
+	protected static void setupPluginsRecordDeserializer(ObjectDeserializer<PluginsRecord.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name", "n");

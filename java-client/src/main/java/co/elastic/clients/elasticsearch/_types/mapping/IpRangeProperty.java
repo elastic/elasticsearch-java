@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.IpRangeProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/range.ts#L54-L56">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IpRangeProperty extends RangePropertyBase implements PropertyVariant {
+public class IpRangeProperty extends RangePropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public IpRangeProperty(Builder builder) {
+	private IpRangeProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public IpRangeProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IpRangeProperty of(Function<Builder, ObjectBuilder<IpRangeProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "ip_range";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.IpRange;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class IpRangeProperty extends RangePropertyBase implements Property
 	/**
 	 * Builder for {@link IpRangeProperty}.
 	 */
+
 	public static class Builder extends RangePropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<IpRangeProperty> {
@@ -83,6 +90,7 @@ public final class IpRangeProperty extends RangePropertyBase implements Property
 		 *             if some of the required fields are null.
 		 */
 		public IpRangeProperty build() {
+			_checkSingleUse();
 
 			return new IpRangeProperty(this);
 		}
@@ -94,9 +102,9 @@ public final class IpRangeProperty extends RangePropertyBase implements Property
 	 * Json deserializer for {@link IpRangeProperty}
 	 */
 	public static final JsonpDeserializer<IpRangeProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IpRangeProperty::setupIpRangePropertyDeserializer, Builder::build);
+			IpRangeProperty::setupIpRangePropertyDeserializer);
 
-	protected static void setupIpRangePropertyDeserializer(DelegatingDeserializer<IpRangeProperty.Builder> op) {
+	protected static void setupIpRangePropertyDeserializer(ObjectDeserializer<IpRangeProperty.Builder> op) {
 		RangePropertyBase.setupRangePropertyBaseDeserializer(op);
 
 		op.ignore("type");

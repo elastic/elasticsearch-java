@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoDiscover
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L162-L164">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoDiscover implements JsonpSerializable {
+public class NodeInfoDiscover implements JsonpSerializable {
 	private final String seedHosts;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoDiscover(Builder builder) {
+	private NodeInfoDiscover(Builder builder) {
 
-		this.seedHosts = Objects.requireNonNull(builder.seedHosts, "seed_hosts");
+		this.seedHosts = ApiTypeHelper.requireNonNull(builder.seedHosts, this, "seedHosts");
 
 	}
 
-	public NodeInfoDiscover(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoDiscover of(Function<Builder, ObjectBuilder<NodeInfoDiscover>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code seed_hosts}
 	 */
-	public String seedHosts() {
+	public final String seedHosts() {
 		return this.seedHosts;
 	}
 
@@ -82,13 +90,14 @@ public final class NodeInfoDiscover implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoDiscover}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoDiscover> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoDiscover> {
 		private String seedHosts;
 
 		/**
 		 * Required - API name: {@code seed_hosts}
 		 */
-		public Builder seedHosts(String value) {
+		public final Builder seedHosts(String value) {
 			this.seedHosts = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class NodeInfoDiscover implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoDiscover build() {
+			_checkSingleUse();
 
 			return new NodeInfoDiscover(this);
 		}
@@ -111,9 +121,9 @@ public final class NodeInfoDiscover implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoDiscover}
 	 */
 	public static final JsonpDeserializer<NodeInfoDiscover> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoDiscover::setupNodeInfoDiscoverDeserializer, Builder::build);
+			NodeInfoDiscover::setupNodeInfoDiscoverDeserializer);
 
-	protected static void setupNodeInfoDiscoverDeserializer(DelegatingDeserializer<NodeInfoDiscover.Builder> op) {
+	protected static void setupNodeInfoDiscoverDeserializer(ObjectDeserializer<NodeInfoDiscover.Builder> op) {
 
 		op.add(Builder::seedHosts, JsonpDeserializer.stringDeserializer(), "seed_hosts");
 

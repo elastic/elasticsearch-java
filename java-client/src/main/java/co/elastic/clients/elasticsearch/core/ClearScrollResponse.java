@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -38,36 +39,43 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.clear_scroll.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/clear_scroll/ClearScrollResponse.ts#L22-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClearScrollResponse implements JsonpSerializable {
+public class ClearScrollResponse implements JsonpSerializable {
 	private final boolean succeeded;
 
 	private final int numFreed;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearScrollResponse(Builder builder) {
+	private ClearScrollResponse(Builder builder) {
 
-		this.succeeded = Objects.requireNonNull(builder.succeeded, "succeeded");
-		this.numFreed = Objects.requireNonNull(builder.numFreed, "num_freed");
+		this.succeeded = ApiTypeHelper.requireNonNull(builder.succeeded, this, "succeeded");
+		this.numFreed = ApiTypeHelper.requireNonNull(builder.numFreed, this, "numFreed");
 
 	}
 
-	public ClearScrollResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearScrollResponse of(Function<Builder, ObjectBuilder<ClearScrollResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code succeeded}
 	 */
-	public boolean succeeded() {
+	public final boolean succeeded() {
 		return this.succeeded;
 	}
 
 	/**
 	 * Required - API name: {@code num_freed}
 	 */
-	public int numFreed() {
+	public final int numFreed() {
 		return this.numFreed;
 	}
 
@@ -95,7 +103,8 @@ public final class ClearScrollResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ClearScrollResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ClearScrollResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearScrollResponse> {
 		private Boolean succeeded;
 
 		private Integer numFreed;
@@ -103,7 +112,7 @@ public final class ClearScrollResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code succeeded}
 		 */
-		public Builder succeeded(boolean value) {
+		public final Builder succeeded(boolean value) {
 			this.succeeded = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class ClearScrollResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code num_freed}
 		 */
-		public Builder numFreed(int value) {
+		public final Builder numFreed(int value) {
 			this.numFreed = value;
 			return this;
 		}
@@ -123,6 +132,7 @@ public final class ClearScrollResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ClearScrollResponse build() {
+			_checkSingleUse();
 
 			return new ClearScrollResponse(this);
 		}
@@ -134,9 +144,9 @@ public final class ClearScrollResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ClearScrollResponse}
 	 */
 	public static final JsonpDeserializer<ClearScrollResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClearScrollResponse::setupClearScrollResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ClearScrollResponse::setupClearScrollResponseDeserializer);
 
-	protected static void setupClearScrollResponseDeserializer(DelegatingDeserializer<ClearScrollResponse.Builder> op) {
+	protected static void setupClearScrollResponseDeserializer(ObjectDeserializer<ClearScrollResponse.Builder> op) {
 
 		op.add(Builder::succeeded, JsonpDeserializer.booleanDeserializer(), "succeeded");
 		op.add(Builder::numFreed, JsonpDeserializer.integerDeserializer(), "num_freed");

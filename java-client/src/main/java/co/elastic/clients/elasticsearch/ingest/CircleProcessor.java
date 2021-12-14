@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.CircleProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L127-L133">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class CircleProcessor extends ProcessorBase implements ProcessorVariant {
+public class CircleProcessor extends ProcessorBase implements ProcessorVariant {
 	private final double errorDistance;
 
 	private final String field;
@@ -53,68 +60,67 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CircleProcessor(Builder builder) {
+	private CircleProcessor(Builder builder) {
 		super(builder);
 
-		this.errorDistance = Objects.requireNonNull(builder.errorDistance, "error_distance");
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.ignoreMissing = Objects.requireNonNull(builder.ignoreMissing, "ignore_missing");
-		this.shapeType = Objects.requireNonNull(builder.shapeType, "shape_type");
-		this.targetField = Objects.requireNonNull(builder.targetField, "target_field");
+		this.errorDistance = ApiTypeHelper.requireNonNull(builder.errorDistance, this, "errorDistance");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.ignoreMissing = ApiTypeHelper.requireNonNull(builder.ignoreMissing, this, "ignoreMissing");
+		this.shapeType = ApiTypeHelper.requireNonNull(builder.shapeType, this, "shapeType");
+		this.targetField = ApiTypeHelper.requireNonNull(builder.targetField, this, "targetField");
 
 	}
 
-	public CircleProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CircleProcessor of(Function<Builder, ObjectBuilder<CircleProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "circle";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Circle;
 	}
 
 	/**
 	 * Required - API name: {@code error_distance}
 	 */
-	public double errorDistance() {
+	public final double errorDistance() {
 		return this.errorDistance;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code ignore_missing}
 	 */
-	public boolean ignoreMissing() {
+	public final boolean ignoreMissing() {
 		return this.ignoreMissing;
 	}
 
 	/**
 	 * Required - API name: {@code shape_type}
 	 */
-	public ShapeType shapeType() {
+	public final ShapeType shapeType() {
 		return this.shapeType;
 	}
 
 	/**
 	 * Required - API name: {@code target_field}
 	 */
-	public String targetField() {
+	public final String targetField() {
 		return this.targetField;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("error_distance");
 		generator.write(this.errorDistance);
 
@@ -126,7 +132,6 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 
 		generator.writeKey("shape_type");
 		this.shapeType.serialize(generator, mapper);
-
 		generator.writeKey("target_field");
 		generator.write(this.targetField);
 
@@ -137,6 +142,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 	/**
 	 * Builder for {@link CircleProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<CircleProcessor> {
@@ -153,7 +159,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code error_distance}
 		 */
-		public Builder errorDistance(double value) {
+		public final Builder errorDistance(double value) {
 			this.errorDistance = value;
 			return this;
 		}
@@ -161,7 +167,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
@@ -169,7 +175,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code ignore_missing}
 		 */
-		public Builder ignoreMissing(boolean value) {
+		public final Builder ignoreMissing(boolean value) {
 			this.ignoreMissing = value;
 			return this;
 		}
@@ -177,7 +183,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code shape_type}
 		 */
-		public Builder shapeType(ShapeType value) {
+		public final Builder shapeType(ShapeType value) {
 			this.shapeType = value;
 			return this;
 		}
@@ -185,7 +191,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		/**
 		 * Required - API name: {@code target_field}
 		 */
-		public Builder targetField(String value) {
+		public final Builder targetField(String value) {
 			this.targetField = value;
 			return this;
 		}
@@ -202,6 +208,7 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 		 *             if some of the required fields are null.
 		 */
 		public CircleProcessor build() {
+			_checkSingleUse();
 
 			return new CircleProcessor(this);
 		}
@@ -213,9 +220,9 @@ public final class CircleProcessor extends ProcessorBase implements ProcessorVar
 	 * Json deserializer for {@link CircleProcessor}
 	 */
 	public static final JsonpDeserializer<CircleProcessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			CircleProcessor::setupCircleProcessorDeserializer, Builder::build);
+			CircleProcessor::setupCircleProcessorDeserializer);
 
-	protected static void setupCircleProcessorDeserializer(DelegatingDeserializer<CircleProcessor.Builder> op) {
+	protected static void setupCircleProcessorDeserializer(ObjectDeserializer<CircleProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::errorDistance, JsonpDeserializer.doubleDeserializer(), "error_distance");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");

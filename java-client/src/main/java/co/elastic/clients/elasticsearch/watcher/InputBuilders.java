@@ -23,6 +23,8 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import java.lang.String;
+
 /**
  * Builders for {@link Input} variants.
  * <p>

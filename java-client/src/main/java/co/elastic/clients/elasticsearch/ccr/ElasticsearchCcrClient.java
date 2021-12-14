@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.function.Function;
@@ -33,10 +39,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the ccr namespace.
  */
-public class ElasticsearchCcrClient extends ApiClient {
+public class ElasticsearchCcrClient extends ApiClient<ElasticsearchTransport, ElasticsearchCcrClient> {
 
-	public ElasticsearchCcrClient(Transport transport) {
-		super(transport);
+	public ElasticsearchCcrClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchCcrClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchCcrClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchCcrClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: ccr.delete_auto_follow_pattern
@@ -50,17 +65,19 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 */
 
 	public DeleteAutoFollowPatternResponse deleteAutoFollowPattern(DeleteAutoFollowPatternRequest request)
-			throws IOException {
-		return this.transport.performRequest(request, DeleteAutoFollowPatternRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteAutoFollowPatternRequest, DeleteAutoFollowPatternResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteAutoFollowPatternRequest, DeleteAutoFollowPatternResponse, ErrorResponse>) DeleteAutoFollowPatternRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes auto-follow patterns.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteAutoFollowPatternRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-delete-auto-follow-pattern.html">Documentation
 	 *      on elastic.co</a>
@@ -68,7 +85,7 @@ public class ElasticsearchCcrClient extends ApiClient {
 
 	public final DeleteAutoFollowPatternResponse deleteAutoFollowPattern(
 			Function<DeleteAutoFollowPatternRequest.Builder, ObjectBuilder<DeleteAutoFollowPatternRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return deleteAutoFollowPattern(fn.apply(new DeleteAutoFollowPatternRequest.Builder()).build());
 	}
 
@@ -83,8 +100,11 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public FollowResponse follow(FollowRequest request) throws IOException {
-		return this.transport.performRequest(request, FollowRequest.ENDPOINT);
+	public FollowResponse follow(FollowRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FollowRequest, FollowResponse, ErrorResponse> endpoint = (JsonEndpoint<FollowRequest, FollowResponse, ErrorResponse>) FollowRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -92,16 +112,15 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 * index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link FollowRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-put-follow.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final FollowResponse follow(Function<FollowRequest.Builder, ObjectBuilder<FollowRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return follow(fn.apply(new FollowRequest.Builder()).build());
 	}
 
@@ -116,8 +135,11 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public FollowInfoResponse followInfo(FollowInfoRequest request) throws IOException {
-		return this.transport.performRequest(request, FollowInfoRequest.ENDPOINT);
+	public FollowInfoResponse followInfo(FollowInfoRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FollowInfoRequest, FollowInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<FollowInfoRequest, FollowInfoResponse, ErrorResponse>) FollowInfoRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -125,16 +147,15 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 * status for each follower index
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link FollowInfoRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-follow-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final FollowInfoResponse followInfo(Function<FollowInfoRequest.Builder, ObjectBuilder<FollowInfoRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return followInfo(fn.apply(new FollowInfoRequest.Builder()).build());
 	}
 
@@ -149,8 +170,11 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public FollowStatsResponse followStats(FollowStatsRequest request) throws IOException {
-		return this.transport.performRequest(request, FollowStatsRequest.ENDPOINT);
+	public FollowStatsResponse followStats(FollowStatsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FollowStatsRequest, FollowStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<FollowStatsRequest, FollowStatsResponse, ErrorResponse>) FollowStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -158,16 +182,16 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 * associated with each shard for the specified indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link FollowStatsRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-follow-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final FollowStatsResponse followStats(
-			Function<FollowStatsRequest.Builder, ObjectBuilder<FollowStatsRequest>> fn) throws IOException {
+			Function<FollowStatsRequest.Builder, ObjectBuilder<FollowStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return followStats(fn.apply(new FollowStatsRequest.Builder()).build());
 	}
 
@@ -181,24 +205,28 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ForgetFollowerResponse forgetFollower(ForgetFollowerRequest request) throws IOException {
-		return this.transport.performRequest(request, ForgetFollowerRequest.ENDPOINT);
+	public ForgetFollowerResponse forgetFollower(ForgetFollowerRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse> endpoint = (JsonEndpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse>) ForgetFollowerRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Removes the follower retention leases from the leader.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ForgetFollowerRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-forget-follower.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ForgetFollowerResponse forgetFollower(
-			Function<ForgetFollowerRequest.Builder, ObjectBuilder<ForgetFollowerRequest>> fn) throws IOException {
+			Function<ForgetFollowerRequest.Builder, ObjectBuilder<ForgetFollowerRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return forgetFollower(fn.apply(new ForgetFollowerRequest.Builder()).build());
 	}
 
@@ -213,8 +241,12 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetAutoFollowPatternResponse getAutoFollowPattern(GetAutoFollowPatternRequest request) throws IOException {
-		return this.transport.performRequest(request, GetAutoFollowPatternRequest.ENDPOINT);
+	public GetAutoFollowPatternResponse getAutoFollowPattern(GetAutoFollowPatternRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetAutoFollowPatternRequest, GetAutoFollowPatternResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAutoFollowPatternRequest, GetAutoFollowPatternResponse, ErrorResponse>) GetAutoFollowPatternRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -222,9 +254,8 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 * pattern collection.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetAutoFollowPatternRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-auto-follow-pattern.html">Documentation
 	 *      on elastic.co</a>
@@ -232,7 +263,7 @@ public class ElasticsearchCcrClient extends ApiClient {
 
 	public final GetAutoFollowPatternResponse getAutoFollowPattern(
 			Function<GetAutoFollowPatternRequest.Builder, ObjectBuilder<GetAutoFollowPatternRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return getAutoFollowPattern(fn.apply(new GetAutoFollowPatternRequest.Builder()).build());
 	}
 
@@ -245,9 +276,9 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public GetAutoFollowPatternResponse getAutoFollowPattern() throws IOException {
+	public GetAutoFollowPatternResponse getAutoFollowPattern() throws IOException, ElasticsearchException {
 		return this.transport.performRequest(new GetAutoFollowPatternRequest.Builder().build(),
-				GetAutoFollowPatternRequest.ENDPOINT);
+				GetAutoFollowPatternRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: ccr.pause_auto_follow_pattern
@@ -261,17 +292,19 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 */
 
 	public PauseAutoFollowPatternResponse pauseAutoFollowPattern(PauseAutoFollowPatternRequest request)
-			throws IOException {
-		return this.transport.performRequest(request, PauseAutoFollowPatternRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PauseAutoFollowPatternRequest, PauseAutoFollowPatternResponse, ErrorResponse> endpoint = (JsonEndpoint<PauseAutoFollowPatternRequest, PauseAutoFollowPatternResponse, ErrorResponse>) PauseAutoFollowPatternRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Pauses an auto-follow pattern
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PauseAutoFollowPatternRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-pause-auto-follow-pattern.html">Documentation
 	 *      on elastic.co</a>
@@ -279,7 +312,7 @@ public class ElasticsearchCcrClient extends ApiClient {
 
 	public final PauseAutoFollowPatternResponse pauseAutoFollowPattern(
 			Function<PauseAutoFollowPatternRequest.Builder, ObjectBuilder<PauseAutoFollowPatternRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return pauseAutoFollowPattern(fn.apply(new PauseAutoFollowPatternRequest.Builder()).build());
 	}
 
@@ -294,8 +327,11 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PauseFollowResponse pauseFollow(PauseFollowRequest request) throws IOException {
-		return this.transport.performRequest(request, PauseFollowRequest.ENDPOINT);
+	public PauseFollowResponse pauseFollow(PauseFollowRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PauseFollowRequest, PauseFollowResponse, ErrorResponse> endpoint = (JsonEndpoint<PauseFollowRequest, PauseFollowResponse, ErrorResponse>) PauseFollowRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -303,16 +339,16 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 * operations from the leader index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PauseFollowRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-pause-follow.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final PauseFollowResponse pauseFollow(
-			Function<PauseFollowRequest.Builder, ObjectBuilder<PauseFollowRequest>> fn) throws IOException {
+			Function<PauseFollowRequest.Builder, ObjectBuilder<PauseFollowRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return pauseFollow(fn.apply(new PauseFollowRequest.Builder()).build());
 	}
 
@@ -328,8 +364,12 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public PutAutoFollowPatternResponse putAutoFollowPattern(PutAutoFollowPatternRequest request) throws IOException {
-		return this.transport.performRequest(request, PutAutoFollowPatternRequest.ENDPOINT);
+	public PutAutoFollowPatternResponse putAutoFollowPattern(PutAutoFollowPatternRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ErrorResponse>) PutAutoFollowPatternRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -338,9 +378,8 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 * the specified patterns will be automatically configured as follower indices.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutAutoFollowPatternRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-put-auto-follow-pattern.html">Documentation
 	 *      on elastic.co</a>
@@ -348,7 +387,7 @@ public class ElasticsearchCcrClient extends ApiClient {
 
 	public final PutAutoFollowPatternResponse putAutoFollowPattern(
 			Function<PutAutoFollowPatternRequest.Builder, ObjectBuilder<PutAutoFollowPatternRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return putAutoFollowPattern(fn.apply(new PutAutoFollowPatternRequest.Builder()).build());
 	}
 
@@ -363,17 +402,19 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 */
 
 	public ResumeAutoFollowPatternResponse resumeAutoFollowPattern(ResumeAutoFollowPatternRequest request)
-			throws IOException {
-		return this.transport.performRequest(request, ResumeAutoFollowPatternRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ErrorResponse> endpoint = (JsonEndpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ErrorResponse>) ResumeAutoFollowPatternRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Resumes an auto-follow pattern that has been paused
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ResumeAutoFollowPatternRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-resume-auto-follow-pattern.html">Documentation
 	 *      on elastic.co</a>
@@ -381,7 +422,7 @@ public class ElasticsearchCcrClient extends ApiClient {
 
 	public final ResumeAutoFollowPatternResponse resumeAutoFollowPattern(
 			Function<ResumeAutoFollowPatternRequest.Builder, ObjectBuilder<ResumeAutoFollowPatternRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return resumeAutoFollowPattern(fn.apply(new ResumeAutoFollowPatternRequest.Builder()).build());
 	}
 
@@ -395,24 +436,27 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public ResumeFollowResponse resumeFollow(ResumeFollowRequest request) throws IOException {
-		return this.transport.performRequest(request, ResumeFollowRequest.ENDPOINT);
+	public ResumeFollowResponse resumeFollow(ResumeFollowRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ResumeFollowRequest, ResumeFollowResponse, ErrorResponse> endpoint = (JsonEndpoint<ResumeFollowRequest, ResumeFollowResponse, ErrorResponse>) ResumeFollowRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Resumes a follower index that has been paused
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ResumeFollowRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-resume-follow.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final ResumeFollowResponse resumeFollow(
-			Function<ResumeFollowRequest.Builder, ObjectBuilder<ResumeFollowRequest>> fn) throws IOException {
+			Function<ResumeFollowRequest.Builder, ObjectBuilder<ResumeFollowRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return resumeFollow(fn.apply(new ResumeFollowRequest.Builder()).build());
 	}
 
@@ -425,8 +469,9 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CcrStatsResponse stats() throws IOException {
-		return this.transport.performRequest(CcrStatsRequest._INSTANCE, CcrStatsRequest.ENDPOINT);
+	public CcrStatsResponse stats() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(CcrStatsRequest._INSTANCE, CcrStatsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: ccr.unfollow
@@ -440,8 +485,11 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public UnfollowResponse unfollow(UnfollowRequest request) throws IOException {
-		return this.transport.performRequest(request, UnfollowRequest.ENDPOINT);
+	public UnfollowResponse unfollow(UnfollowRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UnfollowRequest, UnfollowResponse, ErrorResponse> endpoint = (JsonEndpoint<UnfollowRequest, UnfollowResponse, ErrorResponse>) UnfollowRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -449,16 +497,15 @@ public class ElasticsearchCcrClient extends ApiClient {
 	 * metadata and settings associated with cross-cluster replication.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link UnfollowRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-post-unfollow.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final UnfollowResponse unfollow(Function<UnfollowRequest.Builder, ObjectBuilder<UnfollowRequest>> fn)
-			throws IOException {
+			throws IOException, ElasticsearchException {
 		return unfollow(fn.apply(new UnfollowRequest.Builder()).build());
 	}
 

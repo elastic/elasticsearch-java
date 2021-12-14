@@ -23,44 +23,50 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest.processor_grok.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/processor_grok/GrokProcessorPatternsResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ProcessorGrokResponse implements JsonpSerializable {
+public class ProcessorGrokResponse implements JsonpSerializable {
 	private final Map<String, String> patterns;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ProcessorGrokResponse(Builder builder) {
+	private ProcessorGrokResponse(Builder builder) {
 
-		this.patterns = ModelTypeHelper.unmodifiableNonNull(builder.patterns, "patterns");
+		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
 
 	}
 
-	public ProcessorGrokResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ProcessorGrokResponse of(Function<Builder, ObjectBuilder<ProcessorGrokResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code patterns}
 	 */
-	public Map<String, String> patterns() {
+	public final Map<String, String> patterns() {
 		return this.patterns;
 	}
 
@@ -75,14 +81,17 @@ public final class ProcessorGrokResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("patterns");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.patterns.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ApiTypeHelper.isDefined(this.patterns)) {
+			generator.writeKey("patterns");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.patterns.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,25 +100,27 @@ public final class ProcessorGrokResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ProcessorGrokResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ProcessorGrokResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ProcessorGrokResponse> {
 		private Map<String, String> patterns;
 
 		/**
 		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>patterns</code>.
 		 */
-		public Builder patterns(Map<String, String> value) {
-			this.patterns = value;
+		public final Builder patterns(Map<String, String> map) {
+			this.patterns = _mapPutAll(this.patterns, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #patterns(Map)}, creating the map if needed.
+		 * Required - API name: {@code patterns}
+		 * <p>
+		 * Adds an entry to <code>patterns</code>.
 		 */
-		public Builder putPatterns(String key, String value) {
-			if (this.patterns == null) {
-				this.patterns = new HashMap<>();
-			}
-			this.patterns.put(key, value);
+		public final Builder patterns(String key, String value) {
+			this.patterns = _mapPut(this.patterns, key, value);
 			return this;
 		}
 
@@ -120,6 +131,7 @@ public final class ProcessorGrokResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ProcessorGrokResponse build() {
+			_checkSingleUse();
 
 			return new ProcessorGrokResponse(this);
 		}
@@ -131,10 +143,9 @@ public final class ProcessorGrokResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ProcessorGrokResponse}
 	 */
 	public static final JsonpDeserializer<ProcessorGrokResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ProcessorGrokResponse::setupProcessorGrokResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ProcessorGrokResponse::setupProcessorGrokResponseDeserializer);
 
-	protected static void setupProcessorGrokResponseDeserializer(
-			DelegatingDeserializer<ProcessorGrokResponse.Builder> op) {
+	protected static void setupProcessorGrokResponseDeserializer(ObjectDeserializer<ProcessorGrokResponse.Builder> op) {
 
 		op.add(Builder::patterns, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"patterns");

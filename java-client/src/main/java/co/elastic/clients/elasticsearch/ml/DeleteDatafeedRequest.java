@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,7 +45,15 @@ import javax.annotation.Nullable;
 
 // typedef: ml.delete_datafeed.Request
 
-public final class DeleteDatafeedRequest extends RequestBase {
+/**
+ * Deletes an existing datafeed.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_datafeed/MlDeleteDatafeedRequest.ts#L23-L47">API
+ *      specification</a>
+ */
+
+public class DeleteDatafeedRequest extends RequestBase {
 	private final String datafeedId;
 
 	@Nullable
@@ -51,33 +61,37 @@ public final class DeleteDatafeedRequest extends RequestBase {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteDatafeedRequest(Builder builder) {
+	private DeleteDatafeedRequest(Builder builder) {
 
-		this.datafeedId = Objects.requireNonNull(builder.datafeedId, "datafeed_id");
+		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.force = builder.force;
 
 	}
 
-	public DeleteDatafeedRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteDatafeedRequest of(Function<Builder, ObjectBuilder<DeleteDatafeedRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The ID of the datafeed to delete
+	 * Required - A numerical character string that uniquely identifies the
+	 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+	 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+	 * characters.
 	 * <p>
 	 * API name: {@code datafeed_id}
 	 */
-	public String datafeedId() {
+	public final String datafeedId() {
 		return this.datafeedId;
 	}
 
 	/**
-	 * True if the datafeed should be forcefully deleted
+	 * Use to forcefully delete a started datafeed; this method is quicker than
+	 * stopping and deleting the datafeed.
 	 * <p>
 	 * API name: {@code force}
 	 */
 	@Nullable
-	public Boolean force() {
+	public final Boolean force() {
 		return this.force;
 	}
 
@@ -86,28 +100,33 @@ public final class DeleteDatafeedRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteDatafeedRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteDatafeedRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteDatafeedRequest> {
 		private String datafeedId;
 
 		@Nullable
 		private Boolean force;
 
 		/**
-		 * Required - The ID of the datafeed to delete
+		 * Required - A numerical character string that uniquely identifies the
+		 * datafeed. This identifier can contain lowercase alphanumeric characters (a-z
+		 * and 0-9), hyphens, and underscores. It must start and end with alphanumeric
+		 * characters.
 		 * <p>
 		 * API name: {@code datafeed_id}
 		 */
-		public Builder datafeedId(String value) {
+		public final Builder datafeedId(String value) {
 			this.datafeedId = value;
 			return this;
 		}
 
 		/**
-		 * True if the datafeed should be forcefully deleted
+		 * Use to forcefully delete a started datafeed; this method is quicker than
+		 * stopping and deleting the datafeed.
 		 * <p>
 		 * API name: {@code force}
 		 */
-		public Builder force(@Nullable Boolean value) {
+		public final Builder force(@Nullable Boolean value) {
 			this.force = value;
 			return this;
 		}
@@ -119,6 +138,7 @@ public final class DeleteDatafeedRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteDatafeedRequest build() {
+			_checkSingleUse();
 
 			return new DeleteDatafeedRequest(this);
 		}
@@ -129,7 +149,9 @@ public final class DeleteDatafeedRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ml.delete_datafeed}".
 	 */
-	public static final Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.delete_datafeed",
+
 			// Request method
 			request -> {
 				return "DELETE";

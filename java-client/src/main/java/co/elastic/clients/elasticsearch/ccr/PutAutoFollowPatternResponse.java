@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ccr.put_auto_follow_pattern.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/put_auto_follow_pattern/PutAutoFollowPatternResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutAutoFollowPatternResponse extends AcknowledgedResponseBase {
+public class PutAutoFollowPatternResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutAutoFollowPatternResponse(Builder builder) {
+	private PutAutoFollowPatternResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutAutoFollowPatternResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutAutoFollowPatternResponse of(Function<Builder, ObjectBuilder<PutAutoFollowPatternResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutAutoFollowPatternResponse extends AcknowledgedResponseBase
 	/**
 	 * Builder for {@link PutAutoFollowPatternResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutAutoFollowPatternResponse> {
@@ -68,6 +75,7 @@ public final class PutAutoFollowPatternResponse extends AcknowledgedResponseBase
 		 *             if some of the required fields are null.
 		 */
 		public PutAutoFollowPatternResponse build() {
+			_checkSingleUse();
 
 			return new PutAutoFollowPatternResponse(this);
 		}
@@ -78,11 +86,11 @@ public final class PutAutoFollowPatternResponse extends AcknowledgedResponseBase
 	/**
 	 * Json deserializer for {@link PutAutoFollowPatternResponse}
 	 */
-	public static final JsonpDeserializer<PutAutoFollowPatternResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, PutAutoFollowPatternResponse::setupPutAutoFollowPatternResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<PutAutoFollowPatternResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PutAutoFollowPatternResponse::setupPutAutoFollowPatternResponseDeserializer);
 
 	protected static void setupPutAutoFollowPatternResponseDeserializer(
-			DelegatingDeserializer<PutAutoFollowPatternResponse.Builder> op) {
+			ObjectDeserializer<PutAutoFollowPatternResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

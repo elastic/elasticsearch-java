@@ -23,62 +23,68 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.put_trained_model.OneHotEncodingPreprocessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L44-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
+public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSerializable {
 	private final String field;
 
 	private final Map<String, String> hotMap;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public OneHotEncodingPreprocessor(Builder builder) {
+	private OneHotEncodingPreprocessor(Builder builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
-		this.hotMap = ModelTypeHelper.unmodifiableNonNull(builder.hotMap, "hot_map");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
+		this.hotMap = ApiTypeHelper.unmodifiableRequired(builder.hotMap, this, "hotMap");
 
 	}
 
-	public OneHotEncodingPreprocessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static OneHotEncodingPreprocessor of(Function<Builder, ObjectBuilder<OneHotEncodingPreprocessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Preprocessor} variant type
+	 * Preprocessor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "one_hot_encoding";
+	public Preprocessor.Kind _preprocessorKind() {
+		return Preprocessor.Kind.OneHotEncoding;
 	}
 
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code hot_map}
 	 */
-	public Map<String, String> hotMap() {
+	public final Map<String, String> hotMap() {
 		return this.hotMap;
 	}
 
@@ -96,14 +102,17 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 		generator.writeKey("field");
 		generator.write(this.field);
 
-		generator.writeKey("hot_map");
-		generator.writeStartObject();
-		for (Map.Entry<String, String> item0 : this.hotMap.entrySet()) {
-			generator.writeKey(item0.getKey());
-			generator.write(item0.getValue());
+		if (ApiTypeHelper.isDefined(this.hotMap)) {
+			generator.writeKey("hot_map");
+			generator.writeStartObject();
+			for (Map.Entry<String, String> item0 : this.hotMap.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -112,7 +121,8 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 	/**
 	 * Builder for {@link OneHotEncodingPreprocessor}.
 	 */
-	public static class Builder implements ObjectBuilder<OneHotEncodingPreprocessor> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OneHotEncodingPreprocessor> {
 		private String field;
 
 		private Map<String, String> hotMap;
@@ -120,27 +130,28 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code hot_map}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>hotMap</code>.
 		 */
-		public Builder hotMap(Map<String, String> value) {
-			this.hotMap = value;
+		public final Builder hotMap(Map<String, String> map) {
+			this.hotMap = _mapPutAll(this.hotMap, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #hotMap(Map)}, creating the map if needed.
+		 * Required - API name: {@code hot_map}
+		 * <p>
+		 * Adds an entry to <code>hotMap</code>.
 		 */
-		public Builder putHotMap(String key, String value) {
-			if (this.hotMap == null) {
-				this.hotMap = new HashMap<>();
-			}
-			this.hotMap.put(key, value);
+		public final Builder hotMap(String key, String value) {
+			this.hotMap = _mapPut(this.hotMap, key, value);
 			return this;
 		}
 
@@ -151,6 +162,7 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 		 *             if some of the required fields are null.
 		 */
 		public OneHotEncodingPreprocessor build() {
+			_checkSingleUse();
 
 			return new OneHotEncodingPreprocessor(this);
 		}
@@ -161,11 +173,11 @@ public final class OneHotEncodingPreprocessor implements PreprocessorVariant, Js
 	/**
 	 * Json deserializer for {@link OneHotEncodingPreprocessor}
 	 */
-	public static final JsonpDeserializer<OneHotEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, OneHotEncodingPreprocessor::setupOneHotEncodingPreprocessorDeserializer, Builder::build);
+	public static final JsonpDeserializer<OneHotEncodingPreprocessor> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, OneHotEncodingPreprocessor::setupOneHotEncodingPreprocessorDeserializer);
 
 	protected static void setupOneHotEncodingPreprocessorDeserializer(
-			DelegatingDeserializer<OneHotEncodingPreprocessor.Builder> op) {
+			ObjectDeserializer<OneHotEncodingPreprocessor.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::hotMap, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),

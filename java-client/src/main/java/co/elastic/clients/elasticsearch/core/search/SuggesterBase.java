@@ -23,22 +23,29 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.SuggesterBase
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L59-L63">API
+ *      specification</a>
+ */
 
 public abstract class SuggesterBase implements JsonpSerializable {
 	private final String field;
@@ -51,9 +58,9 @@ public abstract class SuggesterBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SuggesterBase(AbstractBuilder<?> builder) {
+	protected SuggesterBase(AbstractBuilder<?> builder) {
 
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.analyzer = builder.analyzer;
 		this.size = builder.size;
 
@@ -62,7 +69,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -70,7 +77,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 	 * API name: {@code analyzer}
 	 */
 	@Nullable
-	public String analyzer() {
+	public final String analyzer() {
 		return this.analyzer;
 	}
 
@@ -78,7 +85,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
 	}
 
@@ -97,13 +104,11 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		generator.write(this.field);
 
 		if (this.analyzer != null) {
-
 			generator.writeKey("analyzer");
 			generator.write(this.analyzer);
 
 		}
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
@@ -111,7 +116,9 @@ public abstract class SuggesterBase implements JsonpSerializable {
 
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>> {
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
 		private String field;
 
 		@Nullable
@@ -123,7 +130,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code field}
 		 */
-		public BuilderT field(String value) {
+		public final BuilderT field(String value) {
 			this.field = value;
 			return self();
 		}
@@ -131,7 +138,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		/**
 		 * API name: {@code analyzer}
 		 */
-		public BuilderT analyzer(@Nullable String value) {
+		public final BuilderT analyzer(@Nullable String value) {
 			this.analyzer = value;
 			return self();
 		}
@@ -139,7 +146,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public BuilderT size(@Nullable Integer value) {
+		public final BuilderT size(@Nullable Integer value) {
 			this.size = value;
 			return self();
 		}
@@ -150,7 +157,7 @@ public abstract class SuggesterBase implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupSuggesterBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(AbstractBuilder::analyzer, JsonpDeserializer.stringDeserializer(), "analyzer");

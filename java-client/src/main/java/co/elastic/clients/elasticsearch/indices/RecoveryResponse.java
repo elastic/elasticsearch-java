@@ -23,13 +23,12 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.indices.recovery.RecoveryStatus;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,17 +36,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.recovery.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/IndicesRecoveryResponse.ts#L24-L27">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
+public class RecoveryResponse extends DictionaryResponse<String, RecoveryStatus> {
 	// ---------------------------------------------------------------------------------------------
 
-	public RecoveryResponse(Builder builder) {
+	private RecoveryResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public RecoveryResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RecoveryResponse of(Function<Builder, ObjectBuilder<RecoveryResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +61,7 @@ public final class RecoveryResponse extends DictionaryResponse<String, RecoveryS
 	/**
 	 * Builder for {@link RecoveryResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RecoveryStatus, Builder>
 			implements
 				ObjectBuilder<RecoveryResponse> {
@@ -70,6 +77,7 @@ public final class RecoveryResponse extends DictionaryResponse<String, RecoveryS
 		 *             if some of the required fields are null.
 		 */
 		public RecoveryResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -83,9 +91,9 @@ public final class RecoveryResponse extends DictionaryResponse<String, RecoveryS
 	 * Json deserializer for {@link RecoveryResponse}
 	 */
 	public static final JsonpDeserializer<RecoveryResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RecoveryResponse::setupRecoveryResponseDeserializer, Builder::build);
+			RecoveryResponse::setupRecoveryResponseDeserializer);
 
-	protected static void setupRecoveryResponseDeserializer(DelegatingDeserializer<RecoveryResponse.Builder> op) {
+	protected static void setupRecoveryResponseDeserializer(ObjectDeserializer<RecoveryResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				RecoveryStatus._DESERIALIZER);
 

@@ -23,28 +23,33 @@
 
 package co.elastic.clients.elasticsearch.core.explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.explain.Explanation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/explain/types.ts#L22-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Explanation implements JsonpSerializable {
+public class Explanation implements JsonpSerializable {
 	private final String description;
 
 	private final List<ExplanationDetail> details;
@@ -53,36 +58,36 @@ public final class Explanation implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Explanation(Builder builder) {
+	private Explanation(Builder builder) {
 
-		this.description = Objects.requireNonNull(builder.description, "description");
-		this.details = ModelTypeHelper.unmodifiableNonNull(builder.details, "details");
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.details = ApiTypeHelper.unmodifiableRequired(builder.details, this, "details");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 
 	}
 
-	public Explanation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Explanation of(Function<Builder, ObjectBuilder<Explanation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code description}
 	 */
-	public String description() {
+	public final String description() {
 		return this.description;
 	}
 
 	/**
 	 * Required - API name: {@code details}
 	 */
-	public List<ExplanationDetail> details() {
+	public final List<ExplanationDetail> details() {
 		return this.details;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public float value() {
+	public final float value() {
 		return this.value;
 	}
 
@@ -100,14 +105,16 @@ public final class Explanation implements JsonpSerializable {
 		generator.writeKey("description");
 		generator.write(this.description);
 
-		generator.writeKey("details");
-		generator.writeStartArray();
-		for (ExplanationDetail item0 : this.details) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.details)) {
+			generator.writeKey("details");
+			generator.writeStartArray();
+			for (ExplanationDetail item0 : this.details) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("value");
 		generator.write(this.value);
 
@@ -118,7 +125,8 @@ public final class Explanation implements JsonpSerializable {
 	/**
 	 * Builder for {@link Explanation}.
 	 */
-	public static class Builder implements ObjectBuilder<Explanation> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Explanation> {
 		private String description;
 
 		private List<ExplanationDetail> details;
@@ -128,56 +136,44 @@ public final class Explanation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code description}
 		 */
-		public Builder description(String value) {
+		public final Builder description(String value) {
 			this.description = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code details}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>details</code>.
 		 */
-		public Builder details(List<ExplanationDetail> value) {
-			this.details = value;
+		public final Builder details(List<ExplanationDetail> list) {
+			this.details = _listAddAll(this.details, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code details}
+		 * <p>
+		 * Adds one or more values to <code>details</code>.
 		 */
-		public Builder details(ExplanationDetail... value) {
-			this.details = Arrays.asList(value);
+		public final Builder details(ExplanationDetail value, ExplanationDetail... values) {
+			this.details = _listAdd(this.details, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed.
+		 * Required - API name: {@code details}
+		 * <p>
+		 * Adds a value to <code>details</code> using a builder lambda.
 		 */
-		public Builder addDetails(ExplanationDetail value) {
-			if (this.details == null) {
-				this.details = new ArrayList<>();
-			}
-			this.details.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #details(List)} to a singleton list.
-		 */
-		public Builder details(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
-			return this.details(fn.apply(new ExplanationDetail.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #details(List)}, creating the list if needed.
-		 */
-		public Builder addDetails(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
-			return this.addDetails(fn.apply(new ExplanationDetail.Builder()).build());
+		public final Builder details(Function<ExplanationDetail.Builder, ObjectBuilder<ExplanationDetail>> fn) {
+			return details(fn.apply(new ExplanationDetail.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(float value) {
+		public final Builder value(float value) {
 			this.value = value;
 			return this;
 		}
@@ -189,6 +185,7 @@ public final class Explanation implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Explanation build() {
+			_checkSingleUse();
 
 			return new Explanation(this);
 		}
@@ -200,9 +197,9 @@ public final class Explanation implements JsonpSerializable {
 	 * Json deserializer for {@link Explanation}
 	 */
 	public static final JsonpDeserializer<Explanation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Explanation::setupExplanationDeserializer, Builder::build);
+			Explanation::setupExplanationDeserializer);
 
-	protected static void setupExplanationDeserializer(DelegatingDeserializer<Explanation.Builder> op) {
+	protected static void setupExplanationDeserializer(ObjectDeserializer<Explanation.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::details, JsonpDeserializer.arrayDeserializer(ExplanationDetail._DESERIALIZER), "details");

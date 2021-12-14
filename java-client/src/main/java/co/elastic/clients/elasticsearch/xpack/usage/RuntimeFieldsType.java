@@ -23,28 +23,33 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.RuntimeFieldsType
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L234-L249">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RuntimeFieldsType implements JsonpSerializable {
+public class RuntimeFieldsType implements JsonpSerializable {
 	private final long charsMax;
 
 	private final long charsTotal;
@@ -75,124 +80,124 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RuntimeFieldsType(Builder builder) {
+	private RuntimeFieldsType(Builder builder) {
 
-		this.charsMax = Objects.requireNonNull(builder.charsMax, "chars_max");
-		this.charsTotal = Objects.requireNonNull(builder.charsTotal, "chars_total");
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.docMax = Objects.requireNonNull(builder.docMax, "doc_max");
-		this.docTotal = Objects.requireNonNull(builder.docTotal, "doc_total");
-		this.indexCount = Objects.requireNonNull(builder.indexCount, "index_count");
-		this.lang = ModelTypeHelper.unmodifiableNonNull(builder.lang, "lang");
-		this.linesMax = Objects.requireNonNull(builder.linesMax, "lines_max");
-		this.linesTotal = Objects.requireNonNull(builder.linesTotal, "lines_total");
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.scriptlessCount = Objects.requireNonNull(builder.scriptlessCount, "scriptless_count");
-		this.shadowedCount = Objects.requireNonNull(builder.shadowedCount, "shadowed_count");
-		this.sourceMax = Objects.requireNonNull(builder.sourceMax, "source_max");
-		this.sourceTotal = Objects.requireNonNull(builder.sourceTotal, "source_total");
+		this.charsMax = ApiTypeHelper.requireNonNull(builder.charsMax, this, "charsMax");
+		this.charsTotal = ApiTypeHelper.requireNonNull(builder.charsTotal, this, "charsTotal");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.docMax = ApiTypeHelper.requireNonNull(builder.docMax, this, "docMax");
+		this.docTotal = ApiTypeHelper.requireNonNull(builder.docTotal, this, "docTotal");
+		this.indexCount = ApiTypeHelper.requireNonNull(builder.indexCount, this, "indexCount");
+		this.lang = ApiTypeHelper.unmodifiableRequired(builder.lang, this, "lang");
+		this.linesMax = ApiTypeHelper.requireNonNull(builder.linesMax, this, "linesMax");
+		this.linesTotal = ApiTypeHelper.requireNonNull(builder.linesTotal, this, "linesTotal");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.scriptlessCount = ApiTypeHelper.requireNonNull(builder.scriptlessCount, this, "scriptlessCount");
+		this.shadowedCount = ApiTypeHelper.requireNonNull(builder.shadowedCount, this, "shadowedCount");
+		this.sourceMax = ApiTypeHelper.requireNonNull(builder.sourceMax, this, "sourceMax");
+		this.sourceTotal = ApiTypeHelper.requireNonNull(builder.sourceTotal, this, "sourceTotal");
 
 	}
 
-	public RuntimeFieldsType(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RuntimeFieldsType of(Function<Builder, ObjectBuilder<RuntimeFieldsType>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code chars_max}
 	 */
-	public long charsMax() {
+	public final long charsMax() {
 		return this.charsMax;
 	}
 
 	/**
 	 * Required - API name: {@code chars_total}
 	 */
-	public long charsTotal() {
+	public final long charsTotal() {
 		return this.charsTotal;
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code doc_max}
 	 */
-	public long docMax() {
+	public final long docMax() {
 		return this.docMax;
 	}
 
 	/**
 	 * Required - API name: {@code doc_total}
 	 */
-	public long docTotal() {
+	public final long docTotal() {
 		return this.docTotal;
 	}
 
 	/**
 	 * Required - API name: {@code index_count}
 	 */
-	public long indexCount() {
+	public final long indexCount() {
 		return this.indexCount;
 	}
 
 	/**
 	 * Required - API name: {@code lang}
 	 */
-	public List<String> lang() {
+	public final List<String> lang() {
 		return this.lang;
 	}
 
 	/**
 	 * Required - API name: {@code lines_max}
 	 */
-	public long linesMax() {
+	public final long linesMax() {
 		return this.linesMax;
 	}
 
 	/**
 	 * Required - API name: {@code lines_total}
 	 */
-	public long linesTotal() {
+	public final long linesTotal() {
 		return this.linesTotal;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code scriptless_count}
 	 */
-	public long scriptlessCount() {
+	public final long scriptlessCount() {
 		return this.scriptlessCount;
 	}
 
 	/**
 	 * Required - API name: {@code shadowed_count}
 	 */
-	public long shadowedCount() {
+	public final long shadowedCount() {
 		return this.shadowedCount;
 	}
 
 	/**
 	 * Required - API name: {@code source_max}
 	 */
-	public long sourceMax() {
+	public final long sourceMax() {
 		return this.sourceMax;
 	}
 
 	/**
 	 * Required - API name: {@code source_total}
 	 */
-	public long sourceTotal() {
+	public final long sourceTotal() {
 		return this.sourceTotal;
 	}
 
@@ -225,14 +230,16 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		generator.writeKey("index_count");
 		generator.write(this.indexCount);
 
-		generator.writeKey("lang");
-		generator.writeStartArray();
-		for (String item0 : this.lang) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.lang)) {
+			generator.writeKey("lang");
+			generator.writeStartArray();
+			for (String item0 : this.lang) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("lines_max");
 		generator.write(this.linesMax);
 
@@ -261,7 +268,8 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 	/**
 	 * Builder for {@link RuntimeFieldsType}.
 	 */
-	public static class Builder implements ObjectBuilder<RuntimeFieldsType> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuntimeFieldsType> {
 		private Long charsMax;
 
 		private Long charsTotal;
@@ -293,7 +301,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code chars_max}
 		 */
-		public Builder charsMax(long value) {
+		public final Builder charsMax(long value) {
 			this.charsMax = value;
 			return this;
 		}
@@ -301,7 +309,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code chars_total}
 		 */
-		public Builder charsTotal(long value) {
+		public final Builder charsTotal(long value) {
 			this.charsTotal = value;
 			return this;
 		}
@@ -309,7 +317,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -317,7 +325,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code doc_max}
 		 */
-		public Builder docMax(long value) {
+		public final Builder docMax(long value) {
 			this.docMax = value;
 			return this;
 		}
@@ -325,7 +333,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code doc_total}
 		 */
-		public Builder docTotal(long value) {
+		public final Builder docTotal(long value) {
 			this.docTotal = value;
 			return this;
 		}
@@ -333,42 +341,35 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index_count}
 		 */
-		public Builder indexCount(long value) {
+		public final Builder indexCount(long value) {
 			this.indexCount = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code lang}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>lang</code>.
 		 */
-		public Builder lang(List<String> value) {
-			this.lang = value;
+		public final Builder lang(List<String> list) {
+			this.lang = _listAddAll(this.lang, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code lang}
+		 * <p>
+		 * Adds one or more values to <code>lang</code>.
 		 */
-		public Builder lang(String... value) {
-			this.lang = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #lang(List)}, creating the list if needed.
-		 */
-		public Builder addLang(String value) {
-			if (this.lang == null) {
-				this.lang = new ArrayList<>();
-			}
-			this.lang.add(value);
+		public final Builder lang(String value, String... values) {
+			this.lang = _listAdd(this.lang, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code lines_max}
 		 */
-		public Builder linesMax(long value) {
+		public final Builder linesMax(long value) {
 			this.linesMax = value;
 			return this;
 		}
@@ -376,7 +377,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code lines_total}
 		 */
-		public Builder linesTotal(long value) {
+		public final Builder linesTotal(long value) {
 			this.linesTotal = value;
 			return this;
 		}
@@ -384,7 +385,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -392,7 +393,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code scriptless_count}
 		 */
-		public Builder scriptlessCount(long value) {
+		public final Builder scriptlessCount(long value) {
 			this.scriptlessCount = value;
 			return this;
 		}
@@ -400,7 +401,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shadowed_count}
 		 */
-		public Builder shadowedCount(long value) {
+		public final Builder shadowedCount(long value) {
 			this.shadowedCount = value;
 			return this;
 		}
@@ -408,7 +409,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source_max}
 		 */
-		public Builder sourceMax(long value) {
+		public final Builder sourceMax(long value) {
 			this.sourceMax = value;
 			return this;
 		}
@@ -416,7 +417,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code source_total}
 		 */
-		public Builder sourceTotal(long value) {
+		public final Builder sourceTotal(long value) {
 			this.sourceTotal = value;
 			return this;
 		}
@@ -428,6 +429,7 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RuntimeFieldsType build() {
+			_checkSingleUse();
 
 			return new RuntimeFieldsType(this);
 		}
@@ -439,9 +441,9 @@ public final class RuntimeFieldsType implements JsonpSerializable {
 	 * Json deserializer for {@link RuntimeFieldsType}
 	 */
 	public static final JsonpDeserializer<RuntimeFieldsType> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RuntimeFieldsType::setupRuntimeFieldsTypeDeserializer, Builder::build);
+			.lazy(Builder::new, RuntimeFieldsType::setupRuntimeFieldsTypeDeserializer);
 
-	protected static void setupRuntimeFieldsTypeDeserializer(DelegatingDeserializer<RuntimeFieldsType.Builder> op) {
+	protected static void setupRuntimeFieldsTypeDeserializer(ObjectDeserializer<RuntimeFieldsType.Builder> op) {
 
 		op.add(Builder::charsMax, JsonpDeserializer.longDeserializer(), "chars_max");
 		op.add(Builder::charsTotal, JsonpDeserializer.longDeserializer(), "chars_total");

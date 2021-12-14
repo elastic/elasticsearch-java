@@ -23,20 +23,29 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/hits.ts#L99-L104">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum TotalHitsRelation implements StringEnum {
+public enum TotalHitsRelation implements JsonEnum {
 	/**
 	 * Accurate
 	 */
 	Eq("eq"),
+
 	/**
 	 * Lower bound, including returned events or sequences
 	 */
-	Gte("gte");
+	Gte("gte"),
+
+	;
 
 	private final String jsonValue;
 
@@ -48,6 +57,6 @@ public enum TotalHitsRelation implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<TotalHitsRelation> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<TotalHitsRelation> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			TotalHitsRelation.values());
 }

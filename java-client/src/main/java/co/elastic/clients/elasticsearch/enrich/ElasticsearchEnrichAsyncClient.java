@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.enrich;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -34,10 +40,20 @@ import javax.annotation.Nullable;
 /**
  * Client for the enrich namespace.
  */
-public class ElasticsearchEnrichAsyncClient extends ApiClient {
+public class ElasticsearchEnrichAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchEnrichAsyncClient> {
 
-	public ElasticsearchEnrichAsyncClient(Transport transport) {
-		super(transport);
+	public ElasticsearchEnrichAsyncClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchEnrichAsyncClient(ElasticsearchTransport transport,
+			@Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchEnrichAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchEnrichAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: enrich.delete_policy
@@ -50,24 +66,28 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeletePolicyResponse> deletePolicy(DeletePolicyRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, DeletePolicyRequest.ENDPOINT);
+	public CompletableFuture<DeletePolicyResponse> deletePolicy(DeletePolicyRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePolicyRequest, DeletePolicyResponse, ErrorResponse>) DeletePolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes an existing enrich policy and its enrich index.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeletePolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/delete-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeletePolicyResponse> deletePolicy(
-			Function<DeletePolicyRequest.Builder, ObjectBuilder<DeletePolicyRequest>> fn) throws IOException {
+			Function<DeletePolicyRequest.Builder, ObjectBuilder<DeletePolicyRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deletePolicy(fn.apply(new DeletePolicyRequest.Builder()).build());
 	}
 
@@ -81,24 +101,28 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ExecutePolicyResponse> executePolicy(ExecutePolicyRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, ExecutePolicyRequest.ENDPOINT);
+	public CompletableFuture<ExecutePolicyResponse> executePolicy(ExecutePolicyRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<ExecutePolicyRequest, ExecutePolicyResponse, ErrorResponse>) ExecutePolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates the enrich index for an existing enrich policy.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExecutePolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/execute-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ExecutePolicyResponse> executePolicy(
-			Function<ExecutePolicyRequest.Builder, ObjectBuilder<ExecutePolicyRequest>> fn) throws IOException {
+			Function<ExecutePolicyRequest.Builder, ObjectBuilder<ExecutePolicyRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return executePolicy(fn.apply(new ExecutePolicyRequest.Builder()).build());
 	}
 
@@ -112,24 +136,28 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetPolicyResponse> getPolicy(GetPolicyRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetPolicyRequest.ENDPOINT);
+	public CompletableFuture<GetPolicyResponse> getPolicy(GetPolicyRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<GetPolicyRequest, GetPolicyResponse, ErrorResponse>) GetPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Gets information about an enrich policy.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetPolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetPolicyResponse> getPolicy(
-			Function<GetPolicyRequest.Builder, ObjectBuilder<GetPolicyRequest>> fn) throws IOException {
+			Function<GetPolicyRequest.Builder, ObjectBuilder<GetPolicyRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getPolicy(fn.apply(new GetPolicyRequest.Builder()).build());
 	}
 
@@ -141,8 +169,9 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetPolicyResponse> getPolicy() throws IOException {
-		return this.transport.performRequestAsync(new GetPolicyRequest.Builder().build(), GetPolicyRequest.ENDPOINT);
+	public CompletableFuture<GetPolicyResponse> getPolicy() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new GetPolicyRequest.Builder().build(), GetPolicyRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: enrich.put_policy
@@ -155,24 +184,28 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutPolicyResponse> putPolicy(PutPolicyRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PutPolicyRequest.ENDPOINT);
+	public CompletableFuture<PutPolicyResponse> putPolicy(PutPolicyRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<PutPolicyRequest, PutPolicyResponse, ErrorResponse>) PutPolicyRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates a new enrich policy.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutPolicyRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/put-enrich-policy-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutPolicyResponse> putPolicy(
-			Function<PutPolicyRequest.Builder, ObjectBuilder<PutPolicyRequest>> fn) throws IOException {
+			Function<PutPolicyRequest.Builder, ObjectBuilder<PutPolicyRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putPolicy(fn.apply(new PutPolicyRequest.Builder()).build());
 	}
 
@@ -186,8 +219,9 @@ public class ElasticsearchEnrichAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/enrich-stats-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<EnrichStatsResponse> stats() throws IOException {
-		return this.transport.performRequestAsync(EnrichStatsRequest._INSTANCE, EnrichStatsRequest.ENDPOINT);
+	public CompletableFuture<EnrichStatsResponse> stats() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(EnrichStatsRequest._INSTANCE, EnrichStatsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

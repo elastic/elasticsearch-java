@@ -55,6 +55,14 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link ByteNumberProperty byte} {@code Property}
+	 * variant.
+	 */
+	public static ByteNumberProperty.Builder byte_() {
+		return new ByteNumberProperty.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link CompletionProperty completion}
 	 * {@code Property} variant.
 	 */
@@ -102,6 +110,14 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link DoubleNumberProperty double}
+	 * {@code Property} variant.
+	 */
+	public static DoubleNumberProperty.Builder double_() {
+		return new DoubleNumberProperty.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link DoubleRangeProperty double_range}
 	 * {@code Property} variant.
 	 */
@@ -123,6 +139,14 @@ public class PropertyBuilders {
 	 */
 	public static FlattenedProperty.Builder flattened() {
 		return new FlattenedProperty.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link FloatNumberProperty float} {@code Property}
+	 * variant.
+	 */
+	public static FloatNumberProperty.Builder float_() {
+		return new FloatNumberProperty.Builder();
 	}
 
 	/**
@@ -150,11 +174,27 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link HalfFloatNumberProperty half_float}
+	 * {@code Property} variant.
+	 */
+	public static HalfFloatNumberProperty.Builder halfFloat() {
+		return new HalfFloatNumberProperty.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link HistogramProperty histogram}
 	 * {@code Property} variant.
 	 */
 	public static HistogramProperty.Builder histogram() {
 		return new HistogramProperty.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link IntegerNumberProperty integer}
+	 * {@code Property} variant.
+	 */
+	public static IntegerNumberProperty.Builder integer() {
+		return new IntegerNumberProperty.Builder();
 	}
 
 	/**
@@ -196,6 +236,14 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link LongNumberProperty long} {@code Property}
+	 * variant.
+	 */
+	public static LongNumberProperty.Builder long_() {
+		return new LongNumberProperty.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link LongRangeProperty long_range}
 	 * {@code Property} variant.
 	 */
@@ -217,14 +265,6 @@ public class PropertyBuilders {
 	 */
 	public static NestedProperty.Builder nested() {
 		return new NestedProperty.Builder();
-	}
-
-	/**
-	 * Creates a builder for the {@link NumberProperty float} {@code Property}
-	 * variant.
-	 */
-	public static NumberProperty.Builder float_() {
-		return new NumberProperty.Builder();
 	}
 
 	/**
@@ -268,6 +308,14 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link ScaledFloatNumberProperty scaled_float}
+	 * {@code Property} variant.
+	 */
+	public static ScaledFloatNumberProperty.Builder scaledFloat() {
+		return new ScaledFloatNumberProperty.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link SearchAsYouTypeProperty search_as_you_type}
 	 * {@code Property} variant.
 	 */
@@ -284,6 +332,14 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link ShortNumberProperty short} {@code Property}
+	 * variant.
+	 */
+	public static ShortNumberProperty.Builder short_() {
+		return new ShortNumberProperty.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link TextProperty text} {@code Property} variant.
 	 */
 	public static TextProperty.Builder text() {
@@ -296,6 +352,14 @@ public class PropertyBuilders {
 	 */
 	public static TokenCountProperty.Builder tokenCount() {
 		return new TokenCountProperty.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link UnsignedLongNumberProperty unsigned_long}
+	 * {@code Property} variant.
+	 */
+	public static UnsignedLongNumberProperty.Builder unsignedLong() {
+		return new UnsignedLongNumberProperty.Builder();
 	}
 
 	/**

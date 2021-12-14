@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.security.get_role;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.get_role.TransientMetadata
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role/types.ts#L37-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TransientMetadata implements JsonpSerializable {
+public class TransientMetadata implements JsonpSerializable {
 	private final boolean enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TransientMetadata(Builder builder) {
+	private TransientMetadata(Builder builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
-	public TransientMetadata(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TransientMetadata of(Function<Builder, ObjectBuilder<TransientMetadata>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public boolean enabled() {
+	public final boolean enabled() {
 		return this.enabled;
 	}
 
@@ -81,13 +89,14 @@ public final class TransientMetadata implements JsonpSerializable {
 	/**
 	 * Builder for {@link TransientMetadata}.
 	 */
-	public static class Builder implements ObjectBuilder<TransientMetadata> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransientMetadata> {
 		private Boolean enabled;
 
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(boolean value) {
+		public final Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class TransientMetadata implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TransientMetadata build() {
+			_checkSingleUse();
 
 			return new TransientMetadata(this);
 		}
@@ -110,9 +120,9 @@ public final class TransientMetadata implements JsonpSerializable {
 	 * Json deserializer for {@link TransientMetadata}
 	 */
 	public static final JsonpDeserializer<TransientMetadata> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TransientMetadata::setupTransientMetadataDeserializer, Builder::build);
+			.lazy(Builder::new, TransientMetadata::setupTransientMetadataDeserializer);
 
-	protected static void setupTransientMetadataDeserializer(DelegatingDeserializer<TransientMetadata.Builder> op) {
+	protected static void setupTransientMetadataDeserializer(ObjectDeserializer<TransientMetadata.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 

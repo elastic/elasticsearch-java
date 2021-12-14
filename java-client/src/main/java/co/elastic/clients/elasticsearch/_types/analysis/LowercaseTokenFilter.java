@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,35 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LowercaseTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L253-L256">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class LowercaseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class LowercaseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
+	@Nullable
 	private final String language;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public LowercaseTokenFilter(Builder builder) {
+	private LowercaseTokenFilter(Builder builder) {
 		super(builder);
 
-		this.language = Objects.requireNonNull(builder.language, "language");
+		this.language = builder.language;
 
 	}
 
-	public LowercaseTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static LowercaseTokenFilter of(Function<Builder, ObjectBuilder<LowercaseTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "lowercase";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Lowercase;
 	}
 
 	/**
-	 * Required - API name: {@code language}
+	 * API name: {@code language}
 	 */
-	public String language() {
+	@Nullable
+	public final String language() {
 		return this.language;
 	}
 
@@ -73,9 +81,11 @@ public final class LowercaseTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "lowercase");
 		super.serializeInternal(generator, mapper);
+		if (this.language != null) {
+			generator.writeKey("language");
+			generator.write(this.language);
 
-		generator.writeKey("language");
-		generator.write(this.language);
+		}
 
 	}
 
@@ -84,15 +94,17 @@ public final class LowercaseTokenFilter extends TokenFilterBase implements Token
 	/**
 	 * Builder for {@link LowercaseTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LowercaseTokenFilter> {
+		@Nullable
 		private String language;
 
 		/**
-		 * Required - API name: {@code language}
+		 * API name: {@code language}
 		 */
-		public Builder language(String value) {
+		public final Builder language(@Nullable String value) {
 			this.language = value;
 			return this;
 		}
@@ -109,6 +121,7 @@ public final class LowercaseTokenFilter extends TokenFilterBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public LowercaseTokenFilter build() {
+			_checkSingleUse();
 
 			return new LowercaseTokenFilter(this);
 		}
@@ -120,10 +133,9 @@ public final class LowercaseTokenFilter extends TokenFilterBase implements Token
 	 * Json deserializer for {@link LowercaseTokenFilter}
 	 */
 	public static final JsonpDeserializer<LowercaseTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, LowercaseTokenFilter::setupLowercaseTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, LowercaseTokenFilter::setupLowercaseTokenFilterDeserializer);
 
-	protected static void setupLowercaseTokenFilterDeserializer(
-			DelegatingDeserializer<LowercaseTokenFilter.Builder> op) {
+	protected static void setupLowercaseTokenFilterDeserializer(ObjectDeserializer<LowercaseTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::language, JsonpDeserializer.stringDeserializer(), "language");
 

@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,42 +37,48 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ingest._types.PipelineProcessor
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L283-L285">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PipelineProcessor extends ProcessorBase implements ProcessorVariant {
+public class PipelineProcessor extends ProcessorBase implements ProcessorVariant {
 	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PipelineProcessor(Builder builder) {
+	private PipelineProcessor(Builder builder) {
 		super(builder);
 
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public PipelineProcessor(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PipelineProcessor of(Function<Builder, ObjectBuilder<PipelineProcessor>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Processor} variant type
+	 * Processor variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "pipeline";
+	public Processor.Kind _processorKind() {
+		return Processor.Kind.Pipeline;
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("name");
 		generator.write(this.name);
 
@@ -83,6 +89,7 @@ public final class PipelineProcessor extends ProcessorBase implements ProcessorV
 	/**
 	 * Builder for {@link PipelineProcessor}.
 	 */
+
 	public static class Builder extends ProcessorBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PipelineProcessor> {
@@ -91,7 +98,7 @@ public final class PipelineProcessor extends ProcessorBase implements ProcessorV
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -108,6 +115,7 @@ public final class PipelineProcessor extends ProcessorBase implements ProcessorV
 		 *             if some of the required fields are null.
 		 */
 		public PipelineProcessor build() {
+			_checkSingleUse();
 
 			return new PipelineProcessor(this);
 		}
@@ -119,9 +127,9 @@ public final class PipelineProcessor extends ProcessorBase implements ProcessorV
 	 * Json deserializer for {@link PipelineProcessor}
 	 */
 	public static final JsonpDeserializer<PipelineProcessor> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PipelineProcessor::setupPipelineProcessorDeserializer, Builder::build);
+			.lazy(Builder::new, PipelineProcessor::setupPipelineProcessorDeserializer);
 
-	protected static void setupPipelineProcessorDeserializer(DelegatingDeserializer<PipelineProcessor.Builder> op) {
+	protected static void setupPipelineProcessorDeserializer(ObjectDeserializer<PipelineProcessor.Builder> op) {
 		ProcessorBase.setupProcessorBaseDeserializer(op);
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 

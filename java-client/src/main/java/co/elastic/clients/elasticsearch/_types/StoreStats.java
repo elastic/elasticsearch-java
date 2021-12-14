@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.StoreStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L228-L235">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StoreStats implements JsonpSerializable {
+public class StoreStats implements JsonpSerializable {
 	@Nullable
 	private final String size;
 
@@ -59,33 +67,33 @@ public final class StoreStats implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StoreStats(Builder builder) {
+	private StoreStats(Builder builder) {
 
 		this.size = builder.size;
-		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
 		this.reserved = builder.reserved;
-		this.reservedInBytes = Objects.requireNonNull(builder.reservedInBytes, "reserved_in_bytes");
+		this.reservedInBytes = ApiTypeHelper.requireNonNull(builder.reservedInBytes, this, "reservedInBytes");
 		this.totalDataSetSize = builder.totalDataSetSize;
 		this.totalDataSetSizeInBytes = builder.totalDataSetSizeInBytes;
 
 	}
 
-	public StoreStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StoreStats of(Function<Builder, ObjectBuilder<StoreStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public String size() {
+	public final String size() {
 		return this.size;
 	}
 
 	/**
 	 * Required - API name: {@code size_in_bytes}
 	 */
-	public int sizeInBytes() {
+	public final int sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
@@ -93,14 +101,14 @@ public final class StoreStats implements JsonpSerializable {
 	 * API name: {@code reserved}
 	 */
 	@Nullable
-	public String reserved() {
+	public final String reserved() {
 		return this.reserved;
 	}
 
 	/**
 	 * Required - API name: {@code reserved_in_bytes}
 	 */
-	public int reservedInBytes() {
+	public final int reservedInBytes() {
 		return this.reservedInBytes;
 	}
 
@@ -108,7 +116,7 @@ public final class StoreStats implements JsonpSerializable {
 	 * API name: {@code total_data_set_size}
 	 */
 	@Nullable
-	public String totalDataSetSize() {
+	public final String totalDataSetSize() {
 		return this.totalDataSetSize;
 	}
 
@@ -116,7 +124,7 @@ public final class StoreStats implements JsonpSerializable {
 	 * API name: {@code total_data_set_size_in_bytes}
 	 */
 	@Nullable
-	public Integer totalDataSetSizeInBytes() {
+	public final Integer totalDataSetSizeInBytes() {
 		return this.totalDataSetSizeInBytes;
 	}
 
@@ -132,33 +140,27 @@ public final class StoreStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-
 		generator.writeKey("size_in_bytes");
 		generator.write(this.sizeInBytes);
 
 		if (this.reserved != null) {
-
 			generator.writeKey("reserved");
 			generator.write(this.reserved);
 
 		}
-
 		generator.writeKey("reserved_in_bytes");
 		generator.write(this.reservedInBytes);
 
 		if (this.totalDataSetSize != null) {
-
 			generator.writeKey("total_data_set_size");
 			generator.write(this.totalDataSetSize);
 
 		}
 		if (this.totalDataSetSizeInBytes != null) {
-
 			generator.writeKey("total_data_set_size_in_bytes");
 			generator.write(this.totalDataSetSizeInBytes);
 
@@ -171,7 +173,8 @@ public final class StoreStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link StoreStats}.
 	 */
-	public static class Builder implements ObjectBuilder<StoreStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StoreStats> {
 		@Nullable
 		private String size;
 
@@ -191,7 +194,7 @@ public final class StoreStats implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable String value) {
+		public final Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -199,7 +202,7 @@ public final class StoreStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(int value) {
+		public final Builder sizeInBytes(int value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -207,7 +210,7 @@ public final class StoreStats implements JsonpSerializable {
 		/**
 		 * API name: {@code reserved}
 		 */
-		public Builder reserved(@Nullable String value) {
+		public final Builder reserved(@Nullable String value) {
 			this.reserved = value;
 			return this;
 		}
@@ -215,7 +218,7 @@ public final class StoreStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code reserved_in_bytes}
 		 */
-		public Builder reservedInBytes(int value) {
+		public final Builder reservedInBytes(int value) {
 			this.reservedInBytes = value;
 			return this;
 		}
@@ -223,7 +226,7 @@ public final class StoreStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_data_set_size}
 		 */
-		public Builder totalDataSetSize(@Nullable String value) {
+		public final Builder totalDataSetSize(@Nullable String value) {
 			this.totalDataSetSize = value;
 			return this;
 		}
@@ -231,7 +234,7 @@ public final class StoreStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_data_set_size_in_bytes}
 		 */
-		public Builder totalDataSetSizeInBytes(@Nullable Integer value) {
+		public final Builder totalDataSetSizeInBytes(@Nullable Integer value) {
 			this.totalDataSetSizeInBytes = value;
 			return this;
 		}
@@ -243,6 +246,7 @@ public final class StoreStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StoreStats build() {
+			_checkSingleUse();
 
 			return new StoreStats(this);
 		}
@@ -254,9 +258,9 @@ public final class StoreStats implements JsonpSerializable {
 	 * Json deserializer for {@link StoreStats}
 	 */
 	public static final JsonpDeserializer<StoreStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			StoreStats::setupStoreStatsDeserializer, Builder::build);
+			StoreStats::setupStoreStatsDeserializer);
 
-	protected static void setupStoreStatsDeserializer(DelegatingDeserializer<StoreStats.Builder> op) {
+	protected static void setupStoreStatsDeserializer(ObjectDeserializer<StoreStats.Builder> op) {
 
 		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
 		op.add(Builder::sizeInBytes, JsonpDeserializer.integerDeserializer(), "size_in_bytes");

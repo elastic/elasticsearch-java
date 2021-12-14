@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ilm.move_to_step.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/move_to_step/MoveToStepResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MoveToStepResponse extends AcknowledgedResponseBase {
+public class MoveToStepResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public MoveToStepResponse(Builder builder) {
+	private MoveToStepResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public MoveToStepResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MoveToStepResponse of(Function<Builder, ObjectBuilder<MoveToStepResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class MoveToStepResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link MoveToStepResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MoveToStepResponse> {
@@ -68,6 +75,7 @@ public final class MoveToStepResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public MoveToStepResponse build() {
+			_checkSingleUse();
 
 			return new MoveToStepResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class MoveToStepResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link MoveToStepResponse}
 	 */
 	public static final JsonpDeserializer<MoveToStepResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, MoveToStepResponse::setupMoveToStepResponseDeserializer, Builder::build);
+			.lazy(Builder::new, MoveToStepResponse::setupMoveToStepResponseDeserializer);
 
-	protected static void setupMoveToStepResponseDeserializer(DelegatingDeserializer<MoveToStepResponse.Builder> op) {
+	protected static void setupMoveToStepResponseDeserializer(ObjectDeserializer<MoveToStepResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

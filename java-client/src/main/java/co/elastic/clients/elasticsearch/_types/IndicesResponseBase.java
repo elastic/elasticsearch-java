@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,13 +36,20 @@ import javax.annotation.Nullable;
 
 // typedef: _types.IndicesResponseBase
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Base.ts#L81-L83">API
+ *      specification</a>
+ */
+
 public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 	@Nullable
 	private final ShardStatistics shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesResponseBase(AbstractBuilder<?> builder) {
+	protected IndicesResponseBase(AbstractBuilder<?> builder) {
 		super(builder);
 
 		this.shards = builder.shards;
@@ -54,7 +60,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 	 * API name: {@code _shards}
 	 */
 	@Nullable
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
@@ -62,7 +68,6 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 
 		super.serializeInternal(generator, mapper);
 		if (this.shards != null) {
-
 			generator.writeKey("_shards");
 			this.shards.serialize(generator, mapper);
 
@@ -79,7 +84,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public BuilderT shards(@Nullable ShardStatistics value) {
+		public final BuilderT shards(@Nullable ShardStatistics value) {
 			this.shards = value;
 			return self();
 		}
@@ -87,7 +92,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 		/**
 		 * API name: {@code _shards}
 		 */
-		public BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final BuilderT shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
@@ -95,7 +100,7 @@ public abstract class IndicesResponseBase extends AcknowledgedResponseBase {
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupIndicesResponseBaseDeserializer(
-			DelegatingDeserializer<BuilderT> op) {
+			ObjectDeserializer<BuilderT> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
 

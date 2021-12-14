@@ -23,17 +23,20 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.BooleanEndpoint;
-import co.elastic.clients.base.BooleanResponse;
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.BooleanEndpoint;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -44,33 +47,31 @@ import javax.annotation.Nullable;
 
 // typedef: indices.exists_index_template.Request
 
-public final class ExistsIndexTemplateRequest extends RequestBase {
-	private final String name;
+/**
+ * Returns information about whether a particular index template exists.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/exists_index_template/IndicesExistsIndexTemplateRequest.ts#L24-L41">API
+ *      specification</a>
+ */
 
+public class ExistsIndexTemplateRequest extends RequestBase {
 	@Nullable
-	private final String masterTimeout;
+	private final Time masterTimeout;
+
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExistsIndexTemplateRequest(Builder builder) {
+	private ExistsIndexTemplateRequest(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 
 	}
 
-	public ExistsIndexTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - Comma-separated list of index template names used to limit the
-	 * request. Wildcard (*) expressions are supported.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public String name() {
-		return this.name;
+	public static ExistsIndexTemplateRequest of(Function<Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -80,8 +81,18 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - Comma-separated list of index template names used to limit the
+	 * request. Wildcard (*) expressions are supported.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final String name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -89,20 +100,21 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExistsIndexTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ExistsIndexTemplateRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsIndexTemplateRequest> {
+		@Nullable
+		private Time masterTimeout;
+
 		private String name;
 
-		@Nullable
-		private String masterTimeout;
-
 		/**
-		 * Required - Comma-separated list of index template names used to limit the
-		 * request. Wildcard (*) expressions are supported.
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
-		 * API name: {@code name}
+		 * API name: {@code master_timeout}
 		 */
-		public Builder name(String value) {
-			this.name = value;
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
@@ -112,8 +124,18 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - Comma-separated list of index template names used to limit the
+		 * request. Wildcard (*) expressions are supported.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public final Builder name(String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -124,6 +146,7 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public ExistsIndexTemplateRequest build() {
+			_checkSingleUse();
 
 			return new ExistsIndexTemplateRequest(this);
 		}
@@ -134,7 +157,9 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.exists_index_template}".
 	 */
-	public static final Endpoint<ExistsIndexTemplateRequest, BooleanResponse, ElasticsearchError> ENDPOINT = new BooleanEndpoint<>(
+	public static final Endpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse> _ENDPOINT = new BooleanEndpoint<>(
+			"es/indices.exists_index_template",
+
 			// Request method
 			request -> {
 				return "HEAD";
@@ -164,7 +189,7 @@ public final class ExistsIndexTemplateRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				return params;
 

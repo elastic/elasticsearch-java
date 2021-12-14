@@ -23,12 +23,13 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -38,51 +39,57 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.TermQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L116-L121">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TermQuery extends QueryBase implements QueryVariant {
+public class TermQuery extends QueryBase implements QueryVariant {
+	// Single key dictionary
 	private final String field;
 
-	private final String value;
+	private final FieldValue value;
 
 	@Nullable
 	private final Boolean caseInsensitive;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TermQuery(Builder builder) {
+	private TermQuery(Builder builder) {
 		super(builder);
-		this.field = Objects.requireNonNull(builder.field, "field");
+		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 
-		this.value = Objects.requireNonNull(builder.value, "value");
+		this.value = ApiTypeHelper.requireNonNull(builder.value, this, "value");
 		this.caseInsensitive = builder.caseInsensitive;
 
 	}
 
-	public TermQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TermQuery of(Function<Builder, ObjectBuilder<TermQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Query} variant type
+	 * Query variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "term";
+	public Query.Kind _queryKind() {
+		return Query.Kind.Term;
 	}
 
 	/**
 	 * Required - The target field
-	 * <p>
-	 * API name: {@code field}
 	 */
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
 	/**
 	 * Required - API name: {@code value}
 	 */
-	public String value() {
+	public final FieldValue value() {
 		return this.value;
 	}
 
@@ -90,7 +97,7 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 	 * API name: {@code case_insensitive}
 	 */
 	@Nullable
-	public Boolean caseInsensitive() {
+	public final Boolean caseInsensitive() {
 		return this.caseInsensitive;
 	}
 
@@ -98,18 +105,17 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 		generator.writeStartObject(this.field);
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("value");
-		generator.write(this.value);
+		this.value.serialize(generator, mapper);
 
 		if (this.caseInsensitive != null) {
-
 			generator.writeKey("case_insensitive");
 			generator.write(this.caseInsensitive);
 
 		}
 
 		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -117,20 +123,19 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 	/**
 	 * Builder for {@link TermQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder> implements ObjectBuilder<TermQuery> {
 		private String field;
 
 		/**
 		 * Required - The target field
-		 * <p>
-		 * API name: {@code field}
 		 */
-		public Builder field(String value) {
+		public final Builder field(String value) {
 			this.field = value;
 			return this;
 		}
 
-		private String value;
+		private FieldValue value;
 
 		@Nullable
 		private Boolean caseInsensitive;
@@ -138,15 +143,22 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 		/**
 		 * Required - API name: {@code value}
 		 */
-		public Builder value(String value) {
+		public final Builder value(FieldValue value) {
 			this.value = value;
 			return this;
 		}
 
 		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return this.value(fn.apply(new FieldValue.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code case_insensitive}
 		 */
-		public Builder caseInsensitive(@Nullable Boolean value) {
+		public final Builder caseInsensitive(@Nullable Boolean value) {
 			this.caseInsensitive = value;
 			return this;
 		}
@@ -163,6 +175,7 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 		 *             if some of the required fields are null.
 		 */
 		public TermQuery build() {
+			_checkSingleUse();
 
 			return new TermQuery(this);
 		}
@@ -174,14 +187,15 @@ public final class TermQuery extends QueryBase implements QueryVariant {
 	 * Json deserializer for {@link TermQuery}
 	 */
 	public static final JsonpDeserializer<TermQuery> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TermQuery::setupTermQueryDeserializer, Builder::build);
+			TermQuery::setupTermQueryDeserializer);
 
-	protected static void setupTermQueryDeserializer(DelegatingDeserializer<TermQuery.Builder> op) {
+	protected static void setupTermQueryDeserializer(ObjectDeserializer<TermQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
-		op.add(Builder::value, JsonpDeserializer.stringDeserializer(), "value");
+		op.add(Builder::value, FieldValue._DESERIALIZER, "value");
 		op.add(Builder::caseInsensitive, JsonpDeserializer.booleanDeserializer(), "case_insensitive");
 
-		op.setKey(Builder::field);
+		op.setKey(Builder::field, JsonpDeserializer.stringDeserializer());
+		op.shortcutProperty("value");
 
 	}
 

@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.sql.query;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,36 +39,43 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Column
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/sql/query/types.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Column implements JsonpSerializable {
+public class Column implements JsonpSerializable {
 	private final String name;
 
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Column(Builder builder) {
+	private Column(Builder builder) {
 
-		this.name = Objects.requireNonNull(builder.name, "name");
-		this.type = Objects.requireNonNull(builder.type, "type");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
 
-	public Column(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Column of(Function<Builder, ObjectBuilder<Column>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
 	/**
 	 * Required - API name: {@code type}
 	 */
-	public String type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -95,7 +103,8 @@ public final class Column implements JsonpSerializable {
 	/**
 	 * Builder for {@link Column}.
 	 */
-	public static class Builder implements ObjectBuilder<Column> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Column> {
 		private String name;
 
 		private String type;
@@ -103,7 +112,7 @@ public final class Column implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -111,7 +120,7 @@ public final class Column implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code type}
 		 */
-		public Builder type(String value) {
+		public final Builder type(String value) {
 			this.type = value;
 			return this;
 		}
@@ -123,6 +132,7 @@ public final class Column implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public Column build() {
+			_checkSingleUse();
 
 			return new Column(this);
 		}
@@ -134,9 +144,9 @@ public final class Column implements JsonpSerializable {
 	 * Json deserializer for {@link Column}
 	 */
 	public static final JsonpDeserializer<Column> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Column::setupColumnDeserializer, Builder::build);
+			Column::setupColumnDeserializer);
 
-	protected static void setupColumnDeserializer(DelegatingDeserializer<Column.Builder> op) {
+	protected static void setupColumnDeserializer(ObjectDeserializer<Column.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");

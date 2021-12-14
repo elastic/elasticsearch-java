@@ -23,50 +23,58 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.DocStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L63-L66">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DocStats implements JsonpSerializable {
+public class DocStats implements JsonpSerializable {
 	private final long count;
 
 	private final long deleted;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DocStats(Builder builder) {
+	private DocStats(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.deleted = Objects.requireNonNull(builder.deleted, "deleted");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
 
 	}
 
-	public DocStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DocStats of(Function<Builder, ObjectBuilder<DocStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code deleted}
 	 */
-	public long deleted() {
+	public final long deleted() {
 		return this.deleted;
 	}
 
@@ -94,7 +102,8 @@ public final class DocStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link DocStats}.
 	 */
-	public static class Builder implements ObjectBuilder<DocStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DocStats> {
 		private Long count;
 
 		private Long deleted;
@@ -102,7 +111,7 @@ public final class DocStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -110,7 +119,7 @@ public final class DocStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code deleted}
 		 */
-		public Builder deleted(long value) {
+		public final Builder deleted(long value) {
 			this.deleted = value;
 			return this;
 		}
@@ -122,6 +131,7 @@ public final class DocStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DocStats build() {
+			_checkSingleUse();
 
 			return new DocStats(this);
 		}
@@ -133,9 +143,9 @@ public final class DocStats implements JsonpSerializable {
 	 * Json deserializer for {@link DocStats}
 	 */
 	public static final JsonpDeserializer<DocStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DocStats::setupDocStatsDeserializer, Builder::build);
+			DocStats::setupDocStatsDeserializer);
 
-	protected static void setupDocStatsDeserializer(DelegatingDeserializer<DocStats.Builder> op) {
+	protected static void setupDocStatsDeserializer(ObjectDeserializer<DocStats.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::deleted, JsonpDeserializer.longDeserializer(), "deleted");

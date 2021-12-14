@@ -23,18 +23,18 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -45,8 +45,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_calendars.Request
+
+/**
+ * Retrieves configuration information for calendars.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_calendars/MlGetCalendarsRequest.ts#L25-L51">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetCalendarsRequest extends RequestBase implements JsonpSerializable {
+public class GetCalendarsRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String calendarId;
 
@@ -54,62 +62,69 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	private final Integer from;
 
 	@Nullable
-	private final Integer size;
+	private final Page page;
 
 	@Nullable
-	private final Page page;
+	private final Integer size;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetCalendarsRequest(Builder builder) {
+	private GetCalendarsRequest(Builder builder) {
 
 		this.calendarId = builder.calendarId;
 		this.from = builder.from;
-		this.size = builder.size;
 		this.page = builder.page;
+		this.size = builder.size;
 
 	}
 
-	public GetCalendarsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetCalendarsRequest of(Function<Builder, ObjectBuilder<GetCalendarsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * A string that uniquely identifies a calendar.
+	 * A string that uniquely identifies a calendar. You can get information for
+	 * multiple calendars by using a comma-separated list of ids or a wildcard
+	 * expression. You can get information for all calendars by using
+	 * <code>_all</code> or <code>*</code> or by omitting the calendar identifier.
 	 * <p>
 	 * API name: {@code calendar_id}
 	 */
 	@Nullable
-	public String calendarId() {
+	public final String calendarId() {
 		return this.calendarId;
 	}
 
 	/**
-	 * Skips the specified number of calendars.
+	 * Skips the specified number of calendars. This parameter is supported only
+	 * when you omit the calendar identifier.
 	 * <p>
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public Integer from() {
+	public final Integer from() {
 		return this.from;
 	}
 
 	/**
-	 * Specifies the maximum number of calendars to obtain.
+	 * This object is supported only when you omit the calendar identifier.
+	 * <p>
+	 * API name: {@code page}
+	 */
+	@Nullable
+	public final Page page() {
+		return this.page;
+	}
+
+	/**
+	 * Specifies the maximum number of calendars to obtain. This parameter is
+	 * supported only when you omit the calendar identifier.
 	 * <p>
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public Integer size() {
+	public final Integer size() {
 		return this.size;
-	}
-
-	/**
-	 * API name: {@code page}
-	 */
-	@Nullable
-	public Page page() {
-		return this.page;
 	}
 
 	/**
@@ -124,7 +139,6 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.page != null) {
-
 			generator.writeKey("page");
 			this.page.serialize(generator, mapper);
 
@@ -137,7 +151,8 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link GetCalendarsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetCalendarsRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetCalendarsRequest> {
 		@Nullable
 		private String calendarId;
 
@@ -145,54 +160,63 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 		private Integer from;
 
 		@Nullable
-		private Integer size;
-
-		@Nullable
 		private Page page;
 
+		@Nullable
+		private Integer size;
+
 		/**
-		 * A string that uniquely identifies a calendar.
+		 * A string that uniquely identifies a calendar. You can get information for
+		 * multiple calendars by using a comma-separated list of ids or a wildcard
+		 * expression. You can get information for all calendars by using
+		 * <code>_all</code> or <code>*</code> or by omitting the calendar identifier.
 		 * <p>
 		 * API name: {@code calendar_id}
 		 */
-		public Builder calendarId(@Nullable String value) {
+		public final Builder calendarId(@Nullable String value) {
 			this.calendarId = value;
 			return this;
 		}
 
 		/**
-		 * Skips the specified number of calendars.
+		 * Skips the specified number of calendars. This parameter is supported only
+		 * when you omit the calendar identifier.
 		 * <p>
 		 * API name: {@code from}
 		 */
-		public Builder from(@Nullable Integer value) {
+		public final Builder from(@Nullable Integer value) {
 			this.from = value;
 			return this;
 		}
 
 		/**
-		 * Specifies the maximum number of calendars to obtain.
+		 * This object is supported only when you omit the calendar identifier.
 		 * <p>
-		 * API name: {@code size}
-		 */
-		public Builder size(@Nullable Integer value) {
-			this.size = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code page}
 		 */
-		public Builder page(@Nullable Page value) {
+		public final Builder page(@Nullable Page value) {
 			this.page = value;
 			return this;
 		}
 
 		/**
+		 * This object is supported only when you omit the calendar identifier.
+		 * <p>
 		 * API name: {@code page}
 		 */
-		public Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
+		public final Builder page(Function<Page.Builder, ObjectBuilder<Page>> fn) {
 			return this.page(fn.apply(new Page.Builder()).build());
+		}
+
+		/**
+		 * Specifies the maximum number of calendars to obtain. This parameter is
+		 * supported only when you omit the calendar identifier.
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public final Builder size(@Nullable Integer value) {
+			this.size = value;
+			return this;
 		}
 
 		/**
@@ -202,6 +226,7 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public GetCalendarsRequest build() {
+			_checkSingleUse();
 
 			return new GetCalendarsRequest(this);
 		}
@@ -213,9 +238,9 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	 * Json deserializer for {@link GetCalendarsRequest}
 	 */
 	public static final JsonpDeserializer<GetCalendarsRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetCalendarsRequest::setupGetCalendarsRequestDeserializer, Builder::build);
+			.lazy(Builder::new, GetCalendarsRequest::setupGetCalendarsRequestDeserializer);
 
-	protected static void setupGetCalendarsRequestDeserializer(DelegatingDeserializer<GetCalendarsRequest.Builder> op) {
+	protected static void setupGetCalendarsRequestDeserializer(ObjectDeserializer<GetCalendarsRequest.Builder> op) {
 
 		op.add(Builder::page, Page._DESERIALIZER, "page");
 
@@ -226,7 +251,9 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code ml.get_calendars}".
 	 */
-	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.get_calendars",
+
 			// Request method
 			request -> {
 				return "POST";
@@ -263,11 +290,11 @@ public final class GetCalendarsRequest extends RequestBase implements JsonpSeria
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.from != null) {
-					params.put("from", String.valueOf(request.from));
-				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
+				}
+				if (request.from != null) {
+					params.put("from", String.valueOf(request.from));
 				}
 				return params;
 

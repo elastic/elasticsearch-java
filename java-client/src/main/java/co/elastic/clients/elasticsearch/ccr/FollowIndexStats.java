@@ -23,55 +23,60 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ccr._types.FollowIndexStats
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/_types/FollowIndexStats.ts#L30-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class FollowIndexStats implements JsonpSerializable {
+public class FollowIndexStats implements JsonpSerializable {
 	private final String index;
 
 	private final List<ShardStats> shards;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FollowIndexStats(Builder builder) {
+	private FollowIndexStats(Builder builder) {
 
-		this.index = Objects.requireNonNull(builder.index, "index");
-		this.shards = ModelTypeHelper.unmodifiableNonNull(builder.shards, "shards");
+		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.shards = ApiTypeHelper.unmodifiableRequired(builder.shards, this, "shards");
 
 	}
 
-	public FollowIndexStats(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FollowIndexStats of(Function<Builder, ObjectBuilder<FollowIndexStats>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index}
 	 */
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
 	/**
 	 * Required - API name: {@code shards}
 	 */
-	public List<ShardStats> shards() {
+	public final List<ShardStats> shards() {
 		return this.shards;
 	}
 
@@ -89,13 +94,16 @@ public final class FollowIndexStats implements JsonpSerializable {
 		generator.writeKey("index");
 		generator.write(this.index);
 
-		generator.writeKey("shards");
-		generator.writeStartArray();
-		for (ShardStats item0 : this.shards) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.shards)) {
+			generator.writeKey("shards");
+			generator.writeStartArray();
+			for (ShardStats item0 : this.shards) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +112,8 @@ public final class FollowIndexStats implements JsonpSerializable {
 	/**
 	 * Builder for {@link FollowIndexStats}.
 	 */
-	public static class Builder implements ObjectBuilder<FollowIndexStats> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowIndexStats> {
 		private String index;
 
 		private List<ShardStats> shards;
@@ -112,50 +121,38 @@ public final class FollowIndexStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code index}
 		 */
-		public Builder index(String value) {
+		public final Builder index(String value) {
 			this.index = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>shards</code>.
 		 */
-		public Builder shards(List<ShardStats> value) {
-			this.shards = value;
+		public final Builder shards(List<ShardStats> list) {
+			this.shards = _listAddAll(this.shards, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds one or more values to <code>shards</code>.
 		 */
-		public Builder shards(ShardStats... value) {
-			this.shards = Arrays.asList(value);
+		public final Builder shards(ShardStats value, ShardStats... values) {
+			this.shards = _listAdd(this.shards, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
+		 * Required - API name: {@code shards}
+		 * <p>
+		 * Adds a value to <code>shards</code> using a builder lambda.
 		 */
-		public Builder addShards(ShardStats value) {
-			if (this.shards == null) {
-				this.shards = new ArrayList<>();
-			}
-			this.shards.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #shards(List)} to a singleton list.
-		 */
-		public Builder shards(Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {
-			return this.shards(fn.apply(new ShardStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #shards(List)}, creating the list if needed.
-		 */
-		public Builder addShards(Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {
-			return this.addShards(fn.apply(new ShardStats.Builder()).build());
+		public final Builder shards(Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {
+			return shards(fn.apply(new ShardStats.Builder()).build());
 		}
 
 		/**
@@ -165,6 +162,7 @@ public final class FollowIndexStats implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public FollowIndexStats build() {
+			_checkSingleUse();
 
 			return new FollowIndexStats(this);
 		}
@@ -176,9 +174,9 @@ public final class FollowIndexStats implements JsonpSerializable {
 	 * Json deserializer for {@link FollowIndexStats}
 	 */
 	public static final JsonpDeserializer<FollowIndexStats> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			FollowIndexStats::setupFollowIndexStatsDeserializer, Builder::build);
+			FollowIndexStats::setupFollowIndexStatsDeserializer);
 
-	protected static void setupFollowIndexStatsDeserializer(DelegatingDeserializer<FollowIndexStats.Builder> op) {
+	protected static void setupFollowIndexStatsDeserializer(ObjectDeserializer<FollowIndexStats.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::shards, JsonpDeserializer.arrayDeserializer(ShardStats._DESERIALIZER), "shards");

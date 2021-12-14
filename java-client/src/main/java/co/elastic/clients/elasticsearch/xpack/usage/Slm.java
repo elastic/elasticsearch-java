@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.xpack.usage;
 
 import co.elastic.clients.elasticsearch.slm.Statistics;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,8 +37,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: xpack.usage.Slm
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L410-L413">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class Slm extends Base {
+public class Slm extends Base {
 	@Nullable
 	private final Integer policyCount;
 
@@ -48,7 +54,7 @@ public final class Slm extends Base {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public Slm(Builder builder) {
+	private Slm(Builder builder) {
 		super(builder);
 
 		this.policyCount = builder.policyCount;
@@ -56,15 +62,15 @@ public final class Slm extends Base {
 
 	}
 
-	public Slm(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static Slm of(Function<Builder, ObjectBuilder<Slm>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code policy_count}
 	 */
 	@Nullable
-	public Integer policyCount() {
+	public final Integer policyCount() {
 		return this.policyCount;
 	}
 
@@ -72,7 +78,7 @@ public final class Slm extends Base {
 	 * API name: {@code policy_stats}
 	 */
 	@Nullable
-	public Statistics policyStats() {
+	public final Statistics policyStats() {
 		return this.policyStats;
 	}
 
@@ -80,13 +86,11 @@ public final class Slm extends Base {
 
 		super.serializeInternal(generator, mapper);
 		if (this.policyCount != null) {
-
 			generator.writeKey("policy_count");
 			generator.write(this.policyCount);
 
 		}
 		if (this.policyStats != null) {
-
 			generator.writeKey("policy_stats");
 			this.policyStats.serialize(generator, mapper);
 
@@ -99,6 +103,7 @@ public final class Slm extends Base {
 	/**
 	 * Builder for {@link Slm}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<Slm> {
 		@Nullable
 		private Integer policyCount;
@@ -109,7 +114,7 @@ public final class Slm extends Base {
 		/**
 		 * API name: {@code policy_count}
 		 */
-		public Builder policyCount(@Nullable Integer value) {
+		public final Builder policyCount(@Nullable Integer value) {
 			this.policyCount = value;
 			return this;
 		}
@@ -117,7 +122,7 @@ public final class Slm extends Base {
 		/**
 		 * API name: {@code policy_stats}
 		 */
-		public Builder policyStats(@Nullable Statistics value) {
+		public final Builder policyStats(@Nullable Statistics value) {
 			this.policyStats = value;
 			return this;
 		}
@@ -125,7 +130,7 @@ public final class Slm extends Base {
 		/**
 		 * API name: {@code policy_stats}
 		 */
-		public Builder policyStats(Function<Statistics.Builder, ObjectBuilder<Statistics>> fn) {
+		public final Builder policyStats(Function<Statistics.Builder, ObjectBuilder<Statistics>> fn) {
 			return this.policyStats(fn.apply(new Statistics.Builder()).build());
 		}
 
@@ -141,6 +146,7 @@ public final class Slm extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public Slm build() {
+			_checkSingleUse();
 
 			return new Slm(this);
 		}
@@ -152,9 +158,9 @@ public final class Slm extends Base {
 	 * Json deserializer for {@link Slm}
 	 */
 	public static final JsonpDeserializer<Slm> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Slm::setupSlmDeserializer, Builder::build);
+			Slm::setupSlmDeserializer);
 
-	protected static void setupSlmDeserializer(DelegatingDeserializer<Slm.Builder> op) {
+	protected static void setupSlmDeserializer(ObjectDeserializer<Slm.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::policyCount, JsonpDeserializer.integerDeserializer(), "policy_count");
 		op.add(Builder::policyStats, Statistics._DESERIALIZER, "policy_stats");

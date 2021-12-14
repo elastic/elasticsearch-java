@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.ReverseTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L302-L304">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ReverseTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ReverseTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public ReverseTokenFilter(Builder builder) {
+	private ReverseTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public ReverseTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ReverseTokenFilter of(Function<Builder, ObjectBuilder<ReverseTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "reverse";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Reverse;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class ReverseTokenFilter extends TokenFilterBase implements TokenFi
 	/**
 	 * Builder for {@link ReverseTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ReverseTokenFilter> {
@@ -83,6 +90,7 @@ public final class ReverseTokenFilter extends TokenFilterBase implements TokenFi
 		 *             if some of the required fields are null.
 		 */
 		public ReverseTokenFilter build() {
+			_checkSingleUse();
 
 			return new ReverseTokenFilter(this);
 		}
@@ -94,9 +102,9 @@ public final class ReverseTokenFilter extends TokenFilterBase implements TokenFi
 	 * Json deserializer for {@link ReverseTokenFilter}
 	 */
 	public static final JsonpDeserializer<ReverseTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ReverseTokenFilter::setupReverseTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, ReverseTokenFilter::setupReverseTokenFilterDeserializer);
 
-	protected static void setupReverseTokenFilterDeserializer(DelegatingDeserializer<ReverseTokenFilter.Builder> op) {
+	protected static void setupReverseTokenFilterDeserializer(ObjectDeserializer<ReverseTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

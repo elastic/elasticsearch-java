@@ -23,17 +23,18 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -44,26 +45,34 @@ import javax.annotation.Nullable;
 
 // typedef: security.delete_privileges.Request
 
-public final class DeletePrivilegesRequest extends RequestBase {
+/**
+ * Removes application privileges.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_privileges/SecurityDeletePrivilegesRequest.ts#L23-L36">API
+ *      specification</a>
+ */
+
+public class DeletePrivilegesRequest extends RequestBase {
 	private final String application;
 
 	private final String name;
 
 	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
+	private final Refresh refresh;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeletePrivilegesRequest(Builder builder) {
+	private DeletePrivilegesRequest(Builder builder) {
 
-		this.application = Objects.requireNonNull(builder.application, "application");
-		this.name = Objects.requireNonNull(builder.name, "name");
+		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
+		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.refresh = builder.refresh;
 
 	}
 
-	public DeletePrivilegesRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeletePrivilegesRequest of(Function<Builder, ObjectBuilder<DeletePrivilegesRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -71,7 +80,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code application}
 	 */
-	public String application() {
+	public final String application() {
 		return this.application;
 	}
 
@@ -80,7 +89,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public String name() {
+	public final String name() {
 		return this.name;
 	}
 
@@ -93,7 +102,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
 	}
 
@@ -102,20 +111,21 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeletePrivilegesRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeletePrivilegesRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePrivilegesRequest> {
 		private String application;
 
 		private String name;
 
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Refresh refresh;
 
 		/**
 		 * Required - Application name
 		 * <p>
 		 * API name: {@code application}
 		 */
-		public Builder application(String value) {
+		public final Builder application(String value) {
 			this.application = value;
 			return this;
 		}
@@ -125,7 +135,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public Builder name(String value) {
+		public final Builder name(String value) {
 			this.name = value;
 			return this;
 		}
@@ -138,7 +148,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
 			return this;
 		}
@@ -150,6 +160,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeletePrivilegesRequest build() {
+			_checkSingleUse();
 
 			return new DeletePrivilegesRequest(this);
 		}
@@ -160,7 +171,9 @@ public final class DeletePrivilegesRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code security.delete_privileges}".
 	 */
-	public static final Endpoint<DeletePrivilegesRequest, DeletePrivilegesResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeletePrivilegesRequest, DeletePrivilegesResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.delete_privileges",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -195,7 +208,7 @@ public final class DeletePrivilegesRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

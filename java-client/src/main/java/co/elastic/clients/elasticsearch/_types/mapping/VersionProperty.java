@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.VersionProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L274-L276">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class VersionProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class VersionProperty extends DocValuesPropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public VersionProperty(Builder builder) {
+	private VersionProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public VersionProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static VersionProperty of(Function<Builder, ObjectBuilder<VersionProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "version";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.Version;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class VersionProperty extends DocValuesPropertyBase implements Prop
 	/**
 	 * Builder for {@link VersionProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<VersionProperty> {
@@ -83,6 +90,7 @@ public final class VersionProperty extends DocValuesPropertyBase implements Prop
 		 *             if some of the required fields are null.
 		 */
 		public VersionProperty build() {
+			_checkSingleUse();
 
 			return new VersionProperty(this);
 		}
@@ -94,9 +102,9 @@ public final class VersionProperty extends DocValuesPropertyBase implements Prop
 	 * Json deserializer for {@link VersionProperty}
 	 */
 	public static final JsonpDeserializer<VersionProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			VersionProperty::setupVersionPropertyDeserializer, Builder::build);
+			VersionProperty::setupVersionPropertyDeserializer);
 
-	protected static void setupVersionPropertyDeserializer(DelegatingDeserializer<VersionProperty.Builder> op) {
+	protected static void setupVersionPropertyDeserializer(ObjectDeserializer<VersionProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 
 		op.ignore("type");

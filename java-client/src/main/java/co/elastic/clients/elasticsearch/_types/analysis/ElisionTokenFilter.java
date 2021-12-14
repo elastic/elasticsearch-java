@@ -23,64 +23,68 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.ElisionTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L186-L190">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ElisionTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> articles;
 
 	private final boolean articlesCase;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ElisionTokenFilter(Builder builder) {
+	private ElisionTokenFilter(Builder builder) {
 		super(builder);
 
-		this.articles = ModelTypeHelper.unmodifiableNonNull(builder.articles, "articles");
-		this.articlesCase = Objects.requireNonNull(builder.articlesCase, "articles_case");
+		this.articles = ApiTypeHelper.unmodifiableRequired(builder.articles, this, "articles");
+		this.articlesCase = ApiTypeHelper.requireNonNull(builder.articlesCase, this, "articlesCase");
 
 	}
 
-	public ElisionTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ElisionTokenFilter of(Function<Builder, ObjectBuilder<ElisionTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "elision";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Elision;
 	}
 
 	/**
 	 * Required - API name: {@code articles}
 	 */
-	public List<String> articles() {
+	public final List<String> articles() {
 		return this.articles;
 	}
 
 	/**
 	 * Required - API name: {@code articles_case}
 	 */
-	public boolean articlesCase() {
+	public final boolean articlesCase() {
 		return this.articlesCase;
 	}
 
@@ -88,15 +92,16 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 
 		generator.write("type", "elision");
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.articles)) {
+			generator.writeKey("articles");
+			generator.writeStartArray();
+			for (String item0 : this.articles) {
+				generator.write(item0);
 
-		generator.writeKey("articles");
-		generator.writeStartArray();
-		for (String item0 : this.articles) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("articles_case");
 		generator.write(this.articlesCase);
 
@@ -107,6 +112,7 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 	/**
 	 * Builder for {@link ElisionTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ElisionTokenFilter> {
@@ -116,35 +122,28 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 
 		/**
 		 * Required - API name: {@code articles}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>articles</code>.
 		 */
-		public Builder articles(List<String> value) {
-			this.articles = value;
+		public final Builder articles(List<String> list) {
+			this.articles = _listAddAll(this.articles, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code articles}
+		 * <p>
+		 * Adds one or more values to <code>articles</code>.
 		 */
-		public Builder articles(String... value) {
-			this.articles = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #articles(List)}, creating the list if needed.
-		 */
-		public Builder addArticles(String value) {
-			if (this.articles == null) {
-				this.articles = new ArrayList<>();
-			}
-			this.articles.add(value);
+		public final Builder articles(String value, String... values) {
+			this.articles = _listAdd(this.articles, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code articles_case}
 		 */
-		public Builder articlesCase(boolean value) {
+		public final Builder articlesCase(boolean value) {
 			this.articlesCase = value;
 			return this;
 		}
@@ -161,6 +160,7 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 		 *             if some of the required fields are null.
 		 */
 		public ElisionTokenFilter build() {
+			_checkSingleUse();
 
 			return new ElisionTokenFilter(this);
 		}
@@ -172,9 +172,9 @@ public final class ElisionTokenFilter extends TokenFilterBase implements TokenFi
 	 * Json deserializer for {@link ElisionTokenFilter}
 	 */
 	public static final JsonpDeserializer<ElisionTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ElisionTokenFilter::setupElisionTokenFilterDeserializer, Builder::build);
+			.lazy(Builder::new, ElisionTokenFilter::setupElisionTokenFilterDeserializer);
 
-	protected static void setupElisionTokenFilterDeserializer(DelegatingDeserializer<ElisionTokenFilter.Builder> op) {
+	protected static void setupElisionTokenFilterDeserializer(ObjectDeserializer<ElisionTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::articles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"articles");

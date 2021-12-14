@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,8 +37,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.MovingPercentilesAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L183-L187">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class MovingPercentilesAggregation extends PipelineAggregationBase implements AggregationVariant {
+public class MovingPercentilesAggregation extends PipelineAggregationBase implements AggregationVariant {
 	@Nullable
 	private final Integer window;
 
@@ -51,7 +57,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 
 	// ---------------------------------------------------------------------------------------------
 
-	public MovingPercentilesAggregation(Builder builder) {
+	private MovingPercentilesAggregation(Builder builder) {
 		super(builder);
 
 		this.window = builder.window;
@@ -60,23 +66,23 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 
 	}
 
-	public MovingPercentilesAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static MovingPercentilesAggregation of(Function<Builder, ObjectBuilder<MovingPercentilesAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "moving_percentiles";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.MovingPercentiles;
 	}
 
 	/**
 	 * API name: {@code window}
 	 */
 	@Nullable
-	public Integer window() {
+	public final Integer window() {
 		return this.window;
 	}
 
@@ -84,7 +90,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	 * API name: {@code shift}
 	 */
 	@Nullable
-	public Integer shift() {
+	public final Integer shift() {
 		return this.shift;
 	}
 
@@ -92,7 +98,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	 * API name: {@code keyed}
 	 */
 	@Nullable
-	public Boolean keyed() {
+	public final Boolean keyed() {
 		return this.keyed;
 	}
 
@@ -100,19 +106,16 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 
 		super.serializeInternal(generator, mapper);
 		if (this.window != null) {
-
 			generator.writeKey("window");
 			generator.write(this.window);
 
 		}
 		if (this.shift != null) {
-
 			generator.writeKey("shift");
 			generator.write(this.shift);
 
 		}
 		if (this.keyed != null) {
-
 			generator.writeKey("keyed");
 			generator.write(this.keyed);
 
@@ -125,6 +128,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	/**
 	 * Builder for {@link MovingPercentilesAggregation}.
 	 */
+
 	public static class Builder extends PipelineAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MovingPercentilesAggregation> {
@@ -140,7 +144,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		/**
 		 * API name: {@code window}
 		 */
-		public Builder window(@Nullable Integer value) {
+		public final Builder window(@Nullable Integer value) {
 			this.window = value;
 			return this;
 		}
@@ -148,7 +152,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		/**
 		 * API name: {@code shift}
 		 */
-		public Builder shift(@Nullable Integer value) {
+		public final Builder shift(@Nullable Integer value) {
 			this.shift = value;
 			return this;
 		}
@@ -156,7 +160,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		/**
 		 * API name: {@code keyed}
 		 */
-		public Builder keyed(@Nullable Boolean value) {
+		public final Builder keyed(@Nullable Boolean value) {
 			this.keyed = value;
 			return this;
 		}
@@ -173,6 +177,7 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 		 *             if some of the required fields are null.
 		 */
 		public MovingPercentilesAggregation build() {
+			_checkSingleUse();
 
 			return new MovingPercentilesAggregation(this);
 		}
@@ -183,11 +188,11 @@ public final class MovingPercentilesAggregation extends PipelineAggregationBase 
 	/**
 	 * Json deserializer for {@link MovingPercentilesAggregation}
 	 */
-	public static final JsonpDeserializer<MovingPercentilesAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, MovingPercentilesAggregation::setupMovingPercentilesAggregationDeserializer, Builder::build);
+	public static final JsonpDeserializer<MovingPercentilesAggregation> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, MovingPercentilesAggregation::setupMovingPercentilesAggregationDeserializer);
 
 	protected static void setupMovingPercentilesAggregationDeserializer(
-			DelegatingDeserializer<MovingPercentilesAggregation.Builder> op) {
+			ObjectDeserializer<MovingPercentilesAggregation.Builder> op) {
 		PipelineAggregationBase.setupPipelineAggregationBaseDeserializer(op);
 		op.add(Builder::window, JsonpDeserializer.integerDeserializer(), "window");
 		op.add(Builder::shift, JsonpDeserializer.integerDeserializer(), "shift");

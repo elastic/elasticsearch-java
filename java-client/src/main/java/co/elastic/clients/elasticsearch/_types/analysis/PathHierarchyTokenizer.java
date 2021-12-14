@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -39,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.PathHierarchyTokenizer
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L88-L95">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PathHierarchyTokenizer extends TokenizerBase implements TokenizerVariant {
+public class PathHierarchyTokenizer extends TokenizerBase implements TokenizerDefinitionVariant {
 	private final int bufferSize;
 
 	private final String delimiter;
@@ -53,61 +60,61 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 
 	// ---------------------------------------------------------------------------------------------
 
-	public PathHierarchyTokenizer(Builder builder) {
+	private PathHierarchyTokenizer(Builder builder) {
 		super(builder);
 
-		this.bufferSize = Objects.requireNonNull(builder.bufferSize, "buffer_size");
-		this.delimiter = Objects.requireNonNull(builder.delimiter, "delimiter");
-		this.replacement = Objects.requireNonNull(builder.replacement, "replacement");
-		this.reverse = Objects.requireNonNull(builder.reverse, "reverse");
-		this.skip = Objects.requireNonNull(builder.skip, "skip");
+		this.bufferSize = ApiTypeHelper.requireNonNull(builder.bufferSize, this, "bufferSize");
+		this.delimiter = ApiTypeHelper.requireNonNull(builder.delimiter, this, "delimiter");
+		this.replacement = ApiTypeHelper.requireNonNull(builder.replacement, this, "replacement");
+		this.reverse = ApiTypeHelper.requireNonNull(builder.reverse, this, "reverse");
+		this.skip = ApiTypeHelper.requireNonNull(builder.skip, this, "skip");
 
 	}
 
-	public PathHierarchyTokenizer(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PathHierarchyTokenizer of(Function<Builder, ObjectBuilder<PathHierarchyTokenizer>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Tokenizer} variant type
+	 * TokenizerDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "path_hierarchy";
+	public TokenizerDefinition.Kind _tokenizerDefinitionKind() {
+		return TokenizerDefinition.Kind.PathHierarchy;
 	}
 
 	/**
 	 * Required - API name: {@code buffer_size}
 	 */
-	public int bufferSize() {
+	public final int bufferSize() {
 		return this.bufferSize;
 	}
 
 	/**
 	 * Required - API name: {@code delimiter}
 	 */
-	public String delimiter() {
+	public final String delimiter() {
 		return this.delimiter;
 	}
 
 	/**
 	 * Required - API name: {@code replacement}
 	 */
-	public String replacement() {
+	public final String replacement() {
 		return this.replacement;
 	}
 
 	/**
 	 * Required - API name: {@code reverse}
 	 */
-	public boolean reverse() {
+	public final boolean reverse() {
 		return this.reverse;
 	}
 
 	/**
 	 * Required - API name: {@code skip}
 	 */
-	public int skip() {
+	public final int skip() {
 		return this.skip;
 	}
 
@@ -115,7 +122,6 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 
 		generator.write("type", "path_hierarchy");
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("buffer_size");
 		generator.write(this.bufferSize);
 
@@ -138,6 +144,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 	/**
 	 * Builder for {@link PathHierarchyTokenizer}.
 	 */
+
 	public static class Builder extends TokenizerBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PathHierarchyTokenizer> {
@@ -154,7 +161,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * Required - API name: {@code buffer_size}
 		 */
-		public Builder bufferSize(int value) {
+		public final Builder bufferSize(int value) {
 			this.bufferSize = value;
 			return this;
 		}
@@ -162,7 +169,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * Required - API name: {@code delimiter}
 		 */
-		public Builder delimiter(String value) {
+		public final Builder delimiter(String value) {
 			this.delimiter = value;
 			return this;
 		}
@@ -170,7 +177,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * Required - API name: {@code replacement}
 		 */
-		public Builder replacement(String value) {
+		public final Builder replacement(String value) {
 			this.replacement = value;
 			return this;
 		}
@@ -178,7 +185,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * Required - API name: {@code reverse}
 		 */
-		public Builder reverse(boolean value) {
+		public final Builder reverse(boolean value) {
 			this.reverse = value;
 			return this;
 		}
@@ -186,7 +193,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		/**
 		 * Required - API name: {@code skip}
 		 */
-		public Builder skip(int value) {
+		public final Builder skip(int value) {
 			this.skip = value;
 			return this;
 		}
@@ -203,6 +210,7 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 		 *             if some of the required fields are null.
 		 */
 		public PathHierarchyTokenizer build() {
+			_checkSingleUse();
 
 			return new PathHierarchyTokenizer(this);
 		}
@@ -214,10 +222,10 @@ public final class PathHierarchyTokenizer extends TokenizerBase implements Token
 	 * Json deserializer for {@link PathHierarchyTokenizer}
 	 */
 	public static final JsonpDeserializer<PathHierarchyTokenizer> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PathHierarchyTokenizer::setupPathHierarchyTokenizerDeserializer, Builder::build);
+			.lazy(Builder::new, PathHierarchyTokenizer::setupPathHierarchyTokenizerDeserializer);
 
 	protected static void setupPathHierarchyTokenizerDeserializer(
-			DelegatingDeserializer<PathHierarchyTokenizer.Builder> op) {
+			ObjectDeserializer<PathHierarchyTokenizer.Builder> op) {
 		TokenizerBase.setupTokenizerBaseDeserializer(op);
 		op.add(Builder::bufferSize, JsonpDeserializer.integerDeserializer(), "buffer_size");
 		op.add(Builder::delimiter, JsonpDeserializer.stringDeserializer(), "delimiter");

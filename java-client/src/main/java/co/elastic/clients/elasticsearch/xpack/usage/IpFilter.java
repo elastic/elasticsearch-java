@@ -23,50 +23,58 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.IpFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L153-L156">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IpFilter implements JsonpSerializable {
+public class IpFilter implements JsonpSerializable {
 	private final boolean http;
 
 	private final boolean transport;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IpFilter(Builder builder) {
+	private IpFilter(Builder builder) {
 
-		this.http = Objects.requireNonNull(builder.http, "http");
-		this.transport = Objects.requireNonNull(builder.transport, "transport");
+		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
+		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
 
 	}
 
-	public IpFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IpFilter of(Function<Builder, ObjectBuilder<IpFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code http}
 	 */
-	public boolean http() {
+	public final boolean http() {
 		return this.http;
 	}
 
 	/**
 	 * Required - API name: {@code transport}
 	 */
-	public boolean transport() {
+	public final boolean transport() {
 		return this.transport;
 	}
 
@@ -94,7 +102,8 @@ public final class IpFilter implements JsonpSerializable {
 	/**
 	 * Builder for {@link IpFilter}.
 	 */
-	public static class Builder implements ObjectBuilder<IpFilter> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IpFilter> {
 		private Boolean http;
 
 		private Boolean transport;
@@ -102,7 +111,7 @@ public final class IpFilter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code http}
 		 */
-		public Builder http(boolean value) {
+		public final Builder http(boolean value) {
 			this.http = value;
 			return this;
 		}
@@ -110,7 +119,7 @@ public final class IpFilter implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code transport}
 		 */
-		public Builder transport(boolean value) {
+		public final Builder transport(boolean value) {
 			this.transport = value;
 			return this;
 		}
@@ -122,6 +131,7 @@ public final class IpFilter implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IpFilter build() {
+			_checkSingleUse();
 
 			return new IpFilter(this);
 		}
@@ -133,9 +143,9 @@ public final class IpFilter implements JsonpSerializable {
 	 * Json deserializer for {@link IpFilter}
 	 */
 	public static final JsonpDeserializer<IpFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IpFilter::setupIpFilterDeserializer, Builder::build);
+			IpFilter::setupIpFilterDeserializer);
 
-	protected static void setupIpFilterDeserializer(DelegatingDeserializer<IpFilter.Builder> op) {
+	protected static void setupIpFilterDeserializer(ObjectDeserializer<IpFilter.Builder> op) {
 
 		op.add(Builder::http, JsonpDeserializer.booleanDeserializer(), "http");
 		op.add(Builder::transport, JsonpDeserializer.booleanDeserializer(), "transport");

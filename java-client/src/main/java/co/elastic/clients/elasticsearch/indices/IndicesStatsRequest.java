@@ -23,23 +23,22 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
-import co.elastic.clients.elasticsearch._types.ExpandWildcardOptions;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.Level;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -50,29 +49,26 @@ import javax.annotation.Nullable;
 
 // typedef: indices.stats.Request
 
-public final class IndicesStatsRequest extends RequestBase {
-	@Nullable
-	private final List<String> metric;
+/**
+ * Provides statistics on operations happening in an index.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/IndicesStatsRequest.ts#L30-L52">API
+ *      specification</a>
+ */
 
-	@Nullable
-	private final List<String> index;
-
-	@Nullable
+public class IndicesStatsRequest extends RequestBase {
 	private final List<String> completionFields;
 
-	@Nullable
-	private final List<ExpandWildcardOptions> expandWildcards;
+	private final List<ExpandWildcard> expandWildcards;
 
-	@Nullable
 	private final List<String> fielddataFields;
 
-	@Nullable
 	private final List<String> fields;
 
 	@Nullable
 	private final Boolean forbidClosedIndices;
 
-	@Nullable
 	private final List<String> groups;
 
 	@Nullable
@@ -81,54 +77,36 @@ public final class IndicesStatsRequest extends RequestBase {
 	@Nullable
 	private final Boolean includeUnloadedSegments;
 
+	private final List<String> index;
+
 	@Nullable
 	private final Level level;
 
-	@Nullable
+	private final List<String> metric;
+
 	private final List<String> types;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndicesStatsRequest(Builder builder) {
+	private IndicesStatsRequest(Builder builder) {
 
-		this.metric = ModelTypeHelper.unmodifiable(builder.metric);
-		this.index = ModelTypeHelper.unmodifiable(builder.index);
-		this.completionFields = ModelTypeHelper.unmodifiable(builder.completionFields);
-		this.expandWildcards = ModelTypeHelper.unmodifiable(builder.expandWildcards);
-		this.fielddataFields = ModelTypeHelper.unmodifiable(builder.fielddataFields);
-		this.fields = ModelTypeHelper.unmodifiable(builder.fields);
+		this.completionFields = ApiTypeHelper.unmodifiable(builder.completionFields);
+		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.fielddataFields = ApiTypeHelper.unmodifiable(builder.fielddataFields);
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.forbidClosedIndices = builder.forbidClosedIndices;
-		this.groups = ModelTypeHelper.unmodifiable(builder.groups);
+		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
 		this.includeSegmentFileSizes = builder.includeSegmentFileSizes;
 		this.includeUnloadedSegments = builder.includeUnloadedSegments;
+		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.level = builder.level;
-		this.types = ModelTypeHelper.unmodifiable(builder.types);
+		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
+		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
 	}
 
-	public IndicesStatsRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Limit the information returned the specific metrics.
-	 * <p>
-	 * API name: {@code metric}
-	 */
-	@Nullable
-	public List<String> metric() {
-		return this.metric;
-	}
-
-	/**
-	 * A comma-separated list of index names; use <code>_all</code> or empty string
-	 * to perform the operation on all indices
-	 * <p>
-	 * API name: {@code index}
-	 */
-	@Nullable
-	public List<String> index() {
-		return this.index;
+	public static IndicesStatsRequest of(Function<Builder, ObjectBuilder<IndicesStatsRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -137,8 +115,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code completion_fields}
 	 */
-	@Nullable
-	public List<String> completionFields() {
+	public final List<String> completionFields() {
 		return this.completionFields;
 	}
 
@@ -148,8 +125,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
-	@Nullable
-	public List<ExpandWildcardOptions> expandWildcards() {
+	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
 	}
 
@@ -159,8 +135,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code fielddata_fields}
 	 */
-	@Nullable
-	public List<String> fielddataFields() {
+	public final List<String> fielddataFields() {
 		return this.fielddataFields;
 	}
 
@@ -170,8 +145,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public List<String> fields() {
+	public final List<String> fields() {
 		return this.fields;
 	}
 
@@ -182,7 +156,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * API name: {@code forbid_closed_indices}
 	 */
 	@Nullable
-	public Boolean forbidClosedIndices() {
+	public final Boolean forbidClosedIndices() {
 		return this.forbidClosedIndices;
 	}
 
@@ -191,8 +165,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code groups}
 	 */
-	@Nullable
-	public List<String> groups() {
+	public final List<String> groups() {
 		return this.groups;
 	}
 
@@ -203,7 +176,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * API name: {@code include_segment_file_sizes}
 	 */
 	@Nullable
-	public Boolean includeSegmentFileSizes() {
+	public final Boolean includeSegmentFileSizes() {
 		return this.includeSegmentFileSizes;
 	}
 
@@ -214,8 +187,18 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * API name: {@code include_unloaded_segments}
 	 */
 	@Nullable
-	public Boolean includeUnloadedSegments() {
+	public final Boolean includeUnloadedSegments() {
 		return this.includeUnloadedSegments;
+	}
+
+	/**
+	 * A comma-separated list of index names; use <code>_all</code> or empty string
+	 * to perform the operation on all indices
+	 * <p>
+	 * API name: {@code index}
+	 */
+	public final List<String> index() {
+		return this.index;
 	}
 
 	/**
@@ -224,8 +207,17 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * API name: {@code level}
 	 */
 	@Nullable
-	public Level level() {
+	public final Level level() {
 		return this.level;
+	}
+
+	/**
+	 * Limit the information returned the specific metrics.
+	 * <p>
+	 * API name: {@code metric}
+	 */
+	public final List<String> metric() {
+		return this.metric;
 	}
 
 	/**
@@ -234,8 +226,7 @@ public final class IndicesStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code types}
 	 */
-	@Nullable
-	public List<String> types() {
+	public final List<String> types() {
 		return this.types;
 	}
 
@@ -244,18 +235,13 @@ public final class IndicesStatsRequest extends RequestBase {
 	/**
 	 * Builder for {@link IndicesStatsRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<IndicesStatsRequest> {
-		@Nullable
-		private List<String> metric;
 
-		@Nullable
-		private List<String> index;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStatsRequest> {
 		@Nullable
 		private List<String> completionFields;
 
 		@Nullable
-		private List<ExpandWildcardOptions> expandWildcards;
+		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
 		private List<String> fielddataFields;
@@ -276,72 +262,27 @@ public final class IndicesStatsRequest extends RequestBase {
 		private Boolean includeUnloadedSegments;
 
 		@Nullable
+		private List<String> index;
+
+		@Nullable
 		private Level level;
+
+		@Nullable
+		private List<String> metric;
 
 		@Nullable
 		private List<String> types;
 
 		/**
-		 * Limit the information returned the specific metrics.
+		 * A comma-separated list of fields for the <code>completion</code> index metric
+		 * (supports wildcards)
 		 * <p>
-		 * API name: {@code metric}
-		 */
-		public Builder metric(@Nullable List<String> value) {
-			this.metric = value;
-			return this;
-		}
-
-		/**
-		 * Limit the information returned the specific metrics.
+		 * API name: {@code completion_fields}
 		 * <p>
-		 * API name: {@code metric}
+		 * Adds all elements of <code>list</code> to <code>completionFields</code>.
 		 */
-		public Builder metric(String... value) {
-			this.metric = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #metric(List)}, creating the list if needed.
-		 */
-		public Builder addMetric(String value) {
-			if (this.metric == null) {
-				this.metric = new ArrayList<>();
-			}
-			this.metric.add(value);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(@Nullable List<String> value) {
-			this.index = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of index names; use <code>_all</code> or empty string
-		 * to perform the operation on all indices
-		 * <p>
-		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
+		public final Builder completionFields(List<String> list) {
+			this.completionFields = _listAddAll(this.completionFields, list);
 			return this;
 		}
 
@@ -350,31 +291,11 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * (supports wildcards)
 		 * <p>
 		 * API name: {@code completion_fields}
-		 */
-		public Builder completionFields(@Nullable List<String> value) {
-			this.completionFields = value;
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of fields for the <code>completion</code> index metric
-		 * (supports wildcards)
 		 * <p>
-		 * API name: {@code completion_fields}
+		 * Adds one or more values to <code>completionFields</code>.
 		 */
-		public Builder completionFields(String... value) {
-			this.completionFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #completionFields(List)}, creating the list if needed.
-		 */
-		public Builder addCompletionFields(String value) {
-			if (this.completionFields == null) {
-				this.completionFields = new ArrayList<>();
-			}
-			this.completionFields.add(value);
+		public final Builder completionFields(String value, String... values) {
+			this.completionFields = _listAdd(this.completionFields, value, values);
 			return this;
 		}
 
@@ -383,9 +304,11 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(@Nullable List<ExpandWildcardOptions> value) {
-			this.expandWildcards = value;
+		public final Builder expandWildcards(List<ExpandWildcard> list) {
+			this.expandWildcards = _listAddAll(this.expandWildcards, list);
 			return this;
 		}
 
@@ -394,20 +317,11 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * closed or both.
 		 * <p>
 		 * API name: {@code expand_wildcards}
+		 * <p>
+		 * Adds one or more values to <code>expandWildcards</code>.
 		 */
-		public Builder expandWildcards(ExpandWildcardOptions... value) {
-			this.expandWildcards = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #expandWildcards(List)}, creating the list if needed.
-		 */
-		public Builder addExpandWildcards(ExpandWildcardOptions value) {
-			if (this.expandWildcards == null) {
-				this.expandWildcards = new ArrayList<>();
-			}
-			this.expandWildcards.add(value);
+		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
+			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
 			return this;
 		}
 
@@ -416,9 +330,11 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * (supports wildcards)
 		 * <p>
 		 * API name: {@code fielddata_fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fielddataFields</code>.
 		 */
-		public Builder fielddataFields(@Nullable List<String> value) {
-			this.fielddataFields = value;
+		public final Builder fielddataFields(List<String> list) {
+			this.fielddataFields = _listAddAll(this.fielddataFields, list);
 			return this;
 		}
 
@@ -427,20 +343,11 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * (supports wildcards)
 		 * <p>
 		 * API name: {@code fielddata_fields}
+		 * <p>
+		 * Adds one or more values to <code>fielddataFields</code>.
 		 */
-		public Builder fielddataFields(String... value) {
-			this.fielddataFields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fielddataFields(List)}, creating the list if needed.
-		 */
-		public Builder addFielddataFields(String value) {
-			if (this.fielddataFields == null) {
-				this.fielddataFields = new ArrayList<>();
-			}
-			this.fielddataFields.add(value);
+		public final Builder fielddataFields(String value, String... values) {
+			this.fielddataFields = _listAdd(this.fielddataFields, value, values);
 			return this;
 		}
 
@@ -449,9 +356,11 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <code>completion</code> index metric (supports wildcards)
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public Builder fields(@Nullable List<String> value) {
-			this.fields = value;
+		public final Builder fields(List<String> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -460,20 +369,11 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <code>completion</code> index metric (supports wildcards)
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
 		 */
-		public Builder fields(String... value) {
-			this.fields = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #fields(List)}, creating the list if needed.
-		 */
-		public Builder addFields(String value) {
-			if (this.fields == null) {
-				this.fields = new ArrayList<>();
-			}
-			this.fields.add(value);
+		public final Builder fields(String value, String... values) {
+			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
@@ -483,7 +383,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code forbid_closed_indices}
 		 */
-		public Builder forbidClosedIndices(@Nullable Boolean value) {
+		public final Builder forbidClosedIndices(@Nullable Boolean value) {
 			this.forbidClosedIndices = value;
 			return this;
 		}
@@ -492,9 +392,11 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * A comma-separated list of search groups for <code>search</code> index metric
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>groups</code>.
 		 */
-		public Builder groups(@Nullable List<String> value) {
-			this.groups = value;
+		public final Builder groups(List<String> list) {
+			this.groups = _listAddAll(this.groups, list);
 			return this;
 		}
 
@@ -502,20 +404,11 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * A comma-separated list of search groups for <code>search</code> index metric
 		 * <p>
 		 * API name: {@code groups}
+		 * <p>
+		 * Adds one or more values to <code>groups</code>.
 		 */
-		public Builder groups(String... value) {
-			this.groups = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #groups(List)}, creating the list if needed.
-		 */
-		public Builder addGroups(String value) {
-			if (this.groups == null) {
-				this.groups = new ArrayList<>();
-			}
-			this.groups.add(value);
+		public final Builder groups(String value, String... values) {
+			this.groups = _listAdd(this.groups, value, values);
 			return this;
 		}
 
@@ -525,7 +418,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_segment_file_sizes}
 		 */
-		public Builder includeSegmentFileSizes(@Nullable Boolean value) {
+		public final Builder includeSegmentFileSizes(@Nullable Boolean value) {
 			this.includeSegmentFileSizes = value;
 			return this;
 		}
@@ -536,8 +429,34 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_unloaded_segments}
 		 */
-		public Builder includeUnloadedSegments(@Nullable Boolean value) {
+		public final Builder includeUnloadedSegments(@Nullable Boolean value) {
 			this.includeUnloadedSegments = value;
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
+		 */
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * A comma-separated list of index names; use <code>_all</code> or empty string
+		 * to perform the operation on all indices
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -546,19 +465,32 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code level}
 		 */
-		public Builder level(@Nullable Level value) {
+		public final Builder level(@Nullable Level value) {
 			this.level = value;
 			return this;
 		}
 
 		/**
-		 * A comma-separated list of document types for the <code>indexing</code> index
-		 * metric
+		 * Limit the information returned the specific metrics.
 		 * <p>
-		 * API name: {@code types}
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>metric</code>.
 		 */
-		public Builder types(@Nullable List<String> value) {
-			this.types = value;
+		public final Builder metric(List<String> list) {
+			this.metric = _listAddAll(this.metric, list);
+			return this;
+		}
+
+		/**
+		 * Limit the information returned the specific metrics.
+		 * <p>
+		 * API name: {@code metric}
+		 * <p>
+		 * Adds one or more values to <code>metric</code>.
+		 */
+		public final Builder metric(String value, String... values) {
+			this.metric = _listAdd(this.metric, value, values);
 			return this;
 		}
 
@@ -567,20 +499,24 @@ public final class IndicesStatsRequest extends RequestBase {
 		 * metric
 		 * <p>
 		 * API name: {@code types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>types</code>.
 		 */
-		public Builder types(String... value) {
-			this.types = Arrays.asList(value);
+		public final Builder types(List<String> list) {
+			this.types = _listAddAll(this.types, list);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #types(List)}, creating the list if needed.
+		 * A comma-separated list of document types for the <code>indexing</code> index
+		 * metric
+		 * <p>
+		 * API name: {@code types}
+		 * <p>
+		 * Adds one or more values to <code>types</code>.
 		 */
-		public Builder addTypes(String value) {
-			if (this.types == null) {
-				this.types = new ArrayList<>();
-			}
-			this.types.add(value);
+		public final Builder types(String value, String... values) {
+			this.types = _listAdd(this.types, value, values);
 			return this;
 		}
 
@@ -591,6 +527,7 @@ public final class IndicesStatsRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public IndicesStatsRequest build() {
+			_checkSingleUse();
 
 			return new IndicesStatsRequest(this);
 		}
@@ -601,7 +538,9 @@ public final class IndicesStatsRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.stats}".
 	 */
-	public static final Endpoint<IndicesStatsRequest, IndicesStatsResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<IndicesStatsRequest, IndicesStatsResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.stats",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -615,9 +554,9 @@ public final class IndicesStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.metric() != null)
+				if (ApiTypeHelper.isDefined(request.metric()))
 					propsSet |= _metric;
-				if (request.index() != null)
+				if (ApiTypeHelper.isDefined(request.index()))
 					propsSet |= _index;
 
 				if (propsSet == 0) {
@@ -657,38 +596,38 @@ public final class IndicesStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.completionFields != null) {
+				if (ApiTypeHelper.isDefined(request.types)) {
+					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
+					params.put("expand_wildcards",
+							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.level != null) {
+					params.put("level", request.level.jsonValue());
+				}
+				if (ApiTypeHelper.isDefined(request.completionFields)) {
 					params.put("completion_fields",
 							request.completionFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.expandWildcards != null) {
-					params.put("expand_wildcards",
-							request.expandWildcards.stream().map(v -> v.toString()).collect(Collectors.joining(",")));
-				}
-				if (request.fielddataFields != null) {
+				if (ApiTypeHelper.isDefined(request.fielddataFields)) {
 					params.put("fielddata_fields",
 							request.fielddataFields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
-				if (request.fields != null) {
+				if (ApiTypeHelper.isDefined(request.groups)) {
+					params.put("groups", request.groups.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.includeUnloadedSegments != null) {
+					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
+				}
+				if (ApiTypeHelper.isDefined(request.fields)) {
 					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				if (request.forbidClosedIndices != null) {
 					params.put("forbid_closed_indices", String.valueOf(request.forbidClosedIndices));
 				}
-				if (request.groups != null) {
-					params.put("groups", request.groups.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (request.includeSegmentFileSizes != null) {
 					params.put("include_segment_file_sizes", String.valueOf(request.includeSegmentFileSizes));
-				}
-				if (request.includeUnloadedSegments != null) {
-					params.put("include_unloaded_segments", String.valueOf(request.includeUnloadedSegments));
-				}
-				if (request.level != null) {
-					params.put("level", request.level.toString());
-				}
-				if (request.types != null) {
-					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

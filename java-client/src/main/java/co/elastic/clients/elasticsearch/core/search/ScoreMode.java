@@ -23,13 +23,29 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.util.StringEnum;
 
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/rescoring.ts#L36-L42">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public enum ScoreMode implements StringEnum {
-	Avg("avg"), Max("max"), Min("min"), Multiply("multiply"), Total("total");
+public enum ScoreMode implements JsonEnum {
+	Avg("avg"),
+
+	Max("max"),
+
+	Min("min"),
+
+	Multiply("multiply"),
+
+	Total("total"),
+
+	;
 
 	private final String jsonValue;
 
@@ -41,6 +57,6 @@ public enum ScoreMode implements StringEnum {
 		return this.jsonValue;
 	}
 
-	public static final StringEnum.Deserializer<ScoreMode> _DESERIALIZER = new StringEnum.Deserializer<>(
+	public static final JsonEnum.Deserializer<ScoreMode> _DESERIALIZER = new JsonEnum.Deserializer<>(
 			ScoreMode.values());
 }

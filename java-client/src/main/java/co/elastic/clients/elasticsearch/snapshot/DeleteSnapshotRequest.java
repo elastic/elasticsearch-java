@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -42,44 +45,34 @@ import javax.annotation.Nullable;
 
 // typedef: snapshot.delete.Request
 
-public final class DeleteSnapshotRequest extends RequestBase {
+/**
+ * Deletes one or more snapshots.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/delete/SnapshotDeleteRequest.ts#L24-L37">API
+ *      specification</a>
+ */
+
+public class DeleteSnapshotRequest extends RequestBase {
+	@Nullable
+	private final Time masterTimeout;
+
 	private final String repository;
 
 	private final String snapshot;
 
-	@Nullable
-	private final String masterTimeout;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteSnapshotRequest(Builder builder) {
+	private DeleteSnapshotRequest(Builder builder) {
 
-		this.repository = Objects.requireNonNull(builder.repository, "repository");
-		this.snapshot = Objects.requireNonNull(builder.snapshot, "snapshot");
 		this.masterTimeout = builder.masterTimeout;
+		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
 
 	}
 
-	public DeleteSnapshotRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Required - A repository name
-	 * <p>
-	 * API name: {@code repository}
-	 */
-	public String repository() {
-		return this.repository;
-	}
-
-	/**
-	 * Required - A comma-separated list of snapshot names
-	 * <p>
-	 * API name: {@code snapshot}
-	 */
-	public String snapshot() {
-		return this.snapshot;
+	public static DeleteSnapshotRequest of(Function<Builder, ObjectBuilder<DeleteSnapshotRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -88,8 +81,26 @@ public final class DeleteSnapshotRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - A repository name
+	 * <p>
+	 * API name: {@code repository}
+	 */
+	public final String repository() {
+		return this.repository;
+	}
+
+	/**
+	 * Required - A comma-separated list of snapshot names
+	 * <p>
+	 * API name: {@code snapshot}
+	 */
+	public final String snapshot() {
+		return this.snapshot;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -97,20 +108,40 @@ public final class DeleteSnapshotRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteSnapshotRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteSnapshotRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteSnapshotRequest> {
+		@Nullable
+		private Time masterTimeout;
+
 		private String repository;
 
 		private String snapshot;
 
-		@Nullable
-		private String masterTimeout;
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Explicit operation timeout for connection to master node
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
 
 		/**
 		 * Required - A repository name
 		 * <p>
 		 * API name: {@code repository}
 		 */
-		public Builder repository(String value) {
+		public final Builder repository(String value) {
 			this.repository = value;
 			return this;
 		}
@@ -120,18 +151,8 @@ public final class DeleteSnapshotRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code snapshot}
 		 */
-		public Builder snapshot(String value) {
+		public final Builder snapshot(String value) {
 			this.snapshot = value;
-			return this;
-		}
-
-		/**
-		 * Explicit operation timeout for connection to master node
-		 * <p>
-		 * API name: {@code master_timeout}
-		 */
-		public Builder masterTimeout(@Nullable String value) {
-			this.masterTimeout = value;
 			return this;
 		}
 
@@ -142,6 +163,7 @@ public final class DeleteSnapshotRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteSnapshotRequest build() {
+			_checkSingleUse();
 
 			return new DeleteSnapshotRequest(this);
 		}
@@ -152,7 +174,9 @@ public final class DeleteSnapshotRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code snapshot.delete}".
 	 */
-	public static final Endpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteSnapshotRequest, DeleteSnapshotResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/snapshot.delete",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -186,7 +210,7 @@ public final class DeleteSnapshotRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				return params;
 

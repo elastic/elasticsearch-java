@@ -23,56 +23,61 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.TimeOfMonth
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Schedule.ts#L111-L114">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class TimeOfMonth implements JsonpSerializable {
+public class TimeOfMonth implements JsonpSerializable {
 	private final List<String> at;
 
 	private final List<Integer> on;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public TimeOfMonth(Builder builder) {
+	private TimeOfMonth(Builder builder) {
 
-		this.at = ModelTypeHelper.unmodifiableNonNull(builder.at, "at");
-		this.on = ModelTypeHelper.unmodifiableNonNull(builder.on, "on");
+		this.at = ApiTypeHelper.unmodifiableRequired(builder.at, this, "at");
+		this.on = ApiTypeHelper.unmodifiableRequired(builder.on, this, "on");
 
 	}
 
-	public TimeOfMonth(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static TimeOfMonth of(Function<Builder, ObjectBuilder<TimeOfMonth>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code at}
 	 */
-	public List<String> at() {
+	public final List<String> at() {
 		return this.at;
 	}
 
 	/**
 	 * Required - API name: {@code on}
 	 */
-	public List<Integer> on() {
+	public final List<Integer> on() {
 		return this.on;
 	}
 
@@ -87,21 +92,26 @@ public final class TimeOfMonth implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("at");
-		generator.writeStartArray();
-		for (String item0 : this.at) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.at)) {
+			generator.writeKey("at");
+			generator.writeStartArray();
+			for (String item0 : this.at) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.on)) {
+			generator.writeKey("on");
+			generator.writeStartArray();
+			for (Integer item0 : this.on) {
+				generator.write(item0);
 
-		generator.writeKey("on");
-		generator.writeStartArray();
-		for (Integer item0 : this.on) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -110,62 +120,49 @@ public final class TimeOfMonth implements JsonpSerializable {
 	/**
 	 * Builder for {@link TimeOfMonth}.
 	 */
-	public static class Builder implements ObjectBuilder<TimeOfMonth> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeOfMonth> {
 		private List<String> at;
 
 		private List<Integer> on;
 
 		/**
 		 * Required - API name: {@code at}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>at</code>.
 		 */
-		public Builder at(List<String> value) {
-			this.at = value;
+		public final Builder at(List<String> list) {
+			this.at = _listAddAll(this.at, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code at}
+		 * <p>
+		 * Adds one or more values to <code>at</code>.
 		 */
-		public Builder at(String... value) {
-			this.at = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #at(List)}, creating the list if needed.
-		 */
-		public Builder addAt(String value) {
-			if (this.at == null) {
-				this.at = new ArrayList<>();
-			}
-			this.at.add(value);
+		public final Builder at(String value, String... values) {
+			this.at = _listAdd(this.at, value, values);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code on}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>on</code>.
 		 */
-		public Builder on(List<Integer> value) {
-			this.on = value;
+		public final Builder on(List<Integer> list) {
+			this.on = _listAddAll(this.on, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code on}
+		 * <p>
+		 * Adds one or more values to <code>on</code>.
 		 */
-		public Builder on(Integer... value) {
-			this.on = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #on(List)}, creating the list if needed.
-		 */
-		public Builder addOn(Integer value) {
-			if (this.on == null) {
-				this.on = new ArrayList<>();
-			}
-			this.on.add(value);
+		public final Builder on(Integer value, Integer... values) {
+			this.on = _listAdd(this.on, value, values);
 			return this;
 		}
 
@@ -176,6 +173,7 @@ public final class TimeOfMonth implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public TimeOfMonth build() {
+			_checkSingleUse();
 
 			return new TimeOfMonth(this);
 		}
@@ -187,9 +185,9 @@ public final class TimeOfMonth implements JsonpSerializable {
 	 * Json deserializer for {@link TimeOfMonth}
 	 */
 	public static final JsonpDeserializer<TimeOfMonth> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			TimeOfMonth::setupTimeOfMonthDeserializer, Builder::build);
+			TimeOfMonth::setupTimeOfMonthDeserializer);
 
-	protected static void setupTimeOfMonthDeserializer(DelegatingDeserializer<TimeOfMonth.Builder> op) {
+	protected static void setupTimeOfMonthDeserializer(ObjectDeserializer<TimeOfMonth.Builder> op) {
 
 		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "at");
 		op.add(Builder::on, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.integerDeserializer()), "on");

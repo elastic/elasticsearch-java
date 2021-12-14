@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,13 +30,11 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -45,8 +42,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _global.rank_eval.RankEvalRequestItem
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L98-L109">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankEvalRequestItem implements JsonpSerializable {
+public class RankEvalRequestItem implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
@@ -57,23 +61,22 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	@Nullable
 	private final String templateId;
 
-	@Nullable
 	private final Map<String, JsonData> params;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalRequestItem(Builder builder) {
+	private RankEvalRequestItem(Builder builder) {
 
-		this.id = Objects.requireNonNull(builder.id, "id");
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.request = builder.request;
-		this.ratings = ModelTypeHelper.unmodifiableNonNull(builder.ratings, "ratings");
+		this.ratings = ApiTypeHelper.unmodifiableRequired(builder.ratings, this, "ratings");
 		this.templateId = builder.templateId;
-		this.params = ModelTypeHelper.unmodifiable(builder.params);
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 
 	}
 
-	public RankEvalRequestItem(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalRequestItem of(Function<Builder, ObjectBuilder<RankEvalRequestItem>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -81,7 +84,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code id}
 	 */
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -91,7 +94,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	 * API name: {@code request}
 	 */
 	@Nullable
-	public RankEvalQuery request() {
+	public final RankEvalQuery request() {
 		return this.request;
 	}
 
@@ -100,7 +103,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code ratings}
 	 */
-	public List<DocumentRating> ratings() {
+	public final List<DocumentRating> ratings() {
 		return this.ratings;
 	}
 
@@ -110,7 +113,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	 * API name: {@code template_id}
 	 */
 	@Nullable
-	public String templateId() {
+	public final String templateId() {
 		return this.templateId;
 	}
 
@@ -119,8 +122,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code params}
 	 */
-	@Nullable
-	public Map<String, JsonData> params() {
+	public final Map<String, JsonData> params() {
 		return this.params;
 	}
 
@@ -139,28 +141,26 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		generator.write(this.id);
 
 		if (this.request != null) {
-
 			generator.writeKey("request");
 			this.request.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.ratings)) {
+			generator.writeKey("ratings");
+			generator.writeStartArray();
+			for (DocumentRating item0 : this.ratings) {
+				item0.serialize(generator, mapper);
 
-		generator.writeKey("ratings");
-		generator.writeStartArray();
-		for (DocumentRating item0 : this.ratings) {
-			item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		if (this.templateId != null) {
-
 			generator.writeKey("template_id");
 			generator.write(this.templateId);
 
 		}
-		if (this.params != null) {
-
+		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
 			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
@@ -179,7 +179,8 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	/**
 	 * Builder for {@link RankEvalRequestItem}.
 	 */
-	public static class Builder implements ObjectBuilder<RankEvalRequestItem> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalRequestItem> {
 		private String id;
 
 		@Nullable
@@ -198,7 +199,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(String value) {
+		public final Builder id(String value) {
 			this.id = value;
 			return this;
 		}
@@ -208,7 +209,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request}
 		 */
-		public Builder request(@Nullable RankEvalQuery value) {
+		public final Builder request(@Nullable RankEvalQuery value) {
 			this.request = value;
 			return this;
 		}
@@ -218,7 +219,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code request}
 		 */
-		public Builder request(Function<RankEvalQuery.Builder, ObjectBuilder<RankEvalQuery>> fn) {
+		public final Builder request(Function<RankEvalQuery.Builder, ObjectBuilder<RankEvalQuery>> fn) {
 			return this.request(fn.apply(new RankEvalQuery.Builder()).build());
 		}
 
@@ -226,9 +227,11 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		 * Required - List of document ratings
 		 * <p>
 		 * API name: {@code ratings}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>ratings</code>.
 		 */
-		public Builder ratings(List<DocumentRating> value) {
-			this.ratings = value;
+		public final Builder ratings(List<DocumentRating> list) {
+			this.ratings = _listAddAll(this.ratings, list);
 			return this;
 		}
 
@@ -236,35 +239,23 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		 * Required - List of document ratings
 		 * <p>
 		 * API name: {@code ratings}
+		 * <p>
+		 * Adds one or more values to <code>ratings</code>.
 		 */
-		public Builder ratings(DocumentRating... value) {
-			this.ratings = Arrays.asList(value);
+		public final Builder ratings(DocumentRating value, DocumentRating... values) {
+			this.ratings = _listAdd(this.ratings, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #ratings(List)}, creating the list if needed.
+		 * Required - List of document ratings
+		 * <p>
+		 * API name: {@code ratings}
+		 * <p>
+		 * Adds a value to <code>ratings</code> using a builder lambda.
 		 */
-		public Builder addRatings(DocumentRating value) {
-			if (this.ratings == null) {
-				this.ratings = new ArrayList<>();
-			}
-			this.ratings.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #ratings(List)} to a singleton list.
-		 */
-		public Builder ratings(Function<DocumentRating.Builder, ObjectBuilder<DocumentRating>> fn) {
-			return this.ratings(fn.apply(new DocumentRating.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #ratings(List)}, creating the list if needed.
-		 */
-		public Builder addRatings(Function<DocumentRating.Builder, ObjectBuilder<DocumentRating>> fn) {
-			return this.addRatings(fn.apply(new DocumentRating.Builder()).build());
+		public final Builder ratings(Function<DocumentRating.Builder, ObjectBuilder<DocumentRating>> fn) {
+			return ratings(fn.apply(new DocumentRating.Builder()).build());
 		}
 
 		/**
@@ -272,7 +263,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code template_id}
 		 */
-		public Builder templateId(@Nullable String value) {
+		public final Builder templateId(@Nullable String value) {
 			this.templateId = value;
 			return this;
 		}
@@ -281,20 +272,23 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		 * The search template parameters.
 		 * <p>
 		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 */
-		public Builder params(@Nullable Map<String, JsonData> value) {
-			this.params = value;
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #params(Map)}, creating the map if needed.
+		 * The search template parameters.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
 		 */
-		public Builder putParams(String key, JsonData value) {
-			if (this.params == null) {
-				this.params = new HashMap<>();
-			}
-			this.params.put(key, value);
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
 			return this;
 		}
 
@@ -305,6 +299,7 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalRequestItem build() {
+			_checkSingleUse();
 
 			return new RankEvalRequestItem(this);
 		}
@@ -316,9 +311,9 @@ public final class RankEvalRequestItem implements JsonpSerializable {
 	 * Json deserializer for {@link RankEvalRequestItem}
 	 */
 	public static final JsonpDeserializer<RankEvalRequestItem> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankEvalRequestItem::setupRankEvalRequestItemDeserializer, Builder::build);
+			.lazy(Builder::new, RankEvalRequestItem::setupRankEvalRequestItemDeserializer);
 
-	protected static void setupRankEvalRequestItemDeserializer(DelegatingDeserializer<RankEvalRequestItem.Builder> op) {
+	protected static void setupRankEvalRequestItemDeserializer(ObjectDeserializer<RankEvalRequestItem.Builder> op) {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::request, RankEvalQuery._DESERIALIZER, "request");

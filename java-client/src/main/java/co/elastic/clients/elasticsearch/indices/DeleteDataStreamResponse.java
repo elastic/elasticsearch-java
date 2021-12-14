@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.delete_data_stream.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/delete_data_stream/IndicesDeleteDataStreamResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteDataStreamResponse extends AcknowledgedResponseBase {
+public class DeleteDataStreamResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteDataStreamResponse(Builder builder) {
+	private DeleteDataStreamResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteDataStreamResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteDataStreamResponse of(Function<Builder, ObjectBuilder<DeleteDataStreamResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteDataStreamResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link DeleteDataStreamResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteDataStreamResponse> {
@@ -68,6 +75,7 @@ public final class DeleteDataStreamResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteDataStreamResponse build() {
+			_checkSingleUse();
 
 			return new DeleteDataStreamResponse(this);
 		}
@@ -79,10 +87,10 @@ public final class DeleteDataStreamResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link DeleteDataStreamResponse}
 	 */
 	public static final JsonpDeserializer<DeleteDataStreamResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DeleteDataStreamResponse::setupDeleteDataStreamResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DeleteDataStreamResponse::setupDeleteDataStreamResponseDeserializer);
 
 	protected static void setupDeleteDataStreamResponseDeserializer(
-			DelegatingDeserializer<DeleteDataStreamResponse.Builder> op) {
+			ObjectDeserializer<DeleteDataStreamResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

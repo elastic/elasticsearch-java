@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.mapping.RankFeaturesProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L228-L230">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankFeaturesProperty extends PropertyBase implements PropertyVariant {
+public class RankFeaturesProperty extends PropertyBase implements PropertyVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public RankFeaturesProperty(Builder builder) {
+	private RankFeaturesProperty(Builder builder) {
 		super(builder);
 
 	}
 
-	public RankFeaturesProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankFeaturesProperty of(Function<Builder, ObjectBuilder<RankFeaturesProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "rank_features";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.RankFeatures;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class RankFeaturesProperty extends PropertyBase implements Property
 	/**
 	 * Builder for {@link RankFeaturesProperty}.
 	 */
+
 	public static class Builder extends PropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankFeaturesProperty> {
@@ -83,6 +90,7 @@ public final class RankFeaturesProperty extends PropertyBase implements Property
 		 *             if some of the required fields are null.
 		 */
 		public RankFeaturesProperty build() {
+			_checkSingleUse();
 
 			return new RankFeaturesProperty(this);
 		}
@@ -94,10 +102,9 @@ public final class RankFeaturesProperty extends PropertyBase implements Property
 	 * Json deserializer for {@link RankFeaturesProperty}
 	 */
 	public static final JsonpDeserializer<RankFeaturesProperty> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankFeaturesProperty::setupRankFeaturesPropertyDeserializer, Builder::build);
+			.lazy(Builder::new, RankFeaturesProperty::setupRankFeaturesPropertyDeserializer);
 
-	protected static void setupRankFeaturesPropertyDeserializer(
-			DelegatingDeserializer<RankFeaturesProperty.Builder> op) {
+	protected static void setupRankFeaturesPropertyDeserializer(ObjectDeserializer<RankFeaturesProperty.Builder> op) {
 		PropertyBase.setupPropertyBaseDeserializer(op);
 
 		op.ignore("type");

@@ -23,8 +23,14 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.base.ApiClient;
-import co.elastic.clients.base.Transport;
+import co.elastic.clients.ApiClient;
+import co.elastic.clients.elasticsearch._types.ElasticsearchException;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Transport;
+import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
 import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
@@ -34,10 +40,19 @@ import javax.annotation.Nullable;
 /**
  * Client for the slm namespace.
  */
-public class ElasticsearchSlmAsyncClient extends ApiClient {
+public class ElasticsearchSlmAsyncClient extends ApiClient<ElasticsearchTransport, ElasticsearchSlmAsyncClient> {
 
-	public ElasticsearchSlmAsyncClient(Transport transport) {
-		super(transport);
+	public ElasticsearchSlmAsyncClient(ElasticsearchTransport transport) {
+		super(transport, null);
+	}
+
+	public ElasticsearchSlmAsyncClient(ElasticsearchTransport transport, @Nullable TransportOptions transportOptions) {
+		super(transport, transportOptions);
+	}
+
+	@Override
+	public ElasticsearchSlmAsyncClient withTransportOptions(@Nullable TransportOptions transportOptions) {
+		return new ElasticsearchSlmAsyncClient(this.transport, transportOptions);
 	}
 
 	// ----- Endpoint: slm.delete_lifecycle
@@ -51,24 +66,27 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(DeleteLifecycleRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, DeleteLifecycleRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse>) DeleteLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Deletes an existing snapshot lifecycle policy.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteLifecycleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-delete-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(
-			Function<DeleteLifecycleRequest.Builder, ObjectBuilder<DeleteLifecycleRequest>> fn) throws IOException {
+			Function<DeleteLifecycleRequest.Builder, ObjectBuilder<DeleteLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return deleteLifecycle(fn.apply(new DeleteLifecycleRequest.Builder()).build());
 	}
 
@@ -84,8 +102,11 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 */
 
 	public CompletableFuture<ExecuteLifecycleResponse> executeLifecycle(ExecuteLifecycleRequest request)
-			throws IOException {
-		return this.transport.performRequestAsync(request, ExecuteLifecycleRequest.ENDPOINT);
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<ExecuteLifecycleRequest, ExecuteLifecycleResponse, ErrorResponse>) ExecuteLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -93,16 +114,16 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 * waiting for the scheduled time.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link ExecuteLifecycleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-lifecycle.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<ExecuteLifecycleResponse> executeLifecycle(
-			Function<ExecuteLifecycleRequest.Builder, ObjectBuilder<ExecuteLifecycleRequest>> fn) throws IOException {
+			Function<ExecuteLifecycleRequest.Builder, ObjectBuilder<ExecuteLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return executeLifecycle(fn.apply(new ExecuteLifecycleRequest.Builder()).build());
 	}
 
@@ -116,8 +137,9 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-execute-retention.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<ExecuteRetentionResponse> executeRetention() throws IOException {
-		return this.transport.performRequestAsync(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest.ENDPOINT);
+	public CompletableFuture<ExecuteRetentionResponse> executeRetention() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(ExecuteRetentionRequest._INSTANCE, ExecuteRetentionRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.get_lifecycle
@@ -131,8 +153,12 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetLifecycleResponse> getLifecycle(GetLifecycleRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, GetLifecycleRequest.ENDPOINT);
+	public CompletableFuture<GetLifecycleResponse> getLifecycle(GetLifecycleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse>) GetLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
@@ -140,16 +166,16 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 * about the latest snapshot attempts.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link GetLifecycleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<GetLifecycleResponse> getLifecycle(
-			Function<GetLifecycleRequest.Builder, ObjectBuilder<GetLifecycleRequest>> fn) throws IOException {
+			Function<GetLifecycleRequest.Builder, ObjectBuilder<GetLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return getLifecycle(fn.apply(new GetLifecycleRequest.Builder()).build());
 	}
 
@@ -162,9 +188,9 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetLifecycleResponse> getLifecycle() throws IOException {
+	public CompletableFuture<GetLifecycleResponse> getLifecycle() throws IOException, ElasticsearchException {
 		return this.transport.performRequestAsync(new GetLifecycleRequest.Builder().build(),
-				GetLifecycleRequest.ENDPOINT);
+				GetLifecycleRequest._ENDPOINT, this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.get_stats
@@ -177,8 +203,9 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/slm-api-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetStatsResponse> getStats() throws IOException {
-		return this.transport.performRequestAsync(GetStatsRequest._INSTANCE, GetStatsRequest.ENDPOINT);
+	public CompletableFuture<GetStatsResponse> getStats() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(GetStatsRequest._INSTANCE, GetStatsRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.get_status
@@ -190,8 +217,9 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-get-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetStatusResponse> getStatus() throws IOException {
-		return this.transport.performRequestAsync(GetStatusRequest._INSTANCE, GetStatusRequest.ENDPOINT);
+	public CompletableFuture<GetSlmStatusResponse> getStatus() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(GetSlmStatusRequest._INSTANCE, GetSlmStatusRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.put_lifecycle
@@ -204,24 +232,28 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutLifecycleResponse> putLifecycle(PutLifecycleRequest request) throws IOException {
-		return this.transport.performRequestAsync(request, PutLifecycleRequest.ENDPOINT);
+	public CompletableFuture<PutLifecycleResponse> putLifecycle(PutLifecycleRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse>) PutLifecycleRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
 
 	/**
 	 * Creates or updates a snapshot lifecycle policy.
 	 * 
 	 * @param fn
-	 *            a function that initializes a freshly created builder. This
-	 *            function can either return its builder argument after having set
-	 *            its properties or return another builder.
+	 *            a function that initializes a builder to create the
+	 *            {@link PutLifecycleRequest}
 	 * @see <a href=
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-put-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
 	public final CompletableFuture<PutLifecycleResponse> putLifecycle(
-			Function<PutLifecycleRequest.Builder, ObjectBuilder<PutLifecycleRequest>> fn) throws IOException {
+			Function<PutLifecycleRequest.Builder, ObjectBuilder<PutLifecycleRequest>> fn)
+			throws IOException, ElasticsearchException {
 		return putLifecycle(fn.apply(new PutLifecycleRequest.Builder()).build());
 	}
 
@@ -234,8 +266,9 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StartSlmResponse> start() throws IOException {
-		return this.transport.performRequestAsync(StartSlmRequest._INSTANCE, StartSlmRequest.ENDPOINT);
+	public CompletableFuture<StartSlmResponse> start() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(StartSlmRequest._INSTANCE, StartSlmRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: slm.stop
@@ -247,8 +280,9 @@ public class ElasticsearchSlmAsyncClient extends ApiClient {
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/slm-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StopSlmResponse> stop() throws IOException {
-		return this.transport.performRequestAsync(StopSlmRequest._INSTANCE, StopSlmRequest.ENDPOINT);
+	public CompletableFuture<StopSlmResponse> stop() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(StopSlmRequest._INSTANCE, StopSlmRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 }

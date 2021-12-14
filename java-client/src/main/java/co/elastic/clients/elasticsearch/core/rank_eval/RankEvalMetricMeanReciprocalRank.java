@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.core.rank_eval;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,17 +33,29 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.rank_eval.RankEvalMetricMeanReciprocalRank
+
+/**
+ * Mean Reciprocal Rank
+ * 
+ * @see <a href=
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#_mean_reciprocal_rank">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L60-L64">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTreshold {
+public class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRatingTreshold {
 	// ---------------------------------------------------------------------------------------------
 
-	public RankEvalMetricMeanReciprocalRank(Builder builder) {
+	private RankEvalMetricMeanReciprocalRank(Builder builder) {
 		super(builder);
 
 	}
 
-	public RankEvalMetricMeanReciprocalRank(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static RankEvalMetricMeanReciprocalRank of(
+			Function<Builder, ObjectBuilder<RankEvalMetricMeanReciprocalRank>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -52,6 +63,7 @@ public final class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRating
 	/**
 	 * Builder for {@link RankEvalMetricMeanReciprocalRank}.
 	 */
+
 	public static class Builder extends RankEvalMetricRatingTreshold.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<RankEvalMetricMeanReciprocalRank> {
@@ -67,6 +79,7 @@ public final class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRating
 		 *             if some of the required fields are null.
 		 */
 		public RankEvalMetricMeanReciprocalRank build() {
+			_checkSingleUse();
 
 			return new RankEvalMetricMeanReciprocalRank(this);
 		}
@@ -78,11 +91,10 @@ public final class RankEvalMetricMeanReciprocalRank extends RankEvalMetricRating
 	 * Json deserializer for {@link RankEvalMetricMeanReciprocalRank}
 	 */
 	public static final JsonpDeserializer<RankEvalMetricMeanReciprocalRank> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RankEvalMetricMeanReciprocalRank::setupRankEvalMetricMeanReciprocalRankDeserializer,
-					Builder::build);
+			.lazy(Builder::new, RankEvalMetricMeanReciprocalRank::setupRankEvalMetricMeanReciprocalRankDeserializer);
 
 	protected static void setupRankEvalMetricMeanReciprocalRankDeserializer(
-			DelegatingDeserializer<RankEvalMetricMeanReciprocalRank.Builder> op) {
+			ObjectDeserializer<RankEvalMetricMeanReciprocalRank.Builder> op) {
 		RankEvalMetricRatingTreshold.setupRankEvalMetricRatingTresholdDeserializer(op);
 
 	}

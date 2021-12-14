@@ -23,63 +23,69 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.analysis.StemmerOverrideTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L311-L315">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StemmerOverrideTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class StemmerOverrideTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> rules;
 
+	@Nullable
 	private final String rulesPath;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StemmerOverrideTokenFilter(Builder builder) {
+	private StemmerOverrideTokenFilter(Builder builder) {
 		super(builder);
 
-		this.rules = ModelTypeHelper.unmodifiableNonNull(builder.rules, "rules");
-		this.rulesPath = Objects.requireNonNull(builder.rulesPath, "rules_path");
+		this.rules = ApiTypeHelper.unmodifiable(builder.rules);
+		this.rulesPath = builder.rulesPath;
 
 	}
 
-	public StemmerOverrideTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StemmerOverrideTokenFilter of(Function<Builder, ObjectBuilder<StemmerOverrideTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "stemmer_override";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.StemmerOverride;
 	}
 
 	/**
-	 * Required - API name: {@code rules}
+	 * API name: {@code rules}
 	 */
-	public List<String> rules() {
+	public final List<String> rules() {
 		return this.rules;
 	}
 
 	/**
-	 * Required - API name: {@code rules_path}
+	 * API name: {@code rules_path}
 	 */
-	public String rulesPath() {
+	@Nullable
+	public final String rulesPath() {
 		return this.rulesPath;
 	}
 
@@ -87,17 +93,21 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 
 		generator.write("type", "stemmer_override");
 		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.rules)) {
+			generator.writeKey("rules");
+			generator.writeStartArray();
+			for (String item0 : this.rules) {
+				generator.write(item0);
 
-		generator.writeKey("rules");
-		generator.writeStartArray();
-		for (String item0 : this.rules) {
-			generator.write(item0);
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
+		if (this.rulesPath != null) {
+			generator.writeKey("rules_path");
+			generator.write(this.rulesPath);
 
-		generator.writeKey("rules_path");
-		generator.write(this.rulesPath);
+		}
 
 	}
 
@@ -106,44 +116,40 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 	/**
 	 * Builder for {@link StemmerOverrideTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<StemmerOverrideTokenFilter> {
+		@Nullable
 		private List<String> rules;
 
+		@Nullable
 		private String rulesPath;
 
 		/**
-		 * Required - API name: {@code rules}
+		 * API name: {@code rules}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>rules</code>.
 		 */
-		public Builder rules(List<String> value) {
-			this.rules = value;
+		public final Builder rules(List<String> list) {
+			this.rules = _listAddAll(this.rules, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code rules}
+		 * API name: {@code rules}
+		 * <p>
+		 * Adds one or more values to <code>rules</code>.
 		 */
-		public Builder rules(String... value) {
-			this.rules = Arrays.asList(value);
+		public final Builder rules(String value, String... values) {
+			this.rules = _listAdd(this.rules, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #rules(List)}, creating the list if needed.
+		 * API name: {@code rules_path}
 		 */
-		public Builder addRules(String value) {
-			if (this.rules == null) {
-				this.rules = new ArrayList<>();
-			}
-			this.rules.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code rules_path}
-		 */
-		public Builder rulesPath(String value) {
+		public final Builder rulesPath(@Nullable String value) {
 			this.rulesPath = value;
 			return this;
 		}
@@ -160,6 +166,7 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 		 *             if some of the required fields are null.
 		 */
 		public StemmerOverrideTokenFilter build() {
+			_checkSingleUse();
 
 			return new StemmerOverrideTokenFilter(this);
 		}
@@ -170,11 +177,11 @@ public final class StemmerOverrideTokenFilter extends TokenFilterBase implements
 	/**
 	 * Json deserializer for {@link StemmerOverrideTokenFilter}
 	 */
-	public static final JsonpDeserializer<StemmerOverrideTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, StemmerOverrideTokenFilter::setupStemmerOverrideTokenFilterDeserializer, Builder::build);
+	public static final JsonpDeserializer<StemmerOverrideTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, StemmerOverrideTokenFilter::setupStemmerOverrideTokenFilterDeserializer);
 
 	protected static void setupStemmerOverrideTokenFilterDeserializer(
-			DelegatingDeserializer<StemmerOverrideTokenFilter.Builder> op) {
+			ObjectDeserializer<StemmerOverrideTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::rules, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "rules");
 		op.add(Builder::rulesPath, JsonpDeserializer.stringDeserializer(), "rules_path");

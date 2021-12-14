@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.util.UnionVariant;
-
 /**
  * Base interface for {@link RoleMappingRule} variants.
  */
-public interface RoleMappingRuleVariant extends UnionVariant {
+public interface RoleMappingRuleVariant {
+
+	RoleMappingRule.Kind _roleMappingRuleKind();
 
 	default RoleMappingRule _toRoleMappingRule() {
 		return new RoleMappingRule(this);

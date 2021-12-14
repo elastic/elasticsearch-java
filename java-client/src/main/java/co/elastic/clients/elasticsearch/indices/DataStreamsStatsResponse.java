@@ -25,28 +25,33 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardStatistics;
 import co.elastic.clients.elasticsearch.indices.data_streams_stats.DataStreamsStatsItem;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.data_streams_stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/data_streams_stats/IndicesDataStreamsStatsResponse.ts#L24-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataStreamsStatsResponse implements JsonpSerializable {
+public class DataStreamsStatsResponse implements JsonpSerializable {
 	private final ShardStatistics shards;
 
 	private final int backingIndices;
@@ -62,39 +67,40 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataStreamsStatsResponse(Builder builder) {
+	private DataStreamsStatsResponse(Builder builder) {
 
-		this.shards = Objects.requireNonNull(builder.shards, "_shards");
-		this.backingIndices = Objects.requireNonNull(builder.backingIndices, "backing_indices");
-		this.dataStreamCount = Objects.requireNonNull(builder.dataStreamCount, "data_stream_count");
+		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
+		this.backingIndices = ApiTypeHelper.requireNonNull(builder.backingIndices, this, "backingIndices");
+		this.dataStreamCount = ApiTypeHelper.requireNonNull(builder.dataStreamCount, this, "dataStreamCount");
 		this.totalStoreSizes = builder.totalStoreSizes;
-		this.totalStoreSizeBytes = Objects.requireNonNull(builder.totalStoreSizeBytes, "total_store_size_bytes");
-		this.dataStreams = ModelTypeHelper.unmodifiableNonNull(builder.dataStreams, "data_streams");
+		this.totalStoreSizeBytes = ApiTypeHelper.requireNonNull(builder.totalStoreSizeBytes, this,
+				"totalStoreSizeBytes");
+		this.dataStreams = ApiTypeHelper.unmodifiableRequired(builder.dataStreams, this, "dataStreams");
 
 	}
 
-	public DataStreamsStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataStreamsStatsResponse of(Function<Builder, ObjectBuilder<DataStreamsStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code _shards}
 	 */
-	public ShardStatistics shards() {
+	public final ShardStatistics shards() {
 		return this.shards;
 	}
 
 	/**
 	 * Required - API name: {@code backing_indices}
 	 */
-	public int backingIndices() {
+	public final int backingIndices() {
 		return this.backingIndices;
 	}
 
 	/**
 	 * Required - API name: {@code data_stream_count}
 	 */
-	public int dataStreamCount() {
+	public final int dataStreamCount() {
 		return this.dataStreamCount;
 	}
 
@@ -102,21 +108,21 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 	 * API name: {@code total_store_sizes}
 	 */
 	@Nullable
-	public String totalStoreSizes() {
+	public final String totalStoreSizes() {
 		return this.totalStoreSizes;
 	}
 
 	/**
 	 * Required - API name: {@code total_store_size_bytes}
 	 */
-	public int totalStoreSizeBytes() {
+	public final int totalStoreSizeBytes() {
 		return this.totalStoreSizeBytes;
 	}
 
 	/**
 	 * Required - API name: {@code data_streams}
 	 */
-	public List<DataStreamsStatsItem> dataStreams() {
+	public final List<DataStreamsStatsItem> dataStreams() {
 		return this.dataStreams;
 	}
 
@@ -141,22 +147,23 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		generator.write(this.dataStreamCount);
 
 		if (this.totalStoreSizes != null) {
-
 			generator.writeKey("total_store_sizes");
 			generator.write(this.totalStoreSizes);
 
 		}
-
 		generator.writeKey("total_store_size_bytes");
 		generator.write(this.totalStoreSizeBytes);
 
-		generator.writeKey("data_streams");
-		generator.writeStartArray();
-		for (DataStreamsStatsItem item0 : this.dataStreams) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.dataStreams)) {
+			generator.writeKey("data_streams");
+			generator.writeStartArray();
+			for (DataStreamsStatsItem item0 : this.dataStreams) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -165,7 +172,8 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link DataStreamsStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<DataStreamsStatsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStreamsStatsResponse> {
 		private ShardStatistics shards;
 
 		private Integer backingIndices;
@@ -182,7 +190,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(ShardStatistics value) {
+		public final Builder shards(ShardStatistics value) {
 			this.shards = value;
 			return this;
 		}
@@ -190,14 +198,14 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code _shards}
 		 */
-		public Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
+		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code backing_indices}
 		 */
-		public Builder backingIndices(int value) {
+		public final Builder backingIndices(int value) {
 			this.backingIndices = value;
 			return this;
 		}
@@ -205,7 +213,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code data_stream_count}
 		 */
-		public Builder dataStreamCount(int value) {
+		public final Builder dataStreamCount(int value) {
 			this.dataStreamCount = value;
 			return this;
 		}
@@ -213,7 +221,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code total_store_sizes}
 		 */
-		public Builder totalStoreSizes(@Nullable String value) {
+		public final Builder totalStoreSizes(@Nullable String value) {
 			this.totalStoreSizes = value;
 			return this;
 		}
@@ -221,50 +229,39 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_store_size_bytes}
 		 */
-		public Builder totalStoreSizeBytes(int value) {
+		public final Builder totalStoreSizeBytes(int value) {
 			this.totalStoreSizeBytes = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>dataStreams</code>.
 		 */
-		public Builder dataStreams(List<DataStreamsStatsItem> value) {
-			this.dataStreams = value;
+		public final Builder dataStreams(List<DataStreamsStatsItem> list) {
+			this.dataStreams = _listAddAll(this.dataStreams, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds one or more values to <code>dataStreams</code>.
 		 */
-		public Builder dataStreams(DataStreamsStatsItem... value) {
-			this.dataStreams = Arrays.asList(value);
+		public final Builder dataStreams(DataStreamsStatsItem value, DataStreamsStatsItem... values) {
+			this.dataStreams = _listAdd(this.dataStreams, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
+		 * Required - API name: {@code data_streams}
+		 * <p>
+		 * Adds a value to <code>dataStreams</code> using a builder lambda.
 		 */
-		public Builder addDataStreams(DataStreamsStatsItem value) {
-			if (this.dataStreams == null) {
-				this.dataStreams = new ArrayList<>();
-			}
-			this.dataStreams.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #dataStreams(List)} to a singleton list.
-		 */
-		public Builder dataStreams(Function<DataStreamsStatsItem.Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
-			return this.dataStreams(fn.apply(new DataStreamsStatsItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #dataStreams(List)}, creating the list if needed.
-		 */
-		public Builder addDataStreams(Function<DataStreamsStatsItem.Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
-			return this.addDataStreams(fn.apply(new DataStreamsStatsItem.Builder()).build());
+		public final Builder dataStreams(
+				Function<DataStreamsStatsItem.Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
+			return dataStreams(fn.apply(new DataStreamsStatsItem.Builder()).build());
 		}
 
 		/**
@@ -274,6 +271,7 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DataStreamsStatsResponse build() {
+			_checkSingleUse();
 
 			return new DataStreamsStatsResponse(this);
 		}
@@ -285,10 +283,10 @@ public final class DataStreamsStatsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link DataStreamsStatsResponse}
 	 */
 	public static final JsonpDeserializer<DataStreamsStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, DataStreamsStatsResponse::setupDataStreamsStatsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, DataStreamsStatsResponse::setupDataStreamsStatsResponseDeserializer);
 
 	protected static void setupDataStreamsStatsResponseDeserializer(
-			DelegatingDeserializer<DataStreamsStatsResponse.Builder> op) {
+			ObjectDeserializer<DataStreamsStatsResponse.Builder> op) {
 
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
 		op.add(Builder::backingIndices, JsonpDeserializer.integerDeserializer(), "backing_indices");

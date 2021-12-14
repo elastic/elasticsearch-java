@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: transform.put_transform.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/put_transform/PutTransformResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class PutTransformResponse extends AcknowledgedResponseBase {
+public class PutTransformResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public PutTransformResponse(Builder builder) {
+	private PutTransformResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public PutTransformResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static PutTransformResponse of(Function<Builder, ObjectBuilder<PutTransformResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class PutTransformResponse extends AcknowledgedResponseBase {
 	/**
 	 * Builder for {@link PutTransformResponse}.
 	 */
+
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PutTransformResponse> {
@@ -68,6 +75,7 @@ public final class PutTransformResponse extends AcknowledgedResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public PutTransformResponse build() {
+			_checkSingleUse();
 
 			return new PutTransformResponse(this);
 		}
@@ -79,10 +87,9 @@ public final class PutTransformResponse extends AcknowledgedResponseBase {
 	 * Json deserializer for {@link PutTransformResponse}
 	 */
 	public static final JsonpDeserializer<PutTransformResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutTransformResponse::setupPutTransformResponseDeserializer, Builder::build);
+			.lazy(Builder::new, PutTransformResponse::setupPutTransformResponseDeserializer);
 
-	protected static void setupPutTransformResponseDeserializer(
-			DelegatingDeserializer<PutTransformResponse.Builder> op) {
+	protected static void setupPutTransformResponseDeserializer(ObjectDeserializer<PutTransformResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
 
 	}

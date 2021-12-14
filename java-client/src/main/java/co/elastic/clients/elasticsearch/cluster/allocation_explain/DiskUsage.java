@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.cluster.allocation_explain;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -40,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cluster.allocation_explain.DiskUsage
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L62-L69">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DiskUsage implements JsonpSerializable {
+public class DiskUsage implements JsonpSerializable {
 	private final String path;
 
 	private final long totalBytes;
@@ -56,60 +64,60 @@ public final class DiskUsage implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DiskUsage(Builder builder) {
+	private DiskUsage(Builder builder) {
 
-		this.path = Objects.requireNonNull(builder.path, "path");
-		this.totalBytes = Objects.requireNonNull(builder.totalBytes, "total_bytes");
-		this.usedBytes = Objects.requireNonNull(builder.usedBytes, "used_bytes");
-		this.freeBytes = Objects.requireNonNull(builder.freeBytes, "free_bytes");
-		this.freeDiskPercent = Objects.requireNonNull(builder.freeDiskPercent, "free_disk_percent");
-		this.usedDiskPercent = Objects.requireNonNull(builder.usedDiskPercent, "used_disk_percent");
+		this.path = ApiTypeHelper.requireNonNull(builder.path, this, "path");
+		this.totalBytes = ApiTypeHelper.requireNonNull(builder.totalBytes, this, "totalBytes");
+		this.usedBytes = ApiTypeHelper.requireNonNull(builder.usedBytes, this, "usedBytes");
+		this.freeBytes = ApiTypeHelper.requireNonNull(builder.freeBytes, this, "freeBytes");
+		this.freeDiskPercent = ApiTypeHelper.requireNonNull(builder.freeDiskPercent, this, "freeDiskPercent");
+		this.usedDiskPercent = ApiTypeHelper.requireNonNull(builder.usedDiskPercent, this, "usedDiskPercent");
 
 	}
 
-	public DiskUsage(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DiskUsage of(Function<Builder, ObjectBuilder<DiskUsage>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code path}
 	 */
-	public String path() {
+	public final String path() {
 		return this.path;
 	}
 
 	/**
 	 * Required - API name: {@code total_bytes}
 	 */
-	public long totalBytes() {
+	public final long totalBytes() {
 		return this.totalBytes;
 	}
 
 	/**
 	 * Required - API name: {@code used_bytes}
 	 */
-	public long usedBytes() {
+	public final long usedBytes() {
 		return this.usedBytes;
 	}
 
 	/**
 	 * Required - API name: {@code free_bytes}
 	 */
-	public long freeBytes() {
+	public final long freeBytes() {
 		return this.freeBytes;
 	}
 
 	/**
 	 * Required - API name: {@code free_disk_percent}
 	 */
-	public double freeDiskPercent() {
+	public final double freeDiskPercent() {
 		return this.freeDiskPercent;
 	}
 
 	/**
 	 * Required - API name: {@code used_disk_percent}
 	 */
-	public double usedDiskPercent() {
+	public final double usedDiskPercent() {
 		return this.usedDiskPercent;
 	}
 
@@ -149,7 +157,8 @@ public final class DiskUsage implements JsonpSerializable {
 	/**
 	 * Builder for {@link DiskUsage}.
 	 */
-	public static class Builder implements ObjectBuilder<DiskUsage> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiskUsage> {
 		private String path;
 
 		private Long totalBytes;
@@ -165,7 +174,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code path}
 		 */
-		public Builder path(String value) {
+		public final Builder path(String value) {
 			this.path = value;
 			return this;
 		}
@@ -173,7 +182,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_bytes}
 		 */
-		public Builder totalBytes(long value) {
+		public final Builder totalBytes(long value) {
 			this.totalBytes = value;
 			return this;
 		}
@@ -181,7 +190,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code used_bytes}
 		 */
-		public Builder usedBytes(long value) {
+		public final Builder usedBytes(long value) {
 			this.usedBytes = value;
 			return this;
 		}
@@ -189,7 +198,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code free_bytes}
 		 */
-		public Builder freeBytes(long value) {
+		public final Builder freeBytes(long value) {
 			this.freeBytes = value;
 			return this;
 		}
@@ -197,7 +206,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code free_disk_percent}
 		 */
-		public Builder freeDiskPercent(double value) {
+		public final Builder freeDiskPercent(double value) {
 			this.freeDiskPercent = value;
 			return this;
 		}
@@ -205,7 +214,7 @@ public final class DiskUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code used_disk_percent}
 		 */
-		public Builder usedDiskPercent(double value) {
+		public final Builder usedDiskPercent(double value) {
 			this.usedDiskPercent = value;
 			return this;
 		}
@@ -217,6 +226,7 @@ public final class DiskUsage implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public DiskUsage build() {
+			_checkSingleUse();
 
 			return new DiskUsage(this);
 		}
@@ -228,9 +238,9 @@ public final class DiskUsage implements JsonpSerializable {
 	 * Json deserializer for {@link DiskUsage}
 	 */
 	public static final JsonpDeserializer<DiskUsage> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DiskUsage::setupDiskUsageDeserializer, Builder::build);
+			DiskUsage::setupDiskUsageDeserializer);
 
-	protected static void setupDiskUsageDeserializer(DelegatingDeserializer<DiskUsage.Builder> op) {
+	protected static void setupDiskUsageDeserializer(ObjectDeserializer<DiskUsage.Builder> op) {
 
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(Builder::totalBytes, JsonpDeserializer.longDeserializer(), "total_bytes");

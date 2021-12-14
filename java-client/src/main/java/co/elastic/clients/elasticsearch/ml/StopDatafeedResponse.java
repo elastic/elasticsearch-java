@@ -23,40 +23,48 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: ml.stop_datafeed.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/stop_datafeed/MlStopDatafeedResponse.ts#L20-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class StopDatafeedResponse implements JsonpSerializable {
+public class StopDatafeedResponse implements JsonpSerializable {
 	private final boolean stopped;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public StopDatafeedResponse(Builder builder) {
+	private StopDatafeedResponse(Builder builder) {
 
-		this.stopped = Objects.requireNonNull(builder.stopped, "stopped");
+		this.stopped = ApiTypeHelper.requireNonNull(builder.stopped, this, "stopped");
 
 	}
 
-	public StopDatafeedResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static StopDatafeedResponse of(Function<Builder, ObjectBuilder<StopDatafeedResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code stopped}
 	 */
-	public boolean stopped() {
+	public final boolean stopped() {
 		return this.stopped;
 	}
 
@@ -81,13 +89,14 @@ public final class StopDatafeedResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link StopDatafeedResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<StopDatafeedResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDatafeedResponse> {
 		private Boolean stopped;
 
 		/**
 		 * Required - API name: {@code stopped}
 		 */
-		public Builder stopped(boolean value) {
+		public final Builder stopped(boolean value) {
 			this.stopped = value;
 			return this;
 		}
@@ -99,6 +108,7 @@ public final class StopDatafeedResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public StopDatafeedResponse build() {
+			_checkSingleUse();
 
 			return new StopDatafeedResponse(this);
 		}
@@ -110,10 +120,9 @@ public final class StopDatafeedResponse implements JsonpSerializable {
 	 * Json deserializer for {@link StopDatafeedResponse}
 	 */
 	public static final JsonpDeserializer<StopDatafeedResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, StopDatafeedResponse::setupStopDatafeedResponseDeserializer, Builder::build);
+			.lazy(Builder::new, StopDatafeedResponse::setupStopDatafeedResponseDeserializer);
 
-	protected static void setupStopDatafeedResponseDeserializer(
-			DelegatingDeserializer<StopDatafeedResponse.Builder> op) {
+	protected static void setupStopDatafeedResponseDeserializer(ObjectDeserializer<StopDatafeedResponse.Builder> op) {
 
 		op.add(Builder::stopped, JsonpDeserializer.booleanDeserializer(), "stopped");
 

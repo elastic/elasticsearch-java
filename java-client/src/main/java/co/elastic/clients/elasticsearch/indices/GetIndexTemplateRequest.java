@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -43,13 +45,15 @@ import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Request
 
-public final class GetIndexTemplateRequest extends RequestBase {
-	@Nullable
-	private final String name;
+/**
+ * Returns an index template.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_index_template/IndicesGetIndexTemplateRequest.ts#L24-L56">API
+ *      specification</a>
+ */
 
-	@Nullable
-	private final Boolean local;
-
+public class GetIndexTemplateRequest extends RequestBase {
 	@Nullable
 	private final Boolean flatSettings;
 
@@ -57,44 +61,28 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	private final Boolean includeTypeName;
 
 	@Nullable
-	private final String masterTimeout;
+	private final Boolean local;
+
+	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
+	private final String name;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetIndexTemplateRequest(Builder builder) {
+	private GetIndexTemplateRequest(Builder builder) {
 
-		this.name = builder.name;
-		this.local = builder.local;
 		this.flatSettings = builder.flatSettings;
 		this.includeTypeName = builder.includeTypeName;
+		this.local = builder.local;
 		this.masterTimeout = builder.masterTimeout;
+		this.name = builder.name;
 
 	}
 
-	public GetIndexTemplateRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * Comma-separated list of index template names used to limit the request.
-	 * Wildcard (*) expressions are supported.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public String name() {
-		return this.name;
-	}
-
-	/**
-	 * If true, the request retrieves information from the local node only. Defaults
-	 * to false, which means information is retrieved from the master node.
-	 * <p>
-	 * API name: {@code local}
-	 */
-	@Nullable
-	public Boolean local() {
-		return this.local;
+	public static GetIndexTemplateRequest of(Function<Builder, ObjectBuilder<GetIndexTemplateRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -103,7 +91,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	 * API name: {@code flat_settings}
 	 */
 	@Nullable
-	public Boolean flatSettings() {
+	public final Boolean flatSettings() {
 		return this.flatSettings;
 	}
 
@@ -113,8 +101,19 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	 * API name: {@code include_type_name}
 	 */
 	@Nullable
-	public Boolean includeTypeName() {
+	public final Boolean includeTypeName() {
 		return this.includeTypeName;
+	}
+
+	/**
+	 * If true, the request retrieves information from the local node only. Defaults
+	 * to false, which means information is retrieved from the master node.
+	 * <p>
+	 * API name: {@code local}
+	 */
+	@Nullable
+	public final Boolean local() {
+		return this.local;
 	}
 
 	/**
@@ -124,8 +123,19 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Comma-separated list of index template names used to limit the request.
+	 * Wildcard (*) expressions are supported.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public final String name() {
+		return this.name;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -133,13 +143,8 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	/**
 	 * Builder for {@link GetIndexTemplateRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetIndexTemplateRequest> {
-		@Nullable
-		private String name;
 
-		@Nullable
-		private Boolean local;
-
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -147,36 +152,20 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		private Boolean includeTypeName;
 
 		@Nullable
-		private String masterTimeout;
+		private Boolean local;
 
-		/**
-		 * Comma-separated list of index template names used to limit the request.
-		 * Wildcard (*) expressions are supported.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(@Nullable String value) {
-			this.name = value;
-			return this;
-		}
+		@Nullable
+		private Time masterTimeout;
 
-		/**
-		 * If true, the request retrieves information from the local node only. Defaults
-		 * to false, which means information is retrieved from the master node.
-		 * <p>
-		 * API name: {@code local}
-		 */
-		public Builder local(@Nullable Boolean value) {
-			this.local = value;
-			return this;
-		}
+		@Nullable
+		private String name;
 
 		/**
 		 * If true, returns settings in flat format.
 		 * <p>
 		 * API name: {@code flat_settings}
 		 */
-		public Builder flatSettings(@Nullable Boolean value) {
+		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
 			return this;
 		}
@@ -186,8 +175,19 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code include_type_name}
 		 */
-		public Builder includeTypeName(@Nullable Boolean value) {
+		public final Builder includeTypeName(@Nullable Boolean value) {
 			this.includeTypeName = value;
+			return this;
+		}
+
+		/**
+		 * If true, the request retrieves information from the local node only. Defaults
+		 * to false, which means information is retrieved from the master node.
+		 * <p>
+		 * API name: {@code local}
+		 */
+		public final Builder local(@Nullable Boolean value) {
+			this.local = value;
 			return this;
 		}
 
@@ -197,8 +197,29 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Comma-separated list of index template names used to limit the request.
+		 * Wildcard (*) expressions are supported.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public final Builder name(@Nullable String value) {
+			this.name = value;
 			return this;
 		}
 
@@ -209,6 +230,7 @@ public final class GetIndexTemplateRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public GetIndexTemplateRequest build() {
+			_checkSingleUse();
 
 			return new GetIndexTemplateRequest(this);
 		}
@@ -219,7 +241,9 @@ public final class GetIndexTemplateRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.get_index_template}".
 	 */
-	public static final Endpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.get_index_template",
+
 			// Request method
 			request -> {
 				return "GET";
@@ -254,17 +278,17 @@ public final class GetIndexTemplateRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.local != null) {
-					params.put("local", String.valueOf(request.local));
-				}
-				if (request.flatSettings != null) {
-					params.put("flat_settings", String.valueOf(request.flatSettings));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.includeTypeName != null) {
 					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+				if (request.flatSettings != null) {
+					params.put("flat_settings", String.valueOf(request.flatSettings));
+				}
+				if (request.local != null) {
+					params.put("local", String.valueOf(request.local));
 				}
 				return params;
 

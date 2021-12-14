@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
@@ -36,44 +36,50 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: xpack.usage.DataStreams
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L71-L74">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DataStreams extends Base {
+public class DataStreams extends Base {
 	private final long dataStreams;
 
 	private final long indicesCount;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DataStreams(Builder builder) {
+	private DataStreams(Builder builder) {
 		super(builder);
 
-		this.dataStreams = Objects.requireNonNull(builder.dataStreams, "data_streams");
-		this.indicesCount = Objects.requireNonNull(builder.indicesCount, "indices_count");
+		this.dataStreams = ApiTypeHelper.requireNonNull(builder.dataStreams, this, "dataStreams");
+		this.indicesCount = ApiTypeHelper.requireNonNull(builder.indicesCount, this, "indicesCount");
 
 	}
 
-	public DataStreams(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DataStreams of(Function<Builder, ObjectBuilder<DataStreams>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code data_streams}
 	 */
-	public long dataStreams() {
+	public final long dataStreams() {
 		return this.dataStreams;
 	}
 
 	/**
 	 * Required - API name: {@code indices_count}
 	 */
-	public long indicesCount() {
+	public final long indicesCount() {
 		return this.indicesCount;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("data_streams");
 		generator.write(this.dataStreams);
 
@@ -87,6 +93,7 @@ public final class DataStreams extends Base {
 	/**
 	 * Builder for {@link DataStreams}.
 	 */
+
 	public static class Builder extends Base.AbstractBuilder<Builder> implements ObjectBuilder<DataStreams> {
 		private Long dataStreams;
 
@@ -95,7 +102,7 @@ public final class DataStreams extends Base {
 		/**
 		 * Required - API name: {@code data_streams}
 		 */
-		public Builder dataStreams(long value) {
+		public final Builder dataStreams(long value) {
 			this.dataStreams = value;
 			return this;
 		}
@@ -103,7 +110,7 @@ public final class DataStreams extends Base {
 		/**
 		 * Required - API name: {@code indices_count}
 		 */
-		public Builder indicesCount(long value) {
+		public final Builder indicesCount(long value) {
 			this.indicesCount = value;
 			return this;
 		}
@@ -120,6 +127,7 @@ public final class DataStreams extends Base {
 		 *             if some of the required fields are null.
 		 */
 		public DataStreams build() {
+			_checkSingleUse();
 
 			return new DataStreams(this);
 		}
@@ -131,9 +139,9 @@ public final class DataStreams extends Base {
 	 * Json deserializer for {@link DataStreams}
 	 */
 	public static final JsonpDeserializer<DataStreams> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DataStreams::setupDataStreamsDeserializer, Builder::build);
+			DataStreams::setupDataStreamsDeserializer);
 
-	protected static void setupDataStreamsDeserializer(DelegatingDeserializer<DataStreams.Builder> op) {
+	protected static void setupDataStreamsDeserializer(ObjectDeserializer<DataStreams.Builder> op) {
 		Base.setupBaseDeserializer(op);
 		op.add(Builder::dataStreams, JsonpDeserializer.longDeserializer(), "data_streams");
 		op.add(Builder::indicesCount, JsonpDeserializer.longDeserializer(), "indices_count");

@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes._types.GarbageCollectorTotal
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L187-L191">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GarbageCollectorTotal implements JsonpSerializable {
+public class GarbageCollectorTotal implements JsonpSerializable {
 	private final long collectionCount;
 
 	private final String collectionTime;
@@ -49,37 +57,37 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GarbageCollectorTotal(Builder builder) {
+	private GarbageCollectorTotal(Builder builder) {
 
-		this.collectionCount = Objects.requireNonNull(builder.collectionCount, "collection_count");
-		this.collectionTime = Objects.requireNonNull(builder.collectionTime, "collection_time");
-		this.collectionTimeInMillis = Objects.requireNonNull(builder.collectionTimeInMillis,
-				"collection_time_in_millis");
+		this.collectionCount = ApiTypeHelper.requireNonNull(builder.collectionCount, this, "collectionCount");
+		this.collectionTime = ApiTypeHelper.requireNonNull(builder.collectionTime, this, "collectionTime");
+		this.collectionTimeInMillis = ApiTypeHelper.requireNonNull(builder.collectionTimeInMillis, this,
+				"collectionTimeInMillis");
 
 	}
 
-	public GarbageCollectorTotal(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GarbageCollectorTotal of(Function<Builder, ObjectBuilder<GarbageCollectorTotal>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code collection_count}
 	 */
-	public long collectionCount() {
+	public final long collectionCount() {
 		return this.collectionCount;
 	}
 
 	/**
 	 * Required - API name: {@code collection_time}
 	 */
-	public String collectionTime() {
+	public final String collectionTime() {
 		return this.collectionTime;
 	}
 
 	/**
 	 * Required - API name: {@code collection_time_in_millis}
 	 */
-	public long collectionTimeInMillis() {
+	public final long collectionTimeInMillis() {
 		return this.collectionTimeInMillis;
 	}
 
@@ -110,7 +118,8 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 	/**
 	 * Builder for {@link GarbageCollectorTotal}.
 	 */
-	public static class Builder implements ObjectBuilder<GarbageCollectorTotal> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollectorTotal> {
 		private Long collectionCount;
 
 		private String collectionTime;
@@ -120,7 +129,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code collection_count}
 		 */
-		public Builder collectionCount(long value) {
+		public final Builder collectionCount(long value) {
 			this.collectionCount = value;
 			return this;
 		}
@@ -128,7 +137,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code collection_time}
 		 */
-		public Builder collectionTime(String value) {
+		public final Builder collectionTime(String value) {
 			this.collectionTime = value;
 			return this;
 		}
@@ -136,7 +145,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code collection_time_in_millis}
 		 */
-		public Builder collectionTimeInMillis(long value) {
+		public final Builder collectionTimeInMillis(long value) {
 			this.collectionTimeInMillis = value;
 			return this;
 		}
@@ -148,6 +157,7 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GarbageCollectorTotal build() {
+			_checkSingleUse();
 
 			return new GarbageCollectorTotal(this);
 		}
@@ -159,10 +169,9 @@ public final class GarbageCollectorTotal implements JsonpSerializable {
 	 * Json deserializer for {@link GarbageCollectorTotal}
 	 */
 	public static final JsonpDeserializer<GarbageCollectorTotal> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GarbageCollectorTotal::setupGarbageCollectorTotalDeserializer, Builder::build);
+			.lazy(Builder::new, GarbageCollectorTotal::setupGarbageCollectorTotalDeserializer);
 
-	protected static void setupGarbageCollectorTotalDeserializer(
-			DelegatingDeserializer<GarbageCollectorTotal.Builder> op) {
+	protected static void setupGarbageCollectorTotalDeserializer(ObjectDeserializer<GarbageCollectorTotal.Builder> op) {
 
 		op.add(Builder::collectionCount, JsonpDeserializer.longDeserializer(), "collection_count");
 		op.add(Builder::collectionTime, JsonpDeserializer.stringDeserializer(), "collection_time");

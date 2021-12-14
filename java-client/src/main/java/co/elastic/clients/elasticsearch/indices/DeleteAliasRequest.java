@@ -23,20 +23,20 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,30 +47,38 @@ import javax.annotation.Nullable;
 
 // typedef: indices.delete_alias.Request
 
-public final class DeleteAliasRequest extends RequestBase {
+/**
+ * Deletes an alias.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/delete_alias/IndicesDeleteAliasRequest.ts#L24-L38">API
+ *      specification</a>
+ */
+
+public class DeleteAliasRequest extends RequestBase {
 	private final List<String> index;
+
+	@Nullable
+	private final Time masterTimeout;
 
 	private final List<String> name;
 
 	@Nullable
-	private final String masterTimeout;
-
-	@Nullable
-	private final String timeout;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteAliasRequest(Builder builder) {
+	private DeleteAliasRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
-		this.name = ModelTypeHelper.unmodifiableNonNull(builder.name, "name");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
 
-	public DeleteAliasRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteAliasRequest of(Function<Builder, ObjectBuilder<DeleteAliasRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -79,18 +87,8 @@ public final class DeleteAliasRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
-	}
-
-	/**
-	 * Required - A comma-separated list of aliases to delete (supports wildcards);
-	 * use <code>_all</code> to delete all aliases for the specified indices.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	public List<String> name() {
-		return this.name;
 	}
 
 	/**
@@ -99,8 +97,18 @@ public final class DeleteAliasRequest extends RequestBase {
 	 * API name: {@code master_timeout}
 	 */
 	@Nullable
-	public String masterTimeout() {
+	public final Time masterTimeout() {
 		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - A comma-separated list of aliases to delete (supports wildcards);
+	 * use <code>_all</code> to delete all aliases for the specified indices.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	public final List<String> name() {
+		return this.name;
 	}
 
 	/**
@@ -109,7 +117,7 @@ public final class DeleteAliasRequest extends RequestBase {
 	 * API name: {@code timeout}
 	 */
 	@Nullable
-	public String timeout() {
+	public final Time timeout() {
 		return this.timeout;
 	}
 
@@ -118,25 +126,28 @@ public final class DeleteAliasRequest extends RequestBase {
 	/**
 	 * Builder for {@link DeleteAliasRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<DeleteAliasRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteAliasRequest> {
 		private List<String> index;
+
+		@Nullable
+		private Time masterTimeout;
 
 		private List<String> name;
 
 		@Nullable
-		private String masterTimeout;
-
-		@Nullable
-		private String timeout;
+		private Time timeout;
 
 		/**
 		 * Required - A comma-separated list of index names (supports wildcards); use
 		 * <code>_all</code> for all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -145,53 +156,11 @@ public final class DeleteAliasRequest extends RequestBase {
 		 * <code>_all</code> for all indices
 		 * <p>
 		 * API name: {@code index}
-		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
-			return this;
-		}
-
-		/**
-		 * Required - A comma-separated list of aliases to delete (supports wildcards);
-		 * use <code>_all</code> to delete all aliases for the specified indices.
 		 * <p>
-		 * API name: {@code name}
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public Builder name(List<String> value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * Required - A comma-separated list of aliases to delete (supports wildcards);
-		 * use <code>_all</code> to delete all aliases for the specified indices.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(String... value) {
-			this.name = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #name(List)}, creating the list if needed.
-		 */
-		public Builder addName(String value) {
-			if (this.name == null) {
-				this.name = new ArrayList<>();
-			}
-			this.name.add(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -200,8 +169,43 @@ public final class DeleteAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
-		public Builder masterTimeout(@Nullable String value) {
+		public final Builder masterTimeout(@Nullable Time value) {
 			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Specify timeout for connection to master
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - A comma-separated list of aliases to delete (supports wildcards);
+		 * use <code>_all</code> to delete all aliases for the specified indices.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
+		 */
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * Required - A comma-separated list of aliases to delete (supports wildcards);
+		 * use <code>_all</code> to delete all aliases for the specified indices.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -210,9 +214,18 @@ public final class DeleteAliasRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code timeout}
 		 */
-		public Builder timeout(@Nullable String value) {
+		public final Builder timeout(@Nullable Time value) {
 			this.timeout = value;
 			return this;
+		}
+
+		/**
+		 * Explicit timestamp for the document
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -222,6 +235,7 @@ public final class DeleteAliasRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteAliasRequest build() {
+			_checkSingleUse();
 
 			return new DeleteAliasRequest(this);
 		}
@@ -232,7 +246,9 @@ public final class DeleteAliasRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code indices.delete_alias}".
 	 */
-	public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/indices.delete_alias",
+
 			// Request method
 			request -> {
 				return "DELETE";
@@ -241,13 +257,13 @@ public final class DeleteAliasRequest extends RequestBase {
 
 			// Request path
 			request -> {
-				final int _index = 1 << 0;
-				final int _name = 1 << 1;
+				final int _name = 1 << 0;
+				final int _index = 1 << 1;
 
 				int propsSet = 0;
 
-				propsSet |= _index;
 				propsSet |= _name;
+				propsSet |= _index;
 
 				if (propsSet == (_index | _name)) {
 					StringBuilder buf = new StringBuilder();
@@ -275,10 +291,10 @@ public final class DeleteAliasRequest extends RequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout);
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.timeout != null) {
-					params.put("timeout", request.timeout);
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

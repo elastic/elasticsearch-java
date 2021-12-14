@@ -23,19 +23,20 @@
 
 package co.elastic.clients.elasticsearch.sql;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -47,11 +48,16 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: sql.query.Request
-@JsonpDeserializable
-public final class QueryRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final String format;
 
+/**
+ * Executes a SQL request
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/sql/query/QuerySqlRequest.ts#L25-L76">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Boolean columnar;
 
@@ -62,59 +68,52 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	private final Integer fetchSize;
 
 	@Nullable
+	private final Boolean fieldMultiValueLeniency;
+
+	@Nullable
 	private final Query filter;
+
+	@Nullable
+	private final String format;
+
+	@Nullable
+	private final Time pageTimeout;
 
 	@Nullable
 	private final String query;
 
 	@Nullable
-	private final String requestTimeout;
-
-	@Nullable
-	private final String pageTimeout;
+	private final Time requestTimeout;
 
 	@Nullable
 	private final String timeZone;
 
-	@Nullable
-	private final Boolean fieldMultiValueLeniency;
-
 	// ---------------------------------------------------------------------------------------------
 
-	public QueryRequest(Builder builder) {
+	private QueryRequest(Builder builder) {
 
-		this.format = builder.format;
 		this.columnar = builder.columnar;
 		this.cursor = builder.cursor;
 		this.fetchSize = builder.fetchSize;
+		this.fieldMultiValueLeniency = builder.fieldMultiValueLeniency;
 		this.filter = builder.filter;
+		this.format = builder.format;
+		this.pageTimeout = builder.pageTimeout;
 		this.query = builder.query;
 		this.requestTimeout = builder.requestTimeout;
-		this.pageTimeout = builder.pageTimeout;
 		this.timeZone = builder.timeZone;
-		this.fieldMultiValueLeniency = builder.fieldMultiValueLeniency;
 
 	}
 
-	public QueryRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
-	}
-
-	/**
-	 * a short version of the Accept header, e.g. json, yaml
-	 * <p>
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public String format() {
-		return this.format;
+	public static QueryRequest of(Function<Builder, ObjectBuilder<QueryRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code columnar}
 	 */
 	@Nullable
-	public Boolean columnar() {
+	public final Boolean columnar() {
 		return this.columnar;
 	}
 
@@ -122,7 +121,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code cursor}
 	 */
 	@Nullable
-	public String cursor() {
+	public final String cursor() {
 		return this.cursor;
 	}
 
@@ -132,59 +131,8 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code fetch_size}
 	 */
 	@Nullable
-	public Integer fetchSize() {
+	public final Integer fetchSize() {
 		return this.fetchSize;
-	}
-
-	/**
-	 * Optional Elasticsearch query DSL for additional filtering.
-	 * <p>
-	 * API name: {@code filter}
-	 */
-	@Nullable
-	public Query filter() {
-		return this.filter;
-	}
-
-	/**
-	 * SQL query to execute
-	 * <p>
-	 * API name: {@code query}
-	 */
-	@Nullable
-	public String query() {
-		return this.query;
-	}
-
-	/**
-	 * The timeout before the request fails.
-	 * <p>
-	 * API name: {@code request_timeout}
-	 */
-	@Nullable
-	public String requestTimeout() {
-		return this.requestTimeout;
-	}
-
-	/**
-	 * The timeout before a pagination request fails.
-	 * <p>
-	 * API name: {@code page_timeout}
-	 */
-	@Nullable
-	public String pageTimeout() {
-		return this.pageTimeout;
-	}
-
-	/**
-	 * Time-zone in ISO 8601 used for executing the query on the server. More
-	 * information available here.
-	 * <p>
-	 * API name: {@code time_zone}
-	 */
-	@Nullable
-	public String timeZone() {
-		return this.timeZone;
 	}
 
 	/**
@@ -195,8 +143,69 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * API name: {@code field_multi_value_leniency}
 	 */
 	@Nullable
-	public Boolean fieldMultiValueLeniency() {
+	public final Boolean fieldMultiValueLeniency() {
 		return this.fieldMultiValueLeniency;
+	}
+
+	/**
+	 * Optional Elasticsearch query DSL for additional filtering.
+	 * <p>
+	 * API name: {@code filter}
+	 */
+	@Nullable
+	public final Query filter() {
+		return this.filter;
+	}
+
+	/**
+	 * a short version of the Accept header, e.g. json, yaml
+	 * <p>
+	 * API name: {@code format}
+	 */
+	@Nullable
+	public final String format() {
+		return this.format;
+	}
+
+	/**
+	 * The timeout before a pagination request fails.
+	 * <p>
+	 * API name: {@code page_timeout}
+	 */
+	@Nullable
+	public final Time pageTimeout() {
+		return this.pageTimeout;
+	}
+
+	/**
+	 * SQL query to execute
+	 * <p>
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public final String query() {
+		return this.query;
+	}
+
+	/**
+	 * The timeout before the request fails.
+	 * <p>
+	 * API name: {@code request_timeout}
+	 */
+	@Nullable
+	public final Time requestTimeout() {
+		return this.requestTimeout;
+	}
+
+	/**
+	 * Time-zone in ISO 8601 used for executing the query on the server. More
+	 * information available here.
+	 * <p>
+	 * API name: {@code time_zone}
+	 */
+	@Nullable
+	public final String timeZone() {
+		return this.timeZone;
 	}
 
 	/**
@@ -211,57 +220,48 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.columnar != null) {
-
 			generator.writeKey("columnar");
 			generator.write(this.columnar);
 
 		}
 		if (this.cursor != null) {
-
 			generator.writeKey("cursor");
 			generator.write(this.cursor);
 
 		}
 		if (this.fetchSize != null) {
-
 			generator.writeKey("fetch_size");
 			generator.write(this.fetchSize);
 
 		}
-		if (this.filter != null) {
+		if (this.fieldMultiValueLeniency != null) {
+			generator.writeKey("field_multi_value_leniency");
+			generator.write(this.fieldMultiValueLeniency);
 
+		}
+		if (this.filter != null) {
 			generator.writeKey("filter");
 			this.filter.serialize(generator, mapper);
 
 		}
-		if (this.query != null) {
+		if (this.pageTimeout != null) {
+			generator.writeKey("page_timeout");
+			this.pageTimeout.serialize(generator, mapper);
 
+		}
+		if (this.query != null) {
 			generator.writeKey("query");
 			generator.write(this.query);
 
 		}
 		if (this.requestTimeout != null) {
-
 			generator.writeKey("request_timeout");
-			generator.write(this.requestTimeout);
-
-		}
-		if (this.pageTimeout != null) {
-
-			generator.writeKey("page_timeout");
-			generator.write(this.pageTimeout);
+			this.requestTimeout.serialize(generator, mapper);
 
 		}
 		if (this.timeZone != null) {
-
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
-
-		}
-		if (this.fieldMultiValueLeniency != null) {
-
-			generator.writeKey("field_multi_value_leniency");
-			generator.write(this.fieldMultiValueLeniency);
 
 		}
 
@@ -272,10 +272,8 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Builder for {@link QueryRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<QueryRequest> {
-		@Nullable
-		private String format;
 
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryRequest> {
 		@Nullable
 		private Boolean columnar;
 
@@ -286,37 +284,30 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		private Integer fetchSize;
 
 		@Nullable
+		private Boolean fieldMultiValueLeniency;
+
+		@Nullable
 		private Query filter;
+
+		@Nullable
+		private String format;
+
+		@Nullable
+		private Time pageTimeout;
 
 		@Nullable
 		private String query;
 
 		@Nullable
-		private String requestTimeout;
-
-		@Nullable
-		private String pageTimeout;
+		private Time requestTimeout;
 
 		@Nullable
 		private String timeZone;
 
-		@Nullable
-		private Boolean fieldMultiValueLeniency;
-
-		/**
-		 * a short version of the Accept header, e.g. json, yaml
-		 * <p>
-		 * API name: {@code format}
-		 */
-		public Builder format(@Nullable String value) {
-			this.format = value;
-			return this;
-		}
-
 		/**
 		 * API name: {@code columnar}
 		 */
-		public Builder columnar(@Nullable Boolean value) {
+		public final Builder columnar(@Nullable Boolean value) {
 			this.columnar = value;
 			return this;
 		}
@@ -324,7 +315,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * API name: {@code cursor}
 		 */
-		public Builder cursor(@Nullable String value) {
+		public final Builder cursor(@Nullable String value) {
 			this.cursor = value;
 			return this;
 		}
@@ -334,68 +325,8 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code fetch_size}
 		 */
-		public Builder fetchSize(@Nullable Integer value) {
+		public final Builder fetchSize(@Nullable Integer value) {
 			this.fetchSize = value;
-			return this;
-		}
-
-		/**
-		 * Optional Elasticsearch query DSL for additional filtering.
-		 * <p>
-		 * API name: {@code filter}
-		 */
-		public Builder filter(@Nullable Query value) {
-			this.filter = value;
-			return this;
-		}
-
-		/**
-		 * Optional Elasticsearch query DSL for additional filtering.
-		 * <p>
-		 * API name: {@code filter}
-		 */
-		public Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.filter(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
-		 * SQL query to execute
-		 * <p>
-		 * API name: {@code query}
-		 */
-		public Builder query(@Nullable String value) {
-			this.query = value;
-			return this;
-		}
-
-		/**
-		 * The timeout before the request fails.
-		 * <p>
-		 * API name: {@code request_timeout}
-		 */
-		public Builder requestTimeout(@Nullable String value) {
-			this.requestTimeout = value;
-			return this;
-		}
-
-		/**
-		 * The timeout before a pagination request fails.
-		 * <p>
-		 * API name: {@code page_timeout}
-		 */
-		public Builder pageTimeout(@Nullable String value) {
-			this.pageTimeout = value;
-			return this;
-		}
-
-		/**
-		 * Time-zone in ISO 8601 used for executing the query on the server. More
-		 * information available here.
-		 * <p>
-		 * API name: {@code time_zone}
-		 */
-		public Builder timeZone(@Nullable String value) {
-			this.timeZone = value;
 			return this;
 		}
 
@@ -406,8 +337,96 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 * <p>
 		 * API name: {@code field_multi_value_leniency}
 		 */
-		public Builder fieldMultiValueLeniency(@Nullable Boolean value) {
+		public final Builder fieldMultiValueLeniency(@Nullable Boolean value) {
 			this.fieldMultiValueLeniency = value;
+			return this;
+		}
+
+		/**
+		 * Optional Elasticsearch query DSL for additional filtering.
+		 * <p>
+		 * API name: {@code filter}
+		 */
+		public final Builder filter(@Nullable Query value) {
+			this.filter = value;
+			return this;
+		}
+
+		/**
+		 * Optional Elasticsearch query DSL for additional filtering.
+		 * <p>
+		 * API name: {@code filter}
+		 */
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.filter(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * a short version of the Accept header, e.g. json, yaml
+		 * <p>
+		 * API name: {@code format}
+		 */
+		public final Builder format(@Nullable String value) {
+			this.format = value;
+			return this;
+		}
+
+		/**
+		 * The timeout before a pagination request fails.
+		 * <p>
+		 * API name: {@code page_timeout}
+		 */
+		public final Builder pageTimeout(@Nullable Time value) {
+			this.pageTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The timeout before a pagination request fails.
+		 * <p>
+		 * API name: {@code page_timeout}
+		 */
+		public final Builder pageTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.pageTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * SQL query to execute
+		 * <p>
+		 * API name: {@code query}
+		 */
+		public final Builder query(@Nullable String value) {
+			this.query = value;
+			return this;
+		}
+
+		/**
+		 * The timeout before the request fails.
+		 * <p>
+		 * API name: {@code request_timeout}
+		 */
+		public final Builder requestTimeout(@Nullable Time value) {
+			this.requestTimeout = value;
+			return this;
+		}
+
+		/**
+		 * The timeout before the request fails.
+		 * <p>
+		 * API name: {@code request_timeout}
+		 */
+		public final Builder requestTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.requestTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Time-zone in ISO 8601 used for executing the query on the server. More
+		 * information available here.
+		 * <p>
+		 * API name: {@code time_zone}
+		 */
+		public final Builder timeZone(@Nullable String value) {
+			this.timeZone = value;
 			return this;
 		}
 
@@ -418,6 +437,7 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 		 *             if some of the required fields are null.
 		 */
 		public QueryRequest build() {
+			_checkSingleUse();
 
 			return new QueryRequest(this);
 		}
@@ -429,19 +449,19 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	 * Json deserializer for {@link QueryRequest}
 	 */
 	public static final JsonpDeserializer<QueryRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			QueryRequest::setupQueryRequestDeserializer, Builder::build);
+			QueryRequest::setupQueryRequestDeserializer);
 
-	protected static void setupQueryRequestDeserializer(DelegatingDeserializer<QueryRequest.Builder> op) {
+	protected static void setupQueryRequestDeserializer(ObjectDeserializer<QueryRequest.Builder> op) {
 
 		op.add(Builder::columnar, JsonpDeserializer.booleanDeserializer(), "columnar");
 		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
 		op.add(Builder::fetchSize, JsonpDeserializer.integerDeserializer(), "fetch_size");
-		op.add(Builder::filter, Query._DESERIALIZER, "filter");
-		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
-		op.add(Builder::requestTimeout, JsonpDeserializer.stringDeserializer(), "request_timeout");
-		op.add(Builder::pageTimeout, JsonpDeserializer.stringDeserializer(), "page_timeout");
-		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 		op.add(Builder::fieldMultiValueLeniency, JsonpDeserializer.booleanDeserializer(), "field_multi_value_leniency");
+		op.add(Builder::filter, Query._DESERIALIZER, "filter");
+		op.add(Builder::pageTimeout, Time._DESERIALIZER, "page_timeout");
+		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
+		op.add(Builder::requestTimeout, Time._DESERIALIZER, "request_timeout");
+		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 
 	}
 
@@ -450,7 +470,9 @@ public final class QueryRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Endpoint "{@code sql.query}".
 	 */
-	public static final Endpoint<QueryRequest, QueryResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<QueryRequest, QueryResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/sql.query",
+
 			// Request method
 			request -> {
 				return "POST";

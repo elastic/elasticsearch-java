@@ -23,19 +23,19 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch.security.get_token.AccessTokenGrantType;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -44,88 +44,96 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.get_token.Request
+
+/**
+ * Creates a bearer token for access without requiring basic authentication.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_token/GetUserAccessTokenRequest.ts#L25-L39">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetTokenRequest extends RequestBase implements JsonpSerializable {
+public class GetTokenRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final AccessTokenGrantType grantType;
-
-	@Nullable
-	private final String scope;
-
-	@Nullable
-	private final String password;
 
 	@Nullable
 	private final String kerberosTicket;
 
 	@Nullable
+	private final String password;
+
+	@Nullable
 	private final String refreshToken;
+
+	@Nullable
+	private final String scope;
 
 	@Nullable
 	private final String username;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetTokenRequest(Builder builder) {
+	private GetTokenRequest(Builder builder) {
 
 		this.grantType = builder.grantType;
-		this.scope = builder.scope;
-		this.password = builder.password;
 		this.kerberosTicket = builder.kerberosTicket;
+		this.password = builder.password;
 		this.refreshToken = builder.refreshToken;
+		this.scope = builder.scope;
 		this.username = builder.username;
 
 	}
 
-	public GetTokenRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetTokenRequest of(Function<Builder, ObjectBuilder<GetTokenRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code grant_type}
 	 */
 	@Nullable
-	public AccessTokenGrantType grantType() {
+	public final AccessTokenGrantType grantType() {
 		return this.grantType;
-	}
-
-	/**
-	 * API name: {@code scope}
-	 */
-	@Nullable
-	public String scope() {
-		return this.scope;
-	}
-
-	/**
-	 * API name: {@code password}
-	 */
-	@Nullable
-	public String password() {
-		return this.password;
 	}
 
 	/**
 	 * API name: {@code kerberos_ticket}
 	 */
 	@Nullable
-	public String kerberosTicket() {
+	public final String kerberosTicket() {
 		return this.kerberosTicket;
+	}
+
+	/**
+	 * API name: {@code password}
+	 */
+	@Nullable
+	public final String password() {
+		return this.password;
 	}
 
 	/**
 	 * API name: {@code refresh_token}
 	 */
 	@Nullable
-	public String refreshToken() {
+	public final String refreshToken() {
 		return this.refreshToken;
+	}
+
+	/**
+	 * API name: {@code scope}
+	 */
+	@Nullable
+	public final String scope() {
+		return this.scope;
 	}
 
 	/**
 	 * API name: {@code username}
 	 */
 	@Nullable
-	public String username() {
+	public final String username() {
 		return this.username;
 	}
 
@@ -141,36 +149,30 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.grantType != null) {
-
 			generator.writeKey("grant_type");
 			this.grantType.serialize(generator, mapper);
 		}
-		if (this.scope != null) {
-
-			generator.writeKey("scope");
-			generator.write(this.scope);
-
-		}
-		if (this.password != null) {
-
-			generator.writeKey("password");
-			generator.write(this.password);
-
-		}
 		if (this.kerberosTicket != null) {
-
 			generator.writeKey("kerberos_ticket");
 			generator.write(this.kerberosTicket);
 
 		}
-		if (this.refreshToken != null) {
+		if (this.password != null) {
+			generator.writeKey("password");
+			generator.write(this.password);
 
+		}
+		if (this.refreshToken != null) {
 			generator.writeKey("refresh_token");
 			generator.write(this.refreshToken);
 
 		}
-		if (this.username != null) {
+		if (this.scope != null) {
+			generator.writeKey("scope");
+			generator.write(this.scope);
 
+		}
+		if (this.username != null) {
 			generator.writeKey("username");
 			generator.write(this.username);
 
@@ -183,21 +185,22 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Builder for {@link GetTokenRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<GetTokenRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTokenRequest> {
 		@Nullable
 		private AccessTokenGrantType grantType;
-
-		@Nullable
-		private String scope;
-
-		@Nullable
-		private String password;
 
 		@Nullable
 		private String kerberosTicket;
 
 		@Nullable
+		private String password;
+
+		@Nullable
 		private String refreshToken;
+
+		@Nullable
+		private String scope;
 
 		@Nullable
 		private String username;
@@ -205,47 +208,47 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 		/**
 		 * API name: {@code grant_type}
 		 */
-		public Builder grantType(@Nullable AccessTokenGrantType value) {
+		public final Builder grantType(@Nullable AccessTokenGrantType value) {
 			this.grantType = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code scope}
-		 */
-		public Builder scope(@Nullable String value) {
-			this.scope = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code password}
-		 */
-		public Builder password(@Nullable String value) {
-			this.password = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code kerberos_ticket}
 		 */
-		public Builder kerberosTicket(@Nullable String value) {
+		public final Builder kerberosTicket(@Nullable String value) {
 			this.kerberosTicket = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code password}
+		 */
+		public final Builder password(@Nullable String value) {
+			this.password = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code refresh_token}
 		 */
-		public Builder refreshToken(@Nullable String value) {
+		public final Builder refreshToken(@Nullable String value) {
 			this.refreshToken = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code scope}
+		 */
+		public final Builder scope(@Nullable String value) {
+			this.scope = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code username}
 		 */
-		public Builder username(@Nullable String value) {
+		public final Builder username(@Nullable String value) {
 			this.username = value;
 			return this;
 		}
@@ -257,6 +260,7 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 		 *             if some of the required fields are null.
 		 */
 		public GetTokenRequest build() {
+			_checkSingleUse();
 
 			return new GetTokenRequest(this);
 		}
@@ -268,15 +272,15 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	 * Json deserializer for {@link GetTokenRequest}
 	 */
 	public static final JsonpDeserializer<GetTokenRequest> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GetTokenRequest::setupGetTokenRequestDeserializer, Builder::build);
+			GetTokenRequest::setupGetTokenRequestDeserializer);
 
-	protected static void setupGetTokenRequestDeserializer(DelegatingDeserializer<GetTokenRequest.Builder> op) {
+	protected static void setupGetTokenRequestDeserializer(ObjectDeserializer<GetTokenRequest.Builder> op) {
 
 		op.add(Builder::grantType, AccessTokenGrantType._DESERIALIZER, "grant_type");
-		op.add(Builder::scope, JsonpDeserializer.stringDeserializer(), "scope");
-		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::kerberosTicket, JsonpDeserializer.stringDeserializer(), "kerberos_ticket");
+		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::refreshToken, JsonpDeserializer.stringDeserializer(), "refresh_token");
+		op.add(Builder::scope, JsonpDeserializer.stringDeserializer(), "scope");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 
 	}
@@ -286,7 +290,9 @@ public final class GetTokenRequest extends RequestBase implements JsonpSerializa
 	/**
 	 * Endpoint "{@code security.get_token}".
 	 */
-	public static final Endpoint<GetTokenRequest, GetTokenResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<GetTokenRequest, GetTokenResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.get_token",
+
 			// Request method
 			request -> {
 				return "POST";

@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.slm;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: slm.execute_lifecycle.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/execute_lifecycle/ExecuteSnapshotLifecycleResponse.ts#L22-L24">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ExecuteLifecycleResponse implements JsonpSerializable {
+public class ExecuteLifecycleResponse implements JsonpSerializable {
 	private final String snapshotName;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ExecuteLifecycleResponse(Builder builder) {
+	private ExecuteLifecycleResponse(Builder builder) {
 
-		this.snapshotName = Objects.requireNonNull(builder.snapshotName, "snapshot_name");
+		this.snapshotName = ApiTypeHelper.requireNonNull(builder.snapshotName, this, "snapshotName");
 
 	}
 
-	public ExecuteLifecycleResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ExecuteLifecycleResponse of(Function<Builder, ObjectBuilder<ExecuteLifecycleResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code snapshot_name}
 	 */
-	public String snapshotName() {
+	public final String snapshotName() {
 		return this.snapshotName;
 	}
 
@@ -82,13 +90,14 @@ public final class ExecuteLifecycleResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link ExecuteLifecycleResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<ExecuteLifecycleResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteLifecycleResponse> {
 		private String snapshotName;
 
 		/**
 		 * Required - API name: {@code snapshot_name}
 		 */
-		public Builder snapshotName(String value) {
+		public final Builder snapshotName(String value) {
 			this.snapshotName = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class ExecuteLifecycleResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ExecuteLifecycleResponse build() {
+			_checkSingleUse();
 
 			return new ExecuteLifecycleResponse(this);
 		}
@@ -111,10 +121,10 @@ public final class ExecuteLifecycleResponse implements JsonpSerializable {
 	 * Json deserializer for {@link ExecuteLifecycleResponse}
 	 */
 	public static final JsonpDeserializer<ExecuteLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ExecuteLifecycleResponse::setupExecuteLifecycleResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ExecuteLifecycleResponse::setupExecuteLifecycleResponseDeserializer);
 
 	protected static void setupExecuteLifecycleResponseDeserializer(
-			DelegatingDeserializer<ExecuteLifecycleResponse.Builder> op) {
+			ObjectDeserializer<ExecuteLifecycleResponse.Builder> op) {
 
 		op.add(Builder::snapshotName, JsonpDeserializer.stringDeserializer(), "snapshot_name");
 

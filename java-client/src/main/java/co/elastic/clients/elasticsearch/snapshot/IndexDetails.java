@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -40,8 +41,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: snapshot._types.IndexDetails
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/_types/SnapshotIndexDetails.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class IndexDetails implements JsonpSerializable {
+public class IndexDetails implements JsonpSerializable {
 	private final int shardCount;
 
 	@Nullable
@@ -53,23 +61,24 @@ public final class IndexDetails implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public IndexDetails(Builder builder) {
+	private IndexDetails(Builder builder) {
 
-		this.shardCount = Objects.requireNonNull(builder.shardCount, "shard_count");
+		this.shardCount = ApiTypeHelper.requireNonNull(builder.shardCount, this, "shardCount");
 		this.size = builder.size;
-		this.sizeInBytes = Objects.requireNonNull(builder.sizeInBytes, "size_in_bytes");
-		this.maxSegmentsPerShard = Objects.requireNonNull(builder.maxSegmentsPerShard, "max_segments_per_shard");
+		this.sizeInBytes = ApiTypeHelper.requireNonNull(builder.sizeInBytes, this, "sizeInBytes");
+		this.maxSegmentsPerShard = ApiTypeHelper.requireNonNull(builder.maxSegmentsPerShard, this,
+				"maxSegmentsPerShard");
 
 	}
 
-	public IndexDetails(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static IndexDetails of(Function<Builder, ObjectBuilder<IndexDetails>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code shard_count}
 	 */
-	public int shardCount() {
+	public final int shardCount() {
 		return this.shardCount;
 	}
 
@@ -77,21 +86,21 @@ public final class IndexDetails implements JsonpSerializable {
 	 * API name: {@code size}
 	 */
 	@Nullable
-	public String size() {
+	public final String size() {
 		return this.size;
 	}
 
 	/**
 	 * Required - API name: {@code size_in_bytes}
 	 */
-	public long sizeInBytes() {
+	public final long sizeInBytes() {
 		return this.sizeInBytes;
 	}
 
 	/**
 	 * Required - API name: {@code max_segments_per_shard}
 	 */
-	public long maxSegmentsPerShard() {
+	public final long maxSegmentsPerShard() {
 		return this.maxSegmentsPerShard;
 	}
 
@@ -110,12 +119,10 @@ public final class IndexDetails implements JsonpSerializable {
 		generator.write(this.shardCount);
 
 		if (this.size != null) {
-
 			generator.writeKey("size");
 			generator.write(this.size);
 
 		}
-
 		generator.writeKey("size_in_bytes");
 		generator.write(this.sizeInBytes);
 
@@ -129,7 +136,8 @@ public final class IndexDetails implements JsonpSerializable {
 	/**
 	 * Builder for {@link IndexDetails}.
 	 */
-	public static class Builder implements ObjectBuilder<IndexDetails> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexDetails> {
 		private Integer shardCount;
 
 		@Nullable
@@ -142,7 +150,7 @@ public final class IndexDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shard_count}
 		 */
-		public Builder shardCount(int value) {
+		public final Builder shardCount(int value) {
 			this.shardCount = value;
 			return this;
 		}
@@ -150,7 +158,7 @@ public final class IndexDetails implements JsonpSerializable {
 		/**
 		 * API name: {@code size}
 		 */
-		public Builder size(@Nullable String value) {
+		public final Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
 		}
@@ -158,7 +166,7 @@ public final class IndexDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code size_in_bytes}
 		 */
-		public Builder sizeInBytes(long value) {
+		public final Builder sizeInBytes(long value) {
 			this.sizeInBytes = value;
 			return this;
 		}
@@ -166,7 +174,7 @@ public final class IndexDetails implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_segments_per_shard}
 		 */
-		public Builder maxSegmentsPerShard(long value) {
+		public final Builder maxSegmentsPerShard(long value) {
 			this.maxSegmentsPerShard = value;
 			return this;
 		}
@@ -178,6 +186,7 @@ public final class IndexDetails implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public IndexDetails build() {
+			_checkSingleUse();
 
 			return new IndexDetails(this);
 		}
@@ -189,9 +198,9 @@ public final class IndexDetails implements JsonpSerializable {
 	 * Json deserializer for {@link IndexDetails}
 	 */
 	public static final JsonpDeserializer<IndexDetails> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IndexDetails::setupIndexDetailsDeserializer, Builder::build);
+			IndexDetails::setupIndexDetailsDeserializer);
 
-	protected static void setupIndexDetailsDeserializer(DelegatingDeserializer<IndexDetails.Builder> op) {
+	protected static void setupIndexDetailsDeserializer(ObjectDeserializer<IndexDetails.Builder> op) {
 
 		op.add(Builder::shardCount, JsonpDeserializer.integerDeserializer(), "shard_count");
 		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");

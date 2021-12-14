@@ -23,27 +23,33 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.Collections;
-import java.util.HashMap;
+import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.ActivationStatus
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Activation.ts#L29-L33">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ActivationStatus implements JsonpSerializable {
+public class ActivationStatus implements JsonpSerializable {
 	private final Map<String, ActionStatus> actions;
 
 	private final ActivationState state;
@@ -52,36 +58,36 @@ public final class ActivationStatus implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ActivationStatus(Builder builder) {
+	private ActivationStatus(Builder builder) {
 
-		this.actions = ModelTypeHelper.unmodifiableNonNull(builder.actions, "actions");
-		this.state = Objects.requireNonNull(builder.state, "state");
-		this.version = Objects.requireNonNull(builder.version, "version");
+		this.actions = ApiTypeHelper.unmodifiableRequired(builder.actions, this, "actions");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 
 	}
 
-	public ActivationStatus(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ActivationStatus of(Function<Builder, ObjectBuilder<ActivationStatus>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code actions}
 	 */
-	public Map<String, ActionStatus> actions() {
+	public final Map<String, ActionStatus> actions() {
 		return this.actions;
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public ActivationState state() {
+	public final ActivationState state() {
 		return this.state;
 	}
 
 	/**
 	 * Required - API name: {@code version}
 	 */
-	public long version() {
+	public final long version() {
 		return this.version;
 	}
 
@@ -96,15 +102,17 @@ public final class ActivationStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("actions");
-		generator.writeStartObject();
-		for (Map.Entry<String, ActionStatus> item0 : this.actions.entrySet()) {
-			generator.writeKey(item0.getKey());
-			item0.getValue().serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.actions)) {
+			generator.writeKey("actions");
+			generator.writeStartObject();
+			for (Map.Entry<String, ActionStatus> item0 : this.actions.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
 
@@ -118,7 +126,8 @@ public final class ActivationStatus implements JsonpSerializable {
 	/**
 	 * Builder for {@link ActivationStatus}.
 	 */
-	public static class Builder implements ObjectBuilder<ActivationStatus> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActivationStatus> {
 		private Map<String, ActionStatus> actions;
 
 		private ActivationState state;
@@ -127,41 +136,37 @@ public final class ActivationStatus implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>actions</code>.
 		 */
-		public Builder actions(Map<String, ActionStatus> value) {
-			this.actions = value;
+		public final Builder actions(Map<String, ActionStatus> map) {
+			this.actions = _mapPutAll(this.actions, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #actions(Map)}, creating the map if needed.
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code>.
 		 */
-		public Builder putActions(String key, ActionStatus value) {
-			if (this.actions == null) {
-				this.actions = new HashMap<>();
-			}
-			this.actions.put(key, value);
+		public final Builder actions(String key, ActionStatus value) {
+			this.actions = _mapPut(this.actions, key, value);
 			return this;
 		}
 
 		/**
-		 * Set {@link #actions(Map)} to a singleton map.
+		 * Required - API name: {@code actions}
+		 * <p>
+		 * Adds an entry to <code>actions</code> using a builder lambda.
 		 */
-		public Builder actions(String key, Function<ActionStatus.Builder, ObjectBuilder<ActionStatus>> fn) {
-			return this.actions(Collections.singletonMap(key, fn.apply(new ActionStatus.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #actions(Map)}, creating the map if needed.
-		 */
-		public Builder putActions(String key, Function<ActionStatus.Builder, ObjectBuilder<ActionStatus>> fn) {
-			return this.putActions(key, fn.apply(new ActionStatus.Builder()).build());
+		public final Builder actions(String key, Function<ActionStatus.Builder, ObjectBuilder<ActionStatus>> fn) {
+			return actions(key, fn.apply(new ActionStatus.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(ActivationState value) {
+		public final Builder state(ActivationState value) {
 			this.state = value;
 			return this;
 		}
@@ -169,14 +174,14 @@ public final class ActivationStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(Function<ActivationState.Builder, ObjectBuilder<ActivationState>> fn) {
+		public final Builder state(Function<ActivationState.Builder, ObjectBuilder<ActivationState>> fn) {
 			return this.state(fn.apply(new ActivationState.Builder()).build());
 		}
 
 		/**
 		 * Required - API name: {@code version}
 		 */
-		public Builder version(long value) {
+		public final Builder version(long value) {
 			this.version = value;
 			return this;
 		}
@@ -188,6 +193,7 @@ public final class ActivationStatus implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ActivationStatus build() {
+			_checkSingleUse();
 
 			return new ActivationStatus(this);
 		}
@@ -199,9 +205,9 @@ public final class ActivationStatus implements JsonpSerializable {
 	 * Json deserializer for {@link ActivationStatus}
 	 */
 	public static final JsonpDeserializer<ActivationStatus> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ActivationStatus::setupActivationStatusDeserializer, Builder::build);
+			ActivationStatus::setupActivationStatusDeserializer);
 
-	protected static void setupActivationStatusDeserializer(DelegatingDeserializer<ActivationStatus.Builder> op) {
+	protected static void setupActivationStatusDeserializer(ObjectDeserializer<ActivationStatus.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(ActionStatus._DESERIALIZER), "actions");
 		op.add(Builder::state, ActivationState._DESERIALIZER, "state");

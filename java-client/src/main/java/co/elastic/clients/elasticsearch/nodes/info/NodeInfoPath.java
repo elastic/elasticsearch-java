@@ -23,77 +23,80 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoPath
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L147-L152">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoPath implements JsonpSerializable {
+public class NodeInfoPath implements JsonpSerializable {
 	private final String logs;
 
 	private final String home;
 
 	private final List<String> repo;
 
-	@Nullable
 	private final List<String> data;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoPath(Builder builder) {
+	private NodeInfoPath(Builder builder) {
 
-		this.logs = Objects.requireNonNull(builder.logs, "logs");
-		this.home = Objects.requireNonNull(builder.home, "home");
-		this.repo = ModelTypeHelper.unmodifiableNonNull(builder.repo, "repo");
-		this.data = ModelTypeHelper.unmodifiable(builder.data);
+		this.logs = ApiTypeHelper.requireNonNull(builder.logs, this, "logs");
+		this.home = ApiTypeHelper.requireNonNull(builder.home, this, "home");
+		this.repo = ApiTypeHelper.unmodifiableRequired(builder.repo, this, "repo");
+		this.data = ApiTypeHelper.unmodifiable(builder.data);
 
 	}
 
-	public NodeInfoPath(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoPath of(Function<Builder, ObjectBuilder<NodeInfoPath>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code logs}
 	 */
-	public String logs() {
+	public final String logs() {
 		return this.logs;
 	}
 
 	/**
 	 * Required - API name: {@code home}
 	 */
-	public String home() {
+	public final String home() {
 		return this.home;
 	}
 
 	/**
 	 * Required - API name: {@code repo}
 	 */
-	public List<String> repo() {
+	public final List<String> repo() {
 		return this.repo;
 	}
 
 	/**
 	 * API name: {@code data}
 	 */
-	@Nullable
-	public List<String> data() {
+	public final List<String> data() {
 		return this.data;
 	}
 
@@ -114,16 +117,17 @@ public final class NodeInfoPath implements JsonpSerializable {
 		generator.writeKey("home");
 		generator.write(this.home);
 
-		generator.writeKey("repo");
-		generator.writeStartArray();
-		for (String item0 : this.repo) {
-			generator.write(item0);
+		if (ApiTypeHelper.isDefined(this.repo)) {
+			generator.writeKey("repo");
+			generator.writeStartArray();
+			for (String item0 : this.repo) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
-
-		if (this.data != null) {
-
+		if (ApiTypeHelper.isDefined(this.data)) {
 			generator.writeKey("data");
 			generator.writeStartArray();
 			for (String item0 : this.data) {
@@ -141,7 +145,8 @@ public final class NodeInfoPath implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoPath}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoPath> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoPath> {
 		private String logs;
 
 		private String home;
@@ -154,7 +159,7 @@ public final class NodeInfoPath implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code logs}
 		 */
-		public Builder logs(String value) {
+		public final Builder logs(String value) {
 			this.logs = value;
 			return this;
 		}
@@ -162,62 +167,48 @@ public final class NodeInfoPath implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code home}
 		 */
-		public Builder home(String value) {
+		public final Builder home(String value) {
 			this.home = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code repo}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>repo</code>.
 		 */
-		public Builder repo(List<String> value) {
-			this.repo = value;
+		public final Builder repo(List<String> list) {
+			this.repo = _listAddAll(this.repo, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code repo}
+		 * <p>
+		 * Adds one or more values to <code>repo</code>.
 		 */
-		public Builder repo(String... value) {
-			this.repo = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #repo(List)}, creating the list if needed.
-		 */
-		public Builder addRepo(String value) {
-			if (this.repo == null) {
-				this.repo = new ArrayList<>();
-			}
-			this.repo.add(value);
+		public final Builder repo(String value, String... values) {
+			this.repo = _listAdd(this.repo, value, values);
 			return this;
 		}
 
 		/**
 		 * API name: {@code data}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>data</code>.
 		 */
-		public Builder data(@Nullable List<String> value) {
-			this.data = value;
+		public final Builder data(List<String> list) {
+			this.data = _listAddAll(this.data, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code data}
+		 * <p>
+		 * Adds one or more values to <code>data</code>.
 		 */
-		public Builder data(String... value) {
-			this.data = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #data(List)}, creating the list if needed.
-		 */
-		public Builder addData(String value) {
-			if (this.data == null) {
-				this.data = new ArrayList<>();
-			}
-			this.data.add(value);
+		public final Builder data(String value, String... values) {
+			this.data = _listAdd(this.data, value, values);
 			return this;
 		}
 
@@ -228,6 +219,7 @@ public final class NodeInfoPath implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoPath build() {
+			_checkSingleUse();
 
 			return new NodeInfoPath(this);
 		}
@@ -239,9 +231,9 @@ public final class NodeInfoPath implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoPath}
 	 */
 	public static final JsonpDeserializer<NodeInfoPath> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			NodeInfoPath::setupNodeInfoPathDeserializer, Builder::build);
+			NodeInfoPath::setupNodeInfoPathDeserializer);
 
-	protected static void setupNodeInfoPathDeserializer(DelegatingDeserializer<NodeInfoPath.Builder> op) {
+	protected static void setupNodeInfoPathDeserializer(ObjectDeserializer<NodeInfoPath.Builder> op) {
 
 		op.add(Builder::logs, JsonpDeserializer.stringDeserializer(), "logs");
 		op.add(Builder::home, JsonpDeserializer.stringDeserializer(), "home");

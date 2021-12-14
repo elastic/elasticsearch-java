@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,26 +39,33 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: nodes.info.NodeInfoIngestDownloader
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/info/types.ts#L126-L128">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class NodeInfoIngestDownloader implements JsonpSerializable {
+public class NodeInfoIngestDownloader implements JsonpSerializable {
 	private final String enabled;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public NodeInfoIngestDownloader(Builder builder) {
+	private NodeInfoIngestDownloader(Builder builder) {
 
-		this.enabled = Objects.requireNonNull(builder.enabled, "enabled");
+		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
 
 	}
 
-	public NodeInfoIngestDownloader(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static NodeInfoIngestDownloader of(Function<Builder, ObjectBuilder<NodeInfoIngestDownloader>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code enabled}
 	 */
-	public String enabled() {
+	public final String enabled() {
 		return this.enabled;
 	}
 
@@ -82,13 +90,14 @@ public final class NodeInfoIngestDownloader implements JsonpSerializable {
 	/**
 	 * Builder for {@link NodeInfoIngestDownloader}.
 	 */
-	public static class Builder implements ObjectBuilder<NodeInfoIngestDownloader> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoIngestDownloader> {
 		private String enabled;
 
 		/**
 		 * Required - API name: {@code enabled}
 		 */
-		public Builder enabled(String value) {
+		public final Builder enabled(String value) {
 			this.enabled = value;
 			return this;
 		}
@@ -100,6 +109,7 @@ public final class NodeInfoIngestDownloader implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public NodeInfoIngestDownloader build() {
+			_checkSingleUse();
 
 			return new NodeInfoIngestDownloader(this);
 		}
@@ -111,10 +121,10 @@ public final class NodeInfoIngestDownloader implements JsonpSerializable {
 	 * Json deserializer for {@link NodeInfoIngestDownloader}
 	 */
 	public static final JsonpDeserializer<NodeInfoIngestDownloader> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NodeInfoIngestDownloader::setupNodeInfoIngestDownloaderDeserializer, Builder::build);
+			.lazy(Builder::new, NodeInfoIngestDownloader::setupNodeInfoIngestDownloaderDeserializer);
 
 	protected static void setupNodeInfoIngestDownloaderDeserializer(
-			DelegatingDeserializer<NodeInfoIngestDownloader.Builder> op) {
+			ObjectDeserializer<NodeInfoIngestDownloader.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.stringDeserializer(), "enabled");
 

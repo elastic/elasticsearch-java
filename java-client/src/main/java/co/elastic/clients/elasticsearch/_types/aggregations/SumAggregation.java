@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -34,25 +33,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.aggregations.SumAggregation
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L142-L142">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SumAggregation extends FormatMetricAggregationBase implements AggregationVariant {
+public class SumAggregation extends FormatMetricAggregationBase implements AggregationVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public SumAggregation(Builder builder) {
+	private SumAggregation(Builder builder) {
 		super(builder);
 
 	}
 
-	public SumAggregation(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SumAggregation of(Function<Builder, ObjectBuilder<SumAggregation>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Aggregation} variant type
+	 * Aggregation variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "sum";
+	public Aggregation.Kind _aggregationKind() {
+		return Aggregation.Kind.Sum;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,6 +66,7 @@ public final class SumAggregation extends FormatMetricAggregationBase implements
 	/**
 	 * Builder for {@link SumAggregation}.
 	 */
+
 	public static class Builder extends FormatMetricAggregationBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SumAggregation> {
@@ -75,6 +82,7 @@ public final class SumAggregation extends FormatMetricAggregationBase implements
 		 *             if some of the required fields are null.
 		 */
 		public SumAggregation build() {
+			_checkSingleUse();
 
 			return new SumAggregation(this);
 		}
@@ -86,9 +94,9 @@ public final class SumAggregation extends FormatMetricAggregationBase implements
 	 * Json deserializer for {@link SumAggregation}
 	 */
 	public static final JsonpDeserializer<SumAggregation> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			SumAggregation::setupSumAggregationDeserializer, Builder::build);
+			SumAggregation::setupSumAggregationDeserializer);
 
-	protected static void setupSumAggregationDeserializer(DelegatingDeserializer<SumAggregation.Builder> op) {
+	protected static void setupSumAggregationDeserializer(ObjectDeserializer<SumAggregation.Builder> op) {
 		FormatMetricAggregationBase.setupFormatMetricAggregationBaseDeserializer(op);
 
 	}

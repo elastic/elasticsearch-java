@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +39,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: watcher._types.EmailResult
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L144-L148">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class EmailResult implements JsonpSerializable {
+public class EmailResult implements JsonpSerializable {
 	@Nullable
 	private final String account;
 
@@ -50,30 +58,30 @@ public final class EmailResult implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public EmailResult(Builder builder) {
+	private EmailResult(Builder builder) {
 
 		this.account = builder.account;
-		this.message = Objects.requireNonNull(builder.message, "message");
+		this.message = ApiTypeHelper.requireNonNull(builder.message, this, "message");
 		this.reason = builder.reason;
 
 	}
 
-	public EmailResult(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static EmailResult of(Function<Builder, ObjectBuilder<EmailResult>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code account}
 	 */
 	@Nullable
-	public String account() {
+	public final String account() {
 		return this.account;
 	}
 
 	/**
 	 * Required - API name: {@code message}
 	 */
-	public EmailResult message() {
+	public final EmailResult message() {
 		return this.message;
 	}
 
@@ -81,7 +89,7 @@ public final class EmailResult implements JsonpSerializable {
 	 * API name: {@code reason}
 	 */
 	@Nullable
-	public String reason() {
+	public final String reason() {
 		return this.reason;
 	}
 
@@ -97,17 +105,14 @@ public final class EmailResult implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.account != null) {
-
 			generator.writeKey("account");
 			generator.write(this.account);
 
 		}
-
 		generator.writeKey("message");
 		this.message.serialize(generator, mapper);
 
 		if (this.reason != null) {
-
 			generator.writeKey("reason");
 			generator.write(this.reason);
 
@@ -120,7 +125,8 @@ public final class EmailResult implements JsonpSerializable {
 	/**
 	 * Builder for {@link EmailResult}.
 	 */
-	public static class Builder implements ObjectBuilder<EmailResult> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EmailResult> {
 		@Nullable
 		private String account;
 
@@ -132,7 +138,7 @@ public final class EmailResult implements JsonpSerializable {
 		/**
 		 * API name: {@code account}
 		 */
-		public Builder account(@Nullable String value) {
+		public final Builder account(@Nullable String value) {
 			this.account = value;
 			return this;
 		}
@@ -140,7 +146,7 @@ public final class EmailResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public Builder message(EmailResult value) {
+		public final Builder message(EmailResult value) {
 			this.message = value;
 			return this;
 		}
@@ -148,14 +154,14 @@ public final class EmailResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public Builder message(Function<EmailResult.Builder, ObjectBuilder<EmailResult>> fn) {
+		public final Builder message(Function<EmailResult.Builder, ObjectBuilder<EmailResult>> fn) {
 			return this.message(fn.apply(new EmailResult.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code reason}
 		 */
-		public Builder reason(@Nullable String value) {
+		public final Builder reason(@Nullable String value) {
 			this.reason = value;
 			return this;
 		}
@@ -167,6 +173,7 @@ public final class EmailResult implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public EmailResult build() {
+			_checkSingleUse();
 
 			return new EmailResult(this);
 		}
@@ -178,9 +185,9 @@ public final class EmailResult implements JsonpSerializable {
 	 * Json deserializer for {@link EmailResult}
 	 */
 	public static final JsonpDeserializer<EmailResult> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			EmailResult::setupEmailResultDeserializer, Builder::build);
+			EmailResult::setupEmailResultDeserializer);
 
-	protected static void setupEmailResultDeserializer(DelegatingDeserializer<EmailResult.Builder> op) {
+	protected static void setupEmailResultDeserializer(ObjectDeserializer<EmailResult.Builder> op) {
 
 		op.add(Builder::account, JsonpDeserializer.stringDeserializer(), "account");
 		op.add(Builder::message, EmailResult._DESERIALIZER, "message");

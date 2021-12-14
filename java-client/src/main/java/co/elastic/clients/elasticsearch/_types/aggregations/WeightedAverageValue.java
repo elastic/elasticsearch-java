@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -40,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.WeightedAverageValue
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L209-L213">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class WeightedAverageValue implements JsonpSerializable {
+public class WeightedAverageValue implements JsonpSerializable {
 	@Nullable
 	private final String field;
 
@@ -49,11 +56,11 @@ public final class WeightedAverageValue implements JsonpSerializable {
 	private final Double missing;
 
 	@Nullable
-	private final JsonValue /* _types.Script */ script;
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public WeightedAverageValue(Builder builder) {
+	private WeightedAverageValue(Builder builder) {
 
 		this.field = builder.field;
 		this.missing = builder.missing;
@@ -61,15 +68,15 @@ public final class WeightedAverageValue implements JsonpSerializable {
 
 	}
 
-	public WeightedAverageValue(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static WeightedAverageValue of(Function<Builder, ObjectBuilder<WeightedAverageValue>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * API name: {@code field}
 	 */
 	@Nullable
-	public String field() {
+	public final String field() {
 		return this.field;
 	}
 
@@ -77,7 +84,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public Double missing() {
+	public final Double missing() {
 		return this.missing;
 	}
 
@@ -85,7 +92,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 	 * API name: {@code script}
 	 */
 	@Nullable
-	public JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
@@ -101,21 +108,18 @@ public final class WeightedAverageValue implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.field != null) {
-
 			generator.writeKey("field");
 			generator.write(this.field);
 
 		}
 		if (this.missing != null) {
-
 			generator.writeKey("missing");
 			generator.write(this.missing);
 
 		}
 		if (this.script != null) {
-
 			generator.writeKey("script");
-			generator.write(this.script);
+			this.script.serialize(generator, mapper);
 
 		}
 
@@ -126,7 +130,8 @@ public final class WeightedAverageValue implements JsonpSerializable {
 	/**
 	 * Builder for {@link WeightedAverageValue}.
 	 */
-	public static class Builder implements ObjectBuilder<WeightedAverageValue> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WeightedAverageValue> {
 		@Nullable
 		private String field;
 
@@ -134,12 +139,12 @@ public final class WeightedAverageValue implements JsonpSerializable {
 		private Double missing;
 
 		@Nullable
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		/**
 		 * API name: {@code field}
 		 */
-		public Builder field(@Nullable String value) {
+		public final Builder field(@Nullable String value) {
 			this.field = value;
 			return this;
 		}
@@ -147,7 +152,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 		/**
 		 * API name: {@code missing}
 		 */
-		public Builder missing(@Nullable Double value) {
+		public final Builder missing(@Nullable Double value) {
 			this.missing = value;
 			return this;
 		}
@@ -155,9 +160,16 @@ public final class WeightedAverageValue implements JsonpSerializable {
 		/**
 		 * API name: {@code script}
 		 */
-		public Builder script(@Nullable JsonValue /* _types.Script */ value) {
+		public final Builder script(@Nullable Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		/**
@@ -167,6 +179,7 @@ public final class WeightedAverageValue implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public WeightedAverageValue build() {
+			_checkSingleUse();
 
 			return new WeightedAverageValue(this);
 		}
@@ -178,14 +191,13 @@ public final class WeightedAverageValue implements JsonpSerializable {
 	 * Json deserializer for {@link WeightedAverageValue}
 	 */
 	public static final JsonpDeserializer<WeightedAverageValue> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, WeightedAverageValue::setupWeightedAverageValueDeserializer, Builder::build);
+			.lazy(Builder::new, WeightedAverageValue::setupWeightedAverageValueDeserializer);
 
-	protected static void setupWeightedAverageValueDeserializer(
-			DelegatingDeserializer<WeightedAverageValue.Builder> op) {
+	protected static void setupWeightedAverageValueDeserializer(ObjectDeserializer<WeightedAverageValue.Builder> op) {
 
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
 

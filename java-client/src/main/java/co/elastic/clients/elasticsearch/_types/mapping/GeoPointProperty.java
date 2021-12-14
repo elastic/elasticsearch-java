@@ -23,14 +23,13 @@
 
 package co.elastic.clients.elasticsearch._types.mapping;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.GeoLocation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -38,8 +37,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.mapping.GeoPointProperty
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/geo.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GeoPointProperty extends DocValuesPropertyBase implements PropertyVariant {
+public class GeoPointProperty extends DocValuesPropertyBase implements PropertyVariant {
 	@Nullable
 	private final Boolean ignoreMalformed;
 
@@ -47,11 +53,11 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 	private final Boolean ignoreZValue;
 
 	@Nullable
-	private final JsonValue /* _types.query_dsl.GeoLocation */ nullValue;
+	private final GeoLocation nullValue;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GeoPointProperty(Builder builder) {
+	private GeoPointProperty(Builder builder) {
 		super(builder);
 
 		this.ignoreMalformed = builder.ignoreMalformed;
@@ -60,23 +66,23 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 
 	}
 
-	public GeoPointProperty(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GeoPointProperty of(Function<Builder, ObjectBuilder<GeoPointProperty>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link Property} variant type
+	 * Property variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "geo_point";
+	public Property.Kind _propertyKind() {
+		return Property.Kind.GeoPoint;
 	}
 
 	/**
 	 * API name: {@code ignore_malformed}
 	 */
 	@Nullable
-	public Boolean ignoreMalformed() {
+	public final Boolean ignoreMalformed() {
 		return this.ignoreMalformed;
 	}
 
@@ -84,7 +90,7 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 	 * API name: {@code ignore_z_value}
 	 */
 	@Nullable
-	public Boolean ignoreZValue() {
+	public final Boolean ignoreZValue() {
 		return this.ignoreZValue;
 	}
 
@@ -92,7 +98,7 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public JsonValue /* _types.query_dsl.GeoLocation */ nullValue() {
+	public final GeoLocation nullValue() {
 		return this.nullValue;
 	}
 
@@ -101,21 +107,18 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 		generator.write("type", "geo_point");
 		super.serializeInternal(generator, mapper);
 		if (this.ignoreMalformed != null) {
-
 			generator.writeKey("ignore_malformed");
 			generator.write(this.ignoreMalformed);
 
 		}
 		if (this.ignoreZValue != null) {
-
 			generator.writeKey("ignore_z_value");
 			generator.write(this.ignoreZValue);
 
 		}
 		if (this.nullValue != null) {
-
 			generator.writeKey("null_value");
-			generator.write(this.nullValue);
+			this.nullValue.serialize(generator, mapper);
 
 		}
 
@@ -126,6 +129,7 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 	/**
 	 * Builder for {@link GeoPointProperty}.
 	 */
+
 	public static class Builder extends DocValuesPropertyBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<GeoPointProperty> {
@@ -136,12 +140,12 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 		private Boolean ignoreZValue;
 
 		@Nullable
-		private JsonValue /* _types.query_dsl.GeoLocation */ nullValue;
+		private GeoLocation nullValue;
 
 		/**
 		 * API name: {@code ignore_malformed}
 		 */
-		public Builder ignoreMalformed(@Nullable Boolean value) {
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
 			this.ignoreMalformed = value;
 			return this;
 		}
@@ -149,7 +153,7 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 		/**
 		 * API name: {@code ignore_z_value}
 		 */
-		public Builder ignoreZValue(@Nullable Boolean value) {
+		public final Builder ignoreZValue(@Nullable Boolean value) {
 			this.ignoreZValue = value;
 			return this;
 		}
@@ -157,9 +161,16 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 		/**
 		 * API name: {@code null_value}
 		 */
-		public Builder nullValue(@Nullable JsonValue /* _types.query_dsl.GeoLocation */ value) {
+		public final Builder nullValue(@Nullable GeoLocation value) {
 			this.nullValue = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code null_value}
+		 */
+		public final Builder nullValue(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
+			return this.nullValue(fn.apply(new GeoLocation.Builder()).build());
 		}
 
 		@Override
@@ -174,6 +185,7 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 		 *             if some of the required fields are null.
 		 */
 		public GeoPointProperty build() {
+			_checkSingleUse();
 
 			return new GeoPointProperty(this);
 		}
@@ -185,13 +197,13 @@ public final class GeoPointProperty extends DocValuesPropertyBase implements Pro
 	 * Json deserializer for {@link GeoPointProperty}
 	 */
 	public static final JsonpDeserializer<GeoPointProperty> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			GeoPointProperty::setupGeoPointPropertyDeserializer, Builder::build);
+			GeoPointProperty::setupGeoPointPropertyDeserializer);
 
-	protected static void setupGeoPointPropertyDeserializer(DelegatingDeserializer<GeoPointProperty.Builder> op) {
+	protected static void setupGeoPointPropertyDeserializer(ObjectDeserializer<GeoPointProperty.Builder> op) {
 		DocValuesPropertyBase.setupDocValuesPropertyBaseDeserializer(op);
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 		op.add(Builder::ignoreZValue, JsonpDeserializer.booleanDeserializer(), "ignore_z_value");
-		op.add(Builder::nullValue, JsonpDeserializer.jsonValueDeserializer(), "null_value");
+		op.add(Builder::nullValue, GeoLocation._DESERIALIZER, "null_value");
 
 		op.ignore("type");
 	}

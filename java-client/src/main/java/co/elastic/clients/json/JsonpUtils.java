@@ -63,6 +63,12 @@ public class JsonpUtils {
         return parser.getString();
     }
 
+    public static void ensureAccepts(JsonpDeserializer<?> deserializer, JsonParser parser, JsonParser.Event event) {
+        if (!deserializer.acceptedEvents().contains(event)) {
+            throw new UnexpectedJsonEventException(parser, event, deserializer.acceptedEvents());
+        }
+    }
+
     /**
      * Skip the value at the next position of the parser.
      */
@@ -89,23 +95,6 @@ public class JsonpUtils {
         }
     }
 
-    /**
-     * Throws a {@link JsonParsingException} because some unknown property name was encountered
-     */
-    public static void unknownKey(JsonParser parser, String keyName) {
-        throw new JsonParsingException("Unknown property " + keyName , parser.getLocation());
-    }
-
-    public static String ensureSingleVariant(JsonParser parser, String variant1, String variant2) {
-        if (variant1 != null && variant2 != null) {
-            throw new JsonParsingException(
-                "Only one variant can be specified, found '" + variant1 + "' and '" + variant2 + "'",
-                parser.getLocation()
-            );
-        }
-        return variant2;
-    }
-
     public static <T> T buildVariant(JsonParser parser, ObjectBuilder<T> builder) {
         if (builder == null) {
             throw new JsonParsingException("No variant found" , parser.getLocation());
@@ -130,17 +119,36 @@ public class JsonpUtils {
      * Returns a pair containing that value and a parser that should be used to actually parse the object
      * (the object has been consumed from the original one).
      */
-    public static Map.Entry<String, JsonParser> lookAheadFieldValue(String name, JsonParser parser, JsonpMapper mapper) {
+    public static Map.Entry<String, JsonParser> lookAheadFieldValue(
+        String name, String defaultValue, JsonParser parser, JsonpMapper mapper
+    ) {
         // FIXME: need a buffering parser wrapper so that we don't roundtrip through a JsonObject and a String
         // FIXME: resulting parser should return locations that are offset with the original parser's location
         JsonObject object = parser.getObject();
         String result = object.getString(name, null);
+
+        if (result == null) {
+            result = defaultValue;
+        }
+
         if (result == null) {
             throw new JsonParsingException("Property '" + name + "' not found", parser.getLocation());
         }
+
+        return new AbstractMap.SimpleImmutableEntry<>(result, objectParser(object, mapper));
+    }
+
+    /**
+     * Create a parser that traverses a JSON object
+     */
+    public static JsonParser objectParser(JsonObject object, JsonpMapper mapper) {
+        // FIXME: we should have used createParser(object), but this doesn't work as it creates a
+        // org.glassfish.json.JsonStructureParser that doesn't implement the JsonP 1.0.1 features, in particular
+        // parser.getObject(). So deserializing recursive internally-tagged union would fail with UnsupportedOperationException
+        // While glassfish has this issue or until we write our own, we roundtrip through a string.
+
         String strObject = object.toString();
-        JsonParser newParser = mapper.jsonProvider().createParser(new StringReader(strObject));
-        return new AbstractMap.SimpleImmutableEntry<>(result, newParser);
+        return mapper.jsonProvider().createParser(new StringReader(strObject));
     }
 
     public static String toString(JsonValue value) {
@@ -169,7 +177,25 @@ public class JsonpUtils {
                 return value.toString();
 
             default:
-                throw new IllegalArgumentException("Unknown json value type: " + value);
+                throw new IllegalArgumentException("Unknown JSON value type: '" + value + "'");
+        }
+    }
+
+    public static void serializeDoubleOrNull(JsonGenerator generator, double value, double defaultValue) {
+        // Only output null if the default value isn't finite, which cannot be represented as JSON
+        if (value == defaultValue && !Double.isFinite(defaultValue)) {
+            generator.writeNull();
+        } else {
+            generator.write(value);
+        }
+    }
+
+    public static void serializeIntOrNull(JsonGenerator generator, int value, int defaultValue) {
+        // Only output null if the default value isn't finite, which cannot be represented as JSON
+        if (value == defaultValue && defaultValue == Integer.MAX_VALUE || defaultValue == Integer.MIN_VALUE) {
+            generator.writeNull();
+        } else {
+            generator.write(value);
         }
     }
 }

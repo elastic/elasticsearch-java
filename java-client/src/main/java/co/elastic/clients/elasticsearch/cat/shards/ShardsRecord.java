@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.cat.shards;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -38,8 +38,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: cat.shards.ShardsRecord
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/shards/types.ts#L20-L396">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShardsRecord implements JsonpSerializable {
+public class ShardsRecord implements JsonpSerializable {
 	@Nullable
 	private final String index;
 
@@ -270,7 +277,7 @@ public final class ShardsRecord implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardsRecord(Builder builder) {
+	private ShardsRecord(Builder builder) {
 
 		this.index = builder.index;
 		this.shard = builder.shard;
@@ -351,8 +358,8 @@ public final class ShardsRecord implements JsonpSerializable {
 
 	}
 
-	public ShardsRecord(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardsRecord of(Function<Builder, ObjectBuilder<ShardsRecord>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -361,7 +368,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public String index() {
+	public final String index() {
 		return this.index;
 	}
 
@@ -371,7 +378,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code shard}
 	 */
 	@Nullable
-	public String shard() {
+	public final String shard() {
 		return this.shard;
 	}
 
@@ -381,7 +388,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code prirep}
 	 */
 	@Nullable
-	public String prirep() {
+	public final String prirep() {
 		return this.prirep;
 	}
 
@@ -391,7 +398,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code state}
 	 */
 	@Nullable
-	public String state() {
+	public final String state() {
 		return this.state;
 	}
 
@@ -401,7 +408,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code docs}
 	 */
 	@Nullable
-	public String docs() {
+	public final String docs() {
 		return this.docs;
 	}
 
@@ -411,7 +418,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code store}
 	 */
 	@Nullable
-	public String store() {
+	public final String store() {
 		return this.store;
 	}
 
@@ -421,7 +428,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code ip}
 	 */
 	@Nullable
-	public String ip() {
+	public final String ip() {
 		return this.ip;
 	}
 
@@ -431,7 +438,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code id}
 	 */
 	@Nullable
-	public String id() {
+	public final String id() {
 		return this.id;
 	}
 
@@ -441,7 +448,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code node}
 	 */
 	@Nullable
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
@@ -451,7 +458,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code sync_id}
 	 */
 	@Nullable
-	public String syncId() {
+	public final String syncId() {
 		return this.syncId;
 	}
 
@@ -461,7 +468,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code unassigned.reason}
 	 */
 	@Nullable
-	public String unassignedReason() {
+	public final String unassignedReason() {
 		return this.unassignedReason;
 	}
 
@@ -471,7 +478,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code unassigned.at}
 	 */
 	@Nullable
-	public String unassignedAt() {
+	public final String unassignedAt() {
 		return this.unassignedAt;
 	}
 
@@ -481,7 +488,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code unassigned.for}
 	 */
 	@Nullable
-	public String unassignedFor() {
+	public final String unassignedFor() {
 		return this.unassignedFor;
 	}
 
@@ -491,7 +498,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code unassigned.details}
 	 */
 	@Nullable
-	public String unassignedDetails() {
+	public final String unassignedDetails() {
 		return this.unassignedDetails;
 	}
 
@@ -501,7 +508,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code recoverysource.type}
 	 */
 	@Nullable
-	public String recoverysourceType() {
+	public final String recoverysourceType() {
 		return this.recoverysourceType;
 	}
 
@@ -511,7 +518,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code completion.size}
 	 */
 	@Nullable
-	public String completionSize() {
+	public final String completionSize() {
 		return this.completionSize;
 	}
 
@@ -521,7 +528,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code fielddata.memory_size}
 	 */
 	@Nullable
-	public String fielddataMemorySize() {
+	public final String fielddataMemorySize() {
 		return this.fielddataMemorySize;
 	}
 
@@ -531,7 +538,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code fielddata.evictions}
 	 */
 	@Nullable
-	public String fielddataEvictions() {
+	public final String fielddataEvictions() {
 		return this.fielddataEvictions;
 	}
 
@@ -541,7 +548,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code query_cache.memory_size}
 	 */
 	@Nullable
-	public String queryCacheMemorySize() {
+	public final String queryCacheMemorySize() {
 		return this.queryCacheMemorySize;
 	}
 
@@ -551,7 +558,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code query_cache.evictions}
 	 */
 	@Nullable
-	public String queryCacheEvictions() {
+	public final String queryCacheEvictions() {
 		return this.queryCacheEvictions;
 	}
 
@@ -561,7 +568,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code flush.total}
 	 */
 	@Nullable
-	public String flushTotal() {
+	public final String flushTotal() {
 		return this.flushTotal;
 	}
 
@@ -571,7 +578,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code flush.total_time}
 	 */
 	@Nullable
-	public String flushTotalTime() {
+	public final String flushTotalTime() {
 		return this.flushTotalTime;
 	}
 
@@ -581,7 +588,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code get.current}
 	 */
 	@Nullable
-	public String getCurrent() {
+	public final String getCurrent() {
 		return this.getCurrent;
 	}
 
@@ -591,7 +598,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code get.time}
 	 */
 	@Nullable
-	public String getTime() {
+	public final String getTime() {
 		return this.getTime;
 	}
 
@@ -601,7 +608,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code get.total}
 	 */
 	@Nullable
-	public String getTotal() {
+	public final String getTotal() {
 		return this.getTotal;
 	}
 
@@ -611,7 +618,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code get.exists_time}
 	 */
 	@Nullable
-	public String getExistsTime() {
+	public final String getExistsTime() {
 		return this.getExistsTime;
 	}
 
@@ -621,7 +628,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code get.exists_total}
 	 */
 	@Nullable
-	public String getExistsTotal() {
+	public final String getExistsTotal() {
 		return this.getExistsTotal;
 	}
 
@@ -631,7 +638,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code get.missing_time}
 	 */
 	@Nullable
-	public String getMissingTime() {
+	public final String getMissingTime() {
 		return this.getMissingTime;
 	}
 
@@ -641,7 +648,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code get.missing_total}
 	 */
 	@Nullable
-	public String getMissingTotal() {
+	public final String getMissingTotal() {
 		return this.getMissingTotal;
 	}
 
@@ -651,7 +658,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code indexing.delete_current}
 	 */
 	@Nullable
-	public String indexingDeleteCurrent() {
+	public final String indexingDeleteCurrent() {
 		return this.indexingDeleteCurrent;
 	}
 
@@ -661,7 +668,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code indexing.delete_time}
 	 */
 	@Nullable
-	public String indexingDeleteTime() {
+	public final String indexingDeleteTime() {
 		return this.indexingDeleteTime;
 	}
 
@@ -671,7 +678,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code indexing.delete_total}
 	 */
 	@Nullable
-	public String indexingDeleteTotal() {
+	public final String indexingDeleteTotal() {
 		return this.indexingDeleteTotal;
 	}
 
@@ -681,7 +688,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_current}
 	 */
 	@Nullable
-	public String indexingIndexCurrent() {
+	public final String indexingIndexCurrent() {
 		return this.indexingIndexCurrent;
 	}
 
@@ -691,7 +698,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_time}
 	 */
 	@Nullable
-	public String indexingIndexTime() {
+	public final String indexingIndexTime() {
 		return this.indexingIndexTime;
 	}
 
@@ -701,7 +708,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_total}
 	 */
 	@Nullable
-	public String indexingIndexTotal() {
+	public final String indexingIndexTotal() {
 		return this.indexingIndexTotal;
 	}
 
@@ -711,7 +718,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code indexing.index_failed}
 	 */
 	@Nullable
-	public String indexingIndexFailed() {
+	public final String indexingIndexFailed() {
 		return this.indexingIndexFailed;
 	}
 
@@ -721,7 +728,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code merges.current}
 	 */
 	@Nullable
-	public String mergesCurrent() {
+	public final String mergesCurrent() {
 		return this.mergesCurrent;
 	}
 
@@ -731,7 +738,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code merges.current_docs}
 	 */
 	@Nullable
-	public String mergesCurrentDocs() {
+	public final String mergesCurrentDocs() {
 		return this.mergesCurrentDocs;
 	}
 
@@ -741,7 +748,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code merges.current_size}
 	 */
 	@Nullable
-	public String mergesCurrentSize() {
+	public final String mergesCurrentSize() {
 		return this.mergesCurrentSize;
 	}
 
@@ -751,7 +758,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code merges.total}
 	 */
 	@Nullable
-	public String mergesTotal() {
+	public final String mergesTotal() {
 		return this.mergesTotal;
 	}
 
@@ -761,7 +768,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code merges.total_docs}
 	 */
 	@Nullable
-	public String mergesTotalDocs() {
+	public final String mergesTotalDocs() {
 		return this.mergesTotalDocs;
 	}
 
@@ -771,7 +778,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code merges.total_size}
 	 */
 	@Nullable
-	public String mergesTotalSize() {
+	public final String mergesTotalSize() {
 		return this.mergesTotalSize;
 	}
 
@@ -781,7 +788,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code merges.total_time}
 	 */
 	@Nullable
-	public String mergesTotalTime() {
+	public final String mergesTotalTime() {
 		return this.mergesTotalTime;
 	}
 
@@ -791,7 +798,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code refresh.total}
 	 */
 	@Nullable
-	public String refreshTotal() {
+	public final String refreshTotal() {
 		return this.refreshTotal;
 	}
 
@@ -801,7 +808,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code refresh.time}
 	 */
 	@Nullable
-	public String refreshTime() {
+	public final String refreshTime() {
 		return this.refreshTime;
 	}
 
@@ -811,7 +818,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code refresh.external_total}
 	 */
 	@Nullable
-	public String refreshExternalTotal() {
+	public final String refreshExternalTotal() {
 		return this.refreshExternalTotal;
 	}
 
@@ -821,7 +828,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code refresh.external_time}
 	 */
 	@Nullable
-	public String refreshExternalTime() {
+	public final String refreshExternalTime() {
 		return this.refreshExternalTime;
 	}
 
@@ -831,7 +838,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code refresh.listeners}
 	 */
 	@Nullable
-	public String refreshListeners() {
+	public final String refreshListeners() {
 		return this.refreshListeners;
 	}
 
@@ -841,7 +848,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code search.fetch_current}
 	 */
 	@Nullable
-	public String searchFetchCurrent() {
+	public final String searchFetchCurrent() {
 		return this.searchFetchCurrent;
 	}
 
@@ -851,7 +858,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code search.fetch_time}
 	 */
 	@Nullable
-	public String searchFetchTime() {
+	public final String searchFetchTime() {
 		return this.searchFetchTime;
 	}
 
@@ -861,7 +868,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code search.fetch_total}
 	 */
 	@Nullable
-	public String searchFetchTotal() {
+	public final String searchFetchTotal() {
 		return this.searchFetchTotal;
 	}
 
@@ -871,7 +878,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code search.open_contexts}
 	 */
 	@Nullable
-	public String searchOpenContexts() {
+	public final String searchOpenContexts() {
 		return this.searchOpenContexts;
 	}
 
@@ -881,7 +888,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code search.query_current}
 	 */
 	@Nullable
-	public String searchQueryCurrent() {
+	public final String searchQueryCurrent() {
 		return this.searchQueryCurrent;
 	}
 
@@ -891,7 +898,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code search.query_time}
 	 */
 	@Nullable
-	public String searchQueryTime() {
+	public final String searchQueryTime() {
 		return this.searchQueryTime;
 	}
 
@@ -901,7 +908,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code search.query_total}
 	 */
 	@Nullable
-	public String searchQueryTotal() {
+	public final String searchQueryTotal() {
 		return this.searchQueryTotal;
 	}
 
@@ -911,7 +918,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code search.scroll_current}
 	 */
 	@Nullable
-	public String searchScrollCurrent() {
+	public final String searchScrollCurrent() {
 		return this.searchScrollCurrent;
 	}
 
@@ -921,7 +928,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code search.scroll_time}
 	 */
 	@Nullable
-	public String searchScrollTime() {
+	public final String searchScrollTime() {
 		return this.searchScrollTime;
 	}
 
@@ -931,7 +938,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code search.scroll_total}
 	 */
 	@Nullable
-	public String searchScrollTotal() {
+	public final String searchScrollTotal() {
 		return this.searchScrollTotal;
 	}
 
@@ -941,7 +948,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code segments.count}
 	 */
 	@Nullable
-	public String segmentsCount() {
+	public final String segmentsCount() {
 		return this.segmentsCount;
 	}
 
@@ -951,7 +958,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code segments.memory}
 	 */
 	@Nullable
-	public String segmentsMemory() {
+	public final String segmentsMemory() {
 		return this.segmentsMemory;
 	}
 
@@ -961,7 +968,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code segments.index_writer_memory}
 	 */
 	@Nullable
-	public String segmentsIndexWriterMemory() {
+	public final String segmentsIndexWriterMemory() {
 		return this.segmentsIndexWriterMemory;
 	}
 
@@ -971,7 +978,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code segments.version_map_memory}
 	 */
 	@Nullable
-	public String segmentsVersionMapMemory() {
+	public final String segmentsVersionMapMemory() {
 		return this.segmentsVersionMapMemory;
 	}
 
@@ -982,7 +989,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code segments.fixed_bitset_memory}
 	 */
 	@Nullable
-	public String segmentsFixedBitsetMemory() {
+	public final String segmentsFixedBitsetMemory() {
 		return this.segmentsFixedBitsetMemory;
 	}
 
@@ -992,7 +999,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code seq_no.max}
 	 */
 	@Nullable
-	public String seqNoMax() {
+	public final String seqNoMax() {
 		return this.seqNoMax;
 	}
 
@@ -1002,7 +1009,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code seq_no.local_checkpoint}
 	 */
 	@Nullable
-	public String seqNoLocalCheckpoint() {
+	public final String seqNoLocalCheckpoint() {
 		return this.seqNoLocalCheckpoint;
 	}
 
@@ -1012,7 +1019,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code seq_no.global_checkpoint}
 	 */
 	@Nullable
-	public String seqNoGlobalCheckpoint() {
+	public final String seqNoGlobalCheckpoint() {
 		return this.seqNoGlobalCheckpoint;
 	}
 
@@ -1022,7 +1029,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code warmer.current}
 	 */
 	@Nullable
-	public String warmerCurrent() {
+	public final String warmerCurrent() {
 		return this.warmerCurrent;
 	}
 
@@ -1032,7 +1039,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code warmer.total}
 	 */
 	@Nullable
-	public String warmerTotal() {
+	public final String warmerTotal() {
 		return this.warmerTotal;
 	}
 
@@ -1042,7 +1049,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code warmer.total_time}
 	 */
 	@Nullable
-	public String warmerTotalTime() {
+	public final String warmerTotalTime() {
 		return this.warmerTotalTime;
 	}
 
@@ -1052,7 +1059,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code path.data}
 	 */
 	@Nullable
-	public String pathData() {
+	public final String pathData() {
 		return this.pathData;
 	}
 
@@ -1062,7 +1069,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code path.state}
 	 */
 	@Nullable
-	public String pathState() {
+	public final String pathState() {
 		return this.pathState;
 	}
 
@@ -1072,7 +1079,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code bulk.total_operations}
 	 */
 	@Nullable
-	public String bulkTotalOperations() {
+	public final String bulkTotalOperations() {
 		return this.bulkTotalOperations;
 	}
 
@@ -1082,7 +1089,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code bulk.total_time}
 	 */
 	@Nullable
-	public String bulkTotalTime() {
+	public final String bulkTotalTime() {
 		return this.bulkTotalTime;
 	}
 
@@ -1092,7 +1099,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code bulk.total_size_in_bytes}
 	 */
 	@Nullable
-	public String bulkTotalSizeInBytes() {
+	public final String bulkTotalSizeInBytes() {
 		return this.bulkTotalSizeInBytes;
 	}
 
@@ -1102,7 +1109,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code bulk.avg_time}
 	 */
 	@Nullable
-	public String bulkAvgTime() {
+	public final String bulkAvgTime() {
 		return this.bulkAvgTime;
 	}
 
@@ -1112,7 +1119,7 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * API name: {@code bulk.avg_size_in_bytes}
 	 */
 	@Nullable
-	public String bulkAvgSizeInBytes() {
+	public final String bulkAvgSizeInBytes() {
 		return this.bulkAvgSizeInBytes;
 	}
 
@@ -1128,457 +1135,381 @@ public final class ShardsRecord implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.index != null) {
-
 			generator.writeKey("index");
 			generator.write(this.index);
 
 		}
 		if (this.shard != null) {
-
 			generator.writeKey("shard");
 			generator.write(this.shard);
 
 		}
 		if (this.prirep != null) {
-
 			generator.writeKey("prirep");
 			generator.write(this.prirep);
 
 		}
 		if (this.state != null) {
-
 			generator.writeKey("state");
 			generator.write(this.state);
 
 		}
 		if (this.docs != null) {
-
 			generator.writeKey("docs");
 			generator.write(this.docs);
 
 		}
 		if (this.store != null) {
-
 			generator.writeKey("store");
 			generator.write(this.store);
 
 		}
 		if (this.ip != null) {
-
 			generator.writeKey("ip");
 			generator.write(this.ip);
 
 		}
 		if (this.id != null) {
-
 			generator.writeKey("id");
 			generator.write(this.id);
 
 		}
 		if (this.node != null) {
-
 			generator.writeKey("node");
 			generator.write(this.node);
 
 		}
 		if (this.syncId != null) {
-
 			generator.writeKey("sync_id");
 			generator.write(this.syncId);
 
 		}
 		if (this.unassignedReason != null) {
-
 			generator.writeKey("unassigned.reason");
 			generator.write(this.unassignedReason);
 
 		}
 		if (this.unassignedAt != null) {
-
 			generator.writeKey("unassigned.at");
 			generator.write(this.unassignedAt);
 
 		}
 		if (this.unassignedFor != null) {
-
 			generator.writeKey("unassigned.for");
 			generator.write(this.unassignedFor);
 
 		}
 		if (this.unassignedDetails != null) {
-
 			generator.writeKey("unassigned.details");
 			generator.write(this.unassignedDetails);
 
 		}
 		if (this.recoverysourceType != null) {
-
 			generator.writeKey("recoverysource.type");
 			generator.write(this.recoverysourceType);
 
 		}
 		if (this.completionSize != null) {
-
 			generator.writeKey("completion.size");
 			generator.write(this.completionSize);
 
 		}
 		if (this.fielddataMemorySize != null) {
-
 			generator.writeKey("fielddata.memory_size");
 			generator.write(this.fielddataMemorySize);
 
 		}
 		if (this.fielddataEvictions != null) {
-
 			generator.writeKey("fielddata.evictions");
 			generator.write(this.fielddataEvictions);
 
 		}
 		if (this.queryCacheMemorySize != null) {
-
 			generator.writeKey("query_cache.memory_size");
 			generator.write(this.queryCacheMemorySize);
 
 		}
 		if (this.queryCacheEvictions != null) {
-
 			generator.writeKey("query_cache.evictions");
 			generator.write(this.queryCacheEvictions);
 
 		}
 		if (this.flushTotal != null) {
-
 			generator.writeKey("flush.total");
 			generator.write(this.flushTotal);
 
 		}
 		if (this.flushTotalTime != null) {
-
 			generator.writeKey("flush.total_time");
 			generator.write(this.flushTotalTime);
 
 		}
 		if (this.getCurrent != null) {
-
 			generator.writeKey("get.current");
 			generator.write(this.getCurrent);
 
 		}
 		if (this.getTime != null) {
-
 			generator.writeKey("get.time");
 			generator.write(this.getTime);
 
 		}
 		if (this.getTotal != null) {
-
 			generator.writeKey("get.total");
 			generator.write(this.getTotal);
 
 		}
 		if (this.getExistsTime != null) {
-
 			generator.writeKey("get.exists_time");
 			generator.write(this.getExistsTime);
 
 		}
 		if (this.getExistsTotal != null) {
-
 			generator.writeKey("get.exists_total");
 			generator.write(this.getExistsTotal);
 
 		}
 		if (this.getMissingTime != null) {
-
 			generator.writeKey("get.missing_time");
 			generator.write(this.getMissingTime);
 
 		}
 		if (this.getMissingTotal != null) {
-
 			generator.writeKey("get.missing_total");
 			generator.write(this.getMissingTotal);
 
 		}
 		if (this.indexingDeleteCurrent != null) {
-
 			generator.writeKey("indexing.delete_current");
 			generator.write(this.indexingDeleteCurrent);
 
 		}
 		if (this.indexingDeleteTime != null) {
-
 			generator.writeKey("indexing.delete_time");
 			generator.write(this.indexingDeleteTime);
 
 		}
 		if (this.indexingDeleteTotal != null) {
-
 			generator.writeKey("indexing.delete_total");
 			generator.write(this.indexingDeleteTotal);
 
 		}
 		if (this.indexingIndexCurrent != null) {
-
 			generator.writeKey("indexing.index_current");
 			generator.write(this.indexingIndexCurrent);
 
 		}
 		if (this.indexingIndexTime != null) {
-
 			generator.writeKey("indexing.index_time");
 			generator.write(this.indexingIndexTime);
 
 		}
 		if (this.indexingIndexTotal != null) {
-
 			generator.writeKey("indexing.index_total");
 			generator.write(this.indexingIndexTotal);
 
 		}
 		if (this.indexingIndexFailed != null) {
-
 			generator.writeKey("indexing.index_failed");
 			generator.write(this.indexingIndexFailed);
 
 		}
 		if (this.mergesCurrent != null) {
-
 			generator.writeKey("merges.current");
 			generator.write(this.mergesCurrent);
 
 		}
 		if (this.mergesCurrentDocs != null) {
-
 			generator.writeKey("merges.current_docs");
 			generator.write(this.mergesCurrentDocs);
 
 		}
 		if (this.mergesCurrentSize != null) {
-
 			generator.writeKey("merges.current_size");
 			generator.write(this.mergesCurrentSize);
 
 		}
 		if (this.mergesTotal != null) {
-
 			generator.writeKey("merges.total");
 			generator.write(this.mergesTotal);
 
 		}
 		if (this.mergesTotalDocs != null) {
-
 			generator.writeKey("merges.total_docs");
 			generator.write(this.mergesTotalDocs);
 
 		}
 		if (this.mergesTotalSize != null) {
-
 			generator.writeKey("merges.total_size");
 			generator.write(this.mergesTotalSize);
 
 		}
 		if (this.mergesTotalTime != null) {
-
 			generator.writeKey("merges.total_time");
 			generator.write(this.mergesTotalTime);
 
 		}
 		if (this.refreshTotal != null) {
-
 			generator.writeKey("refresh.total");
 			generator.write(this.refreshTotal);
 
 		}
 		if (this.refreshTime != null) {
-
 			generator.writeKey("refresh.time");
 			generator.write(this.refreshTime);
 
 		}
 		if (this.refreshExternalTotal != null) {
-
 			generator.writeKey("refresh.external_total");
 			generator.write(this.refreshExternalTotal);
 
 		}
 		if (this.refreshExternalTime != null) {
-
 			generator.writeKey("refresh.external_time");
 			generator.write(this.refreshExternalTime);
 
 		}
 		if (this.refreshListeners != null) {
-
 			generator.writeKey("refresh.listeners");
 			generator.write(this.refreshListeners);
 
 		}
 		if (this.searchFetchCurrent != null) {
-
 			generator.writeKey("search.fetch_current");
 			generator.write(this.searchFetchCurrent);
 
 		}
 		if (this.searchFetchTime != null) {
-
 			generator.writeKey("search.fetch_time");
 			generator.write(this.searchFetchTime);
 
 		}
 		if (this.searchFetchTotal != null) {
-
 			generator.writeKey("search.fetch_total");
 			generator.write(this.searchFetchTotal);
 
 		}
 		if (this.searchOpenContexts != null) {
-
 			generator.writeKey("search.open_contexts");
 			generator.write(this.searchOpenContexts);
 
 		}
 		if (this.searchQueryCurrent != null) {
-
 			generator.writeKey("search.query_current");
 			generator.write(this.searchQueryCurrent);
 
 		}
 		if (this.searchQueryTime != null) {
-
 			generator.writeKey("search.query_time");
 			generator.write(this.searchQueryTime);
 
 		}
 		if (this.searchQueryTotal != null) {
-
 			generator.writeKey("search.query_total");
 			generator.write(this.searchQueryTotal);
 
 		}
 		if (this.searchScrollCurrent != null) {
-
 			generator.writeKey("search.scroll_current");
 			generator.write(this.searchScrollCurrent);
 
 		}
 		if (this.searchScrollTime != null) {
-
 			generator.writeKey("search.scroll_time");
 			generator.write(this.searchScrollTime);
 
 		}
 		if (this.searchScrollTotal != null) {
-
 			generator.writeKey("search.scroll_total");
 			generator.write(this.searchScrollTotal);
 
 		}
 		if (this.segmentsCount != null) {
-
 			generator.writeKey("segments.count");
 			generator.write(this.segmentsCount);
 
 		}
 		if (this.segmentsMemory != null) {
-
 			generator.writeKey("segments.memory");
 			generator.write(this.segmentsMemory);
 
 		}
 		if (this.segmentsIndexWriterMemory != null) {
-
 			generator.writeKey("segments.index_writer_memory");
 			generator.write(this.segmentsIndexWriterMemory);
 
 		}
 		if (this.segmentsVersionMapMemory != null) {
-
 			generator.writeKey("segments.version_map_memory");
 			generator.write(this.segmentsVersionMapMemory);
 
 		}
 		if (this.segmentsFixedBitsetMemory != null) {
-
 			generator.writeKey("segments.fixed_bitset_memory");
 			generator.write(this.segmentsFixedBitsetMemory);
 
 		}
 		if (this.seqNoMax != null) {
-
 			generator.writeKey("seq_no.max");
 			generator.write(this.seqNoMax);
 
 		}
 		if (this.seqNoLocalCheckpoint != null) {
-
 			generator.writeKey("seq_no.local_checkpoint");
 			generator.write(this.seqNoLocalCheckpoint);
 
 		}
 		if (this.seqNoGlobalCheckpoint != null) {
-
 			generator.writeKey("seq_no.global_checkpoint");
 			generator.write(this.seqNoGlobalCheckpoint);
 
 		}
 		if (this.warmerCurrent != null) {
-
 			generator.writeKey("warmer.current");
 			generator.write(this.warmerCurrent);
 
 		}
 		if (this.warmerTotal != null) {
-
 			generator.writeKey("warmer.total");
 			generator.write(this.warmerTotal);
 
 		}
 		if (this.warmerTotalTime != null) {
-
 			generator.writeKey("warmer.total_time");
 			generator.write(this.warmerTotalTime);
 
 		}
 		if (this.pathData != null) {
-
 			generator.writeKey("path.data");
 			generator.write(this.pathData);
 
 		}
 		if (this.pathState != null) {
-
 			generator.writeKey("path.state");
 			generator.write(this.pathState);
 
 		}
 		if (this.bulkTotalOperations != null) {
-
 			generator.writeKey("bulk.total_operations");
 			generator.write(this.bulkTotalOperations);
 
 		}
 		if (this.bulkTotalTime != null) {
-
 			generator.writeKey("bulk.total_time");
 			generator.write(this.bulkTotalTime);
 
 		}
 		if (this.bulkTotalSizeInBytes != null) {
-
 			generator.writeKey("bulk.total_size_in_bytes");
 			generator.write(this.bulkTotalSizeInBytes);
 
 		}
 		if (this.bulkAvgTime != null) {
-
 			generator.writeKey("bulk.avg_time");
 			generator.write(this.bulkAvgTime);
 
 		}
 		if (this.bulkAvgSizeInBytes != null) {
-
 			generator.writeKey("bulk.avg_size_in_bytes");
 			generator.write(this.bulkAvgSizeInBytes);
 
@@ -1591,7 +1522,8 @@ public final class ShardsRecord implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardsRecord}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardsRecord> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsRecord> {
 		@Nullable
 		private String index;
 
@@ -1825,7 +1757,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code index}
 		 */
-		public Builder index(@Nullable String value) {
+		public final Builder index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -1835,7 +1767,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code shard}
 		 */
-		public Builder shard(@Nullable String value) {
+		public final Builder shard(@Nullable String value) {
 			this.shard = value;
 			return this;
 		}
@@ -1845,7 +1777,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code prirep}
 		 */
-		public Builder prirep(@Nullable String value) {
+		public final Builder prirep(@Nullable String value) {
 			this.prirep = value;
 			return this;
 		}
@@ -1855,7 +1787,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code state}
 		 */
-		public Builder state(@Nullable String value) {
+		public final Builder state(@Nullable String value) {
 			this.state = value;
 			return this;
 		}
@@ -1865,7 +1797,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code docs}
 		 */
-		public Builder docs(@Nullable String value) {
+		public final Builder docs(@Nullable String value) {
 			this.docs = value;
 			return this;
 		}
@@ -1875,7 +1807,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code store}
 		 */
-		public Builder store(@Nullable String value) {
+		public final Builder store(@Nullable String value) {
 			this.store = value;
 			return this;
 		}
@@ -1885,7 +1817,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code ip}
 		 */
-		public Builder ip(@Nullable String value) {
+		public final Builder ip(@Nullable String value) {
 			this.ip = value;
 			return this;
 		}
@@ -1895,7 +1827,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code id}
 		 */
-		public Builder id(@Nullable String value) {
+		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
@@ -1905,7 +1837,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code node}
 		 */
-		public Builder node(@Nullable String value) {
+		public final Builder node(@Nullable String value) {
 			this.node = value;
 			return this;
 		}
@@ -1915,7 +1847,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code sync_id}
 		 */
-		public Builder syncId(@Nullable String value) {
+		public final Builder syncId(@Nullable String value) {
 			this.syncId = value;
 			return this;
 		}
@@ -1925,7 +1857,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unassigned.reason}
 		 */
-		public Builder unassignedReason(@Nullable String value) {
+		public final Builder unassignedReason(@Nullable String value) {
 			this.unassignedReason = value;
 			return this;
 		}
@@ -1935,7 +1867,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unassigned.at}
 		 */
-		public Builder unassignedAt(@Nullable String value) {
+		public final Builder unassignedAt(@Nullable String value) {
 			this.unassignedAt = value;
 			return this;
 		}
@@ -1945,7 +1877,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unassigned.for}
 		 */
-		public Builder unassignedFor(@Nullable String value) {
+		public final Builder unassignedFor(@Nullable String value) {
 			this.unassignedFor = value;
 			return this;
 		}
@@ -1955,7 +1887,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code unassigned.details}
 		 */
-		public Builder unassignedDetails(@Nullable String value) {
+		public final Builder unassignedDetails(@Nullable String value) {
 			this.unassignedDetails = value;
 			return this;
 		}
@@ -1965,7 +1897,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code recoverysource.type}
 		 */
-		public Builder recoverysourceType(@Nullable String value) {
+		public final Builder recoverysourceType(@Nullable String value) {
 			this.recoverysourceType = value;
 			return this;
 		}
@@ -1975,7 +1907,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code completion.size}
 		 */
-		public Builder completionSize(@Nullable String value) {
+		public final Builder completionSize(@Nullable String value) {
 			this.completionSize = value;
 			return this;
 		}
@@ -1985,7 +1917,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata.memory_size}
 		 */
-		public Builder fielddataMemorySize(@Nullable String value) {
+		public final Builder fielddataMemorySize(@Nullable String value) {
 			this.fielddataMemorySize = value;
 			return this;
 		}
@@ -1995,7 +1927,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code fielddata.evictions}
 		 */
-		public Builder fielddataEvictions(@Nullable String value) {
+		public final Builder fielddataEvictions(@Nullable String value) {
 			this.fielddataEvictions = value;
 			return this;
 		}
@@ -2005,7 +1937,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache.memory_size}
 		 */
-		public Builder queryCacheMemorySize(@Nullable String value) {
+		public final Builder queryCacheMemorySize(@Nullable String value) {
 			this.queryCacheMemorySize = value;
 			return this;
 		}
@@ -2015,7 +1947,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_cache.evictions}
 		 */
-		public Builder queryCacheEvictions(@Nullable String value) {
+		public final Builder queryCacheEvictions(@Nullable String value) {
 			this.queryCacheEvictions = value;
 			return this;
 		}
@@ -2025,7 +1957,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code flush.total}
 		 */
-		public Builder flushTotal(@Nullable String value) {
+		public final Builder flushTotal(@Nullable String value) {
 			this.flushTotal = value;
 			return this;
 		}
@@ -2035,7 +1967,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code flush.total_time}
 		 */
-		public Builder flushTotalTime(@Nullable String value) {
+		public final Builder flushTotalTime(@Nullable String value) {
 			this.flushTotalTime = value;
 			return this;
 		}
@@ -2045,7 +1977,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.current}
 		 */
-		public Builder getCurrent(@Nullable String value) {
+		public final Builder getCurrent(@Nullable String value) {
 			this.getCurrent = value;
 			return this;
 		}
@@ -2055,7 +1987,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.time}
 		 */
-		public Builder getTime(@Nullable String value) {
+		public final Builder getTime(@Nullable String value) {
 			this.getTime = value;
 			return this;
 		}
@@ -2065,7 +1997,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.total}
 		 */
-		public Builder getTotal(@Nullable String value) {
+		public final Builder getTotal(@Nullable String value) {
 			this.getTotal = value;
 			return this;
 		}
@@ -2075,7 +2007,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.exists_time}
 		 */
-		public Builder getExistsTime(@Nullable String value) {
+		public final Builder getExistsTime(@Nullable String value) {
 			this.getExistsTime = value;
 			return this;
 		}
@@ -2085,7 +2017,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.exists_total}
 		 */
-		public Builder getExistsTotal(@Nullable String value) {
+		public final Builder getExistsTotal(@Nullable String value) {
 			this.getExistsTotal = value;
 			return this;
 		}
@@ -2095,7 +2027,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.missing_time}
 		 */
-		public Builder getMissingTime(@Nullable String value) {
+		public final Builder getMissingTime(@Nullable String value) {
 			this.getMissingTime = value;
 			return this;
 		}
@@ -2105,7 +2037,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code get.missing_total}
 		 */
-		public Builder getMissingTotal(@Nullable String value) {
+		public final Builder getMissingTotal(@Nullable String value) {
 			this.getMissingTotal = value;
 			return this;
 		}
@@ -2115,7 +2047,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.delete_current}
 		 */
-		public Builder indexingDeleteCurrent(@Nullable String value) {
+		public final Builder indexingDeleteCurrent(@Nullable String value) {
 			this.indexingDeleteCurrent = value;
 			return this;
 		}
@@ -2125,7 +2057,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.delete_time}
 		 */
-		public Builder indexingDeleteTime(@Nullable String value) {
+		public final Builder indexingDeleteTime(@Nullable String value) {
 			this.indexingDeleteTime = value;
 			return this;
 		}
@@ -2135,7 +2067,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.delete_total}
 		 */
-		public Builder indexingDeleteTotal(@Nullable String value) {
+		public final Builder indexingDeleteTotal(@Nullable String value) {
 			this.indexingDeleteTotal = value;
 			return this;
 		}
@@ -2145,7 +2077,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_current}
 		 */
-		public Builder indexingIndexCurrent(@Nullable String value) {
+		public final Builder indexingIndexCurrent(@Nullable String value) {
 			this.indexingIndexCurrent = value;
 			return this;
 		}
@@ -2155,7 +2087,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_time}
 		 */
-		public Builder indexingIndexTime(@Nullable String value) {
+		public final Builder indexingIndexTime(@Nullable String value) {
 			this.indexingIndexTime = value;
 			return this;
 		}
@@ -2165,7 +2097,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_total}
 		 */
-		public Builder indexingIndexTotal(@Nullable String value) {
+		public final Builder indexingIndexTotal(@Nullable String value) {
 			this.indexingIndexTotal = value;
 			return this;
 		}
@@ -2175,7 +2107,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code indexing.index_failed}
 		 */
-		public Builder indexingIndexFailed(@Nullable String value) {
+		public final Builder indexingIndexFailed(@Nullable String value) {
 			this.indexingIndexFailed = value;
 			return this;
 		}
@@ -2185,7 +2117,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.current}
 		 */
-		public Builder mergesCurrent(@Nullable String value) {
+		public final Builder mergesCurrent(@Nullable String value) {
 			this.mergesCurrent = value;
 			return this;
 		}
@@ -2195,7 +2127,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.current_docs}
 		 */
-		public Builder mergesCurrentDocs(@Nullable String value) {
+		public final Builder mergesCurrentDocs(@Nullable String value) {
 			this.mergesCurrentDocs = value;
 			return this;
 		}
@@ -2205,7 +2137,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.current_size}
 		 */
-		public Builder mergesCurrentSize(@Nullable String value) {
+		public final Builder mergesCurrentSize(@Nullable String value) {
 			this.mergesCurrentSize = value;
 			return this;
 		}
@@ -2215,7 +2147,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total}
 		 */
-		public Builder mergesTotal(@Nullable String value) {
+		public final Builder mergesTotal(@Nullable String value) {
 			this.mergesTotal = value;
 			return this;
 		}
@@ -2225,7 +2157,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total_docs}
 		 */
-		public Builder mergesTotalDocs(@Nullable String value) {
+		public final Builder mergesTotalDocs(@Nullable String value) {
 			this.mergesTotalDocs = value;
 			return this;
 		}
@@ -2235,7 +2167,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total_size}
 		 */
-		public Builder mergesTotalSize(@Nullable String value) {
+		public final Builder mergesTotalSize(@Nullable String value) {
 			this.mergesTotalSize = value;
 			return this;
 		}
@@ -2245,7 +2177,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code merges.total_time}
 		 */
-		public Builder mergesTotalTime(@Nullable String value) {
+		public final Builder mergesTotalTime(@Nullable String value) {
 			this.mergesTotalTime = value;
 			return this;
 		}
@@ -2255,7 +2187,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.total}
 		 */
-		public Builder refreshTotal(@Nullable String value) {
+		public final Builder refreshTotal(@Nullable String value) {
 			this.refreshTotal = value;
 			return this;
 		}
@@ -2265,7 +2197,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.time}
 		 */
-		public Builder refreshTime(@Nullable String value) {
+		public final Builder refreshTime(@Nullable String value) {
 			this.refreshTime = value;
 			return this;
 		}
@@ -2275,7 +2207,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.external_total}
 		 */
-		public Builder refreshExternalTotal(@Nullable String value) {
+		public final Builder refreshExternalTotal(@Nullable String value) {
 			this.refreshExternalTotal = value;
 			return this;
 		}
@@ -2285,7 +2217,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.external_time}
 		 */
-		public Builder refreshExternalTime(@Nullable String value) {
+		public final Builder refreshExternalTime(@Nullable String value) {
 			this.refreshExternalTime = value;
 			return this;
 		}
@@ -2295,7 +2227,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh.listeners}
 		 */
-		public Builder refreshListeners(@Nullable String value) {
+		public final Builder refreshListeners(@Nullable String value) {
 			this.refreshListeners = value;
 			return this;
 		}
@@ -2305,7 +2237,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.fetch_current}
 		 */
-		public Builder searchFetchCurrent(@Nullable String value) {
+		public final Builder searchFetchCurrent(@Nullable String value) {
 			this.searchFetchCurrent = value;
 			return this;
 		}
@@ -2315,7 +2247,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.fetch_time}
 		 */
-		public Builder searchFetchTime(@Nullable String value) {
+		public final Builder searchFetchTime(@Nullable String value) {
 			this.searchFetchTime = value;
 			return this;
 		}
@@ -2325,7 +2257,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.fetch_total}
 		 */
-		public Builder searchFetchTotal(@Nullable String value) {
+		public final Builder searchFetchTotal(@Nullable String value) {
 			this.searchFetchTotal = value;
 			return this;
 		}
@@ -2335,7 +2267,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.open_contexts}
 		 */
-		public Builder searchOpenContexts(@Nullable String value) {
+		public final Builder searchOpenContexts(@Nullable String value) {
 			this.searchOpenContexts = value;
 			return this;
 		}
@@ -2345,7 +2277,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.query_current}
 		 */
-		public Builder searchQueryCurrent(@Nullable String value) {
+		public final Builder searchQueryCurrent(@Nullable String value) {
 			this.searchQueryCurrent = value;
 			return this;
 		}
@@ -2355,7 +2287,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.query_time}
 		 */
-		public Builder searchQueryTime(@Nullable String value) {
+		public final Builder searchQueryTime(@Nullable String value) {
 			this.searchQueryTime = value;
 			return this;
 		}
@@ -2365,7 +2297,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.query_total}
 		 */
-		public Builder searchQueryTotal(@Nullable String value) {
+		public final Builder searchQueryTotal(@Nullable String value) {
 			this.searchQueryTotal = value;
 			return this;
 		}
@@ -2375,7 +2307,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.scroll_current}
 		 */
-		public Builder searchScrollCurrent(@Nullable String value) {
+		public final Builder searchScrollCurrent(@Nullable String value) {
 			this.searchScrollCurrent = value;
 			return this;
 		}
@@ -2385,7 +2317,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.scroll_time}
 		 */
-		public Builder searchScrollTime(@Nullable String value) {
+		public final Builder searchScrollTime(@Nullable String value) {
 			this.searchScrollTime = value;
 			return this;
 		}
@@ -2395,7 +2327,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code search.scroll_total}
 		 */
-		public Builder searchScrollTotal(@Nullable String value) {
+		public final Builder searchScrollTotal(@Nullable String value) {
 			this.searchScrollTotal = value;
 			return this;
 		}
@@ -2405,7 +2337,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.count}
 		 */
-		public Builder segmentsCount(@Nullable String value) {
+		public final Builder segmentsCount(@Nullable String value) {
 			this.segmentsCount = value;
 			return this;
 		}
@@ -2415,7 +2347,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.memory}
 		 */
-		public Builder segmentsMemory(@Nullable String value) {
+		public final Builder segmentsMemory(@Nullable String value) {
 			this.segmentsMemory = value;
 			return this;
 		}
@@ -2425,7 +2357,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.index_writer_memory}
 		 */
-		public Builder segmentsIndexWriterMemory(@Nullable String value) {
+		public final Builder segmentsIndexWriterMemory(@Nullable String value) {
 			this.segmentsIndexWriterMemory = value;
 			return this;
 		}
@@ -2435,7 +2367,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.version_map_memory}
 		 */
-		public Builder segmentsVersionMapMemory(@Nullable String value) {
+		public final Builder segmentsVersionMapMemory(@Nullable String value) {
 			this.segmentsVersionMapMemory = value;
 			return this;
 		}
@@ -2446,7 +2378,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code segments.fixed_bitset_memory}
 		 */
-		public Builder segmentsFixedBitsetMemory(@Nullable String value) {
+		public final Builder segmentsFixedBitsetMemory(@Nullable String value) {
 			this.segmentsFixedBitsetMemory = value;
 			return this;
 		}
@@ -2456,7 +2388,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code seq_no.max}
 		 */
-		public Builder seqNoMax(@Nullable String value) {
+		public final Builder seqNoMax(@Nullable String value) {
 			this.seqNoMax = value;
 			return this;
 		}
@@ -2466,7 +2398,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code seq_no.local_checkpoint}
 		 */
-		public Builder seqNoLocalCheckpoint(@Nullable String value) {
+		public final Builder seqNoLocalCheckpoint(@Nullable String value) {
 			this.seqNoLocalCheckpoint = value;
 			return this;
 		}
@@ -2476,7 +2408,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code seq_no.global_checkpoint}
 		 */
-		public Builder seqNoGlobalCheckpoint(@Nullable String value) {
+		public final Builder seqNoGlobalCheckpoint(@Nullable String value) {
 			this.seqNoGlobalCheckpoint = value;
 			return this;
 		}
@@ -2486,7 +2418,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code warmer.current}
 		 */
-		public Builder warmerCurrent(@Nullable String value) {
+		public final Builder warmerCurrent(@Nullable String value) {
 			this.warmerCurrent = value;
 			return this;
 		}
@@ -2496,7 +2428,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code warmer.total}
 		 */
-		public Builder warmerTotal(@Nullable String value) {
+		public final Builder warmerTotal(@Nullable String value) {
 			this.warmerTotal = value;
 			return this;
 		}
@@ -2506,7 +2438,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code warmer.total_time}
 		 */
-		public Builder warmerTotalTime(@Nullable String value) {
+		public final Builder warmerTotalTime(@Nullable String value) {
 			this.warmerTotalTime = value;
 			return this;
 		}
@@ -2516,7 +2448,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code path.data}
 		 */
-		public Builder pathData(@Nullable String value) {
+		public final Builder pathData(@Nullable String value) {
 			this.pathData = value;
 			return this;
 		}
@@ -2526,7 +2458,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code path.state}
 		 */
-		public Builder pathState(@Nullable String value) {
+		public final Builder pathState(@Nullable String value) {
 			this.pathState = value;
 			return this;
 		}
@@ -2536,7 +2468,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.total_operations}
 		 */
-		public Builder bulkTotalOperations(@Nullable String value) {
+		public final Builder bulkTotalOperations(@Nullable String value) {
 			this.bulkTotalOperations = value;
 			return this;
 		}
@@ -2546,7 +2478,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.total_time}
 		 */
-		public Builder bulkTotalTime(@Nullable String value) {
+		public final Builder bulkTotalTime(@Nullable String value) {
 			this.bulkTotalTime = value;
 			return this;
 		}
@@ -2556,7 +2488,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.total_size_in_bytes}
 		 */
-		public Builder bulkTotalSizeInBytes(@Nullable String value) {
+		public final Builder bulkTotalSizeInBytes(@Nullable String value) {
 			this.bulkTotalSizeInBytes = value;
 			return this;
 		}
@@ -2566,7 +2498,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.avg_time}
 		 */
-		public Builder bulkAvgTime(@Nullable String value) {
+		public final Builder bulkAvgTime(@Nullable String value) {
 			this.bulkAvgTime = value;
 			return this;
 		}
@@ -2576,7 +2508,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bulk.avg_size_in_bytes}
 		 */
-		public Builder bulkAvgSizeInBytes(@Nullable String value) {
+		public final Builder bulkAvgSizeInBytes(@Nullable String value) {
 			this.bulkAvgSizeInBytes = value;
 			return this;
 		}
@@ -2588,6 +2520,7 @@ public final class ShardsRecord implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardsRecord build() {
+			_checkSingleUse();
 
 			return new ShardsRecord(this);
 		}
@@ -2599,9 +2532,9 @@ public final class ShardsRecord implements JsonpSerializable {
 	 * Json deserializer for {@link ShardsRecord}
 	 */
 	public static final JsonpDeserializer<ShardsRecord> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardsRecord::setupShardsRecordDeserializer, Builder::build);
+			ShardsRecord::setupShardsRecordDeserializer);
 
-	protected static void setupShardsRecordDeserializer(DelegatingDeserializer<ShardsRecord.Builder> op) {
+	protected static void setupShardsRecordDeserializer(ObjectDeserializer<ShardsRecord.Builder> op) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index", "i", "idx");
 		op.add(Builder::shard, JsonpDeserializer.stringDeserializer(), "shard", "s", "sh");

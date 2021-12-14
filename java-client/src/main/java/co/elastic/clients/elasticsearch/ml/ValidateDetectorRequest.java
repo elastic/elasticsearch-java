@@ -23,9 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,7 +31,11 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Collections;
 import java.util.Objects;
@@ -41,20 +43,28 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.validate_detector.Request
+
+/**
+ * Validates an anomaly detection detector.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/validate_detector/MlValidateDetectorRequest.ts#L23-L32">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ValidateDetectorRequest extends RequestBase implements JsonpSerializable {
+public class ValidateDetectorRequest extends RequestBase implements JsonpSerializable {
 	private final Detector detector;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ValidateDetectorRequest(Builder builder) {
+	private ValidateDetectorRequest(Builder builder) {
 
-		this.detector = Objects.requireNonNull(builder.detector, "_value_body");
+		this.detector = ApiTypeHelper.requireNonNull(builder.detector, this, "detector");
 
 	}
 
-	public ValidateDetectorRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ValidateDetectorRequest of(Function<Builder, ObjectBuilder<ValidateDetectorRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -62,7 +72,7 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 	 * <p>
 	 * API name: {@code _value_body}
 	 */
-	public Detector detector() {
+	public final Detector detector() {
 		return this.detector;
 	}
 
@@ -79,7 +89,8 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 	/**
 	 * Builder for {@link ValidateDetectorRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<ValidateDetectorRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateDetectorRequest> {
 		private Detector detector;
 
 		/**
@@ -87,7 +98,7 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder detector(Detector value) {
+		public final Builder detector(Detector value) {
 			this.detector = value;
 			return this;
 		}
@@ -97,7 +108,7 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 		 * <p>
 		 * API name: {@code _value_body}
 		 */
-		public Builder detector(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
+		public final Builder detector(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
 			return this.detector(fn.apply(new Detector.Builder()).build());
 		}
 
@@ -108,6 +119,7 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 		 *             if some of the required fields are null.
 		 */
 		public ValidateDetectorRequest build() {
+			_checkSingleUse();
 
 			return new ValidateDetectorRequest(this);
 		}
@@ -118,8 +130,8 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 
 		JsonpDeserializer<Detector> valueDeserializer = Detector._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
-				.detector(valueDeserializer.deserialize(parser, mapper, event)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().detector(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -127,7 +139,9 @@ public final class ValidateDetectorRequest extends RequestBase implements JsonpS
 	/**
 	 * Endpoint "{@code ml.validate_detector}".
 	 */
-	public static final Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.validate_detector",
+
 			// Request method
 			request -> {
 				return "POST";

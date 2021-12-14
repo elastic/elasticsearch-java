@@ -23,13 +23,12 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.DictionaryResponse;
 import co.elastic.clients.elasticsearch.security.get_service_accounts.RoleDescriptorWrapper;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.endpoints.DictionaryResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -37,17 +36,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: security.get_service_accounts.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_accounts/GetServiceAccountsResponse.ts#L23-L26">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetServiceAccountsResponse extends DictionaryResponse<String, RoleDescriptorWrapper> {
+public class GetServiceAccountsResponse extends DictionaryResponse<String, RoleDescriptorWrapper> {
 	// ---------------------------------------------------------------------------------------------
 
-	public GetServiceAccountsResponse(Builder builder) {
+	private GetServiceAccountsResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public GetServiceAccountsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetServiceAccountsResponse of(Function<Builder, ObjectBuilder<GetServiceAccountsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -55,6 +61,7 @@ public final class GetServiceAccountsResponse extends DictionaryResponse<String,
 	/**
 	 * Builder for {@link GetServiceAccountsResponse}.
 	 */
+
 	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RoleDescriptorWrapper, Builder>
 			implements
 				ObjectBuilder<GetServiceAccountsResponse> {
@@ -70,6 +77,7 @@ public final class GetServiceAccountsResponse extends DictionaryResponse<String,
 		 *             if some of the required fields are null.
 		 */
 		public GetServiceAccountsResponse build() {
+			_checkSingleUse();
 			super.tKeySerializer(null);
 			super.tValueSerializer(null);
 
@@ -82,11 +90,11 @@ public final class GetServiceAccountsResponse extends DictionaryResponse<String,
 	/**
 	 * Json deserializer for {@link GetServiceAccountsResponse}
 	 */
-	public static final JsonpDeserializer<GetServiceAccountsResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(
-			Builder::new, GetServiceAccountsResponse::setupGetServiceAccountsResponseDeserializer, Builder::build);
+	public static final JsonpDeserializer<GetServiceAccountsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, GetServiceAccountsResponse::setupGetServiceAccountsResponseDeserializer);
 
 	protected static void setupGetServiceAccountsResponseDeserializer(
-			DelegatingDeserializer<GetServiceAccountsResponse.Builder> op) {
+			ObjectDeserializer<GetServiceAccountsResponse.Builder> op) {
 		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
 				RoleDescriptorWrapper._DESERIALIZER);
 

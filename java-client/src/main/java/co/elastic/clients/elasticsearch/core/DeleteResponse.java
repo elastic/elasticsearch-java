@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.WriteResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _global.delete.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete/DeleteResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class DeleteResponse extends WriteResponseBase {
+public class DeleteResponse extends WriteResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public DeleteResponse(Builder builder) {
+	private DeleteResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public DeleteResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static DeleteResponse of(Function<Builder, ObjectBuilder<DeleteResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class DeleteResponse extends WriteResponseBase {
 	/**
 	 * Builder for {@link DeleteResponse}.
 	 */
+
 	public static class Builder extends WriteResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteResponse> {
@@ -68,6 +75,7 @@ public final class DeleteResponse extends WriteResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public DeleteResponse build() {
+			_checkSingleUse();
 
 			return new DeleteResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class DeleteResponse extends WriteResponseBase {
 	 * Json deserializer for {@link DeleteResponse}
 	 */
 	public static final JsonpDeserializer<DeleteResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			DeleteResponse::setupDeleteResponseDeserializer, Builder::build);
+			DeleteResponse::setupDeleteResponseDeserializer);
 
-	protected static void setupDeleteResponseDeserializer(DelegatingDeserializer<DeleteResponse.Builder> op) {
+	protected static void setupDeleteResponseDeserializer(ObjectDeserializer<DeleteResponse.Builder> op) {
 		WriteResponseBase.setupWriteResponseBaseDeserializer(op);
 
 	}

@@ -23,26 +23,25 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.security.create_api_key.RoleDescriptor;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
@@ -50,37 +49,74 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: security.create_api_key.Request
-@JsonpDeserializable
-public final class CreateApiKeyRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final JsonValue /* _types.Refresh */ refresh;
 
+/**
+ * Creates an API key for access without requiring basic authentication.
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_api_key/SecurityCreateApiKeyRequest.ts#L26-L51">API
+ *      specification</a>
+ */
+@JsonpDeserializable
+public class CreateApiKeyRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String expiration;
+	private final Time expiration;
+
+	private final Map<String, JsonData> metadata;
 
 	@Nullable
 	private final String name;
 
 	@Nullable
-	private final Map<String, RoleDescriptor> roleDescriptors;
+	private final Refresh refresh;
 
-	@Nullable
-	private final Map<String, JsonData> metadata;
+	private final Map<String, RoleDescriptor> roleDescriptors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public CreateApiKeyRequest(Builder builder) {
+	private CreateApiKeyRequest(Builder builder) {
 
-		this.refresh = builder.refresh;
 		this.expiration = builder.expiration;
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.name = builder.name;
-		this.roleDescriptors = ModelTypeHelper.unmodifiable(builder.roleDescriptors);
-		this.metadata = ModelTypeHelper.unmodifiable(builder.metadata);
+		this.refresh = builder.refresh;
+		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 
 	}
 
-	public CreateApiKeyRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static CreateApiKeyRequest of(Function<Builder, ObjectBuilder<CreateApiKeyRequest>> fn) {
+		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Expiration time for the API key. By default, API keys never expire.
+	 * <p>
+	 * API name: {@code expiration}
+	 */
+	@Nullable
+	public final Time expiration() {
+		return this.expiration;
+	}
+
+	/**
+	 * Arbitrary metadata that you want to associate with the API key. It supports
+	 * nested data structure. Within the metadata object, keys beginning with _ are
+	 * reserved for system usage.
+	 * <p>
+	 * API name: {@code metadata}
+	 */
+	public final Map<String, JsonData> metadata() {
+		return this.metadata;
+	}
+
+	/**
+	 * Specifies the name for this API key.
+	 * <p>
+	 * API name: {@code name}
+	 */
+	@Nullable
+	public final String name() {
+		return this.name;
 	}
 
 	/**
@@ -92,28 +128,8 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 * API name: {@code refresh}
 	 */
 	@Nullable
-	public JsonValue /* _types.Refresh */ refresh() {
+	public final Refresh refresh() {
 		return this.refresh;
-	}
-
-	/**
-	 * Expiration time for the API key. By default, API keys never expire.
-	 * <p>
-	 * API name: {@code expiration}
-	 */
-	@Nullable
-	public String expiration() {
-		return this.expiration;
-	}
-
-	/**
-	 * Specifies the name for this API key.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public String name() {
-		return this.name;
 	}
 
 	/**
@@ -128,21 +144,8 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 * <p>
 	 * API name: {@code role_descriptors}
 	 */
-	@Nullable
-	public Map<String, RoleDescriptor> roleDescriptors() {
+	public final Map<String, RoleDescriptor> roleDescriptors() {
 		return this.roleDescriptors;
-	}
-
-	/**
-	 * Arbitrary metadata that you want to associate with the API key. It supports
-	 * nested data structure. Within the metadata object, keys beginning with _ are
-	 * reserved for system usage.
-	 * <p>
-	 * API name: {@code metadata}
-	 */
-	@Nullable
-	public Map<String, JsonData> metadata() {
-		return this.metadata;
 	}
 
 	/**
@@ -157,22 +160,14 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		if (this.expiration != null) {
-
 			generator.writeKey("expiration");
-			generator.write(this.expiration);
+			this.expiration.serialize(generator, mapper);
 
 		}
-		if (this.name != null) {
-
-			generator.writeKey("name");
-			generator.write(this.name);
-
-		}
-		if (this.roleDescriptors != null) {
-
-			generator.writeKey("role_descriptors");
+		if (ApiTypeHelper.isDefined(this.metadata)) {
+			generator.writeKey("metadata");
 			generator.writeStartObject();
-			for (Map.Entry<String, RoleDescriptor> item0 : this.roleDescriptors.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -180,11 +175,15 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 			generator.writeEnd();
 
 		}
-		if (this.metadata != null) {
+		if (this.name != null) {
+			generator.writeKey("name");
+			generator.write(this.name);
 
-			generator.writeKey("metadata");
+		}
+		if (ApiTypeHelper.isDefined(this.roleDescriptors)) {
+			generator.writeKey("role_descriptors");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
+			for (Map.Entry<String, RoleDescriptor> item0 : this.roleDescriptors.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -200,21 +199,79 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Builder for {@link CreateApiKeyRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<CreateApiKeyRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateApiKeyRequest> {
 		@Nullable
-		private JsonValue /* _types.Refresh */ refresh;
+		private Time expiration;
 
 		@Nullable
-		private String expiration;
+		private Map<String, JsonData> metadata;
 
 		@Nullable
 		private String name;
 
 		@Nullable
-		private Map<String, RoleDescriptor> roleDescriptors;
+		private Refresh refresh;
 
 		@Nullable
-		private Map<String, JsonData> metadata;
+		private Map<String, RoleDescriptor> roleDescriptors;
+
+		/**
+		 * Expiration time for the API key. By default, API keys never expire.
+		 * <p>
+		 * API name: {@code expiration}
+		 */
+		public final Builder expiration(@Nullable Time value) {
+			this.expiration = value;
+			return this;
+		}
+
+		/**
+		 * Expiration time for the API key. By default, API keys never expire.
+		 * <p>
+		 * API name: {@code expiration}
+		 */
+		public final Builder expiration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.expiration(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Arbitrary metadata that you want to associate with the API key. It supports
+		 * nested data structure. Within the metadata object, keys beginning with _ are
+		 * reserved for system usage.
+		 * <p>
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>metadata</code>.
+		 */
+		public final Builder metadata(Map<String, JsonData> map) {
+			this.metadata = _mapPutAll(this.metadata, map);
+			return this;
+		}
+
+		/**
+		 * Arbitrary metadata that you want to associate with the API key. It supports
+		 * nested data structure. Within the metadata object, keys beginning with _ are
+		 * reserved for system usage.
+		 * <p>
+		 * API name: {@code metadata}
+		 * <p>
+		 * Adds an entry to <code>metadata</code>.
+		 */
+		public final Builder metadata(String key, JsonData value) {
+			this.metadata = _mapPut(this.metadata, key, value);
+			return this;
+		}
+
+		/**
+		 * Specifies the name for this API key.
+		 * <p>
+		 * API name: {@code name}
+		 */
+		public final Builder name(@Nullable String value) {
+			this.name = value;
+			return this;
+		}
 
 		/**
 		 * If <code>true</code> (the default) then refresh the affected shards to make
@@ -224,28 +281,8 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 * <p>
 		 * API name: {@code refresh}
 		 */
-		public Builder refresh(@Nullable JsonValue /* _types.Refresh */ value) {
+		public final Builder refresh(@Nullable Refresh value) {
 			this.refresh = value;
-			return this;
-		}
-
-		/**
-		 * Expiration time for the API key. By default, API keys never expire.
-		 * <p>
-		 * API name: {@code expiration}
-		 */
-		public Builder expiration(@Nullable String value) {
-			this.expiration = value;
-			return this;
-		}
-
-		/**
-		 * Specifies the name for this API key.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public Builder name(@Nullable String value) {
-			this.name = value;
 			return this;
 		}
 
@@ -260,59 +297,50 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 * see create or update roles API.
 		 * <p>
 		 * API name: {@code role_descriptors}
-		 */
-		public Builder roleDescriptors(@Nullable Map<String, RoleDescriptor> value) {
-			this.roleDescriptors = value;
-			return this;
-		}
-
-		/**
-		 * Add a key/value to {@link #roleDescriptors(Map)}, creating the map if needed.
-		 */
-		public Builder putRoleDescriptors(String key, RoleDescriptor value) {
-			if (this.roleDescriptors == null) {
-				this.roleDescriptors = new HashMap<>();
-			}
-			this.roleDescriptors.put(key, value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #roleDescriptors(Map)} to a singleton map.
-		 */
-		public Builder roleDescriptors(String key, Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
-			return this.roleDescriptors(Collections.singletonMap(key, fn.apply(new RoleDescriptor.Builder()).build()));
-		}
-
-		/**
-		 * Add a key/value to {@link #roleDescriptors(Map)}, creating the map if needed.
-		 */
-		public Builder putRoleDescriptors(String key,
-				Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
-			return this.putRoleDescriptors(key, fn.apply(new RoleDescriptor.Builder()).build());
-		}
-
-		/**
-		 * Arbitrary metadata that you want to associate with the API key. It supports
-		 * nested data structure. Within the metadata object, keys beginning with _ are
-		 * reserved for system usage.
 		 * <p>
-		 * API name: {@code metadata}
+		 * Adds all entries of <code>map</code> to <code>roleDescriptors</code>.
 		 */
-		public Builder metadata(@Nullable Map<String, JsonData> value) {
-			this.metadata = value;
+		public final Builder roleDescriptors(Map<String, RoleDescriptor> map) {
+			this.roleDescriptors = _mapPutAll(this.roleDescriptors, map);
 			return this;
 		}
 
 		/**
-		 * Add a key/value to {@link #metadata(Map)}, creating the map if needed.
+		 * An array of role descriptors for this API key. This parameter is optional.
+		 * When it is not specified or is an empty array, then the API key will have a
+		 * point in time snapshot of permissions of the authenticated user. If you
+		 * supply role descriptors then the resultant permissions would be an
+		 * intersection of API keys permissions and authenticated user’s permissions
+		 * thereby limiting the access scope for API keys. The structure of role
+		 * descriptor is the same as the request for create role API. For more details,
+		 * see create or update roles API.
+		 * <p>
+		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds an entry to <code>roleDescriptors</code>.
 		 */
-		public Builder putMetadata(String key, JsonData value) {
-			if (this.metadata == null) {
-				this.metadata = new HashMap<>();
-			}
-			this.metadata.put(key, value);
+		public final Builder roleDescriptors(String key, RoleDescriptor value) {
+			this.roleDescriptors = _mapPut(this.roleDescriptors, key, value);
 			return this;
+		}
+
+		/**
+		 * An array of role descriptors for this API key. This parameter is optional.
+		 * When it is not specified or is an empty array, then the API key will have a
+		 * point in time snapshot of permissions of the authenticated user. If you
+		 * supply role descriptors then the resultant permissions would be an
+		 * intersection of API keys permissions and authenticated user’s permissions
+		 * thereby limiting the access scope for API keys. The structure of role
+		 * descriptor is the same as the request for create role API. For more details,
+		 * see create or update roles API.
+		 * <p>
+		 * API name: {@code role_descriptors}
+		 * <p>
+		 * Adds an entry to <code>roleDescriptors</code> using a builder lambda.
+		 */
+		public final Builder roleDescriptors(String key,
+				Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
+			return roleDescriptors(key, fn.apply(new RoleDescriptor.Builder()).build());
 		}
 
 		/**
@@ -322,6 +350,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 		 *             if some of the required fields are null.
 		 */
 		public CreateApiKeyRequest build() {
+			_checkSingleUse();
 
 			return new CreateApiKeyRequest(this);
 		}
@@ -333,15 +362,15 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	 * Json deserializer for {@link CreateApiKeyRequest}
 	 */
 	public static final JsonpDeserializer<CreateApiKeyRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateApiKeyRequest::setupCreateApiKeyRequestDeserializer, Builder::build);
+			.lazy(Builder::new, CreateApiKeyRequest::setupCreateApiKeyRequestDeserializer);
 
-	protected static void setupCreateApiKeyRequestDeserializer(DelegatingDeserializer<CreateApiKeyRequest.Builder> op) {
+	protected static void setupCreateApiKeyRequestDeserializer(ObjectDeserializer<CreateApiKeyRequest.Builder> op) {
 
-		op.add(Builder::expiration, JsonpDeserializer.stringDeserializer(), "expiration");
+		op.add(Builder::expiration, Time._DESERIALIZER, "expiration");
+		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER),
 				"role_descriptors");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 
 	}
 
@@ -350,7 +379,9 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 	/**
 	 * Endpoint "{@code security.create_api_key}".
 	 */
-	public static final Endpoint<CreateApiKeyRequest, CreateApiKeyResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<CreateApiKeyRequest, CreateApiKeyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.create_api_key",
+
 			// Request method
 			request -> {
 				return "PUT";
@@ -367,7 +398,7 @@ public final class CreateApiKeyRequest extends RequestBase implements JsonpSeria
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.refresh != null) {
-					params.put("refresh", JsonpUtils.toString(request.refresh));
+					params.put("refresh", request.refresh.jsonValue());
 				}
 				return params;
 

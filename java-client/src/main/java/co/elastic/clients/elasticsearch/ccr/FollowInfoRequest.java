@@ -23,20 +23,19 @@
 
 package co.elastic.clients.elasticsearch.ccr;
 
-import co.elastic.clients.base.ElasticsearchError;
-import co.elastic.clients.base.Endpoint;
-import co.elastic.clients.base.SimpleEndpoint;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.transport.Endpoint;
+import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Objects;
@@ -46,19 +45,28 @@ import javax.annotation.Nullable;
 
 // typedef: ccr.follow_info.Request
 
-public final class FollowInfoRequest extends RequestBase {
+/**
+ * Retrieves information about all follower indices, including parameters and
+ * status for each follower index
+ * 
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/follow_info/FollowInfoRequest.ts#L23-L32">API
+ *      specification</a>
+ */
+
+public class FollowInfoRequest extends RequestBase {
 	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public FollowInfoRequest(Builder builder) {
+	private FollowInfoRequest(Builder builder) {
 
-		this.index = ModelTypeHelper.unmodifiableNonNull(builder.index, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 
 	}
 
-	public FollowInfoRequest(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static FollowInfoRequest of(Function<Builder, ObjectBuilder<FollowInfoRequest>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
@@ -67,7 +75,7 @@ public final class FollowInfoRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public List<String> index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -76,7 +84,8 @@ public final class FollowInfoRequest extends RequestBase {
 	/**
 	 * Builder for {@link FollowInfoRequest}.
 	 */
-	public static class Builder implements ObjectBuilder<FollowInfoRequest> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowInfoRequest> {
 		private List<String> index;
 
 		/**
@@ -84,9 +93,11 @@ public final class FollowInfoRequest extends RequestBase {
 		 * perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public Builder index(List<String> value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
@@ -95,20 +106,11 @@ public final class FollowInfoRequest extends RequestBase {
 		 * perform the operation on all indices
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public Builder index(String... value) {
-			this.index = Arrays.asList(value);
-			return this;
-		}
-
-		/**
-		 * Add a value to {@link #index(List)}, creating the list if needed.
-		 */
-		public Builder addIndex(String value) {
-			if (this.index == null) {
-				this.index = new ArrayList<>();
-			}
-			this.index.add(value);
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -119,6 +121,7 @@ public final class FollowInfoRequest extends RequestBase {
 		 *             if some of the required fields are null.
 		 */
 		public FollowInfoRequest build() {
+			_checkSingleUse();
 
 			return new FollowInfoRequest(this);
 		}
@@ -129,7 +132,9 @@ public final class FollowInfoRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code ccr.follow_info}".
 	 */
-	public static final Endpoint<FollowInfoRequest, FollowInfoResponse, ElasticsearchError> ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<FollowInfoRequest, FollowInfoResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ccr.follow_info",
+
 			// Request method
 			request -> {
 				return "GET";

@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,25 +34,32 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: _types.analysis.KStemTokenFilter
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L237-L239">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class KStemTokenFilter extends TokenFilterBase implements TokenFilterVariant {
+public class KStemTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	// ---------------------------------------------------------------------------------------------
 
-	public KStemTokenFilter(Builder builder) {
+	private KStemTokenFilter(Builder builder) {
 		super(builder);
 
 	}
 
-	public KStemTokenFilter(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static KStemTokenFilter of(Function<Builder, ObjectBuilder<KStemTokenFilter>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link TokenFilter} variant type
+	 * TokenFilterDefinition variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "kstem";
+	public TokenFilterDefinition.Kind _tokenFilterDefinitionKind() {
+		return TokenFilterDefinition.Kind.Kstem;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
@@ -68,6 +74,7 @@ public final class KStemTokenFilter extends TokenFilterBase implements TokenFilt
 	/**
 	 * Builder for {@link KStemTokenFilter}.
 	 */
+
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<KStemTokenFilter> {
@@ -83,6 +90,7 @@ public final class KStemTokenFilter extends TokenFilterBase implements TokenFilt
 		 *             if some of the required fields are null.
 		 */
 		public KStemTokenFilter build() {
+			_checkSingleUse();
 
 			return new KStemTokenFilter(this);
 		}
@@ -94,9 +102,9 @@ public final class KStemTokenFilter extends TokenFilterBase implements TokenFilt
 	 * Json deserializer for {@link KStemTokenFilter}
 	 */
 	public static final JsonpDeserializer<KStemTokenFilter> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			KStemTokenFilter::setupKStemTokenFilterDeserializer, Builder::build);
+			KStemTokenFilter::setupKStemTokenFilterDeserializer);
 
-	protected static void setupKStemTokenFilterDeserializer(DelegatingDeserializer<KStemTokenFilter.Builder> op) {
+	protected static void setupKStemTokenFilterDeserializer(ObjectDeserializer<KStemTokenFilter.Builder> op) {
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 
 		op.ignore("type");

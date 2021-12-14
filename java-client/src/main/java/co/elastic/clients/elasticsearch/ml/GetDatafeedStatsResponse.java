@@ -23,55 +23,60 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_datafeed_stats.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_datafeed_stats/MlGetDatafeedStatsResponse.ts#L23-L28">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetDatafeedStatsResponse implements JsonpSerializable {
+public class GetDatafeedStatsResponse implements JsonpSerializable {
 	private final long count;
 
 	private final List<DatafeedStats> datafeeds;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetDatafeedStatsResponse(Builder builder) {
+	private GetDatafeedStatsResponse(Builder builder) {
 
-		this.count = Objects.requireNonNull(builder.count, "count");
-		this.datafeeds = ModelTypeHelper.unmodifiableNonNull(builder.datafeeds, "datafeeds");
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
+		this.datafeeds = ApiTypeHelper.unmodifiableRequired(builder.datafeeds, this, "datafeeds");
 
 	}
 
-	public GetDatafeedStatsResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetDatafeedStatsResponse of(Function<Builder, ObjectBuilder<GetDatafeedStatsResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code count}
 	 */
-	public long count() {
+	public final long count() {
 		return this.count;
 	}
 
 	/**
 	 * Required - API name: {@code datafeeds}
 	 */
-	public List<DatafeedStats> datafeeds() {
+	public final List<DatafeedStats> datafeeds() {
 		return this.datafeeds;
 	}
 
@@ -89,13 +94,16 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("datafeeds");
-		generator.writeStartArray();
-		for (DatafeedStats item0 : this.datafeeds) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.datafeeds)) {
+			generator.writeKey("datafeeds");
+			generator.writeStartArray();
+			for (DatafeedStats item0 : this.datafeeds) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -104,7 +112,8 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetDatafeedStatsResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetDatafeedStatsResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDatafeedStatsResponse> {
 		private Long count;
 
 		private List<DatafeedStats> datafeeds;
@@ -112,50 +121,38 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code count}
 		 */
-		public Builder count(long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code datafeeds}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>datafeeds</code>.
 		 */
-		public Builder datafeeds(List<DatafeedStats> value) {
-			this.datafeeds = value;
+		public final Builder datafeeds(List<DatafeedStats> list) {
+			this.datafeeds = _listAddAll(this.datafeeds, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code datafeeds}
+		 * <p>
+		 * Adds one or more values to <code>datafeeds</code>.
 		 */
-		public Builder datafeeds(DatafeedStats... value) {
-			this.datafeeds = Arrays.asList(value);
+		public final Builder datafeeds(DatafeedStats value, DatafeedStats... values) {
+			this.datafeeds = _listAdd(this.datafeeds, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #datafeeds(List)}, creating the list if needed.
+		 * Required - API name: {@code datafeeds}
+		 * <p>
+		 * Adds a value to <code>datafeeds</code> using a builder lambda.
 		 */
-		public Builder addDatafeeds(DatafeedStats value) {
-			if (this.datafeeds == null) {
-				this.datafeeds = new ArrayList<>();
-			}
-			this.datafeeds.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #datafeeds(List)} to a singleton list.
-		 */
-		public Builder datafeeds(Function<DatafeedStats.Builder, ObjectBuilder<DatafeedStats>> fn) {
-			return this.datafeeds(fn.apply(new DatafeedStats.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #datafeeds(List)}, creating the list if needed.
-		 */
-		public Builder addDatafeeds(Function<DatafeedStats.Builder, ObjectBuilder<DatafeedStats>> fn) {
-			return this.addDatafeeds(fn.apply(new DatafeedStats.Builder()).build());
+		public final Builder datafeeds(Function<DatafeedStats.Builder, ObjectBuilder<DatafeedStats>> fn) {
+			return datafeeds(fn.apply(new DatafeedStats.Builder()).build());
 		}
 
 		/**
@@ -165,6 +162,7 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetDatafeedStatsResponse build() {
+			_checkSingleUse();
 
 			return new GetDatafeedStatsResponse(this);
 		}
@@ -176,10 +174,10 @@ public final class GetDatafeedStatsResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetDatafeedStatsResponse}
 	 */
 	public static final JsonpDeserializer<GetDatafeedStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetDatafeedStatsResponse::setupGetDatafeedStatsResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetDatafeedStatsResponse::setupGetDatafeedStatsResponseDeserializer);
 
 	protected static void setupGetDatafeedStatsResponseDeserializer(
-			DelegatingDeserializer<GetDatafeedStatsResponse.Builder> op) {
+			ObjectDeserializer<GetDatafeedStatsResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::datafeeds, JsonpDeserializer.arrayDeserializer(DatafeedStats._DESERIALIZER), "datafeeds");

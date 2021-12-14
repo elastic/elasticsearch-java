@@ -24,44 +24,49 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplateItem;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ModelTypeHelper;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.get_index_template.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_index_template/IndicesGetIndexTemplateResponse.ts#L27-L31">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class GetIndexTemplateResponse implements JsonpSerializable {
+public class GetIndexTemplateResponse implements JsonpSerializable {
 	private final List<IndexTemplateItem> indexTemplates;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public GetIndexTemplateResponse(Builder builder) {
+	private GetIndexTemplateResponse(Builder builder) {
 
-		this.indexTemplates = ModelTypeHelper.unmodifiableNonNull(builder.indexTemplates, "index_templates");
+		this.indexTemplates = ApiTypeHelper.unmodifiableRequired(builder.indexTemplates, this, "indexTemplates");
 
 	}
 
-	public GetIndexTemplateResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static GetIndexTemplateResponse of(Function<Builder, ObjectBuilder<GetIndexTemplateResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code index_templates}
 	 */
-	public List<IndexTemplateItem> indexTemplates() {
+	public final List<IndexTemplateItem> indexTemplates() {
 		return this.indexTemplates;
 	}
 
@@ -76,13 +81,16 @@ public final class GetIndexTemplateResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index_templates");
-		generator.writeStartArray();
-		for (IndexTemplateItem item0 : this.indexTemplates) {
-			item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.indexTemplates)) {
+			generator.writeKey("index_templates");
+			generator.writeStartArray();
+			for (IndexTemplateItem item0 : this.indexTemplates) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
-		generator.writeEnd();
 
 	}
 
@@ -91,48 +99,37 @@ public final class GetIndexTemplateResponse implements JsonpSerializable {
 	/**
 	 * Builder for {@link GetIndexTemplateResponse}.
 	 */
-	public static class Builder implements ObjectBuilder<GetIndexTemplateResponse> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIndexTemplateResponse> {
 		private List<IndexTemplateItem> indexTemplates;
 
 		/**
 		 * Required - API name: {@code index_templates}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>indexTemplates</code>.
 		 */
-		public Builder indexTemplates(List<IndexTemplateItem> value) {
-			this.indexTemplates = value;
+		public final Builder indexTemplates(List<IndexTemplateItem> list) {
+			this.indexTemplates = _listAddAll(this.indexTemplates, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code index_templates}
+		 * <p>
+		 * Adds one or more values to <code>indexTemplates</code>.
 		 */
-		public Builder indexTemplates(IndexTemplateItem... value) {
-			this.indexTemplates = Arrays.asList(value);
+		public final Builder indexTemplates(IndexTemplateItem value, IndexTemplateItem... values) {
+			this.indexTemplates = _listAdd(this.indexTemplates, value, values);
 			return this;
 		}
 
 		/**
-		 * Add a value to {@link #indexTemplates(List)}, creating the list if needed.
+		 * Required - API name: {@code index_templates}
+		 * <p>
+		 * Adds a value to <code>indexTemplates</code> using a builder lambda.
 		 */
-		public Builder addIndexTemplates(IndexTemplateItem value) {
-			if (this.indexTemplates == null) {
-				this.indexTemplates = new ArrayList<>();
-			}
-			this.indexTemplates.add(value);
-			return this;
-		}
-
-		/**
-		 * Set {@link #indexTemplates(List)} to a singleton list.
-		 */
-		public Builder indexTemplates(Function<IndexTemplateItem.Builder, ObjectBuilder<IndexTemplateItem>> fn) {
-			return this.indexTemplates(fn.apply(new IndexTemplateItem.Builder()).build());
-		}
-
-		/**
-		 * Add a value to {@link #indexTemplates(List)}, creating the list if needed.
-		 */
-		public Builder addIndexTemplates(Function<IndexTemplateItem.Builder, ObjectBuilder<IndexTemplateItem>> fn) {
-			return this.addIndexTemplates(fn.apply(new IndexTemplateItem.Builder()).build());
+		public final Builder indexTemplates(Function<IndexTemplateItem.Builder, ObjectBuilder<IndexTemplateItem>> fn) {
+			return indexTemplates(fn.apply(new IndexTemplateItem.Builder()).build());
 		}
 
 		/**
@@ -142,6 +139,7 @@ public final class GetIndexTemplateResponse implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public GetIndexTemplateResponse build() {
+			_checkSingleUse();
 
 			return new GetIndexTemplateResponse(this);
 		}
@@ -153,10 +151,10 @@ public final class GetIndexTemplateResponse implements JsonpSerializable {
 	 * Json deserializer for {@link GetIndexTemplateResponse}
 	 */
 	public static final JsonpDeserializer<GetIndexTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetIndexTemplateResponse::setupGetIndexTemplateResponseDeserializer, Builder::build);
+			.lazy(Builder::new, GetIndexTemplateResponse::setupGetIndexTemplateResponseDeserializer);
 
 	protected static void setupGetIndexTemplateResponseDeserializer(
-			DelegatingDeserializer<GetIndexTemplateResponse.Builder> op) {
+			ObjectDeserializer<GetIndexTemplateResponse.Builder> op) {
 
 		op.add(Builder::indexTemplates, JsonpDeserializer.arrayDeserializer(IndexTemplateItem._DESERIALIZER),
 				"index_templates");

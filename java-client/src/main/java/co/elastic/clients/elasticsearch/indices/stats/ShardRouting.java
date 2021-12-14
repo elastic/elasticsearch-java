@@ -23,14 +23,15 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -39,8 +40,15 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: indices.stats.ShardRouting
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L138-L143">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ShardRouting implements JsonpSerializable {
+public class ShardRouting implements JsonpSerializable {
 	private final String node;
 
 	private final boolean primary;
@@ -52,30 +60,30 @@ public final class ShardRouting implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ShardRouting(Builder builder) {
+	private ShardRouting(Builder builder) {
 
-		this.node = Objects.requireNonNull(builder.node, "node");
-		this.primary = Objects.requireNonNull(builder.primary, "primary");
+		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.primary = ApiTypeHelper.requireNonNull(builder.primary, this, "primary");
 		this.relocatingNode = builder.relocatingNode;
-		this.state = Objects.requireNonNull(builder.state, "state");
+		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
 	}
 
-	public ShardRouting(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ShardRouting of(Function<Builder, ObjectBuilder<ShardRouting>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - API name: {@code node}
 	 */
-	public String node() {
+	public final String node() {
 		return this.node;
 	}
 
 	/**
 	 * Required - API name: {@code primary}
 	 */
-	public boolean primary() {
+	public final boolean primary() {
 		return this.primary;
 	}
 
@@ -83,14 +91,14 @@ public final class ShardRouting implements JsonpSerializable {
 	 * API name: {@code relocating_node}
 	 */
 	@Nullable
-	public String relocatingNode() {
+	public final String relocatingNode() {
 		return this.relocatingNode;
 	}
 
 	/**
 	 * Required - API name: {@code state}
 	 */
-	public ShardRoutingState state() {
+	public final ShardRoutingState state() {
 		return this.state;
 	}
 
@@ -112,12 +120,10 @@ public final class ShardRouting implements JsonpSerializable {
 		generator.write(this.primary);
 
 		if (this.relocatingNode != null) {
-
 			generator.writeKey("relocating_node");
 			generator.write(this.relocatingNode);
 
 		}
-
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
 
@@ -128,7 +134,8 @@ public final class ShardRouting implements JsonpSerializable {
 	/**
 	 * Builder for {@link ShardRouting}.
 	 */
-	public static class Builder implements ObjectBuilder<ShardRouting> {
+
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardRouting> {
 		private String node;
 
 		private Boolean primary;
@@ -141,7 +148,7 @@ public final class ShardRouting implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code node}
 		 */
-		public Builder node(String value) {
+		public final Builder node(String value) {
 			this.node = value;
 			return this;
 		}
@@ -149,7 +156,7 @@ public final class ShardRouting implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code primary}
 		 */
-		public Builder primary(boolean value) {
+		public final Builder primary(boolean value) {
 			this.primary = value;
 			return this;
 		}
@@ -157,7 +164,7 @@ public final class ShardRouting implements JsonpSerializable {
 		/**
 		 * API name: {@code relocating_node}
 		 */
-		public Builder relocatingNode(@Nullable String value) {
+		public final Builder relocatingNode(@Nullable String value) {
 			this.relocatingNode = value;
 			return this;
 		}
@@ -165,7 +172,7 @@ public final class ShardRouting implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code state}
 		 */
-		public Builder state(ShardRoutingState value) {
+		public final Builder state(ShardRoutingState value) {
 			this.state = value;
 			return this;
 		}
@@ -177,6 +184,7 @@ public final class ShardRouting implements JsonpSerializable {
 		 *             if some of the required fields are null.
 		 */
 		public ShardRouting build() {
+			_checkSingleUse();
 
 			return new ShardRouting(this);
 		}
@@ -188,9 +196,9 @@ public final class ShardRouting implements JsonpSerializable {
 	 * Json deserializer for {@link ShardRouting}
 	 */
 	public static final JsonpDeserializer<ShardRouting> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ShardRouting::setupShardRoutingDeserializer, Builder::build);
+			ShardRouting::setupShardRoutingDeserializer);
 
-	protected static void setupShardRoutingDeserializer(DelegatingDeserializer<ShardRouting.Builder> op) {
+	protected static void setupShardRoutingDeserializer(ObjectDeserializer<ShardRouting.Builder> op) {
 
 		op.add(Builder::node, JsonpDeserializer.stringDeserializer(), "node");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");

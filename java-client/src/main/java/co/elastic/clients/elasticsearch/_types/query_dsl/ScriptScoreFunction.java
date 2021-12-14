@@ -23,58 +23,64 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.ScriptScoreFunction
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L68-L70">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ScriptScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
-	private final JsonValue /* _types.Script */ script;
+public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public ScriptScoreFunction(Builder builder) {
+	private ScriptScoreFunction(Builder builder) {
 		super(builder);
 
-		this.script = Objects.requireNonNull(builder.script, "script");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
-	public ScriptScoreFunction(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ScriptScoreFunction of(Function<Builder, ObjectBuilder<ScriptScoreFunction>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link FunctionScore} variant type
+	 * FunctionScore variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "script_score";
+	public FunctionScore.Kind _functionScoreKind() {
+		return FunctionScore.Kind.ScriptScore;
 	}
 
 	/**
 	 * Required - API name: {@code script}
 	 */
-	public JsonValue /* _types.Script */ script() {
+	public final Script script() {
 		return this.script;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("script");
-		generator.write(this.script);
+		this.script.serialize(generator, mapper);
 
 	}
 
@@ -83,17 +89,25 @@ public final class ScriptScoreFunction extends ScoreFunctionBase implements Func
 	/**
 	 * Builder for {@link ScriptScoreFunction}.
 	 */
+
 	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ScriptScoreFunction> {
-		private JsonValue /* _types.Script */ script;
+		private Script script;
 
 		/**
 		 * Required - API name: {@code script}
 		 */
-		public Builder script(JsonValue /* _types.Script */ value) {
+		public final Builder script(Script value) {
 			this.script = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
 		}
 
 		@Override
@@ -108,6 +122,7 @@ public final class ScriptScoreFunction extends ScoreFunctionBase implements Func
 		 *             if some of the required fields are null.
 		 */
 		public ScriptScoreFunction build() {
+			_checkSingleUse();
 
 			return new ScriptScoreFunction(this);
 		}
@@ -119,11 +134,11 @@ public final class ScriptScoreFunction extends ScoreFunctionBase implements Func
 	 * Json deserializer for {@link ScriptScoreFunction}
 	 */
 	public static final JsonpDeserializer<ScriptScoreFunction> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ScriptScoreFunction::setupScriptScoreFunctionDeserializer, Builder::build);
+			.lazy(Builder::new, ScriptScoreFunction::setupScriptScoreFunctionDeserializer);
 
-	protected static void setupScriptScoreFunctionDeserializer(DelegatingDeserializer<ScriptScoreFunction.Builder> op) {
+	protected static void setupScriptScoreFunctionDeserializer(ObjectDeserializer<ScriptScoreFunction.Builder> op) {
 		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
-		op.add(Builder::script, JsonpDeserializer.jsonValueDeserializer(), "script");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
 

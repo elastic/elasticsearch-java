@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ShardsOperationResponseBase;
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,17 +34,24 @@ import java.util.Objects;
 import java.util.function.Function;
 
 // typedef: indices.clear_cache.Response
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/clear_cache/IndicesClearCacheResponse.ts#L22-L22">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class ClearCacheResponse extends ShardsOperationResponseBase {
+public class ClearCacheResponse extends ShardsOperationResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	public ClearCacheResponse(Builder builder) {
+	private ClearCacheResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public ClearCacheResponse(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static ClearCacheResponse of(Function<Builder, ObjectBuilder<ClearCacheResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -53,6 +59,7 @@ public final class ClearCacheResponse extends ShardsOperationResponseBase {
 	/**
 	 * Builder for {@link ClearCacheResponse}.
 	 */
+
 	public static class Builder extends ShardsOperationResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ClearCacheResponse> {
@@ -68,6 +75,7 @@ public final class ClearCacheResponse extends ShardsOperationResponseBase {
 		 *             if some of the required fields are null.
 		 */
 		public ClearCacheResponse build() {
+			_checkSingleUse();
 
 			return new ClearCacheResponse(this);
 		}
@@ -79,9 +87,9 @@ public final class ClearCacheResponse extends ShardsOperationResponseBase {
 	 * Json deserializer for {@link ClearCacheResponse}
 	 */
 	public static final JsonpDeserializer<ClearCacheResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ClearCacheResponse::setupClearCacheResponseDeserializer, Builder::build);
+			.lazy(Builder::new, ClearCacheResponse::setupClearCacheResponseDeserializer);
 
-	protected static void setupClearCacheResponseDeserializer(DelegatingDeserializer<ClearCacheResponse.Builder> op) {
+	protected static void setupClearCacheResponseDeserializer(ObjectDeserializer<ClearCacheResponse.Builder> op) {
 		ShardsOperationResponseBase.setupShardsOperationResponseBaseDeserializer(op);
 
 	}

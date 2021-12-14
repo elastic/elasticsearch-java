@@ -23,12 +23,12 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
-import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
@@ -36,29 +36,44 @@ import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.query_dsl.SpanMultiTermQuery
+
+/**
+ *
+ * @see <a href=
+ *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/span.ts#L44-L47">API
+ *      specification</a>
+ */
 @JsonpDeserializable
-public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
+public class SpanMultiTermQuery extends QueryBase implements SpanQueryVariant, QueryVariant {
 	private final Query match;
 
 	// ---------------------------------------------------------------------------------------------
 
-	public SpanMultiTermQuery(Builder builder) {
+	private SpanMultiTermQuery(Builder builder) {
 		super(builder);
 
-		this.match = Objects.requireNonNull(builder.match, "match");
+		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
 
 	}
 
-	public SpanMultiTermQuery(Function<Builder, Builder> fn) {
-		this(fn.apply(new Builder()));
+	public static SpanMultiTermQuery of(Function<Builder, ObjectBuilder<SpanMultiTermQuery>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * {@link SpanQuery}, {@link Query} variant type
+	 * SpanQuery variant kind.
 	 */
 	@Override
-	public String _variantType() {
-		return "span_multi";
+	public SpanQuery.Kind _spanQueryKind() {
+		return SpanQuery.Kind.SpanMulti;
+	}
+
+	/**
+	 * Query variant kind.
+	 */
+	@Override
+	public Query.Kind _queryKind() {
+		return Query.Kind.SpanMulti;
 	}
 
 	/**
@@ -67,14 +82,13 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 	 * <p>
 	 * API name: {@code match}
 	 */
-	public Query match() {
+	public final Query match() {
 		return this.match;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-
 		generator.writeKey("match");
 		this.match.serialize(generator, mapper);
 
@@ -85,6 +99,7 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 	/**
 	 * Builder for {@link SpanMultiTermQuery}.
 	 */
+
 	public static class Builder extends QueryBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<SpanMultiTermQuery> {
@@ -96,7 +111,7 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 		 * <p>
 		 * API name: {@code match}
 		 */
-		public Builder match(Query value) {
+		public final Builder match(Query value) {
 			this.match = value;
 			return this;
 		}
@@ -107,7 +122,7 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 		 * <p>
 		 * API name: {@code match}
 		 */
-		public Builder match(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+		public final Builder match(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.match(fn.apply(new Query.Builder()).build());
 		}
 
@@ -123,6 +138,7 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 		 *             if some of the required fields are null.
 		 */
 		public SpanMultiTermQuery build() {
+			_checkSingleUse();
 
 			return new SpanMultiTermQuery(this);
 		}
@@ -134,9 +150,9 @@ public final class SpanMultiTermQuery extends QueryBase implements SpanQueryVari
 	 * Json deserializer for {@link SpanMultiTermQuery}
 	 */
 	public static final JsonpDeserializer<SpanMultiTermQuery> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, SpanMultiTermQuery::setupSpanMultiTermQueryDeserializer, Builder::build);
+			.lazy(Builder::new, SpanMultiTermQuery::setupSpanMultiTermQueryDeserializer);
 
-	protected static void setupSpanMultiTermQueryDeserializer(DelegatingDeserializer<SpanMultiTermQuery.Builder> op) {
+	protected static void setupSpanMultiTermQueryDeserializer(ObjectDeserializer<SpanMultiTermQuery.Builder> op) {
 		QueryBase.setupQueryBaseDeserializer(op);
 		op.add(Builder::match, Query._DESERIALIZER, "match");
 
