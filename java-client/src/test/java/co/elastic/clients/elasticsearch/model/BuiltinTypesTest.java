@@ -27,8 +27,11 @@ import co.elastic.clients.elasticsearch._types.aggregations.StringStatsAggregate
 import co.elastic.clients.elasticsearch._types.query_dsl.SpanGapQuery;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.indices.IndexSettings;
+import co.elastic.clients.json.JsonpDeserializer;
+import jakarta.json.stream.JsonParser;
 import org.junit.Test;
 
+import java.io.StringReader;
 import java.util.List;
 
 public class BuiltinTypesTest extends ModelTestCase {
@@ -48,6 +51,38 @@ public class BuiltinTypesTest extends ModelTestCase {
     public void testLenientArray() {
         // index: Indices --> type Indices = IndexName | IndexName[]
         assertGetterType(List.class, SearchRequest.class, "index");
+    }
+
+    @Test
+    public void testNullArrayItem() {
+        // See https://github.com/elastic/elasticsearch-java/issues/66
+
+        String json = "[\"a\", null, \"c\"]";
+
+        // Types that don't accept null events should end up as null values in the list
+        {
+            JsonpDeserializer<String> stringDeser = JsonpDeserializer.stringDeserializer();
+            assertFalse(stringDeser.accepts(JsonParser.Event.VALUE_NULL));
+
+            JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+
+            List<String> stringList = JsonpDeserializer.arrayDeserializer(stringDeser).deserialize(parser, mapper);
+            assertEquals("a", stringList.get(0));
+            assertNull(stringList.get(1));
+            assertEquals("c", stringList.get(2));
+        }
+
+        // Types that do accept null events should end up as their null representation
+        {
+            assertTrue(FieldValue._DESERIALIZER.accepts(JsonParser.Event.VALUE_NULL));
+
+            JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
+            List<FieldValue> valueList = JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER).deserialize(parser, mapper);
+
+            assertEquals("a", valueList.get(0)._get());
+            assertTrue(valueList.get(1).isNull());
+            assertEquals("c", valueList.get(2)._get());
+        }
     }
 
     @Test
