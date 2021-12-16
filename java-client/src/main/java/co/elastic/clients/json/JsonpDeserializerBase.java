@@ -312,8 +312,13 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
             if (event == Event.START_ARRAY) {
                 List<T> result = new ArrayList<>();
                 while ((event = parser.next()) != Event.END_ARRAY) {
-                    JsonpUtils.ensureAccepts(itemDeserializer, parser, event);
-                    result.add(itemDeserializer.deserialize(parser, mapper, event));
+                    // JSON null: add null unless the deserializer can handle it
+                    if (event == Event.VALUE_NULL && !itemDeserializer.accepts(event)) {
+                        result.add(null);
+                    } else {
+                        JsonpUtils.ensureAccepts(itemDeserializer, parser, event);
+                        result.add(itemDeserializer.deserialize(parser, mapper, event));
+                    }
                 }
                 return result;
             } else {
