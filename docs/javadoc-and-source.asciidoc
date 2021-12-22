@@ -1,0 +1,6 @@
+[[java-client-javadoc]]
+== Javadoc and source code
+
+The javadoc for the {java-client} can be found at https://artifacts.elastic.co/javadoc/co/elastic/clients/elasticsearch-java/{version}/index.html.
+
+The source code is at https://github.com/elastic/elasticsearch-java/ and is licensed under the Apache 2.0 License.
