@@ -1,4 +1,6 @@
 // Allow building docs locally without a checkout of the Elasticsearch repo
 :elasticsearch-root: {docdir}/local/elasticsearch
 
+// Version is needed to build locally, its value doesn't matter.
+:version: 7.16.2
 include::index.asciidoc[]
