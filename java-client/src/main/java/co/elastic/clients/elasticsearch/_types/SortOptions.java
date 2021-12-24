@@ -23,13 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializable;
-import co.elastic.clients.json.JsonpUtils;
-import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.*;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
@@ -285,47 +279,67 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 
 	}
 
-	public static final JsonpDeserializer<SortOptions> _DESERIALIZER = JsonpDeserializer.lazy(() -> JsonpDeserializer
-			.of(EnumSet.of(JsonParser.Event.START_OBJECT, JsonParser.Event.VALUE_STRING), (parser, mapper) -> {
-				SortOptions.Builder b = new SortOptions.Builder();
+	public static final JsonpDeserializer<SortOptions> _DESERIALIZER = JsonpDeserializer.lazy(() ->
+			new JsonpDeserializerBase<SortOptions>(
+					EnumSet.of(JsonParser.Event.START_OBJECT, JsonParser.Event.VALUE_STRING)) {
 
-				JsonParser.Event event = parser.next();
-				if (event == JsonParser.Event.VALUE_STRING) {
-					switch (parser.getString()) {
-						case "_score" :
-							b.score(s -> s);
-							break;
-						case "_doc" :
-							b.doc(d -> d);
-							break;
-						default :
-							b.field(f -> f.field(parser.getString()));
-					}
-					return b.build();
-				}
+		@Override
+		public SortOptions deserialize(JsonParser parser, JsonpMapper mapper) {
+			JsonParser.Event event = parser.next();
+			if (event == JsonParser.Event.VALUE_STRING) {
+				return processStringEvent(parser);
+			}
+			JsonpUtils.expectEvent(parser, JsonParser.Event.START_OBJECT, event);
+			return processObjectEvent(parser, mapper);
+		}
 
-				JsonpUtils.expectEvent(parser, JsonParser.Event.START_OBJECT, event);
-				JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
-				switch (parser.getString()) {
-					case "_score" :
-						b.score(ScoreSort._DESERIALIZER.deserialize(parser, mapper));
-						break;
-					case "_doc" :
-						b.doc(ScoreSort._DESERIALIZER.deserialize(parser, mapper));
-						break;
-					case "_geo_distance" :
-						b.geoDistance(GeoDistanceSort._DESERIALIZER.deserialize(parser, mapper));
-						break;
-					case "_script" :
-						b.script(ScriptSort._DESERIALIZER.deserialize(parser, mapper));
-						break;
-					default :
-						// Consumes END_OBJECT
-						return b.field(FieldSort._DESERIALIZER.deserialize(parser, mapper, JsonParser.Event.KEY_NAME))
-								.build();
-				}
+		@Override
+		public SortOptions deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+			if (event == JsonParser.Event.VALUE_STRING) {
+				return processStringEvent(parser);
+			} else {
+				return processObjectEvent(parser, mapper);
+			}
+		}
 
-				JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
-				return b.build();
-			}));
+		private SortOptions processStringEvent(JsonParser parser) {
+			Builder b = new Builder();
+			switch (parser.getString()) {
+				case "_score" :
+					b.score(s -> s);
+					break;
+				case "_doc" :
+					b.doc(d -> d);
+					break;
+				default :
+					b.field(f -> f.field(parser.getString()));
+			}
+			return b.build();
+		}
+
+		private SortOptions processObjectEvent(JsonParser parser, JsonpMapper mapper) {
+			Builder b = new Builder();
+			JsonpUtils.expectNextEvent(parser, JsonParser.Event.KEY_NAME);
+			switch (parser.getString()) {
+				case "_score" :
+					b.score(ScoreSort._DESERIALIZER.deserialize(parser, mapper));
+					break;
+				case "_doc" :
+					b.doc(ScoreSort._DESERIALIZER.deserialize(parser, mapper));
+					break;
+				case "_geo_distance" :
+					b.geoDistance(GeoDistanceSort._DESERIALIZER.deserialize(parser, mapper));
+					break;
+				case "_script" :
+					b.script(ScriptSort._DESERIALIZER.deserialize(parser, mapper));
+					break;
+				default :
+					// Consumes END_OBJECT
+					return b.field(FieldSort._DESERIALIZER.deserialize(parser, mapper, JsonParser.Event.KEY_NAME))
+							.build();
+			}
+			JsonpUtils.expectNextEvent(parser, JsonParser.Event.END_OBJECT);
+			return b.build();
+		}
+	});
 }
