@@ -24,6 +24,10 @@ allprojects {
         (File(project.rootDir, "config/version.txt").readText().trim() + "-SNAPSHOT")
 
     repositories {
+        maven {
+            name = "Elastic-Snapshots"
+            url = uri("https://snapshots.elastic.co/maven/")
+        }
         mavenCentral()
     }
 
