@@ -43,8 +43,7 @@ import java.util.Objects;
  * remote cluster information. It returns connection and endpoint information
  * keyed by the configured remote cluster alias.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoRequest.ts#L23-L31">API
+ * @see <a href="../doc-files/api-spec.html#cluster.remote_info.Request">API
  *      specification</a>
  */
 

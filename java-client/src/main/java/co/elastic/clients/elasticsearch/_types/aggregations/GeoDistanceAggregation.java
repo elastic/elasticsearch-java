@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L171-L177">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.GeoDistanceAggregation">API
  *      specification</a>
  */
 @JsonpDeserializable

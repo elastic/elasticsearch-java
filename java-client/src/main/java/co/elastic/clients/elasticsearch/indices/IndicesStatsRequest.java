@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Provides statistics on operations happening in an index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/IndicesStatsRequest.ts#L30-L52">API
+ * @see <a href="../doc-files/api-spec.html#indices.stats.Request">API
  *      specification</a>
  */
 
@@ -84,8 +83,6 @@ public class IndicesStatsRequest extends RequestBase {
 
 	private final List<String> metric;
 
-	private final List<String> types;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private IndicesStatsRequest(Builder builder) {
@@ -101,7 +98,6 @@ public class IndicesStatsRequest extends RequestBase {
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.level = builder.level;
 		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
-		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
 	}
 
@@ -220,16 +216,6 @@ public class IndicesStatsRequest extends RequestBase {
 		return this.metric;
 	}
 
-	/**
-	 * A comma-separated list of document types for the <code>indexing</code> index
-	 * metric
-	 * <p>
-	 * API name: {@code types}
-	 */
-	public final List<String> types() {
-		return this.types;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -269,9 +255,6 @@ public class IndicesStatsRequest extends RequestBase {
 
 		@Nullable
 		private List<String> metric;
-
-		@Nullable
-		private List<String> types;
 
 		/**
 		 * A comma-separated list of fields for the <code>completion</code> index metric
@@ -495,32 +478,6 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of document types for the <code>indexing</code> index
-		 * metric
-		 * <p>
-		 * API name: {@code types}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>types</code>.
-		 */
-		public final Builder types(List<String> list) {
-			this.types = _listAddAll(this.types, list);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types for the <code>indexing</code> index
-		 * metric
-		 * <p>
-		 * API name: {@code types}
-		 * <p>
-		 * Adds one or more values to <code>types</code>.
-		 */
-		public final Builder types(String value, String... values) {
-			this.types = _listAdd(this.types, value, values);
-			return this;
-		}
-
-		/**
 		 * Builds a {@link IndicesStatsRequest}.
 		 *
 		 * @throws NullPointerException
@@ -596,9 +553,6 @@ public class IndicesStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ApiTypeHelper.isDefined(request.types)) {
-					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));

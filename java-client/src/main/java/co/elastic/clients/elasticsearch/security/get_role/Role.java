@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role/types.ts#L27-L35">API
+ * @see <a href="../../doc-files/api-spec.html#security.get_role.Role">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -67,6 +66,8 @@ public class Role implements JsonpSerializable {
 
 	private final List<RoleTemplate> roleTemplates;
 
+	private final Map<String, Map<String, Map<String, List<String>>>> global;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Role(Builder builder) {
@@ -78,6 +79,7 @@ public class Role implements JsonpSerializable {
 		this.transientMetadata = ApiTypeHelper.requireNonNull(builder.transientMetadata, this, "transientMetadata");
 		this.applications = ApiTypeHelper.unmodifiableRequired(builder.applications, this, "applications");
 		this.roleTemplates = ApiTypeHelper.unmodifiable(builder.roleTemplates);
+		this.global = ApiTypeHelper.unmodifiable(builder.global);
 
 	}
 
@@ -132,6 +134,13 @@ public class Role implements JsonpSerializable {
 	 */
 	public final List<RoleTemplate> roleTemplates() {
 		return this.roleTemplates;
+	}
+
+	/**
+	 * API name: {@code global}
+	 */
+	public final Map<String, Map<String, Map<String, List<String>>>> global() {
+		return this.global;
 	}
 
 	/**
@@ -209,6 +218,40 @@ public class Role implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.global)) {
+			generator.writeKey("global");
+			generator.writeStartObject();
+			for (Map.Entry<String, Map<String, Map<String, List<String>>>> item0 : this.global.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartObject();
+				if (item0.getValue() != null) {
+					for (Map.Entry<String, Map<String, List<String>>> item1 : item0.getValue().entrySet()) {
+						generator.writeKey(item1.getKey());
+						generator.writeStartObject();
+						if (item1.getValue() != null) {
+							for (Map.Entry<String, List<String>> item2 : item1.getValue().entrySet()) {
+								generator.writeKey(item2.getKey());
+								generator.writeStartArray();
+								if (item2.getValue() != null) {
+									for (String item3 : item2.getValue()) {
+										generator.write(item3);
+
+									}
+								}
+								generator.writeEnd();
+
+							}
+						}
+						generator.writeEnd();
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -233,6 +276,9 @@ public class Role implements JsonpSerializable {
 
 		@Nullable
 		private List<RoleTemplate> roleTemplates;
+
+		@Nullable
+		private Map<String, Map<String, Map<String, List<String>>>> global;
 
 		/**
 		 * Required - API name: {@code cluster}
@@ -399,6 +445,26 @@ public class Role implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code global}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>global</code>.
+		 */
+		public final Builder global(Map<String, Map<String, Map<String, List<String>>>> map) {
+			this.global = _mapPutAll(this.global, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code global}
+		 * <p>
+		 * Adds an entry to <code>global</code>.
+		 */
+		public final Builder global(String key, Map<String, Map<String, List<String>>> value) {
+			this.global = _mapPut(this.global, key, value);
+			return this;
+		}
+
+		/**
 		 * Builds a {@link Role}.
 		 *
 		 * @throws NullPointerException
@@ -431,6 +497,11 @@ public class Role implements JsonpSerializable {
 				"applications");
 		op.add(Builder::roleTemplates, JsonpDeserializer.arrayDeserializer(RoleTemplate._DESERIALIZER),
 				"role_templates");
+		op.add(Builder::global,
+				JsonpDeserializer.stringMapDeserializer(
+						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(
+								JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())))),
+				"global");
 
 	}
 

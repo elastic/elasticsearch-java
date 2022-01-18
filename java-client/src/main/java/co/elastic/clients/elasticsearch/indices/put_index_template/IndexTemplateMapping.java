@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_index_template/IndicesPutIndexTemplateRequest.ts#L57-L61">API
+ *      "../../doc-files/api-spec.html#indices.put_index_template.IndexTemplateMapping">API
  *      specification</a>
  */
 @JsonpDeserializable

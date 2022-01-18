@@ -48,7 +48,10 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/abstractions.ts#L96-L159">API
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">Documentation
+ *      on elastic.co</a>
+ * @see <a href=
+ *      "../../doc-files/api-spec.html#_types.query_dsl.QueryContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,6 +62,10 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 	 */
 	/**
 	 * {@link Query} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.query_dsl.QueryContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {
@@ -97,6 +104,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 		Ids("ids"),
 
 		Intervals("intervals"),
+
+		Knn("knn"),
 
 		Match("match"),
 
@@ -165,6 +174,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 		TermsSet("terms_set"),
 
 		Wildcard("wildcard"),
+
+		Wrapper("wrapper"),
 
 		Type("type"),
 
@@ -528,6 +539,23 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 	 */
 	public IntervalsQuery intervals() {
 		return TaggedUnionUtils.get(this, Kind.Intervals);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code knn}?
+	 */
+	public boolean isKnn() {
+		return _kind == Kind.Knn;
+	}
+
+	/**
+	 * Get the {@code knn} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code knn} kind.
+	 */
+	public KnnQuery knn() {
+		return TaggedUnionUtils.get(this, Kind.Knn);
 	}
 
 	/**
@@ -1114,6 +1142,23 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 	}
 
 	/**
+	 * Is this variant instance of kind {@code wrapper}?
+	 */
+	public boolean isWrapper() {
+		return _kind == Kind.Wrapper;
+	}
+
+	/**
+	 * Get the {@code wrapper} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code wrapper} kind.
+	 */
+	public WrapperQuery wrapper() {
+		return TaggedUnionUtils.get(this, Kind.Wrapper);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code type}?
 	 */
 	public boolean isType() {
@@ -1333,6 +1378,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 
 		public ObjectBuilder<Query> intervals(Function<IntervalsQuery.Builder, ObjectBuilder<IntervalsQuery>> fn) {
 			return this.intervals(fn.apply(new IntervalsQuery.Builder()).build());
+		}
+
+		public ObjectBuilder<Query> knn(KnnQuery v) {
+			this._kind = Kind.Knn;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
+			return this.knn(fn.apply(new KnnQuery.Builder()).build());
 		}
 
 		public ObjectBuilder<Query> match(MatchQuery v) {
@@ -1686,6 +1741,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this.wildcard(fn.apply(new WildcardQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> wrapper(WrapperQuery v) {
+			this._kind = Kind.Wrapper;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> wrapper(Function<WrapperQuery.Builder, ObjectBuilder<WrapperQuery>> fn) {
+			return this.wrapper(fn.apply(new WrapperQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> type(TypeQuery v) {
 			this._kind = Kind.Type;
 			this._value = v;
@@ -1723,6 +1788,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 		op.add(Builder::hasParent, HasParentQuery._DESERIALIZER, "has_parent");
 		op.add(Builder::ids, IdsQuery._DESERIALIZER, "ids");
 		op.add(Builder::intervals, IntervalsQuery._DESERIALIZER, "intervals");
+		op.add(Builder::knn, KnnQuery._DESERIALIZER, "knn");
 		op.add(Builder::match, MatchQuery._DESERIALIZER, "match");
 		op.add(Builder::matchAll, MatchAllQuery._DESERIALIZER, "match_all");
 		op.add(Builder::matchBoolPrefix, MatchBoolPrefixQuery._DESERIALIZER, "match_bool_prefix");
@@ -1757,6 +1823,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 		op.add(Builder::terms, TermsQuery._DESERIALIZER, "terms");
 		op.add(Builder::termsSet, TermsSetQuery._DESERIALIZER, "terms_set");
 		op.add(Builder::wildcard, WildcardQuery._DESERIALIZER, "wildcard");
+		op.add(Builder::wrapper, WrapperQuery._DESERIALIZER, "wrapper");
 		op.add(Builder::type, TypeQuery._DESERIALIZER, "type");
 
 	}

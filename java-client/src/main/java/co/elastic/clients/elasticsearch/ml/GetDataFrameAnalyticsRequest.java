@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * wildcard expression.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_data_frame_analytics/MlGetDataFrameAnalyticsRequest.ts#L24-L77">API
+ *      "../doc-files/api-spec.html#ml.get_data_frame_analytics.Request">API
  *      specification</a>
  */
 

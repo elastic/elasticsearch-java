@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -46,11 +47,12 @@ import javax.annotation.Nullable;
 // typedef: ilm.explain_lifecycle.Request
 
 /**
- * Retrieves information about the index's current lifecycle state, such as the
- * currently executing phase, action, and step.
+ * Retrieves information about the index’s current lifecycle state, such as the
+ * currently executing phase, action, and step. Shows when the index entered
+ * each one, the definition of the running phase, and information about any
+ * failures.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/explain_lifecycle/ExplainLifecycleRequest.ts#L23-L36">API
+ * @see <a href="../doc-files/api-spec.html#ilm.explain_lifecycle.Request">API
  *      specification</a>
  */
 
@@ -58,18 +60,26 @@ public class ExplainLifecycleRequest extends RequestBase {
 	private final String index;
 
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final Boolean onlyErrors;
 
 	@Nullable
 	private final Boolean onlyManaged;
+
+	@Nullable
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ExplainLifecycleRequest(Builder builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.masterTimeout = builder.masterTimeout;
 		this.onlyErrors = builder.onlyErrors;
 		this.onlyManaged = builder.onlyManaged;
+		this.timeout = builder.timeout;
 
 	}
 
@@ -78,7 +88,9 @@ public class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the index to explain
+	 * Required - Comma-separated list of data streams, indices, and aliases to
+	 * target. Supports wildcards (<code>*</code>). To target all data streams and
+	 * indices, use <code>*</code> or <code>_all</code>.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -87,8 +99,18 @@ public class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * filters the indices included in the response to ones in an ILM error state,
-	 * implies only_managed
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * Filters the returned indices to only indices that are managed by ILM.
 	 * <p>
 	 * API name: {@code only_errors}
 	 */
@@ -98,13 +120,26 @@ public class ExplainLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * filters the indices included in the response to ones managed by ILM
+	 * Filters the returned indices to only indices that are managed by ILM and are
+	 * in an error state, either due to an encountering an error while executing the
+	 * policy, or attempting to use a policy that does not exist.
 	 * <p>
 	 * API name: {@code only_managed}
 	 */
 	@Nullable
 	public final Boolean onlyManaged() {
 		return this.onlyManaged;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -117,13 +152,21 @@ public class ExplainLifecycleRequest extends RequestBase {
 		private String index;
 
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private Boolean onlyErrors;
 
 		@Nullable
 		private Boolean onlyManaged;
 
+		@Nullable
+		private Time timeout;
+
 		/**
-		 * Required - The name of the index to explain
+		 * Required - Comma-separated list of data streams, indices, and aliases to
+		 * target. Supports wildcards (<code>*</code>). To target all data streams and
+		 * indices, use <code>*</code> or <code>_all</code>.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -133,8 +176,28 @@ public class ExplainLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * filters the indices included in the response to ones in an ILM error state,
-		 * implies only_managed
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Filters the returned indices to only indices that are managed by ILM.
 		 * <p>
 		 * API name: {@code only_errors}
 		 */
@@ -144,13 +207,36 @@ public class ExplainLifecycleRequest extends RequestBase {
 		}
 
 		/**
-		 * filters the indices included in the response to ones managed by ILM
+		 * Filters the returned indices to only indices that are managed by ILM and are
+		 * in an error state, either due to an encountering an error while executing the
+		 * policy, or attempting to use a policy that does not exist.
 		 * <p>
 		 * API name: {@code only_managed}
 		 */
 		public final Builder onlyManaged(@Nullable Boolean value) {
 			this.onlyManaged = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -203,11 +289,17 @@ public class ExplainLifecycleRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
 				if (request.onlyErrors != null) {
 					params.put("only_errors", String.valueOf(request.onlyErrors));
 				}
 				if (request.onlyManaged != null) {
 					params.put("only_managed", String.valueOf(request.onlyManaged));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * Deletes licensing information for the cluster
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/delete/DeleteLicenseRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#license.delete.Request">API
  *      specification</a>
  */
 

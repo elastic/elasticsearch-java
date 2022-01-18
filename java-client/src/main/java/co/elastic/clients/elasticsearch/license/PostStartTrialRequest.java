@@ -45,10 +45,11 @@ import javax.annotation.Nullable;
 // typedef: license.post_start_trial.Request
 
 /**
- * starts a limited time trial license.
+ * The start trial API enables you to start a 30-day trial, which gives access
+ * to all subscription features.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post_start_trial/StartTrialLicenseRequest.ts#L22-L32">API
+ *      "../doc-files/api-spec.html#license.post_start_trial.Request">API
  *      specification</a>
  */
 

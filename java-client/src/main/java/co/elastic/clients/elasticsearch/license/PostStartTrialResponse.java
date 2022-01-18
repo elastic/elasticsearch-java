@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post_start_trial/StartTrialLicenseResponse.ts#L23-L29">API
+ *      "../doc-files/api-spec.html#license.post_start_trial.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -53,6 +53,7 @@ public class PostStartTrialResponse extends AcknowledgedResponseBase {
 
 	private final boolean trialWasStarted;
 
+	@Nullable
 	private final LicenseType type;
 
 	// ---------------------------------------------------------------------------------------------
@@ -62,7 +63,7 @@ public class PostStartTrialResponse extends AcknowledgedResponseBase {
 
 		this.errorMessage = builder.errorMessage;
 		this.trialWasStarted = ApiTypeHelper.requireNonNull(builder.trialWasStarted, this, "trialWasStarted");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = builder.type;
 
 	}
 
@@ -86,8 +87,9 @@ public class PostStartTrialResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * API name: {@code type}
 	 */
+	@Nullable
 	public final LicenseType type() {
 		return this.type;
 	}
@@ -103,8 +105,10 @@ public class PostStartTrialResponse extends AcknowledgedResponseBase {
 		generator.writeKey("trial_was_started");
 		generator.write(this.trialWasStarted);
 
-		generator.writeKey("type");
-		this.type.serialize(generator, mapper);
+		if (this.type != null) {
+			generator.writeKey("type");
+			this.type.serialize(generator, mapper);
+		}
 
 	}
 
@@ -122,6 +126,7 @@ public class PostStartTrialResponse extends AcknowledgedResponseBase {
 
 		private Boolean trialWasStarted;
 
+		@Nullable
 		private LicenseType type;
 
 		/**
@@ -141,9 +146,9 @@ public class PostStartTrialResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * API name: {@code type}
 		 */
-		public final Builder type(LicenseType value) {
+		public final Builder type(@Nullable LicenseType value) {
 			this.type = value;
 			return this;
 		}

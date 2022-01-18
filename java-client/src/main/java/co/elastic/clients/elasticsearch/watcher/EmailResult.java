@@ -42,8 +42,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L144-L148">API
+ * @see <a href="../doc-files/api-spec.html#watcher._types.EmailResult">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -51,7 +50,7 @@ public class EmailResult implements JsonpSerializable {
 	@Nullable
 	private final String account;
 
-	private final EmailResult message;
+	private final Email message;
 
 	@Nullable
 	private final String reason;
@@ -81,7 +80,7 @@ public class EmailResult implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code message}
 	 */
-	public final EmailResult message() {
+	public final Email message() {
 		return this.message;
 	}
 
@@ -130,7 +129,7 @@ public class EmailResult implements JsonpSerializable {
 		@Nullable
 		private String account;
 
-		private EmailResult message;
+		private Email message;
 
 		@Nullable
 		private String reason;
@@ -146,7 +145,7 @@ public class EmailResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public final Builder message(EmailResult value) {
+		public final Builder message(Email value) {
 			this.message = value;
 			return this;
 		}
@@ -154,8 +153,8 @@ public class EmailResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code message}
 		 */
-		public final Builder message(Function<EmailResult.Builder, ObjectBuilder<EmailResult>> fn) {
-			return this.message(fn.apply(new EmailResult.Builder()).build());
+		public final Builder message(Function<Email.Builder, ObjectBuilder<Email>> fn) {
+			return this.message(fn.apply(new Email.Builder()).build());
 		}
 
 		/**
@@ -190,7 +189,7 @@ public class EmailResult implements JsonpSerializable {
 	protected static void setupEmailResultDeserializer(ObjectDeserializer<EmailResult.Builder> op) {
 
 		op.add(Builder::account, JsonpDeserializer.stringDeserializer(), "account");
-		op.add(Builder::message, EmailResult._DESERIALIZER, "message");
+		op.add(Builder::message, Email._DESERIALIZER, "message");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 
 	}

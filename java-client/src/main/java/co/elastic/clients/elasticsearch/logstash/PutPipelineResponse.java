@@ -35,8 +35,7 @@ import java.util.Objects;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/logstash/put_pipeline/LogstashPutPipelineResponse.ts#L22-L24">API
+ * @see <a href="../doc-files/api-spec.html#logstash.put_pipeline.Response">API
  *      specification</a>
  */
 

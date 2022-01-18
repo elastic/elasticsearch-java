@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Returns one or more component templates
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/get_component_template/ClusterGetComponentTemplateRequest.ts#L24-L41">API
+ *      "../doc-files/api-spec.html#cluster.get_component_template.Request">API
  *      specification</a>
  */
 

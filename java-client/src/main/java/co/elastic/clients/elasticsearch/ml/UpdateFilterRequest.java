@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
  * Updates the description of a filter, adds items, or removes items from the
  * list.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_filter/MlUpdateFilterRequest.ts#L23-L51">API
+ * @see <a href="../doc-files/api-spec.html#ml.update_filter.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

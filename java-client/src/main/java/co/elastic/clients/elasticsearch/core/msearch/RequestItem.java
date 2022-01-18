@@ -42,6 +42,12 @@ import javax.annotation.Nullable;
 
 // typedef: _global.msearch.RequestItem
 
+/**
+ *
+ * @see <a href="../../doc-files/api-spec.html#_global.msearch.RequestItem">API
+ *      specification</a>
+ */
+
 public class RequestItem implements NdJsonpSerializable, JsonpSerializable {
 	private final MultisearchHeader header;
 

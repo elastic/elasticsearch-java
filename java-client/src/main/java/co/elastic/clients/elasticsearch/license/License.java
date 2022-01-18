@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/_types/License.ts#L42-L53">API
+ * @see <a href="../doc-files/api-spec.html#license._types.License">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -52,6 +51,9 @@ public class License implements JsonpSerializable {
 	private final String expiryDateInMillis;
 
 	private final String issueDateInMillis;
+
+	@Nullable
+	private final String startDateInMillis;
 
 	private final String issuedTo;
 
@@ -65,8 +67,6 @@ public class License implements JsonpSerializable {
 
 	private final String signature;
 
-	private final String startDateInMillis;
-
 	private final LicenseType type;
 
 	private final String uid;
@@ -77,12 +77,12 @@ public class License implements JsonpSerializable {
 
 		this.expiryDateInMillis = ApiTypeHelper.requireNonNull(builder.expiryDateInMillis, this, "expiryDateInMillis");
 		this.issueDateInMillis = ApiTypeHelper.requireNonNull(builder.issueDateInMillis, this, "issueDateInMillis");
+		this.startDateInMillis = builder.startDateInMillis;
 		this.issuedTo = ApiTypeHelper.requireNonNull(builder.issuedTo, this, "issuedTo");
 		this.issuer = ApiTypeHelper.requireNonNull(builder.issuer, this, "issuer");
 		this.maxNodes = builder.maxNodes;
 		this.maxResourceUnits = builder.maxResourceUnits;
 		this.signature = ApiTypeHelper.requireNonNull(builder.signature, this, "signature");
-		this.startDateInMillis = ApiTypeHelper.requireNonNull(builder.startDateInMillis, this, "startDateInMillis");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
 
@@ -104,6 +104,14 @@ public class License implements JsonpSerializable {
 	 */
 	public final String issueDateInMillis() {
 		return this.issueDateInMillis;
+	}
+
+	/**
+	 * API name: {@code start_date_in_millis}
+	 */
+	@Nullable
+	public final String startDateInMillis() {
+		return this.startDateInMillis;
 	}
 
 	/**
@@ -144,13 +152,6 @@ public class License implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code start_date_in_millis}
-	 */
-	public final String startDateInMillis() {
-		return this.startDateInMillis;
-	}
-
-	/**
 	 * Required - API name: {@code type}
 	 */
 	public final LicenseType type() {
@@ -181,6 +182,11 @@ public class License implements JsonpSerializable {
 		generator.writeKey("issue_date_in_millis");
 		generator.write(this.issueDateInMillis);
 
+		if (this.startDateInMillis != null) {
+			generator.writeKey("start_date_in_millis");
+			generator.write(this.startDateInMillis);
+
+		}
 		generator.writeKey("issued_to");
 		generator.write(this.issuedTo);
 
@@ -200,9 +206,6 @@ public class License implements JsonpSerializable {
 		generator.writeKey("signature");
 		generator.write(this.signature);
 
-		generator.writeKey("start_date_in_millis");
-		generator.write(this.startDateInMillis);
-
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 		generator.writeKey("uid");
@@ -221,6 +224,9 @@ public class License implements JsonpSerializable {
 
 		private String issueDateInMillis;
 
+		@Nullable
+		private String startDateInMillis;
+
 		private String issuedTo;
 
 		private String issuer;
@@ -232,8 +238,6 @@ public class License implements JsonpSerializable {
 		private Long maxResourceUnits;
 
 		private String signature;
-
-		private String startDateInMillis;
 
 		private LicenseType type;
 
@@ -252,6 +256,14 @@ public class License implements JsonpSerializable {
 		 */
 		public final Builder issueDateInMillis(String value) {
 			this.issueDateInMillis = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code start_date_in_millis}
+		 */
+		public final Builder startDateInMillis(@Nullable String value) {
+			this.startDateInMillis = value;
 			return this;
 		}
 
@@ -296,14 +308,6 @@ public class License implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code start_date_in_millis}
-		 */
-		public final Builder startDateInMillis(String value) {
-			this.startDateInMillis = value;
-			return this;
-		}
-
-		/**
 		 * Required - API name: {@code type}
 		 */
 		public final Builder type(LicenseType value) {
@@ -344,12 +348,12 @@ public class License implements JsonpSerializable {
 
 		op.add(Builder::expiryDateInMillis, JsonpDeserializer.stringDeserializer(), "expiry_date_in_millis");
 		op.add(Builder::issueDateInMillis, JsonpDeserializer.stringDeserializer(), "issue_date_in_millis");
+		op.add(Builder::startDateInMillis, JsonpDeserializer.stringDeserializer(), "start_date_in_millis");
 		op.add(Builder::issuedTo, JsonpDeserializer.stringDeserializer(), "issued_to");
 		op.add(Builder::issuer, JsonpDeserializer.stringDeserializer(), "issuer");
 		op.add(Builder::maxNodes, JsonpDeserializer.longDeserializer(), "max_nodes");
 		op.add(Builder::maxResourceUnits, JsonpDeserializer.longDeserializer(), "max_resource_units");
 		op.add(Builder::signature, JsonpDeserializer.stringDeserializer(), "signature");
-		op.add(Builder::startDateInMillis, JsonpDeserializer.stringDeserializer(), "start_date_in_millis");
 		op.add(Builder::type, LicenseType._DESERIALIZER, "type");
 		op.add(Builder::uid, JsonpDeserializer.stringDeserializer(), "uid");
 

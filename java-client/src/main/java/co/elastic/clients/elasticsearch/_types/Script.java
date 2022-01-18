@@ -44,9 +44,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Scripting.ts#L58-L59">API
- *      specification</a>
+ * @see <a href="../doc-files/api-spec.html#_types.Script">API specification</a>
  */
 @JsonpDeserializable
 public class Script implements TaggedUnion<Script.Kind, Object>, JsonpSerializable {

@@ -35,6 +35,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -49,24 +50,37 @@ import javax.annotation.Nullable;
 /**
  * Retrieves information about the installed X-Pack features.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/info/XPackInfoRequest.ts#L22-L31">API
+ * @see <a href="../doc-files/api-spec.html#xpack.info.Request">API
  *      specification</a>
  */
 
 public class XpackInfoRequest extends RequestBase {
+	@Nullable
+	private final Boolean acceptEnterprise;
+
 	private final List<String> categories;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private XpackInfoRequest(Builder builder) {
 
+		this.acceptEnterprise = builder.acceptEnterprise;
 		this.categories = ApiTypeHelper.unmodifiable(builder.categories);
 
 	}
 
 	public static XpackInfoRequest of(Function<Builder, ObjectBuilder<XpackInfoRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * If this param is used it must be set to true
+	 * <p>
+	 * API name: {@code accept_enterprise}
+	 */
+	@Nullable
+	public final Boolean acceptEnterprise() {
+		return this.acceptEnterprise;
 	}
 
 	/**
@@ -87,7 +101,20 @@ public class XpackInfoRequest extends RequestBase {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<XpackInfoRequest> {
 		@Nullable
+		private Boolean acceptEnterprise;
+
+		@Nullable
 		private List<String> categories;
+
+		/**
+		 * If this param is used it must be set to true
+		 * <p>
+		 * API name: {@code accept_enterprise}
+		 */
+		public final Builder acceptEnterprise(@Nullable Boolean value) {
+			this.acceptEnterprise = value;
+			return this;
+		}
 
 		/**
 		 * Comma-separated list of info categories. Can be any of: build, license,
@@ -153,6 +180,9 @@ public class XpackInfoRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.categories)) {
 					params.put("categories", request.categories.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.acceptEnterprise != null) {
+					params.put("accept_enterprise", String.valueOf(request.acceptEnterprise));
 				}
 				return params;
 

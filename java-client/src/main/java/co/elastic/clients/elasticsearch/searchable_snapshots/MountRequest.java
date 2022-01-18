@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Mount a snapshot as a searchable index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/mount/SearchableSnapshotsMountRequest.ts#L26-L50">API
+ *      "../doc-files/api-spec.html#searchable_snapshots.mount.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

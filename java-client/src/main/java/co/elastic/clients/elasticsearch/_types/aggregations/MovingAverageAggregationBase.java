@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L123-L127">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.MovingAverageAggregationBase">API
  *      specification</a>
  */
 

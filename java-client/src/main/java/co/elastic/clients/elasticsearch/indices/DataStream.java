@@ -41,8 +41,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/DataStream.ts#L20-L22">API
+ * @see <a href="../doc-files/api-spec.html#indices._types.DataStream">API
  *      specification</a>
  */
 @JsonpDeserializable

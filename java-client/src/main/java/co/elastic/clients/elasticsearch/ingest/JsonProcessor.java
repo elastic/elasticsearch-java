@@ -41,8 +41,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L257-L261">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.JsonProcessor">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -1398,4 +1398,52 @@ public class ElasticsearchSecurityAsyncClient
 		return putUser(fn.apply(new PutUserRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: security.query_api_keys
+
+	/**
+	 * Retrieves information for API keys using a subset of query DSL
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<QueryApiKeysResponse> queryApiKeys(QueryApiKeysRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<QueryApiKeysRequest, QueryApiKeysResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryApiKeysRequest, QueryApiKeysResponse, ErrorResponse>) QueryApiKeysRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves information for API keys using a subset of query DSL
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link QueryApiKeysRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<QueryApiKeysResponse> queryApiKeys(
+			Function<QueryApiKeysRequest.Builder, ObjectBuilder<QueryApiKeysRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return queryApiKeys(fn.apply(new QueryApiKeysRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieves information for API keys using a subset of query DSL
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-query-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<QueryApiKeysResponse> queryApiKeys() throws IOException, ElasticsearchException {
+		return this.transport.performRequestAsync(new QueryApiKeysRequest.Builder().build(),
+				QueryApiKeysRequest._ENDPOINT, this.transportOptions);
+	}
+
 }

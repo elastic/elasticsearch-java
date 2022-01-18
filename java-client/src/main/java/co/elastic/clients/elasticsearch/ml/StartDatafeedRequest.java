@@ -65,8 +65,7 @@ import javax.annotation.Nullable;
  * secondary authorization headers when you created or updated the datafeed,
  * those credentials are used instead.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/start_datafeed/MlStartDatafeedRequest.ts#L24-L91">API
+ * @see <a href="../doc-files/api-spec.html#ml.start_datafeed.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

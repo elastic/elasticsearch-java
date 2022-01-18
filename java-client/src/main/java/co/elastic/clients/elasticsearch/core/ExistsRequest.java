@@ -55,8 +55,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about whether a document exists in an index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/exists/DocumentExistsRequest.ts#L31-L53">API
+ * @see <a href="../doc-files/api-spec.html#_global.exists.Request">API
  *      specification</a>
  */
 

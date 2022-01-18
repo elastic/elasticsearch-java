@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves information about model snapshots.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_model_snapshots/MlGetModelSnapshotsRequest.ts#L26-L96">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_model_snapshots.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

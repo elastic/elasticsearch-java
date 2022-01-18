@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.elasticsearch.security.get_api_key.ApiKey;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -43,8 +42,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_api_key/SecurityGetApiKeyResponse.ts#L22-L24">API
+ * @see <a href="../doc-files/api-spec.html#security.get_api_key.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

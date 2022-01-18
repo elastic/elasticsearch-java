@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
 /**
  * Allows to use the Mustache language to pre-render a search definition.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search_template/SearchTemplateRequest.ts#L32-L96">API
+ * @see <a href="../doc-files/api-spec.html#_global.search_template.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

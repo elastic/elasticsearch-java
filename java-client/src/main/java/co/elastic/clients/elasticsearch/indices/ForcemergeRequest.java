@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Performs the force merge operation on one or more indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/forcemerge/IndicesForceMergeRequest.ts#L24-L41">API
+ * @see <a href="../doc-files/api-spec.html#indices.forcemerge.Request">API
  *      specification</a>
  */
 
@@ -77,6 +76,9 @@ public class ForcemergeRequest extends RequestBase {
 	@Nullable
 	private final Boolean onlyExpungeDeletes;
 
+	@Nullable
+	private final Boolean waitForCompletion;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ForcemergeRequest(Builder builder) {
@@ -88,6 +90,7 @@ public class ForcemergeRequest extends RequestBase {
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.maxNumSegments = builder.maxNumSegments;
 		this.onlyExpungeDeletes = builder.onlyExpungeDeletes;
+		this.waitForCompletion = builder.waitForCompletion;
 
 	}
 
@@ -169,6 +172,14 @@ public class ForcemergeRequest extends RequestBase {
 		return this.onlyExpungeDeletes;
 	}
 
+	/**
+	 * API name: {@code wait_for_completion}
+	 */
+	@Nullable
+	public final Boolean waitForCompletion() {
+		return this.waitForCompletion;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -196,6 +207,9 @@ public class ForcemergeRequest extends RequestBase {
 
 		@Nullable
 		private Boolean onlyExpungeDeletes;
+
+		@Nullable
+		private Boolean waitForCompletion;
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -304,6 +318,14 @@ public class ForcemergeRequest extends RequestBase {
 		}
 
 		/**
+		 * API name: {@code wait_for_completion}
+		 */
+		public final Builder waitForCompletion(@Nullable Boolean value) {
+			this.waitForCompletion = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link ForcemergeRequest}.
 		 *
 		 * @throws NullPointerException
@@ -376,6 +398,9 @@ public class ForcemergeRequest extends RequestBase {
 				}
 				if (request.maxNumSegments != null) {
 					params.put("max_num_segments", String.valueOf(request.maxNumSegments));
+				}
+				if (request.waitForCompletion != null) {
+					params.put("wait_for_completion", String.valueOf(request.waitForCompletion));
 				}
 				return params;
 

@@ -50,6 +50,10 @@ import javax.annotation.Nullable;
 
 /**
  * Evaluates a trained model.
+ * 
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ml.infer_trained_model_deployment.Request">API
+ *      specification</a>
  */
 @JsonpDeserializable
 public class InferTrainedModelDeploymentRequest extends RequestBase implements JsonpSerializable {

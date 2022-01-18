@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/metric.ts#L84-L86">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.GeoLinePoint">API
  *      specification</a>
  */
 @JsonpDeserializable

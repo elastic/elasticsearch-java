@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * Returns information about custom node attributes.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/nodeattrs/CatNodeAttributesRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#cat.nodeattrs.Request">API
  *      specification</a>
  */
 

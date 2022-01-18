@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/terms_enum/TermsEnumResponse.ts#L22-L28">API
+ * @see <a href="../doc-files/api-spec.html#_global.terms_enum.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

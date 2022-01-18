@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
  * <code>expires_in</code> parameter in the forecast jobs API. The delete
  * forecast API enables you to delete one or more forecasts before they expire.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_forecast/MlDeleteForecastRequest.ts#L24-L65">API
+ * @see <a href="../doc-files/api-spec.html#ml.delete_forecast.Request">API
  *      specification</a>
  */
 

@@ -44,15 +44,14 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/post_data/MlPostJobDataResponse.ts#L23-L41">API
+ * @see <a href="../doc-files/api-spec.html#ml.post_data.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class PostDataResponse implements JsonpSerializable {
 	private final long bucketCount;
 
-	private final int earliestRecordTimestamp;
+	private final long earliestRecordTimestamp;
 
 	private final long emptyBucketCount;
 
@@ -68,7 +67,7 @@ public class PostDataResponse implements JsonpSerializable {
 
 	private final int lastDataTime;
 
-	private final int latestRecordTimestamp;
+	private final long latestRecordTimestamp;
 
 	private final long missingFieldCount;
 
@@ -121,7 +120,7 @@ public class PostDataResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code earliest_record_timestamp}
 	 */
-	public final int earliestRecordTimestamp() {
+	public final long earliestRecordTimestamp() {
 		return this.earliestRecordTimestamp;
 	}
 
@@ -177,7 +176,7 @@ public class PostDataResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code latest_record_timestamp}
 	 */
-	public final int latestRecordTimestamp() {
+	public final long latestRecordTimestamp() {
 		return this.latestRecordTimestamp;
 	}
 
@@ -283,7 +282,7 @@ public class PostDataResponse implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostDataResponse> {
 		private Long bucketCount;
 
-		private Integer earliestRecordTimestamp;
+		private Long earliestRecordTimestamp;
 
 		private Long emptyBucketCount;
 
@@ -299,7 +298,7 @@ public class PostDataResponse implements JsonpSerializable {
 
 		private Integer lastDataTime;
 
-		private Integer latestRecordTimestamp;
+		private Long latestRecordTimestamp;
 
 		private Long missingFieldCount;
 
@@ -322,7 +321,7 @@ public class PostDataResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code earliest_record_timestamp}
 		 */
-		public final Builder earliestRecordTimestamp(int value) {
+		public final Builder earliestRecordTimestamp(long value) {
 			this.earliestRecordTimestamp = value;
 			return this;
 		}
@@ -386,7 +385,7 @@ public class PostDataResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code latest_record_timestamp}
 		 */
-		public final Builder latestRecordTimestamp(int value) {
+		public final Builder latestRecordTimestamp(long value) {
 			this.latestRecordTimestamp = value;
 			return this;
 		}
@@ -455,7 +454,7 @@ public class PostDataResponse implements JsonpSerializable {
 	protected static void setupPostDataResponseDeserializer(ObjectDeserializer<PostDataResponse.Builder> op) {
 
 		op.add(Builder::bucketCount, JsonpDeserializer.longDeserializer(), "bucket_count");
-		op.add(Builder::earliestRecordTimestamp, JsonpDeserializer.integerDeserializer(), "earliest_record_timestamp");
+		op.add(Builder::earliestRecordTimestamp, JsonpDeserializer.longDeserializer(), "earliest_record_timestamp");
 		op.add(Builder::emptyBucketCount, JsonpDeserializer.longDeserializer(), "empty_bucket_count");
 		op.add(Builder::inputBytes, JsonpDeserializer.longDeserializer(), "input_bytes");
 		op.add(Builder::inputFieldCount, JsonpDeserializer.longDeserializer(), "input_field_count");
@@ -463,7 +462,7 @@ public class PostDataResponse implements JsonpSerializable {
 		op.add(Builder::invalidDateCount, JsonpDeserializer.longDeserializer(), "invalid_date_count");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::lastDataTime, JsonpDeserializer.integerDeserializer(), "last_data_time");
-		op.add(Builder::latestRecordTimestamp, JsonpDeserializer.integerDeserializer(), "latest_record_timestamp");
+		op.add(Builder::latestRecordTimestamp, JsonpDeserializer.longDeserializer(), "latest_record_timestamp");
 		op.add(Builder::missingFieldCount, JsonpDeserializer.longDeserializer(), "missing_field_count");
 		op.add(Builder::outOfOrderTimestampCount, JsonpDeserializer.longDeserializer(), "out_of_order_timestamp_count");
 		op.add(Builder::processedFieldCount, JsonpDeserializer.longDeserializer(), "processed_field_count");

@@ -40,7 +40,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_field_mapping/IndicesGetFieldMappingResponse.ts#L24-L27">API
+ *      "../doc-files/api-spec.html#indices.get_field_mapping.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

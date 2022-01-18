@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Evicts tokens from the service account token caches.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/clear_cached_service_tokens/ClearCachedServiceTokensRequest.ts#L23-L34">API
+ *      "../doc-files/api-spec.html#security.clear_cached_service_tokens.Request">API
  *      specification</a>
  */
 

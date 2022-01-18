@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Deletes an index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/delete/IndicesDeleteRequest.ts#L24-L40">API
+ * @see <a href="../doc-files/api-spec.html#indices.delete.Request">API
  *      specification</a>
  */
 

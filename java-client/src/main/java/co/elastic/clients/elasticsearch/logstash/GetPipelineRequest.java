@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves Logstash Pipelines used by Central Management
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/logstash/get_pipeline/LogstashGetPipelineRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#logstash.get_pipeline.Request">API
  *      specification</a>
  */
 

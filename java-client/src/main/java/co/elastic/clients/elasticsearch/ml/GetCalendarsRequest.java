@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves configuration information for calendars.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_calendars/MlGetCalendarsRequest.ts#L25-L51">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_calendars.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

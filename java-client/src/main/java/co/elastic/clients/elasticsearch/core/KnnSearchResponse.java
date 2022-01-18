@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/knn_search/KnnSearchResponse.ts#L26-L54">API
+ * @see <a href="../doc-files/api-spec.html#_global.knn_search.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/_types/Groupings.ts#L30-L38">API
+ *      "../doc-files/api-spec.html#rollup._types.DateHistogramGrouping">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/_types/Metric.ts#L30-L33">API
+ * @see <a href="../doc-files/api-spec.html#rollup._types.FieldMetric">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -67,14 +66,20 @@ public class FieldMetric implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * Required - The field to collect metrics for. This must be a numeric of some
+	 * kind.
+	 * <p>
+	 * API name: {@code field}
 	 */
 	public final String field() {
 		return this.field;
 	}
 
 	/**
-	 * Required - API name: {@code metrics}
+	 * Required - An array of metrics to collect for the field. At least one metric
+	 * must be configured.
+	 * <p>
+	 * API name: {@code metrics}
 	 */
 	public final List<Metric> metrics() {
 		return this.metrics;
@@ -118,7 +123,10 @@ public class FieldMetric implements JsonpSerializable {
 		private List<Metric> metrics;
 
 		/**
-		 * Required - API name: {@code field}
+		 * Required - The field to collect metrics for. This must be a numeric of some
+		 * kind.
+		 * <p>
+		 * API name: {@code field}
 		 */
 		public final Builder field(String value) {
 			this.field = value;
@@ -126,7 +134,10 @@ public class FieldMetric implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code metrics}
+		 * Required - An array of metrics to collect for the field. At least one metric
+		 * must be configured.
+		 * <p>
+		 * API name: {@code metrics}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metrics</code>.
 		 */
@@ -136,7 +147,10 @@ public class FieldMetric implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code metrics}
+		 * Required - An array of metrics to collect for the field. At least one metric
+		 * must be configured.
+		 * <p>
+		 * API name: {@code metrics}
 		 * <p>
 		 * Adds one or more values to <code>metrics</code>.
 		 */

@@ -42,6 +42,11 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.TrainedModelEntities
 
+/**
+ *
+ * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelEntities">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TrainedModelEntities implements JsonpSerializable {
 	private final String className;

@@ -37,8 +37,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/pause_follow/PauseFollowIndexResponse.ts#L22-L22">API
+ * @see <a href="../doc-files/api-spec.html#ccr.pause_follow.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

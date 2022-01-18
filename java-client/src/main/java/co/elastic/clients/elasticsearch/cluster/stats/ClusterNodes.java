@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L193-L218">API
+ * @see <a href="../../doc-files/api-spec.html#cluster.stats.ClusterNodes">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -74,6 +73,8 @@ public class ClusterNodes implements JsonpSerializable {
 
 	private final List<String> versions;
 
+	private final IndexingPressure indexingPressure;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ClusterNodes(Builder builder) {
@@ -89,6 +90,7 @@ public class ClusterNodes implements JsonpSerializable {
 		this.plugins = ApiTypeHelper.unmodifiableRequired(builder.plugins, this, "plugins");
 		this.process = ApiTypeHelper.requireNonNull(builder.process, this, "process");
 		this.versions = ApiTypeHelper.unmodifiableRequired(builder.versions, this, "versions");
+		this.indexingPressure = ApiTypeHelper.requireNonNull(builder.indexingPressure, this, "indexingPressure");
 
 	}
 
@@ -200,6 +202,13 @@ public class ClusterNodes implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code indexing_pressure}
+	 */
+	public final IndexingPressure indexingPressure() {
+		return this.indexingPressure;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -272,6 +281,8 @@ public class ClusterNodes implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		generator.writeKey("indexing_pressure");
+		this.indexingPressure.serialize(generator, mapper);
 
 	}
 
@@ -303,6 +314,8 @@ public class ClusterNodes implements JsonpSerializable {
 		private ClusterProcess process;
 
 		private List<String> versions;
+
+		private IndexingPressure indexingPressure;
 
 		/**
 		 * Required - Contains counts for nodes selected by the request’s node filters.
@@ -567,6 +580,21 @@ public class ClusterNodes implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code indexing_pressure}
+		 */
+		public final Builder indexingPressure(IndexingPressure value) {
+			this.indexingPressure = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code indexing_pressure}
+		 */
+		public final Builder indexingPressure(Function<IndexingPressure.Builder, ObjectBuilder<IndexingPressure>> fn) {
+			return this.indexingPressure(fn.apply(new IndexingPressure.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link ClusterNodes}.
 		 *
 		 * @throws NullPointerException
@@ -603,6 +631,7 @@ public class ClusterNodes implements JsonpSerializable {
 		op.add(Builder::process, ClusterProcess._DESERIALIZER, "process");
 		op.add(Builder::versions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"versions");
+		op.add(Builder::indexingPressure, IndexingPressure._DESERIALIZER, "indexing_pressure");
 
 	}
 

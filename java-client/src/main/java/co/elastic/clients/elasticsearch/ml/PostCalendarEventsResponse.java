@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/post_calendar_events/MlPostCalendarEventsResponse.ts#L22-L24">API
+ *      "../doc-files/api-spec.html#ml.post_calendar_events.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

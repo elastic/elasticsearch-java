@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/kuromoji-plugin.ts#L25-L29">API
+ *      "../../doc-files/api-spec.html#_types.analysis.KuromojiAnalyzer">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -45,37 +45,35 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post_start_basic/StartBasicLicenseResponse.ts#L23-L29">API
+ *      "../doc-files/api-spec.html#license.post_start_basic.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class PostStartBasicResponse extends AcknowledgedResponseBase {
-	private final Map<String, List<String>> acknowledge;
-
 	private final boolean basicWasStarted;
 
+	@Nullable
 	private final String errorMessage;
+
+	@Nullable
+	private final LicenseType type;
+
+	private final Map<String, List<String>> acknowledge;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PostStartBasicResponse(Builder builder) {
 		super(builder);
 
-		this.acknowledge = ApiTypeHelper.unmodifiableRequired(builder.acknowledge, this, "acknowledge");
 		this.basicWasStarted = ApiTypeHelper.requireNonNull(builder.basicWasStarted, this, "basicWasStarted");
-		this.errorMessage = ApiTypeHelper.requireNonNull(builder.errorMessage, this, "errorMessage");
+		this.errorMessage = builder.errorMessage;
+		this.type = builder.type;
+		this.acknowledge = ApiTypeHelper.unmodifiable(builder.acknowledge);
 
 	}
 
 	public static PostStartBasicResponse of(Function<Builder, ObjectBuilder<PostStartBasicResponse>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Required - API name: {@code acknowledge}
-	 */
-	public final Map<String, List<String>> acknowledge() {
-		return this.acknowledge;
 	}
 
 	/**
@@ -86,15 +84,43 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
-	 * Required - API name: {@code error_message}
+	 * API name: {@code error_message}
 	 */
+	@Nullable
 	public final String errorMessage() {
 		return this.errorMessage;
+	}
+
+	/**
+	 * API name: {@code type}
+	 */
+	@Nullable
+	public final LicenseType type() {
+		return this.type;
+	}
+
+	/**
+	 * API name: {@code acknowledge}
+	 */
+	public final Map<String, List<String>> acknowledge() {
+		return this.acknowledge;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
+		generator.writeKey("basic_was_started");
+		generator.write(this.basicWasStarted);
+
+		if (this.errorMessage != null) {
+			generator.writeKey("error_message");
+			generator.write(this.errorMessage);
+
+		}
+		if (this.type != null) {
+			generator.writeKey("type");
+			this.type.serialize(generator, mapper);
+		}
 		if (ApiTypeHelper.isDefined(this.acknowledge)) {
 			generator.writeKey("acknowledge");
 			generator.writeStartObject();
@@ -113,11 +139,6 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("basic_was_started");
-		generator.write(this.basicWasStarted);
-
-		generator.writeKey("error_message");
-		generator.write(this.errorMessage);
 
 	}
 
@@ -130,31 +151,16 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<PostStartBasicResponse> {
-		private Map<String, List<String>> acknowledge;
-
 		private Boolean basicWasStarted;
 
+		@Nullable
 		private String errorMessage;
 
-		/**
-		 * Required - API name: {@code acknowledge}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>acknowledge</code>.
-		 */
-		public final Builder acknowledge(Map<String, List<String>> map) {
-			this.acknowledge = _mapPutAll(this.acknowledge, map);
-			return this;
-		}
+		@Nullable
+		private LicenseType type;
 
-		/**
-		 * Required - API name: {@code acknowledge}
-		 * <p>
-		 * Adds an entry to <code>acknowledge</code>.
-		 */
-		public final Builder acknowledge(String key, List<String> value) {
-			this.acknowledge = _mapPut(this.acknowledge, key, value);
-			return this;
-		}
+		@Nullable
+		private Map<String, List<String>> acknowledge;
 
 		/**
 		 * Required - API name: {@code basic_was_started}
@@ -165,10 +171,38 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 		}
 
 		/**
-		 * Required - API name: {@code error_message}
+		 * API name: {@code error_message}
 		 */
-		public final Builder errorMessage(String value) {
+		public final Builder errorMessage(@Nullable String value) {
 			this.errorMessage = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code type}
+		 */
+		public final Builder type(@Nullable LicenseType value) {
+			this.type = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code acknowledge}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>acknowledge</code>.
+		 */
+		public final Builder acknowledge(Map<String, List<String>> map) {
+			this.acknowledge = _mapPutAll(this.acknowledge, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code acknowledge}
+		 * <p>
+		 * Adds an entry to <code>acknowledge</code>.
+		 */
+		public final Builder acknowledge(String key, List<String> value) {
+			this.acknowledge = _mapPut(this.acknowledge, key, value);
 			return this;
 		}
 
@@ -201,10 +235,11 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	protected static void setupPostStartBasicResponseDeserializer(
 			ObjectDeserializer<PostStartBasicResponse.Builder> op) {
 		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
-		op.add(Builder::acknowledge, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "acknowledge");
 		op.add(Builder::basicWasStarted, JsonpDeserializer.booleanDeserializer(), "basic_was_started");
 		op.add(Builder::errorMessage, JsonpDeserializer.stringDeserializer(), "error_message");
+		op.add(Builder::type, LicenseType._DESERIALIZER, "type");
+		op.add(Builder::acknowledge, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "acknowledge");
 
 	}
 

@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about whether a particular index exists.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/exists/IndicesExistsRequest.ts#L23-L40">API
+ * @see <a href="../doc-files/api-spec.html#indices.exists.Request">API
  *      specification</a>
  */
 

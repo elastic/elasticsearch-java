@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * source can be filtered.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/SourceFilter.ts#L33-L37">API
+ *      "../../doc-files/api-spec.html#_global.search._types.SourceConfig">API
  *      specification</a>
  */
 @JsonpDeserializable

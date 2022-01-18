@@ -39,8 +39,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L312-L314">API
+ * @see <a href="../../doc-files/api-spec.html#xpack.usage.FrozenIndices">API
  *      specification</a>
  */
 @JsonpDeserializable

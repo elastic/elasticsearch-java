@@ -37,8 +37,7 @@ import java.util.Objects;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/_types/CatBase.ts#L28-L30">API
+ * @see <a href="../doc-files/api-spec.html#cat._types.CatRequestBase">API
  *      specification</a>
  */
 

@@ -26,8 +26,7 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
-import co.elastic.clients.elasticsearch.core.reindex.Destination;
-import co.elastic.clients.elasticsearch.core.reindex.Source;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,14 +50,44 @@ import javax.annotation.Nullable;
 // typedef: transform.put_transform.Request
 
 /**
- * Instantiates a transform.
+ * Creates a transform.
+ * <p>
+ * A transform copies data from source indices, transforms it, and persists it
+ * into an entity-centric destination index. You can also think of the
+ * destination index as a two-dimensional tabular data structure (known as a
+ * data frame). The ID for each document in the data frame is generated from a
+ * hash of the entity, so there is a unique row per entity.
+ * <p>
+ * You must choose either the latest or pivot method for your transform; you
+ * cannot use both in a single transform. If you choose to use the pivot method
+ * for your transform, the entities are defined by the set of
+ * <code>group_by</code> fields in the pivot object. If you choose to use the
+ * latest method, the entities are defined by the <code>unique_key</code> field
+ * values in the latest object.
+ * <p>
+ * You must have <code>create_index</code>, <code>index</code>, and
+ * <code>read</code> privileges on the destination index and <code>read</code>
+ * and <code>view_index_metadata</code> privileges on the source indices. When
+ * Elasticsearch security features are enabled, the transform remembers which
+ * roles the user that created it had at the time of creation and uses those
+ * same roles. If those roles do not have the required privileges on the source
+ * and destination indices, the transform fails when it attempts unauthorized
+ * operations.
+ * <p>
+ * NOTE: You must use Kibana or this API to create a transform. Do not add a
+ * transform directly into any <code>.transform-internal*</code> indices using
+ * the Elasticsearch index API. If Elasticsearch security features are enabled,
+ * do not give users any privileges on <code>.transform-internal*</code>
+ * indices. If you used transforms prior to 7.5, also do not give users any
+ * privileges on <code>.data-frame-internal*</code> indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/put_transform/PutTransformRequest.ts#L32-L69">API
+ * @see <a href="../doc-files/api-spec.html#transform.put_transform.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class PutTransformRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, JsonData> meta;
+
 	@Nullable
 	private final Boolean deferValidation;
 
@@ -87,12 +116,16 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final Sync sync;
 
+	@Nullable
+	private final Time timeout;
+
 	private final String transformId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PutTransformRequest(Builder builder) {
 
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.deferValidation = builder.deferValidation;
 		this.description = builder.description;
 		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
@@ -103,6 +136,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		this.settings = builder.settings;
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.sync = builder.sync;
+		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
@@ -112,8 +146,22 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * When true, deferrable validations are not run. This behavior may be desired
-	 * if the source index does not exist until after the transform is created.
+	 * Defines optional transform metadata.
+	 * <p>
+	 * API name: {@code _meta}
+	 */
+	public final Map<String, JsonData> meta() {
+		return this.meta;
+	}
+
+	/**
+	 * When the transform is created, a series of validations occur to ensure its
+	 * success. For example, there is a check for the existence of the source
+	 * indices and a check that the destination index is not part of the source
+	 * index pattern. You can use this parameter to skip the checks, for example
+	 * when the source index does not exist until after the transform is created.
+	 * The validations are always run when you start the transform, however, with
+	 * the exception of privilege checks.
 	 * <p>
 	 * API name: {@code defer_validation}
 	 */
@@ -145,7 +193,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	 * The interval between checks for changes in the source indices when the
 	 * transform is running continuously. Also determines the retry interval in the
 	 * event of transient failures while the transform is searching or indexing. The
-	 * minimum value is 1s and the maximum is 1h.
+	 * minimum value is <code>1s</code> and the maximum is <code>1h</code>.
 	 * <p>
 	 * API name: {@code frequency}
 	 */
@@ -217,9 +265,20 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
 	 * Required - Identifier for the transform. This identifier can contain
 	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-	 * must start and end with alphanumeric characters.
+	 * has a 64 character limit and must start and end with alphanumeric characters.
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -238,6 +297,17 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.description != null) {
 			generator.writeKey("description");
 			generator.write(this.description);
@@ -290,6 +360,9 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTransformRequest> {
 		@Nullable
+		private Map<String, JsonData> meta;
+
+		@Nullable
 		private Boolean deferValidation;
 
 		@Nullable
@@ -317,11 +390,43 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		@Nullable
 		private Sync sync;
 
+		@Nullable
+		private Time timeout;
+
 		private String transformId;
 
 		/**
-		 * When true, deferrable validations are not run. This behavior may be desired
-		 * if the source index does not exist until after the transform is created.
+		 * Defines optional transform metadata.
+		 * <p>
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
+		 */
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * Defines optional transform metadata.
+		 * <p>
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
+			return this;
+		}
+
+		/**
+		 * When the transform is created, a series of validations occur to ensure its
+		 * success. For example, there is a check for the existence of the source
+		 * indices and a check that the destination index is not part of the source
+		 * index pattern. You can use this parameter to skip the checks, for example
+		 * when the source index does not exist until after the transform is created.
+		 * The validations are always run when you start the transform, however, with
+		 * the exception of privilege checks.
 		 * <p>
 		 * API name: {@code defer_validation}
 		 */
@@ -363,7 +468,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * The interval between checks for changes in the source indices when the
 		 * transform is running continuously. Also determines the retry interval in the
 		 * event of transient failures while the transform is searching or indexing. The
-		 * minimum value is 1s and the maximum is 1h.
+		 * minimum value is <code>1s</code> and the maximum is <code>1h</code>.
 		 * <p>
 		 * API name: {@code frequency}
 		 */
@@ -376,7 +481,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		 * The interval between checks for changes in the source indices when the
 		 * transform is running continuously. Also determines the retry interval in the
 		 * event of transient failures while the transform is searching or indexing. The
-		 * minimum value is 1s and the maximum is 1h.
+		 * minimum value is <code>1s</code> and the maximum is <code>1h</code>.
 		 * <p>
 		 * API name: {@code frequency}
 		 */
@@ -505,9 +610,30 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - Identifier for the transform. This identifier can contain
 		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-		 * must start and end with alphanumeric characters.
+		 * has a 64 character limit and must start and end with alphanumeric characters.
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
@@ -539,6 +665,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 
 	protected static void setupPutTransformRequestDeserializer(ObjectDeserializer<PutTransformRequest.Builder> op) {
 
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
@@ -589,6 +716,9 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 				Map<String, String> params = new HashMap<>();
 				if (request.deferValidation != null) {
 					params.put("defer_validation", String.valueOf(request.deferValidation));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

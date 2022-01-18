@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Deletes Logstash Pipelines used by Central Management
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/logstash/delete_pipeline/LogstashDeletePipelineRequest.ts#L23-L32">API
+ *      "../doc-files/api-spec.html#logstash.delete_pipeline.Request">API
  *      specification</a>
  */
 

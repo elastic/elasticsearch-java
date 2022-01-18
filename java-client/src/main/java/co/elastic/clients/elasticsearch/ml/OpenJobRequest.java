@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
  * most recent model state is automatically loaded. The job is ready to resume
  * its analysis from where it left off, once new data is received.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/open_job/MlOpenJobRequest.ts#L24-L59">API
+ * @see <a href="../doc-files/api-spec.html#ml.open_job.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

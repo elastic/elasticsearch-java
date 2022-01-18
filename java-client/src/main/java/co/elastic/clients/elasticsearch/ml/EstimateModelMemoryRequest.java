@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * estimates for the fields it references.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/estimate_model_memory/MlEstimateModelMemoryRequest.ts#L26-L61">API
+ *      "../doc-files/api-spec.html#ml.estimate_model_memory.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

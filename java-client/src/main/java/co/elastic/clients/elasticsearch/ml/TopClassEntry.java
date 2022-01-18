@@ -41,6 +41,11 @@ import javax.annotation.Nullable;
 
 // typedef: ml._types.TopClassEntry
 
+/**
+ *
+ * @see <a href="../doc-files/api-spec.html#ml._types.TopClassEntry">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class TopClassEntry implements JsonpSerializable {
 	private final String className;

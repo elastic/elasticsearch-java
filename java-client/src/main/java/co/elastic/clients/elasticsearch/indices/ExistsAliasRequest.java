@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about whether a particular alias exists.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/exists_alias/IndicesExistsAliasRequest.ts#L23-L39">API
+ * @see <a href="../doc-files/api-spec.html#indices.exists_alias.Request">API
  *      specification</a>
  */
 

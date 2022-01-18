@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Updates an existing data frame analytics job.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/update_data_frame_analytics/MlUpdateDataFrameAnalyticsRequest.ts#L24-L72">API
+ *      "../doc-files/api-spec.html#ml.update_data_frame_analytics.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

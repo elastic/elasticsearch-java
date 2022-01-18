@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/ClusterAllocationExplainResponse.ts#L31-L60">API
+ *      "../doc-files/api-spec.html#cluster.allocation_explain.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

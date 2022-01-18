@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
 /**
  * Enables searching rolled-up data using the standard query DSL.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/rollup_search/RollupSearchRequest.ts#L27-L48">API
+ * @see <a href="../doc-files/api-spec.html#rollup.rollup_search.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -70,9 +69,6 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final Integer size;
 
-	@Nullable
-	private final String type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private RollupSearchRequest(Builder builder) {
@@ -81,7 +77,6 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.query = builder.query;
 		this.size = builder.size;
-		this.type = builder.type;
 
 	}
 
@@ -122,16 +117,6 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public final Integer size() {
 		return this.size;
-	}
-
-	/**
-	 * The doc type inside the index
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
 	}
 
 	/**
@@ -186,9 +171,6 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private Integer size;
-
-		@Nullable
-		private String type;
 
 		/**
 		 * API name: {@code aggregations}
@@ -271,16 +253,6 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * The doc type inside the index
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * Builds a {@link RollupSearchRequest}.
 		 *
 		 * @throws NullPointerException
@@ -327,27 +299,15 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/_rollup_search");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/_rollup_search");
 					return buf.toString();
 				}

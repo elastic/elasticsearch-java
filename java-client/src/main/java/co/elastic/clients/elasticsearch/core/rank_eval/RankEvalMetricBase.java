@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L26-L32">API
+ *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalMetricBase">API
  *      specification</a>
  */
 

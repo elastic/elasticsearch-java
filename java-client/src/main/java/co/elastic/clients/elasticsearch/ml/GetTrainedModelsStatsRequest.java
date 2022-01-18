@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * comma-separated list of model IDs or a wildcard expression.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_trained_models_stats/MlGetTrainedModelStatsRequest.ts#L24-L65">API
+ *      "../doc-files/api-spec.html#ml.get_trained_models_stats.Request">API
  *      specification</a>
  */
 

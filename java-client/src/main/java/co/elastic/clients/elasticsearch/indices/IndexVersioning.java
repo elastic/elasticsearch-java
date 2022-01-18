@@ -42,19 +42,22 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/IndexSettings.ts#L289-L291">API
+ * @see <a href="../doc-files/api-spec.html#indices._types.IndexVersioning">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class IndexVersioning implements JsonpSerializable {
 	private final String created;
 
+	@Nullable
+	private final String createdString;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexVersioning(Builder builder) {
 
 		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.createdString = builder.createdString;
 
 	}
 
@@ -67,6 +70,14 @@ public class IndexVersioning implements JsonpSerializable {
 	 */
 	public final String created() {
 		return this.created;
+	}
+
+	/**
+	 * API name: {@code created_string}
+	 */
+	@Nullable
+	public final String createdString() {
+		return this.createdString;
 	}
 
 	/**
@@ -83,6 +94,12 @@ public class IndexVersioning implements JsonpSerializable {
 		generator.writeKey("created");
 		generator.write(this.created);
 
+		if (this.createdString != null) {
+			generator.writeKey("created_string");
+			generator.write(this.createdString);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -94,11 +111,22 @@ public class IndexVersioning implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexVersioning> {
 		private String created;
 
+		@Nullable
+		private String createdString;
+
 		/**
 		 * Required - API name: {@code created}
 		 */
 		public final Builder created(String value) {
 			this.created = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code created_string}
+		 */
+		public final Builder createdString(@Nullable String value) {
+			this.createdString = value;
 			return this;
 		}
 
@@ -126,6 +154,7 @@ public class IndexVersioning implements JsonpSerializable {
 	protected static void setupIndexVersioningDeserializer(ObjectDeserializer<IndexVersioning.Builder> op) {
 
 		op.add(Builder::created, JsonpDeserializer.stringDeserializer(), "created");
+		op.add(Builder::createdString, JsonpDeserializer.stringDeserializer(), "created_string");
 
 	}
 

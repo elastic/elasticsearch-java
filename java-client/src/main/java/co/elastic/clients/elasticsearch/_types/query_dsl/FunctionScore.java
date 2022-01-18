@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L114-L131">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.FunctionScoreContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -58,6 +58,10 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 	 */
 	/**
 	 * {@link FunctionScore} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.query_dsl.FunctionScoreContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

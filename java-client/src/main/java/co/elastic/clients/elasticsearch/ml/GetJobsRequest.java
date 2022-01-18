@@ -55,8 +55,7 @@ import javax.annotation.Nullable;
  * <code>_all</code>, by specifying <code>*</code> as the
  * <code>&lt;job_id&gt;</code>, or by omitting the <code>&lt;job_id&gt;</code>.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_jobs/MlGetJobsRequest.ts#L23-L66">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_jobs.Request">API
  *      specification</a>
  */
 

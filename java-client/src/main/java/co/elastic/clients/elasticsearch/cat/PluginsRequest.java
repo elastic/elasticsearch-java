@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * Returns information about installed plugins across nodes node.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/plugins/CatPluginsRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#cat.plugins.Request">API
  *      specification</a>
  */
 

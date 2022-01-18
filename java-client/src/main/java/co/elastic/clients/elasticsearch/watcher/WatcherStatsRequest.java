@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves the current Watcher metrics.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/stats/WatcherStatsRequest.ts#L23-L46">API
+ * @see <a href="../doc-files/api-spec.html#watcher.stats.Request">API
  *      specification</a>
  */
 

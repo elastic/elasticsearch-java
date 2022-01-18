@@ -28,34 +28,36 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: nodes._types.ExtendedMemoryStats
 
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L128-L131">API
+ *      "../doc-files/api-spec.html#nodes._types.ExtendedMemoryStats">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class ExtendedMemoryStats extends MemoryStats {
-	private final int freePercent;
+	@Nullable
+	private final Integer freePercent;
 
-	private final int usedPercent;
+	@Nullable
+	private final Integer usedPercent;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ExtendedMemoryStats(Builder builder) {
 		super(builder);
 
-		this.freePercent = ApiTypeHelper.requireNonNull(builder.freePercent, this, "freePercent");
-		this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
+		this.freePercent = builder.freePercent;
+		this.usedPercent = builder.usedPercent;
 
 	}
 
@@ -64,27 +66,34 @@ public class ExtendedMemoryStats extends MemoryStats {
 	}
 
 	/**
-	 * Required - API name: {@code free_percent}
+	 * API name: {@code free_percent}
 	 */
-	public final int freePercent() {
+	@Nullable
+	public final Integer freePercent() {
 		return this.freePercent;
 	}
 
 	/**
-	 * Required - API name: {@code used_percent}
+	 * API name: {@code used_percent}
 	 */
-	public final int usedPercent() {
+	@Nullable
+	public final Integer usedPercent() {
 		return this.usedPercent;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("free_percent");
-		generator.write(this.freePercent);
+		if (this.freePercent != null) {
+			generator.writeKey("free_percent");
+			generator.write(this.freePercent);
 
-		generator.writeKey("used_percent");
-		generator.write(this.usedPercent);
+		}
+		if (this.usedPercent != null) {
+			generator.writeKey("used_percent");
+			generator.write(this.usedPercent);
+
+		}
 
 	}
 
@@ -97,22 +106,24 @@ public class ExtendedMemoryStats extends MemoryStats {
 	public static class Builder extends MemoryStats.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ExtendedMemoryStats> {
+		@Nullable
 		private Integer freePercent;
 
+		@Nullable
 		private Integer usedPercent;
 
 		/**
-		 * Required - API name: {@code free_percent}
+		 * API name: {@code free_percent}
 		 */
-		public final Builder freePercent(int value) {
+		public final Builder freePercent(@Nullable Integer value) {
 			this.freePercent = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code used_percent}
+		 * API name: {@code used_percent}
 		 */
-		public final Builder usedPercent(int value) {
+		public final Builder usedPercent(@Nullable Integer value) {
 			this.usedPercent = value;
 			return this;
 		}

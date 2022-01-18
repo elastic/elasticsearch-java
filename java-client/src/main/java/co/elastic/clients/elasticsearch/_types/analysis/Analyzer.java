@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/analyzers.ts#L113-L128">API
+ * @see <a href="../../doc-files/api-spec.html#_types.analysis.Analyzer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -56,6 +55,9 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 	 */
 	/**
 	 * {@link Analyzer} variant kinds.
+	 * 
+	 * @see <a href="../../doc-files/api-spec.html#_types.analysis.Analyzer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

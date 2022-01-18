@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Retrieves information of all service credentials for a service account.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_credentials/GetServiceCredentialsRequest.ts#L23-L39">API
+ *      "../doc-files/api-spec.html#security.get_service_credentials.Request">API
  *      specification</a>
  */
 

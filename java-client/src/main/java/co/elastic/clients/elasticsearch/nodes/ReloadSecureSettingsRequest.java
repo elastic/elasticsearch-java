@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * Reloads secure settings.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/reload_secure_settings/ReloadSecureSettingsRequest.ts#L24-L39">API
+ *      "../doc-files/api-spec.html#nodes.reload_secure_settings.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

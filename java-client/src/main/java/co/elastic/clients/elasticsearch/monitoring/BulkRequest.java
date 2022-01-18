@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Used by the monitoring features to send monitoring data.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/monitoring/bulk/BulkMonitoringRequest.ts#L24-L57">API
+ * @see <a href="../doc-files/api-spec.html#monitoring.bulk.Request">API
  *      specification</a>
  */
 

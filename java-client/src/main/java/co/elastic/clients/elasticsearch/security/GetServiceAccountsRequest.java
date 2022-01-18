@@ -43,10 +43,11 @@ import javax.annotation.Nullable;
 // typedef: security.get_service_accounts.Request
 
 /**
- * Retrieves information about service accounts.
+ * This API returns a list of service accounts that match the provided path
+ * parameter(s).
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_accounts/GetServiceAccountsRequest.ts#L23-L33">API
+ *      "../doc-files/api-spec.html#security.get_service_accounts.Request">API
  *      specification</a>
  */
 
@@ -71,7 +72,9 @@ public class GetServiceAccountsRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the namespace
+	 * Name of the namespace. Omit this parameter to retrieve information about all
+	 * service accounts. If you omit this parameter, you must also omit the
+	 * <code>service</code> parameter.
 	 * <p>
 	 * API name: {@code namespace}
 	 */
@@ -81,7 +84,8 @@ public class GetServiceAccountsRequest extends RequestBase {
 	}
 
 	/**
-	 * An identifier for the service name
+	 * Name of the service name. Omit this parameter to retrieve information about
+	 * all service accounts that belong to the specified <code>namespace</code>.
 	 * <p>
 	 * API name: {@code service}
 	 */
@@ -104,7 +108,9 @@ public class GetServiceAccountsRequest extends RequestBase {
 		private String service;
 
 		/**
-		 * An identifier for the namespace
+		 * Name of the namespace. Omit this parameter to retrieve information about all
+		 * service accounts. If you omit this parameter, you must also omit the
+		 * <code>service</code> parameter.
 		 * <p>
 		 * API name: {@code namespace}
 		 */
@@ -114,7 +120,8 @@ public class GetServiceAccountsRequest extends RequestBase {
 		}
 
 		/**
-		 * An identifier for the service name
+		 * Name of the service name. Omit this parameter to retrieve information about
+		 * all service accounts that belong to the specified <code>namespace</code>.
 		 * <p>
 		 * API name: {@code service}
 		 */

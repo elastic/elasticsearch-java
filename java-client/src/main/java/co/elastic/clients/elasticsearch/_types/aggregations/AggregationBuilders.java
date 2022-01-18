@@ -97,11 +97,35 @@ public class AggregationBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link BucketKsAggregation bucket_count_ks_test}
+	 * {@code Aggregation} variant.
+	 */
+	public static BucketKsAggregation.Builder bucketCountKsTest() {
+		return new BucketKsAggregation.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link BucketCorrelationAggregation
+	 * bucket_correlation} {@code Aggregation} variant.
+	 */
+	public static BucketCorrelationAggregation.Builder bucketCorrelation() {
+		return new BucketCorrelationAggregation.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link CardinalityAggregation cardinality}
 	 * {@code Aggregation} variant.
 	 */
 	public static CardinalityAggregation.Builder cardinality() {
 		return new CardinalityAggregation.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link CategorizeTextAggregation categorize_text}
+	 * {@code Aggregation} variant.
+	 */
+	public static CategorizeTextAggregation.Builder categorizeText() {
+		return new CategorizeTextAggregation.Builder();
 	}
 
 	/**

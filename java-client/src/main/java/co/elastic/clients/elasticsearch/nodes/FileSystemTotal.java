@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,34 +42,39 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L144-L151">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.FileSystemTotal">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class FileSystemTotal implements JsonpSerializable {
+	@Nullable
 	private final String available;
 
-	private final long availableInBytes;
+	@Nullable
+	private final Long availableInBytes;
 
+	@Nullable
 	private final String free;
 
-	private final long freeInBytes;
+	@Nullable
+	private final Long freeInBytes;
 
+	@Nullable
 	private final String total;
 
-	private final long totalInBytes;
+	@Nullable
+	private final Long totalInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private FileSystemTotal(Builder builder) {
 
-		this.available = ApiTypeHelper.requireNonNull(builder.available, this, "available");
-		this.availableInBytes = ApiTypeHelper.requireNonNull(builder.availableInBytes, this, "availableInBytes");
-		this.free = ApiTypeHelper.requireNonNull(builder.free, this, "free");
-		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
-		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
+		this.available = builder.available;
+		this.availableInBytes = builder.availableInBytes;
+		this.free = builder.free;
+		this.freeInBytes = builder.freeInBytes;
+		this.total = builder.total;
+		this.totalInBytes = builder.totalInBytes;
 
 	}
 
@@ -79,44 +83,50 @@ public class FileSystemTotal implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code available}
+	 * API name: {@code available}
 	 */
+	@Nullable
 	public final String available() {
 		return this.available;
 	}
 
 	/**
-	 * Required - API name: {@code available_in_bytes}
+	 * API name: {@code available_in_bytes}
 	 */
-	public final long availableInBytes() {
+	@Nullable
+	public final Long availableInBytes() {
 		return this.availableInBytes;
 	}
 
 	/**
-	 * Required - API name: {@code free}
+	 * API name: {@code free}
 	 */
+	@Nullable
 	public final String free() {
 		return this.free;
 	}
 
 	/**
-	 * Required - API name: {@code free_in_bytes}
+	 * API name: {@code free_in_bytes}
 	 */
-	public final long freeInBytes() {
+	@Nullable
+	public final Long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * API name: {@code total}
 	 */
+	@Nullable
 	public final String total() {
 		return this.total;
 	}
 
 	/**
-	 * Required - API name: {@code total_in_bytes}
+	 * API name: {@code total_in_bytes}
 	 */
-	public final long totalInBytes() {
+	@Nullable
+	public final Long totalInBytes() {
 		return this.totalInBytes;
 	}
 
@@ -131,23 +141,36 @@ public class FileSystemTotal implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("available");
-		generator.write(this.available);
+		if (this.available != null) {
+			generator.writeKey("available");
+			generator.write(this.available);
 
-		generator.writeKey("available_in_bytes");
-		generator.write(this.availableInBytes);
+		}
+		if (this.availableInBytes != null) {
+			generator.writeKey("available_in_bytes");
+			generator.write(this.availableInBytes);
 
-		generator.writeKey("free");
-		generator.write(this.free);
+		}
+		if (this.free != null) {
+			generator.writeKey("free");
+			generator.write(this.free);
 
-		generator.writeKey("free_in_bytes");
-		generator.write(this.freeInBytes);
+		}
+		if (this.freeInBytes != null) {
+			generator.writeKey("free_in_bytes");
+			generator.write(this.freeInBytes);
 
-		generator.writeKey("total");
-		generator.write(this.total);
+		}
+		if (this.total != null) {
+			generator.writeKey("total");
+			generator.write(this.total);
 
-		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes);
+		}
+		if (this.totalInBytes != null) {
+			generator.writeKey("total_in_bytes");
+			generator.write(this.totalInBytes);
+
+		}
 
 	}
 
@@ -158,62 +181,68 @@ public class FileSystemTotal implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileSystemTotal> {
+		@Nullable
 		private String available;
 
+		@Nullable
 		private Long availableInBytes;
 
+		@Nullable
 		private String free;
 
+		@Nullable
 		private Long freeInBytes;
 
+		@Nullable
 		private String total;
 
+		@Nullable
 		private Long totalInBytes;
 
 		/**
-		 * Required - API name: {@code available}
+		 * API name: {@code available}
 		 */
-		public final Builder available(String value) {
+		public final Builder available(@Nullable String value) {
 			this.available = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code available_in_bytes}
+		 * API name: {@code available_in_bytes}
 		 */
-		public final Builder availableInBytes(long value) {
+		public final Builder availableInBytes(@Nullable Long value) {
 			this.availableInBytes = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code free}
+		 * API name: {@code free}
 		 */
-		public final Builder free(String value) {
+		public final Builder free(@Nullable String value) {
 			this.free = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code free_in_bytes}
+		 * API name: {@code free_in_bytes}
 		 */
-		public final Builder freeInBytes(long value) {
+		public final Builder freeInBytes(@Nullable Long value) {
 			this.freeInBytes = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
-		public final Builder total(String value) {
+		public final Builder total(@Nullable String value) {
 			this.total = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total_in_bytes}
+		 * API name: {@code total_in_bytes}
 		 */
-		public final Builder totalInBytes(long value) {
+		public final Builder totalInBytes(@Nullable Long value) {
 			this.totalInBytes = value;
 			return this;
 		}

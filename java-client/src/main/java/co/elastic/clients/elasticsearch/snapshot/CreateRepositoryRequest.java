@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Creates a repository.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/create_repository/SnapshotCreateRepositoryRequest.ts#L28-L49">API
+ *      "../doc-files/api-spec.html#snapshot.create_repository.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

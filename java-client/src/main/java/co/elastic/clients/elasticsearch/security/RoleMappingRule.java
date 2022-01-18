@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/RoleMappingRule.ts#L23-L31">API
+ * @see <a href="../doc-files/api-spec.html#security._types.RoleMappingRule">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -62,6 +61,9 @@ public class RoleMappingRule
 	 */
 	/**
 	 * {@link RoleMappingRule} variant kinds.
+	 * 
+	 * @see <a href="../doc-files/api-spec.html#security._types.RoleMappingRule">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

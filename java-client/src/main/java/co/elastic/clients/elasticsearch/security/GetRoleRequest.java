@@ -31,34 +31,39 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.get_role.Request
 
 /**
- * Retrieves roles in the native realm.
+ * The role management APIs are generally the preferred way to manage roles,
+ * rather than using <a href=
+ * "https://www.elastic.co/guide/en/elasticsearch/reference/current/defining-roles.html#roles-management-file">file-based
+ * role management</a>. The get roles API cannot retrieve roles that are defined
+ * in roles files.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role/SecurityGetRoleRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#security.get_role.Request">API
  *      specification</a>
  */
 
 public class GetRoleRequest extends RequestBase {
-	@Nullable
-	private final String name;
+	private final List<String> name;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetRoleRequest(Builder builder) {
 
-		this.name = builder.name;
+		this.name = ApiTypeHelper.unmodifiable(builder.name);
 
 	}
 
@@ -67,12 +72,13 @@ public class GetRoleRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of role names
+	 * The name of the role. You can specify multiple roles as a comma-separated
+	 * list. If you do not specify this parameter, the API returns information about
+	 * all roles.
 	 * <p>
 	 * API name: {@code name}
 	 */
-	@Nullable
-	public final String name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -84,15 +90,33 @@ public class GetRoleRequest extends RequestBase {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRoleRequest> {
 		@Nullable
-		private String name;
+		private List<String> name;
 
 		/**
-		 * A comma-separated list of role names
+		 * The name of the role. You can specify multiple roles as a comma-separated
+		 * list. If you do not specify this parameter, the API returns information about
+		 * all roles.
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(@Nullable String value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * The name of the role. You can specify multiple roles as a comma-separated
+		 * list. If you do not specify this parameter, the API returns information about
+		 * all roles.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -129,7 +153,7 @@ public class GetRoleRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.name() != null)
+				if (ApiTypeHelper.isDefined(request.name()))
 					propsSet |= _name;
 
 				if (propsSet == (_name)) {
@@ -137,7 +161,7 @@ public class GetRoleRequest extends RequestBase {
 					buf.append("/_security");
 					buf.append("/role");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {

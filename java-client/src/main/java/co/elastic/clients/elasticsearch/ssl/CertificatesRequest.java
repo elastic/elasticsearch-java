@@ -42,8 +42,7 @@ import java.util.Objects;
  * Retrieves information about the X.509 certificates used to encrypt
  * communications in the cluster.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ssl/certificates/GetCertificatesRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#ssl.certificates.Request">API
  *      specification</a>
  */
 

@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/_types/FollowIndexStats.ts#L67-L71">API
+ * @see <a href="../doc-files/api-spec.html#ccr._types.ReadException">API
  *      specification</a>
  */
 @JsonpDeserializable

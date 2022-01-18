@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
  * the provided string. It is designed for low-latency look-ups used in
  * auto-complete scenarios.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/terms_enum/TermsEnumRequest.ts#L26-L65">API
+ * @see <a href="../doc-files/api-spec.html#_global.terms_enum.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

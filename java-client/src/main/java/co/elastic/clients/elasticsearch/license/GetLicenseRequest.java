@@ -44,10 +44,12 @@ import javax.annotation.Nullable;
 // typedef: license.get.Request
 
 /**
- * Retrieves licensing information for the cluster
+ * This API returns information about the type of license, when it was issued,
+ * and when it expires, for example. For more information about the different
+ * types of licenses, see <a href=
+ * "https://www.elastic.co/subscriptions">https://www.elastic.co/subscriptions</a>.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/get/GetLicenseRequest.ts#L22-L32">API
+ * @see <a href="../doc-files/api-spec.html#license.get.Request">API
  *      specification</a>
  */
 
@@ -72,19 +74,26 @@ public class GetLicenseRequest extends RequestBase {
 	}
 
 	/**
-	 * Supported for backwards compatibility with 7.x. If this param is used it must
-	 * be set to true
+	 * If <code>true</code>, this parameter returns enterprise for Enterprise
+	 * license types. If <code>false</code>, this parameter returns platinum for
+	 * both platinum and enterprise license types. This behavior is maintained for
+	 * backwards compatibility. This parameter is deprecated and will always be set
+	 * to true in 8.x.
 	 * <p>
 	 * API name: {@code accept_enterprise}
+	 * 
+	 * @deprecated 7.6.0
 	 */
+	@Deprecated
 	@Nullable
 	public final Boolean acceptEnterprise() {
 		return this.acceptEnterprise;
 	}
 
 	/**
-	 * Return local information, do not retrieve the state from master node
-	 * (default: false)
+	 * Specifies whether to retrieve local information. The default value is
+	 * <code>false</code>, which means the information is retrieved from the master
+	 * node.
 	 * <p>
 	 * API name: {@code local}
 	 */
@@ -107,19 +116,26 @@ public class GetLicenseRequest extends RequestBase {
 		private Boolean local;
 
 		/**
-		 * Supported for backwards compatibility with 7.x. If this param is used it must
-		 * be set to true
+		 * If <code>true</code>, this parameter returns enterprise for Enterprise
+		 * license types. If <code>false</code>, this parameter returns platinum for
+		 * both platinum and enterprise license types. This behavior is maintained for
+		 * backwards compatibility. This parameter is deprecated and will always be set
+		 * to true in 8.x.
 		 * <p>
 		 * API name: {@code accept_enterprise}
+		 * 
+		 * @deprecated 7.6.0
 		 */
+		@Deprecated
 		public final Builder acceptEnterprise(@Nullable Boolean value) {
 			this.acceptEnterprise = value;
 			return this;
 		}
 
 		/**
-		 * Return local information, do not retrieve the state from master node
-		 * (default: false)
+		 * Specifies whether to retrieve local information. The default value is
+		 * <code>false</code>, which means the information is retrieved from the master
+		 * node.
 		 * <p>
 		 * API name: {@code local}
 		 */

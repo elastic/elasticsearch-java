@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L177-L180">API
+ * @see <a href="../../doc-files/api-spec.html#xpack.usage.MlInference">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -53,12 +52,16 @@ public class MlInference implements JsonpSerializable {
 
 	private final MlInferenceTrainedModels trainedModels;
 
+	@Nullable
+	private final MlInferenceDeployments deployments;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MlInference(Builder builder) {
 
 		this.ingestProcessors = ApiTypeHelper.unmodifiableRequired(builder.ingestProcessors, this, "ingestProcessors");
 		this.trainedModels = ApiTypeHelper.requireNonNull(builder.trainedModels, this, "trainedModels");
+		this.deployments = builder.deployments;
 
 	}
 
@@ -78,6 +81,14 @@ public class MlInference implements JsonpSerializable {
 	 */
 	public final MlInferenceTrainedModels trainedModels() {
 		return this.trainedModels;
+	}
+
+	/**
+	 * API name: {@code deployments}
+	 */
+	@Nullable
+	public final MlInferenceDeployments deployments() {
+		return this.deployments;
 	}
 
 	/**
@@ -105,6 +116,12 @@ public class MlInference implements JsonpSerializable {
 		generator.writeKey("trained_models");
 		this.trainedModels.serialize(generator, mapper);
 
+		if (this.deployments != null) {
+			generator.writeKey("deployments");
+			this.deployments.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -117,6 +134,9 @@ public class MlInference implements JsonpSerializable {
 		private Map<String, MlInferenceIngestProcessor> ingestProcessors;
 
 		private MlInferenceTrainedModels trainedModels;
+
+		@Nullable
+		private MlInferenceDeployments deployments;
 
 		/**
 		 * Required - API name: {@code ingest_processors}
@@ -165,6 +185,22 @@ public class MlInference implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code deployments}
+		 */
+		public final Builder deployments(@Nullable MlInferenceDeployments value) {
+			this.deployments = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code deployments}
+		 */
+		public final Builder deployments(
+				Function<MlInferenceDeployments.Builder, ObjectBuilder<MlInferenceDeployments>> fn) {
+			return this.deployments(fn.apply(new MlInferenceDeployments.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link MlInference}.
 		 *
 		 * @throws NullPointerException
@@ -190,6 +226,7 @@ public class MlInference implements JsonpSerializable {
 		op.add(Builder::ingestProcessors,
 				JsonpDeserializer.stringMapDeserializer(MlInferenceIngestProcessor._DESERIALIZER), "ingest_processors");
 		op.add(Builder::trainedModels, MlInferenceTrainedModels._DESERIALIZER, "trained_models");
+		op.add(Builder::deployments, MlInferenceDeployments._DESERIALIZER, "deployments");
 
 	}
 

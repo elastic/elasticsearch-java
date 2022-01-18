@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Retrieves usage information for transforms.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform_stats/GetTransformStatsRequest.ts#L24-L38">API
+ *      "../doc-files/api-spec.html#transform.get_transform_stats.Request">API
  *      specification</a>
  */
 
@@ -82,8 +82,16 @@ public class GetTransformStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no transforms. (This
-	 * includes <code>_all</code> string or when no transforms have been specified)
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no transforms that
+	 * match.</li>
+	 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
+	 * <p>
+	 * If this parameter is false, the request returns a 404 status code when there
+	 * are no matches or only partial matches.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -93,7 +101,7 @@ public class GetTransformStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * skips a number of transform stats, defaults to 0
+	 * Skips the specified number of transforms.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -103,7 +111,7 @@ public class GetTransformStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * specifies a max number of transform stats to get, defaults to 100
+	 * Specifies the maximum number of transforms to obtain.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -113,8 +121,11 @@ public class GetTransformStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The id of the transform for which to get stats. '_all' or '*'
-	 * implies all transforms
+	 * Required - Identifier for the transform. It can be a transform identifier or
+	 * a wildcard expression. You can get information for all transforms by using
+	 * <code>_all</code>, by specifying <code>*</code> as the
+	 * <code>&lt;transform_id&gt;</code>, or by omitting the
+	 * <code>&lt;transform_id&gt;</code>.
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -141,8 +152,16 @@ public class GetTransformStatsRequest extends RequestBase {
 		private String transformId;
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no transforms. (This
-		 * includes <code>_all</code> string or when no transforms have been specified)
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no transforms that
+		 * match.</li>
+		 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
+		 * <p>
+		 * If this parameter is false, the request returns a 404 status code when there
+		 * are no matches or only partial matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
@@ -152,7 +171,7 @@ public class GetTransformStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * skips a number of transform stats, defaults to 0
+		 * Skips the specified number of transforms.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -162,7 +181,7 @@ public class GetTransformStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * specifies a max number of transform stats to get, defaults to 100
+		 * Specifies the maximum number of transforms to obtain.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -172,8 +191,11 @@ public class GetTransformStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The id of the transform for which to get stats. '_all' or '*'
-		 * implies all transforms
+		 * Required - Identifier for the transform. It can be a transform identifier or
+		 * a wildcard expression. You can get information for all transforms by using
+		 * <code>_all</code>, by specifying <code>*</code> as the
+		 * <code>&lt;transform_id&gt;</code>, or by omitting the
+		 * <code>&lt;transform_id&gt;</code>.
 		 * <p>
 		 * API name: {@code transform_id}
 		 */

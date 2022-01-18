@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,35 +43,39 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L77-L84">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.Breaker">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class Breaker implements JsonpSerializable {
+	@Nullable
 	private final String estimatedSize;
 
-	private final long estimatedSizeInBytes;
+	@Nullable
+	private final Long estimatedSizeInBytes;
 
+	@Nullable
 	private final String limitSize;
 
-	private final long limitSizeInBytes;
+	@Nullable
+	private final Long limitSizeInBytes;
 
-	private final float overhead;
+	@Nullable
+	private final Float overhead;
 
-	private final float tripped;
+	@Nullable
+	private final Float tripped;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private Breaker(Builder builder) {
 
-		this.estimatedSize = ApiTypeHelper.requireNonNull(builder.estimatedSize, this, "estimatedSize");
-		this.estimatedSizeInBytes = ApiTypeHelper.requireNonNull(builder.estimatedSizeInBytes, this,
-				"estimatedSizeInBytes");
-		this.limitSize = ApiTypeHelper.requireNonNull(builder.limitSize, this, "limitSize");
-		this.limitSizeInBytes = ApiTypeHelper.requireNonNull(builder.limitSizeInBytes, this, "limitSizeInBytes");
-		this.overhead = ApiTypeHelper.requireNonNull(builder.overhead, this, "overhead");
-		this.tripped = ApiTypeHelper.requireNonNull(builder.tripped, this, "tripped");
+		this.estimatedSize = builder.estimatedSize;
+		this.estimatedSizeInBytes = builder.estimatedSizeInBytes;
+		this.limitSize = builder.limitSize;
+		this.limitSizeInBytes = builder.limitSizeInBytes;
+		this.overhead = builder.overhead;
+		this.tripped = builder.tripped;
 
 	}
 
@@ -81,44 +84,50 @@ public class Breaker implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code estimated_size}
+	 * API name: {@code estimated_size}
 	 */
+	@Nullable
 	public final String estimatedSize() {
 		return this.estimatedSize;
 	}
 
 	/**
-	 * Required - API name: {@code estimated_size_in_bytes}
+	 * API name: {@code estimated_size_in_bytes}
 	 */
-	public final long estimatedSizeInBytes() {
+	@Nullable
+	public final Long estimatedSizeInBytes() {
 		return this.estimatedSizeInBytes;
 	}
 
 	/**
-	 * Required - API name: {@code limit_size}
+	 * API name: {@code limit_size}
 	 */
+	@Nullable
 	public final String limitSize() {
 		return this.limitSize;
 	}
 
 	/**
-	 * Required - API name: {@code limit_size_in_bytes}
+	 * API name: {@code limit_size_in_bytes}
 	 */
-	public final long limitSizeInBytes() {
+	@Nullable
+	public final Long limitSizeInBytes() {
 		return this.limitSizeInBytes;
 	}
 
 	/**
-	 * Required - API name: {@code overhead}
+	 * API name: {@code overhead}
 	 */
-	public final float overhead() {
+	@Nullable
+	public final Float overhead() {
 		return this.overhead;
 	}
 
 	/**
-	 * Required - API name: {@code tripped}
+	 * API name: {@code tripped}
 	 */
-	public final float tripped() {
+	@Nullable
+	public final Float tripped() {
 		return this.tripped;
 	}
 
@@ -133,23 +142,36 @@ public class Breaker implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("estimated_size");
-		generator.write(this.estimatedSize);
+		if (this.estimatedSize != null) {
+			generator.writeKey("estimated_size");
+			generator.write(this.estimatedSize);
 
-		generator.writeKey("estimated_size_in_bytes");
-		generator.write(this.estimatedSizeInBytes);
+		}
+		if (this.estimatedSizeInBytes != null) {
+			generator.writeKey("estimated_size_in_bytes");
+			generator.write(this.estimatedSizeInBytes);
 
-		generator.writeKey("limit_size");
-		generator.write(this.limitSize);
+		}
+		if (this.limitSize != null) {
+			generator.writeKey("limit_size");
+			generator.write(this.limitSize);
 
-		generator.writeKey("limit_size_in_bytes");
-		generator.write(this.limitSizeInBytes);
+		}
+		if (this.limitSizeInBytes != null) {
+			generator.writeKey("limit_size_in_bytes");
+			generator.write(this.limitSizeInBytes);
 
-		generator.writeKey("overhead");
-		generator.write(this.overhead);
+		}
+		if (this.overhead != null) {
+			generator.writeKey("overhead");
+			generator.write(this.overhead);
 
-		generator.writeKey("tripped");
-		generator.write(this.tripped);
+		}
+		if (this.tripped != null) {
+			generator.writeKey("tripped");
+			generator.write(this.tripped);
+
+		}
 
 	}
 
@@ -160,62 +182,68 @@ public class Breaker implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Breaker> {
+		@Nullable
 		private String estimatedSize;
 
+		@Nullable
 		private Long estimatedSizeInBytes;
 
+		@Nullable
 		private String limitSize;
 
+		@Nullable
 		private Long limitSizeInBytes;
 
+		@Nullable
 		private Float overhead;
 
+		@Nullable
 		private Float tripped;
 
 		/**
-		 * Required - API name: {@code estimated_size}
+		 * API name: {@code estimated_size}
 		 */
-		public final Builder estimatedSize(String value) {
+		public final Builder estimatedSize(@Nullable String value) {
 			this.estimatedSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code estimated_size_in_bytes}
+		 * API name: {@code estimated_size_in_bytes}
 		 */
-		public final Builder estimatedSizeInBytes(long value) {
+		public final Builder estimatedSizeInBytes(@Nullable Long value) {
 			this.estimatedSizeInBytes = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code limit_size}
+		 * API name: {@code limit_size}
 		 */
-		public final Builder limitSize(String value) {
+		public final Builder limitSize(@Nullable String value) {
 			this.limitSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code limit_size_in_bytes}
+		 * API name: {@code limit_size_in_bytes}
 		 */
-		public final Builder limitSizeInBytes(long value) {
+		public final Builder limitSizeInBytes(@Nullable Long value) {
 			this.limitSizeInBytes = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code overhead}
+		 * API name: {@code overhead}
 		 */
-		public final Builder overhead(float value) {
+		public final Builder overhead(@Nullable Float value) {
 			this.overhead = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code tripped}
+		 * API name: {@code tripped}
 		 */
-		public final Builder tripped(float value) {
+		public final Builder tripped(@Nullable Float value) {
 			this.tripped = value;
 			return this;
 		}

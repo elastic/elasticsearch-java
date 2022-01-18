@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/validate_query/IndicesValidateQueryResponse.ts#L32-L37">API
+ *      "../../doc-files/api-spec.html#indices.validate_query.IndicesValidationExplanation">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
-import co.elastic.clients.elasticsearch.rollup.delete_job.TaskFailure;
+import co.elastic.clients.elasticsearch._types.TaskFailure;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,8 +42,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/delete_job/DeleteRollupJobResponse.ts#L23-L27">API
+ * @see <a href="../doc-files/api-spec.html#rollup.delete_job.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

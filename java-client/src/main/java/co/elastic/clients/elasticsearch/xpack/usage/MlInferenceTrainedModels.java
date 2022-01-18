@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L189-L194">API
+ *      "../../doc-files/api-spec.html#xpack.usage.MlInferenceTrainedModels">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,6 +59,9 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 
 	private final MlCounter all;
 
+	@Nullable
+	private final JobStatistics modelSizeBytes;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MlInferenceTrainedModels(Builder builder) {
@@ -67,6 +70,7 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		this.estimatedHeapMemoryUsageBytes = builder.estimatedHeapMemoryUsageBytes;
 		this.count = builder.count;
 		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
+		this.modelSizeBytes = builder.modelSizeBytes;
 
 	}
 
@@ -106,6 +110,14 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code model_size_bytes}
+	 */
+	@Nullable
+	public final JobStatistics modelSizeBytes() {
+		return this.modelSizeBytes;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -134,6 +146,12 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		generator.writeKey("_all");
 		this.all.serialize(generator, mapper);
 
+		if (this.modelSizeBytes != null) {
+			generator.writeKey("model_size_bytes");
+			this.modelSizeBytes.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -153,6 +171,9 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		private MlInferenceTrainedModelsCount count;
 
 		private MlCounter all;
+
+		@Nullable
+		private JobStatistics modelSizeBytes;
 
 		/**
 		 * API name: {@code estimated_operations}
@@ -217,6 +238,21 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code model_size_bytes}
+		 */
+		public final Builder modelSizeBytes(@Nullable JobStatistics value) {
+			this.modelSizeBytes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code model_size_bytes}
+		 */
+		public final Builder modelSizeBytes(Function<JobStatistics.Builder, ObjectBuilder<JobStatistics>> fn) {
+			return this.modelSizeBytes(fn.apply(new JobStatistics.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link MlInferenceTrainedModels}.
 		 *
 		 * @throws NullPointerException
@@ -245,6 +281,7 @@ public class MlInferenceTrainedModels implements JsonpSerializable {
 				"estimated_heap_memory_usage_bytes");
 		op.add(Builder::count, MlInferenceTrainedModelsCount._DESERIALIZER, "count");
 		op.add(Builder::all, MlCounter._DESERIALIZER, "_all");
+		op.add(Builder::modelSizeBytes, JobStatistics._DESERIALIZER, "model_size_bytes");
 
 	}
 

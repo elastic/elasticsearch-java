@@ -39,10 +39,11 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -55,7 +56,7 @@ import javax.annotation.Nullable;
  * Creates or updates an index template.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_index_template/IndicesPutIndexTemplateRequest.ts#L35-L55">API
+ *      "../doc-files/api-spec.html#indices.put_index_template.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -63,6 +64,9 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	private final Map<String, JsonData> meta;
 
 	private final List<String> composedOf;
+
+	@Nullable
+	private final Boolean create;
 
 	@Nullable
 	private final DataStream dataStream;
@@ -86,6 +90,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
+		this.create = builder.create;
 		this.dataStream = builder.dataStream;
 		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
@@ -111,6 +116,17 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	 */
 	public final List<String> composedOf() {
 		return this.composedOf;
+	}
+
+	/**
+	 * Whether the index template should only be added if new or can also replace an
+	 * existing one
+	 * <p>
+	 * API name: {@code create}
+	 */
+	@Nullable
+	public final Boolean create() {
+		return this.create;
 	}
 
 	/**
@@ -240,6 +256,9 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		private List<String> composedOf;
 
 		@Nullable
+		private Boolean create;
+
+		@Nullable
 		private DataStream dataStream;
 
 		@Nullable
@@ -293,6 +312,17 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder composedOf(String value, String... values) {
 			this.composedOf = _listAdd(this.composedOf, value, values);
+			return this;
+		}
+
+		/**
+		 * Whether the index template should only be added if new or can also replace an
+		 * existing one
+		 * <p>
+		 * API name: {@code create}
+		 */
+		public final Builder create(@Nullable Boolean value) {
+			this.create = value;
 			return this;
 		}
 
@@ -443,7 +473,11 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.create != null) {
+					params.put("create", String.valueOf(request.create));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PutIndexTemplateResponse._DESERIALIZER);
 }

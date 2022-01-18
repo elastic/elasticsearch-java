@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
  * aggregation has keys configured for the different buckets, the result is a
  * dictionary.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L300-L309">API
+ * @see <a href="../../doc-files/api-spec.html#_types.aggregations.Buckets">API
  *      specification</a>
  */
 

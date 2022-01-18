@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/health/ClusterHealthResponse.ts#L26-L60">API
+ * @see <a href="../doc-files/api-spec.html#cluster.health.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -191,7 +190,9 @@ public class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code number_of_in_flight_fetch}
+	 * Required - The number of unfinished fetches.
+	 * <p>
+	 * API name: {@code number_of_in_flight_fetch}
 	 */
 	public final int numberOfInFlightFetch() {
 		return this.numberOfInFlightFetch;
@@ -472,7 +473,9 @@ public class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code number_of_in_flight_fetch}
+		 * Required - The number of unfinished fetches.
+		 * <p>
+		 * API name: {@code number_of_in_flight_fetch}
 		 */
 		public final Builder numberOfInFlightFetch(int value) {
 			this.numberOfInFlightFetch = value;

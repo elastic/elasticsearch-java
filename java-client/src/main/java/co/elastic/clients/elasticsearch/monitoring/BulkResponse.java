@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/monitoring/bulk/BulkMonitoringResponse.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#monitoring.bulk.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

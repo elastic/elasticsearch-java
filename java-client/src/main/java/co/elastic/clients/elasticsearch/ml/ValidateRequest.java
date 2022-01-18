@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Validates an anomaly detection job.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/validate/MlValidateJobRequest.ts#L27-L44">API
+ * @see <a href="../doc-files/api-spec.html#ml.validate.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -73,6 +72,9 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 	private final ModelPlotConfig modelPlot;
 
 	@Nullable
+	private final String modelSnapshotId;
+
+	@Nullable
 	private final Long modelSnapshotRetentionDays;
 
 	@Nullable
@@ -88,6 +90,7 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 		this.description = builder.description;
 		this.jobId = builder.jobId;
 		this.modelPlot = builder.modelPlot;
+		this.modelSnapshotId = builder.modelSnapshotId;
 		this.modelSnapshotRetentionDays = builder.modelSnapshotRetentionDays;
 		this.resultsIndexName = builder.resultsIndexName;
 
@@ -143,6 +146,14 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final ModelPlotConfig modelPlot() {
 		return this.modelPlot;
+	}
+
+	/**
+	 * API name: {@code model_snapshot_id}
+	 */
+	@Nullable
+	public final String modelSnapshotId() {
+		return this.modelSnapshotId;
 	}
 
 	/**
@@ -202,6 +213,11 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 			this.modelPlot.serialize(generator, mapper);
 
 		}
+		if (this.modelSnapshotId != null) {
+			generator.writeKey("model_snapshot_id");
+			generator.write(this.modelSnapshotId);
+
+		}
 		if (this.modelSnapshotRetentionDays != null) {
 			generator.writeKey("model_snapshot_retention_days");
 			generator.write(this.modelSnapshotRetentionDays);
@@ -239,6 +255,9 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private ModelPlotConfig modelPlot;
+
+		@Nullable
+		private String modelSnapshotId;
 
 		@Nullable
 		private Long modelSnapshotRetentionDays;
@@ -323,6 +342,14 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code model_snapshot_id}
+		 */
+		public final Builder modelSnapshotId(@Nullable String value) {
+			this.modelSnapshotId = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code model_snapshot_retention_days}
 		 */
 		public final Builder modelSnapshotRetentionDays(@Nullable Long value) {
@@ -367,6 +394,7 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::modelPlot, ModelPlotConfig._DESERIALIZER, "model_plot");
+		op.add(Builder::modelSnapshotId, JsonpDeserializer.stringDeserializer(), "model_snapshot_id");
 		op.add(Builder::modelSnapshotRetentionDays, JsonpDeserializer.longDeserializer(),
 				"model_snapshot_retention_days");
 		op.add(Builder::resultsIndexName, JsonpDeserializer.stringDeserializer(), "results_index_name");

@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 /**
  * Stops an existing, started rollup job.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/stop_job/StopRollupJobRequest.ts#L24-L37">API
+ * @see <a href="../doc-files/api-spec.html#rollup.stop_job.Request">API
  *      specification</a>
  */
 

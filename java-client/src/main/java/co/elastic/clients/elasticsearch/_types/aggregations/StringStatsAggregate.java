@@ -36,6 +36,7 @@ import java.lang.Double;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L630-L641">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.StringStatsAggregate">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -60,8 +61,7 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 
 	private final double entropy;
 
-	@Nullable
-	private final String distribution;
+	private final Map<String, Double> distribution;
 
 	@Nullable
 	private final String minLengthAsString;
@@ -82,7 +82,7 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		this.maxLength = ApiTypeHelper.requireNonNull(builder.maxLength, this, "maxLength");
 		this.avgLength = ApiTypeHelper.requireNonNull(builder.avgLength, this, "avgLength");
 		this.entropy = ApiTypeHelper.requireNonNull(builder.entropy, this, "entropy");
-		this.distribution = builder.distribution;
+		this.distribution = ApiTypeHelper.unmodifiable(builder.distribution);
 		this.minLengthAsString = builder.minLengthAsString;
 		this.maxLengthAsString = builder.maxLengthAsString;
 		this.avgLengthAsString = builder.avgLengthAsString;
@@ -147,8 +147,7 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 	/**
 	 * API name: {@code distribution}
 	 */
-	@Nullable
-	public final String distribution() {
+	public final Map<String, Double> distribution() {
 		return this.distribution;
 	}
 
@@ -190,9 +189,15 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		JsonpUtils.serializeDoubleOrNull(generator, this.avgLength, 0);
 		generator.writeKey("entropy");
 		JsonpUtils.serializeDoubleOrNull(generator, this.entropy, 0);
-		if (this.distribution != null) {
+		if (ApiTypeHelper.isDefined(this.distribution)) {
 			generator.writeKey("distribution");
-			generator.write(this.distribution);
+			generator.writeStartObject();
+			for (Map.Entry<String, Double> item0 : this.distribution.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.write(item0.getValue());
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.minLengthAsString != null) {
@@ -233,7 +238,7 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		private Double entropy;
 
 		@Nullable
-		private String distribution;
+		private Map<String, Double> distribution;
 
 		@Nullable
 		private String minLengthAsString;
@@ -294,9 +299,21 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 
 		/**
 		 * API name: {@code distribution}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>distribution</code>.
 		 */
-		public final Builder distribution(@Nullable String value) {
-			this.distribution = value;
+		public final Builder distribution(Map<String, Double> map) {
+			this.distribution = _mapPutAll(this.distribution, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code distribution}
+		 * <p>
+		 * Adds an entry to <code>distribution</code>.
+		 */
+		public final Builder distribution(String key, Double value) {
+			this.distribution = _mapPut(this.distribution, key, value);
 			return this;
 		}
 
@@ -357,7 +374,8 @@ public class StringStatsAggregate extends AggregateBase implements AggregateVari
 		op.add(Builder::maxLength, JsonpDeserializer.intOrNullDeserializer(0), "max_length");
 		op.add(Builder::avgLength, JsonpDeserializer.doubleOrNullDeserializer(0), "avg_length");
 		op.add(Builder::entropy, JsonpDeserializer.doubleOrNullDeserializer(0), "entropy");
-		op.add(Builder::distribution, JsonpDeserializer.stringDeserializer(), "distribution");
+		op.add(Builder::distribution, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),
+				"distribution");
 		op.add(Builder::minLengthAsString, JsonpDeserializer.stringDeserializer(), "min_length_as_string");
 		op.add(Builder::maxLengthAsString, JsonpDeserializer.stringDeserializer(), "max_length_as_string");
 		op.add(Builder::avgLengthAsString, JsonpDeserializer.stringDeserializer(), "avg_length_as_string");

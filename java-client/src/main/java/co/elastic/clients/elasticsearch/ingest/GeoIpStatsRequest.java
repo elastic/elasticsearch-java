@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * Returns statistical information about geoip databases
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/geo_ip_stats/IngestGeoIpStatsRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#ingest.geo_ip_stats.Request">API
  *      specification</a>
  */
 

@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/AggregationContainer.ts#L99-L185">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.AggregationContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -61,6 +61,10 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 	 */
 	/**
 	 * {@link Aggregation} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.aggregations.AggregationContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {
@@ -80,7 +84,13 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 		BucketSort("bucket_sort"),
 
+		BucketCountKsTest("bucket_count_ks_test"),
+
+		BucketCorrelation("bucket_correlation"),
+
 		Cardinality("cardinality"),
+
+		CategorizeText("categorize_text"),
 
 		Children("children"),
 
@@ -413,6 +423,42 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 	}
 
 	/**
+	 * Is this variant instance of kind {@code bucket_count_ks_test}?
+	 */
+	public boolean isBucketCountKsTest() {
+		return _kind == Kind.BucketCountKsTest;
+	}
+
+	/**
+	 * Get the {@code bucket_count_ks_test} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code bucket_count_ks_test}
+	 *             kind.
+	 */
+	public BucketKsAggregation bucketCountKsTest() {
+		return TaggedUnionUtils.get(this, Kind.BucketCountKsTest);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code bucket_correlation}?
+	 */
+	public boolean isBucketCorrelation() {
+		return _kind == Kind.BucketCorrelation;
+	}
+
+	/**
+	 * Get the {@code bucket_correlation} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code bucket_correlation}
+	 *             kind.
+	 */
+	public BucketCorrelationAggregation bucketCorrelation() {
+		return TaggedUnionUtils.get(this, Kind.BucketCorrelation);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code cardinality}?
 	 */
 	public boolean isCardinality() {
@@ -427,6 +473,24 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 	 */
 	public CardinalityAggregation cardinality() {
 		return TaggedUnionUtils.get(this, Kind.Cardinality);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code categorize_text}?
+	 */
+	public boolean isCategorizeText() {
+		return _kind == Kind.CategorizeText;
+	}
+
+	/**
+	 * Get the {@code categorize_text} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code categorize_text}
+	 *             kind.
+	 */
+	public CategorizeTextAggregation categorizeText() {
+		return TaggedUnionUtils.get(this, Kind.CategorizeText);
 	}
 
 	/**
@@ -1649,6 +1713,28 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return this.bucketSort(fn.apply(new BucketSortAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder bucketCountKsTest(BucketKsAggregation v) {
+			this._kind = Kind.BucketCountKsTest;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder bucketCountKsTest(
+				Function<BucketKsAggregation.Builder, ObjectBuilder<BucketKsAggregation>> fn) {
+			return this.bucketCountKsTest(fn.apply(new BucketKsAggregation.Builder()).build());
+		}
+
+		public ContainerBuilder bucketCorrelation(BucketCorrelationAggregation v) {
+			this._kind = Kind.BucketCorrelation;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder bucketCorrelation(
+				Function<BucketCorrelationAggregation.Builder, ObjectBuilder<BucketCorrelationAggregation>> fn) {
+			return this.bucketCorrelation(fn.apply(new BucketCorrelationAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder cardinality(CardinalityAggregation v) {
 			this._kind = Kind.Cardinality;
 			this._value = v;
@@ -1658,6 +1744,17 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		public ContainerBuilder cardinality(
 				Function<CardinalityAggregation.Builder, ObjectBuilder<CardinalityAggregation>> fn) {
 			return this.cardinality(fn.apply(new CardinalityAggregation.Builder()).build());
+		}
+
+		public ContainerBuilder categorizeText(CategorizeTextAggregation v) {
+			this._kind = Kind.CategorizeText;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder categorizeText(
+				Function<CategorizeTextAggregation.Builder, ObjectBuilder<CategorizeTextAggregation>> fn) {
+			return this.categorizeText(fn.apply(new CategorizeTextAggregation.Builder()).build());
 		}
 
 		public ContainerBuilder children(ChildrenAggregation v) {
@@ -2383,7 +2480,10 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		op.add(Builder::bucketScript, BucketScriptAggregation._DESERIALIZER, "bucket_script");
 		op.add(Builder::bucketSelector, BucketSelectorAggregation._DESERIALIZER, "bucket_selector");
 		op.add(Builder::bucketSort, BucketSortAggregation._DESERIALIZER, "bucket_sort");
+		op.add(Builder::bucketCountKsTest, BucketKsAggregation._DESERIALIZER, "bucket_count_ks_test");
+		op.add(Builder::bucketCorrelation, BucketCorrelationAggregation._DESERIALIZER, "bucket_correlation");
 		op.add(Builder::cardinality, CardinalityAggregation._DESERIALIZER, "cardinality");
+		op.add(Builder::categorizeText, CategorizeTextAggregation._DESERIALIZER, "categorize_text");
 		op.add(Builder::children, ChildrenAggregation._DESERIALIZER, "children");
 		op.add(Builder::composite, CompositeAggregation._DESERIALIZER, "composite");
 		op.add(Builder::cumulativeCardinality, CumulativeCardinalityAggregation._DESERIALIZER,

@@ -40,8 +40,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/geo.ts#L62-L67">API
+ * @see <a href="../../doc-files/api-spec.html#_types.mapping.PointProperty">API
  *      specification</a>
  */
 @JsonpDeserializable

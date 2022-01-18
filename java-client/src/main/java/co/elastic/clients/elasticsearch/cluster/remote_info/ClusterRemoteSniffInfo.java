@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L32-L40">API
+ *      "../../doc-files/api-spec.html#cluster.remote_info.ClusterRemoteSniffInfo">API
  *      specification</a>
  */
 @JsonpDeserializable

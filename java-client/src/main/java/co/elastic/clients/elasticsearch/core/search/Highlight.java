@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/highlighting.ts#L31-L54">API
+ *      "../../doc-files/api-spec.html#_global.search._types.Highlight">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -56,7 +56,7 @@ public class Highlight implements JsonpSerializable {
 	private final Map<String, HighlightField> fields;
 
 	@Nullable
-	private final HighlighterType type;
+	private final String type;
 
 	@Nullable
 	private final String boundaryChars;
@@ -152,7 +152,7 @@ public class Highlight implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public final HighlighterType type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -322,7 +322,7 @@ public class Highlight implements JsonpSerializable {
 		}
 		if (this.type != null) {
 			generator.writeKey("type");
-			this.type.serialize(generator, mapper);
+			generator.write(this.type);
 
 		}
 		if (this.boundaryChars != null) {
@@ -433,7 +433,7 @@ public class Highlight implements JsonpSerializable {
 		private Map<String, HighlightField> fields;
 
 		@Nullable
-		private HighlighterType type;
+		private String type;
 
 		@Nullable
 		private String boundaryChars;
@@ -521,7 +521,7 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public final Builder type(@Nullable HighlighterType value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -529,8 +529,9 @@ public class Highlight implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public final Builder type(Function<HighlighterType.Builder, ObjectBuilder<HighlighterType>> fn) {
-			return this.type(fn.apply(new HighlighterType.Builder()).build());
+		public final Builder type(@Nullable HighlighterType value) {
+			this.type = value == null ? null : value.jsonValue();
+			return this;
 		}
 
 		/**
@@ -732,7 +733,7 @@ public class Highlight implements JsonpSerializable {
 	protected static void setupHighlightDeserializer(ObjectDeserializer<Highlight.Builder> op) {
 
 		op.add(Builder::fields, JsonpDeserializer.stringMapDeserializer(HighlightField._DESERIALIZER), "fields");
-		op.add(Builder::type, HighlighterType._DESERIALIZER, "type");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 		op.add(Builder::boundaryChars, JsonpDeserializer.stringDeserializer(), "boundary_chars");
 		op.add(Builder::boundaryMaxScan, JsonpDeserializer.integerDeserializer(), "boundary_max_scan");
 		op.add(Builder::boundaryScanner, BoundaryScanner._DESERIALIZER, "boundary_scanner");

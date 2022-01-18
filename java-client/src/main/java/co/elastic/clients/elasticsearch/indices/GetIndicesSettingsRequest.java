@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Returns settings for one or more indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/get_settings/IndicesGetSettingsRequest.ts#L24-L43">API
+ * @see <a href="../doc-files/api-spec.html#indices.get_settings.Request">API
  *      specification</a>
  */
 

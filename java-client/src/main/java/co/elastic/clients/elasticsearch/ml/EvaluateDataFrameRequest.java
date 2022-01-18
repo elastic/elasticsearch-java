@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
  * frame analytics. Evaluation requires both a ground truth field and an
  * analytics result field to be present.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/evaluate_data_frame/MlEvaluateDataFrameRequest.ts#L25-L53">API
+ * @see <a href="../doc-files/api-spec.html#ml.evaluate_data_frame.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -90,7 +89,8 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * Required - Defines the index in which the evaluation will be performed.
+	 * Required - Defines the <code>index</code> in which the evaluation will be
+	 * performed.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -99,7 +99,9 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * A query clause that retrieves a subset of data from the source index.
+	 * A query clause that retrieves a subset of data from the source index. See
+	 * <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">QueryDSL</a>.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -167,7 +169,8 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * Required - Defines the index in which the evaluation will be performed.
+		 * Required - Defines the <code>index</code> in which the evaluation will be
+		 * performed.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -177,7 +180,9 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * A query clause that retrieves a subset of data from the source index.
+		 * A query clause that retrieves a subset of data from the source index. See
+		 * <a href=
+		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">QueryDSL</a>.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -187,7 +192,9 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * A query clause that retrieves a subset of data from the source index.
+		 * A query clause that retrieves a subset of data from the source index. See
+		 * <a href=
+		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">QueryDSL</a>.
 		 * <p>
 		 * API name: {@code query}
 		 */

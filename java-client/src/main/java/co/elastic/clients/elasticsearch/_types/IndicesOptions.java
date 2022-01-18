@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * indices) and how to deal with wildcard expressions that resolve to no
  * indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/common.ts#L288-L315">API
+ * @see <a href="../doc-files/api-spec.html#_types.IndicesOptions">API
  *      specification</a>
  */
 @JsonpDeserializable

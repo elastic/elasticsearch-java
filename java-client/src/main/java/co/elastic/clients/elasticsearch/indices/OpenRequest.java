@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Opens an index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/open/IndicesOpenRequest.ts#L24-L41">API
+ * @see <a href="../doc-files/api-spec.html#indices.open.Request">API
  *      specification</a>
  */
 

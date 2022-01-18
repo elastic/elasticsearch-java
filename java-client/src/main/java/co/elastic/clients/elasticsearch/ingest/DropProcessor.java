@@ -36,8 +36,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L198-L198">API
+ * @see <a href="../doc-files/api-spec.html#ingest._types.DropProcessor">API
  *      specification</a>
  */
 @JsonpDeserializable

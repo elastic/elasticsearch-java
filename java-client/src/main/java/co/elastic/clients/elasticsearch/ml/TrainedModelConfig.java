@@ -47,14 +47,14 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/TrainedModel.ts#L58-L88">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.TrainedModelConfig">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class TrainedModelConfig implements JsonpSerializable {
 	private final String modelId;
 
+	@Nullable
 	private final TrainedModelType modelType;
 
 	private final List<String> tags;
@@ -92,12 +92,18 @@ public class TrainedModelConfig implements JsonpSerializable {
 	@Nullable
 	private final TrainedModelConfigMetadata metadata;
 
+	@Nullable
+	private final String modelSizeBytes;
+
+	@Nullable
+	private final TrainedModelLocation location;
+
 	// ---------------------------------------------------------------------------------------------
 
 	protected TrainedModelConfig(AbstractBuilder<?> builder) {
 
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.modelType = ApiTypeHelper.requireNonNull(builder.modelType, this, "modelType");
+		this.modelType = builder.modelType;
 		this.tags = ApiTypeHelper.unmodifiableRequired(builder.tags, this, "tags");
 		this.version = builder.version;
 		this.compressedDefinition = builder.compressedDefinition;
@@ -111,6 +117,8 @@ public class TrainedModelConfig implements JsonpSerializable {
 		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.licenseLevel = builder.licenseLevel;
 		this.metadata = builder.metadata;
+		this.modelSizeBytes = builder.modelSizeBytes;
+		this.location = builder.location;
 
 	}
 
@@ -128,10 +136,11 @@ public class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The model type
+	 * The model type
 	 * <p>
 	 * API name: {@code model_type}
 	 */
+	@Nullable
 	public final TrainedModelType modelType() {
 		return this.modelType;
 	}
@@ -265,6 +274,22 @@ public class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code model_size_bytes}
+	 */
+	@Nullable
+	public final String modelSizeBytes() {
+		return this.modelSizeBytes;
+	}
+
+	/**
+	 * API name: {@code location}
+	 */
+	@Nullable
+	public final TrainedModelLocation location() {
+		return this.location;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -278,8 +303,10 @@ public class TrainedModelConfig implements JsonpSerializable {
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
 
-		generator.writeKey("model_type");
-		this.modelType.serialize(generator, mapper);
+		if (this.modelType != null) {
+			generator.writeKey("model_type");
+			this.modelType.serialize(generator, mapper);
+		}
 		if (ApiTypeHelper.isDefined(this.tags)) {
 			generator.writeKey("tags");
 			generator.writeStartArray();
@@ -352,6 +379,16 @@ public class TrainedModelConfig implements JsonpSerializable {
 			this.metadata.serialize(generator, mapper);
 
 		}
+		if (this.modelSizeBytes != null) {
+			generator.writeKey("model_size_bytes");
+			generator.write(this.modelSizeBytes);
+
+		}
+		if (this.location != null) {
+			generator.writeKey("location");
+			this.location.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -387,6 +424,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 				ObjectBuilderBase {
 		private String modelId;
 
+		@Nullable
 		private TrainedModelType modelType;
 
 		private List<String> tags;
@@ -425,6 +463,12 @@ public class TrainedModelConfig implements JsonpSerializable {
 		@Nullable
 		private TrainedModelConfigMetadata metadata;
 
+		@Nullable
+		private String modelSizeBytes;
+
+		@Nullable
+		private TrainedModelLocation location;
+
 		/**
 		 * Required - Idetifier for the trained model.
 		 * <p>
@@ -436,11 +480,11 @@ public class TrainedModelConfig implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The model type
+		 * The model type
 		 * <p>
 		 * API name: {@code model_type}
 		 */
-		public final BuilderT modelType(TrainedModelType value) {
+		public final BuilderT modelType(@Nullable TrainedModelType value) {
 			this.modelType = value;
 			return self();
 		}
@@ -647,6 +691,29 @@ public class TrainedModelConfig implements JsonpSerializable {
 			return this.metadata(fn.apply(new TrainedModelConfigMetadata.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code model_size_bytes}
+		 */
+		public final BuilderT modelSizeBytes(@Nullable String value) {
+			this.modelSizeBytes = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code location}
+		 */
+		public final BuilderT location(@Nullable TrainedModelLocation value) {
+			this.location = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code location}
+		 */
+		public final BuilderT location(Function<TrainedModelLocation.Builder, ObjectBuilder<TrainedModelLocation>> fn) {
+			return this.location(fn.apply(new TrainedModelLocation.Builder()).build());
+		}
+
 		protected abstract BuilderT self();
 
 	}
@@ -680,6 +747,8 @@ public class TrainedModelConfig implements JsonpSerializable {
 		op.add(AbstractBuilder::input, TrainedModelConfigInput._DESERIALIZER, "input");
 		op.add(AbstractBuilder::licenseLevel, JsonpDeserializer.stringDeserializer(), "license_level");
 		op.add(AbstractBuilder::metadata, TrainedModelConfigMetadata._DESERIALIZER, "metadata");
+		op.add(AbstractBuilder::modelSizeBytes, JsonpDeserializer.stringDeserializer(), "model_size_bytes");
+		op.add(AbstractBuilder::location, TrainedModelLocation._DESERIALIZER, "location");
 
 	}
 

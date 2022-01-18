@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * Adds a node to be shut down. Designed for indirect use by ECE/ESS and ECK.
  * Direct use is not supported.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/shutdown/put_node/ShutdownPutNodeRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#shutdown.put_node.Request">API
  *      specification</a>
  */
 

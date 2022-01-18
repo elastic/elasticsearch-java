@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/delete_by_query_rethrottle/DeleteByQueryRethrottleResponse.ts#L22-L22">API
+ *      "../doc-files/api-spec.html#_global.delete_by_query_rethrottle.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

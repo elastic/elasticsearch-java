@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L285-L288">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.ChiSquareHeuristic">API
  *      specification</a>
  */
 @JsonpDeserializable

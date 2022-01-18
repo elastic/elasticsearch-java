@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves the configuration, stats, and status of rollup jobs.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/get_jobs/GetRollupJobRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#rollup.get_jobs.Request">API
  *      specification</a>
  */
 

@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 /**
  * Explicitly clears the search context for a scroll.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/clear_scroll/ClearScrollRequest.ts#L23-L35">API
+ * @see <a href="../doc-files/api-spec.html#_global.clear_scroll.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

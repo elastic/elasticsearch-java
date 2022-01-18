@@ -35,6 +35,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,12 +45,13 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/ClusterRerouteResponse.ts#L23-L33">API
+ * @see <a href="../doc-files/api-spec.html#cluster.reroute.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class RerouteResponse implements JsonpSerializable {
+	private final boolean acknowledged;
+
 	private final List<RerouteExplanation> explanations;
 
 	private final JsonData state;
@@ -58,6 +60,7 @@ public class RerouteResponse implements JsonpSerializable {
 
 	private RerouteResponse(Builder builder) {
 
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 		this.explanations = ApiTypeHelper.unmodifiable(builder.explanations);
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 
@@ -65,6 +68,13 @@ public class RerouteResponse implements JsonpSerializable {
 
 	public static RerouteResponse of(Function<Builder, ObjectBuilder<RerouteResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - API name: {@code acknowledged}
+	 */
+	public final boolean acknowledged() {
+		return this.acknowledged;
 	}
 
 	/**
@@ -96,6 +106,9 @@ public class RerouteResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("acknowledged");
+		generator.write(this.acknowledged);
+
 		if (ApiTypeHelper.isDefined(this.explanations)) {
 			generator.writeKey("explanations");
 			generator.writeStartArray();
@@ -118,10 +131,20 @@ public class RerouteResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteResponse> {
+		private Boolean acknowledged;
+
 		@Nullable
 		private List<RerouteExplanation> explanations;
 
 		private JsonData state;
+
+		/**
+		 * Required - API name: {@code acknowledged}
+		 */
+		public final Builder acknowledged(boolean value) {
+			this.acknowledged = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code explanations}
@@ -187,6 +210,7 @@ public class RerouteResponse implements JsonpSerializable {
 
 	protected static void setupRerouteResponseDeserializer(ObjectDeserializer<RerouteResponse.Builder> op) {
 
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::explanations, JsonpDeserializer.arrayDeserializer(RerouteExplanation._DESERIALIZER),
 				"explanations");
 		op.add(Builder::state, JsonData._DESERIALIZER, "state");

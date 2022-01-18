@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/simulate_template/IndicesSimulateTemplateResponse.ts#L39-L42">API
+ *      "../../doc-files/api-spec.html#indices.simulate_template.Overlapping">API
  *      specification</a>
  */
 @JsonpDeserializable

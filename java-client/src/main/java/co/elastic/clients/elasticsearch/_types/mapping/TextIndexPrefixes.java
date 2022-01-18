@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/core.ts#L251-L254">API
+ *      "../../doc-files/api-spec.html#_types.mapping.TextIndexPrefixes">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L30-L109">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.Aggregate">API
  *      specification</a>
  */
 
@@ -58,6 +58,10 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 	 */
 	/**
 	 * {@link Aggregate} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.aggregations.Aggregate">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {
@@ -137,6 +141,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 
 		Nested("nested"),
 
+		Parent("parent"),
+
 		PercentilesBucket("percentiles_bucket"),
 
 		Range("range"),
@@ -178,6 +184,8 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 		TopMetrics("top_metrics"),
 
 		Umrareterms("umrareterms"),
+
+		UnmappedSampler("unmapped_sampler"),
 
 		Umsigterms("umsigterms"),
 
@@ -889,6 +897,23 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 	}
 
 	/**
+	 * Is this variant instance of kind {@code parent}?
+	 */
+	public boolean isParent() {
+		return _kind == Kind.Parent;
+	}
+
+	/**
+	 * Get the {@code parent} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code parent} kind.
+	 */
+	public ParentAggregate parent() {
+		return TaggedUnionUtils.get(this, Kind.Parent);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code percentiles_bucket}?
 	 */
 	public boolean isPercentilesBucket() {
@@ -1247,6 +1272,24 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 	 */
 	public UnmappedRareTermsAggregate umrareterms() {
 		return TaggedUnionUtils.get(this, Kind.Umrareterms);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code unmapped_sampler}?
+	 */
+	public boolean isUnmappedSampler() {
+		return _kind == Kind.UnmappedSampler;
+	}
+
+	/**
+	 * Get the {@code unmapped_sampler} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code unmapped_sampler}
+	 *             kind.
+	 */
+	public UnmappedSamplerAggregate unmappedSampler() {
+		return TaggedUnionUtils.get(this, Kind.UnmappedSampler);
 	}
 
 	/**
@@ -1758,6 +1801,16 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this.nested(fn.apply(new NestedAggregate.Builder()).build());
 		}
 
+		public ObjectBuilder<Aggregate> parent(ParentAggregate v) {
+			this._kind = Kind.Parent;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Aggregate> parent(Function<ParentAggregate.Builder, ObjectBuilder<ParentAggregate>> fn) {
+			return this.parent(fn.apply(new ParentAggregate.Builder()).build());
+		}
+
 		public ObjectBuilder<Aggregate> percentilesBucket(PercentilesBucketAggregate v) {
 			this._kind = Kind.PercentilesBucket;
 			this._value = v;
@@ -1984,6 +2037,17 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 			return this.umrareterms(fn.apply(new UnmappedRareTermsAggregate.Builder()).build());
 		}
 
+		public ObjectBuilder<Aggregate> unmappedSampler(UnmappedSamplerAggregate v) {
+			this._kind = Kind.UnmappedSampler;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Aggregate> unmappedSampler(
+				Function<UnmappedSamplerAggregate.Builder, ObjectBuilder<UnmappedSamplerAggregate>> fn) {
+			return this.unmappedSampler(fn.apply(new UnmappedSamplerAggregate.Builder()).build());
+		}
+
 		public ObjectBuilder<Aggregate> umsigterms(UnmappedSignificantTermsAggregate v) {
 			this._kind = Kind.Umsigterms;
 			this._value = v;
@@ -2088,6 +2152,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 		deserializers.put("missing", MissingAggregate._DESERIALIZER);
 		deserializers.put("multi_terms", MultiTermsAggregate._DESERIALIZER);
 		deserializers.put("nested", NestedAggregate._DESERIALIZER);
+		deserializers.put("parent", ParentAggregate._DESERIALIZER);
 		deserializers.put("percentiles_bucket", PercentilesBucketAggregate._DESERIALIZER);
 		deserializers.put("range", RangeAggregate._DESERIALIZER);
 		deserializers.put("rate", RateAggregate._DESERIALIZER);
@@ -2109,6 +2174,7 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 		deserializers.put("top_hits", TopHitsAggregate._DESERIALIZER);
 		deserializers.put("top_metrics", TopMetricsAggregate._DESERIALIZER);
 		deserializers.put("umrareterms", UnmappedRareTermsAggregate._DESERIALIZER);
+		deserializers.put("unmapped_sampler", UnmappedSamplerAggregate._DESERIALIZER);
 		deserializers.put("umsigterms", UnmappedSignificantTermsAggregate._DESERIALIZER);
 		deserializers.put("umterms", UnmappedTermsAggregate._DESERIALIZER);
 		deserializers.put("value_count", ValueCountAggregate._DESERIALIZER);

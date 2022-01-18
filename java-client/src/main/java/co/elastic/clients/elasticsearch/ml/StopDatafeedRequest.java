@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
  * data from Elasticsearch. A datafeed can be started and stopped multiple times
  * throughout its lifecycle.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/stop_datafeed/MlStopDatafeedRequest.ts#L24-L78">API
+ * @see <a href="../doc-files/api-spec.html#ml.stop_datafeed.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

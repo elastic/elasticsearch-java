@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/create_repository/SnapshotCreateRepositoryResponse.ts#L22-L22">API
+ *      "../doc-files/api-spec.html#snapshot.create_repository.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

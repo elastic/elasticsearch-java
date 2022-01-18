@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
  * Result of the <code>cumulative_cardinality</code> aggregation
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L686-L694">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.CumulativeCardinalityAggregate">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -55,8 +55,7 @@ import javax.annotation.Nullable;
  * <code>datafeed_config</code>, you must have read index privileges on the
  * source index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_job/MlPutJobRequest.ts#L30-L111">API
+ * @see <a href="../doc-files/api-spec.html#ml.put_job.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

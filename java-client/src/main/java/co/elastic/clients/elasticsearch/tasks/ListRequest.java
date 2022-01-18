@@ -49,10 +49,10 @@ import javax.annotation.Nullable;
 // typedef: tasks.list.Request
 
 /**
- * Returns a list of tasks.
+ * The task management API returns information about tasks currently executing
+ * on one or more nodes in the cluster.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/list/ListTasksRequest.ts#L25-L40">API
+ * @see <a href="../doc-files/api-spec.html#tasks.list.Request">API
  *      specification</a>
  */
 
@@ -65,7 +65,10 @@ public class ListRequest extends RequestBase {
 	@Nullable
 	private final GroupBy groupBy;
 
-	private final List<String> nodes;
+	@Nullable
+	private final Time masterTimeout;
+
+	private final List<String> nodeId;
 
 	@Nullable
 	private final String parentTaskId;
@@ -83,7 +86,8 @@ public class ListRequest extends RequestBase {
 		this.actions = ApiTypeHelper.unmodifiable(builder.actions);
 		this.detailed = builder.detailed;
 		this.groupBy = builder.groupBy;
-		this.nodes = ApiTypeHelper.unmodifiable(builder.nodes);
+		this.masterTimeout = builder.masterTimeout;
+		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.parentTaskId = builder.parentTaskId;
 		this.timeout = builder.timeout;
 		this.waitForCompletion = builder.waitForCompletion;
@@ -95,8 +99,8 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of actions that should be returned. Leave empty to
-	 * return all.
+	 * Comma-separated list or wildcard expression of actions used to limit the
+	 * request.
 	 * <p>
 	 * API name: {@code actions}
 	 */
@@ -105,7 +109,8 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Return detailed task information (default: false)
+	 * If <code>true</code>, the response includes detailed information about shard
+	 * recoveries.
 	 * <p>
 	 * API name: {@code detailed}
 	 */
@@ -115,7 +120,7 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Group tasks by nodes or parent/child relationships
+	 * Key used to group tasks in the response.
 	 * <p>
 	 * API name: {@code group_by}
 	 */
@@ -125,19 +130,28 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of node IDs or names to limit the returned
-	 * information; use <code>_local</code> to return information from the node
-	 * you're connecting to, leave empty to get information from all nodes
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
 	 * <p>
-	 * API name: {@code nodes}
+	 * API name: {@code master_timeout}
 	 */
-	public final List<String> nodes() {
-		return this.nodes;
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
-	 * Return tasks with specified parent task id (node_id:task_number). Set to -1
-	 * to return all.
+	 * Comma-separated list of node IDs or names used to limit returned information.
+	 * <p>
+	 * API name: {@code node_id}
+	 */
+	public final List<String> nodeId() {
+		return this.nodeId;
+	}
+
+	/**
+	 * Parent task ID used to limit returned information. To return all tasks, omit
+	 * this parameter or use a value of <code>-1</code>.
 	 * <p>
 	 * API name: {@code parent_task_id}
 	 */
@@ -147,7 +161,8 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -157,7 +172,7 @@ public class ListRequest extends RequestBase {
 	}
 
 	/**
-	 * Wait for the matching tasks to complete (default: false)
+	 * If <code>true</code>, the request blocks until the operation is complete.
 	 * <p>
 	 * API name: {@code wait_for_completion}
 	 */
@@ -183,7 +198,10 @@ public class ListRequest extends RequestBase {
 		private GroupBy groupBy;
 
 		@Nullable
-		private List<String> nodes;
+		private Time masterTimeout;
+
+		@Nullable
+		private List<String> nodeId;
 
 		@Nullable
 		private String parentTaskId;
@@ -195,8 +213,8 @@ public class ListRequest extends RequestBase {
 		private Boolean waitForCompletion;
 
 		/**
-		 * A comma-separated list of actions that should be returned. Leave empty to
-		 * return all.
+		 * Comma-separated list or wildcard expression of actions used to limit the
+		 * request.
 		 * <p>
 		 * API name: {@code actions}
 		 * <p>
@@ -208,8 +226,8 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of actions that should be returned. Leave empty to
-		 * return all.
+		 * Comma-separated list or wildcard expression of actions used to limit the
+		 * request.
 		 * <p>
 		 * API name: {@code actions}
 		 * <p>
@@ -221,7 +239,8 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Return detailed task information (default: false)
+		 * If <code>true</code>, the response includes detailed information about shard
+		 * recoveries.
 		 * <p>
 		 * API name: {@code detailed}
 		 */
@@ -231,7 +250,7 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Group tasks by nodes or parent/child relationships
+		 * Key used to group tasks in the response.
 		 * <p>
 		 * API name: {@code group_by}
 		 */
@@ -241,36 +260,53 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
-		 * API name: {@code nodes}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>nodes</code>.
+		 * API name: {@code master_timeout}
 		 */
-		public final Builder nodes(List<String> list) {
-			this.nodes = _listAddAll(this.nodes, list);
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
 			return this;
 		}
 
 		/**
-		 * A comma-separated list of node IDs or names to limit the returned
-		 * information; use <code>_local</code> to return information from the node
-		 * you're connecting to, leave empty to get information from all nodes
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
 		 * <p>
-		 * API name: {@code nodes}
-		 * <p>
-		 * Adds one or more values to <code>nodes</code>.
+		 * API name: {@code master_timeout}
 		 */
-		public final Builder nodes(String value, String... values) {
-			this.nodes = _listAdd(this.nodes, value, values);
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(List<String> list) {
+			this.nodeId = _listAddAll(this.nodeId, list);
 			return this;
 		}
 
 		/**
-		 * Return tasks with specified parent task id (node_id:task_number). Set to -1
-		 * to return all.
+		 * Comma-separated list of node IDs or names used to limit returned information.
+		 * <p>
+		 * API name: {@code node_id}
+		 * <p>
+		 * Adds one or more values to <code>nodeId</code>.
+		 */
+		public final Builder nodeId(String value, String... values) {
+			this.nodeId = _listAdd(this.nodeId, value, values);
+			return this;
+		}
+
+		/**
+		 * Parent task ID used to limit returned information. To return all tasks, omit
+		 * this parameter or use a value of <code>-1</code>.
 		 * <p>
 		 * API name: {@code parent_task_id}
 		 */
@@ -280,7 +316,8 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -290,7 +327,8 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -299,7 +337,7 @@ public class ListRequest extends RequestBase {
 		}
 
 		/**
-		 * Wait for the matching tasks to complete (default: false)
+		 * If <code>true</code>, the request blocks until the operation is complete.
 		 * <p>
 		 * API name: {@code wait_for_completion}
 		 */
@@ -344,8 +382,8 @@ public class ListRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ApiTypeHelper.isDefined(request.nodes)) {
-					params.put("nodes", request.nodes.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.parentTaskId != null) {
 					params.put("parent_task_id", request.parentTaskId);
@@ -364,6 +402,9 @@ public class ListRequest extends RequestBase {
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
+				}
+				if (ApiTypeHelper.isDefined(request.nodeId)) {
+					params.put("node_id", request.nodeId.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

@@ -57,8 +57,7 @@ import javax.annotation.Nullable;
  * information you receive is the <code>datafeed_id</code> and the
  * <code>state</code>. This API returns a maximum of 10,000 datafeeds.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_datafeed_stats/MlGetDatafeedStatsRequest.ts#L23-L60">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_datafeed_stats.Request">API
  *      specification</a>
  */
 

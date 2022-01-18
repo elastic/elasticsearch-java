@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role/types.ts#L47-L50">API
+ *      "../../doc-files/api-spec.html#security.get_role.RoleTemplate">API
  *      specification</a>
  */
 @JsonpDeserializable

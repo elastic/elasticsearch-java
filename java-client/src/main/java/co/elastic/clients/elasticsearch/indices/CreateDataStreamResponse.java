@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/create_data_stream/IndicesCreateDataStreamResponse.ts#L22-L22">API
+ *      "../doc-files/api-spec.html#indices.create_data_stream.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

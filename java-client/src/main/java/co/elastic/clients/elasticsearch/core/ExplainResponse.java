@@ -48,16 +48,12 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/explain/ExplainResponse.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#_global.explain.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class ExplainResponse<TDocument> implements JsonpSerializable {
 	private final String index;
-
-	@Nullable
-	private final String type;
 
 	private final String id;
 
@@ -77,7 +73,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	private ExplainResponse(Builder<TDocument> builder) {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.type = builder.type;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.matched = ApiTypeHelper.requireNonNull(builder.matched, this, "matched");
 		this.explanation = builder.explanation;
@@ -96,14 +91,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	 */
 	public final String index() {
 		return this.index;
-	}
-
-	/**
-	 * API name: {@code _type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
 	}
 
 	/**
@@ -150,11 +137,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 		generator.writeKey("_index");
 		generator.write(this.index);
 
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
-
-		}
 		generator.writeKey("_id");
 		generator.write(this.id);
 
@@ -185,9 +167,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 				ObjectBuilder<ExplainResponse<TDocument>> {
 		private String index;
 
-		@Nullable
-		private String type;
-
 		private String id;
 
 		private Boolean matched;
@@ -206,14 +185,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 		 */
 		public final Builder<TDocument> index(String value) {
 			this.index = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _type}
-		 */
-		public final Builder<TDocument> type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -310,7 +281,6 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::matched, JsonpDeserializer.booleanDeserializer(), "matched");
 		op.add(Builder::explanation, ExplanationDetail._DESERIALIZER, "explanation");

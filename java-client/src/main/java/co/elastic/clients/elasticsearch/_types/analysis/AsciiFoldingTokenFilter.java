@@ -40,7 +40,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L167-L170">API
+ *      "../../doc-files/api-spec.html#_types.analysis.AsciiFoldingTokenFilter">API
  *      specification</a>
  */
 @JsonpDeserializable

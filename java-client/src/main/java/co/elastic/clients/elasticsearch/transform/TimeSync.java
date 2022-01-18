@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/_types/Transform.ts#L128-L133">API
+ * @see <a href="../doc-files/api-spec.html#transform._types.TimeSync">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -87,7 +86,9 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 
 	/**
 	 * Required - The date field that is used to identify new documents in the
-	 * source.
+	 * source. In general, it’s a good idea to use a field that contains the ingest
+	 * timestamp. If you use a different field, you might need to set the delay such
+	 * that it accounts for data transmission delays.
 	 * <p>
 	 * API name: {@code field}
 	 */
@@ -149,7 +150,9 @@ public class TimeSync implements SyncVariant, JsonpSerializable {
 
 		/**
 		 * Required - The date field that is used to identify new documents in the
-		 * source.
+		 * source. In general, it’s a good idea to use a field that contains the ingest
+		 * timestamp. If you use a different field, you might need to set the delay such
+		 * that it accounts for data transmission delays.
 		 * <p>
 		 * API name: {@code field}
 		 */

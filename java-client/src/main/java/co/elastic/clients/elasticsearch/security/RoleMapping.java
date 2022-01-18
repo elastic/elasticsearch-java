@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/RoleMapping.ts#L25-L31">API
+ * @see <a href="../doc-files/api-spec.html#security._types.RoleMapping">API
  *      specification</a>
  */
 @JsonpDeserializable

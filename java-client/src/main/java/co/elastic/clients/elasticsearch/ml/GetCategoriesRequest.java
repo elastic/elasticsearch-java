@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves anomaly detection job results for one or more categories.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_categories/MlGetCategoriesRequest.ts#L25-L65">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_categories.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -344,11 +343,11 @@ public class GetCategoriesRequest extends RequestBase implements JsonpSerializab
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
-				}
 				if (request.partitionFieldValue != null) {
 					params.put("partition_field_value", request.partitionFieldValue);
+				}
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));

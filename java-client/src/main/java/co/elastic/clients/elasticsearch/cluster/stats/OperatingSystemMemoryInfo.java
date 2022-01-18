@@ -37,13 +37,14 @@ import java.lang.Integer;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: cluster.stats.OperatingSystemMemoryInfo
 
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L278-L284">API
+ *      "../../doc-files/api-spec.html#cluster.stats.OperatingSystemMemoryInfo">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -58,6 +59,9 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 
 	private final int usedPercent;
 
+	@Nullable
+	private final Long adjustedTotalInBytes;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private OperatingSystemMemoryInfo(Builder builder) {
@@ -67,6 +71,7 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
 		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
 		this.usedPercent = ApiTypeHelper.requireNonNull(builder.usedPercent, this, "usedPercent");
+		this.adjustedTotalInBytes = builder.adjustedTotalInBytes;
 
 	}
 
@@ -110,6 +115,14 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code adjusted_total_in_bytes}
+	 */
+	@Nullable
+	public final Long adjustedTotalInBytes() {
+		return this.adjustedTotalInBytes;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -135,6 +148,12 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		generator.writeKey("used_percent");
 		generator.write(this.usedPercent);
 
+		if (this.adjustedTotalInBytes != null) {
+			generator.writeKey("adjusted_total_in_bytes");
+			generator.write(this.adjustedTotalInBytes);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -153,6 +172,9 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		private Long usedInBytes;
 
 		private Integer usedPercent;
+
+		@Nullable
+		private Long adjustedTotalInBytes;
 
 		/**
 		 * Required - API name: {@code free_in_bytes}
@@ -195,6 +217,14 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code adjusted_total_in_bytes}
+		 */
+		public final Builder adjustedTotalInBytes(@Nullable Long value) {
+			this.adjustedTotalInBytes = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link OperatingSystemMemoryInfo}.
 		 *
 		 * @throws NullPointerException
@@ -223,6 +253,7 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		op.add(Builder::totalInBytes, JsonpDeserializer.longDeserializer(), "total_in_bytes");
 		op.add(Builder::usedInBytes, JsonpDeserializer.longDeserializer(), "used_in_bytes");
 		op.add(Builder::usedPercent, JsonpDeserializer.integerDeserializer(), "used_percent");
+		op.add(Builder::adjustedTotalInBytes, JsonpDeserializer.longDeserializer(), "adjusted_total_in_bytes");
 
 	}
 

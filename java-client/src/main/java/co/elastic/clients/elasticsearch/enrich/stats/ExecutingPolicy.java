@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.enrich.stats;
 
-import co.elastic.clients.elasticsearch.tasks.Info;
+import co.elastic.clients.elasticsearch.tasks.TaskInfo;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -43,15 +43,14 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/enrich/stats/types.ts#L24-L27">API
+ * @see <a href="../../doc-files/api-spec.html#enrich.stats.ExecutingPolicy">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class ExecutingPolicy implements JsonpSerializable {
 	private final String name;
 
-	private final Info task;
+	private final TaskInfo task;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +75,7 @@ public class ExecutingPolicy implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code task}
 	 */
-	public final Info task() {
+	public final TaskInfo task() {
 		return this.task;
 	}
 
@@ -108,7 +107,7 @@ public class ExecutingPolicy implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutingPolicy> {
 		private String name;
 
-		private Info task;
+		private TaskInfo task;
 
 		/**
 		 * Required - API name: {@code name}
@@ -121,7 +120,7 @@ public class ExecutingPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code task}
 		 */
-		public final Builder task(Info value) {
+		public final Builder task(TaskInfo value) {
 			this.task = value;
 			return this;
 		}
@@ -129,8 +128,8 @@ public class ExecutingPolicy implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code task}
 		 */
-		public final Builder task(Function<Info.Builder, ObjectBuilder<Info>> fn) {
-			return this.task(fn.apply(new Info.Builder()).build());
+		public final Builder task(Function<TaskInfo.Builder, ObjectBuilder<TaskInfo>> fn) {
+			return this.task(fn.apply(new TaskInfo.Builder()).build());
 		}
 
 		/**
@@ -157,7 +156,7 @@ public class ExecutingPolicy implements JsonpSerializable {
 	protected static void setupExecutingPolicyDeserializer(ObjectDeserializer<ExecutingPolicy.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::task, Info._DESERIALIZER, "task");
+		op.add(Builder::task, TaskInfo._DESERIALIZER, "task");
 
 	}
 

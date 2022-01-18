@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/TypeMapping.ts#L34-L53">API
+ * @see <a href="../../doc-files/api-spec.html#_types.mapping.TypeMapping">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -92,6 +91,9 @@ public class TypeMapping implements JsonpSerializable {
 	@Nullable
 	private final Boolean enabled;
 
+	@Nullable
+	private final DataStreamTimestamp dataStreamTimestamp;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TypeMapping(Builder builder) {
@@ -111,6 +113,7 @@ public class TypeMapping implements JsonpSerializable {
 		this.source = builder.source;
 		this.runtime = ApiTypeHelper.unmodifiable(builder.runtime);
 		this.enabled = builder.enabled;
+		this.dataStreamTimestamp = builder.dataStreamTimestamp;
 
 	}
 
@@ -234,6 +237,14 @@ public class TypeMapping implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code _data_stream_timestamp}
+	 */
+	@Nullable
+	public final DataStreamTimestamp dataStreamTimestamp() {
+		return this.dataStreamTimestamp;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -354,6 +365,11 @@ public class TypeMapping implements JsonpSerializable {
 			generator.write(this.enabled);
 
 		}
+		if (this.dataStreamTimestamp != null) {
+			generator.writeKey("_data_stream_timestamp");
+			this.dataStreamTimestamp.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -408,6 +424,9 @@ public class TypeMapping implements JsonpSerializable {
 
 		@Nullable
 		private Boolean enabled;
+
+		@Nullable
+		private DataStreamTimestamp dataStreamTimestamp;
 
 		/**
 		 * API name: {@code all_field}
@@ -651,6 +670,22 @@ public class TypeMapping implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code _data_stream_timestamp}
+		 */
+		public final Builder dataStreamTimestamp(@Nullable DataStreamTimestamp value) {
+			this.dataStreamTimestamp = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code _data_stream_timestamp}
+		 */
+		public final Builder dataStreamTimestamp(
+				Function<DataStreamTimestamp.Builder, ObjectBuilder<DataStreamTimestamp>> fn) {
+			return this.dataStreamTimestamp(fn.apply(new DataStreamTimestamp.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link TypeMapping}.
 		 *
 		 * @throws NullPointerException
@@ -690,6 +725,7 @@ public class TypeMapping implements JsonpSerializable {
 		op.add(Builder::source, SourceField._DESERIALIZER, "_source");
 		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime");
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::dataStreamTimestamp, DataStreamTimestamp._DESERIALIZER, "_data_stream_timestamp");
 
 	}
 

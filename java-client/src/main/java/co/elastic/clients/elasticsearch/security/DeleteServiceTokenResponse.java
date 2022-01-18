@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_service_token/DeleteServiceTokenResponse.ts#L20-L22">API
+ *      "../doc-files/api-spec.html#security.delete_service_token.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

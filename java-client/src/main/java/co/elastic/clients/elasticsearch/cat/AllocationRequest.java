@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
  * Provides a snapshot of how many shards are allocated to each data node and
  * how much disk space they are using.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/allocation/CatAllocationRequest.ts#L23-L35">API
+ * @see <a href="../doc-files/api-spec.html#cat.allocation.Request">API
  *      specification</a>
  */
 

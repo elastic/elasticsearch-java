@@ -170,6 +170,13 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link KnnQuery knn} {@code Query} variant.
+	 */
+	public static KnnQuery.Builder knn() {
+		return new KnnQuery.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link MatchQuery match} {@code Query} variant.
 	 */
 	public static MatchQuery.Builder match() {
@@ -428,6 +435,13 @@ public class QueryBuilders {
 	 */
 	public static WildcardQuery.Builder wildcard() {
 		return new WildcardQuery.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link WrapperQuery wrapper} {@code Query} variant.
+	 */
+	public static WrapperQuery.Builder wrapper() {
+		return new WrapperQuery.Builder();
 	}
 
 	/**

@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/TemplateMapping.ts#L27-L34">API
+ * @see <a href="../doc-files/api-spec.html#indices._types.TemplateMapping">API
  *      specification</a>
  */
 @JsonpDeserializable

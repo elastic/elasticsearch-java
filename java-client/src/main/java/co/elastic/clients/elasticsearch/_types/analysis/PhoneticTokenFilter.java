@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/phonetic-plugin.ts#L64-L72">API
+ *      "../../doc-files/api-spec.html#_types.analysis.PhoneticTokenFilter">API
  *      specification</a>
  */
 @JsonpDeserializable

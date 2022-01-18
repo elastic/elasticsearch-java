@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -47,13 +48,15 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/get/types.ts#L25-L38">API
+ *      "../../doc-files/api-spec.html#license.get.LicenseInformation">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class LicenseInformation implements JsonpSerializable {
+	@Nullable
 	private final String expiryDate;
 
+	@Nullable
 	private final String expiryDateInMillis;
 
 	private final String issueDate;
@@ -81,8 +84,8 @@ public class LicenseInformation implements JsonpSerializable {
 
 	private LicenseInformation(Builder builder) {
 
-		this.expiryDate = ApiTypeHelper.requireNonNull(builder.expiryDate, this, "expiryDate");
-		this.expiryDateInMillis = ApiTypeHelper.requireNonNull(builder.expiryDateInMillis, this, "expiryDateInMillis");
+		this.expiryDate = builder.expiryDate;
+		this.expiryDateInMillis = builder.expiryDateInMillis;
 		this.issueDate = ApiTypeHelper.requireNonNull(builder.issueDate, this, "issueDate");
 		this.issueDateInMillis = ApiTypeHelper.requireNonNull(builder.issueDateInMillis, this, "issueDateInMillis");
 		this.issuedTo = ApiTypeHelper.requireNonNull(builder.issuedTo, this, "issuedTo");
@@ -101,15 +104,17 @@ public class LicenseInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code expiry_date}
+	 * API name: {@code expiry_date}
 	 */
+	@Nullable
 	public final String expiryDate() {
 		return this.expiryDate;
 	}
 
 	/**
-	 * Required - API name: {@code expiry_date_in_millis}
+	 * API name: {@code expiry_date_in_millis}
 	 */
+	@Nullable
 	public final String expiryDateInMillis() {
 		return this.expiryDateInMillis;
 	}
@@ -151,6 +156,8 @@ public class LicenseInformation implements JsonpSerializable {
 
 	/**
 	 * API name: {@code max_resource_units}
+	 * <p>
+	 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 	 */
 	@Nullable
 	public final Integer maxResourceUnits() {
@@ -196,12 +203,16 @@ public class LicenseInformation implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("expiry_date");
-		generator.write(this.expiryDate);
+		if (this.expiryDate != null) {
+			generator.writeKey("expiry_date");
+			generator.write(this.expiryDate);
 
-		generator.writeKey("expiry_date_in_millis");
-		generator.write(this.expiryDateInMillis);
+		}
+		if (this.expiryDateInMillis != null) {
+			generator.writeKey("expiry_date_in_millis");
+			generator.write(this.expiryDateInMillis);
 
+		}
 		generator.writeKey("issue_date");
 		generator.write(this.issueDate);
 
@@ -219,8 +230,7 @@ public class LicenseInformation implements JsonpSerializable {
 
 		if (this.maxResourceUnits != null) {
 			generator.writeKey("max_resource_units");
-			generator.write(this.maxResourceUnits);
-
+			JsonpUtils.serializeIntOrNull(generator, this.maxResourceUnits, 0);
 		}
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
@@ -241,8 +251,10 @@ public class LicenseInformation implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LicenseInformation> {
+		@Nullable
 		private String expiryDate;
 
+		@Nullable
 		private String expiryDateInMillis;
 
 		private String issueDate;
@@ -267,17 +279,17 @@ public class LicenseInformation implements JsonpSerializable {
 		private String startDateInMillis;
 
 		/**
-		 * Required - API name: {@code expiry_date}
+		 * API name: {@code expiry_date}
 		 */
-		public final Builder expiryDate(String value) {
+		public final Builder expiryDate(@Nullable String value) {
 			this.expiryDate = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code expiry_date_in_millis}
+		 * API name: {@code expiry_date_in_millis}
 		 */
-		public final Builder expiryDateInMillis(String value) {
+		public final Builder expiryDateInMillis(@Nullable String value) {
 			this.expiryDateInMillis = value;
 			return this;
 		}
@@ -324,6 +336,8 @@ public class LicenseInformation implements JsonpSerializable {
 
 		/**
 		 * API name: {@code max_resource_units}
+		 * <p>
+		 * Defaults to {@code 0} if parsed from a JSON {@code null} value.
 		 */
 		public final Builder maxResourceUnits(@Nullable Integer value) {
 			this.maxResourceUnits = value;
@@ -392,7 +406,7 @@ public class LicenseInformation implements JsonpSerializable {
 		op.add(Builder::issuedTo, JsonpDeserializer.stringDeserializer(), "issued_to");
 		op.add(Builder::issuer, JsonpDeserializer.stringDeserializer(), "issuer");
 		op.add(Builder::maxNodes, JsonpDeserializer.longDeserializer(), "max_nodes");
-		op.add(Builder::maxResourceUnits, JsonpDeserializer.integerDeserializer(), "max_resource_units");
+		op.add(Builder::maxResourceUnits, JsonpDeserializer.intOrNullDeserializer(0), "max_resource_units");
 		op.add(Builder::status, LicenseStatus._DESERIALIZER, "status");
 		op.add(Builder::type, LicenseType._DESERIALIZER, "type");
 		op.add(Builder::uid, JsonpDeserializer.stringDeserializer(), "uid");

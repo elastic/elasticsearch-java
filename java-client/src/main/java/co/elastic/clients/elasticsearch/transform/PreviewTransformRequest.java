@@ -26,8 +26,6 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
-import co.elastic.clients.elasticsearch.core.reindex.Destination;
-import co.elastic.clients.elasticsearch.core.reindex.Source;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -40,7 +38,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,7 +50,7 @@ import javax.annotation.Nullable;
  * Previews a transform.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/preview_transform/PreviewTransformRequest.ts#L32-L64">API
+ *      "../doc-files/api-spec.html#transform.preview_transform.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -84,6 +83,9 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	private final Sync sync;
 
 	@Nullable
+	private final Time timeout;
+
+	@Nullable
 	private final String transformId;
 
 	// ---------------------------------------------------------------------------------------------
@@ -99,6 +101,7 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		this.settings = builder.settings;
 		this.source = builder.source;
 		this.sync = builder.sync;
+		this.timeout = builder.timeout;
 		this.transformId = builder.transformId;
 
 	}
@@ -204,6 +207,17 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
 	 * The id of the transform to preview.
 	 * <p>
 	 * API name: {@code transform_id}
@@ -305,6 +319,9 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 
 		@Nullable
 		private Sync sync;
+
+		@Nullable
+		private Time timeout;
 
 		@Nullable
 		private String transformId;
@@ -484,6 +501,27 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * The id of the transform to preview.
 		 * <p>
 		 * API name: {@code transform_id}
@@ -572,7 +610,11 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PreviewTransformResponse._DESERIALIZER);
 

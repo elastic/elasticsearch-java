@@ -35,20 +35,28 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.TransformIndexerStats
 
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform_stats/types.ts#L42-L58">API
+ *      "../../doc-files/api-spec.html#transform.get_transform_stats.TransformIndexerStats">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class TransformIndexerStats implements JsonpSerializable {
+	@Nullable
+	private final String deleteTimeInMs;
+
 	private final long documentsIndexed;
+
+	@Nullable
+	private final Long documentsDeleted;
 
 	private final long documentsProcessed;
 
@@ -82,7 +90,9 @@ public class TransformIndexerStats implements JsonpSerializable {
 
 	private TransformIndexerStats(Builder builder) {
 
+		this.deleteTimeInMs = builder.deleteTimeInMs;
 		this.documentsIndexed = ApiTypeHelper.requireNonNull(builder.documentsIndexed, this, "documentsIndexed");
+		this.documentsDeleted = builder.documentsDeleted;
 		this.documentsProcessed = ApiTypeHelper.requireNonNull(builder.documentsProcessed, this, "documentsProcessed");
 		this.exponentialAvgCheckpointDurationMs = ApiTypeHelper
 				.requireNonNull(builder.exponentialAvgCheckpointDurationMs, this, "exponentialAvgCheckpointDurationMs");
@@ -108,10 +118,26 @@ public class TransformIndexerStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code delete_time_in_ms}
+	 */
+	@Nullable
+	public final String deleteTimeInMs() {
+		return this.deleteTimeInMs;
+	}
+
+	/**
 	 * Required - API name: {@code documents_indexed}
 	 */
 	public final long documentsIndexed() {
 		return this.documentsIndexed;
+	}
+
+	/**
+	 * API name: {@code documents_deleted}
+	 */
+	@Nullable
+	public final Long documentsDeleted() {
+		return this.documentsDeleted;
 	}
 
 	/**
@@ -223,9 +249,19 @@ public class TransformIndexerStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.deleteTimeInMs != null) {
+			generator.writeKey("delete_time_in_ms");
+			generator.write(this.deleteTimeInMs);
+
+		}
 		generator.writeKey("documents_indexed");
 		generator.write(this.documentsIndexed);
 
+		if (this.documentsDeleted != null) {
+			generator.writeKey("documents_deleted");
+			generator.write(this.documentsDeleted);
+
+		}
 		generator.writeKey("documents_processed");
 		generator.write(this.documentsProcessed);
 
@@ -277,7 +313,13 @@ public class TransformIndexerStats implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformIndexerStats> {
+		@Nullable
+		private String deleteTimeInMs;
+
 		private Long documentsIndexed;
+
+		@Nullable
+		private Long documentsDeleted;
 
 		private Long documentsProcessed;
 
@@ -308,10 +350,26 @@ public class TransformIndexerStats implements JsonpSerializable {
 		private Long triggerCount;
 
 		/**
+		 * API name: {@code delete_time_in_ms}
+		 */
+		public final Builder deleteTimeInMs(@Nullable String value) {
+			this.deleteTimeInMs = value;
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code documents_indexed}
 		 */
 		public final Builder documentsIndexed(long value) {
 			this.documentsIndexed = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code documents_deleted}
+		 */
+		public final Builder documentsDeleted(@Nullable Long value) {
+			this.documentsDeleted = value;
 			return this;
 		}
 
@@ -450,7 +508,9 @@ public class TransformIndexerStats implements JsonpSerializable {
 
 	protected static void setupTransformIndexerStatsDeserializer(ObjectDeserializer<TransformIndexerStats.Builder> op) {
 
+		op.add(Builder::deleteTimeInMs, JsonpDeserializer.stringDeserializer(), "delete_time_in_ms");
 		op.add(Builder::documentsIndexed, JsonpDeserializer.longDeserializer(), "documents_indexed");
+		op.add(Builder::documentsDeleted, JsonpDeserializer.longDeserializer(), "documents_deleted");
 		op.add(Builder::documentsProcessed, JsonpDeserializer.longDeserializer(), "documents_processed");
 		op.add(Builder::exponentialAvgCheckpointDurationMs, JsonpDeserializer.doubleDeserializer(),
 				"exponential_avg_checkpoint_duration_ms");

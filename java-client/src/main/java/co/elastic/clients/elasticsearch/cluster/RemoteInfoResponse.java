@@ -39,8 +39,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L24-L27">API
+ * @see <a href="../doc-files/api-spec.html#cluster.remote_info.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

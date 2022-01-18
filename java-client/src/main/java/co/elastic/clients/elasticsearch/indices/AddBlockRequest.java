@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Adds a block to an index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/add_block/IndicesAddBlockRequest.ts#L24-L41">API
+ * @see <a href="../doc-files/api-spec.html#indices.add_block.Request">API
  *      specification</a>
  */
 

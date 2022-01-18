@@ -730,43 +730,6 @@ public class ElasticsearchIndicesAsyncClient
 		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
-	// ----- Endpoint: indices.exists_type
-
-	/**
-	 * Returns information about whether a particular document type exists.
-	 * (DEPRECATED)
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-types-exists.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public CompletableFuture<BooleanResponse> existsType(ExistsTypeRequest request)
-			throws IOException, ElasticsearchException {
-		@SuppressWarnings("unchecked")
-		JsonEndpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsTypeRequest, BooleanResponse, ErrorResponse>) ExistsTypeRequest._ENDPOINT;
-
-		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
-	}
-
-	/**
-	 * Returns information about whether a particular document type exists.
-	 * (DEPRECATED)
-	 * 
-	 * @param fn
-	 *            a function that initializes a builder to create the
-	 *            {@link ExistsTypeRequest}
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/indices-types-exists.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public final CompletableFuture<BooleanResponse> existsType(
-			Function<ExistsTypeRequest.Builder, ObjectBuilder<ExistsTypeRequest>> fn)
-			throws IOException, ElasticsearchException {
-		return existsType(fn.apply(new ExistsTypeRequest.Builder()).build());
-	}
-
 	// ----- Endpoint: indices.flush
 
 	/**

@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * Retrieves the status of a previously submitted async search request given its
  * ID.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/async_search/status/AsyncSearchStatusRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#async_search.status.Request">API
  *      specification</a>
  */
 

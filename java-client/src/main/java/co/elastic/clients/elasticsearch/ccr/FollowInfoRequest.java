@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
  * Retrieves information about all follower indices, including parameters and
  * status for each follower index
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/follow_info/FollowInfoRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#ccr.follow_info.Request">API
  *      specification</a>
  */
 

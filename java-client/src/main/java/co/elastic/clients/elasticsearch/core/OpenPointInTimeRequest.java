@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Open a point in time that can be used in subsequent searches
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/open_point_in_time/OpenPointInTimeRequest.ts#L24-L36">API
+ *      "../doc-files/api-spec.html#_global.open_point_in_time.Request">API
  *      specification</a>
  */
 

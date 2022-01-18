@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/char_filters.ts#L28-L30">API
+ * @see <a href="../../doc-files/api-spec.html#_types.analysis.CharFilter">API
  *      specification</a>
  */
 @JsonpDeserializable

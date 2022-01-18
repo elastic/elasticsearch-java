@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Creates an API key for access without requiring basic authentication.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_api_key/SecurityCreateApiKeyRequest.ts#L26-L51">API
+ * @see <a href="../doc-files/api-spec.html#security.create_api_key.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

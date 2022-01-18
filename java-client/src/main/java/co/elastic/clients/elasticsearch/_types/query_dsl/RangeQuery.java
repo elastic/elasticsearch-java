@@ -41,8 +41,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/term.ts#L72-L81">API
+ * @see <a href="../../doc-files/api-spec.html#_types.query_dsl.RangeQuery">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -63,10 +62,10 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	private final JsonData lte;
 
 	@Nullable
-	private final JsonData from;
+	private final String from;
 
 	@Nullable
-	private final JsonData to;
+	private final String to;
 
 	@Nullable
 	private final String format;
@@ -146,7 +145,7 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	 * API name: {@code from}
 	 */
 	@Nullable
-	public final JsonData from() {
+	public final String from() {
 		return this.from;
 	}
 
@@ -154,7 +153,7 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 	 * API name: {@code to}
 	 */
 	@Nullable
-	public final JsonData to() {
+	public final String to() {
 		return this.to;
 	}
 
@@ -200,12 +199,12 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		}
 		if (this.from != null) {
 			generator.writeKey("from");
-			this.from.serialize(generator, mapper);
+			generator.write(this.from);
 
 		}
 		if (this.to != null) {
 			generator.writeKey("to");
-			this.to.serialize(generator, mapper);
+			generator.write(this.to);
 
 		}
 		if (this.format != null) {
@@ -253,10 +252,10 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		private JsonData lte;
 
 		@Nullable
-		private JsonData from;
+		private String from;
 
 		@Nullable
-		private JsonData to;
+		private String to;
 
 		@Nullable
 		private String format;
@@ -299,7 +298,7 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		/**
 		 * API name: {@code from}
 		 */
-		public final Builder from(@Nullable JsonData value) {
+		public final Builder from(@Nullable String value) {
 			this.from = value;
 			return this;
 		}
@@ -307,7 +306,7 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		/**
 		 * API name: {@code to}
 		 */
-		public final Builder to(@Nullable JsonData value) {
+		public final Builder to(@Nullable String value) {
 			this.to = value;
 			return this;
 		}
@@ -360,8 +359,8 @@ public class RangeQuery extends RangeQueryBase implements QueryVariant {
 		op.add(Builder::gte, JsonData._DESERIALIZER, "gte");
 		op.add(Builder::lt, JsonData._DESERIALIZER, "lt");
 		op.add(Builder::lte, JsonData._DESERIALIZER, "lte");
-		op.add(Builder::from, JsonData._DESERIALIZER, "from");
-		op.add(Builder::to, JsonData._DESERIALIZER, "to");
+		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
+		op.add(Builder::to, JsonpDeserializer.stringDeserializer(), "to");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 

@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,37 +42,43 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L67-L75">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.AdaptiveSelection">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class AdaptiveSelection implements JsonpSerializable {
-	private final long avgQueueSize;
+	@Nullable
+	private final Long avgQueueSize;
 
-	private final long avgResponseTime;
+	@Nullable
+	private final Long avgResponseTime;
 
-	private final long avgResponseTimeNs;
+	@Nullable
+	private final Long avgResponseTimeNs;
 
+	@Nullable
 	private final String avgServiceTime;
 
-	private final long avgServiceTimeNs;
+	@Nullable
+	private final Long avgServiceTimeNs;
 
-	private final long outgoingSearches;
+	@Nullable
+	private final Long outgoingSearches;
 
+	@Nullable
 	private final String rank;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private AdaptiveSelection(Builder builder) {
 
-		this.avgQueueSize = ApiTypeHelper.requireNonNull(builder.avgQueueSize, this, "avgQueueSize");
-		this.avgResponseTime = ApiTypeHelper.requireNonNull(builder.avgResponseTime, this, "avgResponseTime");
-		this.avgResponseTimeNs = ApiTypeHelper.requireNonNull(builder.avgResponseTimeNs, this, "avgResponseTimeNs");
-		this.avgServiceTime = ApiTypeHelper.requireNonNull(builder.avgServiceTime, this, "avgServiceTime");
-		this.avgServiceTimeNs = ApiTypeHelper.requireNonNull(builder.avgServiceTimeNs, this, "avgServiceTimeNs");
-		this.outgoingSearches = ApiTypeHelper.requireNonNull(builder.outgoingSearches, this, "outgoingSearches");
-		this.rank = ApiTypeHelper.requireNonNull(builder.rank, this, "rank");
+		this.avgQueueSize = builder.avgQueueSize;
+		this.avgResponseTime = builder.avgResponseTime;
+		this.avgResponseTimeNs = builder.avgResponseTimeNs;
+		this.avgServiceTime = builder.avgServiceTime;
+		this.avgServiceTimeNs = builder.avgServiceTimeNs;
+		this.outgoingSearches = builder.outgoingSearches;
+		this.rank = builder.rank;
 
 	}
 
@@ -82,50 +87,57 @@ public class AdaptiveSelection implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code avg_queue_size}
+	 * API name: {@code avg_queue_size}
 	 */
-	public final long avgQueueSize() {
+	@Nullable
+	public final Long avgQueueSize() {
 		return this.avgQueueSize;
 	}
 
 	/**
-	 * Required - API name: {@code avg_response_time}
+	 * API name: {@code avg_response_time}
 	 */
-	public final long avgResponseTime() {
+	@Nullable
+	public final Long avgResponseTime() {
 		return this.avgResponseTime;
 	}
 
 	/**
-	 * Required - API name: {@code avg_response_time_ns}
+	 * API name: {@code avg_response_time_ns}
 	 */
-	public final long avgResponseTimeNs() {
+	@Nullable
+	public final Long avgResponseTimeNs() {
 		return this.avgResponseTimeNs;
 	}
 
 	/**
-	 * Required - API name: {@code avg_service_time}
+	 * API name: {@code avg_service_time}
 	 */
+	@Nullable
 	public final String avgServiceTime() {
 		return this.avgServiceTime;
 	}
 
 	/**
-	 * Required - API name: {@code avg_service_time_ns}
+	 * API name: {@code avg_service_time_ns}
 	 */
-	public final long avgServiceTimeNs() {
+	@Nullable
+	public final Long avgServiceTimeNs() {
 		return this.avgServiceTimeNs;
 	}
 
 	/**
-	 * Required - API name: {@code outgoing_searches}
+	 * API name: {@code outgoing_searches}
 	 */
-	public final long outgoingSearches() {
+	@Nullable
+	public final Long outgoingSearches() {
 		return this.outgoingSearches;
 	}
 
 	/**
-	 * Required - API name: {@code rank}
+	 * API name: {@code rank}
 	 */
+	@Nullable
 	public final String rank() {
 		return this.rank;
 	}
@@ -141,26 +153,41 @@ public class AdaptiveSelection implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("avg_queue_size");
-		generator.write(this.avgQueueSize);
+		if (this.avgQueueSize != null) {
+			generator.writeKey("avg_queue_size");
+			generator.write(this.avgQueueSize);
 
-		generator.writeKey("avg_response_time");
-		generator.write(this.avgResponseTime);
+		}
+		if (this.avgResponseTime != null) {
+			generator.writeKey("avg_response_time");
+			generator.write(this.avgResponseTime);
 
-		generator.writeKey("avg_response_time_ns");
-		generator.write(this.avgResponseTimeNs);
+		}
+		if (this.avgResponseTimeNs != null) {
+			generator.writeKey("avg_response_time_ns");
+			generator.write(this.avgResponseTimeNs);
 
-		generator.writeKey("avg_service_time");
-		generator.write(this.avgServiceTime);
+		}
+		if (this.avgServiceTime != null) {
+			generator.writeKey("avg_service_time");
+			generator.write(this.avgServiceTime);
 
-		generator.writeKey("avg_service_time_ns");
-		generator.write(this.avgServiceTimeNs);
+		}
+		if (this.avgServiceTimeNs != null) {
+			generator.writeKey("avg_service_time_ns");
+			generator.write(this.avgServiceTimeNs);
 
-		generator.writeKey("outgoing_searches");
-		generator.write(this.outgoingSearches);
+		}
+		if (this.outgoingSearches != null) {
+			generator.writeKey("outgoing_searches");
+			generator.write(this.outgoingSearches);
 
-		generator.writeKey("rank");
-		generator.write(this.rank);
+		}
+		if (this.rank != null) {
+			generator.writeKey("rank");
+			generator.write(this.rank);
+
+		}
 
 	}
 
@@ -171,72 +198,79 @@ public class AdaptiveSelection implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AdaptiveSelection> {
+		@Nullable
 		private Long avgQueueSize;
 
+		@Nullable
 		private Long avgResponseTime;
 
+		@Nullable
 		private Long avgResponseTimeNs;
 
+		@Nullable
 		private String avgServiceTime;
 
+		@Nullable
 		private Long avgServiceTimeNs;
 
+		@Nullable
 		private Long outgoingSearches;
 
+		@Nullable
 		private String rank;
 
 		/**
-		 * Required - API name: {@code avg_queue_size}
+		 * API name: {@code avg_queue_size}
 		 */
-		public final Builder avgQueueSize(long value) {
+		public final Builder avgQueueSize(@Nullable Long value) {
 			this.avgQueueSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code avg_response_time}
+		 * API name: {@code avg_response_time}
 		 */
-		public final Builder avgResponseTime(long value) {
+		public final Builder avgResponseTime(@Nullable Long value) {
 			this.avgResponseTime = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code avg_response_time_ns}
+		 * API name: {@code avg_response_time_ns}
 		 */
-		public final Builder avgResponseTimeNs(long value) {
+		public final Builder avgResponseTimeNs(@Nullable Long value) {
 			this.avgResponseTimeNs = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code avg_service_time}
+		 * API name: {@code avg_service_time}
 		 */
-		public final Builder avgServiceTime(String value) {
+		public final Builder avgServiceTime(@Nullable String value) {
 			this.avgServiceTime = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code avg_service_time_ns}
+		 * API name: {@code avg_service_time_ns}
 		 */
-		public final Builder avgServiceTimeNs(long value) {
+		public final Builder avgServiceTimeNs(@Nullable Long value) {
 			this.avgServiceTimeNs = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code outgoing_searches}
+		 * API name: {@code outgoing_searches}
 		 */
-		public final Builder outgoingSearches(long value) {
+		public final Builder outgoingSearches(@Nullable Long value) {
 			this.outgoingSearches = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code rank}
+		 * API name: {@code rank}
 		 */
-		public final Builder rank(String value) {
+		public final Builder rank(@Nullable String value) {
 			this.rank = value;
 			return this;
 		}

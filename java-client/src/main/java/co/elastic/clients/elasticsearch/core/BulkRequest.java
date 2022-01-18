@@ -60,8 +60,7 @@ import javax.annotation.Nullable;
  * Allows to perform multiple index/update/delete operations in a single
  * request.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/BulkRequest.ts#L33-L58">API
+ * @see <a href="../doc-files/api-spec.html#_global.bulk.Request">API
  *      specification</a>
  */
 
@@ -92,9 +91,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	private final Time timeout;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final WaitForActiveShards waitForActiveShards;
 
 	private final List<BulkOperation> operations;
@@ -112,7 +108,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		this.requireAlias = builder.requireAlias;
 		this.routing = builder.routing;
 		this.timeout = builder.timeout;
-		this.type = builder.type;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.operations = ApiTypeHelper.unmodifiableRequired(builder.operations, this, "operations");
 
@@ -221,16 +216,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	}
 
 	/**
-	 * Default document type for items which don't provide one
-	 * <p>
-	 * API name: {@code type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Sets the number of shard copies that must be active before proceeding with
 	 * the bulk operation. Defaults to 1, meaning the primary shard only. Set to
 	 * <code>all</code> for all shard copies, otherwise set to any non-negative
@@ -299,9 +284,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 		@Nullable
 		private Time timeout;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private WaitForActiveShards waitForActiveShards;
@@ -454,16 +436,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		}
 
 		/**
-		 * Default document type for items which don't provide one
-		 * <p>
-		 * API name: {@code type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * Sets the number of shard copies that must be active before proceeding with
 		 * the bulk operation. Defaults to 1, meaning the primary shard only. Set to
 		 * <code>all</code> for all shard copies, otherwise set to any non-negative
@@ -555,14 +527,11 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 			// Request path
 			request -> {
 				final int _index = 1 << 0;
-				final int _type = 1 << 1;
 
 				int propsSet = 0;
 
 				if (request.index() != null)
 					propsSet |= _index;
-				if (request.type() != null)
-					propsSet |= _type;
 
 				if (propsSet == 0) {
 					StringBuilder buf = new StringBuilder();
@@ -573,15 +542,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/_bulk");
-					return buf.toString();
-				}
-				if (propsSet == (_index | _type)) {
-					StringBuilder buf = new StringBuilder();
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
-					buf.append("/");
-					SimpleEndpoint.pathEncode(request.type, buf);
 					buf.append("/_bulk");
 					return buf.toString();
 				}

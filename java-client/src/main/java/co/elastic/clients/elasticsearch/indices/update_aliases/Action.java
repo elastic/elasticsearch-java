@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/update_aliases/types.ts#L23-L28">API
+ *      "../../doc-files/api-spec.html#indices.update_aliases.Action">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +57,10 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 	 */
 	/**
 	 * {@link Action} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#indices.update_aliases.Action">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

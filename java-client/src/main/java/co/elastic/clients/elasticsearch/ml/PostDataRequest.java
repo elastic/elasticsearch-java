@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
  * at a time. It is not currently possible to post data to multiple jobs using
  * wildcards or a comma-separated list.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/post_data/MlPostJobDataRequest.ts#L24-L69">API
+ * @see <a href="../doc-files/api-spec.html#ml.post_data.Request">API
  *      specification</a>
  * @deprecated 7.11.0 Posting data directly to anomaly detection jobs is
  *             deprecated, in a future major version a datafeed will be

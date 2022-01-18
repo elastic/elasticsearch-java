@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/create_api_key/SecurityCreateApiKeyResponse.ts#L23-L25">API
+ *      "../doc-files/api-spec.html#security.create_api_key.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -58,6 +58,8 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 
 	private final String name;
 
+	private final String encoded;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private CreateApiKeyResponse(Builder builder) {
@@ -66,6 +68,7 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 		this.expiration = builder.expiration;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.encoded = ApiTypeHelper.requireNonNull(builder.encoded, this, "encoded");
 
 	}
 
@@ -74,13 +77,17 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code api_key}
+	 * Required - Generated API key.
+	 * <p>
+	 * API name: {@code api_key}
 	 */
 	public final String apiKey() {
 		return this.apiKey;
 	}
 
 	/**
+	 * Expiration in milliseconds for the API key.
+	 * <p>
 	 * API name: {@code expiration}
 	 */
 	@Nullable
@@ -89,17 +96,32 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code id}
+	 * Required - Unique ID for this API key.
+	 * <p>
+	 * API name: {@code id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * Required - Specifies the name for this API key.
+	 * <p>
+	 * API name: {@code name}
 	 */
 	public final String name() {
 		return this.name;
+	}
+
+	/**
+	 * Required - API key credentials which is the base64-encoding of the UTF-8
+	 * representation of <code>id</code> and <code>api_key</code> joined by a colon
+	 * (<code>:</code>).
+	 * <p>
+	 * API name: {@code encoded}
+	 */
+	public final String encoded() {
+		return this.encoded;
 	}
 
 	/**
@@ -127,6 +149,9 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 		generator.writeKey("name");
 		generator.write(this.name);
 
+		generator.writeKey("encoded");
+		generator.write(this.encoded);
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -145,8 +170,12 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 
 		private String name;
 
+		private String encoded;
+
 		/**
-		 * Required - API name: {@code api_key}
+		 * Required - Generated API key.
+		 * <p>
+		 * API name: {@code api_key}
 		 */
 		public final Builder apiKey(String value) {
 			this.apiKey = value;
@@ -154,6 +183,8 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * Expiration in milliseconds for the API key.
+		 * <p>
 		 * API name: {@code expiration}
 		 */
 		public final Builder expiration(@Nullable Long value) {
@@ -162,7 +193,9 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code id}
+		 * Required - Unique ID for this API key.
+		 * <p>
+		 * API name: {@code id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
@@ -170,10 +203,24 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code name}
+		 * Required - Specifies the name for this API key.
+		 * <p>
+		 * API name: {@code name}
 		 */
 		public final Builder name(String value) {
 			this.name = value;
+			return this;
+		}
+
+		/**
+		 * Required - API key credentials which is the base64-encoding of the UTF-8
+		 * representation of <code>id</code> and <code>api_key</code> joined by a colon
+		 * (<code>:</code>).
+		 * <p>
+		 * API name: {@code encoded}
+		 */
+		public final Builder encoded(String value) {
+			this.encoded = value;
 			return this;
 		}
 
@@ -204,6 +251,7 @@ public class CreateApiKeyResponse implements JsonpSerializable {
 		op.add(Builder::expiration, JsonpDeserializer.longDeserializer(), "expiration");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::encoded, JsonpDeserializer.stringDeserializer(), "encoded");
 
 	}
 

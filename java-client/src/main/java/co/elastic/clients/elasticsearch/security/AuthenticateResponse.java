@@ -47,12 +47,14 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/authenticate/SecurityAuthenticateResponse.ts#L24-L38">API
+ * @see <a href="../doc-files/api-spec.html#security.authenticate.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class AuthenticateResponse implements JsonpSerializable {
+	@Nullable
+	private final ApiKey apiKey;
+
 	private final RealmInfo authenticationRealm;
 
 	@Nullable
@@ -80,6 +82,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 
 	private AuthenticateResponse(Builder builder) {
 
+		this.apiKey = builder.apiKey;
 		this.authenticationRealm = ApiTypeHelper.requireNonNull(builder.authenticationRealm, this,
 				"authenticationRealm");
 		this.email = builder.email;
@@ -96,6 +99,14 @@ public class AuthenticateResponse implements JsonpSerializable {
 
 	public static AuthenticateResponse of(Function<Builder, ObjectBuilder<AuthenticateResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code api_key}
+	 */
+	@Nullable
+	public final ApiKey apiKey() {
+		return this.apiKey;
 	}
 
 	/**
@@ -182,6 +193,11 @@ public class AuthenticateResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.apiKey != null) {
+			generator.writeKey("api_key");
+			this.apiKey.serialize(generator, mapper);
+
+		}
 		generator.writeKey("authentication_realm");
 		this.authenticationRealm.serialize(generator, mapper);
 
@@ -243,6 +259,9 @@ public class AuthenticateResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AuthenticateResponse> {
+		@Nullable
+		private ApiKey apiKey;
+
 		private RealmInfo authenticationRealm;
 
 		@Nullable
@@ -265,6 +284,21 @@ public class AuthenticateResponse implements JsonpSerializable {
 
 		@Nullable
 		private ServiceToken token;
+
+		/**
+		 * API name: {@code api_key}
+		 */
+		public final Builder apiKey(@Nullable ApiKey value) {
+			this.apiKey = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code api_key}
+		 */
+		public final Builder apiKey(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
+			return this.apiKey(fn.apply(new ApiKey.Builder()).build());
+		}
 
 		/**
 		 * Required - API name: {@code authentication_realm}
@@ -414,6 +448,7 @@ public class AuthenticateResponse implements JsonpSerializable {
 
 	protected static void setupAuthenticateResponseDeserializer(ObjectDeserializer<AuthenticateResponse.Builder> op) {
 
+		op.add(Builder::apiKey, ApiKey._DESERIALIZER, "api_key");
 		op.add(Builder::authenticationRealm, RealmInfo._DESERIALIZER, "authentication_realm");
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");

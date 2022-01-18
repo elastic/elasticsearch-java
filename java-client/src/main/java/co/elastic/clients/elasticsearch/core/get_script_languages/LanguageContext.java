@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.get_script_languages;
 
+import co.elastic.clients.elasticsearch._types.ScriptLanguage;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_languages/types.ts#L22-L25">API
+ *      "../../doc-files/api-spec.html#_global.get_script_languages.LanguageContext">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -142,6 +143,14 @@ public class LanguageContext implements JsonpSerializable {
 		 */
 		public final Builder language(String value) {
 			this.language = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code language}
+		 */
+		public final Builder language(ScriptLanguage value) {
+			this.language = value == null ? null : value.jsonValue();
 			return this;
 		}
 

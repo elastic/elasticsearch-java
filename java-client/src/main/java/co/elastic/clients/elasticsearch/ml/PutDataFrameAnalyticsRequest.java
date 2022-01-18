@@ -41,6 +41,8 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -53,7 +55,7 @@ import javax.annotation.Nullable;
  * outcome in a destination index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_data_frame_analytics/MlPutDataFrameAnalyticsRequest.ts#L30-L130">API
+ *      "../doc-files/api-spec.html#ml.put_data_frame_analytics.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -71,6 +73,8 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 
 	private final DataframeAnalyticsDestination dest;
 
+	private final Map<String, List<String>> headers;
+
 	private final String id;
 
 	@Nullable
@@ -81,6 +85,9 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 
 	private final DataframeAnalyticsSource source;
 
+	@Nullable
+	private final String version;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PutDataFrameAnalyticsRequest(Builder builder) {
@@ -90,10 +97,12 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		this.analyzedFields = builder.analyzedFields;
 		this.description = builder.description;
 		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.headers = ApiTypeHelper.unmodifiable(builder.headers);
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.maxNumThreads = builder.maxNumThreads;
 		this.modelMemoryLimit = builder.modelMemoryLimit;
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.version = builder.version;
 
 	}
 
@@ -187,6 +196,13 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
+	 * API name: {@code headers}
+	 */
+	public final Map<String, List<String>> headers() {
+		return this.headers;
+	}
+
+	/**
 	 * Required - Identifier for the data frame analytics job. This identifier can
 	 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
 	 * underscores. It must start and end with alphanumeric characters.
@@ -234,6 +250,14 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	}
 
 	/**
+	 * API name: {@code version}
+	 */
+	@Nullable
+	public final String version() {
+		return this.version;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -265,6 +289,24 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		generator.writeKey("dest");
 		this.dest.serialize(generator, mapper);
 
+		if (ApiTypeHelper.isDefined(this.headers)) {
+			generator.writeKey("headers");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.maxNumThreads != null) {
 			generator.writeKey("max_num_threads");
 			generator.write(this.maxNumThreads);
@@ -277,6 +319,12 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		}
 		generator.writeKey("source");
 		this.source.serialize(generator, mapper);
+
+		if (this.version != null) {
+			generator.writeKey("version");
+			generator.write(this.version);
+
+		}
 
 	}
 
@@ -300,6 +348,9 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 
 		private DataframeAnalyticsDestination dest;
 
+		@Nullable
+		private Map<String, List<String>> headers;
+
 		private String id;
 
 		@Nullable
@@ -309,6 +360,9 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		private String modelMemoryLimit;
 
 		private DataframeAnalyticsSource source;
+
+		@Nullable
+		private String version;
 
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
@@ -458,6 +512,26 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
+		 */
+		public final Builder headers(Map<String, List<String>> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, List<String> value) {
+			this.headers = _mapPut(this.headers, key, value);
+			return this;
+		}
+
+		/**
 		 * Required - Identifier for the data frame analytics job. This identifier can
 		 * contain lowercase alphanumeric characters (a-z and 0-9), hyphens, and
 		 * underscores. It must start and end with alphanumeric characters.
@@ -517,6 +591,14 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		}
 
 		/**
+		 * API name: {@code version}
+		 */
+		public final Builder version(@Nullable String value) {
+			this.version = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link PutDataFrameAnalyticsRequest}.
 		 *
 		 * @throws NullPointerException
@@ -545,9 +627,12 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		op.add(Builder::analyzedFields, DataframeAnalysisAnalyzedFields._DESERIALIZER, "analyzed_fields");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, DataframeAnalyticsDestination._DESERIALIZER, "dest");
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
 		op.add(Builder::maxNumThreads, JsonpDeserializer.integerDeserializer(), "max_num_threads");
 		op.add(Builder::modelMemoryLimit, JsonpDeserializer.stringDeserializer(), "model_memory_limit");
 		op.add(Builder::source, DataframeAnalyticsSource._DESERIALIZER, "source");
+		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 
 	}
 

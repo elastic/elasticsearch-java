@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Scripting.ts#L37-L41">API
+ * @see <a href="../doc-files/api-spec.html#_types.StoredScript">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -139,6 +138,14 @@ public class StoredScript implements JsonpSerializable {
 		 */
 		public final Builder lang(String value) {
 			this.lang = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code lang}
+		 */
+		public final Builder lang(ScriptLanguage value) {
+			this.lang = value == null ? null : value.jsonValue();
 			return this;
 		}
 

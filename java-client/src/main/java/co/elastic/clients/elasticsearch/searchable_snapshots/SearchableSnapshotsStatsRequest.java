@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Retrieve shard-level statistics about searchable snapshots.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/stats/SearchableSnapshotsStatsRequest.ts#L24-L36">API
+ *      "../doc-files/api-spec.html#searchable_snapshots.stats.Request">API
  *      specification</a>
  */
 

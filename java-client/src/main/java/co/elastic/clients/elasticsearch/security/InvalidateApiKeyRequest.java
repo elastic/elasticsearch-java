@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Invalidates one or more API keys.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/invalidate_api_key/SecurityInvalidateApiKeyRequest.ts#L23-L37">API
+ *      "../doc-files/api-spec.html#security.invalidate_api_key.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
