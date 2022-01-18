@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/phonetic-plugin.ts#L23-L36">API
+ *      "../../doc-files/api-spec.html#_types.analysis.PhoneticEncoder">API
  *      specification</a>
  */
 @JsonpDeserializable

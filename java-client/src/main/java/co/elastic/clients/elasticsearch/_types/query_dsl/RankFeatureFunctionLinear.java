@@ -33,7 +33,7 @@ import jakarta.json.stream.JsonGenerator;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/specialized.ts#L141-L141">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.RankFeatureFunctionLinear">API
  *      specification</a>
  */
 @JsonpDeserializable

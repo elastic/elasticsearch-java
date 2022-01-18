@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/abstractions.ts#L96-L159">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.QueryContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,6 +59,10 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 	 */
 	/**
 	 * {@link Query} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.query_dsl.QueryContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {
@@ -165,6 +169,8 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 		TermsSet("terms_set"),
 
 		Wildcard("wildcard"),
+
+		Wrapper("wrapper"),
 
 		Type("type"),
 
@@ -1114,6 +1120,23 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 	}
 
 	/**
+	 * Is this variant instance of kind {@code wrapper}?
+	 */
+	public boolean isWrapper() {
+		return _kind == Kind.Wrapper;
+	}
+
+	/**
+	 * Get the {@code wrapper} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code wrapper} kind.
+	 */
+	public WrapperQuery wrapper() {
+		return TaggedUnionUtils.get(this, Kind.Wrapper);
+	}
+
+	/**
 	 * Is this variant instance of kind {@code type}?
 	 */
 	public boolean isType() {
@@ -1686,6 +1709,16 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 			return this.wildcard(fn.apply(new WildcardQuery.Builder()).build());
 		}
 
+		public ObjectBuilder<Query> wrapper(WrapperQuery v) {
+			this._kind = Kind.Wrapper;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Query> wrapper(Function<WrapperQuery.Builder, ObjectBuilder<WrapperQuery>> fn) {
+			return this.wrapper(fn.apply(new WrapperQuery.Builder()).build());
+		}
+
 		public ObjectBuilder<Query> type(TypeQuery v) {
 			this._kind = Kind.Type;
 			this._value = v;
@@ -1757,6 +1790,7 @@ public class Query implements TaggedUnion<Query.Kind, Object>, AggregationVarian
 		op.add(Builder::terms, TermsQuery._DESERIALIZER, "terms");
 		op.add(Builder::termsSet, TermsSetQuery._DESERIALIZER, "terms_set");
 		op.add(Builder::wildcard, WildcardQuery._DESERIALIZER, "wildcard");
+		op.add(Builder::wrapper, WrapperQuery._DESERIALIZER, "wrapper");
 		op.add(Builder::type, TypeQuery._DESERIALIZER, "type");
 
 	}

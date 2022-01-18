@@ -51,10 +51,11 @@ import javax.annotation.Nullable;
 // typedef: nodes.hot_threads.Request
 
 /**
- * Returns information about hot threads on each node in the cluster.
+ * This API yields a breakdown of the hot threads on each selected node in the
+ * cluster. The output is plain text with a breakdown of each node’s top hot
+ * threads.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/hot_threads/NodesHotThreadsRequest.ts#L25-L78">API
+ * @see <a href="../doc-files/api-spec.html#nodes.hot_threads.Request">API
  *      specification</a>
  */
 

@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Performs the refresh operation in one or more indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/refresh/IndicesRefreshRequest.ts#L23-L37">API
+ * @see <a href="../doc-files/api-spec.html#indices.refresh.Request">API
  *      specification</a>
  */
 

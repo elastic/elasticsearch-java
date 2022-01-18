@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about index shard recoveries, both on-going completed.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/recovery/CatRecoveryRequest.ts#L23-L37">API
+ * @see <a href="../doc-files/api-spec.html#cat.recovery.Request">API
  *      specification</a>
  */
 

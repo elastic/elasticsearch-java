@@ -42,32 +42,36 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Datafeed.ts#L127-L133">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.DatafeedStats">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class DatafeedStats implements JsonpSerializable {
+	@Nullable
 	private final String assignmentExplanation;
 
 	private final String datafeedId;
 
+	@Nullable
 	private final DiscoveryNode node;
 
 	private final DatafeedState state;
 
 	private final DatafeedTimingStats timingStats;
 
+	@Nullable
+	private final DatafeedRunningState runningState;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DatafeedStats(Builder builder) {
 
-		this.assignmentExplanation = ApiTypeHelper.requireNonNull(builder.assignmentExplanation, this,
-				"assignmentExplanation");
+		this.assignmentExplanation = builder.assignmentExplanation;
 		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.node = builder.node;
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
+		this.runningState = builder.runningState;
 
 	}
 
@@ -76,8 +80,9 @@ public class DatafeedStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code assignment_explanation}
+	 * API name: {@code assignment_explanation}
 	 */
+	@Nullable
 	public final String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
@@ -90,8 +95,9 @@ public class DatafeedStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code node}
+	 * API name: {@code node}
 	 */
+	@Nullable
 	public final DiscoveryNode node() {
 		return this.node;
 	}
@@ -111,6 +117,14 @@ public class DatafeedStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code running_state}
+	 */
+	@Nullable
+	public final DatafeedRunningState runningState() {
+		return this.runningState;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -121,19 +135,29 @@ public class DatafeedStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("assignment_explanation");
-		generator.write(this.assignmentExplanation);
+		if (this.assignmentExplanation != null) {
+			generator.writeKey("assignment_explanation");
+			generator.write(this.assignmentExplanation);
 
+		}
 		generator.writeKey("datafeed_id");
 		generator.write(this.datafeedId);
 
-		generator.writeKey("node");
-		this.node.serialize(generator, mapper);
+		if (this.node != null) {
+			generator.writeKey("node");
+			this.node.serialize(generator, mapper);
 
+		}
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
 		generator.writeKey("timing_stats");
 		this.timingStats.serialize(generator, mapper);
+
+		if (this.runningState != null) {
+			generator.writeKey("running_state");
+			this.runningState.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -144,20 +168,25 @@ public class DatafeedStats implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DatafeedStats> {
+		@Nullable
 		private String assignmentExplanation;
 
 		private String datafeedId;
 
+		@Nullable
 		private DiscoveryNode node;
 
 		private DatafeedState state;
 
 		private DatafeedTimingStats timingStats;
 
+		@Nullable
+		private DatafeedRunningState runningState;
+
 		/**
-		 * Required - API name: {@code assignment_explanation}
+		 * API name: {@code assignment_explanation}
 		 */
-		public final Builder assignmentExplanation(String value) {
+		public final Builder assignmentExplanation(@Nullable String value) {
 			this.assignmentExplanation = value;
 			return this;
 		}
@@ -171,15 +200,15 @@ public class DatafeedStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code node}
+		 * API name: {@code node}
 		 */
-		public final Builder node(DiscoveryNode value) {
+		public final Builder node(@Nullable DiscoveryNode value) {
 			this.node = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code node}
+		 * API name: {@code node}
 		 */
 		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
 			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
@@ -206,6 +235,22 @@ public class DatafeedStats implements JsonpSerializable {
 		 */
 		public final Builder timingStats(Function<DatafeedTimingStats.Builder, ObjectBuilder<DatafeedTimingStats>> fn) {
 			return this.timingStats(fn.apply(new DatafeedTimingStats.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code running_state}
+		 */
+		public final Builder runningState(@Nullable DatafeedRunningState value) {
+			this.runningState = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code running_state}
+		 */
+		public final Builder runningState(
+				Function<DatafeedRunningState.Builder, ObjectBuilder<DatafeedRunningState>> fn) {
+			return this.runningState(fn.apply(new DatafeedRunningState.Builder()).build());
 		}
 
 		/**
@@ -236,6 +281,7 @@ public class DatafeedStats implements JsonpSerializable {
 		op.add(Builder::node, DiscoveryNode._DESERIALIZER, "node");
 		op.add(Builder::state, DatafeedState._DESERIALIZER, "state");
 		op.add(Builder::timingStats, DatafeedTimingStats._DESERIALIZER, "timing_stats");
+		op.add(Builder::runningState, DatafeedRunningState._DESERIALIZER, "running_state");
 
 	}
 

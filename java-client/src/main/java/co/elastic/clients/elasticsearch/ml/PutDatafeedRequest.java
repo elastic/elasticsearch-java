@@ -60,8 +60,7 @@ import javax.annotation.Nullable;
 /**
  * Instantiates a datafeed.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_datafeed/MlPutDatafeedRequest.ts#L31-L62">API
+ * @see <a href="../doc-files/api-spec.html#ml.put_datafeed.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

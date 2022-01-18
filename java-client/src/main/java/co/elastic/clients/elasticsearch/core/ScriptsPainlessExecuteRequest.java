@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Allows an arbitrary script to be executed and a result to be returned
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/scripts_painless_execute/ExecutePainlessScriptRequest.ts#L24-L35">API
+ *      "../doc-files/api-spec.html#_global.scripts_painless_execute.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

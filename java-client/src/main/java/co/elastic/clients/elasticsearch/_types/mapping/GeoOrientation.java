@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/geo.ts#L30-L35">API
+ *      "../../doc-files/api-spec.html#_types.mapping.GeoOrientation">API
  *      specification</a>
  */
 @JsonpDeserializable

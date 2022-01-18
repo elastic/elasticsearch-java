@@ -43,22 +43,22 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L49-L52">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.Ingest">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class Ingest implements JsonpSerializable {
 	private final Map<String, IngestTotal> pipelines;
 
+	@Nullable
 	private final IngestTotal total;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private Ingest(Builder builder) {
 
-		this.pipelines = ApiTypeHelper.unmodifiableRequired(builder.pipelines, this, "pipelines");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.pipelines = ApiTypeHelper.unmodifiable(builder.pipelines);
+		this.total = builder.total;
 
 	}
 
@@ -67,15 +67,16 @@ public class Ingest implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code pipelines}
+	 * API name: {@code pipelines}
 	 */
 	public final Map<String, IngestTotal> pipelines() {
 		return this.pipelines;
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * API name: {@code total}
 	 */
+	@Nullable
 	public final IngestTotal total() {
 		return this.total;
 	}
@@ -102,8 +103,11 @@ public class Ingest implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("total");
-		this.total.serialize(generator, mapper);
+		if (this.total != null) {
+			generator.writeKey("total");
+			this.total.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -114,12 +118,14 @@ public class Ingest implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ingest> {
+		@Nullable
 		private Map<String, IngestTotal> pipelines;
 
+		@Nullable
 		private IngestTotal total;
 
 		/**
-		 * Required - API name: {@code pipelines}
+		 * API name: {@code pipelines}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>pipelines</code>.
 		 */
@@ -129,7 +135,7 @@ public class Ingest implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pipelines}
+		 * API name: {@code pipelines}
 		 * <p>
 		 * Adds an entry to <code>pipelines</code>.
 		 */
@@ -139,7 +145,7 @@ public class Ingest implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pipelines}
+		 * API name: {@code pipelines}
 		 * <p>
 		 * Adds an entry to <code>pipelines</code> using a builder lambda.
 		 */
@@ -148,15 +154,15 @@ public class Ingest implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
-		public final Builder total(IngestTotal value) {
+		public final Builder total(@Nullable IngestTotal value) {
 			this.total = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
 		public final Builder total(Function<IngestTotal.Builder, ObjectBuilder<IngestTotal>> fn) {
 			return this.total(fn.apply(new IngestTotal.Builder()).build());

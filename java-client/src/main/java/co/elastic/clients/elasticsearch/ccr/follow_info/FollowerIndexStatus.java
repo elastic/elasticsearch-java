@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/follow_info/types.ts#L30-L33">API
+ *      "../../doc-files/api-spec.html#ccr.follow_info.FollowerIndexStatus">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * Simulate resolving the given template name or body
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/simulate_template/IndicesSimulateTemplateRequest.ts#L25-L49">API
+ *      "../doc-files/api-spec.html#indices.simulate_template.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -46,8 +46,7 @@ import java.util.Objects;
  * those defaults are. It also provides information about the maximum size of
  * machine learning jobs that could run in the current cluster configuration.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/info/MlInfoRequest.ts#L22-L35">API
+ * @see <a href="../doc-files/api-spec.html#ml.info.Request">API
  *      specification</a>
  */
 

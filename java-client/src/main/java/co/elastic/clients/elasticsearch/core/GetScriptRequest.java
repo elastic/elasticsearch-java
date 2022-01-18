@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Returns a script.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script/GetScriptRequest.ts#L24-L37">API
+ * @see <a href="../doc-files/api-spec.html#_global.get_script.Request">API
  *      specification</a>
  */
 

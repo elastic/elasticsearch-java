@@ -43,25 +43,30 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L138-L142">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.FileSystem">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class FileSystem implements JsonpSerializable {
 	private final List<DataPathStats> data;
 
-	private final long timestamp;
+	@Nullable
+	private final Long timestamp;
 
+	@Nullable
 	private final FileSystemTotal total;
+
+	@Nullable
+	private final IoStats ioStats;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private FileSystem(Builder builder) {
 
-		this.data = ApiTypeHelper.unmodifiableRequired(builder.data, this, "data");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.data = ApiTypeHelper.unmodifiable(builder.data);
+		this.timestamp = builder.timestamp;
+		this.total = builder.total;
+		this.ioStats = builder.ioStats;
 
 	}
 
@@ -70,24 +75,34 @@ public class FileSystem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code data}
+	 * API name: {@code data}
 	 */
 	public final List<DataPathStats> data() {
 		return this.data;
 	}
 
 	/**
-	 * Required - API name: {@code timestamp}
+	 * API name: {@code timestamp}
 	 */
-	public final long timestamp() {
+	@Nullable
+	public final Long timestamp() {
 		return this.timestamp;
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * API name: {@code total}
 	 */
+	@Nullable
 	public final FileSystemTotal total() {
 		return this.total;
+	}
+
+	/**
+	 * API name: {@code io_stats}
+	 */
+	@Nullable
+	public final IoStats ioStats() {
+		return this.ioStats;
 	}
 
 	/**
@@ -111,11 +126,21 @@ public class FileSystem implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+		if (this.timestamp != null) {
+			generator.writeKey("timestamp");
+			generator.write(this.timestamp);
 
-		generator.writeKey("total");
-		this.total.serialize(generator, mapper);
+		}
+		if (this.total != null) {
+			generator.writeKey("total");
+			this.total.serialize(generator, mapper);
+
+		}
+		if (this.ioStats != null) {
+			generator.writeKey("io_stats");
+			this.ioStats.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -126,14 +151,20 @@ public class FileSystem implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileSystem> {
+		@Nullable
 		private List<DataPathStats> data;
 
+		@Nullable
 		private Long timestamp;
 
+		@Nullable
 		private FileSystemTotal total;
 
+		@Nullable
+		private IoStats ioStats;
+
 		/**
-		 * Required - API name: {@code data}
+		 * API name: {@code data}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>data</code>.
 		 */
@@ -143,7 +174,7 @@ public class FileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code data}
+		 * API name: {@code data}
 		 * <p>
 		 * Adds one or more values to <code>data</code>.
 		 */
@@ -153,7 +184,7 @@ public class FileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code data}
+		 * API name: {@code data}
 		 * <p>
 		 * Adds a value to <code>data</code> using a builder lambda.
 		 */
@@ -162,26 +193,41 @@ public class FileSystem implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code timestamp}
+		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(long value) {
+		public final Builder timestamp(@Nullable Long value) {
 			this.timestamp = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
-		public final Builder total(FileSystemTotal value) {
+		public final Builder total(@Nullable FileSystemTotal value) {
 			this.total = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
 		public final Builder total(Function<FileSystemTotal.Builder, ObjectBuilder<FileSystemTotal>> fn) {
 			return this.total(fn.apply(new FileSystemTotal.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code io_stats}
+		 */
+		public final Builder ioStats(@Nullable IoStats value) {
+			this.ioStats = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code io_stats}
+		 */
+		public final Builder ioStats(Function<IoStats.Builder, ObjectBuilder<IoStats>> fn) {
+			return this.ioStats(fn.apply(new IoStats.Builder()).build());
 		}
 
 		/**
@@ -210,6 +256,7 @@ public class FileSystem implements JsonpSerializable {
 		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(DataPathStats._DESERIALIZER), "data");
 		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 		op.add(Builder::total, FileSystemTotal._DESERIALIZER, "total");
+		op.add(Builder::ioStats, IoStats._DESERIALIZER, "io_stats");
 
 	}
 

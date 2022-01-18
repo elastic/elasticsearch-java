@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Changes the passwords of users in the native realm and built-in users.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/change_password/SecurityChangePasswordRequest.ts#L23-L52">API
+ *      "../doc-files/api-spec.html#security.change_password.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/scripts_painless_execute/ExecutePainlessScriptResponse.ts#L20-L24">API
+ *      "../doc-files/api-spec.html#_global.scripts_painless_execute.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

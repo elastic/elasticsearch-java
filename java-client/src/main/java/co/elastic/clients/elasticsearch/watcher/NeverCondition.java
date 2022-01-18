@@ -32,8 +32,7 @@ import jakarta.json.stream.JsonGenerator;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Conditions.ts#L70-L70">API
+ * @see <a href="../doc-files/api-spec.html#watcher._types.NeverCondition">API
  *      specification</a>
  */
 @JsonpDeserializable

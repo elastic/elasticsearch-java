@@ -35,29 +35,35 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: nodes._types.Http
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L133-L136">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.Http">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class Http implements JsonpSerializable {
-	private final int currentOpen;
+	@Nullable
+	private final Integer currentOpen;
 
-	private final long totalOpened;
+	@Nullable
+	private final Long totalOpened;
+
+	private final List<Client> clients;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private Http(Builder builder) {
 
-		this.currentOpen = ApiTypeHelper.requireNonNull(builder.currentOpen, this, "currentOpen");
-		this.totalOpened = ApiTypeHelper.requireNonNull(builder.totalOpened, this, "totalOpened");
+		this.currentOpen = builder.currentOpen;
+		this.totalOpened = builder.totalOpened;
+		this.clients = ApiTypeHelper.unmodifiable(builder.clients);
 
 	}
 
@@ -66,17 +72,26 @@ public class Http implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code current_open}
+	 * API name: {@code current_open}
 	 */
-	public final int currentOpen() {
+	@Nullable
+	public final Integer currentOpen() {
 		return this.currentOpen;
 	}
 
 	/**
-	 * Required - API name: {@code total_opened}
+	 * API name: {@code total_opened}
 	 */
-	public final long totalOpened() {
+	@Nullable
+	public final Long totalOpened() {
 		return this.totalOpened;
+	}
+
+	/**
+	 * API name: {@code clients}
+	 */
+	public final List<Client> clients() {
+		return this.clients;
 	}
 
 	/**
@@ -90,11 +105,26 @@ public class Http implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("current_open");
-		generator.write(this.currentOpen);
+		if (this.currentOpen != null) {
+			generator.writeKey("current_open");
+			generator.write(this.currentOpen);
 
-		generator.writeKey("total_opened");
-		generator.write(this.totalOpened);
+		}
+		if (this.totalOpened != null) {
+			generator.writeKey("total_opened");
+			generator.write(this.totalOpened);
+
+		}
+		if (ApiTypeHelper.isDefined(this.clients)) {
+			generator.writeKey("clients");
+			generator.writeStartArray();
+			for (Client item0 : this.clients) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -105,24 +135,58 @@ public class Http implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Http> {
+		@Nullable
 		private Integer currentOpen;
 
+		@Nullable
 		private Long totalOpened;
 
+		@Nullable
+		private List<Client> clients;
+
 		/**
-		 * Required - API name: {@code current_open}
+		 * API name: {@code current_open}
 		 */
-		public final Builder currentOpen(int value) {
+		public final Builder currentOpen(@Nullable Integer value) {
 			this.currentOpen = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total_opened}
+		 * API name: {@code total_opened}
 		 */
-		public final Builder totalOpened(long value) {
+		public final Builder totalOpened(@Nullable Long value) {
 			this.totalOpened = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code clients}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>clients</code>.
+		 */
+		public final Builder clients(List<Client> list) {
+			this.clients = _listAddAll(this.clients, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code clients}
+		 * <p>
+		 * Adds one or more values to <code>clients</code>.
+		 */
+		public final Builder clients(Client value, Client... values) {
+			this.clients = _listAdd(this.clients, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code clients}
+		 * <p>
+		 * Adds a value to <code>clients</code> using a builder lambda.
+		 */
+		public final Builder clients(Function<Client.Builder, ObjectBuilder<Client>> fn) {
+			return clients(fn.apply(new Client.Builder()).build());
 		}
 
 		/**
@@ -150,6 +214,7 @@ public class Http implements JsonpSerializable {
 
 		op.add(Builder::currentOpen, JsonpDeserializer.integerDeserializer(), "current_open");
 		op.add(Builder::totalOpened, JsonpDeserializer.longDeserializer(), "total_opened");
+		op.add(Builder::clients, JsonpDeserializer.arrayDeserializer(Client._DESERIALIZER), "clients");
 
 	}
 

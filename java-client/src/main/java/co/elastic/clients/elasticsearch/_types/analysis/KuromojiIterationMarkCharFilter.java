@@ -40,7 +40,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/kuromoji-plugin.ts#L31-L35">API
+ *      "../../doc-files/api-spec.html#_types.analysis.KuromojiIterationMarkCharFilter">API
  *      specification</a>
  */
 @JsonpDeserializable

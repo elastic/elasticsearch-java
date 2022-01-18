@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/_types/Transform.ts#L80-L86">API
+ *      "../doc-files/api-spec.html#transform._types.RetentionPolicyContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +57,10 @@ public class RetentionPolicy implements TaggedUnion<RetentionPolicy.Kind, Object
 	 */
 	/**
 	 * {@link RetentionPolicy} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../doc-files/api-spec.html#transform._types.RetentionPolicyContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

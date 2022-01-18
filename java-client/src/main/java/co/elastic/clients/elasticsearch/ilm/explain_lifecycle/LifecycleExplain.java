@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/explain_lifecycle/types.ts#L50-L53">API
+ *      "../../doc-files/api-spec.html#ilm.explain_lifecycle.LifecycleExplain">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,6 +59,10 @@ public class LifecycleExplain
 	 */
 	/**
 	 * {@link LifecycleExplain} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#ilm.explain_lifecycle.LifecycleExplain">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

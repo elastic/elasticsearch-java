@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Creates an index with optional settings and mappings.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/create/IndicesCreateRequest.ts#L28-L57">API
+ * @see <a href="../doc-files/api-spec.html#indices.create.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

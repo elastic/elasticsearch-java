@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/searchable_snapshots/mount/SearchableSnapshotsMountResponse.ts#L22-L26">API
+ *      "../doc-files/api-spec.html#searchable_snapshots.mount.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Datafeed.ts#L135-L142">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.DatafeedTimingStats">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -61,6 +60,7 @@ public class DatafeedTimingStats implements JsonpSerializable {
 
 	private final double totalSearchTimeMs;
 
+	@Nullable
 	private final Number averageSearchTimePerBucketMs;
 
 	// ---------------------------------------------------------------------------------------------
@@ -73,8 +73,7 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.searchCount = ApiTypeHelper.requireNonNull(builder.searchCount, this, "searchCount");
 		this.totalSearchTimeMs = ApiTypeHelper.requireNonNull(builder.totalSearchTimeMs, this, "totalSearchTimeMs");
-		this.averageSearchTimePerBucketMs = ApiTypeHelper.requireNonNull(builder.averageSearchTimePerBucketMs, this,
-				"averageSearchTimePerBucketMs");
+		this.averageSearchTimePerBucketMs = builder.averageSearchTimePerBucketMs;
 
 	}
 
@@ -118,8 +117,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code average_search_time_per_bucket_ms}
+	 * API name: {@code average_search_time_per_bucket_ms}
 	 */
+	@Nullable
 	public final Number averageSearchTimePerBucketMs() {
 		return this.averageSearchTimePerBucketMs;
 	}
@@ -150,8 +150,11 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		generator.writeKey("total_search_time_ms");
 		generator.write(this.totalSearchTimeMs);
 
-		generator.writeKey("average_search_time_per_bucket_ms");
-		generator.write(this.averageSearchTimePerBucketMs.doubleValue());
+		if (this.averageSearchTimePerBucketMs != null) {
+			generator.writeKey("average_search_time_per_bucket_ms");
+			generator.write(this.averageSearchTimePerBucketMs.doubleValue());
+
+		}
 
 	}
 
@@ -172,6 +175,7 @@ public class DatafeedTimingStats implements JsonpSerializable {
 
 		private Double totalSearchTimeMs;
 
+		@Nullable
 		private Number averageSearchTimePerBucketMs;
 
 		/**
@@ -215,9 +219,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code average_search_time_per_bucket_ms}
+		 * API name: {@code average_search_time_per_bucket_ms}
 		 */
-		public final Builder averageSearchTimePerBucketMs(Number value) {
+		public final Builder averageSearchTimePerBucketMs(@Nullable Number value) {
 			this.averageSearchTimePerBucketMs = value;
 			return this;
 		}

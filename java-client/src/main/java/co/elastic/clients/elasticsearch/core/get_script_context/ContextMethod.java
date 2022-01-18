@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script_context/types.ts#L27-L31">API
+ *      "../../doc-files/api-spec.html#_global.get_script_context.ContextMethod">API
  *      specification</a>
  */
 @JsonpDeserializable

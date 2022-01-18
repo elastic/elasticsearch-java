@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 /**
  * Activates a currently inactive watch.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/activate_watch/WatcherActivateWatchRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#watcher.activate_watch.Request">API
  *      specification</a>
  */
 

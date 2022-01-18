@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L43-L46">API
+ *      "../../doc-files/api-spec.html#autoscaling.get_autoscaling_capacity.AutoscalingResources">API
  *      specification</a>
  */
 @JsonpDeserializable

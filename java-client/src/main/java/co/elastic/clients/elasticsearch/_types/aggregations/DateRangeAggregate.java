@@ -41,7 +41,7 @@ import java.util.function.Function;
  * floating point number.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L509-L514">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.DateRangeAggregate">API
  *      specification</a>
  */
 @JsonpDeserializable

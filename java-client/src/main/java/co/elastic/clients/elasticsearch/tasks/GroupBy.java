@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/_types/GroupBy.ts#L20-L24">API
+ * @see <a href="../doc-files/api-spec.html#tasks._types.GroupBy">API
  *      specification</a>
  */
 @JsonpDeserializable

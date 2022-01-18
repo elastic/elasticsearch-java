@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Updates certain properties of a snapshot.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/update_model_snapshot/MlUpdateModelSnapshotRequest.ts#L23-L54">API
+ *      "../doc-files/api-spec.html#ml.update_model_snapshot.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

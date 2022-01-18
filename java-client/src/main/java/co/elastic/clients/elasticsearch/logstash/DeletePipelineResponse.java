@@ -36,7 +36,7 @@ import java.util.Objects;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/logstash/delete_pipeline/LogstashDeletePipelineResponse.ts#L22-L24">API
+ *      "../doc-files/api-spec.html#logstash.delete_pipeline.Response">API
  *      specification</a>
  */
 

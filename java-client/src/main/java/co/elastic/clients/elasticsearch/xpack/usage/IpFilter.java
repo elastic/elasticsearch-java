@@ -41,8 +41,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L153-L156">API
+ * @see <a href="../../doc-files/api-spec.html#xpack.usage.IpFilter">API
  *      specification</a>
  */
 @JsonpDeserializable

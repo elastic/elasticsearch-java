@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 /**
  * Provides low-level information about the segments in the shards of an index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/segments/CatSegmentsRequest.ts#L23-L35">API
+ * @see <a href="../doc-files/api-spec.html#cat.segments.Request">API
  *      specification</a>
  */
 

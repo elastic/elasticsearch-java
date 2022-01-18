@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Schedule.ts#L70-L83">API
+ * @see <a href="../doc-files/api-spec.html#watcher._types.Month">API
  *      specification</a>
  */
 @JsonpDeserializable

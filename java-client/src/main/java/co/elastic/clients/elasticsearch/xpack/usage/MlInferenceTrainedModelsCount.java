@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/xpack/usage/types.ts#L202-L208">API
+ *      "../../doc-files/api-spec.html#xpack.usage.MlInferenceTrainedModelsCount">API
  *      specification</a>
  */
 @JsonpDeserializable

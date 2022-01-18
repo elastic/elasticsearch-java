@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/evaluate_data_frame/types.ts#L96-L117">API
+ *      "../../doc-files/api-spec.html#ml.evaluate_data_frame.ConfusionMatrixThreshold">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/abstractions.ts#L178-L192">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.CombinedFieldsQuery">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,7 +59,7 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	private final CombinedFieldsOperator operator;
 
 	@Nullable
-	private final String mimimumShouldMatch;
+	private final String minimumShouldMatch;
 
 	@Nullable
 	private final CombinedFieldsZeroTerms zeroTermsQuery;
@@ -73,7 +73,7 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.autoGenerateSynonymsPhraseQuery = builder.autoGenerateSynonymsPhraseQuery;
 		this.operator = builder.operator;
-		this.mimimumShouldMatch = builder.mimimumShouldMatch;
+		this.minimumShouldMatch = builder.minimumShouldMatch;
 		this.zeroTermsQuery = builder.zeroTermsQuery;
 
 	}
@@ -121,11 +121,11 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 	}
 
 	/**
-	 * API name: {@code mimimum_should_match}
+	 * API name: {@code minimum_should_match}
 	 */
 	@Nullable
-	public final String mimimumShouldMatch() {
-		return this.mimimumShouldMatch;
+	public final String minimumShouldMatch() {
+		return this.minimumShouldMatch;
 	}
 
 	/**
@@ -161,9 +161,9 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 			generator.writeKey("operator");
 			this.operator.serialize(generator, mapper);
 		}
-		if (this.mimimumShouldMatch != null) {
-			generator.writeKey("mimimum_should_match");
-			generator.write(this.mimimumShouldMatch);
+		if (this.minimumShouldMatch != null) {
+			generator.writeKey("minimum_should_match");
+			generator.write(this.minimumShouldMatch);
 
 		}
 		if (this.zeroTermsQuery != null) {
@@ -193,7 +193,7 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		private CombinedFieldsOperator operator;
 
 		@Nullable
-		private String mimimumShouldMatch;
+		private String minimumShouldMatch;
 
 		@Nullable
 		private CombinedFieldsZeroTerms zeroTermsQuery;
@@ -243,10 +243,10 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
-		 * API name: {@code mimimum_should_match}
+		 * API name: {@code minimum_should_match}
 		 */
-		public final Builder mimimumShouldMatch(@Nullable String value) {
-			this.mimimumShouldMatch = value;
+		public final Builder minimumShouldMatch(@Nullable String value) {
+			this.minimumShouldMatch = value;
 			return this;
 		}
 
@@ -291,7 +291,7 @@ public class CombinedFieldsQuery extends QueryBase implements QueryVariant {
 		op.add(Builder::autoGenerateSynonymsPhraseQuery, JsonpDeserializer.booleanDeserializer(),
 				"auto_generate_synonyms_phrase_query");
 		op.add(Builder::operator, CombinedFieldsOperator._DESERIALIZER, "operator");
-		op.add(Builder::mimimumShouldMatch, JsonpDeserializer.stringDeserializer(), "mimimum_should_match");
+		op.add(Builder::minimumShouldMatch, JsonpDeserializer.stringDeserializer(), "minimum_should_match");
 		op.add(Builder::zeroTermsQuery, CombinedFieldsZeroTerms._DESERIALIZER, "zero_terms_query");
 
 	}

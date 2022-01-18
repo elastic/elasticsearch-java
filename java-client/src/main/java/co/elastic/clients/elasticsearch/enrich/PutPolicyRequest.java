@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Creates a new enrich policy.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/enrich/put_policy/PutEnrichPolicyRequest.ts#L24-L37">API
+ * @see <a href="../doc-files/api-spec.html#enrich.put_policy.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

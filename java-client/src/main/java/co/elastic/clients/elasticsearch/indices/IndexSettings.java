@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
  * @see <a href=
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/7.8/index-modules.html#index-modules-settings">Documentation
  *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/IndexSettings.ts#L36-L273">API
+ * @see <a href="../doc-files/api-spec.html#indices._types.IndexSettings">API
  *      specification</a>
  */
 @JsonpDeserializable

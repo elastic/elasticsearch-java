@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/geo.ts#L48-L57">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.GeoDistanceQuery">API
  *      specification</a>
  */
 @JsonpDeserializable

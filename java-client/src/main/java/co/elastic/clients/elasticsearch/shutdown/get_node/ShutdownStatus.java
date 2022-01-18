@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/shutdown/get_node/ShutdownGetNodeResponse.ts#L45-L50">API
+ *      "../../doc-files/api-spec.html#shutdown.get_node.ShutdownStatus">API
  *      specification</a>
  */
 @JsonpDeserializable

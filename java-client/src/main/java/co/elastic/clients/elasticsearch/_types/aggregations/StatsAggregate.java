@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * (<code>count</code> is zero).
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L226-L241">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.StatsAggregate">API
  *      specification</a>
  */
 @JsonpDeserializable

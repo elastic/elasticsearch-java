@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/bucket.ts#L290-L292">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.GoogleNormalizedDistanceHeuristic">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -39,8 +39,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/get_rollup_caps/GetRollupCapabilitiesResponse.ts#L24-L27">API
+ * @see <a href="../doc-files/api-spec.html#rollup.get_rollup_caps.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

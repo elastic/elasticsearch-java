@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +39,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -46,25 +48,33 @@ import javax.annotation.Nullable;
 // typedef: ilm.put_lifecycle.Request
 
 /**
- * Creates a lifecycle policy
+ * Creates a lifecycle policy. If the specified policy exists, the policy is
+ * replaced and the policy version is incremented.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/put_lifecycle/PutLifecycleRequest.ts#L24-L37">API
+ * @see <a href="../doc-files/api-spec.html#ilm.put_lifecycle.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class PutLifecycleRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Time masterTimeout;
+
 	private final String name;
 
 	@Nullable
 	private final IlmPolicy policy;
 
+	@Nullable
+	private final Time timeout;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PutLifecycleRequest(Builder builder) {
 
+		this.masterTimeout = builder.masterTimeout;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
 		this.policy = builder.policy;
+		this.timeout = builder.timeout;
 
 	}
 
@@ -73,7 +83,18 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Required - The name of the index lifecycle policy
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - Identifier for the policy.
 	 * <p>
 	 * API name: {@code policy}
 	 */
@@ -87,6 +108,17 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	public final IlmPolicy policy() {
 		return this.policy;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -115,13 +147,40 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutLifecycleRequest> {
+		@Nullable
+		private Time masterTimeout;
+
 		private String name;
 
 		@Nullable
 		private IlmPolicy policy;
 
+		@Nullable
+		private Time timeout;
+
 		/**
-		 * Required - The name of the index lifecycle policy
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - Identifier for the policy.
 		 * <p>
 		 * API name: {@code policy}
 		 */
@@ -143,6 +202,27 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder policy(Function<IlmPolicy.Builder, ObjectBuilder<IlmPolicy>> fn) {
 			return this.policy(fn.apply(new IlmPolicy.Builder()).build());
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -208,7 +288,14 @@ public class PutLifecycleRequest extends RequestBase implements JsonpSerializabl
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PutLifecycleResponse._DESERIALIZER);
 }

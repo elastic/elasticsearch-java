@@ -57,8 +57,7 @@ import javax.annotation.Nullable;
  * case. You can see the current value for the upgrade_mode setting by using the
  * get machine learning info API.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/set_upgrade_mode/MlSetUpgradeModeRequest.ts#L23-L56">API
+ * @see <a href="../doc-files/api-spec.html#ml.set_upgrade_mode.Request">API
  *      specification</a>
  */
 

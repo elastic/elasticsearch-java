@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/_types/Transform.ts#L70-L78">API
+ *      "../doc-files/api-spec.html#transform._types.PivotGroupByContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -61,6 +61,10 @@ public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, Jso
 	 */
 	/**
 	 * {@link PivotGroupBy} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../doc-files/api-spec.html#transform._types.PivotGroupByContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

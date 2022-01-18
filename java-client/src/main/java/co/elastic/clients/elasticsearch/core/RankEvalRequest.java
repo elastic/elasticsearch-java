@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
  * Allows to evaluate the quality of ranked search results over a set of typical
  * search queries
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/RankEvalRequest.ts#L24-L60">API
+ * @see <a href="../doc-files/api-spec.html#_global.rank_eval.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

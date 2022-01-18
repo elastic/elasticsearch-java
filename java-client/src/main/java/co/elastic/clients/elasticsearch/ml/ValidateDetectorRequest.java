@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
 /**
  * Validates an anomaly detection detector.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/validate_detector/MlValidateDetectorRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#ml.validate_detector.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 /**
  * Retries executing the policy for an index that is in the ERROR step.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/retry/RetryIlmRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#ilm.retry.Request">API
  *      specification</a>
  */
 

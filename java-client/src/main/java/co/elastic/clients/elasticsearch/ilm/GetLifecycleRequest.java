@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -35,7 +36,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -43,23 +45,29 @@ import javax.annotation.Nullable;
 // typedef: ilm.get_lifecycle.Request
 
 /**
- * Returns the specified policy definition. Includes the policy version and last
- * modified date.
+ * Retrieves a lifecycle policy.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/get_lifecycle/GetLifecycleRequest.ts#L23-L33">API
+ * @see <a href="../doc-files/api-spec.html#ilm.get_lifecycle.Request">API
  *      specification</a>
  */
 
 public class GetLifecycleRequest extends RequestBase {
 	@Nullable
+	private final Time masterTimeout;
+
+	@Nullable
 	private final String name;
+
+	@Nullable
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetLifecycleRequest(Builder builder) {
 
+		this.masterTimeout = builder.masterTimeout;
 		this.name = builder.name;
+		this.timeout = builder.timeout;
 
 	}
 
@@ -68,13 +76,35 @@ public class GetLifecycleRequest extends RequestBase {
 	}
 
 	/**
-	 * The name of the index lifecycle policy
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * Identifier for the policy.
 	 * <p>
 	 * API name: {@code policy}
 	 */
 	@Nullable
 	public final String name() {
 		return this.name;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -85,16 +115,64 @@ public class GetLifecycleRequest extends RequestBase {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetLifecycleRequest> {
 		@Nullable
+		private Time masterTimeout;
+
+		@Nullable
 		private String name;
 
+		@Nullable
+		private Time timeout;
+
 		/**
-		 * The name of the index lifecycle policy
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Identifier for the policy.
 		 * <p>
 		 * API name: {@code policy}
 		 */
 		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -153,7 +231,14 @@ public class GetLifecycleRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, GetLifecycleResponse._DESERIALIZER);
 }

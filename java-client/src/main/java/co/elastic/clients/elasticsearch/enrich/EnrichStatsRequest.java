@@ -42,8 +42,7 @@ import java.util.Objects;
  * Gets enrich coordinator statistics and information about enrich policies that
  * are currently executing.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/enrich/stats/EnrichStatsRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#enrich.stats.Request">API
  *      specification</a>
  */
 

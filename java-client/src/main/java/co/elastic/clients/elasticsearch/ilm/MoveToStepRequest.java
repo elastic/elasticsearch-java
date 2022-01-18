@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 /**
  * Manually moves an index into the specified step and executes that step.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/move_to_step/MoveToStepRequest.ts#L24-L37">API
+ * @see <a href="../doc-files/api-spec.html#ilm.move_to_step.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

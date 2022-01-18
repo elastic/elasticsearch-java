@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
  * down. Designed for indirect use by ECE/ESS and ECK. Direct use is not
  * supported.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/shutdown/get_node/ShutdownGetNodeRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#shutdown.get_node.Request">API
  *      specification</a>
  */
 

@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Enables users in the native realm.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/enable_user/SecurityEnableUserRequest.ts#L23-L35">API
+ * @see <a href="../doc-files/api-spec.html#security.enable_user.Request">API
  *      specification</a>
  */
 

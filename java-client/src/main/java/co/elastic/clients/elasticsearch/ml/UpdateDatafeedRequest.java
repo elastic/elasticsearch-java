@@ -64,8 +64,7 @@ import javax.annotation.Nullable;
  * the time of the update and runs the query using those same roles. If you
  * provide secondary authorization headers, those credentials are used instead.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/update_datafeed/MlUpdateDatafeedRequest.ts#L31-L161">API
+ * @see <a href="../doc-files/api-spec.html#ml.update_datafeed.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

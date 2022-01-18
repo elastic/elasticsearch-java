@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Influencer.ts#L24-L76">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.Influencer">API
  *      specification</a>
  */
 @JsonpDeserializable

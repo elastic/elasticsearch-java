@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Verifies a repository.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/verify_repository/SnapshotVerifyRepositoryRequest.ts#L24-L38">API
+ *      "../doc-files/api-spec.html#snapshot.verify_repository.Request">API
  *      specification</a>
  */
 

@@ -431,6 +431,13 @@ public class QueryBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link WrapperQuery wrapper} {@code Query} variant.
+	 */
+	public static WrapperQuery.Builder wrapper() {
+		return new WrapperQuery.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link TypeQuery type} {@code Query} variant.
 	 */
 	public static TypeQuery.Builder type() {

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.json.ExternallyTaggedUnion;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,27 +33,44 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
+import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.SingleBucketAggregateBase
 
 /**
- *
+ * Base type for single-bucket aggregation results that can hold
+ * sub-aggregations results.
+ * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L457-L459">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.SingleBucketAggregateBase">API
  *      specification</a>
  */
 
 public abstract class SingleBucketAggregateBase extends AggregateBase {
+	private final Map<String, Aggregate> aggregations;
+
 	private final long docCount;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected SingleBucketAggregateBase(AbstractBuilder<?> builder) {
 		super(builder);
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 
 		this.docCount = ApiTypeHelper.requireNonNull(builder.docCount, this, "docCount");
 
+	}
+
+	/**
+	 * Nested aggregations
+	 */
+	public final Map<String, Aggregate> aggregations() {
+		return this.aggregations;
 	}
 
 	/**
@@ -63,6 +81,7 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+		ExternallyTaggedUnion.serializeTypedKeysInner(this.aggregations, generator, mapper);
 
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("doc_count");
@@ -73,6 +92,38 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				AggregateBase.AbstractBuilder<BuilderT> {
+		@Nullable
+		protected Map<String, Aggregate> aggregations = new HashMap<>();
+
+		/**
+		 * Nested aggregations
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
+		 */
+		public final BuilderT aggregations(Map<String, Aggregate> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
+			return self();
+		}
+
+		/**
+		 * Nested aggregations
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final BuilderT aggregations(String key, Aggregate value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return self();
+		}
+
+		/**
+		 * Nested aggregations
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final BuilderT aggregations(String key, Function<Aggregate.Builder, ObjectBuilder<Aggregate>> fn) {
+			return aggregations(key, fn.apply(new Aggregate.Builder()).build());
+		}
+
 		private Long docCount;
 
 		/**
@@ -90,6 +141,13 @@ public abstract class SingleBucketAggregateBase extends AggregateBase {
 			ObjectDeserializer<BuilderT> op) {
 		AggregateBase.setupAggregateBaseDeserializer(op);
 		op.add(AbstractBuilder::docCount, JsonpDeserializer.longDeserializer(), "doc_count");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			if (builder.aggregations == null) {
+				builder.aggregations = new HashMap<>();
+			}
+			Aggregate._TYPED_KEYS_DESERIALIZER.deserializeEntry(name, parser, mapper, builder.aggregations);
+		});
 
 	}
 

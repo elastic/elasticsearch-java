@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L57-L59">API
+ *      "../../doc-files/api-spec.html#_types.analysis.HyphenationDecompounderTokenFilter">API
  *      specification</a>
  */
 @JsonpDeserializable

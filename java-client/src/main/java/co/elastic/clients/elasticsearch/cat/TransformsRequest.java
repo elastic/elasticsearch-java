@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
 /**
  * Gets configuration and usage information about transforms.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/transforms/CatTransformsRequest.ts#L24-L38">API
+ * @see <a href="../doc-files/api-spec.html#cat.transforms.Request">API
  *      specification</a>
  */
 

@@ -57,7 +57,7 @@ import javax.annotation.Nullable;
  * system failure.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/revert_model_snapshot/MlRevertModelSnapshotRequest.ts#L23-L62">API
+ *      "../doc-files/api-spec.html#ml.revert_model_snapshot.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

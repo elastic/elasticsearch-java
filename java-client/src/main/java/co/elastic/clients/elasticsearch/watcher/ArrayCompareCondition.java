@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Conditions.ts#L25-L31">API
+ *      "../doc-files/api-spec.html#watcher._types.ArrayCompareCondition">API
  *      specification</a>
  */
 @JsonpDeserializable

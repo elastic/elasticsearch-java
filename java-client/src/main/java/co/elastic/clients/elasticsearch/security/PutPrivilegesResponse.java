@@ -40,7 +40,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/put_privileges/SecurityPutPrivilegesResponse.ts#L24-L27">API
+ *      "../doc-files/api-spec.html#security.put_privileges.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

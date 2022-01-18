@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Removes application privileges.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/delete_privileges/SecurityDeletePrivilegesRequest.ts#L23-L36">API
+ *      "../doc-files/api-spec.html#security.delete_privileges.Request">API
  *      specification</a>
  */
 

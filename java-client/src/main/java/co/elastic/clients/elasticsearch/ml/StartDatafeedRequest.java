@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 /**
  * Starts one or more datafeeds.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/start_datafeed/MlStartDatafeedRequest.ts#L24-L42">API
+ * @see <a href="../doc-files/api-spec.html#ml.start_datafeed.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

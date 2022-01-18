@@ -67,12 +67,14 @@ import javax.annotation.Nullable;
  * the <code>overall_score</code> is the maximum <code>overall_score</code> of
  * the overall buckets that have a span equal to the jobs' largest bucket span.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_overall_buckets/MlGetOverallBucketsRequest.ts#L25-L149">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_overall_buckets.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class GetOverallBucketsRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final Boolean allowNoJobs;
+
 	@Nullable
 	private final Boolean allowNoMatch;
 
@@ -100,6 +102,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 
 	private GetOverallBucketsRequest(Builder builder) {
 
+		this.allowNoJobs = builder.allowNoJobs;
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bucketSpan = builder.bucketSpan;
 		this.end = builder.end;
@@ -113,6 +116,17 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 
 	public static GetOverallBucketsRequest of(Function<Builder, ObjectBuilder<GetOverallBucketsRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code allow_no_jobs}
+	 * 
+	 * @deprecated 7.10.0
+	 */
+	@Deprecated
+	@Nullable
+	public final Boolean allowNoJobs() {
+		return this.allowNoJobs;
 	}
 
 	/**
@@ -212,6 +226,11 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.allowNoJobs != null) {
+			generator.writeKey("allow_no_jobs");
+			generator.write(this.allowNoJobs);
+
+		}
 		if (this.allowNoMatch != null) {
 			generator.writeKey("allow_no_match");
 			generator.write(this.allowNoMatch);
@@ -258,6 +277,9 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetOverallBucketsRequest> {
 		@Nullable
+		private Boolean allowNoJobs;
+
+		@Nullable
 		private Boolean allowNoMatch;
 
 		@Nullable
@@ -279,6 +301,17 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 
 		@Nullable
 		private Integer topN;
+
+		/**
+		 * API name: {@code allow_no_jobs}
+		 * 
+		 * @deprecated 7.10.0
+		 */
+		@Deprecated
+		public final Builder allowNoJobs(@Nullable Boolean value) {
+			this.allowNoJobs = value;
+			return this;
+		}
 
 		/**
 		 * Refer to the description for the <code>allow_no_match</code> query parameter.
@@ -418,6 +451,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	protected static void setupGetOverallBucketsRequestDeserializer(
 			ObjectDeserializer<GetOverallBucketsRequest.Builder> op) {
 
+		op.add(Builder::allowNoJobs, JsonpDeserializer.booleanDeserializer(), "allow_no_jobs");
 		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
 		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
 		op.add(Builder::end, Time._DESERIALIZER, "end");

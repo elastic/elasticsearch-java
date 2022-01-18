@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/post_start_basic/StartBasicLicenseResponse.ts#L23-L29">API
+ *      "../doc-files/api-spec.html#license.post_start_basic.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

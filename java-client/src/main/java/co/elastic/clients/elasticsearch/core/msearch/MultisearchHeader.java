@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * request.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch/types.ts#L36-L48">API
+ *      "../../doc-files/api-spec.html#_global.msearch.MultisearchHeader">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Retrieves security privileges for the logged in user.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_user_privileges/SecurityGetUserPrivilegesRequest.ts#L23-L35">API
+ *      "../doc-files/api-spec.html#security.get_user_privileges.Request">API
  *      specification</a>
  */
 

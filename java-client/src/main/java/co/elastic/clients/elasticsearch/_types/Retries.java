@@ -41,8 +41,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Retries.ts#L22-L25">API
+ * @see <a href="../doc-files/api-spec.html#_types.Retries">API
  *      specification</a>
  */
 @JsonpDeserializable

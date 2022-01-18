@@ -62,8 +62,7 @@ import javax.annotation.Nullable;
 /**
  * Updates the index mappings.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/put_mapping/IndicesPutMappingRequest.ts#L37-L113">API
+ * @see <a href="../doc-files/api-spec.html#indices.put_mapping.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

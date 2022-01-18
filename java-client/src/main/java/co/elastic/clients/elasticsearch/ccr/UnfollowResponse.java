@@ -37,8 +37,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/unfollow/UnfollowIndexResponse.ts#L22-L22">API
+ * @see <a href="../doc-files/api-spec.html#ccr.unfollow.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

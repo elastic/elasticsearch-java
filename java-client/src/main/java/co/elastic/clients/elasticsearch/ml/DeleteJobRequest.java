@@ -55,8 +55,7 @@ import javax.annotation.Nullable;
  * delete datafeed API with the same timeout and force parameters as the delete
  * job request.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/delete_job/MlDeleteJobRequest.ts#L23-L57">API
+ * @see <a href="../doc-files/api-spec.html#ml.delete_job.Request">API
  *      specification</a>
  */
 

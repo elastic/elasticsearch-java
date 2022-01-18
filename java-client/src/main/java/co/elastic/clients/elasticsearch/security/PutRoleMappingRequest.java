@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Creates and updates role mappings.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/put_role_mapping/SecurityPutRoleMappingRequest.ts#L24-L43">API
+ *      "../doc-files/api-spec.html#security.put_role_mapping.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

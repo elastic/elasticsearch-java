@@ -64,8 +64,7 @@ import javax.annotation.Nullable;
  * parameters as the close job request. When a datafeed that has a specified end
  * date stops, it automatically closes its associated job.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/close_job/MlCloseJobRequest.ts#L24-L80">API
+ * @see <a href="../doc-files/api-spec.html#ml.close_job.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

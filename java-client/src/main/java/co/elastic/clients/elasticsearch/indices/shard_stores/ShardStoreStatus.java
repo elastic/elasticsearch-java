@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shard_stores/types.ts#L55-L64">API
+ *      "../../doc-files/api-spec.html#indices.shard_stores.ShardStoreStatus">API
  *      specification</a>
  */
 @JsonpDeserializable

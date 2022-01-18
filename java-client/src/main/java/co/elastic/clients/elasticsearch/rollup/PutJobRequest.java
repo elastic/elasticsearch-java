@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Creates a rollup job.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/put_job/CreateRollupJobRequest.ts#L26-L43">API
+ * @see <a href="../doc-files/api-spec.html#rollup.put_job.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

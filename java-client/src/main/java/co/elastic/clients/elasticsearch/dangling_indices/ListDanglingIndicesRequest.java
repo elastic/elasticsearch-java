@@ -42,7 +42,7 @@ import java.util.Objects;
  * Returns all dangling indices.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/dangling_indices/list_dangling_indices/ListDanglingIndicesRequest.ts#L22-L27">API
+ *      "../doc-files/api-spec.html#dangling_indices.list_dangling_indices.Request">API
  *      specification</a>
  */
 

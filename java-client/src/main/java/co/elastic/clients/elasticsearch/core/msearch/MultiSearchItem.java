@@ -42,7 +42,7 @@ import java.util.function.Supplier;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch/types.ts#L71-L73">API
+ *      "../../doc-files/api-spec.html#_global.msearch.MultiSearchItem">API
  *      specification</a>
  */
 

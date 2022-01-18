@@ -39,7 +39,7 @@ import java.util.function.Function;
  * weight was set to zero.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L198-L202">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.WeightedAvgAggregate">API
  *      specification</a>
  */
 @JsonpDeserializable

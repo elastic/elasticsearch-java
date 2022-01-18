@@ -43,12 +43,12 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Job.ts#L91-L102">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.JobStats">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class JobStats implements JsonpSerializable {
+	@Nullable
 	private final String assignmentExplanation;
 
 	private final DataCounts dataCounts;
@@ -59,6 +59,7 @@ public class JobStats implements JsonpSerializable {
 
 	private final ModelSizeStats modelSizeStats;
 
+	@Nullable
 	private final DiscoveryNode node;
 
 	@Nullable
@@ -75,13 +76,12 @@ public class JobStats implements JsonpSerializable {
 
 	private JobStats(Builder builder) {
 
-		this.assignmentExplanation = ApiTypeHelper.requireNonNull(builder.assignmentExplanation, this,
-				"assignmentExplanation");
+		this.assignmentExplanation = builder.assignmentExplanation;
 		this.dataCounts = ApiTypeHelper.requireNonNull(builder.dataCounts, this, "dataCounts");
 		this.forecastsStats = ApiTypeHelper.requireNonNull(builder.forecastsStats, this, "forecastsStats");
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.modelSizeStats = ApiTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
-		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.node = builder.node;
 		this.openTime = builder.openTime;
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 		this.timingStats = ApiTypeHelper.requireNonNull(builder.timingStats, this, "timingStats");
@@ -94,8 +94,9 @@ public class JobStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code assignment_explanation}
+	 * API name: {@code assignment_explanation}
 	 */
+	@Nullable
 	public final String assignmentExplanation() {
 		return this.assignmentExplanation;
 	}
@@ -129,8 +130,9 @@ public class JobStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code node}
+	 * API name: {@code node}
 	 */
+	@Nullable
 	public final DiscoveryNode node() {
 		return this.node;
 	}
@@ -176,9 +178,11 @@ public class JobStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("assignment_explanation");
-		generator.write(this.assignmentExplanation);
+		if (this.assignmentExplanation != null) {
+			generator.writeKey("assignment_explanation");
+			generator.write(this.assignmentExplanation);
 
+		}
 		generator.writeKey("data_counts");
 		this.dataCounts.serialize(generator, mapper);
 
@@ -191,9 +195,11 @@ public class JobStats implements JsonpSerializable {
 		generator.writeKey("model_size_stats");
 		this.modelSizeStats.serialize(generator, mapper);
 
-		generator.writeKey("node");
-		this.node.serialize(generator, mapper);
+		if (this.node != null) {
+			generator.writeKey("node");
+			this.node.serialize(generator, mapper);
 
+		}
 		if (this.openTime != null) {
 			generator.writeKey("open_time");
 			generator.write(this.openTime);
@@ -219,6 +225,7 @@ public class JobStats implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobStats> {
+		@Nullable
 		private String assignmentExplanation;
 
 		private DataCounts dataCounts;
@@ -229,6 +236,7 @@ public class JobStats implements JsonpSerializable {
 
 		private ModelSizeStats modelSizeStats;
 
+		@Nullable
 		private DiscoveryNode node;
 
 		@Nullable
@@ -242,9 +250,9 @@ public class JobStats implements JsonpSerializable {
 		private Boolean deleting;
 
 		/**
-		 * Required - API name: {@code assignment_explanation}
+		 * API name: {@code assignment_explanation}
 		 */
-		public final Builder assignmentExplanation(String value) {
+		public final Builder assignmentExplanation(@Nullable String value) {
 			this.assignmentExplanation = value;
 			return this;
 		}
@@ -304,15 +312,15 @@ public class JobStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code node}
+		 * API name: {@code node}
 		 */
-		public final Builder node(DiscoveryNode value) {
+		public final Builder node(@Nullable DiscoveryNode value) {
 			this.node = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code node}
+		 * API name: {@code node}
 		 */
 		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
 			return this.node(fn.apply(new DiscoveryNode.Builder()).build());

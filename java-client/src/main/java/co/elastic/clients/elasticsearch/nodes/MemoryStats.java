@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -43,12 +42,14 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L116-L126">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.MemoryStats">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class MemoryStats implements JsonpSerializable {
+	@Nullable
+	private final Long adjustedTotalInBytes;
+
 	@Nullable
 	private final String resident;
 
@@ -67,30 +68,42 @@ public class MemoryStats implements JsonpSerializable {
 	@Nullable
 	private final Long totalVirtualInBytes;
 
-	private final long totalInBytes;
+	@Nullable
+	private final Long totalInBytes;
 
-	private final long freeInBytes;
+	@Nullable
+	private final Long freeInBytes;
 
-	private final long usedInBytes;
+	@Nullable
+	private final Long usedInBytes;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected MemoryStats(AbstractBuilder<?> builder) {
 
+		this.adjustedTotalInBytes = builder.adjustedTotalInBytes;
 		this.resident = builder.resident;
 		this.residentInBytes = builder.residentInBytes;
 		this.share = builder.share;
 		this.shareInBytes = builder.shareInBytes;
 		this.totalVirtual = builder.totalVirtual;
 		this.totalVirtualInBytes = builder.totalVirtualInBytes;
-		this.totalInBytes = ApiTypeHelper.requireNonNull(builder.totalInBytes, this, "totalInBytes");
-		this.freeInBytes = ApiTypeHelper.requireNonNull(builder.freeInBytes, this, "freeInBytes");
-		this.usedInBytes = ApiTypeHelper.requireNonNull(builder.usedInBytes, this, "usedInBytes");
+		this.totalInBytes = builder.totalInBytes;
+		this.freeInBytes = builder.freeInBytes;
+		this.usedInBytes = builder.usedInBytes;
 
 	}
 
 	public static MemoryStats memoryStatsOf(Function<Builder, ObjectBuilder<MemoryStats>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code adjusted_total_in_bytes}
+	 */
+	@Nullable
+	public final Long adjustedTotalInBytes() {
+		return this.adjustedTotalInBytes;
 	}
 
 	/**
@@ -142,23 +155,26 @@ public class MemoryStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total_in_bytes}
+	 * API name: {@code total_in_bytes}
 	 */
-	public final long totalInBytes() {
+	@Nullable
+	public final Long totalInBytes() {
 		return this.totalInBytes;
 	}
 
 	/**
-	 * Required - API name: {@code free_in_bytes}
+	 * API name: {@code free_in_bytes}
 	 */
-	public final long freeInBytes() {
+	@Nullable
+	public final Long freeInBytes() {
 		return this.freeInBytes;
 	}
 
 	/**
-	 * Required - API name: {@code used_in_bytes}
+	 * API name: {@code used_in_bytes}
 	 */
-	public final long usedInBytes() {
+	@Nullable
+	public final Long usedInBytes() {
 		return this.usedInBytes;
 	}
 
@@ -173,6 +189,11 @@ public class MemoryStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.adjustedTotalInBytes != null) {
+			generator.writeKey("adjusted_total_in_bytes");
+			generator.write(this.adjustedTotalInBytes);
+
+		}
 		if (this.resident != null) {
 			generator.writeKey("resident");
 			generator.write(this.resident);
@@ -203,14 +224,21 @@ public class MemoryStats implements JsonpSerializable {
 			generator.write(this.totalVirtualInBytes);
 
 		}
-		generator.writeKey("total_in_bytes");
-		generator.write(this.totalInBytes);
+		if (this.totalInBytes != null) {
+			generator.writeKey("total_in_bytes");
+			generator.write(this.totalInBytes);
 
-		generator.writeKey("free_in_bytes");
-		generator.write(this.freeInBytes);
+		}
+		if (this.freeInBytes != null) {
+			generator.writeKey("free_in_bytes");
+			generator.write(this.freeInBytes);
 
-		generator.writeKey("used_in_bytes");
-		generator.write(this.usedInBytes);
+		}
+		if (this.usedInBytes != null) {
+			generator.writeKey("used_in_bytes");
+			generator.write(this.usedInBytes);
+
+		}
 
 	}
 
@@ -243,6 +271,9 @@ public class MemoryStats implements JsonpSerializable {
 			extends
 				ObjectBuilderBase {
 		@Nullable
+		private Long adjustedTotalInBytes;
+
+		@Nullable
 		private String resident;
 
 		@Nullable
@@ -260,11 +291,22 @@ public class MemoryStats implements JsonpSerializable {
 		@Nullable
 		private Long totalVirtualInBytes;
 
+		@Nullable
 		private Long totalInBytes;
 
+		@Nullable
 		private Long freeInBytes;
 
+		@Nullable
 		private Long usedInBytes;
+
+		/**
+		 * API name: {@code adjusted_total_in_bytes}
+		 */
+		public final BuilderT adjustedTotalInBytes(@Nullable Long value) {
+			this.adjustedTotalInBytes = value;
+			return self();
+		}
 
 		/**
 		 * API name: {@code resident}
@@ -315,25 +357,25 @@ public class MemoryStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total_in_bytes}
+		 * API name: {@code total_in_bytes}
 		 */
-		public final BuilderT totalInBytes(long value) {
+		public final BuilderT totalInBytes(@Nullable Long value) {
 			this.totalInBytes = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code free_in_bytes}
+		 * API name: {@code free_in_bytes}
 		 */
-		public final BuilderT freeInBytes(long value) {
+		public final BuilderT freeInBytes(@Nullable Long value) {
 			this.freeInBytes = value;
 			return self();
 		}
 
 		/**
-		 * Required - API name: {@code used_in_bytes}
+		 * API name: {@code used_in_bytes}
 		 */
-		public final BuilderT usedInBytes(long value) {
+		public final BuilderT usedInBytes(@Nullable Long value) {
 			this.usedInBytes = value;
 			return self();
 		}
@@ -353,6 +395,7 @@ public class MemoryStats implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupMemoryStatsDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 
+		op.add(AbstractBuilder::adjustedTotalInBytes, JsonpDeserializer.longDeserializer(), "adjusted_total_in_bytes");
 		op.add(AbstractBuilder::resident, JsonpDeserializer.stringDeserializer(), "resident");
 		op.add(AbstractBuilder::residentInBytes, JsonpDeserializer.longDeserializer(), "resident_in_bytes");
 		op.add(AbstractBuilder::share, JsonpDeserializer.stringDeserializer(), "share");

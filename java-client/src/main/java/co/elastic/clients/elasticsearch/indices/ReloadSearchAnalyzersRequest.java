@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Reloads an index's search analyzers and their resources.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/reload_search_analyzers/ReloadSearchAnalyzersRequest.ts#L23-L37">API
+ *      "../doc-files/api-spec.html#indices.reload_search_analyzers.Request">API
  *      specification</a>
  */
 

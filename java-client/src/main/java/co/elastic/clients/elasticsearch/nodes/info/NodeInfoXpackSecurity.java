@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L227-L232">API
+ *      "../../doc-files/api-spec.html#nodes.info.NodeInfoXpackSecurity">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -52,6 +52,7 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 
 	private final String enabled;
 
+	@Nullable
 	private final NodeInfoXpackSecuritySsl transport;
 
 	@Nullable
@@ -63,7 +64,7 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 
 		this.http = ApiTypeHelper.requireNonNull(builder.http, this, "http");
 		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-		this.transport = ApiTypeHelper.requireNonNull(builder.transport, this, "transport");
+		this.transport = builder.transport;
 		this.authc = builder.authc;
 
 	}
@@ -87,8 +88,9 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code transport}
+	 * API name: {@code transport}
 	 */
+	@Nullable
 	public final NodeInfoXpackSecuritySsl transport() {
 		return this.transport;
 	}
@@ -118,9 +120,11 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		generator.writeKey("enabled");
 		generator.write(this.enabled);
 
-		generator.writeKey("transport");
-		this.transport.serialize(generator, mapper);
+		if (this.transport != null) {
+			generator.writeKey("transport");
+			this.transport.serialize(generator, mapper);
 
+		}
 		if (this.authc != null) {
 			generator.writeKey("authc");
 			this.authc.serialize(generator, mapper);
@@ -140,6 +144,7 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 
 		private String enabled;
 
+		@Nullable
 		private NodeInfoXpackSecuritySsl transport;
 
 		@Nullable
@@ -170,15 +175,15 @@ public class NodeInfoXpackSecurity implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code transport}
+		 * API name: {@code transport}
 		 */
-		public final Builder transport(NodeInfoXpackSecuritySsl value) {
+		public final Builder transport(@Nullable NodeInfoXpackSecuritySsl value) {
 			this.transport = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code transport}
+		 * API name: {@code transport}
 		 */
 		public final Builder transport(
 				Function<NodeInfoXpackSecuritySsl.Builder, ObjectBuilder<NodeInfoXpackSecuritySsl>> fn) {

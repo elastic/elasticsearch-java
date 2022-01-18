@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Returns an alias.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_alias/IndicesGetAliasRequest.ts#L23-L39">API
+ * @see <a href="../doc-files/api-spec.html#indices.get_alias.Request">API
  *      specification</a>
  */
 

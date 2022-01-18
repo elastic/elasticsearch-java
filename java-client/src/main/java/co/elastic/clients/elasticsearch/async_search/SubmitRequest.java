@@ -73,8 +73,7 @@ import javax.annotation.Nullable;
 /**
  * Executes a search request asynchronously.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/async_search/submit/AsyncSearchSubmitRequest.ts#L53-L243">API
+ * @see <a href="../doc-files/api-spec.html#async_search.submit.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

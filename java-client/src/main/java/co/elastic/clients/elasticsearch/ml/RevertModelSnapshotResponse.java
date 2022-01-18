@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/revert_model_snapshot/MlRevertModelSnapshotResponse.ts#L22-L24">API
+ *      "../doc-files/api-spec.html#ml.revert_model_snapshot.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

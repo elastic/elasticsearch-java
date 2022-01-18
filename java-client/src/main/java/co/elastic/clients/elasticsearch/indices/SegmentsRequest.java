@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Provides low-level information about segments in a Lucene index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/segments/IndicesSegmentsRequest.ts#L23-L38">API
+ * @see <a href="../doc-files/api-spec.html#indices.segments.Request">API
  *      specification</a>
  */
 

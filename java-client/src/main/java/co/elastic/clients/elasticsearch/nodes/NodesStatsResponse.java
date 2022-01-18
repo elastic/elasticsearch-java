@@ -41,12 +41,12 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/stats/NodesStatsResponse.ts#L25-L30">API
+ * @see <a href="../doc-files/api-spec.html#nodes.stats.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class NodesStatsResponse extends NodesResponseBase {
+	@Nullable
 	private final String clusterName;
 
 	private final Map<String, Stats> nodes;
@@ -56,7 +56,7 @@ public class NodesStatsResponse extends NodesResponseBase {
 	private NodesStatsResponse(Builder builder) {
 		super(builder);
 
-		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
+		this.clusterName = builder.clusterName;
 		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
@@ -66,8 +66,9 @@ public class NodesStatsResponse extends NodesResponseBase {
 	}
 
 	/**
-	 * Required - API name: {@code cluster_name}
+	 * API name: {@code cluster_name}
 	 */
+	@Nullable
 	public final String clusterName() {
 		return this.clusterName;
 	}
@@ -82,9 +83,11 @@ public class NodesStatsResponse extends NodesResponseBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("cluster_name");
-		generator.write(this.clusterName);
+		if (this.clusterName != null) {
+			generator.writeKey("cluster_name");
+			generator.write(this.clusterName);
 
+		}
 		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
@@ -108,14 +111,15 @@ public class NodesStatsResponse extends NodesResponseBase {
 	public static class Builder extends NodesResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NodesStatsResponse> {
+		@Nullable
 		private String clusterName;
 
 		private Map<String, Stats> nodes;
 
 		/**
-		 * Required - API name: {@code cluster_name}
+		 * API name: {@code cluster_name}
 		 */
-		public final Builder clusterName(String value) {
+		public final Builder clusterName(@Nullable String value) {
 			this.clusterName = value;
 			return this;
 		}

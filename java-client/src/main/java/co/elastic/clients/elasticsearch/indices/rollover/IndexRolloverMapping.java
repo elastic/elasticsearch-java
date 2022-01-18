@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/rollover/types.ts#L33-L36">API
+ *      "../../doc-files/api-spec.html#indices.rollover.IndexRolloverMapping">API
  *      specification</a>
  */
 @JsonpDeserializable

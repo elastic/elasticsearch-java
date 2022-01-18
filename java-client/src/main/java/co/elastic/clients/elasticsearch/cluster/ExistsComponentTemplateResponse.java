@@ -36,7 +36,7 @@ import java.util.Objects;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/exists_component_template/ClusterComponentTemplateExistsResponse.ts#L22-L24">API
+ *      "../doc-files/api-spec.html#cluster.exists_component_template.Response">API
  *      specification</a>
  */
 

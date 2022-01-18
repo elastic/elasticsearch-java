@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Clears all or specific caches for one or more indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/clear_cache/IndicesIndicesClearCacheRequest.ts#L23-L41">API
+ * @see <a href="../doc-files/api-spec.html#indices.clear_cache.Request">API
  *      specification</a>
  */
 

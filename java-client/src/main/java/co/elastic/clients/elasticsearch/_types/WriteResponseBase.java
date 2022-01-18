@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Base.ts#L37-L47">API
+ * @see <a href="../doc-files/api-spec.html#_types.WriteResponseBase">API
  *      specification</a>
  */
 

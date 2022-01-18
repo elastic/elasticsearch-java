@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
  * Performs a synced flush operation on one or more indices. Synced flush is
  * deprecated and will be removed in 8.0. Use flush instead
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/flush_synced/IndicesFlushSyncedRequest.ts#L23-L37">API
+ * @see <a href="../doc-files/api-spec.html#indices.flush_synced.Request">API
  *      specification</a>
  */
 

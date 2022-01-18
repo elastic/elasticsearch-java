@@ -37,7 +37,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L489-L491">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.GeoTileGridAggregate">API
  *      specification</a>
  */
 @JsonpDeserializable

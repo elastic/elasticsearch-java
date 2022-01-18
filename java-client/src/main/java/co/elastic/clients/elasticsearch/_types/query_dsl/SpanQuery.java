@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/span.ts#L79-L91">API
+ * @see <a href="../../doc-files/api-spec.html#_types.query_dsl.SpanQuery">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +56,9 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, JsonpSeri
 	 */
 	/**
 	 * {@link SpanQuery} variant kinds.
+	 * 
+	 * @see <a href="../../doc-files/api-spec.html#_types.query_dsl.SpanQuery">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

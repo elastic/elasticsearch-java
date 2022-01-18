@@ -37,7 +37,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/pipeline.ts#L46-L46">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.AverageBucketAggregation">API
  *      specification</a>
  */
 @JsonpDeserializable

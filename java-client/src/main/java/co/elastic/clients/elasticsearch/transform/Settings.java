@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 /**
  * The source of the data for the transform.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/_types/Transform.ts#L98-L128">API
+ * @see <a href="../doc-files/api-spec.html#transform._types.Settings">API
  *      specification</a>
  */
 @JsonpDeserializable

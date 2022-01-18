@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * outcome in a destination index.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_data_frame_analytics/MlPutDataFrameAnalyticsRequest.ts#L30-L130">API
+ *      "../doc-files/api-spec.html#ml.put_data_frame_analytics.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

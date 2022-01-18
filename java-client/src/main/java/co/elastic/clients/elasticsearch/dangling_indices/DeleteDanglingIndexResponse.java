@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/dangling_indices/delete_dangling_index/DeleteDanglingIndexResponse.ts#L22-L22">API
+ *      "../doc-files/api-spec.html#dangling_indices.delete_dangling_index.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

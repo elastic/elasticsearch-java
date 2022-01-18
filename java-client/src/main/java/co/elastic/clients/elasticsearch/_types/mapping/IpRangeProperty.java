@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/range.ts#L54-L56">API
+ *      "../../doc-files/api-spec.html#_types.mapping.IpRangeProperty">API
  *      specification</a>
  */
 @JsonpDeserializable

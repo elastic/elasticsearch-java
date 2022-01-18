@@ -60,8 +60,7 @@ import javax.annotation.Nullable;
  * depends on the number of anomalies found in each bucket, which relates to the
  * number of time series being modeled and the number of detectors.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_records/MlGetAnomalyRecordsRequest.ts#L26-L127">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_records.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

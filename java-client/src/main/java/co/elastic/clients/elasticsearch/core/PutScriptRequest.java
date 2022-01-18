@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Creates or updates a script.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/put_script/PutScriptRequest.ts#L25-L42">API
+ * @see <a href="../doc-files/api-spec.html#_global.put_script.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

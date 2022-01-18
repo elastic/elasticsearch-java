@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * Resets the internal state of features, usually by deleting system indices
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/features/reset_features/ResetFeaturesRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#features.reset_features.Request">API
  *      specification</a>
  */
 

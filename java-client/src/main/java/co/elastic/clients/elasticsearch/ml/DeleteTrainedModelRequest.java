@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * Deletes an existing trained inference model that is currently not referenced
  * by an ingest pipeline.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/delete_trained_model/MlDeleteTrainedModelRequest.ts#L23-L38">API
+ * @see <a href="../doc-files/api-spec.html#ml.delete_trained_model.Request">API
  *      specification</a>
  */
 

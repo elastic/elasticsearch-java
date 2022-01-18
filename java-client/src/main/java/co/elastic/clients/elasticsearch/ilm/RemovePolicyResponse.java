@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ilm/remove_policy/RemovePolicyResponse.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#ilm.remove_policy.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

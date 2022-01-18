@@ -38,8 +38,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Base.ts#L81-L83">API
+ * @see <a href="../doc-files/api-spec.html#_types.IndicesResponseBase">API
  *      specification</a>
  */
 

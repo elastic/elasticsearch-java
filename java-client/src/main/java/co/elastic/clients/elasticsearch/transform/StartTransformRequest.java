@@ -71,7 +71,7 @@ import javax.annotation.Nullable;
  * unauthorized operations.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/start_transform/StartTransformRequest.ts#L24-L61">API
+ *      "../doc-files/api-spec.html#transform.start_transform.Request">API
  *      specification</a>
  */
 

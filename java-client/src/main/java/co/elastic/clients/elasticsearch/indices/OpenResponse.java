@@ -40,8 +40,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/open/IndicesOpenResponse.ts#L22-L26">API
+ * @see <a href="../doc-files/api-spec.html#indices.open.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

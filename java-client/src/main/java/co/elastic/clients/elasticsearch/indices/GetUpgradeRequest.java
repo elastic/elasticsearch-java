@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 /**
  * DEPRECATED Returns a progress status of current upgrade.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_upgrade/IndicesGetUpgradeRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#indices.get_upgrade.Request">API
  *      specification</a>
  */
 

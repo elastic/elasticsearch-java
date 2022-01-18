@@ -42,8 +42,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/flush_synced/IndicesFlushSyncedResponse.ts#L24-L31">API
+ * @see <a href="../doc-files/api-spec.html#indices.flush_synced.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

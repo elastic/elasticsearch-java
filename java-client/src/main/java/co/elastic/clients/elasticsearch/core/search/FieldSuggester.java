@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L47-L57">API
+ *      "../../doc-files/api-spec.html#_global.search._types.FieldSuggester">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -58,6 +58,10 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 	 */
 	/**
 	 * {@link FieldSuggester} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_global.search._types.FieldSuggester">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

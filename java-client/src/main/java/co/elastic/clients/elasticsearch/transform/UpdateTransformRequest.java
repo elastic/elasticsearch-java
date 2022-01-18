@@ -52,9 +52,18 @@ import javax.annotation.Nullable;
 
 /**
  * Updates certain properties of a transform.
+ * <p>
+ * All updated properties except <code>description</code> do not take effect
+ * until after the transform starts the next checkpoint, thus there is data
+ * consistency in each checkpoint. To use this API, you must have
+ * <code>read</code> and <code>view_index_metadata</code> privileges for the
+ * source indices. You must also have <code>index</code> and <code>read</code>
+ * privileges for the destination index. When Elasticsearch security features
+ * are enabled, the transform remembers which roles the user who updated it had
+ * at the time of update and runs with those privileges.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/update_transform/UpdateTransformRequest.ts#L30-L63">API
+ *      "../doc-files/api-spec.html#transform.update_transform.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -83,6 +92,9 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final Sync sync;
 
+	@Nullable
+	private final Time timeout;
+
 	private final String transformId;
 
 	// ---------------------------------------------------------------------------------------------
@@ -97,6 +109,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		this.settings = builder.settings;
 		this.source = builder.source;
 		this.sync = builder.sync;
+		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
@@ -191,9 +204,18 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Required - Identifier for the transform. This identifier can contain
-	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-	 * must start and end with alphanumeric characters.
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * Required - Identifier for the transform.
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -280,6 +302,9 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 
 		@Nullable
 		private Sync sync;
+
+		@Nullable
+		private Time timeout;
 
 		private String transformId;
 
@@ -427,9 +452,28 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Required - Identifier for the transform. This identifier can contain
-		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-		 * must start and end with alphanumeric characters.
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - Identifier for the transform.
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
@@ -511,6 +555,9 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 				Map<String, String> params = new HashMap<>();
 				if (request.deferValidation != null) {
 					params.put("defer_validation", String.valueOf(request.deferValidation));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Stops one or more datafeeds.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/stop_datafeed/MlStopDatafeedRequest.ts#L24-L49">API
+ * @see <a href="../doc-files/api-spec.html#ml.stop_datafeed.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

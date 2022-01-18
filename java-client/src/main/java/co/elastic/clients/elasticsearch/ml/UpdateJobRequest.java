@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
 /**
  * Updates certain properties of an anomaly detection job.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/update_job/MlUpdateJobRequest.ts#L33-L137">API
+ * @see <a href="../doc-files/api-spec.html#ml.update_job.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

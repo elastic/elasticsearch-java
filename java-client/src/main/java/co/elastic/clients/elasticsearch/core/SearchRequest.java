@@ -73,8 +73,7 @@ import javax.annotation.Nullable;
 /**
  * Returns results matching a query.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/SearchRequest.ts#L51-L235">API
+ * @see <a href="../doc-files/api-spec.html#_global.search.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

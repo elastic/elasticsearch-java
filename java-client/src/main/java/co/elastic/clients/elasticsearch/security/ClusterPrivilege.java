@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/_types/Privileges.ts#L39-L75">API
+ *      "../doc-files/api-spec.html#security._types.ClusterPrivilege">API
  *      specification</a>
  */
 @JsonpDeserializable

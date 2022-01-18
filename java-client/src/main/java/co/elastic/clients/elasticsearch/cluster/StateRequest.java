@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Returns a comprehensive information about the state of the cluster.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/state/ClusterStateRequest.ts#L29-L55">API
+ * @see <a href="../doc-files/api-spec.html#cluster.state.Request">API
  *      specification</a>
  */
 

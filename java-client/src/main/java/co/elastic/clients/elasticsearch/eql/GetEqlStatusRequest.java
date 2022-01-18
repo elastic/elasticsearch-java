@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * Returns the status of a previously submitted async or stored Event Query
  * Language (EQL) search
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/eql/get_status/EqlGetStatusRequest.ts#L23-L33">API
+ * @see <a href="../doc-files/api-spec.html#eql.get_status.Request">API
  *      specification</a>
  */
 

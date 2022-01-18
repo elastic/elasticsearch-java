@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about one or more indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get/IndicesGetRequest.ts#L24-L73">API
+ * @see <a href="../doc-files/api-spec.html#indices.get.Request">API
  *      specification</a>
  */
 

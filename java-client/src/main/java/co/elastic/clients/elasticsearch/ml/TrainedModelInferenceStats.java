@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/TrainedModel.ts#L41-L55">API
+ *      "../doc-files/api-spec.html#ml._types.TrainedModelInferenceStats">API
  *      specification</a>
  */
 @JsonpDeserializable

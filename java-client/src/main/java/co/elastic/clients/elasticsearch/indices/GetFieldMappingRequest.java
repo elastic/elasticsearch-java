@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Returns mapping for one or more fields.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_field_mapping/IndicesGetFieldMappingRequest.ts#L23-L42">API
+ *      "../doc-files/api-spec.html#indices.get_field_mapping.Request">API
  *      specification</a>
  */
 

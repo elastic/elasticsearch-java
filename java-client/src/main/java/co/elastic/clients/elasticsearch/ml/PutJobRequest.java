@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Instantiates an anomaly detection job.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_job/MlPutJobRequest.ts#L30-L108">API
+ * @see <a href="../doc-files/api-spec.html#ml.put_job.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

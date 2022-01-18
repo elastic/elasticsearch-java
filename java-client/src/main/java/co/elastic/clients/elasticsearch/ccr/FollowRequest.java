@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
  * Creates a new follower index configured to follow the referenced leader
  * index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/follow/CreateFollowIndexRequest.ts#L25-L51">API
+ * @see <a href="../doc-files/api-spec.html#ccr.follow.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

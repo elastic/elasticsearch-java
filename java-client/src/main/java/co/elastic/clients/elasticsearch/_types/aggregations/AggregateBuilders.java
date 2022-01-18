@@ -332,6 +332,14 @@ public class AggregateBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link ParentAggregate parent} {@code Aggregate}
+	 * variant.
+	 */
+	public static ParentAggregate.Builder parent() {
+		return new ParentAggregate.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link PercentilesBucketAggregate
 	 * percentiles_bucket} {@code Aggregate} variant.
 	 */
@@ -496,6 +504,14 @@ public class AggregateBuilders {
 	 */
 	public static UnmappedRareTermsAggregate.Builder umrareterms() {
 		return new UnmappedRareTermsAggregate.Builder();
+	}
+
+	/**
+	 * Creates a builder for the {@link UnmappedSamplerAggregate unmapped_sampler}
+	 * {@code Aggregate} variant.
+	 */
+	public static UnmappedSamplerAggregate.Builder unmappedSampler() {
+		return new UnmappedSamplerAggregate.Builder();
 	}
 
 	/**

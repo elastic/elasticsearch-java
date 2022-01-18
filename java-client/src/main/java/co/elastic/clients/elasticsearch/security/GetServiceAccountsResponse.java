@@ -40,7 +40,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_service_accounts/GetServiceAccountsResponse.ts#L23-L26">API
+ *      "../doc-files/api-spec.html#security.get_service_accounts.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

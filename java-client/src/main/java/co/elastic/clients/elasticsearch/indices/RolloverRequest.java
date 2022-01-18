@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
  * Updates an alias to point to a new index when the existing index is
  * considered to be too large or too old.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/rollover/IndicesRolloverRequest.ts#L29-L53">API
+ * @see <a href="../doc-files/api-spec.html#indices.rollover.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

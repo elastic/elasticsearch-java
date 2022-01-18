@@ -55,8 +55,7 @@ import javax.annotation.Nullable;
  * the anomalies. Influencer results are available only if an
  * <code>influencer_field_name</code> is specified in the job configuration.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_influencers/MlGetInfluencersRequest.ts#L26-L93">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_influencers.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

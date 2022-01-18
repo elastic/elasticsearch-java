@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * Turns on snapshot lifecycle management (SLM).
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/slm/start/StartSnapshotLifecycleManagementRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#slm.start.Request">API
  *      specification</a>
  */
 

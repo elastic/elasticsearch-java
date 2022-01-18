@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/delete_data_frame_analytics/MlDeleteDataFrameAnalyticsResponse.ts#L22-L22">API
+ *      "../doc-files/api-spec.html#ml.delete_data_frame_analytics.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

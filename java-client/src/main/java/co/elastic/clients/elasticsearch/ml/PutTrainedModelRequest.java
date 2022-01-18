@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
  * Enables you to supply a trained model that is not created by data frame
  * analytics.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_trained_model/MlPutTrainedModelRequest.ts#L26-L75">API
+ * @see <a href="../doc-files/api-spec.html#ml.put_trained_model.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

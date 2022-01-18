@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Trigger.ts#L23-L28">API
+ * @see <a href="../doc-files/api-spec.html#watcher._types.TriggerContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +56,9 @@ public class Trigger implements TaggedUnion<Trigger.Kind, Object>, JsonpSerializ
 	 */
 	/**
 	 * {@link Trigger} variant kinds.
+	 * 
+	 * @see <a href="../doc-files/api-spec.html#watcher._types.TriggerContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

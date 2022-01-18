@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
  * anomaly detection jobs by using _all, by specifying * as the &lt;job_id&gt;,
  * or by omitting the &lt;job_id&gt;.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/delete_expired_data/MlDeleteExpiredDataRequest.ts#L25-L72">API
+ * @see <a href="../doc-files/api-spec.html#ml.delete_expired_data.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

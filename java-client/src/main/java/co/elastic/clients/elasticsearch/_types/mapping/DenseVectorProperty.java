@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/complex.ts#L50-L56">API
+ *      "../../doc-files/api-spec.html#_types.mapping.DenseVectorProperty">API
  *      specification</a>
  */
 @JsonpDeserializable

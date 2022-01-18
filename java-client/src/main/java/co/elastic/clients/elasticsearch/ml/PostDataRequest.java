@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Sends data to an anomaly detection job for analysis.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/post_data/MlPostJobDataRequest.ts#L24-L54">API
+ * @see <a href="../doc-files/api-spec.html#ml.post_data.Request">API
  *      specification</a>
  */
 

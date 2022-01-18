@@ -41,8 +41,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/sql/clear_cursor/ClearSqlCursorResponse.ts#L20-L22">API
+ * @see <a href="../doc-files/api-spec.html#sql.clear_cursor.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

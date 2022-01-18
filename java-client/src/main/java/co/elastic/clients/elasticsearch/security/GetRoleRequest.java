@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves roles in the native realm.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_role/SecurityGetRoleRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#security.get_role.Request">API
  *      specification</a>
  */
 

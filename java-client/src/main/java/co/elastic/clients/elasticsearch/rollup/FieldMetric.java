@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/_types/Metric.ts#L30-L33">API
+ * @see <a href="../doc-files/api-spec.html#rollup._types.FieldMetric">API
  *      specification</a>
  */
 @JsonpDeserializable

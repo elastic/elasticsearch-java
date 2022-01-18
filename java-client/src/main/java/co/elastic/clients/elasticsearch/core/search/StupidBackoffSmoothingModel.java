@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L202-L204">API
+ *      "../../doc-files/api-spec.html#_global.search._types.StupidBackoffSmoothingModel">API
  *      specification</a>
  */
 @JsonpDeserializable

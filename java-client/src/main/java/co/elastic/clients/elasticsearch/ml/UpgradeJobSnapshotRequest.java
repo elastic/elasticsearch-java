@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
  * a time and the upgraded snapshot cannot be the current snapshot of the
  * anomaly detection job.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/upgrade_job_snapshot/MlUpgradeJobSnapshotRequest.ts#L24-L63">API
+ * @see <a href="../doc-files/api-spec.html#ml.upgrade_job_snapshot.Request">API
  *      specification</a>
  */
 

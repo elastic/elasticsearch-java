@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Forces the execution of a stored watch.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/execute_watch/WatcherExecuteWatchRequest.ts#L28-L49">API
+ * @see <a href="../doc-files/api-spec.html#watcher.execute_watch.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

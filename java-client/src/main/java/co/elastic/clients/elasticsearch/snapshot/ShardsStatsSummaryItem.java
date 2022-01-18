@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/_types/SnapshotShardsStatus.ts#L35-L38">API
+ *      "../doc-files/api-spec.html#snapshot._types.ShardsStatsSummaryItem">API
  *      specification</a>
  */
 @JsonpDeserializable

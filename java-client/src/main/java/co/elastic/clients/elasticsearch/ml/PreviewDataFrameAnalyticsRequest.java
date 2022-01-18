@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Previews the extracted features used by a data frame analytics config.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/preview_data_frame_analytics/MlPreviewDataFrameAnalyticsRequest.ts#L24-L47">API
+ *      "../doc-files/api-spec.html#ml.preview_data_frame_analytics.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

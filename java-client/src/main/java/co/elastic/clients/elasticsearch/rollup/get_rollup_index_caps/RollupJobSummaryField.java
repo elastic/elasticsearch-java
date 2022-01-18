@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/get_rollup_index_caps/types.ts#L35-L39">API
+ *      "../../doc-files/api-spec.html#rollup.get_rollup_index_caps.RollupJobSummaryField">API
  *      specification</a>
  */
 @JsonpDeserializable

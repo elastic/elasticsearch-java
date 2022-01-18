@@ -59,8 +59,7 @@ import javax.annotation.Nullable;
  * Returns information and statistics about terms in the fields of a particular
  * document.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/termvectors/TermVectorsRequest.ts#L34-L63">API
+ * @see <a href="../doc-files/api-spec.html#_global.termvectors.Request">API
  *      specification</a>
  */
 

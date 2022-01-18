@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/open_point_in_time/OpenPointInTimeResponse.ts#L22-L24">API
+ *      "../doc-files/api-spec.html#_global.open_point_in_time.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

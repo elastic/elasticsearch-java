@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 /**
  * Allows to retrieve a large numbers of results from a single search request.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/scroll/ScrollRequest.ts#L24-L59">API
+ * @see <a href="../doc-files/api-spec.html#_global.scroll.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

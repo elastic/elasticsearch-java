@@ -59,7 +59,7 @@ import javax.annotation.Nullable;
  * with custom settings and mappings.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/start_data_frame_analytics/MlStartDataFrameAnalyticsRequest.ts#L24-L60">API
+ *      "../doc-files/api-spec.html#ml.start_data_frame_analytics.Request">API
  *      specification</a>
  */
 

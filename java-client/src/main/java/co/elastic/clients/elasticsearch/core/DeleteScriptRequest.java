@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Deletes a script.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/delete_script/DeleteScriptRequest.ts#L24-L37">API
+ * @see <a href="../doc-files/api-spec.html#_global.delete_script.Request">API
  *      specification</a>
  */
 

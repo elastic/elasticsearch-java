@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Deletes an alias.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/delete_alias/IndicesDeleteAliasRequest.ts#L24-L38">API
+ * @see <a href="../doc-files/api-spec.html#indices.delete_alias.Request">API
  *      specification</a>
  */
 

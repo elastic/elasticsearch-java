@@ -43,7 +43,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/_types/FielddataFrequencyFilter.ts#L22-L26">API
+ *      "../doc-files/api-spec.html#indices._types.FielddataFrequencyFilter">API
  *      specification</a>
  */
 @JsonpDeserializable

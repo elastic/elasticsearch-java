@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Updates the license for the cluster.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/post/PostLicenseRequest.ts#L23-L36">API
+ * @see <a href="../doc-files/api-spec.html#license.post.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

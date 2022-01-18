@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Returns the source of a document.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_source/SourceRequest.ts#L31-L91">API
+ * @see <a href="../doc-files/api-spec.html#_global.get_source.Request">API
  *      specification</a>
  */
 

@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * be started and stopped multiple times throughout its lifecycle.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/stop_data_frame_analytics/MlStopDataFrameAnalyticsRequest.ts#L24-L70">API
+ *      "../doc-files/api-spec.html#ml.stop_data_frame_analytics.Request">API
  *      specification</a>
  */
 

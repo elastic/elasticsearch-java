@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
 /**
  * Updates the index settings.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/put_settings/IndicesPutSettingsRequest.ts#L25-L45">API
+ * @see <a href="../doc-files/api-spec.html#indices.put_settings.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

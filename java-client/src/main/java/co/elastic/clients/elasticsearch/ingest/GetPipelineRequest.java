@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Returns a pipeline.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/get_pipeline/GetPipelineRequest.ts#L24-L39">API
+ * @see <a href="../doc-files/api-spec.html#ingest.get_pipeline.Request">API
  *      specification</a>
  */
 

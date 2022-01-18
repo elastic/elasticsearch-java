@@ -43,7 +43,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/get_transform_stats/types.ts#L34-L40">API
+ *      "../../doc-files/api-spec.html#transform.get_transform_stats.TransformProgress">API
  *      specification</a>
  */
 @JsonpDeserializable

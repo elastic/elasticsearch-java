@@ -82,8 +82,7 @@ import javax.annotation.Nullable;
  * indices. If you used transforms prior to 7.5, also do not give users any
  * privileges on <code>.data-frame-internal*</code> indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/put_transform/PutTransformRequest.ts#L33-L117">API
+ * @see <a href="../doc-files/api-spec.html#transform.put_transform.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -118,6 +117,9 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	@Nullable
 	private final Sync sync;
 
+	@Nullable
+	private final Time timeout;
+
 	private final String transformId;
 
 	// ---------------------------------------------------------------------------------------------
@@ -135,6 +137,7 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		this.settings = builder.settings;
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.sync = builder.sync;
+		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
@@ -263,6 +266,17 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
 	 * Required - Identifier for the transform. This identifier can contain
 	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
 	 * has a 64 character limit and must start and end with alphanumeric characters.
@@ -376,6 +390,9 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 
 		@Nullable
 		private Sync sync;
+
+		@Nullable
+		private Time timeout;
 
 		private String transformId;
 
@@ -594,6 +611,27 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - Identifier for the transform. This identifier can contain
 		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
 		 * has a 64 character limit and must start and end with alphanumeric characters.
@@ -679,6 +717,9 @@ public class PutTransformRequest extends RequestBase implements JsonpSerializabl
 				Map<String, String> params = new HashMap<>();
 				if (request.deferValidation != null) {
 					params.put("defer_validation", String.valueOf(request.deferValidation));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

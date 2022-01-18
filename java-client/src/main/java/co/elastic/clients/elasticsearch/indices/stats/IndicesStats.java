@@ -44,16 +44,17 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/stats/types.ts#L81-L86">API
+ * @see <a href="../../doc-files/api-spec.html#indices.stats.IndicesStats">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class IndicesStats implements JsonpSerializable {
+	@Nullable
 	private final IndexStats primaries;
 
 	private final Map<String, List<ShardStats>> shards;
 
+	@Nullable
 	private final IndexStats total;
 
 	@Nullable
@@ -63,9 +64,9 @@ public class IndicesStats implements JsonpSerializable {
 
 	private IndicesStats(Builder builder) {
 
-		this.primaries = ApiTypeHelper.requireNonNull(builder.primaries, this, "primaries");
+		this.primaries = builder.primaries;
 		this.shards = ApiTypeHelper.unmodifiable(builder.shards);
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.total = builder.total;
 		this.uuid = builder.uuid;
 
 	}
@@ -75,8 +76,9 @@ public class IndicesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code primaries}
+	 * API name: {@code primaries}
 	 */
+	@Nullable
 	public final IndexStats primaries() {
 		return this.primaries;
 	}
@@ -89,8 +91,9 @@ public class IndicesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * API name: {@code total}
 	 */
+	@Nullable
 	public final IndexStats total() {
 		return this.total;
 	}
@@ -114,9 +117,11 @@ public class IndicesStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("primaries");
-		this.primaries.serialize(generator, mapper);
+		if (this.primaries != null) {
+			generator.writeKey("primaries");
+			this.primaries.serialize(generator, mapper);
 
+		}
 		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
@@ -135,9 +140,11 @@ public class IndicesStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("total");
-		this.total.serialize(generator, mapper);
+		if (this.total != null) {
+			generator.writeKey("total");
+			this.total.serialize(generator, mapper);
 
+		}
 		if (this.uuid != null) {
 			generator.writeKey("uuid");
 			generator.write(this.uuid);
@@ -153,26 +160,28 @@ public class IndicesStats implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStats> {
+		@Nullable
 		private IndexStats primaries;
 
 		@Nullable
 		private Map<String, List<ShardStats>> shards;
 
+		@Nullable
 		private IndexStats total;
 
 		@Nullable
 		private String uuid;
 
 		/**
-		 * Required - API name: {@code primaries}
+		 * API name: {@code primaries}
 		 */
-		public final Builder primaries(IndexStats value) {
+		public final Builder primaries(@Nullable IndexStats value) {
 			this.primaries = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code primaries}
+		 * API name: {@code primaries}
 		 */
 		public final Builder primaries(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
 			return this.primaries(fn.apply(new IndexStats.Builder()).build());
@@ -199,15 +208,15 @@ public class IndicesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
-		public final Builder total(IndexStats value) {
+		public final Builder total(@Nullable IndexStats value) {
 			this.total = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
 		public final Builder total(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
 			return this.total(fn.apply(new IndexStats.Builder()).build());

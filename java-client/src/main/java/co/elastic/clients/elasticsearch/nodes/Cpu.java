@@ -46,13 +46,13 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L86-L95">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.Cpu">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class Cpu implements JsonpSerializable {
-	private final int percent;
+	@Nullable
+	private final Integer percent;
 
 	@Nullable
 	private final String sys;
@@ -78,7 +78,7 @@ public class Cpu implements JsonpSerializable {
 
 	private Cpu(Builder builder) {
 
-		this.percent = ApiTypeHelper.requireNonNull(builder.percent, this, "percent");
+		this.percent = builder.percent;
 		this.sys = builder.sys;
 		this.sysInMillis = builder.sysInMillis;
 		this.total = builder.total;
@@ -94,9 +94,10 @@ public class Cpu implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code percent}
+	 * API name: {@code percent}
 	 */
-	public final int percent() {
+	@Nullable
+	public final Integer percent() {
 		return this.percent;
 	}
 
@@ -166,9 +167,11 @@ public class Cpu implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("percent");
-		generator.write(this.percent);
+		if (this.percent != null) {
+			generator.writeKey("percent");
+			generator.write(this.percent);
 
+		}
 		if (this.sys != null) {
 			generator.writeKey("sys");
 			generator.write(this.sys);
@@ -220,6 +223,7 @@ public class Cpu implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Cpu> {
+		@Nullable
 		private Integer percent;
 
 		@Nullable
@@ -244,9 +248,9 @@ public class Cpu implements JsonpSerializable {
 		private Map<String, Double> loadAverage;
 
 		/**
-		 * Required - API name: {@code percent}
+		 * API name: {@code percent}
 		 */
-		public final Builder percent(int value) {
+		public final Builder percent(@Nullable Integer value) {
 			this.percent = value;
 			return this;
 		}

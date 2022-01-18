@@ -54,7 +54,7 @@ import javax.annotation.Nullable;
  * Returns information about whether a particular component template exist
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/exists_component_template/ClusterComponentTemplateExistsRequest.ts#L24-L52">API
+ *      "../doc-files/api-spec.html#cluster.exists_component_template.Request">API
  *      specification</a>
  */
 

@@ -38,8 +38,7 @@ import java.util.function.Supplier;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/async_search/submit/AsyncSearchSubmitResponse.ts#L22-L24">API
+ * @see <a href="../doc-files/api-spec.html#async_search.submit.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

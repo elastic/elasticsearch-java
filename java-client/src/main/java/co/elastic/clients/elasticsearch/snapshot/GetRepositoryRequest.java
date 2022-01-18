@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about a repository.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/get_repository/SnapshotGetRepositoryRequest.ts#L24-L38">API
+ * @see <a href="../doc-files/api-spec.html#snapshot.get_repository.Request">API
  *      specification</a>
  */
 

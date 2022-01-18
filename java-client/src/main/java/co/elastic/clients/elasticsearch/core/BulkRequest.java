@@ -60,8 +60,7 @@ import javax.annotation.Nullable;
  * Allows to perform multiple index/update/delete operations in a single
  * request.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/bulk/BulkRequest.ts#L33-L58">API
+ * @see <a href="../doc-files/api-spec.html#_global.bulk.Request">API
  *      specification</a>
  */
 

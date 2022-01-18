@@ -46,10 +46,11 @@ import javax.annotation.Nullable;
 // typedef: snapshot.cleanup_repository.Request
 
 /**
- * Removes stale data from repository.
+ * Triggers the review of a snapshot repository’s contents and deletes any stale
+ * data not referenced by existing snapshots.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryRequest.ts#L24-L38">API
+ *      "../doc-files/api-spec.html#snapshot.cleanup_repository.Request">API
  *      specification</a>
  */
 
@@ -77,7 +78,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout for connection to master node
+	 * Period to wait for a connection to the master node.
 	 * <p>
 	 * API name: {@code master_timeout}
 	 */
@@ -87,7 +88,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - A repository name
+	 * Required - Snapshot repository to clean up.
 	 * <p>
 	 * API name: {@code repository}
 	 */
@@ -96,7 +97,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 	}
 
 	/**
-	 * Explicit operation timeout
+	 * Period to wait for a response.
 	 * <p>
 	 * API name: {@code timeout}
 	 */
@@ -121,7 +122,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 		private Time timeout;
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -131,7 +132,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout for connection to master node
+		 * Period to wait for a connection to the master node.
 		 * <p>
 		 * API name: {@code master_timeout}
 		 */
@@ -140,7 +141,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - A repository name
+		 * Required - Snapshot repository to clean up.
 		 * <p>
 		 * API name: {@code repository}
 		 */
@@ -150,7 +151,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */
@@ -160,7 +161,7 @@ public class CleanupRepositoryRequest extends RequestBase {
 		}
 
 		/**
-		 * Explicit operation timeout
+		 * Period to wait for a response.
 		 * <p>
 		 * API name: {@code timeout}
 		 */

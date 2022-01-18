@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  * Updates the cluster voting config exclusions by node ids or node names.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/post_voting_config_exclusions/ClusterPostVotingConfigExclusionsRequest.ts#L24-L50">API
+ *      "../doc-files/api-spec.html#cluster.post_voting_config_exclusions.Request">API
  *      specification</a>
  */
 

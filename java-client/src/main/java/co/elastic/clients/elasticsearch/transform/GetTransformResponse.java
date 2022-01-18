@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
-import co.elastic.clients.elasticsearch._types.EmptyTransform;
+import co.elastic.clients.elasticsearch.transform.get_transform.TransformSummary;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -45,14 +45,14 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/get_transform/GetTransformResponse.ts#L23-L25">API
+ *      "../doc-files/api-spec.html#transform.get_transform.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class GetTransformResponse implements JsonpSerializable {
 	private final long count;
 
-	private final List<EmptyTransform> transforms;
+	private final List<TransformSummary> transforms;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ public class GetTransformResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code transforms}
 	 */
-	public final List<EmptyTransform> transforms() {
+	public final List<TransformSummary> transforms() {
 		return this.transforms;
 	}
 
@@ -98,7 +98,7 @@ public class GetTransformResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.transforms)) {
 			generator.writeKey("transforms");
 			generator.writeStartArray();
-			for (EmptyTransform item0 : this.transforms) {
+			for (TransformSummary item0 : this.transforms) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -117,7 +117,7 @@ public class GetTransformResponse implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTransformResponse> {
 		private Long count;
 
-		private List<EmptyTransform> transforms;
+		private List<TransformSummary> transforms;
 
 		/**
 		 * Required - API name: {@code count}
@@ -132,7 +132,7 @@ public class GetTransformResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>transforms</code>.
 		 */
-		public final Builder transforms(List<EmptyTransform> list) {
+		public final Builder transforms(List<TransformSummary> list) {
 			this.transforms = _listAddAll(this.transforms, list);
 			return this;
 		}
@@ -142,7 +142,7 @@ public class GetTransformResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>transforms</code>.
 		 */
-		public final Builder transforms(EmptyTransform value, EmptyTransform... values) {
+		public final Builder transforms(TransformSummary value, TransformSummary... values) {
 			this.transforms = _listAdd(this.transforms, value, values);
 			return this;
 		}
@@ -152,8 +152,8 @@ public class GetTransformResponse implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>transforms</code> using a builder lambda.
 		 */
-		public final Builder transforms(Function<EmptyTransform.Builder, ObjectBuilder<EmptyTransform>> fn) {
-			return transforms(fn.apply(new EmptyTransform.Builder()).build());
+		public final Builder transforms(Function<TransformSummary.Builder, ObjectBuilder<TransformSummary>> fn) {
+			return transforms(fn.apply(new TransformSummary.Builder()).build());
 		}
 
 		/**
@@ -180,7 +180,7 @@ public class GetTransformResponse implements JsonpSerializable {
 	protected static void setupGetTransformResponseDeserializer(ObjectDeserializer<GetTransformResponse.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(EmptyTransform._DESERIALIZER), "transforms");
+		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(TransformSummary._DESERIALIZER), "transforms");
 
 	}
 

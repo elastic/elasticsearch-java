@@ -42,7 +42,7 @@ import java.util.Objects;
  * Returns all script contexts.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script_context/GetScriptContextRequest.ts#L22-L27">API
+ *      "../doc-files/api-spec.html#_global.get_script_context.Request">API
  *      specification</a>
  */
 

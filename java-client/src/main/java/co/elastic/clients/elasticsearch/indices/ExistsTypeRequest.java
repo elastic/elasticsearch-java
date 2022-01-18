@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
  * Returns information about whether a particular document type exists.
  * (DEPRECATED)
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/exists_type/IndicesExistsTypeRequest.ts#L23-L39">API
+ * @see <a href="../doc-files/api-spec.html#indices.exists_type.Request">API
  *      specification</a>
  */
 

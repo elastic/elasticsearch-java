@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Returns statistical information about nodes in the cluster.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/stats/NodesStatsRequest.ts#L24-L68">API
+ * @see <a href="../doc-files/api-spec.html#nodes.stats.Request">API
  *      specification</a>
  */
 

@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Creates or updates a snapshot lifecycle policy.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/slm/put_lifecycle/PutSnapshotLifecycleRequest.ts#L26-L72">API
+ * @see <a href="../doc-files/api-spec.html#slm.put_lifecycle.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

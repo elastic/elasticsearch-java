@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/graph/_types/Vertex.ts#L39-L42">API
+ * @see <a href="../doc-files/api-spec.html#graph._types.VertexInclude">API
  *      specification</a>
  */
 @JsonpDeserializable

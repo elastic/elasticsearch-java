@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/delete_job/types.ts#L29-L32">API
+ *      "../../doc-files/api-spec.html#rollup.delete_job.TaskFailureReason">API
  *      specification</a>
  */
 @JsonpDeserializable

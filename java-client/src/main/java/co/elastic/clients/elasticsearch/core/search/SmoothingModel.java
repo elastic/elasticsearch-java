@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/suggester.ts#L193-L200">API
+ *      "../../doc-files/api-spec.html#_global.search._types.SmoothingModelContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +57,10 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
 	 */
 	/**
 	 * {@link SmoothingModel} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_global.search._types.SmoothingModelContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/segments/types.ts#L41-L45">API
+ *      "../../doc-files/api-spec.html#indices.segments.ShardSegmentRouting">API
  *      specification</a>
  */
 @JsonpDeserializable

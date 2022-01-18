@@ -58,8 +58,7 @@ import javax.annotation.Nullable;
 /**
  * Returns results matching a query expressed in Event Query Language (EQL)
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/eql/search/EqlSearchRequest.ts#L27-L112">API
+ * @see <a href="../doc-files/api-spec.html#eql.search.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

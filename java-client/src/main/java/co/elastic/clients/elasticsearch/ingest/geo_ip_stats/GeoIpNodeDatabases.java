@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  * Downloaded databases for the node. The field key is the node ID.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/geo_ip_stats/types.ts#L36-L42">API
+ *      "../../doc-files/api-spec.html#ingest.geo_ip_stats.GeoIpNodeDatabases">API
  *      specification</a>
  */
 @JsonpDeserializable

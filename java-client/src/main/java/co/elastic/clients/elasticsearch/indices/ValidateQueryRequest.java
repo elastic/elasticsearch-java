@@ -55,8 +55,7 @@ import javax.annotation.Nullable;
 /**
  * Allows a user to validate a potentially expensive query without executing it.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/validate_query/IndicesValidateQueryRequest.ts#L25-L52">API
+ * @see <a href="../doc-files/api-spec.html#indices.validate_query.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

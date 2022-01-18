@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Deletes a data stream.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/delete_data_stream/IndicesDeleteDataStreamRequest.ts#L23-L35">API
+ *      "../doc-files/api-spec.html#indices.delete_data_stream.Request">API
  *      specification</a>
  */
 

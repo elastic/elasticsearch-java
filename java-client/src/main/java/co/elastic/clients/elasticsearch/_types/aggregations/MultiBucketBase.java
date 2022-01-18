@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * results.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L315-L322">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.MultiBucketBase">API
  *      specification</a>
  */
 

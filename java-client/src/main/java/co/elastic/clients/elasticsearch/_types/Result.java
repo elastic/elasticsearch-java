@@ -29,9 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Result.ts#L20-L27">API
- *      specification</a>
+ * @see <a href="../doc-files/api-spec.html#_types.Result">API specification</a>
  */
 @JsonpDeserializable
 public enum Result implements JsonEnum {

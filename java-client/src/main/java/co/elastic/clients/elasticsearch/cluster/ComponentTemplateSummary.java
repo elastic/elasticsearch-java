@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/_types/ComponentTemplate.ts#L38-L45">API
+ *      "../doc-files/api-spec.html#cluster._types.ComponentTemplateSummary">API
  *      specification</a>
  */
 @JsonpDeserializable

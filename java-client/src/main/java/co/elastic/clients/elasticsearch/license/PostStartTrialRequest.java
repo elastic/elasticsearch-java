@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * starts a limited time trial license.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/post_start_trial/StartTrialLicenseRequest.ts#L22-L32">API
+ *      "../doc-files/api-spec.html#license.post_start_trial.Request">API
  *      specification</a>
  */
 

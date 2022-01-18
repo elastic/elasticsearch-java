@@ -41,7 +41,7 @@ import java.util.function.Function;
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#_mean_reciprocal_rank">Documentation
  *      on elastic.co</a>
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/types.ts#L60-L64">API
+ *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalMetricMeanReciprocalRank">API
  *      specification</a>
  */
 @JsonpDeserializable

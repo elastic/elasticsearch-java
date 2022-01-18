@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
  * <li>as a WKT bounding box</li>
  * </ul>
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L116-L129">API
+ * @see <a href="../doc-files/api-spec.html#_types.GeoBounds">API
  *      specification</a>
  */
 @JsonpDeserializable

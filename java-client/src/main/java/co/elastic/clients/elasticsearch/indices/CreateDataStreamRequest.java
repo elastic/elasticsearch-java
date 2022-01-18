@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Creates a data stream
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/create_data_stream/IndicesCreateDataStreamRequest.ts#L23-L32">API
+ *      "../doc-files/api-spec.html#indices.create_data_stream.Request">API
  *      specification</a>
  */
 

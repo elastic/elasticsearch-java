@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
  * Explore extracted and summarized information about the documents and terms in
  * an index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/graph/explore/GraphExploreRequest.ts#L28-L48">API
+ * @see <a href="../doc-files/api-spec.html#graph.explore.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

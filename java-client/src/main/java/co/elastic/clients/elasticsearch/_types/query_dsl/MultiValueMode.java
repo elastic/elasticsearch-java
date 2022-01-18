@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/compound.ts#L164-L169">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.MultiValueMode">API
  *      specification</a>
  */
 @JsonpDeserializable

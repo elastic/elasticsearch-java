@@ -34,7 +34,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -43,31 +45,34 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L54-L60">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.IngestTotal">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class IngestTotal implements JsonpSerializable {
-	private final long count;
+	@Nullable
+	private final Long count;
 
-	private final long current;
+	@Nullable
+	private final Long current;
 
-	private final long failed;
+	@Nullable
+	private final Long failed;
 
-	private final List<KeyedProcessor> processors;
+	private final List<Map<String, KeyedProcessor>> processors;
 
-	private final long timeInMillis;
+	@Nullable
+	private final Long timeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private IngestTotal(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
-		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
-		this.processors = ApiTypeHelper.unmodifiableRequired(builder.processors, this, "processors");
-		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
+		this.count = builder.count;
+		this.current = builder.current;
+		this.failed = builder.failed;
+		this.processors = ApiTypeHelper.unmodifiable(builder.processors);
+		this.timeInMillis = builder.timeInMillis;
 
 	}
 
@@ -76,37 +81,41 @@ public class IngestTotal implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * API name: {@code count}
 	 */
-	public final long count() {
+	@Nullable
+	public final Long count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - API name: {@code current}
+	 * API name: {@code current}
 	 */
-	public final long current() {
+	@Nullable
+	public final Long current() {
 		return this.current;
 	}
 
 	/**
-	 * Required - API name: {@code failed}
+	 * API name: {@code failed}
 	 */
-	public final long failed() {
+	@Nullable
+	public final Long failed() {
 		return this.failed;
 	}
 
 	/**
-	 * Required - API name: {@code processors}
+	 * API name: {@code processors}
 	 */
-	public final List<KeyedProcessor> processors() {
+	public final List<Map<String, KeyedProcessor>> processors() {
 		return this.processors;
 	}
 
 	/**
-	 * Required - API name: {@code time_in_millis}
+	 * API name: {@code time_in_millis}
 	 */
-	public final long timeInMillis() {
+	@Nullable
+	public final Long timeInMillis() {
 		return this.timeInMillis;
 	}
 
@@ -121,27 +130,44 @@ public class IngestTotal implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("count");
-		generator.write(this.count);
+		if (this.count != null) {
+			generator.writeKey("count");
+			generator.write(this.count);
 
-		generator.writeKey("current");
-		generator.write(this.current);
+		}
+		if (this.current != null) {
+			generator.writeKey("current");
+			generator.write(this.current);
 
-		generator.writeKey("failed");
-		generator.write(this.failed);
+		}
+		if (this.failed != null) {
+			generator.writeKey("failed");
+			generator.write(this.failed);
 
+		}
 		if (ApiTypeHelper.isDefined(this.processors)) {
 			generator.writeKey("processors");
 			generator.writeStartArray();
-			for (KeyedProcessor item0 : this.processors) {
-				item0.serialize(generator, mapper);
+			for (Map<String, KeyedProcessor> item0 : this.processors) {
+				generator.writeStartObject();
+				if (item0 != null) {
+					for (Map.Entry<String, KeyedProcessor> item1 : item0.entrySet()) {
+						generator.writeKey(item1.getKey());
+						item1.getValue().serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeKey("time_in_millis");
-		generator.write(this.timeInMillis);
+		if (this.timeInMillis != null) {
+			generator.writeKey("time_in_millis");
+			generator.write(this.timeInMillis);
+
+		}
 
 	}
 
@@ -152,73 +178,69 @@ public class IngestTotal implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IngestTotal> {
+		@Nullable
 		private Long count;
 
+		@Nullable
 		private Long current;
 
+		@Nullable
 		private Long failed;
 
-		private List<KeyedProcessor> processors;
+		@Nullable
+		private List<Map<String, KeyedProcessor>> processors;
 
+		@Nullable
 		private Long timeInMillis;
 
 		/**
-		 * Required - API name: {@code count}
+		 * API name: {@code count}
 		 */
-		public final Builder count(long value) {
+		public final Builder count(@Nullable Long value) {
 			this.count = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code current}
+		 * API name: {@code current}
 		 */
-		public final Builder current(long value) {
+		public final Builder current(@Nullable Long value) {
 			this.current = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code failed}
+		 * API name: {@code failed}
 		 */
-		public final Builder failed(long value) {
+		public final Builder failed(@Nullable Long value) {
 			this.failed = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code processors}
+		 * API name: {@code processors}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>processors</code>.
 		 */
-		public final Builder processors(List<KeyedProcessor> list) {
+		public final Builder processors(List<Map<String, KeyedProcessor>> list) {
 			this.processors = _listAddAll(this.processors, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code processors}
+		 * API name: {@code processors}
 		 * <p>
 		 * Adds one or more values to <code>processors</code>.
 		 */
-		public final Builder processors(KeyedProcessor value, KeyedProcessor... values) {
+		public final Builder processors(Map<String, KeyedProcessor> value, Map<String, KeyedProcessor>... values) {
 			this.processors = _listAdd(this.processors, value, values);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code processors}
-		 * <p>
-		 * Adds a value to <code>processors</code> using a builder lambda.
+		 * API name: {@code time_in_millis}
 		 */
-		public final Builder processors(Function<KeyedProcessor.Builder, ObjectBuilder<KeyedProcessor>> fn) {
-			return processors(fn.apply(new KeyedProcessor.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code time_in_millis}
-		 */
-		public final Builder timeInMillis(long value) {
+		public final Builder timeInMillis(@Nullable Long value) {
 			this.timeInMillis = value;
 			return this;
 		}
@@ -249,7 +271,8 @@ public class IngestTotal implements JsonpSerializable {
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
 		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
-		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(KeyedProcessor._DESERIALIZER), "processors");
+		op.add(Builder::processors, JsonpDeserializer.arrayDeserializer(
+				JsonpDeserializer.stringMapDeserializer(KeyedProcessor._DESERIALIZER)), "processors");
 		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
 
 	}

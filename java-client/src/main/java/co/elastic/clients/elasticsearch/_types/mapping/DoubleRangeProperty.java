@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/range.ts#L42-L44">API
+ *      "../../doc-files/api-spec.html#_types.mapping.DoubleRangeProperty">API
  *      specification</a>
  */
 @JsonpDeserializable

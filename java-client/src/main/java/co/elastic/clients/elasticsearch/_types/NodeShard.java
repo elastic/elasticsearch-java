@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Node.ts#L52-L61">API
+ * @see <a href="../doc-files/api-spec.html#_types.NodeShard">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -71,6 +70,9 @@ public class NodeShard implements JsonpSerializable {
 	@Nullable
 	private final UnassignedInformation unassignedInfo;
 
+	@Nullable
+	private final String relocatingNode;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeShard(Builder builder) {
@@ -83,6 +85,7 @@ public class NodeShard implements JsonpSerializable {
 		this.allocationId = ApiTypeHelper.unmodifiable(builder.allocationId);
 		this.recoverySource = ApiTypeHelper.unmodifiable(builder.recoverySource);
 		this.unassignedInfo = builder.unassignedInfo;
+		this.relocatingNode = builder.relocatingNode;
 
 	}
 
@@ -149,6 +152,14 @@ public class NodeShard implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code relocating_node}
+	 */
+	@Nullable
+	public final String relocatingNode() {
+		return this.relocatingNode;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -202,6 +213,11 @@ public class NodeShard implements JsonpSerializable {
 			this.unassignedInfo.serialize(generator, mapper);
 
 		}
+		if (this.relocatingNode != null) {
+			generator.writeKey("relocating_node");
+			generator.write(this.relocatingNode);
+
+		}
 
 	}
 
@@ -231,6 +247,9 @@ public class NodeShard implements JsonpSerializable {
 
 		@Nullable
 		private UnassignedInformation unassignedInfo;
+
+		@Nullable
+		private String relocatingNode;
 
 		/**
 		 * Required - API name: {@code state}
@@ -329,6 +348,14 @@ public class NodeShard implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code relocating_node}
+		 */
+		public final Builder relocatingNode(@Nullable String value) {
+			this.relocatingNode = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link NodeShard}.
 		 *
 		 * @throws NullPointerException
@@ -361,6 +388,7 @@ public class NodeShard implements JsonpSerializable {
 		op.add(Builder::recoverySource, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"recovery_source");
 		op.add(Builder::unassignedInfo, UnassignedInformation._DESERIALIZER, "unassigned_info");
+		op.add(Builder::relocatingNode, JsonpDeserializer.stringDeserializer(), "relocating_node");
 
 	}
 

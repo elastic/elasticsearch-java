@@ -37,8 +37,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/enrich/put_policy/PutEnrichPolicyResponse.ts#L22-L22">API
+ * @see <a href="../doc-files/api-spec.html#enrich.put_policy.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

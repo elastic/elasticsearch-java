@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/delete_privileges/types.ts#L20-L22">API
+ *      "../../doc-files/api-spec.html#security.delete_privileges.FoundStatus">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityResponse.ts#L52-L56">API
+ *      "../../doc-files/api-spec.html#autoscaling.get_autoscaling_capacity.AutoscalingDecider">API
  *      specification</a>
  */
 @JsonpDeserializable

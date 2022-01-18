@@ -34,6 +34,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/data_streams_stats/IndicesDataStreamsStatsResponse.ts#L35-L41">API
+ *      "../../doc-files/api-spec.html#indices.data_streams_stats.DataStreamsStatsItem">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -58,7 +59,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 
 	private final int storeSizeBytes;
 
-	private final int maximumTimestamp;
+	private final long maximumTimestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -108,7 +109,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code maximum_timestamp}
 	 */
-	public final int maximumTimestamp() {
+	public final long maximumTimestamp() {
 		return this.maximumTimestamp;
 	}
 
@@ -158,7 +159,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 
 		private Integer storeSizeBytes;
 
-		private Integer maximumTimestamp;
+		private Long maximumTimestamp;
 
 		/**
 		 * Required - API name: {@code backing_indices}
@@ -195,7 +196,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code maximum_timestamp}
 		 */
-		public final Builder maximumTimestamp(int value) {
+		public final Builder maximumTimestamp(long value) {
 			this.maximumTimestamp = value;
 			return this;
 		}
@@ -227,7 +228,7 @@ public class DataStreamsStatsItem implements JsonpSerializable {
 		op.add(Builder::dataStream, JsonpDeserializer.stringDeserializer(), "data_stream");
 		op.add(Builder::storeSize, JsonpDeserializer.stringDeserializer(), "store_size");
 		op.add(Builder::storeSizeBytes, JsonpDeserializer.integerDeserializer(), "store_size_bytes");
-		op.add(Builder::maximumTimestamp, JsonpDeserializer.integerDeserializer(), "maximum_timestamp");
+		op.add(Builder::maximumTimestamp, JsonpDeserializer.longDeserializer(), "maximum_timestamp");
 
 	}
 

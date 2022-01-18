@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
  * Allows you to split an existing index into a new index with more primary
  * shards.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/split/IndicesSplitRequest.ts#L27-L46">API
+ * @see <a href="../doc-files/api-spec.html#indices.split.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

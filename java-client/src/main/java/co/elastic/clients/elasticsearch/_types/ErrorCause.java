@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
  * common to all error types. Additional details are also provided, that depend
  * on the error type.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Errors.ts#L25-L48">API
+ * @see <a href="../doc-files/api-spec.html#_types.ErrorCause">API
  *      specification</a>
  */
 @JsonpDeserializable

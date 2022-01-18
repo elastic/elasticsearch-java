@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * operation.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/update_by_query_rethrottle/UpdateByQueryRethrottleRequest.ts#L24-L36">API
+ *      "../doc-files/api-spec.html#_global.update_by_query_rethrottle.Request">API
  *      specification</a>
  */
 

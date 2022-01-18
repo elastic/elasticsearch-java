@@ -60,8 +60,7 @@ import javax.annotation.Nullable;
 /**
  * Updates a document with a script or partial document.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/update/UpdateRequest.ts#L39-L153">API
+ * @see <a href="../doc-files/api-spec.html#_global.update.Request">API
  *      specification</a>
  */
 

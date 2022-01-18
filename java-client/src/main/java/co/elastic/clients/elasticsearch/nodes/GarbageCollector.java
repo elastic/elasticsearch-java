@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L183-L185">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.GarbageCollector">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -55,7 +54,7 @@ public class GarbageCollector implements JsonpSerializable {
 
 	private GarbageCollector(Builder builder) {
 
-		this.collectors = ApiTypeHelper.unmodifiableRequired(builder.collectors, this, "collectors");
+		this.collectors = ApiTypeHelper.unmodifiable(builder.collectors);
 
 	}
 
@@ -64,7 +63,7 @@ public class GarbageCollector implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code collectors}
+	 * API name: {@code collectors}
 	 */
 	public final Map<String, GarbageCollectorTotal> collectors() {
 		return this.collectors;
@@ -102,10 +101,11 @@ public class GarbageCollector implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollector> {
+		@Nullable
 		private Map<String, GarbageCollectorTotal> collectors;
 
 		/**
-		 * Required - API name: {@code collectors}
+		 * API name: {@code collectors}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>collectors</code>.
 		 */
@@ -115,7 +115,7 @@ public class GarbageCollector implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code collectors}
+		 * API name: {@code collectors}
 		 * <p>
 		 * Adds an entry to <code>collectors</code>.
 		 */
@@ -125,7 +125,7 @@ public class GarbageCollector implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code collectors}
+		 * API name: {@code collectors}
 		 * <p>
 		 * Adds an entry to <code>collectors</code> using a builder lambda.
 		 */

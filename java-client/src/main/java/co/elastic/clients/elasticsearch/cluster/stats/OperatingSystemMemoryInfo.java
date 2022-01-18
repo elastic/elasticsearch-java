@@ -43,7 +43,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/stats/types.ts#L278-L284">API
+ *      "../../doc-files/api-spec.html#cluster.stats.OperatingSystemMemoryInfo">API
  *      specification</a>
  */
 @JsonpDeserializable

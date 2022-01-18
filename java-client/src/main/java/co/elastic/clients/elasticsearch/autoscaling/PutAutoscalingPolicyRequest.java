@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * ECK. Direct use is not supported.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/autoscaling/put_autoscaling_policy/PutAutoscalingPolicyRequest.ts#L24-L35">API
+ *      "../doc-files/api-spec.html#autoscaling.put_autoscaling_policy.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/license/get_basic_status/GetBasicLicenseStatusResponse.ts#L20-L22">API
+ *      "../doc-files/api-spec.html#license.get_basic_status.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

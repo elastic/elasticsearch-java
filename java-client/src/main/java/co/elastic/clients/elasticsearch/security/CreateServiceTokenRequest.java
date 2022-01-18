@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * authentication.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/create_service_token/CreateServiceTokenRequest.ts#L23-L34">API
+ *      "../doc-files/api-spec.html#security.create_service_token.Request">API
  *      specification</a>
  */
 

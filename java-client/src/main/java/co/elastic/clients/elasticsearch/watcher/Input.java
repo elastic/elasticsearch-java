@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Input.ts#L92-L100">API
+ * @see <a href="../doc-files/api-spec.html#watcher._types.InputContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -60,6 +59,9 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 	 */
 	/**
 	 * {@link Input} variant kinds.
+	 * 
+	 * @see <a href="../doc-files/api-spec.html#watcher._types.InputContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Allows to simulate a pipeline with example documents.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ingest/simulate/SimulatePipelineRequest.ts#L25-L41">API
+ * @see <a href="../doc-files/api-spec.html#ingest.simulate.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

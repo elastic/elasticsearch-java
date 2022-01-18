@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/info/types.ts#L130-L135">API
+ *      "../../doc-files/api-spec.html#nodes.info.NodeInfoSettingsCluster">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,6 +59,9 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 	@Nullable
 	private final String initialMasterNodes;
 
+	@Nullable
+	private final DeprecationIndexing deprecationIndexing;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private NodeInfoSettingsCluster(Builder builder) {
@@ -67,6 +70,7 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		this.routing = builder.routing;
 		this.election = ApiTypeHelper.requireNonNull(builder.election, this, "election");
 		this.initialMasterNodes = builder.initialMasterNodes;
+		this.deprecationIndexing = builder.deprecationIndexing;
 
 	}
 
@@ -105,6 +109,14 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code deprecation_indexing}
+	 */
+	@Nullable
+	public final DeprecationIndexing deprecationIndexing() {
+		return this.deprecationIndexing;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -131,6 +143,11 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 			generator.write(this.initialMasterNodes);
 
 		}
+		if (this.deprecationIndexing != null) {
+			generator.writeKey("deprecation_indexing");
+			this.deprecationIndexing.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -150,6 +167,9 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 
 		@Nullable
 		private String initialMasterNodes;
+
+		@Nullable
+		private DeprecationIndexing deprecationIndexing;
 
 		/**
 		 * Required - API name: {@code name}
@@ -199,6 +219,22 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code deprecation_indexing}
+		 */
+		public final Builder deprecationIndexing(@Nullable DeprecationIndexing value) {
+			this.deprecationIndexing = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code deprecation_indexing}
+		 */
+		public final Builder deprecationIndexing(
+				Function<DeprecationIndexing.Builder, ObjectBuilder<DeprecationIndexing>> fn) {
+			return this.deprecationIndexing(fn.apply(new DeprecationIndexing.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link NodeInfoSettingsCluster}.
 		 *
 		 * @throws NullPointerException
@@ -226,6 +262,7 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		op.add(Builder::routing, IndexRouting._DESERIALIZER, "routing");
 		op.add(Builder::election, NodeInfoSettingsClusterElection._DESERIALIZER, "election");
 		op.add(Builder::initialMasterNodes, JsonpDeserializer.stringDeserializer(), "initial_master_nodes");
+		op.add(Builder::deprecationIndexing, DeprecationIndexing._DESERIALIZER, "deprecation_indexing");
 
 	}
 

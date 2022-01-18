@@ -37,7 +37,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/MatchNoneQuery.ts#L22-L22">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.MatchNoneQuery">API
  *      specification</a>
  */
 @JsonpDeserializable

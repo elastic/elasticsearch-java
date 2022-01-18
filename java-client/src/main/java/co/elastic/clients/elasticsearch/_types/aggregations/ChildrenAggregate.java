@@ -37,11 +37,11 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L715-L716">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.ChildrenAggregate">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ChildrenAggregate extends MultiBucketAggregateBase<ChildrenAggregateBucket> implements AggregateVariant {
+public class ChildrenAggregate extends SingleBucketAggregateBase implements AggregateVariant {
 	// ---------------------------------------------------------------------------------------------
 
 	private ChildrenAggregate(Builder builder) {
@@ -67,7 +67,7 @@ public class ChildrenAggregate extends MultiBucketAggregateBase<ChildrenAggregat
 	 * Builder for {@link ChildrenAggregate}.
 	 */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<ChildrenAggregateBucket, Builder>
+	public static class Builder extends SingleBucketAggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ChildrenAggregate> {
 		@Override
@@ -83,7 +83,6 @@ public class ChildrenAggregate extends MultiBucketAggregateBase<ChildrenAggregat
 		 */
 		public ChildrenAggregate build() {
 			_checkSingleUse();
-			super.tBucketSerializer(null);
 
 			return new ChildrenAggregate(this);
 		}
@@ -98,7 +97,7 @@ public class ChildrenAggregate extends MultiBucketAggregateBase<ChildrenAggregat
 			.lazy(Builder::new, ChildrenAggregate::setupChildrenAggregateDeserializer);
 
 	protected static void setupChildrenAggregateDeserializer(ObjectDeserializer<ChildrenAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, ChildrenAggregateBucket._DESERIALIZER);
+		SingleBucketAggregateBase.setupSingleBucketAggregateBaseDeserializer(op);
 
 	}
 

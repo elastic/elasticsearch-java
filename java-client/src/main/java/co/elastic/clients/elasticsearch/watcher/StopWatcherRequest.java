@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * Stops Watcher if it is running.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/stop/WatcherStopRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#watcher.stop.Request">API
  *      specification</a>
  */
 

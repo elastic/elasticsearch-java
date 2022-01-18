@@ -41,7 +41,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/rank_eval/types.ts#L90-L96">API
+ *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalMetric">API
  *      specification</a>
  */
 @JsonpDeserializable

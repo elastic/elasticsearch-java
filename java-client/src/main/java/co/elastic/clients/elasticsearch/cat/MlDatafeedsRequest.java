@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 /**
  * Gets configuration and usage information about datafeeds.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/ml_datafeeds/CatDatafeedsRequest.ts#L23-L38">API
+ * @see <a href="../doc-files/api-spec.html#cat.ml_datafeeds.Request">API
  *      specification</a>
  */
 

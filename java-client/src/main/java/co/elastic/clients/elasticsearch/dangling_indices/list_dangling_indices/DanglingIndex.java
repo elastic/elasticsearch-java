@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/dangling_indices/list_dangling_indices/ListDanglingIndicesResponse.ts#L29-L34">API
+ *      "../../doc-files/api-spec.html#dangling_indices.list_dangling_indices.DanglingIndex">API
  *      specification</a>
  */
 @JsonpDeserializable

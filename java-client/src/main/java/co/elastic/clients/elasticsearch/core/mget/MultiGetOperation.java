@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/mget/types.ts#L33-L42">API
+ * @see <a href="../../doc-files/api-spec.html#_global.mget.Operation">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -94,13 +93,17 @@ public class MultiGetOperation implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _id}
+	 * Required - The unique document ID.
+	 * <p>
+	 * API name: {@code _id}
 	 */
 	public final String id() {
 		return this.id;
 	}
 
 	/**
+	 * The index that contains the document.
+	 * <p>
 	 * API name: {@code _index}
 	 */
 	@Nullable
@@ -109,6 +112,9 @@ public class MultiGetOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * The key for the primary shard the document resides on. Required if routing is
+	 * used during indexing.
+	 * <p>
 	 * API name: {@code routing}
 	 */
 	@Nullable
@@ -117,6 +123,8 @@ public class MultiGetOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * If <code>false</code>, excludes all _source fields.
+	 * <p>
 	 * API name: {@code _source}
 	 */
 	@Nullable
@@ -125,6 +133,8 @@ public class MultiGetOperation implements JsonpSerializable {
 	}
 
 	/**
+	 * The stored fields you want to retrieve.
+	 * <p>
 	 * API name: {@code stored_fields}
 	 */
 	public final List<String> storedFields() {
@@ -242,7 +252,9 @@ public class MultiGetOperation implements JsonpSerializable {
 		private VersionType versionType;
 
 		/**
-		 * Required - API name: {@code _id}
+		 * Required - The unique document ID.
+		 * <p>
+		 * API name: {@code _id}
 		 */
 		public final Builder id(String value) {
 			this.id = value;
@@ -250,6 +262,8 @@ public class MultiGetOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * The index that contains the document.
+		 * <p>
 		 * API name: {@code _index}
 		 */
 		public final Builder index(@Nullable String value) {
@@ -258,6 +272,9 @@ public class MultiGetOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * The key for the primary shard the document resides on. Required if routing is
+		 * used during indexing.
+		 * <p>
 		 * API name: {@code routing}
 		 */
 		public final Builder routing(@Nullable String value) {
@@ -266,6 +283,8 @@ public class MultiGetOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>false</code>, excludes all _source fields.
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public final Builder source(@Nullable SourceConfig value) {
@@ -274,6 +293,8 @@ public class MultiGetOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * If <code>false</code>, excludes all _source fields.
+		 * <p>
 		 * API name: {@code _source}
 		 */
 		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
@@ -281,6 +302,8 @@ public class MultiGetOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * The stored fields you want to retrieve.
+		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>storedFields</code>.
@@ -291,6 +314,8 @@ public class MultiGetOperation implements JsonpSerializable {
 		}
 
 		/**
+		 * The stored fields you want to retrieve.
+		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
 		 * Adds one or more values to <code>storedFields</code>.

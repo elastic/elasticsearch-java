@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/dynamic-template.ts#L37-L42">API
+ *      "../../doc-files/api-spec.html#_types.mapping.DynamicMapping">API
  *      specification</a>
  */
 @JsonpDeserializable

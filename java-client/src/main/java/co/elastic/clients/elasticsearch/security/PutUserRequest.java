@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
  * Adds and updates users in the native realm. These users are commonly referred
  * to as native users.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/put_user/SecurityPutUserRequest.ts#L23-L45">API
+ * @see <a href="../doc-files/api-spec.html#security.put_user.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -40,7 +40,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L162-L165">API
+ *      "../../doc-files/api-spec.html#_types.mapping.HalfFloatNumberProperty">API
  *      specification</a>
  */
 @JsonpDeserializable

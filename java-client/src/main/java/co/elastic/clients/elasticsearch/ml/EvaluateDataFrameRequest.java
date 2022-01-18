@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
  * frame analytics. Evaluation requires both a ground truth field and an
  * analytics result field to be present.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/evaluate_data_frame/MlEvaluateDataFrameRequest.ts#L25-L53">API
+ * @see <a href="../doc-files/api-spec.html#ml.evaluate_data_frame.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

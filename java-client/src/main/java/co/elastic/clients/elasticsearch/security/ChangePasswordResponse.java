@@ -36,7 +36,7 @@ import java.util.Objects;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/change_password/SecurityChangePasswordResponse.ts#L20-L22">API
+ *      "../doc-files/api-spec.html#security.change_password.Response">API
  *      specification</a>
  */
 

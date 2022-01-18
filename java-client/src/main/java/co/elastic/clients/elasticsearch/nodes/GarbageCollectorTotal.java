@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -44,25 +43,27 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L187-L191">API
+ *      "../doc-files/api-spec.html#nodes._types.GarbageCollectorTotal">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class GarbageCollectorTotal implements JsonpSerializable {
-	private final long collectionCount;
+	@Nullable
+	private final Long collectionCount;
 
+	@Nullable
 	private final String collectionTime;
 
-	private final long collectionTimeInMillis;
+	@Nullable
+	private final Long collectionTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GarbageCollectorTotal(Builder builder) {
 
-		this.collectionCount = ApiTypeHelper.requireNonNull(builder.collectionCount, this, "collectionCount");
-		this.collectionTime = ApiTypeHelper.requireNonNull(builder.collectionTime, this, "collectionTime");
-		this.collectionTimeInMillis = ApiTypeHelper.requireNonNull(builder.collectionTimeInMillis, this,
-				"collectionTimeInMillis");
+		this.collectionCount = builder.collectionCount;
+		this.collectionTime = builder.collectionTime;
+		this.collectionTimeInMillis = builder.collectionTimeInMillis;
 
 	}
 
@@ -71,23 +72,26 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code collection_count}
+	 * API name: {@code collection_count}
 	 */
-	public final long collectionCount() {
+	@Nullable
+	public final Long collectionCount() {
 		return this.collectionCount;
 	}
 
 	/**
-	 * Required - API name: {@code collection_time}
+	 * API name: {@code collection_time}
 	 */
+	@Nullable
 	public final String collectionTime() {
 		return this.collectionTime;
 	}
 
 	/**
-	 * Required - API name: {@code collection_time_in_millis}
+	 * API name: {@code collection_time_in_millis}
 	 */
-	public final long collectionTimeInMillis() {
+	@Nullable
+	public final Long collectionTimeInMillis() {
 		return this.collectionTimeInMillis;
 	}
 
@@ -102,14 +106,21 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("collection_count");
-		generator.write(this.collectionCount);
+		if (this.collectionCount != null) {
+			generator.writeKey("collection_count");
+			generator.write(this.collectionCount);
 
-		generator.writeKey("collection_time");
-		generator.write(this.collectionTime);
+		}
+		if (this.collectionTime != null) {
+			generator.writeKey("collection_time");
+			generator.write(this.collectionTime);
 
-		generator.writeKey("collection_time_in_millis");
-		generator.write(this.collectionTimeInMillis);
+		}
+		if (this.collectionTimeInMillis != null) {
+			generator.writeKey("collection_time_in_millis");
+			generator.write(this.collectionTimeInMillis);
+
+		}
 
 	}
 
@@ -120,32 +131,35 @@ public class GarbageCollectorTotal implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollectorTotal> {
+		@Nullable
 		private Long collectionCount;
 
+		@Nullable
 		private String collectionTime;
 
+		@Nullable
 		private Long collectionTimeInMillis;
 
 		/**
-		 * Required - API name: {@code collection_count}
+		 * API name: {@code collection_count}
 		 */
-		public final Builder collectionCount(long value) {
+		public final Builder collectionCount(@Nullable Long value) {
 			this.collectionCount = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code collection_time}
+		 * API name: {@code collection_time}
 		 */
-		public final Builder collectionTime(String value) {
+		public final Builder collectionTime(@Nullable String value) {
 			this.collectionTime = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code collection_time_in_millis}
+		 * API name: {@code collection_time_in_millis}
 		 */
-		public final Builder collectionTimeInMillis(long value) {
+		public final Builder collectionTimeInMillis(@Nullable Long value) {
 			this.collectionTimeInMillis = value;
 			return this;
 		}

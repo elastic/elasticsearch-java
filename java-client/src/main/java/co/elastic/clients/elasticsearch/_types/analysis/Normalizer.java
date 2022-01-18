@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * @see <a href=
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/analysis-normalizers.html">Documentation
  *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/normalizers.ts#L20-L24">API
+ * @see <a href="../../doc-files/api-spec.html#_types.analysis.Normalizer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,6 +58,9 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 	 */
 	/**
 	 * {@link Normalizer} variant kinds.
+	 * 
+	 * @see <a href="../../doc-files/api-spec.html#_types.analysis.Normalizer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_data_stream/IndicesGetDataStreamResponse.ts#L50-L52">API
+ *      "../../doc-files/api-spec.html#indices.get_data_stream.IndicesGetDataStreamItemTimestampField">API
  *      specification</a>
  */
 @JsonpDeserializable

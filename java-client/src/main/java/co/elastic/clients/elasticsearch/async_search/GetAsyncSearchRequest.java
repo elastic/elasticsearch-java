@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
  * Retrieves the results of a previously submitted async search request given
  * its ID.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/async_search/get/AsyncSearchGetRequest.ts#L24-L38">API
+ * @see <a href="../doc-files/api-spec.html#async_search.get.Request">API
  *      specification</a>
  */
 

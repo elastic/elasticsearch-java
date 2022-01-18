@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/core.ts#L146-L149">API
+ * @see <a href="../../doc-files/api-spec.html#_types.mapping.OnScriptError">API
  *      specification</a>
  */
 @JsonpDeserializable

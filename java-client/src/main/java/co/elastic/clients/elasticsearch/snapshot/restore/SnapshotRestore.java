@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/restore/SnapshotRestoreResponse.ts#L27-L31">API
+ *      "../../doc-files/api-spec.html#snapshot.restore.SnapshotRestore">API
  *      specification</a>
  */
 @JsonpDeserializable

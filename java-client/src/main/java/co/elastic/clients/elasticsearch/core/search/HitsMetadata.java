@@ -46,11 +46,12 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/search/_types/hits.ts#L66-L71">API
+ *      "../../doc-files/api-spec.html#_global.search._types.HitsMetadata">API
  *      specification</a>
  */
 
 public class HitsMetadata<T> implements JsonpSerializable {
+	@Nullable
 	private final TotalHits total;
 
 	private final List<Hit<T>> hits;
@@ -65,7 +66,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 	private HitsMetadata(Builder<T> builder) {
 
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.total = builder.total;
 		this.hits = ApiTypeHelper.unmodifiableRequired(builder.hits, this, "hits");
 		this.maxScore = builder.maxScore;
 		this.tSerializer = builder.tSerializer;
@@ -77,8 +78,12 @@ public class HitsMetadata<T> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * Total hit count information, present only if <code>track_total_hits</code>
+	 * wasn't <code>false</code> in the search request.
+	 * <p>
+	 * API name: {@code total}
 	 */
+	@Nullable
 	public final TotalHits total() {
 		return this.total;
 	}
@@ -109,9 +114,11 @@ public class HitsMetadata<T> implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("total");
-		this.total.serialize(generator, mapper);
+		if (this.total != null) {
+			generator.writeKey("total");
+			this.total.serialize(generator, mapper);
 
+		}
 		if (ApiTypeHelper.isDefined(this.hits)) {
 			generator.writeKey("hits");
 			generator.writeStartArray();
@@ -137,6 +144,7 @@ public class HitsMetadata<T> implements JsonpSerializable {
 	 */
 
 	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<HitsMetadata<T>> {
+		@Nullable
 		private TotalHits total;
 
 		private List<Hit<T>> hits;
@@ -148,15 +156,21 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		private JsonpSerializer<T> tSerializer;
 
 		/**
-		 * Required - API name: {@code total}
+		 * Total hit count information, present only if <code>track_total_hits</code>
+		 * wasn't <code>false</code> in the search request.
+		 * <p>
+		 * API name: {@code total}
 		 */
-		public final Builder<T> total(TotalHits value) {
+		public final Builder<T> total(@Nullable TotalHits value) {
 			this.total = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * Total hit count information, present only if <code>track_total_hits</code>
+		 * wasn't <code>false</code> in the search request.
+		 * <p>
+		 * API name: {@code total}
 		 */
 		public final Builder<T> total(Function<TotalHits.Builder, ObjectBuilder<TotalHits>> fn) {
 			return this.total(fn.apply(new TotalHits.Builder()).build());

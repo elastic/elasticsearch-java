@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Closes an index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/close/CloseIndexRequest.ts#L24-L41">API
+ * @see <a href="../doc-files/api-spec.html#indices.close.Request">API
  *      specification</a>
  */
 

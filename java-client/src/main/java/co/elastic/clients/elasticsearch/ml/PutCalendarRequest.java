@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 /**
  * Creates a calendar.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_calendar/MlPutCalendarRequest.ts#L23-L43">API
+ * @see <a href="../doc-files/api-spec.html#ml.put_calendar.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

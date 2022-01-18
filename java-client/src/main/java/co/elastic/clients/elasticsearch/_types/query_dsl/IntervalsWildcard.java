@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L127-L131">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.IntervalsWildcard">API
  *      specification</a>
  */
 @JsonpDeserializable

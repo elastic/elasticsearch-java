@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Creates a new watch, or updates an existing one.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/put_watch/WatcherPutWatchRequest.ts#L30-L54">API
+ * @see <a href="../doc-files/api-spec.html#watcher.put_watch.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

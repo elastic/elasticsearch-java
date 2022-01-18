@@ -42,8 +42,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/Geo.ts#L131-L133">API
+ * @see <a href="../doc-files/api-spec.html#_types.WktGeoBounds">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Performs the force merge operation on one or more indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/forcemerge/IndicesForceMergeRequest.ts#L24-L41">API
+ * @see <a href="../doc-files/api-spec.html#indices.forcemerge.Request">API
  *      specification</a>
  */
 

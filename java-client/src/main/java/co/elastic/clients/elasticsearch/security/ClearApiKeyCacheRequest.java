@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Clear a subset or all entries from the API key cache.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/clear_api_key_cache/SecurityClearApiKeyCacheRequest.ts#L23-L32">API
+ *      "../doc-files/api-spec.html#security.clear_api_key_cache.Request">API
  *      specification</a>
  */
 

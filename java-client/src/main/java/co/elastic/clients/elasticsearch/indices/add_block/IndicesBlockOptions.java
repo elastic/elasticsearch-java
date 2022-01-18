@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/add_block/IndicesAddBlockRequest.ts#L43-L48">API
+ *      "../../doc-files/api-spec.html#indices.add_block.IndicesBlockOptions">API
  *      specification</a>
  */
 @JsonpDeserializable

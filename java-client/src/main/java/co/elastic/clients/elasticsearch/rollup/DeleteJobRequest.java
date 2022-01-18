@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 /**
  * Deletes an existing rollup job.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/delete_job/DeleteRollupJobRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#rollup.delete_job.Request">API
  *      specification</a>
  */
 

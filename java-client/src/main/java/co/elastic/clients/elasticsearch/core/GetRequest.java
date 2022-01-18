@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Returns a document.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get/GetRequest.ts#L32-L88">API
+ * @see <a href="../doc-files/api-spec.html#_global.get.Request">API
  *      specification</a>
  */
 

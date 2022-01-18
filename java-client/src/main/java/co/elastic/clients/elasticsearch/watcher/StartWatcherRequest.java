@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * Starts Watcher if it is not already running.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/start/WatcherStartRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#watcher.start.Request">API
  *      specification</a>
  */
 

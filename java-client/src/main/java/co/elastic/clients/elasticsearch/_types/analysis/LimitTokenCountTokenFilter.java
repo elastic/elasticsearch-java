@@ -41,7 +41,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L247-L251">API
+ *      "../../doc-files/api-spec.html#_types.analysis.LimitTokenCountTokenFilter">API
  *      specification</a>
  */
 @JsonpDeserializable

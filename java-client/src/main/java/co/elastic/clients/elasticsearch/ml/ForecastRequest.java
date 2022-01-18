@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
  * extrapolate future behavior. You can delete a forecast by using the Delete
  * forecast API.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/forecast/MlForecastJobRequest.ts#L24-L67">API
+ * @see <a href="../doc-files/api-spec.html#ml.forecast.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

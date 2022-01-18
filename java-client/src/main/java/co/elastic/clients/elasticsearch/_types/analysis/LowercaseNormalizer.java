@@ -40,7 +40,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/normalizers.ts#L26-L28">API
+ *      "../../doc-files/api-spec.html#_types.analysis.LowercaseNormalizer">API
  *      specification</a>
  */
 @JsonpDeserializable

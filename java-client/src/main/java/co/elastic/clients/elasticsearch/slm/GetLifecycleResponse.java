@@ -38,8 +38,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/slm/get_lifecycle/GetSnapshotLifecycleResponse.ts#L24-L24">API
+ * @see <a href="../doc-files/api-spec.html#slm.get_lifecycle.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

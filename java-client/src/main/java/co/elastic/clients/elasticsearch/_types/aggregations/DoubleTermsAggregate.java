@@ -39,7 +39,7 @@ import java.util.function.Function;
  * decimal number like a float, double, or distance.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/Aggregate.ts#L395-L400">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.DoubleTermsAggregate">API
  *      specification</a>
  */
 @JsonpDeserializable

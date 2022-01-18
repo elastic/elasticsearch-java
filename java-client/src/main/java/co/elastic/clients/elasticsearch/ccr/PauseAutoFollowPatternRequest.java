@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Pauses an auto-follow pattern
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ccr/pause_auto_follow_pattern/PauseAutoFollowPatternRequest.ts#L23-L32">API
+ *      "../doc-files/api-spec.html#ccr.pause_auto_follow_pattern.Request">API
  *      specification</a>
  */
 

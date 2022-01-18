@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Deletes users from the native realm.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/delete_user/SecurityDeleteUserRequest.ts#L23-L35">API
+ * @see <a href="../doc-files/api-spec.html#security.delete_user.Request">API
  *      specification</a>
  */
 

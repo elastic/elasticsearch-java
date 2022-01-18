@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
  * Returns the capabilities of any rollup jobs that have been configured for a
  * specific index or index pattern.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/get_rollup_caps/GetRollupCapabilitiesRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#rollup.get_rollup_caps.Request">API
  *      specification</a>
  */
 

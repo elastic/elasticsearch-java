@@ -55,10 +55,12 @@ import javax.annotation.Nullable;
 // typedef: _global.msearch_template.Request
 
 /**
- * Allows to execute several search template operations in one request.
+ * Runs multiple <a href=
+ * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html#run-multiple-templated-searches">templated
+ * searches</a> with a single request.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/msearch_template/MultiSearchTemplateRequest.ts#L25-L45">API
+ *      "../doc-files/api-spec.html#_global.msearch_template.Request">API
  *      specification</a>
  */
 

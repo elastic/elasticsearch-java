@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryResponse.ts#L22-L24">API
+ *      "../doc-files/api-spec.html#snapshot.cleanup_repository.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -63,7 +63,9 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code results}
+	 * Required - Statistics for cleanup operations.
+	 * <p>
+	 * API name: {@code results}
 	 */
 	public final CleanupRepositoryResults results() {
 		return this.results;
@@ -95,7 +97,9 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 		private CleanupRepositoryResults results;
 
 		/**
-		 * Required - API name: {@code results}
+		 * Required - Statistics for cleanup operations.
+		 * <p>
+		 * API name: {@code results}
 		 */
 		public final Builder results(CleanupRepositoryResults value) {
 			this.results = value;
@@ -103,7 +107,9 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code results}
+		 * Required - Statistics for cleanup operations.
+		 * <p>
+		 * API name: {@code results}
 		 */
 		public final Builder results(
 				Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {

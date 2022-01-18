@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/delete_index_template/IndicesDeleteIndexTemplateResponse.ts#L22-L22">API
+ *      "../doc-files/api-spec.html#indices.delete_index_template.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

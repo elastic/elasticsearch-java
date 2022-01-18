@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves configuration information for a trained model.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/get_trained_models/MlGetTrainedModelRequest.ts#L25-L87">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_trained_models.Request">API
  *      specification</a>
  */
 

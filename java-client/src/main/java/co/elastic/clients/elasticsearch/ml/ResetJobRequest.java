@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
  * currently possible to reset multiple jobs using wildcards or a comma
  * separated list.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/reset_job/MlResetJobRequest.ts#L23-L49">API
+ * @see <a href="../doc-files/api-spec.html#ml.reset_job.Request">API
  *      specification</a>
  */
 

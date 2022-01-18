@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
 /**
  * Previews a datafeed.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/preview_datafeed/MlPreviewDatafeedRequest.ts#L25-L38">API
+ * @see <a href="../doc-files/api-spec.html#ml.preview_datafeed.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

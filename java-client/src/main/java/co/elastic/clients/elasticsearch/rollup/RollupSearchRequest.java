@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
 /**
  * Enables searching rolled-up data using the standard query DSL.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/rollup/rollup_search/RollupSearchRequest.ts#L27-L48">API
+ * @see <a href="../doc-files/api-spec.html#rollup.rollup_search.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

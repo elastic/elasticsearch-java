@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_field_mapping/types.ts#L24-L26">API
+ *      "../../doc-files/api-spec.html#indices.get_field_mapping.TypeFieldMappings">API
  *      specification</a>
  */
 @JsonpDeserializable

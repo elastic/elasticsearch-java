@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Returns data streams.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_data_stream/IndicesGetDataStreamRequest.ts#L23-L35">API
+ * @see <a href="../doc-files/api-spec.html#indices.get_data_stream.Request">API
  *      specification</a>
  */
 

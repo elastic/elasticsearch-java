@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * DEPRECATED Upgrades to the current version of Lucene.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/upgrade/IndicesUpgradeRequest.ts#L23-L39">API
+ * @see <a href="../doc-files/api-spec.html#indices.upgrade.Request">API
  *      specification</a>
  */
 

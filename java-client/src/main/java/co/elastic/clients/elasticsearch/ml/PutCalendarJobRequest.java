@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 /**
  * Adds an anomaly detection job to a calendar.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/put_calendar_job/MlPutCalendarJobRequest.ts#L23-L37">API
+ * @see <a href="../doc-files/api-spec.html#ml.put_calendar_job.Request">API
  *      specification</a>
  */
 

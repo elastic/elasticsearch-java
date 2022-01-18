@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Deletes a snapshot.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/delete/SnapshotDeleteRequest.ts#L24-L37">API
+ * @see <a href="../doc-files/api-spec.html#snapshot.delete.Request">API
  *      specification</a>
  */
 

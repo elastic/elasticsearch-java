@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Evicts application privileges from the native application privileges cache.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/clear_cached_privileges/SecurityClearCachedPrivilegesRequest.ts#L23-L32">API
+ *      "../doc-files/api-spec.html#security.clear_cached_privileges.Request">API
  *      specification</a>
  */
 

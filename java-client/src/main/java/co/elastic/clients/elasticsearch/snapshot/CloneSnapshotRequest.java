@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
  * Clones indices from one snapshot into another snapshot in the same
  * repository.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/snapshot/clone/SnapshotCloneRequest.ts#L24-L42">API
+ * @see <a href="../doc-files/api-spec.html#snapshot.clone.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

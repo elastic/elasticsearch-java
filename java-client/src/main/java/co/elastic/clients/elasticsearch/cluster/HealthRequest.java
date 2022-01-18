@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
 /**
  * Returns basic information about the health of the cluster.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/health/ClusterHealthRequest.ts#L31-L95">API
+ * @see <a href="../doc-files/api-spec.html#cluster.health.Request">API
  *      specification</a>
  */
 

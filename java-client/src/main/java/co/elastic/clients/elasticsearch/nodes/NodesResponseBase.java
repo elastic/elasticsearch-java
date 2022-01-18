@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,28 +41,29 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/NodesResponseBase.ts#L22-L29">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.NodesResponseBase">API
  *      specification</a>
  */
 
 public abstract class NodesResponseBase implements JsonpSerializable {
+	@Nullable
 	private final NodeStatistics nodeStats;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected NodesResponseBase(AbstractBuilder<?> builder) {
 
-		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
+		this.nodeStats = builder.nodeStats;
 
 	}
 
 	/**
-	 * Required - Contains statistics about the number of nodes selected by the
-	 * request’s node filters.
+	 * Contains statistics about the number of nodes selected by the request’s node
+	 * filters.
 	 * <p>
 	 * API name: {@code _nodes}
 	 */
+	@Nullable
 	public final NodeStatistics nodeStats() {
 		return this.nodeStats;
 	}
@@ -79,30 +79,34 @@ public abstract class NodesResponseBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("_nodes");
-		this.nodeStats.serialize(generator, mapper);
+		if (this.nodeStats != null) {
+			generator.writeKey("_nodes");
+			this.nodeStats.serialize(generator, mapper);
+
+		}
 
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				ObjectBuilderBase {
+		@Nullable
 		private NodeStatistics nodeStats;
 
 		/**
-		 * Required - Contains statistics about the number of nodes selected by the
-		 * request’s node filters.
+		 * Contains statistics about the number of nodes selected by the request’s node
+		 * filters.
 		 * <p>
 		 * API name: {@code _nodes}
 		 */
-		public final BuilderT nodeStats(NodeStatistics value) {
+		public final BuilderT nodeStats(@Nullable NodeStatistics value) {
 			this.nodeStats = value;
 			return self();
 		}
 
 		/**
-		 * Required - Contains statistics about the number of nodes selected by the
-		 * request’s node filters.
+		 * Contains statistics about the number of nodes selected by the request’s node
+		 * filters.
 		 * <p>
 		 * API name: {@code _nodes}
 		 */

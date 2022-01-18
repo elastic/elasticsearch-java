@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/resolve_index/ResolveIndexResponse.ts#L42-L46">API
+ *      "../../doc-files/api-spec.html#indices.resolve_index.ResolveIndexDataStreamsItem">API
  *      specification</a>
  */
 @JsonpDeserializable

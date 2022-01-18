@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
  * Retrieves information about service accounts.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_service_accounts/GetServiceAccountsRequest.ts#L23-L33">API
+ *      "../doc-files/api-spec.html#security.get_service_accounts.Request">API
  *      specification</a>
  */
 

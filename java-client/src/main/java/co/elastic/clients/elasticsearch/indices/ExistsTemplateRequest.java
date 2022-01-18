@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about whether a particular index template exists.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/exists_template/IndicesExistsTemplateRequest.ts#L24-L38">API
+ * @see <a href="../doc-files/api-spec.html#indices.exists_template.Request">API
  *      specification</a>
  */
 

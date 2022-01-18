@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Translates SQL into Elasticsearch queries
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/sql/translate/TranslateSqlRequest.ts#L24-L36">API
+ * @see <a href="../doc-files/api-spec.html#sql.translate.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

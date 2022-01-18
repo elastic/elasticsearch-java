@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Adds and updates Logstash Pipelines used for Central Management
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/logstash/put_pipeline/LogstashPutPipelineRequest.ts#L24-L35">API
+ * @see <a href="../doc-files/api-spec.html#logstash.put_pipeline.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about any matching indices, aliases, and data streams
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/resolve_index/ResolveIndexRequest.ts#L23-L35">API
+ * @see <a href="../doc-files/api-spec.html#indices.resolve_index.Request">API
  *      specification</a>
  */
 

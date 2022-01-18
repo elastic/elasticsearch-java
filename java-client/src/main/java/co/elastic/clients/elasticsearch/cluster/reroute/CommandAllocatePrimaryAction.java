@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/reroute/types.ts#L80-L86">API
+ *      "../../doc-files/api-spec.html#cluster.reroute.CommandAllocatePrimaryAction">API
  *      specification</a>
  */
 @JsonpDeserializable

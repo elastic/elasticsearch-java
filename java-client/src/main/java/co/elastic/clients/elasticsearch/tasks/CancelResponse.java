@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/tasks/cancel/CancelTasksResponse.ts#L24-L29">API
+ * @see <a href="../doc-files/api-spec.html#tasks.cancel.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

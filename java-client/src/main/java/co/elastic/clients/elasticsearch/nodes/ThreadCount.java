@@ -29,46 +29,51 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: nodes._types.ThreadCount
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L212-L219">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.ThreadCount">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class ThreadCount implements JsonpSerializable {
-	private final long active;
+	@Nullable
+	private final Long active;
 
-	private final long completed;
+	@Nullable
+	private final Long completed;
 
-	private final long largest;
+	@Nullable
+	private final Long largest;
 
-	private final long queue;
+	@Nullable
+	private final Long queue;
 
-	private final long rejected;
+	@Nullable
+	private final Long rejected;
 
-	private final long threads;
+	@Nullable
+	private final Long threads;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ThreadCount(Builder builder) {
 
-		this.active = ApiTypeHelper.requireNonNull(builder.active, this, "active");
-		this.completed = ApiTypeHelper.requireNonNull(builder.completed, this, "completed");
-		this.largest = ApiTypeHelper.requireNonNull(builder.largest, this, "largest");
-		this.queue = ApiTypeHelper.requireNonNull(builder.queue, this, "queue");
-		this.rejected = ApiTypeHelper.requireNonNull(builder.rejected, this, "rejected");
-		this.threads = ApiTypeHelper.requireNonNull(builder.threads, this, "threads");
+		this.active = builder.active;
+		this.completed = builder.completed;
+		this.largest = builder.largest;
+		this.queue = builder.queue;
+		this.rejected = builder.rejected;
+		this.threads = builder.threads;
 
 	}
 
@@ -77,44 +82,50 @@ public class ThreadCount implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code active}
+	 * API name: {@code active}
 	 */
-	public final long active() {
+	@Nullable
+	public final Long active() {
 		return this.active;
 	}
 
 	/**
-	 * Required - API name: {@code completed}
+	 * API name: {@code completed}
 	 */
-	public final long completed() {
+	@Nullable
+	public final Long completed() {
 		return this.completed;
 	}
 
 	/**
-	 * Required - API name: {@code largest}
+	 * API name: {@code largest}
 	 */
-	public final long largest() {
+	@Nullable
+	public final Long largest() {
 		return this.largest;
 	}
 
 	/**
-	 * Required - API name: {@code queue}
+	 * API name: {@code queue}
 	 */
-	public final long queue() {
+	@Nullable
+	public final Long queue() {
 		return this.queue;
 	}
 
 	/**
-	 * Required - API name: {@code rejected}
+	 * API name: {@code rejected}
 	 */
-	public final long rejected() {
+	@Nullable
+	public final Long rejected() {
 		return this.rejected;
 	}
 
 	/**
-	 * Required - API name: {@code threads}
+	 * API name: {@code threads}
 	 */
-	public final long threads() {
+	@Nullable
+	public final Long threads() {
 		return this.threads;
 	}
 
@@ -129,23 +140,36 @@ public class ThreadCount implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("active");
-		generator.write(this.active);
+		if (this.active != null) {
+			generator.writeKey("active");
+			generator.write(this.active);
 
-		generator.writeKey("completed");
-		generator.write(this.completed);
+		}
+		if (this.completed != null) {
+			generator.writeKey("completed");
+			generator.write(this.completed);
 
-		generator.writeKey("largest");
-		generator.write(this.largest);
+		}
+		if (this.largest != null) {
+			generator.writeKey("largest");
+			generator.write(this.largest);
 
-		generator.writeKey("queue");
-		generator.write(this.queue);
+		}
+		if (this.queue != null) {
+			generator.writeKey("queue");
+			generator.write(this.queue);
 
-		generator.writeKey("rejected");
-		generator.write(this.rejected);
+		}
+		if (this.rejected != null) {
+			generator.writeKey("rejected");
+			generator.write(this.rejected);
 
-		generator.writeKey("threads");
-		generator.write(this.threads);
+		}
+		if (this.threads != null) {
+			generator.writeKey("threads");
+			generator.write(this.threads);
+
+		}
 
 	}
 
@@ -156,62 +180,68 @@ public class ThreadCount implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadCount> {
+		@Nullable
 		private Long active;
 
+		@Nullable
 		private Long completed;
 
+		@Nullable
 		private Long largest;
 
+		@Nullable
 		private Long queue;
 
+		@Nullable
 		private Long rejected;
 
+		@Nullable
 		private Long threads;
 
 		/**
-		 * Required - API name: {@code active}
+		 * API name: {@code active}
 		 */
-		public final Builder active(long value) {
+		public final Builder active(@Nullable Long value) {
 			this.active = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code completed}
+		 * API name: {@code completed}
 		 */
-		public final Builder completed(long value) {
+		public final Builder completed(@Nullable Long value) {
 			this.completed = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code largest}
+		 * API name: {@code largest}
 		 */
-		public final Builder largest(long value) {
+		public final Builder largest(@Nullable Long value) {
 			this.largest = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code queue}
+		 * API name: {@code queue}
 		 */
-		public final Builder queue(long value) {
+		public final Builder queue(@Nullable Long value) {
 			this.queue = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code rejected}
+		 * API name: {@code rejected}
 		 */
-		public final Builder rejected(long value) {
+		public final Builder rejected(@Nullable Long value) {
 			this.rejected = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code threads}
+		 * API name: {@code threads}
 		 */
-		public final Builder threads(long value) {
+		public final Builder threads(@Nullable Long value) {
 			this.threads = value;
 			return this;
 		}

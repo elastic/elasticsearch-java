@@ -42,8 +42,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/term.ts#L132-L137">API
+ * @see <a href="../../doc-files/api-spec.html#_types.query_dsl.TermsLookup">API
  *      specification</a>
  */
 @JsonpDeserializable

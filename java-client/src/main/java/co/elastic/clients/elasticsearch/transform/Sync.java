@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/transform/_types/Transform.ts#L152-L158">API
+ * @see <a href="../doc-files/api-spec.html#transform._types.SyncContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +56,9 @@ public class Sync implements TaggedUnion<Sync.Kind, Object>, JsonpSerializable {
 	 */
 	/**
 	 * {@link Sync} variant kinds.
+	 * 
+	 * @see <a href="../doc-files/api-spec.html#transform._types.SyncContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

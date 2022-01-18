@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/geo-shape.html">Documentation
  *      on elastic.co</a>
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/mapping/geo.ts#L37-L50">API
+ *      "../../doc-files/api-spec.html#_types.mapping.GeoShapeProperty">API
  *      specification</a>
  */
 @JsonpDeserializable

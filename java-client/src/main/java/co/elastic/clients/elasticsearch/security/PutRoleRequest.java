@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Adds and updates roles in the native realm.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/put_role/SecurityPutRoleRequest.ts#L31-L74">API
+ * @see <a href="../doc-files/api-spec.html#security.put_role.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

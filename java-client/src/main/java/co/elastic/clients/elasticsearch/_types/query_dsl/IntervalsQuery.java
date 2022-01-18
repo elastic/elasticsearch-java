@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/query_dsl/fulltext.ts#L116-L125">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.IntervalsQuery">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -61,6 +61,10 @@ public class IntervalsQuery extends QueryBase
 	 */
 	/**
 	 * {@link IntervalsQuery} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.query_dsl.IntervalsQuery">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

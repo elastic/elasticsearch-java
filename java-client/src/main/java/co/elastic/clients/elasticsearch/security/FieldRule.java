@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/_types/RoleMappingRule.ts#L33-L42">API
+ * @see <a href="../doc-files/api-spec.html#security._types.FieldRule">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -60,6 +59,9 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 	 */
 	/**
 	 * {@link FieldRule} variant kinds.
+	 * 
+	 * @see <a href="../doc-files/api-spec.html#security._types.FieldRule">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

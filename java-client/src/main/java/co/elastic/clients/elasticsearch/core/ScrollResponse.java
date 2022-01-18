@@ -38,8 +38,7 @@ import java.util.function.Supplier;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/scroll/ScrollResponse.ts#L22-L22">API
+ * @see <a href="../doc-files/api-spec.html#_global.scroll.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -37,8 +37,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/put_alias/IndicesPutAliasResponse.ts#L22-L22">API
+ * @see <a href="../doc-files/api-spec.html#indices.put_alias.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves stored watches.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/query_watches/WatcherQueryWatchesRequest.ts#L25-L49">API
+ * @see <a href="../doc-files/api-spec.html#watcher.query_watches.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

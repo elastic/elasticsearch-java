@@ -35,8 +35,7 @@ import java.util.Objects;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/disable_user/SecurityDisableUserResponse.ts#L20-L22">API
+ * @see <a href="../doc-files/api-spec.html#security.disable_user.Response">API
  *      specification</a>
  */
 

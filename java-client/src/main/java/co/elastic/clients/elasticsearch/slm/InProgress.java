@@ -42,8 +42,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/slm/_types/SnapshotLifecycle.ts#L125-L130">API
+ * @see <a href="../doc-files/api-spec.html#slm._types.InProgress">API
  *      specification</a>
  */
 @JsonpDeserializable

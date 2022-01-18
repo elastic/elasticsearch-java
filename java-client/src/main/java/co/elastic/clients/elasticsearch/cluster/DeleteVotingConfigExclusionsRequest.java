@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Clears cluster voting config exclusions.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cluster/delete_voting_config_exclusions/ClusterDeleteVotingConfigExclusionsRequest.ts#L22-L40">API
+ *      "../doc-files/api-spec.html#cluster.delete_voting_config_exclusions.Request">API
  *      specification</a>
  */
 

@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/token_filters.ts#L344-L394">API
+ *      "../../doc-files/api-spec.html#_types.analysis.TokenFilterDefinition">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,6 +59,10 @@ public class TokenFilterDefinition
 	 */
 	/**
 	 * {@link TokenFilterDefinition} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.analysis.TokenFilterDefinition">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

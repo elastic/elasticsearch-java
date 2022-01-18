@@ -29,37 +29,39 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: nodes._types.JvmClasses
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/nodes/_types/Stats.ts#L177-L181">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.JvmClasses">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class JvmClasses implements JsonpSerializable {
-	private final long currentLoadedCount;
+	@Nullable
+	private final Long currentLoadedCount;
 
-	private final long totalLoadedCount;
+	@Nullable
+	private final Long totalLoadedCount;
 
-	private final long totalUnloadedCount;
+	@Nullable
+	private final Long totalUnloadedCount;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private JvmClasses(Builder builder) {
 
-		this.currentLoadedCount = ApiTypeHelper.requireNonNull(builder.currentLoadedCount, this, "currentLoadedCount");
-		this.totalLoadedCount = ApiTypeHelper.requireNonNull(builder.totalLoadedCount, this, "totalLoadedCount");
-		this.totalUnloadedCount = ApiTypeHelper.requireNonNull(builder.totalUnloadedCount, this, "totalUnloadedCount");
+		this.currentLoadedCount = builder.currentLoadedCount;
+		this.totalLoadedCount = builder.totalLoadedCount;
+		this.totalUnloadedCount = builder.totalUnloadedCount;
 
 	}
 
@@ -68,23 +70,26 @@ public class JvmClasses implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code current_loaded_count}
+	 * API name: {@code current_loaded_count}
 	 */
-	public final long currentLoadedCount() {
+	@Nullable
+	public final Long currentLoadedCount() {
 		return this.currentLoadedCount;
 	}
 
 	/**
-	 * Required - API name: {@code total_loaded_count}
+	 * API name: {@code total_loaded_count}
 	 */
-	public final long totalLoadedCount() {
+	@Nullable
+	public final Long totalLoadedCount() {
 		return this.totalLoadedCount;
 	}
 
 	/**
-	 * Required - API name: {@code total_unloaded_count}
+	 * API name: {@code total_unloaded_count}
 	 */
-	public final long totalUnloadedCount() {
+	@Nullable
+	public final Long totalUnloadedCount() {
 		return this.totalUnloadedCount;
 	}
 
@@ -99,14 +104,21 @@ public class JvmClasses implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("current_loaded_count");
-		generator.write(this.currentLoadedCount);
+		if (this.currentLoadedCount != null) {
+			generator.writeKey("current_loaded_count");
+			generator.write(this.currentLoadedCount);
 
-		generator.writeKey("total_loaded_count");
-		generator.write(this.totalLoadedCount);
+		}
+		if (this.totalLoadedCount != null) {
+			generator.writeKey("total_loaded_count");
+			generator.write(this.totalLoadedCount);
 
-		generator.writeKey("total_unloaded_count");
-		generator.write(this.totalUnloadedCount);
+		}
+		if (this.totalUnloadedCount != null) {
+			generator.writeKey("total_unloaded_count");
+			generator.write(this.totalUnloadedCount);
+
+		}
 
 	}
 
@@ -117,32 +129,35 @@ public class JvmClasses implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JvmClasses> {
+		@Nullable
 		private Long currentLoadedCount;
 
+		@Nullable
 		private Long totalLoadedCount;
 
+		@Nullable
 		private Long totalUnloadedCount;
 
 		/**
-		 * Required - API name: {@code current_loaded_count}
+		 * API name: {@code current_loaded_count}
 		 */
-		public final Builder currentLoadedCount(long value) {
+		public final Builder currentLoadedCount(@Nullable Long value) {
 			this.currentLoadedCount = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total_loaded_count}
+		 * API name: {@code total_loaded_count}
 		 */
-		public final Builder totalLoadedCount(long value) {
+		public final Builder totalLoadedCount(@Nullable Long value) {
 			this.totalLoadedCount = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total_unloaded_count}
+		 * API name: {@code total_unloaded_count}
 		 */
-		public final Builder totalUnloadedCount(long value) {
+		public final Builder totalUnloadedCount(@Nullable Long value) {
 			this.totalUnloadedCount = value;
 			return this;
 		}

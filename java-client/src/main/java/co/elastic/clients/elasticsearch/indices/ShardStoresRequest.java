@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Provides store information for shard copies of indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/shard_stores/IndicesShardStoresRequest.ts#L24-L59">API
+ * @see <a href="../doc-files/api-spec.html#indices.shard_stores.Request">API
  *      specification</a>
  */
 

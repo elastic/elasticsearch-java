@@ -42,8 +42,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/get_upgrade/IndicesGetUpgradeResponse.ts#L23-L30">API
+ * @see <a href="../doc-files/api-spec.html#indices.get_upgrade.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

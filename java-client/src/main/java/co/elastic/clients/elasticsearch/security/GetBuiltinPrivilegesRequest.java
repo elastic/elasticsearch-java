@@ -43,7 +43,7 @@ import java.util.Objects;
  * available in this version of Elasticsearch.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/security/get_builtin_privileges/SecurityGetBuiltinPrivilegesRequest.ts#L22-L27">API
+ *      "../doc-files/api-spec.html#security.get_builtin_privileges.Request">API
  *      specification</a>
  */
 

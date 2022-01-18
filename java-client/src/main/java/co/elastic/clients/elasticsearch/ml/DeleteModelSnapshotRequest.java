@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * <code>model_snapshot_id</code> in the results from the get jobs API.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/delete_model_snapshot/MlDeleteModelSnapshotRequest.ts#L23-L44">API
+ *      "../doc-files/api-spec.html#ml.delete_model_snapshot.Request">API
  *      specification</a>
  */
 

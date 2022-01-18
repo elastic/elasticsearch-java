@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/enrich/stats/types.ts#L24-L27">API
+ * @see <a href="../../doc-files/api-spec.html#enrich.stats.ExecutingPolicy">API
  *      specification</a>
  */
 @JsonpDeserializable

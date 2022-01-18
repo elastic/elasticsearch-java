@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/migration/deprecations/types.ts#L20-L27">API
+ *      "../../doc-files/api-spec.html#migration.deprecations.DeprecationLevel">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/_types/Job.ts#L167-L171">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.JobBlockedReason">API
  *      specification</a>
  */
 @JsonpDeserializable

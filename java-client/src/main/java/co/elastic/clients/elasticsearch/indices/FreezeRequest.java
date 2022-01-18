@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
  * Freezes an index. A frozen index has almost no overhead on the cluster
  * (except for maintaining its metadata in memory) and is read-only.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/indices/freeze/IndicesFreezeRequest.ts#L24-L41">API
+ * @see <a href="../doc-files/api-spec.html#indices.freeze.Request">API
  *      specification</a>
  */
 

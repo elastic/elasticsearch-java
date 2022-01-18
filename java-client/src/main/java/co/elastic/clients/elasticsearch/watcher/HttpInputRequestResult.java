@@ -37,7 +37,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/watcher/_types/Actions.ts#L203-L203">API
+ *      "../doc-files/api-spec.html#watcher._types.HttpInputRequestResult">API
  *      specification</a>
  */
 @JsonpDeserializable

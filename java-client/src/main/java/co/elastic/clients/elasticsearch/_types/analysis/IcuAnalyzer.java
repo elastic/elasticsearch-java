@@ -41,8 +41,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/analysis/icu-plugin.ts#L66-L70">API
+ * @see <a href="../../doc-files/api-spec.html#_types.analysis.IcuAnalyzer">API
  *      specification</a>
  */
 @JsonpDeserializable

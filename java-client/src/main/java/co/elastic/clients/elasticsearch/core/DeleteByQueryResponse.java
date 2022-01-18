@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/delete_by_query/DeleteByQueryResponse.ts#L25-L42">API
+ *      "../doc-files/api-spec.html#_global.delete_by_query.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

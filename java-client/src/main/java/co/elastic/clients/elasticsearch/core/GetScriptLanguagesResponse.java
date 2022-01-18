@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_global/get_script_languages/GetScriptLanguagesResponse.ts#L22-L27">API
+ *      "../doc-files/api-spec.html#_global.get_script_languages.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

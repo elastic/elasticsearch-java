@@ -349,4 +349,52 @@ public class ElasticsearchTransformClient extends ApiClient<ElasticsearchTranspo
 		return updateTransform(fn.apply(new UpdateTransformRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: transform.upgrade_transforms
+
+	/**
+	 * Upgrades all transforms.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/upgrade-transforms.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UpgradeTransformsResponse upgradeTransforms(UpgradeTransformsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpgradeTransformsRequest, UpgradeTransformsResponse, ErrorResponse> endpoint = (JsonEndpoint<UpgradeTransformsRequest, UpgradeTransformsResponse, ErrorResponse>) UpgradeTransformsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Upgrades all transforms.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpgradeTransformsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/upgrade-transforms.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final UpgradeTransformsResponse upgradeTransforms(
+			Function<UpgradeTransformsRequest.Builder, ObjectBuilder<UpgradeTransformsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return upgradeTransforms(fn.apply(new UpgradeTransformsRequest.Builder()).build());
+	}
+
+	/**
+	 * Upgrades all transforms.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/upgrade-transforms.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UpgradeTransformsResponse upgradeTransforms() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new UpgradeTransformsRequest.Builder().build(),
+				UpgradeTransformsRequest._ENDPOINT, this.transportOptions);
+	}
+
 }

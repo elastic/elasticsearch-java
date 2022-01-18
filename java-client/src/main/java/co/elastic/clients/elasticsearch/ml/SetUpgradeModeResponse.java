@@ -37,8 +37,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/ml/set_upgrade_mode/MlSetUpgradeModeResponse.ts#L22-L22">API
+ * @see <a href="../doc-files/api-spec.html#ml.set_upgrade_mode.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/_types/aggregations/metric.ts#L209-L213">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.WeightedAverageValue">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
  * Returns cluster-wide thread pool statistics per node. By default the active,
  * queue and rejected statistics are returned for all thread pools.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/98036c3/specification/cat/thread_pool/CatThreadPoolRequest.ts#L24-L36">API
+ * @see <a href="../doc-files/api-spec.html#cat.thread_pool.Request">API
  *      specification</a>
  */
 
