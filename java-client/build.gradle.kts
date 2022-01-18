@@ -68,6 +68,22 @@ tasks.withType<Jar> {
     }
 }
 
+tasks.withType<Javadoc> {
+    val opt = options as StandardJavadocDocletOptions
+    // Gradle calls javadoc with a list of file and not a path. This prevents doc-files from being copied.
+    opt.addStringOption("sourcepath", project.projectDir.path + "/src/main/java")
+    opt.docFilesSubDirs(true)
+
+    doLast {
+        // Javadoc adds its decoration to html doc files, including quite some JS. This slows down the api spec
+        // redirector that doesn't need it. So overwrite the target file with the original one.
+        val specFile = "co/elastic/clients/elasticsearch/doc-files/api-spec.html"
+        val source = File(project.projectDir, "src/main/java/" + specFile)
+        val target = File(project.projectDir, "build/docs/javadoc/" + specFile)
+        source.copyTo(target, overwrite = true)
+    }
+}
+
 publishing {
     repositories {
         maven {
@@ -87,9 +103,9 @@ publishing {
         create<MavenPublication>("maven") {
             from(components["java"])
             pom {
-                name.set("Elasticsearch Java Client")
+                name.set("Elasticsearch Java API Client")
                 artifactId = "elasticsearch-java"
-                description.set("Next-gen Elasticsearch Java Client")
+                description.set("Elasticsearch Java API Client")
                 url.set("https://github.com/elastic/elasticsearch-java/")
                 licenses {
                     license {
@@ -109,14 +125,41 @@ publishing {
                     developerConnection.set("scm:git:ssh://git@github.com:elastic/elasticsearch-java.git")
                     url.set("https://github.com/elastic/elasticsearch-java/")
                 }
+
+                withXml {
+                    // Set the version of dependencies of the org.elasticsearch.client group to the one that we are building.
+                    // Since the unified release process releases everything at once, this ensures all published artifacts depend
+                    // on the exact same version. This assumes of course that the binary API and the behavior of these dependencies
+                    // are the same as the one used in the dependency section below.
+                    val xPathFactory = javax.xml.xpath.XPathFactory.newInstance()
+                    val depSelector = xPathFactory.newXPath()
+                        .compile("/project/dependencies/dependency[groupId/text() = 'org.elasticsearch.client']")
+                    val versionSelector = xPathFactory.newXPath().compile("version")
+
+                    var foundVersion = false;
+
+                    val deps = depSelector.evaluate(asElement().ownerDocument, javax.xml.xpath.XPathConstants.NODESET)
+                            as org.w3c.dom.NodeList
+
+                    for (i in 0 until deps.length) {
+                        val dep = deps.item(i)
+                        val version = versionSelector.evaluate(dep, javax.xml.xpath.XPathConstants.NODE) as org.w3c.dom.Element
+                        foundVersion = true;
+                        version.textContent = project.version.toString()
+                    }
+
+                    if (!foundVersion) {
+                        throw GradleException("Could not find a 'org.elasticsearch.client' to update dependency version in the POM.")
+                    }
+                }
             }
         }
     }
 }
 
 dependencies {
-    val elasticsearchVersion = "7.16.0"
-    val jacksonVersion = "2.12.0"
+    val elasticsearchVersion = "7.17.0-SNAPSHOT"
+    val jacksonVersion = "2.13.1"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
@@ -153,7 +196,7 @@ dependencies {
 
     // EPL-1.0
     // https://junit.org/junit4/
-    testImplementation("junit", "junit" , "4.12")
+    testImplementation("junit", "junit" , "4.13.2")
 
     // MIT
     // https://github.com/classgraph/classgraph
