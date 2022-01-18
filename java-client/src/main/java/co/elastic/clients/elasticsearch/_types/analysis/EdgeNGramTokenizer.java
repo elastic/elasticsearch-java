@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/tokenizers.ts#L30-L36">API
+ *      "../../doc-files/api-spec.html#_types.analysis.EdgeNGramTokenizer">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L341-L357">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.TermsAggregation">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -99,6 +99,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	@Nullable
 	private final Integer size;
 
+	@Nullable
+	private final String format;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TermsAggregation(Builder builder) {
@@ -119,6 +122,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		this.shardSize = builder.shardSize;
 		this.showTermDocCountError = builder.showTermDocCountError;
 		this.size = builder.size;
+		this.format = builder.format;
 
 	}
 
@@ -261,6 +265,14 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		return this.size;
 	}
 
+	/**
+	 * API name: {@code format}
+	 */
+	@Nullable
+	public final String format() {
+		return this.format;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -348,6 +360,11 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 			generator.write(this.size);
 
 		}
+		if (this.format != null) {
+			generator.writeKey("format");
+			generator.write(this.format);
+
+		}
 
 	}
 
@@ -404,6 +421,9 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 
 		@Nullable
 		private Integer size;
+
+		@Nullable
+		private String format;
 
 		/**
 		 * API name: {@code collect_mode}
@@ -565,6 +585,14 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 			return this;
 		}
 
+		/**
+		 * API name: {@code format}
+		 */
+		public final Builder format(@Nullable String value) {
+			this.format = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -610,6 +638,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::showTermDocCountError, JsonpDeserializer.booleanDeserializer(), "show_term_doc_count_error");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 
 	}
 

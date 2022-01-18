@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Analyzes the disk usage of each field of an index or data stream
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/disk_usage/IndicesDiskUsageRequest.ts#L24-L77">API
+ * @see <a href="../doc-files/api-spec.html#indices.disk_usage.Request">API
  *      specification</a>
  */
 

@@ -28,6 +28,7 @@ import co.elastic.clients.elasticsearch.watcher.ExecutionResult;
 import co.elastic.clients.elasticsearch.watcher.ExecutionStatus;
 import co.elastic.clients.elasticsearch.watcher.Input;
 import co.elastic.clients.elasticsearch.watcher.TriggerEventResult;
+import co.elastic.clients.elasticsearch.watcher.WatchStatus;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -51,7 +52,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/execute_watch/types.ts#L26-L37">API
+ *      "../../doc-files/api-spec.html#watcher.execute_watch.WatchRecord">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -76,6 +77,9 @@ public class WatchRecord implements JsonpSerializable {
 
 	private final String watchId;
 
+	@Nullable
+	private final WatchStatus status;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private WatchRecord(Builder builder) {
@@ -83,13 +87,14 @@ public class WatchRecord implements JsonpSerializable {
 		this.condition = ApiTypeHelper.requireNonNull(builder.condition, this, "condition");
 		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.messages = ApiTypeHelper.unmodifiableRequired(builder.messages, this, "messages");
-		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
+		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
 		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
 		this.triggerEvent = ApiTypeHelper.requireNonNull(builder.triggerEvent, this, "triggerEvent");
 		this.user = ApiTypeHelper.requireNonNull(builder.user, this, "user");
 		this.watchId = ApiTypeHelper.requireNonNull(builder.watchId, this, "watchId");
+		this.status = builder.status;
 
 	}
 
@@ -119,7 +124,7 @@ public class WatchRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code metadata}
+	 * API name: {@code metadata}
 	 */
 	public final Map<String, JsonData> metadata() {
 		return this.metadata;
@@ -165,6 +170,14 @@ public class WatchRecord implements JsonpSerializable {
 	 */
 	public final String watchId() {
 		return this.watchId;
+	}
+
+	/**
+	 * API name: {@code status}
+	 */
+	@Nullable
+	public final WatchStatus status() {
+		return this.status;
 	}
 
 	/**
@@ -222,6 +235,12 @@ public class WatchRecord implements JsonpSerializable {
 		generator.writeKey("watch_id");
 		generator.write(this.watchId);
 
+		if (this.status != null) {
+			generator.writeKey("status");
+			this.status.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -237,6 +256,7 @@ public class WatchRecord implements JsonpSerializable {
 
 		private List<String> messages;
 
+		@Nullable
 		private Map<String, JsonData> metadata;
 
 		private String node;
@@ -250,6 +270,9 @@ public class WatchRecord implements JsonpSerializable {
 		private String user;
 
 		private String watchId;
+
+		@Nullable
+		private WatchStatus status;
 
 		/**
 		 * Required - API name: {@code condition}
@@ -302,7 +325,7 @@ public class WatchRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code metadata}
+		 * API name: {@code metadata}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>metadata</code>.
 		 */
@@ -312,7 +335,7 @@ public class WatchRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code metadata}
+		 * API name: {@code metadata}
 		 * <p>
 		 * Adds an entry to <code>metadata</code>.
 		 */
@@ -384,6 +407,21 @@ public class WatchRecord implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code status}
+		 */
+		public final Builder status(@Nullable WatchStatus value) {
+			this.status = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code status}
+		 */
+		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
+			return this.status(fn.apply(new WatchStatus.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link WatchRecord}.
 		 *
 		 * @throws NullPointerException
@@ -417,6 +455,7 @@ public class WatchRecord implements JsonpSerializable {
 		op.add(Builder::triggerEvent, TriggerEventResult._DESERIALIZER, "trigger_event");
 		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
 		op.add(Builder::watchId, JsonpDeserializer.stringDeserializer(), "watch_id");
+		op.add(Builder::status, WatchStatus._DESERIALIZER, "status");
 
 	}
 

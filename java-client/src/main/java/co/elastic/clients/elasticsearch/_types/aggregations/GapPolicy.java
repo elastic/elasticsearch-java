@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L41-L44">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.GapPolicy">API
  *      specification</a>
  */
 @JsonpDeserializable

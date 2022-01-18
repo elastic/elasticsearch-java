@@ -34,29 +34,39 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: nodes._types.Scripting
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L207-L210">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.Scripting">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class Scripting implements JsonpSerializable {
-	private final long cacheEvictions;
+	@Nullable
+	private final Long cacheEvictions;
 
-	private final long compilations;
+	@Nullable
+	private final Long compilations;
+
+	@Nullable
+	private final Long compilationLimitTriggered;
+
+	private final List<Context> contexts;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private Scripting(Builder builder) {
 
-		this.cacheEvictions = ApiTypeHelper.requireNonNull(builder.cacheEvictions, this, "cacheEvictions");
-		this.compilations = ApiTypeHelper.requireNonNull(builder.compilations, this, "compilations");
+		this.cacheEvictions = builder.cacheEvictions;
+		this.compilations = builder.compilations;
+		this.compilationLimitTriggered = builder.compilationLimitTriggered;
+		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
 
 	}
 
@@ -65,17 +75,34 @@ public class Scripting implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code cache_evictions}
+	 * API name: {@code cache_evictions}
 	 */
-	public final long cacheEvictions() {
+	@Nullable
+	public final Long cacheEvictions() {
 		return this.cacheEvictions;
 	}
 
 	/**
-	 * Required - API name: {@code compilations}
+	 * API name: {@code compilations}
 	 */
-	public final long compilations() {
+	@Nullable
+	public final Long compilations() {
 		return this.compilations;
+	}
+
+	/**
+	 * API name: {@code compilation_limit_triggered}
+	 */
+	@Nullable
+	public final Long compilationLimitTriggered() {
+		return this.compilationLimitTriggered;
+	}
+
+	/**
+	 * API name: {@code contexts}
+	 */
+	public final List<Context> contexts() {
+		return this.contexts;
 	}
 
 	/**
@@ -89,11 +116,31 @@ public class Scripting implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("cache_evictions");
-		generator.write(this.cacheEvictions);
+		if (this.cacheEvictions != null) {
+			generator.writeKey("cache_evictions");
+			generator.write(this.cacheEvictions);
 
-		generator.writeKey("compilations");
-		generator.write(this.compilations);
+		}
+		if (this.compilations != null) {
+			generator.writeKey("compilations");
+			generator.write(this.compilations);
+
+		}
+		if (this.compilationLimitTriggered != null) {
+			generator.writeKey("compilation_limit_triggered");
+			generator.write(this.compilationLimitTriggered);
+
+		}
+		if (ApiTypeHelper.isDefined(this.contexts)) {
+			generator.writeKey("contexts");
+			generator.writeStartArray();
+			for (Context item0 : this.contexts) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -104,24 +151,69 @@ public class Scripting implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Scripting> {
+		@Nullable
 		private Long cacheEvictions;
 
+		@Nullable
 		private Long compilations;
 
+		@Nullable
+		private Long compilationLimitTriggered;
+
+		@Nullable
+		private List<Context> contexts;
+
 		/**
-		 * Required - API name: {@code cache_evictions}
+		 * API name: {@code cache_evictions}
 		 */
-		public final Builder cacheEvictions(long value) {
+		public final Builder cacheEvictions(@Nullable Long value) {
 			this.cacheEvictions = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code compilations}
+		 * API name: {@code compilations}
 		 */
-		public final Builder compilations(long value) {
+		public final Builder compilations(@Nullable Long value) {
 			this.compilations = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code compilation_limit_triggered}
+		 */
+		public final Builder compilationLimitTriggered(@Nullable Long value) {
+			this.compilationLimitTriggered = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>contexts</code>.
+		 */
+		public final Builder contexts(List<Context> list) {
+			this.contexts = _listAddAll(this.contexts, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds one or more values to <code>contexts</code>.
+		 */
+		public final Builder contexts(Context value, Context... values) {
+			this.contexts = _listAdd(this.contexts, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds a value to <code>contexts</code> using a builder lambda.
+		 */
+		public final Builder contexts(Function<Context.Builder, ObjectBuilder<Context>> fn) {
+			return contexts(fn.apply(new Context.Builder()).build());
 		}
 
 		/**
@@ -149,6 +241,8 @@ public class Scripting implements JsonpSerializable {
 
 		op.add(Builder::cacheEvictions, JsonpDeserializer.longDeserializer(), "cache_evictions");
 		op.add(Builder::compilations, JsonpDeserializer.longDeserializer(), "compilations");
+		op.add(Builder::compilationLimitTriggered, JsonpDeserializer.longDeserializer(), "compilation_limit_triggered");
+		op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(Context._DESERIALIZER), "contexts");
 
 	}
 

@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -45,8 +46,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L201-L226">API
+ * @see <a href="../doc-files/api-spec.html#_types.SegmentsStats">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -73,7 +73,7 @@ public class SegmentsStats implements JsonpSerializable {
 
 	private final int indexWriterMemoryInBytes;
 
-	private final int maxUnsafeAutoIdTimestamp;
+	private final long maxUnsafeAutoIdTimestamp;
 
 	@Nullable
 	private final String memory;
@@ -223,7 +223,7 @@ public class SegmentsStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code max_unsafe_auto_id_timestamp}
 	 */
-	public final int maxUnsafeAutoIdTimestamp() {
+	public final long maxUnsafeAutoIdTimestamp() {
 		return this.maxUnsafeAutoIdTimestamp;
 	}
 
@@ -476,7 +476,7 @@ public class SegmentsStats implements JsonpSerializable {
 
 		private Integer indexWriterMemoryInBytes;
 
-		private Integer maxUnsafeAutoIdTimestamp;
+		private Long maxUnsafeAutoIdTimestamp;
 
 		@Nullable
 		private String memory;
@@ -610,7 +610,7 @@ public class SegmentsStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code max_unsafe_auto_id_timestamp}
 		 */
-		public final Builder maxUnsafeAutoIdTimestamp(int value) {
+		public final Builder maxUnsafeAutoIdTimestamp(long value) {
 			this.maxUnsafeAutoIdTimestamp = value;
 			return this;
 		}
@@ -763,8 +763,7 @@ public class SegmentsStats implements JsonpSerializable {
 				"index_writer_max_memory_in_bytes");
 		op.add(Builder::indexWriterMemoryInBytes, JsonpDeserializer.integerDeserializer(),
 				"index_writer_memory_in_bytes");
-		op.add(Builder::maxUnsafeAutoIdTimestamp, JsonpDeserializer.integerDeserializer(),
-				"max_unsafe_auto_id_timestamp");
+		op.add(Builder::maxUnsafeAutoIdTimestamp, JsonpDeserializer.longDeserializer(), "max_unsafe_auto_id_timestamp");
 		op.add(Builder::memory, JsonpDeserializer.stringDeserializer(), "memory");
 		op.add(Builder::memoryInBytes, JsonpDeserializer.integerDeserializer(), "memory_in_bytes");
 		op.add(Builder::normsMemory, JsonpDeserializer.stringDeserializer(), "norms_memory");

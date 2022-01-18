@@ -51,10 +51,11 @@ import javax.annotation.Nullable;
 // typedef: nodes.hot_threads.Request
 
 /**
- * Returns information about hot threads on each node in the cluster.
+ * This API yields a breakdown of the hot threads on each selected node in the
+ * cluster. The output is plain text with a breakdown of each node’s top hot
+ * threads.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/hot_threads/NodesHotThreadsRequest.ts#L25-L78">API
+ * @see <a href="../doc-files/api-spec.html#nodes.hot_threads.Request">API
  *      specification</a>
  */
 
@@ -74,6 +75,9 @@ public class HotThreadsRequest extends RequestBase {
 	private final Long snapshots;
 
 	@Nullable
+	private final ThreadType sort;
+
+	@Nullable
 	private final Long threads;
 
 	@Nullable
@@ -91,6 +95,7 @@ public class HotThreadsRequest extends RequestBase {
 		this.masterTimeout = builder.masterTimeout;
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
 		this.snapshots = builder.snapshots;
+		this.sort = builder.sort;
 		this.threads = builder.threads;
 		this.timeout = builder.timeout;
 		this.type = builder.type;
@@ -153,6 +158,16 @@ public class HotThreadsRequest extends RequestBase {
 	}
 
 	/**
+	 * The sort order for 'cpu' type (default: total)
+	 * <p>
+	 * API name: {@code sort}
+	 */
+	@Nullable
+	public final ThreadType sort() {
+		return this.sort;
+	}
+
+	/**
 	 * Specifies the number of hot threads to provide information for.
 	 * <p>
 	 * API name: {@code threads}
@@ -204,6 +219,9 @@ public class HotThreadsRequest extends RequestBase {
 
 		@Nullable
 		private Long snapshots;
+
+		@Nullable
+		private ThreadType sort;
 
 		@Nullable
 		private Long threads;
@@ -296,6 +314,16 @@ public class HotThreadsRequest extends RequestBase {
 		 */
 		public final Builder snapshots(@Nullable Long value) {
 			this.snapshots = value;
+			return this;
+		}
+
+		/**
+		 * The sort order for 'cpu' type (default: total)
+		 * <p>
+		 * API name: {@code sort}
+		 */
+		public final Builder sort(@Nullable ThreadType value) {
+			this.sort = value;
 			return this;
 		}
 
@@ -409,6 +437,9 @@ public class HotThreadsRequest extends RequestBase {
 				}
 				if (request.interval != null) {
 					params.put("interval", request.interval._toJsonString());
+				}
+				if (request.sort != null) {
+					params.put("sort", request.sort.jsonValue());
 				}
 				if (request.type != null) {
 					params.put("type", request.type.jsonValue());

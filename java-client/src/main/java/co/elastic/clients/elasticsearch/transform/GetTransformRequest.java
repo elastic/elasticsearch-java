@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves configuration information for transforms.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform/GetTransformRequest.ts#L24-L39">API
+ * @see <a href="../doc-files/api-spec.html#transform.get_transform.Request">API
  *      specification</a>
  */
 
@@ -86,8 +85,16 @@ public class GetTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to ignore if a wildcard expression matches no transforms. (This
-	 * includes <code>_all</code> string or when no transforms have been specified)
+	 * Specifies what to do when the request:
+	 * <ol>
+	 * <li>Contains wildcard expressions and there are no transforms that
+	 * match.</li>
+	 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+	 * <li>Contains wildcard expressions and there are only partial matches.</li>
+	 * </ol>
+	 * <p>
+	 * If this parameter is false, the request returns a 404 status code when there
+	 * are no matches or only partial matches.
 	 * <p>
 	 * API name: {@code allow_no_match}
 	 */
@@ -97,7 +104,9 @@ public class GetTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * Omits fields that are illegal to set on transform PUT
+	 * Excludes fields that were automatically added when creating the transform.
+	 * This allows the configuration to be in an acceptable format to be retrieved
+	 * and then added to another cluster.
 	 * <p>
 	 * API name: {@code exclude_generated}
 	 */
@@ -107,7 +116,7 @@ public class GetTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * skips a number of transform configs, defaults to 0
+	 * Skips the specified number of transforms.
 	 * <p>
 	 * API name: {@code from}
 	 */
@@ -117,7 +126,7 @@ public class GetTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * specifies a max number of transforms to get, defaults to 100
+	 * Specifies the maximum number of transforms to obtain.
 	 * <p>
 	 * API name: {@code size}
 	 */
@@ -127,8 +136,11 @@ public class GetTransformRequest extends RequestBase {
 	}
 
 	/**
-	 * The id or comma delimited list of id expressions of the transforms to get,
-	 * '_all' or '*' implies get all transforms
+	 * Identifier for the transform. It can be a transform identifier or a wildcard
+	 * expression. You can get information for all transforms by using
+	 * <code>_all</code>, by specifying <code>*</code> as the
+	 * <code>&lt;transform_id&gt;</code>, or by omitting the
+	 * <code>&lt;transform_id&gt;</code>.
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -160,8 +172,16 @@ public class GetTransformRequest extends RequestBase {
 		private String transformId;
 
 		/**
-		 * Whether to ignore if a wildcard expression matches no transforms. (This
-		 * includes <code>_all</code> string or when no transforms have been specified)
+		 * Specifies what to do when the request:
+		 * <ol>
+		 * <li>Contains wildcard expressions and there are no transforms that
+		 * match.</li>
+		 * <li>Contains the _all string or no identifiers and there are no matches.</li>
+		 * <li>Contains wildcard expressions and there are only partial matches.</li>
+		 * </ol>
+		 * <p>
+		 * If this parameter is false, the request returns a 404 status code when there
+		 * are no matches or only partial matches.
 		 * <p>
 		 * API name: {@code allow_no_match}
 		 */
@@ -171,7 +191,9 @@ public class GetTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * Omits fields that are illegal to set on transform PUT
+		 * Excludes fields that were automatically added when creating the transform.
+		 * This allows the configuration to be in an acceptable format to be retrieved
+		 * and then added to another cluster.
 		 * <p>
 		 * API name: {@code exclude_generated}
 		 */
@@ -181,7 +203,7 @@ public class GetTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * skips a number of transform configs, defaults to 0
+		 * Skips the specified number of transforms.
 		 * <p>
 		 * API name: {@code from}
 		 */
@@ -191,7 +213,7 @@ public class GetTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * specifies a max number of transforms to get, defaults to 100
+		 * Specifies the maximum number of transforms to obtain.
 		 * <p>
 		 * API name: {@code size}
 		 */
@@ -201,8 +223,11 @@ public class GetTransformRequest extends RequestBase {
 		}
 
 		/**
-		 * The id or comma delimited list of id expressions of the transforms to get,
-		 * '_all' or '*' implies get all transforms
+		 * Identifier for the transform. It can be a transform identifier or a wildcard
+		 * expression. You can get information for all transforms by using
+		 * <code>_all</code>, by specifying <code>*</code> as the
+		 * <code>&lt;transform_id&gt;</code>, or by omitting the
+		 * <code>&lt;transform_id&gt;</code>.
 		 * <p>
 		 * API name: {@code transform_id}
 		 */

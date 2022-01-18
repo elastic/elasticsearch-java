@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Model.ts#L24-L45">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.ModelSnapshot">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -70,7 +69,7 @@ public class ModelSnapshot implements JsonpSerializable {
 
 	private final String snapshotId;
 
-	private final int timestamp;
+	private final long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -187,7 +186,7 @@ public class ModelSnapshot implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public final int timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
 	}
 
@@ -262,7 +261,7 @@ public class ModelSnapshot implements JsonpSerializable {
 
 		private String snapshotId;
 
-		private Integer timestamp;
+		private Long timestamp;
 
 		/**
 		 * An optional description of the job.
@@ -373,7 +372,7 @@ public class ModelSnapshot implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(int value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -410,7 +409,7 @@ public class ModelSnapshot implements JsonpSerializable {
 		op.add(Builder::retain, JsonpDeserializer.booleanDeserializer(), "retain");
 		op.add(Builder::snapshotDocCount, JsonpDeserializer.longDeserializer(), "snapshot_doc_count");
 		op.add(Builder::snapshotId, JsonpDeserializer.stringDeserializer(), "snapshot_id");
-		op.add(Builder::timestamp, JsonpDeserializer.integerDeserializer(), "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}
 

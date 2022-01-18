@@ -43,14 +43,14 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_calendar/MlPutCalendarResponse.ts#L22-L31">API
+ * @see <a href="../doc-files/api-spec.html#ml.put_calendar.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class PutCalendarResponse implements JsonpSerializable {
 	private final String calendarId;
 
+	@Nullable
 	private final String description;
 
 	private final List<String> jobIds;
@@ -60,7 +60,7 @@ public class PutCalendarResponse implements JsonpSerializable {
 	private PutCalendarResponse(Builder builder) {
 
 		this.calendarId = ApiTypeHelper.requireNonNull(builder.calendarId, this, "calendarId");
-		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
+		this.description = builder.description;
 		this.jobIds = ApiTypeHelper.unmodifiableRequired(builder.jobIds, this, "jobIds");
 
 	}
@@ -79,10 +79,11 @@ public class PutCalendarResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - A description of the calendar.
+	 * A description of the calendar.
 	 * <p>
 	 * API name: {@code description}
 	 */
+	@Nullable
 	public final String description() {
 		return this.description;
 	}
@@ -110,9 +111,11 @@ public class PutCalendarResponse implements JsonpSerializable {
 		generator.writeKey("calendar_id");
 		generator.write(this.calendarId);
 
-		generator.writeKey("description");
-		generator.write(this.description);
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
 
+		}
 		if (ApiTypeHelper.isDefined(this.jobIds)) {
 			generator.writeKey("job_ids");
 			generator.writeStartArray();
@@ -135,6 +138,7 @@ public class PutCalendarResponse implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutCalendarResponse> {
 		private String calendarId;
 
+		@Nullable
 		private String description;
 
 		private List<String> jobIds;
@@ -150,11 +154,11 @@ public class PutCalendarResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - A description of the calendar.
+		 * A description of the calendar.
 		 * <p>
 		 * API name: {@code description}
 		 */
-		public final Builder description(String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}

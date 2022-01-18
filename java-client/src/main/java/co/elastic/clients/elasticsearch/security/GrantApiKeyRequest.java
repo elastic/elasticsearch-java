@@ -25,8 +25,8 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKey;
 import co.elastic.clients.elasticsearch.security.grant_api_key.ApiKeyGrantType;
+import co.elastic.clients.elasticsearch.security.grant_api_key.GrantApiKey;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Creates an API key on behalf of another user.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/grant_api_key/SecurityGrantApiKeyRequest.ts#L24-L37">API
+ * @see <a href="../doc-files/api-spec.html#security.grant_api_key.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,7 +58,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	private final String accessToken;
 
-	private final ApiKey apiKey;
+	private final GrantApiKey apiKey;
 
 	private final ApiKeyGrantType grantType;
 
@@ -96,7 +95,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	/**
 	 * Required - API name: {@code api_key}
 	 */
-	public final ApiKey apiKey() {
+	public final GrantApiKey apiKey() {
 		return this.apiKey;
 	}
 
@@ -167,7 +166,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private String accessToken;
 
-		private ApiKey apiKey;
+		private GrantApiKey apiKey;
 
 		private ApiKeyGrantType grantType;
 
@@ -188,7 +187,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * Required - API name: {@code api_key}
 		 */
-		public final Builder apiKey(ApiKey value) {
+		public final Builder apiKey(GrantApiKey value) {
 			this.apiKey = value;
 			return this;
 		}
@@ -196,8 +195,8 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 		/**
 		 * Required - API name: {@code api_key}
 		 */
-		public final Builder apiKey(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
-			return this.apiKey(fn.apply(new ApiKey.Builder()).build());
+		public final Builder apiKey(Function<GrantApiKey.Builder, ObjectBuilder<GrantApiKey>> fn) {
+			return this.apiKey(fn.apply(new GrantApiKey.Builder()).build());
 		}
 
 		/**
@@ -248,7 +247,7 @@ public class GrantApiKeyRequest extends RequestBase implements JsonpSerializable
 	protected static void setupGrantApiKeyRequestDeserializer(ObjectDeserializer<GrantApiKeyRequest.Builder> op) {
 
 		op.add(Builder::accessToken, JsonpDeserializer.stringDeserializer(), "access_token");
-		op.add(Builder::apiKey, ApiKey._DESERIALIZER, "api_key");
+		op.add(Builder::apiKey, GrantApiKey._DESERIALIZER, "api_key");
 		op.add(Builder::grantType, ApiKeyGrantType._DESERIALIZER, "grant_type");
 		op.add(Builder::password, JsonpDeserializer.stringDeserializer(), "password");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");

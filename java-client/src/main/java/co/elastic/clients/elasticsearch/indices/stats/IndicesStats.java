@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices.stats;
 
+import co.elastic.clients.elasticsearch._types.HealthStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -44,29 +45,38 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L81-L86">API
+ * @see <a href="../../doc-files/api-spec.html#indices.stats.IndicesStats">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class IndicesStats implements JsonpSerializable {
+	@Nullable
 	private final IndexStats primaries;
 
 	private final Map<String, List<ShardStats>> shards;
 
+	@Nullable
 	private final IndexStats total;
 
 	@Nullable
 	private final String uuid;
 
+	@Nullable
+	private final HealthStatus health;
+
+	@Nullable
+	private final IndexMetadataState status;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndicesStats(Builder builder) {
 
-		this.primaries = ApiTypeHelper.requireNonNull(builder.primaries, this, "primaries");
+		this.primaries = builder.primaries;
 		this.shards = ApiTypeHelper.unmodifiable(builder.shards);
-		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
+		this.total = builder.total;
 		this.uuid = builder.uuid;
+		this.health = builder.health;
+		this.status = builder.status;
 
 	}
 
@@ -75,8 +85,9 @@ public class IndicesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code primaries}
+	 * API name: {@code primaries}
 	 */
+	@Nullable
 	public final IndexStats primaries() {
 		return this.primaries;
 	}
@@ -89,8 +100,9 @@ public class IndicesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code total}
+	 * API name: {@code total}
 	 */
+	@Nullable
 	public final IndexStats total() {
 		return this.total;
 	}
@@ -104,6 +116,22 @@ public class IndicesStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code health}
+	 */
+	@Nullable
+	public final HealthStatus health() {
+		return this.health;
+	}
+
+	/**
+	 * API name: {@code status}
+	 */
+	@Nullable
+	public final IndexMetadataState status() {
+		return this.status;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -114,9 +142,11 @@ public class IndicesStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("primaries");
-		this.primaries.serialize(generator, mapper);
+		if (this.primaries != null) {
+			generator.writeKey("primaries");
+			this.primaries.serialize(generator, mapper);
 
+		}
 		if (ApiTypeHelper.isDefined(this.shards)) {
 			generator.writeKey("shards");
 			generator.writeStartObject();
@@ -135,13 +165,23 @@ public class IndicesStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("total");
-		this.total.serialize(generator, mapper);
+		if (this.total != null) {
+			generator.writeKey("total");
+			this.total.serialize(generator, mapper);
 
+		}
 		if (this.uuid != null) {
 			generator.writeKey("uuid");
 			generator.write(this.uuid);
 
+		}
+		if (this.health != null) {
+			generator.writeKey("health");
+			this.health.serialize(generator, mapper);
+		}
+		if (this.status != null) {
+			generator.writeKey("status");
+			this.status.serialize(generator, mapper);
 		}
 
 	}
@@ -153,26 +193,34 @@ public class IndicesStats implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStats> {
+		@Nullable
 		private IndexStats primaries;
 
 		@Nullable
 		private Map<String, List<ShardStats>> shards;
 
+		@Nullable
 		private IndexStats total;
 
 		@Nullable
 		private String uuid;
 
+		@Nullable
+		private HealthStatus health;
+
+		@Nullable
+		private IndexMetadataState status;
+
 		/**
-		 * Required - API name: {@code primaries}
+		 * API name: {@code primaries}
 		 */
-		public final Builder primaries(IndexStats value) {
+		public final Builder primaries(@Nullable IndexStats value) {
 			this.primaries = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code primaries}
+		 * API name: {@code primaries}
 		 */
 		public final Builder primaries(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
 			return this.primaries(fn.apply(new IndexStats.Builder()).build());
@@ -199,15 +247,15 @@ public class IndicesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
-		public final Builder total(IndexStats value) {
+		public final Builder total(@Nullable IndexStats value) {
 			this.total = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code total}
+		 * API name: {@code total}
 		 */
 		public final Builder total(Function<IndexStats.Builder, ObjectBuilder<IndexStats>> fn) {
 			return this.total(fn.apply(new IndexStats.Builder()).build());
@@ -218,6 +266,22 @@ public class IndicesStats implements JsonpSerializable {
 		 */
 		public final Builder uuid(@Nullable String value) {
 			this.uuid = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code health}
+		 */
+		public final Builder health(@Nullable HealthStatus value) {
+			this.health = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code status}
+		 */
+		public final Builder status(@Nullable IndexMetadataState value) {
+			this.status = value;
 			return this;
 		}
 
@@ -250,6 +314,8 @@ public class IndicesStats implements JsonpSerializable {
 				"shards");
 		op.add(Builder::total, IndexStats._DESERIALIZER, "total");
 		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
+		op.add(Builder::health, HealthStatus._DESERIALIZER, "health");
+		op.add(Builder::status, IndexMetadataState._DESERIALIZER, "status");
 
 	}
 

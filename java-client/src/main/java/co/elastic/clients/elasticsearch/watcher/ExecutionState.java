@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Action.ts#L92-L95">API
+ * @see <a href="../doc-files/api-spec.html#watcher._types.ExecutionState">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -53,12 +52,16 @@ public class ExecutionState implements JsonpSerializable {
 
 	private final String timestamp;
 
+	@Nullable
+	private final String reason;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ExecutionState(Builder builder) {
 
 		this.successful = ApiTypeHelper.requireNonNull(builder.successful, this, "successful");
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.reason = builder.reason;
 
 	}
 
@@ -81,6 +84,14 @@ public class ExecutionState implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code reason}
+	 */
+	@Nullable
+	public final String reason() {
+		return this.reason;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -97,6 +108,12 @@ public class ExecutionState implements JsonpSerializable {
 		generator.writeKey("timestamp");
 		generator.write(this.timestamp);
 
+		if (this.reason != null) {
+			generator.writeKey("reason");
+			generator.write(this.reason);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -109,6 +126,9 @@ public class ExecutionState implements JsonpSerializable {
 		private Boolean successful;
 
 		private String timestamp;
+
+		@Nullable
+		private String reason;
 
 		/**
 		 * Required - API name: {@code successful}
@@ -123,6 +143,14 @@ public class ExecutionState implements JsonpSerializable {
 		 */
 		public final Builder timestamp(String value) {
 			this.timestamp = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code reason}
+		 */
+		public final Builder reason(@Nullable String value) {
+			this.reason = value;
 			return this;
 		}
 
@@ -151,6 +179,7 @@ public class ExecutionState implements JsonpSerializable {
 
 		op.add(Builder::successful, JsonpDeserializer.booleanDeserializer(), "successful");
 		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 
 	}
 

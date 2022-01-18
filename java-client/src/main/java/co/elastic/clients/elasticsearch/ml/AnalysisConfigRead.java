@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Analysis.ts#L78-L90">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.AnalysisConfigRead">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -104,9 +103,11 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 	/**
 	 * Required - The size of the interval that the analysis is aggregated into,
-	 * typically between <code>5m</code> and <code>1h</code>. If the anomaly
-	 * detection job uses a datafeed with aggregations, this value must be divisible
-	 * by the interval of the date histogram aggregation.
+	 * typically between <code>5m</code> and <code>1h</code>. This value should be
+	 * either a whole number of days or equate to a whole number of buckets in one
+	 * day. If the anomaly detection job uses a datafeed with aggregations, this
+	 * value must also be divisible by the interval of the date histogram
+	 * aggregation.
 	 * <ul>
 	 * <li>@server_default 5m</li>
 	 * </ul>
@@ -198,9 +199,8 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * Advanced configuration option. Affects the pruning of models that have not
 	 * been updated for the given time duration. The value must be set to a multiple
 	 * of the <code>bucket_span</code>. If set too low, important information may be
-	 * removed from the model. Typically, set to <code>30d</code> or longer. If not
-	 * set, model pruning only occurs if the model memory status reaches the soft
-	 * limit or the hard limit.
+	 * removed from the model. For jobs created in 8.1 and later, the default value
+	 * is the greater of <code>30d</code> or 20 times <code>bucket_span</code>.
 	 * <p>
 	 * API name: {@code model_prune_window}
 	 */
@@ -390,9 +390,11 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 		/**
 		 * Required - The size of the interval that the analysis is aggregated into,
-		 * typically between <code>5m</code> and <code>1h</code>. If the anomaly
-		 * detection job uses a datafeed with aggregations, this value must be divisible
-		 * by the interval of the date histogram aggregation.
+		 * typically between <code>5m</code> and <code>1h</code>. This value should be
+		 * either a whole number of days or equate to a whole number of buckets in one
+		 * day. If the anomaly detection job uses a datafeed with aggregations, this
+		 * value must also be divisible by the interval of the date histogram
+		 * aggregation.
 		 * <ul>
 		 * <li>@server_default 5m</li>
 		 * </ul>
@@ -581,9 +583,8 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * Advanced configuration option. Affects the pruning of models that have not
 		 * been updated for the given time duration. The value must be set to a multiple
 		 * of the <code>bucket_span</code>. If set too low, important information may be
-		 * removed from the model. Typically, set to <code>30d</code> or longer. If not
-		 * set, model pruning only occurs if the model memory status reaches the soft
-		 * limit or the hard limit.
+		 * removed from the model. For jobs created in 8.1 and later, the default value
+		 * is the greater of <code>30d</code> or 20 times <code>bucket_span</code>.
 		 * <p>
 		 * API name: {@code model_prune_window}
 		 */
@@ -596,9 +597,8 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * Advanced configuration option. Affects the pruning of models that have not
 		 * been updated for the given time duration. The value must be set to a multiple
 		 * of the <code>bucket_span</code>. If set too low, important information may be
-		 * removed from the model. Typically, set to <code>30d</code> or longer. If not
-		 * set, model pruning only occurs if the model memory status reaches the soft
-		 * limit or the hard limit.
+		 * removed from the model. For jobs created in 8.1 and later, the default value
+		 * is the greater of <code>30d</code> or 20 times <code>bucket_span</code>.
 		 * <p>
 		 * API name: {@code model_prune_window}
 		 */

@@ -55,8 +55,7 @@ import javax.annotation.Nullable;
 /**
  * Returns multiple termvectors in one request.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mtermvectors/MultiTermVectorsRequest.ts#L31-L58">API
+ * @see <a href="../doc-files/api-spec.html#_global.mtermvectors.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

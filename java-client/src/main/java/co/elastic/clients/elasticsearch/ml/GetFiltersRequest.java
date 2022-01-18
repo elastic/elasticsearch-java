@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves filters. You can get a single filter or all filters.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_filters/MlGetFiltersRequest.ts#L24-L51">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_filters.Request">API
  *      specification</a>
  */
 

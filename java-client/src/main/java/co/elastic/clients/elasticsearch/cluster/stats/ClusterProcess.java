@@ -41,8 +41,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/stats/types.ts#L244-L247">API
+ * @see <a href="../../doc-files/api-spec.html#cluster.stats.ClusterProcess">API
  *      specification</a>
  */
 @JsonpDeserializable

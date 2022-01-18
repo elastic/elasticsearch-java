@@ -29,8 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Geo.ts#L51-L54">API
+ * @see <a href="../doc-files/api-spec.html#_types.GeoDistanceType">API
  *      specification</a>
  */
 @JsonpDeserializable

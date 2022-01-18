@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L253-L259">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.RangeAggregation">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -64,6 +64,9 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 	@Nullable
 	private final Boolean keyed;
 
+	@Nullable
+	private final String format;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private RangeAggregation(Builder builder) {
@@ -74,6 +77,7 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		this.ranges = ApiTypeHelper.unmodifiable(builder.ranges);
 		this.script = builder.script;
 		this.keyed = builder.keyed;
+		this.format = builder.format;
 
 	}
 
@@ -128,6 +132,14 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		return this.keyed;
 	}
 
+	/**
+	 * API name: {@code format}
+	 */
+	@Nullable
+	public final String format() {
+		return this.format;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -161,6 +173,11 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 			generator.write(this.keyed);
 
 		}
+		if (this.format != null) {
+			generator.writeKey("format");
+			generator.write(this.format);
+
+		}
 
 	}
 
@@ -187,6 +204,9 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 
 		@Nullable
 		private Boolean keyed;
+
+		@Nullable
+		private String format;
 
 		/**
 		 * API name: {@code field}
@@ -256,6 +276,14 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 			return this;
 		}
 
+		/**
+		 * API name: {@code format}
+		 */
+		public final Builder format(@Nullable String value) {
+			this.format = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -289,6 +317,7 @@ public class RangeAggregation extends BucketAggregationBase implements Aggregati
 		op.add(Builder::ranges, JsonpDeserializer.arrayDeserializer(AggregationRange._DESERIALIZER), "ranges");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");
+		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 
 	}
 

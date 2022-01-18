@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.core.update_by_query_rethrottle;
 
 import co.elastic.clients.elasticsearch._types.BaseNode;
-import co.elastic.clients.elasticsearch.tasks.Info;
+import co.elastic.clients.elasticsearch.tasks.TaskInfo;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -44,12 +44,12 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/update_by_query_rethrottle/UpdateByQueryRethrottleNode.ts#L25-L27">API
+ *      "../../doc-files/api-spec.html#_global.update_by_query_rethrottle.UpdateByQueryRethrottleNode">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class UpdateByQueryRethrottleNode extends BaseNode {
-	private final Map<String, Info> tasks;
+	private final Map<String, TaskInfo> tasks;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,7 +67,7 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 	/**
 	 * Required - API name: {@code tasks}
 	 */
-	public final Map<String, Info> tasks() {
+	public final Map<String, TaskInfo> tasks() {
 		return this.tasks;
 	}
 
@@ -77,7 +77,7 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 		if (ApiTypeHelper.isDefined(this.tasks)) {
 			generator.writeKey("tasks");
 			generator.writeStartObject();
-			for (Map.Entry<String, Info> item0 : this.tasks.entrySet()) {
+			for (Map.Entry<String, TaskInfo> item0 : this.tasks.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -97,14 +97,14 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 	public static class Builder extends BaseNode.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<UpdateByQueryRethrottleNode> {
-		private Map<String, Info> tasks;
+		private Map<String, TaskInfo> tasks;
 
 		/**
 		 * Required - API name: {@code tasks}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>tasks</code>.
 		 */
-		public final Builder tasks(Map<String, Info> map) {
+		public final Builder tasks(Map<String, TaskInfo> map) {
 			this.tasks = _mapPutAll(this.tasks, map);
 			return this;
 		}
@@ -114,7 +114,7 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 		 * <p>
 		 * Adds an entry to <code>tasks</code>.
 		 */
-		public final Builder tasks(String key, Info value) {
+		public final Builder tasks(String key, TaskInfo value) {
 			this.tasks = _mapPut(this.tasks, key, value);
 			return this;
 		}
@@ -124,8 +124,8 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 		 * <p>
 		 * Adds an entry to <code>tasks</code> using a builder lambda.
 		 */
-		public final Builder tasks(String key, Function<Info.Builder, ObjectBuilder<Info>> fn) {
-			return tasks(key, fn.apply(new Info.Builder()).build());
+		public final Builder tasks(String key, Function<TaskInfo.Builder, ObjectBuilder<TaskInfo>> fn) {
+			return tasks(key, fn.apply(new TaskInfo.Builder()).build());
 		}
 
 		@Override
@@ -157,7 +157,7 @@ public class UpdateByQueryRethrottleNode extends BaseNode {
 	protected static void setupUpdateByQueryRethrottleNodeDeserializer(
 			ObjectDeserializer<UpdateByQueryRethrottleNode.Builder> op) {
 		BaseNode.setupBaseNodeDeserializer(op);
-		op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(Info._DESERIALIZER), "tasks");
+		op.add(Builder::tasks, JsonpDeserializer.stringMapDeserializer(TaskInfo._DESERIALIZER), "tasks");
 
 	}
 

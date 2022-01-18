@@ -39,7 +39,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_role_mapping/SecurityGetRoleMappingResponse.ts#L23-L23">API
+ *      "../doc-files/api-spec.html#security.get_role_mapping.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Determines whether the specified user has a specified list of privileges.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/has_privileges/SecurityHasPrivilegesRequest.ts#L25-L39">API
+ * @see <a href="../doc-files/api-spec.html#security.has_privileges.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -89,6 +88,8 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * A list of the cluster privileges that you want to check.
+	 * <p>
 	 * API name: {@code cluster}
 	 */
 	public final List<ClusterPrivilege> cluster() {
@@ -205,6 +206,8 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * A list of the cluster privileges that you want to check.
+		 * <p>
 		 * API name: {@code cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
@@ -215,6 +218,8 @@ public class HasPrivilegesRequest extends RequestBase implements JsonpSerializab
 		}
 
 		/**
+		 * A list of the cluster privileges that you want to check.
+		 * <p>
 		 * API name: {@code cluster}
 		 * <p>
 		 * Adds one or more values to <code>cluster</code>.

@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
  * Provides quick access to the document count of the entire cluster, or
  * individual indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/count/CatCountRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#cat.count.Request">API
  *      specification</a>
  */
 

@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/types.ts#L35-L49">API
+ * @see <a href="../../doc-files/api-spec.html#_global.bulk.ResponseItem">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -82,9 +81,6 @@ public class BulkResponseItem implements JsonpSerializable {
 	private final ShardStatistics shards;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final Long version;
 
 	@Nullable
@@ -107,7 +103,6 @@ public class BulkResponseItem implements JsonpSerializable {
 		this.result = builder.result;
 		this.seqNo = builder.seqNo;
 		this.shards = builder.shards;
-		this.type = builder.type;
 		this.version = builder.version;
 		this.forcedRefresh = builder.forcedRefresh;
 		this.get = builder.get;
@@ -188,14 +183,6 @@ public class BulkResponseItem implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * API name: {@code _version}
 	 */
 	@Nullable
@@ -267,11 +254,6 @@ public class BulkResponseItem implements JsonpSerializable {
 			this.shards.serialize(generator, mapper);
 
 		}
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
-
-		}
 		if (this.version != null) {
 			generator.writeKey("_version");
 			generator.write(this.version);
@@ -330,9 +312,6 @@ public class BulkResponseItem implements JsonpSerializable {
 
 		@Nullable
 		private ShardStatistics shards;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private Long version;
@@ -422,14 +401,6 @@ public class BulkResponseItem implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code _version}
 		 */
 		public final Builder version(@Nullable Long value) {
@@ -492,7 +463,6 @@ public class BulkResponseItem implements JsonpSerializable {
 		op.add(Builder::result, JsonpDeserializer.stringDeserializer(), "result");
 		op.add(Builder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "_version");
 		op.add(Builder::forcedRefresh, JsonpDeserializer.booleanDeserializer(), "forced_refresh");
 		op.add(Builder::get,

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/highlighting.ts#L84-L107">API
+ *      "../../doc-files/api-spec.html#_global.search._types.HighlightField">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -110,7 +110,7 @@ public class HighlightField implements JsonpSerializable {
 	private final HighlighterTagsSchema tagsSchema;
 
 	@Nullable
-	private final HighlighterType type;
+	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -305,7 +305,7 @@ public class HighlightField implements JsonpSerializable {
 	 * API name: {@code type}
 	 */
 	@Nullable
-	public final HighlighterType type() {
+	public final String type() {
 		return this.type;
 	}
 
@@ -433,7 +433,7 @@ public class HighlightField implements JsonpSerializable {
 		}
 		if (this.type != null) {
 			generator.writeKey("type");
-			this.type.serialize(generator, mapper);
+			generator.write(this.type);
 
 		}
 
@@ -507,7 +507,7 @@ public class HighlightField implements JsonpSerializable {
 		private HighlighterTagsSchema tagsSchema;
 
 		@Nullable
-		private HighlighterType type;
+		private String type;
 
 		/**
 		 * API name: {@code boundary_chars}
@@ -715,7 +715,7 @@ public class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public final Builder type(@Nullable HighlighterType value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -723,8 +723,9 @@ public class HighlightField implements JsonpSerializable {
 		/**
 		 * API name: {@code type}
 		 */
-		public final Builder type(Function<HighlighterType.Builder, ObjectBuilder<HighlighterType>> fn) {
-			return this.type(fn.apply(new HighlighterType.Builder()).build());
+		public final Builder type(@Nullable HighlighterType value) {
+			this.type = value == null ? null : value.jsonValue();
+			return this;
 		}
 
 		/**
@@ -773,7 +774,7 @@ public class HighlightField implements JsonpSerializable {
 				"pre_tags");
 		op.add(Builder::requireFieldMatch, JsonpDeserializer.booleanDeserializer(), "require_field_match");
 		op.add(Builder::tagsSchema, HighlighterTagsSchema._DESERIALIZER, "tags_schema");
-		op.add(Builder::type, HighlighterType._DESERIALIZER, "type");
+		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}
 

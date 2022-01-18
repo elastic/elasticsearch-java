@@ -43,18 +43,17 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/get/GetTaskResponse.ts#L24-L31">API
+ * @see <a href="../doc-files/api-spec.html#tasks.get.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class GetTasksResponse implements JsonpSerializable {
 	private final boolean completed;
 
-	private final Info task;
+	private final TaskInfo task;
 
 	@Nullable
-	private final Status response;
+	private final TaskStatus response;
 
 	@Nullable
 	private final ErrorCause error;
@@ -84,7 +83,7 @@ public class GetTasksResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code task}
 	 */
-	public final Info task() {
+	public final TaskInfo task() {
 		return this.task;
 	}
 
@@ -92,7 +91,7 @@ public class GetTasksResponse implements JsonpSerializable {
 	 * API name: {@code response}
 	 */
 	@Nullable
-	public final Status response() {
+	public final TaskStatus response() {
 		return this.response;
 	}
 
@@ -143,10 +142,10 @@ public class GetTasksResponse implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTasksResponse> {
 		private Boolean completed;
 
-		private Info task;
+		private TaskInfo task;
 
 		@Nullable
-		private Status response;
+		private TaskStatus response;
 
 		@Nullable
 		private ErrorCause error;
@@ -162,7 +161,7 @@ public class GetTasksResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code task}
 		 */
-		public final Builder task(Info value) {
+		public final Builder task(TaskInfo value) {
 			this.task = value;
 			return this;
 		}
@@ -170,14 +169,14 @@ public class GetTasksResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code task}
 		 */
-		public final Builder task(Function<Info.Builder, ObjectBuilder<Info>> fn) {
-			return this.task(fn.apply(new Info.Builder()).build());
+		public final Builder task(Function<TaskInfo.Builder, ObjectBuilder<TaskInfo>> fn) {
+			return this.task(fn.apply(new TaskInfo.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code response}
 		 */
-		public final Builder response(@Nullable Status value) {
+		public final Builder response(@Nullable TaskStatus value) {
 			this.response = value;
 			return this;
 		}
@@ -185,8 +184,8 @@ public class GetTasksResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code response}
 		 */
-		public final Builder response(Function<Status.Builder, ObjectBuilder<Status>> fn) {
-			return this.response(fn.apply(new Status.Builder()).build());
+		public final Builder response(Function<TaskStatus.Builder, ObjectBuilder<TaskStatus>> fn) {
+			return this.response(fn.apply(new TaskStatus.Builder()).build());
 		}
 
 		/**
@@ -228,8 +227,8 @@ public class GetTasksResponse implements JsonpSerializable {
 	protected static void setupGetTasksResponseDeserializer(ObjectDeserializer<GetTasksResponse.Builder> op) {
 
 		op.add(Builder::completed, JsonpDeserializer.booleanDeserializer(), "completed");
-		op.add(Builder::task, Info._DESERIALIZER, "task");
-		op.add(Builder::response, Status._DESERIALIZER, "response");
+		op.add(Builder::task, TaskInfo._DESERIALIZER, "task");
+		op.add(Builder::response, TaskStatus._DESERIALIZER, "response");
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 
 	}

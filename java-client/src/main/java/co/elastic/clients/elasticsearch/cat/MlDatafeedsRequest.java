@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
  * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
  * API.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_datafeeds/CatDatafeedsRequest.ts#L24-L62">API
+ * @see <a href="../doc-files/api-spec.html#cat.ml_datafeeds.Request">API
  *      specification</a>
  */
 

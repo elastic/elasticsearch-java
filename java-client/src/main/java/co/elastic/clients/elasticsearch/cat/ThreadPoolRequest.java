@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch.cat.thread_pool.ThreadPoolSize;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -50,23 +50,22 @@ import javax.annotation.Nullable;
  * Returns cluster-wide thread pool statistics per node. By default the active,
  * queue and rejected statistics are returned for all thread pools.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/thread_pool/CatThreadPoolRequest.ts#L24-L36">API
+ * @see <a href="../doc-files/api-spec.html#cat.thread_pool.Request">API
  *      specification</a>
  */
 
 public class ThreadPoolRequest extends CatRequestBase {
-	@Nullable
-	private final ThreadPoolSize size;
-
 	private final List<String> threadPoolPatterns;
+
+	@Nullable
+	private final Time time;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ThreadPoolRequest(Builder builder) {
 
-		this.size = builder.size;
 		this.threadPoolPatterns = ApiTypeHelper.unmodifiable(builder.threadPoolPatterns);
+		this.time = builder.time;
 
 	}
 
@@ -75,21 +74,23 @@ public class ThreadPoolRequest extends CatRequestBase {
 	}
 
 	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final ThreadPoolSize size() {
-		return this.size;
-	}
-
-	/**
-	 * A comma-separated list of regular-expressions to filter the thread pools in
-	 * the output
+	 * List of thread pool names used to limit the request. Accepts wildcard
+	 * expressions.
 	 * <p>
 	 * API name: {@code thread_pool_patterns}
 	 */
 	public final List<String> threadPoolPatterns() {
 		return this.threadPoolPatterns;
+	}
+
+	/**
+	 * Unit used to display time values.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final Time time() {
+		return this.time;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -100,22 +101,14 @@ public class ThreadPoolRequest extends CatRequestBase {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThreadPoolRequest> {
 		@Nullable
-		private ThreadPoolSize size;
-
-		@Nullable
 		private List<String> threadPoolPatterns;
 
-		/**
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable ThreadPoolSize value) {
-			this.size = value;
-			return this;
-		}
+		@Nullable
+		private Time time;
 
 		/**
-		 * A comma-separated list of regular-expressions to filter the thread pools in
-		 * the output
+		 * List of thread pool names used to limit the request. Accepts wildcard
+		 * expressions.
 		 * <p>
 		 * API name: {@code thread_pool_patterns}
 		 * <p>
@@ -127,8 +120,8 @@ public class ThreadPoolRequest extends CatRequestBase {
 		}
 
 		/**
-		 * A comma-separated list of regular-expressions to filter the thread pools in
-		 * the output
+		 * List of thread pool names used to limit the request. Accepts wildcard
+		 * expressions.
 		 * <p>
 		 * API name: {@code thread_pool_patterns}
 		 * <p>
@@ -137,6 +130,25 @@ public class ThreadPoolRequest extends CatRequestBase {
 		public final Builder threadPoolPatterns(String value, String... values) {
 			this.threadPoolPatterns = _listAdd(this.threadPoolPatterns, value, values);
 			return this;
+		}
+
+		/**
+		 * Unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable Time value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * Unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.time(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -198,8 +210,8 @@ public class ThreadPoolRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
-				if (request.size != null) {
-					params.put("size", request.size.jsonValue());
+				if (request.time != null) {
+					params.put("time", request.time._toJsonString());
 				}
 				return params;
 

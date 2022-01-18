@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L124-L132">API
+ * @see <a href="../../doc-files/api-spec.html#_types.query_dsl.PinnedQuery">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -62,6 +61,9 @@ public class PinnedQuery extends QueryBase
 	 */
 	/**
 	 * {@link PinnedQuery} variant kinds.
+	 * 
+	 * @see <a href="../../doc-files/api-spec.html#_types.query_dsl.PinnedQuery">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

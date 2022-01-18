@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mtermvectors/types.ts#L51-L59">API
+ *      "../../doc-files/api-spec.html#_global.mtermvectors.TermVectorsResult">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Migrates an alias to a data stream
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/migrate_to_data_stream/IndicesMigrateToDataStreamRequest.ts#L23-L32">API
+ *      "../doc-files/api-spec.html#indices.migrate_to_data_stream.Request">API
  *      specification</a>
  */
 

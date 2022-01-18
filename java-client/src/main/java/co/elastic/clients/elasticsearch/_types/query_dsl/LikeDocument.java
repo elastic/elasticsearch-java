@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L92-L103">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.LikeDocument">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -60,9 +60,6 @@ public class LikeDocument implements JsonpSerializable {
 
 	@Nullable
 	private final String id;
-
-	@Nullable
-	private final String type;
 
 	@Nullable
 	private final String index;
@@ -85,7 +82,6 @@ public class LikeDocument implements JsonpSerializable {
 		this.doc = builder.doc;
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.id = builder.id;
-		this.type = builder.type;
 		this.index = builder.index;
 		this.perFieldAnalyzer = ApiTypeHelper.unmodifiable(builder.perFieldAnalyzer);
 		this.routing = builder.routing;
@@ -119,14 +115,6 @@ public class LikeDocument implements JsonpSerializable {
 	@Nullable
 	public final String id() {
 		return this.id;
-	}
-
-	/**
-	 * API name: {@code _type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
 	}
 
 	/**
@@ -199,11 +187,6 @@ public class LikeDocument implements JsonpSerializable {
 			generator.write(this.id);
 
 		}
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
-
-		}
 		if (this.index != null) {
 			generator.writeKey("_index");
 			generator.write(this.index);
@@ -254,9 +237,6 @@ public class LikeDocument implements JsonpSerializable {
 		private String id;
 
 		@Nullable
-		private String type;
-
-		@Nullable
 		private String index;
 
 		@Nullable
@@ -304,14 +284,6 @@ public class LikeDocument implements JsonpSerializable {
 		 */
 		public final Builder id(@Nullable String value) {
 			this.id = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -393,7 +365,6 @@ public class LikeDocument implements JsonpSerializable {
 		op.add(Builder::doc, JsonData._DESERIALIZER, "doc");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::perFieldAnalyzer,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "per_field_analyzer");

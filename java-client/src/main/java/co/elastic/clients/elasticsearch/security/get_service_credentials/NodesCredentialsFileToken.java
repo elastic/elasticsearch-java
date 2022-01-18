@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_service_credentials/types.ts#L30-L32">API
+ *      "../../doc-files/api-spec.html#security.get_service_credentials.NodesCredentialsFileToken">API
  *      specification</a>
  */
 @JsonpDeserializable

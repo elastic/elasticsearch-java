@@ -41,8 +41,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/_types/CreatedStatus.ts#L20-L22">API
+ * @see <a href="../doc-files/api-spec.html#security._types.CreatedStatus">API
  *      specification</a>
  */
 @JsonpDeserializable

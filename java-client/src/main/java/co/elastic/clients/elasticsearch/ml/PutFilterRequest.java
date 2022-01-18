@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
  * one or more anomaly detection jobs. Specifically, filters are referenced in
  * the <code>custom_rules</code> property of detector configuration objects.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_filter/MlPutFilterRequest.ts#L23-L50">API
+ * @see <a href="../doc-files/api-spec.html#ml.put_filter.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

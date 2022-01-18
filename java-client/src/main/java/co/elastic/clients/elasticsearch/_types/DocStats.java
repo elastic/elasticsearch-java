@@ -36,27 +36,28 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.DocStats
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Stats.ts#L63-L66">API
+ * @see <a href="../doc-files/api-spec.html#_types.DocStats">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class DocStats implements JsonpSerializable {
 	private final long count;
 
-	private final long deleted;
+	@Nullable
+	private final Long deleted;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DocStats(Builder builder) {
 
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.deleted = ApiTypeHelper.requireNonNull(builder.deleted, this, "deleted");
+		this.deleted = builder.deleted;
 
 	}
 
@@ -72,9 +73,10 @@ public class DocStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code deleted}
+	 * API name: {@code deleted}
 	 */
-	public final long deleted() {
+	@Nullable
+	public final Long deleted() {
 		return this.deleted;
 	}
 
@@ -92,8 +94,11 @@ public class DocStats implements JsonpSerializable {
 		generator.writeKey("count");
 		generator.write(this.count);
 
-		generator.writeKey("deleted");
-		generator.write(this.deleted);
+		if (this.deleted != null) {
+			generator.writeKey("deleted");
+			generator.write(this.deleted);
+
+		}
 
 	}
 
@@ -106,6 +111,7 @@ public class DocStats implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DocStats> {
 		private Long count;
 
+		@Nullable
 		private Long deleted;
 
 		/**
@@ -117,9 +123,9 @@ public class DocStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code deleted}
+		 * API name: {@code deleted}
 		 */
-		public final Builder deleted(long value) {
+		public final Builder deleted(@Nullable Long value) {
 			this.deleted = value;
 			return this;
 		}

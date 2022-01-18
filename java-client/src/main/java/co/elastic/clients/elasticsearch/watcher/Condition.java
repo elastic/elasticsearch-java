@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Conditions.ts#L51-L60">API
+ *      "../doc-files/api-spec.html#watcher._types.ConditionContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +57,10 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 	 */
 	/**
 	 * {@link Condition} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../doc-files/api-spec.html#watcher._types.ConditionContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

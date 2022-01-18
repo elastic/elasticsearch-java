@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/explain_lifecycle/types.ts#L45-L48">API
+ *      "../../doc-files/api-spec.html#ilm.explain_lifecycle.LifecycleExplainUnmanaged">API
  *      specification</a>
  */
 @JsonpDeserializable

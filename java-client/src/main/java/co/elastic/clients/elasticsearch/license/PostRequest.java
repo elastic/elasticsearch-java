@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Updates the license for the cluster.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/license/post/PostLicenseRequest.ts#L23-L36">API
+ * @see <a href="../doc-files/api-spec.html#license.post.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -70,7 +69,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 
 		this.acknowledge = builder.acknowledge;
 		this.license = builder.license;
-		this.licenses = ApiTypeHelper.unmodifiable(builder.licenses);
+		this.licenses = ApiTypeHelper.unmodifiableRequired(builder.licenses, this, "licenses");
 
 	}
 
@@ -79,7 +78,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * whether the user has acknowledged acknowledge messages (default: false)
+	 * Specifies whether you acknowledge the license changes.
 	 * <p>
 	 * API name: {@code acknowledge}
 	 */
@@ -97,6 +96,9 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - A sequence of one or more JSON documents containing the license
+	 * information.
+	 * <p>
 	 * API name: {@code licenses}
 	 */
 	public final List<License> licenses() {
@@ -145,11 +147,10 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private License license;
 
-		@Nullable
 		private List<License> licenses;
 
 		/**
-		 * whether the user has acknowledged acknowledge messages (default: false)
+		 * Specifies whether you acknowledge the license changes.
 		 * <p>
 		 * API name: {@code acknowledge}
 		 */
@@ -174,6 +175,9 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - A sequence of one or more JSON documents containing the license
+		 * information.
+		 * <p>
 		 * API name: {@code licenses}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>licenses</code>.
@@ -184,6 +188,9 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - A sequence of one or more JSON documents containing the license
+		 * information.
+		 * <p>
 		 * API name: {@code licenses}
 		 * <p>
 		 * Adds one or more values to <code>licenses</code>.
@@ -194,6 +201,9 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - A sequence of one or more JSON documents containing the license
+		 * information.
+		 * <p>
 		 * API name: {@code licenses}
 		 * <p>
 		 * Adds a value to <code>licenses</code> using a builder lambda.

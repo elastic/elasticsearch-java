@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,6 +39,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -47,7 +49,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/update_transform/UpdateTransformResponse.ts#L26-L40">API
+ *      "../doc-files/api-spec.html#transform.update_transform.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -58,11 +60,19 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 	private final Destination dest;
 
+	@Nullable
 	private final Time frequency;
 
 	private final String id;
 
+	@Nullable
+	private final Latest latest;
+
+	@Nullable
 	private final Pivot pivot;
+
+	@Nullable
+	private final RetentionPolicy retentionPolicy;
 
 	private final Settings settings;
 
@@ -73,6 +83,8 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 	private final String version;
 
+	private final Map<String, JsonData> meta;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private UpdateTransformResponse(Builder builder) {
@@ -80,13 +92,16 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
-		this.frequency = ApiTypeHelper.requireNonNull(builder.frequency, this, "frequency");
+		this.frequency = builder.frequency;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.pivot = ApiTypeHelper.requireNonNull(builder.pivot, this, "pivot");
+		this.latest = builder.latest;
+		this.pivot = builder.pivot;
+		this.retentionPolicy = builder.retentionPolicy;
 		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.sync = builder.sync;
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
 
@@ -116,8 +131,9 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code frequency}
+	 * API name: {@code frequency}
 	 */
+	@Nullable
 	public final Time frequency() {
 		return this.frequency;
 	}
@@ -130,10 +146,27 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code pivot}
+	 * API name: {@code latest}
 	 */
+	@Nullable
+	public final Latest latest() {
+		return this.latest;
+	}
+
+	/**
+	 * API name: {@code pivot}
+	 */
+	@Nullable
 	public final Pivot pivot() {
 		return this.pivot;
+	}
+
+	/**
+	 * API name: {@code retention_policy}
+	 */
+	@Nullable
+	public final RetentionPolicy retentionPolicy() {
+		return this.retentionPolicy;
 	}
 
 	/**
@@ -166,6 +199,13 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code _meta}
+	 */
+	public final Map<String, JsonData> meta() {
+		return this.meta;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -185,15 +225,29 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		generator.writeKey("dest");
 		this.dest.serialize(generator, mapper);
 
-		generator.writeKey("frequency");
-		this.frequency.serialize(generator, mapper);
+		if (this.frequency != null) {
+			generator.writeKey("frequency");
+			this.frequency.serialize(generator, mapper);
 
+		}
 		generator.writeKey("id");
 		generator.write(this.id);
 
-		generator.writeKey("pivot");
-		this.pivot.serialize(generator, mapper);
+		if (this.latest != null) {
+			generator.writeKey("latest");
+			this.latest.serialize(generator, mapper);
 
+		}
+		if (this.pivot != null) {
+			generator.writeKey("pivot");
+			this.pivot.serialize(generator, mapper);
+
+		}
+		if (this.retentionPolicy != null) {
+			generator.writeKey("retention_policy");
+			this.retentionPolicy.serialize(generator, mapper);
+
+		}
 		generator.writeKey("settings");
 		this.settings.serialize(generator, mapper);
 
@@ -207,6 +261,18 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		}
 		generator.writeKey("version");
 		generator.write(this.version);
+
+		if (ApiTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -223,11 +289,19 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 		private Destination dest;
 
+		@Nullable
 		private Time frequency;
 
 		private String id;
 
+		@Nullable
+		private Latest latest;
+
+		@Nullable
 		private Pivot pivot;
+
+		@Nullable
+		private RetentionPolicy retentionPolicy;
 
 		private Settings settings;
 
@@ -237,6 +311,9 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		private Sync sync;
 
 		private String version;
+
+		@Nullable
+		private Map<String, JsonData> meta;
 
 		/**
 		 * Required - API name: {@code create_time}
@@ -270,15 +347,15 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code frequency}
+		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(Time value) {
+		public final Builder frequency(@Nullable Time value) {
 			this.frequency = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code frequency}
+		 * API name: {@code frequency}
 		 */
 		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.frequency(fn.apply(new Time.Builder()).build());
@@ -293,18 +370,48 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code pivot}
+		 * API name: {@code latest}
 		 */
-		public final Builder pivot(Pivot value) {
+		public final Builder latest(@Nullable Latest value) {
+			this.latest = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code latest}
+		 */
+		public final Builder latest(Function<Latest.Builder, ObjectBuilder<Latest>> fn) {
+			return this.latest(fn.apply(new Latest.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code pivot}
+		 */
+		public final Builder pivot(@Nullable Pivot value) {
 			this.pivot = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code pivot}
+		 * API name: {@code pivot}
 		 */
 		public final Builder pivot(Function<Pivot.Builder, ObjectBuilder<Pivot>> fn) {
 			return this.pivot(fn.apply(new Pivot.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code retention_policy}
+		 */
+		public final Builder retentionPolicy(@Nullable RetentionPolicy value) {
+			this.retentionPolicy = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code retention_policy}
+		 */
+		public final Builder retentionPolicy(Function<RetentionPolicy.Builder, ObjectBuilder<RetentionPolicy>> fn) {
+			return this.retentionPolicy(fn.apply(new RetentionPolicy.Builder()).build());
 		}
 
 		/**
@@ -361,6 +468,26 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
+		 */
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
+			return this;
+		}
+
+		/**
 		 * Builds a {@link UpdateTransformResponse}.
 		 *
 		 * @throws NullPointerException
@@ -389,11 +516,14 @@ public class UpdateTransformResponse implements JsonpSerializable {
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::latest, Latest._DESERIALIZER, "latest");
 		op.add(Builder::pivot, Pivot._DESERIALIZER, "pivot");
+		op.add(Builder::retentionPolicy, RetentionPolicy._DESERIALIZER, "retention_policy");
 		op.add(Builder::settings, Settings._DESERIALIZER, "settings");
 		op.add(Builder::source, Source._DESERIALIZER, "source");
 		op.add(Builder::sync, Sync._DESERIALIZER, "sync");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
 

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/preview_data_frame_analytics/types.ts#L27-L33">API
+ *      "../../doc-files/api-spec.html#ml.preview_data_frame_analytics.DataframePreviewConfig">API
  *      specification</a>
  */
 @JsonpDeserializable

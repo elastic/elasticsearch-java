@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
 /**
  * Returns low-level information about REST actions usage on nodes.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/usage/NodesUsageRequest.ts#L24-L37">API
+ * @see <a href="../doc-files/api-spec.html#nodes.usage.Request">API
  *      specification</a>
  */
 

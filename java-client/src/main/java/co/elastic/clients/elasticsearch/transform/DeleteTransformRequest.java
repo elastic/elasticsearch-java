@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -49,13 +50,16 @@ import javax.annotation.Nullable;
  * Deletes a transform.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/delete_transform/DeleteTransformRequest.ts#L23-L45">API
+ *      "../doc-files/api-spec.html#transform.delete_transform.Request">API
  *      specification</a>
  */
 
 public class DeleteTransformRequest extends RequestBase {
 	@Nullable
 	private final Boolean force;
+
+	@Nullable
+	private final Time timeout;
 
 	private final String transformId;
 
@@ -64,6 +68,7 @@ public class DeleteTransformRequest extends RequestBase {
 	private DeleteTransformRequest(Builder builder) {
 
 		this.force = builder.force;
+		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
@@ -81,6 +86,17 @@ public class DeleteTransformRequest extends RequestBase {
 	@Nullable
 	public final Boolean force() {
 		return this.force;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -102,6 +118,9 @@ public class DeleteTransformRequest extends RequestBase {
 		@Nullable
 		private Boolean force;
 
+		@Nullable
+		private Time timeout;
+
 		private String transformId;
 
 		/**
@@ -113,6 +132,27 @@ public class DeleteTransformRequest extends RequestBase {
 		public final Builder force(@Nullable Boolean value) {
 			this.force = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -176,6 +216,9 @@ public class DeleteTransformRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.force != null) {
 					params.put("force", String.valueOf(request.force));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

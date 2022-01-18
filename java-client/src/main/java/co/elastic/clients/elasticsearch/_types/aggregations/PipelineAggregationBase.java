@@ -32,7 +32,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
-import java.util.function.Function;
 import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.PipelineAggregationBase
@@ -40,14 +39,11 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/pipeline.ts#L27-L31">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.PipelineAggregationBase">API
  *      specification</a>
  */
 
-public abstract class PipelineAggregationBase extends AggregationBase {
-	@Nullable
-	private final BucketsPath bucketsPath;
-
+public abstract class PipelineAggregationBase extends BucketPathAggregation {
 	@Nullable
 	private final String format;
 
@@ -59,18 +55,9 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	protected PipelineAggregationBase(AbstractBuilder<?> builder) {
 		super(builder);
 
-		this.bucketsPath = builder.bucketsPath;
 		this.format = builder.format;
 		this.gapPolicy = builder.gapPolicy;
 
-	}
-
-	/**
-	 * API name: {@code buckets_path}
-	 */
-	@Nullable
-	public final BucketsPath bucketsPath() {
-		return this.bucketsPath;
 	}
 
 	/**
@@ -92,11 +79,6 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		if (this.bucketsPath != null) {
-			generator.writeKey("buckets_path");
-			this.bucketsPath.serialize(generator, mapper);
-
-		}
 		if (this.format != null) {
 			generator.writeKey("format");
 			generator.write(this.format);
@@ -111,30 +93,12 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
-				AggregationBase.AbstractBuilder<BuilderT> {
-		@Nullable
-		private BucketsPath bucketsPath;
-
+				BucketPathAggregation.AbstractBuilder<BuilderT> {
 		@Nullable
 		private String format;
 
 		@Nullable
 		private GapPolicy gapPolicy;
-
-		/**
-		 * API name: {@code buckets_path}
-		 */
-		public final BuilderT bucketsPath(@Nullable BucketsPath value) {
-			this.bucketsPath = value;
-			return self();
-		}
-
-		/**
-		 * API name: {@code buckets_path}
-		 */
-		public final BuilderT bucketsPath(Function<BucketsPath.Builder, ObjectBuilder<BucketsPath>> fn) {
-			return this.bucketsPath(fn.apply(new BucketsPath.Builder()).build());
-		}
 
 		/**
 		 * API name: {@code format}
@@ -157,8 +121,7 @@ public abstract class PipelineAggregationBase extends AggregationBase {
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPipelineAggregationBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
-		AggregationBase.setupAggregationBaseDeserializer(op);
-		op.add(AbstractBuilder::bucketsPath, BucketsPath._DESERIALIZER, "buckets_path");
+		BucketPathAggregation.setupBucketPathAggregationDeserializer(op);
 		op.add(AbstractBuilder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(AbstractBuilder::gapPolicy, GapPolicy._DESERIALIZER, "gap_policy");
 

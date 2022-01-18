@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Provides statistics on operations happening in an index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/IndicesStatsRequest.ts#L30-L52">API
+ * @see <a href="../doc-files/api-spec.html#indices.stats.Request">API
  *      specification</a>
  */
 
@@ -84,8 +83,6 @@ public class IndicesStatsRequest extends RequestBase {
 
 	private final List<String> metric;
 
-	private final List<String> types;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private IndicesStatsRequest(Builder builder) {
@@ -101,7 +98,6 @@ public class IndicesStatsRequest extends RequestBase {
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.level = builder.level;
 		this.metric = ApiTypeHelper.unmodifiable(builder.metric);
-		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
 	}
 
@@ -110,8 +106,8 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of fields for the <code>completion</code> index metric
-	 * (supports wildcards)
+	 * Comma-separated list or wildcard expressions of fields to include in
+	 * fielddata and suggest statistics.
 	 * <p>
 	 * API name: {@code completion_fields}
 	 */
@@ -120,8 +116,10 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to expand wildcard expression to concrete indices that are open,
-	 * closed or both.
+	 * Type of index that wildcard patterns can match. If the request can target
+	 * data streams, this argument determines whether wildcard expressions match
+	 * hidden data streams. Supports comma-separated values, such as
+	 * <code>open,hidden</code>.
 	 * <p>
 	 * API name: {@code expand_wildcards}
 	 */
@@ -130,8 +128,8 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of fields for the <code>fielddata</code> index metric
-	 * (supports wildcards)
+	 * Comma-separated list or wildcard expressions of fields to include in
+	 * fielddata statistics.
 	 * <p>
 	 * API name: {@code fielddata_fields}
 	 */
@@ -140,8 +138,8 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of fields for <code>fielddata</code> and
-	 * <code>completion</code> index metric (supports wildcards)
+	 * Comma-separated list or wildcard expressions of fields to include in the
+	 * statistics.
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -150,8 +148,7 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * If set to false stats will also collected from closed indices if explicitly
-	 * specified or if expand_wildcards expands to closed indices
+	 * If true, statistics are not collected from closed indices.
 	 * <p>
 	 * API name: {@code forbid_closed_indices}
 	 */
@@ -161,7 +158,7 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * A comma-separated list of search groups for <code>search</code> index metric
+	 * Comma-separated list of search groups to include in the search statistics.
 	 * <p>
 	 * API name: {@code groups}
 	 */
@@ -170,8 +167,8 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to report the aggregated disk usage of each one of the Lucene index
-	 * files (only applies if segment stats are requested)
+	 * If true, the call reports the aggregated disk usage of each one of the Lucene
+	 * index files (only applies if segment stats are requested).
 	 * <p>
 	 * API name: {@code include_segment_file_sizes}
 	 */
@@ -181,8 +178,8 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * If set to true segment stats will include stats for segments that are not
-	 * currently loaded into memory
+	 * If true, the response includes information from segments that are not loaded
+	 * into memory.
 	 * <p>
 	 * API name: {@code include_unloaded_segments}
 	 */
@@ -202,7 +199,8 @@ public class IndicesStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * Return stats aggregated at cluster, index or shard level
+	 * Indicates whether statistics are aggregated at the cluster, index, or shard
+	 * level.
 	 * <p>
 	 * API name: {@code level}
 	 */
@@ -218,16 +216,6 @@ public class IndicesStatsRequest extends RequestBase {
 	 */
 	public final List<String> metric() {
 		return this.metric;
-	}
-
-	/**
-	 * A comma-separated list of document types for the <code>indexing</code> index
-	 * metric
-	 * <p>
-	 * API name: {@code types}
-	 */
-	public final List<String> types() {
-		return this.types;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -270,12 +258,9 @@ public class IndicesStatsRequest extends RequestBase {
 		@Nullable
 		private List<String> metric;
 
-		@Nullable
-		private List<String> types;
-
 		/**
-		 * A comma-separated list of fields for the <code>completion</code> index metric
-		 * (supports wildcards)
+		 * Comma-separated list or wildcard expressions of fields to include in
+		 * fielddata and suggest statistics.
 		 * <p>
 		 * API name: {@code completion_fields}
 		 * <p>
@@ -287,8 +272,8 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields for the <code>completion</code> index metric
-		 * (supports wildcards)
+		 * Comma-separated list or wildcard expressions of fields to include in
+		 * fielddata and suggest statistics.
 		 * <p>
 		 * API name: {@code completion_fields}
 		 * <p>
@@ -300,8 +285,10 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -313,8 +300,10 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to expand wildcard expression to concrete indices that are open,
-		 * closed or both.
+		 * Type of index that wildcard patterns can match. If the request can target
+		 * data streams, this argument determines whether wildcard expressions match
+		 * hidden data streams. Supports comma-separated values, such as
+		 * <code>open,hidden</code>.
 		 * <p>
 		 * API name: {@code expand_wildcards}
 		 * <p>
@@ -326,8 +315,8 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields for the <code>fielddata</code> index metric
-		 * (supports wildcards)
+		 * Comma-separated list or wildcard expressions of fields to include in
+		 * fielddata statistics.
 		 * <p>
 		 * API name: {@code fielddata_fields}
 		 * <p>
@@ -339,8 +328,8 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields for the <code>fielddata</code> index metric
-		 * (supports wildcards)
+		 * Comma-separated list or wildcard expressions of fields to include in
+		 * fielddata statistics.
 		 * <p>
 		 * API name: {@code fielddata_fields}
 		 * <p>
@@ -352,8 +341,8 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields for <code>fielddata</code> and
-		 * <code>completion</code> index metric (supports wildcards)
+		 * Comma-separated list or wildcard expressions of fields to include in the
+		 * statistics.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -365,8 +354,8 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of fields for <code>fielddata</code> and
-		 * <code>completion</code> index metric (supports wildcards)
+		 * Comma-separated list or wildcard expressions of fields to include in the
+		 * statistics.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -378,8 +367,7 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * If set to false stats will also collected from closed indices if explicitly
-		 * specified or if expand_wildcards expands to closed indices
+		 * If true, statistics are not collected from closed indices.
 		 * <p>
 		 * API name: {@code forbid_closed_indices}
 		 */
@@ -389,7 +377,7 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of search groups for <code>search</code> index metric
+		 * Comma-separated list of search groups to include in the search statistics.
 		 * <p>
 		 * API name: {@code groups}
 		 * <p>
@@ -401,7 +389,7 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * A comma-separated list of search groups for <code>search</code> index metric
+		 * Comma-separated list of search groups to include in the search statistics.
 		 * <p>
 		 * API name: {@code groups}
 		 * <p>
@@ -413,8 +401,8 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to report the aggregated disk usage of each one of the Lucene index
-		 * files (only applies if segment stats are requested)
+		 * If true, the call reports the aggregated disk usage of each one of the Lucene
+		 * index files (only applies if segment stats are requested).
 		 * <p>
 		 * API name: {@code include_segment_file_sizes}
 		 */
@@ -424,8 +412,8 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * If set to true segment stats will include stats for segments that are not
-		 * currently loaded into memory
+		 * If true, the response includes information from segments that are not loaded
+		 * into memory.
 		 * <p>
 		 * API name: {@code include_unloaded_segments}
 		 */
@@ -461,7 +449,8 @@ public class IndicesStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * Return stats aggregated at cluster, index or shard level
+		 * Indicates whether statistics are aggregated at the cluster, index, or shard
+		 * level.
 		 * <p>
 		 * API name: {@code level}
 		 */
@@ -491,32 +480,6 @@ public class IndicesStatsRequest extends RequestBase {
 		 */
 		public final Builder metric(String value, String... values) {
 			this.metric = _listAdd(this.metric, value, values);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types for the <code>indexing</code> index
-		 * metric
-		 * <p>
-		 * API name: {@code types}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>types</code>.
-		 */
-		public final Builder types(List<String> list) {
-			this.types = _listAddAll(this.types, list);
-			return this;
-		}
-
-		/**
-		 * A comma-separated list of document types for the <code>indexing</code> index
-		 * metric
-		 * <p>
-		 * API name: {@code types}
-		 * <p>
-		 * Adds one or more values to <code>types</code>.
-		 */
-		public final Builder types(String value, String... values) {
-			this.types = _listAdd(this.types, value, values);
 			return this;
 		}
 
@@ -596,9 +559,6 @@ public class IndicesStatsRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (ApiTypeHelper.isDefined(request.types)) {
-					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));

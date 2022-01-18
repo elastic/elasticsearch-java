@@ -27,7 +27,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
-import co.elastic.clients.elasticsearch.indices.rollover.IndexRolloverMapping;
+import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.rollover.RolloverConditions;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
  * Updates an alias to point to a new index when the existing index is
  * considered to be too large or too old.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/rollover/IndicesRolloverRequest.ts#L29-L53">API
+ * @see <a href="../doc-files/api-spec.html#indices.rollover.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -73,10 +72,7 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean dryRun;
 
 	@Nullable
-	private final Boolean includeTypeName;
-
-	@Nullable
-	private final IndexRolloverMapping mappings;
+	private final TypeMapping mappings;
 
 	@Nullable
 	private final Time masterTimeout;
@@ -100,7 +96,6 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.conditions = builder.conditions;
 		this.dryRun = builder.dryRun;
-		this.includeTypeName = builder.includeTypeName;
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
 		this.newIndex = builder.newIndex;
@@ -150,18 +145,10 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public final Boolean includeTypeName() {
-		return this.includeTypeName;
-	}
-
-	/**
 	 * API name: {@code mappings}
 	 */
 	@Nullable
-	public final IndexRolloverMapping mappings() {
+	public final TypeMapping mappings() {
 		return this.mappings;
 	}
 
@@ -278,10 +265,7 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		private Boolean dryRun;
 
 		@Nullable
-		private Boolean includeTypeName;
-
-		@Nullable
-		private IndexRolloverMapping mappings;
+		private TypeMapping mappings;
 
 		@Nullable
 		private Time masterTimeout;
@@ -364,17 +348,9 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code include_type_name}
-		 */
-		public final Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(@Nullable IndexRolloverMapping value) {
+		public final Builder mappings(@Nullable TypeMapping value) {
 			this.mappings = value;
 			return this;
 		}
@@ -382,8 +358,8 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code mappings}
 		 */
-		public final Builder mappings(Function<IndexRolloverMapping.Builder, ObjectBuilder<IndexRolloverMapping>> fn) {
-			return this.mappings(fn.apply(new IndexRolloverMapping.Builder()).build());
+		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
+			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
 		}
 
 		/**
@@ -501,7 +477,7 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::conditions, RolloverConditions._DESERIALIZER, "conditions");
-		op.add(Builder::mappings, IndexRolloverMapping._DESERIALIZER, "mappings");
+		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
 		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
 
 	}
@@ -556,9 +532,6 @@ public class RolloverRequest extends RequestBase implements JsonpSerializable {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());

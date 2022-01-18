@@ -29,9 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/common.ts#L145-L163">API
- *      specification</a>
+ * @see <a href="../doc-files/api-spec.html#_types.Bytes">API specification</a>
  */
 @JsonpDeserializable
 public enum Bytes implements JsonEnum {

@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  * Clear the cache of searchable snapshots.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/searchable_snapshots/clear_cache/SearchableSnapshotsClearCacheRequest.ts#L23-L39">API
+ *      "../doc-files/api-spec.html#searchable_snapshots.clear_cache.Request">API
  *      specification</a>
  */
 

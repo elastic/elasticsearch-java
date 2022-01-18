@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/mapping/Property.ts#L52-L64">API
+ * @see <a href="../../doc-files/api-spec.html#_types.mapping.Property">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -56,6 +55,9 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 	 */
 	/**
 	 * {@link Property} variant kinds.
+	 * 
+	 * @see <a href="../../doc-files/api-spec.html#_types.mapping.Property">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

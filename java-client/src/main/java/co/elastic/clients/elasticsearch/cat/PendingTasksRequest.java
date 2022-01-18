@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * Returns a concise representation of the cluster pending tasks.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/pending_tasks/CatPendingTasksRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#cat.pending_tasks.Request">API
  *      specification</a>
  */
 

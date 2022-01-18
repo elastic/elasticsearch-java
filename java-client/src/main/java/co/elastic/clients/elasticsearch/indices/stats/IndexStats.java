@@ -57,8 +57,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/stats/types.ts#L43-L79">API
+ * @see <a href="../../doc-files/api-spec.html#indices.stats.IndexStats">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -80,6 +79,9 @@ public class IndexStats implements JsonpSerializable {
 
 	@Nullable
 	private final IndexingStats indexing;
+
+	@Nullable
+	private final IndicesStats indices;
 
 	@Nullable
 	private final MergesStats merges;
@@ -115,7 +117,7 @@ public class IndexStats implements JsonpSerializable {
 	private final BulkStats bulk;
 
 	@Nullable
-	private final ShardsTotalStats shards;
+	private final ShardsTotalStats shardStats;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -127,6 +129,7 @@ public class IndexStats implements JsonpSerializable {
 		this.flush = builder.flush;
 		this.get = builder.get;
 		this.indexing = builder.indexing;
+		this.indices = builder.indices;
 		this.merges = builder.merges;
 		this.queryCache = builder.queryCache;
 		this.recovery = builder.recovery;
@@ -138,7 +141,7 @@ public class IndexStats implements JsonpSerializable {
 		this.translog = builder.translog;
 		this.warmer = builder.warmer;
 		this.bulk = builder.bulk;
-		this.shards = builder.shards;
+		this.shardStats = builder.shardStats;
 
 	}
 
@@ -206,6 +209,16 @@ public class IndexStats implements JsonpSerializable {
 	@Nullable
 	public final IndexingStats indexing() {
 		return this.indexing;
+	}
+
+	/**
+	 * Contains statistics about indices operations for the node.
+	 * <p>
+	 * API name: {@code indices}
+	 */
+	@Nullable
+	public final IndicesStats indices() {
+		return this.indices;
 	}
 
 	/**
@@ -319,11 +332,11 @@ public class IndexStats implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code shards}
+	 * API name: {@code shard_stats}
 	 */
 	@Nullable
-	public final ShardsTotalStats shards() {
-		return this.shards;
+	public final ShardsTotalStats shardStats() {
+		return this.shardStats;
 	}
 
 	/**
@@ -365,6 +378,11 @@ public class IndexStats implements JsonpSerializable {
 		if (this.indexing != null) {
 			generator.writeKey("indexing");
 			this.indexing.serialize(generator, mapper);
+
+		}
+		if (this.indices != null) {
+			generator.writeKey("indices");
+			this.indices.serialize(generator, mapper);
 
 		}
 		if (this.merges != null) {
@@ -422,9 +440,9 @@ public class IndexStats implements JsonpSerializable {
 			this.bulk.serialize(generator, mapper);
 
 		}
-		if (this.shards != null) {
-			generator.writeKey("shards");
-			this.shards.serialize(generator, mapper);
+		if (this.shardStats != null) {
+			generator.writeKey("shard_stats");
+			this.shardStats.serialize(generator, mapper);
 
 		}
 
@@ -454,6 +472,9 @@ public class IndexStats implements JsonpSerializable {
 
 		@Nullable
 		private IndexingStats indexing;
+
+		@Nullable
+		private IndicesStats indices;
 
 		@Nullable
 		private MergesStats merges;
@@ -489,7 +510,7 @@ public class IndexStats implements JsonpSerializable {
 		private BulkStats bulk;
 
 		@Nullable
-		private ShardsTotalStats shards;
+		private ShardsTotalStats shardStats;
 
 		/**
 		 * Contains statistics about completions across all shards assigned to the node.
@@ -607,6 +628,25 @@ public class IndexStats implements JsonpSerializable {
 		 */
 		public final Builder indexing(Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
 			return this.indexing(fn.apply(new IndexingStats.Builder()).build());
+		}
+
+		/**
+		 * Contains statistics about indices operations for the node.
+		 * <p>
+		 * API name: {@code indices}
+		 */
+		public final Builder indices(@Nullable IndicesStats value) {
+			this.indices = value;
+			return this;
+		}
+
+		/**
+		 * Contains statistics about indices operations for the node.
+		 * <p>
+		 * API name: {@code indices}
+		 */
+		public final Builder indices(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
+			return this.indices(fn.apply(new IndicesStats.Builder()).build());
 		}
 
 		/**
@@ -819,18 +859,18 @@ public class IndexStats implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * API name: {@code shard_stats}
 		 */
-		public final Builder shards(@Nullable ShardsTotalStats value) {
-			this.shards = value;
+		public final Builder shardStats(@Nullable ShardsTotalStats value) {
+			this.shardStats = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code shards}
+		 * API name: {@code shard_stats}
 		 */
-		public final Builder shards(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
-			return this.shards(fn.apply(new ShardsTotalStats.Builder()).build());
+		public final Builder shardStats(Function<ShardsTotalStats.Builder, ObjectBuilder<ShardsTotalStats>> fn) {
+			return this.shardStats(fn.apply(new ShardsTotalStats.Builder()).build());
 		}
 
 		/**
@@ -862,6 +902,7 @@ public class IndexStats implements JsonpSerializable {
 		op.add(Builder::flush, FlushStats._DESERIALIZER, "flush");
 		op.add(Builder::get, GetStats._DESERIALIZER, "get");
 		op.add(Builder::indexing, IndexingStats._DESERIALIZER, "indexing");
+		op.add(Builder::indices, IndicesStats._DESERIALIZER, "indices");
 		op.add(Builder::merges, MergesStats._DESERIALIZER, "merges");
 		op.add(Builder::queryCache, QueryCacheStats._DESERIALIZER, "query_cache");
 		op.add(Builder::recovery, RecoveryStats._DESERIALIZER, "recovery");
@@ -873,7 +914,7 @@ public class IndexStats implements JsonpSerializable {
 		op.add(Builder::translog, TranslogStats._DESERIALIZER, "translog");
 		op.add(Builder::warmer, WarmerStats._DESERIALIZER, "warmer");
 		op.add(Builder::bulk, BulkStats._DESERIALIZER, "bulk");
-		op.add(Builder::shards, ShardsTotalStats._DESERIALIZER, "shards");
+		op.add(Builder::shardStats, ShardsTotalStats._DESERIALIZER, "shard_stats");
 
 	}
 

@@ -34,6 +34,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/has_privileges/types.ts#L30-L33">API
+ *      "../../doc-files/api-spec.html#security.has_privileges.IndexPrivilegesCheck">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -54,12 +55,16 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 
 	private final List<IndexPrivilege> privileges;
 
+	@Nullable
+	private final Boolean allowRestrictedIndices;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexPrivilegesCheck(Builder builder) {
 
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
 		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
+		this.allowRestrictedIndices = builder.allowRestrictedIndices;
 
 	}
 
@@ -68,17 +73,38 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code names}
+	 * Required - A list of indices.
+	 * <p>
+	 * API name: {@code names}
 	 */
 	public final List<String> names() {
 		return this.names;
 	}
 
 	/**
-	 * Required - API name: {@code privileges}
+	 * Required - A list of the privileges that you want to check for the specified
+	 * indices.
+	 * <p>
+	 * API name: {@code privileges}
 	 */
 	public final List<IndexPrivilege> privileges() {
 		return this.privileges;
+	}
+
+	/**
+	 * This needs to be set to true (default is false) if using wildcards or regexps
+	 * for patterns that cover restricted indices. Implicitly, restricted indices do
+	 * not match index patterns because restricted indices usually have limited
+	 * privileges and including them in pattern tests would render most such tests
+	 * false. If restricted indices are explicitly included in the names list,
+	 * privileges will be checked against them regardless of the value of
+	 * allow_restricted_indices.
+	 * <p>
+	 * API name: {@code allow_restricted_indices}
+	 */
+	@Nullable
+	public final Boolean allowRestrictedIndices() {
+		return this.allowRestrictedIndices;
 	}
 
 	/**
@@ -111,6 +137,11 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.allowRestrictedIndices != null) {
+			generator.writeKey("allow_restricted_indices");
+			generator.write(this.allowRestrictedIndices);
+
+		}
 
 	}
 
@@ -125,8 +156,13 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 
 		private List<IndexPrivilege> privileges;
 
+		@Nullable
+		private Boolean allowRestrictedIndices;
+
 		/**
-		 * Required - API name: {@code names}
+		 * Required - A list of indices.
+		 * <p>
+		 * API name: {@code names}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>names</code>.
 		 */
@@ -136,7 +172,9 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code names}
+		 * Required - A list of indices.
+		 * <p>
+		 * API name: {@code names}
 		 * <p>
 		 * Adds one or more values to <code>names</code>.
 		 */
@@ -146,7 +184,10 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code privileges}
+		 * Required - A list of the privileges that you want to check for the specified
+		 * indices.
+		 * <p>
+		 * API name: {@code privileges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>privileges</code>.
 		 */
@@ -156,12 +197,31 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code privileges}
+		 * Required - A list of the privileges that you want to check for the specified
+		 * indices.
+		 * <p>
+		 * API name: {@code privileges}
 		 * <p>
 		 * Adds one or more values to <code>privileges</code>.
 		 */
 		public final Builder privileges(IndexPrivilege value, IndexPrivilege... values) {
 			this.privileges = _listAdd(this.privileges, value, values);
+			return this;
+		}
+
+		/**
+		 * This needs to be set to true (default is false) if using wildcards or regexps
+		 * for patterns that cover restricted indices. Implicitly, restricted indices do
+		 * not match index patterns because restricted indices usually have limited
+		 * privileges and including them in pattern tests would render most such tests
+		 * false. If restricted indices are explicitly included in the names list,
+		 * privileges will be checked against them regardless of the value of
+		 * allow_restricted_indices.
+		 * <p>
+		 * API name: {@code allow_restricted_indices}
+		 */
+		public final Builder allowRestrictedIndices(@Nullable Boolean value) {
+			this.allowRestrictedIndices = value;
 			return this;
 		}
 
@@ -190,6 +250,7 @@ public class IndexPrivilegesCheck implements JsonpSerializable {
 
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
 		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");
+		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 
 	}
 

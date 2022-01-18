@@ -35,8 +35,7 @@ import java.util.Objects;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/exists_source/SourceExistsResponse.ts#L22-L24">API
+ * @see <a href="../doc-files/api-spec.html#_global.exists_source.Response">API
  *      specification</a>
  */
 

@@ -40,7 +40,7 @@ import java.util.Objects;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L548-L551">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.SignificantTermsBucketBase">API
  *      specification</a>
  */
 

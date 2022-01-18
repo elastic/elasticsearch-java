@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/_types/AliasDefinition.ts#L22-L28">API
+ * @see <a href="../doc-files/api-spec.html#indices._types.AliasDefinition">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -64,6 +63,9 @@ public class AliasDefinition implements JsonpSerializable {
 	@Nullable
 	private final String searchRouting;
 
+	@Nullable
+	private final Boolean isHidden;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AliasDefinition(Builder builder) {
@@ -73,6 +75,7 @@ public class AliasDefinition implements JsonpSerializable {
 		this.isWriteIndex = builder.isWriteIndex;
 		this.routing = builder.routing;
 		this.searchRouting = builder.searchRouting;
+		this.isHidden = builder.isHidden;
 
 	}
 
@@ -121,6 +124,14 @@ public class AliasDefinition implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code is_hidden}
+	 */
+	@Nullable
+	public final Boolean isHidden() {
+		return this.isHidden;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -156,6 +167,11 @@ public class AliasDefinition implements JsonpSerializable {
 			generator.write(this.searchRouting);
 
 		}
+		if (this.isHidden != null) {
+			generator.writeKey("is_hidden");
+			generator.write(this.isHidden);
+
+		}
 
 	}
 
@@ -180,6 +196,9 @@ public class AliasDefinition implements JsonpSerializable {
 
 		@Nullable
 		private String searchRouting;
+
+		@Nullable
+		private Boolean isHidden;
 
 		/**
 		 * API name: {@code filter}
@@ -229,6 +248,14 @@ public class AliasDefinition implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code is_hidden}
+		 */
+		public final Builder isHidden(@Nullable Boolean value) {
+			this.isHidden = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link AliasDefinition}.
 		 *
 		 * @throws NullPointerException
@@ -256,6 +283,7 @@ public class AliasDefinition implements JsonpSerializable {
 		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
+		op.add(Builder::isHidden, JsonpDeserializer.booleanDeserializer(), "is_hidden");
 
 	}
 

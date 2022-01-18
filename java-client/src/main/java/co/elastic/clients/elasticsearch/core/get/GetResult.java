@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get/types.ts#L31-L43">API
+ * @see <a href="../../doc-files/api-spec.html#_global.get.GetResult">API
  *      specification</a>
  */
 
@@ -76,9 +75,6 @@ public class GetResult<TDocument> implements JsonpSerializable {
 	private final TDocument source;
 
 	@Nullable
-	private final String type;
-
-	@Nullable
 	private final Long version;
 
 	@Nullable
@@ -96,7 +92,6 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		this.routing = builder.routing;
 		this.seqNo = builder.seqNo;
 		this.source = builder.source;
-		this.type = builder.type;
 		this.version = builder.version;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -168,17 +163,6 @@ public class GetResult<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _type}
-	 * 
-	 * @deprecated 7.0.0
-	 */
-	@Deprecated
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * API name: {@code _version}
 	 */
 	@Nullable
@@ -235,11 +219,6 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		if (this.source != null) {
 			generator.writeKey("_source");
 			JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
-
-		}
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
 
 		}
 		if (this.version != null) {
@@ -300,9 +279,6 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 		@Nullable
 		private TDocument source;
-
-		@Nullable
-		private String type;
 
 		@Nullable
 		private Long version;
@@ -387,17 +363,6 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _type}
-		 * 
-		 * @deprecated 7.0.0
-		 */
-		@Deprecated
-		public final BuilderT type(@Nullable String value) {
-			this.type = value;
-			return self();
-		}
-
-		/**
 		 * API name: {@code _version}
 		 */
 		public final BuilderT version(@Nullable Long value) {
@@ -440,7 +405,6 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		op.add(AbstractBuilder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(AbstractBuilder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(AbstractBuilder::source, tDocumentDeserializer, "_source");
-		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");
 
 	}

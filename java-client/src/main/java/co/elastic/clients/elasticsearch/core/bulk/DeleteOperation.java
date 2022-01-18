@@ -36,8 +36,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/bulk/types.ts#L78-L78">API
+ * @see <a href="../../doc-files/api-spec.html#_global.bulk.DeleteOperation">API
  *      specification</a>
  */
 @JsonpDeserializable

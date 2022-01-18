@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-rank-eval.html#k-precision">Documentation
  *      on elastic.co</a>
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L42-L52">API
+ *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalMetricPrecision">API
  *      specification</a>
  */
 @JsonpDeserializable

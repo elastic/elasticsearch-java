@@ -26,8 +26,7 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
-import co.elastic.clients.elasticsearch.core.reindex.Destination;
-import co.elastic.clients.elasticsearch.core.reindex.Source;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -52,13 +51,24 @@ import javax.annotation.Nullable;
 
 /**
  * Updates certain properties of a transform.
+ * <p>
+ * All updated properties except <code>description</code> do not take effect
+ * until after the transform starts the next checkpoint, thus there is data
+ * consistency in each checkpoint. To use this API, you must have
+ * <code>read</code> and <code>view_index_metadata</code> privileges for the
+ * source indices. You must also have <code>index</code> and <code>read</code>
+ * privileges for the destination index. When Elasticsearch security features
+ * are enabled, the transform remembers which roles the user who updated it had
+ * at the time of update and runs with those privileges.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/update_transform/UpdateTransformRequest.ts#L30-L63">API
+ *      "../doc-files/api-spec.html#transform.update_transform.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class UpdateTransformRequest extends RequestBase implements JsonpSerializable {
+	private final Map<String, JsonData> meta;
+
 	@Nullable
 	private final Boolean deferValidation;
 
@@ -83,12 +93,16 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final Sync sync;
 
+	@Nullable
+	private final Time timeout;
+
 	private final String transformId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private UpdateTransformRequest(Builder builder) {
 
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.deferValidation = builder.deferValidation;
 		this.description = builder.description;
 		this.dest = builder.dest;
@@ -97,12 +111,22 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		this.settings = builder.settings;
 		this.source = builder.source;
 		this.sync = builder.sync;
+		this.timeout = builder.timeout;
 		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
 
 	}
 
 	public static UpdateTransformRequest of(Function<Builder, ObjectBuilder<UpdateTransformRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Defines optional transform metadata.
+	 * <p>
+	 * API name: {@code _meta}
+	 */
+	public final Map<String, JsonData> meta() {
+		return this.meta;
 	}
 
 	/**
@@ -191,9 +215,18 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
-	 * Required - Identifier for the transform. This identifier can contain
-	 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-	 * must start and end with alphanumeric characters.
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
+	}
+
+	/**
+	 * Required - Identifier for the transform.
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
@@ -212,6 +245,17 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.description != null) {
 			generator.writeKey("description");
 			generator.write(this.description);
@@ -258,6 +302,9 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateTransformRequest> {
 		@Nullable
+		private Map<String, JsonData> meta;
+
+		@Nullable
 		private Boolean deferValidation;
 
 		@Nullable
@@ -281,7 +328,34 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private Sync sync;
 
+		@Nullable
+		private Time timeout;
+
 		private String transformId;
+
+		/**
+		 * Defines optional transform metadata.
+		 * <p>
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
+		 */
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * Defines optional transform metadata.
+		 * <p>
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
+			return this;
+		}
 
 		/**
 		 * When true, deferrable validations are not run. This behavior may be desired
@@ -427,9 +501,28 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
-		 * Required - Identifier for the transform. This identifier can contain
-		 * lowercase alphanumeric characters (a-z and 0-9), hyphens, and underscores. It
-		 * must start and end with alphanumeric characters.
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - Identifier for the transform.
 		 * <p>
 		 * API name: {@code transform_id}
 		 */
@@ -462,6 +555,7 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	protected static void setupUpdateTransformRequestDeserializer(
 			ObjectDeserializer<UpdateTransformRequest.Builder> op) {
 
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
@@ -511,6 +605,9 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 				Map<String, String> params = new HashMap<>();
 				if (request.deferValidation != null) {
 					params.put("defer_validation", String.valueOf(request.deferValidation));
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
 				}
 				return params;
 

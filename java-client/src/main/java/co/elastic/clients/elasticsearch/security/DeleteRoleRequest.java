@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Removes roles in the native realm.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/delete_role/SecurityDeleteRoleRequest.ts#L23-L35">API
+ * @see <a href="../doc-files/api-spec.html#security.delete_role.Request">API
  *      specification</a>
  */
 

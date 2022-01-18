@@ -42,8 +42,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/logstash/_types/Pipeline.ts#L37-L44">API
+ * @see <a href="../doc-files/api-spec.html#logstash._types.Pipeline">API
  *      specification</a>
  */
 @JsonpDeserializable

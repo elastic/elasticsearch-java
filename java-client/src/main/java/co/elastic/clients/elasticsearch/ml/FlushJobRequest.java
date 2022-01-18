@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
  * close operation additionally prunes and persists the model state to disk and
  * the job must be opened again before analyzing further data.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/flush_job/MlFlushJobRequest.ts#L24-L95">API
+ * @see <a href="../doc-files/api-spec.html#ml.flush_job.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

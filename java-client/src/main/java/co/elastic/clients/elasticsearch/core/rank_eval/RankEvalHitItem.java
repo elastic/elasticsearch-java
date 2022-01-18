@@ -27,6 +27,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L136-L139">API
+ *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalHitItem">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -75,6 +76,9 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 	/**
 	 * API name: {@code rating}
+	 * <p>
+	 * Defaults to {@code Integer.MIN_VALUE} if parsed from a JSON {@code null}
+	 * value.
 	 */
 	@Nullable
 	public final Double rating() {
@@ -97,8 +101,7 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 		if (this.rating != null) {
 			generator.writeKey("rating");
-			generator.write(this.rating);
-
+			JsonpUtils.serializeDoubleOrNull(generator, this.rating, Integer.MIN_VALUE);
 		}
 
 	}
@@ -132,6 +135,9 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 		/**
 		 * API name: {@code rating}
+		 * <p>
+		 * Defaults to {@code Integer.MIN_VALUE} if parsed from a JSON {@code null}
+		 * value.
 		 */
 		public final Builder rating(@Nullable Double value) {
 			this.rating = value;
@@ -162,7 +168,7 @@ public class RankEvalHitItem implements JsonpSerializable {
 	protected static void setupRankEvalHitItemDeserializer(ObjectDeserializer<RankEvalHitItem.Builder> op) {
 
 		op.add(Builder::hit, RankEvalHit._DESERIALIZER, "hit");
-		op.add(Builder::rating, JsonpDeserializer.doubleDeserializer(), "rating");
+		op.add(Builder::rating, JsonpDeserializer.doubleOrNullDeserializer(Integer.MIN_VALUE), "rating");
 
 	}
 

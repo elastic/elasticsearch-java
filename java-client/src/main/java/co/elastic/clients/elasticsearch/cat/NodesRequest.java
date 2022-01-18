@@ -46,8 +46,7 @@ import javax.annotation.Nullable;
 /**
  * Returns basic statistics about performance of cluster nodes.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/nodes/CatNodesRequest.ts#L23-L33">API
+ * @see <a href="../doc-files/api-spec.html#cat.nodes.Request">API
  *      specification</a>
  */
 

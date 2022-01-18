@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/common.ts#L263-L265">API
+ *      "../doc-files/api-spec.html#_types.WaitForActiveShardOptions">API
  *      specification</a>
  */
 @JsonpDeserializable

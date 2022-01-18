@@ -44,12 +44,11 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ssl/certificates/types.ts#L22-L30">API
+ *      "../../doc-files/api-spec.html#ssl.certificates.CertificateInformation">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class CertificateInformation implements JsonpSerializable {
-	@Nullable
 	private final String alias;
 
 	private final String expiry;
@@ -68,7 +67,7 @@ public class CertificateInformation implements JsonpSerializable {
 
 	private CertificateInformation(Builder builder) {
 
-		this.alias = builder.alias;
+		this.alias = ApiTypeHelper.requireNonNull(builder.alias, this, "alias");
 		this.expiry = ApiTypeHelper.requireNonNull(builder.expiry, this, "expiry");
 		this.format = ApiTypeHelper.requireNonNull(builder.format, this, "format");
 		this.hasPrivateKey = ApiTypeHelper.requireNonNull(builder.hasPrivateKey, this, "hasPrivateKey");
@@ -83,9 +82,8 @@ public class CertificateInformation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code alias}
+	 * Required - API name: {@code alias}
 	 */
-	@Nullable
 	public final String alias() {
 		return this.alias;
 	}
@@ -143,11 +141,9 @@ public class CertificateInformation implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.alias != null) {
-			generator.writeKey("alias");
-			generator.write(this.alias);
+		generator.writeKey("alias");
+		generator.write(this.alias);
 
-		}
 		generator.writeKey("expiry");
 		generator.write(this.expiry);
 
@@ -175,7 +171,6 @@ public class CertificateInformation implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CertificateInformation> {
-		@Nullable
 		private String alias;
 
 		private String expiry;
@@ -191,9 +186,9 @@ public class CertificateInformation implements JsonpSerializable {
 		private String subjectDn;
 
 		/**
-		 * API name: {@code alias}
+		 * Required - API name: {@code alias}
 		 */
-		public final Builder alias(@Nullable String value) {
+		public final Builder alias(String value) {
 			this.alias = value;
 			return this;
 		}

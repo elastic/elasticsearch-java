@@ -30,19 +30,44 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Action.ts#L60-L66">API
+ *      "../doc-files/api-spec.html#watcher._types.ActionExecutionMode">API
  *      specification</a>
  */
 @JsonpDeserializable
 public enum ActionExecutionMode implements JsonEnum {
+	/**
+	 * The action execution is simulated. Each action type defines its own
+	 * simulation operation mode. For example, the <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/actions-email.html">email
+	 * action</a> creates the email that would have been sent but does not actually
+	 * send it. In this mode, the action might be throttled if the current state of
+	 * the watch indicates it should be.
+	 */
 	Simulate("simulate"),
 
+	/**
+	 * Similar to the <code>simulate</code> mode, except the action is not throttled
+	 * even if the current state of the watch indicates it should be.
+	 */
 	ForceSimulate("force_simulate"),
 
+	/**
+	 * Executes the action as it would have been executed if the watch had been
+	 * triggered by its own trigger. The execution might be throttled if the current
+	 * state of the watch indicates it should be.
+	 */
 	Execute("execute"),
 
+	/**
+	 * Similar to the <code>execute</code> mode, except the action is not throttled
+	 * even if the current state of the watch indicates it should be.
+	 */
 	ForceExecute("force_execute"),
 
+	/**
+	 * The action is skipped and is not executed or simulated. Effectively forces
+	 * the action to be throttled.
+	 */
 	Skip("skip"),
 
 	;

@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/fulltext.ts#L49-L56">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.IntervalsAllOf">API
  *      specification</a>
  */
 @JsonpDeserializable

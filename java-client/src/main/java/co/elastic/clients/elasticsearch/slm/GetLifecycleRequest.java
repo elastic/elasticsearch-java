@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
  * Retrieves one or more snapshot lifecycle policy definitions and information
  * about the latest snapshot attempts.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/get_lifecycle/GetSnapshotLifecycleRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#slm.get_lifecycle.Request">API
  *      specification</a>
  */
 

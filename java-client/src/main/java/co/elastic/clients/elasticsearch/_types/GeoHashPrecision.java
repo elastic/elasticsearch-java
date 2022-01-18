@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
  * A precision that can be expressed as a geohash length between 1 and 12, or a
  * distance measure like &quot;1km&quot;, &quot;10m&quot;.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Geo.ts#L76-L80">API
+ * @see <a href="../doc-files/api-spec.html#_types.GeoHashPrecision">API
  *      specification</a>
  */
 @JsonpDeserializable

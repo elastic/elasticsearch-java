@@ -55,8 +55,7 @@ import javax.annotation.Nullable;
 /**
  * Returns information about why a specific matches (or doesn't match) a query.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/explain/ExplainRequest.ts#L26-L53">API
+ * @see <a href="../doc-files/api-spec.html#_global.explain.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
  * Unfreezes an index. When a frozen index is unfrozen, the index goes through
  * the normal recovery process and becomes writeable again.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/unfreeze/IndicesUnfreezeRequest.ts#L24-L41">API
+ * @see <a href="../doc-files/api-spec.html#indices.unfreeze.Request">API
  *      specification</a>
  */
 

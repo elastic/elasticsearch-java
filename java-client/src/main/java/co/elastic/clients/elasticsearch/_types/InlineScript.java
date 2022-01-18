@@ -41,8 +41,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Scripting.ts#L47-L52">API
+ * @see <a href="../doc-files/api-spec.html#_types.InlineScript">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -135,6 +134,14 @@ public class InlineScript extends ScriptBase {
 		 */
 		public final Builder lang(@Nullable String value) {
 			this.lang = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code lang}
+		 */
+		public final Builder lang(@Nullable ScriptLanguage value) {
+			this.lang = value == null ? null : value.jsonValue();
 			return this;
 		}
 

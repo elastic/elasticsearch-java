@@ -58,7 +58,7 @@ import javax.annotation.Nullable;
  * system
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/simulate_index_template/IndicesSimulateIndexTemplateRequest.ts#L33-L71">API
+ *      "../doc-files/api-spec.html#indices.simulate_index_template.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -74,7 +74,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	private final Boolean create;
 
 	@Nullable
-	private final DataStream dataStream;
+	private final DataStreamVisibility dataStream;
 
 	private final List<String> indexPatterns;
 
@@ -154,7 +154,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 	 * API name: {@code data_stream}
 	 */
 	@Nullable
-	public final DataStream dataStream() {
+	public final DataStreamVisibility dataStream() {
 		return this.dataStream;
 	}
 
@@ -299,7 +299,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		private Boolean create;
 
 		@Nullable
-		private DataStream dataStream;
+		private DataStreamVisibility dataStream;
 
 		@Nullable
 		private List<String> indexPatterns;
@@ -383,7 +383,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public final Builder dataStream(@Nullable DataStream value) {
+		public final Builder dataStream(@Nullable DataStreamVisibility value) {
 			this.dataStream = value;
 			return this;
 		}
@@ -391,8 +391,9 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public final Builder dataStream(Function<DataStream.Builder, ObjectBuilder<DataStream>> fn) {
-			return this.dataStream(fn.apply(new DataStream.Builder()).build());
+		public final Builder dataStream(
+				Function<DataStreamVisibility.Builder, ObjectBuilder<DataStreamVisibility>> fn) {
+			return this.dataStream(fn.apply(new DataStreamVisibility.Builder()).build());
 		}
 
 		/**
@@ -505,7 +506,7 @@ public class SimulateIndexTemplateRequest extends RequestBase implements JsonpSe
 		op.add(Builder::allowAutoCreate, JsonpDeserializer.booleanDeserializer(), "allow_auto_create");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
-		op.add(Builder::dataStream, DataStream._DESERIALIZER, "data_stream");
+		op.add(Builder::dataStream, DataStreamVisibility._DESERIALIZER, "data_stream");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"index_patterns");
 		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");

@@ -42,8 +42,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/_types/Phase.ts#L25-L28">API
+ * @see <a href="../doc-files/api-spec.html#ilm._types.Phase">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -54,12 +53,16 @@ public class Phase implements JsonpSerializable {
 	@Nullable
 	private final Time minAge;
 
+	@Nullable
+	private final Configurations configurations;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Phase(Builder builder) {
 
 		this.actions = builder.actions;
 		this.minAge = builder.minAge;
+		this.configurations = builder.configurations;
 
 	}
 
@@ -84,6 +87,14 @@ public class Phase implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code configurations}
+	 */
+	@Nullable
+	public final Configurations configurations() {
+		return this.configurations;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -104,6 +115,11 @@ public class Phase implements JsonpSerializable {
 			this.minAge.serialize(generator, mapper);
 
 		}
+		if (this.configurations != null) {
+			generator.writeKey("configurations");
+			this.configurations.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -119,6 +135,9 @@ public class Phase implements JsonpSerializable {
 
 		@Nullable
 		private Time minAge;
+
+		@Nullable
+		private Configurations configurations;
 
 		/**
 		 * API name: {@code actions}
@@ -141,6 +160,21 @@ public class Phase implements JsonpSerializable {
 		 */
 		public final Builder minAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.minAge(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code configurations}
+		 */
+		public final Builder configurations(@Nullable Configurations value) {
+			this.configurations = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code configurations}
+		 */
+		public final Builder configurations(Function<Configurations.Builder, ObjectBuilder<Configurations>> fn) {
+			return this.configurations(fn.apply(new Configurations.Builder()).build());
 		}
 
 		/**
@@ -168,6 +202,7 @@ public class Phase implements JsonpSerializable {
 
 		op.add(Builder::actions, JsonData._DESERIALIZER, "actions");
 		op.add(Builder::minAge, Time._DESERIALIZER, "min_age");
+		op.add(Builder::configurations, Configurations._DESERIALIZER, "configurations");
 
 	}
 

@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/_types/Processors.ts#L28-L66">API
+ *      "../doc-files/api-spec.html#ingest._types.ProcessorContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -58,6 +58,10 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 	 */
 	/**
 	 * {@link Processor} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../doc-files/api-spec.html#ingest._types.ProcessorContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

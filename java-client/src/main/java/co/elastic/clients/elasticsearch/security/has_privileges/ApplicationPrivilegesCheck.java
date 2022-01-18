@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/has_privileges/types.ts#L24-L28">API
+ *      "../../doc-files/api-spec.html#security.has_privileges.ApplicationPrivilegesCheck">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -70,21 +70,30 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code application}
+	 * Required - The name of the application.
+	 * <p>
+	 * API name: {@code application}
 	 */
 	public final String application() {
 		return this.application;
 	}
 
 	/**
-	 * Required - API name: {@code privileges}
+	 * Required - A list of the privileges that you want to check for the specified
+	 * resources. May be either application privilege names, or the names of actions
+	 * that are granted by those privileges
+	 * <p>
+	 * API name: {@code privileges}
 	 */
 	public final List<String> privileges() {
 		return this.privileges;
 	}
 
 	/**
-	 * Required - API name: {@code resources}
+	 * Required - A list of resource names against which the privileges should be
+	 * checked
+	 * <p>
+	 * API name: {@code resources}
 	 */
 	public final List<String> resources() {
 		return this.resources;
@@ -141,7 +150,9 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 		private List<String> resources;
 
 		/**
-		 * Required - API name: {@code application}
+		 * Required - The name of the application.
+		 * <p>
+		 * API name: {@code application}
 		 */
 		public final Builder application(String value) {
 			this.application = value;
@@ -149,7 +160,11 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code privileges}
+		 * Required - A list of the privileges that you want to check for the specified
+		 * resources. May be either application privilege names, or the names of actions
+		 * that are granted by those privileges
+		 * <p>
+		 * API name: {@code privileges}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>privileges</code>.
 		 */
@@ -159,7 +174,11 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code privileges}
+		 * Required - A list of the privileges that you want to check for the specified
+		 * resources. May be either application privilege names, or the names of actions
+		 * that are granted by those privileges
+		 * <p>
+		 * API name: {@code privileges}
 		 * <p>
 		 * Adds one or more values to <code>privileges</code>.
 		 */
@@ -169,7 +188,10 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code resources}
+		 * Required - A list of resource names against which the privileges should be
+		 * checked
+		 * <p>
+		 * API name: {@code resources}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>resources</code>.
 		 */
@@ -179,7 +201,10 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code resources}
+		 * Required - A list of resource names against which the privileges should be
+		 * checked
+		 * <p>
+		 * API name: {@code resources}
 		 * <p>
 		 * Adds one or more values to <code>resources</code>.
 		 */

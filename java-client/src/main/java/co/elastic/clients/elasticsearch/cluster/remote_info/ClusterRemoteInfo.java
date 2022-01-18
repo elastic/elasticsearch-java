@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/remote_info/ClusterRemoteInfoResponse.ts#L29-L30">API
+ *      "../../doc-files/api-spec.html#cluster.remote_info.ClusterRemoteInfo">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,6 +59,10 @@ public class ClusterRemoteInfo
 	 */
 	/**
 	 * {@link ClusterRemoteInfo} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#cluster.remote_info.ClusterRemoteInfo">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

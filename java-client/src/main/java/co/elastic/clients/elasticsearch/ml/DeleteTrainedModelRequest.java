@@ -35,8 +35,10 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -47,24 +49,38 @@ import javax.annotation.Nullable;
  * Deletes an existing trained inference model that is currently not referenced
  * by an ingest pipeline.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_trained_model/MlDeleteTrainedModelRequest.ts#L23-L38">API
+ * @see <a href="../doc-files/api-spec.html#ml.delete_trained_model.Request">API
  *      specification</a>
  */
 
 public class DeleteTrainedModelRequest extends RequestBase {
+	@Nullable
+	private final Boolean force;
+
 	private final String modelId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteTrainedModelRequest(Builder builder) {
 
+		this.force = builder.force;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 
 	}
 
 	public static DeleteTrainedModelRequest of(Function<Builder, ObjectBuilder<DeleteTrainedModelRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Forcefully deletes a trained model that is referenced by ingest pipelines or
+	 * has a started deployment.
+	 * <p>
+	 * API name: {@code force}
+	 */
+	@Nullable
+	public final Boolean force() {
+		return this.force;
 	}
 
 	/**
@@ -83,7 +99,21 @@ public class DeleteTrainedModelRequest extends RequestBase {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteTrainedModelRequest> {
+		@Nullable
+		private Boolean force;
+
 		private String modelId;
+
+		/**
+		 * Forcefully deletes a trained model that is referenced by ingest pipelines or
+		 * has a started deployment.
+		 * <p>
+		 * API name: {@code force}
+		 */
+		public final Builder force(@Nullable Boolean value) {
+			this.force = value;
+			return this;
+		}
 
 		/**
 		 * Required - The unique identifier of the trained model.
@@ -144,7 +174,11 @@ public class DeleteTrainedModelRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.force != null) {
+					params.put("force", String.valueOf(request.force));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, DeleteTrainedModelResponse._DESERIALIZER);
 }

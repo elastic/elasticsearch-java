@@ -51,10 +51,13 @@ import javax.annotation.Nullable;
 // typedef: security.put_role.Request
 
 /**
- * Adds and updates roles in the native realm.
+ * The role management APIs are generally the preferred way to manage roles,
+ * rather than using <a href=
+ * "https://www.elastic.co/guide/en/elasticsearch/reference/current/defining-roles.html#roles-management-file">file-based
+ * role management</a>. The create or update roles API cannot update roles that
+ * are defined in roles files.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_role/SecurityPutRoleRequest.ts#L31-L74">API
+ * @see <a href="../doc-files/api-spec.html#security.put_role.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -149,7 +152,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Role name
+	 * Required - The name of the role.
 	 * <p>
 	 * API name: {@code name}
 	 */
@@ -459,7 +462,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Role name
+		 * Required - The name of the role.
 		 * <p>
 		 * API name: {@code name}
 		 */

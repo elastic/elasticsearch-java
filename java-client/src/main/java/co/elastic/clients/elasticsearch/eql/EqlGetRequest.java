@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
  * Returns async results from previously executed Event Query Language (EQL)
  * search
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/get/EqlGetRequest.ts#L24-L46">API
+ * @see <a href="../doc-files/api-spec.html#eql.get.Request">API
  *      specification</a>
  */
 

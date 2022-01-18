@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  * ECK. Direct use is not supported.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_policy/GetAutoscalingPolicyRequest.ts#L23-L32">API
+ *      "../doc-files/api-spec.html#autoscaling.get_autoscaling_policy.Request">API
  *      specification</a>
  */
 

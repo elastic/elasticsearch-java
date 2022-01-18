@@ -40,7 +40,6 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -53,16 +52,12 @@ import javax.annotation.Nullable;
 /**
  * Creates an index with optional settings and mappings.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/create/IndicesCreateRequest.ts#L28-L57">API
+ * @see <a href="../doc-files/api-spec.html#indices.create.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class CreateIndexRequest extends RequestBase implements JsonpSerializable {
 	private final Map<String, Alias> aliases;
-
-	@Nullable
-	private final Boolean includeTypeName;
 
 	private final String index;
 
@@ -86,7 +81,6 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	private CreateIndexRequest(Builder builder) {
 
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
-		this.includeTypeName = builder.includeTypeName;
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
@@ -105,14 +99,6 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	 */
 	public final Map<String, Alias> aliases() {
 		return this.aliases;
-	}
-
-	/**
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public final Boolean includeTypeName() {
-		return this.includeTypeName;
 	}
 
 	/**
@@ -222,9 +208,6 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		@Nullable
 		private Map<String, Alias> aliases;
 
-		@Nullable
-		private Boolean includeTypeName;
-
 		private String index;
 
 		@Nullable
@@ -269,14 +252,6 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder aliases(String key, Function<Alias.Builder, ObjectBuilder<Alias>> fn) {
 			return aliases(key, fn.apply(new Alias.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code include_type_name}
-		 */
-		public final Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
-			return this;
 		}
 
 		/**
@@ -457,9 +432,6 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());

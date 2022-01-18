@@ -42,8 +42,7 @@ import java.util.Objects;
  * Returns global and policy-level statistics about actions taken by snapshot
  * lifecycle management.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/get_stats/GetSnapshotLifecycleStatsRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#slm.get_stats.Request">API
  *      specification</a>
  */
 

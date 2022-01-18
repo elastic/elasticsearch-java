@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
 /**
  * Allows to manually change the allocation of individual shards in the cluster.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/reroute/ClusterRerouteRequest.ts#L25-L69">API
+ * @see <a href="../doc-files/api-spec.html#cluster.reroute.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -42,7 +42,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/snapshot/cleanup_repository/SnapshotCleanupRepositoryResponse.ts#L26-L29">API
+ *      "../../doc-files/api-spec.html#snapshot.cleanup_repository.CleanupRepositoryResults">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -65,14 +65,18 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code deleted_blobs}
+	 * Required - Number of binary large objects (blobs) removed during cleanup.
+	 * <p>
+	 * API name: {@code deleted_blobs}
 	 */
 	public final long deletedBlobs() {
 		return this.deletedBlobs;
 	}
 
 	/**
-	 * Required - API name: {@code deleted_bytes}
+	 * Required - Number of bytes freed by cleanup operations.
+	 * <p>
+	 * API name: {@code deleted_bytes}
 	 */
 	public final long deletedBytes() {
 		return this.deletedBytes;
@@ -109,7 +113,9 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 		private Long deletedBytes;
 
 		/**
-		 * Required - API name: {@code deleted_blobs}
+		 * Required - Number of binary large objects (blobs) removed during cleanup.
+		 * <p>
+		 * API name: {@code deleted_blobs}
 		 */
 		public final Builder deletedBlobs(long value) {
 			this.deletedBlobs = value;
@@ -117,7 +123,9 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code deleted_bytes}
+		 * Required - Number of bytes freed by cleanup operations.
+		 * <p>
+		 * API name: {@code deleted_bytes}
 		 */
 		public final Builder deletedBytes(long value) {
 			this.deletedBytes = value;

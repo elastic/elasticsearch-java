@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
  * error occurs if you try to create a forecast for a job that has an
  * <code>over_field_name</code> in its configuration.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/forecast/MlForecastJobRequest.ts#L24-L87">API
+ * @see <a href="../doc-files/api-spec.html#ml.forecast.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

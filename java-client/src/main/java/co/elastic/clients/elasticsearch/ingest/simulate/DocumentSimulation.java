@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/simulate/types.ts#L45-L53">API
+ *      "../../doc-files/api-spec.html#ingest.simulate.DocumentSimulation">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -64,9 +64,6 @@ public class DocumentSimulation implements JsonpSerializable {
 
 	private final Map<String, JsonData> source;
 
-	@Nullable
-	private final String type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private DocumentSimulation(Builder builder) {
@@ -77,7 +74,6 @@ public class DocumentSimulation implements JsonpSerializable {
 		this.parent = builder.parent;
 		this.routing = builder.routing;
 		this.source = ApiTypeHelper.unmodifiableRequired(builder.source, this, "source");
-		this.type = builder.type;
 
 	}
 
@@ -130,14 +126,6 @@ public class DocumentSimulation implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -178,11 +166,6 @@ public class DocumentSimulation implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
-
-		}
 
 	}
 
@@ -206,9 +189,6 @@ public class DocumentSimulation implements JsonpSerializable {
 		private String routing;
 
 		private Map<String, JsonData> source;
-
-		@Nullable
-		private String type;
 
 		/**
 		 * Required - API name: {@code _id}
@@ -278,14 +258,6 @@ public class DocumentSimulation implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * Builds a {@link DocumentSimulation}.
 		 *
 		 * @throws NullPointerException
@@ -314,7 +286,6 @@ public class DocumentSimulation implements JsonpSerializable {
 		op.add(Builder::parent, JsonpDeserializer.stringDeserializer(), "_parent");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
 		op.add(Builder::source, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_source");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 
 	}
 

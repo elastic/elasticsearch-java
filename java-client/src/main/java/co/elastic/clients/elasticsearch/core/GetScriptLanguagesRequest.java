@@ -42,7 +42,7 @@ import java.util.Objects;
  * Returns available script types, languages and contexts
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/get_script_languages/GetScriptLanguagesRequest.ts#L22-L27">API
+ *      "../doc-files/api-spec.html#_global.get_script_languages.Request">API
  *      specification</a>
  */
 

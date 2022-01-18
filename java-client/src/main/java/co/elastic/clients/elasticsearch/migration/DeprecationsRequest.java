@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * that use deprecated features that will be removed or changed in the next
  * major version.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/migration/deprecations/DeprecationInfoRequest.ts#L23-L33">API
+ * @see <a href="../doc-files/api-spec.html#migration.deprecations.Request">API
  *      specification</a>
  */
 

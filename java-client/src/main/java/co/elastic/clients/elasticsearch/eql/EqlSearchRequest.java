@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.eql.search.ResultPosition;
@@ -58,8 +59,7 @@ import javax.annotation.Nullable;
 /**
  * Returns results matching a query expressed in Event Query Language (EQL)
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/search/EqlSearchRequest.ts#L27-L112">API
+ * @see <a href="../doc-files/api-spec.html#eql.search.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -78,15 +78,14 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Number fetchSize;
 
-	@Nullable
-	private final FieldAndFormat fields;
+	private final List<FieldAndFormat> fields;
 
 	private final List<Query> filter;
 
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	private final String index;
+	private final List<String> index;
 
 	@Nullable
 	private final Time keepAlive;
@@ -98,6 +97,8 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 
 	@Nullable
 	private final ResultPosition resultPosition;
+
+	private final Map<String, RuntimeField> runtimeMappings;
 
 	@Nullable
 	private final Number size;
@@ -120,14 +121,15 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		this.eventCategoryField = builder.eventCategoryField;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.fetchSize = builder.fetchSize;
-		this.fields = builder.fields;
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
 		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.resultPosition = builder.resultPosition;
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.size = builder.size;
 		this.tiebreakerField = builder.tiebreakerField;
 		this.timestampField = builder.timestampField;
@@ -188,8 +190,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code fields}
 	 */
-	@Nullable
-	public final FieldAndFormat fields() {
+	public final List<FieldAndFormat> fields() {
 		return this.fields;
 	}
 
@@ -218,7 +219,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public final String index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -253,6 +254,13 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final ResultPosition resultPosition() {
 		return this.resultPosition;
+	}
+
+	/**
+	 * API name: {@code runtime_mappings}
+	 */
+	public final Map<String, RuntimeField> runtimeMappings() {
+		return this.runtimeMappings;
 	}
 
 	/**
@@ -320,9 +328,14 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.fetchSize.doubleValue());
 
 		}
-		if (this.fields != null) {
+		if (ApiTypeHelper.isDefined(this.fields)) {
 			generator.writeKey("fields");
-			this.fields.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (FieldAndFormat item0 : this.fields) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (ApiTypeHelper.isDefined(this.filter)) {
@@ -351,6 +364,17 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		if (this.resultPosition != null) {
 			generator.writeKey("result_position");
 			this.resultPosition.serialize(generator, mapper);
+		}
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
+			generator.writeKey("runtime_mappings");
+			generator.writeStartObject();
+			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
 		}
 		if (this.size != null) {
 			generator.writeKey("size");
@@ -398,7 +422,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		private Number fetchSize;
 
 		@Nullable
-		private FieldAndFormat fields;
+		private List<FieldAndFormat> fields;
 
 		@Nullable
 		private List<Query> filter;
@@ -406,7 +430,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
-		private String index;
+		private List<String> index;
 
 		@Nullable
 		private Time keepAlive;
@@ -418,6 +442,9 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private ResultPosition resultPosition;
+
+		@Nullable
+		private Map<String, RuntimeField> runtimeMappings;
 
 		@Nullable
 		private Number size;
@@ -492,9 +519,11 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 * matching these patterns in the fields property of each hit.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(@Nullable FieldAndFormat value) {
-			this.fields = value;
+		public final Builder fields(List<FieldAndFormat> list) {
+			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
@@ -503,9 +532,24 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 * matching these patterns in the fields property of each hit.
 		 * <p>
 		 * API name: {@code fields}
+		 * <p>
+		 * Adds one or more values to <code>fields</code>.
+		 */
+		public final Builder fields(FieldAndFormat value, FieldAndFormat... values) {
+			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
+		/**
+		 * Array of wildcard (*) patterns. The response returns values for field names
+		 * matching these patterns in the fields property of each hit.
+		 * <p>
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds a value to <code>fields</code> using a builder lambda.
 		 */
 		public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
-			return this.fields(fn.apply(new FieldAndFormat.Builder()).build());
+			return fields(fn.apply(new FieldAndFormat.Builder()).build());
 		}
 
 		/**
@@ -560,9 +604,23 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		 * Required - The name of the index to scope the operation
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(String value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * Required - The name of the index to scope the operation
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -605,6 +663,36 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		public final Builder resultPosition(@Nullable ResultPosition value) {
 			this.resultPosition = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, RuntimeField value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -679,12 +767,14 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::caseSensitive, JsonpDeserializer.booleanDeserializer(), "case_sensitive");
 		op.add(Builder::eventCategoryField, JsonpDeserializer.stringDeserializer(), "event_category_field");
 		op.add(Builder::fetchSize, JsonpDeserializer.numberDeserializer(), "fetch_size");
-		op.add(Builder::fields, FieldAndFormat._DESERIALIZER, "fields");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
 		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 		op.add(Builder::keepAlive, Time._DESERIALIZER, "keep_alive");
 		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::resultPosition, ResultPosition._DESERIALIZER, "result_position");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
+				"runtime_mappings");
 		op.add(Builder::size, JsonpDeserializer.numberDeserializer(), "size");
 		op.add(Builder::tiebreakerField, JsonpDeserializer.stringDeserializer(), "tiebreaker_field");
 		op.add(Builder::timestampField, JsonpDeserializer.stringDeserializer(), "timestamp_field");
@@ -716,7 +806,7 @@ public class EqlSearchRequest extends RequestBase implements JsonpSerializable {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_eql");
 					buf.append("/search");
 					return buf.toString();

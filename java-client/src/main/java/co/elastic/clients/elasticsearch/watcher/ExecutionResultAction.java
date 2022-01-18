@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -43,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Execution.ts#L73-L84">API
+ *      "../doc-files/api-spec.html#watcher._types.ExecutionResultAction">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -75,6 +76,9 @@ public class ExecutionResultAction implements JsonpSerializable {
 	@Nullable
 	private final WebhookResult webhook;
 
+	@Nullable
+	private final ErrorCause error;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private ExecutionResultAction(Builder builder) {
@@ -89,6 +93,7 @@ public class ExecutionResultAction implements JsonpSerializable {
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 		this.webhook = builder.webhook;
+		this.error = builder.error;
 
 	}
 
@@ -174,6 +179,14 @@ public class ExecutionResultAction implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code error}
+	 */
+	@Nullable
+	public final ErrorCause error() {
+		return this.error;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -226,6 +239,11 @@ public class ExecutionResultAction implements JsonpSerializable {
 			this.webhook.serialize(generator, mapper);
 
 		}
+		if (this.error != null) {
+			generator.writeKey("error");
+			this.error.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -262,6 +280,9 @@ public class ExecutionResultAction implements JsonpSerializable {
 
 		@Nullable
 		private WebhookResult webhook;
+
+		@Nullable
+		private ErrorCause error;
 
 		/**
 		 * API name: {@code email}
@@ -386,6 +407,21 @@ public class ExecutionResultAction implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code error}
+		 */
+		public final Builder error(@Nullable ErrorCause value) {
+			this.error = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code error}
+		 */
+		public final Builder error(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
+			return this.error(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link ExecutionResultAction}.
 		 *
 		 * @throws NullPointerException
@@ -418,6 +454,7 @@ public class ExecutionResultAction implements JsonpSerializable {
 		op.add(Builder::status, ActionStatusOptions._DESERIALIZER, "status");
 		op.add(Builder::type, ActionType._DESERIALIZER, "type");
 		op.add(Builder::webhook, WebhookResult._DESERIALIZER, "webhook");
+		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 
 	}
 

@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 /**
  * Adds scheduled events to a calendar.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/post_calendar_events/MlPostCalendarEventsRequest.ts#L24-L40">API
+ * @see <a href="../doc-files/api-spec.html#ml.post_calendar_events.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

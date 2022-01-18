@@ -44,7 +44,7 @@ import java.util.Objects;
  * supported.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/autoscaling/get_autoscaling_capacity/GetAutoscalingCapacityRequest.ts#L22-L27">API
+ *      "../doc-files/api-spec.html#autoscaling.get_autoscaling_capacity.Request">API
  *      specification</a>
  */
 

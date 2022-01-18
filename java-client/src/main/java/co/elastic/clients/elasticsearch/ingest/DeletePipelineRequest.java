@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Deletes a pipeline.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/delete_pipeline/DeletePipelineRequest.ts#L24-L37">API
+ * @see <a href="../doc-files/api-spec.html#ingest.delete_pipeline.Request">API
  *      specification</a>
  */
 

@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
  * Performs the analysis process on a text and return the tokens breakdown of
  * the text.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/analyze/IndicesAnalyzeRequest.ts#L27-L47">API
+ * @see <a href="../doc-files/api-spec.html#indices.analyze.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

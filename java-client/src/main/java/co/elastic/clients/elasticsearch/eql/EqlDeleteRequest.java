@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * Deletes an async EQL search by ID. If the search is still running, the search
  * request will be cancelled. Otherwise, the saved search results are deleted.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/eql/delete/EqlDeleteRequest.ts#L23-L33">API
+ * @see <a href="../doc-files/api-spec.html#eql.delete.Request">API
  *      specification</a>
  */
 

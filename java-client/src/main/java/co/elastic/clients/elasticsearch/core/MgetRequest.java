@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
 /**
  * Allows to get multiple documents in one request.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mget/MultiGetRequest.ts#L25-L49">API
+ * @see <a href="../doc-files/api-spec.html#_global.mget.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -111,8 +110,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return
+	 * True or false to return the <code>_source</code> field or not, or a list of
+	 * fields to return.
 	 * <p>
 	 * API name: {@code _source}
 	 */
@@ -122,7 +121,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of fields to exclude from the returned _source field
+	 * A comma-separated list of source fields to exclude from the response. You can
+	 * also use this parameter to exclude fields from the subset specified in
+	 * <code>_source_includes</code> query parameter.
 	 * <p>
 	 * API name: {@code _source_excludes}
 	 */
@@ -131,7 +132,11 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A list of fields to extract and return from the _source field
+	 * A comma-separated list of source fields to include in the response. If this
+	 * parameter is specified, only these source fields are returned. You can
+	 * exclude fields from this subset using the <code>_source_excludes</code> query
+	 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+	 * parameter is ignored.
 	 * <p>
 	 * API name: {@code _source_includes}
 	 */
@@ -140,6 +145,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The documents you want to retrieve. Required if no index is specified in the
+	 * request URI.
+	 * <p>
 	 * API name: {@code docs}
 	 */
 	public final List<MultiGetOperation> docs() {
@@ -147,6 +155,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * The IDs of the documents you want to retrieve. Allowed when the index is
+	 * specified in the request URI.
+	 * <p>
 	 * API name: {@code ids}
 	 */
 	public final List<String> ids() {
@@ -154,7 +165,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * The name of the index
+	 * Name of the index to retrieve documents from when <code>ids</code> are
+	 * specified, or when a document in the <code>docs</code> array does not specify
+	 * an index.
 	 * <p>
 	 * API name: {@code index}
 	 */
@@ -164,8 +177,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify the node or shard the operation should be performed on (default:
-	 * random)
+	 * Specifies the node or shard the operation should be performed on. Random by
+	 * default.
 	 * <p>
 	 * API name: {@code preference}
 	 */
@@ -175,7 +188,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specify whether to perform the operation in realtime or search mode
+	 * If <code>true</code>, the request is real-time as opposed to near-real-time.
 	 * <p>
 	 * API name: {@code realtime}
 	 */
@@ -185,7 +198,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Refresh the shard containing the document before performing the operation
+	 * If <code>true</code>, the request refreshes relevant shards before retrieving
+	 * documents.
 	 * <p>
 	 * API name: {@code refresh}
 	 */
@@ -195,7 +209,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Specific routing value
+	 * Custom value used to route operations to a specific shard.
 	 * <p>
 	 * API name: {@code routing}
 	 */
@@ -205,7 +219,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A comma-separated list of stored fields to return in the response
+	 * If <code>true</code>, retrieves the document fields stored in the index
+	 * rather than the document <code>_source</code>.
 	 * <p>
 	 * API name: {@code stored_fields}
 	 */
@@ -288,8 +303,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		private List<String> storedFields;
 
 		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return
+		 * True or false to return the <code>_source</code> field or not, or a list of
+		 * fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -299,8 +314,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return
+		 * True or false to return the <code>_source</code> field or not, or a list of
+		 * fields to return.
 		 * <p>
 		 * API name: {@code _source}
 		 */
@@ -309,7 +324,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to exclude from the returned _source field
+		 * A comma-separated list of source fields to exclude from the response. You can
+		 * also use this parameter to exclude fields from the subset specified in
+		 * <code>_source_includes</code> query parameter.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -321,7 +338,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to exclude from the returned _source field
+		 * A comma-separated list of source fields to exclude from the response. You can
+		 * also use this parameter to exclude fields from the subset specified in
+		 * <code>_source_includes</code> query parameter.
 		 * <p>
 		 * API name: {@code _source_excludes}
 		 * <p>
@@ -333,7 +352,11 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to extract and return from the _source field
+		 * A comma-separated list of source fields to include in the response. If this
+		 * parameter is specified, only these source fields are returned. You can
+		 * exclude fields from this subset using the <code>_source_excludes</code> query
+		 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+		 * parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -345,7 +368,11 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A list of fields to extract and return from the _source field
+		 * A comma-separated list of source fields to include in the response. If this
+		 * parameter is specified, only these source fields are returned. You can
+		 * exclude fields from this subset using the <code>_source_excludes</code> query
+		 * parameter. If the <code>_source</code> parameter is <code>false</code>, this
+		 * parameter is ignored.
 		 * <p>
 		 * API name: {@code _source_includes}
 		 * <p>
@@ -357,6 +384,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The documents you want to retrieve. Required if no index is specified in the
+		 * request URI.
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
@@ -367,6 +397,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The documents you want to retrieve. Required if no index is specified in the
+		 * request URI.
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds one or more values to <code>docs</code>.
@@ -377,6 +410,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The documents you want to retrieve. Required if no index is specified in the
+		 * request URI.
+		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds a value to <code>docs</code> using a builder lambda.
@@ -386,6 +422,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The IDs of the documents you want to retrieve. Allowed when the index is
+		 * specified in the request URI.
+		 * <p>
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>ids</code>.
@@ -396,6 +435,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * The IDs of the documents you want to retrieve. Allowed when the index is
+		 * specified in the request URI.
+		 * <p>
 		 * API name: {@code ids}
 		 * <p>
 		 * Adds one or more values to <code>ids</code>.
@@ -406,7 +448,9 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * The name of the index
+		 * Name of the index to retrieve documents from when <code>ids</code> are
+		 * specified, or when a document in the <code>docs</code> array does not specify
+		 * an index.
 		 * <p>
 		 * API name: {@code index}
 		 */
@@ -416,8 +460,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify the node or shard the operation should be performed on (default:
-		 * random)
+		 * Specifies the node or shard the operation should be performed on. Random by
+		 * default.
 		 * <p>
 		 * API name: {@code preference}
 		 */
@@ -427,7 +471,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specify whether to perform the operation in realtime or search mode
+		 * If <code>true</code>, the request is real-time as opposed to near-real-time.
 		 * <p>
 		 * API name: {@code realtime}
 		 */
@@ -437,7 +481,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Refresh the shard containing the document before performing the operation
+		 * If <code>true</code>, the request refreshes relevant shards before retrieving
+		 * documents.
 		 * <p>
 		 * API name: {@code refresh}
 		 */
@@ -447,7 +492,7 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Specific routing value
+		 * Custom value used to route operations to a specific shard.
 		 * <p>
 		 * API name: {@code routing}
 		 */
@@ -457,7 +502,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of stored fields to return in the response
+		 * If <code>true</code>, retrieves the document fields stored in the index
+		 * rather than the document <code>_source</code>.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>
@@ -469,7 +515,8 @@ public class MgetRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of stored fields to return in the response
+		 * If <code>true</code>, retrieves the document fields stored in the index
+		 * rather than the document <code>_source</code>.
 		 * <p>
 		 * API name: {@code stored_fields}
 		 * <p>

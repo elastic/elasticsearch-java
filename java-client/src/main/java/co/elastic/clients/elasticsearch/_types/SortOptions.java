@@ -50,8 +50,7 @@ import javax.annotation.Nullable;
  * @see <a href=
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/sort-search-results.html">Documentation
  *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/sort.ts#L80-L89">API
+ * @see <a href="../doc-files/api-spec.html#_types.SortOptions">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -62,6 +61,9 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 	 */
 	/**
 	 * {@link SortOptions} variant kinds.
+	 * 
+	 * @see <a href="../doc-files/api-spec.html#_types.SortOptions">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

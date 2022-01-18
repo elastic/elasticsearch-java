@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * Halts all lifecycle management operations and stops the index lifecycle
  * management (ILM) plugin
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ilm/stop/StopIlmRequest.ts#L23-L33">API
+ * @see <a href="../doc-files/api-spec.html#ilm.stop.Request">API
  *      specification</a>
  */
 

@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/rank_eval/types.ts#L141-L146">API
+ *      "../../doc-files/api-spec.html#_global.rank_eval.RankEvalHit">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -52,9 +52,6 @@ public class RankEvalHit implements JsonpSerializable {
 	private final String id;
 
 	private final String index;
-
-	@Nullable
-	private final String type;
 
 	private final double score;
 
@@ -64,7 +61,6 @@ public class RankEvalHit implements JsonpSerializable {
 
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.type = builder.type;
 		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
 
 	}
@@ -85,14 +81,6 @@ public class RankEvalHit implements JsonpSerializable {
 	 */
 	public final String index() {
 		return this.index;
-	}
-
-	/**
-	 * API name: {@code _type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
 	}
 
 	/**
@@ -119,11 +107,6 @@ public class RankEvalHit implements JsonpSerializable {
 		generator.writeKey("_index");
 		generator.write(this.index);
 
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
-
-		}
 		generator.writeKey("_score");
 		generator.write(this.score);
 
@@ -140,9 +123,6 @@ public class RankEvalHit implements JsonpSerializable {
 
 		private String index;
 
-		@Nullable
-		private String type;
-
 		private Double score;
 
 		/**
@@ -158,14 +138,6 @@ public class RankEvalHit implements JsonpSerializable {
 		 */
 		public final Builder index(String value) {
 			this.index = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _type}
-		 */
-		public final Builder type(@Nullable String value) {
-			this.type = value;
 			return this;
 		}
 
@@ -202,7 +174,6 @@ public class RankEvalHit implements JsonpSerializable {
 
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score");
 
 	}

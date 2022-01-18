@@ -51,9 +51,7 @@ import javax.annotation.Nullable;
  * @see <a href=
  *      "https://github.com/elastic/elasticsearch/blob/master/libs/core/src/main/java/org/elasticsearch/core/TimeValue.java">Documentation
  *      on elastic.co</a>
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Time.ts#L62-L68">API
- *      specification</a>
+ * @see <a href="../doc-files/api-spec.html#_types.Time">API specification</a>
  */
 @JsonpDeserializable
 public class Time implements TaggedUnion<Time.Kind, Object>, JsonpSerializable {

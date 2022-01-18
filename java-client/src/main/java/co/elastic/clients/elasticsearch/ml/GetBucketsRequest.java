@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
  * Retrieves anomaly detection job results for one or more buckets. The API
  * presents a chronological view of the records, grouped by bucket.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_buckets/MlGetBucketsRequest.ts#L26-L133">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_buckets.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

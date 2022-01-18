@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
 /**
  * Creates or updates an alias.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_alias/IndicesPutAliasRequest.ts#L25-L46">API
+ * @see <a href="../doc-files/api-spec.html#indices.put_alias.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

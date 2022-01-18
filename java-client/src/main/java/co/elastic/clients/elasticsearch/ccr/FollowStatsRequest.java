@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
  * Retrieves follower stats. return shard-level stats about the following tasks
  * associated with each shard for the specified indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/follow_stats/FollowIndexStatsRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#ccr.follow_stats.Request">API
  *      specification</a>
  */
 

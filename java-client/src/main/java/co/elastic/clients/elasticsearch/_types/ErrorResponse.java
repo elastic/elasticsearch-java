@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
  * The response returned by Elasticsearch when request execution did not
  * succeed.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Base.ts#L70-L79">API
+ * @see <a href="../doc-files/api-spec.html#_types.ErrorResponseBase">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -56,8 +56,7 @@ import javax.annotation.Nullable;
 /**
  * Creates or updates an index template.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_template/IndicesPutTemplateRequest.ts#L29-L94">API
+ * @see <a href="../doc-files/api-spec.html#indices.put_template.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -69,9 +68,6 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 
 	@Nullable
 	private final Boolean flatSettings;
-
-	@Nullable
-	private final Boolean includeTypeName;
 
 	private final List<String> indexPatterns;
 
@@ -101,7 +97,6 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 		this.create = builder.create;
 		this.flatSettings = builder.flatSettings;
-		this.includeTypeName = builder.includeTypeName;
 		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 		this.mappings = builder.mappings;
 		this.masterTimeout = builder.masterTimeout;
@@ -142,14 +137,6 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public final Boolean flatSettings() {
 		return this.flatSettings;
-	}
-
-	/**
-	 * API name: {@code include_type_name}
-	 */
-	@Nullable
-	public final Boolean includeTypeName() {
-		return this.includeTypeName;
 	}
 
 	/**
@@ -312,9 +299,6 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		private Boolean flatSettings;
 
 		@Nullable
-		private Boolean includeTypeName;
-
-		@Nullable
 		private List<String> indexPatterns;
 
 		@Nullable
@@ -387,14 +371,6 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder flatSettings(@Nullable Boolean value) {
 			this.flatSettings = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code include_type_name}
-		 */
-		public final Builder includeTypeName(@Nullable Boolean value) {
-			this.includeTypeName = value;
 			return this;
 		}
 
@@ -609,9 +585,6 @@ public class PutTemplateRequest extends RequestBase implements JsonpSerializable
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
-				}
-				if (request.includeTypeName != null) {
-					params.put("include_type_name", String.valueOf(request.includeTypeName));
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));

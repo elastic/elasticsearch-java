@@ -29,16 +29,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/tasks/_types/GroupBy.ts#L20-L24">API
+ * @see <a href="../doc-files/api-spec.html#tasks._types.GroupBy">API
  *      specification</a>
  */
 @JsonpDeserializable
 public enum GroupBy implements JsonEnum {
+	/**
+	 * Node ID
+	 */
 	Nodes("nodes"),
 
+	/**
+	 * Parent task ID
+	 */
 	Parents("parents"),
 
+	/**
+	 * Do not group tasks.
+	 */
 	None("none"),
 
 	;

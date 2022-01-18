@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 /**
  * A GeoJson GeoLine.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Geo.ts#L59-L65">API
+ * @see <a href="../doc-files/api-spec.html#_types.GeoLine">API
  *      specification</a>
  */
 @JsonpDeserializable

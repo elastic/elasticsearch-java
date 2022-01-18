@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Disables users in the native realm.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/disable_user/SecurityDisableUserRequest.ts#L23-L35">API
+ * @see <a href="../doc-files/api-spec.html#security.disable_user.Request">API
  *      specification</a>
  */
 

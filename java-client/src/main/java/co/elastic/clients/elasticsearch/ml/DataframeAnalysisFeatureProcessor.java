@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/DataframeAnalytics.ts#L245-L257">API
+ *      "../doc-files/api-spec.html#ml._types.DataframeAnalysisFeatureProcessor">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -60,6 +60,10 @@ public class DataframeAnalysisFeatureProcessor
 	 */
 	/**
 	 * {@link DataframeAnalysisFeatureProcessor} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../doc-files/api-spec.html#ml._types.DataframeAnalysisFeatureProcessor">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

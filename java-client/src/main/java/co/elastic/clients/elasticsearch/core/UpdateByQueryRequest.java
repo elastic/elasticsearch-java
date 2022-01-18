@@ -34,7 +34,6 @@ import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
-import co.elastic.clients.elasticsearch.core.search.SourceConfigParam;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -64,19 +63,11 @@ import javax.annotation.Nullable;
  * Performs an update on every document in the index without changing the
  * source, for example to pick up a mapping change.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/update_by_query/UpdateByQueryRequest.ts#L38-L89">API
+ * @see <a href="../doc-files/api-spec.html#_global.update_by_query.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class UpdateByQueryRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final SourceConfigParam source;
-
-	private final List<String> sourceExcludes;
-
-	private final List<String> sourceIncludes;
-
 	@Nullable
 	private final Boolean allowNoIndices;
 
@@ -148,9 +139,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	private final SearchType searchType;
 
 	@Nullable
-	private final Long size;
-
-	@Nullable
 	private final SlicedScroll slice;
 
 	@Nullable
@@ -182,9 +170,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 	private UpdateByQueryRequest(Builder builder) {
 
-		this.source = builder.source;
-		this.sourceExcludes = ApiTypeHelper.unmodifiable(builder.sourceExcludes);
-		this.sourceIncludes = ApiTypeHelper.unmodifiable(builder.sourceIncludes);
 		this.allowNoIndices = builder.allowNoIndices;
 		this.analyzeWildcard = builder.analyzeWildcard;
 		this.analyzer = builder.analyzer;
@@ -209,7 +194,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		this.scrollSize = builder.scrollSize;
 		this.searchTimeout = builder.searchTimeout;
 		this.searchType = builder.searchType;
-		this.size = builder.size;
 		this.slice = builder.slice;
 		this.slices = builder.slices;
 		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
@@ -225,35 +209,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 	public static UpdateByQueryRequest of(Function<Builder, ObjectBuilder<UpdateByQueryRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * True or false to return the _source field or not, or a list of fields to
-	 * return
-	 * <p>
-	 * API name: {@code _source}
-	 */
-	@Nullable
-	public final SourceConfigParam source() {
-		return this.source;
-	}
-
-	/**
-	 * A list of fields to exclude from the returned _source field
-	 * <p>
-	 * API name: {@code _source_excludes}
-	 */
-	public final List<String> sourceExcludes() {
-		return this.sourceExcludes;
-	}
-
-	/**
-	 * A list of fields to extract and return from the _source field
-	 * <p>
-	 * API name: {@code _source_includes}
-	 */
-	public final List<String> sourceIncludes() {
-		return this.sourceIncludes;
 	}
 
 	/**
@@ -499,14 +454,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
-	 * API name: {@code size}
-	 */
-	@Nullable
-	public final Long size() {
-		return this.size;
-	}
-
-	/**
 	 * API name: {@code slice}
 	 */
 	@Nullable
@@ -657,15 +604,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateByQueryRequest> {
 		@Nullable
-		private SourceConfigParam source;
-
-		@Nullable
-		private List<String> sourceExcludes;
-
-		@Nullable
-		private List<String> sourceIncludes;
-
-		@Nullable
 		private Boolean allowNoIndices;
 
 		@Nullable
@@ -737,9 +675,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		private SearchType searchType;
 
 		@Nullable
-		private Long size;
-
-		@Nullable
 		private SlicedScroll slice;
 
 		@Nullable
@@ -768,75 +703,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 
 		@Nullable
 		private Boolean waitForCompletion;
-
-		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return
-		 * <p>
-		 * API name: {@code _source}
-		 */
-		public final Builder source(@Nullable SourceConfigParam value) {
-			this.source = value;
-			return this;
-		}
-
-		/**
-		 * True or false to return the _source field or not, or a list of fields to
-		 * return
-		 * <p>
-		 * API name: {@code _source}
-		 */
-		public final Builder source(Function<SourceConfigParam.Builder, ObjectBuilder<SourceConfigParam>> fn) {
-			return this.source(fn.apply(new SourceConfigParam.Builder()).build());
-		}
-
-		/**
-		 * A list of fields to exclude from the returned _source field
-		 * <p>
-		 * API name: {@code _source_excludes}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceExcludes</code>.
-		 */
-		public final Builder sourceExcludes(List<String> list) {
-			this.sourceExcludes = _listAddAll(this.sourceExcludes, list);
-			return this;
-		}
-
-		/**
-		 * A list of fields to exclude from the returned _source field
-		 * <p>
-		 * API name: {@code _source_excludes}
-		 * <p>
-		 * Adds one or more values to <code>sourceExcludes</code>.
-		 */
-		public final Builder sourceExcludes(String value, String... values) {
-			this.sourceExcludes = _listAdd(this.sourceExcludes, value, values);
-			return this;
-		}
-
-		/**
-		 * A list of fields to extract and return from the _source field
-		 * <p>
-		 * API name: {@code _source_includes}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>sourceIncludes</code>.
-		 */
-		public final Builder sourceIncludes(List<String> list) {
-			this.sourceIncludes = _listAddAll(this.sourceIncludes, list);
-			return this;
-		}
-
-		/**
-		 * A list of fields to extract and return from the _source field
-		 * <p>
-		 * API name: {@code _source_includes}
-		 * <p>
-		 * Adds one or more values to <code>sourceIncludes</code>.
-		 */
-		public final Builder sourceIncludes(String value, String... values) {
-			this.sourceIncludes = _listAdd(this.sourceIncludes, value, values);
-			return this;
-		}
 
 		/**
 		 * Whether to ignore if a wildcard indices expression resolves into no concrete
@@ -1142,14 +1008,6 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 */
 		public final Builder searchType(@Nullable SearchType value) {
 			this.searchType = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code size}
-		 */
-		public final Builder size(@Nullable Long value) {
-			this.size = value;
 			return this;
 		}
 
@@ -1465,25 +1323,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 				if (request.defaultOperator != null) {
 					params.put("default_operator", request.defaultOperator.jsonValue());
 				}
-				if (request.size != null) {
-					params.put("size", String.valueOf(request.size));
-				}
 				if (request.waitForActiveShards != null) {
 					params.put("wait_for_active_shards", request.waitForActiveShards._toJsonString());
 				}
-				if (request.source != null) {
-					params.put("_source", request.source._toJsonString());
-				}
-				if (ApiTypeHelper.isDefined(request.sourceExcludes)) {
-					params.put("_source_excludes",
-							request.sourceExcludes.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
 				if (request.requestCache != null) {
 					params.put("request_cache", String.valueOf(request.requestCache));
-				}
-				if (ApiTypeHelper.isDefined(request.sourceIncludes)) {
-					params.put("_source_includes",
-							request.sourceIncludes.stream().map(v -> v).collect(Collectors.joining(",")));
 				}
 				return params;
 

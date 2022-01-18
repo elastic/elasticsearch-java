@@ -42,14 +42,15 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L45-L49">API
+ * @see <a href="../doc-files/api-spec.html#watcher._types.PagerDutyContext">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class PagerDutyContext implements JsonpSerializable {
+	@Nullable
 	private final String href;
 
+	@Nullable
 	private final String src;
 
 	private final PagerDutyContextType type;
@@ -58,8 +59,8 @@ public class PagerDutyContext implements JsonpSerializable {
 
 	private PagerDutyContext(Builder builder) {
 
-		this.href = ApiTypeHelper.requireNonNull(builder.href, this, "href");
-		this.src = ApiTypeHelper.requireNonNull(builder.src, this, "src");
+		this.href = builder.href;
+		this.src = builder.src;
 		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
 
 	}
@@ -69,15 +70,17 @@ public class PagerDutyContext implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code href}
+	 * API name: {@code href}
 	 */
+	@Nullable
 	public final String href() {
 		return this.href;
 	}
 
 	/**
-	 * Required - API name: {@code src}
+	 * API name: {@code src}
 	 */
+	@Nullable
 	public final String src() {
 		return this.src;
 	}
@@ -100,12 +103,16 @@ public class PagerDutyContext implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("href");
-		generator.write(this.href);
+		if (this.href != null) {
+			generator.writeKey("href");
+			generator.write(this.href);
 
-		generator.writeKey("src");
-		generator.write(this.src);
+		}
+		if (this.src != null) {
+			generator.writeKey("src");
+			generator.write(this.src);
 
+		}
 		generator.writeKey("type");
 		this.type.serialize(generator, mapper);
 
@@ -118,24 +125,26 @@ public class PagerDutyContext implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyContext> {
+		@Nullable
 		private String href;
 
+		@Nullable
 		private String src;
 
 		private PagerDutyContextType type;
 
 		/**
-		 * Required - API name: {@code href}
+		 * API name: {@code href}
 		 */
-		public final Builder href(String value) {
+		public final Builder href(@Nullable String value) {
 			this.href = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code src}
+		 * API name: {@code src}
 		 */
-		public final Builder src(String value) {
+		public final Builder src(@Nullable String value) {
 			this.src = value;
 			return this;
 		}

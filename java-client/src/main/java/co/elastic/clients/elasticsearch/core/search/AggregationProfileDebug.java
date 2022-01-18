@@ -46,7 +46,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/profile.ts#L37-L60">API
+ *      "../../doc-files/api-spec.html#_global.search._types.AggregationProfileDebug">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -76,7 +76,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 	private final String delegate;
 
 	@Nullable
-	private final AggregationProfileDelegateDebug delegateDebug;
+	private final AggregationProfileDebug delegateDebug;
 
 	@Nullable
 	private final Integer charsFetched;
@@ -116,6 +116,20 @@ public class AggregationProfileDebug implements JsonpSerializable {
 
 	private final List<String> deferredAggregators;
 
+	@Nullable
+	private final Integer segmentsWithDocCountField;
+
+	@Nullable
+	private final Integer segmentsWithDeletedDocs;
+
+	private final List<AggregationProfileDelegateDebugFilter> filters;
+
+	@Nullable
+	private final Integer segmentsCounted;
+
+	@Nullable
+	private final Integer segmentsCollected;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AggregationProfileDebug(Builder builder) {
@@ -142,6 +156,11 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		this.numericCollectorsUsed = builder.numericCollectorsUsed;
 		this.emptyCollectorsUsed = builder.emptyCollectorsUsed;
 		this.deferredAggregators = ApiTypeHelper.unmodifiable(builder.deferredAggregators);
+		this.segmentsWithDocCountField = builder.segmentsWithDocCountField;
+		this.segmentsWithDeletedDocs = builder.segmentsWithDeletedDocs;
+		this.filters = ApiTypeHelper.unmodifiable(builder.filters);
+		this.segmentsCounted = builder.segmentsCounted;
+		this.segmentsCollected = builder.segmentsCollected;
 
 	}
 
@@ -217,7 +236,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 	 * API name: {@code delegate_debug}
 	 */
 	@Nullable
-	public final AggregationProfileDelegateDebug delegateDebug() {
+	public final AggregationProfileDebug delegateDebug() {
 		return this.delegateDebug;
 	}
 
@@ -322,6 +341,45 @@ public class AggregationProfileDebug implements JsonpSerializable {
 	 */
 	public final List<String> deferredAggregators() {
 		return this.deferredAggregators;
+	}
+
+	/**
+	 * API name: {@code segments_with_doc_count_field}
+	 */
+	@Nullable
+	public final Integer segmentsWithDocCountField() {
+		return this.segmentsWithDocCountField;
+	}
+
+	/**
+	 * API name: {@code segments_with_deleted_docs}
+	 */
+	@Nullable
+	public final Integer segmentsWithDeletedDocs() {
+		return this.segmentsWithDeletedDocs;
+	}
+
+	/**
+	 * API name: {@code filters}
+	 */
+	public final List<AggregationProfileDelegateDebugFilter> filters() {
+		return this.filters;
+	}
+
+	/**
+	 * API name: {@code segments_counted}
+	 */
+	@Nullable
+	public final Integer segmentsCounted() {
+		return this.segmentsCounted;
+	}
+
+	/**
+	 * API name: {@code segments_collected}
+	 */
+	@Nullable
+	public final Integer segmentsCollected() {
+		return this.segmentsCollected;
 	}
 
 	/**
@@ -450,6 +508,36 @@ public class AggregationProfileDebug implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.segmentsWithDocCountField != null) {
+			generator.writeKey("segments_with_doc_count_field");
+			generator.write(this.segmentsWithDocCountField);
+
+		}
+		if (this.segmentsWithDeletedDocs != null) {
+			generator.writeKey("segments_with_deleted_docs");
+			generator.write(this.segmentsWithDeletedDocs);
+
+		}
+		if (ApiTypeHelper.isDefined(this.filters)) {
+			generator.writeKey("filters");
+			generator.writeStartArray();
+			for (AggregationProfileDelegateDebugFilter item0 : this.filters) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.segmentsCounted != null) {
+			generator.writeKey("segments_counted");
+			generator.write(this.segmentsCounted);
+
+		}
+		if (this.segmentsCollected != null) {
+			generator.writeKey("segments_collected");
+			generator.write(this.segmentsCollected);
+
+		}
 
 	}
 
@@ -485,7 +573,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		private String delegate;
 
 		@Nullable
-		private AggregationProfileDelegateDebug delegateDebug;
+		private AggregationProfileDebug delegateDebug;
 
 		@Nullable
 		private Integer charsFetched;
@@ -525,6 +613,21 @@ public class AggregationProfileDebug implements JsonpSerializable {
 
 		@Nullable
 		private List<String> deferredAggregators;
+
+		@Nullable
+		private Integer segmentsWithDocCountField;
+
+		@Nullable
+		private Integer segmentsWithDeletedDocs;
+
+		@Nullable
+		private List<AggregationProfileDelegateDebugFilter> filters;
+
+		@Nullable
+		private Integer segmentsCounted;
+
+		@Nullable
+		private Integer segmentsCollected;
 
 		/**
 		 * API name: {@code segments_with_multi_valued_ords}
@@ -593,7 +696,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		/**
 		 * API name: {@code delegate_debug}
 		 */
-		public final Builder delegateDebug(@Nullable AggregationProfileDelegateDebug value) {
+		public final Builder delegateDebug(@Nullable AggregationProfileDebug value) {
 			this.delegateDebug = value;
 			return this;
 		}
@@ -602,8 +705,8 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		 * API name: {@code delegate_debug}
 		 */
 		public final Builder delegateDebug(
-				Function<AggregationProfileDelegateDebug.Builder, ObjectBuilder<AggregationProfileDelegateDebug>> fn) {
-			return this.delegateDebug(fn.apply(new AggregationProfileDelegateDebug.Builder()).build());
+				Function<AggregationProfileDebug.Builder, ObjectBuilder<AggregationProfileDebug>> fn) {
+			return this.delegateDebug(fn.apply(new AggregationProfileDebug.Builder()).build());
 		}
 
 		/**
@@ -723,6 +826,69 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code segments_with_doc_count_field}
+		 */
+		public final Builder segmentsWithDocCountField(@Nullable Integer value) {
+			this.segmentsWithDocCountField = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code segments_with_deleted_docs}
+		 */
+		public final Builder segmentsWithDeletedDocs(@Nullable Integer value) {
+			this.segmentsWithDeletedDocs = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code filters}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filters</code>.
+		 */
+		public final Builder filters(List<AggregationProfileDelegateDebugFilter> list) {
+			this.filters = _listAddAll(this.filters, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code filters}
+		 * <p>
+		 * Adds one or more values to <code>filters</code>.
+		 */
+		public final Builder filters(AggregationProfileDelegateDebugFilter value,
+				AggregationProfileDelegateDebugFilter... values) {
+			this.filters = _listAdd(this.filters, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code filters}
+		 * <p>
+		 * Adds a value to <code>filters</code> using a builder lambda.
+		 */
+		public final Builder filters(
+				Function<AggregationProfileDelegateDebugFilter.Builder, ObjectBuilder<AggregationProfileDelegateDebugFilter>> fn) {
+			return filters(fn.apply(new AggregationProfileDelegateDebugFilter.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code segments_counted}
+		 */
+		public final Builder segmentsCounted(@Nullable Integer value) {
+			this.segmentsCounted = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code segments_collected}
+		 */
+		public final Builder segmentsCollected(@Nullable Integer value) {
+			this.segmentsCollected = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link AggregationProfileDebug}.
 		 *
 		 * @throws NullPointerException
@@ -756,7 +922,7 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		op.add(Builder::resultStrategy, JsonpDeserializer.stringDeserializer(), "result_strategy");
 		op.add(Builder::hasFilter, JsonpDeserializer.booleanDeserializer(), "has_filter");
 		op.add(Builder::delegate, JsonpDeserializer.stringDeserializer(), "delegate");
-		op.add(Builder::delegateDebug, AggregationProfileDelegateDebug._DESERIALIZER, "delegate_debug");
+		op.add(Builder::delegateDebug, AggregationProfileDebug._DESERIALIZER, "delegate_debug");
 		op.add(Builder::charsFetched, JsonpDeserializer.integerDeserializer(), "chars_fetched");
 		op.add(Builder::extractCount, JsonpDeserializer.integerDeserializer(), "extract_count");
 		op.add(Builder::extractNs, JsonpDeserializer.integerDeserializer(), "extract_ns");
@@ -773,6 +939,13 @@ public class AggregationProfileDebug implements JsonpSerializable {
 		op.add(Builder::emptyCollectorsUsed, JsonpDeserializer.integerDeserializer(), "empty_collectors_used");
 		op.add(Builder::deferredAggregators,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "deferred_aggregators");
+		op.add(Builder::segmentsWithDocCountField, JsonpDeserializer.integerDeserializer(),
+				"segments_with_doc_count_field");
+		op.add(Builder::segmentsWithDeletedDocs, JsonpDeserializer.integerDeserializer(), "segments_with_deleted_docs");
+		op.add(Builder::filters,
+				JsonpDeserializer.arrayDeserializer(AggregationProfileDelegateDebugFilter._DESERIALIZER), "filters");
+		op.add(Builder::segmentsCounted, JsonpDeserializer.integerDeserializer(), "segments_counted");
+		op.add(Builder::segmentsCollected, JsonpDeserializer.integerDeserializer(), "segments_collected");
 
 	}
 

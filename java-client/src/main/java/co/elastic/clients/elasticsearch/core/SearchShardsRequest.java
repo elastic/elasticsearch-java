@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
  * Returns information about the indices and shards that a search request would
  * be executed against.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search_shards/SearchShardsRequest.ts#L23-L40">API
+ * @see <a href="../doc-files/api-spec.html#_global.search_shards.Request">API
  *      specification</a>
  */
 

@@ -49,8 +49,7 @@ import javax.annotation.Nullable;
 /**
  * Provides a detailed view of shard allocation on nodes.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/shards/CatShardsRequest.ts#L23-L35">API
+ * @see <a href="../doc-files/api-spec.html#cat.shards.Request">API
  *      specification</a>
  */
 

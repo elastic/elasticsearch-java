@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Provides statistics on operations happening in a data stream.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/data_streams_stats/IndicesDataStreamsStatsRequest.ts#L23-L35">API
+ *      "../doc-files/api-spec.html#indices.data_streams_stats.Request">API
  *      specification</a>
  */
 

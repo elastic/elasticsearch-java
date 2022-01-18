@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,10 +38,11 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,42 +52,43 @@ import javax.annotation.Nullable;
 /**
  * Creates a rollup job.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/rollup/put_job/CreateRollupJobRequest.ts#L26-L43">API
+ * @see <a href="../doc-files/api-spec.html#rollup.put_job.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class PutJobRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
 	private final String cron;
 
-	@Nullable
 	private final Groupings groups;
+
+	private final Map<String, List<String>> headers;
 
 	private final String id;
 
-	@Nullable
 	private final String indexPattern;
 
 	private final List<FieldMetric> metrics;
 
-	@Nullable
-	private final Long pageSize;
+	private final int pageSize;
+
+	private final String rollupIndex;
 
 	@Nullable
-	private final String rollupIndex;
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PutJobRequest(Builder builder) {
 
-		this.cron = builder.cron;
-		this.groups = builder.groups;
+		this.cron = ApiTypeHelper.requireNonNull(builder.cron, this, "cron");
+		this.groups = ApiTypeHelper.requireNonNull(builder.groups, this, "groups");
+		this.headers = ApiTypeHelper.unmodifiable(builder.headers);
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.indexPattern = builder.indexPattern;
+		this.indexPattern = ApiTypeHelper.requireNonNull(builder.indexPattern, this, "indexPattern");
 		this.metrics = ApiTypeHelper.unmodifiable(builder.metrics);
-		this.pageSize = builder.pageSize;
-		this.rollupIndex = builder.rollupIndex;
+		this.pageSize = ApiTypeHelper.requireNonNull(builder.pageSize, this, "pageSize");
+		this.rollupIndex = ApiTypeHelper.requireNonNull(builder.rollupIndex, this, "rollupIndex");
+		this.timeout = builder.timeout;
 
 	}
 
@@ -94,23 +97,50 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - A cron string which defines the intervals when the rollup job
+	 * should be executed. When the interval triggers, the indexer attempts to
+	 * rollup the data in the index pattern. The cron pattern is unrelated to the
+	 * time interval of the data being rolled up. For example, you may wish to
+	 * create hourly rollups of your document but to only run the indexer on a daily
+	 * basis at midnight, as defined by the cron. The cron pattern is defined just
+	 * like a Watcher cron schedule.
+	 * <p>
 	 * API name: {@code cron}
 	 */
-	@Nullable
 	public final String cron() {
 		return this.cron;
 	}
 
 	/**
+	 * Required - Defines the grouping fields and aggregations that are defined for
+	 * this rollup job. These fields will then be available later for aggregating
+	 * into buckets. These aggs and fields can be used in any combination. Think of
+	 * the groups configuration as defining a set of tools that can later be used in
+	 * aggregations to partition the data. Unlike raw data, we have to think ahead
+	 * to which fields and aggregations might be used. Rollups provide enough
+	 * flexibility that you simply need to determine which fields are needed, not in
+	 * what order they are needed.
+	 * <p>
 	 * API name: {@code groups}
 	 */
-	@Nullable
 	public final Groupings groups() {
 		return this.groups;
 	}
 
 	/**
-	 * Required - The ID of the job to create
+	 * API name: {@code headers}
+	 */
+	public final Map<String, List<String>> headers() {
+		return this.headers;
+	}
+
+	/**
+	 * Required - Identifier for the rollup job. This can be any alphanumeric string
+	 * and uniquely identifies the data that is associated with the rollup job. The
+	 * ID is persistent; it is stored with the rolled up data. If you create a job,
+	 * let it run for a while, then delete the job, the data that the job rolled up
+	 * is still be associated with this job ID. You cannot create a new job with the
+	 * same ID since that could lead to problems with mismatched job configurations.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -119,14 +149,23 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - The index or index pattern to roll up. Supports wildcard-style
+	 * patterns (<code>logstash-*</code>). The job attempts to rollup the entire
+	 * index or index-pattern.
+	 * <p>
 	 * API name: {@code index_pattern}
 	 */
-	@Nullable
 	public final String indexPattern() {
 		return this.indexPattern;
 	}
 
 	/**
+	 * Defines the metrics to collect for each grouping tuple. By default, only the
+	 * doc_counts are collected for each group. To make rollup useful, you will
+	 * often add metrics like averages, mins, maxes, etc. Metrics are defined on a
+	 * per-field basis and for each field you configure which metric should be
+	 * collected.
+	 * <p>
 	 * API name: {@code metrics}
 	 */
 	public final List<FieldMetric> metrics() {
@@ -134,19 +173,37 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - The number of bucket results that are processed on each iteration
+	 * of the rollup indexer. A larger value tends to execute faster, but requires
+	 * more memory during processing. This value has no effect on how the data is
+	 * rolled up; it is merely used for tweaking the speed or memory cost of the
+	 * indexer.
+	 * <p>
 	 * API name: {@code page_size}
 	 */
-	@Nullable
-	public final Long pageSize() {
+	public final int pageSize() {
 		return this.pageSize;
 	}
 
 	/**
+	 * Required - The index that contains the rollup results. The index can be
+	 * shared with other rollup jobs. The data is stored so that it doesn’t
+	 * interfere with unrelated jobs.
+	 * <p>
 	 * API name: {@code rollup_index}
 	 */
-	@Nullable
 	public final String rollupIndex() {
 		return this.rollupIndex;
+	}
+
+	/**
+	 * Time to wait for the request to complete.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	/**
@@ -160,21 +217,33 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.cron != null) {
-			generator.writeKey("cron");
-			generator.write(this.cron);
+		generator.writeKey("cron");
+		generator.write(this.cron);
+
+		generator.writeKey("groups");
+		this.groups.serialize(generator, mapper);
+
+		if (ApiTypeHelper.isDefined(this.headers)) {
+			generator.writeKey("headers");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
 
 		}
-		if (this.groups != null) {
-			generator.writeKey("groups");
-			this.groups.serialize(generator, mapper);
+		generator.writeKey("index_pattern");
+		generator.write(this.indexPattern);
 
-		}
-		if (this.indexPattern != null) {
-			generator.writeKey("index_pattern");
-			generator.write(this.indexPattern);
-
-		}
 		if (ApiTypeHelper.isDefined(this.metrics)) {
 			generator.writeKey("metrics");
 			generator.writeStartArray();
@@ -185,14 +254,15 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.pageSize != null) {
-			generator.writeKey("page_size");
-			generator.write(this.pageSize);
+		generator.writeKey("page_size");
+		generator.write(this.pageSize);
 
-		}
-		if (this.rollupIndex != null) {
-			generator.writeKey("rollup_index");
-			generator.write(this.rollupIndex);
+		generator.writeKey("rollup_index");
+		generator.write(this.rollupIndex);
+
+		if (this.timeout != null) {
+			generator.writeKey("timeout");
+			this.timeout.serialize(generator, mapper);
 
 		}
 
@@ -205,43 +275,70 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutJobRequest> {
-		@Nullable
 		private String cron;
 
-		@Nullable
 		private Groupings groups;
+
+		@Nullable
+		private Map<String, List<String>> headers;
 
 		private String id;
 
-		@Nullable
 		private String indexPattern;
 
 		@Nullable
 		private List<FieldMetric> metrics;
 
-		@Nullable
-		private Long pageSize;
+		private Integer pageSize;
 
-		@Nullable
 		private String rollupIndex;
 
+		@Nullable
+		private Time timeout;
+
 		/**
+		 * Required - A cron string which defines the intervals when the rollup job
+		 * should be executed. When the interval triggers, the indexer attempts to
+		 * rollup the data in the index pattern. The cron pattern is unrelated to the
+		 * time interval of the data being rolled up. For example, you may wish to
+		 * create hourly rollups of your document but to only run the indexer on a daily
+		 * basis at midnight, as defined by the cron. The cron pattern is defined just
+		 * like a Watcher cron schedule.
+		 * <p>
 		 * API name: {@code cron}
 		 */
-		public final Builder cron(@Nullable String value) {
+		public final Builder cron(String value) {
 			this.cron = value;
 			return this;
 		}
 
 		/**
+		 * Required - Defines the grouping fields and aggregations that are defined for
+		 * this rollup job. These fields will then be available later for aggregating
+		 * into buckets. These aggs and fields can be used in any combination. Think of
+		 * the groups configuration as defining a set of tools that can later be used in
+		 * aggregations to partition the data. Unlike raw data, we have to think ahead
+		 * to which fields and aggregations might be used. Rollups provide enough
+		 * flexibility that you simply need to determine which fields are needed, not in
+		 * what order they are needed.
+		 * <p>
 		 * API name: {@code groups}
 		 */
-		public final Builder groups(@Nullable Groupings value) {
+		public final Builder groups(Groupings value) {
 			this.groups = value;
 			return this;
 		}
 
 		/**
+		 * Required - Defines the grouping fields and aggregations that are defined for
+		 * this rollup job. These fields will then be available later for aggregating
+		 * into buckets. These aggs and fields can be used in any combination. Think of
+		 * the groups configuration as defining a set of tools that can later be used in
+		 * aggregations to partition the data. Unlike raw data, we have to think ahead
+		 * to which fields and aggregations might be used. Rollups provide enough
+		 * flexibility that you simply need to determine which fields are needed, not in
+		 * what order they are needed.
+		 * <p>
 		 * API name: {@code groups}
 		 */
 		public final Builder groups(Function<Groupings.Builder, ObjectBuilder<Groupings>> fn) {
@@ -249,7 +346,32 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The ID of the job to create
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
+		 */
+		public final Builder headers(Map<String, List<String>> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, List<String> value) {
+			this.headers = _mapPut(this.headers, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the rollup job. This can be any alphanumeric string
+		 * and uniquely identifies the data that is associated with the rollup job. The
+		 * ID is persistent; it is stored with the rolled up data. If you create a job,
+		 * let it run for a while, then delete the job, the data that the job rolled up
+		 * is still be associated with this job ID. You cannot create a new job with the
+		 * same ID since that could lead to problems with mismatched job configurations.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -259,14 +381,24 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - The index or index pattern to roll up. Supports wildcard-style
+		 * patterns (<code>logstash-*</code>). The job attempts to rollup the entire
+		 * index or index-pattern.
+		 * <p>
 		 * API name: {@code index_pattern}
 		 */
-		public final Builder indexPattern(@Nullable String value) {
+		public final Builder indexPattern(String value) {
 			this.indexPattern = value;
 			return this;
 		}
 
 		/**
+		 * Defines the metrics to collect for each grouping tuple. By default, only the
+		 * doc_counts are collected for each group. To make rollup useful, you will
+		 * often add metrics like averages, mins, maxes, etc. Metrics are defined on a
+		 * per-field basis and for each field you configure which metric should be
+		 * collected.
+		 * <p>
 		 * API name: {@code metrics}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>metrics</code>.
@@ -277,6 +409,12 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Defines the metrics to collect for each grouping tuple. By default, only the
+		 * doc_counts are collected for each group. To make rollup useful, you will
+		 * often add metrics like averages, mins, maxes, etc. Metrics are defined on a
+		 * per-field basis and for each field you configure which metric should be
+		 * collected.
+		 * <p>
 		 * API name: {@code metrics}
 		 * <p>
 		 * Adds one or more values to <code>metrics</code>.
@@ -287,6 +425,12 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Defines the metrics to collect for each grouping tuple. By default, only the
+		 * doc_counts are collected for each group. To make rollup useful, you will
+		 * often add metrics like averages, mins, maxes, etc. Metrics are defined on a
+		 * per-field basis and for each field you configure which metric should be
+		 * collected.
+		 * <p>
 		 * API name: {@code metrics}
 		 * <p>
 		 * Adds a value to <code>metrics</code> using a builder lambda.
@@ -296,19 +440,48 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - The number of bucket results that are processed on each iteration
+		 * of the rollup indexer. A larger value tends to execute faster, but requires
+		 * more memory during processing. This value has no effect on how the data is
+		 * rolled up; it is merely used for tweaking the speed or memory cost of the
+		 * indexer.
+		 * <p>
 		 * API name: {@code page_size}
 		 */
-		public final Builder pageSize(@Nullable Long value) {
+		public final Builder pageSize(int value) {
 			this.pageSize = value;
 			return this;
 		}
 
 		/**
+		 * Required - The index that contains the rollup results. The index can be
+		 * shared with other rollup jobs. The data is stored so that it doesn’t
+		 * interfere with unrelated jobs.
+		 * <p>
 		 * API name: {@code rollup_index}
 		 */
-		public final Builder rollupIndex(@Nullable String value) {
+		public final Builder rollupIndex(String value) {
 			this.rollupIndex = value;
 			return this;
+		}
+
+		/**
+		 * Time to wait for the request to complete.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Time to wait for the request to complete.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -336,10 +509,13 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::cron, JsonpDeserializer.stringDeserializer(), "cron");
 		op.add(Builder::groups, Groupings._DESERIALIZER, "groups");
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
 		op.add(Builder::indexPattern, JsonpDeserializer.stringDeserializer(), "index_pattern");
 		op.add(Builder::metrics, JsonpDeserializer.arrayDeserializer(FieldMetric._DESERIALIZER), "metrics");
-		op.add(Builder::pageSize, JsonpDeserializer.longDeserializer(), "page_size");
+		op.add(Builder::pageSize, JsonpDeserializer.integerDeserializer(), "page_size");
 		op.add(Builder::rollupIndex, JsonpDeserializer.stringDeserializer(), "rollup_index");
+		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}
 

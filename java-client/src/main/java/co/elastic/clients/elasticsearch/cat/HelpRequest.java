@@ -41,8 +41,7 @@ import java.util.Objects;
 /**
  * Returns help for the Cat APIs.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/help/CatHelpRequest.ts#L22-L27">API
+ * @see <a href="../doc-files/api-spec.html#cat.help.Request">API
  *      specification</a>
  */
 

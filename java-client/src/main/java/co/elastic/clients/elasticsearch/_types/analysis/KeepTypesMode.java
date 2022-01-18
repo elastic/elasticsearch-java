@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L211-L214">API
+ *      "../../doc-files/api-spec.html#_types.analysis.KeepTypesMode">API
  *      specification</a>
  */
 @JsonpDeserializable

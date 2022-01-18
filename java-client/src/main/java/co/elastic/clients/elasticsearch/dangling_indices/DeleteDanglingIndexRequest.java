@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  * Deletes the specified dangling index
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/dangling_indices/delete_dangling_index/DeleteDanglingIndexRequest.ts#L24-L38">API
+ *      "../doc-files/api-spec.html#dangling_indices.delete_dangling_index.Request">API
  *      specification</a>
  */
 

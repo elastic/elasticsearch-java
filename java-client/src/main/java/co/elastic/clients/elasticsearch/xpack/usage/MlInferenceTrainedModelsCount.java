@@ -36,13 +36,14 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: xpack.usage.MlInferenceTrainedModelsCount
 
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/xpack/usage/types.ts#L202-L208">API
+ *      "../../doc-files/api-spec.html#xpack.usage.MlInferenceTrainedModelsCount">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -53,9 +54,11 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 
 	private final long other;
 
-	private final long regression;
+	@Nullable
+	private final Long regression;
 
-	private final long classification;
+	@Nullable
+	private final Long classification;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -64,8 +67,8 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 		this.prepackaged = ApiTypeHelper.requireNonNull(builder.prepackaged, this, "prepackaged");
 		this.other = ApiTypeHelper.requireNonNull(builder.other, this, "other");
-		this.regression = ApiTypeHelper.requireNonNull(builder.regression, this, "regression");
-		this.classification = ApiTypeHelper.requireNonNull(builder.classification, this, "classification");
+		this.regression = builder.regression;
+		this.classification = builder.classification;
 
 	}
 
@@ -95,16 +98,18 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code regression}
+	 * API name: {@code regression}
 	 */
-	public final long regression() {
+	@Nullable
+	public final Long regression() {
 		return this.regression;
 	}
 
 	/**
-	 * Required - API name: {@code classification}
+	 * API name: {@code classification}
 	 */
-	public final long classification() {
+	@Nullable
+	public final Long classification() {
 		return this.classification;
 	}
 
@@ -128,11 +133,16 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		generator.writeKey("other");
 		generator.write(this.other);
 
-		generator.writeKey("regression");
-		generator.write(this.regression);
+		if (this.regression != null) {
+			generator.writeKey("regression");
+			generator.write(this.regression);
 
-		generator.writeKey("classification");
-		generator.write(this.classification);
+		}
+		if (this.classification != null) {
+			generator.writeKey("classification");
+			generator.write(this.classification);
+
+		}
 
 	}
 
@@ -149,8 +159,10 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 
 		private Long other;
 
+		@Nullable
 		private Long regression;
 
+		@Nullable
 		private Long classification;
 
 		/**
@@ -178,17 +190,17 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code regression}
+		 * API name: {@code regression}
 		 */
-		public final Builder regression(long value) {
+		public final Builder regression(@Nullable Long value) {
 			this.regression = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code classification}
+		 * API name: {@code classification}
 		 */
-		public final Builder classification(long value) {
+		public final Builder classification(@Nullable Long value) {
 			this.classification = value;
 			return this;
 		}

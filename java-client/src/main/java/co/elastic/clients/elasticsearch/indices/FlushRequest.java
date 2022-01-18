@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Performs the flush operation on one or more indices.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/flush/IndicesFlushRequest.ts#L23-L39">API
+ * @see <a href="../doc-files/api-spec.html#indices.flush.Request">API
  *      specification</a>
  */
 

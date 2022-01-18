@@ -39,7 +39,7 @@ import java.util.function.Function;
  * whole number like a integer, long, or a date.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/Aggregate.ts#L383-L388">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.LongTermsAggregate">API
  *      specification</a>
  */
 @JsonpDeserializable

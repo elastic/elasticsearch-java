@@ -53,8 +53,7 @@ import javax.annotation.Nullable;
 /**
  * Creates or updates a pipeline.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ingest/put_pipeline/PutPipelineRequest.ts#L25-L70">API
+ * @see <a href="../doc-files/api-spec.html#ingest.put_pipeline.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

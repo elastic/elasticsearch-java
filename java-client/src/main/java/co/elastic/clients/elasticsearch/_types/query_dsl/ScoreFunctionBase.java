@@ -42,7 +42,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/compound.ts#L61-L64">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.ScoreFunctionBase">API
  *      specification</a>
  */
 

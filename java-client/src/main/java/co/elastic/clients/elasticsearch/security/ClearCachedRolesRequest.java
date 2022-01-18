@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Evicts roles from the native role cache.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/clear_cached_roles/ClearCachedRolesRequest.ts#L23-L32">API
+ *      "../doc-files/api-spec.html#security.clear_cached_roles.Request">API
  *      specification</a>
  */
 

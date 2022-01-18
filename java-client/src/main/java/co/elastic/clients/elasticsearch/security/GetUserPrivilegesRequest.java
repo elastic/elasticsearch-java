@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  * Retrieves security privileges for the logged in user.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_user_privileges/SecurityGetUserPrivilegesRequest.ts#L23-L35">API
+ *      "../doc-files/api-spec.html#security.get_user_privileges.Request">API
  *      specification</a>
  */
 
@@ -58,12 +58,16 @@ public class GetUserPrivilegesRequest extends RequestBase {
 	@Nullable
 	private final String priviledge;
 
+	@Nullable
+	private final String username;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetUserPrivilegesRequest(Builder builder) {
 
 		this.application = builder.application;
 		this.priviledge = builder.priviledge;
+		this.username = builder.username;
 
 	}
 
@@ -94,6 +98,14 @@ public class GetUserPrivilegesRequest extends RequestBase {
 		return this.priviledge;
 	}
 
+	/**
+	 * API name: {@code username}
+	 */
+	@Nullable
+	public final String username() {
+		return this.username;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -106,6 +118,9 @@ public class GetUserPrivilegesRequest extends RequestBase {
 
 		@Nullable
 		private String priviledge;
+
+		@Nullable
+		private String username;
 
 		/**
 		 * The name of the application. Application privileges are always associated
@@ -127,6 +142,14 @@ public class GetUserPrivilegesRequest extends RequestBase {
 		 */
 		public final Builder priviledge(@Nullable String value) {
 			this.priviledge = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code username}
+		 */
+		public final Builder username(@Nullable String value) {
+			this.username = value;
 			return this;
 		}
 
@@ -171,6 +194,9 @@ public class GetUserPrivilegesRequest extends RequestBase {
 				}
 				if (request.priviledge != null) {
 					params.put("priviledge", request.priviledge);
+				}
+				if (request.username != null) {
+					params.put("username", request.username);
 				}
 				return params;
 

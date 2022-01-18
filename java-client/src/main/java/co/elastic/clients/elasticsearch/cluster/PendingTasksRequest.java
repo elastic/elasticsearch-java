@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
  * Returns a list of any cluster-level changes (e.g. create index, update
  * mapping, allocate or fail shard) which have not yet been executed.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/pending_tasks/ClusterPendingTasksRequest.ts#L23-L34">API
+ * @see <a href="../doc-files/api-spec.html#cluster.pending_tasks.Request">API
  *      specification</a>
  */
 

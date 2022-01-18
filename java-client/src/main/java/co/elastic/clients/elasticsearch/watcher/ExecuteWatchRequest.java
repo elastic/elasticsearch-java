@@ -49,10 +49,15 @@ import javax.annotation.Nullable;
 // typedef: watcher.execute_watch.Request
 
 /**
- * Forces the execution of a stored watch.
+ * This API can be used to force execution of the watch outside of its
+ * triggering logic or to simulate the watch execution for debugging purposes.
+ * For testing and debugging purposes, you also have fine-grained control on how
+ * the watch runs. You can execute the watch without executing all of its
+ * actions or alternatively by simulating them. You can also force execution by
+ * ignoring the watch condition and control whether a watch record would be
+ * written to the watch history after execution.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/execute_watch/WatcherExecuteWatchRequest.ts#L28-L49">API
+ * @see <a href="../doc-files/api-spec.html#watcher.execute_watch.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -103,6 +108,11 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * Determines how to handle the watch actions as part of the watch execution.
+	 * See <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html#watcher-api-execute-watch-action-mode">Action
+	 * execution modes</a> for more information.
+	 * <p>
 	 * API name: {@code action_modes}
 	 */
 	public final Map<String, ActionExecutionMode> actionModes() {
@@ -110,6 +120,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * When present, the watch uses this object as a payload instead of executing
+	 * its own input.
+	 * <p>
 	 * API name: {@code alternative_input}
 	 */
 	public final Map<String, JsonData> alternativeInput() {
@@ -117,7 +130,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * indicates whether the watch should execute in debug mode
+	 * Defines whether the watch runs in debug mode.
 	 * <p>
 	 * API name: {@code debug}
 	 */
@@ -127,7 +140,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * Watch ID
+	 * Identifier for the watch.
 	 * <p>
 	 * API name: {@code id}
 	 */
@@ -137,6 +150,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * When set to <code>true</code>, the watch execution uses the always condition.
+	 * This can also be specified as an HTTP parameter.
+	 * <p>
 	 * API name: {@code ignore_condition}
 	 */
 	@Nullable
@@ -145,6 +161,12 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * When set to <code>true</code>, the watch record representing the watch
+	 * execution result is persisted to the <code>.watcher-history</code> index for
+	 * the current time. In addition, the status of the watch is updated, possibly
+	 * throttling subsequent executions. This can also be specified as an HTTP
+	 * parameter.
+	 * <p>
 	 * API name: {@code record_execution}
 	 */
 	@Nullable
@@ -161,6 +183,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * This structure is parsed as the data of the trigger event that will be used
+	 * during the watch execution
+	 * <p>
 	 * API name: {@code trigger_data}
 	 */
 	@Nullable
@@ -169,6 +194,11 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
+	 * When present, this <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/how-watcher-works.html#watch-definition">watch</a>
+	 * is used instead of the one specified in the request. This watch is not
+	 * persisted to the index and record_execution cannot be set.
+	 * <p>
 	 * API name: {@code watch}
 	 */
 	@Nullable
@@ -271,6 +301,11 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		private Watch watch;
 
 		/**
+		 * Determines how to handle the watch actions as part of the watch execution.
+		 * See <a href=
+		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html#watcher-api-execute-watch-action-mode">Action
+		 * execution modes</a> for more information.
+		 * <p>
 		 * API name: {@code action_modes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>actionModes</code>.
@@ -281,6 +316,11 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * Determines how to handle the watch actions as part of the watch execution.
+		 * See <a href=
+		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html#watcher-api-execute-watch-action-mode">Action
+		 * execution modes</a> for more information.
+		 * <p>
 		 * API name: {@code action_modes}
 		 * <p>
 		 * Adds an entry to <code>actionModes</code>.
@@ -291,6 +331,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * When present, the watch uses this object as a payload instead of executing
+		 * its own input.
+		 * <p>
 		 * API name: {@code alternative_input}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>alternativeInput</code>.
@@ -301,6 +344,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * When present, the watch uses this object as a payload instead of executing
+		 * its own input.
+		 * <p>
 		 * API name: {@code alternative_input}
 		 * <p>
 		 * Adds an entry to <code>alternativeInput</code>.
@@ -311,7 +357,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * indicates whether the watch should execute in debug mode
+		 * Defines whether the watch runs in debug mode.
 		 * <p>
 		 * API name: {@code debug}
 		 */
@@ -321,7 +367,7 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Watch ID
+		 * Identifier for the watch.
 		 * <p>
 		 * API name: {@code id}
 		 */
@@ -331,6 +377,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * When set to <code>true</code>, the watch execution uses the always condition.
+		 * This can also be specified as an HTTP parameter.
+		 * <p>
 		 * API name: {@code ignore_condition}
 		 */
 		public final Builder ignoreCondition(@Nullable Boolean value) {
@@ -339,6 +388,12 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * When set to <code>true</code>, the watch record representing the watch
+		 * execution result is persisted to the <code>.watcher-history</code> index for
+		 * the current time. In addition, the status of the watch is updated, possibly
+		 * throttling subsequent executions. This can also be specified as an HTTP
+		 * parameter.
+		 * <p>
 		 * API name: {@code record_execution}
 		 */
 		public final Builder recordExecution(@Nullable Boolean value) {
@@ -362,6 +417,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * This structure is parsed as the data of the trigger event that will be used
+		 * during the watch execution
+		 * <p>
 		 * API name: {@code trigger_data}
 		 */
 		public final Builder triggerData(@Nullable ScheduleTriggerEvent value) {
@@ -370,6 +428,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * This structure is parsed as the data of the trigger event that will be used
+		 * during the watch execution
+		 * <p>
 		 * API name: {@code trigger_data}
 		 */
 		public final Builder triggerData(
@@ -378,6 +439,11 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * When present, this <a href=
+		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/how-watcher-works.html#watch-definition">watch</a>
+		 * is used instead of the one specified in the request. This watch is not
+		 * persisted to the index and record_execution cannot be set.
+		 * <p>
 		 * API name: {@code watch}
 		 */
 		public final Builder watch(@Nullable Watch value) {
@@ -386,6 +452,11 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
+		 * When present, this <a href=
+		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/how-watcher-works.html#watch-definition">watch</a>
+		 * is used instead of the one specified in the request. This watch is not
+		 * persisted to the index and record_execution cannot be set.
+		 * <p>
 		 * API name: {@code watch}
 		 */
 		public final Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {

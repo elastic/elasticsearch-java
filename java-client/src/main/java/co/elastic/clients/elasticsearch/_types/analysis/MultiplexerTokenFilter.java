@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/token_filters.ts#L258-L262">API
+ *      "../../doc-files/api-spec.html#_types.analysis.MultiplexerTokenFilter">API
  *      specification</a>
  */
 @JsonpDeserializable

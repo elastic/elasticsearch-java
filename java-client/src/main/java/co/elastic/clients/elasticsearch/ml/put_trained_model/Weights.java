@@ -41,8 +41,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/types.ts#L108-L110">API
+ * @see <a href="../../doc-files/api-spec.html#ml.put_trained_model.Weights">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -53,7 +53,7 @@ import javax.annotation.Nullable;
  *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl-mlt-query.html#_document_input_parameters">Documentation
  *      on elastic.co</a>
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/suggester.ts#L116-L122">API
+ *      "../../doc-files/api-spec.html#_global.search._types.Context">API
  *      specification</a>
  */
 @JsonpDeserializable

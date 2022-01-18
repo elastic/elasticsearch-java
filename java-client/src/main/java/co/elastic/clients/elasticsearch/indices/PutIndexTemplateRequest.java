@@ -39,10 +39,11 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -55,7 +56,7 @@ import javax.annotation.Nullable;
  * Creates or updates an index template.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/put_index_template/IndicesPutIndexTemplateRequest.ts#L35-L55">API
+ *      "../doc-files/api-spec.html#indices.put_index_template.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -65,7 +66,10 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	private final List<String> composedOf;
 
 	@Nullable
-	private final DataStream dataStream;
+	private final Boolean create;
+
+	@Nullable
+	private final DataStreamVisibility dataStream;
 
 	private final List<String> indexPatterns;
 
@@ -86,6 +90,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.composedOf = ApiTypeHelper.unmodifiable(builder.composedOf);
+		this.create = builder.create;
 		this.dataStream = builder.dataStream;
 		this.indexPatterns = ApiTypeHelper.unmodifiable(builder.indexPatterns);
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
@@ -114,10 +119,21 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	}
 
 	/**
+	 * Whether the index template should only be added if new or can also replace an
+	 * existing one
+	 * <p>
+	 * API name: {@code create}
+	 */
+	@Nullable
+	public final Boolean create() {
+		return this.create;
+	}
+
+	/**
 	 * API name: {@code data_stream}
 	 */
 	@Nullable
-	public final DataStream dataStream() {
+	public final DataStreamVisibility dataStream() {
 		return this.dataStream;
 	}
 
@@ -240,7 +256,10 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		private List<String> composedOf;
 
 		@Nullable
-		private DataStream dataStream;
+		private Boolean create;
+
+		@Nullable
+		private DataStreamVisibility dataStream;
 
 		@Nullable
 		private List<String> indexPatterns;
@@ -297,9 +316,20 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		}
 
 		/**
+		 * Whether the index template should only be added if new or can also replace an
+		 * existing one
+		 * <p>
+		 * API name: {@code create}
+		 */
+		public final Builder create(@Nullable Boolean value) {
+			this.create = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code data_stream}
 		 */
-		public final Builder dataStream(@Nullable DataStream value) {
+		public final Builder dataStream(@Nullable DataStreamVisibility value) {
 			this.dataStream = value;
 			return this;
 		}
@@ -307,8 +337,9 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		/**
 		 * API name: {@code data_stream}
 		 */
-		public final Builder dataStream(Function<DataStream.Builder, ObjectBuilder<DataStream>> fn) {
-			return this.dataStream(fn.apply(new DataStream.Builder()).build());
+		public final Builder dataStream(
+				Function<DataStreamVisibility.Builder, ObjectBuilder<DataStreamVisibility>> fn) {
+			return this.dataStream(fn.apply(new DataStreamVisibility.Builder()).build());
 		}
 
 		/**
@@ -399,7 +430,7 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 		op.add(Builder::composedOf, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"composed_of");
-		op.add(Builder::dataStream, DataStream._DESERIALIZER, "data_stream");
+		op.add(Builder::dataStream, DataStreamVisibility._DESERIALIZER, "data_stream");
 		op.add(Builder::indexPatterns, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"index_patterns");
 		op.add(Builder::priority, JsonpDeserializer.integerDeserializer(), "priority");
@@ -443,7 +474,11 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.create != null) {
+					params.put("create", String.valueOf(request.create));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PutIndexTemplateResponse._DESERIALIZER);
 }

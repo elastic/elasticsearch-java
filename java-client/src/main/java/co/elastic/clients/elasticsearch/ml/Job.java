@@ -48,9 +48,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/_types/Job.ts#L46-L70">API
- *      specification</a>
+ * @see <a href="../doc-files/api-spec.html#ml._types.Job">API specification</a>
  */
 @JsonpDeserializable
 public class Job implements JsonpSerializable {
@@ -61,12 +59,14 @@ public class Job implements JsonpSerializable {
 	@Nullable
 	private final AnalysisLimits analysisLimits;
 
+	@Nullable
 	private final Time backgroundPersistInterval;
 
 	@Nullable
 	private final JobBlocked blocked;
 
-	private final int createTime;
+	@Nullable
+	private final Integer createTime;
 
 	@Nullable
 	private final JsonData customSettings;
@@ -92,8 +92,10 @@ public class Job implements JsonpSerializable {
 
 	private final String jobId;
 
+	@Nullable
 	private final String jobType;
 
+	@Nullable
 	private final String jobVersion;
 
 	@Nullable
@@ -119,10 +121,9 @@ public class Job implements JsonpSerializable {
 		this.allowLazyOpen = ApiTypeHelper.requireNonNull(builder.allowLazyOpen, this, "allowLazyOpen");
 		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = builder.analysisLimits;
-		this.backgroundPersistInterval = ApiTypeHelper.requireNonNull(builder.backgroundPersistInterval, this,
-				"backgroundPersistInterval");
+		this.backgroundPersistInterval = builder.backgroundPersistInterval;
 		this.blocked = builder.blocked;
-		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
+		this.createTime = builder.createTime;
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
 		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
@@ -132,8 +133,8 @@ public class Job implements JsonpSerializable {
 		this.finishedTime = builder.finishedTime;
 		this.groups = ApiTypeHelper.unmodifiable(builder.groups);
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.jobType = ApiTypeHelper.requireNonNull(builder.jobType, this, "jobType");
-		this.jobVersion = ApiTypeHelper.requireNonNull(builder.jobVersion, this, "jobVersion");
+		this.jobType = builder.jobType;
+		this.jobVersion = builder.jobVersion;
 		this.modelPlotConfig = builder.modelPlotConfig;
 		this.modelSnapshotId = builder.modelSnapshotId;
 		this.modelSnapshotRetentionDays = ApiTypeHelper.requireNonNull(builder.modelSnapshotRetentionDays, this,
@@ -171,8 +172,9 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code background_persist_interval}
+	 * API name: {@code background_persist_interval}
 	 */
+	@Nullable
 	public final Time backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
@@ -186,9 +188,10 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code create_time}
+	 * API name: {@code create_time}
 	 */
-	public final int createTime() {
+	@Nullable
+	public final Integer createTime() {
 		return this.createTime;
 	}
 
@@ -262,15 +265,17 @@ public class Job implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code job_type}
+	 * API name: {@code job_type}
 	 */
+	@Nullable
 	public final String jobType() {
 		return this.jobType;
 	}
 
 	/**
-	 * Required - API name: {@code job_version}
+	 * API name: {@code job_version}
 	 */
+	@Nullable
 	public final String jobVersion() {
 		return this.jobVersion;
 	}
@@ -343,17 +348,21 @@ public class Job implements JsonpSerializable {
 			this.analysisLimits.serialize(generator, mapper);
 
 		}
-		generator.writeKey("background_persist_interval");
-		this.backgroundPersistInterval.serialize(generator, mapper);
+		if (this.backgroundPersistInterval != null) {
+			generator.writeKey("background_persist_interval");
+			this.backgroundPersistInterval.serialize(generator, mapper);
 
+		}
 		if (this.blocked != null) {
 			generator.writeKey("blocked");
 			this.blocked.serialize(generator, mapper);
 
 		}
-		generator.writeKey("create_time");
-		generator.write(this.createTime);
+		if (this.createTime != null) {
+			generator.writeKey("create_time");
+			generator.write(this.createTime);
 
+		}
 		if (this.customSettings != null) {
 			generator.writeKey("custom_settings");
 			this.customSettings.serialize(generator, mapper);
@@ -400,12 +409,16 @@ public class Job implements JsonpSerializable {
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
-		generator.writeKey("job_type");
-		generator.write(this.jobType);
+		if (this.jobType != null) {
+			generator.writeKey("job_type");
+			generator.write(this.jobType);
 
-		generator.writeKey("job_version");
-		generator.write(this.jobVersion);
+		}
+		if (this.jobVersion != null) {
+			generator.writeKey("job_version");
+			generator.write(this.jobVersion);
 
+		}
 		if (this.modelPlotConfig != null) {
 			generator.writeKey("model_plot_config");
 			this.modelPlotConfig.serialize(generator, mapper);
@@ -449,11 +462,13 @@ public class Job implements JsonpSerializable {
 		@Nullable
 		private AnalysisLimits analysisLimits;
 
+		@Nullable
 		private Time backgroundPersistInterval;
 
 		@Nullable
 		private JobBlocked blocked;
 
+		@Nullable
 		private Integer createTime;
 
 		@Nullable
@@ -481,8 +496,10 @@ public class Job implements JsonpSerializable {
 
 		private String jobId;
 
+		@Nullable
 		private String jobType;
 
+		@Nullable
 		private String jobVersion;
 
 		@Nullable
@@ -540,15 +557,15 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code background_persist_interval}
+		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(Time value) {
+		public final Builder backgroundPersistInterval(@Nullable Time value) {
 			this.backgroundPersistInterval = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code background_persist_interval}
+		 * API name: {@code background_persist_interval}
 		 */
 		public final Builder backgroundPersistInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.backgroundPersistInterval(fn.apply(new Time.Builder()).build());
@@ -570,9 +587,9 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code create_time}
+		 * API name: {@code create_time}
 		 */
-		public final Builder createTime(int value) {
+		public final Builder createTime(@Nullable Integer value) {
 			this.createTime = value;
 			return this;
 		}
@@ -676,17 +693,17 @@ public class Job implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code job_type}
+		 * API name: {@code job_type}
 		 */
-		public final Builder jobType(String value) {
+		public final Builder jobType(@Nullable String value) {
 			this.jobType = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code job_version}
+		 * API name: {@code job_version}
 		 */
-		public final Builder jobVersion(String value) {
+		public final Builder jobVersion(@Nullable String value) {
 			this.jobVersion = value;
 			return this;
 		}

@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/watcher/_types/Actions.ts#L34-L43">API
+ * @see <a href="../doc-files/api-spec.html#watcher._types.PagerDutyEvent">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -54,14 +53,18 @@ public class PagerDutyEvent implements JsonpSerializable {
 
 	private final boolean attachPayload;
 
+	@Nullable
 	private final String client;
 
+	@Nullable
 	private final String clientUrl;
 
-	private final List<PagerDutyContext> context;
+	private final List<PagerDutyContext> contexts;
 
+	@Nullable
 	private final String description;
 
+	@Nullable
 	private final PagerDutyEventType eventType;
 
 	private final String incidentKey;
@@ -72,11 +75,11 @@ public class PagerDutyEvent implements JsonpSerializable {
 
 		this.account = ApiTypeHelper.requireNonNull(builder.account, this, "account");
 		this.attachPayload = ApiTypeHelper.requireNonNull(builder.attachPayload, this, "attachPayload");
-		this.client = ApiTypeHelper.requireNonNull(builder.client, this, "client");
-		this.clientUrl = ApiTypeHelper.requireNonNull(builder.clientUrl, this, "clientUrl");
-		this.context = ApiTypeHelper.unmodifiableRequired(builder.context, this, "context");
-		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
-		this.eventType = ApiTypeHelper.requireNonNull(builder.eventType, this, "eventType");
+		this.client = builder.client;
+		this.clientUrl = builder.clientUrl;
+		this.contexts = ApiTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
+		this.description = builder.description;
+		this.eventType = builder.eventType;
 		this.incidentKey = ApiTypeHelper.requireNonNull(builder.incidentKey, this, "incidentKey");
 
 	}
@@ -100,36 +103,40 @@ public class PagerDutyEvent implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code client}
+	 * API name: {@code client}
 	 */
+	@Nullable
 	public final String client() {
 		return this.client;
 	}
 
 	/**
-	 * Required - API name: {@code client_url}
+	 * API name: {@code client_url}
 	 */
+	@Nullable
 	public final String clientUrl() {
 		return this.clientUrl;
 	}
 
 	/**
-	 * Required - API name: {@code context}
+	 * Required - API name: {@code contexts}
 	 */
-	public final List<PagerDutyContext> context() {
-		return this.context;
+	public final List<PagerDutyContext> contexts() {
+		return this.contexts;
 	}
 
 	/**
-	 * Required - API name: {@code description}
+	 * API name: {@code description}
 	 */
+	@Nullable
 	public final String description() {
 		return this.description;
 	}
 
 	/**
-	 * Required - API name: {@code event_type}
+	 * API name: {@code event_type}
 	 */
+	@Nullable
 	public final PagerDutyEventType eventType() {
 		return this.eventType;
 	}
@@ -158,27 +165,35 @@ public class PagerDutyEvent implements JsonpSerializable {
 		generator.writeKey("attach_payload");
 		generator.write(this.attachPayload);
 
-		generator.writeKey("client");
-		generator.write(this.client);
+		if (this.client != null) {
+			generator.writeKey("client");
+			generator.write(this.client);
 
-		generator.writeKey("client_url");
-		generator.write(this.clientUrl);
+		}
+		if (this.clientUrl != null) {
+			generator.writeKey("client_url");
+			generator.write(this.clientUrl);
 
-		if (ApiTypeHelper.isDefined(this.context)) {
-			generator.writeKey("context");
+		}
+		if (ApiTypeHelper.isDefined(this.contexts)) {
+			generator.writeKey("contexts");
 			generator.writeStartArray();
-			for (PagerDutyContext item0 : this.context) {
+			for (PagerDutyContext item0 : this.contexts) {
 				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
 
 		}
-		generator.writeKey("description");
-		generator.write(this.description);
+		if (this.description != null) {
+			generator.writeKey("description");
+			generator.write(this.description);
 
-		generator.writeKey("event_type");
-		this.eventType.serialize(generator, mapper);
+		}
+		if (this.eventType != null) {
+			generator.writeKey("event_type");
+			this.eventType.serialize(generator, mapper);
+		}
 		generator.writeKey("incident_key");
 		generator.write(this.incidentKey);
 
@@ -195,14 +210,18 @@ public class PagerDutyEvent implements JsonpSerializable {
 
 		private Boolean attachPayload;
 
+		@Nullable
 		private String client;
 
+		@Nullable
 		private String clientUrl;
 
-		private List<PagerDutyContext> context;
+		private List<PagerDutyContext> contexts;
 
+		@Nullable
 		private String description;
 
+		@Nullable
 		private PagerDutyEventType eventType;
 
 		private String incidentKey;
@@ -224,62 +243,62 @@ public class PagerDutyEvent implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code client}
+		 * API name: {@code client}
 		 */
-		public final Builder client(String value) {
+		public final Builder client(@Nullable String value) {
 			this.client = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code client_url}
+		 * API name: {@code client_url}
 		 */
-		public final Builder clientUrl(String value) {
+		public final Builder clientUrl(@Nullable String value) {
 			this.clientUrl = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code context}
+		 * Required - API name: {@code contexts}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>context</code>.
+		 * Adds all elements of <code>list</code> to <code>contexts</code>.
 		 */
-		public final Builder context(List<PagerDutyContext> list) {
-			this.context = _listAddAll(this.context, list);
+		public final Builder contexts(List<PagerDutyContext> list) {
+			this.contexts = _listAddAll(this.contexts, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code context}
+		 * Required - API name: {@code contexts}
 		 * <p>
-		 * Adds one or more values to <code>context</code>.
+		 * Adds one or more values to <code>contexts</code>.
 		 */
-		public final Builder context(PagerDutyContext value, PagerDutyContext... values) {
-			this.context = _listAdd(this.context, value, values);
+		public final Builder contexts(PagerDutyContext value, PagerDutyContext... values) {
+			this.contexts = _listAdd(this.contexts, value, values);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code context}
+		 * Required - API name: {@code contexts}
 		 * <p>
-		 * Adds a value to <code>context</code> using a builder lambda.
+		 * Adds a value to <code>contexts</code> using a builder lambda.
 		 */
-		public final Builder context(Function<PagerDutyContext.Builder, ObjectBuilder<PagerDutyContext>> fn) {
-			return context(fn.apply(new PagerDutyContext.Builder()).build());
+		public final Builder contexts(Function<PagerDutyContext.Builder, ObjectBuilder<PagerDutyContext>> fn) {
+			return contexts(fn.apply(new PagerDutyContext.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code description}
+		 * API name: {@code description}
 		 */
-		public final Builder description(String value) {
+		public final Builder description(@Nullable String value) {
 			this.description = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code event_type}
+		 * API name: {@code event_type}
 		 */
-		public final Builder eventType(PagerDutyEventType value) {
+		public final Builder eventType(@Nullable PagerDutyEventType value) {
 			this.eventType = value;
 			return this;
 		}
@@ -319,7 +338,7 @@ public class PagerDutyEvent implements JsonpSerializable {
 		op.add(Builder::attachPayload, JsonpDeserializer.booleanDeserializer(), "attach_payload");
 		op.add(Builder::client, JsonpDeserializer.stringDeserializer(), "client");
 		op.add(Builder::clientUrl, JsonpDeserializer.stringDeserializer(), "client_url");
-		op.add(Builder::context, JsonpDeserializer.arrayDeserializer(PagerDutyContext._DESERIALIZER), "context");
+		op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(PagerDutyContext._DESERIALIZER), "contexts");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::eventType, PagerDutyEventType._DESERIALIZER, "event_type");
 		op.add(Builder::incidentKey, JsonpDeserializer.stringDeserializer(), "incident_key");

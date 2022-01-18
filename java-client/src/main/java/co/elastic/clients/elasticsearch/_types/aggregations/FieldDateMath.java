@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * expressed according to the target field's precision.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L135-L142">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.FieldDateMath">API
  *      specification</a>
  */
 @JsonpDeserializable

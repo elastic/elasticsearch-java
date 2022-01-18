@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Gets configuration and usage information about inference trained models.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cat/ml_trained_models/CatTrainedModelsRequest.ts#L24-L39">API
+ * @see <a href="../doc-files/api-spec.html#cat.ml_trained_models.Request">API
  *      specification</a>
  */
 

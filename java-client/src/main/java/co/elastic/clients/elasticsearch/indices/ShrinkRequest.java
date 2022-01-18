@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 /**
  * Allow to shrink an existing index into a new index with fewer primary shards.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/shrink/IndicesShrinkRequest.ts#L27-L46">API
+ * @see <a href="../doc-files/api-spec.html#indices.shrink.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

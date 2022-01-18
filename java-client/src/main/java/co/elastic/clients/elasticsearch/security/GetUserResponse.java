@@ -38,8 +38,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_user/SecurityGetUserResponse.ts#L23-L23">API
+ * @see <a href="../doc-files/api-spec.html#security.get_user.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

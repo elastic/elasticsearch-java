@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/rollover/types.ts#L26-L31">API
+ *      "../../doc-files/api-spec.html#indices.rollover.RolloverConditions">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -59,7 +59,16 @@ public class RolloverConditions implements JsonpSerializable {
 	private final String maxSize;
 
 	@Nullable
+	private final String maxSizeBytes;
+
+	@Nullable
 	private final String maxPrimaryShardSize;
+
+	@Nullable
+	private final String maxPrimaryShardSizeBytes;
+
+	@Nullable
+	private final String maxAgeMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,7 +77,10 @@ public class RolloverConditions implements JsonpSerializable {
 		this.maxAge = builder.maxAge;
 		this.maxDocs = builder.maxDocs;
 		this.maxSize = builder.maxSize;
+		this.maxSizeBytes = builder.maxSizeBytes;
 		this.maxPrimaryShardSize = builder.maxPrimaryShardSize;
+		this.maxPrimaryShardSizeBytes = builder.maxPrimaryShardSizeBytes;
+		this.maxAgeMillis = builder.maxAgeMillis;
 
 	}
 
@@ -101,11 +113,35 @@ public class RolloverConditions implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code max_size_bytes}
+	 */
+	@Nullable
+	public final String maxSizeBytes() {
+		return this.maxSizeBytes;
+	}
+
+	/**
 	 * API name: {@code max_primary_shard_size}
 	 */
 	@Nullable
 	public final String maxPrimaryShardSize() {
 		return this.maxPrimaryShardSize;
+	}
+
+	/**
+	 * API name: {@code max_primary_shard_size_bytes}
+	 */
+	@Nullable
+	public final String maxPrimaryShardSizeBytes() {
+		return this.maxPrimaryShardSizeBytes;
+	}
+
+	/**
+	 * API name: {@code max_age_millis}
+	 */
+	@Nullable
+	public final String maxAgeMillis() {
+		return this.maxAgeMillis;
 	}
 
 	/**
@@ -134,9 +170,24 @@ public class RolloverConditions implements JsonpSerializable {
 			generator.write(this.maxSize);
 
 		}
+		if (this.maxSizeBytes != null) {
+			generator.writeKey("max_size_bytes");
+			generator.write(this.maxSizeBytes);
+
+		}
 		if (this.maxPrimaryShardSize != null) {
 			generator.writeKey("max_primary_shard_size");
 			generator.write(this.maxPrimaryShardSize);
+
+		}
+		if (this.maxPrimaryShardSizeBytes != null) {
+			generator.writeKey("max_primary_shard_size_bytes");
+			generator.write(this.maxPrimaryShardSizeBytes);
+
+		}
+		if (this.maxAgeMillis != null) {
+			generator.writeKey("max_age_millis");
+			generator.write(this.maxAgeMillis);
 
 		}
 
@@ -159,7 +210,16 @@ public class RolloverConditions implements JsonpSerializable {
 		private String maxSize;
 
 		@Nullable
+		private String maxSizeBytes;
+
+		@Nullable
 		private String maxPrimaryShardSize;
+
+		@Nullable
+		private String maxPrimaryShardSizeBytes;
+
+		@Nullable
+		private String maxAgeMillis;
 
 		/**
 		 * API name: {@code max_age}
@@ -193,10 +253,34 @@ public class RolloverConditions implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code max_size_bytes}
+		 */
+		public final Builder maxSizeBytes(@Nullable String value) {
+			this.maxSizeBytes = value;
+			return this;
+		}
+
+		/**
 		 * API name: {@code max_primary_shard_size}
 		 */
 		public final Builder maxPrimaryShardSize(@Nullable String value) {
 			this.maxPrimaryShardSize = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_primary_shard_size_bytes}
+		 */
+		public final Builder maxPrimaryShardSizeBytes(@Nullable String value) {
+			this.maxPrimaryShardSizeBytes = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code max_age_millis}
+		 */
+		public final Builder maxAgeMillis(@Nullable String value) {
+			this.maxAgeMillis = value;
 			return this;
 		}
 
@@ -226,7 +310,11 @@ public class RolloverConditions implements JsonpSerializable {
 		op.add(Builder::maxAge, Time._DESERIALIZER, "max_age");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::maxSize, JsonpDeserializer.stringDeserializer(), "max_size");
+		op.add(Builder::maxSizeBytes, JsonpDeserializer.stringDeserializer(), "max_size_bytes");
 		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "max_primary_shard_size");
+		op.add(Builder::maxPrimaryShardSizeBytes, JsonpDeserializer.stringDeserializer(),
+				"max_primary_shard_size_bytes");
+		op.add(Builder::maxAgeMillis, JsonpDeserializer.stringDeserializer(), "max_age_millis");
 
 	}
 

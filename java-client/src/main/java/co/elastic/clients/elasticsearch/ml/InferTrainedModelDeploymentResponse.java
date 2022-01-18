@@ -43,6 +43,12 @@ import javax.annotation.Nullable;
 
 // typedef: ml.infer_trained_model_deployment.Response
 
+/**
+ *
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ml.infer_trained_model_deployment.Response">API
+ *      specification</a>
+ */
 @JsonpDeserializable
 public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 	private final List<TrainedModelEntities> entities;

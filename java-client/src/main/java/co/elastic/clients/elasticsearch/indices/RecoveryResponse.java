@@ -39,8 +39,7 @@ import java.util.function.Function;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/indices/recovery/IndicesRecoveryResponse.ts#L24-L27">API
+ * @see <a href="../doc-files/api-spec.html#indices.recovery.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

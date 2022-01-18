@@ -38,7 +38,7 @@ import java.util.function.Function;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/delete_calendar_event/MlDeleteCalendarEventResponse.ts#L22-L22">API
+ *      "../doc-files/api-spec.html#ml.delete_calendar_event.Response">API
  *      specification</a>
  */
 @JsonpDeserializable

@@ -67,8 +67,7 @@ import javax.annotation.Nullable;
  * the <code>overall_score</code> is the maximum <code>overall_score</code> of
  * the overall buckets that have a span equal to the jobs' largest bucket span.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/get_overall_buckets/MlGetOverallBucketsRequest.ts#L25-L143">API
+ * @see <a href="../doc-files/api-spec.html#ml.get_overall_buckets.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

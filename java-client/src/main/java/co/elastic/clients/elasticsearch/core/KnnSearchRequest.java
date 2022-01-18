@@ -54,8 +54,7 @@ import javax.annotation.Nullable;
 /**
  * Performs a kNN search.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/knn_search/KnnSearchRequest.ts#L26-L71">API
+ * @see <a href="../doc-files/api-spec.html#_global.knn_search.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

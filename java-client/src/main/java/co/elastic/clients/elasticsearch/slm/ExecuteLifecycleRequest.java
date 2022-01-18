@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * Immediately creates a snapshot according to the lifecycle policy, without
  * waiting for the scheduled time.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/slm/execute_lifecycle/ExecuteSnapshotLifecycleRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#slm.execute_lifecycle.Request">API
  *      specification</a>
  */
 

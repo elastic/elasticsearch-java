@@ -47,8 +47,7 @@ import javax.annotation.Nullable;
  * Pauses a follower index. The follower index will not fetch any additional
  * operations from the leader index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ccr/pause_follow/PauseFollowIndexRequest.ts#L23-L32">API
+ * @see <a href="../doc-files/api-spec.html#ccr.pause_follow.Request">API
  *      specification</a>
  */
 

@@ -44,8 +44,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Base.ts#L37-L47">API
+ * @see <a href="../doc-files/api-spec.html#_types.WriteResponseBase">API
  *      specification</a>
  */
 
@@ -62,9 +61,6 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 
 	private final ShardStatistics shards;
 
-	@Nullable
-	private final String type;
-
 	private final long version;
 
 	@Nullable
@@ -80,7 +76,6 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		this.result = ApiTypeHelper.requireNonNull(builder.result, this, "result");
 		this.seqNo = ApiTypeHelper.requireNonNull(builder.seqNo, this, "seqNo");
 		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.type = builder.type;
 		this.version = ApiTypeHelper.requireNonNull(builder.version, this, "version");
 		this.forcedRefresh = builder.forcedRefresh;
 
@@ -129,14 +124,6 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _type}
-	 */
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Required - API name: {@code _version}
 	 */
 	public final long version() {
@@ -179,11 +166,6 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		generator.writeKey("_shards");
 		this.shards.serialize(generator, mapper);
 
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
-
-		}
 		generator.writeKey("_version");
 		generator.write(this.version);
 
@@ -209,9 +191,6 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		private Long seqNo;
 
 		private ShardStatistics shards;
-
-		@Nullable
-		private String type;
 
 		private Long version;
 
@@ -274,14 +253,6 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _type}
-		 */
-		public final BuilderT type(@Nullable String value) {
-			this.type = value;
-			return self();
-		}
-
-		/**
 		 * Required - API name: {@code _version}
 		 */
 		public final BuilderT version(long value) {
@@ -311,7 +282,6 @@ public abstract class WriteResponseBase implements JsonpSerializable {
 		op.add(AbstractBuilder::result, Result._DESERIALIZER, "result");
 		op.add(AbstractBuilder::seqNo, JsonpDeserializer.longDeserializer(), "_seq_no");
 		op.add(AbstractBuilder::shards, ShardStatistics._DESERIALIZER, "_shards");
-		op.add(AbstractBuilder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(AbstractBuilder::version, JsonpDeserializer.longDeserializer(), "_version");
 		op.add(AbstractBuilder::forcedRefresh, JsonpDeserializer.booleanDeserializer(), "forced_refresh");
 

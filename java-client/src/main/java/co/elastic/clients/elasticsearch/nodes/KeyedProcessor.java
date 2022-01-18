@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,22 +41,23 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L62-L65">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.KeyedProcessor">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class KeyedProcessor implements JsonpSerializable {
-	private final Process statistics;
+	@Nullable
+	private final Processor stats;
 
+	@Nullable
 	private final String type;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private KeyedProcessor(Builder builder) {
 
-		this.statistics = ApiTypeHelper.requireNonNull(builder.statistics, this, "statistics");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.stats = builder.stats;
+		this.type = builder.type;
 
 	}
 
@@ -66,15 +66,17 @@ public class KeyedProcessor implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code statistics}
+	 * API name: {@code stats}
 	 */
-	public final Process statistics() {
-		return this.statistics;
+	@Nullable
+	public final Processor stats() {
+		return this.stats;
 	}
 
 	/**
-	 * Required - API name: {@code type}
+	 * API name: {@code type}
 	 */
+	@Nullable
 	public final String type() {
 		return this.type;
 	}
@@ -90,11 +92,16 @@ public class KeyedProcessor implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("statistics");
-		this.statistics.serialize(generator, mapper);
+		if (this.stats != null) {
+			generator.writeKey("stats");
+			this.stats.serialize(generator, mapper);
 
-		generator.writeKey("type");
-		generator.write(this.type);
+		}
+		if (this.type != null) {
+			generator.writeKey("type");
+			generator.write(this.type);
+
+		}
 
 	}
 
@@ -105,29 +112,31 @@ public class KeyedProcessor implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KeyedProcessor> {
-		private Process statistics;
+		@Nullable
+		private Processor stats;
 
+		@Nullable
 		private String type;
 
 		/**
-		 * Required - API name: {@code statistics}
+		 * API name: {@code stats}
 		 */
-		public final Builder statistics(Process value) {
-			this.statistics = value;
+		public final Builder stats(@Nullable Processor value) {
+			this.stats = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code statistics}
+		 * API name: {@code stats}
 		 */
-		public final Builder statistics(Function<Process.Builder, ObjectBuilder<Process>> fn) {
-			return this.statistics(fn.apply(new Process.Builder()).build());
+		public final Builder stats(Function<Processor.Builder, ObjectBuilder<Processor>> fn) {
+			return this.stats(fn.apply(new Processor.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * API name: {@code type}
 		 */
-		public final Builder type(String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -155,7 +164,7 @@ public class KeyedProcessor implements JsonpSerializable {
 
 	protected static void setupKeyedProcessorDeserializer(ObjectDeserializer<KeyedProcessor.Builder> op) {
 
-		op.add(Builder::statistics, Process._DESERIALIZER, "statistics");
+		op.add(Builder::stats, Processor._DESERIALIZER, "stats");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

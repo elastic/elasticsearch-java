@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/cluster/allocation_explain/types.ts#L86-L95">API
+ *      "../../doc-files/api-spec.html#cluster.allocation_explain.Decision">API
  *      specification</a>
  */
 @JsonpDeserializable

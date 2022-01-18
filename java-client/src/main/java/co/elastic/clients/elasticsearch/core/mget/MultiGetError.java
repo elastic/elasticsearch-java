@@ -43,8 +43,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/mget/types.ts#L49-L55">API
+ * @see <a href="../../doc-files/api-spec.html#_global.mget.MultiGetError">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -55,9 +54,6 @@ public class MultiGetError implements JsonpSerializable {
 
 	private final String index;
 
-	@Nullable
-	private final String type;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private MultiGetError(Builder builder) {
@@ -65,7 +61,6 @@ public class MultiGetError implements JsonpSerializable {
 		this.error = ApiTypeHelper.requireNonNull(builder.error, this, "error");
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.type = builder.type;
 
 	}
 
@@ -95,17 +90,6 @@ public class MultiGetError implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code _type}
-	 * 
-	 * @deprecated 7.0.0
-	 */
-	@Deprecated
-	@Nullable
-	public final String type() {
-		return this.type;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -125,12 +109,6 @@ public class MultiGetError implements JsonpSerializable {
 		generator.writeKey("_index");
 		generator.write(this.index);
 
-		if (this.type != null) {
-			generator.writeKey("_type");
-			generator.write(this.type);
-
-		}
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -145,9 +123,6 @@ public class MultiGetError implements JsonpSerializable {
 		private String id;
 
 		private String index;
-
-		@Nullable
-		private String type;
 
 		/**
 		 * Required - API name: {@code error}
@@ -181,17 +156,6 @@ public class MultiGetError implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code _type}
-		 * 
-		 * @deprecated 7.0.0
-		 */
-		@Deprecated
-		public final Builder type(@Nullable String value) {
-			this.type = value;
-			return this;
-		}
-
-		/**
 		 * Builds a {@link MultiGetError}.
 		 *
 		 * @throws NullPointerException
@@ -217,7 +181,6 @@ public class MultiGetError implements JsonpSerializable {
 		op.add(Builder::error, ErrorCause._DESERIALIZER, "error");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 
 	}
 

@@ -51,8 +51,7 @@ import javax.annotation.Nullable;
 /**
  * Adds or updates application privileges.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/put_privileges/SecurityPutPrivilegesRequest.ts#L25-L37">API
+ * @see <a href="../doc-files/api-spec.html#security.put_privileges.Request">API
  *      specification</a>
  */
 @JsonpDeserializable

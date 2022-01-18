@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,28 +41,35 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L193-L198">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.OperatingSystem">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class OperatingSystem implements JsonpSerializable {
+	@Nullable
 	private final Cpu cpu;
 
+	@Nullable
 	private final ExtendedMemoryStats mem;
 
+	@Nullable
 	private final MemoryStats swap;
 
-	private final long timestamp;
+	@Nullable
+	private final Cgroup cgroup;
+
+	@Nullable
+	private final Long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private OperatingSystem(Builder builder) {
 
-		this.cpu = ApiTypeHelper.requireNonNull(builder.cpu, this, "cpu");
-		this.mem = ApiTypeHelper.requireNonNull(builder.mem, this, "mem");
-		this.swap = ApiTypeHelper.requireNonNull(builder.swap, this, "swap");
-		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.cpu = builder.cpu;
+		this.mem = builder.mem;
+		this.swap = builder.swap;
+		this.cgroup = builder.cgroup;
+		this.timestamp = builder.timestamp;
 
 	}
 
@@ -72,30 +78,42 @@ public class OperatingSystem implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code cpu}
+	 * API name: {@code cpu}
 	 */
+	@Nullable
 	public final Cpu cpu() {
 		return this.cpu;
 	}
 
 	/**
-	 * Required - API name: {@code mem}
+	 * API name: {@code mem}
 	 */
+	@Nullable
 	public final ExtendedMemoryStats mem() {
 		return this.mem;
 	}
 
 	/**
-	 * Required - API name: {@code swap}
+	 * API name: {@code swap}
 	 */
+	@Nullable
 	public final MemoryStats swap() {
 		return this.swap;
 	}
 
 	/**
-	 * Required - API name: {@code timestamp}
+	 * API name: {@code cgroup}
 	 */
-	public final long timestamp() {
+	@Nullable
+	public final Cgroup cgroup() {
+		return this.cgroup;
+	}
+
+	/**
+	 * API name: {@code timestamp}
+	 */
+	@Nullable
+	public final Long timestamp() {
 		return this.timestamp;
 	}
 
@@ -110,17 +128,31 @@ public class OperatingSystem implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("cpu");
-		this.cpu.serialize(generator, mapper);
+		if (this.cpu != null) {
+			generator.writeKey("cpu");
+			this.cpu.serialize(generator, mapper);
 
-		generator.writeKey("mem");
-		this.mem.serialize(generator, mapper);
+		}
+		if (this.mem != null) {
+			generator.writeKey("mem");
+			this.mem.serialize(generator, mapper);
 
-		generator.writeKey("swap");
-		this.swap.serialize(generator, mapper);
+		}
+		if (this.swap != null) {
+			generator.writeKey("swap");
+			this.swap.serialize(generator, mapper);
 
-		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
+		}
+		if (this.cgroup != null) {
+			generator.writeKey("cgroup");
+			this.cgroup.serialize(generator, mapper);
+
+		}
+		if (this.timestamp != null) {
+			generator.writeKey("timestamp");
+			generator.write(this.timestamp);
+
+		}
 
 	}
 
@@ -131,63 +163,85 @@ public class OperatingSystem implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OperatingSystem> {
+		@Nullable
 		private Cpu cpu;
 
+		@Nullable
 		private ExtendedMemoryStats mem;
 
+		@Nullable
 		private MemoryStats swap;
 
+		@Nullable
+		private Cgroup cgroup;
+
+		@Nullable
 		private Long timestamp;
 
 		/**
-		 * Required - API name: {@code cpu}
+		 * API name: {@code cpu}
 		 */
-		public final Builder cpu(Cpu value) {
+		public final Builder cpu(@Nullable Cpu value) {
 			this.cpu = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code cpu}
+		 * API name: {@code cpu}
 		 */
 		public final Builder cpu(Function<Cpu.Builder, ObjectBuilder<Cpu>> fn) {
 			return this.cpu(fn.apply(new Cpu.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code mem}
+		 * API name: {@code mem}
 		 */
-		public final Builder mem(ExtendedMemoryStats value) {
+		public final Builder mem(@Nullable ExtendedMemoryStats value) {
 			this.mem = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code mem}
+		 * API name: {@code mem}
 		 */
 		public final Builder mem(Function<ExtendedMemoryStats.Builder, ObjectBuilder<ExtendedMemoryStats>> fn) {
 			return this.mem(fn.apply(new ExtendedMemoryStats.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code swap}
+		 * API name: {@code swap}
 		 */
-		public final Builder swap(MemoryStats value) {
+		public final Builder swap(@Nullable MemoryStats value) {
 			this.swap = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code swap}
+		 * API name: {@code swap}
 		 */
 		public final Builder swap(Function<MemoryStats.Builder, ObjectBuilder<MemoryStats>> fn) {
 			return this.swap(fn.apply(new MemoryStats.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code timestamp}
+		 * API name: {@code cgroup}
 		 */
-		public final Builder timestamp(long value) {
+		public final Builder cgroup(@Nullable Cgroup value) {
+			this.cgroup = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code cgroup}
+		 */
+		public final Builder cgroup(Function<Cgroup.Builder, ObjectBuilder<Cgroup>> fn) {
+			return this.cgroup(fn.apply(new Cgroup.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code timestamp}
+		 */
+		public final Builder timestamp(@Nullable Long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -218,6 +272,7 @@ public class OperatingSystem implements JsonpSerializable {
 		op.add(Builder::cpu, Cpu._DESERIALIZER, "cpu");
 		op.add(Builder::mem, ExtendedMemoryStats._DESERIALIZER, "mem");
 		op.add(Builder::swap, MemoryStats._DESERIALIZER, "swap");
+		op.add(Builder::cgroup, Cgroup._DESERIALIZER, "cgroup");
 		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}

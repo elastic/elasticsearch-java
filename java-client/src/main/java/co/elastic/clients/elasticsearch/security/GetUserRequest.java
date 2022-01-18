@@ -48,8 +48,7 @@ import javax.annotation.Nullable;
 /**
  * Retrieves information about users in the native realm and built-in users.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/security/get_user/SecurityGetUserRequest.ts#L23-L33">API
+ * @see <a href="../doc-files/api-spec.html#security.get_user.Request">API
  *      specification</a>
  */
 

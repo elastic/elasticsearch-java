@@ -44,12 +44,13 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform_stats/types.ts#L69-L75">API
+ *      "../../doc-files/api-spec.html#transform.get_transform_stats.Checkpointing">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class Checkpointing implements JsonpSerializable {
-	private final long changesLastDetectedAt;
+	@Nullable
+	private final Long changesLastDetectedAt;
 
 	@Nullable
 	private final String changesLastDetectedAtDateTime;
@@ -62,16 +63,19 @@ public class Checkpointing implements JsonpSerializable {
 	@Nullable
 	private final Long operationsBehind;
 
+	@Nullable
+	private final Long lastSearchTime;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Checkpointing(Builder builder) {
 
-		this.changesLastDetectedAt = ApiTypeHelper.requireNonNull(builder.changesLastDetectedAt, this,
-				"changesLastDetectedAt");
+		this.changesLastDetectedAt = builder.changesLastDetectedAt;
 		this.changesLastDetectedAtDateTime = builder.changesLastDetectedAtDateTime;
 		this.last = ApiTypeHelper.requireNonNull(builder.last, this, "last");
 		this.next = builder.next;
 		this.operationsBehind = builder.operationsBehind;
+		this.lastSearchTime = builder.lastSearchTime;
 
 	}
 
@@ -80,9 +84,10 @@ public class Checkpointing implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code changes_last_detected_at}
+	 * API name: {@code changes_last_detected_at}
 	 */
-	public final long changesLastDetectedAt() {
+	@Nullable
+	public final Long changesLastDetectedAt() {
 		return this.changesLastDetectedAt;
 	}
 
@@ -118,6 +123,14 @@ public class Checkpointing implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code last_search_time}
+	 */
+	@Nullable
+	public final Long lastSearchTime() {
+		return this.lastSearchTime;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -128,9 +141,11 @@ public class Checkpointing implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("changes_last_detected_at");
-		generator.write(this.changesLastDetectedAt);
+		if (this.changesLastDetectedAt != null) {
+			generator.writeKey("changes_last_detected_at");
+			generator.write(this.changesLastDetectedAt);
 
+		}
 		if (this.changesLastDetectedAtDateTime != null) {
 			generator.writeKey("changes_last_detected_at_date_time");
 			generator.write(this.changesLastDetectedAtDateTime);
@@ -149,6 +164,11 @@ public class Checkpointing implements JsonpSerializable {
 			generator.write(this.operationsBehind);
 
 		}
+		if (this.lastSearchTime != null) {
+			generator.writeKey("last_search_time");
+			generator.write(this.lastSearchTime);
+
+		}
 
 	}
 
@@ -159,6 +179,7 @@ public class Checkpointing implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Checkpointing> {
+		@Nullable
 		private Long changesLastDetectedAt;
 
 		@Nullable
@@ -172,10 +193,13 @@ public class Checkpointing implements JsonpSerializable {
 		@Nullable
 		private Long operationsBehind;
 
+		@Nullable
+		private Long lastSearchTime;
+
 		/**
-		 * Required - API name: {@code changes_last_detected_at}
+		 * API name: {@code changes_last_detected_at}
 		 */
-		public final Builder changesLastDetectedAt(long value) {
+		public final Builder changesLastDetectedAt(@Nullable Long value) {
 			this.changesLastDetectedAt = value;
 			return this;
 		}
@@ -227,6 +251,14 @@ public class Checkpointing implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code last_search_time}
+		 */
+		public final Builder lastSearchTime(@Nullable Long value) {
+			this.lastSearchTime = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link Checkpointing}.
 		 *
 		 * @throws NullPointerException
@@ -255,6 +287,7 @@ public class Checkpointing implements JsonpSerializable {
 		op.add(Builder::last, CheckpointStats._DESERIALIZER, "last");
 		op.add(Builder::next, CheckpointStats._DESERIALIZER, "next");
 		op.add(Builder::operationsBehind, JsonpDeserializer.longDeserializer(), "operations_behind");
+		op.add(Builder::lastSearchTime, JsonpDeserializer.longDeserializer(), "last_search_time");
 
 	}
 

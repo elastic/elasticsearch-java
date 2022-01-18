@@ -45,7 +45,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_global/search/_types/FieldCollapse.ts#L24-L28">API
+ *      "../../doc-files/api-spec.html#_global.search._types.FieldCollapse">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +57,9 @@ public class FieldCollapse implements JsonpSerializable {
 	@Nullable
 	private final Integer maxConcurrentGroupSearches;
 
+	@Nullable
+	private final FieldCollapse collapse;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private FieldCollapse(Builder builder) {
@@ -64,6 +67,7 @@ public class FieldCollapse implements JsonpSerializable {
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.innerHits = ApiTypeHelper.unmodifiable(builder.innerHits);
 		this.maxConcurrentGroupSearches = builder.maxConcurrentGroupSearches;
+		this.collapse = builder.collapse;
 
 	}
 
@@ -91,6 +95,14 @@ public class FieldCollapse implements JsonpSerializable {
 	@Nullable
 	public final Integer maxConcurrentGroupSearches() {
 		return this.maxConcurrentGroupSearches;
+	}
+
+	/**
+	 * API name: {@code collapse}
+	 */
+	@Nullable
+	public final FieldCollapse collapse() {
+		return this.collapse;
 	}
 
 	/**
@@ -122,6 +134,11 @@ public class FieldCollapse implements JsonpSerializable {
 			generator.write(this.maxConcurrentGroupSearches);
 
 		}
+		if (this.collapse != null) {
+			generator.writeKey("collapse");
+			this.collapse.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -139,6 +156,9 @@ public class FieldCollapse implements JsonpSerializable {
 
 		@Nullable
 		private Integer maxConcurrentGroupSearches;
+
+		@Nullable
+		private FieldCollapse collapse;
 
 		/**
 		 * Required - API name: {@code field}
@@ -186,6 +206,21 @@ public class FieldCollapse implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code collapse}
+		 */
+		public final Builder collapse(@Nullable FieldCollapse value) {
+			this.collapse = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code collapse}
+		 */
+		public final Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
+			return this.collapse(fn.apply(new FieldCollapse.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link FieldCollapse}.
 		 *
 		 * @throws NullPointerException
@@ -212,6 +247,7 @@ public class FieldCollapse implements JsonpSerializable {
 		op.add(Builder::innerHits, JsonpDeserializer.arrayDeserializer(InnerHits._DESERIALIZER), "inner_hits");
 		op.add(Builder::maxConcurrentGroupSearches, JsonpDeserializer.integerDeserializer(),
 				"max_concurrent_group_searches");
+		op.add(Builder::collapse, FieldCollapse._DESERIALIZER, "collapse");
 
 	}
 

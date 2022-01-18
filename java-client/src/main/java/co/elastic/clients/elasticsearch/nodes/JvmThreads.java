@@ -29,34 +29,35 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: nodes._types.JvmThreads
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/nodes/_types/Stats.ts#L172-L175">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.JvmThreads">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class JvmThreads implements JsonpSerializable {
-	private final long count;
+	@Nullable
+	private final Long count;
 
-	private final long peakCount;
+	@Nullable
+	private final Long peakCount;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private JvmThreads(Builder builder) {
 
-		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
-		this.peakCount = ApiTypeHelper.requireNonNull(builder.peakCount, this, "peakCount");
+		this.count = builder.count;
+		this.peakCount = builder.peakCount;
 
 	}
 
@@ -65,16 +66,18 @@ public class JvmThreads implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code count}
+	 * API name: {@code count}
 	 */
-	public final long count() {
+	@Nullable
+	public final Long count() {
 		return this.count;
 	}
 
 	/**
-	 * Required - API name: {@code peak_count}
+	 * API name: {@code peak_count}
 	 */
-	public final long peakCount() {
+	@Nullable
+	public final Long peakCount() {
 		return this.peakCount;
 	}
 
@@ -89,11 +92,16 @@ public class JvmThreads implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("count");
-		generator.write(this.count);
+		if (this.count != null) {
+			generator.writeKey("count");
+			generator.write(this.count);
 
-		generator.writeKey("peak_count");
-		generator.write(this.peakCount);
+		}
+		if (this.peakCount != null) {
+			generator.writeKey("peak_count");
+			generator.write(this.peakCount);
+
+		}
 
 	}
 
@@ -104,22 +112,24 @@ public class JvmThreads implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JvmThreads> {
+		@Nullable
 		private Long count;
 
+		@Nullable
 		private Long peakCount;
 
 		/**
-		 * Required - API name: {@code count}
+		 * API name: {@code count}
 		 */
-		public final Builder count(long value) {
+		public final Builder count(@Nullable Long value) {
 			this.count = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code peak_count}
+		 * API name: {@code peak_count}
 		 */
-		public final Builder peakCount(long value) {
+		public final Builder peakCount(@Nullable Long value) {
 			this.peakCount = value;
 			return this;
 		}

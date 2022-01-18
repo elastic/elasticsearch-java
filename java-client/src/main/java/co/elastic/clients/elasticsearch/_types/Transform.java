@@ -45,8 +45,7 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/Transform.ts#L27-L34">API
+ * @see <a href="../doc-files/api-spec.html#_types.TransformContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +56,9 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 	 */
 	/**
 	 * {@link Transform} variant kinds.
+	 * 
+	 * @see <a href="../doc-files/api-spec.html#_types.TransformContainer">API
+	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {

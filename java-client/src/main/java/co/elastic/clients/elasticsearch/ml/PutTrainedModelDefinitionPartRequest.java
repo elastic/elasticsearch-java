@@ -38,7 +38,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.lang.Number;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  * Creates part of a trained model definition.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model_definition_part/MlPutTrainedModelDefinitionPartRequest.ts#L24-L57">API
+ *      "../doc-files/api-spec.html#ml.put_trained_model_definition_part.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -62,9 +62,9 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 
 	private final int part;
 
-	private final Number totalDefinitionLength;
+	private final long totalDefinitionLength;
 
-	private final Number totalParts;
+	private final int totalParts;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -121,7 +121,7 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 	 * <p>
 	 * API name: {@code total_definition_length}
 	 */
-	public final Number totalDefinitionLength() {
+	public final long totalDefinitionLength() {
 		return this.totalDefinitionLength;
 	}
 
@@ -131,7 +131,7 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 	 * <p>
 	 * API name: {@code total_parts}
 	 */
-	public final Number totalParts() {
+	public final int totalParts() {
 		return this.totalParts;
 	}
 
@@ -150,10 +150,10 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 		generator.write(this.definition);
 
 		generator.writeKey("total_definition_length");
-		generator.write(this.totalDefinitionLength.doubleValue());
+		generator.write(this.totalDefinitionLength);
 
 		generator.writeKey("total_parts");
-		generator.write(this.totalParts.doubleValue());
+		generator.write(this.totalParts);
 
 	}
 
@@ -172,9 +172,9 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 
 		private Integer part;
 
-		private Number totalDefinitionLength;
+		private Long totalDefinitionLength;
 
-		private Number totalParts;
+		private Integer totalParts;
 
 		/**
 		 * Required - The definition part for the model. Must be a base64 encoded
@@ -216,7 +216,7 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 		 * <p>
 		 * API name: {@code total_definition_length}
 		 */
-		public final Builder totalDefinitionLength(Number value) {
+		public final Builder totalDefinitionLength(long value) {
 			this.totalDefinitionLength = value;
 			return this;
 		}
@@ -227,7 +227,7 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 		 * <p>
 		 * API name: {@code total_parts}
 		 */
-		public final Builder totalParts(Number value) {
+		public final Builder totalParts(int value) {
 			this.totalParts = value;
 			return this;
 		}
@@ -258,8 +258,8 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 			ObjectDeserializer<PutTrainedModelDefinitionPartRequest.Builder> op) {
 
 		op.add(Builder::definition, JsonpDeserializer.stringDeserializer(), "definition");
-		op.add(Builder::totalDefinitionLength, JsonpDeserializer.numberDeserializer(), "total_definition_length");
-		op.add(Builder::totalParts, JsonpDeserializer.numberDeserializer(), "total_parts");
+		op.add(Builder::totalDefinitionLength, JsonpDeserializer.longDeserializer(), "total_definition_length");
+		op.add(Builder::totalParts, JsonpDeserializer.integerDeserializer(), "total_parts");
 
 	}
 

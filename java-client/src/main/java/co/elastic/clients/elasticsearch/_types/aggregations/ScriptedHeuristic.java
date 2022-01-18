@@ -43,7 +43,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/aggregations/bucket.ts#L301-L303">API
+ *      "../../doc-files/api-spec.html#_types.aggregations.ScriptedHeuristic">API
  *      specification</a>
  */
 @JsonpDeserializable

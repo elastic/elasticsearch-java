@@ -61,7 +61,7 @@ import javax.annotation.Nullable;
  * and new trained models for the model alias, the API returns a warning.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model_alias/MlPutTrainedModelAliasRequest.ts#L23-L65">API
+ *      "../doc-files/api-spec.html#ml.put_trained_model_alias.Request">API
  *      specification</a>
  */
 

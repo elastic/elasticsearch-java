@@ -44,7 +44,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/transform/get_transform_stats/types.ts#L60-L67">API
+ *      "../../doc-files/api-spec.html#transform.get_transform_stats.CheckpointStats">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -57,6 +57,7 @@ public class CheckpointStats implements JsonpSerializable {
 	@Nullable
 	private final String timestamp;
 
+	@Nullable
 	private final String timestampMillis;
 
 	@Nullable
@@ -72,7 +73,7 @@ public class CheckpointStats implements JsonpSerializable {
 		this.checkpoint = ApiTypeHelper.requireNonNull(builder.checkpoint, this, "checkpoint");
 		this.checkpointProgress = builder.checkpointProgress;
 		this.timestamp = builder.timestamp;
-		this.timestampMillis = ApiTypeHelper.requireNonNull(builder.timestampMillis, this, "timestampMillis");
+		this.timestampMillis = builder.timestampMillis;
 		this.timeUpperBound = builder.timeUpperBound;
 		this.timeUpperBoundMillis = builder.timeUpperBoundMillis;
 
@@ -106,8 +107,9 @@ public class CheckpointStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code timestamp_millis}
+	 * API name: {@code timestamp_millis}
 	 */
+	@Nullable
 	public final String timestampMillis() {
 		return this.timestampMillis;
 	}
@@ -152,9 +154,11 @@ public class CheckpointStats implements JsonpSerializable {
 			generator.write(this.timestamp);
 
 		}
-		generator.writeKey("timestamp_millis");
-		generator.write(this.timestampMillis);
+		if (this.timestampMillis != null) {
+			generator.writeKey("timestamp_millis");
+			generator.write(this.timestampMillis);
 
+		}
 		if (this.timeUpperBound != null) {
 			generator.writeKey("time_upper_bound");
 			generator.write(this.timeUpperBound);
@@ -183,6 +187,7 @@ public class CheckpointStats implements JsonpSerializable {
 		@Nullable
 		private String timestamp;
 
+		@Nullable
 		private String timestampMillis;
 
 		@Nullable
@@ -224,9 +229,9 @@ public class CheckpointStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code timestamp_millis}
+		 * API name: {@code timestamp_millis}
 		 */
-		public final Builder timestampMillis(String value) {
+		public final Builder timestampMillis(@Nullable String value) {
 			this.timestampMillis = value;
 			return this;
 		}

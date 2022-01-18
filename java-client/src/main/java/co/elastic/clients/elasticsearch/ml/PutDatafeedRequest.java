@@ -66,8 +66,7 @@ import javax.annotation.Nullable;
  * (<code>query_delay') at each interval. When Elasticsearch security features are enabled, your datafeed remembers which roles the user who created it had at the time of creation and runs the query using those same roles. If you provide secondary authorization headers, those credentials are used instead. You must use Kibana, this API, or the create anomaly detection jobs API to create a datafeed. Do not add a datafeed directly to the </code>.ml-config<code>index. Do not give users</code>write<code>privileges on the</code>.ml-config`
  * index.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_datafeed/MlPutDatafeedRequest.ts#L31-L161">API
+ * @see <a href="../doc-files/api-spec.html#ml.put_datafeed.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -89,6 +88,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 
 	@Nullable
 	private final Time frequency;
+
+	private final Map<String, List<String>> headers;
 
 	@Nullable
 	private final Boolean ignoreThrottled;
@@ -131,6 +132,7 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.frequency = builder.frequency;
+		this.headers = ApiTypeHelper.unmodifiable(builder.headers);
 		this.ignoreThrottled = builder.ignoreThrottled;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
@@ -238,6 +240,13 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	@Nullable
 	public final Time frequency() {
 		return this.frequency;
+	}
+
+	/**
+	 * API name: {@code headers}
+	 */
+	public final Map<String, List<String>> headers() {
+		return this.headers;
 	}
 
 	/**
@@ -407,6 +416,24 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 			this.frequency.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.headers)) {
+			generator.writeKey("headers");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<String>> item0 : this.headers.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (String item1 : item0.getValue()) {
+						generator.write(item1);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.indices)) {
 			generator.writeKey("indices");
 			generator.writeStartArray();
@@ -498,6 +525,9 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 
 		@Nullable
 		private Time frequency;
+
+		@Nullable
+		private Map<String, List<String>> headers;
 
 		@Nullable
 		private Boolean ignoreThrottled;
@@ -711,6 +741,26 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder frequency(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.frequency(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>headers</code>.
+		 */
+		public final Builder headers(Map<String, List<String>> map) {
+			this.headers = _mapPutAll(this.headers, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code headers}
+		 * <p>
+		 * Adds an entry to <code>headers</code>.
+		 */
+		public final Builder headers(String key, List<String> value) {
+			this.headers = _mapPut(this.headers, key, value);
+			return this;
 		}
 
 		/**
@@ -980,6 +1030,8 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
+		op.add(Builder::headers, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer())), "headers");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "indices",
 				"indexes");
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");

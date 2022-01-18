@@ -37,7 +37,7 @@ import java.util.Objects;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/query_dsl/specialized.ts#L139-L139">API
+ *      "../../doc-files/api-spec.html#_types.query_dsl.RankFeatureFunction">API
  *      specification</a>
  */
 

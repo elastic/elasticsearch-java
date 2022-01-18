@@ -41,9 +41,12 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,17 +54,19 @@ import javax.annotation.Nullable;
 // typedef: ml.put_trained_model.Request
 
 /**
- * The create trained model API enables you to supply a trained model that is
- * not created by data frame analytics.
+ * Enables you to supply a trained model that is not created by data frame
+ * analytics.
  * 
- * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/put_trained_model/MlPutTrainedModelRequest.ts#L27-L82">API
+ * @see <a href="../doc-files/api-spec.html#ml.put_trained_model.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class PutTrainedModelRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String compressedDefinition;
+
+	@Nullable
+	private final Boolean deferDefinitionDecompression;
 
 	@Nullable
 	private final Definition definition;
@@ -79,6 +84,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	private final String modelId;
 
 	@Nullable
+	private final Long modelSizeBytes;
+
+	@Nullable
 	private final TrainedModelType modelType;
 
 	private final List<String> tags;
@@ -88,12 +96,14 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	private PutTrainedModelRequest(Builder builder) {
 
 		this.compressedDefinition = builder.compressedDefinition;
+		this.deferDefinitionDecompression = builder.deferDefinitionDecompression;
 		this.definition = builder.definition;
 		this.description = builder.description;
 		this.inferenceConfig = ApiTypeHelper.requireNonNull(builder.inferenceConfig, this, "inferenceConfig");
 		this.input = ApiTypeHelper.requireNonNull(builder.input, this, "input");
 		this.metadata = builder.metadata;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelSizeBytes = builder.modelSizeBytes;
 		this.modelType = builder.modelType;
 		this.tags = ApiTypeHelper.unmodifiable(builder.tags);
 
@@ -113,6 +123,18 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	public final String compressedDefinition() {
 		return this.compressedDefinition;
+	}
+
+	/**
+	 * If set to <code>true</code> and a <code>compressed_definition</code> is
+	 * provided, the request defers definition decompression and skips relevant
+	 * validations.
+	 * <p>
+	 * API name: {@code defer_definition_decompression}
+	 */
+	@Nullable
+	public final Boolean deferDefinitionDecompression() {
+		return this.deferDefinitionDecompression;
 	}
 
 	/**
@@ -176,6 +198,18 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	}
 
 	/**
+	 * The estimated memory usage in bytes to keep the trained model in memory. This
+	 * property is supported only if defer_definition_decompression is true or the
+	 * model definition is not supplied.
+	 * <p>
+	 * API name: {@code model_size_bytes}
+	 */
+	@Nullable
+	public final Long modelSizeBytes() {
+		return this.modelSizeBytes;
+	}
+
+	/**
 	 * The model type.
 	 * <p>
 	 * API name: {@code model_type}
@@ -231,6 +265,11 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 			this.metadata.serialize(generator, mapper);
 
 		}
+		if (this.modelSizeBytes != null) {
+			generator.writeKey("model_size_bytes");
+			generator.write(this.modelSizeBytes);
+
+		}
 		if (this.modelType != null) {
 			generator.writeKey("model_type");
 			this.modelType.serialize(generator, mapper);
@@ -259,6 +298,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		private String compressedDefinition;
 
 		@Nullable
+		private Boolean deferDefinitionDecompression;
+
+		@Nullable
 		private Definition definition;
 
 		@Nullable
@@ -272,6 +314,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		private JsonData metadata;
 
 		private String modelId;
+
+		@Nullable
+		private Long modelSizeBytes;
 
 		@Nullable
 		private TrainedModelType modelType;
@@ -288,6 +333,18 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 */
 		public final Builder compressedDefinition(@Nullable String value) {
 			this.compressedDefinition = value;
+			return this;
+		}
+
+		/**
+		 * If set to <code>true</code> and a <code>compressed_definition</code> is
+		 * provided, the request defers definition decompression and skips relevant
+		 * validations.
+		 * <p>
+		 * API name: {@code defer_definition_decompression}
+		 */
+		public final Builder deferDefinitionDecompression(@Nullable Boolean value) {
+			this.deferDefinitionDecompression = value;
 			return this;
 		}
 
@@ -385,6 +442,18 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		}
 
 		/**
+		 * The estimated memory usage in bytes to keep the trained model in memory. This
+		 * property is supported only if defer_definition_decompression is true or the
+		 * model definition is not supplied.
+		 * <p>
+		 * API name: {@code model_size_bytes}
+		 */
+		public final Builder modelSizeBytes(@Nullable Long value) {
+			this.modelSizeBytes = value;
+			return this;
+		}
+
+		/**
 		 * The model type.
 		 * <p>
 		 * API name: {@code model_type}
@@ -448,6 +517,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
 		op.add(Builder::input, Input._DESERIALIZER, "input");
 		op.add(Builder::metadata, JsonData._DESERIALIZER, "metadata");
+		op.add(Builder::modelSizeBytes, JsonpDeserializer.longDeserializer(), "model_size_bytes");
 		op.add(Builder::modelType, TrainedModelType._DESERIALIZER, "model_type");
 		op.add(Builder::tags, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "tags");
 
@@ -489,7 +559,11 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.deferDefinitionDecompression != null) {
+					params.put("defer_definition_decompression", String.valueOf(request.deferDefinitionDecompression));
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, PutTrainedModelResponse._DESERIALIZER);
 }

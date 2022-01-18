@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  * Stops a trained model deployment.
  * 
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/ml/stop_trained_model_deployment/MlStopTrainedModelDeploymentRequest.ts#L28-L58">API
+ *      "../doc-files/api-spec.html#ml.stop_trained_model_deployment.Request">API
  *      specification</a>
  */
 

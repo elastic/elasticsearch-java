@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "https://github.com/elastic/elasticsearch-specification/tree/04a9498/specification/_types/analysis/icu-plugin.ts#L93-L96">API
+ *      "../../doc-files/api-spec.html#_types.analysis.IcuCollationCaseFirst">API
  *      specification</a>
  */
 @JsonpDeserializable
