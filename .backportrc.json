@@ -1,14 +1,14 @@
 {
   "upstream": "elastic/elasticsearch-java",
   "targetBranchChoices": [
-    "master",
+    "main",
     "8.0",
     "7.17",
     "7.16"
   ],
   "targetPRLabels": ["backport"],
   "branchLabelMapping": {
-    "^v8.1.0$": "master",
+    "^v8.1.0$": "main",
     "^v(\\d+).(\\d+).\\d+(?:-(?:alpha|beta|rc)\\d+)?$": "$1.$2"
   }
 }
