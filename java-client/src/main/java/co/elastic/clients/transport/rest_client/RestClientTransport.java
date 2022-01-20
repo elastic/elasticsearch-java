@@ -53,8 +53,11 @@ import javax.annotation.Nullable;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Arrays;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Map;
+import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
 public class RestClientTransport implements ElasticsearchTransport {
@@ -331,9 +334,17 @@ public class RestClientTransport implements ElasticsearchTransport {
         }
     }
 
+    // Endpoints that (incorrectly) do not return the Elastic product header
+    private static final Set<String> endpointsMissingProductHeader = new HashSet<>(Arrays.asList(
+        "es/snapshot.create" // #74 / elastic/elasticsearch#82358
+    ));
+
     private void checkProductHeader(Response clientResp, Endpoint<?, ?, ?> endpoint) throws IOException {
         String header = clientResp.getHeader("X-Elastic-Product");
         if (header == null) {
+            if (endpointsMissingProductHeader.contains(endpoint.id())) {
+                return;
+            }
             throw new TransportException(
                 "Missing [X-Elastic-Product] header. Please check that you are connecting to an Elasticsearch "
                     + "instance, and that any networking filters are preserving that header.",
