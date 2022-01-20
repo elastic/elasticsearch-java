@@ -42,6 +42,8 @@ import co.elastic.clients.elasticsearch.indices.GetIndicesSettingsResponse;
 import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.elasticsearch.snapshot.CreateRepositoryResponse;
+import co.elastic.clients.elasticsearch.snapshot.CreateSnapshotResponse;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
@@ -76,17 +78,19 @@ public class RequestTest extends Assert {
 
     @BeforeClass
     public static void setup() {
-        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.15.1")
+        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.16.2")
             .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
+            .withEnv("path.repo", "/tmp") // for snapshots
             .withStartupTimeout(Duration.ofSeconds(30))
             .withPassword("changeme");
         container.start();
+        int port = container.getMappedPort(9200);
 
         BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
         credsProv.setCredentials(
             AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
         );
-        restClient = RestClient.builder(new HttpHost("localhost", container.getMappedPort(9200)))
+        restClient = RestClient.builder(new HttpHost("localhost", port))
             .setHttpClientConfigCallback(hc -> hc.setDefaultCredentialsProvider(credsProv))
             .build();
         transport = new RestClientTransport(restClient, mapper);
@@ -392,6 +396,30 @@ public class RequestTest extends Assert {
 
         settings = client.indices().getSettings(b -> b.index(index));
         assertNull(settings.get(index).defaults());
+    }
+
+    @Test
+    public void testSnapshotCreation() throws IOException {
+        // https://github.com/elastic/elasticsearch-java/issues/74
+        // https://github.com/elastic/elasticsearch/issues/82358
+
+        CreateRepositoryResponse repo = client.snapshot().createRepository(b1 -> b1
+            .name("test")
+            .type("fs")
+            .settings(b2 -> b2
+                .location("/tmp/test-repo")
+            )
+        );
+
+        assertTrue(repo.acknowledged());
+
+        CreateSnapshotResponse snapshot = client.snapshot().create(b -> b
+            .repository("test")
+            .snapshot("1")
+            .waitForCompletion(true)
+        );
+
+        assertNotNull(snapshot.snapshot());
     }
 
     @Test
