@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.transform;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -33,7 +32,6 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -69,8 +67,7 @@ public class ElasticsearchTransformAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteTransformResponse> deleteTransform(DeleteTransformRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteTransformResponse> deleteTransform(DeleteTransformRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteTransformRequest, DeleteTransformResponse, ErrorResponse>) DeleteTransformRequest._ENDPOINT;
 
@@ -89,8 +86,7 @@ public class ElasticsearchTransformAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteTransformResponse> deleteTransform(
-			Function<DeleteTransformRequest.Builder, ObjectBuilder<DeleteTransformRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteTransformRequest.Builder, ObjectBuilder<DeleteTransformRequest>> fn) {
 		return deleteTransform(fn.apply(new DeleteTransformRequest.Builder()).build());
 	}
 
@@ -104,8 +100,7 @@ public class ElasticsearchTransformAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTransformResponse> getTransform(GetTransformRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTransformResponse> getTransform(GetTransformRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetTransformRequest, GetTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTransformRequest, GetTransformResponse, ErrorResponse>) GetTransformRequest._ENDPOINT;
 
@@ -124,8 +119,7 @@ public class ElasticsearchTransformAsyncClient
 	 */
 
 	public final CompletableFuture<GetTransformResponse> getTransform(
-			Function<GetTransformRequest.Builder, ObjectBuilder<GetTransformRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetTransformRequest.Builder, ObjectBuilder<GetTransformRequest>> fn) {
 		return getTransform(fn.apply(new GetTransformRequest.Builder()).build());
 	}
 
@@ -137,7 +131,7 @@ public class ElasticsearchTransformAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTransformResponse> getTransform() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTransformResponse> getTransform() {
 		return this.transport.performRequestAsync(new GetTransformRequest.Builder().build(),
 				GetTransformRequest._ENDPOINT, this.transportOptions);
 	}
@@ -152,8 +146,7 @@ public class ElasticsearchTransformAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTransformStatsResponse> getTransformStats(GetTransformStatsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTransformStatsResponse> getTransformStats(GetTransformStatsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTransformStatsRequest, GetTransformStatsResponse, ErrorResponse>) GetTransformStatsRequest._ENDPOINT;
 
@@ -172,8 +165,7 @@ public class ElasticsearchTransformAsyncClient
 	 */
 
 	public final CompletableFuture<GetTransformStatsResponse> getTransformStats(
-			Function<GetTransformStatsRequest.Builder, ObjectBuilder<GetTransformStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetTransformStatsRequest.Builder, ObjectBuilder<GetTransformStatsRequest>> fn) {
 		return getTransformStats(fn.apply(new GetTransformStatsRequest.Builder()).build());
 	}
 
@@ -188,8 +180,7 @@ public class ElasticsearchTransformAsyncClient
 	 */
 
 	public <TTransform> CompletableFuture<PreviewTransformResponse<TTransform>> previewTransform(
-			PreviewTransformRequest request, Class<TTransform> tTransformClass)
-			throws IOException, ElasticsearchException {
+			PreviewTransformRequest request, Class<TTransform> tTransformClass) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse> endpoint = (JsonEndpoint<PreviewTransformRequest, PreviewTransformResponse<TTransform>, ErrorResponse>) PreviewTransformRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -212,7 +203,7 @@ public class ElasticsearchTransformAsyncClient
 
 	public final <TTransform> CompletableFuture<PreviewTransformResponse<TTransform>> previewTransform(
 			Function<PreviewTransformRequest.Builder, ObjectBuilder<PreviewTransformRequest>> fn,
-			Class<TTransform> tTransformClass) throws IOException, ElasticsearchException {
+			Class<TTransform> tTransformClass) {
 		return previewTransform(fn.apply(new PreviewTransformRequest.Builder()).build(), tTransformClass);
 	}
 
@@ -226,8 +217,7 @@ public class ElasticsearchTransformAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutTransformResponse> putTransform(PutTransformRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutTransformResponse> putTransform(PutTransformRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutTransformRequest, PutTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<PutTransformRequest, PutTransformResponse, ErrorResponse>) PutTransformRequest._ENDPOINT;
 
@@ -246,8 +236,7 @@ public class ElasticsearchTransformAsyncClient
 	 */
 
 	public final CompletableFuture<PutTransformResponse> putTransform(
-			Function<PutTransformRequest.Builder, ObjectBuilder<PutTransformRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutTransformRequest.Builder, ObjectBuilder<PutTransformRequest>> fn) {
 		return putTransform(fn.apply(new PutTransformRequest.Builder()).build());
 	}
 
@@ -261,8 +250,7 @@ public class ElasticsearchTransformAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StartTransformResponse> startTransform(StartTransformRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<StartTransformResponse> startTransform(StartTransformRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StartTransformRequest, StartTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<StartTransformRequest, StartTransformResponse, ErrorResponse>) StartTransformRequest._ENDPOINT;
 
@@ -281,8 +269,7 @@ public class ElasticsearchTransformAsyncClient
 	 */
 
 	public final CompletableFuture<StartTransformResponse> startTransform(
-			Function<StartTransformRequest.Builder, ObjectBuilder<StartTransformRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StartTransformRequest.Builder, ObjectBuilder<StartTransformRequest>> fn) {
 		return startTransform(fn.apply(new StartTransformRequest.Builder()).build());
 	}
 
@@ -296,8 +283,7 @@ public class ElasticsearchTransformAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StopTransformResponse> stopTransform(StopTransformRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<StopTransformResponse> stopTransform(StopTransformRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StopTransformRequest, StopTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<StopTransformRequest, StopTransformResponse, ErrorResponse>) StopTransformRequest._ENDPOINT;
 
@@ -316,8 +302,7 @@ public class ElasticsearchTransformAsyncClient
 	 */
 
 	public final CompletableFuture<StopTransformResponse> stopTransform(
-			Function<StopTransformRequest.Builder, ObjectBuilder<StopTransformRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StopTransformRequest.Builder, ObjectBuilder<StopTransformRequest>> fn) {
 		return stopTransform(fn.apply(new StopTransformRequest.Builder()).build());
 	}
 
@@ -331,8 +316,7 @@ public class ElasticsearchTransformAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpdateTransformResponse> updateTransform(UpdateTransformRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<UpdateTransformResponse> updateTransform(UpdateTransformRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateTransformRequest, UpdateTransformResponse, ErrorResponse>) UpdateTransformRequest._ENDPOINT;
 
@@ -351,8 +335,7 @@ public class ElasticsearchTransformAsyncClient
 	 */
 
 	public final CompletableFuture<UpdateTransformResponse> updateTransform(
-			Function<UpdateTransformRequest.Builder, ObjectBuilder<UpdateTransformRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UpdateTransformRequest.Builder, ObjectBuilder<UpdateTransformRequest>> fn) {
 		return updateTransform(fn.apply(new UpdateTransformRequest.Builder()).build());
 	}
 
@@ -366,8 +349,7 @@ public class ElasticsearchTransformAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpgradeTransformsResponse> upgradeTransforms(UpgradeTransformsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<UpgradeTransformsResponse> upgradeTransforms(UpgradeTransformsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpgradeTransformsRequest, UpgradeTransformsResponse, ErrorResponse> endpoint = (JsonEndpoint<UpgradeTransformsRequest, UpgradeTransformsResponse, ErrorResponse>) UpgradeTransformsRequest._ENDPOINT;
 
@@ -386,8 +368,7 @@ public class ElasticsearchTransformAsyncClient
 	 */
 
 	public final CompletableFuture<UpgradeTransformsResponse> upgradeTransforms(
-			Function<UpgradeTransformsRequest.Builder, ObjectBuilder<UpgradeTransformsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UpgradeTransformsRequest.Builder, ObjectBuilder<UpgradeTransformsRequest>> fn) {
 		return upgradeTransforms(fn.apply(new UpgradeTransformsRequest.Builder()).build());
 	}
 
@@ -399,7 +380,7 @@ public class ElasticsearchTransformAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpgradeTransformsResponse> upgradeTransforms() throws IOException, ElasticsearchException {
+	public CompletableFuture<UpgradeTransformsResponse> upgradeTransforms() {
 		return this.transport.performRequestAsync(new UpgradeTransformsRequest.Builder().build(),
 				UpgradeTransformsRequest._ENDPOINT, this.transportOptions);
 	}

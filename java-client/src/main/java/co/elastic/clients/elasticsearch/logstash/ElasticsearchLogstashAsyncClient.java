@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.logstash;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -33,7 +32,6 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -69,8 +67,7 @@ public class ElasticsearchLogstashAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<BooleanResponse> deletePipeline(DeletePipelineRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<BooleanResponse> deletePipeline(DeletePipelineRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<DeletePipelineRequest, BooleanResponse, ErrorResponse>) DeletePipelineRequest._ENDPOINT;
 
@@ -89,8 +86,7 @@ public class ElasticsearchLogstashAsyncClient
 	 */
 
 	public final CompletableFuture<BooleanResponse> deletePipeline(
-			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeletePipelineRequest.Builder, ObjectBuilder<DeletePipelineRequest>> fn) {
 		return deletePipeline(fn.apply(new DeletePipelineRequest.Builder()).build());
 	}
 
@@ -104,8 +100,7 @@ public class ElasticsearchLogstashAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetPipelineResponse> getPipeline(GetPipelineRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse> endpoint = (JsonEndpoint<GetPipelineRequest, GetPipelineResponse, ErrorResponse>) GetPipelineRequest._ENDPOINT;
 
@@ -124,8 +119,7 @@ public class ElasticsearchLogstashAsyncClient
 	 */
 
 	public final CompletableFuture<GetPipelineResponse> getPipeline(
-			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetPipelineRequest.Builder, ObjectBuilder<GetPipelineRequest>> fn) {
 		return getPipeline(fn.apply(new GetPipelineRequest.Builder()).build());
 	}
 
@@ -139,8 +133,7 @@ public class ElasticsearchLogstashAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<BooleanResponse> putPipeline(PutPipelineRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<BooleanResponse> putPipeline(PutPipelineRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutPipelineRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<PutPipelineRequest, BooleanResponse, ErrorResponse>) PutPipelineRequest._ENDPOINT;
 
@@ -159,8 +152,7 @@ public class ElasticsearchLogstashAsyncClient
 	 */
 
 	public final CompletableFuture<BooleanResponse> putPipeline(
-			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutPipelineRequest.Builder, ObjectBuilder<PutPipelineRequest>> fn) {
 		return putPipeline(fn.apply(new PutPipelineRequest.Builder()).build());
 	}
 

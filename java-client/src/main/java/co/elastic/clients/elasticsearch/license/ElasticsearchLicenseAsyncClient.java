@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.license;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -32,7 +31,6 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -67,7 +65,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-license.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<DeleteLicenseResponse> delete() throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteLicenseResponse> delete() {
 		return this.transport.performRequestAsync(DeleteLicenseRequest._INSTANCE, DeleteLicenseRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -82,8 +80,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetLicenseResponse> get(GetLicenseRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetLicenseResponse> get(GetLicenseRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetLicenseRequest, GetLicenseResponse, ErrorResponse> endpoint = (JsonEndpoint<GetLicenseRequest, GetLicenseResponse, ErrorResponse>) GetLicenseRequest._ENDPOINT;
 
@@ -102,8 +99,7 @@ public class ElasticsearchLicenseAsyncClient
 	 */
 
 	public final CompletableFuture<GetLicenseResponse> get(
-			Function<GetLicenseRequest.Builder, ObjectBuilder<GetLicenseRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetLicenseRequest.Builder, ObjectBuilder<GetLicenseRequest>> fn) {
 		return get(fn.apply(new GetLicenseRequest.Builder()).build());
 	}
 
@@ -115,7 +111,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetLicenseResponse> get() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetLicenseResponse> get() {
 		return this.transport.performRequestAsync(new GetLicenseRequest.Builder().build(), GetLicenseRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -129,7 +125,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-basic-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetBasicStatusResponse> getBasicStatus() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetBasicStatusResponse> getBasicStatus() {
 		return this.transport.performRequestAsync(GetBasicStatusRequest._INSTANCE, GetBasicStatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -143,7 +139,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-trial-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetTrialStatusResponse> getTrialStatus() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTrialStatusResponse> getTrialStatus() {
 		return this.transport.performRequestAsync(GetTrialStatusRequest._INSTANCE, GetTrialStatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -158,7 +154,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostResponse> post(PostRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<PostResponse> post(PostRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PostRequest, PostResponse, ErrorResponse> endpoint = (JsonEndpoint<PostRequest, PostResponse, ErrorResponse>) PostRequest._ENDPOINT;
 
@@ -176,8 +172,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<PostResponse> post(Function<PostRequest.Builder, ObjectBuilder<PostRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<PostResponse> post(Function<PostRequest.Builder, ObjectBuilder<PostRequest>> fn) {
 		return post(fn.apply(new PostRequest.Builder()).build());
 	}
 
@@ -189,7 +184,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostResponse> post() throws IOException, ElasticsearchException {
+	public CompletableFuture<PostResponse> post() {
 		return this.transport.performRequestAsync(new PostRequest.Builder().build(), PostRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -204,8 +199,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostStartBasicResponse> postStartBasic(PostStartBasicRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PostStartBasicResponse> postStartBasic(PostStartBasicRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PostStartBasicRequest, PostStartBasicResponse, ErrorResponse> endpoint = (JsonEndpoint<PostStartBasicRequest, PostStartBasicResponse, ErrorResponse>) PostStartBasicRequest._ENDPOINT;
 
@@ -224,8 +218,7 @@ public class ElasticsearchLicenseAsyncClient
 	 */
 
 	public final CompletableFuture<PostStartBasicResponse> postStartBasic(
-			Function<PostStartBasicRequest.Builder, ObjectBuilder<PostStartBasicRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PostStartBasicRequest.Builder, ObjectBuilder<PostStartBasicRequest>> fn) {
 		return postStartBasic(fn.apply(new PostStartBasicRequest.Builder()).build());
 	}
 
@@ -237,7 +230,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostStartBasicResponse> postStartBasic() throws IOException, ElasticsearchException {
+	public CompletableFuture<PostStartBasicResponse> postStartBasic() {
 		return this.transport.performRequestAsync(new PostStartBasicRequest.Builder().build(),
 				PostStartBasicRequest._ENDPOINT, this.transportOptions);
 	}
@@ -252,8 +245,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostStartTrialResponse> postStartTrial(PostStartTrialRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PostStartTrialResponse> postStartTrial(PostStartTrialRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PostStartTrialRequest, PostStartTrialResponse, ErrorResponse> endpoint = (JsonEndpoint<PostStartTrialRequest, PostStartTrialResponse, ErrorResponse>) PostStartTrialRequest._ENDPOINT;
 
@@ -272,8 +264,7 @@ public class ElasticsearchLicenseAsyncClient
 	 */
 
 	public final CompletableFuture<PostStartTrialResponse> postStartTrial(
-			Function<PostStartTrialRequest.Builder, ObjectBuilder<PostStartTrialRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PostStartTrialRequest.Builder, ObjectBuilder<PostStartTrialRequest>> fn) {
 		return postStartTrial(fn.apply(new PostStartTrialRequest.Builder()).build());
 	}
 
@@ -285,7 +276,7 @@ public class ElasticsearchLicenseAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostStartTrialResponse> postStartTrial() throws IOException, ElasticsearchException {
+	public CompletableFuture<PostStartTrialResponse> postStartTrial() {
 		return this.transport.performRequestAsync(new PostStartTrialRequest.Builder().build(),
 				PostStartTrialRequest._ENDPOINT, this.transportOptions);
 	}

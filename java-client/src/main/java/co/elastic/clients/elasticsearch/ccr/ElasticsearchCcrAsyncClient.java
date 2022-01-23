@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -32,7 +31,6 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -66,7 +64,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public CompletableFuture<DeleteAutoFollowPatternResponse> deleteAutoFollowPattern(
-			DeleteAutoFollowPatternRequest request) throws IOException, ElasticsearchException {
+			DeleteAutoFollowPatternRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteAutoFollowPatternRequest, DeleteAutoFollowPatternResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteAutoFollowPatternRequest, DeleteAutoFollowPatternResponse, ErrorResponse>) DeleteAutoFollowPatternRequest._ENDPOINT;
 
@@ -85,8 +83,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<DeleteAutoFollowPatternResponse> deleteAutoFollowPattern(
-			Function<DeleteAutoFollowPatternRequest.Builder, ObjectBuilder<DeleteAutoFollowPatternRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteAutoFollowPatternRequest.Builder, ObjectBuilder<DeleteAutoFollowPatternRequest>> fn) {
 		return deleteAutoFollowPattern(fn.apply(new DeleteAutoFollowPatternRequest.Builder()).build());
 	}
 
@@ -101,7 +98,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FollowResponse> follow(FollowRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<FollowResponse> follow(FollowRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FollowRequest, FollowResponse, ErrorResponse> endpoint = (JsonEndpoint<FollowRequest, FollowResponse, ErrorResponse>) FollowRequest._ENDPOINT;
 
@@ -121,8 +118,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<FollowResponse> follow(
-			Function<FollowRequest.Builder, ObjectBuilder<FollowRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<FollowRequest.Builder, ObjectBuilder<FollowRequest>> fn) {
 		return follow(fn.apply(new FollowRequest.Builder()).build());
 	}
 
@@ -137,8 +133,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FollowInfoResponse> followInfo(FollowInfoRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<FollowInfoResponse> followInfo(FollowInfoRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FollowInfoRequest, FollowInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<FollowInfoRequest, FollowInfoResponse, ErrorResponse>) FollowInfoRequest._ENDPOINT;
 
@@ -158,8 +153,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<FollowInfoResponse> followInfo(
-			Function<FollowInfoRequest.Builder, ObjectBuilder<FollowInfoRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<FollowInfoRequest.Builder, ObjectBuilder<FollowInfoRequest>> fn) {
 		return followInfo(fn.apply(new FollowInfoRequest.Builder()).build());
 	}
 
@@ -174,8 +168,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FollowStatsResponse> followStats(FollowStatsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<FollowStatsResponse> followStats(FollowStatsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FollowStatsRequest, FollowStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<FollowStatsRequest, FollowStatsResponse, ErrorResponse>) FollowStatsRequest._ENDPOINT;
 
@@ -195,8 +188,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<FollowStatsResponse> followStats(
-			Function<FollowStatsRequest.Builder, ObjectBuilder<FollowStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<FollowStatsRequest.Builder, ObjectBuilder<FollowStatsRequest>> fn) {
 		return followStats(fn.apply(new FollowStatsRequest.Builder()).build());
 	}
 
@@ -210,8 +202,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ForgetFollowerResponse> forgetFollower(ForgetFollowerRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ForgetFollowerResponse> forgetFollower(ForgetFollowerRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse> endpoint = (JsonEndpoint<ForgetFollowerRequest, ForgetFollowerResponse, ErrorResponse>) ForgetFollowerRequest._ENDPOINT;
 
@@ -230,8 +221,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<ForgetFollowerResponse> forgetFollower(
-			Function<ForgetFollowerRequest.Builder, ObjectBuilder<ForgetFollowerRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ForgetFollowerRequest.Builder, ObjectBuilder<ForgetFollowerRequest>> fn) {
 		return forgetFollower(fn.apply(new ForgetFollowerRequest.Builder()).build());
 	}
 
@@ -246,8 +236,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetAutoFollowPatternResponse> getAutoFollowPattern(GetAutoFollowPatternRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetAutoFollowPatternResponse> getAutoFollowPattern(GetAutoFollowPatternRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetAutoFollowPatternRequest, GetAutoFollowPatternResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAutoFollowPatternRequest, GetAutoFollowPatternResponse, ErrorResponse>) GetAutoFollowPatternRequest._ENDPOINT;
 
@@ -267,8 +256,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<GetAutoFollowPatternResponse> getAutoFollowPattern(
-			Function<GetAutoFollowPatternRequest.Builder, ObjectBuilder<GetAutoFollowPatternRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetAutoFollowPatternRequest.Builder, ObjectBuilder<GetAutoFollowPatternRequest>> fn) {
 		return getAutoFollowPattern(fn.apply(new GetAutoFollowPatternRequest.Builder()).build());
 	}
 
@@ -281,8 +269,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetAutoFollowPatternResponse> getAutoFollowPattern()
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetAutoFollowPatternResponse> getAutoFollowPattern() {
 		return this.transport.performRequestAsync(new GetAutoFollowPatternRequest.Builder().build(),
 				GetAutoFollowPatternRequest._ENDPOINT, this.transportOptions);
 	}
@@ -298,7 +285,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public CompletableFuture<PauseAutoFollowPatternResponse> pauseAutoFollowPattern(
-			PauseAutoFollowPatternRequest request) throws IOException, ElasticsearchException {
+			PauseAutoFollowPatternRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PauseAutoFollowPatternRequest, PauseAutoFollowPatternResponse, ErrorResponse> endpoint = (JsonEndpoint<PauseAutoFollowPatternRequest, PauseAutoFollowPatternResponse, ErrorResponse>) PauseAutoFollowPatternRequest._ENDPOINT;
 
@@ -317,8 +304,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<PauseAutoFollowPatternResponse> pauseAutoFollowPattern(
-			Function<PauseAutoFollowPatternRequest.Builder, ObjectBuilder<PauseAutoFollowPatternRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PauseAutoFollowPatternRequest.Builder, ObjectBuilder<PauseAutoFollowPatternRequest>> fn) {
 		return pauseAutoFollowPattern(fn.apply(new PauseAutoFollowPatternRequest.Builder()).build());
 	}
 
@@ -333,8 +319,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PauseFollowResponse> pauseFollow(PauseFollowRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PauseFollowResponse> pauseFollow(PauseFollowRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PauseFollowRequest, PauseFollowResponse, ErrorResponse> endpoint = (JsonEndpoint<PauseFollowRequest, PauseFollowResponse, ErrorResponse>) PauseFollowRequest._ENDPOINT;
 
@@ -354,8 +339,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<PauseFollowResponse> pauseFollow(
-			Function<PauseFollowRequest.Builder, ObjectBuilder<PauseFollowRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PauseFollowRequest.Builder, ObjectBuilder<PauseFollowRequest>> fn) {
 		return pauseFollow(fn.apply(new PauseFollowRequest.Builder()).build());
 	}
 
@@ -371,8 +355,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutAutoFollowPatternResponse> putAutoFollowPattern(PutAutoFollowPatternRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutAutoFollowPatternResponse> putAutoFollowPattern(PutAutoFollowPatternRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAutoFollowPatternRequest, PutAutoFollowPatternResponse, ErrorResponse>) PutAutoFollowPatternRequest._ENDPOINT;
 
@@ -393,8 +376,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<PutAutoFollowPatternResponse> putAutoFollowPattern(
-			Function<PutAutoFollowPatternRequest.Builder, ObjectBuilder<PutAutoFollowPatternRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutAutoFollowPatternRequest.Builder, ObjectBuilder<PutAutoFollowPatternRequest>> fn) {
 		return putAutoFollowPattern(fn.apply(new PutAutoFollowPatternRequest.Builder()).build());
 	}
 
@@ -409,7 +391,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public CompletableFuture<ResumeAutoFollowPatternResponse> resumeAutoFollowPattern(
-			ResumeAutoFollowPatternRequest request) throws IOException, ElasticsearchException {
+			ResumeAutoFollowPatternRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ErrorResponse> endpoint = (JsonEndpoint<ResumeAutoFollowPatternRequest, ResumeAutoFollowPatternResponse, ErrorResponse>) ResumeAutoFollowPatternRequest._ENDPOINT;
 
@@ -428,8 +410,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<ResumeAutoFollowPatternResponse> resumeAutoFollowPattern(
-			Function<ResumeAutoFollowPatternRequest.Builder, ObjectBuilder<ResumeAutoFollowPatternRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ResumeAutoFollowPatternRequest.Builder, ObjectBuilder<ResumeAutoFollowPatternRequest>> fn) {
 		return resumeAutoFollowPattern(fn.apply(new ResumeAutoFollowPatternRequest.Builder()).build());
 	}
 
@@ -443,8 +424,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ResumeFollowResponse> resumeFollow(ResumeFollowRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ResumeFollowResponse> resumeFollow(ResumeFollowRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ResumeFollowRequest, ResumeFollowResponse, ErrorResponse> endpoint = (JsonEndpoint<ResumeFollowRequest, ResumeFollowResponse, ErrorResponse>) ResumeFollowRequest._ENDPOINT;
 
@@ -463,8 +443,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<ResumeFollowResponse> resumeFollow(
-			Function<ResumeFollowRequest.Builder, ObjectBuilder<ResumeFollowRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ResumeFollowRequest.Builder, ObjectBuilder<ResumeFollowRequest>> fn) {
 		return resumeFollow(fn.apply(new ResumeFollowRequest.Builder()).build());
 	}
 
@@ -477,7 +456,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ccr-get-stats.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<CcrStatsResponse> stats() throws IOException, ElasticsearchException {
+	public CompletableFuture<CcrStatsResponse> stats() {
 		return this.transport.performRequestAsync(CcrStatsRequest._INSTANCE, CcrStatsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -493,8 +472,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UnfollowResponse> unfollow(UnfollowRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<UnfollowResponse> unfollow(UnfollowRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UnfollowRequest, UnfollowResponse, ErrorResponse> endpoint = (JsonEndpoint<UnfollowRequest, UnfollowResponse, ErrorResponse>) UnfollowRequest._ENDPOINT;
 
@@ -514,8 +492,7 @@ public class ElasticsearchCcrAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<UnfollowResponse> unfollow(
-			Function<UnfollowRequest.Builder, ObjectBuilder<UnfollowRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UnfollowRequest.Builder, ObjectBuilder<UnfollowRequest>> fn) {
 		return unfollow(fn.apply(new UnfollowRequest.Builder()).build());
 	}
 

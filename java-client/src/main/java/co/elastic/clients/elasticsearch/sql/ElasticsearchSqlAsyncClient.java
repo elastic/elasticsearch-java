@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -32,7 +31,6 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -65,8 +63,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ClearCursorResponse> clearCursor(ClearCursorRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ClearCursorResponse> clearCursor(ClearCursorRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearCursorRequest, ClearCursorResponse, ErrorResponse>) ClearCursorRequest._ENDPOINT;
 
@@ -85,8 +82,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<ClearCursorResponse> clearCursor(
-			Function<ClearCursorRequest.Builder, ObjectBuilder<ClearCursorRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ClearCursorRequest.Builder, ObjectBuilder<ClearCursorRequest>> fn) {
 		return clearCursor(fn.apply(new ClearCursorRequest.Builder()).build());
 	}
 
@@ -100,7 +96,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<QueryResponse> query(QueryRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<QueryResponse> query(QueryRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<QueryRequest, QueryResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryRequest, QueryResponse, ErrorResponse>) QueryRequest._ENDPOINT;
 
@@ -118,8 +114,8 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<QueryResponse> query(Function<QueryRequest.Builder, ObjectBuilder<QueryRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<QueryResponse> query(
+			Function<QueryRequest.Builder, ObjectBuilder<QueryRequest>> fn) {
 		return query(fn.apply(new QueryRequest.Builder()).build());
 	}
 
@@ -131,7 +127,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<QueryResponse> query() throws IOException, ElasticsearchException {
+	public CompletableFuture<QueryResponse> query() {
 		return this.transport.performRequestAsync(new QueryRequest.Builder().build(), QueryRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -146,8 +142,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<TranslateResponse> translate(TranslateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<TranslateResponse> translate(TranslateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<TranslateRequest, TranslateResponse, ErrorResponse> endpoint = (JsonEndpoint<TranslateRequest, TranslateResponse, ErrorResponse>) TranslateRequest._ENDPOINT;
 
@@ -166,8 +161,7 @@ public class ElasticsearchSqlAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<TranslateResponse> translate(
-			Function<TranslateRequest.Builder, ObjectBuilder<TranslateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<TranslateRequest.Builder, ObjectBuilder<TranslateRequest>> fn) {
 		return translate(fn.apply(new TranslateRequest.Builder()).build());
 	}
 

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.xpack;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -32,7 +31,6 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -66,8 +64,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<XpackInfoResponse> info(XpackInfoRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<XpackInfoResponse> info(XpackInfoRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse> endpoint = (JsonEndpoint<XpackInfoRequest, XpackInfoResponse, ErrorResponse>) XpackInfoRequest._ENDPOINT;
 
@@ -86,8 +83,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 */
 
 	public final CompletableFuture<XpackInfoResponse> info(
-			Function<XpackInfoRequest.Builder, ObjectBuilder<XpackInfoRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<XpackInfoRequest.Builder, ObjectBuilder<XpackInfoRequest>> fn) {
 		return info(fn.apply(new XpackInfoRequest.Builder()).build());
 	}
 
@@ -99,7 +95,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<XpackInfoResponse> info() throws IOException, ElasticsearchException {
+	public CompletableFuture<XpackInfoResponse> info() {
 		return this.transport.performRequestAsync(new XpackInfoRequest.Builder().build(), XpackInfoRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -114,8 +110,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<XpackUsageResponse> usage(XpackUsageRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<XpackUsageResponse> usage(XpackUsageRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<XpackUsageRequest, XpackUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<XpackUsageRequest, XpackUsageResponse, ErrorResponse>) XpackUsageRequest._ENDPOINT;
 
@@ -134,8 +129,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 */
 
 	public final CompletableFuture<XpackUsageResponse> usage(
-			Function<XpackUsageRequest.Builder, ObjectBuilder<XpackUsageRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<XpackUsageRequest.Builder, ObjectBuilder<XpackUsageRequest>> fn) {
 		return usage(fn.apply(new XpackUsageRequest.Builder()).build());
 	}
 
@@ -147,7 +141,7 @@ public class ElasticsearchXpackAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<XpackUsageResponse> usage() throws IOException, ElasticsearchException {
+	public CompletableFuture<XpackUsageResponse> usage() {
 		return this.transport.performRequestAsync(new XpackUsageRequest.Builder().build(), XpackUsageRequest._ENDPOINT,
 				this.transportOptions);
 	}

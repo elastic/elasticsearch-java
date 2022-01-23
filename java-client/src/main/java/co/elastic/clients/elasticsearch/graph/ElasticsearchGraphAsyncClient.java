@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.graph;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -32,7 +31,6 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -67,8 +65,7 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ExploreResponse> explore(ExploreRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ExploreResponse> explore(ExploreRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExploreRequest, ExploreResponse, ErrorResponse> endpoint = (JsonEndpoint<ExploreRequest, ExploreResponse, ErrorResponse>) ExploreRequest._ENDPOINT;
 
@@ -88,8 +85,7 @@ public class ElasticsearchGraphAsyncClient extends ApiClient<ElasticsearchTransp
 	 */
 
 	public final CompletableFuture<ExploreResponse> explore(
-			Function<ExploreRequest.Builder, ObjectBuilder<ExploreRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ExploreRequest.Builder, ObjectBuilder<ExploreRequest>> fn) {
 		return explore(fn.apply(new ExploreRequest.Builder()).build());
 	}
 
