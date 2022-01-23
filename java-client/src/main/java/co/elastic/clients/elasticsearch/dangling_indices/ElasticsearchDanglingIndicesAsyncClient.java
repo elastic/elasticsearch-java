@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.dangling_indices;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -32,7 +31,6 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -68,8 +66,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(DeleteDanglingIndexRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDanglingIndexRequest, DeleteDanglingIndexResponse, ErrorResponse>) DeleteDanglingIndexRequest._ENDPOINT;
 
@@ -88,8 +85,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteDanglingIndexResponse> deleteDanglingIndex(
-			Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteDanglingIndexRequest.Builder, ObjectBuilder<DeleteDanglingIndexRequest>> fn) {
 		return deleteDanglingIndex(fn.apply(new DeleteDanglingIndexRequest.Builder()).build());
 	}
 
@@ -103,8 +99,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(ImportDanglingIndexRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<ImportDanglingIndexRequest, ImportDanglingIndexResponse, ErrorResponse>) ImportDanglingIndexRequest._ENDPOINT;
 
@@ -123,8 +118,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<ImportDanglingIndexResponse> importDanglingIndex(
-			Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ImportDanglingIndexRequest.Builder, ObjectBuilder<ImportDanglingIndexRequest>> fn) {
 		return importDanglingIndex(fn.apply(new ImportDanglingIndexRequest.Builder()).build());
 	}
 
@@ -137,8 +131,7 @@ public class ElasticsearchDanglingIndicesAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/modules-gateway-dangling-indices.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices()
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ListDanglingIndicesResponse> listDanglingIndices() {
 		return this.transport.performRequestAsync(ListDanglingIndicesRequest._INSTANCE,
 				ListDanglingIndicesRequest._ENDPOINT, this.transportOptions);
 	}

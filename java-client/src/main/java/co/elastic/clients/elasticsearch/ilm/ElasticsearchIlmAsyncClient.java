@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ilm;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -32,7 +31,6 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -66,8 +64,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(DeleteLifecycleRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(DeleteLifecycleRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteLifecycleRequest, DeleteLifecycleResponse, ErrorResponse>) DeleteLifecycleRequest._ENDPOINT;
 
@@ -87,8 +84,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<DeleteLifecycleResponse> deleteLifecycle(
-			Function<DeleteLifecycleRequest.Builder, ObjectBuilder<DeleteLifecycleRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteLifecycleRequest.Builder, ObjectBuilder<DeleteLifecycleRequest>> fn) {
 		return deleteLifecycle(fn.apply(new DeleteLifecycleRequest.Builder()).build());
 	}
 
@@ -103,8 +99,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ExplainLifecycleResponse> explainLifecycle(ExplainLifecycleRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ExplainLifecycleResponse> explainLifecycle(ExplainLifecycleRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExplainLifecycleRequest, ExplainLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<ExplainLifecycleRequest, ExplainLifecycleResponse, ErrorResponse>) ExplainLifecycleRequest._ENDPOINT;
 
@@ -124,8 +119,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<ExplainLifecycleResponse> explainLifecycle(
-			Function<ExplainLifecycleRequest.Builder, ObjectBuilder<ExplainLifecycleRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ExplainLifecycleRequest.Builder, ObjectBuilder<ExplainLifecycleRequest>> fn) {
 		return explainLifecycle(fn.apply(new ExplainLifecycleRequest.Builder()).build());
 	}
 
@@ -140,8 +134,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetLifecycleResponse> getLifecycle(GetLifecycleRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetLifecycleResponse> getLifecycle(GetLifecycleRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<GetLifecycleRequest, GetLifecycleResponse, ErrorResponse>) GetLifecycleRequest._ENDPOINT;
 
@@ -161,8 +154,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<GetLifecycleResponse> getLifecycle(
-			Function<GetLifecycleRequest.Builder, ObjectBuilder<GetLifecycleRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetLifecycleRequest.Builder, ObjectBuilder<GetLifecycleRequest>> fn) {
 		return getLifecycle(fn.apply(new GetLifecycleRequest.Builder()).build());
 	}
 
@@ -175,7 +167,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetLifecycleResponse> getLifecycle() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetLifecycleResponse> getLifecycle() {
 		return this.transport.performRequestAsync(new GetLifecycleRequest.Builder().build(),
 				GetLifecycleRequest._ENDPOINT, this.transportOptions);
 	}
@@ -189,7 +181,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-get-status.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetIlmStatusResponse> getStatus() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetIlmStatusResponse> getStatus() {
 		return this.transport.performRequestAsync(GetIlmStatusRequest._INSTANCE, GetIlmStatusRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -204,8 +196,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<MoveToStepResponse> moveToStep(MoveToStepRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<MoveToStepResponse> moveToStep(MoveToStepRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MoveToStepRequest, MoveToStepResponse, ErrorResponse> endpoint = (JsonEndpoint<MoveToStepRequest, MoveToStepResponse, ErrorResponse>) MoveToStepRequest._ENDPOINT;
 
@@ -224,8 +215,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<MoveToStepResponse> moveToStep(
-			Function<MoveToStepRequest.Builder, ObjectBuilder<MoveToStepRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<MoveToStepRequest.Builder, ObjectBuilder<MoveToStepRequest>> fn) {
 		return moveToStep(fn.apply(new MoveToStepRequest.Builder()).build());
 	}
 
@@ -239,8 +229,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutLifecycleResponse> putLifecycle(PutLifecycleRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutLifecycleResponse> putLifecycle(PutLifecycleRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse> endpoint = (JsonEndpoint<PutLifecycleRequest, PutLifecycleResponse, ErrorResponse>) PutLifecycleRequest._ENDPOINT;
 
@@ -259,8 +248,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<PutLifecycleResponse> putLifecycle(
-			Function<PutLifecycleRequest.Builder, ObjectBuilder<PutLifecycleRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutLifecycleRequest.Builder, ObjectBuilder<PutLifecycleRequest>> fn) {
 		return putLifecycle(fn.apply(new PutLifecycleRequest.Builder()).build());
 	}
 
@@ -274,8 +262,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RemovePolicyResponse> removePolicy(RemovePolicyRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<RemovePolicyResponse> removePolicy(RemovePolicyRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RemovePolicyRequest, RemovePolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<RemovePolicyRequest, RemovePolicyResponse, ErrorResponse>) RemovePolicyRequest._ENDPOINT;
 
@@ -294,8 +281,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<RemovePolicyResponse> removePolicy(
-			Function<RemovePolicyRequest.Builder, ObjectBuilder<RemovePolicyRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<RemovePolicyRequest.Builder, ObjectBuilder<RemovePolicyRequest>> fn) {
 		return removePolicy(fn.apply(new RemovePolicyRequest.Builder()).build());
 	}
 
@@ -309,7 +295,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RetryResponse> retry(RetryRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<RetryResponse> retry(RetryRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RetryRequest, RetryResponse, ErrorResponse> endpoint = (JsonEndpoint<RetryRequest, RetryResponse, ErrorResponse>) RetryRequest._ENDPOINT;
 
@@ -327,8 +313,8 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<RetryResponse> retry(Function<RetryRequest.Builder, ObjectBuilder<RetryRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<RetryResponse> retry(
+			Function<RetryRequest.Builder, ObjectBuilder<RetryRequest>> fn) {
 		return retry(fn.apply(new RetryRequest.Builder()).build());
 	}
 
@@ -342,8 +328,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StartIlmResponse> start(StartIlmRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<StartIlmResponse> start(StartIlmRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StartIlmRequest, StartIlmResponse, ErrorResponse> endpoint = (JsonEndpoint<StartIlmRequest, StartIlmResponse, ErrorResponse>) StartIlmRequest._ENDPOINT;
 
@@ -362,8 +347,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<StartIlmResponse> start(
-			Function<StartIlmRequest.Builder, ObjectBuilder<StartIlmRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StartIlmRequest.Builder, ObjectBuilder<StartIlmRequest>> fn) {
 		return start(fn.apply(new StartIlmRequest.Builder()).build());
 	}
 
@@ -375,7 +359,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StartIlmResponse> start() throws IOException, ElasticsearchException {
+	public CompletableFuture<StartIlmResponse> start() {
 		return this.transport.performRequestAsync(new StartIlmRequest.Builder().build(), StartIlmRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -391,7 +375,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StopIlmResponse> stop(StopIlmRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<StopIlmResponse> stop(StopIlmRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StopIlmRequest, StopIlmResponse, ErrorResponse> endpoint = (JsonEndpoint<StopIlmRequest, StopIlmResponse, ErrorResponse>) StopIlmRequest._ENDPOINT;
 
@@ -411,8 +395,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 */
 
 	public final CompletableFuture<StopIlmResponse> stop(
-			Function<StopIlmRequest.Builder, ObjectBuilder<StopIlmRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StopIlmRequest.Builder, ObjectBuilder<StopIlmRequest>> fn) {
 		return stop(fn.apply(new StopIlmRequest.Builder()).build());
 	}
 
@@ -425,7 +408,7 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StopIlmResponse> stop() throws IOException, ElasticsearchException {
+	public CompletableFuture<StopIlmResponse> stop() {
 		return this.transport.performRequestAsync(new StopIlmRequest.Builder().build(), StopIlmRequest._ENDPOINT,
 				this.transportOptions);
 	}

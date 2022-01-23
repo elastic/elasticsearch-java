@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -33,7 +32,6 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -67,8 +65,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CloseJobResponse> closeJob(CloseJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<CloseJobResponse> closeJob(CloseJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CloseJobRequest, CloseJobResponse, ErrorResponse> endpoint = (JsonEndpoint<CloseJobRequest, CloseJobResponse, ErrorResponse>) CloseJobRequest._ENDPOINT;
 
@@ -88,8 +85,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<CloseJobResponse> closeJob(
-			Function<CloseJobRequest.Builder, ObjectBuilder<CloseJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<CloseJobRequest.Builder, ObjectBuilder<CloseJobRequest>> fn) {
 		return closeJob(fn.apply(new CloseJobRequest.Builder()).build());
 	}
 
@@ -103,8 +99,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteCalendarResponse> deleteCalendar(DeleteCalendarRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteCalendarResponse> deleteCalendar(DeleteCalendarRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteCalendarRequest, DeleteCalendarResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteCalendarRequest, DeleteCalendarResponse, ErrorResponse>) DeleteCalendarRequest._ENDPOINT;
 
@@ -123,8 +118,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteCalendarResponse> deleteCalendar(
-			Function<DeleteCalendarRequest.Builder, ObjectBuilder<DeleteCalendarRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteCalendarRequest.Builder, ObjectBuilder<DeleteCalendarRequest>> fn) {
 		return deleteCalendar(fn.apply(new DeleteCalendarRequest.Builder()).build());
 	}
 
@@ -138,8 +132,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteCalendarEventResponse> deleteCalendarEvent(DeleteCalendarEventRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteCalendarEventResponse> deleteCalendarEvent(DeleteCalendarEventRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteCalendarEventRequest, DeleteCalendarEventResponse, ErrorResponse>) DeleteCalendarEventRequest._ENDPOINT;
 
@@ -158,8 +151,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteCalendarEventResponse> deleteCalendarEvent(
-			Function<DeleteCalendarEventRequest.Builder, ObjectBuilder<DeleteCalendarEventRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteCalendarEventRequest.Builder, ObjectBuilder<DeleteCalendarEventRequest>> fn) {
 		return deleteCalendarEvent(fn.apply(new DeleteCalendarEventRequest.Builder()).build());
 	}
 
@@ -173,8 +165,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteCalendarJobResponse> deleteCalendarJob(DeleteCalendarJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteCalendarJobResponse> deleteCalendarJob(DeleteCalendarJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteCalendarJobRequest, DeleteCalendarJobResponse, ErrorResponse>) DeleteCalendarJobRequest._ENDPOINT;
 
@@ -193,8 +184,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteCalendarJobResponse> deleteCalendarJob(
-			Function<DeleteCalendarJobRequest.Builder, ObjectBuilder<DeleteCalendarJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteCalendarJobRequest.Builder, ObjectBuilder<DeleteCalendarJobRequest>> fn) {
 		return deleteCalendarJob(fn.apply(new DeleteCalendarJobRequest.Builder()).build());
 	}
 
@@ -209,7 +199,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<DeleteDataFrameAnalyticsResponse> deleteDataFrameAnalytics(
-			DeleteDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
+			DeleteDataFrameAnalyticsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDataFrameAnalyticsRequest, DeleteDataFrameAnalyticsResponse, ErrorResponse>) DeleteDataFrameAnalyticsRequest._ENDPOINT;
 
@@ -228,8 +218,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteDataFrameAnalyticsResponse> deleteDataFrameAnalytics(
-			Function<DeleteDataFrameAnalyticsRequest.Builder, ObjectBuilder<DeleteDataFrameAnalyticsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteDataFrameAnalyticsRequest.Builder, ObjectBuilder<DeleteDataFrameAnalyticsRequest>> fn) {
 		return deleteDataFrameAnalytics(fn.apply(new DeleteDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -243,8 +232,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteDatafeedResponse> deleteDatafeed(DeleteDatafeedRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteDatafeedResponse> deleteDatafeed(DeleteDatafeedRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDatafeedRequest, DeleteDatafeedResponse, ErrorResponse>) DeleteDatafeedRequest._ENDPOINT;
 
@@ -263,8 +251,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteDatafeedResponse> deleteDatafeed(
-			Function<DeleteDatafeedRequest.Builder, ObjectBuilder<DeleteDatafeedRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteDatafeedRequest.Builder, ObjectBuilder<DeleteDatafeedRequest>> fn) {
 		return deleteDatafeed(fn.apply(new DeleteDatafeedRequest.Builder()).build());
 	}
 
@@ -278,8 +265,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteExpiredDataResponse> deleteExpiredData(DeleteExpiredDataRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteExpiredDataResponse> deleteExpiredData(DeleteExpiredDataRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteExpiredDataRequest, DeleteExpiredDataResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteExpiredDataRequest, DeleteExpiredDataResponse, ErrorResponse>) DeleteExpiredDataRequest._ENDPOINT;
 
@@ -298,8 +284,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteExpiredDataResponse> deleteExpiredData(
-			Function<DeleteExpiredDataRequest.Builder, ObjectBuilder<DeleteExpiredDataRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteExpiredDataRequest.Builder, ObjectBuilder<DeleteExpiredDataRequest>> fn) {
 		return deleteExpiredData(fn.apply(new DeleteExpiredDataRequest.Builder()).build());
 	}
 
@@ -311,7 +296,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteExpiredDataResponse> deleteExpiredData() throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteExpiredDataResponse> deleteExpiredData() {
 		return this.transport.performRequestAsync(new DeleteExpiredDataRequest.Builder().build(),
 				DeleteExpiredDataRequest._ENDPOINT, this.transportOptions);
 	}
@@ -326,8 +311,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteFilterResponse> deleteFilter(DeleteFilterRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteFilterResponse> deleteFilter(DeleteFilterRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteFilterRequest, DeleteFilterResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteFilterRequest, DeleteFilterResponse, ErrorResponse>) DeleteFilterRequest._ENDPOINT;
 
@@ -346,8 +330,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteFilterResponse> deleteFilter(
-			Function<DeleteFilterRequest.Builder, ObjectBuilder<DeleteFilterRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteFilterRequest.Builder, ObjectBuilder<DeleteFilterRequest>> fn) {
 		return deleteFilter(fn.apply(new DeleteFilterRequest.Builder()).build());
 	}
 
@@ -361,8 +344,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteForecastResponse> deleteForecast(DeleteForecastRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteForecastResponse> deleteForecast(DeleteForecastRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteForecastRequest, DeleteForecastResponse, ErrorResponse>) DeleteForecastRequest._ENDPOINT;
 
@@ -381,8 +363,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteForecastResponse> deleteForecast(
-			Function<DeleteForecastRequest.Builder, ObjectBuilder<DeleteForecastRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteForecastRequest.Builder, ObjectBuilder<DeleteForecastRequest>> fn) {
 		return deleteForecast(fn.apply(new DeleteForecastRequest.Builder()).build());
 	}
 
@@ -396,8 +377,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteJobResponse> deleteJob(DeleteJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteJobResponse> deleteJob(DeleteJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse>) DeleteJobRequest._ENDPOINT;
 
@@ -416,8 +396,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteJobResponse> deleteJob(
-			Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn) {
 		return deleteJob(fn.apply(new DeleteJobRequest.Builder()).build());
 	}
 
@@ -431,8 +410,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteModelSnapshotResponse> deleteModelSnapshot(DeleteModelSnapshotRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteModelSnapshotResponse> deleteModelSnapshot(DeleteModelSnapshotRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteModelSnapshotRequest, DeleteModelSnapshotResponse, ErrorResponse>) DeleteModelSnapshotRequest._ENDPOINT;
 
@@ -451,8 +429,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteModelSnapshotResponse> deleteModelSnapshot(
-			Function<DeleteModelSnapshotRequest.Builder, ObjectBuilder<DeleteModelSnapshotRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteModelSnapshotRequest.Builder, ObjectBuilder<DeleteModelSnapshotRequest>> fn) {
 		return deleteModelSnapshot(fn.apply(new DeleteModelSnapshotRequest.Builder()).build());
 	}
 
@@ -467,8 +444,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteTrainedModelResponse> deleteTrainedModel(DeleteTrainedModelRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteTrainedModelResponse> deleteTrainedModel(DeleteTrainedModelRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteTrainedModelRequest, DeleteTrainedModelResponse, ErrorResponse>) DeleteTrainedModelRequest._ENDPOINT;
 
@@ -488,8 +464,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteTrainedModelResponse> deleteTrainedModel(
-			Function<DeleteTrainedModelRequest.Builder, ObjectBuilder<DeleteTrainedModelRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteTrainedModelRequest.Builder, ObjectBuilder<DeleteTrainedModelRequest>> fn) {
 		return deleteTrainedModel(fn.apply(new DeleteTrainedModelRequest.Builder()).build());
 	}
 
@@ -504,7 +479,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<DeleteTrainedModelAliasResponse> deleteTrainedModelAlias(
-			DeleteTrainedModelAliasRequest request) throws IOException, ElasticsearchException {
+			DeleteTrainedModelAliasRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteTrainedModelAliasRequest, DeleteTrainedModelAliasResponse, ErrorResponse>) DeleteTrainedModelAliasRequest._ENDPOINT;
 
@@ -523,8 +498,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<DeleteTrainedModelAliasResponse> deleteTrainedModelAlias(
-			Function<DeleteTrainedModelAliasRequest.Builder, ObjectBuilder<DeleteTrainedModelAliasRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteTrainedModelAliasRequest.Builder, ObjectBuilder<DeleteTrainedModelAliasRequest>> fn) {
 		return deleteTrainedModelAlias(fn.apply(new DeleteTrainedModelAliasRequest.Builder()).build());
 	}
 
@@ -538,8 +512,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<EstimateModelMemoryResponse> estimateModelMemory(EstimateModelMemoryRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<EstimateModelMemoryResponse> estimateModelMemory(EstimateModelMemoryRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse> endpoint = (JsonEndpoint<EstimateModelMemoryRequest, EstimateModelMemoryResponse, ErrorResponse>) EstimateModelMemoryRequest._ENDPOINT;
 
@@ -558,8 +531,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<EstimateModelMemoryResponse> estimateModelMemory(
-			Function<EstimateModelMemoryRequest.Builder, ObjectBuilder<EstimateModelMemoryRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<EstimateModelMemoryRequest.Builder, ObjectBuilder<EstimateModelMemoryRequest>> fn) {
 		return estimateModelMemory(fn.apply(new EstimateModelMemoryRequest.Builder()).build());
 	}
 
@@ -571,8 +543,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<EstimateModelMemoryResponse> estimateModelMemory()
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<EstimateModelMemoryResponse> estimateModelMemory() {
 		return this.transport.performRequestAsync(new EstimateModelMemoryRequest.Builder().build(),
 				EstimateModelMemoryRequest._ENDPOINT, this.transportOptions);
 	}
@@ -587,8 +558,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<EvaluateDataFrameResponse> evaluateDataFrame(EvaluateDataFrameRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<EvaluateDataFrameResponse> evaluateDataFrame(EvaluateDataFrameRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ErrorResponse> endpoint = (JsonEndpoint<EvaluateDataFrameRequest, EvaluateDataFrameResponse, ErrorResponse>) EvaluateDataFrameRequest._ENDPOINT;
 
@@ -607,8 +577,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<EvaluateDataFrameResponse> evaluateDataFrame(
-			Function<EvaluateDataFrameRequest.Builder, ObjectBuilder<EvaluateDataFrameRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<EvaluateDataFrameRequest.Builder, ObjectBuilder<EvaluateDataFrameRequest>> fn) {
 		return evaluateDataFrame(fn.apply(new EvaluateDataFrameRequest.Builder()).build());
 	}
 
@@ -623,7 +592,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<ExplainDataFrameAnalyticsResponse> explainDataFrameAnalytics(
-			ExplainDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
+			ExplainDataFrameAnalyticsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<ExplainDataFrameAnalyticsRequest, ExplainDataFrameAnalyticsResponse, ErrorResponse>) ExplainDataFrameAnalyticsRequest._ENDPOINT;
 
@@ -642,8 +611,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<ExplainDataFrameAnalyticsResponse> explainDataFrameAnalytics(
-			Function<ExplainDataFrameAnalyticsRequest.Builder, ObjectBuilder<ExplainDataFrameAnalyticsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ExplainDataFrameAnalyticsRequest.Builder, ObjectBuilder<ExplainDataFrameAnalyticsRequest>> fn) {
 		return explainDataFrameAnalytics(fn.apply(new ExplainDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -655,8 +623,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ExplainDataFrameAnalyticsResponse> explainDataFrameAnalytics()
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ExplainDataFrameAnalyticsResponse> explainDataFrameAnalytics() {
 		return this.transport.performRequestAsync(new ExplainDataFrameAnalyticsRequest.Builder().build(),
 				ExplainDataFrameAnalyticsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -671,8 +638,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FlushJobResponse> flushJob(FlushJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<FlushJobResponse> flushJob(FlushJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FlushJobRequest, FlushJobResponse, ErrorResponse> endpoint = (JsonEndpoint<FlushJobRequest, FlushJobResponse, ErrorResponse>) FlushJobRequest._ENDPOINT;
 
@@ -691,8 +657,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<FlushJobResponse> flushJob(
-			Function<FlushJobRequest.Builder, ObjectBuilder<FlushJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<FlushJobRequest.Builder, ObjectBuilder<FlushJobRequest>> fn) {
 		return flushJob(fn.apply(new FlushJobRequest.Builder()).build());
 	}
 
@@ -707,8 +672,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ForecastResponse> forecast(ForecastRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ForecastResponse> forecast(ForecastRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ForecastRequest, ForecastResponse, ErrorResponse> endpoint = (JsonEndpoint<ForecastRequest, ForecastResponse, ErrorResponse>) ForecastRequest._ENDPOINT;
 
@@ -728,8 +692,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<ForecastResponse> forecast(
-			Function<ForecastRequest.Builder, ObjectBuilder<ForecastRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ForecastRequest.Builder, ObjectBuilder<ForecastRequest>> fn) {
 		return forecast(fn.apply(new ForecastRequest.Builder()).build());
 	}
 
@@ -743,8 +706,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetBucketsResponse> getBuckets(GetBucketsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetBucketsResponse> getBuckets(GetBucketsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetBucketsRequest, GetBucketsResponse, ErrorResponse>) GetBucketsRequest._ENDPOINT;
 
@@ -763,8 +725,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetBucketsResponse> getBuckets(
-			Function<GetBucketsRequest.Builder, ObjectBuilder<GetBucketsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetBucketsRequest.Builder, ObjectBuilder<GetBucketsRequest>> fn) {
 		return getBuckets(fn.apply(new GetBucketsRequest.Builder()).build());
 	}
 
@@ -778,8 +739,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetCalendarEventsResponse> getCalendarEvents(GetCalendarEventsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetCalendarEventsResponse> getCalendarEvents(GetCalendarEventsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetCalendarEventsRequest, GetCalendarEventsResponse, ErrorResponse>) GetCalendarEventsRequest._ENDPOINT;
 
@@ -798,8 +758,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetCalendarEventsResponse> getCalendarEvents(
-			Function<GetCalendarEventsRequest.Builder, ObjectBuilder<GetCalendarEventsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetCalendarEventsRequest.Builder, ObjectBuilder<GetCalendarEventsRequest>> fn) {
 		return getCalendarEvents(fn.apply(new GetCalendarEventsRequest.Builder()).build());
 	}
 
@@ -813,8 +772,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetCalendarsResponse> getCalendars(GetCalendarsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetCalendarsResponse> getCalendars(GetCalendarsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetCalendarsRequest, GetCalendarsResponse, ErrorResponse>) GetCalendarsRequest._ENDPOINT;
 
@@ -833,8 +791,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetCalendarsResponse> getCalendars(
-			Function<GetCalendarsRequest.Builder, ObjectBuilder<GetCalendarsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetCalendarsRequest.Builder, ObjectBuilder<GetCalendarsRequest>> fn) {
 		return getCalendars(fn.apply(new GetCalendarsRequest.Builder()).build());
 	}
 
@@ -846,7 +803,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetCalendarsResponse> getCalendars() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetCalendarsResponse> getCalendars() {
 		return this.transport.performRequestAsync(new GetCalendarsRequest.Builder().build(),
 				GetCalendarsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -861,8 +818,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetCategoriesResponse> getCategories(GetCategoriesRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetCategoriesResponse> getCategories(GetCategoriesRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetCategoriesRequest, GetCategoriesResponse, ErrorResponse> endpoint = (JsonEndpoint<GetCategoriesRequest, GetCategoriesResponse, ErrorResponse>) GetCategoriesRequest._ENDPOINT;
 
@@ -881,8 +837,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetCategoriesResponse> getCategories(
-			Function<GetCategoriesRequest.Builder, ObjectBuilder<GetCategoriesRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetCategoriesRequest.Builder, ObjectBuilder<GetCategoriesRequest>> fn) {
 		return getCategories(fn.apply(new GetCategoriesRequest.Builder()).build());
 	}
 
@@ -896,8 +851,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetDataFrameAnalyticsResponse> getDataFrameAnalytics(GetDataFrameAnalyticsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetDataFrameAnalyticsResponse> getDataFrameAnalytics(
+			GetDataFrameAnalyticsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetDataFrameAnalyticsRequest, GetDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataFrameAnalyticsRequest, GetDataFrameAnalyticsResponse, ErrorResponse>) GetDataFrameAnalyticsRequest._ENDPOINT;
 
@@ -916,8 +871,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetDataFrameAnalyticsResponse> getDataFrameAnalytics(
-			Function<GetDataFrameAnalyticsRequest.Builder, ObjectBuilder<GetDataFrameAnalyticsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetDataFrameAnalyticsRequest.Builder, ObjectBuilder<GetDataFrameAnalyticsRequest>> fn) {
 		return getDataFrameAnalytics(fn.apply(new GetDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -929,8 +883,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetDataFrameAnalyticsResponse> getDataFrameAnalytics()
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetDataFrameAnalyticsResponse> getDataFrameAnalytics() {
 		return this.transport.performRequestAsync(new GetDataFrameAnalyticsRequest.Builder().build(),
 				GetDataFrameAnalyticsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -946,7 +899,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<GetDataFrameAnalyticsStatsResponse> getDataFrameAnalyticsStats(
-			GetDataFrameAnalyticsStatsRequest request) throws IOException, ElasticsearchException {
+			GetDataFrameAnalyticsStatsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataFrameAnalyticsStatsRequest, GetDataFrameAnalyticsStatsResponse, ErrorResponse>) GetDataFrameAnalyticsStatsRequest._ENDPOINT;
 
@@ -965,8 +918,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetDataFrameAnalyticsStatsResponse> getDataFrameAnalyticsStats(
-			Function<GetDataFrameAnalyticsStatsRequest.Builder, ObjectBuilder<GetDataFrameAnalyticsStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetDataFrameAnalyticsStatsRequest.Builder, ObjectBuilder<GetDataFrameAnalyticsStatsRequest>> fn) {
 		return getDataFrameAnalyticsStats(fn.apply(new GetDataFrameAnalyticsStatsRequest.Builder()).build());
 	}
 
@@ -978,8 +930,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetDataFrameAnalyticsStatsResponse> getDataFrameAnalyticsStats()
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetDataFrameAnalyticsStatsResponse> getDataFrameAnalyticsStats() {
 		return this.transport.performRequestAsync(new GetDataFrameAnalyticsStatsRequest.Builder().build(),
 				GetDataFrameAnalyticsStatsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -994,8 +945,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetDatafeedStatsResponse> getDatafeedStats(GetDatafeedStatsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetDatafeedStatsResponse> getDatafeedStats(GetDatafeedStatsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDatafeedStatsRequest, GetDatafeedStatsResponse, ErrorResponse>) GetDatafeedStatsRequest._ENDPOINT;
 
@@ -1014,8 +964,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetDatafeedStatsResponse> getDatafeedStats(
-			Function<GetDatafeedStatsRequest.Builder, ObjectBuilder<GetDatafeedStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetDatafeedStatsRequest.Builder, ObjectBuilder<GetDatafeedStatsRequest>> fn) {
 		return getDatafeedStats(fn.apply(new GetDatafeedStatsRequest.Builder()).build());
 	}
 
@@ -1027,7 +976,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetDatafeedStatsResponse> getDatafeedStats() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetDatafeedStatsResponse> getDatafeedStats() {
 		return this.transport.performRequestAsync(new GetDatafeedStatsRequest.Builder().build(),
 				GetDatafeedStatsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1042,8 +991,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetDatafeedsResponse> getDatafeeds(GetDatafeedsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetDatafeedsResponse> getDatafeeds(GetDatafeedsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetDatafeedsRequest, GetDatafeedsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDatafeedsRequest, GetDatafeedsResponse, ErrorResponse>) GetDatafeedsRequest._ENDPOINT;
 
@@ -1062,8 +1010,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetDatafeedsResponse> getDatafeeds(
-			Function<GetDatafeedsRequest.Builder, ObjectBuilder<GetDatafeedsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetDatafeedsRequest.Builder, ObjectBuilder<GetDatafeedsRequest>> fn) {
 		return getDatafeeds(fn.apply(new GetDatafeedsRequest.Builder()).build());
 	}
 
@@ -1075,7 +1022,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetDatafeedsResponse> getDatafeeds() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetDatafeedsResponse> getDatafeeds() {
 		return this.transport.performRequestAsync(new GetDatafeedsRequest.Builder().build(),
 				GetDatafeedsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1090,8 +1037,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetFiltersResponse> getFilters(GetFiltersRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetFiltersResponse> getFilters(GetFiltersRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetFiltersRequest, GetFiltersResponse, ErrorResponse> endpoint = (JsonEndpoint<GetFiltersRequest, GetFiltersResponse, ErrorResponse>) GetFiltersRequest._ENDPOINT;
 
@@ -1110,8 +1056,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetFiltersResponse> getFilters(
-			Function<GetFiltersRequest.Builder, ObjectBuilder<GetFiltersRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetFiltersRequest.Builder, ObjectBuilder<GetFiltersRequest>> fn) {
 		return getFilters(fn.apply(new GetFiltersRequest.Builder()).build());
 	}
 
@@ -1123,7 +1068,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetFiltersResponse> getFilters() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetFiltersResponse> getFilters() {
 		return this.transport.performRequestAsync(new GetFiltersRequest.Builder().build(), GetFiltersRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1138,8 +1083,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetInfluencersResponse> getInfluencers(GetInfluencersRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetInfluencersResponse> getInfluencers(GetInfluencersRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse> endpoint = (JsonEndpoint<GetInfluencersRequest, GetInfluencersResponse, ErrorResponse>) GetInfluencersRequest._ENDPOINT;
 
@@ -1158,8 +1102,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetInfluencersResponse> getInfluencers(
-			Function<GetInfluencersRequest.Builder, ObjectBuilder<GetInfluencersRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetInfluencersRequest.Builder, ObjectBuilder<GetInfluencersRequest>> fn) {
 		return getInfluencers(fn.apply(new GetInfluencersRequest.Builder()).build());
 	}
 
@@ -1173,8 +1116,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetJobStatsResponse> getJobStats(GetJobStatsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetJobStatsResponse> getJobStats(GetJobStatsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetJobStatsRequest, GetJobStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetJobStatsRequest, GetJobStatsResponse, ErrorResponse>) GetJobStatsRequest._ENDPOINT;
 
@@ -1193,8 +1135,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetJobStatsResponse> getJobStats(
-			Function<GetJobStatsRequest.Builder, ObjectBuilder<GetJobStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetJobStatsRequest.Builder, ObjectBuilder<GetJobStatsRequest>> fn) {
 		return getJobStats(fn.apply(new GetJobStatsRequest.Builder()).build());
 	}
 
@@ -1206,7 +1147,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetJobStatsResponse> getJobStats() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetJobStatsResponse> getJobStats() {
 		return this.transport.performRequestAsync(new GetJobStatsRequest.Builder().build(),
 				GetJobStatsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1221,8 +1162,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetJobsResponse> getJobs(GetJobsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetJobsResponse> getJobs(GetJobsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetJobsRequest, GetJobsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetJobsRequest, GetJobsResponse, ErrorResponse>) GetJobsRequest._ENDPOINT;
 
@@ -1241,8 +1181,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetJobsResponse> getJobs(
-			Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn) {
 		return getJobs(fn.apply(new GetJobsRequest.Builder()).build());
 	}
 
@@ -1254,7 +1193,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetJobsResponse> getJobs() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetJobsResponse> getJobs() {
 		return this.transport.performRequestAsync(new GetJobsRequest.Builder().build(), GetJobsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1269,8 +1208,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetModelSnapshotsResponse> getModelSnapshots(GetModelSnapshotsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetModelSnapshotsResponse> getModelSnapshots(GetModelSnapshotsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetModelSnapshotsRequest, GetModelSnapshotsResponse, ErrorResponse>) GetModelSnapshotsRequest._ENDPOINT;
 
@@ -1289,8 +1227,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetModelSnapshotsResponse> getModelSnapshots(
-			Function<GetModelSnapshotsRequest.Builder, ObjectBuilder<GetModelSnapshotsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetModelSnapshotsRequest.Builder, ObjectBuilder<GetModelSnapshotsRequest>> fn) {
 		return getModelSnapshots(fn.apply(new GetModelSnapshotsRequest.Builder()).build());
 	}
 
@@ -1305,8 +1242,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetOverallBucketsResponse> getOverallBuckets(GetOverallBucketsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetOverallBucketsResponse> getOverallBuckets(GetOverallBucketsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetOverallBucketsRequest, GetOverallBucketsResponse, ErrorResponse>) GetOverallBucketsRequest._ENDPOINT;
 
@@ -1326,8 +1262,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetOverallBucketsResponse> getOverallBuckets(
-			Function<GetOverallBucketsRequest.Builder, ObjectBuilder<GetOverallBucketsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetOverallBucketsRequest.Builder, ObjectBuilder<GetOverallBucketsRequest>> fn) {
 		return getOverallBuckets(fn.apply(new GetOverallBucketsRequest.Builder()).build());
 	}
 
@@ -1341,8 +1276,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRecordsResponse> getRecords(GetRecordsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetRecordsResponse> getRecords(GetRecordsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRecordsRequest, GetRecordsResponse, ErrorResponse>) GetRecordsRequest._ENDPOINT;
 
@@ -1361,8 +1295,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetRecordsResponse> getRecords(
-			Function<GetRecordsRequest.Builder, ObjectBuilder<GetRecordsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetRecordsRequest.Builder, ObjectBuilder<GetRecordsRequest>> fn) {
 		return getRecords(fn.apply(new GetRecordsRequest.Builder()).build());
 	}
 
@@ -1376,8 +1309,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTrainedModelsResponse> getTrainedModels(GetTrainedModelsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTrainedModelsResponse> getTrainedModels(GetTrainedModelsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTrainedModelsRequest, GetTrainedModelsResponse, ErrorResponse>) GetTrainedModelsRequest._ENDPOINT;
 
@@ -1396,8 +1328,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetTrainedModelsResponse> getTrainedModels(
-			Function<GetTrainedModelsRequest.Builder, ObjectBuilder<GetTrainedModelsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetTrainedModelsRequest.Builder, ObjectBuilder<GetTrainedModelsRequest>> fn) {
 		return getTrainedModels(fn.apply(new GetTrainedModelsRequest.Builder()).build());
 	}
 
@@ -1409,7 +1340,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTrainedModelsResponse> getTrainedModels() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTrainedModelsResponse> getTrainedModels() {
 		return this.transport.performRequestAsync(new GetTrainedModelsRequest.Builder().build(),
 				GetTrainedModelsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1424,8 +1355,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTrainedModelsStatsResponse> getTrainedModelsStats(GetTrainedModelsStatsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTrainedModelsStatsResponse> getTrainedModelsStats(
+			GetTrainedModelsStatsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTrainedModelsStatsRequest, GetTrainedModelsStatsResponse, ErrorResponse>) GetTrainedModelsStatsRequest._ENDPOINT;
 
@@ -1444,8 +1375,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<GetTrainedModelsStatsResponse> getTrainedModelsStats(
-			Function<GetTrainedModelsStatsRequest.Builder, ObjectBuilder<GetTrainedModelsStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetTrainedModelsStatsRequest.Builder, ObjectBuilder<GetTrainedModelsStatsRequest>> fn) {
 		return getTrainedModelsStats(fn.apply(new GetTrainedModelsStatsRequest.Builder()).build());
 	}
 
@@ -1457,8 +1387,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTrainedModelsStatsResponse> getTrainedModelsStats()
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTrainedModelsStatsResponse> getTrainedModelsStats() {
 		return this.transport.performRequestAsync(new GetTrainedModelsStatsRequest.Builder().build(),
 				GetTrainedModelsStatsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1474,7 +1403,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<InferTrainedModelDeploymentResponse> inferTrainedModelDeployment(
-			InferTrainedModelDeploymentRequest request) throws IOException, ElasticsearchException {
+			InferTrainedModelDeploymentRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<InferTrainedModelDeploymentRequest, InferTrainedModelDeploymentResponse, ErrorResponse> endpoint = (JsonEndpoint<InferTrainedModelDeploymentRequest, InferTrainedModelDeploymentResponse, ErrorResponse>) InferTrainedModelDeploymentRequest._ENDPOINT;
 
@@ -1493,8 +1422,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<InferTrainedModelDeploymentResponse> inferTrainedModelDeployment(
-			Function<InferTrainedModelDeploymentRequest.Builder, ObjectBuilder<InferTrainedModelDeploymentRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<InferTrainedModelDeploymentRequest.Builder, ObjectBuilder<InferTrainedModelDeploymentRequest>> fn) {
 		return inferTrainedModelDeployment(fn.apply(new InferTrainedModelDeploymentRequest.Builder()).build());
 	}
 
@@ -1507,7 +1435,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/get-ml-info.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<MlInfoResponse> info() throws IOException, ElasticsearchException {
+	public CompletableFuture<MlInfoResponse> info() {
 		return this.transport.performRequestAsync(MlInfoRequest._INSTANCE, MlInfoRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1522,8 +1450,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<OpenJobResponse> openJob(OpenJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<OpenJobResponse> openJob(OpenJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<OpenJobRequest, OpenJobResponse, ErrorResponse> endpoint = (JsonEndpoint<OpenJobRequest, OpenJobResponse, ErrorResponse>) OpenJobRequest._ENDPOINT;
 
@@ -1542,8 +1469,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<OpenJobResponse> openJob(
-			Function<OpenJobRequest.Builder, ObjectBuilder<OpenJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<OpenJobRequest.Builder, ObjectBuilder<OpenJobRequest>> fn) {
 		return openJob(fn.apply(new OpenJobRequest.Builder()).build());
 	}
 
@@ -1557,8 +1483,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PostCalendarEventsResponse> postCalendarEvents(PostCalendarEventsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PostCalendarEventsResponse> postCalendarEvents(PostCalendarEventsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ErrorResponse> endpoint = (JsonEndpoint<PostCalendarEventsRequest, PostCalendarEventsResponse, ErrorResponse>) PostCalendarEventsRequest._ENDPOINT;
 
@@ -1577,8 +1502,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PostCalendarEventsResponse> postCalendarEvents(
-			Function<PostCalendarEventsRequest.Builder, ObjectBuilder<PostCalendarEventsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PostCalendarEventsRequest.Builder, ObjectBuilder<PostCalendarEventsRequest>> fn) {
 		return postCalendarEvents(fn.apply(new PostCalendarEventsRequest.Builder()).build());
 	}
 
@@ -1592,8 +1516,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public <TData> CompletableFuture<PostDataResponse> postData(PostDataRequest<TData> request)
-			throws IOException, ElasticsearchException {
+	public <TData> CompletableFuture<PostDataResponse> postData(PostDataRequest<TData> request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse> endpoint = (JsonEndpoint<PostDataRequest<?>, PostDataResponse, ErrorResponse>) PostDataRequest._ENDPOINT;
 
@@ -1612,8 +1535,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final <TData> CompletableFuture<PostDataResponse> postData(
-			Function<PostDataRequest.Builder<TData>, ObjectBuilder<PostDataRequest<TData>>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PostDataRequest.Builder<TData>, ObjectBuilder<PostDataRequest<TData>>> fn) {
 		return postData(fn.apply(new PostDataRequest.Builder<TData>()).build());
 	}
 
@@ -1628,7 +1550,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<PreviewDataFrameAnalyticsResponse> previewDataFrameAnalytics(
-			PreviewDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
+			PreviewDataFrameAnalyticsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<PreviewDataFrameAnalyticsRequest, PreviewDataFrameAnalyticsResponse, ErrorResponse>) PreviewDataFrameAnalyticsRequest._ENDPOINT;
 
@@ -1647,8 +1569,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PreviewDataFrameAnalyticsResponse> previewDataFrameAnalytics(
-			Function<PreviewDataFrameAnalyticsRequest.Builder, ObjectBuilder<PreviewDataFrameAnalyticsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PreviewDataFrameAnalyticsRequest.Builder, ObjectBuilder<PreviewDataFrameAnalyticsRequest>> fn) {
 		return previewDataFrameAnalytics(fn.apply(new PreviewDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -1660,8 +1581,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PreviewDataFrameAnalyticsResponse> previewDataFrameAnalytics()
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PreviewDataFrameAnalyticsResponse> previewDataFrameAnalytics() {
 		return this.transport.performRequestAsync(new PreviewDataFrameAnalyticsRequest.Builder().build(),
 				PreviewDataFrameAnalyticsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1677,8 +1597,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public <TDocument> CompletableFuture<PreviewDatafeedResponse<TDocument>> previewDatafeed(
-			PreviewDatafeedRequest request, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			PreviewDatafeedRequest request, Class<TDocument> tDocumentClass) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<PreviewDatafeedRequest, PreviewDatafeedResponse<TDocument>, ErrorResponse>) PreviewDatafeedRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -1700,7 +1619,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 
 	public final <TDocument> CompletableFuture<PreviewDatafeedResponse<TDocument>> previewDatafeed(
 			Function<PreviewDatafeedRequest.Builder, ObjectBuilder<PreviewDatafeedRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) {
 		return previewDatafeed(fn.apply(new PreviewDatafeedRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -1714,8 +1633,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutCalendarResponse> putCalendar(PutCalendarRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutCalendarResponse> putCalendar(PutCalendarRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutCalendarRequest, PutCalendarResponse, ErrorResponse> endpoint = (JsonEndpoint<PutCalendarRequest, PutCalendarResponse, ErrorResponse>) PutCalendarRequest._ENDPOINT;
 
@@ -1734,8 +1652,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PutCalendarResponse> putCalendar(
-			Function<PutCalendarRequest.Builder, ObjectBuilder<PutCalendarRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutCalendarRequest.Builder, ObjectBuilder<PutCalendarRequest>> fn) {
 		return putCalendar(fn.apply(new PutCalendarRequest.Builder()).build());
 	}
 
@@ -1749,8 +1666,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutCalendarJobResponse> putCalendarJob(PutCalendarJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutCalendarJobResponse> putCalendarJob(PutCalendarJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutCalendarJobRequest, PutCalendarJobResponse, ErrorResponse> endpoint = (JsonEndpoint<PutCalendarJobRequest, PutCalendarJobResponse, ErrorResponse>) PutCalendarJobRequest._ENDPOINT;
 
@@ -1769,8 +1685,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PutCalendarJobResponse> putCalendarJob(
-			Function<PutCalendarJobRequest.Builder, ObjectBuilder<PutCalendarJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutCalendarJobRequest.Builder, ObjectBuilder<PutCalendarJobRequest>> fn) {
 		return putCalendarJob(fn.apply(new PutCalendarJobRequest.Builder()).build());
 	}
 
@@ -1784,8 +1699,8 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutDataFrameAnalyticsResponse> putDataFrameAnalytics(PutDataFrameAnalyticsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutDataFrameAnalyticsResponse> putDataFrameAnalytics(
+			PutDataFrameAnalyticsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDataFrameAnalyticsRequest, PutDataFrameAnalyticsResponse, ErrorResponse>) PutDataFrameAnalyticsRequest._ENDPOINT;
 
@@ -1804,8 +1719,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PutDataFrameAnalyticsResponse> putDataFrameAnalytics(
-			Function<PutDataFrameAnalyticsRequest.Builder, ObjectBuilder<PutDataFrameAnalyticsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutDataFrameAnalyticsRequest.Builder, ObjectBuilder<PutDataFrameAnalyticsRequest>> fn) {
 		return putDataFrameAnalytics(fn.apply(new PutDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -1819,8 +1733,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutDatafeedResponse> putDatafeed(PutDatafeedRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutDatafeedResponse> putDatafeed(PutDatafeedRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse> endpoint = (JsonEndpoint<PutDatafeedRequest, PutDatafeedResponse, ErrorResponse>) PutDatafeedRequest._ENDPOINT;
 
@@ -1839,8 +1752,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PutDatafeedResponse> putDatafeed(
-			Function<PutDatafeedRequest.Builder, ObjectBuilder<PutDatafeedRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutDatafeedRequest.Builder, ObjectBuilder<PutDatafeedRequest>> fn) {
 		return putDatafeed(fn.apply(new PutDatafeedRequest.Builder()).build());
 	}
 
@@ -1854,8 +1766,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutFilterResponse> putFilter(PutFilterRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutFilterResponse> putFilter(PutFilterRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutFilterRequest, PutFilterResponse, ErrorResponse> endpoint = (JsonEndpoint<PutFilterRequest, PutFilterResponse, ErrorResponse>) PutFilterRequest._ENDPOINT;
 
@@ -1874,8 +1785,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PutFilterResponse> putFilter(
-			Function<PutFilterRequest.Builder, ObjectBuilder<PutFilterRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutFilterRequest.Builder, ObjectBuilder<PutFilterRequest>> fn) {
 		return putFilter(fn.apply(new PutFilterRequest.Builder()).build());
 	}
 
@@ -1889,7 +1799,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutJobResponse> putJob(PutJobRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<PutJobResponse> putJob(PutJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutJobRequest, PutJobResponse, ErrorResponse> endpoint = (JsonEndpoint<PutJobRequest, PutJobResponse, ErrorResponse>) PutJobRequest._ENDPOINT;
 
@@ -1908,8 +1818,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PutJobResponse> putJob(
-			Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn) {
 		return putJob(fn.apply(new PutJobRequest.Builder()).build());
 	}
 
@@ -1923,8 +1832,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutTrainedModelResponse> putTrainedModel(PutTrainedModelRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutTrainedModelResponse> putTrainedModel(PutTrainedModelRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse> endpoint = (JsonEndpoint<PutTrainedModelRequest, PutTrainedModelResponse, ErrorResponse>) PutTrainedModelRequest._ENDPOINT;
 
@@ -1943,8 +1851,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PutTrainedModelResponse> putTrainedModel(
-			Function<PutTrainedModelRequest.Builder, ObjectBuilder<PutTrainedModelRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutTrainedModelRequest.Builder, ObjectBuilder<PutTrainedModelRequest>> fn) {
 		return putTrainedModel(fn.apply(new PutTrainedModelRequest.Builder()).build());
 	}
 
@@ -1959,8 +1866,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutTrainedModelAliasResponse> putTrainedModelAlias(PutTrainedModelAliasRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutTrainedModelAliasResponse> putTrainedModelAlias(PutTrainedModelAliasRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<PutTrainedModelAliasRequest, PutTrainedModelAliasResponse, ErrorResponse>) PutTrainedModelAliasRequest._ENDPOINT;
 
@@ -1980,8 +1886,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PutTrainedModelAliasResponse> putTrainedModelAlias(
-			Function<PutTrainedModelAliasRequest.Builder, ObjectBuilder<PutTrainedModelAliasRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutTrainedModelAliasRequest.Builder, ObjectBuilder<PutTrainedModelAliasRequest>> fn) {
 		return putTrainedModelAlias(fn.apply(new PutTrainedModelAliasRequest.Builder()).build());
 	}
 
@@ -1996,7 +1901,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<PutTrainedModelDefinitionPartResponse> putTrainedModelDefinitionPart(
-			PutTrainedModelDefinitionPartRequest request) throws IOException, ElasticsearchException {
+			PutTrainedModelDefinitionPartRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutTrainedModelDefinitionPartRequest, PutTrainedModelDefinitionPartResponse, ErrorResponse> endpoint = (JsonEndpoint<PutTrainedModelDefinitionPartRequest, PutTrainedModelDefinitionPartResponse, ErrorResponse>) PutTrainedModelDefinitionPartRequest._ENDPOINT;
 
@@ -2015,8 +1920,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PutTrainedModelDefinitionPartResponse> putTrainedModelDefinitionPart(
-			Function<PutTrainedModelDefinitionPartRequest.Builder, ObjectBuilder<PutTrainedModelDefinitionPartRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutTrainedModelDefinitionPartRequest.Builder, ObjectBuilder<PutTrainedModelDefinitionPartRequest>> fn) {
 		return putTrainedModelDefinitionPart(fn.apply(new PutTrainedModelDefinitionPartRequest.Builder()).build());
 	}
 
@@ -2031,7 +1935,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<PutTrainedModelVocabularyResponse> putTrainedModelVocabulary(
-			PutTrainedModelVocabularyRequest request) throws IOException, ElasticsearchException {
+			PutTrainedModelVocabularyRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutTrainedModelVocabularyRequest, PutTrainedModelVocabularyResponse, ErrorResponse> endpoint = (JsonEndpoint<PutTrainedModelVocabularyRequest, PutTrainedModelVocabularyResponse, ErrorResponse>) PutTrainedModelVocabularyRequest._ENDPOINT;
 
@@ -2050,8 +1954,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<PutTrainedModelVocabularyResponse> putTrainedModelVocabulary(
-			Function<PutTrainedModelVocabularyRequest.Builder, ObjectBuilder<PutTrainedModelVocabularyRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutTrainedModelVocabularyRequest.Builder, ObjectBuilder<PutTrainedModelVocabularyRequest>> fn) {
 		return putTrainedModelVocabulary(fn.apply(new PutTrainedModelVocabularyRequest.Builder()).build());
 	}
 
@@ -2065,8 +1968,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ResetJobResponse> resetJob(ResetJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ResetJobResponse> resetJob(ResetJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ResetJobRequest, ResetJobResponse, ErrorResponse> endpoint = (JsonEndpoint<ResetJobRequest, ResetJobResponse, ErrorResponse>) ResetJobRequest._ENDPOINT;
 
@@ -2085,8 +1987,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<ResetJobResponse> resetJob(
-			Function<ResetJobRequest.Builder, ObjectBuilder<ResetJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ResetJobRequest.Builder, ObjectBuilder<ResetJobRequest>> fn) {
 		return resetJob(fn.apply(new ResetJobRequest.Builder()).build());
 	}
 
@@ -2100,8 +2001,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RevertModelSnapshotResponse> revertModelSnapshot(RevertModelSnapshotRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<RevertModelSnapshotResponse> revertModelSnapshot(RevertModelSnapshotRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<RevertModelSnapshotRequest, RevertModelSnapshotResponse, ErrorResponse>) RevertModelSnapshotRequest._ENDPOINT;
 
@@ -2120,8 +2020,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<RevertModelSnapshotResponse> revertModelSnapshot(
-			Function<RevertModelSnapshotRequest.Builder, ObjectBuilder<RevertModelSnapshotRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<RevertModelSnapshotRequest.Builder, ObjectBuilder<RevertModelSnapshotRequest>> fn) {
 		return revertModelSnapshot(fn.apply(new RevertModelSnapshotRequest.Builder()).build());
 	}
 
@@ -2136,8 +2035,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SetUpgradeModeResponse> setUpgradeMode(SetUpgradeModeRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<SetUpgradeModeResponse> setUpgradeMode(SetUpgradeModeRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse> endpoint = (JsonEndpoint<SetUpgradeModeRequest, SetUpgradeModeResponse, ErrorResponse>) SetUpgradeModeRequest._ENDPOINT;
 
@@ -2157,8 +2055,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<SetUpgradeModeResponse> setUpgradeMode(
-			Function<SetUpgradeModeRequest.Builder, ObjectBuilder<SetUpgradeModeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<SetUpgradeModeRequest.Builder, ObjectBuilder<SetUpgradeModeRequest>> fn) {
 		return setUpgradeMode(fn.apply(new SetUpgradeModeRequest.Builder()).build());
 	}
 
@@ -2171,7 +2068,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SetUpgradeModeResponse> setUpgradeMode() throws IOException, ElasticsearchException {
+	public CompletableFuture<SetUpgradeModeResponse> setUpgradeMode() {
 		return this.transport.performRequestAsync(new SetUpgradeModeRequest.Builder().build(),
 				SetUpgradeModeRequest._ENDPOINT, this.transportOptions);
 	}
@@ -2187,7 +2084,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<StartDataFrameAnalyticsResponse> startDataFrameAnalytics(
-			StartDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
+			StartDataFrameAnalyticsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<StartDataFrameAnalyticsRequest, StartDataFrameAnalyticsResponse, ErrorResponse>) StartDataFrameAnalyticsRequest._ENDPOINT;
 
@@ -2206,8 +2103,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<StartDataFrameAnalyticsResponse> startDataFrameAnalytics(
-			Function<StartDataFrameAnalyticsRequest.Builder, ObjectBuilder<StartDataFrameAnalyticsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StartDataFrameAnalyticsRequest.Builder, ObjectBuilder<StartDataFrameAnalyticsRequest>> fn) {
 		return startDataFrameAnalytics(fn.apply(new StartDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -2221,8 +2117,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StartDatafeedResponse> startDatafeed(StartDatafeedRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<StartDatafeedResponse> startDatafeed(StartDatafeedRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse> endpoint = (JsonEndpoint<StartDatafeedRequest, StartDatafeedResponse, ErrorResponse>) StartDatafeedRequest._ENDPOINT;
 
@@ -2241,8 +2136,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<StartDatafeedResponse> startDatafeed(
-			Function<StartDatafeedRequest.Builder, ObjectBuilder<StartDatafeedRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StartDatafeedRequest.Builder, ObjectBuilder<StartDatafeedRequest>> fn) {
 		return startDatafeed(fn.apply(new StartDatafeedRequest.Builder()).build());
 	}
 
@@ -2257,7 +2151,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<StartTrainedModelDeploymentResponse> startTrainedModelDeployment(
-			StartTrainedModelDeploymentRequest request) throws IOException, ElasticsearchException {
+			StartTrainedModelDeploymentRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StartTrainedModelDeploymentRequest, StartTrainedModelDeploymentResponse, ErrorResponse> endpoint = (JsonEndpoint<StartTrainedModelDeploymentRequest, StartTrainedModelDeploymentResponse, ErrorResponse>) StartTrainedModelDeploymentRequest._ENDPOINT;
 
@@ -2276,8 +2170,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<StartTrainedModelDeploymentResponse> startTrainedModelDeployment(
-			Function<StartTrainedModelDeploymentRequest.Builder, ObjectBuilder<StartTrainedModelDeploymentRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StartTrainedModelDeploymentRequest.Builder, ObjectBuilder<StartTrainedModelDeploymentRequest>> fn) {
 		return startTrainedModelDeployment(fn.apply(new StartTrainedModelDeploymentRequest.Builder()).build());
 	}
 
@@ -2292,7 +2185,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<StopDataFrameAnalyticsResponse> stopDataFrameAnalytics(
-			StopDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
+			StopDataFrameAnalyticsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<StopDataFrameAnalyticsRequest, StopDataFrameAnalyticsResponse, ErrorResponse>) StopDataFrameAnalyticsRequest._ENDPOINT;
 
@@ -2311,8 +2204,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<StopDataFrameAnalyticsResponse> stopDataFrameAnalytics(
-			Function<StopDataFrameAnalyticsRequest.Builder, ObjectBuilder<StopDataFrameAnalyticsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StopDataFrameAnalyticsRequest.Builder, ObjectBuilder<StopDataFrameAnalyticsRequest>> fn) {
 		return stopDataFrameAnalytics(fn.apply(new StopDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -2326,8 +2218,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StopDatafeedResponse> stopDatafeed(StopDatafeedRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<StopDatafeedResponse> stopDatafeed(StopDatafeedRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse> endpoint = (JsonEndpoint<StopDatafeedRequest, StopDatafeedResponse, ErrorResponse>) StopDatafeedRequest._ENDPOINT;
 
@@ -2346,8 +2237,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<StopDatafeedResponse> stopDatafeed(
-			Function<StopDatafeedRequest.Builder, ObjectBuilder<StopDatafeedRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StopDatafeedRequest.Builder, ObjectBuilder<StopDatafeedRequest>> fn) {
 		return stopDatafeed(fn.apply(new StopDatafeedRequest.Builder()).build());
 	}
 
@@ -2362,7 +2252,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<StopTrainedModelDeploymentResponse> stopTrainedModelDeployment(
-			StopTrainedModelDeploymentRequest request) throws IOException, ElasticsearchException {
+			StopTrainedModelDeploymentRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StopTrainedModelDeploymentRequest, StopTrainedModelDeploymentResponse, ErrorResponse> endpoint = (JsonEndpoint<StopTrainedModelDeploymentRequest, StopTrainedModelDeploymentResponse, ErrorResponse>) StopTrainedModelDeploymentRequest._ENDPOINT;
 
@@ -2381,8 +2271,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<StopTrainedModelDeploymentResponse> stopTrainedModelDeployment(
-			Function<StopTrainedModelDeploymentRequest.Builder, ObjectBuilder<StopTrainedModelDeploymentRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StopTrainedModelDeploymentRequest.Builder, ObjectBuilder<StopTrainedModelDeploymentRequest>> fn) {
 		return stopTrainedModelDeployment(fn.apply(new StopTrainedModelDeploymentRequest.Builder()).build());
 	}
 
@@ -2397,7 +2286,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public CompletableFuture<UpdateDataFrameAnalyticsResponse> updateDataFrameAnalytics(
-			UpdateDataFrameAnalyticsRequest request) throws IOException, ElasticsearchException {
+			UpdateDataFrameAnalyticsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateDataFrameAnalyticsRequest, UpdateDataFrameAnalyticsResponse, ErrorResponse>) UpdateDataFrameAnalyticsRequest._ENDPOINT;
 
@@ -2416,8 +2305,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<UpdateDataFrameAnalyticsResponse> updateDataFrameAnalytics(
-			Function<UpdateDataFrameAnalyticsRequest.Builder, ObjectBuilder<UpdateDataFrameAnalyticsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UpdateDataFrameAnalyticsRequest.Builder, ObjectBuilder<UpdateDataFrameAnalyticsRequest>> fn) {
 		return updateDataFrameAnalytics(fn.apply(new UpdateDataFrameAnalyticsRequest.Builder()).build());
 	}
 
@@ -2431,8 +2319,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpdateDatafeedResponse> updateDatafeed(UpdateDatafeedRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<UpdateDatafeedResponse> updateDatafeed(UpdateDatafeedRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateDatafeedRequest, UpdateDatafeedResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateDatafeedRequest, UpdateDatafeedResponse, ErrorResponse>) UpdateDatafeedRequest._ENDPOINT;
 
@@ -2451,8 +2338,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<UpdateDatafeedResponse> updateDatafeed(
-			Function<UpdateDatafeedRequest.Builder, ObjectBuilder<UpdateDatafeedRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UpdateDatafeedRequest.Builder, ObjectBuilder<UpdateDatafeedRequest>> fn) {
 		return updateDatafeed(fn.apply(new UpdateDatafeedRequest.Builder()).build());
 	}
 
@@ -2466,8 +2352,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpdateFilterResponse> updateFilter(UpdateFilterRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<UpdateFilterResponse> updateFilter(UpdateFilterRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateFilterRequest, UpdateFilterResponse, ErrorResponse>) UpdateFilterRequest._ENDPOINT;
 
@@ -2486,8 +2371,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<UpdateFilterResponse> updateFilter(
-			Function<UpdateFilterRequest.Builder, ObjectBuilder<UpdateFilterRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UpdateFilterRequest.Builder, ObjectBuilder<UpdateFilterRequest>> fn) {
 		return updateFilter(fn.apply(new UpdateFilterRequest.Builder()).build());
 	}
 
@@ -2501,8 +2385,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpdateJobResponse> updateJob(UpdateJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<UpdateJobResponse> updateJob(UpdateJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateJobRequest, UpdateJobResponse, ErrorResponse>) UpdateJobRequest._ENDPOINT;
 
@@ -2521,8 +2404,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<UpdateJobResponse> updateJob(
-			Function<UpdateJobRequest.Builder, ObjectBuilder<UpdateJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UpdateJobRequest.Builder, ObjectBuilder<UpdateJobRequest>> fn) {
 		return updateJob(fn.apply(new UpdateJobRequest.Builder()).build());
 	}
 
@@ -2536,8 +2418,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpdateModelSnapshotResponse> updateModelSnapshot(UpdateModelSnapshotRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<UpdateModelSnapshotResponse> updateModelSnapshot(UpdateModelSnapshotRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateModelSnapshotRequest, UpdateModelSnapshotResponse, ErrorResponse>) UpdateModelSnapshotRequest._ENDPOINT;
 
@@ -2556,8 +2437,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<UpdateModelSnapshotResponse> updateModelSnapshot(
-			Function<UpdateModelSnapshotRequest.Builder, ObjectBuilder<UpdateModelSnapshotRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UpdateModelSnapshotRequest.Builder, ObjectBuilder<UpdateModelSnapshotRequest>> fn) {
 		return updateModelSnapshot(fn.apply(new UpdateModelSnapshotRequest.Builder()).build());
 	}
 
@@ -2571,8 +2451,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpgradeJobSnapshotResponse> upgradeJobSnapshot(UpgradeJobSnapshotRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<UpgradeJobSnapshotResponse> upgradeJobSnapshot(UpgradeJobSnapshotRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ErrorResponse> endpoint = (JsonEndpoint<UpgradeJobSnapshotRequest, UpgradeJobSnapshotResponse, ErrorResponse>) UpgradeJobSnapshotRequest._ENDPOINT;
 
@@ -2591,8 +2470,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<UpgradeJobSnapshotResponse> upgradeJobSnapshot(
-			Function<UpgradeJobSnapshotRequest.Builder, ObjectBuilder<UpgradeJobSnapshotRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UpgradeJobSnapshotRequest.Builder, ObjectBuilder<UpgradeJobSnapshotRequest>> fn) {
 		return upgradeJobSnapshot(fn.apply(new UpgradeJobSnapshotRequest.Builder()).build());
 	}
 
@@ -2606,8 +2484,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ValidateResponse> validate(ValidateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ValidateResponse> validate(ValidateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ValidateRequest, ValidateResponse, ErrorResponse> endpoint = (JsonEndpoint<ValidateRequest, ValidateResponse, ErrorResponse>) ValidateRequest._ENDPOINT;
 
@@ -2626,8 +2503,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<ValidateResponse> validate(
-			Function<ValidateRequest.Builder, ObjectBuilder<ValidateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ValidateRequest.Builder, ObjectBuilder<ValidateRequest>> fn) {
 		return validate(fn.apply(new ValidateRequest.Builder()).build());
 	}
 
@@ -2639,7 +2515,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ValidateResponse> validate() throws IOException, ElasticsearchException {
+	public CompletableFuture<ValidateResponse> validate() {
 		return this.transport.performRequestAsync(new ValidateRequest.Builder().build(), ValidateRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -2654,8 +2530,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ValidateDetectorResponse> validateDetector(ValidateDetectorRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ValidateDetectorResponse> validateDetector(ValidateDetectorRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse> endpoint = (JsonEndpoint<ValidateDetectorRequest, ValidateDetectorResponse, ErrorResponse>) ValidateDetectorRequest._ENDPOINT;
 
@@ -2674,8 +2549,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 */
 
 	public final CompletableFuture<ValidateDetectorResponse> validateDetector(
-			Function<ValidateDetectorRequest.Builder, ObjectBuilder<ValidateDetectorRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ValidateDetectorRequest.Builder, ObjectBuilder<ValidateDetectorRequest>> fn) {
 		return validateDetector(fn.apply(new ValidateDetectorRequest.Builder()).build());
 	}
 
@@ -2687,7 +2561,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ValidateDetectorResponse> validateDetector() throws IOException, ElasticsearchException {
+	public CompletableFuture<ValidateDetectorResponse> validateDetector() {
 		return this.transport.performRequestAsync(new ValidateDetectorRequest.Builder().build(),
 				ValidateDetectorRequest._ENDPOINT, this.transportOptions);
 	}

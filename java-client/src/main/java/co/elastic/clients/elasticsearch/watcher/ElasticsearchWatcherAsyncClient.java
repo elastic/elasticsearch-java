@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -32,7 +31,6 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -69,8 +67,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AckWatchResponse> ackWatch(AckWatchRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<AckWatchResponse> ackWatch(AckWatchRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AckWatchRequest, AckWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<AckWatchRequest, AckWatchResponse, ErrorResponse>) AckWatchRequest._ENDPOINT;
 
@@ -90,8 +87,7 @@ public class ElasticsearchWatcherAsyncClient
 	 */
 
 	public final CompletableFuture<AckWatchResponse> ackWatch(
-			Function<AckWatchRequest.Builder, ObjectBuilder<AckWatchRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<AckWatchRequest.Builder, ObjectBuilder<AckWatchRequest>> fn) {
 		return ackWatch(fn.apply(new AckWatchRequest.Builder()).build());
 	}
 
@@ -105,8 +101,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ActivateWatchResponse> activateWatch(ActivateWatchRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ActivateWatchResponse> activateWatch(ActivateWatchRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<ActivateWatchRequest, ActivateWatchResponse, ErrorResponse>) ActivateWatchRequest._ENDPOINT;
 
@@ -125,8 +120,7 @@ public class ElasticsearchWatcherAsyncClient
 	 */
 
 	public final CompletableFuture<ActivateWatchResponse> activateWatch(
-			Function<ActivateWatchRequest.Builder, ObjectBuilder<ActivateWatchRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ActivateWatchRequest.Builder, ObjectBuilder<ActivateWatchRequest>> fn) {
 		return activateWatch(fn.apply(new ActivateWatchRequest.Builder()).build());
 	}
 
@@ -140,8 +134,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeactivateWatchResponse> deactivateWatch(DeactivateWatchRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeactivateWatchResponse> deactivateWatch(DeactivateWatchRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<DeactivateWatchRequest, DeactivateWatchResponse, ErrorResponse>) DeactivateWatchRequest._ENDPOINT;
 
@@ -160,8 +153,7 @@ public class ElasticsearchWatcherAsyncClient
 	 */
 
 	public final CompletableFuture<DeactivateWatchResponse> deactivateWatch(
-			Function<DeactivateWatchRequest.Builder, ObjectBuilder<DeactivateWatchRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeactivateWatchRequest.Builder, ObjectBuilder<DeactivateWatchRequest>> fn) {
 		return deactivateWatch(fn.apply(new DeactivateWatchRequest.Builder()).build());
 	}
 
@@ -175,8 +167,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteWatchResponse> deleteWatch(DeleteWatchRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteWatchResponse> deleteWatch(DeleteWatchRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteWatchRequest, DeleteWatchResponse, ErrorResponse>) DeleteWatchRequest._ENDPOINT;
 
@@ -195,8 +186,7 @@ public class ElasticsearchWatcherAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteWatchResponse> deleteWatch(
-			Function<DeleteWatchRequest.Builder, ObjectBuilder<DeleteWatchRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteWatchRequest.Builder, ObjectBuilder<DeleteWatchRequest>> fn) {
 		return deleteWatch(fn.apply(new DeleteWatchRequest.Builder()).build());
 	}
 
@@ -210,8 +200,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ExecuteWatchResponse> executeWatch(ExecuteWatchRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ExecuteWatchResponse> executeWatch(ExecuteWatchRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<ExecuteWatchRequest, ExecuteWatchResponse, ErrorResponse>) ExecuteWatchRequest._ENDPOINT;
 
@@ -230,8 +219,7 @@ public class ElasticsearchWatcherAsyncClient
 	 */
 
 	public final CompletableFuture<ExecuteWatchResponse> executeWatch(
-			Function<ExecuteWatchRequest.Builder, ObjectBuilder<ExecuteWatchRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ExecuteWatchRequest.Builder, ObjectBuilder<ExecuteWatchRequest>> fn) {
 		return executeWatch(fn.apply(new ExecuteWatchRequest.Builder()).build());
 	}
 
@@ -243,7 +231,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ExecuteWatchResponse> executeWatch() throws IOException, ElasticsearchException {
+	public CompletableFuture<ExecuteWatchResponse> executeWatch() {
 		return this.transport.performRequestAsync(new ExecuteWatchRequest.Builder().build(),
 				ExecuteWatchRequest._ENDPOINT, this.transportOptions);
 	}
@@ -258,8 +246,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetWatchResponse> getWatch(GetWatchRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetWatchResponse> getWatch(GetWatchRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetWatchRequest, GetWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<GetWatchRequest, GetWatchResponse, ErrorResponse>) GetWatchRequest._ENDPOINT;
 
@@ -278,8 +265,7 @@ public class ElasticsearchWatcherAsyncClient
 	 */
 
 	public final CompletableFuture<GetWatchResponse> getWatch(
-			Function<GetWatchRequest.Builder, ObjectBuilder<GetWatchRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetWatchRequest.Builder, ObjectBuilder<GetWatchRequest>> fn) {
 		return getWatch(fn.apply(new GetWatchRequest.Builder()).build());
 	}
 
@@ -293,8 +279,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutWatchResponse> putWatch(PutWatchRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutWatchResponse> putWatch(PutWatchRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutWatchRequest, PutWatchResponse, ErrorResponse> endpoint = (JsonEndpoint<PutWatchRequest, PutWatchResponse, ErrorResponse>) PutWatchRequest._ENDPOINT;
 
@@ -313,8 +298,7 @@ public class ElasticsearchWatcherAsyncClient
 	 */
 
 	public final CompletableFuture<PutWatchResponse> putWatch(
-			Function<PutWatchRequest.Builder, ObjectBuilder<PutWatchRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutWatchRequest.Builder, ObjectBuilder<PutWatchRequest>> fn) {
 		return putWatch(fn.apply(new PutWatchRequest.Builder()).build());
 	}
 
@@ -328,8 +312,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<QueryWatchesResponse> queryWatches(QueryWatchesRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<QueryWatchesResponse> queryWatches(QueryWatchesRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse> endpoint = (JsonEndpoint<QueryWatchesRequest, QueryWatchesResponse, ErrorResponse>) QueryWatchesRequest._ENDPOINT;
 
@@ -348,8 +331,7 @@ public class ElasticsearchWatcherAsyncClient
 	 */
 
 	public final CompletableFuture<QueryWatchesResponse> queryWatches(
-			Function<QueryWatchesRequest.Builder, ObjectBuilder<QueryWatchesRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<QueryWatchesRequest.Builder, ObjectBuilder<QueryWatchesRequest>> fn) {
 		return queryWatches(fn.apply(new QueryWatchesRequest.Builder()).build());
 	}
 
@@ -361,7 +343,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<QueryWatchesResponse> queryWatches() throws IOException, ElasticsearchException {
+	public CompletableFuture<QueryWatchesResponse> queryWatches() {
 		return this.transport.performRequestAsync(new QueryWatchesRequest.Builder().build(),
 				QueryWatchesRequest._ENDPOINT, this.transportOptions);
 	}
@@ -375,7 +357,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-start.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StartWatcherResponse> start() throws IOException, ElasticsearchException {
+	public CompletableFuture<StartWatcherResponse> start() {
 		return this.transport.performRequestAsync(StartWatcherRequest._INSTANCE, StartWatcherRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -390,8 +372,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<WatcherStatsResponse> stats(WatcherStatsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<WatcherStatsResponse> stats(WatcherStatsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<WatcherStatsRequest, WatcherStatsResponse, ErrorResponse>) WatcherStatsRequest._ENDPOINT;
 
@@ -410,8 +391,7 @@ public class ElasticsearchWatcherAsyncClient
 	 */
 
 	public final CompletableFuture<WatcherStatsResponse> stats(
-			Function<WatcherStatsRequest.Builder, ObjectBuilder<WatcherStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<WatcherStatsRequest.Builder, ObjectBuilder<WatcherStatsRequest>> fn) {
 		return stats(fn.apply(new WatcherStatsRequest.Builder()).build());
 	}
 
@@ -423,7 +403,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<WatcherStatsResponse> stats() throws IOException, ElasticsearchException {
+	public CompletableFuture<WatcherStatsResponse> stats() {
 		return this.transport.performRequestAsync(new WatcherStatsRequest.Builder().build(),
 				WatcherStatsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -437,7 +417,7 @@ public class ElasticsearchWatcherAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-stop.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<StopWatcherResponse> stop() throws IOException, ElasticsearchException {
+	public CompletableFuture<StopWatcherResponse> stop() {
 		return this.transport.performRequestAsync(StopWatcherRequest._INSTANCE, StopWatcherRequest._ENDPOINT,
 				this.transportOptions);
 	}
