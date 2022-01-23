@@ -24,14 +24,12 @@
 package co.elastic.clients.elasticsearch.ssl;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import javax.annotation.Nullable;
 
@@ -63,7 +61,7 @@ public class ElasticsearchSslAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-ssl.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<CertificatesResponse> certificates() throws IOException, ElasticsearchException {
+	public CompletableFuture<CertificatesResponse> certificates() {
 		return this.transport.performRequestAsync(CertificatesRequest._INSTANCE, CertificatesRequest._ENDPOINT,
 				this.transportOptions);
 	}

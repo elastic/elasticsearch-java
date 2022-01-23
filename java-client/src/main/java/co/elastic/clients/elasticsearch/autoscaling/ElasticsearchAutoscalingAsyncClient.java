@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.autoscaling;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -32,7 +31,6 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -70,7 +68,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 */
 
 	public CompletableFuture<DeleteAutoscalingPolicyResponse> deleteAutoscalingPolicy(
-			DeleteAutoscalingPolicyRequest request) throws IOException, ElasticsearchException {
+			DeleteAutoscalingPolicyRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteAutoscalingPolicyRequest, DeleteAutoscalingPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteAutoscalingPolicyRequest, DeleteAutoscalingPolicyResponse, ErrorResponse>) DeleteAutoscalingPolicyRequest._ENDPOINT;
 
@@ -90,8 +88,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteAutoscalingPolicyResponse> deleteAutoscalingPolicy(
-			Function<DeleteAutoscalingPolicyRequest.Builder, ObjectBuilder<DeleteAutoscalingPolicyRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteAutoscalingPolicyRequest.Builder, ObjectBuilder<DeleteAutoscalingPolicyRequest>> fn) {
 		return deleteAutoscalingPolicy(fn.apply(new DeleteAutoscalingPolicyRequest.Builder()).build());
 	}
 
@@ -106,8 +103,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
-	public CompletableFuture<GetAutoscalingCapacityResponse> getAutoscalingCapacity()
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetAutoscalingCapacityResponse> getAutoscalingCapacity() {
 		return this.transport.performRequestAsync(GetAutoscalingCapacityRequest._INSTANCE,
 				GetAutoscalingCapacityRequest._ENDPOINT, this.transportOptions);
 	}
@@ -123,8 +119,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetAutoscalingPolicyResponse> getAutoscalingPolicy(GetAutoscalingPolicyRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetAutoscalingPolicyResponse> getAutoscalingPolicy(GetAutoscalingPolicyRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetAutoscalingPolicyRequest, GetAutoscalingPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAutoscalingPolicyRequest, GetAutoscalingPolicyResponse, ErrorResponse>) GetAutoscalingPolicyRequest._ENDPOINT;
 
@@ -144,8 +139,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 */
 
 	public final CompletableFuture<GetAutoscalingPolicyResponse> getAutoscalingPolicy(
-			Function<GetAutoscalingPolicyRequest.Builder, ObjectBuilder<GetAutoscalingPolicyRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetAutoscalingPolicyRequest.Builder, ObjectBuilder<GetAutoscalingPolicyRequest>> fn) {
 		return getAutoscalingPolicy(fn.apply(new GetAutoscalingPolicyRequest.Builder()).build());
 	}
 
@@ -160,8 +154,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutAutoscalingPolicyResponse> putAutoscalingPolicy(PutAutoscalingPolicyRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutAutoscalingPolicyResponse> putAutoscalingPolicy(PutAutoscalingPolicyRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAutoscalingPolicyRequest, PutAutoscalingPolicyResponse, ErrorResponse>) PutAutoscalingPolicyRequest._ENDPOINT;
 
@@ -181,8 +174,7 @@ public class ElasticsearchAutoscalingAsyncClient
 	 */
 
 	public final CompletableFuture<PutAutoscalingPolicyResponse> putAutoscalingPolicy(
-			Function<PutAutoscalingPolicyRequest.Builder, ObjectBuilder<PutAutoscalingPolicyRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutAutoscalingPolicyRequest.Builder, ObjectBuilder<PutAutoscalingPolicyRequest>> fn) {
 		return putAutoscalingPolicy(fn.apply(new PutAutoscalingPolicyRequest.Builder()).build());
 	}
 

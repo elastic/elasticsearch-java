@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -33,7 +32,6 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -69,8 +67,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AddBlockResponse> addBlock(AddBlockRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<AddBlockResponse> addBlock(AddBlockRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AddBlockRequest, AddBlockResponse, ErrorResponse> endpoint = (JsonEndpoint<AddBlockRequest, AddBlockResponse, ErrorResponse>) AddBlockRequest._ENDPOINT;
 
@@ -89,8 +86,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<AddBlockResponse> addBlock(
-			Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<AddBlockRequest.Builder, ObjectBuilder<AddBlockRequest>> fn) {
 		return addBlock(fn.apply(new AddBlockRequest.Builder()).build());
 	}
 
@@ -105,8 +101,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AnalyzeResponse> analyze(AnalyzeRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<AnalyzeResponse> analyze(AnalyzeRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse> endpoint = (JsonEndpoint<AnalyzeRequest, AnalyzeResponse, ErrorResponse>) AnalyzeRequest._ENDPOINT;
 
@@ -126,8 +121,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<AnalyzeResponse> analyze(
-			Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<AnalyzeRequest.Builder, ObjectBuilder<AnalyzeRequest>> fn) {
 		return analyze(fn.apply(new AnalyzeRequest.Builder()).build());
 	}
 
@@ -140,7 +134,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<AnalyzeResponse> analyze() throws IOException, ElasticsearchException {
+	public CompletableFuture<AnalyzeResponse> analyze() {
 		return this.transport.performRequestAsync(new AnalyzeRequest.Builder().build(), AnalyzeRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -155,8 +149,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ClearCacheResponse> clearCache(ClearCacheRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse> endpoint = (JsonEndpoint<ClearCacheRequest, ClearCacheResponse, ErrorResponse>) ClearCacheRequest._ENDPOINT;
 
@@ -175,8 +168,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<ClearCacheResponse> clearCache(
-			Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ClearCacheRequest.Builder, ObjectBuilder<ClearCacheRequest>> fn) {
 		return clearCache(fn.apply(new ClearCacheRequest.Builder()).build());
 	}
 
@@ -188,7 +180,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ClearCacheResponse> clearCache() throws IOException, ElasticsearchException {
+	public CompletableFuture<ClearCacheResponse> clearCache() {
 		return this.transport.performRequestAsync(new ClearCacheRequest.Builder().build(), ClearCacheRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -203,8 +195,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CloneIndexResponse> clone(CloneIndexRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<CloneIndexResponse> clone(CloneIndexRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CloneIndexRequest, CloneIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<CloneIndexRequest, CloneIndexResponse, ErrorResponse>) CloneIndexRequest._ENDPOINT;
 
@@ -223,8 +214,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<CloneIndexResponse> clone(
-			Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<CloneIndexRequest.Builder, ObjectBuilder<CloneIndexRequest>> fn) {
 		return clone(fn.apply(new CloneIndexRequest.Builder()).build());
 	}
 
@@ -238,8 +228,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CloseIndexResponse> close(CloseIndexRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<CloseIndexResponse> close(CloseIndexRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CloseIndexRequest, CloseIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<CloseIndexRequest, CloseIndexResponse, ErrorResponse>) CloseIndexRequest._ENDPOINT;
 
@@ -258,8 +247,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<CloseIndexResponse> close(
-			Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<CloseIndexRequest.Builder, ObjectBuilder<CloseIndexRequest>> fn) {
 		return close(fn.apply(new CloseIndexRequest.Builder()).build());
 	}
 
@@ -273,8 +261,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CreateIndexResponse> create(CreateIndexRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<CreateIndexResponse> create(CreateIndexRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateIndexRequest, CreateIndexResponse, ErrorResponse>) CreateIndexRequest._ENDPOINT;
 
@@ -293,8 +280,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<CreateIndexResponse> create(
-			Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<CreateIndexRequest.Builder, ObjectBuilder<CreateIndexRequest>> fn) {
 		return create(fn.apply(new CreateIndexRequest.Builder()).build());
 	}
 
@@ -308,8 +294,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<CreateDataStreamResponse> createDataStream(CreateDataStreamRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<CreateDataStreamResponse> createDataStream(CreateDataStreamRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<CreateDataStreamRequest, CreateDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<CreateDataStreamRequest, CreateDataStreamResponse, ErrorResponse>) CreateDataStreamRequest._ENDPOINT;
 
@@ -328,8 +313,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<CreateDataStreamResponse> createDataStream(
-			Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<CreateDataStreamRequest.Builder, ObjectBuilder<CreateDataStreamRequest>> fn) {
 		return createDataStream(fn.apply(new CreateDataStreamRequest.Builder()).build());
 	}
 
@@ -343,8 +327,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DataStreamsStatsResponse> dataStreamsStats(DataStreamsStatsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DataStreamsStatsResponse> dataStreamsStats(DataStreamsStatsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DataStreamsStatsRequest, DataStreamsStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<DataStreamsStatsRequest, DataStreamsStatsResponse, ErrorResponse>) DataStreamsStatsRequest._ENDPOINT;
 
@@ -363,8 +346,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DataStreamsStatsResponse> dataStreamsStats(
-			Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DataStreamsStatsRequest.Builder, ObjectBuilder<DataStreamsStatsRequest>> fn) {
 		return dataStreamsStats(fn.apply(new DataStreamsStatsRequest.Builder()).build());
 	}
 
@@ -376,7 +358,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DataStreamsStatsResponse> dataStreamsStats() throws IOException, ElasticsearchException {
+	public CompletableFuture<DataStreamsStatsResponse> dataStreamsStats() {
 		return this.transport.performRequestAsync(new DataStreamsStatsRequest.Builder().build(),
 				DataStreamsStatsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -391,8 +373,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteIndexResponse> delete(DeleteIndexRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteIndexResponse> delete(DeleteIndexRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteIndexRequest, DeleteIndexResponse, ErrorResponse>) DeleteIndexRequest._ENDPOINT;
 
@@ -411,8 +392,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteIndexResponse> delete(
-			Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteIndexRequest.Builder, ObjectBuilder<DeleteIndexRequest>> fn) {
 		return delete(fn.apply(new DeleteIndexRequest.Builder()).build());
 	}
 
@@ -426,8 +406,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteAliasResponse> deleteAlias(DeleteAliasRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteAliasResponse> deleteAlias(DeleteAliasRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteAliasRequest, DeleteAliasResponse, ErrorResponse>) DeleteAliasRequest._ENDPOINT;
 
@@ -446,8 +425,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteAliasResponse> deleteAlias(
-			Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteAliasRequest.Builder, ObjectBuilder<DeleteAliasRequest>> fn) {
 		return deleteAlias(fn.apply(new DeleteAliasRequest.Builder()).build());
 	}
 
@@ -461,8 +439,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteDataStreamResponse> deleteDataStream(DeleteDataStreamRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteDataStreamResponse> deleteDataStream(DeleteDataStreamRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteDataStreamRequest, DeleteDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteDataStreamRequest, DeleteDataStreamResponse, ErrorResponse>) DeleteDataStreamRequest._ENDPOINT;
 
@@ -481,8 +458,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteDataStreamResponse> deleteDataStream(
-			Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteDataStreamRequest.Builder, ObjectBuilder<DeleteDataStreamRequest>> fn) {
 		return deleteDataStream(fn.apply(new DeleteDataStreamRequest.Builder()).build());
 	}
 
@@ -496,8 +472,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(DeleteIndexTemplateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(DeleteIndexTemplateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteIndexTemplateRequest, DeleteIndexTemplateResponse, ErrorResponse>) DeleteIndexTemplateRequest._ENDPOINT;
 
@@ -516,8 +491,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteIndexTemplateResponse> deleteIndexTemplate(
-			Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteIndexTemplateRequest.Builder, ObjectBuilder<DeleteIndexTemplateRequest>> fn) {
 		return deleteIndexTemplate(fn.apply(new DeleteIndexTemplateRequest.Builder()).build());
 	}
 
@@ -531,8 +505,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteTemplateResponse> deleteTemplate(DeleteTemplateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteTemplateResponse> deleteTemplate(DeleteTemplateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteTemplateRequest, DeleteTemplateResponse, ErrorResponse>) DeleteTemplateRequest._ENDPOINT;
 
@@ -551,8 +524,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteTemplateResponse> deleteTemplate(
-			Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteTemplateRequest.Builder, ObjectBuilder<DeleteTemplateRequest>> fn) {
 		return deleteTemplate(fn.apply(new DeleteTemplateRequest.Builder()).build());
 	}
 
@@ -566,8 +538,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DiskUsageResponse> diskUsage(DiskUsageRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DiskUsageResponse> diskUsage(DiskUsageRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse> endpoint = (JsonEndpoint<DiskUsageRequest, DiskUsageResponse, ErrorResponse>) DiskUsageRequest._ENDPOINT;
 
@@ -586,8 +557,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<DiskUsageResponse> diskUsage(
-			Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DiskUsageRequest.Builder, ObjectBuilder<DiskUsageRequest>> fn) {
 		return diskUsage(fn.apply(new DiskUsageRequest.Builder()).build());
 	}
 
@@ -601,7 +571,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<BooleanResponse> exists(ExistsRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<BooleanResponse> exists(ExistsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsRequest, BooleanResponse, ErrorResponse>) ExistsRequest._ENDPOINT;
 
@@ -620,8 +590,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<BooleanResponse> exists(
-			Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ExistsRequest.Builder, ObjectBuilder<ExistsRequest>> fn) {
 		return exists(fn.apply(new ExistsRequest.Builder()).build());
 	}
 
@@ -635,8 +604,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<BooleanResponse> existsAlias(ExistsAliasRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<BooleanResponse> existsAlias(ExistsAliasRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsAliasRequest, BooleanResponse, ErrorResponse>) ExistsAliasRequest._ENDPOINT;
 
@@ -655,8 +623,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsAlias(
-			Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ExistsAliasRequest.Builder, ObjectBuilder<ExistsAliasRequest>> fn) {
 		return existsAlias(fn.apply(new ExistsAliasRequest.Builder()).build());
 	}
 
@@ -670,8 +637,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<BooleanResponse> existsIndexTemplate(ExistsIndexTemplateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<BooleanResponse> existsIndexTemplate(ExistsIndexTemplateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsIndexTemplateRequest, BooleanResponse, ErrorResponse>) ExistsIndexTemplateRequest._ENDPOINT;
 
@@ -690,8 +656,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsIndexTemplate(
-			Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ExistsIndexTemplateRequest.Builder, ObjectBuilder<ExistsIndexTemplateRequest>> fn) {
 		return existsIndexTemplate(fn.apply(new ExistsIndexTemplateRequest.Builder()).build());
 	}
 
@@ -705,8 +670,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<BooleanResponse> existsTemplate(ExistsTemplateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<BooleanResponse> existsTemplate(ExistsTemplateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<ExistsTemplateRequest, BooleanResponse, ErrorResponse>) ExistsTemplateRequest._ENDPOINT;
 
@@ -725,8 +689,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<BooleanResponse> existsTemplate(
-			Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ExistsTemplateRequest.Builder, ObjectBuilder<ExistsTemplateRequest>> fn) {
 		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
@@ -740,7 +703,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FlushResponse> flush(FlushRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<FlushResponse> flush(FlushRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<FlushRequest, FlushResponse, ErrorResponse> endpoint = (JsonEndpoint<FlushRequest, FlushResponse, ErrorResponse>) FlushRequest._ENDPOINT;
 
@@ -758,8 +721,8 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<FlushResponse> flush(Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<FlushResponse> flush(
+			Function<FlushRequest.Builder, ObjectBuilder<FlushRequest>> fn) {
 		return flush(fn.apply(new FlushRequest.Builder()).build());
 	}
 
@@ -771,7 +734,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<FlushResponse> flush() throws IOException, ElasticsearchException {
+	public CompletableFuture<FlushResponse> flush() {
 		return this.transport.performRequestAsync(new FlushRequest.Builder().build(), FlushRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -786,8 +749,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ForcemergeResponse> forcemerge(ForcemergeRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ForcemergeResponse> forcemerge(ForcemergeRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse> endpoint = (JsonEndpoint<ForcemergeRequest, ForcemergeResponse, ErrorResponse>) ForcemergeRequest._ENDPOINT;
 
@@ -806,8 +768,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<ForcemergeResponse> forcemerge(
-			Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ForcemergeRequest.Builder, ObjectBuilder<ForcemergeRequest>> fn) {
 		return forcemerge(fn.apply(new ForcemergeRequest.Builder()).build());
 	}
 
@@ -819,7 +780,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ForcemergeResponse> forcemerge() throws IOException, ElasticsearchException {
+	public CompletableFuture<ForcemergeResponse> forcemerge() {
 		return this.transport.performRequestAsync(new ForcemergeRequest.Builder().build(), ForcemergeRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -834,7 +795,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetIndexResponse> get(GetIndexRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<GetIndexResponse> get(GetIndexRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetIndexRequest, GetIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<GetIndexRequest, GetIndexResponse, ErrorResponse>) GetIndexRequest._ENDPOINT;
 
@@ -853,8 +814,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<GetIndexResponse> get(
-			Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetIndexRequest.Builder, ObjectBuilder<GetIndexRequest>> fn) {
 		return get(fn.apply(new GetIndexRequest.Builder()).build());
 	}
 
@@ -868,8 +828,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetAliasResponse> getAlias(GetAliasRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetAliasResponse> getAlias(GetAliasRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAliasRequest, GetAliasResponse, ErrorResponse>) GetAliasRequest._ENDPOINT;
 
@@ -888,8 +847,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<GetAliasResponse> getAlias(
-			Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetAliasRequest.Builder, ObjectBuilder<GetAliasRequest>> fn) {
 		return getAlias(fn.apply(new GetAliasRequest.Builder()).build());
 	}
 
@@ -901,7 +859,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetAliasResponse> getAlias() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetAliasResponse> getAlias() {
 		return this.transport.performRequestAsync(new GetAliasRequest.Builder().build(), GetAliasRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -916,8 +874,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetDataStreamResponse> getDataStream(GetDataStreamRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetDataStreamResponse> getDataStream(GetDataStreamRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<GetDataStreamRequest, GetDataStreamResponse, ErrorResponse>) GetDataStreamRequest._ENDPOINT;
 
@@ -936,8 +893,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<GetDataStreamResponse> getDataStream(
-			Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetDataStreamRequest.Builder, ObjectBuilder<GetDataStreamRequest>> fn) {
 		return getDataStream(fn.apply(new GetDataStreamRequest.Builder()).build());
 	}
 
@@ -949,7 +905,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetDataStreamResponse> getDataStream() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetDataStreamResponse> getDataStream() {
 		return this.transport.performRequestAsync(new GetDataStreamRequest.Builder().build(),
 				GetDataStreamRequest._ENDPOINT, this.transportOptions);
 	}
@@ -964,8 +920,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetFieldMappingResponse> getFieldMapping(GetFieldMappingRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetFieldMappingResponse> getFieldMapping(GetFieldMappingRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetFieldMappingRequest, GetFieldMappingResponse, ErrorResponse> endpoint = (JsonEndpoint<GetFieldMappingRequest, GetFieldMappingResponse, ErrorResponse>) GetFieldMappingRequest._ENDPOINT;
 
@@ -984,8 +939,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<GetFieldMappingResponse> getFieldMapping(
-			Function<GetFieldMappingRequest.Builder, ObjectBuilder<GetFieldMappingRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetFieldMappingRequest.Builder, ObjectBuilder<GetFieldMappingRequest>> fn) {
 		return getFieldMapping(fn.apply(new GetFieldMappingRequest.Builder()).build());
 	}
 
@@ -999,8 +953,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(GetIndexTemplateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(GetIndexTemplateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<GetIndexTemplateRequest, GetIndexTemplateResponse, ErrorResponse>) GetIndexTemplateRequest._ENDPOINT;
 
@@ -1019,8 +972,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<GetIndexTemplateResponse> getIndexTemplate(
-			Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetIndexTemplateRequest.Builder, ObjectBuilder<GetIndexTemplateRequest>> fn) {
 		return getIndexTemplate(fn.apply(new GetIndexTemplateRequest.Builder()).build());
 	}
 
@@ -1032,7 +984,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetIndexTemplateResponse> getIndexTemplate() {
 		return this.transport.performRequestAsync(new GetIndexTemplateRequest.Builder().build(),
 				GetIndexTemplateRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1047,8 +999,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetMappingResponse> getMapping(GetMappingRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetMappingResponse> getMapping(GetMappingRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetMappingRequest, GetMappingResponse, ErrorResponse> endpoint = (JsonEndpoint<GetMappingRequest, GetMappingResponse, ErrorResponse>) GetMappingRequest._ENDPOINT;
 
@@ -1067,8 +1018,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<GetMappingResponse> getMapping(
-			Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetMappingRequest.Builder, ObjectBuilder<GetMappingRequest>> fn) {
 		return getMapping(fn.apply(new GetMappingRequest.Builder()).build());
 	}
 
@@ -1080,7 +1030,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetMappingResponse> getMapping() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetMappingResponse> getMapping() {
 		return this.transport.performRequestAsync(new GetMappingRequest.Builder().build(), GetMappingRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1095,8 +1045,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetIndicesSettingsResponse> getSettings(GetIndicesSettingsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetIndicesSettingsResponse> getSettings(GetIndicesSettingsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetIndicesSettingsRequest, GetIndicesSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetIndicesSettingsRequest, GetIndicesSettingsResponse, ErrorResponse>) GetIndicesSettingsRequest._ENDPOINT;
 
@@ -1115,8 +1064,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<GetIndicesSettingsResponse> getSettings(
-			Function<GetIndicesSettingsRequest.Builder, ObjectBuilder<GetIndicesSettingsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetIndicesSettingsRequest.Builder, ObjectBuilder<GetIndicesSettingsRequest>> fn) {
 		return getSettings(fn.apply(new GetIndicesSettingsRequest.Builder()).build());
 	}
 
@@ -1128,7 +1076,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetIndicesSettingsResponse> getSettings() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetIndicesSettingsResponse> getSettings() {
 		return this.transport.performRequestAsync(new GetIndicesSettingsRequest.Builder().build(),
 				GetIndicesSettingsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1143,8 +1091,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTemplateResponse> getTemplate(GetTemplateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTemplateResponse> getTemplate(GetTemplateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<GetTemplateRequest, GetTemplateResponse, ErrorResponse>) GetTemplateRequest._ENDPOINT;
 
@@ -1163,8 +1110,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<GetTemplateResponse> getTemplate(
-			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetTemplateRequest.Builder, ObjectBuilder<GetTemplateRequest>> fn) {
 		return getTemplate(fn.apply(new GetTemplateRequest.Builder()).build());
 	}
 
@@ -1176,7 +1122,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetTemplateResponse> getTemplate() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetTemplateResponse> getTemplate() {
 		return this.transport.performRequestAsync(new GetTemplateRequest.Builder().build(),
 				GetTemplateRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1191,8 +1137,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<MigrateToDataStreamResponse> migrateToDataStream(MigrateToDataStreamRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<MigrateToDataStreamResponse> migrateToDataStream(MigrateToDataStreamRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<MigrateToDataStreamRequest, MigrateToDataStreamResponse, ErrorResponse>) MigrateToDataStreamRequest._ENDPOINT;
 
@@ -1211,8 +1156,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<MigrateToDataStreamResponse> migrateToDataStream(
-			Function<MigrateToDataStreamRequest.Builder, ObjectBuilder<MigrateToDataStreamRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<MigrateToDataStreamRequest.Builder, ObjectBuilder<MigrateToDataStreamRequest>> fn) {
 		return migrateToDataStream(fn.apply(new MigrateToDataStreamRequest.Builder()).build());
 	}
 
@@ -1226,7 +1170,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<OpenResponse> open(OpenRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<OpenResponse> open(OpenRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<OpenRequest, OpenResponse, ErrorResponse> endpoint = (JsonEndpoint<OpenRequest, OpenResponse, ErrorResponse>) OpenRequest._ENDPOINT;
 
@@ -1244,8 +1188,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<OpenResponse> open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<OpenResponse> open(Function<OpenRequest.Builder, ObjectBuilder<OpenRequest>> fn) {
 		return open(fn.apply(new OpenRequest.Builder()).build());
 	}
 
@@ -1260,8 +1203,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PromoteDataStreamResponse> promoteDataStream(PromoteDataStreamRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PromoteDataStreamResponse> promoteDataStream(PromoteDataStreamRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<PromoteDataStreamRequest, PromoteDataStreamResponse, ErrorResponse>) PromoteDataStreamRequest._ENDPOINT;
 
@@ -1281,8 +1223,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<PromoteDataStreamResponse> promoteDataStream(
-			Function<PromoteDataStreamRequest.Builder, ObjectBuilder<PromoteDataStreamRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PromoteDataStreamRequest.Builder, ObjectBuilder<PromoteDataStreamRequest>> fn) {
 		return promoteDataStream(fn.apply(new PromoteDataStreamRequest.Builder()).build());
 	}
 
@@ -1296,8 +1237,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutAliasResponse> putAlias(PutAliasRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutAliasResponse> putAlias(PutAliasRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutAliasRequest, PutAliasResponse, ErrorResponse> endpoint = (JsonEndpoint<PutAliasRequest, PutAliasResponse, ErrorResponse>) PutAliasRequest._ENDPOINT;
 
@@ -1316,8 +1256,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<PutAliasResponse> putAlias(
-			Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutAliasRequest.Builder, ObjectBuilder<PutAliasRequest>> fn) {
 		return putAlias(fn.apply(new PutAliasRequest.Builder()).build());
 	}
 
@@ -1331,8 +1270,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(PutIndexTemplateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(PutIndexTemplateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<PutIndexTemplateRequest, PutIndexTemplateResponse, ErrorResponse>) PutIndexTemplateRequest._ENDPOINT;
 
@@ -1351,8 +1289,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<PutIndexTemplateResponse> putIndexTemplate(
-			Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutIndexTemplateRequest.Builder, ObjectBuilder<PutIndexTemplateRequest>> fn) {
 		return putIndexTemplate(fn.apply(new PutIndexTemplateRequest.Builder()).build());
 	}
 
@@ -1366,8 +1303,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutMappingResponse> putMapping(PutMappingRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutMappingResponse> putMapping(PutMappingRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutMappingRequest, PutMappingResponse, ErrorResponse> endpoint = (JsonEndpoint<PutMappingRequest, PutMappingResponse, ErrorResponse>) PutMappingRequest._ENDPOINT;
 
@@ -1386,8 +1322,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<PutMappingResponse> putMapping(
-			Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutMappingRequest.Builder, ObjectBuilder<PutMappingRequest>> fn) {
 		return putMapping(fn.apply(new PutMappingRequest.Builder()).build());
 	}
 
@@ -1401,8 +1336,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutIndicesSettingsResponse> putSettings(PutIndicesSettingsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutIndicesSettingsResponse> putSettings(PutIndicesSettingsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutIndicesSettingsRequest, PutIndicesSettingsResponse, ErrorResponse> endpoint = (JsonEndpoint<PutIndicesSettingsRequest, PutIndicesSettingsResponse, ErrorResponse>) PutIndicesSettingsRequest._ENDPOINT;
 
@@ -1421,8 +1355,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<PutIndicesSettingsResponse> putSettings(
-			Function<PutIndicesSettingsRequest.Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutIndicesSettingsRequest.Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn) {
 		return putSettings(fn.apply(new PutIndicesSettingsRequest.Builder()).build());
 	}
 
@@ -1434,7 +1367,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutIndicesSettingsResponse> putSettings() throws IOException, ElasticsearchException {
+	public CompletableFuture<PutIndicesSettingsResponse> putSettings() {
 		return this.transport.performRequestAsync(new PutIndicesSettingsRequest.Builder().build(),
 				PutIndicesSettingsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1449,8 +1382,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutTemplateResponse> putTemplate(PutTemplateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<PutTemplateResponse> putTemplate(PutTemplateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<PutTemplateRequest, PutTemplateResponse, ErrorResponse>) PutTemplateRequest._ENDPOINT;
 
@@ -1469,8 +1401,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<PutTemplateResponse> putTemplate(
-			Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutTemplateRequest.Builder, ObjectBuilder<PutTemplateRequest>> fn) {
 		return putTemplate(fn.apply(new PutTemplateRequest.Builder()).build());
 	}
 
@@ -1484,8 +1415,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<RecoveryResponse> recovery(RecoveryRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse> endpoint = (JsonEndpoint<RecoveryRequest, RecoveryResponse, ErrorResponse>) RecoveryRequest._ENDPOINT;
 
@@ -1504,8 +1434,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<RecoveryResponse> recovery(
-			Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<RecoveryRequest.Builder, ObjectBuilder<RecoveryRequest>> fn) {
 		return recovery(fn.apply(new RecoveryRequest.Builder()).build());
 	}
 
@@ -1517,7 +1446,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RecoveryResponse> recovery() throws IOException, ElasticsearchException {
+	public CompletableFuture<RecoveryResponse> recovery() {
 		return this.transport.performRequestAsync(new RecoveryRequest.Builder().build(), RecoveryRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1532,8 +1461,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RefreshResponse> refresh(RefreshRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<RefreshResponse> refresh(RefreshRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RefreshRequest, RefreshResponse, ErrorResponse> endpoint = (JsonEndpoint<RefreshRequest, RefreshResponse, ErrorResponse>) RefreshRequest._ENDPOINT;
 
@@ -1552,8 +1480,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<RefreshResponse> refresh(
-			Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<RefreshRequest.Builder, ObjectBuilder<RefreshRequest>> fn) {
 		return refresh(fn.apply(new RefreshRequest.Builder()).build());
 	}
 
@@ -1565,7 +1492,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RefreshResponse> refresh() throws IOException, ElasticsearchException {
+	public CompletableFuture<RefreshResponse> refresh() {
 		return this.transport.performRequestAsync(new RefreshRequest.Builder().build(), RefreshRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1580,8 +1507,8 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ReloadSearchAnalyzersResponse> reloadSearchAnalyzers(ReloadSearchAnalyzersRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ReloadSearchAnalyzersResponse> reloadSearchAnalyzers(
+			ReloadSearchAnalyzersRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ReloadSearchAnalyzersRequest, ReloadSearchAnalyzersResponse, ErrorResponse> endpoint = (JsonEndpoint<ReloadSearchAnalyzersRequest, ReloadSearchAnalyzersResponse, ErrorResponse>) ReloadSearchAnalyzersRequest._ENDPOINT;
 
@@ -1600,8 +1527,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<ReloadSearchAnalyzersResponse> reloadSearchAnalyzers(
-			Function<ReloadSearchAnalyzersRequest.Builder, ObjectBuilder<ReloadSearchAnalyzersRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ReloadSearchAnalyzersRequest.Builder, ObjectBuilder<ReloadSearchAnalyzersRequest>> fn) {
 		return reloadSearchAnalyzers(fn.apply(new ReloadSearchAnalyzersRequest.Builder()).build());
 	}
 
@@ -1615,8 +1541,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ResolveIndexResponse> resolveIndex(ResolveIndexRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ResolveIndexResponse> resolveIndex(ResolveIndexRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse> endpoint = (JsonEndpoint<ResolveIndexRequest, ResolveIndexResponse, ErrorResponse>) ResolveIndexRequest._ENDPOINT;
 
@@ -1635,8 +1560,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<ResolveIndexResponse> resolveIndex(
-			Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ResolveIndexRequest.Builder, ObjectBuilder<ResolveIndexRequest>> fn) {
 		return resolveIndex(fn.apply(new ResolveIndexRequest.Builder()).build());
 	}
 
@@ -1651,8 +1575,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RolloverResponse> rollover(RolloverRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<RolloverResponse> rollover(RolloverRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RolloverRequest, RolloverResponse, ErrorResponse> endpoint = (JsonEndpoint<RolloverRequest, RolloverResponse, ErrorResponse>) RolloverRequest._ENDPOINT;
 
@@ -1672,8 +1595,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<RolloverResponse> rollover(
-			Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<RolloverRequest.Builder, ObjectBuilder<RolloverRequest>> fn) {
 		return rollover(fn.apply(new RolloverRequest.Builder()).build());
 	}
 
@@ -1687,8 +1609,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<SegmentsResponse> segments(SegmentsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse> endpoint = (JsonEndpoint<SegmentsRequest, SegmentsResponse, ErrorResponse>) SegmentsRequest._ENDPOINT;
 
@@ -1707,8 +1628,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<SegmentsResponse> segments(
-			Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<SegmentsRequest.Builder, ObjectBuilder<SegmentsRequest>> fn) {
 		return segments(fn.apply(new SegmentsRequest.Builder()).build());
 	}
 
@@ -1720,7 +1640,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SegmentsResponse> segments() throws IOException, ElasticsearchException {
+	public CompletableFuture<SegmentsResponse> segments() {
 		return this.transport.performRequestAsync(new SegmentsRequest.Builder().build(), SegmentsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -1735,8 +1655,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ShardStoresResponse> shardStores(ShardStoresRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ShardStoresResponse> shardStores(ShardStoresRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ShardStoresRequest, ShardStoresResponse, ErrorResponse> endpoint = (JsonEndpoint<ShardStoresRequest, ShardStoresResponse, ErrorResponse>) ShardStoresRequest._ENDPOINT;
 
@@ -1755,8 +1674,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<ShardStoresResponse> shardStores(
-			Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ShardStoresRequest.Builder, ObjectBuilder<ShardStoresRequest>> fn) {
 		return shardStores(fn.apply(new ShardStoresRequest.Builder()).build());
 	}
 
@@ -1768,7 +1686,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ShardStoresResponse> shardStores() throws IOException, ElasticsearchException {
+	public CompletableFuture<ShardStoresResponse> shardStores() {
 		return this.transport.performRequestAsync(new ShardStoresRequest.Builder().build(),
 				ShardStoresRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1783,7 +1701,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ShrinkResponse> shrink(ShrinkRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<ShrinkResponse> shrink(ShrinkRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ShrinkRequest, ShrinkResponse, ErrorResponse> endpoint = (JsonEndpoint<ShrinkRequest, ShrinkResponse, ErrorResponse>) ShrinkRequest._ENDPOINT;
 
@@ -1802,8 +1720,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<ShrinkResponse> shrink(
-			Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ShrinkRequest.Builder, ObjectBuilder<ShrinkRequest>> fn) {
 		return shrink(fn.apply(new ShrinkRequest.Builder()).build());
 	}
 
@@ -1818,8 +1735,8 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(SimulateIndexTemplateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(
+			SimulateIndexTemplateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<SimulateIndexTemplateRequest, SimulateIndexTemplateResponse, ErrorResponse>) SimulateIndexTemplateRequest._ENDPOINT;
 
@@ -1839,8 +1756,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<SimulateIndexTemplateResponse> simulateIndexTemplate(
-			Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<SimulateIndexTemplateRequest.Builder, ObjectBuilder<SimulateIndexTemplateRequest>> fn) {
 		return simulateIndexTemplate(fn.apply(new SimulateIndexTemplateRequest.Builder()).build());
 	}
 
@@ -1854,8 +1770,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SimulateTemplateResponse> simulateTemplate(SimulateTemplateRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<SimulateTemplateResponse> simulateTemplate(SimulateTemplateRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse> endpoint = (JsonEndpoint<SimulateTemplateRequest, SimulateTemplateResponse, ErrorResponse>) SimulateTemplateRequest._ENDPOINT;
 
@@ -1874,8 +1789,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<SimulateTemplateResponse> simulateTemplate(
-			Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<SimulateTemplateRequest.Builder, ObjectBuilder<SimulateTemplateRequest>> fn) {
 		return simulateTemplate(fn.apply(new SimulateTemplateRequest.Builder()).build());
 	}
 
@@ -1887,7 +1801,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SimulateTemplateResponse> simulateTemplate() throws IOException, ElasticsearchException {
+	public CompletableFuture<SimulateTemplateResponse> simulateTemplate() {
 		return this.transport.performRequestAsync(new SimulateTemplateRequest.Builder().build(),
 				SimulateTemplateRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1903,7 +1817,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<SplitResponse> split(SplitRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<SplitResponse> split(SplitRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SplitRequest, SplitResponse, ErrorResponse> endpoint = (JsonEndpoint<SplitRequest, SplitResponse, ErrorResponse>) SplitRequest._ENDPOINT;
 
@@ -1922,8 +1836,8 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<SplitResponse> split(Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn)
-			throws IOException, ElasticsearchException {
+	public final CompletableFuture<SplitResponse> split(
+			Function<SplitRequest.Builder, ObjectBuilder<SplitRequest>> fn) {
 		return split(fn.apply(new SplitRequest.Builder()).build());
 	}
 
@@ -1937,8 +1851,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<IndicesStatsResponse> stats(IndicesStatsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<IndicesStatsResponse> stats(IndicesStatsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<IndicesStatsRequest, IndicesStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<IndicesStatsRequest, IndicesStatsResponse, ErrorResponse>) IndicesStatsRequest._ENDPOINT;
 
@@ -1957,8 +1870,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<IndicesStatsResponse> stats(
-			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<IndicesStatsRequest.Builder, ObjectBuilder<IndicesStatsRequest>> fn) {
 		return stats(fn.apply(new IndicesStatsRequest.Builder()).build());
 	}
 
@@ -1970,7 +1882,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<IndicesStatsResponse> stats() throws IOException, ElasticsearchException {
+	public CompletableFuture<IndicesStatsResponse> stats() {
 		return this.transport.performRequestAsync(new IndicesStatsRequest.Builder().build(),
 				IndicesStatsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -1986,8 +1898,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UnfreezeResponse> unfreeze(UnfreezeRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<UnfreezeResponse> unfreeze(UnfreezeRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UnfreezeRequest, UnfreezeResponse, ErrorResponse> endpoint = (JsonEndpoint<UnfreezeRequest, UnfreezeResponse, ErrorResponse>) UnfreezeRequest._ENDPOINT;
 
@@ -2007,8 +1918,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<UnfreezeResponse> unfreeze(
-			Function<UnfreezeRequest.Builder, ObjectBuilder<UnfreezeRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UnfreezeRequest.Builder, ObjectBuilder<UnfreezeRequest>> fn) {
 		return unfreeze(fn.apply(new UnfreezeRequest.Builder()).build());
 	}
 
@@ -2022,8 +1932,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpdateAliasesResponse> updateAliases(UpdateAliasesRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<UpdateAliasesResponse> updateAliases(UpdateAliasesRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateAliasesRequest, UpdateAliasesResponse, ErrorResponse>) UpdateAliasesRequest._ENDPOINT;
 
@@ -2042,8 +1951,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<UpdateAliasesResponse> updateAliases(
-			Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<UpdateAliasesRequest.Builder, ObjectBuilder<UpdateAliasesRequest>> fn) {
 		return updateAliases(fn.apply(new UpdateAliasesRequest.Builder()).build());
 	}
 
@@ -2055,7 +1963,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<UpdateAliasesResponse> updateAliases() throws IOException, ElasticsearchException {
+	public CompletableFuture<UpdateAliasesResponse> updateAliases() {
 		return this.transport.performRequestAsync(new UpdateAliasesRequest.Builder().build(),
 				UpdateAliasesRequest._ENDPOINT, this.transportOptions);
 	}
@@ -2070,8 +1978,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ValidateQueryResponse> validateQuery(ValidateQueryRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<ValidateQueryResponse> validateQuery(ValidateQueryRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse> endpoint = (JsonEndpoint<ValidateQueryRequest, ValidateQueryResponse, ErrorResponse>) ValidateQueryRequest._ENDPOINT;
 
@@ -2090,8 +1997,7 @@ public class ElasticsearchIndicesAsyncClient
 	 */
 
 	public final CompletableFuture<ValidateQueryResponse> validateQuery(
-			Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<ValidateQueryRequest.Builder, ObjectBuilder<ValidateQueryRequest>> fn) {
 		return validateQuery(fn.apply(new ValidateQueryRequest.Builder()).build());
 	}
 
@@ -2103,7 +2009,7 @@ public class ElasticsearchIndicesAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<ValidateQueryResponse> validateQuery() throws IOException, ElasticsearchException {
+	public CompletableFuture<ValidateQueryResponse> validateQuery() {
 		return this.transport.performRequestAsync(new ValidateQueryRequest.Builder().build(),
 				ValidateQueryRequest._ENDPOINT, this.transportOptions);
 	}

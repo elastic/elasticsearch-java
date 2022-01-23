@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.rollup;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -33,7 +32,6 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -67,8 +65,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteJobResponse> deleteJob(DeleteJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteJobResponse> deleteJob(DeleteJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteJobRequest, DeleteJobResponse, ErrorResponse>) DeleteJobRequest._ENDPOINT;
 
@@ -87,8 +84,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final CompletableFuture<DeleteJobResponse> deleteJob(
-			Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteJobRequest.Builder, ObjectBuilder<DeleteJobRequest>> fn) {
 		return deleteJob(fn.apply(new DeleteJobRequest.Builder()).build());
 	}
 
@@ -102,8 +98,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetJobsResponse> getJobs(GetJobsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetJobsResponse> getJobs(GetJobsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetJobsRequest, GetJobsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetJobsRequest, GetJobsResponse, ErrorResponse>) GetJobsRequest._ENDPOINT;
 
@@ -122,8 +117,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final CompletableFuture<GetJobsResponse> getJobs(
-			Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetJobsRequest.Builder, ObjectBuilder<GetJobsRequest>> fn) {
 		return getJobs(fn.apply(new GetJobsRequest.Builder()).build());
 	}
 
@@ -135,7 +129,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetJobsResponse> getJobs() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetJobsResponse> getJobs() {
 		return this.transport.performRequestAsync(new GetJobsRequest.Builder().build(), GetJobsRequest._ENDPOINT,
 				this.transportOptions);
 	}
@@ -151,8 +145,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRollupCapsResponse> getRollupCaps(GetRollupCapsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetRollupCapsResponse> getRollupCaps(GetRollupCapsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetRollupCapsRequest, GetRollupCapsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRollupCapsRequest, GetRollupCapsResponse, ErrorResponse>) GetRollupCapsRequest._ENDPOINT;
 
@@ -172,8 +165,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final CompletableFuture<GetRollupCapsResponse> getRollupCaps(
-			Function<GetRollupCapsRequest.Builder, ObjectBuilder<GetRollupCapsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetRollupCapsRequest.Builder, ObjectBuilder<GetRollupCapsRequest>> fn) {
 		return getRollupCaps(fn.apply(new GetRollupCapsRequest.Builder()).build());
 	}
 
@@ -186,7 +178,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRollupCapsResponse> getRollupCaps() throws IOException, ElasticsearchException {
+	public CompletableFuture<GetRollupCapsResponse> getRollupCaps() {
 		return this.transport.performRequestAsync(new GetRollupCapsRequest.Builder().build(),
 				GetRollupCapsRequest._ENDPOINT, this.transportOptions);
 	}
@@ -202,8 +194,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<GetRollupIndexCapsResponse> getRollupIndexCaps(GetRollupIndexCapsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<GetRollupIndexCapsResponse> getRollupIndexCaps(GetRollupIndexCapsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetRollupIndexCapsRequest, GetRollupIndexCapsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetRollupIndexCapsRequest, GetRollupIndexCapsResponse, ErrorResponse>) GetRollupIndexCapsRequest._ENDPOINT;
 
@@ -223,8 +214,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final CompletableFuture<GetRollupIndexCapsResponse> getRollupIndexCaps(
-			Function<GetRollupIndexCapsRequest.Builder, ObjectBuilder<GetRollupIndexCapsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<GetRollupIndexCapsRequest.Builder, ObjectBuilder<GetRollupIndexCapsRequest>> fn) {
 		return getRollupIndexCaps(fn.apply(new GetRollupIndexCapsRequest.Builder()).build());
 	}
 
@@ -238,7 +228,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<PutJobResponse> putJob(PutJobRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<PutJobResponse> putJob(PutJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<PutJobRequest, PutJobResponse, ErrorResponse> endpoint = (JsonEndpoint<PutJobRequest, PutJobResponse, ErrorResponse>) PutJobRequest._ENDPOINT;
 
@@ -257,8 +247,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final CompletableFuture<PutJobResponse> putJob(
-			Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<PutJobRequest.Builder, ObjectBuilder<PutJobRequest>> fn) {
 		return putJob(fn.apply(new PutJobRequest.Builder()).build());
 	}
 
@@ -272,7 +261,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<RollupResponse> rollup(RollupRequest request) throws IOException, ElasticsearchException {
+	public CompletableFuture<RollupResponse> rollup(RollupRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RollupRequest, RollupResponse, ErrorResponse> endpoint = (JsonEndpoint<RollupRequest, RollupResponse, ErrorResponse>) RollupRequest._ENDPOINT;
 
@@ -291,8 +280,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final CompletableFuture<RollupResponse> rollup(
-			Function<RollupRequest.Builder, ObjectBuilder<RollupRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<RollupRequest.Builder, ObjectBuilder<RollupRequest>> fn) {
 		return rollup(fn.apply(new RollupRequest.Builder()).build());
 	}
 
@@ -307,7 +295,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public <TDocument> CompletableFuture<RollupSearchResponse<TDocument>> rollupSearch(RollupSearchRequest request,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<RollupSearchRequest, RollupSearchResponse<TDocument>, ErrorResponse>) RollupSearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -329,7 +317,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 
 	public final <TDocument> CompletableFuture<RollupSearchResponse<TDocument>> rollupSearch(
 			Function<RollupSearchRequest.Builder, ObjectBuilder<RollupSearchRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) {
 		return rollupSearch(fn.apply(new RollupSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -343,8 +331,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StartJobResponse> startJob(StartJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<StartJobResponse> startJob(StartJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StartJobRequest, StartJobResponse, ErrorResponse> endpoint = (JsonEndpoint<StartJobRequest, StartJobResponse, ErrorResponse>) StartJobRequest._ENDPOINT;
 
@@ -363,8 +350,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final CompletableFuture<StartJobResponse> startJob(
-			Function<StartJobRequest.Builder, ObjectBuilder<StartJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StartJobRequest.Builder, ObjectBuilder<StartJobRequest>> fn) {
 		return startJob(fn.apply(new StartJobRequest.Builder()).build());
 	}
 
@@ -378,8 +364,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<StopJobResponse> stopJob(StopJobRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<StopJobResponse> stopJob(StopJobRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<StopJobRequest, StopJobResponse, ErrorResponse> endpoint = (JsonEndpoint<StopJobRequest, StopJobResponse, ErrorResponse>) StopJobRequest._ENDPOINT;
 
@@ -398,8 +383,7 @@ public class ElasticsearchRollupAsyncClient extends ApiClient<ElasticsearchTrans
 	 */
 
 	public final CompletableFuture<StopJobResponse> stopJob(
-			Function<StopJobRequest.Builder, ObjectBuilder<StopJobRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<StopJobRequest.Builder, ObjectBuilder<StopJobRequest>> fn) {
 		return stopJob(fn.apply(new StopJobRequest.Builder()).build());
 	}
 

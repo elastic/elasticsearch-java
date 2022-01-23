@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.migration;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -32,7 +31,6 @@ import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -70,8 +68,7 @@ public class ElasticsearchMigrationAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeprecationsResponse> deprecations(DeprecationsRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeprecationsResponse> deprecations(DeprecationsRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse> endpoint = (JsonEndpoint<DeprecationsRequest, DeprecationsResponse, ErrorResponse>) DeprecationsRequest._ENDPOINT;
 
@@ -92,8 +89,7 @@ public class ElasticsearchMigrationAsyncClient
 	 */
 
 	public final CompletableFuture<DeprecationsResponse> deprecations(
-			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeprecationsRequest.Builder, ObjectBuilder<DeprecationsRequest>> fn) {
 		return deprecations(fn.apply(new DeprecationsRequest.Builder()).build());
 	}
 
@@ -107,7 +103,7 @@ public class ElasticsearchMigrationAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeprecationsResponse> deprecations() throws IOException, ElasticsearchException {
+	public CompletableFuture<DeprecationsResponse> deprecations() {
 		return this.transport.performRequestAsync(new DeprecationsRequest.Builder().build(),
 				DeprecationsRequest._ENDPOINT, this.transportOptions);
 	}

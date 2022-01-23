@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.ApiClient;
-import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
@@ -33,7 +32,6 @@ import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.endpoints.EndpointWithResponseMapperAttr;
 import co.elastic.clients.util.ObjectBuilder;
-import java.io.IOException;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -70,8 +68,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<DeleteAsyncSearchResponse> delete(DeleteAsyncSearchRequest request)
-			throws IOException, ElasticsearchException {
+	public CompletableFuture<DeleteAsyncSearchResponse> delete(DeleteAsyncSearchRequest request) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<DeleteAsyncSearchRequest, DeleteAsyncSearchResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteAsyncSearchRequest, DeleteAsyncSearchResponse, ErrorResponse>) DeleteAsyncSearchRequest._ENDPOINT;
 
@@ -91,8 +88,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 */
 
 	public final CompletableFuture<DeleteAsyncSearchResponse> delete(
-			Function<DeleteAsyncSearchRequest.Builder, ObjectBuilder<DeleteAsyncSearchRequest>> fn)
-			throws IOException, ElasticsearchException {
+			Function<DeleteAsyncSearchRequest.Builder, ObjectBuilder<DeleteAsyncSearchRequest>> fn) {
 		return delete(fn.apply(new DeleteAsyncSearchRequest.Builder()).build());
 	}
 
@@ -108,7 +104,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 */
 
 	public <TDocument> CompletableFuture<GetAsyncSearchResponse<TDocument>> get(GetAsyncSearchRequest request,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<GetAsyncSearchRequest, GetAsyncSearchResponse<TDocument>, ErrorResponse>) GetAsyncSearchRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -131,7 +127,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 
 	public final <TDocument> CompletableFuture<GetAsyncSearchResponse<TDocument>> get(
 			Function<GetAsyncSearchRequest.Builder, ObjectBuilder<GetAsyncSearchRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) {
 		return get(fn.apply(new GetAsyncSearchRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -147,7 +143,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 */
 
 	public <TDocument> CompletableFuture<AsyncSearchStatusResponse<TDocument>> status(AsyncSearchStatusRequest request,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse<TDocument>, ErrorResponse>) AsyncSearchStatusRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -170,7 +166,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 
 	public final <TDocument> CompletableFuture<AsyncSearchStatusResponse<TDocument>> status(
 			Function<AsyncSearchStatusRequest.Builder, ObjectBuilder<AsyncSearchStatusRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) {
 		return status(fn.apply(new AsyncSearchStatusRequest.Builder()).build(), tDocumentClass);
 	}
 
@@ -185,7 +181,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 */
 
 	public <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(SubmitRequest request,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+			Class<TDocument> tDocumentClass) {
 		@SuppressWarnings("unchecked")
 		JsonEndpoint<SubmitRequest, SubmitResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<SubmitRequest, SubmitResponse<TDocument>, ErrorResponse>) SubmitRequest._ENDPOINT;
 		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
@@ -206,8 +202,7 @@ public class ElasticsearchAsyncSearchAsyncClient
 	 */
 
 	public final <TDocument> CompletableFuture<SubmitResponse<TDocument>> submit(
-			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn, Class<TDocument> tDocumentClass)
-			throws IOException, ElasticsearchException {
+			Function<SubmitRequest.Builder, ObjectBuilder<SubmitRequest>> fn, Class<TDocument> tDocumentClass) {
 		return submit(fn.apply(new SubmitRequest.Builder()).build(), tDocumentClass);
 	}
 
