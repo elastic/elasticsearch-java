@@ -185,25 +185,6 @@
           "time_in_millis": 0
         }
       }
-    },
-    "indexing_pressure": {
-      "memory": {
-        "limit_in_bytes": 0,
-        "current": {
-          "all_in_bytes": 0,
-          "combined_coordinating_and_primary_in_bytes": 0,
-          "coordinating_in_bytes": 0,
-          "primary_in_bytes": 0,
-          "replica_in_bytes": 0
-        },
-        "total": {
-          "all_in_bytes": 0,
-          "combined_coordinating_and_primary_in_bytes": 0,
-          "coordinating_in_bytes": 0,
-          "primary_in_bytes": 0,
-          "replica_in_bytes": 0
-        }
-      }
     }
   }
 }
