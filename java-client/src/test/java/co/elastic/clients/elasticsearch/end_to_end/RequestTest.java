@@ -122,6 +122,13 @@ public class RequestTest extends Assert {
 
         assertEquals("my/Id", docId);
 
+        // Check auto-created mapping
+        GetMappingResponse mapping = client.indices().getMapping(b -> b.index(index));
+        assertEquals(
+            Property.Kind.Long,
+            mapping.get("ingest-test").mappings().properties().get("intValue")._kind()
+        );
+
         // Query by id
         AppData esData = client.get(b -> b
                 .index(index)
