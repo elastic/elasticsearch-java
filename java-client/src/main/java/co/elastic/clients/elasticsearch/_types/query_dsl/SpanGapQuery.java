@@ -104,8 +104,7 @@ public class SpanGapQuery implements SpanQueryVariant, JsonpSerializable {
 	 * Json deserializer for {@link SpanGapQuery}
 	 */
 	public static final JsonpDeserializer<SpanGapQuery> _DESERIALIZER = JsonpDeserializer
-			.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, mapper) -> {
-				JsonpUtils.expectNextEvent(parser, JsonParser.Event.START_OBJECT);
+			.of(EnumSet.of(JsonParser.Event.START_OBJECT), (parser, mapper, event) -> {
 				String name = JsonpUtils.expectKeyName(parser, parser.next());
 
 				JsonpUtils.expectNextEvent(parser, JsonParser.Event.VALUE_NUMBER);

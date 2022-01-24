@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -58,37 +59,38 @@ public class Email implements JsonpSerializable {
 	@Nullable
 	private final String from;
 
-	private final String id;
-
 	@Nullable
 	private final EmailPriority priority;
 
 	private final List<String> replyTo;
 
+	@Nullable
 	private final String sentDate;
 
 	private final String subject;
 
 	private final List<String> to;
 
+	private final Map<String, EmailAttachment> attachments;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private Email(Builder builder) {
+	protected Email(AbstractBuilder<?> builder) {
 
 		this.bcc = ApiTypeHelper.unmodifiable(builder.bcc);
 		this.body = builder.body;
 		this.cc = ApiTypeHelper.unmodifiable(builder.cc);
 		this.from = builder.from;
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.priority = builder.priority;
 		this.replyTo = ApiTypeHelper.unmodifiable(builder.replyTo);
-		this.sentDate = ApiTypeHelper.requireNonNull(builder.sentDate, this, "sentDate");
+		this.sentDate = builder.sentDate;
 		this.subject = ApiTypeHelper.requireNonNull(builder.subject, this, "subject");
 		this.to = ApiTypeHelper.unmodifiableRequired(builder.to, this, "to");
+		this.attachments = ApiTypeHelper.unmodifiable(builder.attachments);
 
 	}
 
-	public static Email of(Function<Builder, ObjectBuilder<Email>> fn) {
+	public static Email emailOf(Function<Builder, ObjectBuilder<Email>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -123,13 +125,6 @@ public class Email implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code id}
-	 */
-	public final String id() {
-		return this.id;
-	}
-
-	/**
 	 * API name: {@code priority}
 	 */
 	@Nullable
@@ -145,8 +140,9 @@ public class Email implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code sent_date}
+	 * API name: {@code sent_date}
 	 */
+	@Nullable
 	public final String sentDate() {
 		return this.sentDate;
 	}
@@ -163,6 +159,13 @@ public class Email implements JsonpSerializable {
 	 */
 	public final List<String> to() {
 		return this.to;
+	}
+
+	/**
+	 * API name: {@code attachments}
+	 */
+	public final Map<String, EmailAttachment> attachments() {
+		return this.attachments;
 	}
 
 	/**
@@ -206,9 +209,6 @@ public class Email implements JsonpSerializable {
 			generator.write(this.from);
 
 		}
-		generator.writeKey("id");
-		generator.write(this.id);
-
 		if (this.priority != null) {
 			generator.writeKey("priority");
 			this.priority.serialize(generator, mapper);
@@ -223,9 +223,11 @@ public class Email implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("sent_date");
-		generator.write(this.sentDate);
+		if (this.sentDate != null) {
+			generator.writeKey("sent_date");
+			generator.write(this.sentDate);
 
+		}
 		generator.writeKey("subject");
 		generator.write(this.subject);
 
@@ -234,6 +236,17 @@ public class Email implements JsonpSerializable {
 			generator.writeStartArray();
 			for (String item0 : this.to) {
 				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.attachments)) {
+			generator.writeKey("attachments");
+			generator.writeStartObject();
+			for (Map.Entry<String, EmailAttachment> item0 : this.attachments.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -248,165 +261,9 @@ public class Email implements JsonpSerializable {
 	 * Builder for {@link Email}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Email> {
-		@Nullable
-		private List<String> bcc;
-
-		@Nullable
-		private EmailBody body;
-
-		@Nullable
-		private List<String> cc;
-
-		@Nullable
-		private String from;
-
-		private String id;
-
-		@Nullable
-		private EmailPriority priority;
-
-		@Nullable
-		private List<String> replyTo;
-
-		private String sentDate;
-
-		private String subject;
-
-		private List<String> to;
-
-		/**
-		 * API name: {@code bcc}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>bcc</code>.
-		 */
-		public final Builder bcc(List<String> list) {
-			this.bcc = _listAddAll(this.bcc, list);
-			return this;
-		}
-
-		/**
-		 * API name: {@code bcc}
-		 * <p>
-		 * Adds one or more values to <code>bcc</code>.
-		 */
-		public final Builder bcc(String value, String... values) {
-			this.bcc = _listAdd(this.bcc, value, values);
-			return this;
-		}
-
-		/**
-		 * API name: {@code body}
-		 */
-		public final Builder body(@Nullable EmailBody value) {
-			this.body = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code body}
-		 */
-		public final Builder body(Function<EmailBody.Builder, ObjectBuilder<EmailBody>> fn) {
-			return this.body(fn.apply(new EmailBody.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code cc}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>cc</code>.
-		 */
-		public final Builder cc(List<String> list) {
-			this.cc = _listAddAll(this.cc, list);
-			return this;
-		}
-
-		/**
-		 * API name: {@code cc}
-		 * <p>
-		 * Adds one or more values to <code>cc</code>.
-		 */
-		public final Builder cc(String value, String... values) {
-			this.cc = _listAdd(this.cc, value, values);
-			return this;
-		}
-
-		/**
-		 * API name: {@code from}
-		 */
-		public final Builder from(@Nullable String value) {
-			this.from = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code id}
-		 */
-		public final Builder id(String value) {
-			this.id = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code priority}
-		 */
-		public final Builder priority(@Nullable EmailPriority value) {
-			this.priority = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code reply_to}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>replyTo</code>.
-		 */
-		public final Builder replyTo(List<String> list) {
-			this.replyTo = _listAddAll(this.replyTo, list);
-			return this;
-		}
-
-		/**
-		 * API name: {@code reply_to}
-		 * <p>
-		 * Adds one or more values to <code>replyTo</code>.
-		 */
-		public final Builder replyTo(String value, String... values) {
-			this.replyTo = _listAdd(this.replyTo, value, values);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code sent_date}
-		 */
-		public final Builder sentDate(String value) {
-			this.sentDate = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code subject}
-		 */
-		public final Builder subject(String value) {
-			this.subject = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code to}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>to</code>.
-		 */
-		public final Builder to(List<String> list) {
-			this.to = _listAddAll(this.to, list);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code to}
-		 * <p>
-		 * Adds one or more values to <code>to</code>.
-		 */
-		public final Builder to(String value, String... values) {
-			this.to = _listAdd(this.to, value, values);
+	public static class Builder extends Email.AbstractBuilder<Builder> implements ObjectBuilder<Email> {
+		@Override
+		protected Builder self() {
 			return this;
 		}
 
@@ -423,6 +280,198 @@ public class Email implements JsonpSerializable {
 		}
 	}
 
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
+		@Nullable
+		private List<String> bcc;
+
+		@Nullable
+		private EmailBody body;
+
+		@Nullable
+		private List<String> cc;
+
+		@Nullable
+		private String from;
+
+		@Nullable
+		private EmailPriority priority;
+
+		@Nullable
+		private List<String> replyTo;
+
+		@Nullable
+		private String sentDate;
+
+		private String subject;
+
+		private List<String> to;
+
+		@Nullable
+		private Map<String, EmailAttachment> attachments;
+
+		/**
+		 * API name: {@code bcc}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>bcc</code>.
+		 */
+		public final BuilderT bcc(List<String> list) {
+			this.bcc = _listAddAll(this.bcc, list);
+			return self();
+		}
+
+		/**
+		 * API name: {@code bcc}
+		 * <p>
+		 * Adds one or more values to <code>bcc</code>.
+		 */
+		public final BuilderT bcc(String value, String... values) {
+			this.bcc = _listAdd(this.bcc, value, values);
+			return self();
+		}
+
+		/**
+		 * API name: {@code body}
+		 */
+		public final BuilderT body(@Nullable EmailBody value) {
+			this.body = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code body}
+		 */
+		public final BuilderT body(Function<EmailBody.Builder, ObjectBuilder<EmailBody>> fn) {
+			return this.body(fn.apply(new EmailBody.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code cc}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>cc</code>.
+		 */
+		public final BuilderT cc(List<String> list) {
+			this.cc = _listAddAll(this.cc, list);
+			return self();
+		}
+
+		/**
+		 * API name: {@code cc}
+		 * <p>
+		 * Adds one or more values to <code>cc</code>.
+		 */
+		public final BuilderT cc(String value, String... values) {
+			this.cc = _listAdd(this.cc, value, values);
+			return self();
+		}
+
+		/**
+		 * API name: {@code from}
+		 */
+		public final BuilderT from(@Nullable String value) {
+			this.from = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code priority}
+		 */
+		public final BuilderT priority(@Nullable EmailPriority value) {
+			this.priority = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code reply_to}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>replyTo</code>.
+		 */
+		public final BuilderT replyTo(List<String> list) {
+			this.replyTo = _listAddAll(this.replyTo, list);
+			return self();
+		}
+
+		/**
+		 * API name: {@code reply_to}
+		 * <p>
+		 * Adds one or more values to <code>replyTo</code>.
+		 */
+		public final BuilderT replyTo(String value, String... values) {
+			this.replyTo = _listAdd(this.replyTo, value, values);
+			return self();
+		}
+
+		/**
+		 * API name: {@code sent_date}
+		 */
+		public final BuilderT sentDate(@Nullable String value) {
+			this.sentDate = value;
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code subject}
+		 */
+		public final BuilderT subject(String value) {
+			this.subject = value;
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code to}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>to</code>.
+		 */
+		public final BuilderT to(List<String> list) {
+			this.to = _listAddAll(this.to, list);
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code to}
+		 * <p>
+		 * Adds one or more values to <code>to</code>.
+		 */
+		public final BuilderT to(String value, String... values) {
+			this.to = _listAdd(this.to, value, values);
+			return self();
+		}
+
+		/**
+		 * API name: {@code attachments}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attachments</code>.
+		 */
+		public final BuilderT attachments(Map<String, EmailAttachment> map) {
+			this.attachments = _mapPutAll(this.attachments, map);
+			return self();
+		}
+
+		/**
+		 * API name: {@code attachments}
+		 * <p>
+		 * Adds an entry to <code>attachments</code>.
+		 */
+		public final BuilderT attachments(String key, EmailAttachment value) {
+			this.attachments = _mapPut(this.attachments, key, value);
+			return self();
+		}
+
+		/**
+		 * API name: {@code attachments}
+		 * <p>
+		 * Adds an entry to <code>attachments</code> using a builder lambda.
+		 */
+		public final BuilderT attachments(String key,
+				Function<EmailAttachment.Builder, ObjectBuilder<EmailAttachment>> fn) {
+			return attachments(key, fn.apply(new EmailAttachment.Builder()).build());
+		}
+
+		protected abstract BuilderT self();
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -431,19 +480,22 @@ public class Email implements JsonpSerializable {
 	public static final JsonpDeserializer<Email> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			Email::setupEmailDeserializer);
 
-	protected static void setupEmailDeserializer(ObjectDeserializer<Email.Builder> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupEmailDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-		op.add(Builder::bcc, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "bcc");
-		op.add(Builder::body, EmailBody._DESERIALIZER, "body");
-		op.add(Builder::cc, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "cc");
-		op.add(Builder::from, JsonpDeserializer.stringDeserializer(), "from");
-		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
-		op.add(Builder::priority, EmailPriority._DESERIALIZER, "priority");
-		op.add(Builder::replyTo, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(AbstractBuilder::bcc, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"bcc");
+		op.add(AbstractBuilder::body, EmailBody._DESERIALIZER, "body");
+		op.add(AbstractBuilder::cc, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "cc");
+		op.add(AbstractBuilder::from, JsonpDeserializer.stringDeserializer(), "from");
+		op.add(AbstractBuilder::priority, EmailPriority._DESERIALIZER, "priority");
+		op.add(AbstractBuilder::replyTo, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"reply_to");
-		op.add(Builder::sentDate, JsonpDeserializer.stringDeserializer(), "sent_date");
-		op.add(Builder::subject, JsonpDeserializer.stringDeserializer(), "subject");
-		op.add(Builder::to, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "to");
+		op.add(AbstractBuilder::sentDate, JsonpDeserializer.stringDeserializer(), "sent_date");
+		op.add(AbstractBuilder::subject, JsonpDeserializer.stringDeserializer(), "subject");
+		op.add(AbstractBuilder::to, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "to");
+		op.add(AbstractBuilder::attachments, JsonpDeserializer.stringMapDeserializer(EmailAttachment._DESERIALIZER),
+				"attachments");
 
 	}
 

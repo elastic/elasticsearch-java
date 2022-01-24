@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
-import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,58 +38,58 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: watcher._types.Index
+// typedef: watcher._types.LoggingAction
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#watcher._types.Index">API
+ * @see <a href="../doc-files/api-spec.html#watcher._types.LoggingAction">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Index implements JsonpSerializable {
-	private final String index;
+public class LoggingAction implements JsonpSerializable {
+	@Nullable
+	private final String level;
+
+	private final String text;
 
 	@Nullable
-	private final String docId;
-
-	@Nullable
-	private final Refresh refresh;
+	private final String category;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Index(Builder builder) {
+	private LoggingAction(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.docId = builder.docId;
-		this.refresh = builder.refresh;
+		this.level = builder.level;
+		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.category = builder.category;
 
 	}
 
-	public static Index of(Function<Builder, ObjectBuilder<Index>> fn) {
+	public static LoggingAction of(Function<Builder, ObjectBuilder<LoggingAction>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code index}
+	 * API name: {@code level}
 	 */
-	public final String index() {
-		return this.index;
+	@Nullable
+	public final String level() {
+		return this.level;
 	}
 
 	/**
-	 * API name: {@code doc_id}
+	 * Required - API name: {@code text}
 	 */
-	@Nullable
-	public final String docId() {
-		return this.docId;
+	public final String text() {
+		return this.text;
 	}
 
 	/**
-	 * API name: {@code refresh}
+	 * API name: {@code category}
 	 */
 	@Nullable
-	public final Refresh refresh() {
-		return this.refresh;
+	public final String category() {
+		return this.category;
 	}
 
 	/**
@@ -104,17 +103,18 @@ public class Index implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("index");
-		generator.write(this.index);
-
-		if (this.docId != null) {
-			generator.writeKey("doc_id");
-			generator.write(this.docId);
+		if (this.level != null) {
+			generator.writeKey("level");
+			generator.write(this.level);
 
 		}
-		if (this.refresh != null) {
-			generator.writeKey("refresh");
-			this.refresh.serialize(generator, mapper);
+		generator.writeKey("text");
+		generator.write(this.text);
+
+		if (this.category != null) {
+			generator.writeKey("category");
+			generator.write(this.category);
+
 		}
 
 	}
@@ -122,68 +122,68 @@ public class Index implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Index}.
+	 * Builder for {@link LoggingAction}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Index> {
-		private String index;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LoggingAction> {
+		@Nullable
+		private String level;
+
+		private String text;
 
 		@Nullable
-		private String docId;
-
-		@Nullable
-		private Refresh refresh;
+		private String category;
 
 		/**
-		 * Required - API name: {@code index}
+		 * API name: {@code level}
 		 */
-		public final Builder index(String value) {
-			this.index = value;
+		public final Builder level(@Nullable String value) {
+			this.level = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code doc_id}
+		 * Required - API name: {@code text}
 		 */
-		public final Builder docId(@Nullable String value) {
-			this.docId = value;
+		public final Builder text(String value) {
+			this.text = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code refresh}
+		 * API name: {@code category}
 		 */
-		public final Builder refresh(@Nullable Refresh value) {
-			this.refresh = value;
+		public final Builder category(@Nullable String value) {
+			this.category = value;
 			return this;
 		}
 
 		/**
-		 * Builds a {@link Index}.
+		 * Builds a {@link LoggingAction}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Index build() {
+		public LoggingAction build() {
 			_checkSingleUse();
 
-			return new Index(this);
+			return new LoggingAction(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Index}
+	 * Json deserializer for {@link LoggingAction}
 	 */
-	public static final JsonpDeserializer<Index> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Index::setupIndexDeserializer);
+	public static final JsonpDeserializer<LoggingAction> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			LoggingAction::setupLoggingActionDeserializer);
 
-	protected static void setupIndexDeserializer(ObjectDeserializer<Index.Builder> op) {
+	protected static void setupLoggingActionDeserializer(ObjectDeserializer<LoggingAction.Builder> op) {
 
-		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::docId, JsonpDeserializer.stringDeserializer(), "doc_id");
-		op.add(Builder::refresh, Refresh._DESERIALIZER, "refresh");
+		op.add(Builder::level, JsonpDeserializer.stringDeserializer(), "level");
+		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
+		op.add(Builder::category, JsonpDeserializer.stringDeserializer(), "category");
 
 	}
 

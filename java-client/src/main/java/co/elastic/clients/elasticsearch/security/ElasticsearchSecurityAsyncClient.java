@@ -30,6 +30,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.JsonEndpoint;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.transport.TransportOptions;
+import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.ObjectBuilder;
 import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
@@ -596,6 +597,35 @@ public class ElasticsearchSecurityAsyncClient
 	public final CompletableFuture<EnableUserResponse> enableUser(
 			Function<EnableUserRequest.Builder, ObjectBuilder<EnableUserRequest>> fn) {
 		return enableUser(fn.apply(new EnableUserRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.enroll_kibana
+
+	/**
+	 * Allows a kibana instance to configure itself to communicate with a secured
+	 * elasticsearch cluster.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-kibana-enrollment.html">Documentation
+	 *      on elastic.co</a>
+	 */
+	public CompletableFuture<EnrollKibanaResponse> enrollKibana() {
+		return this.transport.performRequestAsync(EnrollKibanaRequest._INSTANCE, EnrollKibanaRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
+	// ----- Endpoint: security.enroll_node
+
+	/**
+	 * Allows a new node to enroll to an existing cluster with security enabled.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-node-enrollment.html">Documentation
+	 *      on elastic.co</a>
+	 */
+	public CompletableFuture<EnrollNodeResponse> enrollNode() {
+		return this.transport.performRequestAsync(EnrollNodeRequest._INSTANCE, EnrollNodeRequest._ENDPOINT,
+				this.transportOptions);
 	}
 
 	// ----- Endpoint: security.get_api_key
@@ -1377,6 +1407,223 @@ public class ElasticsearchSecurityAsyncClient
 	public CompletableFuture<QueryApiKeysResponse> queryApiKeys() {
 		return this.transport.performRequestAsync(new QueryApiKeysRequest.Builder().build(),
 				QueryApiKeysRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: security.saml_authenticate
+
+	/**
+	 * Exchanges a SAML Response message for an Elasticsearch access token and
+	 * refresh token pair
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-authenticate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SamlAuthenticateResponse> samlAuthenticate(SamlAuthenticateRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SamlAuthenticateRequest, SamlAuthenticateResponse, ErrorResponse> endpoint = (JsonEndpoint<SamlAuthenticateRequest, SamlAuthenticateResponse, ErrorResponse>) SamlAuthenticateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Exchanges a SAML Response message for an Elasticsearch access token and
+	 * refresh token pair
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SamlAuthenticateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-authenticate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SamlAuthenticateResponse> samlAuthenticate(
+			Function<SamlAuthenticateRequest.Builder, ObjectBuilder<SamlAuthenticateRequest>> fn) {
+		return samlAuthenticate(fn.apply(new SamlAuthenticateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.saml_complete_logout
+
+	/**
+	 * Verifies the logout response sent from the SAML IdP
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-complete-logout.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<BooleanResponse> samlCompleteLogout(SamlCompleteLogoutRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SamlCompleteLogoutRequest, BooleanResponse, ErrorResponse> endpoint = (JsonEndpoint<SamlCompleteLogoutRequest, BooleanResponse, ErrorResponse>) SamlCompleteLogoutRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Verifies the logout response sent from the SAML IdP
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SamlCompleteLogoutRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-complete-logout.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<BooleanResponse> samlCompleteLogout(
+			Function<SamlCompleteLogoutRequest.Builder, ObjectBuilder<SamlCompleteLogoutRequest>> fn) {
+		return samlCompleteLogout(fn.apply(new SamlCompleteLogoutRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.saml_invalidate
+
+	/**
+	 * Consumes a SAML LogoutRequest
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-invalidate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SamlInvalidateResponse> samlInvalidate(SamlInvalidateRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SamlInvalidateRequest, SamlInvalidateResponse, ErrorResponse> endpoint = (JsonEndpoint<SamlInvalidateRequest, SamlInvalidateResponse, ErrorResponse>) SamlInvalidateRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Consumes a SAML LogoutRequest
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SamlInvalidateRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-invalidate.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SamlInvalidateResponse> samlInvalidate(
+			Function<SamlInvalidateRequest.Builder, ObjectBuilder<SamlInvalidateRequest>> fn) {
+		return samlInvalidate(fn.apply(new SamlInvalidateRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.saml_logout
+
+	/**
+	 * Invalidates an access token and a refresh token that were generated via the
+	 * SAML Authenticate API
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-logout.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SamlLogoutResponse> samlLogout(SamlLogoutRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SamlLogoutRequest, SamlLogoutResponse, ErrorResponse> endpoint = (JsonEndpoint<SamlLogoutRequest, SamlLogoutResponse, ErrorResponse>) SamlLogoutRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Invalidates an access token and a refresh token that were generated via the
+	 * SAML Authenticate API
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SamlLogoutRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-logout.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SamlLogoutResponse> samlLogout(
+			Function<SamlLogoutRequest.Builder, ObjectBuilder<SamlLogoutRequest>> fn) {
+		return samlLogout(fn.apply(new SamlLogoutRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.saml_prepare_authentication
+
+	/**
+	 * Creates a SAML authentication request
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-prepare-authentication.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SamlPrepareAuthenticationResponse> samlPrepareAuthentication(
+			SamlPrepareAuthenticationRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SamlPrepareAuthenticationRequest, SamlPrepareAuthenticationResponse, ErrorResponse> endpoint = (JsonEndpoint<SamlPrepareAuthenticationRequest, SamlPrepareAuthenticationResponse, ErrorResponse>) SamlPrepareAuthenticationRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Creates a SAML authentication request
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SamlPrepareAuthenticationRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-prepare-authentication.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SamlPrepareAuthenticationResponse> samlPrepareAuthentication(
+			Function<SamlPrepareAuthenticationRequest.Builder, ObjectBuilder<SamlPrepareAuthenticationRequest>> fn) {
+		return samlPrepareAuthentication(fn.apply(new SamlPrepareAuthenticationRequest.Builder()).build());
+	}
+
+	/**
+	 * Creates a SAML authentication request
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-prepare-authentication.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SamlPrepareAuthenticationResponse> samlPrepareAuthentication() {
+		return this.transport.performRequestAsync(new SamlPrepareAuthenticationRequest.Builder().build(),
+				SamlPrepareAuthenticationRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: security.saml_service_provider_metadata
+
+	/**
+	 * Generates SAML metadata for the Elastic stack SAML 2.0 Service Provider
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-sp-metadata.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SamlServiceProviderMetadataResponse> samlServiceProviderMetadata(
+			SamlServiceProviderMetadataRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SamlServiceProviderMetadataRequest, SamlServiceProviderMetadataResponse, ErrorResponse> endpoint = (JsonEndpoint<SamlServiceProviderMetadataRequest, SamlServiceProviderMetadataResponse, ErrorResponse>) SamlServiceProviderMetadataRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Generates SAML metadata for the Elastic stack SAML 2.0 Service Provider
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SamlServiceProviderMetadataRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-saml-sp-metadata.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SamlServiceProviderMetadataResponse> samlServiceProviderMetadata(
+			Function<SamlServiceProviderMetadataRequest.Builder, ObjectBuilder<SamlServiceProviderMetadataRequest>> fn) {
+		return samlServiceProviderMetadata(fn.apply(new SamlServiceProviderMetadataRequest.Builder()).build());
 	}
 
 }

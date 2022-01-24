@@ -186,6 +186,55 @@ public class ElasticsearchIlmAsyncClient extends ApiClient<ElasticsearchTranspor
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: ilm.migrate_to_data_tiers
+
+	/**
+	 * Migrates the indices and ILM policies away from custom node attribute
+	 * allocation routing to data tiers routing
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-migrate-to-data-tiers.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<MigrateToDataTiersResponse> migrateToDataTiers(MigrateToDataTiersRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MigrateToDataTiersRequest, MigrateToDataTiersResponse, ErrorResponse> endpoint = (JsonEndpoint<MigrateToDataTiersRequest, MigrateToDataTiersResponse, ErrorResponse>) MigrateToDataTiersRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Migrates the indices and ILM policies away from custom node attribute
+	 * allocation routing to data tiers routing
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MigrateToDataTiersRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-migrate-to-data-tiers.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<MigrateToDataTiersResponse> migrateToDataTiers(
+			Function<MigrateToDataTiersRequest.Builder, ObjectBuilder<MigrateToDataTiersRequest>> fn) {
+		return migrateToDataTiers(fn.apply(new MigrateToDataTiersRequest.Builder()).build());
+	}
+
+	/**
+	 * Migrates the indices and ILM policies away from custom node attribute
+	 * allocation routing to data tiers routing
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-migrate-to-data-tiers.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<MigrateToDataTiersResponse> migrateToDataTiers() {
+		return this.transport.performRequestAsync(new MigrateToDataTiersRequest.Builder().build(),
+				MigrateToDataTiersRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: ilm.move_to_step
 
 	/**

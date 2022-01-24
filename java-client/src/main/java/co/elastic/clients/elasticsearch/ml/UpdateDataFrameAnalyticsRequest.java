@@ -134,11 +134,10 @@ public class UpdateDataFrameAnalyticsRequest extends RequestBase implements Json
 
 	/**
 	 * The approximate maximum amount of memory resources that are permitted for
-	 * analytical processing. The default value for data frame analytics jobs is
-	 * 1gb. If your elasticsearch.yml file contains an
-	 * <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
-	 * you try to create data frame analytics jobs that have model_memory_limit
-	 * values greater than that setting.
+	 * analytical processing. If your <code>elasticsearch.yml</code> file contains
+	 * an <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
+	 * you try to create data frame analytics jobs that have
+	 * <code>model_memory_limit</code> values greater than that setting.
 	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
@@ -250,11 +249,10 @@ public class UpdateDataFrameAnalyticsRequest extends RequestBase implements Json
 
 		/**
 		 * The approximate maximum amount of memory resources that are permitted for
-		 * analytical processing. The default value for data frame analytics jobs is
-		 * 1gb. If your elasticsearch.yml file contains an
-		 * <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
-		 * you try to create data frame analytics jobs that have model_memory_limit
-		 * values greater than that setting.
+		 * analytical processing. If your <code>elasticsearch.yml</code> file contains
+		 * an <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
+		 * you try to create data frame analytics jobs that have
+		 * <code>model_memory_limit</code> values greater than that setting.
 		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */

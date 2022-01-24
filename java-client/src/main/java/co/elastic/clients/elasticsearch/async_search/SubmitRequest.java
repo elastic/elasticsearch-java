@@ -182,7 +182,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String routing;
 
-	private final Map<String, RuntimeField> runtimeMappings;
+	private final Map<String, List<RuntimeField>> runtimeMappings;
 
 	private final Map<String, ScriptField> scriptFields;
 
@@ -673,7 +673,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code runtime_mappings}
 	 */
-	public final Map<String, RuntimeField> runtimeMappings() {
+	public final Map<String, List<RuntimeField>> runtimeMappings() {
 		return this.runtimeMappings;
 	}
 
@@ -972,9 +972,16 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
-			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
+			for (Map.Entry<String, List<RuntimeField>> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (RuntimeField item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
@@ -1198,7 +1205,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		private String routing;
 
 		@Nullable
-		private Map<String, RuntimeField> runtimeMappings;
+		private Map<String, List<RuntimeField>> runtimeMappings;
 
 		@Nullable
 		private Map<String, ScriptField> scriptFields;
@@ -1837,7 +1844,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+		public final Builder runtimeMappings(Map<String, List<RuntimeField>> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
@@ -1850,22 +1857,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(String key, RuntimeField value) {
+		public final Builder runtimeMappings(String key, List<RuntimeField> value) {
 			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
 			return this;
-		}
-
-		/**
-		 * Defines one or more runtime fields in the search request. These fields take
-		 * precedence over mapped fields with the same name.
-		 * <p>
-		 * API name: {@code runtime_mappings}
-		 * <p>
-		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
-		 */
-		public final Builder runtimeMappings(String key,
-				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -2221,8 +2215,8 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::profile, JsonpDeserializer.booleanDeserializer(), "profile");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::rescore, JsonpDeserializer.arrayDeserializer(Rescore._DESERIALIZER), "rescore");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
-				"runtime_mappings");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(RuntimeField._DESERIALIZER)), "runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),
 				"script_fields");
 		op.add(Builder::searchAfter, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),

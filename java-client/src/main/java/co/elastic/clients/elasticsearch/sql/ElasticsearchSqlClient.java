@@ -88,6 +88,114 @@ public class ElasticsearchSqlClient extends ApiClient<ElasticsearchTransport, El
 		return clearCursor(fn.apply(new ClearCursorRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: sql.delete_async
+
+	/**
+	 * Deletes an async SQL search or a stored synchronous SQL search. If the search
+	 * is still running, the API cancels it.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-async-sql-search-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public DeleteAsyncResponse deleteAsync(DeleteAsyncRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DeleteAsyncRequest, DeleteAsyncResponse, ErrorResponse> endpoint = (JsonEndpoint<DeleteAsyncRequest, DeleteAsyncResponse, ErrorResponse>) DeleteAsyncRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Deletes an async SQL search or a stored synchronous SQL search. If the search
+	 * is still running, the API cancels it.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DeleteAsyncRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/delete-async-sql-search-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final DeleteAsyncResponse deleteAsync(
+			Function<DeleteAsyncRequest.Builder, ObjectBuilder<DeleteAsyncRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return deleteAsync(fn.apply(new DeleteAsyncRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: sql.get_async
+
+	/**
+	 * Returns the current status and available results for an async SQL search or
+	 * stored synchronous SQL search
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-async-sql-search-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetAsyncResponse getAsync(GetAsyncRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetAsyncRequest, GetAsyncResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAsyncRequest, GetAsyncResponse, ErrorResponse>) GetAsyncRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the current status and available results for an async SQL search or
+	 * stored synchronous SQL search
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetAsyncRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-async-sql-search-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetAsyncResponse getAsync(Function<GetAsyncRequest.Builder, ObjectBuilder<GetAsyncRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getAsync(fn.apply(new GetAsyncRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: sql.get_async_status
+
+	/**
+	 * Returns the current status of an async SQL search or a stored synchronous SQL
+	 * search
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-async-sql-search-status-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public GetAsyncStatusResponse getAsyncStatus(GetAsyncStatusRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetAsyncStatusRequest, GetAsyncStatusResponse, ErrorResponse> endpoint = (JsonEndpoint<GetAsyncStatusRequest, GetAsyncStatusResponse, ErrorResponse>) GetAsyncStatusRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the current status of an async SQL search or a stored synchronous SQL
+	 * search
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetAsyncStatusRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/get-async-sql-search-status-api.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final GetAsyncStatusResponse getAsyncStatus(
+			Function<GetAsyncStatusRequest.Builder, ObjectBuilder<GetAsyncStatusRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return getAsyncStatus(fn.apply(new GetAsyncStatusRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: sql.query
 
 	/**

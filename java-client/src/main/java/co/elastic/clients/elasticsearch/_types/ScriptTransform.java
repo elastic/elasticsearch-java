@@ -49,16 +49,25 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ScriptTransform implements TransformVariant, JsonpSerializable {
+	@Nullable
 	private final String lang;
 
 	private final Map<String, JsonData> params;
+
+	@Nullable
+	private final String source;
+
+	@Nullable
+	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ScriptTransform(Builder builder) {
 
-		this.lang = ApiTypeHelper.requireNonNull(builder.lang, this, "lang");
-		this.params = ApiTypeHelper.unmodifiableRequired(builder.params, this, "params");
+		this.lang = builder.lang;
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
+		this.source = builder.source;
+		this.id = builder.id;
 
 	}
 
@@ -75,17 +84,34 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code lang}
+	 * API name: {@code lang}
 	 */
+	@Nullable
 	public final String lang() {
 		return this.lang;
 	}
 
 	/**
-	 * Required - API name: {@code params}
+	 * API name: {@code params}
 	 */
 	public final Map<String, JsonData> params() {
 		return this.params;
+	}
+
+	/**
+	 * API name: {@code source}
+	 */
+	@Nullable
+	public final String source() {
+		return this.source;
+	}
+
+	/**
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public final String id() {
+		return this.id;
 	}
 
 	/**
@@ -99,9 +125,11 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("lang");
-		generator.write(this.lang);
+		if (this.lang != null) {
+			generator.writeKey("lang");
+			generator.write(this.lang);
 
+		}
 		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
@@ -111,6 +139,16 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.source != null) {
+			generator.writeKey("source");
+			generator.write(this.source);
+
+		}
+		if (this.id != null) {
+			generator.writeKey("id");
+			generator.write(this.id);
 
 		}
 
@@ -123,20 +161,28 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptTransform> {
+		@Nullable
 		private String lang;
 
+		@Nullable
 		private Map<String, JsonData> params;
 
+		@Nullable
+		private String source;
+
+		@Nullable
+		private String id;
+
 		/**
-		 * Required - API name: {@code lang}
+		 * API name: {@code lang}
 		 */
-		public final Builder lang(String value) {
+		public final Builder lang(@Nullable String value) {
 			this.lang = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code params}
+		 * API name: {@code params}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>params</code>.
 		 */
@@ -146,12 +192,28 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code params}
+		 * API name: {@code params}
 		 * <p>
 		 * Adds an entry to <code>params</code>.
 		 */
 		public final Builder params(String key, JsonData value) {
 			this.params = _mapPut(this.params, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code source}
+		 */
+		public final Builder source(@Nullable String value) {
+			this.source = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code id}
+		 */
+		public final Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -180,6 +242,8 @@ public class ScriptTransform implements TransformVariant, JsonpSerializable {
 
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
+		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
 	}
 

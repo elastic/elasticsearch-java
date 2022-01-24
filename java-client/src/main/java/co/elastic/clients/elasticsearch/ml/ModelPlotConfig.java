@@ -42,9 +42,6 @@ import javax.annotation.Nullable;
 
 /**
  *
- * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-job-resource.html#ml-apimodelplotconfig">Documentation
- *      on elastic.co</a>
  * @see <a href="../doc-files/api-spec.html#ml._types.ModelPlotConfig">API
  *      specification</a>
  */

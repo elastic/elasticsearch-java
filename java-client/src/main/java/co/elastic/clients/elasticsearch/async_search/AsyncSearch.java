@@ -297,20 +297,7 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 
 		if (ApiTypeHelper.isDefined(this.suggest)) {
 			generator.writeKey("suggest");
-			generator.writeStartObject();
-			for (Map.Entry<String, List<Suggestion<TDocument>>> item0 : this.suggest.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.writeStartArray();
-				if (item0.getValue() != null) {
-					for (Suggestion<TDocument> item1 : item0.getValue()) {
-						item1.serialize(generator, mapper);
-
-					}
-				}
-				generator.writeEnd();
-
-			}
-			generator.writeEnd();
+			ExternallyTaggedUnion.serializeTypedKeysArray(this.suggest, generator, mapper);
 
 		}
 		if (this.terminatedEarly != null) {
@@ -608,9 +595,8 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		op.add(Builder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
 		op.add(Builder::scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
-		op.add(Builder::suggest, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.arrayDeserializer(Suggestion.createSuggestionDeserializer(tDocumentDeserializer))),
-				"suggest");
+		op.add(Builder::suggest, ExternallyTaggedUnion.<Suggestion<TDocument>>arrayMapDeserializer(
+				Suggestion.createSuggestionDeserializer(tDocumentDeserializer)), "suggest");
 		op.add(Builder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");

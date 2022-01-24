@@ -49,8 +49,11 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 
-public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJsonpSerializable, BulkOperationVariant {
-	private final TDocument document;
+public class UpdateOperation<TDocument, TPartialDocument> extends BulkOperationBase
+		implements
+			NdJsonpSerializable,
+			BulkOperationVariant {
+	private final UpdateAction<TDocument, TPartialDocument> action;
 
 	@Nullable
 	private final Boolean requireAlias;
@@ -61,20 +64,24 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 	@Nullable
 	private final JsonpSerializer<TDocument> tDocumentSerializer;
 
+	@Nullable
+	private final JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private UpdateOperation(Builder<TDocument> builder) {
+	private UpdateOperation(Builder<TDocument, TPartialDocument> builder) {
 		super(builder);
-		this.document = ApiTypeHelper.requireNonNull(builder.document, this, "document");
+		this.action = ApiTypeHelper.requireNonNull(builder.action, this, "action");
 
 		this.requireAlias = builder.requireAlias;
 		this.retryOnConflict = builder.retryOnConflict;
 		this.tDocumentSerializer = builder.tDocumentSerializer;
+		this.tPartialDocumentSerializer = builder.tPartialDocumentSerializer;
 
 	}
 
-	public static <TDocument> UpdateOperation<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
+	public static <TDocument, TPartialDocument> UpdateOperation<TDocument, TPartialDocument> of(
+			Function<Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateOperation<TDocument, TPartialDocument>>> fn) {
 		return fn.apply(new Builder<>()).build();
 	}
 
@@ -87,15 +94,15 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 	}
 
 	/**
-	 * Required - API name: {@code document}
+	 * Required - API name: {@code action}
 	 */
-	public final TDocument document() {
-		return this.document;
+	public final UpdateAction<TDocument, TPartialDocument> action() {
+		return this.action;
 	}
 
 	@Override
 	public Iterator<?> _serializables() {
-		return Arrays.asList(this, this.document).iterator();
+		return Arrays.asList(this, this.action).iterator();
 	}
 
 	/**
@@ -136,17 +143,27 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 	 * Builder for {@link UpdateOperation}.
 	 */
 
-	public static class Builder<TDocument> extends BulkOperationBase.AbstractBuilder<Builder<TDocument>>
+	public static class Builder<TDocument, TPartialDocument>
+			extends
+				BulkOperationBase.AbstractBuilder<Builder<TDocument, TPartialDocument>>
 			implements
-				ObjectBuilder<UpdateOperation<TDocument>> {
-		private TDocument document;
+				ObjectBuilder<UpdateOperation<TDocument, TPartialDocument>> {
+		private UpdateAction<TDocument, TPartialDocument> action;
 
 		/**
-		 * Required - API name: {@code document}
+		 * Required - API name: {@code action}
 		 */
-		public final Builder<TDocument> document(TDocument value) {
-			this.document = value;
+		public final Builder<TDocument, TPartialDocument> action(UpdateAction<TDocument, TPartialDocument> value) {
+			this.action = value;
 			return this;
+		}
+
+		/**
+		 * Required - API name: {@code action}
+		 */
+		public final Builder<TDocument, TPartialDocument> action(
+				Function<UpdateAction.Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateAction<TDocument, TPartialDocument>>> fn) {
+			return this.action(fn.apply(new UpdateAction.Builder<TDocument, TPartialDocument>()).build());
 		}
 
 		@Nullable
@@ -158,10 +175,13 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 		@Nullable
 		private JsonpSerializer<TDocument> tDocumentSerializer;
 
+		@Nullable
+		private JsonpSerializer<TPartialDocument> tPartialDocumentSerializer;
+
 		/**
 		 * API name: {@code require_alias}
 		 */
-		public final Builder<TDocument> requireAlias(@Nullable Boolean value) {
+		public final Builder<TDocument, TPartialDocument> requireAlias(@Nullable Boolean value) {
 			this.requireAlias = value;
 			return this;
 		}
@@ -169,7 +189,7 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 		/**
 		 * API name: {@code retry_on_conflict}
 		 */
-		public final Builder<TDocument> retryOnConflict(@Nullable Integer value) {
+		public final Builder<TDocument, TPartialDocument> retryOnConflict(@Nullable Integer value) {
 			this.retryOnConflict = value;
 			return this;
 		}
@@ -178,13 +198,24 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 		 * Serializer for TDocument. If not set, an attempt will be made to find a
 		 * serializer from the JSON context.
 		 */
-		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
+		public final Builder<TDocument, TPartialDocument> tDocumentSerializer(
+				@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
 			return this;
 		}
 
+		/**
+		 * Serializer for TPartialDocument. If not set, an attempt will be made to find
+		 * a serializer from the JSON context.
+		 */
+		public final Builder<TDocument, TPartialDocument> tPartialDocumentSerializer(
+				@Nullable JsonpSerializer<TPartialDocument> value) {
+			this.tPartialDocumentSerializer = value;
+			return this;
+		}
+
 		@Override
-		protected Builder<TDocument> self() {
+		protected Builder<TDocument, TPartialDocument> self() {
 			return this;
 		}
 
@@ -194,10 +225,10 @@ public class UpdateOperation<TDocument> extends BulkOperationBase implements NdJ
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public UpdateOperation<TDocument> build() {
+		public UpdateOperation<TDocument, TPartialDocument> build() {
 			_checkSingleUse();
 
-			return new UpdateOperation<TDocument>(this);
+			return new UpdateOperation<TDocument, TPartialDocument>(this);
 		}
 	}
 

@@ -70,8 +70,10 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final String routing;
 
-	private final double score;
+	@Nullable
+	private final Double score;
 
+	@Nullable
 	private final TDocument source;
 
 	private final String text;
@@ -89,8 +91,8 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.routing = builder.routing;
-		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.score = builder.score;
+		this.source = builder.source;
 		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
 		this.tDocumentSerializer = builder.tDocumentSerializer;
 
@@ -146,15 +148,17 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _score}
+	 * API name: {@code _score}
 	 */
-	public final double score() {
+	@Nullable
+	public final Double score() {
 		return this.score;
 	}
 
 	/**
-	 * Required - API name: {@code _source}
+	 * API name: {@code _source}
 	 */
+	@Nullable
 	public final TDocument source() {
 		return this.source;
 	}
@@ -222,12 +226,16 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 			generator.write(this.routing);
 
 		}
-		generator.writeKey("_score");
-		generator.write(this.score);
+		if (this.score != null) {
+			generator.writeKey("_score");
+			generator.write(this.score);
 
-		generator.writeKey("_source");
-		JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
+		}
+		if (this.source != null) {
+			generator.writeKey("_source");
+			JsonpUtils.serialize(this.source, generator, tDocumentSerializer, mapper);
 
+		}
 		generator.writeKey("text");
 		generator.write(this.text);
 
@@ -258,8 +266,10 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		@Nullable
 		private String routing;
 
+		@Nullable
 		private Double score;
 
+		@Nullable
 		private TDocument source;
 
 		private String text;
@@ -340,17 +350,17 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _score}
+		 * API name: {@code _score}
 		 */
-		public final Builder<TDocument> score(double value) {
+		public final Builder<TDocument> score(@Nullable Double value) {
 			this.score = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code _source}
+		 * API name: {@code _source}
 		 */
-		public final Builder<TDocument> source(TDocument value) {
+		public final Builder<TDocument> source(@Nullable TDocument value) {
 			this.source = value;
 			return this;
 		}

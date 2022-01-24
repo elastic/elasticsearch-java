@@ -21,37 +21,37 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.core.search;
+package co.elastic.clients.elasticsearch.watcher;
 
 /**
- * Builders for {@link SuggestOption} variants.
+ * Builders for {@link EmailAttachment} variants.
  */
-public class SuggestOptionBuilders {
-	private SuggestOptionBuilders() {
+public class EmailAttachmentBuilders {
+	private EmailAttachmentBuilders() {
 	}
 
 	/**
-	 * Creates a builder for the {@link CompletionSuggestOption completion}
-	 * {@code SuggestOption} variant.
+	 * Creates a builder for the {@link HttpEmailAttachment http}
+	 * {@code EmailAttachment} variant.
 	 */
-	public static <TDocument> CompletionSuggestOption.Builder<TDocument> completion() {
-		return new CompletionSuggestOption.Builder<TDocument>();
+	public static HttpEmailAttachment.Builder http() {
+		return new HttpEmailAttachment.Builder();
 	}
 
 	/**
-	 * Creates a builder for the {@link PhraseSuggestOption phrase}
-	 * {@code SuggestOption} variant.
+	 * Creates a builder for the {@link ReportingEmailAttachment reporting}
+	 * {@code EmailAttachment} variant.
 	 */
-	public static <TDocument> PhraseSuggestOption.Builder phrase() {
-		return new PhraseSuggestOption.Builder();
+	public static ReportingEmailAttachment.Builder reporting() {
+		return new ReportingEmailAttachment.Builder();
 	}
 
 	/**
-	 * Creates a builder for the {@link TermSuggestOption term}
-	 * {@code SuggestOption} variant.
+	 * Creates a builder for the {@link DataEmailAttachment data}
+	 * {@code EmailAttachment} variant.
 	 */
-	public static <TDocument> TermSuggestOption.Builder term() {
-		return new TermSuggestOption.Builder();
+	public static DataEmailAttachment.Builder data() {
+		return new DataEmailAttachment.Builder();
 	}
 
 }

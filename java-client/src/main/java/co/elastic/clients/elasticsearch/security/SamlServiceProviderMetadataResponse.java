@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.watcher;
+package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -38,58 +38,36 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: watcher._types.Logging
+// typedef: security.saml_service_provider_metadata.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#watcher._types.Logging">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#security.saml_service_provider_metadata.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Logging implements JsonpSerializable {
-	@Nullable
-	private final String level;
-
-	private final String text;
-
-	@Nullable
-	private final String category;
+public class SamlServiceProviderMetadataResponse implements JsonpSerializable {
+	private final String metadata;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Logging(Builder builder) {
+	private SamlServiceProviderMetadataResponse(Builder builder) {
 
-		this.level = builder.level;
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
-		this.category = builder.category;
+		this.metadata = ApiTypeHelper.requireNonNull(builder.metadata, this, "metadata");
 
 	}
 
-	public static Logging of(Function<Builder, ObjectBuilder<Logging>> fn) {
+	public static SamlServiceProviderMetadataResponse of(
+			Function<Builder, ObjectBuilder<SamlServiceProviderMetadataResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code level}
+	 * Required - API name: {@code metadata}
 	 */
-	@Nullable
-	public final String level() {
-		return this.level;
-	}
-
-	/**
-	 * Required - API name: {@code text}
-	 */
-	public final String text() {
-		return this.text;
-	}
-
-	/**
-	 * API name: {@code category}
-	 */
-	@Nullable
-	public final String category() {
-		return this.category;
+	public final String metadata() {
+		return this.metadata;
 	}
 
 	/**
@@ -103,87 +81,56 @@ public class Logging implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.level != null) {
-			generator.writeKey("level");
-			generator.write(this.level);
-
-		}
-		generator.writeKey("text");
-		generator.write(this.text);
-
-		if (this.category != null) {
-			generator.writeKey("category");
-			generator.write(this.category);
-
-		}
+		generator.writeKey("metadata");
+		generator.write(this.metadata);
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Logging}.
+	 * Builder for {@link SamlServiceProviderMetadataResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Logging> {
-		@Nullable
-		private String level;
-
-		private String text;
-
-		@Nullable
-		private String category;
+	public static class Builder extends ObjectBuilderBase
+			implements
+				ObjectBuilder<SamlServiceProviderMetadataResponse> {
+		private String metadata;
 
 		/**
-		 * API name: {@code level}
+		 * Required - API name: {@code metadata}
 		 */
-		public final Builder level(@Nullable String value) {
-			this.level = value;
+		public final Builder metadata(String value) {
+			this.metadata = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code text}
-		 */
-		public final Builder text(String value) {
-			this.text = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code category}
-		 */
-		public final Builder category(@Nullable String value) {
-			this.category = value;
-			return this;
-		}
-
-		/**
-		 * Builds a {@link Logging}.
+		 * Builds a {@link SamlServiceProviderMetadataResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Logging build() {
+		public SamlServiceProviderMetadataResponse build() {
 			_checkSingleUse();
 
-			return new Logging(this);
+			return new SamlServiceProviderMetadataResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Logging}
+	 * Json deserializer for {@link SamlServiceProviderMetadataResponse}
 	 */
-	public static final JsonpDeserializer<Logging> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Logging::setupLoggingDeserializer);
+	public static final JsonpDeserializer<SamlServiceProviderMetadataResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					SamlServiceProviderMetadataResponse::setupSamlServiceProviderMetadataResponseDeserializer);
 
-	protected static void setupLoggingDeserializer(ObjectDeserializer<Logging.Builder> op) {
+	protected static void setupSamlServiceProviderMetadataResponseDeserializer(
+			ObjectDeserializer<SamlServiceProviderMetadataResponse.Builder> op) {
 
-		op.add(Builder::level, JsonpDeserializer.stringDeserializer(), "level");
-		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
-		op.add(Builder::category, JsonpDeserializer.stringDeserializer(), "category");
+		op.add(Builder::metadata, JsonpDeserializer.stringDeserializer(), "metadata");
 
 	}
 

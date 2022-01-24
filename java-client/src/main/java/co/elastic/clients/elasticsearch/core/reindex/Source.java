@@ -72,7 +72,7 @@ public class Source implements JsonpSerializable {
 
 	private final List<String> sourceFields;
 
-	private final Map<String, RuntimeField> runtimeMappings;
+	private final Map<String, List<RuntimeField>> runtimeMappings;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -149,7 +149,7 @@ public class Source implements JsonpSerializable {
 	/**
 	 * API name: {@code runtime_mappings}
 	 */
-	public final Map<String, RuntimeField> runtimeMappings() {
+	public final Map<String, List<RuntimeField>> runtimeMappings() {
 		return this.runtimeMappings;
 	}
 
@@ -217,9 +217,16 @@ public class Source implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
-			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
+			for (Map.Entry<String, List<RuntimeField>> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (RuntimeField item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
@@ -256,7 +263,7 @@ public class Source implements JsonpSerializable {
 		private List<String> sourceFields;
 
 		@Nullable
-		private Map<String, RuntimeField> runtimeMappings;
+		private Map<String, List<RuntimeField>> runtimeMappings;
 
 		/**
 		 * Required - API name: {@code index}
@@ -385,7 +392,7 @@ public class Source implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
+		public final Builder runtimeMappings(Map<String, List<RuntimeField>> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
@@ -395,19 +402,9 @@ public class Source implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(String key, RuntimeField value) {
+		public final Builder runtimeMappings(String key, List<RuntimeField> value) {
 			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
 			return this;
-		}
-
-		/**
-		 * API name: {@code runtime_mappings}
-		 * <p>
-		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
-		 */
-		public final Builder runtimeMappings(String key,
-				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -441,8 +438,8 @@ public class Source implements JsonpSerializable {
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 		op.add(Builder::sourceFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"_source");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
-				"runtime_mappings");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(RuntimeField._DESERIALIZER)), "runtime_mappings");
 
 	}
 

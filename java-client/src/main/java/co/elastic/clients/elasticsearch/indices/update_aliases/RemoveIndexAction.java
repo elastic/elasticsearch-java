@@ -33,6 +33,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -54,12 +55,16 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 
 	private final List<String> indices;
 
+	@Nullable
+	private final Boolean mustExist;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private RemoveIndexAction(Builder builder) {
 
 		this.index = builder.index;
 		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
+		this.mustExist = builder.mustExist;
 
 	}
 
@@ -91,6 +96,14 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code must_exist}
+	 */
+	@Nullable
+	public final Boolean mustExist() {
+		return this.mustExist;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -116,6 +129,11 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.mustExist != null) {
+			generator.writeKey("must_exist");
+			generator.write(this.mustExist);
+
+		}
 
 	}
 
@@ -131,6 +149,9 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 
 		@Nullable
 		private List<String> indices;
+
+		@Nullable
+		private Boolean mustExist;
 
 		/**
 		 * API name: {@code index}
@@ -161,6 +182,14 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code must_exist}
+		 */
+		public final Builder mustExist(@Nullable Boolean value) {
+			this.mustExist = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link RemoveIndexAction}.
 		 *
 		 * @throws NullPointerException
@@ -186,6 +215,7 @@ public class RemoveIndexAction implements ActionVariant, JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
+		op.add(Builder::mustExist, JsonpDeserializer.booleanDeserializer(), "must_exist");
 
 	}
 

@@ -34,20 +34,26 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum SegmentSortMode implements JsonEnum {
-	Min("min"),
+	Min("min", "MIN"),
 
-	Max("max"),
+	Max("max", "MAX"),
 
 	;
 
 	private final String jsonValue;
+	private final String[] aliases;
 
-	SegmentSortMode(String jsonValue) {
+	SegmentSortMode(String jsonValue, String... aliases) {
 		this.jsonValue = jsonValue;
+		this.aliases = aliases;
 	}
 
 	public String jsonValue() {
 		return this.jsonValue;
+	}
+
+	public String[] aliases() {
+		return this.aliases;
 	}
 
 	public static final JsonEnum.Deserializer<SegmentSortMode> _DESERIALIZER = new JsonEnum.Deserializer<>(

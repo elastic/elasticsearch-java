@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,16 +46,18 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class EmailBody implements JsonpSerializable {
+	@Nullable
 	private final String html;
 
+	@Nullable
 	private final String text;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private EmailBody(Builder builder) {
 
-		this.html = ApiTypeHelper.requireNonNull(builder.html, this, "html");
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
+		this.html = builder.html;
+		this.text = builder.text;
 
 	}
 
@@ -65,15 +66,17 @@ public class EmailBody implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code html}
+	 * API name: {@code html}
 	 */
+	@Nullable
 	public final String html() {
 		return this.html;
 	}
 
 	/**
-	 * Required - API name: {@code text}
+	 * API name: {@code text}
 	 */
+	@Nullable
 	public final String text() {
 		return this.text;
 	}
@@ -89,11 +92,16 @@ public class EmailBody implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("html");
-		generator.write(this.html);
+		if (this.html != null) {
+			generator.writeKey("html");
+			generator.write(this.html);
 
-		generator.writeKey("text");
-		generator.write(this.text);
+		}
+		if (this.text != null) {
+			generator.writeKey("text");
+			generator.write(this.text);
+
+		}
 
 	}
 
@@ -104,22 +112,24 @@ public class EmailBody implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EmailBody> {
+		@Nullable
 		private String html;
 
+		@Nullable
 		private String text;
 
 		/**
-		 * Required - API name: {@code html}
+		 * API name: {@code html}
 		 */
-		public final Builder html(String value) {
+		public final Builder html(@Nullable String value) {
 			this.html = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code text}
+		 * API name: {@code text}
 		 */
-		public final Builder text(String value) {
+		public final Builder text(@Nullable String value) {
 			this.text = value;
 			return this;
 		}

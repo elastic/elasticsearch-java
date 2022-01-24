@@ -60,8 +60,8 @@ public class IndexSegmentSort implements JsonpSerializable {
 
 	private IndexSegmentSort(Builder builder) {
 
-		this.field = ApiTypeHelper.unmodifiableRequired(builder.field, this, "field");
-		this.order = ApiTypeHelper.unmodifiableRequired(builder.order, this, "order");
+		this.field = ApiTypeHelper.unmodifiable(builder.field);
+		this.order = ApiTypeHelper.unmodifiable(builder.order);
 		this.mode = ApiTypeHelper.unmodifiable(builder.mode);
 		this.missing = ApiTypeHelper.unmodifiable(builder.missing);
 
@@ -72,14 +72,14 @@ public class IndexSegmentSort implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code field}
+	 * API name: {@code field}
 	 */
 	public final List<String> field() {
 		return this.field;
 	}
 
 	/**
-	 * Required - API name: {@code order}
+	 * API name: {@code order}
 	 */
 	public final List<SegmentSortOrder> order() {
 		return this.order;
@@ -157,8 +157,10 @@ public class IndexSegmentSort implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSegmentSort> {
+		@Nullable
 		private List<String> field;
 
+		@Nullable
 		private List<SegmentSortOrder> order;
 
 		@Nullable
@@ -168,7 +170,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 		private List<SegmentSortMissing> missing;
 
 		/**
-		 * Required - API name: {@code field}
+		 * API name: {@code field}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>field</code>.
 		 */
@@ -178,7 +180,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code field}
+		 * API name: {@code field}
 		 * <p>
 		 * Adds one or more values to <code>field</code>.
 		 */
@@ -188,7 +190,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code order}
+		 * API name: {@code order}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>order</code>.
 		 */
@@ -198,7 +200,7 @@ public class IndexSegmentSort implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code order}
+		 * API name: {@code order}
 		 * <p>
 		 * Adds one or more values to <code>order</code>.
 		 */

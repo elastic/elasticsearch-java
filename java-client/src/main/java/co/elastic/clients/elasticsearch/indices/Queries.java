@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.sql.query;
+package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -29,53 +29,43 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: sql.query.Column
+// typedef: indices._types.Queries
 
 /**
  *
- * @see <a href="../../doc-files/api-spec.html#sql.query.Column">API
+ * @see <a href="../doc-files/api-spec.html#indices._types.Queries">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class Column implements JsonpSerializable {
-	private final String name;
-
-	private final String type;
+public class Queries implements JsonpSerializable {
+	@Nullable
+	private final CacheQueries cache;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private Column(Builder builder) {
+	private Queries(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.cache = builder.cache;
 
 	}
 
-	public static Column of(Function<Builder, ObjectBuilder<Column>> fn) {
+	public static Queries of(Function<Builder, ObjectBuilder<Queries>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code name}
+	 * API name: {@code cache}
 	 */
-	public final String name() {
-		return this.name;
-	}
-
-	/**
-	 * Required - API name: {@code type}
-	 */
-	public final String type() {
-		return this.type;
+	@Nullable
+	public final CacheQueries cache() {
+		return this.cache;
 	}
 
 	/**
@@ -89,66 +79,63 @@ public class Column implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("name");
-		generator.write(this.name);
+		if (this.cache != null) {
+			generator.writeKey("cache");
+			this.cache.serialize(generator, mapper);
 
-		generator.writeKey("type");
-		generator.write(this.type);
+		}
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link Column}.
+	 * Builder for {@link Queries}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Column> {
-		private String name;
-
-		private String type;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Queries> {
+		@Nullable
+		private CacheQueries cache;
 
 		/**
-		 * Required - API name: {@code name}
+		 * API name: {@code cache}
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder cache(@Nullable CacheQueries value) {
+			this.cache = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code type}
+		 * API name: {@code cache}
 		 */
-		public final Builder type(String value) {
-			this.type = value;
-			return this;
+		public final Builder cache(Function<CacheQueries.Builder, ObjectBuilder<CacheQueries>> fn) {
+			return this.cache(fn.apply(new CacheQueries.Builder()).build());
 		}
 
 		/**
-		 * Builds a {@link Column}.
+		 * Builds a {@link Queries}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public Column build() {
+		public Queries build() {
 			_checkSingleUse();
 
-			return new Column(this);
+			return new Queries(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link Column}
+	 * Json deserializer for {@link Queries}
 	 */
-	public static final JsonpDeserializer<Column> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			Column::setupColumnDeserializer);
+	public static final JsonpDeserializer<Queries> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Queries::setupQueriesDeserializer);
 
-	protected static void setupColumnDeserializer(ObjectDeserializer<Column.Builder> op) {
+	protected static void setupQueriesDeserializer(ObjectDeserializer<Queries.Builder> op) {
 
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::cache, CacheQueries._DESERIALIZER, "cache");
 
 	}
 

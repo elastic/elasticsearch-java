@@ -57,10 +57,7 @@ public abstract class BucketPathAggregation extends AggregationBase {
 	}
 
 	/**
-	 * Path to the buckets that contain one set of values to correlate. For syntax,
-	 * see <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline.html#buckets-path-syntax">buckets_path
-	 * Syntax</a>.
+	 * Path to the buckets that contain one set of values to correlate.
 	 * <p>
 	 * API name: {@code buckets_path}
 	 */
@@ -87,10 +84,7 @@ public abstract class BucketPathAggregation extends AggregationBase {
 		private BucketsPath bucketsPath;
 
 		/**
-		 * Path to the buckets that contain one set of values to correlate. For syntax,
-		 * see <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline.html#buckets-path-syntax">buckets_path
-		 * Syntax</a>.
+		 * Path to the buckets that contain one set of values to correlate.
 		 * <p>
 		 * API name: {@code buckets_path}
 		 */
@@ -100,10 +94,7 @@ public abstract class BucketPathAggregation extends AggregationBase {
 		}
 
 		/**
-		 * Path to the buckets that contain one set of values to correlate. For syntax,
-		 * see <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations-pipeline.html#buckets-path-syntax">buckets_path
-		 * Syntax</a>.
+		 * Path to the buckets that contain one set of values to correlate.
 		 * <p>
 		 * API name: {@code buckets_path}
 		 */

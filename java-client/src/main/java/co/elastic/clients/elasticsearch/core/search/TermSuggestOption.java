@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
 public class TermSuggestOption implements JsonpSerializable {
 	private final String text;
 
-	@Nullable
-	private final Long freq;
+	private final long freq;
 
 	private final double score;
 
@@ -62,7 +61,7 @@ public class TermSuggestOption implements JsonpSerializable {
 	private TermSuggestOption(Builder builder) {
 
 		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
-		this.freq = builder.freq;
+		this.freq = ApiTypeHelper.requireNonNull(builder.freq, this, "freq");
 		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
 
 	}
@@ -79,10 +78,9 @@ public class TermSuggestOption implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code freq}
+	 * Required - API name: {@code freq}
 	 */
-	@Nullable
-	public final Long freq() {
+	public final long freq() {
 		return this.freq;
 	}
 
@@ -107,11 +105,9 @@ public class TermSuggestOption implements JsonpSerializable {
 		generator.writeKey("text");
 		generator.write(this.text);
 
-		if (this.freq != null) {
-			generator.writeKey("freq");
-			generator.write(this.freq);
+		generator.writeKey("freq");
+		generator.write(this.freq);
 
-		}
 		generator.writeKey("score");
 		generator.write(this.score);
 
@@ -126,7 +122,6 @@ public class TermSuggestOption implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermSuggestOption> {
 		private String text;
 
-		@Nullable
 		private Long freq;
 
 		private Double score;
@@ -140,9 +135,9 @@ public class TermSuggestOption implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code freq}
+		 * Required - API name: {@code freq}
 		 */
-		public final Builder freq(@Nullable Long value) {
+		public final Builder freq(long value) {
 			this.freq = value;
 			return this;
 		}

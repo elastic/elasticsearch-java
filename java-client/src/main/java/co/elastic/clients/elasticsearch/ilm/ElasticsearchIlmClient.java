@@ -192,6 +192,57 @@ public class ElasticsearchIlmClient extends ApiClient<ElasticsearchTransport, El
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: ilm.migrate_to_data_tiers
+
+	/**
+	 * Migrates the indices and ILM policies away from custom node attribute
+	 * allocation routing to data tiers routing
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-migrate-to-data-tiers.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public MigrateToDataTiersResponse migrateToDataTiers(MigrateToDataTiersRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<MigrateToDataTiersRequest, MigrateToDataTiersResponse, ErrorResponse> endpoint = (JsonEndpoint<MigrateToDataTiersRequest, MigrateToDataTiersResponse, ErrorResponse>) MigrateToDataTiersRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Migrates the indices and ILM policies away from custom node attribute
+	 * allocation routing to data tiers routing
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link MigrateToDataTiersRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-migrate-to-data-tiers.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final MigrateToDataTiersResponse migrateToDataTiers(
+			Function<MigrateToDataTiersRequest.Builder, ObjectBuilder<MigrateToDataTiersRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return migrateToDataTiers(fn.apply(new MigrateToDataTiersRequest.Builder()).build());
+	}
+
+	/**
+	 * Migrates the indices and ILM policies away from custom node attribute
+	 * allocation routing to data tiers routing
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ilm-migrate-to-data-tiers.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public MigrateToDataTiersResponse migrateToDataTiers() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new MigrateToDataTiersRequest.Builder().build(),
+				MigrateToDataTiersRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: ilm.move_to_step
 
 	/**

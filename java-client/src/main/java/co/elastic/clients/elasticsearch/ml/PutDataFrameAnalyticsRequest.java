@@ -113,11 +113,12 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 	/**
 	 * Specifies whether this job can start when there is insufficient machine
 	 * learning node capacity for it to be immediately assigned to a node. If set to
-	 * false and a machine learning node with capacity to run the job cannot be
-	 * immediately found, the API returns an error. If set to true, the API does not
-	 * return an error; the job waits in the <code>starting</code> state until
-	 * sufficient machine learning node capacity is available. This behavior is also
-	 * affected by the cluster-wide <code>xpack.ml.max_lazy_ml_nodes</code> setting.
+	 * <code>false</code> and a machine learning node with capacity to run the job
+	 * cannot be immediately found, the API returns an error. If set to
+	 * <code>true</code>, the API does not return an error; the job waits in the
+	 * <code>starting</code> state until sufficient machine learning node capacity
+	 * is available. This behavior is also affected by the cluster-wide
+	 * <code>xpack.ml.max_lazy_ml_nodes</code> setting.
 	 * <p>
 	 * API name: {@code allow_lazy_start}
 	 */
@@ -367,11 +368,12 @@ public class PutDataFrameAnalyticsRequest extends RequestBase implements JsonpSe
 		/**
 		 * Specifies whether this job can start when there is insufficient machine
 		 * learning node capacity for it to be immediately assigned to a node. If set to
-		 * false and a machine learning node with capacity to run the job cannot be
-		 * immediately found, the API returns an error. If set to true, the API does not
-		 * return an error; the job waits in the <code>starting</code> state until
-		 * sufficient machine learning node capacity is available. This behavior is also
-		 * affected by the cluster-wide <code>xpack.ml.max_lazy_ml_nodes</code> setting.
+		 * <code>false</code> and a machine learning node with capacity to run the job
+		 * cannot be immediately found, the API returns an error. If set to
+		 * <code>true</code>, the API does not return an error; the job waits in the
+		 * <code>starting</code> state until sufficient machine learning node capacity
+		 * is available. This behavior is also affected by the cluster-wide
+		 * <code>xpack.ml.max_lazy_ml_nodes</code> setting.
 		 * <p>
 		 * API name: {@code allow_lazy_start}
 		 */

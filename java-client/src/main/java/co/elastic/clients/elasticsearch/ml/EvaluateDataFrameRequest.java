@@ -99,9 +99,7 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 	}
 
 	/**
-	 * A query clause that retrieves a subset of data from the source index. See
-	 * <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">QueryDSL</a>.
+	 * A query clause that retrieves a subset of data from the source index.
 	 * <p>
 	 * API name: {@code query}
 	 */
@@ -180,9 +178,7 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * A query clause that retrieves a subset of data from the source index. See
-		 * <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">QueryDSL</a>.
+		 * A query clause that retrieves a subset of data from the source index.
 		 * <p>
 		 * API name: {@code query}
 		 */
@@ -192,9 +188,7 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		}
 
 		/**
-		 * A query clause that retrieves a subset of data from the source index. See
-		 * <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">QueryDSL</a>.
+		 * A query clause that retrieves a subset of data from the source index.
 		 * <p>
 		 * API name: {@code query}
 		 */

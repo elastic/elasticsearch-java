@@ -21,8 +21,9 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.searchable_snapshots;
 
+import co.elastic.clients.elasticsearch.searchable_snapshots.cache_stats.Node;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,47 +34,41 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.util.List;
+import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _types.ChainTransform
+// typedef: searchable_snapshots.cache_stats.Response
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#_types.ChainTransform">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#searchable_snapshots.cache_stats.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ChainTransform implements TransformVariant, JsonpSerializable {
-	private final List<Transform> transforms;
+public class CacheStatsResponse implements JsonpSerializable {
+	private final Map<String, Node> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ChainTransform(Builder builder) {
+	private CacheStatsResponse(Builder builder) {
 
-		this.transforms = ApiTypeHelper.unmodifiableRequired(builder.transforms, this, "transforms");
+		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
 
 	}
 
-	public static ChainTransform of(Function<Builder, ObjectBuilder<ChainTransform>> fn) {
+	public static CacheStatsResponse of(Function<Builder, ObjectBuilder<CacheStatsResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Transform variant kind.
+	 * Required - API name: {@code nodes}
 	 */
-	@Override
-	public Transform.Kind _transformKind() {
-		return Transform.Kind.Chain;
-	}
-
-	/**
-	 * Required - API name: {@code transforms}
-	 */
-	public final List<Transform> transforms() {
-		return this.transforms;
+	public final Map<String, Node> nodes() {
+		return this.nodes;
 	}
 
 	/**
@@ -87,11 +82,12 @@ public class ChainTransform implements TransformVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.transforms)) {
-			generator.writeKey("transforms");
-			generator.writeStartArray();
-			for (Transform item0 : this.transforms) {
-				item0.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.nodes)) {
+			generator.writeKey("nodes");
+			generator.writeStartObject();
+			for (Map.Entry<String, Node> item0 : this.nodes.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -103,65 +99,65 @@ public class ChainTransform implements TransformVariant, JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ChainTransform}.
+	 * Builder for {@link CacheStatsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChainTransform> {
-		private List<Transform> transforms;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CacheStatsResponse> {
+		private Map<String, Node> nodes;
 
 		/**
-		 * Required - API name: {@code transforms}
+		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds all elements of <code>list</code> to <code>transforms</code>.
+		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
-		public final Builder transforms(List<Transform> list) {
-			this.transforms = _listAddAll(this.transforms, list);
+		public final Builder nodes(Map<String, Node> map) {
+			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code transforms}
+		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds one or more values to <code>transforms</code>.
+		 * Adds an entry to <code>nodes</code>.
 		 */
-		public final Builder transforms(Transform value, Transform... values) {
-			this.transforms = _listAdd(this.transforms, value, values);
+		public final Builder nodes(String key, Node value) {
+			this.nodes = _mapPut(this.nodes, key, value);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code transforms}
+		 * Required - API name: {@code nodes}
 		 * <p>
-		 * Adds a value to <code>transforms</code> using a builder lambda.
+		 * Adds an entry to <code>nodes</code> using a builder lambda.
 		 */
-		public final Builder transforms(Function<Transform.Builder, ObjectBuilder<Transform>> fn) {
-			return transforms(fn.apply(new Transform.Builder()).build());
+		public final Builder nodes(String key, Function<Node.Builder, ObjectBuilder<Node>> fn) {
+			return nodes(key, fn.apply(new Node.Builder()).build());
 		}
 
 		/**
-		 * Builds a {@link ChainTransform}.
+		 * Builds a {@link CacheStatsResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ChainTransform build() {
+		public CacheStatsResponse build() {
 			_checkSingleUse();
 
-			return new ChainTransform(this);
+			return new CacheStatsResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ChainTransform}
+	 * Json deserializer for {@link CacheStatsResponse}
 	 */
-	public static final JsonpDeserializer<ChainTransform> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ChainTransform::setupChainTransformDeserializer);
+	public static final JsonpDeserializer<CacheStatsResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, CacheStatsResponse::setupCacheStatsResponseDeserializer);
 
-	protected static void setupChainTransformDeserializer(ObjectDeserializer<ChainTransform.Builder> op) {
+	protected static void setupCacheStatsResponseDeserializer(ObjectDeserializer<CacheStatsResponse.Builder> op) {
 
-		op.add(Builder::transforms, JsonpDeserializer.arrayDeserializer(Transform._DESERIALIZER), "transforms");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(Node._DESERIALIZER), "nodes");
 
 	}
 

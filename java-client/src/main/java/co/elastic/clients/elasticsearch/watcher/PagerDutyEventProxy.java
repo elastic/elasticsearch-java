@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -39,43 +38,48 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: watcher._types.ActionWebhook
+// typedef: watcher._types.PagerDutyEventProxy
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#watcher._types.ActionWebhook">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#watcher._types.PagerDutyEventProxy">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ActionWebhook implements JsonpSerializable {
+public class PagerDutyEventProxy implements JsonpSerializable {
+	@Nullable
 	private final String host;
 
-	private final int port;
+	@Nullable
+	private final Integer port;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ActionWebhook(Builder builder) {
+	private PagerDutyEventProxy(Builder builder) {
 
-		this.host = ApiTypeHelper.requireNonNull(builder.host, this, "host");
-		this.port = ApiTypeHelper.requireNonNull(builder.port, this, "port");
+		this.host = builder.host;
+		this.port = builder.port;
 
 	}
 
-	public static ActionWebhook of(Function<Builder, ObjectBuilder<ActionWebhook>> fn) {
+	public static PagerDutyEventProxy of(Function<Builder, ObjectBuilder<PagerDutyEventProxy>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code host}
+	 * API name: {@code host}
 	 */
+	@Nullable
 	public final String host() {
 		return this.host;
 	}
 
 	/**
-	 * Required - API name: {@code port}
+	 * API name: {@code port}
 	 */
-	public final int port() {
+	@Nullable
+	public final Integer port() {
 		return this.port;
 	}
 
@@ -90,63 +94,70 @@ public class ActionWebhook implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("host");
-		generator.write(this.host);
+		if (this.host != null) {
+			generator.writeKey("host");
+			generator.write(this.host);
 
-		generator.writeKey("port");
-		generator.write(this.port);
+		}
+		if (this.port != null) {
+			generator.writeKey("port");
+			generator.write(this.port);
+
+		}
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ActionWebhook}.
+	 * Builder for {@link PagerDutyEventProxy}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ActionWebhook> {
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyEventProxy> {
+		@Nullable
 		private String host;
 
+		@Nullable
 		private Integer port;
 
 		/**
-		 * Required - API name: {@code host}
+		 * API name: {@code host}
 		 */
-		public final Builder host(String value) {
+		public final Builder host(@Nullable String value) {
 			this.host = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code port}
+		 * API name: {@code port}
 		 */
-		public final Builder port(int value) {
+		public final Builder port(@Nullable Integer value) {
 			this.port = value;
 			return this;
 		}
 
 		/**
-		 * Builds a {@link ActionWebhook}.
+		 * Builds a {@link PagerDutyEventProxy}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ActionWebhook build() {
+		public PagerDutyEventProxy build() {
 			_checkSingleUse();
 
-			return new ActionWebhook(this);
+			return new PagerDutyEventProxy(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ActionWebhook}
+	 * Json deserializer for {@link PagerDutyEventProxy}
 	 */
-	public static final JsonpDeserializer<ActionWebhook> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			ActionWebhook::setupActionWebhookDeserializer);
+	public static final JsonpDeserializer<PagerDutyEventProxy> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, PagerDutyEventProxy::setupPagerDutyEventProxyDeserializer);
 
-	protected static void setupActionWebhookDeserializer(ObjectDeserializer<ActionWebhook.Builder> op) {
+	protected static void setupPagerDutyEventProxyDeserializer(ObjectDeserializer<PagerDutyEventProxy.Builder> op) {
 
 		op.add(Builder::host, JsonpDeserializer.stringDeserializer(), "host");
 		op.add(Builder::port, JsonpDeserializer.integerDeserializer(), "port");
