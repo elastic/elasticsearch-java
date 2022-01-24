@@ -24,8 +24,10 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
 
+import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
 
@@ -57,13 +59,13 @@ public interface ExternallyTaggedUnion {
         /**
          * Deserialize a union value, given its type.
          */
-        public Union deserialize(String type, JsonParser parser, JsonpMapper mapper) {
+        public Union deserialize(String type, JsonParser parser, JsonpMapper mapper, Event event) {
             JsonpDeserializer<? extends Member> deserializer = deserializers.get(type);
             if (deserializer == null) {
                 throw new JsonParsingException("Unknown variant type '" + type + "'", parser.getLocation());
             }
 
-            return unionCtor.apply(type, deserializer.deserialize(parser, mapper));
+            return unionCtor.apply(type, deserializer.deserialize(parser, mapper, event));
         }
 
         /**
@@ -104,8 +106,42 @@ public interface ExternallyTaggedUnion {
             String type = key.substring(0, hashPos);
             String name = key.substring(hashPos + 1);
 
-            targetMap.put(name, deserializer.deserialize(type, parser, mapper));
+            targetMap.put(name, deserializer.deserialize(type, parser, mapper, parser.next()));
         }
+    }
+
+    static <T extends TaggedUnion<?, ?>> JsonpDeserializer<Map<String, List<T>>> arrayMapDeserializer(
+        TypedKeysDeserializer<T> deserializer
+    ) {
+        return JsonpDeserializer.of(
+            EnumSet.of(Event.START_OBJECT),
+            (parser, mapper, event) -> {
+                Map<String, List<T>> result = new HashMap<>();
+                while ((event = parser.next()) != Event.END_OBJECT) {
+                    JsonpUtils.expectEvent(parser, event, Event.KEY_NAME);
+                    // Split key and type
+                    String key = parser.getString();
+                    int hashPos = key.indexOf('#');
+                    if (hashPos == -1) {
+                        throw new JsonParsingException(
+                            "Property name '" + key + "' is not in the 'type#name' format. Make sure the request has 'typed_keys' set.",
+                            parser.getLocation()
+                        );
+                    }
+
+                    String type = key.substring(0, hashPos);
+                    String name = key.substring(hashPos + 1);
+
+                    List<T> list = new ArrayList<>();
+                    JsonpUtils.expectNextEvent(parser, Event.START_ARRAY);
+                    while ((event = parser.next()) != Event.END_ARRAY) {
+                        list.add(deserializer.deserializer.deserialize(type, parser, mapper, event));
+                    }
+                    result.put(name, list);
+                }
+                return result;
+            }
+        );
     }
 
     /**
@@ -116,6 +152,26 @@ public interface ExternallyTaggedUnion {
     ) {
         generator.writeStartObject();
         serializeTypedKeysInner(map, generator, mapper);
+        generator.writeEnd();
+    }
+
+    static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysArray(
+        Map<String, List<T>> map, JsonGenerator generator, JsonpMapper mapper
+    ) {
+        generator.writeStartObject();
+        for (Map.Entry<String, List<T>> entry: map.entrySet()) {
+            List<T> list = entry.getValue();
+            if (list.isEmpty()) {
+                continue; // We can't know the kind, skip this entry
+            }
+
+            generator.writeKey(list.get(0)._kind().jsonValue() + "#" + entry.getKey());
+            generator.writeStartArray();
+            for (T value: list) {
+                value.serialize(generator, mapper);
+            }
+            generator.writeEnd();
+        }
         generator.writeEnd();
     }
 

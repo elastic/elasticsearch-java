@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.end_to_end;
 
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch._types.ElasticsearchException;
 import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.aggregations.HistogramAggregate;
@@ -42,26 +43,12 @@ import co.elastic.clients.elasticsearch.indices.GetIndicesSettingsResponse;
 import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
-import co.elastic.clients.elasticsearch.snapshot.CreateRepositoryResponse;
-import co.elastic.clients.elasticsearch.snapshot.CreateSnapshotResponse;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
-import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
-import co.elastic.clients.transport.rest_client.RestClientTransport;
-import org.apache.http.HttpHost;
-import org.apache.http.auth.AuthScope;
-import org.apache.http.auth.UsernamePasswordCredentials;
-import org.apache.http.impl.client.BasicCredentialsProvider;
-import org.elasticsearch.client.RestClient;
-import org.junit.AfterClass;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
-import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
 import java.io.IOException;
-import java.time.Duration;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -70,38 +57,11 @@ import java.util.concurrent.TimeUnit;
 
 public class RequestTest extends Assert {
 
-    private static ElasticsearchContainer container;
-    private static final JsonpMapper mapper = new JsonbJsonpMapper();
-    private static RestClient restClient;
-    private static ElasticsearchTransport transport;
-    private static ElasticsearchClient client;
+    static ElasticsearchClient client;
 
     @BeforeClass
     public static void setup() {
-        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.16.2")
-            .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
-            .withEnv("path.repo", "/tmp") // for snapshots
-            .withStartupTimeout(Duration.ofSeconds(30))
-            .withPassword("changeme");
-        container.start();
-        int port = container.getMappedPort(9200);
-
-        BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
-        credsProv.setCredentials(
-            AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
-        );
-        restClient = RestClient.builder(new HttpHost("localhost", port))
-            .setHttpClientConfigCallback(hc -> hc.setDefaultCredentialsProvider(credsProv))
-            .build();
-        transport = new RestClientTransport(restClient, mapper);
-        client = new ElasticsearchClient(transport);
-    }
-
-    @AfterClass
-    public static void tearDown() {
-        if (container != null) {
-            container.stop();
-        }
+        client = ElasticsearchTestServer.global().client();
     }
 
     @Test
@@ -112,7 +72,7 @@ public class RequestTest extends Assert {
 
     @Test
     public void testIndexCreation() throws Exception {
-        ElasticsearchAsyncClient asyncClient = new ElasticsearchAsyncClient(transport);
+        ElasticsearchAsyncClient asyncClient = new ElasticsearchAsyncClient(client._transport());
 
         // Ping the server
         assertTrue(client.ping().value());
@@ -222,7 +182,7 @@ public class RequestTest extends Assert {
     public void testCatRequest() throws IOException {
         // Cat requests should have the "format=json" added by the transport
         NodesResponse nodes = client.cat().nodes(_0 -> _0);
-        System.out.println(ModelTestCase.toJson(nodes, mapper));
+        System.out.println(ModelTestCase.toJson(nodes, client._transport().jsonpMapper()));
 
         assertEquals(1, nodes.valueBody().size());
         assertEquals("*", nodes.valueBody().get(0).master());
@@ -247,15 +207,25 @@ public class RequestTest extends Assert {
                     .id("def")
                     .document(appData)
             ))
+            .operations(_1 -> _1
+                .update(_2 -> _2
+                    .index("foo")
+                    .id("gh")
+                    .action(_3 -> _3
+                        .docAsUpsert(true)
+                        .doc(appData))
+                )
+            )
         );
 
         assertFalse(bulk.errors());
-        assertEquals(2, bulk.items().size());
+        assertEquals(3, bulk.items().size());
         assertEquals(OperationType.Create, bulk.items().get(0).operationType());
         assertEquals("foo", bulk.items().get(0).index());
         assertEquals(1L, bulk.items().get(0).version().longValue());
         assertEquals("foo", bulk.items().get(1).index());
         assertEquals(1L, bulk.items().get(1).version().longValue());
+        assertEquals(42, client.get(b -> b.index("foo").id("gh"), AppData.class).source().intValue);
     }
 
     @Test
@@ -291,7 +261,7 @@ public class RequestTest extends Assert {
 
 
         ExecutionException ee = assertThrows(ExecutionException.class, () -> {
-            ElasticsearchAsyncClient aClient = new ElasticsearchAsyncClient(transport);
+            ElasticsearchAsyncClient aClient = new ElasticsearchAsyncClient(client._transport());
             GetResponse<String> response = aClient.get(
                 _0 -> _0.index("doesnotexist").id("reallynot"), String.class
             ).get();
@@ -396,30 +366,6 @@ public class RequestTest extends Assert {
 
         settings = client.indices().getSettings(b -> b.index(index));
         assertNull(settings.get(index).defaults());
-    }
-
-    @Test
-    public void testSnapshotCreation() throws IOException {
-        // https://github.com/elastic/elasticsearch-java/issues/74
-        // https://github.com/elastic/elasticsearch/issues/82358
-
-        CreateRepositoryResponse repo = client.snapshot().createRepository(b1 -> b1
-            .name("test")
-            .type("fs")
-            .settings(b2 -> b2
-                .location("/tmp/test-repo")
-            )
-        );
-
-        assertTrue(repo.acknowledged());
-
-        CreateSnapshotResponse snapshot = client.snapshot().create(b -> b
-            .repository("test")
-            .snapshot("1")
-            .waitForCompletion(true)
-        );
-
-        assertNotNull(snapshot.snapshot());
     }
 
     @Test
