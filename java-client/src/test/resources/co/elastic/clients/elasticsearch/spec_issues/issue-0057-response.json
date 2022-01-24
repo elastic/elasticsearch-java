@@ -1,0 +1,62 @@
+{
+  "took": 67,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 0,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "suggest": {
+    "completion#completion:completion1": [
+      {
+        "text": "hash",
+        "offset": 0,
+        "length": 4,
+        "options": [
+          {
+            "text": "HashMap-Complete1",
+            "_index": "document",
+            "_id": "2",
+            "_score": 1.0
+          },
+          {
+            "text": "HashSet-Complete1",
+            "_index": "document",
+            "_id": "1",
+            "_score": 1.0
+          }
+        ]
+      }
+    ],
+    "completion#completion:completion2": [
+      {
+        "text": "hash",
+        "offset": 0,
+        "length": 4,
+        "options": [
+          {
+            "text": "HashMap-Complete2",
+            "_index": "document",
+            "_id": "2",
+            "_score": 1.0
+          },
+          {
+            "text": "HashSet-Complete2",
+            "_index": "document",
+            "_id": "1",
+            "_score": 1.0
+          }
+        ]
+      }
+    ]
+  }
+}
