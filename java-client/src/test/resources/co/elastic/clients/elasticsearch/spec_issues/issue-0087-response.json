@@ -1,0 +1,98 @@
+{
+  "took": 190,
+  "timed_out": false,
+  "_shards": {
+    "total": 1,
+    "successful": 1,
+    "skipped": 0,
+    "failed": 0
+  },
+  "hits": {
+    "total": {
+      "value": 1,
+      "relation": "eq"
+    },
+    "max_score": null,
+    "hits": []
+  },
+  "aggregations": {
+    "value_count#count": {
+      "value": 1
+    },
+    "filter#login_filter": {
+      "meta": {},
+      "doc_count": 1,
+      "sterms#to_domain": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": "cnn.com",
+            "doc_count": 1
+          }
+        ]
+      },
+      "sterms#date": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": "2008",
+            "doc_count": 1
+          }
+        ]
+      },
+      "lterms#has_att": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": 1,
+            "key_as_string": "true",
+            "doc_count": 1
+          }
+        ]
+      },
+      "sterms#file_ext": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": "doc",
+            "doc_count": 1
+          }
+        ]
+      },
+      "sterms#from_domain": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": "gmail.com",
+            "doc_count": 1
+          }
+        ]
+      },
+      "sterms#from": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": "John Tsang",
+            "doc_count": 1
+          }
+        ]
+      },
+      "sterms#to": {
+        "doc_count_error_upper_bound": 0,
+        "sum_other_doc_count": 0,
+        "buckets": [
+          {
+            "key": "John Smith",
+            "doc_count": 1
+          }
+        ]
+      }
+    }
+  }
+}
