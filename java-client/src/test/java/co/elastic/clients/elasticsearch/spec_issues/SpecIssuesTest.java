@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.spec_issues;
 
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
+import co.elastic.clients.elasticsearch.cluster.ClusterStatsResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
@@ -41,6 +42,26 @@ public class SpecIssuesTest extends ModelTestCase {
     public void i0107_rangeBucketKey() {
         // https://github.com/elastic/elasticsearch-java/issues/107
         loadRsrc("issue-0107-response.json", SearchResponse.createSearchResponseDeserializer(JsonData._DESERIALIZER));
+    }
+
+    @Test
+    public void i0088_clusterStats() {
+        // https://github.com/elastic/elasticsearch-java/issues/88
+        loadRsrc("issue-0088-response.json", ClusterStatsResponse._DESERIALIZER);
+    }
+
+    @Test
+    public void i0087_filterAggSubAggregation() {
+        // https://github.com/elastic/elasticsearch-java/issues/87
+        SearchResponse<JsonData> resp = loadRsrc("issue-0087-response.json",
+            SearchResponse.createSearchResponseDeserializer(JsonData._DESERIALIZER));
+
+        assertEquals(
+            "cnn.com",
+            resp.aggregations().get("login_filter").filter()
+                .aggregations().get("to_domain").sterms()
+                .buckets().array().get(0).key());
+
     }
 
     @Test
