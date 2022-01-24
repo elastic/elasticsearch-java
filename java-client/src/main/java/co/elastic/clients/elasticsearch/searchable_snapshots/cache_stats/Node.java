@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.core.search;
+package co.elastic.clients.elasticsearch.searchable_snapshots.cache_stats;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,62 +33,39 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Double;
-import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _global.search._types.TermSuggestOption
+// typedef: searchable_snapshots.cache_stats.Node
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_global.search._types.TermSuggestOption">API
+ *      "../../doc-files/api-spec.html#searchable_snapshots.cache_stats.Node">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TermSuggestOption implements JsonpSerializable {
-	private final String text;
-
-	private final long freq;
-
-	private final double score;
+public class Node implements JsonpSerializable {
+	private final Shared sharedCache;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TermSuggestOption(Builder builder) {
+	private Node(Builder builder) {
 
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
-		this.freq = ApiTypeHelper.requireNonNull(builder.freq, this, "freq");
-		this.score = ApiTypeHelper.requireNonNull(builder.score, this, "score");
+		this.sharedCache = ApiTypeHelper.requireNonNull(builder.sharedCache, this, "sharedCache");
 
 	}
 
-	public static TermSuggestOption of(Function<Builder, ObjectBuilder<TermSuggestOption>> fn) {
+	public static Node of(Function<Builder, ObjectBuilder<Node>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code text}
+	 * Required - API name: {@code shared_cache}
 	 */
-	public final String text() {
-		return this.text;
-	}
-
-	/**
-	 * Required - API name: {@code freq}
-	 */
-	public final long freq() {
-		return this.freq;
-	}
-
-	/**
-	 * Required - API name: {@code score}
-	 */
-	public final double score() {
-		return this.score;
+	public final Shared sharedCache() {
+		return this.sharedCache;
 	}
 
 	/**
@@ -102,80 +79,59 @@ public class TermSuggestOption implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("text");
-		generator.write(this.text);
-
-		generator.writeKey("freq");
-		generator.write(this.freq);
-
-		generator.writeKey("score");
-		generator.write(this.score);
+		generator.writeKey("shared_cache");
+		this.sharedCache.serialize(generator, mapper);
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TermSuggestOption}.
+	 * Builder for {@link Node}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermSuggestOption> {
-		private String text;
-
-		private Long freq;
-
-		private Double score;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Node> {
+		private Shared sharedCache;
 
 		/**
-		 * Required - API name: {@code text}
+		 * Required - API name: {@code shared_cache}
 		 */
-		public final Builder text(String value) {
-			this.text = value;
+		public final Builder sharedCache(Shared value) {
+			this.sharedCache = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code freq}
+		 * Required - API name: {@code shared_cache}
 		 */
-		public final Builder freq(long value) {
-			this.freq = value;
-			return this;
+		public final Builder sharedCache(Function<Shared.Builder, ObjectBuilder<Shared>> fn) {
+			return this.sharedCache(fn.apply(new Shared.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code score}
-		 */
-		public final Builder score(double value) {
-			this.score = value;
-			return this;
-		}
-
-		/**
-		 * Builds a {@link TermSuggestOption}.
+		 * Builds a {@link Node}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TermSuggestOption build() {
+		public Node build() {
 			_checkSingleUse();
 
-			return new TermSuggestOption(this);
+			return new Node(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TermSuggestOption}
+	 * Json deserializer for {@link Node}
 	 */
-	public static final JsonpDeserializer<TermSuggestOption> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TermSuggestOption::setupTermSuggestOptionDeserializer);
+	public static final JsonpDeserializer<Node> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			Node::setupNodeDeserializer);
 
-	protected static void setupTermSuggestOptionDeserializer(ObjectDeserializer<TermSuggestOption.Builder> op) {
+	protected static void setupNodeDeserializer(ObjectDeserializer<Node.Builder> op) {
 
-		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
-		op.add(Builder::freq, JsonpDeserializer.longDeserializer(), "freq");
-		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "score");
+		op.add(Builder::sharedCache, Shared._DESERIALIZER, "shared_cache");
 
 	}
 

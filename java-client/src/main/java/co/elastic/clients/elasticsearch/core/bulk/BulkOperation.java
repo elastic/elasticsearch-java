@@ -170,7 +170,7 @@ public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, N
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code update} kind.
 	 */
-	public <TDocument> UpdateOperation<TDocument> update() {
+	public <TDocument, TPartialDocument> UpdateOperation<TDocument, TPartialDocument> update() {
 		return TaggedUnionUtils.get(this, Kind.Update);
 	}
 
@@ -232,15 +232,16 @@ public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, N
 			return this.create(fn.apply(new CreateOperation.Builder<TDocument>()).build());
 		}
 
-		public <TDocument> ObjectBuilder<BulkOperation> update(UpdateOperation<TDocument> v) {
+		public <TDocument, TPartialDocument> ObjectBuilder<BulkOperation> update(
+				UpdateOperation<TDocument, TPartialDocument> v) {
 			this._kind = Kind.Update;
 			this._value = v;
 			return this;
 		}
 
-		public <TDocument> ObjectBuilder<BulkOperation> update(
-				Function<UpdateOperation.Builder<TDocument>, ObjectBuilder<UpdateOperation<TDocument>>> fn) {
-			return this.update(fn.apply(new UpdateOperation.Builder<TDocument>()).build());
+		public <TDocument, TPartialDocument> ObjectBuilder<BulkOperation> update(
+				Function<UpdateOperation.Builder<TDocument, TPartialDocument>, ObjectBuilder<UpdateOperation<TDocument, TPartialDocument>>> fn) {
+			return this.update(fn.apply(new UpdateOperation.Builder<TDocument, TPartialDocument>()).build());
 		}
 
 		public ObjectBuilder<BulkOperation> delete(DeleteOperation v) {

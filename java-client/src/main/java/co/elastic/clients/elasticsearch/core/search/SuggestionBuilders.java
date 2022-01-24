@@ -24,34 +24,34 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 /**
- * Builders for {@link SuggestOption} variants.
+ * Builders for {@link Suggestion} variants.
  */
-public class SuggestOptionBuilders {
-	private SuggestOptionBuilders() {
+public class SuggestionBuilders {
+	private SuggestionBuilders() {
 	}
 
 	/**
-	 * Creates a builder for the {@link CompletionSuggestOption completion}
-	 * {@code SuggestOption} variant.
+	 * Creates a builder for the {@link CompletionSuggest completion}
+	 * {@code Suggestion} variant.
 	 */
-	public static <TDocument> CompletionSuggestOption.Builder<TDocument> completion() {
-		return new CompletionSuggestOption.Builder<TDocument>();
+	public static <TDocument> CompletionSuggest.Builder<TDocument> completion() {
+		return new CompletionSuggest.Builder<TDocument>();
 	}
 
 	/**
-	 * Creates a builder for the {@link PhraseSuggestOption phrase}
-	 * {@code SuggestOption} variant.
+	 * Creates a builder for the {@link PhraseSuggest phrase} {@code Suggestion}
+	 * variant.
 	 */
-	public static <TDocument> PhraseSuggestOption.Builder phrase() {
-		return new PhraseSuggestOption.Builder();
+	public static <TDocument> PhraseSuggest.Builder phrase() {
+		return new PhraseSuggest.Builder();
 	}
 
 	/**
-	 * Creates a builder for the {@link TermSuggestOption term}
-	 * {@code SuggestOption} variant.
+	 * Creates a builder for the {@link TermSuggest term} {@code Suggestion}
+	 * variant.
 	 */
-	public static <TDocument> TermSuggestOption.Builder term() {
-		return new TermSuggestOption.Builder();
+	public static <TDocument> TermSuggest.Builder term() {
+		return new TermSuggest.Builder();
 	}
 
 }

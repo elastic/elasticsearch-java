@@ -39,9 +39,11 @@ import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform_stats.Request
@@ -64,7 +66,7 @@ public class GetTransformStatsRequest extends RequestBase {
 	@Nullable
 	private final Long size;
 
-	private final String transformId;
+	private final List<String> transformId;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +75,7 @@ public class GetTransformStatsRequest extends RequestBase {
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
 		this.size = builder.size;
-		this.transformId = ApiTypeHelper.requireNonNull(builder.transformId, this, "transformId");
+		this.transformId = ApiTypeHelper.unmodifiableRequired(builder.transformId, this, "transformId");
 
 	}
 
@@ -129,7 +131,7 @@ public class GetTransformStatsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
-	public final String transformId() {
+	public final List<String> transformId() {
 		return this.transformId;
 	}
 
@@ -149,7 +151,7 @@ public class GetTransformStatsRequest extends RequestBase {
 		@Nullable
 		private Long size;
 
-		private String transformId;
+		private List<String> transformId;
 
 		/**
 		 * Specifies what to do when the request:
@@ -198,9 +200,27 @@ public class GetTransformStatsRequest extends RequestBase {
 		 * <code>&lt;transform_id&gt;</code>.
 		 * <p>
 		 * API name: {@code transform_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>transformId</code>.
 		 */
-		public final Builder transformId(String value) {
-			this.transformId = value;
+		public final Builder transformId(List<String> list) {
+			this.transformId = _listAddAll(this.transformId, list);
+			return this;
+		}
+
+		/**
+		 * Required - Identifier for the transform. It can be a transform identifier or
+		 * a wildcard expression. You can get information for all transforms by using
+		 * <code>_all</code>, by specifying <code>*</code> as the
+		 * <code>&lt;transform_id&gt;</code>, or by omitting the
+		 * <code>&lt;transform_id&gt;</code>.
+		 * <p>
+		 * API name: {@code transform_id}
+		 * <p>
+		 * Adds one or more values to <code>transformId</code>.
+		 */
+		public final Builder transformId(String value, String... values) {
+			this.transformId = _listAdd(this.transformId, value, values);
 			return this;
 		}
 
@@ -243,7 +263,8 @@ public class GetTransformStatsRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.transformId, buf);
+					SimpleEndpoint.pathEncode(request.transformId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}

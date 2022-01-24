@@ -23,23 +23,24 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.ExternallyTaggedUnion;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
-import java.lang.String;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.function.Supplier;
 import javax.annotation.Nullable;
 
 // typedef: _global.search._types.Suggest
@@ -51,208 +52,187 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 
-public class Suggestion<T> implements JsonpSerializable {
-	private final int length;
+public class Suggestion<TDocument> implements TaggedUnion<Suggestion.Kind, SuggestionVariant>, JsonpSerializable {
 
-	private final int offset;
+	/**
+	 * {@link Suggestion} variant kinds.
+	 */
+	/**
+	 * {@link Suggestion} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_global.search._types.Suggest">API
+	 *      specification</a>
+	 */
 
-	private final List<SuggestOption<T>> options;
+	public enum Kind implements JsonEnum {
+		Completion("completion"),
 
-	private final String text;
+		Phrase("phrase"),
 
-	@Nullable
-	private final JsonpSerializer<T> tSerializer;
+		Term("term"),
 
-	// ---------------------------------------------------------------------------------------------
+		;
 
-	private Suggestion(Builder<T> builder) {
+		private final String jsonValue;
 
-		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
-		this.offset = ApiTypeHelper.requireNonNull(builder.offset, this, "offset");
-		this.options = ApiTypeHelper.unmodifiableRequired(builder.options, this, "options");
-		this.text = ApiTypeHelper.requireNonNull(builder.text, this, "text");
-		this.tSerializer = builder.tSerializer;
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
 
 	}
 
-	public static <T> Suggestion<T> of(Function<Builder<T>, ObjectBuilder<Suggestion<T>>> fn) {
+	private final Kind _kind;
+	private final SuggestionVariant _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final SuggestionVariant _get() {
+		return _value;
+	}
+
+	private final JsonpSerializer<TDocument> tDocumentSerializer = null;
+
+	public Suggestion(SuggestionVariant value) {
+
+		this._kind = ApiTypeHelper.requireNonNull(value._suggestionKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+	}
+
+	private Suggestion(Builder<TDocument> builder) {
+
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
+	}
+
+	public static <TDocument> Suggestion<TDocument> of(
+			Function<Builder<TDocument>, ObjectBuilder<Suggestion<TDocument>>> fn) {
 		return fn.apply(new Builder<>()).build();
 	}
 
 	/**
-	 * Required - API name: {@code length}
+	 * Is this variant instance of kind {@code completion}?
 	 */
-	public final int length() {
-		return this.length;
+	public boolean isCompletion() {
+		return _kind == Kind.Completion;
 	}
 
 	/**
-	 * Required - API name: {@code offset}
+	 * Get the {@code completion} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code completion} kind.
 	 */
-	public final int offset() {
-		return this.offset;
+	public CompletionSuggest<TDocument> completion() {
+		return TaggedUnionUtils.get(this, Kind.Completion);
 	}
 
 	/**
-	 * Required - API name: {@code options}
+	 * Is this variant instance of kind {@code phrase}?
 	 */
-	public final List<SuggestOption<T>> options() {
-		return this.options;
+	public boolean isPhrase() {
+		return _kind == Kind.Phrase;
 	}
 
 	/**
-	 * Required - API name: {@code text}
+	 * Get the {@code phrase} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code phrase} kind.
 	 */
-	public final String text() {
-		return this.text;
+	public PhraseSuggest phrase() {
+		return TaggedUnionUtils.get(this, Kind.Phrase);
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Is this variant instance of kind {@code term}?
 	 */
+	public boolean isTerm() {
+		return _kind == Kind.Term;
+	}
+
+	/**
+	 * Get the {@code term} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code term} kind.
+	 */
+	public TermSuggest term() {
+		return TaggedUnionUtils.get(this, Kind.Term);
+	}
+
+	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
-		generator.writeStartObject();
-		serializeInternal(generator, mapper);
-		generator.writeEnd();
-	}
 
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		generator.writeKey("length");
-		generator.write(this.length);
-
-		generator.writeKey("offset");
-		generator.write(this.offset);
-
-		if (ApiTypeHelper.isDefined(this.options)) {
-			generator.writeKey("options");
-			generator.writeStartArray();
-			for (SuggestOption<T> item0 : this.options) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
-		generator.writeKey("text");
-		generator.write(this.text);
+		mapper.serialize(_value, generator);
 
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<Suggestion<TDocument>> {
+		private Kind _kind;
+		private SuggestionVariant _value;
 
-	/**
-	 * Builder for {@link Suggestion}.
-	 */
-
-	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<Suggestion<T>> {
-		private Integer length;
-
-		private Integer offset;
-
-		private List<SuggestOption<T>> options;
-
-		private String text;
-
-		@Nullable
-		private JsonpSerializer<T> tSerializer;
-
-		/**
-		 * Required - API name: {@code length}
-		 */
-		public final Builder<T> length(int value) {
-			this.length = value;
+		public ObjectBuilder<Suggestion<TDocument>> completion(CompletionSuggest<TDocument> v) {
+			this._kind = Kind.Completion;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Required - API name: {@code offset}
-		 */
-		public final Builder<T> offset(int value) {
-			this.offset = value;
+		public ObjectBuilder<Suggestion<TDocument>> completion(
+				Function<CompletionSuggest.Builder<TDocument>, ObjectBuilder<CompletionSuggest<TDocument>>> fn) {
+			return this.completion(fn.apply(new CompletionSuggest.Builder<TDocument>()).build());
+		}
+
+		public ObjectBuilder<Suggestion<TDocument>> phrase(PhraseSuggest v) {
+			this._kind = Kind.Phrase;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Required - API name: {@code options}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>options</code>.
-		 */
-		public final Builder<T> options(List<SuggestOption<T>> list) {
-			this.options = _listAddAll(this.options, list);
+		public ObjectBuilder<Suggestion<TDocument>> phrase(
+				Function<PhraseSuggest.Builder, ObjectBuilder<PhraseSuggest>> fn) {
+			return this.phrase(fn.apply(new PhraseSuggest.Builder()).build());
+		}
+
+		public ObjectBuilder<Suggestion<TDocument>> term(TermSuggest v) {
+			this._kind = Kind.Term;
+			this._value = v;
 			return this;
 		}
 
-		/**
-		 * Required - API name: {@code options}
-		 * <p>
-		 * Adds one or more values to <code>options</code>.
-		 */
-		public final Builder<T> options(SuggestOption<T> value, SuggestOption<T>... values) {
-			this.options = _listAdd(this.options, value, values);
-			return this;
+		public ObjectBuilder<Suggestion<TDocument>> term(Function<TermSuggest.Builder, ObjectBuilder<TermSuggest>> fn) {
+			return this.term(fn.apply(new TermSuggest.Builder()).build());
 		}
 
-		/**
-		 * Required - API name: {@code options}
-		 * <p>
-		 * Adds a value to <code>options</code> using a builder lambda.
-		 */
-		public final Builder<T> options(Function<SuggestOption.Builder<T>, ObjectBuilder<SuggestOption<T>>> fn) {
-			return options(fn.apply(new SuggestOption.Builder<T>()).build());
-		}
-
-		/**
-		 * Required - API name: {@code text}
-		 */
-		public final Builder<T> text(String value) {
-			this.text = value;
-			return this;
-		}
-
-		/**
-		 * Serializer for T. If not set, an attempt will be made to find a serializer
-		 * from the JSON context.
-		 */
-		public final Builder<T> tSerializer(@Nullable JsonpSerializer<T> value) {
-			this.tSerializer = value;
-			return this;
-		}
-
-		/**
-		 * Builds a {@link Suggestion}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
-		public Suggestion<T> build() {
+		public Suggestion<TDocument> build() {
 			_checkSingleUse();
-
-			return new Suggestion<T>(this);
+			return new Suggestion<>(this);
 		}
-	}
 
-	// ---------------------------------------------------------------------------------------------
+	}
 
 	/**
 	 * Create a JSON deserializer for Suggestion
 	 */
-	public static <T> JsonpDeserializer<Suggestion<T>> createSuggestionDeserializer(
-			JsonpDeserializer<T> tDeserializer) {
-		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<T>>) Builder::new,
-				op -> Suggestion.setupSuggestionDeserializer(op, tDeserializer));
+	public static <TDocument> ExternallyTaggedUnion.TypedKeysDeserializer<Suggestion<TDocument>> createSuggestionDeserializer(
+			JsonpDeserializer<TDocument> tDocumentDeserializer) {
+		Map<String, JsonpDeserializer<? extends SuggestionVariant>> deserializers = new HashMap<>();
+		deserializers.put("completion", CompletionSuggest.createCompletionSuggestDeserializer(tDocumentDeserializer));
+		deserializers.put("phrase", PhraseSuggest._DESERIALIZER);
+		deserializers.put("term", TermSuggest._DESERIALIZER);
+
+		return new ExternallyTaggedUnion.Deserializer<Suggestion<TDocument>, SuggestionVariant>(deserializers,
+				(name, value) -> new Suggestion<>(value)).typedKeys();
 	};
-
-	protected static <T> void setupSuggestionDeserializer(ObjectDeserializer<Suggestion.Builder<T>> op,
-			JsonpDeserializer<T> tDeserializer) {
-
-		op.add(Builder::length, JsonpDeserializer.integerDeserializer(), "length");
-		op.add(Builder::offset, JsonpDeserializer.integerDeserializer(), "offset");
-		op.add(Builder::options,
-				JsonpDeserializer.arrayDeserializer(SuggestOption.createSuggestOptionDeserializer(tDeserializer)),
-				"options");
-		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
-
-	}
 
 }

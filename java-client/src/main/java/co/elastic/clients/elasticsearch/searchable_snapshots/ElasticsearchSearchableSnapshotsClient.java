@@ -57,6 +57,52 @@ public class ElasticsearchSearchableSnapshotsClient
 		return new ElasticsearchSearchableSnapshotsClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: searchable_snapshots.cache_stats
+
+	/**
+	 * Retrieve node-level cache statistics about searchable snapshots.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CacheStatsResponse cacheStats(CacheStatsRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CacheStatsRequest, CacheStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<CacheStatsRequest, CacheStatsResponse, ErrorResponse>) CacheStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieve node-level cache statistics about searchable snapshots.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CacheStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CacheStatsResponse cacheStats(Function<CacheStatsRequest.Builder, ObjectBuilder<CacheStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return cacheStats(fn.apply(new CacheStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieve node-level cache statistics about searchable snapshots.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CacheStatsResponse cacheStats() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new CacheStatsRequest.Builder().build(), CacheStatsRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: searchable_snapshots.clear_cache
 
 	/**

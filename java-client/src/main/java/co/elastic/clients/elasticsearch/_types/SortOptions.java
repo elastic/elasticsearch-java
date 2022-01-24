@@ -288,10 +288,9 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 	}
 
 	public static final JsonpDeserializer<SortOptions> _DESERIALIZER = JsonpDeserializer.lazy(() -> JsonpDeserializer
-			.of(EnumSet.of(JsonParser.Event.START_OBJECT, JsonParser.Event.VALUE_STRING), (parser, mapper) -> {
+			.of(EnumSet.of(JsonParser.Event.START_OBJECT, JsonParser.Event.VALUE_STRING), (parser, mapper, event) -> {
 				SortOptions.Builder b = new SortOptions.Builder();
 
-				JsonParser.Event event = parser.next();
 				if (event == JsonParser.Event.VALUE_STRING) {
 					switch (parser.getString()) {
 						case "_score" :

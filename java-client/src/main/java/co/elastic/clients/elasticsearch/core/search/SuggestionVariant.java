@@ -21,33 +21,17 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.core.search;
 
 /**
- * Builders for {@link Transform} variants.
- * <p>
- * Variants <code>chain</code> are not available here as they don't have a
- * dedicated class. Use {@link Transform}'s builder for these.
- * 
+ * Base interface for {@link Suggestion} variants.
  */
-public class TransformBuilders {
-	private TransformBuilders() {
-	}
+public interface SuggestionVariant {
 
-	/**
-	 * Creates a builder for the {@link ScriptTransform script} {@code Transform}
-	 * variant.
-	 */
-	public static ScriptTransform.Builder script() {
-		return new ScriptTransform.Builder();
-	}
+	Suggestion.Kind _suggestionKind();
 
-	/**
-	 * Creates a builder for the {@link SearchTransform search} {@code Transform}
-	 * variant.
-	 */
-	public static SearchTransform.Builder search() {
-		return new SearchTransform.Builder();
+	default Suggestion _toSuggestion() {
+		return new Suggestion(this);
 	}
 
 }

@@ -37,6 +37,7 @@ import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -126,7 +127,7 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 	 * @throws IllegalStateException
 	 *             if the current variant is not of the {@code chain} kind.
 	 */
-	public ChainTransform chain() {
+	public List<Transform> chain() {
 		return TaggedUnionUtils.get(this, Kind.Chain);
 	}
 
@@ -173,6 +174,18 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
+		} else {
+			switch (_kind) {
+				case Chain :
+					generator.writeStartArray();
+					for (Transform item0 : ((List<Transform>) this._value)) {
+						item0.serialize(generator, mapper);
+
+					}
+					generator.writeEnd();
+
+					break;
+			}
 		}
 
 		generator.writeEnd();
@@ -183,14 +196,10 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 		private Kind _kind;
 		private Object _value;
 
-		public ObjectBuilder<Transform> chain(ChainTransform v) {
+		public ObjectBuilder<Transform> chain(List<Transform> v) {
 			this._kind = Kind.Chain;
 			this._value = v;
 			return this;
-		}
-
-		public ObjectBuilder<Transform> chain(Function<ChainTransform.Builder, ObjectBuilder<ChainTransform>> fn) {
-			return this.chain(fn.apply(new ChainTransform.Builder()).build());
 		}
 
 		public ObjectBuilder<Transform> script(ScriptTransform v) {
@@ -222,7 +231,7 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 
 	protected static void setupTransformDeserializer(ObjectDeserializer<Builder> op) {
 
-		op.add(Builder::chain, ChainTransform._DESERIALIZER, "chain");
+		op.add(Builder::chain, JsonpDeserializer.arrayDeserializer(Transform._DESERIALIZER), "chain");
 		op.add(Builder::script, ScriptTransform._DESERIALIZER, "script");
 		op.add(Builder::search, SearchTransform._DESERIALIZER, "search");
 

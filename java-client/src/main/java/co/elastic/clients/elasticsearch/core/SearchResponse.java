@@ -325,20 +325,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		}
 		if (ApiTypeHelper.isDefined(this.suggest)) {
 			generator.writeKey("suggest");
-			generator.writeStartObject();
-			for (Map.Entry<String, List<Suggestion<TDocument>>> item0 : this.suggest.entrySet()) {
-				generator.writeKey(item0.getKey());
-				generator.writeStartArray();
-				if (item0.getValue() != null) {
-					for (Suggestion<TDocument> item1 : item0.getValue()) {
-						item1.serialize(generator, mapper);
-
-					}
-				}
-				generator.writeEnd();
-
-			}
-			generator.writeEnd();
+			ExternallyTaggedUnion.serializeTypedKeysArray(this.suggest, generator, mapper);
 
 		}
 		if (this.terminatedEarly != null) {
@@ -676,9 +663,8 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 		op.add(AbstractBuilder::profile, Profile._DESERIALIZER, "profile");
 		op.add(AbstractBuilder::pitId, JsonpDeserializer.stringDeserializer(), "pit_id");
 		op.add(AbstractBuilder::scrollId, JsonpDeserializer.stringDeserializer(), "_scroll_id");
-		op.add(AbstractBuilder::suggest, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.arrayDeserializer(Suggestion.createSuggestionDeserializer(tDocumentDeserializer))),
-				"suggest");
+		op.add(AbstractBuilder::suggest, ExternallyTaggedUnion.<Suggestion<TDocument>>arrayMapDeserializer(
+				Suggestion.createSuggestionDeserializer(tDocumentDeserializer)), "suggest");
 		op.add(AbstractBuilder::terminatedEarly, JsonpDeserializer.booleanDeserializer(), "terminated_early");
 
 	}

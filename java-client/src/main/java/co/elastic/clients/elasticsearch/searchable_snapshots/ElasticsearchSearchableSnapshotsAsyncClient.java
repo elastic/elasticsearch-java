@@ -57,6 +57,52 @@ public class ElasticsearchSearchableSnapshotsAsyncClient
 		return new ElasticsearchSearchableSnapshotsAsyncClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: searchable_snapshots.cache_stats
+
+	/**
+	 * Retrieve node-level cache statistics about searchable snapshots.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<CacheStatsResponse> cacheStats(CacheStatsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<CacheStatsRequest, CacheStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<CacheStatsRequest, CacheStatsResponse, ErrorResponse>) CacheStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieve node-level cache statistics about searchable snapshots.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link CacheStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<CacheStatsResponse> cacheStats(
+			Function<CacheStatsRequest.Builder, ObjectBuilder<CacheStatsRequest>> fn) {
+		return cacheStats(fn.apply(new CacheStatsRequest.Builder()).build());
+	}
+
+	/**
+	 * Retrieve node-level cache statistics about searchable snapshots.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/searchable-snapshots-apis.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<CacheStatsResponse> cacheStats() {
+		return this.transport.performRequestAsync(new CacheStatsRequest.Builder().build(), CacheStatsRequest._ENDPOINT,
+				this.transportOptions);
+	}
+
 	// ----- Endpoint: searchable_snapshots.clear_cache
 
 	/**
