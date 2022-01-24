@@ -377,7 +377,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Gets configuration and usage information about data frame analytics jobs.
 	 * 
 	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -395,7 +395,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link MlDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -408,7 +408,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Gets configuration and usage information about data frame analytics jobs.
 	 * 
 	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -423,7 +423,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Gets configuration and usage information about datafeeds.
 	 * 
 	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-datafeeds.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -441,7 +441,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link MlDatafeedsRequest}
 	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-datafeeds.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -454,7 +454,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Gets configuration and usage information about datafeeds.
 	 * 
 	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-datafeeds.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-datafeeds.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -469,7 +469,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Gets configuration and usage information about anomaly detection jobs.
 	 * 
 	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-anomaly-detectors.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -487,7 +487,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link MlJobsRequest}
 	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-anomaly-detectors.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -500,7 +500,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Gets configuration and usage information about anomaly detection jobs.
 	 * 
 	 * @see <a href=
-	 *      "http://www.elastic.co/guide/en/elasticsearch/reference/current/cat-anomaly-detectors.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-anomaly-detectors.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -515,7 +515,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Gets configuration and usage information about inference trained models.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-trained-model.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -533,7 +533,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link MlTrainedModelsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-trained-model.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -546,7 +546,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Gets configuration and usage information about inference trained models.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-trained-model.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-trained-model.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

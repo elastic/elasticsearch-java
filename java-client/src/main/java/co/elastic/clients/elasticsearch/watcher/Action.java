@@ -74,13 +74,22 @@ public class Action implements JsonpSerializable {
 	private final Transform transform;
 
 	@Nullable
-	private final Index index;
+	private final IndexAction index;
 
 	@Nullable
-	private final Logging logging;
+	private final LoggingAction logging;
 
 	@Nullable
-	private final ActionWebhook webhook;
+	private final EmailAction email;
+
+	@Nullable
+	private final PagerDutyAction pagerduty;
+
+	@Nullable
+	private final SlackAction slack;
+
+	@Nullable
+	private final WebhookAction webhook;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -96,6 +105,9 @@ public class Action implements JsonpSerializable {
 		this.transform = builder.transform;
 		this.index = builder.index;
 		this.logging = builder.logging;
+		this.email = builder.email;
+		this.pagerduty = builder.pagerduty;
+		this.slack = builder.slack;
 		this.webhook = builder.webhook;
 
 	}
@@ -172,7 +184,7 @@ public class Action implements JsonpSerializable {
 	 * API name: {@code index}
 	 */
 	@Nullable
-	public final Index index() {
+	public final IndexAction index() {
 		return this.index;
 	}
 
@@ -180,15 +192,39 @@ public class Action implements JsonpSerializable {
 	 * API name: {@code logging}
 	 */
 	@Nullable
-	public final Logging logging() {
+	public final LoggingAction logging() {
 		return this.logging;
+	}
+
+	/**
+	 * API name: {@code email}
+	 */
+	@Nullable
+	public final EmailAction email() {
+		return this.email;
+	}
+
+	/**
+	 * API name: {@code pagerduty}
+	 */
+	@Nullable
+	public final PagerDutyAction pagerduty() {
+		return this.pagerduty;
+	}
+
+	/**
+	 * API name: {@code slack}
+	 */
+	@Nullable
+	public final SlackAction slack() {
+		return this.slack;
 	}
 
 	/**
 	 * API name: {@code webhook}
 	 */
 	@Nullable
-	public final ActionWebhook webhook() {
+	public final WebhookAction webhook() {
 		return this.webhook;
 	}
 
@@ -252,6 +288,21 @@ public class Action implements JsonpSerializable {
 			this.logging.serialize(generator, mapper);
 
 		}
+		if (this.email != null) {
+			generator.writeKey("email");
+			this.email.serialize(generator, mapper);
+
+		}
+		if (this.pagerduty != null) {
+			generator.writeKey("pagerduty");
+			this.pagerduty.serialize(generator, mapper);
+
+		}
+		if (this.slack != null) {
+			generator.writeKey("slack");
+			this.slack.serialize(generator, mapper);
+
+		}
 		if (this.webhook != null) {
 			generator.writeKey("webhook");
 			this.webhook.serialize(generator, mapper);
@@ -292,13 +343,22 @@ public class Action implements JsonpSerializable {
 		private Transform transform;
 
 		@Nullable
-		private Index index;
+		private IndexAction index;
 
 		@Nullable
-		private Logging logging;
+		private LoggingAction logging;
 
 		@Nullable
-		private ActionWebhook webhook;
+		private EmailAction email;
+
+		@Nullable
+		private PagerDutyAction pagerduty;
+
+		@Nullable
+		private SlackAction slack;
+
+		@Nullable
+		private WebhookAction webhook;
 
 		/**
 		 * API name: {@code action_type}
@@ -388,7 +448,7 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public final Builder index(@Nullable Index value) {
+		public final Builder index(@Nullable IndexAction value) {
 			this.index = value;
 			return this;
 		}
@@ -396,14 +456,14 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code index}
 		 */
-		public final Builder index(Function<Index.Builder, ObjectBuilder<Index>> fn) {
-			return this.index(fn.apply(new Index.Builder()).build());
+		public final Builder index(Function<IndexAction.Builder, ObjectBuilder<IndexAction>> fn) {
+			return this.index(fn.apply(new IndexAction.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code logging}
 		 */
-		public final Builder logging(@Nullable Logging value) {
+		public final Builder logging(@Nullable LoggingAction value) {
 			this.logging = value;
 			return this;
 		}
@@ -411,14 +471,59 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code logging}
 		 */
-		public final Builder logging(Function<Logging.Builder, ObjectBuilder<Logging>> fn) {
-			return this.logging(fn.apply(new Logging.Builder()).build());
+		public final Builder logging(Function<LoggingAction.Builder, ObjectBuilder<LoggingAction>> fn) {
+			return this.logging(fn.apply(new LoggingAction.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code email}
+		 */
+		public final Builder email(@Nullable EmailAction value) {
+			this.email = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code email}
+		 */
+		public final Builder email(Function<EmailAction.Builder, ObjectBuilder<EmailAction>> fn) {
+			return this.email(fn.apply(new EmailAction.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code pagerduty}
+		 */
+		public final Builder pagerduty(@Nullable PagerDutyAction value) {
+			this.pagerduty = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code pagerduty}
+		 */
+		public final Builder pagerduty(Function<PagerDutyAction.Builder, ObjectBuilder<PagerDutyAction>> fn) {
+			return this.pagerduty(fn.apply(new PagerDutyAction.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code slack}
+		 */
+		public final Builder slack(@Nullable SlackAction value) {
+			this.slack = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code slack}
+		 */
+		public final Builder slack(Function<SlackAction.Builder, ObjectBuilder<SlackAction>> fn) {
+			return this.slack(fn.apply(new SlackAction.Builder()).build());
 		}
 
 		/**
 		 * API name: {@code webhook}
 		 */
-		public final Builder webhook(@Nullable ActionWebhook value) {
+		public final Builder webhook(@Nullable WebhookAction value) {
 			this.webhook = value;
 			return this;
 		}
@@ -426,8 +531,8 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code webhook}
 		 */
-		public final Builder webhook(Function<ActionWebhook.Builder, ObjectBuilder<ActionWebhook>> fn) {
-			return this.webhook(fn.apply(new ActionWebhook.Builder()).build());
+		public final Builder webhook(Function<WebhookAction.Builder, ObjectBuilder<WebhookAction>> fn) {
+			return this.webhook(fn.apply(new WebhookAction.Builder()).build());
 		}
 
 		/**
@@ -461,9 +566,12 @@ public class Action implements JsonpSerializable {
 		op.add(Builder::throttlePeriod, Time._DESERIALIZER, "throttle_period");
 		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.stringDeserializer(), "throttle_period_in_millis");
 		op.add(Builder::transform, Transform._DESERIALIZER, "transform");
-		op.add(Builder::index, Index._DESERIALIZER, "index");
-		op.add(Builder::logging, Logging._DESERIALIZER, "logging");
-		op.add(Builder::webhook, ActionWebhook._DESERIALIZER, "webhook");
+		op.add(Builder::index, IndexAction._DESERIALIZER, "index");
+		op.add(Builder::logging, LoggingAction._DESERIALIZER, "logging");
+		op.add(Builder::email, EmailAction._DESERIALIZER, "email");
+		op.add(Builder::pagerduty, PagerDutyAction._DESERIALIZER, "pagerduty");
+		op.add(Builder::slack, SlackAction._DESERIALIZER, "slack");
+		op.add(Builder::webhook, WebhookAction._DESERIALIZER, "webhook");
 
 	}
 

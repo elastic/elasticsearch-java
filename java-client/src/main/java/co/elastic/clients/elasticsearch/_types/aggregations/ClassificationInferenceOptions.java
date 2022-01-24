@@ -91,8 +91,7 @@ public class ClassificationInferenceOptions implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the maximum number of feature importance values per document. By
-	 * default, it is zero and no feature importance calculation occurs.
+	 * Specifies the maximum number of feature importance values per document.
 	 * <p>
 	 * API name: {@code num_top_feature_importance_values}
 	 */
@@ -207,8 +206,7 @@ public class ClassificationInferenceOptions implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies the maximum number of feature importance values per document. By
-		 * default, it is zero and no feature importance calculation occurs.
+		 * Specifies the maximum number of feature importance values per document.
 		 * <p>
 		 * API name: {@code num_top_feature_importance_values}
 		 */

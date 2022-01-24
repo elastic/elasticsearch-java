@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.xpack.usage;
 
-import co.elastic.clients.elasticsearch._types.EmptyObject;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -54,7 +53,10 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	private final MlDataFrameAnalyticsJobsCount all;
 
 	@Nullable
-	private final EmptyObject analysisCounts;
+	private final MlDataFrameAnalyticsJobsAnalysis analysisCounts;
+
+	@Nullable
+	private final MlDataFrameAnalyticsJobsCount stopped;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -63,6 +65,7 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		this.memoryUsage = builder.memoryUsage;
 		this.all = ApiTypeHelper.requireNonNull(builder.all, this, "all");
 		this.analysisCounts = builder.analysisCounts;
+		this.stopped = builder.stopped;
 
 	}
 
@@ -89,8 +92,16 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	 * API name: {@code analysis_counts}
 	 */
 	@Nullable
-	public final EmptyObject analysisCounts() {
+	public final MlDataFrameAnalyticsJobsAnalysis analysisCounts() {
 		return this.analysisCounts;
+	}
+
+	/**
+	 * API name: {@code stopped}
+	 */
+	@Nullable
+	public final MlDataFrameAnalyticsJobsCount stopped() {
+		return this.stopped;
 	}
 
 	/**
@@ -117,6 +128,11 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 			this.analysisCounts.serialize(generator, mapper);
 
 		}
+		if (this.stopped != null) {
+			generator.writeKey("stopped");
+			this.stopped.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -133,7 +149,10 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		private MlDataFrameAnalyticsJobsCount all;
 
 		@Nullable
-		private EmptyObject analysisCounts;
+		private MlDataFrameAnalyticsJobsAnalysis analysisCounts;
+
+		@Nullable
+		private MlDataFrameAnalyticsJobsCount stopped;
 
 		/**
 		 * API name: {@code memory_usage}
@@ -170,7 +189,7 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis_counts}
 		 */
-		public final Builder analysisCounts(@Nullable EmptyObject value) {
+		public final Builder analysisCounts(@Nullable MlDataFrameAnalyticsJobsAnalysis value) {
 			this.analysisCounts = value;
 			return this;
 		}
@@ -178,8 +197,25 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		/**
 		 * API name: {@code analysis_counts}
 		 */
-		public final Builder analysisCounts(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
-			return this.analysisCounts(fn.apply(new EmptyObject.Builder()).build());
+		public final Builder analysisCounts(
+				Function<MlDataFrameAnalyticsJobsAnalysis.Builder, ObjectBuilder<MlDataFrameAnalyticsJobsAnalysis>> fn) {
+			return this.analysisCounts(fn.apply(new MlDataFrameAnalyticsJobsAnalysis.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code stopped}
+		 */
+		public final Builder stopped(@Nullable MlDataFrameAnalyticsJobsCount value) {
+			this.stopped = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code stopped}
+		 */
+		public final Builder stopped(
+				Function<MlDataFrameAnalyticsJobsCount.Builder, ObjectBuilder<MlDataFrameAnalyticsJobsCount>> fn) {
+			return this.stopped(fn.apply(new MlDataFrameAnalyticsJobsCount.Builder()).build());
 		}
 
 		/**
@@ -208,7 +244,8 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 
 		op.add(Builder::memoryUsage, MlDataFrameAnalyticsJobsMemory._DESERIALIZER, "memory_usage");
 		op.add(Builder::all, MlDataFrameAnalyticsJobsCount._DESERIALIZER, "_all");
-		op.add(Builder::analysisCounts, EmptyObject._DESERIALIZER, "analysis_counts");
+		op.add(Builder::analysisCounts, MlDataFrameAnalyticsJobsAnalysis._DESERIALIZER, "analysis_counts");
+		op.add(Builder::stopped, MlDataFrameAnalyticsJobsCount._DESERIALIZER, "stopped");
 
 	}
 

@@ -60,6 +60,9 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	@Nullable
 	private final Long classification;
 
+	@Nullable
+	private final Long ner;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MlInferenceTrainedModelsCount(Builder builder) {
@@ -69,6 +72,7 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		this.other = ApiTypeHelper.requireNonNull(builder.other, this, "other");
 		this.regression = builder.regression;
 		this.classification = builder.classification;
+		this.ner = builder.ner;
 
 	}
 
@@ -114,6 +118,14 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code ner}
+	 */
+	@Nullable
+	public final Long ner() {
+		return this.ner;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -143,6 +155,11 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 			generator.write(this.classification);
 
 		}
+		if (this.ner != null) {
+			generator.writeKey("ner");
+			generator.write(this.ner);
+
+		}
 
 	}
 
@@ -164,6 +181,9 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 
 		@Nullable
 		private Long classification;
+
+		@Nullable
+		private Long ner;
 
 		/**
 		 * Required - API name: {@code total}
@@ -206,6 +226,14 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code ner}
+		 */
+		public final Builder ner(@Nullable Long value) {
+			this.ner = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link MlInferenceTrainedModelsCount}.
 		 *
 		 * @throws NullPointerException
@@ -234,6 +262,7 @@ public class MlInferenceTrainedModelsCount implements JsonpSerializable {
 		op.add(Builder::other, JsonpDeserializer.longDeserializer(), "other");
 		op.add(Builder::regression, JsonpDeserializer.longDeserializer(), "regression");
 		op.add(Builder::classification, JsonpDeserializer.longDeserializer(), "classification");
+		op.add(Builder::ner, JsonpDeserializer.longDeserializer(), "ner");
 
 	}
 

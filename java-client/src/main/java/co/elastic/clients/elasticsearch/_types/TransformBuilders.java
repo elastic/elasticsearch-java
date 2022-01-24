@@ -25,17 +25,13 @@ package co.elastic.clients.elasticsearch._types;
 
 /**
  * Builders for {@link Transform} variants.
+ * <p>
+ * Variants <code>chain</code> are not available here as they don't have a
+ * dedicated class. Use {@link Transform}'s builder for these.
+ * 
  */
 public class TransformBuilders {
 	private TransformBuilders() {
-	}
-
-	/**
-	 * Creates a builder for the {@link ChainTransform chain} {@code Transform}
-	 * variant.
-	 */
-	public static ChainTransform.Builder chain() {
-		return new ChainTransform.Builder();
 	}
 
 	/**

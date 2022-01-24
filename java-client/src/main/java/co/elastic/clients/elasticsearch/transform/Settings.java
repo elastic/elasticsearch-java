@@ -56,6 +56,9 @@ public class Settings implements JsonpSerializable {
 	private final Boolean datesAsEpochMillis;
 
 	@Nullable
+	private final Boolean deduceMappings;
+
+	@Nullable
 	private final Float docsPerSecond;
 
 	@Nullable
@@ -67,6 +70,7 @@ public class Settings implements JsonpSerializable {
 
 		this.alignCheckpoints = builder.alignCheckpoints;
 		this.datesAsEpochMillis = builder.datesAsEpochMillis;
+		this.deduceMappings = builder.deduceMappings;
 		this.docsPerSecond = builder.docsPerSecond;
 		this.maxPageSearchSize = builder.maxPageSearchSize;
 
@@ -101,6 +105,17 @@ public class Settings implements JsonpSerializable {
 	@Nullable
 	public final Boolean datesAsEpochMillis() {
 		return this.datesAsEpochMillis;
+	}
+
+	/**
+	 * Specifies whether the transform should deduce the destination index mappings
+	 * from the transform configuration.
+	 * <p>
+	 * API name: {@code deduce_mappings}
+	 */
+	@Nullable
+	public final Boolean deduceMappings() {
+		return this.deduceMappings;
 	}
 
 	/**
@@ -149,6 +164,11 @@ public class Settings implements JsonpSerializable {
 			generator.write(this.datesAsEpochMillis);
 
 		}
+		if (this.deduceMappings != null) {
+			generator.writeKey("deduce_mappings");
+			generator.write(this.deduceMappings);
+
+		}
 		if (this.docsPerSecond != null) {
 			generator.writeKey("docs_per_second");
 			generator.write(this.docsPerSecond);
@@ -174,6 +194,9 @@ public class Settings implements JsonpSerializable {
 
 		@Nullable
 		private Boolean datesAsEpochMillis;
+
+		@Nullable
+		private Boolean deduceMappings;
 
 		@Nullable
 		private Float docsPerSecond;
@@ -205,6 +228,17 @@ public class Settings implements JsonpSerializable {
 		 */
 		public final Builder datesAsEpochMillis(@Nullable Boolean value) {
 			this.datesAsEpochMillis = value;
+			return this;
+		}
+
+		/**
+		 * Specifies whether the transform should deduce the destination index mappings
+		 * from the transform configuration.
+		 * <p>
+		 * API name: {@code deduce_mappings}
+		 */
+		public final Builder deduceMappings(@Nullable Boolean value) {
+			this.deduceMappings = value;
 			return this;
 		}
 
@@ -258,6 +292,7 @@ public class Settings implements JsonpSerializable {
 
 		op.add(Builder::alignCheckpoints, JsonpDeserializer.booleanDeserializer(), "align_checkpoints");
 		op.add(Builder::datesAsEpochMillis, JsonpDeserializer.booleanDeserializer(), "dates_as_epoch_millis");
+		op.add(Builder::deduceMappings, JsonpDeserializer.booleanDeserializer(), "deduce_mappings");
 		op.add(Builder::docsPerSecond, JsonpDeserializer.floatDeserializer(), "docs_per_second");
 		op.add(Builder::maxPageSearchSize, JsonpDeserializer.integerDeserializer(), "max_page_search_size");
 

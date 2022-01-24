@@ -183,11 +183,10 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	}
 
 	/**
-	 * The maximum number of threads to be used by the analysis. The default value
-	 * is 1. Using more threads may decrease the time necessary to complete the
-	 * analysis at the cost of using more CPU. Note that the process may use
-	 * additional threads for operational functionality other than the analysis
-	 * itself.
+	 * The maximum number of threads to be used by the analysis. Using more threads
+	 * may decrease the time necessary to complete the analysis at the cost of using
+	 * more CPU. Note that the process may use additional threads for operational
+	 * functionality other than the analysis itself.
 	 * <p>
 	 * API name: {@code max_num_threads}
 	 */
@@ -198,11 +197,10 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 
 	/**
 	 * The approximate maximum amount of memory resources that are permitted for
-	 * analytical processing. The default value for data frame analytics jobs is
-	 * 1gb. If your elasticsearch.yml file contains an
-	 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
-	 * create data frame analytics jobs that have model_memory_limit values greater
-	 * than that setting.
+	 * analytical processing. If your <code>elasticsearch.yml</code> file contains
+	 * an <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
+	 * you try to create data frame analytics jobs that have
+	 * <code>model_memory_limit</code> values greater than that setting.
 	 * <p>
 	 * API name: {@code model_memory_limit}
 	 */
@@ -417,11 +415,10 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		}
 
 		/**
-		 * The maximum number of threads to be used by the analysis. The default value
-		 * is 1. Using more threads may decrease the time necessary to complete the
-		 * analysis at the cost of using more CPU. Note that the process may use
-		 * additional threads for operational functionality other than the analysis
-		 * itself.
+		 * The maximum number of threads to be used by the analysis. Using more threads
+		 * may decrease the time necessary to complete the analysis at the cost of using
+		 * more CPU. Note that the process may use additional threads for operational
+		 * functionality other than the analysis itself.
 		 * <p>
 		 * API name: {@code max_num_threads}
 		 */
@@ -432,11 +429,10 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 
 		/**
 		 * The approximate maximum amount of memory resources that are permitted for
-		 * analytical processing. The default value for data frame analytics jobs is
-		 * 1gb. If your elasticsearch.yml file contains an
-		 * xpack.ml.max_model_memory_limit setting, an error occurs when you try to
-		 * create data frame analytics jobs that have model_memory_limit values greater
-		 * than that setting.
+		 * analytical processing. If your <code>elasticsearch.yml</code> file contains
+		 * an <code>xpack.ml.max_model_memory_limit</code> setting, an error occurs when
+		 * you try to create data frame analytics jobs that have
+		 * <code>model_memory_limit</code> values greater than that setting.
 		 * <p>
 		 * API name: {@code model_memory_limit}
 		 */

@@ -74,6 +74,14 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	private final IndexSegmentSort sort;
 
+	private final List<String> sortField;
+
+	private final List<SegmentSortOrder> sortOrder;
+
+	private final List<SegmentSortMode> sortMode;
+
+	private final List<SegmentSortMissing> sortMissing;
+
 	@Nullable
 	private final String numberOfShards;
 
@@ -102,10 +110,7 @@ public class IndexSettings implements JsonpSerializable {
 	private final String autoExpandReplicas;
 
 	@Nullable
-	private final Integer mergeSchedulerMaxThreadCount;
-
-	@Nullable
-	private final Integer mergeSchedulerMaxMergeCount;
+	private final Merge merge;
 
 	@Nullable
 	private final Time searchIdleAfter;
@@ -210,10 +215,7 @@ public class IndexSettings implements JsonpSerializable {
 	private final Integer maxSlicesPerScroll;
 
 	@Nullable
-	private final String translogDurability;
-
-	@Nullable
-	private final String translogFlushThresholdSize;
+	private final Translog translog;
 
 	@Nullable
 	private final Boolean queryStringLenient;
@@ -233,6 +235,12 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	private final IndexSettingsTimeSeries timeSeries;
 
+	@Nullable
+	private final Integer shards;
+
+	@Nullable
+	private final Queries queries;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexSettings(Builder builder) {
@@ -244,6 +252,10 @@ public class IndexSettings implements JsonpSerializable {
 		this.softDeletesEnabled = builder.softDeletesEnabled;
 		this.softDeletesRetentionLeasePeriod = builder.softDeletesRetentionLeasePeriod;
 		this.sort = builder.sort;
+		this.sortField = ApiTypeHelper.unmodifiable(builder.sortField);
+		this.sortOrder = ApiTypeHelper.unmodifiable(builder.sortOrder);
+		this.sortMode = ApiTypeHelper.unmodifiable(builder.sortMode);
+		this.sortMissing = ApiTypeHelper.unmodifiable(builder.sortMissing);
 		this.numberOfShards = builder.numberOfShards;
 		this.numberOfReplicas = builder.numberOfReplicas;
 		this.numberOfRoutingShards = builder.numberOfRoutingShards;
@@ -253,8 +265,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.loadFixedBitsetFiltersEagerly = builder.loadFixedBitsetFiltersEagerly;
 		this.hidden = builder.hidden;
 		this.autoExpandReplicas = builder.autoExpandReplicas;
-		this.mergeSchedulerMaxThreadCount = builder.mergeSchedulerMaxThreadCount;
-		this.mergeSchedulerMaxMergeCount = builder.mergeSchedulerMaxMergeCount;
+		this.merge = builder.merge;
 		this.searchIdleAfter = builder.searchIdleAfter;
 		this.refreshInterval = builder.refreshInterval;
 		this.maxResultWindow = builder.maxResultWindow;
@@ -289,14 +300,15 @@ public class IndexSettings implements JsonpSerializable {
 		this.verifiedBeforeClose = builder.verifiedBeforeClose;
 		this.format = builder.format;
 		this.maxSlicesPerScroll = builder.maxSlicesPerScroll;
-		this.translogDurability = builder.translogDurability;
-		this.translogFlushThresholdSize = builder.translogFlushThresholdSize;
+		this.translog = builder.translog;
 		this.queryStringLenient = builder.queryStringLenient;
 		this.priority = builder.priority;
 		this.topMetricsMaxSize = builder.topMetricsMaxSize;
 		this.analysis = builder.analysis;
 		this.settings = builder.settings;
 		this.timeSeries = builder.timeSeries;
+		this.shards = builder.shards;
+		this.queries = builder.queries;
 
 	}
 
@@ -357,6 +369,34 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	public final IndexSegmentSort sort() {
 		return this.sort;
+	}
+
+	/**
+	 * API name: {@code sort.field}
+	 */
+	public final List<String> sortField() {
+		return this.sortField;
+	}
+
+	/**
+	 * API name: {@code sort.order}
+	 */
+	public final List<SegmentSortOrder> sortOrder() {
+		return this.sortOrder;
+	}
+
+	/**
+	 * API name: {@code sort.mode}
+	 */
+	public final List<SegmentSortMode> sortMode() {
+		return this.sortMode;
+	}
+
+	/**
+	 * API name: {@code sort.missing}
+	 */
+	public final List<SegmentSortMissing> sortMissing() {
+		return this.sortMissing;
 	}
 
 	/**
@@ -432,19 +472,11 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code merge.scheduler.max_thread_count}
+	 * API name: {@code merge}
 	 */
 	@Nullable
-	public final Integer mergeSchedulerMaxThreadCount() {
-		return this.mergeSchedulerMaxThreadCount;
-	}
-
-	/**
-	 * API name: {@code merge.scheduler.max_merge_count}
-	 */
-	@Nullable
-	public final Integer mergeSchedulerMaxMergeCount() {
-		return this.mergeSchedulerMaxMergeCount;
+	public final Merge merge() {
+		return this.merge;
 	}
 
 	/**
@@ -720,19 +752,11 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code translog.durability}
+	 * API name: {@code translog}
 	 */
 	@Nullable
-	public final String translogDurability() {
-		return this.translogDurability;
-	}
-
-	/**
-	 * API name: {@code translog.flush_threshold_size}
-	 */
-	@Nullable
-	public final String translogFlushThresholdSize() {
-		return this.translogFlushThresholdSize;
+	public final Translog translog() {
+		return this.translog;
 	}
 
 	/**
@@ -781,6 +805,22 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	public final IndexSettingsTimeSeries timeSeries() {
 		return this.timeSeries;
+	}
+
+	/**
+	 * API name: {@code shards}
+	 */
+	@Nullable
+	public final Integer shards() {
+		return this.shards;
+	}
+
+	/**
+	 * API name: {@code queries}
+	 */
+	@Nullable
+	public final Queries queries() {
+		return this.queries;
 	}
 
 	/**
@@ -834,6 +874,43 @@ public class IndexSettings implements JsonpSerializable {
 			this.sort.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.sortField)) {
+			generator.writeKey("sort.field");
+			generator.writeStartArray();
+			for (String item0 : this.sortField) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.sortOrder)) {
+			generator.writeKey("sort.order");
+			generator.writeStartArray();
+			for (SegmentSortOrder item0 : this.sortOrder) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.sortMode)) {
+			generator.writeKey("sort.mode");
+			generator.writeStartArray();
+			for (SegmentSortMode item0 : this.sortMode) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
+		}
+		if (ApiTypeHelper.isDefined(this.sortMissing)) {
+			generator.writeKey("sort.missing");
+			generator.writeStartArray();
+			for (SegmentSortMissing item0 : this.sortMissing) {
+				item0.serialize(generator, mapper);
+			}
+			generator.writeEnd();
+
+		}
 		if (this.numberOfShards != null) {
 			generator.writeKey("number_of_shards");
 			generator.write(this.numberOfShards);
@@ -878,14 +955,9 @@ public class IndexSettings implements JsonpSerializable {
 			generator.write(this.autoExpandReplicas);
 
 		}
-		if (this.mergeSchedulerMaxThreadCount != null) {
-			generator.writeKey("merge.scheduler.max_thread_count");
-			generator.write(this.mergeSchedulerMaxThreadCount);
-
-		}
-		if (this.mergeSchedulerMaxMergeCount != null) {
-			generator.writeKey("merge.scheduler.max_merge_count");
-			generator.write(this.mergeSchedulerMaxMergeCount);
+		if (this.merge != null) {
+			generator.writeKey("merge");
+			this.merge.serialize(generator, mapper);
 
 		}
 		if (this.searchIdleAfter != null) {
@@ -1058,14 +1130,9 @@ public class IndexSettings implements JsonpSerializable {
 			generator.write(this.maxSlicesPerScroll);
 
 		}
-		if (this.translogDurability != null) {
-			generator.writeKey("translog.durability");
-			generator.write(this.translogDurability);
-
-		}
-		if (this.translogFlushThresholdSize != null) {
-			generator.writeKey("translog.flush_threshold_size");
-			generator.write(this.translogFlushThresholdSize);
+		if (this.translog != null) {
+			generator.writeKey("translog");
+			this.translog.serialize(generator, mapper);
 
 		}
 		if (this.queryStringLenient != null) {
@@ -1096,6 +1163,16 @@ public class IndexSettings implements JsonpSerializable {
 		if (this.timeSeries != null) {
 			generator.writeKey("time_series");
 			this.timeSeries.serialize(generator, mapper);
+
+		}
+		if (this.shards != null) {
+			generator.writeKey("shards");
+			generator.write(this.shards);
+
+		}
+		if (this.queries != null) {
+			generator.writeKey("queries");
+			this.queries.serialize(generator, mapper);
 
 		}
 
@@ -1130,6 +1207,18 @@ public class IndexSettings implements JsonpSerializable {
 		private IndexSegmentSort sort;
 
 		@Nullable
+		private List<String> sortField;
+
+		@Nullable
+		private List<SegmentSortOrder> sortOrder;
+
+		@Nullable
+		private List<SegmentSortMode> sortMode;
+
+		@Nullable
+		private List<SegmentSortMissing> sortMissing;
+
+		@Nullable
 		private String numberOfShards;
 
 		@Nullable
@@ -1157,10 +1246,7 @@ public class IndexSettings implements JsonpSerializable {
 		private String autoExpandReplicas;
 
 		@Nullable
-		private Integer mergeSchedulerMaxThreadCount;
-
-		@Nullable
-		private Integer mergeSchedulerMaxMergeCount;
+		private Merge merge;
 
 		@Nullable
 		private Time searchIdleAfter;
@@ -1265,10 +1351,7 @@ public class IndexSettings implements JsonpSerializable {
 		private Integer maxSlicesPerScroll;
 
 		@Nullable
-		private String translogDurability;
-
-		@Nullable
-		private String translogFlushThresholdSize;
+		private Translog translog;
 
 		@Nullable
 		private Boolean queryStringLenient;
@@ -1287,6 +1370,12 @@ public class IndexSettings implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettingsTimeSeries timeSeries;
+
+		@Nullable
+		private Integer shards;
+
+		@Nullable
+		private Queries queries;
 
 		/**
 		 * API name: {@code index}
@@ -1385,6 +1474,86 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code sort.field}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sortField</code>.
+		 */
+		public final Builder sortField(List<String> list) {
+			this.sortField = _listAddAll(this.sortField, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort.field}
+		 * <p>
+		 * Adds one or more values to <code>sortField</code>.
+		 */
+		public final Builder sortField(String value, String... values) {
+			this.sortField = _listAdd(this.sortField, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort.order}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sortOrder</code>.
+		 */
+		public final Builder sortOrder(List<SegmentSortOrder> list) {
+			this.sortOrder = _listAddAll(this.sortOrder, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort.order}
+		 * <p>
+		 * Adds one or more values to <code>sortOrder</code>.
+		 */
+		public final Builder sortOrder(SegmentSortOrder value, SegmentSortOrder... values) {
+			this.sortOrder = _listAdd(this.sortOrder, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort.mode}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sortMode</code>.
+		 */
+		public final Builder sortMode(List<SegmentSortMode> list) {
+			this.sortMode = _listAddAll(this.sortMode, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort.mode}
+		 * <p>
+		 * Adds one or more values to <code>sortMode</code>.
+		 */
+		public final Builder sortMode(SegmentSortMode value, SegmentSortMode... values) {
+			this.sortMode = _listAdd(this.sortMode, value, values);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort.missing}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>sortMissing</code>.
+		 */
+		public final Builder sortMissing(List<SegmentSortMissing> list) {
+			this.sortMissing = _listAddAll(this.sortMissing, list);
+			return this;
+		}
+
+		/**
+		 * API name: {@code sort.missing}
+		 * <p>
+		 * Adds one or more values to <code>sortMissing</code>.
+		 */
+		public final Builder sortMissing(SegmentSortMissing value, SegmentSortMissing... values) {
+			this.sortMissing = _listAdd(this.sortMissing, value, values);
+			return this;
+		}
+
+		/**
 		 * API name: {@code number_of_shards}
 		 */
 		public final Builder numberOfShards(@Nullable String value) {
@@ -1457,19 +1626,18 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code merge.scheduler.max_thread_count}
+		 * API name: {@code merge}
 		 */
-		public final Builder mergeSchedulerMaxThreadCount(@Nullable Integer value) {
-			this.mergeSchedulerMaxThreadCount = value;
+		public final Builder merge(@Nullable Merge value) {
+			this.merge = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code merge.scheduler.max_merge_count}
+		 * API name: {@code merge}
 		 */
-		public final Builder mergeSchedulerMaxMergeCount(@Nullable Integer value) {
-			this.mergeSchedulerMaxMergeCount = value;
-			return this;
+		public final Builder merge(Function<Merge.Builder, ObjectBuilder<Merge>> fn) {
+			return this.merge(fn.apply(new Merge.Builder()).build());
 		}
 
 		/**
@@ -1795,19 +1963,18 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code translog.durability}
+		 * API name: {@code translog}
 		 */
-		public final Builder translogDurability(@Nullable String value) {
-			this.translogDurability = value;
+		public final Builder translog(@Nullable Translog value) {
+			this.translog = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code translog.flush_threshold_size}
+		 * API name: {@code translog}
 		 */
-		public final Builder translogFlushThresholdSize(@Nullable String value) {
-			this.translogFlushThresholdSize = value;
-			return this;
+		public final Builder translog(Function<Translog.Builder, ObjectBuilder<Translog>> fn) {
+			return this.translog(fn.apply(new Translog.Builder()).build());
 		}
 
 		/**
@@ -1882,6 +2049,29 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code shards}
+		 */
+		public final Builder shards(@Nullable Integer value) {
+			this.shards = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code queries}
+		 */
+		public final Builder queries(@Nullable Queries value) {
+			this.queries = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code queries}
+		 */
+		public final Builder queries(Function<Queries.Builder, ObjectBuilder<Queries>> fn) {
+			return this.queries(fn.apply(new Queries.Builder()).build());
+		}
+
+		/**
 		 * Builds a {@link IndexSettings}.
 		 *
 		 * @throws NullPointerException
@@ -1914,6 +2104,14 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::softDeletesRetentionLeasePeriod, Time._DESERIALIZER, "soft_deletes.retention_lease.period",
 				"index.soft_deletes.retention_lease.period");
 		op.add(Builder::sort, IndexSegmentSort._DESERIALIZER, "sort", "index.sort");
+		op.add(Builder::sortField, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+				"sort.field", "index.sort.field");
+		op.add(Builder::sortOrder, JsonpDeserializer.arrayDeserializer(SegmentSortOrder._DESERIALIZER), "sort.order",
+				"index.sort.order");
+		op.add(Builder::sortMode, JsonpDeserializer.arrayDeserializer(SegmentSortMode._DESERIALIZER), "sort.mode",
+				"index.sort.mode");
+		op.add(Builder::sortMissing, JsonpDeserializer.arrayDeserializer(SegmentSortMissing._DESERIALIZER),
+				"sort.missing", "index.sort.missing");
 		op.add(Builder::numberOfShards, JsonpDeserializer.stringDeserializer(), "number_of_shards",
 				"index.number_of_shards");
 		op.add(Builder::numberOfReplicas, JsonpDeserializer.stringDeserializer(), "number_of_replicas",
@@ -1930,10 +2128,7 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::hidden, JsonpDeserializer.booleanDeserializer(), "hidden", "index.hidden");
 		op.add(Builder::autoExpandReplicas, JsonpDeserializer.stringDeserializer(), "auto_expand_replicas",
 				"index.auto_expand_replicas");
-		op.add(Builder::mergeSchedulerMaxThreadCount, JsonpDeserializer.integerDeserializer(),
-				"merge.scheduler.max_thread_count", "index.merge.scheduler.max_thread_count");
-		op.add(Builder::mergeSchedulerMaxMergeCount, JsonpDeserializer.integerDeserializer(),
-				"merge.scheduler.max_merge_count", "index.merge.scheduler.max_merge_count");
+		op.add(Builder::merge, Merge._DESERIALIZER, "merge");
 		op.add(Builder::searchIdleAfter, Time._DESERIALIZER, "search.idle.after", "index.search.idle.after");
 		op.add(Builder::refreshInterval, Time._DESERIALIZER, "refresh_interval", "index.refresh_interval");
 		op.add(Builder::maxResultWindow, JsonpDeserializer.integerDeserializer(), "max_result_window",
@@ -1989,10 +2184,7 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format", "index.format");
 		op.add(Builder::maxSlicesPerScroll, JsonpDeserializer.integerDeserializer(), "max_slices_per_scroll",
 				"index.max_slices_per_scroll");
-		op.add(Builder::translogDurability, JsonpDeserializer.stringDeserializer(), "translog.durability",
-				"index.translog.durability");
-		op.add(Builder::translogFlushThresholdSize, JsonpDeserializer.stringDeserializer(),
-				"translog.flush_threshold_size", "index.translog.flush_threshold_size");
+		op.add(Builder::translog, Translog._DESERIALIZER, "translog");
 		op.add(Builder::queryStringLenient, JsonpDeserializer.booleanDeserializer(), "query_string.lenient",
 				"index.query_string.lenient");
 		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority", "index.priority");
@@ -2000,6 +2192,8 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis", "index.analysis");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 		op.add(Builder::timeSeries, IndexSettingsTimeSeries._DESERIALIZER, "time_series");
+		op.add(Builder::shards, JsonpDeserializer.integerDeserializer(), "shards");
+		op.add(Builder::queries, Queries._DESERIALIZER, "queries");
 
 	}
 

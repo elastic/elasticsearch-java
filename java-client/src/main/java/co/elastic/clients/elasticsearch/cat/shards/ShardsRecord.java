@@ -176,12 +176,6 @@ public class ShardsRecord implements JsonpSerializable {
 	private final String mergesTotalTime;
 
 	@Nullable
-	private final String refreshTotal;
-
-	@Nullable
-	private final String refreshTime;
-
-	@Nullable
 	private final String refreshExternalTotal;
 
 	@Nullable
@@ -321,8 +315,6 @@ public class ShardsRecord implements JsonpSerializable {
 		this.mergesTotalDocs = builder.mergesTotalDocs;
 		this.mergesTotalSize = builder.mergesTotalSize;
 		this.mergesTotalTime = builder.mergesTotalTime;
-		this.refreshTotal = builder.refreshTotal;
-		this.refreshTime = builder.refreshTime;
 		this.refreshExternalTotal = builder.refreshExternalTotal;
 		this.refreshExternalTime = builder.refreshExternalTime;
 		this.refreshListeners = builder.refreshListeners;
@@ -789,26 +781,6 @@ public class ShardsRecord implements JsonpSerializable {
 	@Nullable
 	public final String mergesTotalTime() {
 		return this.mergesTotalTime;
-	}
-
-	/**
-	 * total refreshes
-	 * <p>
-	 * API name: {@code refresh.total}
-	 */
-	@Nullable
-	public final String refreshTotal() {
-		return this.refreshTotal;
-	}
-
-	/**
-	 * time spent in refreshes
-	 * <p>
-	 * API name: {@code refresh.time}
-	 */
-	@Nullable
-	public final String refreshTime() {
-		return this.refreshTime;
 	}
 
 	/**
@@ -1348,16 +1320,6 @@ public class ShardsRecord implements JsonpSerializable {
 			generator.write(this.mergesTotalTime);
 
 		}
-		if (this.refreshTotal != null) {
-			generator.writeKey("refresh.total");
-			generator.write(this.refreshTotal);
-
-		}
-		if (this.refreshTime != null) {
-			generator.writeKey("refresh.time");
-			generator.write(this.refreshTime);
-
-		}
 		if (this.refreshExternalTotal != null) {
 			generator.writeKey("refresh.external_total");
 			generator.write(this.refreshExternalTotal);
@@ -1651,12 +1613,6 @@ public class ShardsRecord implements JsonpSerializable {
 
 		@Nullable
 		private String mergesTotalTime;
-
-		@Nullable
-		private String refreshTotal;
-
-		@Nullable
-		private String refreshTime;
 
 		@Nullable
 		private String refreshExternalTotal;
@@ -2182,26 +2138,6 @@ public class ShardsRecord implements JsonpSerializable {
 		}
 
 		/**
-		 * total refreshes
-		 * <p>
-		 * API name: {@code refresh.total}
-		 */
-		public final Builder refreshTotal(@Nullable String value) {
-			this.refreshTotal = value;
-			return this;
-		}
-
-		/**
-		 * time spent in refreshes
-		 * <p>
-		 * API name: {@code refresh.time}
-		 */
-		public final Builder refreshTime(@Nullable String value) {
-			this.refreshTime = value;
-			return this;
-		}
-
-		/**
 		 * total external refreshes
 		 * <p>
 		 * API name: {@code refresh.external_total}
@@ -2600,8 +2536,6 @@ public class ShardsRecord implements JsonpSerializable {
 				"mergesTotalSize");
 		op.add(Builder::mergesTotalTime, JsonpDeserializer.stringDeserializer(), "merges.total_time", "mtt",
 				"mergesTotalTime");
-		op.add(Builder::refreshTotal, JsonpDeserializer.stringDeserializer(), "refresh.total");
-		op.add(Builder::refreshTime, JsonpDeserializer.stringDeserializer(), "refresh.time");
 		op.add(Builder::refreshExternalTotal, JsonpDeserializer.stringDeserializer(), "refresh.external_total", "rto",
 				"refreshTotal");
 		op.add(Builder::refreshExternalTime, JsonpDeserializer.stringDeserializer(), "refresh.external_time", "rti",

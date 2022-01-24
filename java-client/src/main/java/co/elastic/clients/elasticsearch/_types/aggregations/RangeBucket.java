@@ -58,6 +58,9 @@ public class RangeBucket extends MultiBucketBase {
 	@Nullable
 	private final String toAsString;
 
+	@Nullable
+	private final String key;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private RangeBucket(Builder builder) {
@@ -67,6 +70,7 @@ public class RangeBucket extends MultiBucketBase {
 		this.to = builder.to;
 		this.fromAsString = builder.fromAsString;
 		this.toAsString = builder.toAsString;
+		this.key = builder.key;
 
 	}
 
@@ -106,6 +110,16 @@ public class RangeBucket extends MultiBucketBase {
 		return this.toAsString;
 	}
 
+	/**
+	 * The bucket key. Present if the aggregation is <em>not</em> keyed
+	 * <p>
+	 * API name: {@code key}
+	 */
+	@Nullable
+	public final String key() {
+		return this.key;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -129,6 +143,11 @@ public class RangeBucket extends MultiBucketBase {
 			generator.write(this.toAsString);
 
 		}
+		if (this.key != null) {
+			generator.writeKey("key");
+			generator.write(this.key);
+
+		}
 
 	}
 
@@ -150,6 +169,9 @@ public class RangeBucket extends MultiBucketBase {
 
 		@Nullable
 		private String toAsString;
+
+		@Nullable
+		private String key;
 
 		/**
 		 * API name: {@code from}
@@ -180,6 +202,16 @@ public class RangeBucket extends MultiBucketBase {
 		 */
 		public final Builder toAsString(@Nullable String value) {
 			this.toAsString = value;
+			return this;
+		}
+
+		/**
+		 * The bucket key. Present if the aggregation is <em>not</em> keyed
+		 * <p>
+		 * API name: {@code key}
+		 */
+		public final Builder key(@Nullable String value) {
+			this.key = value;
 			return this;
 		}
 
@@ -215,6 +247,7 @@ public class RangeBucket extends MultiBucketBase {
 		op.add(Builder::to, JsonpDeserializer.doubleDeserializer(), "to");
 		op.add(Builder::fromAsString, JsonpDeserializer.stringDeserializer(), "from_as_string");
 		op.add(Builder::toAsString, JsonpDeserializer.stringDeserializer(), "to_as_string");
+		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
 
 	}
 

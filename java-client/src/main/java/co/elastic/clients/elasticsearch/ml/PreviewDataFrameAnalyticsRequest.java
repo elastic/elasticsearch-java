@@ -75,9 +75,9 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 	}
 
 	/**
-	 * A data frame analytics config as described in Create data frame analytics
-	 * jobs. Note that id and dest don’t need to be provided in the context of this
-	 * API.
+	 * A data frame analytics config as described in create data frame analytics
+	 * jobs. Note that <code>id</code> and <code>dest</code> don’t need to be
+	 * provided in the context of this API.
 	 * <p>
 	 * API name: {@code config}
 	 */
@@ -129,9 +129,9 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 		private String id;
 
 		/**
-		 * A data frame analytics config as described in Create data frame analytics
-		 * jobs. Note that id and dest don’t need to be provided in the context of this
-		 * API.
+		 * A data frame analytics config as described in create data frame analytics
+		 * jobs. Note that <code>id</code> and <code>dest</code> don’t need to be
+		 * provided in the context of this API.
 		 * <p>
 		 * API name: {@code config}
 		 */
@@ -141,9 +141,9 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 		}
 
 		/**
-		 * A data frame analytics config as described in Create data frame analytics
-		 * jobs. Note that id and dest don’t need to be provided in the context of this
-		 * API.
+		 * A data frame analytics config as described in create data frame analytics
+		 * jobs. Note that <code>id</code> and <code>dest</code> don’t need to be
+		 * provided in the context of this API.
 		 * <p>
 		 * API name: {@code config}
 		 */

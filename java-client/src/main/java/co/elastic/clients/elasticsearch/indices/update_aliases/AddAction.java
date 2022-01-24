@@ -79,6 +79,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	@Nullable
 	private final String searchRouting;
 
+	@Nullable
+	private final Boolean mustExist;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private AddAction(Builder builder) {
@@ -93,6 +96,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		this.isWriteIndex = builder.isWriteIndex;
 		this.routing = builder.routing;
 		this.searchRouting = builder.searchRouting;
+		this.mustExist = builder.mustExist;
 
 	}
 
@@ -187,6 +191,14 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code must_exist}
+	 */
+	@Nullable
+	public final Boolean mustExist() {
+		return this.mustExist;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -257,6 +269,11 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 			generator.write(this.searchRouting);
 
 		}
+		if (this.mustExist != null) {
+			generator.writeKey("must_exist");
+			generator.write(this.mustExist);
+
+		}
 
 	}
 
@@ -296,6 +313,9 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 
 		@Nullable
 		private String searchRouting;
+
+		@Nullable
+		private Boolean mustExist;
 
 		/**
 		 * API name: {@code alias}
@@ -409,6 +429,14 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code must_exist}
+		 */
+		public final Builder mustExist(@Nullable Boolean value) {
+			this.mustExist = value;
+			return this;
+		}
+
+		/**
 		 * Builds a {@link AddAction}.
 		 *
 		 * @throws NullPointerException
@@ -443,6 +471,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		op.add(Builder::isWriteIndex, JsonpDeserializer.booleanDeserializer(), "is_write_index");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::searchRouting, JsonpDeserializer.stringDeserializer(), "search_routing");
+		op.add(Builder::mustExist, JsonpDeserializer.booleanDeserializer(), "must_exist");
 
 	}
 

@@ -37,8 +37,10 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.Request
@@ -53,13 +55,13 @@ import javax.annotation.Nullable;
  */
 
 public class GetRollupIndexCapsRequest extends RequestBase {
-	private final String index;
+	private final List<String> index;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetRollupIndexCapsRequest(Builder builder) {
 
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 
 	}
 
@@ -73,7 +75,7 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public final String index() {
+	public final List<String> index() {
 		return this.index;
 	}
 
@@ -84,16 +86,31 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRollupIndexCapsRequest> {
-		private String index;
+		private List<String> index;
 
 		/**
 		 * Required - The rollup index or index pattern to obtain rollup capabilities
 		 * from.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(String value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
+			return this;
+		}
+
+		/**
+		 * Required - The rollup index or index pattern to obtain rollup capabilities
+		 * from.
+		 * <p>
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
+		 */
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -135,7 +152,7 @@ public class GetRollupIndexCapsRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_rollup");
 					buf.append("/data");
 					return buf.toString();

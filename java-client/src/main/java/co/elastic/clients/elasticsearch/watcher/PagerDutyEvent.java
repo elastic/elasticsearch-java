@@ -49,6 +49,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PagerDutyEvent implements JsonpSerializable {
+	@Nullable
 	private final String account;
 
 	private final boolean attachPayload;
@@ -61,7 +62,6 @@ public class PagerDutyEvent implements JsonpSerializable {
 
 	private final List<PagerDutyContext> contexts;
 
-	@Nullable
 	private final String description;
 
 	@Nullable
@@ -69,28 +69,33 @@ public class PagerDutyEvent implements JsonpSerializable {
 
 	private final String incidentKey;
 
+	@Nullable
+	private final PagerDutyEventProxy proxy;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private PagerDutyEvent(Builder builder) {
+	protected PagerDutyEvent(AbstractBuilder<?> builder) {
 
-		this.account = ApiTypeHelper.requireNonNull(builder.account, this, "account");
+		this.account = builder.account;
 		this.attachPayload = ApiTypeHelper.requireNonNull(builder.attachPayload, this, "attachPayload");
 		this.client = builder.client;
 		this.clientUrl = builder.clientUrl;
-		this.contexts = ApiTypeHelper.unmodifiableRequired(builder.contexts, this, "contexts");
-		this.description = builder.description;
+		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
+		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.eventType = builder.eventType;
 		this.incidentKey = ApiTypeHelper.requireNonNull(builder.incidentKey, this, "incidentKey");
+		this.proxy = builder.proxy;
 
 	}
 
-	public static PagerDutyEvent of(Function<Builder, ObjectBuilder<PagerDutyEvent>> fn) {
+	public static PagerDutyEvent pagerDutyEventOf(Function<Builder, ObjectBuilder<PagerDutyEvent>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code account}
+	 * API name: {@code account}
 	 */
+	@Nullable
 	public final String account() {
 		return this.account;
 	}
@@ -119,16 +124,15 @@ public class PagerDutyEvent implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code contexts}
+	 * API name: {@code contexts}
 	 */
 	public final List<PagerDutyContext> contexts() {
 		return this.contexts;
 	}
 
 	/**
-	 * API name: {@code description}
+	 * Required - API name: {@code description}
 	 */
-	@Nullable
 	public final String description() {
 		return this.description;
 	}
@@ -149,6 +153,14 @@ public class PagerDutyEvent implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code proxy}
+	 */
+	@Nullable
+	public final PagerDutyEventProxy proxy() {
+		return this.proxy;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -159,9 +171,11 @@ public class PagerDutyEvent implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("account");
-		generator.write(this.account);
+		if (this.account != null) {
+			generator.writeKey("account");
+			generator.write(this.account);
 
+		}
 		generator.writeKey("attach_payload");
 		generator.write(this.attachPayload);
 
@@ -185,17 +199,21 @@ public class PagerDutyEvent implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.description != null) {
-			generator.writeKey("description");
-			generator.write(this.description);
+		generator.writeKey("description");
+		generator.write(this.description);
 
-		}
 		if (this.eventType != null) {
 			generator.writeKey("event_type");
 			this.eventType.serialize(generator, mapper);
 		}
 		generator.writeKey("incident_key");
 		generator.write(this.incidentKey);
+
+		if (this.proxy != null) {
+			generator.writeKey("proxy");
+			this.proxy.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -205,109 +223,11 @@ public class PagerDutyEvent implements JsonpSerializable {
 	 * Builder for {@link PagerDutyEvent}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyEvent> {
-		private String account;
-
-		private Boolean attachPayload;
-
-		@Nullable
-		private String client;
-
-		@Nullable
-		private String clientUrl;
-
-		private List<PagerDutyContext> contexts;
-
-		@Nullable
-		private String description;
-
-		@Nullable
-		private PagerDutyEventType eventType;
-
-		private String incidentKey;
-
-		/**
-		 * Required - API name: {@code account}
-		 */
-		public final Builder account(String value) {
-			this.account = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code attach_payload}
-		 */
-		public final Builder attachPayload(boolean value) {
-			this.attachPayload = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code client}
-		 */
-		public final Builder client(@Nullable String value) {
-			this.client = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code client_url}
-		 */
-		public final Builder clientUrl(@Nullable String value) {
-			this.clientUrl = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code contexts}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>contexts</code>.
-		 */
-		public final Builder contexts(List<PagerDutyContext> list) {
-			this.contexts = _listAddAll(this.contexts, list);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code contexts}
-		 * <p>
-		 * Adds one or more values to <code>contexts</code>.
-		 */
-		public final Builder contexts(PagerDutyContext value, PagerDutyContext... values) {
-			this.contexts = _listAdd(this.contexts, value, values);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code contexts}
-		 * <p>
-		 * Adds a value to <code>contexts</code> using a builder lambda.
-		 */
-		public final Builder contexts(Function<PagerDutyContext.Builder, ObjectBuilder<PagerDutyContext>> fn) {
-			return contexts(fn.apply(new PagerDutyContext.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code description}
-		 */
-		public final Builder description(@Nullable String value) {
-			this.description = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code event_type}
-		 */
-		public final Builder eventType(@Nullable PagerDutyEventType value) {
-			this.eventType = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code incident_key}
-		 */
-		public final Builder incidentKey(String value) {
-			this.incidentKey = value;
+	public static class Builder extends PagerDutyEvent.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<PagerDutyEvent> {
+		@Override
+		protected Builder self() {
 			return this;
 		}
 
@@ -324,6 +244,137 @@ public class PagerDutyEvent implements JsonpSerializable {
 		}
 	}
 
+	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
+			extends
+				ObjectBuilderBase {
+		@Nullable
+		private String account;
+
+		private Boolean attachPayload;
+
+		@Nullable
+		private String client;
+
+		@Nullable
+		private String clientUrl;
+
+		@Nullable
+		private List<PagerDutyContext> contexts;
+
+		private String description;
+
+		@Nullable
+		private PagerDutyEventType eventType;
+
+		private String incidentKey;
+
+		@Nullable
+		private PagerDutyEventProxy proxy;
+
+		/**
+		 * API name: {@code account}
+		 */
+		public final BuilderT account(@Nullable String value) {
+			this.account = value;
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code attach_payload}
+		 */
+		public final BuilderT attachPayload(boolean value) {
+			this.attachPayload = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code client}
+		 */
+		public final BuilderT client(@Nullable String value) {
+			this.client = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code client_url}
+		 */
+		public final BuilderT clientUrl(@Nullable String value) {
+			this.clientUrl = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>contexts</code>.
+		 */
+		public final BuilderT contexts(List<PagerDutyContext> list) {
+			this.contexts = _listAddAll(this.contexts, list);
+			return self();
+		}
+
+		/**
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds one or more values to <code>contexts</code>.
+		 */
+		public final BuilderT contexts(PagerDutyContext value, PagerDutyContext... values) {
+			this.contexts = _listAdd(this.contexts, value, values);
+			return self();
+		}
+
+		/**
+		 * API name: {@code contexts}
+		 * <p>
+		 * Adds a value to <code>contexts</code> using a builder lambda.
+		 */
+		public final BuilderT contexts(Function<PagerDutyContext.Builder, ObjectBuilder<PagerDutyContext>> fn) {
+			return contexts(fn.apply(new PagerDutyContext.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code description}
+		 */
+		public final BuilderT description(String value) {
+			this.description = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code event_type}
+		 */
+		public final BuilderT eventType(@Nullable PagerDutyEventType value) {
+			this.eventType = value;
+			return self();
+		}
+
+		/**
+		 * Required - API name: {@code incident_key}
+		 */
+		public final BuilderT incidentKey(String value) {
+			this.incidentKey = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code proxy}
+		 */
+		public final BuilderT proxy(@Nullable PagerDutyEventProxy value) {
+			this.proxy = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code proxy}
+		 */
+		public final BuilderT proxy(Function<PagerDutyEventProxy.Builder, ObjectBuilder<PagerDutyEventProxy>> fn) {
+			return this.proxy(fn.apply(new PagerDutyEventProxy.Builder()).build());
+		}
+
+		protected abstract BuilderT self();
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -332,16 +383,19 @@ public class PagerDutyEvent implements JsonpSerializable {
 	public static final JsonpDeserializer<PagerDutyEvent> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			PagerDutyEvent::setupPagerDutyEventDeserializer);
 
-	protected static void setupPagerDutyEventDeserializer(ObjectDeserializer<PagerDutyEvent.Builder> op) {
+	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupPagerDutyEventDeserializer(
+			ObjectDeserializer<BuilderT> op) {
 
-		op.add(Builder::account, JsonpDeserializer.stringDeserializer(), "account");
-		op.add(Builder::attachPayload, JsonpDeserializer.booleanDeserializer(), "attach_payload");
-		op.add(Builder::client, JsonpDeserializer.stringDeserializer(), "client");
-		op.add(Builder::clientUrl, JsonpDeserializer.stringDeserializer(), "client_url");
-		op.add(Builder::contexts, JsonpDeserializer.arrayDeserializer(PagerDutyContext._DESERIALIZER), "contexts");
-		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::eventType, PagerDutyEventType._DESERIALIZER, "event_type");
-		op.add(Builder::incidentKey, JsonpDeserializer.stringDeserializer(), "incident_key");
+		op.add(AbstractBuilder::account, JsonpDeserializer.stringDeserializer(), "account");
+		op.add(AbstractBuilder::attachPayload, JsonpDeserializer.booleanDeserializer(), "attach_payload");
+		op.add(AbstractBuilder::client, JsonpDeserializer.stringDeserializer(), "client");
+		op.add(AbstractBuilder::clientUrl, JsonpDeserializer.stringDeserializer(), "client_url");
+		op.add(AbstractBuilder::contexts, JsonpDeserializer.arrayDeserializer(PagerDutyContext._DESERIALIZER),
+				"contexts", "context");
+		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(AbstractBuilder::eventType, PagerDutyEventType._DESERIALIZER, "event_type");
+		op.add(AbstractBuilder::incidentKey, JsonpDeserializer.stringDeserializer(), "incident_key");
+		op.add(AbstractBuilder::proxy, PagerDutyEventProxy._DESERIALIZER, "proxy");
 
 	}
 

@@ -106,7 +106,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 
 	private final Map<String, Property> properties;
 
-	private final Map<String, RuntimeField> runtime;
+	private final Map<String, List<RuntimeField>> runtime;
 
 	@Nullable
 	private final Time timeout;
@@ -307,7 +307,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 	 * <p>
 	 * API name: {@code runtime}
 	 */
-	public final Map<String, RuntimeField> runtime() {
+	public final Map<String, List<RuntimeField>> runtime() {
 		return this.runtime;
 	}
 
@@ -425,9 +425,16 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		if (ApiTypeHelper.isDefined(this.runtime)) {
 			generator.writeKey("runtime");
 			generator.writeStartObject();
-			for (Map.Entry<String, RuntimeField> item0 : this.runtime.entrySet()) {
+			for (Map.Entry<String, List<RuntimeField>> item0 : this.runtime.entrySet()) {
 				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (RuntimeField item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
 
 			}
 			generator.writeEnd();
@@ -488,7 +495,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		private Map<String, Property> properties;
 
 		@Nullable
-		private Map<String, RuntimeField> runtime;
+		private Map<String, List<RuntimeField>> runtime;
 
 		@Nullable
 		private Time timeout;
@@ -817,7 +824,7 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtime</code>.
 		 */
-		public final Builder runtime(Map<String, RuntimeField> map) {
+		public final Builder runtime(Map<String, List<RuntimeField>> map) {
 			this.runtime = _mapPutAll(this.runtime, map);
 			return this;
 		}
@@ -829,20 +836,9 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * Adds an entry to <code>runtime</code>.
 		 */
-		public final Builder runtime(String key, RuntimeField value) {
+		public final Builder runtime(String key, List<RuntimeField> value) {
 			this.runtime = _mapPut(this.runtime, key, value);
 			return this;
-		}
-
-		/**
-		 * Mapping of runtime fields for the index.
-		 * <p>
-		 * API name: {@code runtime}
-		 * <p>
-		 * Adds an entry to <code>runtime</code> using a builder lambda.
-		 */
-		public final Builder runtime(String key, Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
-			return runtime(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -910,7 +906,8 @@ public class PutMappingRequest extends RequestBase implements JsonpSerializable 
 				JsonpDeserializer.stringMapDeserializer(DynamicTemplate._DESERIALIZER)), "dynamic_templates");
 		op.add(Builder::numericDetection, JsonpDeserializer.booleanDeserializer(), "numeric_detection");
 		op.add(Builder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER), "properties");
-		op.add(Builder::runtime, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER), "runtime");
+		op.add(Builder::runtime, JsonpDeserializer
+				.stringMapDeserializer(JsonpDeserializer.arrayDeserializer(RuntimeField._DESERIALIZER)), "runtime");
 
 	}
 

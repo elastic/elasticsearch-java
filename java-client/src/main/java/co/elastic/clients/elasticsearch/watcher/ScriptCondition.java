@@ -49,19 +49,25 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ScriptCondition implements ConditionVariant, JsonpSerializable {
+	@Nullable
 	private final String lang;
 
 	private final Map<String, JsonData> params;
 
+	@Nullable
 	private final String source;
+
+	@Nullable
+	private final String id;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ScriptCondition(Builder builder) {
 
-		this.lang = ApiTypeHelper.requireNonNull(builder.lang, this, "lang");
+		this.lang = builder.lang;
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
+		this.source = builder.source;
+		this.id = builder.id;
 
 	}
 
@@ -78,8 +84,9 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code lang}
+	 * API name: {@code lang}
 	 */
+	@Nullable
 	public final String lang() {
 		return this.lang;
 	}
@@ -92,10 +99,19 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code source}
+	 * API name: {@code source}
 	 */
+	@Nullable
 	public final String source() {
 		return this.source;
+	}
+
+	/**
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public final String id() {
+		return this.id;
 	}
 
 	/**
@@ -109,9 +125,11 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("lang");
-		generator.write(this.lang);
+		if (this.lang != null) {
+			generator.writeKey("lang");
+			generator.write(this.lang);
 
+		}
 		if (ApiTypeHelper.isDefined(this.params)) {
 			generator.writeKey("params");
 			generator.writeStartObject();
@@ -123,8 +141,16 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("source");
-		generator.write(this.source);
+		if (this.source != null) {
+			generator.writeKey("source");
+			generator.write(this.source);
+
+		}
+		if (this.id != null) {
+			generator.writeKey("id");
+			generator.write(this.id);
+
+		}
 
 	}
 
@@ -135,17 +161,22 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptCondition> {
+		@Nullable
 		private String lang;
 
 		@Nullable
 		private Map<String, JsonData> params;
 
+		@Nullable
 		private String source;
 
+		@Nullable
+		private String id;
+
 		/**
-		 * Required - API name: {@code lang}
+		 * API name: {@code lang}
 		 */
-		public final Builder lang(String value) {
+		public final Builder lang(@Nullable String value) {
 			this.lang = value;
 			return this;
 		}
@@ -171,10 +202,18 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code source}
+		 * API name: {@code source}
 		 */
-		public final Builder source(String value) {
+		public final Builder source(@Nullable String value) {
 			this.source = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code id}
+		 */
+		public final Builder id(@Nullable String value) {
+			this.id = value;
 			return this;
 		}
 
@@ -204,6 +243,7 @@ public class ScriptCondition implements ConditionVariant, JsonpSerializable {
 		op.add(Builder::lang, JsonpDeserializer.stringDeserializer(), "lang");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
+		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 
 	}
 

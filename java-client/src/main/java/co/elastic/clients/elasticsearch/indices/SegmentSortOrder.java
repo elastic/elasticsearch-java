@@ -34,20 +34,26 @@ import co.elastic.clients.json.JsonpDeserializer;
  */
 @JsonpDeserializable
 public enum SegmentSortOrder implements JsonEnum {
-	Asc("asc"),
+	Asc("asc", "ASC"),
 
-	Desc("desc"),
+	Desc("desc", "DESC"),
 
 	;
 
 	private final String jsonValue;
+	private final String[] aliases;
 
-	SegmentSortOrder(String jsonValue) {
+	SegmentSortOrder(String jsonValue, String... aliases) {
 		this.jsonValue = jsonValue;
+		this.aliases = aliases;
 	}
 
 	public String jsonValue() {
 		return this.jsonValue;
+	}
+
+	public String[] aliases() {
+		return this.aliases;
 	}
 
 	public static final JsonEnum.Deserializer<SegmentSortOrder> _DESERIALIZER = new JsonEnum.Deserializer<>(
