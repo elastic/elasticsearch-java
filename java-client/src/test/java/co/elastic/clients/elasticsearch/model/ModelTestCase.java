@@ -101,9 +101,14 @@ public abstract class ModelTestCase extends Assert {
     }
 
     protected <T> T fromJson(String json, JsonpDeserializer<T> deserializer) {
+        return fromJson(json, deserializer, mapper);
+    }
+
+    protected <T> T fromJson(String json, JsonpDeserializer<T> deserializer, JsonpMapper mapper) {
         JsonParser parser = mapper.jsonProvider().createParser(new StringReader(json));
         return deserializer.deserialize(parser, mapper);
     }
+
 
     public static void assertGetterType(Class<?> expected, Class<?> clazz, String name) {
         Method method;
