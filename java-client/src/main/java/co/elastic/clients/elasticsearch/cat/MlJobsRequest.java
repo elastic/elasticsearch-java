@@ -32,15 +32,18 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_jobs.Request
@@ -51,6 +54,10 @@ import javax.annotation.Nullable;
  * are enabled, you must have <code>monitor_ml</code>, <code>monitor</code>,
  * <code>manage_ml</code>, or <code>manage</code> cluster privileges to use this
  * API.
+ * <p>
+ * IMPORTANT: cat APIs are only intended for human consumption using the Kibana
+ * console or command line. They are not intended for use by applications. For
+ * application consumption, use the get anomaly detection job statistics API.
  * 
  * @see <a href="../doc-files/api-spec.html#cat.ml_jobs.Request">API
  *      specification</a>
@@ -64,10 +71,23 @@ public class MlJobsRequest extends CatRequestBase {
 	private final Bytes bytes;
 
 	@Nullable
+	private final String format;
+
+	private final List<CatAnonalyDetectorColumn> h;
+
+	@Nullable
+	private final Boolean help;
+
+	@Nullable
 	private final String jobId;
+
+	private final List<CatAnonalyDetectorColumn> s;
 
 	@Nullable
 	private final TimeUnit time;
+
+	@Nullable
+	private final Boolean v;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,8 +95,13 @@ public class MlJobsRequest extends CatRequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
+		this.format = builder.format;
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
+		this.help = builder.help;
 		this.jobId = builder.jobId;
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
 		this.time = builder.time;
+		this.v = builder.v;
 
 	}
 
@@ -116,6 +141,36 @@ public class MlJobsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Short version of the HTTP accept header. Valid values include JSON, YAML, for
+	 * example.
+	 * <p>
+	 * API name: {@code format}
+	 */
+	@Nullable
+	public final String format() {
+		return this.format;
+	}
+
+	/**
+	 * Comma-separated list of column names to display.
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<CatAnonalyDetectorColumn> h() {
+		return this.h;
+	}
+
+	/**
+	 * If true, the response includes help information.
+	 * <p>
+	 * API name: {@code help}
+	 */
+	@Nullable
+	public final Boolean help() {
+		return this.help;
+	}
+
+	/**
 	 * Identifier for the anomaly detection job.
 	 * <p>
 	 * API name: {@code job_id}
@@ -126,6 +181,16 @@ public class MlJobsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Comma-separated list of column names or column aliases used to sort the
+	 * response.
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<CatAnonalyDetectorColumn> s() {
+		return this.s;
+	}
+
+	/**
 	 * The unit used to display time values.
 	 * <p>
 	 * API name: {@code time}
@@ -133,6 +198,16 @@ public class MlJobsRequest extends CatRequestBase {
 	@Nullable
 	public final TimeUnit time() {
 		return this.time;
+	}
+
+	/**
+	 * If <code>true</code>, the response includes column headings.
+	 * <p>
+	 * API name: {@code v}
+	 */
+	@Nullable
+	public final Boolean v() {
+		return this.v;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -149,10 +224,25 @@ public class MlJobsRequest extends CatRequestBase {
 		private Bytes bytes;
 
 		@Nullable
+		private String format;
+
+		@Nullable
+		private List<CatAnonalyDetectorColumn> h;
+
+		@Nullable
+		private Boolean help;
+
+		@Nullable
 		private String jobId;
 
 		@Nullable
+		private List<CatAnonalyDetectorColumn> s;
+
+		@Nullable
 		private TimeUnit time;
+
+		@Nullable
+		private Boolean v;
 
 		/**
 		 * Specifies what to do when the request:
@@ -186,6 +276,51 @@ public class MlJobsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Short version of the HTTP accept header. Valid values include JSON, YAML, for
+		 * example.
+		 * <p>
+		 * API name: {@code format}
+		 */
+		public final Builder format(@Nullable String value) {
+			this.format = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names to display.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<CatAnonalyDetectorColumn> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names to display.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(CatAnonalyDetectorColumn value, CatAnonalyDetectorColumn... values) {
+			this.h = _listAdd(this.h, value, values);
+			return this;
+		}
+
+		/**
+		 * If true, the response includes help information.
+		 * <p>
+		 * API name: {@code help}
+		 */
+		public final Builder help(@Nullable Boolean value) {
+			this.help = value;
+			return this;
+		}
+
+		/**
 		 * Identifier for the anomaly detection job.
 		 * <p>
 		 * API name: {@code job_id}
@@ -196,12 +331,48 @@ public class MlJobsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Comma-separated list of column names or column aliases used to sort the
+		 * response.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<CatAnonalyDetectorColumn> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names or column aliases used to sort the
+		 * response.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(CatAnonalyDetectorColumn value, CatAnonalyDetectorColumn... values) {
+			this.s = _listAdd(this.s, value, values);
+			return this;
+		}
+
+		/**
 		 * The unit used to display time values.
 		 * <p>
 		 * API name: {@code time}
 		 */
 		public final Builder time(@Nullable TimeUnit value) {
 			this.time = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code>, the response includes column headings.
+		 * <p>
+		 * API name: {@code v}
+		 */
+		public final Builder v(@Nullable Boolean value) {
+			this.v = value;
 			return this;
 		}
 
@@ -265,8 +436,23 @@ public class MlJobsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (request.help != null) {
+					params.put("help", String.valueOf(request.help));
+				}
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
+				}
+				if (request.v != null) {
+					params.put("v", String.valueOf(request.v));
+				}
+				if (request.format != null) {
+					params.put("format", request.format);
+				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.time != null) {
 					params.put("time", request.time.jsonValue());

@@ -991,7 +991,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Gets configuration and usage information about transforms.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-transforms.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1009,7 +1009,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 *            a function that initializes a builder to create the
 	 *            {@link TransformsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-transforms.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1022,7 +1022,7 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 	 * Gets configuration and usage information about transforms.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/cat-transforms.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-transforms.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
