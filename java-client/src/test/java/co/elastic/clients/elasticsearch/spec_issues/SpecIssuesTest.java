@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.spec_issues;
 
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch.cluster.ClusterStatsResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
@@ -61,7 +62,17 @@ public class SpecIssuesTest extends ModelTestCase {
             resp.aggregations().get("login_filter").filter()
                 .aggregations().get("to_domain").sterms()
                 .buckets().array().get(0).key());
+    }
 
+    @Test
+    public void i0080_simpleError() {
+        // https://github.com/elastic/elasticsearch-java/issues/80
+        // When requesting a missing index, the error response in compact format.
+        // Fixed by adding ErrorCause.reason as a shortcut property
+        String json = "{\"error\":\"alias [not-existing-alias] missing\",\"status\":404}";
+        ErrorResponse err = fromJson(json, ErrorResponse.class);
+
+        assertEquals("alias [not-existing-alias] missing", err.error().reason());
     }
 
     @Test
