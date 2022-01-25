@@ -108,4 +108,8 @@ public class ElasticsearchTestServer implements AutoCloseable {
     public ElasticsearchClient client() {
         return client;
     }
+
+    public ElasticsearchAsyncClient asyncClient() {
+        return new ElasticsearchAsyncClient(client._transport(), client._transportOptions());
+    }
 }
