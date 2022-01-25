@@ -21,6 +21,8 @@ package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.Version;
+import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
+import org.apache.http.util.VersionInfo;
 import org.elasticsearch.client.RequestOptions;
 import org.elasticsearch.client.WarningsHandler;
 
@@ -107,6 +109,9 @@ public class RestClientOptions implements TransportOptions {
 
         @Override
         public TransportOptions.Builder addHeader(String name, String value) {
+            if (name.equalsIgnoreCase(CLIENT_META)) {
+                return this;
+            }
             if (name.equalsIgnoreCase(USER_AGENT)) {
                 // We must filter out our own user-agent from the options or they'll end up as multiple values for the header
                 RequestOptions options = builder.build();
@@ -159,6 +164,7 @@ public class RestClientOptions implements TransportOptions {
     }
 
     private static final String USER_AGENT = "User-Agent";
+    private static final String CLIENT_META = "X-Elastic-Client-Meta";
 
     static RestClientOptions initialOptions() {
         String ua = String.format(
@@ -171,8 +177,41 @@ public class RestClientOptions implements TransportOptions {
         return new RestClientOptions(
             RequestOptions.DEFAULT.toBuilder()
                 .addHeader(USER_AGENT, ua)
+                .addHeader(CLIENT_META, getClientMeta())
                 .addHeader("Accept", RestClientTransport.JsonContentType.toString())
                 .build()
         );
+    }
+
+    private static String getClientMeta() {
+
+        VersionInfo httpClientVersion = null;
+        try {
+            httpClientVersion = VersionInfo.loadVersionInfo(
+                "org.apache.http.nio.client",
+                HttpAsyncClientBuilder.class.getClassLoader()
+            );
+        } catch (Exception e) {
+            // Keep unknown
+        }
+
+        // Use a single 'p' suffix for all prerelease versions (snapshot, beta, etc).
+        String metaVersion = Version.VERSION == null ? "" : Version.VERSION.toString();
+        int dashPos = metaVersion.indexOf('-');
+        if (dashPos > 0) {
+            metaVersion = metaVersion.substring(0, dashPos) + "p";
+        }
+
+        // service, language, transport, followed by additional information
+        return "es="
+            + metaVersion
+            + ",jv="
+            + System.getProperty("java.specification.version")
+            + ",hl=2"
+            + ",t="
+            + metaVersion
+            + ",hc="
+            + (httpClientVersion == null ? "" : httpClientVersion.getRelease())
+            + LanguageRuntimeVersions.getRuntimeMetadata();
     }
 }
