@@ -56,6 +56,7 @@ import javax.annotation.Nullable;
 public class ErrorCause implements JsonpSerializable {
 	private final Map<String, JsonData> metadata;
 
+	@Nullable
 	private final String type;
 
 	private final String reason;
@@ -76,7 +77,7 @@ public class ErrorCause implements JsonpSerializable {
 
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 
-		this.type = ApiTypeHelper.requireNonNull(builder.type, this, "type");
+		this.type = builder.type;
 		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.stackTrace = builder.stackTrace;
 		this.causedBy = builder.causedBy;
@@ -97,10 +98,11 @@ public class ErrorCause implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The type of error
+	 * The type of error
 	 * <p>
 	 * API name: {@code type}
 	 */
+	@Nullable
 	public final String type() {
 		return this.type;
 	}
@@ -164,9 +166,11 @@ public class ErrorCause implements JsonpSerializable {
 
 		}
 
-		generator.writeKey("type");
-		generator.write(this.type);
+		if (this.type != null) {
+			generator.writeKey("type");
+			generator.write(this.type);
 
+		}
 		generator.writeKey("reason");
 		generator.write(this.reason);
 
@@ -233,6 +237,7 @@ public class ErrorCause implements JsonpSerializable {
 			return this;
 		}
 
+		@Nullable
 		private String type;
 
 		private String reason;
@@ -250,11 +255,11 @@ public class ErrorCause implements JsonpSerializable {
 		private List<ErrorCause> suppressed;
 
 		/**
-		 * Required - The type of error
+		 * The type of error
 		 * <p>
 		 * API name: {@code type}
 		 */
-		public final Builder type(String value) {
+		public final Builder type(@Nullable String value) {
 			this.type = value;
 			return this;
 		}
@@ -389,6 +394,7 @@ public class ErrorCause implements JsonpSerializable {
 			}
 			builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
 		});
+		op.shortcutProperty("reason");
 
 	}
 

@@ -29,13 +29,13 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.function.Supplier;
+import javax.annotation.Nullable;
 
 // typedef: _global.msearch.MultiSearchItem
 
@@ -47,14 +47,15 @@ import java.util.function.Supplier;
  */
 
 public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
-	private final int status;
+	@Nullable
+	private final Integer status;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private MultiSearchItem(Builder<TDocument> builder) {
 		super(builder);
 
-		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.status = builder.status;
 
 	}
 
@@ -64,17 +65,21 @@ public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 	}
 
 	/**
-	 * Required - API name: {@code status}
+	 * API name: {@code status}
 	 */
-	public final int status() {
+	@Nullable
+	public final Integer status() {
 		return this.status;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("status");
-		generator.write(this.status);
+		if (this.status != null) {
+			generator.writeKey("status");
+			generator.write(this.status);
+
+		}
 
 	}
 
@@ -87,12 +92,13 @@ public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 	public static class Builder<TDocument> extends SearchResponse.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<MultiSearchItem<TDocument>> {
+		@Nullable
 		private Integer status;
 
 		/**
-		 * Required - API name: {@code status}
+		 * API name: {@code status}
 		 */
-		public final Builder<TDocument> status(int value) {
+		public final Builder<TDocument> status(@Nullable Integer value) {
 			this.status = value;
 			return this;
 		}
