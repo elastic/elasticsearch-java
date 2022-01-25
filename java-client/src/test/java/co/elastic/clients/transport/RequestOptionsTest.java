@@ -48,7 +48,6 @@ public class RequestOptionsTest extends Assert {
     private static HttpServer httpServer;
     private static RestClient restClient;
 
-
     @Before
     public void classSetup() throws IOException {
 
@@ -110,6 +109,7 @@ public class RequestOptionsTest extends Assert {
 
         assertTrue(props.getProperty("header-user-agent").startsWith("elastic-java/" + Version.VERSION.toString()));
         assertTrue(props.getProperty("header-x-elastic-client-meta").contains("es="));
+        assertTrue(props.getProperty("header-x-elastic-client-meta").contains("hl=2"));
         assertEquals(
             "application/vnd.elasticsearch+json; compatible-with=" + String.valueOf(Version.VERSION.major()),
             props.getProperty("header-accept")
