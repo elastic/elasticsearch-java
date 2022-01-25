@@ -25,12 +25,16 @@ package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.aggregations.TopMetricsAggregate
 
@@ -41,11 +45,15 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBucket> implements AggregateVariant {
+public class TopMetricsAggregate extends AggregateBase implements AggregateVariant {
+	private final List<TopMetrics> top;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TopMetricsAggregate(Builder builder) {
 		super(builder);
+
+		this.top = ApiTypeHelper.unmodifiableRequired(builder.top, this, "top");
 
 	}
 
@@ -61,15 +69,69 @@ public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBuck
 		return Aggregate.Kind.TopMetrics;
 	}
 
+	/**
+	 * Required - API name: {@code top}
+	 */
+	public final List<TopMetrics> top() {
+		return this.top;
+	}
+
+	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		super.serializeInternal(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.top)) {
+			generator.writeKey("top");
+			generator.writeStartArray();
+			for (TopMetrics item0 : this.top) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
 	 * Builder for {@link TopMetricsAggregate}.
 	 */
 
-	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<TopMetricsBucket, Builder>
+	public static class Builder extends AggregateBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TopMetricsAggregate> {
+		private List<TopMetrics> top;
+
+		/**
+		 * Required - API name: {@code top}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>top</code>.
+		 */
+		public final Builder top(List<TopMetrics> list) {
+			this.top = _listAddAll(this.top, list);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code top}
+		 * <p>
+		 * Adds one or more values to <code>top</code>.
+		 */
+		public final Builder top(TopMetrics value, TopMetrics... values) {
+			this.top = _listAdd(this.top, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code top}
+		 * <p>
+		 * Adds a value to <code>top</code> using a builder lambda.
+		 */
+		public final Builder top(Function<TopMetrics.Builder, ObjectBuilder<TopMetrics>> fn) {
+			return top(fn.apply(new TopMetrics.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -83,7 +145,6 @@ public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBuck
 		 */
 		public TopMetricsAggregate build() {
 			_checkSingleUse();
-			super.tBucketSerializer(null);
 
 			return new TopMetricsAggregate(this);
 		}
@@ -98,7 +159,8 @@ public class TopMetricsAggregate extends MultiBucketAggregateBase<TopMetricsBuck
 			.lazy(Builder::new, TopMetricsAggregate::setupTopMetricsAggregateDeserializer);
 
 	protected static void setupTopMetricsAggregateDeserializer(ObjectDeserializer<TopMetricsAggregate.Builder> op) {
-		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, TopMetricsBucket._DESERIALIZER);
+		AggregateBase.setupAggregateBaseDeserializer(op);
+		op.add(Builder::top, JsonpDeserializer.arrayDeserializer(TopMetrics._DESERIALIZER), "top");
 
 	}
 

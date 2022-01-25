@@ -29,7 +29,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,6 +49,7 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 	@Nullable
 	private final Boolean accepted;
 
+	@Nullable
 	private final SnapshotInfo snapshot;
 
 	// ---------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 	private CreateSnapshotResponse(Builder builder) {
 
 		this.accepted = builder.accepted;
-		this.snapshot = ApiTypeHelper.requireNonNull(builder.snapshot, this, "snapshot");
+		this.snapshot = builder.snapshot;
 
 	}
 
@@ -66,6 +66,9 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Equals <code>true</code> if the snapshot was accepted. Present when the
+	 * request had <code>wait_for_completion</code> set to <code>false</code>
+	 * <p>
 	 * API name: {@code accepted}
 	 */
 	@Nullable
@@ -74,8 +77,12 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code snapshot}
+	 * Snapshot information. Present when the request had
+	 * <code>wait_for_completion</code> set to <code>true</code>
+	 * <p>
+	 * API name: {@code snapshot}
 	 */
+	@Nullable
 	public final SnapshotInfo snapshot() {
 		return this.snapshot;
 	}
@@ -96,8 +103,11 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 			generator.write(this.accepted);
 
 		}
-		generator.writeKey("snapshot");
-		this.snapshot.serialize(generator, mapper);
+		if (this.snapshot != null) {
+			generator.writeKey("snapshot");
+			this.snapshot.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -111,9 +121,13 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 		@Nullable
 		private Boolean accepted;
 
+		@Nullable
 		private SnapshotInfo snapshot;
 
 		/**
+		 * Equals <code>true</code> if the snapshot was accepted. Present when the
+		 * request had <code>wait_for_completion</code> set to <code>false</code>
+		 * <p>
 		 * API name: {@code accepted}
 		 */
 		public final Builder accepted(@Nullable Boolean value) {
@@ -122,15 +136,21 @@ public class CreateSnapshotResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code snapshot}
+		 * Snapshot information. Present when the request had
+		 * <code>wait_for_completion</code> set to <code>true</code>
+		 * <p>
+		 * API name: {@code snapshot}
 		 */
-		public final Builder snapshot(SnapshotInfo value) {
+		public final Builder snapshot(@Nullable SnapshotInfo value) {
 			this.snapshot = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code snapshot}
+		 * Snapshot information. Present when the request had
+		 * <code>wait_for_completion</code> set to <code>true</code>
+		 * <p>
+		 * API name: {@code snapshot}
 		 */
 		public final Builder snapshot(Function<SnapshotInfo.Builder, ObjectBuilder<SnapshotInfo>> fn) {
 			return this.snapshot(fn.apply(new SnapshotInfo.Builder()).build());
