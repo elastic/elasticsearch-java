@@ -54,6 +54,10 @@ public abstract class JsonpMapperBase implements JsonpMapper {
             }
         }
 
+        if (clazz == Void.class) {
+            return (JsonpDeserializer<T>)JsonpDeserializerBase.VoidDeserializer.INSTANCE;
+        }
+
         return null;
     }
 

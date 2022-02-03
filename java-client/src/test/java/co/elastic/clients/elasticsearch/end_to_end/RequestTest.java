@@ -44,11 +44,14 @@ import co.elastic.clients.elasticsearch.indices.GetMappingResponse;
 import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
+import co.elastic.clients.util.DateTime;
 import org.junit.Assert;
 import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.io.IOException;
+import java.time.Instant;
+import java.time.format.DateTimeFormatter;
 import java.util.Collections;
 import java.util.Map;
 import java.util.concurrent.CompletableFuture;
@@ -68,6 +71,14 @@ public class RequestTest extends Assert {
     public void testCount() throws Exception {
         // Tests that a no-parameter method exists for endpoints that only have optional properties
         assertTrue(client.count().count() >= 0);
+    }
+
+    @Test
+    public void testBuildTime() throws Exception {
+        DateTime buildTime = client.info().version().buildDate();
+        Instant early2020 = DateTimeFormatter.ISO_INSTANT.parse("2020-01-01T00:00:00Z", Instant::from);
+
+        assertTrue(early2020.isBefore(buildTime.toInstant()));
     }
 
     @Test
