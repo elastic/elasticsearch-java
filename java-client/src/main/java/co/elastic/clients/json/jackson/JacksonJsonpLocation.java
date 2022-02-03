@@ -51,4 +51,9 @@ public class JacksonJsonpLocation implements JsonLocation {
         long charOffset = location.getCharOffset();
         return charOffset == -1 ? location.getByteOffset() : charOffset;
     }
+
+    @Override
+    public String toString() {
+        return "(line no="+location.getLineNr()+", column no="+location.getColumnNr()+", offset="+ location.getCharOffset() +")";
+    }
 }

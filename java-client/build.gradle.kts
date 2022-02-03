@@ -37,7 +37,8 @@ java {
     withSourcesJar()
 }
 
-tasks.withType<ProcessResources> {
+tasks.getByName<ProcessResources>("processResources") {
+    // Only process main source-set resources (test files are large)
     expand(
         "version" to version,
         "git_revision" to (if (rootProject.extra.has("gitHashFull")) rootProject.extra["gitHashFull"] else "unknown")

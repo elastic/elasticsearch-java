@@ -59,7 +59,7 @@ public class SerializationTest extends ModelTestCase {
 
             // Deserialize something dummy to resolve lazy deserializers
             JsonParser parser = mapper.jsonProvider().createParser(new StringReader("-"));
-            assertThrows(JsonParsingException.class, () -> deserializer.deserialize(parser, mapper));
+            assertThrows(info.getName(), JsonParsingException.class, () -> deserializer.deserialize(parser, mapper));
         }
 
         // Check that all classes that have a _DESERIALIZER field also have the annotation
