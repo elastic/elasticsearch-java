@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -60,7 +61,7 @@ public class TranslogStatus implements JsonpSerializable {
 	@Nullable
 	private final String totalTime;
 
-	private final String totalTimeInMillis;
+	private final DateTime totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -118,7 +119,7 @@ public class TranslogStatus implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code total_time_in_millis}
 	 */
-	public final String totalTimeInMillis() {
+	public final DateTime totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -151,7 +152,7 @@ public class TranslogStatus implements JsonpSerializable {
 
 		}
 		generator.writeKey("total_time_in_millis");
-		generator.write(this.totalTimeInMillis);
+		this.totalTimeInMillis.serialize(generator, mapper);
 
 	}
 
@@ -173,7 +174,7 @@ public class TranslogStatus implements JsonpSerializable {
 		@Nullable
 		private String totalTime;
 
-		private String totalTimeInMillis;
+		private DateTime totalTimeInMillis;
 
 		/**
 		 * Required - API name: {@code percent}
@@ -218,7 +219,7 @@ public class TranslogStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_time_in_millis}
 		 */
-		public final Builder totalTimeInMillis(String value) {
+		public final Builder totalTimeInMillis(DateTime value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -251,7 +252,7 @@ public class TranslogStatus implements JsonpSerializable {
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::totalOnStart, JsonpDeserializer.longDeserializer(), "total_on_start");
 		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
-		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
+		op.add(Builder::totalTimeInMillis, DateTime._DESERIALIZER, "total_time_in_millis");
 
 	}
 

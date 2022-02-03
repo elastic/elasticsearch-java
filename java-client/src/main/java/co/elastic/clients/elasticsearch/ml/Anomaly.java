@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -101,7 +102,7 @@ public class Anomaly implements JsonpSerializable {
 
 	private final String resultType;
 
-	private final String timestamp;
+	private final DateTime timestamp;
 
 	private final List<Double> typical;
 
@@ -290,7 +291,7 @@ public class Anomaly implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public final String timestamp() {
+	public final DateTime timestamp() {
 		return this.timestamp;
 	}
 
@@ -412,8 +413,7 @@ public class Anomaly implements JsonpSerializable {
 		generator.write(this.resultType);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
-
+		this.timestamp.serialize(generator, mapper);
 		if (ApiTypeHelper.isDefined(this.typical)) {
 			generator.writeKey("typical");
 			generator.writeStartArray();
@@ -486,7 +486,7 @@ public class Anomaly implements JsonpSerializable {
 
 		private String resultType;
 
-		private String timestamp;
+		private DateTime timestamp;
 
 		@Nullable
 		private List<Double> typical;
@@ -715,7 +715,7 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public final Builder timestamp(String value) {
+		public final Builder timestamp(DateTime value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -783,7 +783,7 @@ public class Anomaly implements JsonpSerializable {
 		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
 		op.add(Builder::recordScore, JsonpDeserializer.doubleDeserializer(), "record_score");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp");
 		op.add(Builder::typical, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"typical");
 

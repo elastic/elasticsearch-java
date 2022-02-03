@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -65,7 +66,7 @@ public class Email implements JsonpSerializable {
 	private final List<String> replyTo;
 
 	@Nullable
-	private final String sentDate;
+	private final DateTime sentDate;
 
 	private final String subject;
 
@@ -143,7 +144,7 @@ public class Email implements JsonpSerializable {
 	 * API name: {@code sent_date}
 	 */
 	@Nullable
-	public final String sentDate() {
+	public final DateTime sentDate() {
 		return this.sentDate;
 	}
 
@@ -225,8 +226,7 @@ public class Email implements JsonpSerializable {
 		}
 		if (this.sentDate != null) {
 			generator.writeKey("sent_date");
-			generator.write(this.sentDate);
-
+			this.sentDate.serialize(generator, mapper);
 		}
 		generator.writeKey("subject");
 		generator.write(this.subject);
@@ -302,7 +302,7 @@ public class Email implements JsonpSerializable {
 		private List<String> replyTo;
 
 		@Nullable
-		private String sentDate;
+		private DateTime sentDate;
 
 		private String subject;
 
@@ -405,7 +405,7 @@ public class Email implements JsonpSerializable {
 		/**
 		 * API name: {@code sent_date}
 		 */
-		public final BuilderT sentDate(@Nullable String value) {
+		public final BuilderT sentDate(@Nullable DateTime value) {
 			this.sentDate = value;
 			return self();
 		}
@@ -491,7 +491,7 @@ public class Email implements JsonpSerializable {
 		op.add(AbstractBuilder::priority, EmailPriority._DESERIALIZER, "priority");
 		op.add(AbstractBuilder::replyTo, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"reply_to");
-		op.add(AbstractBuilder::sentDate, JsonpDeserializer.stringDeserializer(), "sent_date");
+		op.add(AbstractBuilder::sentDate, DateTime._DESERIALIZER, "sent_date");
 		op.add(AbstractBuilder::subject, JsonpDeserializer.stringDeserializer(), "subject");
 		op.add(AbstractBuilder::to, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "to");
 		op.add(AbstractBuilder::attachments, JsonpDeserializer.stringMapDeserializer(EmailAttachment._DESERIALIZER),

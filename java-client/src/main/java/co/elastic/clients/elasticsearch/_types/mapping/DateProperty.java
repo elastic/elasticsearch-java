@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -64,7 +65,7 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 	private final Boolean index;
 
 	@Nullable
-	private final String nullValue;
+	private final DateTime nullValue;
 
 	@Nullable
 	private final Integer precisionStep;
@@ -144,7 +145,7 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 	 * API name: {@code null_value}
 	 */
 	@Nullable
-	public final String nullValue() {
+	public final DateTime nullValue() {
 		return this.nullValue;
 	}
 
@@ -195,8 +196,7 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 		}
 		if (this.nullValue != null) {
 			generator.writeKey("null_value");
-			generator.write(this.nullValue);
-
+			this.nullValue.serialize(generator, mapper);
 		}
 		if (this.precisionStep != null) {
 			generator.writeKey("precision_step");
@@ -236,7 +236,7 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 		private Boolean index;
 
 		@Nullable
-		private String nullValue;
+		private DateTime nullValue;
 
 		@Nullable
 		private Integer precisionStep;
@@ -294,7 +294,7 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 		/**
 		 * API name: {@code null_value}
 		 */
-		public final Builder nullValue(@Nullable String value) {
+		public final Builder nullValue(@Nullable DateTime value) {
 			this.nullValue = value;
 			return this;
 		}
@@ -348,7 +348,7 @@ public class DateProperty extends DocValuesPropertyBase implements PropertyVaria
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 		op.add(Builder::index, JsonpDeserializer.booleanDeserializer(), "index");
-		op.add(Builder::nullValue, JsonpDeserializer.stringDeserializer(), "null_value");
+		op.add(Builder::nullValue, DateTime._DESERIALIZER, "null_value");
 		op.add(Builder::precisionStep, JsonpDeserializer.integerDeserializer(), "precision_step");
 		op.add(Builder::locale, JsonpDeserializer.stringDeserializer(), "locale");
 

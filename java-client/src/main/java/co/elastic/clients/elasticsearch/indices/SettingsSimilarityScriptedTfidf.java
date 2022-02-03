@@ -21,8 +21,9 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.security.get_role;
+package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -33,39 +34,40 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
-// typedef: security.get_role.TransientMetadata
+// typedef: indices._types.SettingsSimilarityScriptedTfidf
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#security.get_role.TransientMetadata">API
+ *      "../doc-files/api-spec.html#indices._types.SettingsSimilarityScriptedTfidf">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TransientMetadata implements JsonpSerializable {
-	private final boolean enabled;
+public class SettingsSimilarityScriptedTfidf implements JsonpSerializable {
+	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TransientMetadata(Builder builder) {
+	private SettingsSimilarityScriptedTfidf(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
 	}
 
-	public static TransientMetadata of(Function<Builder, ObjectBuilder<TransientMetadata>> fn) {
+	public static SettingsSimilarityScriptedTfidf of(
+			Function<Builder, ObjectBuilder<SettingsSimilarityScriptedTfidf>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code enabled}
+	 * Required - API name: {@code script}
 	 */
-	public final boolean enabled() {
-		return this.enabled;
+	public final Script script() {
+		return this.script;
 	}
 
 	/**
@@ -79,52 +81,60 @@ public class TransientMetadata implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("enabled");
-		generator.write(this.enabled);
+		generator.writeKey("script");
+		this.script.serialize(generator, mapper);
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TransientMetadata}.
+	 * Builder for {@link SettingsSimilarityScriptedTfidf}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransientMetadata> {
-		private Boolean enabled;
+	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SettingsSimilarityScriptedTfidf> {
+		private Script script;
 
 		/**
-		 * Required - API name: {@code enabled}
+		 * Required - API name: {@code script}
 		 */
-		public final Builder enabled(boolean value) {
-			this.enabled = value;
+		public final Builder script(Script value) {
+			this.script = value;
 			return this;
 		}
 
 		/**
-		 * Builds a {@link TransientMetadata}.
+		 * Required - API name: {@code script}
+		 */
+		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		/**
+		 * Builds a {@link SettingsSimilarityScriptedTfidf}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TransientMetadata build() {
+		public SettingsSimilarityScriptedTfidf build() {
 			_checkSingleUse();
 
-			return new TransientMetadata(this);
+			return new SettingsSimilarityScriptedTfidf(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TransientMetadata}
+	 * Json deserializer for {@link SettingsSimilarityScriptedTfidf}
 	 */
-	public static final JsonpDeserializer<TransientMetadata> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TransientMetadata::setupTransientMetadataDeserializer);
+	public static final JsonpDeserializer<SettingsSimilarityScriptedTfidf> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, SettingsSimilarityScriptedTfidf::setupSettingsSimilarityScriptedTfidfDeserializer);
 
-	protected static void setupTransientMetadataDeserializer(ObjectDeserializer<TransientMetadata.Builder> op) {
+	protected static void setupSettingsSimilarityScriptedTfidfDeserializer(
+			ObjectDeserializer<SettingsSimilarityScriptedTfidf.Builder> op) {
 
-		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
 

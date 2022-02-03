@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -54,7 +55,7 @@ public class NodeShutdownStatus implements JsonpSerializable {
 
 	private final String reason;
 
-	private final String shutdownStartedmillis;
+	private final DateTime shutdownStartedmillis;
 
 	private final ShutdownStatus status;
 
@@ -108,7 +109,7 @@ public class NodeShutdownStatus implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code shutdown_startedmillis}
 	 */
-	public final String shutdownStartedmillis() {
+	public final DateTime shutdownStartedmillis() {
 		return this.shutdownStartedmillis;
 	}
 
@@ -160,8 +161,7 @@ public class NodeShutdownStatus implements JsonpSerializable {
 		generator.write(this.reason);
 
 		generator.writeKey("shutdown_startedmillis");
-		generator.write(this.shutdownStartedmillis);
-
+		this.shutdownStartedmillis.serialize(generator, mapper);
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
 		generator.writeKey("shard_migration");
@@ -188,7 +188,7 @@ public class NodeShutdownStatus implements JsonpSerializable {
 
 		private String reason;
 
-		private String shutdownStartedmillis;
+		private DateTime shutdownStartedmillis;
 
 		private ShutdownStatus status;
 
@@ -225,7 +225,7 @@ public class NodeShutdownStatus implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code shutdown_startedmillis}
 		 */
-		public final Builder shutdownStartedmillis(String value) {
+		public final Builder shutdownStartedmillis(DateTime value) {
 			this.shutdownStartedmillis = value;
 			return this;
 		}
@@ -311,7 +311,7 @@ public class NodeShutdownStatus implements JsonpSerializable {
 		op.add(Builder::nodeId, JsonpDeserializer.stringDeserializer(), "node_id");
 		op.add(Builder::type, ShutdownType._DESERIALIZER, "type");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
-		op.add(Builder::shutdownStartedmillis, JsonpDeserializer.stringDeserializer(), "shutdown_startedmillis");
+		op.add(Builder::shutdownStartedmillis, DateTime._DESERIALIZER, "shutdown_startedmillis");
 		op.add(Builder::status, ShutdownStatus._DESERIALIZER, "status");
 		op.add(Builder::shardMigration, ShardMigrationStatus._DESERIALIZER, "shard_migration");
 		op.add(Builder::persistentTasks, PersistentTaskStatus._DESERIALIZER, "persistent_tasks");

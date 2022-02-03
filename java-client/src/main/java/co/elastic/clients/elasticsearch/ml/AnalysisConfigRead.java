@@ -60,7 +60,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 
 	private final List<String> categorizationFilters;
 
-	private final List<Detector> detectors;
+	private final List<DetectorRead> detectors;
 
 	private final List<String> influencers;
 
@@ -175,7 +175,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code detectors}
 	 */
-	public final List<Detector> detectors() {
+	public final List<DetectorRead> detectors() {
 		return this.detectors;
 	}
 
@@ -305,7 +305,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.detectors)) {
 			generator.writeKey("detectors");
 			generator.writeStartArray();
-			for (Detector item0 : this.detectors) {
+			for (DetectorRead item0 : this.detectors) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -368,7 +368,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		@Nullable
 		private List<String> categorizationFilters;
 
-		private List<Detector> detectors;
+		private List<DetectorRead> detectors;
 
 		private List<String> influencers;
 
@@ -508,7 +508,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>detectors</code>.
 		 */
-		public final Builder detectors(List<Detector> list) {
+		public final Builder detectors(List<DetectorRead> list) {
 			this.detectors = _listAddAll(this.detectors, list);
 			return this;
 		}
@@ -523,7 +523,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>detectors</code>.
 		 */
-		public final Builder detectors(Detector value, Detector... values) {
+		public final Builder detectors(DetectorRead value, DetectorRead... values) {
 			this.detectors = _listAdd(this.detectors, value, values);
 			return this;
 		}
@@ -538,8 +538,8 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>detectors</code> using a builder lambda.
 		 */
-		public final Builder detectors(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
-			return detectors(fn.apply(new Detector.Builder()).build());
+		public final Builder detectors(Function<DetectorRead.Builder, ObjectBuilder<DetectorRead>> fn) {
+			return detectors(fn.apply(new DetectorRead.Builder()).build());
 		}
 
 		/**
@@ -715,7 +715,7 @@ public class AnalysisConfigRead implements JsonpSerializable {
 		op.add(Builder::categorizationFieldName, JsonpDeserializer.stringDeserializer(), "categorization_field_name");
 		op.add(Builder::categorizationFilters,
 				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "categorization_filters");
-		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(Detector._DESERIALIZER), "detectors");
+		op.add(Builder::detectors, JsonpDeserializer.arrayDeserializer(DetectorRead._DESERIALIZER), "detectors");
 		op.add(Builder::influencers, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"influencers");
 		op.add(Builder::modelPruneWindow, Time._DESERIALIZER, "model_prune_window");

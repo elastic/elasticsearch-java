@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,7 +51,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class UnassignedInformation implements JsonpSerializable {
-	private final String at;
+	private final DateTime at;
 
 	@Nullable
 	private final String lastAllocationStatus;
@@ -90,7 +91,7 @@ public class UnassignedInformation implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code at}
 	 */
-	public final String at() {
+	public final DateTime at() {
 		return this.at;
 	}
 
@@ -153,8 +154,7 @@ public class UnassignedInformation implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("at");
-		generator.write(this.at);
-
+		this.at.serialize(generator, mapper);
 		if (this.lastAllocationStatus != null) {
 			generator.writeKey("last_allocation_status");
 			generator.write(this.lastAllocationStatus);
@@ -192,7 +192,7 @@ public class UnassignedInformation implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UnassignedInformation> {
-		private String at;
+		private DateTime at;
 
 		@Nullable
 		private String lastAllocationStatus;
@@ -214,7 +214,7 @@ public class UnassignedInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code at}
 		 */
-		public final Builder at(String value) {
+		public final Builder at(DateTime value) {
 			this.at = value;
 			return this;
 		}
@@ -290,7 +290,7 @@ public class UnassignedInformation implements JsonpSerializable {
 
 	protected static void setupUnassignedInformationDeserializer(ObjectDeserializer<UnassignedInformation.Builder> op) {
 
-		op.add(Builder::at, JsonpDeserializer.stringDeserializer(), "at");
+		op.add(Builder::at, DateTime._DESERIALIZER, "at");
 		op.add(Builder::lastAllocationStatus, JsonpDeserializer.stringDeserializer(), "last_allocation_status");
 		op.add(Builder::reason, UnassignedInformationReason._DESERIALIZER, "reason");
 		op.add(Builder::details, JsonpDeserializer.stringDeserializer(), "details");

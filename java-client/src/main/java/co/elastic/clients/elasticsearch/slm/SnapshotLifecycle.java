@@ -30,11 +30,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -58,14 +58,14 @@ public class SnapshotLifecycle implements JsonpSerializable {
 	private final Invocation lastSuccess;
 
 	@Nullable
-	private final String modifiedDate;
+	private final DateTime modifiedDate;
 
-	private final String modifiedDateMillis;
+	private final DateTime modifiedDateMillis;
 
 	@Nullable
-	private final String nextExecution;
+	private final DateTime nextExecution;
 
-	private final String nextExecutionMillis;
+	private final DateTime nextExecutionMillis;
 
 	private final SlmPolicy policy;
 
@@ -123,14 +123,14 @@ public class SnapshotLifecycle implements JsonpSerializable {
 	 * API name: {@code modified_date}
 	 */
 	@Nullable
-	public final String modifiedDate() {
+	public final DateTime modifiedDate() {
 		return this.modifiedDate;
 	}
 
 	/**
 	 * Required - API name: {@code modified_date_millis}
 	 */
-	public final String modifiedDateMillis() {
+	public final DateTime modifiedDateMillis() {
 		return this.modifiedDateMillis;
 	}
 
@@ -138,14 +138,14 @@ public class SnapshotLifecycle implements JsonpSerializable {
 	 * API name: {@code next_execution}
 	 */
 	@Nullable
-	public final String nextExecution() {
+	public final DateTime nextExecution() {
 		return this.nextExecution;
 	}
 
 	/**
 	 * Required - API name: {@code next_execution_millis}
 	 */
-	public final String nextExecutionMillis() {
+	public final DateTime nextExecutionMillis() {
 		return this.nextExecutionMillis;
 	}
 
@@ -198,20 +198,16 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		}
 		if (this.modifiedDate != null) {
 			generator.writeKey("modified_date");
-			generator.write(this.modifiedDate);
-
+			this.modifiedDate.serialize(generator, mapper);
 		}
 		generator.writeKey("modified_date_millis");
-		generator.write(this.modifiedDateMillis);
-
+		this.modifiedDateMillis.serialize(generator, mapper);
 		if (this.nextExecution != null) {
 			generator.writeKey("next_execution");
-			generator.write(this.nextExecution);
-
+			this.nextExecution.serialize(generator, mapper);
 		}
 		generator.writeKey("next_execution_millis");
-		generator.write(this.nextExecutionMillis);
-
+		this.nextExecutionMillis.serialize(generator, mapper);
 		generator.writeKey("policy");
 		this.policy.serialize(generator, mapper);
 
@@ -240,14 +236,14 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		private Invocation lastSuccess;
 
 		@Nullable
-		private String modifiedDate;
+		private DateTime modifiedDate;
 
-		private String modifiedDateMillis;
+		private DateTime modifiedDateMillis;
 
 		@Nullable
-		private String nextExecution;
+		private DateTime nextExecution;
 
-		private String nextExecutionMillis;
+		private DateTime nextExecutionMillis;
 
 		private SlmPolicy policy;
 
@@ -303,7 +299,7 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code modified_date}
 		 */
-		public final Builder modifiedDate(@Nullable String value) {
+		public final Builder modifiedDate(@Nullable DateTime value) {
 			this.modifiedDate = value;
 			return this;
 		}
@@ -311,7 +307,7 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code modified_date_millis}
 		 */
-		public final Builder modifiedDateMillis(String value) {
+		public final Builder modifiedDateMillis(DateTime value) {
 			this.modifiedDateMillis = value;
 			return this;
 		}
@@ -319,7 +315,7 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * API name: {@code next_execution}
 		 */
-		public final Builder nextExecution(@Nullable String value) {
+		public final Builder nextExecution(@Nullable DateTime value) {
 			this.nextExecution = value;
 			return this;
 		}
@@ -327,7 +323,7 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code next_execution_millis}
 		 */
-		public final Builder nextExecutionMillis(String value) {
+		public final Builder nextExecutionMillis(DateTime value) {
 			this.nextExecutionMillis = value;
 			return this;
 		}
@@ -396,10 +392,10 @@ public class SnapshotLifecycle implements JsonpSerializable {
 		op.add(Builder::inProgress, InProgress._DESERIALIZER, "in_progress");
 		op.add(Builder::lastFailure, Invocation._DESERIALIZER, "last_failure");
 		op.add(Builder::lastSuccess, Invocation._DESERIALIZER, "last_success");
-		op.add(Builder::modifiedDate, JsonpDeserializer.stringDeserializer(), "modified_date");
-		op.add(Builder::modifiedDateMillis, JsonpDeserializer.stringDeserializer(), "modified_date_millis");
-		op.add(Builder::nextExecution, JsonpDeserializer.stringDeserializer(), "next_execution");
-		op.add(Builder::nextExecutionMillis, JsonpDeserializer.stringDeserializer(), "next_execution_millis");
+		op.add(Builder::modifiedDate, DateTime._DESERIALIZER, "modified_date");
+		op.add(Builder::modifiedDateMillis, DateTime._DESERIALIZER, "modified_date_millis");
+		op.add(Builder::nextExecution, DateTime._DESERIALIZER, "next_execution");
+		op.add(Builder::nextExecutionMillis, DateTime._DESERIALIZER, "next_execution_millis");
 		op.add(Builder::policy, SlmPolicy._DESERIALIZER, "policy");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::stats, Statistics._DESERIALIZER, "stats");

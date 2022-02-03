@@ -49,11 +49,15 @@ import javax.annotation.Nullable;
 public class SoftDeletes implements JsonpSerializable {
 	private final boolean enabled;
 
+	@Nullable
+	private final RetentionLease retentionLease;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SoftDeletes(Builder builder) {
 
 		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.retentionLease = builder.retentionLease;
 
 	}
 
@@ -66,6 +70,14 @@ public class SoftDeletes implements JsonpSerializable {
 	 */
 	public final boolean enabled() {
 		return this.enabled;
+	}
+
+	/**
+	 * API name: {@code retention_lease}
+	 */
+	@Nullable
+	public final RetentionLease retentionLease() {
+		return this.retentionLease;
 	}
 
 	/**
@@ -82,6 +94,12 @@ public class SoftDeletes implements JsonpSerializable {
 		generator.writeKey("enabled");
 		generator.write(this.enabled);
 
+		if (this.retentionLease != null) {
+			generator.writeKey("retention_lease");
+			this.retentionLease.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -93,12 +111,30 @@ public class SoftDeletes implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SoftDeletes> {
 		private Boolean enabled;
 
+		@Nullable
+		private RetentionLease retentionLease;
+
 		/**
 		 * Required - API name: {@code enabled}
 		 */
 		public final Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code retention_lease}
+		 */
+		public final Builder retentionLease(@Nullable RetentionLease value) {
+			this.retentionLease = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code retention_lease}
+		 */
+		public final Builder retentionLease(Function<RetentionLease.Builder, ObjectBuilder<RetentionLease>> fn) {
+			return this.retentionLease(fn.apply(new RetentionLease.Builder()).build());
 		}
 
 		/**
@@ -125,6 +161,7 @@ public class SoftDeletes implements JsonpSerializable {
 	protected static void setupSoftDeletesDeserializer(ObjectDeserializer<SoftDeletes.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::retentionLease, RetentionLease._DESERIALIZER, "retention_lease");
 
 	}
 

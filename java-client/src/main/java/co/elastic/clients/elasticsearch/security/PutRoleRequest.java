@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.security;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch.security.get_role.TransientMetadata;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -80,7 +79,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> runAs;
 
 	@Nullable
-	private final TransientMetadata transientMetadata;
+	private final TransientMetadataConfig transientMetadata;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -193,7 +192,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code transient_metadata}
 	 */
 	@Nullable
-	public final TransientMetadata transientMetadata() {
+	public final TransientMetadataConfig transientMetadata() {
 		return this.transientMetadata;
 	}
 
@@ -308,7 +307,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		private List<String> runAs;
 
 		@Nullable
-		private TransientMetadata transientMetadata;
+		private TransientMetadataConfig transientMetadata;
 
 		/**
 		 * A list of application privilege entries.
@@ -518,7 +517,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code transient_metadata}
 		 */
-		public final Builder transientMetadata(@Nullable TransientMetadata value) {
+		public final Builder transientMetadata(@Nullable TransientMetadataConfig value) {
 			this.transientMetadata = value;
 			return this;
 		}
@@ -534,8 +533,8 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		 * API name: {@code transient_metadata}
 		 */
 		public final Builder transientMetadata(
-				Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
-			return this.transientMetadata(fn.apply(new TransientMetadata.Builder()).build());
+				Function<TransientMetadataConfig.Builder, ObjectBuilder<TransientMetadataConfig>> fn) {
+			return this.transientMetadata(fn.apply(new TransientMetadataConfig.Builder()).build());
 		}
 
 		/**
@@ -568,7 +567,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesPrivileges._DESERIALIZER), "indices");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
-		op.add(Builder::transientMetadata, TransientMetadata._DESERIALIZER, "transient_metadata");
+		op.add(Builder::transientMetadata, TransientMetadataConfig._DESERIALIZER, "transient_metadata");
 
 	}
 

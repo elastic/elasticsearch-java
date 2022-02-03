@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,7 +50,7 @@ import javax.annotation.Nullable;
 public class Invocation implements JsonpSerializable {
 	private final String snapshotName;
 
-	private final String time;
+	private final DateTime time;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +75,7 @@ public class Invocation implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code time}
 	 */
-	public final String time() {
+	public final DateTime time() {
 		return this.time;
 	}
 
@@ -93,7 +94,7 @@ public class Invocation implements JsonpSerializable {
 		generator.write(this.snapshotName);
 
 		generator.writeKey("time");
-		generator.write(this.time);
+		this.time.serialize(generator, mapper);
 
 	}
 
@@ -106,7 +107,7 @@ public class Invocation implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Invocation> {
 		private String snapshotName;
 
-		private String time;
+		private DateTime time;
 
 		/**
 		 * Required - API name: {@code snapshot_name}
@@ -119,7 +120,7 @@ public class Invocation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time}
 		 */
-		public final Builder time(String value) {
+		public final Builder time(DateTime value) {
 			this.time = value;
 			return this;
 		}
@@ -148,7 +149,7 @@ public class Invocation implements JsonpSerializable {
 	protected static void setupInvocationDeserializer(ObjectDeserializer<Invocation.Builder> op) {
 
 		op.add(Builder::snapshotName, JsonpDeserializer.stringDeserializer(), "snapshot_name");
-		op.add(Builder::time, JsonpDeserializer.stringDeserializer(), "time");
+		op.add(Builder::time, DateTime._DESERIALIZER, "time");
 
 	}
 

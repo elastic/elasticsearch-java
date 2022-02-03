@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -63,7 +64,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	private final String license;
 
 	@Nullable
-	private final String createTime;
+	private final DateTime createTime;
 
 	@Nullable
 	private final String version;
@@ -186,7 +187,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public final String createTime() {
+	public final DateTime createTime() {
 		return this.createTime;
 	}
 
@@ -347,8 +348,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		}
 		if (this.createTime != null) {
 			generator.writeKey("create_time");
-			generator.write(this.createTime);
-
+			this.createTime.serialize(generator, mapper);
 		}
 		if (this.version != null) {
 			generator.writeKey("version");
@@ -436,7 +436,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		private String license;
 
 		@Nullable
-		private String createTime;
+		private DateTime createTime;
 
 		@Nullable
 		private String version;
@@ -529,7 +529,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code create_time}
 		 */
-		public final Builder createTime(@Nullable String value) {
+		public final Builder createTime(@Nullable DateTime value) {
 			this.createTime = value;
 			return this;
 		}
@@ -681,7 +681,7 @@ public class TrainedModelsRecord implements JsonpSerializable {
 		op.add(Builder::heapSize, JsonpDeserializer.stringDeserializer(), "heap_size", "hs", "modelHeapSize");
 		op.add(Builder::operations, JsonpDeserializer.stringDeserializer(), "operations", "o", "modelOperations");
 		op.add(Builder::license, JsonpDeserializer.stringDeserializer(), "license", "l");
-		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time", "ct");
+		op.add(Builder::createTime, DateTime._DESERIALIZER, "create_time", "ct");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version", "v");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description", "d");
 		op.add(Builder::ingestPipelines, JsonpDeserializer.stringDeserializer(), "ingest.pipelines", "ip",

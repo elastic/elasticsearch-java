@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -37,6 +38,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -57,6 +59,12 @@ import javax.annotation.Nullable;
 
 public class GetSnapshotRequest extends RequestBase {
 	@Nullable
+	private final String after;
+
+	@Nullable
+	private final String fromSortValue;
+
+	@Nullable
 	private final Boolean human;
 
 	@Nullable
@@ -71,9 +79,24 @@ public class GetSnapshotRequest extends RequestBase {
 	@Nullable
 	private final Time masterTimeout;
 
+	@Nullable
+	private final Integer offset;
+
+	@Nullable
+	private final SortOrder order;
+
 	private final String repository;
 
+	@Nullable
+	private final Integer size;
+
+	@Nullable
+	private final String slmPolicyFilter;
+
 	private final List<String> snapshot;
+
+	@Nullable
+	private final SnapshotSort sort;
 
 	@Nullable
 	private final Boolean verbose;
@@ -82,19 +105,50 @@ public class GetSnapshotRequest extends RequestBase {
 
 	private GetSnapshotRequest(Builder builder) {
 
+		this.after = builder.after;
+		this.fromSortValue = builder.fromSortValue;
 		this.human = builder.human;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeRepository = builder.includeRepository;
 		this.indexDetails = builder.indexDetails;
 		this.masterTimeout = builder.masterTimeout;
+		this.offset = builder.offset;
+		this.order = builder.order;
 		this.repository = ApiTypeHelper.requireNonNull(builder.repository, this, "repository");
+		this.size = builder.size;
+		this.slmPolicyFilter = builder.slmPolicyFilter;
 		this.snapshot = ApiTypeHelper.unmodifiableRequired(builder.snapshot, this, "snapshot");
+		this.sort = builder.sort;
 		this.verbose = builder.verbose;
 
 	}
 
 	public static GetSnapshotRequest of(Function<Builder, ObjectBuilder<GetSnapshotRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Offset identifier to start pagination from as returned by the next field in
+	 * the response body.
+	 * <p>
+	 * API name: {@code after}
+	 */
+	@Nullable
+	public final String after() {
+		return this.after;
+	}
+
+	/**
+	 * Value of the current sort column at which to start retrieval. Can either be a
+	 * string snapshot- or repository name when sorting by snapshot or repository
+	 * name, a millisecond time value or a number when sorting by index- or shard
+	 * count.
+	 * <p>
+	 * API name: {@code from_sort_value}
+	 */
+	@Nullable
+	public final String fromSortValue() {
+		return this.fromSortValue;
 	}
 
 	/**
@@ -152,6 +206,29 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
+	 * Numeric offset to start pagination from based on the snapshots matching this
+	 * request. Using a non-zero value for this parameter is mutually exclusive with
+	 * using the after parameter. Defaults to 0.
+	 * <p>
+	 * API name: {@code offset}
+	 */
+	@Nullable
+	public final Integer offset() {
+		return this.offset;
+	}
+
+	/**
+	 * Sort order. Valid values are asc for ascending and desc for descending order.
+	 * Defaults to asc, meaning ascending order.
+	 * <p>
+	 * API name: {@code order}
+	 */
+	@Nullable
+	public final SortOrder order() {
+		return this.order;
+	}
+
+	/**
 	 * Required - Comma-separated list of snapshot repository names used to limit
 	 * the request. Wildcard (*) expressions are supported.
 	 * <p>
@@ -159,6 +236,31 @@ public class GetSnapshotRequest extends RequestBase {
 	 */
 	public final String repository() {
 		return this.repository;
+	}
+
+	/**
+	 * Maximum number of snapshots to return. Defaults to 0 which means return all
+	 * that match the request without limit.
+	 * <p>
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public final Integer size() {
+		return this.size;
+	}
+
+	/**
+	 * Filter snapshots by a comma-separated list of SLM policy names that snapshots
+	 * belong to. Also accepts wildcards (*) and combinations of wildcards followed
+	 * by exclude patterns starting with -. To include snapshots not created by an
+	 * SLM policy you can use the special pattern _none that will match all
+	 * snapshots without an SLM policy.
+	 * <p>
+	 * API name: {@code slm_policy_filter}
+	 */
+	@Nullable
+	public final String slmPolicyFilter() {
+		return this.slmPolicyFilter;
 	}
 
 	/**
@@ -175,6 +277,17 @@ public class GetSnapshotRequest extends RequestBase {
 	 */
 	public final List<String> snapshot() {
 		return this.snapshot;
+	}
+
+	/**
+	 * Allows setting a sort order for the result. Defaults to start_time, i.e.
+	 * sorting by snapshot start time stamp.
+	 * <p>
+	 * API name: {@code sort}
+	 */
+	@Nullable
+	public final SnapshotSort sort() {
+		return this.sort;
 	}
 
 	/**
@@ -197,6 +310,12 @@ public class GetSnapshotRequest extends RequestBase {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetSnapshotRequest> {
 		@Nullable
+		private String after;
+
+		@Nullable
+		private String fromSortValue;
+
+		@Nullable
 		private Boolean human;
 
 		@Nullable
@@ -211,12 +330,51 @@ public class GetSnapshotRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
+		@Nullable
+		private Integer offset;
+
+		@Nullable
+		private SortOrder order;
+
 		private String repository;
+
+		@Nullable
+		private Integer size;
+
+		@Nullable
+		private String slmPolicyFilter;
 
 		private List<String> snapshot;
 
 		@Nullable
+		private SnapshotSort sort;
+
+		@Nullable
 		private Boolean verbose;
+
+		/**
+		 * Offset identifier to start pagination from as returned by the next field in
+		 * the response body.
+		 * <p>
+		 * API name: {@code after}
+		 */
+		public final Builder after(@Nullable String value) {
+			this.after = value;
+			return this;
+		}
+
+		/**
+		 * Value of the current sort column at which to start retrieval. Can either be a
+		 * string snapshot- or repository name when sorting by snapshot or repository
+		 * name, a millisecond time value or a number when sorting by index- or shard
+		 * count.
+		 * <p>
+		 * API name: {@code from_sort_value}
+		 */
+		public final Builder fromSortValue(@Nullable String value) {
+			this.fromSortValue = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code human}
@@ -283,6 +441,29 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
+		 * Numeric offset to start pagination from based on the snapshots matching this
+		 * request. Using a non-zero value for this parameter is mutually exclusive with
+		 * using the after parameter. Defaults to 0.
+		 * <p>
+		 * API name: {@code offset}
+		 */
+		public final Builder offset(@Nullable Integer value) {
+			this.offset = value;
+			return this;
+		}
+
+		/**
+		 * Sort order. Valid values are asc for ascending and desc for descending order.
+		 * Defaults to asc, meaning ascending order.
+		 * <p>
+		 * API name: {@code order}
+		 */
+		public final Builder order(@Nullable SortOrder value) {
+			this.order = value;
+			return this;
+		}
+
+		/**
 		 * Required - Comma-separated list of snapshot repository names used to limit
 		 * the request. Wildcard (*) expressions are supported.
 		 * <p>
@@ -290,6 +471,31 @@ public class GetSnapshotRequest extends RequestBase {
 		 */
 		public final Builder repository(String value) {
 			this.repository = value;
+			return this;
+		}
+
+		/**
+		 * Maximum number of snapshots to return. Defaults to 0 which means return all
+		 * that match the request without limit.
+		 * <p>
+		 * API name: {@code size}
+		 */
+		public final Builder size(@Nullable Integer value) {
+			this.size = value;
+			return this;
+		}
+
+		/**
+		 * Filter snapshots by a comma-separated list of SLM policy names that snapshots
+		 * belong to. Also accepts wildcards (*) and combinations of wildcards followed
+		 * by exclude patterns starting with -. To include snapshots not created by an
+		 * SLM policy you can use the special pattern _none that will match all
+		 * snapshots without an SLM policy.
+		 * <p>
+		 * API name: {@code slm_policy_filter}
+		 */
+		public final Builder slmPolicyFilter(@Nullable String value) {
+			this.slmPolicyFilter = value;
 			return this;
 		}
 
@@ -328,6 +534,17 @@ public class GetSnapshotRequest extends RequestBase {
 		 */
 		public final Builder snapshot(String value, String... values) {
 			this.snapshot = _listAdd(this.snapshot, value, values);
+			return this;
+		}
+
+		/**
+		 * Allows setting a sort order for the result. Defaults to start_time, i.e.
+		 * sorting by snapshot start time stamp.
+		 * <p>
+		 * API name: {@code sort}
+		 */
+		public final Builder sort(@Nullable SnapshotSort value) {
+			this.sort = value;
 			return this;
 		}
 
@@ -397,23 +614,44 @@ public class GetSnapshotRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.offset != null) {
+					params.put("offset", String.valueOf(request.offset));
+				}
+				if (request.fromSortValue != null) {
+					params.put("from_sort_value", request.fromSortValue);
+				}
+				if (request.indexDetails != null) {
+					params.put("index_details", String.valueOf(request.indexDetails));
+				}
+				if (request.sort != null) {
+					params.put("sort", request.sort.jsonValue());
+				}
+				if (request.verbose != null) {
+					params.put("verbose", String.valueOf(request.verbose));
+				}
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
 				}
 				if (request.includeRepository != null) {
 					params.put("include_repository", String.valueOf(request.includeRepository));
 				}
+				if (request.size != null) {
+					params.put("size", String.valueOf(request.size));
+				}
 				if (request.ignoreUnavailable != null) {
 					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
 				}
-				if (request.indexDetails != null) {
-					params.put("index_details", String.valueOf(request.indexDetails));
+				if (request.after != null) {
+					params.put("after", request.after);
 				}
 				if (request.human != null) {
 					params.put("human", String.valueOf(request.human));
 				}
-				if (request.verbose != null) {
-					params.put("verbose", String.valueOf(request.verbose));
+				if (request.slmPolicyFilter != null) {
+					params.put("slm_policy_filter", request.slmPolicyFilter);
+				}
+				if (request.order != null) {
+					params.put("order", request.order.jsonValue());
 				}
 				return params;
 

@@ -33,6 +33,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -60,13 +61,13 @@ public class SnapshotInfo implements JsonpSerializable {
 	private final Time duration;
 
 	@Nullable
-	private final String durationInMillis;
+	private final DateTime durationInMillis;
 
 	@Nullable
 	private final Time endTime;
 
 	@Nullable
-	private final String endTimeInMillis;
+	private final DateTime endTimeInMillis;
 
 	private final List<SnapshotShardFailure> failures;
 
@@ -94,7 +95,7 @@ public class SnapshotInfo implements JsonpSerializable {
 	private final Time startTime;
 
 	@Nullable
-	private final String startTimeInMillis;
+	private final DateTime startTimeInMillis;
 
 	@Nullable
 	private final String state;
@@ -160,7 +161,7 @@ public class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code duration_in_millis}
 	 */
 	@Nullable
-	public final String durationInMillis() {
+	public final DateTime durationInMillis() {
 		return this.durationInMillis;
 	}
 
@@ -176,7 +177,7 @@ public class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code end_time_in_millis}
 	 */
 	@Nullable
-	public final String endTimeInMillis() {
+	public final DateTime endTimeInMillis() {
 		return this.endTimeInMillis;
 	}
 
@@ -259,7 +260,7 @@ public class SnapshotInfo implements JsonpSerializable {
 	 * API name: {@code start_time_in_millis}
 	 */
 	@Nullable
-	public final String startTimeInMillis() {
+	public final DateTime startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -329,8 +330,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		}
 		if (this.durationInMillis != null) {
 			generator.writeKey("duration_in_millis");
-			generator.write(this.durationInMillis);
-
+			this.durationInMillis.serialize(generator, mapper);
 		}
 		if (this.endTime != null) {
 			generator.writeKey("end_time");
@@ -339,8 +339,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		}
 		if (this.endTimeInMillis != null) {
 			generator.writeKey("end_time_in_millis");
-			generator.write(this.endTimeInMillis);
-
+			this.endTimeInMillis.serialize(generator, mapper);
 		}
 		if (ApiTypeHelper.isDefined(this.failures)) {
 			generator.writeKey("failures");
@@ -414,8 +413,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		}
 		if (this.startTimeInMillis != null) {
 			generator.writeKey("start_time_in_millis");
-			generator.write(this.startTimeInMillis);
-
+			this.startTimeInMillis.serialize(generator, mapper);
 		}
 		if (this.state != null) {
 			generator.writeKey("state");
@@ -461,13 +459,13 @@ public class SnapshotInfo implements JsonpSerializable {
 		private Time duration;
 
 		@Nullable
-		private String durationInMillis;
+		private DateTime durationInMillis;
 
 		@Nullable
 		private Time endTime;
 
 		@Nullable
-		private String endTimeInMillis;
+		private DateTime endTimeInMillis;
 
 		@Nullable
 		private List<SnapshotShardFailure> failures;
@@ -498,7 +496,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		private Time startTime;
 
 		@Nullable
-		private String startTimeInMillis;
+		private DateTime startTimeInMillis;
 
 		@Nullable
 		private String state;
@@ -552,7 +550,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code duration_in_millis}
 		 */
-		public final Builder durationInMillis(@Nullable String value) {
+		public final Builder durationInMillis(@Nullable DateTime value) {
 			this.durationInMillis = value;
 			return this;
 		}
@@ -575,7 +573,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code end_time_in_millis}
 		 */
-		public final Builder endTimeInMillis(@Nullable String value) {
+		public final Builder endTimeInMillis(@Nullable DateTime value) {
 			this.endTimeInMillis = value;
 			return this;
 		}
@@ -743,7 +741,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code start_time_in_millis}
 		 */
-		public final Builder startTimeInMillis(@Nullable String value) {
+		public final Builder startTimeInMillis(@Nullable DateTime value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -835,9 +833,9 @@ public class SnapshotInfo implements JsonpSerializable {
 		op.add(Builder::dataStreams, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"data_streams");
 		op.add(Builder::duration, Time._DESERIALIZER, "duration");
-		op.add(Builder::durationInMillis, JsonpDeserializer.stringDeserializer(), "duration_in_millis");
+		op.add(Builder::durationInMillis, DateTime._DESERIALIZER, "duration_in_millis");
 		op.add(Builder::endTime, Time._DESERIALIZER, "end_time");
-		op.add(Builder::endTimeInMillis, JsonpDeserializer.stringDeserializer(), "end_time_in_millis");
+		op.add(Builder::endTimeInMillis, DateTime._DESERIALIZER, "end_time_in_millis");
 		op.add(Builder::failures, JsonpDeserializer.arrayDeserializer(SnapshotShardFailure._DESERIALIZER), "failures");
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -850,7 +848,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		op.add(Builder::snapshot, JsonpDeserializer.stringDeserializer(), "snapshot");
 		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "shards");
 		op.add(Builder::startTime, Time._DESERIALIZER, "start_time");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.stringDeserializer(), "start_time_in_millis");
+		op.add(Builder::startTimeInMillis, DateTime._DESERIALIZER, "start_time_in_millis");
 		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
 		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");

@@ -30,11 +30,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
-import java.lang.String;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -55,7 +55,7 @@ public class ExecutionResult implements JsonpSerializable {
 
 	private final int executionDuration;
 
-	private final String executionTime;
+	private final DateTime executionTime;
 
 	private final ExecutionResultInput input;
 
@@ -99,7 +99,7 @@ public class ExecutionResult implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code execution_time}
 	 */
-	public final String executionTime() {
+	public final DateTime executionTime() {
 		return this.executionTime;
 	}
 
@@ -138,8 +138,7 @@ public class ExecutionResult implements JsonpSerializable {
 		generator.write(this.executionDuration);
 
 		generator.writeKey("execution_time");
-		generator.write(this.executionTime);
-
+		this.executionTime.serialize(generator, mapper);
 		generator.writeKey("input");
 		this.input.serialize(generator, mapper);
 
@@ -158,7 +157,7 @@ public class ExecutionResult implements JsonpSerializable {
 
 		private Integer executionDuration;
 
-		private String executionTime;
+		private DateTime executionTime;
 
 		private ExecutionResultInput input;
 
@@ -218,7 +217,7 @@ public class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code execution_time}
 		 */
-		public final Builder executionTime(String value) {
+		public final Builder executionTime(DateTime value) {
 			this.executionTime = value;
 			return this;
 		}
@@ -264,7 +263,7 @@ public class ExecutionResult implements JsonpSerializable {
 		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(ExecutionResultAction._DESERIALIZER), "actions");
 		op.add(Builder::condition, ExecutionResultCondition._DESERIALIZER, "condition");
 		op.add(Builder::executionDuration, JsonpDeserializer.integerDeserializer(), "execution_duration");
-		op.add(Builder::executionTime, JsonpDeserializer.stringDeserializer(), "execution_time");
+		op.add(Builder::executionTime, DateTime._DESERIALIZER, "execution_time");
 		op.add(Builder::input, ExecutionResultInput._DESERIALIZER, "input");
 
 	}

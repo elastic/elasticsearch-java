@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -58,9 +57,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 	private final List<IndexPrivilege> privileges;
 
 	@Nullable
-	private final Query query;
-
-	@Nullable
 	private final Boolean allowRestrictedIndices;
 
 	// ---------------------------------------------------------------------------------------------
@@ -70,7 +66,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		this.fieldSecurity = ApiTypeHelper.unmodifiable(builder.fieldSecurity);
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
 		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
-		this.query = builder.query;
 		this.allowRestrictedIndices = builder.allowRestrictedIndices;
 
 	}
@@ -106,18 +101,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 	 */
 	public final List<IndexPrivilege> privileges() {
 		return this.privileges;
-	}
-
-	/**
-	 * A search query that defines the documents the owners of the role have read
-	 * access to. A document within the specified indices must match this query for
-	 * it to be accessible by the owners of the role.
-	 * <p>
-	 * API name: {@code query}
-	 */
-	@Nullable
-	public final Query query() {
-		return this.query;
 	}
 
 	/**
@@ -175,11 +158,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.query != null) {
-			generator.writeKey("query");
-			this.query.serialize(generator, mapper);
-
-		}
 		if (this.allowRestrictedIndices != null) {
 			generator.writeKey("allow_restricted_indices");
 			generator.write(this.allowRestrictedIndices);
@@ -201,9 +179,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		private List<String> names;
 
 		private List<IndexPrivilege> privileges;
-
-		@Nullable
-		private Query query;
 
 		@Nullable
 		private Boolean allowRestrictedIndices;
@@ -296,29 +271,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 		}
 
 		/**
-		 * A search query that defines the documents the owners of the role have read
-		 * access to. A document within the specified indices must match this query for
-		 * it to be accessible by the owners of the role.
-		 * <p>
-		 * API name: {@code query}
-		 */
-		public final Builder query(@Nullable Query value) {
-			this.query = value;
-			return this;
-		}
-
-		/**
-		 * A search query that defines the documents the owners of the role have read
-		 * access to. A document within the specified indices must match this query for
-		 * it to be accessible by the owners of the role.
-		 * <p>
-		 * API name: {@code query}
-		 */
-		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
-			return this.query(fn.apply(new Query.Builder()).build());
-		}
-
-		/**
 		 * Set to <code>true</code> if using wildcard or regular expressions for
 		 * patterns that cover restricted indices. Implicitly, restricted indices have
 		 * limited privileges that can cause pattern tests to fail. If restricted
@@ -360,7 +312,6 @@ public class IndicesPrivileges implements JsonpSerializable {
 				"field_security");
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
 		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");
-		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 
 	}

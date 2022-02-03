@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -98,13 +99,13 @@ public class ShardStats implements JsonpSerializable {
 
 	private final long successfulWriteRequests;
 
-	private final String timeSinceLastReadMillis;
+	private final DateTime timeSinceLastReadMillis;
 
-	private final String totalReadRemoteExecTimeMillis;
+	private final DateTime totalReadRemoteExecTimeMillis;
 
-	private final String totalReadTimeMillis;
+	private final DateTime totalReadTimeMillis;
 
-	private final String totalWriteTimeMillis;
+	private final DateTime totalWriteTimeMillis;
 
 	private final long writeBufferOperationCount;
 
@@ -331,28 +332,28 @@ public class ShardStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code time_since_last_read_millis}
 	 */
-	public final String timeSinceLastReadMillis() {
+	public final DateTime timeSinceLastReadMillis() {
 		return this.timeSinceLastReadMillis;
 	}
 
 	/**
 	 * Required - API name: {@code total_read_remote_exec_time_millis}
 	 */
-	public final String totalReadRemoteExecTimeMillis() {
+	public final DateTime totalReadRemoteExecTimeMillis() {
 		return this.totalReadRemoteExecTimeMillis;
 	}
 
 	/**
 	 * Required - API name: {@code total_read_time_millis}
 	 */
-	public final String totalReadTimeMillis() {
+	public final DateTime totalReadTimeMillis() {
 		return this.totalReadTimeMillis;
 	}
 
 	/**
 	 * Required - API name: {@code total_write_time_millis}
 	 */
-	public final String totalWriteTimeMillis() {
+	public final DateTime totalWriteTimeMillis() {
 		return this.totalWriteTimeMillis;
 	}
 
@@ -460,17 +461,13 @@ public class ShardStats implements JsonpSerializable {
 		generator.write(this.successfulWriteRequests);
 
 		generator.writeKey("time_since_last_read_millis");
-		generator.write(this.timeSinceLastReadMillis);
-
+		this.timeSinceLastReadMillis.serialize(generator, mapper);
 		generator.writeKey("total_read_remote_exec_time_millis");
-		generator.write(this.totalReadRemoteExecTimeMillis);
-
+		this.totalReadRemoteExecTimeMillis.serialize(generator, mapper);
 		generator.writeKey("total_read_time_millis");
-		generator.write(this.totalReadTimeMillis);
-
+		this.totalReadTimeMillis.serialize(generator, mapper);
 		generator.writeKey("total_write_time_millis");
-		generator.write(this.totalWriteTimeMillis);
-
+		this.totalWriteTimeMillis.serialize(generator, mapper);
 		generator.writeKey("write_buffer_operation_count");
 		generator.write(this.writeBufferOperationCount);
 
@@ -533,13 +530,13 @@ public class ShardStats implements JsonpSerializable {
 
 		private Long successfulWriteRequests;
 
-		private String timeSinceLastReadMillis;
+		private DateTime timeSinceLastReadMillis;
 
-		private String totalReadRemoteExecTimeMillis;
+		private DateTime totalReadRemoteExecTimeMillis;
 
-		private String totalReadTimeMillis;
+		private DateTime totalReadTimeMillis;
 
-		private String totalWriteTimeMillis;
+		private DateTime totalWriteTimeMillis;
 
 		private Long writeBufferOperationCount;
 
@@ -760,7 +757,7 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_since_last_read_millis}
 		 */
-		public final Builder timeSinceLastReadMillis(String value) {
+		public final Builder timeSinceLastReadMillis(DateTime value) {
 			this.timeSinceLastReadMillis = value;
 			return this;
 		}
@@ -768,7 +765,7 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_read_remote_exec_time_millis}
 		 */
-		public final Builder totalReadRemoteExecTimeMillis(String value) {
+		public final Builder totalReadRemoteExecTimeMillis(DateTime value) {
 			this.totalReadRemoteExecTimeMillis = value;
 			return this;
 		}
@@ -776,7 +773,7 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_read_time_millis}
 		 */
-		public final Builder totalReadTimeMillis(String value) {
+		public final Builder totalReadTimeMillis(DateTime value) {
 			this.totalReadTimeMillis = value;
 			return this;
 		}
@@ -784,7 +781,7 @@ public class ShardStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code total_write_time_millis}
 		 */
-		public final Builder totalWriteTimeMillis(String value) {
+		public final Builder totalWriteTimeMillis(DateTime value) {
 			this.totalWriteTimeMillis = value;
 			return this;
 		}
@@ -853,11 +850,10 @@ public class ShardStats implements JsonpSerializable {
 		op.add(Builder::shardId, JsonpDeserializer.integerDeserializer(), "shard_id");
 		op.add(Builder::successfulReadRequests, JsonpDeserializer.longDeserializer(), "successful_read_requests");
 		op.add(Builder::successfulWriteRequests, JsonpDeserializer.longDeserializer(), "successful_write_requests");
-		op.add(Builder::timeSinceLastReadMillis, JsonpDeserializer.stringDeserializer(), "time_since_last_read_millis");
-		op.add(Builder::totalReadRemoteExecTimeMillis, JsonpDeserializer.stringDeserializer(),
-				"total_read_remote_exec_time_millis");
-		op.add(Builder::totalReadTimeMillis, JsonpDeserializer.stringDeserializer(), "total_read_time_millis");
-		op.add(Builder::totalWriteTimeMillis, JsonpDeserializer.stringDeserializer(), "total_write_time_millis");
+		op.add(Builder::timeSinceLastReadMillis, DateTime._DESERIALIZER, "time_since_last_read_millis");
+		op.add(Builder::totalReadRemoteExecTimeMillis, DateTime._DESERIALIZER, "total_read_remote_exec_time_millis");
+		op.add(Builder::totalReadTimeMillis, DateTime._DESERIALIZER, "total_read_time_millis");
+		op.add(Builder::totalWriteTimeMillis, DateTime._DESERIALIZER, "total_write_time_millis");
 		op.add(Builder::writeBufferOperationCount, JsonpDeserializer.longDeserializer(),
 				"write_buffer_operation_count");
 		op.add(Builder::writeBufferSizeInBytes, JsonpDeserializer.stringDeserializer(), "write_buffer_size_in_bytes");

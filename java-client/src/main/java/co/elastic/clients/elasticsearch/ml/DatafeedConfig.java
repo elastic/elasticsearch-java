@@ -35,6 +35,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -67,7 +68,7 @@ public class DatafeedConfig implements JsonpSerializable {
 	private final DelayedDataCheckConfig delayedDataCheckConfig;
 
 	@Nullable
-	private final String frequency;
+	private final DateTime frequency;
 
 	private final List<String> indexes;
 
@@ -85,7 +86,7 @@ public class DatafeedConfig implements JsonpSerializable {
 	private final Query query;
 
 	@Nullable
-	private final String queryDelay;
+	private final DateTime queryDelay;
 
 	private final Map<String, List<RuntimeField>> runtimeMappings;
 
@@ -186,7 +187,7 @@ public class DatafeedConfig implements JsonpSerializable {
 	 * API name: {@code frequency}
 	 */
 	@Nullable
-	public final String frequency() {
+	public final DateTime frequency() {
 		return this.frequency;
 	}
 
@@ -265,7 +266,7 @@ public class DatafeedConfig implements JsonpSerializable {
 	 * API name: {@code query_delay}
 	 */
 	@Nullable
-	public final String queryDelay() {
+	public final DateTime queryDelay() {
 		return this.queryDelay;
 	}
 
@@ -340,8 +341,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		}
 		if (this.frequency != null) {
 			generator.writeKey("frequency");
-			generator.write(this.frequency);
-
+			this.frequency.serialize(generator, mapper);
 		}
 		if (ApiTypeHelper.isDefined(this.indexes)) {
 			generator.writeKey("indexes");
@@ -383,8 +383,7 @@ public class DatafeedConfig implements JsonpSerializable {
 
 		if (this.queryDelay != null) {
 			generator.writeKey("query_delay");
-			generator.write(this.queryDelay);
-
+			this.queryDelay.serialize(generator, mapper);
 		}
 		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
@@ -443,7 +442,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		private DelayedDataCheckConfig delayedDataCheckConfig;
 
 		@Nullable
-		private String frequency;
+		private DateTime frequency;
 
 		@Nullable
 		private List<String> indexes;
@@ -462,7 +461,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		private Query query;
 
 		@Nullable
-		private String queryDelay;
+		private DateTime queryDelay;
 
 		@Nullable
 		private Map<String, List<RuntimeField>> runtimeMappings;
@@ -595,7 +594,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code frequency}
 		 */
-		public final Builder frequency(@Nullable String value) {
+		public final Builder frequency(@Nullable DateTime value) {
 			this.frequency = value;
 			return this;
 		}
@@ -726,7 +725,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code query_delay}
 		 */
-		public final Builder queryDelay(@Nullable String value) {
+		public final Builder queryDelay(@Nullable DateTime value) {
 			this.queryDelay = value;
 			return this;
 		}
@@ -836,7 +835,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
-		op.add(Builder::frequency, JsonpDeserializer.stringDeserializer(), "frequency");
+		op.add(Builder::frequency, DateTime._DESERIALIZER, "frequency");
 		op.add(Builder::indexes, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indexes");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
@@ -845,7 +844,7 @@ public class DatafeedConfig implements JsonpSerializable {
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
-		op.add(Builder::queryDelay, JsonpDeserializer.stringDeserializer(), "query_delay");
+		op.add(Builder::queryDelay, DateTime._DESERIALIZER, "query_delay");
 		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(
 				JsonpDeserializer.arrayDeserializer(RuntimeField._DESERIALIZER)), "runtime_mappings");
 		op.add(Builder::scriptFields, JsonpDeserializer.stringMapDeserializer(ScriptField._DESERIALIZER),

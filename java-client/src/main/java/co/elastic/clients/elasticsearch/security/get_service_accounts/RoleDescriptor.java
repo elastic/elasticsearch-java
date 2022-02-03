@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.security.get_service_accounts;
 import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
 import co.elastic.clients.elasticsearch.security.GlobalPrivilege;
 import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
+import co.elastic.clients.elasticsearch.security.TransientMetadataConfig;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -66,7 +67,8 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	private final List<String> runAs;
 
-	private final Map<String, JsonData> transientMetadata;
+	@Nullable
+	private final TransientMetadataConfig transientMetadata;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -78,7 +80,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.runAs = ApiTypeHelper.unmodifiable(builder.runAs);
-		this.transientMetadata = ApiTypeHelper.unmodifiable(builder.transientMetadata);
+		this.transientMetadata = builder.transientMetadata;
 
 	}
 
@@ -131,7 +133,8 @@ public class RoleDescriptor implements JsonpSerializable {
 	/**
 	 * API name: {@code transient_metadata}
 	 */
-	public final Map<String, JsonData> transientMetadata() {
+	@Nullable
+	public final TransientMetadataConfig transientMetadata() {
 		return this.transientMetadata;
 	}
 
@@ -207,15 +210,9 @@ public class RoleDescriptor implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.transientMetadata)) {
+		if (this.transientMetadata != null) {
 			generator.writeKey("transient_metadata");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.transientMetadata.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
+			this.transientMetadata.serialize(generator, mapper);
 
 		}
 
@@ -245,7 +242,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		private List<String> runAs;
 
 		@Nullable
-		private Map<String, JsonData> transientMetadata;
+		private TransientMetadataConfig transientMetadata;
 
 		/**
 		 * Required - API name: {@code cluster}
@@ -397,22 +394,18 @@ public class RoleDescriptor implements JsonpSerializable {
 
 		/**
 		 * API name: {@code transient_metadata}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>transientMetadata</code>.
 		 */
-		public final Builder transientMetadata(Map<String, JsonData> map) {
-			this.transientMetadata = _mapPutAll(this.transientMetadata, map);
+		public final Builder transientMetadata(@Nullable TransientMetadataConfig value) {
+			this.transientMetadata = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code transient_metadata}
-		 * <p>
-		 * Adds an entry to <code>transientMetadata</code>.
 		 */
-		public final Builder transientMetadata(String key, JsonData value) {
-			this.transientMetadata = _mapPut(this.transientMetadata, key, value);
-			return this;
+		public final Builder transientMetadata(
+				Function<TransientMetadataConfig.Builder, ObjectBuilder<TransientMetadataConfig>> fn) {
+			return this.transientMetadata(fn.apply(new TransientMetadataConfig.Builder()).build());
 		}
 
 		/**
@@ -446,8 +439,7 @@ public class RoleDescriptor implements JsonpSerializable {
 				"applications");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::runAs, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "run_as");
-		op.add(Builder::transientMetadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER),
-				"transient_metadata");
+		op.add(Builder::transientMetadata, TransientMetadataConfig._DESERIALIZER, "transient_metadata");
 
 	}
 

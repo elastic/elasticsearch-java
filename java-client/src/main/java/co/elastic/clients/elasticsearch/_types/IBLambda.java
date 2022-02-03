@@ -23,16 +23,32 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
+
 /**
- * Builders for {@link DateOrEpochMillis} variants.
- * <p>
- * Variants <code>date</code>, <code>millis</code> are not available here as
- * they don't have a dedicated class. Use {@link DateOrEpochMillis}'s builder
- * for these.
- * 
+ *
+ * @see <a href="../doc-files/api-spec.html#_types.IBLambda">API
+ *      specification</a>
  */
-public class DateOrEpochMillisBuilders {
-	private DateOrEpochMillisBuilders() {
+@JsonpDeserializable
+public enum IBLambda implements JsonEnum {
+	Df("df"),
+
+	Ttf("ttf"),
+
+	;
+
+	private final String jsonValue;
+
+	IBLambda(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
+	public String jsonValue() {
+		return this.jsonValue;
+	}
+
+	public static final JsonEnum.Deserializer<IBLambda> _DESERIALIZER = new JsonEnum.Deserializer<>(IBLambda.values());
 }

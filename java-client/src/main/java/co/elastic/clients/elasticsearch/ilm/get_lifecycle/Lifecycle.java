@@ -31,11 +31,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,7 +49,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class Lifecycle implements JsonpSerializable {
-	private final String modifiedDate;
+	private final DateTime modifiedDate;
 
 	private final IlmPolicy policy;
 
@@ -72,7 +72,7 @@ public class Lifecycle implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code modified_date}
 	 */
-	public final String modifiedDate() {
+	public final DateTime modifiedDate() {
 		return this.modifiedDate;
 	}
 
@@ -102,8 +102,7 @@ public class Lifecycle implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("modified_date");
-		generator.write(this.modifiedDate);
-
+		this.modifiedDate.serialize(generator, mapper);
 		generator.writeKey("policy");
 		this.policy.serialize(generator, mapper);
 
@@ -119,7 +118,7 @@ public class Lifecycle implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Lifecycle> {
-		private String modifiedDate;
+		private DateTime modifiedDate;
 
 		private IlmPolicy policy;
 
@@ -128,7 +127,7 @@ public class Lifecycle implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code modified_date}
 		 */
-		public final Builder modifiedDate(String value) {
+		public final Builder modifiedDate(DateTime value) {
 			this.modifiedDate = value;
 			return this;
 		}
@@ -179,7 +178,7 @@ public class Lifecycle implements JsonpSerializable {
 
 	protected static void setupLifecycleDeserializer(ObjectDeserializer<Lifecycle.Builder> op) {
 
-		op.add(Builder::modifiedDate, JsonpDeserializer.stringDeserializer(), "modified_date");
+		op.add(Builder::modifiedDate, DateTime._DESERIALIZER, "modified_date");
 		op.add(Builder::policy, IlmPolicy._DESERIALIZER, "policy");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 

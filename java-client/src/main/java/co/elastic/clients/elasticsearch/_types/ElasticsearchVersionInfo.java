@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ElasticsearchVersionInfo implements JsonpSerializable {
-	private final String buildDate;
+	private final DateTime buildDate;
 
 	private final String buildFlavor;
 
@@ -91,7 +92,7 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code build_date}
 	 */
-	public final String buildDate() {
+	public final DateTime buildDate() {
 		return this.buildDate;
 	}
 
@@ -163,8 +164,7 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("build_date");
-		generator.write(this.buildDate);
-
+		this.buildDate.serialize(generator, mapper);
 		generator.writeKey("build_flavor");
 		generator.write(this.buildFlavor);
 
@@ -198,7 +198,7 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ElasticsearchVersionInfo> {
-		private String buildDate;
+		private DateTime buildDate;
 
 		private String buildFlavor;
 
@@ -219,7 +219,7 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code build_date}
 		 */
-		public final Builder buildDate(String value) {
+		public final Builder buildDate(DateTime value) {
 			this.buildDate = value;
 			return this;
 		}
@@ -312,7 +312,7 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 	protected static void setupElasticsearchVersionInfoDeserializer(
 			ObjectDeserializer<ElasticsearchVersionInfo.Builder> op) {
 
-		op.add(Builder::buildDate, JsonpDeserializer.stringDeserializer(), "build_date");
+		op.add(Builder::buildDate, DateTime._DESERIALIZER, "build_date");
 		op.add(Builder::buildFlavor, JsonpDeserializer.stringDeserializer(), "build_flavor");
 		op.add(Builder::buildHash, JsonpDeserializer.stringDeserializer(), "build_hash");
 		op.add(Builder::buildSnapshot, JsonpDeserializer.booleanDeserializer(), "build_snapshot");

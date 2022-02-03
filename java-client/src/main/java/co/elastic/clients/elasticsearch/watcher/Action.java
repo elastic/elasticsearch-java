@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -68,7 +69,7 @@ public class Action implements JsonpSerializable {
 	private final Time throttlePeriod;
 
 	@Nullable
-	private final String throttlePeriodInMillis;
+	private final DateTime throttlePeriodInMillis;
 
 	@Nullable
 	private final Transform transform;
@@ -168,7 +169,7 @@ public class Action implements JsonpSerializable {
 	 * API name: {@code throttle_period_in_millis}
 	 */
 	@Nullable
-	public final String throttlePeriodInMillis() {
+	public final DateTime throttlePeriodInMillis() {
 		return this.throttlePeriodInMillis;
 	}
 
@@ -270,8 +271,7 @@ public class Action implements JsonpSerializable {
 		}
 		if (this.throttlePeriodInMillis != null) {
 			generator.writeKey("throttle_period_in_millis");
-			generator.write(this.throttlePeriodInMillis);
-
+			this.throttlePeriodInMillis.serialize(generator, mapper);
 		}
 		if (this.transform != null) {
 			generator.writeKey("transform");
@@ -337,7 +337,7 @@ public class Action implements JsonpSerializable {
 		private Time throttlePeriod;
 
 		@Nullable
-		private String throttlePeriodInMillis;
+		private DateTime throttlePeriodInMillis;
 
 		@Nullable
 		private Transform transform;
@@ -425,7 +425,7 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_period_in_millis}
 		 */
-		public final Builder throttlePeriodInMillis(@Nullable String value) {
+		public final Builder throttlePeriodInMillis(@Nullable DateTime value) {
 			this.throttlePeriodInMillis = value;
 			return this;
 		}
@@ -564,7 +564,7 @@ public class Action implements JsonpSerializable {
 		op.add(Builder::maxIterations, JsonpDeserializer.integerDeserializer(), "max_iterations");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::throttlePeriod, Time._DESERIALIZER, "throttle_period");
-		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.stringDeserializer(), "throttle_period_in_millis");
+		op.add(Builder::throttlePeriodInMillis, DateTime._DESERIALIZER, "throttle_period_in_millis");
 		op.add(Builder::transform, Transform._DESERIALIZER, "transform");
 		op.add(Builder::index, IndexAction._DESERIALIZER, "index");
 		op.add(Builder::logging, LoggingAction._DESERIALIZER, "logging");

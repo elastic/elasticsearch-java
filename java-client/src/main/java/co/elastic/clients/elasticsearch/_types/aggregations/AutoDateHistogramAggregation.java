@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -63,7 +64,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	private final MinimumInterval minimumInterval;
 
 	@Nullable
-	private final String missing;
+	private final DateTime missing;
 
 	@Nullable
 	private final String offset;
@@ -141,7 +142,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final DateTime missing() {
 		return this.missing;
 	}
 
@@ -200,8 +201,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		}
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
-
+			this.missing.serialize(generator, mapper);
 		}
 		if (this.offset != null) {
 			generator.writeKey("offset");
@@ -254,7 +254,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		private MinimumInterval minimumInterval;
 
 		@Nullable
-		private String missing;
+		private DateTime missing;
 
 		@Nullable
 		private String offset;
@@ -303,7 +303,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable DateTime value) {
 			this.missing = value;
 			return this;
 		}
@@ -392,7 +392,7 @@ public class AutoDateHistogramAggregation extends BucketAggregationBase implemen
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::minimumInterval, MinimumInterval._DESERIALIZER, "minimum_interval");
-		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missing, DateTime._DESERIALIZER, "missing");
 		op.add(Builder::offset, JsonpDeserializer.stringDeserializer(), "offset");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::script, Script._DESERIALIZER, "script");

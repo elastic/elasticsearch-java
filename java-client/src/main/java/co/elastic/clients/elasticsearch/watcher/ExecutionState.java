@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,7 +51,7 @@ import javax.annotation.Nullable;
 public class ExecutionState implements JsonpSerializable {
 	private final boolean successful;
 
-	private final String timestamp;
+	private final DateTime timestamp;
 
 	@Nullable
 	private final String reason;
@@ -79,7 +80,7 @@ public class ExecutionState implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public final String timestamp() {
+	public final DateTime timestamp() {
 		return this.timestamp;
 	}
 
@@ -106,8 +107,7 @@ public class ExecutionState implements JsonpSerializable {
 		generator.write(this.successful);
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
-
+		this.timestamp.serialize(generator, mapper);
 		if (this.reason != null) {
 			generator.writeKey("reason");
 			generator.write(this.reason);
@@ -125,7 +125,7 @@ public class ExecutionState implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionState> {
 		private Boolean successful;
 
-		private String timestamp;
+		private DateTime timestamp;
 
 		@Nullable
 		private String reason;
@@ -141,7 +141,7 @@ public class ExecutionState implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public final Builder timestamp(String value) {
+		public final Builder timestamp(DateTime value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -178,7 +178,7 @@ public class ExecutionState implements JsonpSerializable {
 	protected static void setupExecutionStateDeserializer(ObjectDeserializer<ExecutionState.Builder> op) {
 
 		op.add(Builder::successful, JsonpDeserializer.booleanDeserializer(), "successful");
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 
 	}

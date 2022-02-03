@@ -30,11 +30,11 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#cat._types.CatAnonalyDetectorColumn">API
+ *      "../doc-files/api-spec.html#cat._types.CatAnomalyDetectorColumn">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum CatAnonalyDetectorColumn implements JsonEnum {
+public enum CatAnomalyDetectorColumn implements JsonEnum {
 	/**
 	 * For open anomaly detection jobs only, contains messages relating to the
 	 * selection of a node to run the job.
@@ -418,7 +418,7 @@ public enum CatAnonalyDetectorColumn implements JsonEnum {
 	private final String jsonValue;
 	private final String[] aliases;
 
-	CatAnonalyDetectorColumn(String jsonValue, String... aliases) {
+	CatAnomalyDetectorColumn(String jsonValue, String... aliases) {
 		this.jsonValue = jsonValue;
 		this.aliases = aliases;
 	}
@@ -431,6 +431,6 @@ public enum CatAnonalyDetectorColumn implements JsonEnum {
 		return this.aliases;
 	}
 
-	public static final JsonEnum.Deserializer<CatAnonalyDetectorColumn> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			CatAnonalyDetectorColumn.values());
+	public static final JsonEnum.Deserializer<CatAnomalyDetectorColumn> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			CatAnomalyDetectorColumn.values());
 }
