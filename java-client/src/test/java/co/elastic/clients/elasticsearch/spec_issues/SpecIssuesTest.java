@@ -107,4 +107,8 @@ public class SpecIssuesTest extends ModelTestCase {
         JsonParser parser = mapper.jsonProvider().createParser(is);
         return deser.deserialize(parser, mapper);
     }
+
+    private <T> T loadRsrc(String res, Class<T> clazz) {
+        return loadRsrc(res, JsonpDeserializer.of(clazz));
+    }
 }

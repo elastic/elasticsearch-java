@@ -372,4 +372,19 @@ public abstract class JsonpDeserializerBase<V> implements JsonpDeserializer<V> {
             return result;
         }
     }
+
+    static class VoidDeserializer extends JsonpDeserializerBase<Void> {
+
+        public static final VoidDeserializer INSTANCE = new VoidDeserializer();
+
+        VoidDeserializer() {
+            super(EnumSet.allOf(Event.class));
+        }
+
+        @Override
+        public Void deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+            JsonpUtils.skipValue(parser, event);
+            return null;
+        }
+    }
 }
