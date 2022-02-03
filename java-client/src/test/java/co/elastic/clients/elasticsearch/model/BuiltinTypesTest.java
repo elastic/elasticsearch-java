@@ -26,7 +26,8 @@ import co.elastic.clients.elasticsearch._types.aggregations.StatsAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.StringStatsAggregate;
 import co.elastic.clients.elasticsearch._types.query_dsl.SpanGapQuery;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
-import co.elastic.clients.elasticsearch.indices.IndexSettings;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.indices.IndexRoutingAllocationDisk;
 import co.elastic.clients.json.JsonpDeserializer;
 import jakarta.json.stream.JsonParser;
 import org.junit.Test;
@@ -41,9 +42,8 @@ public class BuiltinTypesTest extends ModelTestCase {
 
         assertGetterType(Integer.class, SearchRequest.class, "size");
 
-        // Lenient boolean: 'query_string.lenient'?: boolean | string
-        // Also tests field names with '.'
-        assertGetterType(Boolean.class, IndexSettings.class, "queryStringLenient");
+        // Lenient boolean: 'threshold_enabled'?: boolean | string
+        assertGetterType(Boolean.class, IndexRoutingAllocationDisk.class, "thresholdEnabled");
 
     }
 
@@ -251,5 +251,20 @@ public class BuiltinTypesTest extends ModelTestCase {
         assertEquals(0, stats.minLength());
         assertEquals(0, stats.maxLength());
         assertEquals(0.0, stats.entropy(), 0.01);
+    }
+
+    @Test
+    public void testVoidDeserialization() {
+        String json = "{\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0}," +
+            "\"hits\":{\"hits\":[{\"_index\":\"foo\",\"_id\":\"w\",\"_source\":{\"foo\": \"bar\"}}]}," +
+            "\"took\":42,\"timed_out\":false" +
+            "}";
+
+        SearchResponse<Void> response = fromJson(json, SearchResponse.createSearchResponseDeserializer(JsonpDeserializer.of(Void.class)));
+
+        // Void type skips all the JSON and is serialized to null.
+        assertEquals(1, response.hits().hits().size());
+        assertNull(response.hits().hits().get(0).source());
+        assertEquals(42, response.took());
     }
 }
