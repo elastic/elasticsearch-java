@@ -1,0 +1,19 @@
+[[breaking-changes-policy]]
+=== Breaking changes policy
+
+[discrete]
+==== Breaking changes in patch releases
+
+The Elasticsearch API used to produce the {java-client} is large and can have issues in how types are defined. These can result in issues causing the {java-client} to not work properly or even throw exceptions (e.g. when an optional property was labelled as required).
+
+When these specification issues are found and fixed, they can result in breaking changes in the Java client, requiring code updates. These are considered acceptable, _even in patch releases_ (e.g. 7.17.0 -> 7.17.1), as they fix issues in the {java-client} that would otherwise make the corresponding APIs unusable.
+
+[discrete]
+==== Breaking changes in minor releases
+
+Along with these bug fixes, the API specification is constantly refined and more precise type definitions are introduced to improve developer comfort and remove ambiguities. The specification of often-used APIs is fairly mature, so these changes happen generally on less often used APIs. These changes can also cause breaking changes requiring code updates which are considered _acceptable in minor releases_ (e.g. 8.0 -> 8.1).
+
+[discrete]
+==== Breaking changes in major releases
+
+Major releases (e.g. 7.x -> 8.x) can include larger refactorings of the API specification and the framework underlying the {java-client}. These refactorings are considered carefully and done only when they unlock new important features of developments.
