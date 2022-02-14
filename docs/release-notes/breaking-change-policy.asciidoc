@@ -1,12 +1,19 @@
 [[breaking-changes-policy]]
 === Breaking changes policy
 
+
+The {java-client} source code is generated from a https://github.com/elastic/elasticsearch-specification[formal specification of the Elasticsearch API]. This API specification is large, and although it is tested against hundreds of Elasticsearch test files, it may have discrepancies with the actual API that result in issues in the {java-client}.
+
+Fixing these discrepancies in the API specification result in code changes in the {java-client}, and some of these changes can require code updates in your applications.
+
+This section explains how these breaking changes are considered for inclusion in {java-client} releases.
+
 [discrete]
 ==== Breaking changes in patch releases
 
-The Elasticsearch API used to produce the {java-client} is large and can have issues in how types are defined. These can result in issues causing the {java-client} to not work properly or even throw exceptions (e.g. when an optional property was labelled as required).
+Some issues in the API specification are properties that have an incorrect type, such as a `long` that should be a `string`, or a required property that is actually optional. These issues can cause the {java-client} to not work properly or even throw exceptions.
 
-When these specification issues are found and fixed, they can result in breaking changes in the Java client, requiring code updates. These are considered acceptable, _even in patch releases_ (e.g. 7.17.0 -> 7.17.1), as they fix issues in the {java-client} that would otherwise make the corresponding APIs unusable.
+When these specification issues are found and fixed, they may require code updates in applications using the {java-client}. These are considered acceptable, _even in patch releases_ (e.g. 7.17.0 -> 7.17.1), as they fix issues that would otherwise make the corresponding APIs unusable.
 
 [discrete]
 ==== Breaking changes in minor releases
@@ -16,4 +23,4 @@ Along with these bug fixes, the API specification is constantly refined and more
 [discrete]
 ==== Breaking changes in major releases
 
-Major releases (e.g. 7.x -> 8.x) can include larger refactorings of the API specification and the framework underlying the {java-client}. These refactorings are considered carefully and done only when they unlock new important features of developments.
+Major releases (e.g. 7.x -> 8.x) can include larger refactorings of the API specification and the framework underlying the {java-client}. These refactorings are considered carefully and done only when they unlock new important features or new developments.
