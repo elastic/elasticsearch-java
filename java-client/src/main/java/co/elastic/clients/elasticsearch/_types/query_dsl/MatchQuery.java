@@ -469,6 +469,38 @@ public class MatchQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required - API name: {@code query}
+		 */
+		public final Builder query(String value) {
+			this.query = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code query}
+		 */
+		public final Builder query(long value) {
+			this.query = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code query}
+		 */
+		public final Builder query(double value) {
+			this.query = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code query}
+		 */
+		public final Builder query(boolean value) {
+			this.query = FieldValue.of(value);
+			return this;
+		}
+
+		/**
 		 * API name: {@code zero_terms_query}
 		 */
 		public final Builder zeroTermsQuery(@Nullable ZeroTermsQuery value) {
