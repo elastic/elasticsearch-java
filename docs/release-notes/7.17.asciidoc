@@ -1,0 +1,262 @@
+[[release_notes_7_17]]
+=== Version 7.17
+
+[discrete]
+==== Changes and bug fixes
+
+This release includes minor updates and improvement to the API specification and a number of bug fixes (see closed issues in the https://github.com/elastic/elasticsearch-java/milestone/1?closed=1[GitHub repo]).
+
+[discrete]
+==== Breaking changes between 7.16 and 7.17
+
+Please refer to the <<breaking-changes-policy>>. The `co.elastic.clients.elasticsearch` package is abbreviated to `c.e.c.e` below.
+
+An issue in the code generator led properties whose API name contains a dot (`.`) to be removed. They will be reintroduced in version 7.17.1:
+
+Class `c.e.c.e._types.aggregations.ChildrenAggregate`: ::
+* Parent class changed from `c.e.c.e._types.aggregations.MultiBucketAggregateBase` to `c.e.c.e._types.aggregations.SingleBucketAggregateBase`.
+Class `c.e.c.e._types.aggregations.ChildrenAggregateBucket` removed.::
+Class `c.e.c.e._types.aggregations.StringStatsAggregate`: ::
+* Property `distribution`  changed from `String` to `Map`.
+Class `c.e.c.e._types.aggregations.TopMetricsAggregate`: ::
+* Parent class changed from `c.e.c.e._types.aggregations.MultiBucketAggregateBase` to `c.e.c.e._types.aggregations.AggregateBase`.
+Class `c.e.c.e._types.aggregations.TopMetricsBucket` removed.::
+Class `c.e.c.e._types.ChainTransform` removed.::
+Class `c.e.c.e._types.DocStats`: ::
+* Property `deleted`  changed from `long` to `Long`.
+Class `c.e.c.e._types.EmptyTransform` removed.::
+Class `c.e.c.e._types.query_dsl.CombinedFieldsQuery`: ::
+* Property `mimimumShouldMatch` removed.
+Class `c.e.c.e._types.query_dsl.RangeQuery`: ::
+* Property `from`  changed from `c.e.c.json.JsonData` to `String`.
+* Property `to`  changed from `c.e.c.json.JsonData` to `String`.
+Class `c.e.c.e._types.SegmentsStats`: ::
+* Property `maxUnsafeAutoIdTimestamp`  changed from `int` to `long`.
+Class `c.e.c.e._types.Transform`: ::
+* Property `chain`  changed from `c.e.c.e._types.ChainTransform` to `List`.
+Class `c.e.c.e.cat.indices.IndicesRecord`: ::
+* Property `priBulkAvgSizeInBytes` removed.
+* Property `priBulkAvgTime` removed.
+* Property `priBulkTotalOperations` removed.
+* Property `priBulkTotalSizeInBytes` removed.
+* Property `priBulkTotalTime` removed.
+* Property `priCompletionSize` removed.
+* Property `priFielddataEvictions` removed.
+* Property `priFielddataMemorySize` removed.
+* Property `priFlushTotal` removed.
+* Property `priFlushTotalTime` removed.
+* Property `priGetCurrent` removed.
+* Property `priGetExistsTime` removed.
+* Property `priGetExistsTotal` removed.
+* Property `priGetMissingTime` removed.
+* Property `priGetMissingTotal` removed.
+* Property `priGetTime` removed.
+* Property `priGetTotal` removed.
+* Property `priIndexingDeleteCurrent` removed.
+* Property `priIndexingDeleteTime` removed.
+* Property `priIndexingDeleteTotal` removed.
+* Property `priIndexingIndexCurrent` removed.
+* Property `priIndexingIndexFailed` removed.
+* Property `priIndexingIndexTime` removed.
+* Property `priIndexingIndexTotal` removed.
+* Property `priMemoryTotal` removed.
+* Property `priMergesCurrent` removed.
+* Property `priMergesCurrentDocs` removed.
+* Property `priMergesCurrentSize` removed.
+* Property `priMergesTotal` removed.
+* Property `priMergesTotalDocs` removed.
+* Property `priMergesTotalSize` removed.
+* Property `priMergesTotalTime` removed.
+* Property `priQueryCacheEvictions` removed.
+* Property `priQueryCacheMemorySize` removed.
+* Property `priRefreshExternalTime` removed.
+* Property `priRefreshExternalTotal` removed.
+* Property `priRefreshListeners` removed.
+* Property `priRefreshTime` removed.
+* Property `priRefreshTotal` removed.
+* Property `priRequestCacheEvictions` removed.
+* Property `priRequestCacheHitCount` removed.
+* Property `priRequestCacheMemorySize` removed.
+* Property `priRequestCacheMissCount` removed.
+* Property `priSearchFetchCurrent` removed.
+* Property `priSearchFetchTime` removed.
+* Property `priSearchFetchTotal` removed.
+* Property `priSearchOpenContexts` removed.
+* Property `priSearchQueryCurrent` removed.
+* Property `priSearchQueryTime` removed.
+* Property `priSearchQueryTotal` removed.
+* Property `priSearchScrollCurrent` removed.
+* Property `priSearchScrollTime` removed.
+* Property `priSearchScrollTotal` removed.
+* Property `priSegmentsCount` removed.
+* Property `priSegmentsFixedBitsetMemory` removed.
+* Property `priSegmentsIndexWriterMemory` removed.
+* Property `priSegmentsMemory` removed.
+* Property `priSegmentsVersionMapMemory` removed.
+* Property `priStoreSize` removed.
+* Property `priSuggestCurrent` removed.
+* Property `priSuggestTime` removed.
+* Property `priSuggestTotal` removed.
+* Property `priWarmerCurrent` removed.
+* Property `priWarmerTotal` removed.
+* Property `priWarmerTotalTime` removed.
+Class `c.e.c.e.cat.nodes.NodesRecord`: ::
+* Property `refreshTime` removed.
+* Property `refreshTotal` removed.
+Class `c.e.c.e.cat.shards.ShardsRecord`: ::
+* Property `refreshTime` removed.
+* Property `refreshTotal` removed.
+Class `c.e.c.e.core.bulk.UpdateOperation`: ::
+* Property `document` removed.
+Class `c.e.c.e.core.DeleteByQueryRequest`: ::
+* Property `source` removed.
+* Property `sourceExcludes` removed.
+* Property `sourceIncludes` removed.
+Class `c.e.c.e.core.msearch.MultiSearchItem`: ::
+* Property `status`  changed from `int` to `Integer`.
+Class `c.e.c.e.core.search.CompletionSuggestOption`: ::
+* Property `score`  changed from `double` to `Double`.
+Class `c.e.c.e.core.search.Suggestion`: ::
+* Property `length` removed.
+* Property `offset` removed.
+* Property `options` removed.
+* Property `serializeInternal` removed.
+* Property `setupSuggestionDeserializer` removed.
+* Property `text` removed.
+Class `c.e.c.e.core.search.SuggestOption` removed.::
+Class `c.e.c.e.core.search.TermSuggestOption`: ::
+* Property `freq`  changed from `Long` to `long`.
+Class `c.e.c.e.core.SearchTemplateResponse`: ::
+* Property `took`  changed from `int` to `long`.
+Class `c.e.c.e.core.UpdateByQueryRequest`: ::
+* Property `source` removed.
+* Property `sourceExcludes` removed.
+* Property `sourceIncludes` removed.
+Class `c.e.c.e.indices.data_streams_stats.DataStreamsStatsItem`: ::
+* Property `maximumTimestamp`  changed from `int` to `long`.
+Class `c.e.c.e.indices.stats.IndexStats`: ::
+* Property `shards` removed.
+Class `c.e.c.e.logstash.PipelineSettings`: ::
+* Property `pipelineBatchDelay` removed.
+* Property `pipelineBatchSize` removed.
+* Property `pipelineWorkers` removed.
+* Property `queueCheckpointWrites` removed.
+* Property `queueMaxBytesNumber` removed.
+* Property `queueMaxBytesUnits` removed.
+* Property `queueType` removed.
+Class `c.e.c.e.ml.DataCounts`: ::
+* Property `earliestRecordTimestamp`  changed from `long` to `Long`.
+* Property `lastDataTime`  changed from `long` to `Long`.
+* Property `latestBucketTimestamp`  changed from `long` to `Long`.
+* Property `latestEmptyBucketTimestamp`  changed from `long` to `Long`.
+* Property `latestRecordTimestamp`  changed from `long` to `Long`.
+* Property `latestSparseBucketTimestamp`  changed from `long` to `Long`.
+Class `c.e.c.e.ml.Job`: ::
+* Property `createTime`  changed from `int` to `Integer`.
+Class `c.e.c.e.ml.JobTimingStats`: ::
+* Property `averageBucketProcessingTimeMs`  changed from `double` to `Double`.
+* Property `exponentialAverageBucketProcessingTimeMs`  changed from `double` to `Double`.
+* Property `maximumBucketProcessingTimeMs`  changed from `double` to `Double`.
+* Property `minimumBucketProcessingTimeMs`  changed from `double` to `Double`.
+Class `c.e.c.e.ml.ModelSnapshot`: ::
+* Property `timestamp`  changed from `int` to `long`.
+Class `c.e.c.e.ml.PostDataResponse`: ::
+* Property `earliestRecordTimestamp`  changed from `int` to `long`.
+* Property `latestRecordTimestamp`  changed from `int` to `long`.
+Class `c.e.c.e.nodes.AdaptiveSelection`: ::
+* Property `avgQueueSize`  changed from `long` to `Long`.
+* Property `avgResponseTime`  changed from `long` to `Long`.
+* Property `avgResponseTimeNs`  changed from `long` to `Long`.
+* Property `avgServiceTimeNs`  changed from `long` to `Long`.
+* Property `outgoingSearches`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.Breaker`: ::
+* Property `estimatedSizeInBytes`  changed from `long` to `Long`.
+* Property `limitSizeInBytes`  changed from `long` to `Long`.
+* Property `overhead`  changed from `float` to `Float`.
+* Property `tripped`  changed from `float` to `Float`.
+Class `c.e.c.e.nodes.Cpu`: ::
+* Property `percent`  changed from `int` to `Integer`.
+Class `c.e.c.e.nodes.DataPathStats`: ::
+* Property `availableInBytes`  changed from `long` to `Long`.
+* Property `diskReads`  changed from `long` to `Long`.
+* Property `diskReadSizeInBytes`  changed from `long` to `Long`.
+* Property `diskWrites`  changed from `long` to `Long`.
+* Property `diskWriteSizeInBytes`  changed from `long` to `Long`.
+* Property `freeInBytes`  changed from `long` to `Long`.
+* Property `totalInBytes`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.ExtendedMemoryStats`: ::
+* Property `freePercent`  changed from `int` to `Integer`.
+* Property `usedPercent`  changed from `int` to `Integer`.
+Class `c.e.c.e.nodes.FileSystem`: ::
+* Property `timestamp`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.FileSystemTotal`: ::
+* Property `availableInBytes`  changed from `long` to `Long`.
+* Property `freeInBytes`  changed from `long` to `Long`.
+* Property `totalInBytes`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.GarbageCollectorTotal`: ::
+* Property `collectionCount`  changed from `long` to `Long`.
+* Property `collectionTimeInMillis`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.Http`: ::
+* Property `currentOpen`  changed from `int` to `Integer`.
+* Property `totalOpened`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.info.NodeInfoSettingsHttp`: ::
+* Property `typeDefault` removed.
+Class `c.e.c.e.nodes.info.NodeInfoSettingsTransport`: ::
+* Property `typeDefault` removed.
+Class `c.e.c.e.nodes.IngestTotal`: ::
+* Property `count`  changed from `long` to `Long`.
+* Property `current`  changed from `long` to `Long`.
+* Property `failed`  changed from `long` to `Long`.
+* Property `timeInMillis`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.Jvm`: ::
+* Property `mem`  changed from `c.e.c.e.nodes.MemoryStats` to `c.e.c.e.nodes.JvmMemoryStats`.
+* Property `timestamp`  changed from `long` to `Long`.
+* Property `uptimeInMillis`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.JvmClasses`: ::
+* Property `currentLoadedCount`  changed from `long` to `Long`.
+* Property `totalLoadedCount`  changed from `long` to `Long`.
+* Property `totalUnloadedCount`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.JvmThreads`: ::
+* Property `count`  changed from `long` to `Long`.
+* Property `peakCount`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.KeyedProcessor`: ::
+* Property `statistics` removed.
+Class `c.e.c.e.nodes.MemoryStats`: ::
+* Property `freeInBytes`  changed from `long` to `Long`.
+* Property `totalInBytes`  changed from `long` to `Long`.
+* Property `usedInBytes`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.NodeBufferPool`: ::
+* Property `count`  changed from `long` to `Long`.
+* Property `totalCapacityInBytes`  changed from `long` to `Long`.
+* Property `usedInBytes`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.OperatingSystem`: ::
+* Property `timestamp`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.Process`: ::
+* Property `openFileDescriptors`  changed from `int` to `Integer`.
+* Property `timestamp`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.Scripting`: ::
+* Property `cacheEvictions`  changed from `long` to `Long`.
+* Property `compilations`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.Stats`: ::
+* Property `indices`  changed from `c.e.c.e.indices.stats.IndexStats` to `c.e.c.e.indices.stats.ShardStats`.
+* Property `timestamp`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.ThreadCount`: ::
+* Property `active`  changed from `long` to `Long`.
+* Property `completed`  changed from `long` to `Long`.
+* Property `largest`  changed from `long` to `Long`.
+* Property `queue`  changed from `long` to `Long`.
+* Property `rejected`  changed from `long` to `Long`.
+* Property `threads`  changed from `long` to `Long`.
+Class `c.e.c.e.nodes.Transport`: ::
+* Property `rxCount`  changed from `long` to `Long`.
+* Property `rxSizeInBytes`  changed from `long` to `Long`.
+* Property `serverOpen`  changed from `int` to `Integer`.
+* Property `txCount`  changed from `long` to `Long`.
+* Property `txSizeInBytes`  changed from `long` to `Long`.
+Class `c.e.c.e.transform.GetTransformStatsRequest`: ::
+* Property `transformId`  changed from `String` to `List`.
+Class `c.e.c.e.watcher.CompareCondition`: ::
+* Property `ctxPayloadMatch` removed.
+* Property `ctxPayloadValue` removed.
+Class `c.e.c.e.watcher.CompareContextPayloadCondition` removed.::
+{nbsp}
