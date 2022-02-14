@@ -37,23 +37,23 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: nodes.reload_secure_settings.Response
+// typedef: nodes.get_repositories_metering_info.Response
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#nodes.reload_secure_settings.Response">API
+ *      "../doc-files/api-spec.html#nodes.get_repositories_metering_info.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ReloadSecureSettingsResponse extends NodesResponseBase {
+public class GetRepositoriesMeteringInfoResponse extends NodesResponseBase {
 	private final String clusterName;
 
-	private final Map<String, NodeReloadResult> nodes;
+	private final Map<String, RepositoryMeteringInformation> nodes;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private ReloadSecureSettingsResponse(Builder builder) {
+	private GetRepositoriesMeteringInfoResponse(Builder builder) {
 		super(builder);
 
 		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
@@ -61,21 +61,29 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 
 	}
 
-	public static ReloadSecureSettingsResponse of(Function<Builder, ObjectBuilder<ReloadSecureSettingsResponse>> fn) {
+	public static GetRepositoriesMeteringInfoResponse of(
+			Function<Builder, ObjectBuilder<GetRepositoriesMeteringInfoResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code cluster_name}
+	 * Required - Name of the cluster. Based on the <a href=
+	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#cluster-name">Cluster
+	 * name setting</a>.
+	 * <p>
+	 * API name: {@code cluster_name}
 	 */
 	public final String clusterName() {
 		return this.clusterName;
 	}
 
 	/**
-	 * Required - API name: {@code nodes}
+	 * Required - Contains repositories metering information for the nodes selected
+	 * by the request.
+	 * <p>
+	 * API name: {@code nodes}
 	 */
-	public final Map<String, NodeReloadResult> nodes() {
+	public final Map<String, RepositoryMeteringInformation> nodes() {
 		return this.nodes;
 	}
 
@@ -88,7 +96,7 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 		if (ApiTypeHelper.isDefined(this.nodes)) {
 			generator.writeKey("nodes");
 			generator.writeStartObject();
-			for (Map.Entry<String, NodeReloadResult> item0 : this.nodes.entrySet()) {
+			for (Map.Entry<String, RepositoryMeteringInformation> item0 : this.nodes.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -102,18 +110,22 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link ReloadSecureSettingsResponse}.
+	 * Builder for {@link GetRepositoriesMeteringInfoResponse}.
 	 */
 
 	public static class Builder extends NodesResponseBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<ReloadSecureSettingsResponse> {
+				ObjectBuilder<GetRepositoriesMeteringInfoResponse> {
 		private String clusterName;
 
-		private Map<String, NodeReloadResult> nodes;
+		private Map<String, RepositoryMeteringInformation> nodes;
 
 		/**
-		 * Required - API name: {@code cluster_name}
+		 * Required - Name of the cluster. Based on the <a href=
+		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/important-settings.html#cluster-name">Cluster
+		 * name setting</a>.
+		 * <p>
+		 * API name: {@code cluster_name}
 		 */
 		public final Builder clusterName(String value) {
 			this.clusterName = value;
@@ -121,32 +133,42 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 		}
 
 		/**
-		 * Required - API name: {@code nodes}
+		 * Required - Contains repositories metering information for the nodes selected
+		 * by the request.
+		 * <p>
+		 * API name: {@code nodes}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>nodes</code>.
 		 */
-		public final Builder nodes(Map<String, NodeReloadResult> map) {
+		public final Builder nodes(Map<String, RepositoryMeteringInformation> map) {
 			this.nodes = _mapPutAll(this.nodes, map);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code nodes}
+		 * Required - Contains repositories metering information for the nodes selected
+		 * by the request.
+		 * <p>
+		 * API name: {@code nodes}
 		 * <p>
 		 * Adds an entry to <code>nodes</code>.
 		 */
-		public final Builder nodes(String key, NodeReloadResult value) {
+		public final Builder nodes(String key, RepositoryMeteringInformation value) {
 			this.nodes = _mapPut(this.nodes, key, value);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code nodes}
+		 * Required - Contains repositories metering information for the nodes selected
+		 * by the request.
+		 * <p>
+		 * API name: {@code nodes}
 		 * <p>
 		 * Adds an entry to <code>nodes</code> using a builder lambda.
 		 */
-		public final Builder nodes(String key, Function<NodeReloadResult.Builder, ObjectBuilder<NodeReloadResult>> fn) {
-			return nodes(key, fn.apply(new NodeReloadResult.Builder()).build());
+		public final Builder nodes(String key,
+				Function<RepositoryMeteringInformation.Builder, ObjectBuilder<RepositoryMeteringInformation>> fn) {
+			return nodes(key, fn.apply(new RepositoryMeteringInformation.Builder()).build());
 		}
 
 		@Override
@@ -155,31 +177,33 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 		}
 
 		/**
-		 * Builds a {@link ReloadSecureSettingsResponse}.
+		 * Builds a {@link GetRepositoriesMeteringInfoResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public ReloadSecureSettingsResponse build() {
+		public GetRepositoriesMeteringInfoResponse build() {
 			_checkSingleUse();
 
-			return new ReloadSecureSettingsResponse(this);
+			return new GetRepositoriesMeteringInfoResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link ReloadSecureSettingsResponse}
+	 * Json deserializer for {@link GetRepositoriesMeteringInfoResponse}
 	 */
-	public static final JsonpDeserializer<ReloadSecureSettingsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, ReloadSecureSettingsResponse::setupReloadSecureSettingsResponseDeserializer);
+	public static final JsonpDeserializer<GetRepositoriesMeteringInfoResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					GetRepositoriesMeteringInfoResponse::setupGetRepositoriesMeteringInfoResponseDeserializer);
 
-	protected static void setupReloadSecureSettingsResponseDeserializer(
-			ObjectDeserializer<ReloadSecureSettingsResponse.Builder> op) {
+	protected static void setupGetRepositoriesMeteringInfoResponseDeserializer(
+			ObjectDeserializer<GetRepositoriesMeteringInfoResponse.Builder> op) {
 		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeReloadResult._DESERIALIZER), "nodes");
+		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(RepositoryMeteringInformation._DESERIALIZER),
+				"nodes");
 
 	}
 

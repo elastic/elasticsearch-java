@@ -21,36 +21,29 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
-
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+package co.elastic.clients.elasticsearch.nodes;
 
 /**
- *
- * @see <a href=
- *      "../doc-files/api-spec.html#_types.WaitForActiveShardOptions">API
- *      specification</a>
+ * Builders for {@link NodeReloadResult} variants.
  */
-@JsonpDeserializable
-public enum WaitForActiveShardOptions implements JsonEnum {
-	All("all"),
-
-	IndexSetting("index-setting"),
-
-	;
-
-	private final String jsonValue;
-
-	WaitForActiveShardOptions(String jsonValue) {
-		this.jsonValue = jsonValue;
+public class NodeReloadResultBuilders {
+	private NodeReloadResultBuilders() {
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
+	/**
+	 * Creates a builder for the {@link NodeReloadError error}
+	 * {@code NodeReloadResult} variant.
+	 */
+	public static NodeReloadError.Builder error() {
+		return new NodeReloadError.Builder();
 	}
 
-	public static final JsonEnum.Deserializer<WaitForActiveShardOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			WaitForActiveShardOptions.values());
+	/**
+	 * Creates a builder for the {@link Stats stats} {@code NodeReloadResult}
+	 * variant.
+	 */
+	public static Stats.Builder stats() {
+		return new Stats.Builder();
+	}
+
 }

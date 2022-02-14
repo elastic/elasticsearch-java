@@ -21,31 +21,45 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.nodes.reload_secure_settings;
+package co.elastic.clients.elasticsearch.snapshot;
 
-import co.elastic.clients.elasticsearch.nodes.Stats;
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 /**
- * Builders for {@link NodeReloadResult} variants.
+ *
+ * @see <a href="../doc-files/api-spec.html#snapshot._types.SnapshotSort">API
+ *      specification</a>
  */
-public class NodeReloadResultBuilders {
-	private NodeReloadResultBuilders() {
+@JsonpDeserializable
+public enum SnapshotSort implements JsonEnum {
+	StartTime("start_time"),
+
+	Duration("duration"),
+
+	Name("name"),
+
+	IndexCount("index_count"),
+
+	Repository("repository"),
+
+	ShardCount("shard_count"),
+
+	FailedShardCount("failed_shard_count"),
+
+	;
+
+	private final String jsonValue;
+
+	SnapshotSort(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
-	/**
-	 * Creates a builder for the {@link Stats stats} {@code NodeReloadResult}
-	 * variant.
-	 */
-	public static Stats.Builder stats() {
-		return new Stats.Builder();
+	public String jsonValue() {
+		return this.jsonValue;
 	}
 
-	/**
-	 * Creates a builder for the {@link NodeReloadError error}
-	 * {@code NodeReloadResult} variant.
-	 */
-	public static NodeReloadError.Builder error() {
-		return new NodeReloadError.Builder();
-	}
-
+	public static final JsonEnum.Deserializer<SnapshotSort> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			SnapshotSort.values());
 }

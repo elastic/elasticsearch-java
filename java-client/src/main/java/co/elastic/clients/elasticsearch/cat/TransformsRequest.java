@@ -24,12 +24,14 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -37,9 +39,11 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.transforms.Request
@@ -62,8 +66,15 @@ public class TransformsRequest extends CatRequestBase {
 	@Nullable
 	private final Integer from;
 
+	private final List<CatTransformColumn> h;
+
+	private final List<CatTransformColumn> s;
+
 	@Nullable
 	private final Integer size;
+
+	@Nullable
+	private final Time time;
 
 	@Nullable
 	private final String transformId;
@@ -74,7 +85,10 @@ public class TransformsRequest extends CatRequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
 		this.size = builder.size;
+		this.time = builder.time;
 		this.transformId = builder.transformId;
 
 	}
@@ -105,6 +119,25 @@ public class TransformsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Comma-separated list of column names to display.
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<CatTransformColumn> h() {
+		return this.h;
+	}
+
+	/**
+	 * Comma-separated list of column names or column aliases used to sort the
+	 * response.
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<CatTransformColumn> s() {
+		return this.s;
+	}
+
+	/**
 	 * specifies a max number of transforms to get, defaults to 100
 	 * <p>
 	 * API name: {@code size}
@@ -112,6 +145,16 @@ public class TransformsRequest extends CatRequestBase {
 	@Nullable
 	public final Integer size() {
 		return this.size;
+	}
+
+	/**
+	 * Unit used to display time values.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final Time time() {
+		return this.time;
 	}
 
 	/**
@@ -139,7 +182,16 @@ public class TransformsRequest extends CatRequestBase {
 		private Integer from;
 
 		@Nullable
+		private List<CatTransformColumn> h;
+
+		@Nullable
+		private List<CatTransformColumn> s;
+
+		@Nullable
 		private Integer size;
+
+		@Nullable
+		private Time time;
 
 		@Nullable
 		private String transformId;
@@ -166,6 +218,56 @@ public class TransformsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Comma-separated list of column names to display.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<CatTransformColumn> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names to display.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(CatTransformColumn value, CatTransformColumn... values) {
+			this.h = _listAdd(this.h, value, values);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names or column aliases used to sort the
+		 * response.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<CatTransformColumn> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names or column aliases used to sort the
+		 * response.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(CatTransformColumn value, CatTransformColumn... values) {
+			this.s = _listAdd(this.s, value, values);
+			return this;
+		}
+
+		/**
 		 * specifies a max number of transforms to get, defaults to 100
 		 * <p>
 		 * API name: {@code size}
@@ -173,6 +275,25 @@ public class TransformsRequest extends CatRequestBase {
 		public final Builder size(@Nullable Integer value) {
 			this.size = value;
 			return this;
+		}
+
+		/**
+		 * Unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable Time value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * Unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.time(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -244,11 +365,20 @@ public class TransformsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
 				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));
+				}
+				if (request.time != null) {
+					params.put("time", request.time._toJsonString());
 				}
 				if (request.allowNoMatch != null) {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));

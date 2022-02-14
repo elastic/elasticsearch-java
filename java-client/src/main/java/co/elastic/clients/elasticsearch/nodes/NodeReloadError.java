@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.nodes.reload_secure_settings;
+package co.elastic.clients.elasticsearch.nodes;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -39,12 +39,11 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: nodes.reload_secure_settings.NodeReloadError
+// typedef: nodes._types.NodeReloadError
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#nodes.reload_secure_settings.NodeReloadError">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.NodeReloadError">API
  *      specification</a>
  */
 @JsonpDeserializable

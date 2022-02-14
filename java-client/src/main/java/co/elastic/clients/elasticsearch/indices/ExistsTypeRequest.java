@@ -56,8 +56,9 @@ import javax.annotation.Nullable;
  * 
  * @see <a href="../doc-files/api-spec.html#indices.exists_type.Request">API
  *      specification</a>
+ * @deprecated 7.0.0
  */
-
+@Deprecated
 public class ExistsTypeRequest extends RequestBase {
 	@Nullable
 	private final Boolean allowNoIndices;
@@ -159,7 +160,7 @@ public class ExistsTypeRequest extends RequestBase {
 	/**
 	 * Builder for {@link ExistsTypeRequest}.
 	 */
-
+	@Deprecated
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExistsTypeRequest> {
 		@Nullable
 		private Boolean allowNoIndices;

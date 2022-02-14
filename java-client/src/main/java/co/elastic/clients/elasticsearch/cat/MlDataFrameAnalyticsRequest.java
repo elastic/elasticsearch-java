@@ -25,21 +25,25 @@ package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_data_frame_analytics.Request
@@ -64,8 +68,15 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
+	private final List<CatDfaColumn> h;
+
 	@Nullable
 	private final String id;
+
+	private final List<CatDfaColumn> s;
+
+	@Nullable
+	private final Time time;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +84,10 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.id = builder.id;
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
+		this.time = builder.time;
 
 	}
 
@@ -103,6 +117,15 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Comma-separated list of column names to display.
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<CatDfaColumn> h() {
+		return this.h;
+	}
+
+	/**
 	 * The ID of the data frame analytics to fetch
 	 * <p>
 	 * API name: {@code id}
@@ -110,6 +133,26 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 	@Nullable
 	public final String id() {
 		return this.id;
+	}
+
+	/**
+	 * Comma-separated list of column names or column aliases used to sort the
+	 * response.
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<CatDfaColumn> s() {
+		return this.s;
+	}
+
+	/**
+	 * Unit used to display time values.
+	 * <p>
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final Time time() {
+		return this.time;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -126,7 +169,16 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		private Bytes bytes;
 
 		@Nullable
+		private List<CatDfaColumn> h;
+
+		@Nullable
 		private String id;
+
+		@Nullable
+		private List<CatDfaColumn> s;
+
+		@Nullable
+		private Time time;
 
 		/**
 		 * Whether to ignore if a wildcard expression matches no configs. (This includes
@@ -150,6 +202,30 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Comma-separated list of column names to display.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<CatDfaColumn> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names to display.
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(CatDfaColumn value, CatDfaColumn... values) {
+			this.h = _listAdd(this.h, value, values);
+			return this;
+		}
+
+		/**
 		 * The ID of the data frame analytics to fetch
 		 * <p>
 		 * API name: {@code id}
@@ -157,6 +233,51 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 		public final Builder id(@Nullable String value) {
 			this.id = value;
 			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names or column aliases used to sort the
+		 * response.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<CatDfaColumn> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names or column aliases used to sort the
+		 * response.
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(CatDfaColumn value, CatDfaColumn... values) {
+			this.s = _listAdd(this.s, value, values);
+			return this;
+		}
+
+		/**
+		 * Unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable Time value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * Unit used to display time values.
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.time(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -221,8 +342,17 @@ public class MlDataFrameAnalyticsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
+				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
+				if (request.time != null) {
+					params.put("time", request.time._toJsonString());
 				}
 				if (request.allowNoMatch != null) {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));

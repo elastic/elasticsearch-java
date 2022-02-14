@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types;
+package co.elastic.clients.elasticsearch.migration.get_feature_upgrade_status;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -30,20 +30,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#_types.WaitForActiveShardOptions">API
+ *      "../../doc-files/api-spec.html#migration.get_feature_upgrade_status.MigrationStatus">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum WaitForActiveShardOptions implements JsonEnum {
-	All("all"),
+public enum MigrationStatus implements JsonEnum {
+	NoMigrationNeeded("NO_MIGRATION_NEEDED"),
 
-	IndexSetting("index-setting"),
+	MigrationNeeded("MIGRATION_NEEDED"),
+
+	InProgress("IN_PROGRESS"),
+
+	Error("ERROR"),
 
 	;
 
 	private final String jsonValue;
 
-	WaitForActiveShardOptions(String jsonValue) {
+	MigrationStatus(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -51,6 +55,6 @@ public enum WaitForActiveShardOptions implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<WaitForActiveShardOptions> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			WaitForActiveShardOptions.values());
+	public static final JsonEnum.Deserializer<MigrationStatus> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			MigrationStatus.values());
 }

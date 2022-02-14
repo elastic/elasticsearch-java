@@ -21,9 +21,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.nodes.reload_secure_settings;
+package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.elasticsearch.nodes.Stats;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -41,19 +40,18 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: nodes.reload_secure_settings.NodeReloadResult
+// typedef: nodes._types.NodeReloadResult
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#nodes.reload_secure_settings.NodeReloadResult">API
+ * @see <a href="../doc-files/api-spec.html#nodes._types.NodeReloadResult">API
  *      specification</a>
  */
 @JsonpDeserializable
 public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Object>, JsonpSerializable {
 
 	public enum Kind {
-		Stats, Error
+		Error, Stats
 
 	}
 
@@ -87,23 +85,6 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 	}
 
 	/**
-	 * Is this variant instance of kind {@code stats}?
-	 */
-	public boolean isStats() {
-		return _kind == Kind.Stats;
-	}
-
-	/**
-	 * Get the {@code stats} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code stats} kind.
-	 */
-	public Stats stats() {
-		return TaggedUnionUtils.get(this, Kind.Stats);
-	}
-
-	/**
 	 * Is this variant instance of kind {@code error}?
 	 */
 	public boolean isError() {
@@ -120,6 +101,23 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 		return TaggedUnionUtils.get(this, Kind.Error);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code stats}?
+	 */
+	public boolean isStats() {
+		return _kind == Kind.Stats;
+	}
+
+	/**
+	 * Get the {@code stats} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code stats} kind.
+	 */
+	public Stats stats() {
+		return TaggedUnionUtils.get(this, Kind.Stats);
+	}
+
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 		if (_value instanceof JsonpSerializable) {
@@ -132,16 +130,6 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 		private Kind _kind;
 		private Object _value;
 
-		public ObjectBuilder<NodeReloadResult> stats(Stats v) {
-			this._kind = Kind.Stats;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<NodeReloadResult> stats(Function<Stats.Builder, ObjectBuilder<Stats>> fn) {
-			return this.stats(fn.apply(new Stats.Builder()).build());
-		}
-
 		public ObjectBuilder<NodeReloadResult> error(NodeReloadError v) {
 			this._kind = Kind.Error;
 			this._value = v;
@@ -153,6 +141,16 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 			return this.error(fn.apply(new NodeReloadError.Builder()).build());
 		}
 
+		public ObjectBuilder<NodeReloadResult> stats(Stats v) {
+			this._kind = Kind.Stats;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<NodeReloadResult> stats(Function<Stats.Builder, ObjectBuilder<Stats>> fn) {
+			return this.stats(fn.apply(new Stats.Builder()).build());
+		}
+
 		public NodeReloadResult build() {
 			_checkSingleUse();
 			return new NodeReloadResult(this);
@@ -162,7 +160,7 @@ public class NodeReloadResult implements TaggedUnion<NodeReloadResult.Kind, Obje
 
 	private static JsonpDeserializer<NodeReloadResult> buildNodeReloadResultDeserializer() {
 		return new UnionDeserializer.Builder<NodeReloadResult, Kind, Object>(NodeReloadResult::new, false)
-				.addMember(Kind.Stats, Stats._DESERIALIZER).addMember(Kind.Error, NodeReloadError._DESERIALIZER)
+				.addMember(Kind.Error, NodeReloadError._DESERIALIZER).addMember(Kind.Stats, Stats._DESERIALIZER)
 				.build();
 	}
 
