@@ -1,5 +1,5 @@
-[[release_notes_7_17]]
-=== Version 7.17
+[[release_notes_7_17_0]]
+=== Version 7.17.0
 
 [discrete]
 ==== Changes and bug fixes
@@ -7,7 +7,7 @@
 This release includes minor updates and improvement to the API specification and a number of bug fixes (see closed issues in the https://github.com/elastic/elasticsearch-java/milestone/1?closed=1[GitHub repo]).
 
 [discrete]
-==== Breaking changes between 7.16 and 7.17
+==== Breaking changes between 7.16.3 and 7.17.0
 
 Please refer to the <<breaking-changes-policy>>. The `co.elastic.clients.elasticsearch` package is abbreviated to `c.e.c.e` below.
 
