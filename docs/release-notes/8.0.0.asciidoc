@@ -1,0 +1,279 @@
+[[release_notes_8_0_0]]
+=== Version 8.0.0
+
+[discrete]
+==== Changes and bug fixes
+
+This release updates the API to Elasticsearch 8.0.0.
+
+[discrete]
+==== Breaking changes between 8.0.0 and 7.17.0
+
+Class `c.e.c.e._types.aggregations.LongTermsBucket`: ::
+* Property `key`  changed from `String` to `long`.
+Class `c.e.c.e._types.query_dsl.LikeDocument`: ::
+* Property `type` removed.
+Class `c.e.c.e._types.WriteResponseBase`: ::
+* Property `type` removed.
+Class `c.e.c.e.cat.CatAnomalyDetectorColumn` removed.::
+Class `c.e.c.e.cat.MlDatafeedsRequest`: ::
+* Property `allowNoDatafeeds` removed.
+Class `c.e.c.e.cat.MlJobsRequest`: ::
+* Property `allowNoJobs` removed.
+Class `c.e.c.e.cat.thread_pool.ThreadPoolSize` removed.::
+Class `c.e.c.e.cat.ThreadPoolRequest`: ::
+* Property `size` removed.
+Class `c.e.c.e.core.bulk.BulkResponseItem`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.BulkRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.CountRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.CreateRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.CreateResponse`: ::
+Class `c.e.c.e.core.DeleteByQueryRequest`: ::
+* Property `size` removed.
+* Property `type` removed.
+Class `c.e.c.e.core.DeleteByQueryRethrottleResponse`: ::
+Class `c.e.c.e.core.DeleteRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.DeleteResponse`: ::
+Class `c.e.c.e.core.ExistsRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.ExistsSourceRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.ExplainRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.ExplainResponse`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.get.GetResult`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.GetRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.GetResponse`: ::
+Class `c.e.c.e.core.GetSourceRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.IndexRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.IndexResponse`: ::
+Class `c.e.c.e.core.mget.MultiGetError`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.mget.MultiGetOperation`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.MgetRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.msearch.MultiSearchItem`: ::
+Class `c.e.c.e.core.MsearchRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.MsearchTemplateRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.mtermvectors.MultiTermVectorsOperation`: ::
+* Property `fieldStatistics`  changed from `boolean` to `Boolean`.
+* Property `offsets`  changed from `boolean` to `Boolean`.
+* Property `payloads`  changed from `boolean` to `Boolean`.
+* Property `positions`  changed from `boolean` to `Boolean`.
+* Property `termStatistics`  changed from `boolean` to `Boolean`.
+* Property `version`  changed from `long` to `Long`.
+Class `c.e.c.e.core.mtermvectors.MultiTermVectorsResult`: ::
+* Property `found`  changed from `boolean` to `Boolean`.
+* Property `took`  changed from `long` to `Long`.
+* Property `version`  changed from `long` to `Long`.
+Class `c.e.c.e.core.MtermvectorsRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.rank_eval.RankEvalHit`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.ScrollResponse`: ::
+Class `c.e.c.e.core.search.AggregationProfileDebug`: ::
+* Property `delegateDebug`  changed from `c.e.c.e.core.search.AggregationProfileDelegateDebug` to `c.e.c.e.core.search.AggregationProfileDebug`.
+Class `c.e.c.e.core.search.AggregationProfileDelegateDebug` removed.::
+Class `c.e.c.e.core.search.BuiltinHighlighterType` removed.::
+Class `c.e.c.e.core.search.CompletionSuggestOption`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.search.HighlighterType` changed to an enum.::
+Class `c.e.c.e.core.search.Hit`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.SearchRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.SearchResponse`: ::
+* Property `documents` removed.
+Class `c.e.c.e.core.SearchTemplateRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.TermvectorsRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.TermvectorsResponse`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.UpdateByQueryRequest`: ::
+* Property `size` removed.
+* Property `type` removed.
+Class `c.e.c.e.core.UpdateRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.core.UpdateResponse`: ::
+Class `c.e.c.e.enrich.stats.ExecutingPolicy`: ::
+* Property `task`  changed from `c.e.c.e.tasks.Info` to `c.e.c.e.tasks.TaskInfo`.
+Class `c.e.c.e.eql.EqlSearchRequest`: ::
+* Property `fields`  changed from `c.e.c.e._types.query_dsl.FieldAndFormat` to `List`.
+* Property `index`  changed from `String` to `List`.
+Class `c.e.c.e.graph.ExploreRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.indices.CreateIndexRequest`: ::
+* Property `includeTypeName` removed.
+Class `c.e.c.e.indices.ElasticsearchIndicesAsyncClient`: ::
+* Method `existsType` removed.
+* Method `flushSynced` removed.
+* Method `freeze` removed.
+* Method `getUpgrade` removed.
+* Method `upgrade` removed.
+Class `c.e.c.e.indices.ElasticsearchIndicesClient`: ::
+* Method `existsType` removed.
+* Method `existsType` removed.
+* Method `flushSynced` removed.
+* Method `flushSynced` removed.
+* Method `flushSynced` removed.
+* Method `freeze` removed.
+* Method `freeze` removed.
+* Method `getUpgrade` removed.
+* Method `getUpgrade` removed.
+* Method `getUpgrade` removed.
+* Method `upgrade` removed.
+* Method `upgrade` removed.
+* Method `upgrade` removed.
+Class `c.e.c.e.indices.ExistsTypeRequest` removed.::
+Class `c.e.c.e.indices.ExistsTypeResponse` removed.::
+Class `c.e.c.e.indices.FlushSyncedRequest` removed.::
+Class `c.e.c.e.indices.FlushSyncedResponse` removed.::
+Class `c.e.c.e.indices.FreezeRequest` removed.::
+Class `c.e.c.e.indices.FreezeResponse` removed.::
+Class `c.e.c.e.indices.GetFieldMappingRequest`: ::
+* Property `includeTypeName` removed.
+* Property `type` removed.
+Class `c.e.c.e.indices.GetIndexRequest`: ::
+* Property `includeTypeName` removed.
+Class `c.e.c.e.indices.GetIndexTemplateRequest`: ::
+* Property `includeTypeName` removed.
+Class `c.e.c.e.indices.GetMappingRequest`: ::
+* Property `includeTypeName` removed.
+* Property `type` removed.
+Class `c.e.c.e.indices.GetTemplateRequest`: ::
+* Property `includeTypeName` removed.
+Class `c.e.c.e.indices.GetUpgradeRequest` removed.::
+Class `c.e.c.e.indices.GetUpgradeResponse` removed.::
+Class `c.e.c.e.indices.IndexSettings`: ::
+* Property `mergeSchedulerMaxThreadCount` removed.
+* Property `translogDurability` removed.
+* Property `translogFlushThresholdSize` removed.
+Class `c.e.c.e.indices.IndicesStatsRequest`: ::
+* Property `types` removed.
+Class `c.e.c.e.indices.OverlappingIndexTemplate` removed.::
+Class `c.e.c.e.indices.PutMappingRequest`: ::
+* Property `includeTypeName` removed.
+* Property `type` removed.
+Class `c.e.c.e.indices.PutTemplateRequest`: ::
+* Property `includeTypeName` removed.
+Class `c.e.c.e.indices.RolloverRequest`: ::
+* Property `includeTypeName` removed.
+* Property `mappings`  changed from `c.e.c.e.indices.rollover.IndexRolloverMapping` to `c.e.c.e._types.mapping.TypeMapping`.
+Class `c.e.c.e.indices.UpgradeRequest` removed.::
+Class `c.e.c.e.indices.UpgradeResponse` removed.::
+Class `c.e.c.e.indices.ValidateQueryRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.ingest.simulate.DocumentSimulation`: ::
+* Property `type` removed.
+Class `c.e.c.e.license.ElasticsearchLicenseAsyncClient`: ::
+* Method `post` removed.
+Class `c.e.c.e.license.ElasticsearchLicenseClient`: ::
+* Method `post` removed.
+Class `c.e.c.e.ml.CloseJobRequest`: ::
+* Property `allowNoJobs` removed.
+Class `c.e.c.e.ml.GetDatafeedsRequest`: ::
+* Property `allowNoDatafeeds` removed.
+Class `c.e.c.e.ml.GetDatafeedStatsRequest`: ::
+* Property `allowNoDatafeeds` removed.
+Class `c.e.c.e.ml.GetJobsRequest`: ::
+* Property `allowNoJobs` removed.
+Class `c.e.c.e.ml.GetJobStatsRequest`: ::
+* Property `allowNoJobs` removed.
+Class `c.e.c.e.ml.GetOverallBucketsRequest`: ::
+* Property `allowNoJobs` removed.
+Class `c.e.c.e.ml.StopDatafeedRequest`: ::
+* Property `allowNoDatafeeds` removed.
+Class `c.e.c.e.rollup.delete_job.TaskFailure` removed.::
+Class `c.e.c.e.rollup.delete_job.TaskFailureReason` removed.::
+Class `c.e.c.e.rollup.GetRollupIndexCapsRequest`: ::
+* Property `index`  changed from `String` to `List`.
+Class `c.e.c.e.rollup.PutJobRequest`: ::
+* Property `pageSize`  changed from `Long` to `int`.
+Class `c.e.c.e.rollup.RollupSearchRequest`: ::
+* Property `type` removed.
+Class `c.e.c.e.security.authenticate.ApiKey` removed.::
+Class `c.e.c.e.security.AuthenticateResponse`: ::
+* Property `apiKey`  changed from `c.e.c.e.security.authenticate.ApiKey` to `c.e.c.e.security.ApiKey`.
+Class `c.e.c.e.security.get_api_key.ApiKey` removed.::
+Class `c.e.c.e.security.GetPrivilegesRequest`: ::
+* Property `name`  changed from `String` to `List`.
+Class `c.e.c.e.security.GetRoleMappingRequest`: ::
+* Property `name`  changed from `String` to `List`.
+Class `c.e.c.e.security.GetRoleRequest`: ::
+* Property `name`  changed from `String` to `List`.
+Class `c.e.c.e.security.GetServiceCredentialsResponse`: ::
+* Property `fileTokens` removed.
+* Property `nodeName` removed.
+Class `c.e.c.e.security.grant_api_key.ApiKey` removed.::
+Class `c.e.c.e.security.GrantApiKeyRequest`: ::
+* Property `apiKey`  changed from `c.e.c.e.security.grant_api_key.ApiKey` to `c.e.c.e.security.grant_api_key.GrantApiKey`.
+Class `c.e.c.e.security.IndicesPrivileges`: ::
+* Property `fieldSecurity`  changed from `c.e.c.e.security.FieldSecurity` to `List`.
+* Property `query`  changed from `List` to `c.e.c.e._types.query_dsl.Query`.
+Class `c.e.c.e.sql.query.Column` removed.::
+Class `c.e.c.e.tasks.GetTasksResponse`: ::
+* Property `response`  changed from `c.e.c.e.tasks.Status` to `c.e.c.e.tasks.TaskStatus`.
+* Property `task`  changed from `c.e.c.e.tasks.Info` to `c.e.c.e.tasks.TaskInfo`.
+Class `c.e.c.e.tasks.Info` removed.::
+Class `c.e.c.e.tasks.ListRequest`: ::
+* Property `nodes` removed.
+Class `c.e.c.e.tasks.ListResponse`: ::
+* Parent class changed from `Object` to `c.e.c.e.tasks.TaskListResponseBase`.
+* Property `tasks` removed.
+Class `c.e.c.e.tasks.State` removed.::
+Class `c.e.c.e.tasks.Status` removed.::
+Class `c.e.c.e.tasks.TaskExecutingNode` removed.::
+Class `c.e.c.e.transform.get_transform_stats.Checkpointing`: ::
+* Property `changesLastDetectedAt`  changed from `long` to `Long`.
+Class `c.e.c.e.transform.PreviewTransformRequest`: ::
+* Property `dest`  changed from `c.e.c.e.core.reindex.Destination` to `c.e.c.e.transform.Destination`.
+* Property `source`  changed from `c.e.c.e.core.reindex.Source` to `c.e.c.e.transform.Source`.
+Class `c.e.c.e.transform.PutTransformRequest`: ::
+* Property `dest`  changed from `c.e.c.e.core.reindex.Destination` to `c.e.c.e.transform.Destination`.
+* Property `source`  changed from `c.e.c.e.core.reindex.Source` to `c.e.c.e.transform.Source`.
+Class `c.e.c.e.transform.UpdateTransformRequest`: ::
+* Property `dest`  changed from `c.e.c.e.core.reindex.Destination` to `c.e.c.e.transform.Destination`.
+* Property `source`  changed from `c.e.c.e.core.reindex.Source` to `c.e.c.e.transform.Source`.
+Class `c.e.c.e.transform.UpdateTransformResponse`: ::
+* Property `latest` removed.
+* Property `retentionPolicy` removed.
+Class `c.e.c.e.watcher.Action`: ::
+* Property `index`  changed from `c.e.c.e.watcher.Index` to `c.e.c.e.watcher.IndexAction`.
+* Property `logging`  changed from `c.e.c.e.watcher.Logging` to `c.e.c.e.watcher.LoggingAction`.
+* Property `webhook`  changed from `c.e.c.e.watcher.ActionWebhook` to `c.e.c.e.watcher.WebhookAction`.
+Class `c.e.c.e.watcher.ActionWebhook` removed.::
+Class `c.e.c.e.watcher.EmailResult`: ::
+* Property `message`  changed from `c.e.c.e.watcher.EmailResult` to `c.e.c.e.watcher.Email`.
+Class `c.e.c.e.watcher.Index` removed.::
+Class `c.e.c.e.watcher.IndexResultSummary`: ::
+* Property `type` removed.
+Class `c.e.c.e.watcher.Logging` removed.::
+Class `c.e.c.e.watcher.PagerDutyAction`: ::
+* Parent class changed from `n.a.` to `c.e.c.e.watcher.PagerDutyEvent`.
+Class `c.e.c.e.watcher.PagerDutyActionEventResult` removed.::
+Class `c.e.c.e.watcher.PagerDutyEvent`: ::
+  * Property `context` removed.
+  * Property `of` removed.
+Class `c.e.c.e.watcher.PagerDutyResult`: ::
+  * Property `sentEvent` removed.
+Class `c.e.c.e.watcher.WebhookAction`: ::
+ * Parent class set to `c.e.c.e.watcher.HttpInputRequestDefinition`.
+Class `c.e.c.e.xpack.usage.MlDataFrameAnalyticsJobs`: ::
+* Property `analysisCounts`  changed from `c.e.c.e._types.EmptyObject` to `c.e.c.e.xpack.usage.MlDataFrameAnalyticsJobsAnalysis`.
+Class `c.e.c.e.xpack.usage.MlInferenceTrainedModelsCount`: ::
+* Property `classification`  changed from `long` to `Long`.
+* Property `regression`  changed from `long` to `Long`.
