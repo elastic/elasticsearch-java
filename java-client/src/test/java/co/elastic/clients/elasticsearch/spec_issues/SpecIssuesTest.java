@@ -24,6 +24,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch.cluster.ClusterStatsResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.HighlightField;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -31,6 +32,8 @@ import jakarta.json.stream.JsonParser;
 import org.junit.Test;
 
 import java.io.InputStream;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Test issues related to the API specifications.
@@ -99,6 +102,17 @@ public class SpecIssuesTest extends ModelTestCase {
         SearchResponse<JsonData> res = ElasticsearchTestServer.global().client()
             .search(srb -> srb
                 .trackTotalHits(thb -> thb.enabled(false)), JsonData.class);
+    }
+
+    @Test
+    public void i0168_highlightFieldOptions() {
+        // https://github.com/elastic/elasticsearch-java/issues/168
+        Map<String, JsonData> options = new HashMap<>();
+        options.put("foo", JsonData.of("bar"));
+
+        HighlightField field = HighlightField.of(_0 -> _0.field("tst").options(options));
+
+        assertEquals("{\"field\":\"tst\",\"options\":{\"foo\":\"bar\"}}", toJson(field));
     }
 
     private <T> T loadRsrc(String res, JsonpDeserializer<T> deser) {

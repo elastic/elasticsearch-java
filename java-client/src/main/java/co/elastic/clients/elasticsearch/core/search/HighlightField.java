@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.core.search;
 
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +39,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Objects;
+import java.util.Map;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
@@ -112,6 +113,10 @@ public class HighlightField implements JsonpSerializable {
 	@Nullable
 	private final String type;
 
+	@Nullable
+	private final Map<String, JsonData> options;
+
+
 	// ---------------------------------------------------------------------------------------------
 
 	private HighlightField(Builder builder) {
@@ -137,7 +142,7 @@ public class HighlightField implements JsonpSerializable {
 		this.requireFieldMatch = builder.requireFieldMatch;
 		this.tagsSchema = builder.tagsSchema;
 		this.type = builder.type;
-
+		this.options = ApiTypeHelper.unmodifiable(builder.options);
 	}
 
 	public static HighlightField of(Function<Builder, ObjectBuilder<HighlightField>> fn) {
@@ -310,6 +315,14 @@ public class HighlightField implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code options}
+	 */
+	@Nullable
+	public final Map<String, JsonData> options() {
+		return this.options;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -436,6 +449,16 @@ public class HighlightField implements JsonpSerializable {
 			generator.write(this.type);
 
 		}
+		if (ApiTypeHelper.isDefined(this.options)) {
+			generator.writeKey("options");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.options.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+		}
 
 	}
 
@@ -508,6 +531,9 @@ public class HighlightField implements JsonpSerializable {
 
 		@Nullable
 		private String type;
+
+		@Nullable
+		private Map<String, JsonData> options;
 
 		/**
 		 * API name: {@code boundary_chars}
@@ -729,6 +755,26 @@ public class HighlightField implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code options}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>options</code>.
+		 */
+		public final Builder options(@Nullable Map<String, JsonData> map) {
+			this.options = _mapPutAll(this.options, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code options}
+		 * <p>
+		 * Adds an entry to <code>options</code>.
+		 */
+		public final Builder params(String key, JsonData value) {
+			this.options = _mapPut(this.options, key, value);
+			return this;
+		}
+
+		/**
 		 * Builds a {@link HighlightField}.
 		 *
 		 * @throws NullPointerException
@@ -775,6 +821,7 @@ public class HighlightField implements JsonpSerializable {
 		op.add(Builder::requireFieldMatch, JsonpDeserializer.booleanDeserializer(), "require_field_match");
 		op.add(Builder::tagsSchema, HighlighterTagsSchema._DESERIALIZER, "tags_schema");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+		op.add(Builder::options, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "options");
 
 	}
 
