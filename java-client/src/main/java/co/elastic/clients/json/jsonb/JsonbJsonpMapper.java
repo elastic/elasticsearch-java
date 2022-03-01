@@ -24,6 +24,7 @@ import co.elastic.clients.json.JsonpDeserializerBase;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpMapperBase;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import jakarta.json.bind.Jsonb;
 import jakarta.json.bind.spi.JsonbProvider;
 import jakarta.json.spi.JsonProvider;
@@ -50,7 +51,7 @@ public class JsonbJsonpMapper extends JsonpMapperBase {
     }
 
     public JsonbJsonpMapper() {
-        this(JsonProvider.provider(), JsonbProvider.provider());
+        this(JsonpUtils.provider(), JsonbProvider.provider());
     }
 
     @Override
