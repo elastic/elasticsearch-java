@@ -19,6 +19,7 @@
 
 package co.elastic.clients.json.jackson;
 
+import co.elastic.clients.json.JsonpUtils;
 import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import jakarta.json.JsonArray;
@@ -36,7 +37,7 @@ import java.io.IOException;
  * object (e.g. START_OBJECT, VALUE_NUMBER, etc).
  */
 class JsonValueParser {
-    private final JsonProvider provider = JsonProvider.provider();
+    private final JsonProvider provider = JsonpUtils.provider();
 
     public JsonObject parseObject(JsonParser parser) throws IOException {
 

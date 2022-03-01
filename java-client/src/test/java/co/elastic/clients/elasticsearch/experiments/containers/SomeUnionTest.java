@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.experiments.containers;
 
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
@@ -55,7 +56,7 @@ public class SomeUnionTest extends ModelTestCase {
     public void testSerialization() {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        JsonProvider provider = JsonProvider.provider();
+        JsonProvider provider = JsonpUtils.provider();
         JsonGenerator generator = provider.createGenerator(baos);
 
         su.serialize(generator, new JsonbJsonpMapper());
@@ -71,7 +72,7 @@ public class SomeUnionTest extends ModelTestCase {
     public void testMissingVariantDeserialization() {
         String json = "{}";
 
-        JsonProvider provider = JsonProvider.provider();
+        JsonProvider provider = JsonpUtils.provider();
         JsonParser parser = provider.createParser(new StringReader(json));
 
         JsonParsingException e = assertThrows(JsonParsingException.class, () -> {
