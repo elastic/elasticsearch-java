@@ -19,6 +19,7 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.util.AllowForbiddenApis;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
@@ -43,6 +44,7 @@ public class JsonpUtils {
      * Get a <code>JsonProvider</code> instance. This method first calls the standard `JsonProvider.provider()` that is based on
      * the current thread's context classloader, and in case of failure tries to find a provider in other classloaders.
      */
+    @AllowForbiddenApis("Implementation of the JsonProvider lookup")
     public static JsonProvider provider() {
         RuntimeException exception;
         try {

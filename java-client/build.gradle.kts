@@ -27,6 +27,7 @@ plugins {
     checkstyle
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "1.17"
+    id("de.thetaphi.forbiddenapis") version "3.2"
 }
 
 java {
@@ -35,6 +36,15 @@ java {
 
     withJavadocJar()
     withSourcesJar()
+}
+
+forbiddenApis {
+    signaturesFiles = files(File(rootProject.projectDir, "config/forbidden-apis.txt"))
+    suppressAnnotations = setOf("co.elastic.clients.util.AllowForbiddenApis")
+}
+
+tasks.forbiddenApisMain {
+    bundledSignatures = setOf("jdk-system-out")
 }
 
 tasks.getByName<ProcessResources>("processResources") {

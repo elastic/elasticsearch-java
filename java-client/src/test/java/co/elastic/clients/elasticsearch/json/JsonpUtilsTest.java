@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.json;
 
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.util.AllowForbiddenApis;
 import jakarta.json.JsonException;
 import jakarta.json.spi.JsonProvider;
 import org.junit.Assert;
@@ -32,6 +33,7 @@ import java.util.Enumeration;
 public class JsonpUtilsTest extends Assert {
 
     @Test
+    @AllowForbiddenApis("Testing JsonpUtil.provider()")
     public void testProviderLoading() {
         // See https://github.com/elastic/elasticsearch-java/issues/163
 
