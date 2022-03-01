@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -78,7 +79,7 @@ public class HealthResponse implements JsonpSerializable {
 
 	private final HealthStatus status;
 
-	private final String taskMaxWaitingInQueueMillis;
+	private final DateTime taskMaxWaitingInQueueMillis;
 
 	private final boolean timedOut;
 
@@ -239,7 +240,7 @@ public class HealthResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code task_max_waiting_in_queue_millis}
 	 */
-	public final String taskMaxWaitingInQueueMillis() {
+	public final DateTime taskMaxWaitingInQueueMillis() {
 		return this.taskMaxWaitingInQueueMillis;
 	}
 
@@ -320,8 +321,7 @@ public class HealthResponse implements JsonpSerializable {
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
 		generator.writeKey("task_max_waiting_in_queue_millis");
-		generator.write(this.taskMaxWaitingInQueueMillis);
-
+		this.taskMaxWaitingInQueueMillis.serialize(generator, mapper);
 		generator.writeKey("timed_out");
 		generator.write(this.timedOut);
 
@@ -364,7 +364,7 @@ public class HealthResponse implements JsonpSerializable {
 
 		private HealthStatus status;
 
-		private String taskMaxWaitingInQueueMillis;
+		private DateTime taskMaxWaitingInQueueMillis;
 
 		private Boolean timedOut;
 
@@ -527,7 +527,7 @@ public class HealthResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code task_max_waiting_in_queue_millis}
 		 */
-		public final Builder taskMaxWaitingInQueueMillis(String value) {
+		public final Builder taskMaxWaitingInQueueMillis(DateTime value) {
 			this.taskMaxWaitingInQueueMillis = value;
 			return this;
 		}
@@ -590,8 +590,7 @@ public class HealthResponse implements JsonpSerializable {
 		op.add(Builder::numberOfPendingTasks, JsonpDeserializer.integerDeserializer(), "number_of_pending_tasks");
 		op.add(Builder::relocatingShards, JsonpDeserializer.integerDeserializer(), "relocating_shards");
 		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
-		op.add(Builder::taskMaxWaitingInQueueMillis, JsonpDeserializer.stringDeserializer(),
-				"task_max_waiting_in_queue_millis");
+		op.add(Builder::taskMaxWaitingInQueueMillis, DateTime._DESERIALIZER, "task_max_waiting_in_queue_millis");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(Builder::unassignedShards, JsonpDeserializer.integerDeserializer(), "unassigned_shards");
 

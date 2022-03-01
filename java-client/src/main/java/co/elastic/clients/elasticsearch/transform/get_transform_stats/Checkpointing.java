@@ -30,11 +30,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -53,7 +53,7 @@ public class Checkpointing implements JsonpSerializable {
 	private final Long changesLastDetectedAt;
 
 	@Nullable
-	private final String changesLastDetectedAtDateTime;
+	private final DateTime changesLastDetectedAtDateTime;
 
 	private final CheckpointStats last;
 
@@ -95,7 +95,7 @@ public class Checkpointing implements JsonpSerializable {
 	 * API name: {@code changes_last_detected_at_date_time}
 	 */
 	@Nullable
-	public final String changesLastDetectedAtDateTime() {
+	public final DateTime changesLastDetectedAtDateTime() {
 		return this.changesLastDetectedAtDateTime;
 	}
 
@@ -148,8 +148,7 @@ public class Checkpointing implements JsonpSerializable {
 		}
 		if (this.changesLastDetectedAtDateTime != null) {
 			generator.writeKey("changes_last_detected_at_date_time");
-			generator.write(this.changesLastDetectedAtDateTime);
-
+			this.changesLastDetectedAtDateTime.serialize(generator, mapper);
 		}
 		generator.writeKey("last");
 		this.last.serialize(generator, mapper);
@@ -183,7 +182,7 @@ public class Checkpointing implements JsonpSerializable {
 		private Long changesLastDetectedAt;
 
 		@Nullable
-		private String changesLastDetectedAtDateTime;
+		private DateTime changesLastDetectedAtDateTime;
 
 		private CheckpointStats last;
 
@@ -207,7 +206,7 @@ public class Checkpointing implements JsonpSerializable {
 		/**
 		 * API name: {@code changes_last_detected_at_date_time}
 		 */
-		public final Builder changesLastDetectedAtDateTime(@Nullable String value) {
+		public final Builder changesLastDetectedAtDateTime(@Nullable DateTime value) {
 			this.changesLastDetectedAtDateTime = value;
 			return this;
 		}
@@ -282,8 +281,7 @@ public class Checkpointing implements JsonpSerializable {
 	protected static void setupCheckpointingDeserializer(ObjectDeserializer<Checkpointing.Builder> op) {
 
 		op.add(Builder::changesLastDetectedAt, JsonpDeserializer.longDeserializer(), "changes_last_detected_at");
-		op.add(Builder::changesLastDetectedAtDateTime, JsonpDeserializer.stringDeserializer(),
-				"changes_last_detected_at_date_time");
+		op.add(Builder::changesLastDetectedAtDateTime, DateTime._DESERIALIZER, "changes_last_detected_at_date_time");
 		op.add(Builder::last, CheckpointStats._DESERIALIZER, "last");
 		op.add(Builder::next, CheckpointStats._DESERIALIZER, "next");
 		op.add(Builder::operationsBehind, JsonpDeserializer.longDeserializer(), "operations_behind");

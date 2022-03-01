@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -64,7 +65,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 	private final Boolean desc;
 
 	@Nullable
-	private final String end;
+	private final DateTime end;
 
 	@Nullable
 	private final Boolean excludeInterim;
@@ -87,7 +88,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 	private final String sort;
 
 	@Nullable
-	private final String start;
+	private final DateTime start;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -127,7 +128,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public final String end() {
+	public final DateTime end() {
 		return this.end;
 	}
 
@@ -207,7 +208,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public final String start() {
+	public final DateTime start() {
 		return this.start;
 	}
 
@@ -241,7 +242,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		private Boolean desc;
 
 		@Nullable
-		private String end;
+		private DateTime end;
 
 		@Nullable
 		private Boolean excludeInterim;
@@ -264,7 +265,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		private String sort;
 
 		@Nullable
-		private String start;
+		private DateTime start;
 
 		/**
 		 * If true, the results are sorted in descending order.
@@ -282,7 +283,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(@Nullable String value) {
+		public final Builder end(@Nullable DateTime value) {
 			this.end = value;
 			return this;
 		}
@@ -370,7 +371,7 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(@Nullable String value) {
+		public final Builder start(@Nullable DateTime value) {
 			this.start = value;
 			return this;
 		}
@@ -448,10 +449,10 @@ public class GetInfluencersRequest extends RequestBase implements JsonpSerializa
 					params.put("size", String.valueOf(request.size));
 				}
 				if (request.start != null) {
-					params.put("start", request.start);
+					params.put("start", request.start.toString());
 				}
 				if (request.end != null) {
-					params.put("end", request.end);
+					params.put("end", request.end.toString());
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));

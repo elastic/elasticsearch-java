@@ -34,6 +34,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -79,7 +80,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	private final Integer minDocCount;
 
 	@Nullable
-	private final String missing;
+	private final DateTime missing;
 
 	@Nullable
 	private final Time offset;
@@ -209,7 +210,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	 * API name: {@code missing}
 	 */
 	@Nullable
-	public final String missing() {
+	public final DateTime missing() {
 		return this.missing;
 	}
 
@@ -304,8 +305,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		}
 		if (this.missing != null) {
 			generator.writeKey("missing");
-			generator.write(this.missing);
-
+			this.missing.serialize(generator, mapper);
 		}
 		if (this.offset != null) {
 			generator.writeKey("offset");
@@ -380,7 +380,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		private Integer minDocCount;
 
 		@Nullable
-		private String missing;
+		private DateTime missing;
 
 		@Nullable
 		private Time offset;
@@ -497,7 +497,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		/**
 		 * API name: {@code missing}
 		 */
-		public final Builder missing(@Nullable String value) {
+		public final Builder missing(@Nullable DateTime value) {
 			this.missing = value;
 			return this;
 		}
@@ -622,7 +622,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::interval, Time._DESERIALIZER, "interval");
 		op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
-		op.add(Builder::missing, JsonpDeserializer.stringDeserializer(), "missing");
+		op.add(Builder::missing, DateTime._DESERIALIZER, "missing");
 		op.add(Builder::offset, Time._DESERIALIZER, "offset");
 		op.add(Builder::order, HistogramOrder._DESERIALIZER, "order");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");

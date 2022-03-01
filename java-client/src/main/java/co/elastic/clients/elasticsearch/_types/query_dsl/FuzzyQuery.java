@@ -274,6 +274,38 @@ public class FuzzyQuery extends QueryBase implements QueryVariant {
 			return this.value(fn.apply(new FieldValue.Builder()).build());
 		}
 
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(String value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(long value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(double value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(boolean value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;

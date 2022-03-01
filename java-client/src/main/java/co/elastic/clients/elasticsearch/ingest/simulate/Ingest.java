@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,7 +48,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class Ingest implements JsonpSerializable {
-	private final String timestamp;
+	private final DateTime timestamp;
 
 	@Nullable
 	private final String pipeline;
@@ -68,7 +69,7 @@ public class Ingest implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public final String timestamp() {
+	public final DateTime timestamp() {
 		return this.timestamp;
 	}
 
@@ -92,8 +93,7 @@ public class Ingest implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
-
+		this.timestamp.serialize(generator, mapper);
 		if (this.pipeline != null) {
 			generator.writeKey("pipeline");
 			generator.write(this.pipeline);
@@ -109,7 +109,7 @@ public class Ingest implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ingest> {
-		private String timestamp;
+		private DateTime timestamp;
 
 		@Nullable
 		private String pipeline;
@@ -117,7 +117,7 @@ public class Ingest implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public final Builder timestamp(String value) {
+		public final Builder timestamp(DateTime value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -153,7 +153,7 @@ public class Ingest implements JsonpSerializable {
 
 	protected static void setupIngestDeserializer(ObjectDeserializer<Ingest.Builder> op) {
 
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");
 
 	}

@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -88,7 +89,7 @@ public class SlackAttachment implements JsonpSerializable {
 	private final String titleLink;
 
 	@Nullable
-	private final String ts;
+	private final DateTime ts;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -229,7 +230,7 @@ public class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code ts}
 	 */
 	@Nullable
-	public final String ts() {
+	public final DateTime ts() {
 		return this.ts;
 	}
 
@@ -317,8 +318,7 @@ public class SlackAttachment implements JsonpSerializable {
 		}
 		if (this.ts != null) {
 			generator.writeKey("ts");
-			generator.write(this.ts);
-
+			this.ts.serialize(generator, mapper);
 		}
 
 	}
@@ -371,7 +371,7 @@ public class SlackAttachment implements JsonpSerializable {
 		private String titleLink;
 
 		@Nullable
-		private String ts;
+		private DateTime ts;
 
 		/**
 		 * API name: {@code author_icon}
@@ -509,7 +509,7 @@ public class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code ts}
 		 */
-		public final Builder ts(@Nullable String value) {
+		public final Builder ts(@Nullable DateTime value) {
 			this.ts = value;
 			return this;
 		}
@@ -551,7 +551,7 @@ public class SlackAttachment implements JsonpSerializable {
 		op.add(Builder::thumbUrl, JsonpDeserializer.stringDeserializer(), "thumb_url");
 		op.add(Builder::title, JsonpDeserializer.stringDeserializer(), "title");
 		op.add(Builder::titleLink, JsonpDeserializer.stringDeserializer(), "title_link");
-		op.add(Builder::ts, JsonpDeserializer.stringDeserializer(), "ts");
+		op.add(Builder::ts, DateTime._DESERIALIZER, "ts");
 
 	}
 

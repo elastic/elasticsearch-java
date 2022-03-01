@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -194,10 +195,10 @@ public class IndexSettings implements JsonpSerializable {
 	private final String providedName;
 
 	@Nullable
-	private final String creationDate;
+	private final DateTime creationDate;
 
 	@Nullable
-	private final String creationDateString;
+	private final DateTime creationDateString;
 
 	@Nullable
 	private final String uuid;
@@ -699,7 +700,7 @@ public class IndexSettings implements JsonpSerializable {
 	 * API name: {@code creation_date}
 	 */
 	@Nullable
-	public final String creationDate() {
+	public final DateTime creationDate() {
 		return this.creationDate;
 	}
 
@@ -707,7 +708,7 @@ public class IndexSettings implements JsonpSerializable {
 	 * API name: {@code creation_date_string}
 	 */
 	@Nullable
-	public final String creationDateString() {
+	public final DateTime creationDateString() {
 		return this.creationDateString;
 	}
 
@@ -1097,13 +1098,11 @@ public class IndexSettings implements JsonpSerializable {
 		}
 		if (this.creationDate != null) {
 			generator.writeKey("creation_date");
-			generator.write(this.creationDate);
-
+			this.creationDate.serialize(generator, mapper);
 		}
 		if (this.creationDateString != null) {
 			generator.writeKey("creation_date_string");
-			generator.write(this.creationDateString);
-
+			this.creationDateString.serialize(generator, mapper);
 		}
 		if (this.uuid != null) {
 			generator.writeKey("uuid");
@@ -1330,10 +1329,10 @@ public class IndexSettings implements JsonpSerializable {
 		private String providedName;
 
 		@Nullable
-		private String creationDate;
+		private DateTime creationDate;
 
 		@Nullable
-		private String creationDateString;
+		private DateTime creationDateString;
 
 		@Nullable
 		private String uuid;
@@ -1902,7 +1901,7 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code creation_date}
 		 */
-		public final Builder creationDate(@Nullable String value) {
+		public final Builder creationDate(@Nullable DateTime value) {
 			this.creationDate = value;
 			return this;
 		}
@@ -1910,7 +1909,7 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * API name: {@code creation_date_string}
 		 */
-		public final Builder creationDateString(@Nullable String value) {
+		public final Builder creationDateString(@Nullable DateTime value) {
 			this.creationDateString = value;
 			return this;
 		}
@@ -2174,8 +2173,8 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::lifecycleName, JsonpDeserializer.stringDeserializer(), "lifecycle.name",
 				"index.lifecycle.name");
 		op.add(Builder::providedName, JsonpDeserializer.stringDeserializer(), "provided_name", "index.provided_name");
-		op.add(Builder::creationDate, JsonpDeserializer.stringDeserializer(), "creation_date", "index.creation_date");
-		op.add(Builder::creationDateString, JsonpDeserializer.stringDeserializer(), "creation_date_string",
+		op.add(Builder::creationDate, DateTime._DESERIALIZER, "creation_date", "index.creation_date");
+		op.add(Builder::creationDateString, DateTime._DESERIALIZER, "creation_date_string",
 				"index.creation_date_string");
 		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid", "index.uuid");
 		op.add(Builder::version, IndexVersioning._DESERIALIZER, "version", "index.version");

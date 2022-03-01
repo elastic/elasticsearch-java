@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -53,7 +54,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 
 	private final Map<String, TrainedModelAllocationRoutingTable> routingTable;
 
-	private final String startTime;
+	private final DateTime startTime;
 
 	private final TrainedModelAllocationTaskParameters taskParameters;
 
@@ -95,7 +96,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code start_time}
 	 */
-	public final String startTime() {
+	public final DateTime startTime() {
 		return this.startTime;
 	}
 
@@ -131,8 +132,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 
 		}
 		generator.writeKey("start_time");
-		generator.write(this.startTime);
-
+		this.startTime.serialize(generator, mapper);
 		generator.writeKey("task_parameters");
 		this.taskParameters.serialize(generator, mapper);
 
@@ -149,7 +149,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 
 		private Map<String, TrainedModelAllocationRoutingTable> routingTable;
 
-		private String startTime;
+		private DateTime startTime;
 
 		private TrainedModelAllocationTaskParameters taskParameters;
 
@@ -204,7 +204,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time}
 		 */
-		public final Builder startTime(String value) {
+		public final Builder startTime(DateTime value) {
 			this.startTime = value;
 			return this;
 		}
@@ -253,7 +253,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 		op.add(Builder::routingTable,
 				JsonpDeserializer.stringMapDeserializer(TrainedModelAllocationRoutingTable._DESERIALIZER),
 				"routing_table");
-		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time");
+		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time");
 		op.add(Builder::taskParameters, TrainedModelAllocationTaskParameters._DESERIALIZER, "task_parameters");
 
 	}

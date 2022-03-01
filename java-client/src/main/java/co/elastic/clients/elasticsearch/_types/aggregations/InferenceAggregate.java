@@ -227,6 +227,38 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		}
 
 		/**
+		 * API name: {@code value}
+		 */
+		public final Builder value(String value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code value}
+		 */
+		public final Builder value(long value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code value}
+		 */
+		public final Builder value(double value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code value}
+		 */
+		public final Builder value(boolean value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
 		 * API name: {@code feature_importance}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>featureImportance</code>.

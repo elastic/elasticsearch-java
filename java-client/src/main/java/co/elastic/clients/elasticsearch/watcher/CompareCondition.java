@@ -56,6 +56,12 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 	@Nullable
 	private final JsonData value;
 
+	@Nullable
+	private final CompareContextPayloadCondition ctxPayloadMatch;
+
+	@Nullable
+	private final CompareContextPayloadCondition ctxPayloadValue;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private CompareCondition(Builder builder) {
@@ -63,6 +69,8 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 		this.comparison = builder.comparison;
 		this.path = builder.path;
 		this.value = builder.value;
+		this.ctxPayloadMatch = builder.ctxPayloadMatch;
+		this.ctxPayloadValue = builder.ctxPayloadValue;
 
 	}
 
@@ -103,6 +111,22 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code ctx.payload.match}
+	 */
+	@Nullable
+	public final CompareContextPayloadCondition ctxPayloadMatch() {
+		return this.ctxPayloadMatch;
+	}
+
+	/**
+	 * API name: {@code ctx.payload.value}
+	 */
+	@Nullable
+	public final CompareContextPayloadCondition ctxPayloadValue() {
+		return this.ctxPayloadValue;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -128,6 +152,16 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 			this.value.serialize(generator, mapper);
 
 		}
+		if (this.ctxPayloadMatch != null) {
+			generator.writeKey("ctx.payload.match");
+			this.ctxPayloadMatch.serialize(generator, mapper);
+
+		}
+		if (this.ctxPayloadValue != null) {
+			generator.writeKey("ctx.payload.value");
+			this.ctxPayloadValue.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -146,6 +180,12 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 
 		@Nullable
 		private JsonData value;
+
+		@Nullable
+		private CompareContextPayloadCondition ctxPayloadMatch;
+
+		@Nullable
+		private CompareContextPayloadCondition ctxPayloadValue;
 
 		/**
 		 * API name: {@code comparison}
@@ -169,6 +209,38 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 		public final Builder value(@Nullable JsonData value) {
 			this.value = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code ctx.payload.match}
+		 */
+		public final Builder ctxPayloadMatch(@Nullable CompareContextPayloadCondition value) {
+			this.ctxPayloadMatch = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ctx.payload.match}
+		 */
+		public final Builder ctxPayloadMatch(
+				Function<CompareContextPayloadCondition.Builder, ObjectBuilder<CompareContextPayloadCondition>> fn) {
+			return this.ctxPayloadMatch(fn.apply(new CompareContextPayloadCondition.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code ctx.payload.value}
+		 */
+		public final Builder ctxPayloadValue(@Nullable CompareContextPayloadCondition value) {
+			this.ctxPayloadValue = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ctx.payload.value}
+		 */
+		public final Builder ctxPayloadValue(
+				Function<CompareContextPayloadCondition.Builder, ObjectBuilder<CompareContextPayloadCondition>> fn) {
+			return this.ctxPayloadValue(fn.apply(new CompareContextPayloadCondition.Builder()).build());
 		}
 
 		/**
@@ -197,6 +269,8 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 		op.add(Builder::comparison, JsonpDeserializer.stringDeserializer(), "comparison");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");
 		op.add(Builder::value, JsonData._DESERIALIZER, "value");
+		op.add(Builder::ctxPayloadMatch, CompareContextPayloadCondition._DESERIALIZER, "ctx.payload.match");
+		op.add(Builder::ctxPayloadValue, CompareContextPayloadCondition._DESERIALIZER, "ctx.payload.value");
 
 	}
 

@@ -36,6 +36,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -67,10 +68,10 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 	private final String jobId;
 
 	@Nullable
-	private final String resetEnd;
+	private final DateTime resetEnd;
 
 	@Nullable
-	private final String resetStart;
+	private final DateTime resetStart;
 
 	private final List<TData> data;
 
@@ -110,7 +111,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 	 * API name: {@code reset_end}
 	 */
 	@Nullable
-	public final String resetEnd() {
+	public final DateTime resetEnd() {
 		return this.resetEnd;
 	}
 
@@ -120,7 +121,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 	 * API name: {@code reset_start}
 	 */
 	@Nullable
-	public final String resetStart() {
+	public final DateTime resetStart() {
 		return this.resetStart;
 	}
 
@@ -156,10 +157,10 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		private String jobId;
 
 		@Nullable
-		private String resetEnd;
+		private DateTime resetEnd;
 
 		@Nullable
-		private String resetStart;
+		private DateTime resetStart;
 
 		private List<TData> data;
 
@@ -182,7 +183,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code reset_end}
 		 */
-		public final Builder<TData> resetEnd(@Nullable String value) {
+		public final Builder<TData> resetEnd(@Nullable DateTime value) {
 			this.resetEnd = value;
 			return this;
 		}
@@ -192,7 +193,7 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code reset_start}
 		 */
-		public final Builder<TData> resetStart(@Nullable String value) {
+		public final Builder<TData> resetStart(@Nullable DateTime value) {
 			this.resetStart = value;
 			return this;
 		}
@@ -291,10 +292,10 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.resetStart != null) {
-					params.put("reset_start", request.resetStart);
+					params.put("reset_start", request.resetStart.toString());
 				}
 				if (request.resetEnd != null) {
-					params.put("reset_end", request.resetEnd);
+					params.put("reset_end", request.resetEnd.toString());
 				}
 				return params;
 

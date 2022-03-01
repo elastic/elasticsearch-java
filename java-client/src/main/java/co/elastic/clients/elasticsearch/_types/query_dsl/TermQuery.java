@@ -155,6 +155,38 @@ public class TermQuery extends QueryBase implements QueryVariant {
 		}
 
 		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(String value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(long value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(double value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code value}
+		 */
+		public final Builder value(boolean value) {
+			this.value = FieldValue.of(value);
+			return this;
+		}
+
+		/**
 		 * API name: {@code case_insensitive}
 		 */
 		public final Builder caseInsensitive(@Nullable Boolean value) {

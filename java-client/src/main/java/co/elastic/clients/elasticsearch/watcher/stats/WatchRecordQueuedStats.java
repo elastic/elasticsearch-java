@@ -30,10 +30,10 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class WatchRecordQueuedStats implements JsonpSerializable {
-	private final String executionTime;
+	private final DateTime executionTime;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -66,7 +66,7 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code execution_time}
 	 */
-	public final String executionTime() {
+	public final DateTime executionTime() {
 		return this.executionTime;
 	}
 
@@ -82,7 +82,7 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("execution_time");
-		generator.write(this.executionTime);
+		this.executionTime.serialize(generator, mapper);
 
 	}
 
@@ -116,12 +116,12 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
 				ObjectBuilderBase {
-		private String executionTime;
+		private DateTime executionTime;
 
 		/**
 		 * Required - API name: {@code execution_time}
 		 */
-		public final BuilderT executionTime(String value) {
+		public final BuilderT executionTime(DateTime value) {
 			this.executionTime = value;
 			return self();
 		}
@@ -141,7 +141,7 @@ public class WatchRecordQueuedStats implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupWatchRecordQueuedStatsDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 
-		op.add(AbstractBuilder::executionTime, JsonpDeserializer.stringDeserializer(), "execution_time");
+		op.add(AbstractBuilder::executionTime, DateTime._DESERIALIZER, "execution_time");
 
 	}
 

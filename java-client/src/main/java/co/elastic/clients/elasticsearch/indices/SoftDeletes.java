@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -49,11 +50,15 @@ import javax.annotation.Nullable;
 public class SoftDeletes implements JsonpSerializable {
 	private final boolean enabled;
 
+	@Nullable
+	private final Time retentionLeasePeriod;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private SoftDeletes(Builder builder) {
 
 		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
+		this.retentionLeasePeriod = builder.retentionLeasePeriod;
 
 	}
 
@@ -66,6 +71,14 @@ public class SoftDeletes implements JsonpSerializable {
 	 */
 	public final boolean enabled() {
 		return this.enabled;
+	}
+
+	/**
+	 * API name: {@code retention_lease.period}
+	 */
+	@Nullable
+	public final Time retentionLeasePeriod() {
+		return this.retentionLeasePeriod;
 	}
 
 	/**
@@ -82,6 +95,12 @@ public class SoftDeletes implements JsonpSerializable {
 		generator.writeKey("enabled");
 		generator.write(this.enabled);
 
+		if (this.retentionLeasePeriod != null) {
+			generator.writeKey("retention_lease.period");
+			this.retentionLeasePeriod.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -93,12 +112,30 @@ public class SoftDeletes implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SoftDeletes> {
 		private Boolean enabled;
 
+		@Nullable
+		private Time retentionLeasePeriod;
+
 		/**
 		 * Required - API name: {@code enabled}
 		 */
 		public final Builder enabled(boolean value) {
 			this.enabled = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code retention_lease.period}
+		 */
+		public final Builder retentionLeasePeriod(@Nullable Time value) {
+			this.retentionLeasePeriod = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code retention_lease.period}
+		 */
+		public final Builder retentionLeasePeriod(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.retentionLeasePeriod(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -125,6 +162,7 @@ public class SoftDeletes implements JsonpSerializable {
 	protected static void setupSoftDeletesDeserializer(ObjectDeserializer<SoftDeletes.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
+		op.add(Builder::retentionLeasePeriod, Time._DESERIALIZER, "retention_lease.period");
 
 	}
 

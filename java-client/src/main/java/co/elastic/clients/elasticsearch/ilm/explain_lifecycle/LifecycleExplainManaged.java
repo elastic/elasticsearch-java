@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -55,7 +56,7 @@ import javax.annotation.Nullable;
 public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSerializable {
 	private final String action;
 
-	private final String actionTimeMillis;
+	private final DateTime actionTimeMillis;
 
 	private final Time age;
 
@@ -68,16 +69,16 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	private final String index;
 
 	@Nullable
-	private final String indexCreationDateMillis;
+	private final DateTime indexCreationDateMillis;
 
 	@Nullable
 	private final Boolean isAutoRetryableError;
 
-	private final String lifecycleDateMillis;
+	private final DateTime lifecycleDateMillis;
 
 	private final String phase;
 
-	private final String phaseTimeMillis;
+	private final DateTime phaseTimeMillis;
 
 	private final String policy;
 
@@ -85,7 +86,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 	private final Map<String, JsonData> stepInfo;
 
-	private final String stepTimeMillis;
+	private final DateTime stepTimeMillis;
 
 	private final LifecycleExplainPhaseExecution phaseExecution;
 
@@ -139,7 +140,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	/**
 	 * Required - API name: {@code action_time_millis}
 	 */
-	public final String actionTimeMillis() {
+	public final DateTime actionTimeMillis() {
 		return this.actionTimeMillis;
 	}
 
@@ -177,7 +178,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	 * API name: {@code index_creation_date_millis}
 	 */
 	@Nullable
-	public final String indexCreationDateMillis() {
+	public final DateTime indexCreationDateMillis() {
 		return this.indexCreationDateMillis;
 	}
 
@@ -192,7 +193,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	/**
 	 * Required - API name: {@code lifecycle_date_millis}
 	 */
-	public final String lifecycleDateMillis() {
+	public final DateTime lifecycleDateMillis() {
 		return this.lifecycleDateMillis;
 	}
 
@@ -206,7 +207,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	/**
 	 * Required - API name: {@code phase_time_millis}
 	 */
-	public final String phaseTimeMillis() {
+	public final DateTime phaseTimeMillis() {
 		return this.phaseTimeMillis;
 	}
 
@@ -234,7 +235,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	/**
 	 * Required - API name: {@code step_time_millis}
 	 */
-	public final String stepTimeMillis() {
+	public final DateTime stepTimeMillis() {
 		return this.stepTimeMillis;
 	}
 
@@ -270,8 +271,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		generator.write(this.action);
 
 		generator.writeKey("action_time_millis");
-		generator.write(this.actionTimeMillis);
-
+		this.actionTimeMillis.serialize(generator, mapper);
 		generator.writeKey("age");
 		this.age.serialize(generator, mapper);
 
@@ -290,8 +290,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 		if (this.indexCreationDateMillis != null) {
 			generator.writeKey("index_creation_date_millis");
-			generator.write(this.indexCreationDateMillis);
-
+			this.indexCreationDateMillis.serialize(generator, mapper);
 		}
 		if (this.isAutoRetryableError != null) {
 			generator.writeKey("is_auto_retryable_error");
@@ -299,14 +298,12 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 		}
 		generator.writeKey("lifecycle_date_millis");
-		generator.write(this.lifecycleDateMillis);
-
+		this.lifecycleDateMillis.serialize(generator, mapper);
 		generator.writeKey("phase");
 		generator.write(this.phase);
 
 		generator.writeKey("phase_time_millis");
-		generator.write(this.phaseTimeMillis);
-
+		this.phaseTimeMillis.serialize(generator, mapper);
 		generator.writeKey("policy");
 		generator.write(this.policy);
 
@@ -325,8 +322,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 
 		}
 		generator.writeKey("step_time_millis");
-		generator.write(this.stepTimeMillis);
-
+		this.stepTimeMillis.serialize(generator, mapper);
 		generator.writeKey("phase_execution");
 		this.phaseExecution.serialize(generator, mapper);
 
@@ -347,7 +343,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplainManaged> {
 		private String action;
 
-		private String actionTimeMillis;
+		private DateTime actionTimeMillis;
 
 		private Time age;
 
@@ -360,16 +356,16 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		private String index;
 
 		@Nullable
-		private String indexCreationDateMillis;
+		private DateTime indexCreationDateMillis;
 
 		@Nullable
 		private Boolean isAutoRetryableError;
 
-		private String lifecycleDateMillis;
+		private DateTime lifecycleDateMillis;
 
 		private String phase;
 
-		private String phaseTimeMillis;
+		private DateTime phaseTimeMillis;
 
 		private String policy;
 
@@ -378,7 +374,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		@Nullable
 		private Map<String, JsonData> stepInfo;
 
-		private String stepTimeMillis;
+		private DateTime stepTimeMillis;
 
 		private LifecycleExplainPhaseExecution phaseExecution;
 
@@ -396,7 +392,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code action_time_millis}
 		 */
-		public final Builder actionTimeMillis(String value) {
+		public final Builder actionTimeMillis(DateTime value) {
 			this.actionTimeMillis = value;
 			return this;
 		}
@@ -443,7 +439,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * API name: {@code index_creation_date_millis}
 		 */
-		public final Builder indexCreationDateMillis(@Nullable String value) {
+		public final Builder indexCreationDateMillis(@Nullable DateTime value) {
 			this.indexCreationDateMillis = value;
 			return this;
 		}
@@ -459,7 +455,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code lifecycle_date_millis}
 		 */
-		public final Builder lifecycleDateMillis(String value) {
+		public final Builder lifecycleDateMillis(DateTime value) {
 			this.lifecycleDateMillis = value;
 			return this;
 		}
@@ -475,7 +471,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code phase_time_millis}
 		 */
-		public final Builder phaseTimeMillis(String value) {
+		public final Builder phaseTimeMillis(DateTime value) {
 			this.phaseTimeMillis = value;
 			return this;
 		}
@@ -519,7 +515,7 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		/**
 		 * Required - API name: {@code step_time_millis}
 		 */
-		public final Builder stepTimeMillis(String value) {
+		public final Builder stepTimeMillis(DateTime value) {
 			this.stepTimeMillis = value;
 			return this;
 		}
@@ -580,20 +576,20 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 			ObjectDeserializer<LifecycleExplainManaged.Builder> op) {
 
 		op.add(Builder::action, JsonpDeserializer.stringDeserializer(), "action");
-		op.add(Builder::actionTimeMillis, JsonpDeserializer.stringDeserializer(), "action_time_millis");
+		op.add(Builder::actionTimeMillis, DateTime._DESERIALIZER, "action_time_millis");
 		op.add(Builder::age, Time._DESERIALIZER, "age");
 		op.add(Builder::failedStep, JsonpDeserializer.stringDeserializer(), "failed_step");
 		op.add(Builder::failedStepRetryCount, JsonpDeserializer.integerDeserializer(), "failed_step_retry_count");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
-		op.add(Builder::indexCreationDateMillis, JsonpDeserializer.stringDeserializer(), "index_creation_date_millis");
+		op.add(Builder::indexCreationDateMillis, DateTime._DESERIALIZER, "index_creation_date_millis");
 		op.add(Builder::isAutoRetryableError, JsonpDeserializer.booleanDeserializer(), "is_auto_retryable_error");
-		op.add(Builder::lifecycleDateMillis, JsonpDeserializer.stringDeserializer(), "lifecycle_date_millis");
+		op.add(Builder::lifecycleDateMillis, DateTime._DESERIALIZER, "lifecycle_date_millis");
 		op.add(Builder::phase, JsonpDeserializer.stringDeserializer(), "phase");
-		op.add(Builder::phaseTimeMillis, JsonpDeserializer.stringDeserializer(), "phase_time_millis");
+		op.add(Builder::phaseTimeMillis, DateTime._DESERIALIZER, "phase_time_millis");
 		op.add(Builder::policy, JsonpDeserializer.stringDeserializer(), "policy");
 		op.add(Builder::step, JsonpDeserializer.stringDeserializer(), "step");
 		op.add(Builder::stepInfo, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "step_info");
-		op.add(Builder::stepTimeMillis, JsonpDeserializer.stringDeserializer(), "step_time_millis");
+		op.add(Builder::stepTimeMillis, DateTime._DESERIALIZER, "step_time_millis");
 		op.add(Builder::phaseExecution, LifecycleExplainPhaseExecution._DESERIALIZER, "phase_execution");
 		op.add(Builder::timeSinceIndexCreation, Time._DESERIALIZER, "time_since_index_creation");
 

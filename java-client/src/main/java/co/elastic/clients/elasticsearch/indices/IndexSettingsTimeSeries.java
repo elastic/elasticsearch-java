@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch._types.DateOrEpochMillis;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,10 +48,10 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class IndexSettingsTimeSeries implements JsonpSerializable {
 	@Nullable
-	private final DateOrEpochMillis endTime;
+	private final DateTime endTime;
 
 	@Nullable
-	private final DateOrEpochMillis startTime;
+	private final DateTime startTime;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -70,7 +70,7 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 	 * API name: {@code end_time}
 	 */
 	@Nullable
-	public final DateOrEpochMillis endTime() {
+	public final DateTime endTime() {
 		return this.endTime;
 	}
 
@@ -78,7 +78,7 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 	 * API name: {@code start_time}
 	 */
 	@Nullable
-	public final DateOrEpochMillis startTime() {
+	public final DateTime startTime() {
 		return this.startTime;
 	}
 
@@ -96,12 +96,10 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 		if (this.endTime != null) {
 			generator.writeKey("end_time");
 			this.endTime.serialize(generator, mapper);
-
 		}
 		if (this.startTime != null) {
 			generator.writeKey("start_time");
 			this.startTime.serialize(generator, mapper);
-
 		}
 
 	}
@@ -114,39 +112,25 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingsTimeSeries> {
 		@Nullable
-		private DateOrEpochMillis endTime;
+		private DateTime endTime;
 
 		@Nullable
-		private DateOrEpochMillis startTime;
+		private DateTime startTime;
 
 		/**
 		 * API name: {@code end_time}
 		 */
-		public final Builder endTime(@Nullable DateOrEpochMillis value) {
+		public final Builder endTime(@Nullable DateTime value) {
 			this.endTime = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code end_time}
-		 */
-		public final Builder endTime(Function<DateOrEpochMillis.Builder, ObjectBuilder<DateOrEpochMillis>> fn) {
-			return this.endTime(fn.apply(new DateOrEpochMillis.Builder()).build());
-		}
-
-		/**
 		 * API name: {@code start_time}
 		 */
-		public final Builder startTime(@Nullable DateOrEpochMillis value) {
+		public final Builder startTime(@Nullable DateTime value) {
 			this.startTime = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code start_time}
-		 */
-		public final Builder startTime(Function<DateOrEpochMillis.Builder, ObjectBuilder<DateOrEpochMillis>> fn) {
-			return this.startTime(fn.apply(new DateOrEpochMillis.Builder()).build());
 		}
 
 		/**
@@ -173,8 +157,8 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 	protected static void setupIndexSettingsTimeSeriesDeserializer(
 			ObjectDeserializer<IndexSettingsTimeSeries.Builder> op) {
 
-		op.add(Builder::endTime, DateOrEpochMillis._DESERIALIZER, "end_time");
-		op.add(Builder::startTime, DateOrEpochMillis._DESERIALIZER, "start_time");
+		op.add(Builder::endTime, DateTime._DESERIALIZER, "end_time");
+		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time");
 
 	}
 

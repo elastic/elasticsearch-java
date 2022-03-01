@@ -157,6 +157,38 @@ public abstract class MetricAggregationBase implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code missing}
+		 */
+		public final BuilderT missing(String value) {
+			this.missing = FieldValue.of(value);
+			return self();
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final BuilderT missing(long value) {
+			this.missing = FieldValue.of(value);
+			return self();
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final BuilderT missing(double value) {
+			this.missing = FieldValue.of(value);
+			return self();
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final BuilderT missing(boolean value) {
+			this.missing = FieldValue.of(value);
+			return self();
+		}
+
+		/**
 		 * API name: {@code script}
 		 */
 		public final BuilderT script(@Nullable Script value) {

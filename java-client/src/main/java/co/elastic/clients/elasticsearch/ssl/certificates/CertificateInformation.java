@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,7 +52,7 @@ import javax.annotation.Nullable;
 public class CertificateInformation implements JsonpSerializable {
 	private final String alias;
 
-	private final String expiry;
+	private final DateTime expiry;
 
 	private final String format;
 
@@ -91,7 +92,7 @@ public class CertificateInformation implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code expiry}
 	 */
-	public final String expiry() {
+	public final DateTime expiry() {
 		return this.expiry;
 	}
 
@@ -145,8 +146,7 @@ public class CertificateInformation implements JsonpSerializable {
 		generator.write(this.alias);
 
 		generator.writeKey("expiry");
-		generator.write(this.expiry);
-
+		this.expiry.serialize(generator, mapper);
 		generator.writeKey("format");
 		generator.write(this.format);
 
@@ -173,7 +173,7 @@ public class CertificateInformation implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CertificateInformation> {
 		private String alias;
 
-		private String expiry;
+		private DateTime expiry;
 
 		private String format;
 
@@ -196,7 +196,7 @@ public class CertificateInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code expiry}
 		 */
-		public final Builder expiry(String value) {
+		public final Builder expiry(DateTime value) {
 			this.expiry = value;
 			return this;
 		}
@@ -266,7 +266,7 @@ public class CertificateInformation implements JsonpSerializable {
 			ObjectDeserializer<CertificateInformation.Builder> op) {
 
 		op.add(Builder::alias, JsonpDeserializer.stringDeserializer(), "alias");
-		op.add(Builder::expiry, JsonpDeserializer.stringDeserializer(), "expiry");
+		op.add(Builder::expiry, DateTime._DESERIALIZER, "expiry");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::hasPrivateKey, JsonpDeserializer.booleanDeserializer(), "has_private_key");
 		op.add(Builder::path, JsonpDeserializer.stringDeserializer(), "path");

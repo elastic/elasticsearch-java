@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -47,7 +48,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class BuildInformation implements JsonpSerializable {
-	private final String date;
+	private final DateTime date;
 
 	private final String hash;
 
@@ -67,7 +68,7 @@ public class BuildInformation implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code date}
 	 */
-	public final String date() {
+	public final DateTime date() {
 		return this.date;
 	}
 
@@ -90,8 +91,7 @@ public class BuildInformation implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("date");
-		generator.write(this.date);
-
+		this.date.serialize(generator, mapper);
 		generator.writeKey("hash");
 		generator.write(this.hash);
 
@@ -104,14 +104,14 @@ public class BuildInformation implements JsonpSerializable {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BuildInformation> {
-		private String date;
+		private DateTime date;
 
 		private String hash;
 
 		/**
 		 * Required - API name: {@code date}
 		 */
-		public final Builder date(String value) {
+		public final Builder date(DateTime value) {
 			this.date = value;
 			return this;
 		}
@@ -147,7 +147,7 @@ public class BuildInformation implements JsonpSerializable {
 
 	protected static void setupBuildInformationDeserializer(ObjectDeserializer<BuildInformation.Builder> op) {
 
-		op.add(Builder::date, JsonpDeserializer.stringDeserializer(), "date");
+		op.add(Builder::date, DateTime._DESERIALIZER, "date");
 		op.add(Builder::hash, JsonpDeserializer.stringDeserializer(), "hash");
 
 	}

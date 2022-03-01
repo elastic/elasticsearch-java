@@ -32,6 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -61,7 +62,7 @@ public class PutJobResponse implements JsonpSerializable {
 	@Nullable
 	private final Time backgroundPersistInterval;
 
-	private final String createTime;
+	private final DateTime createTime;
 
 	@Nullable
 	private final JsonData customSettings;
@@ -165,7 +166,7 @@ public class PutJobResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code create_time}
 	 */
-	public final String createTime() {
+	public final DateTime createTime() {
 		return this.createTime;
 	}
 
@@ -307,8 +308,7 @@ public class PutJobResponse implements JsonpSerializable {
 
 		}
 		generator.writeKey("create_time");
-		generator.write(this.createTime);
-
+		this.createTime.serialize(generator, mapper);
 		if (this.customSettings != null) {
 			generator.writeKey("custom_settings");
 			this.customSettings.serialize(generator, mapper);
@@ -394,7 +394,7 @@ public class PutJobResponse implements JsonpSerializable {
 		@Nullable
 		private Time backgroundPersistInterval;
 
-		private String createTime;
+		private DateTime createTime;
 
 		@Nullable
 		private JsonData customSettings;
@@ -491,7 +491,7 @@ public class PutJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code create_time}
 		 */
-		public final Builder createTime(String value) {
+		public final Builder createTime(DateTime value) {
 			this.createTime = value;
 			return this;
 		}
@@ -676,7 +676,7 @@ public class PutJobResponse implements JsonpSerializable {
 		op.add(Builder::analysisConfig, AnalysisConfigRead._DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
 		op.add(Builder::backgroundPersistInterval, Time._DESERIALIZER, "background_persist_interval");
-		op.add(Builder::createTime, JsonpDeserializer.stringDeserializer(), "create_time");
+		op.add(Builder::createTime, DateTime._DESERIALIZER, "create_time");
 		op.add(Builder::customSettings, JsonData._DESERIALIZER, "custom_settings");
 		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.longDeserializer(),
 				"daily_model_snapshot_retention_after_days");
