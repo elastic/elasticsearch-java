@@ -193,7 +193,10 @@ dependencies {
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
-    testImplementation("org.eclipse", "yasson", "2.0.2")
+    testImplementation("org.eclipse", "yasson", "2.0.2") {
+        // Exclude Glassfish as we use Parsson (basically Glassfish renamed in the Jakarta namespace).
+        exclude(group = "org.glassfish", module = "jakarta.json")
+    }
 
     // EPL-1.0
     // https://junit.org/junit4/

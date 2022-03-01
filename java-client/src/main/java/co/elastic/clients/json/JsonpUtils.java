@@ -20,9 +20,11 @@
 package co.elastic.clients.json;
 
 import co.elastic.clients.util.ObjectBuilder;
+import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
+import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
@@ -32,9 +34,40 @@ import javax.annotation.Nullable;
 import java.io.StringReader;
 import java.util.AbstractMap;
 import java.util.Map;
+import java.util.ServiceLoader;
 import java.util.stream.Collectors;
 
 public class JsonpUtils {
+
+    /**
+     * Get a <code>JsonProvider</code> instance. This method first calls the standard `JsonProvider.provider()` that is based on
+     * the current thread's context classloader, and in case of failure tries to find a provider in other classloaders.
+     */
+    public static JsonProvider provider() {
+        RuntimeException exception;
+        try {
+            return JsonProvider.provider();
+        } catch(RuntimeException re) {
+            exception = re;
+        }
+
+        // Not found from the thread's context classloader. Try from our own classloader which should be a descendant of an app-server
+        // classloader if any, and if it still fails try from the SPI class which hopefully will be close to the implementation.
+
+        try {
+            return ServiceLoader.load(JsonProvider.class, JsonpUtils.class.getClassLoader()).iterator().next();
+        } catch(Exception e) {
+            // ignore
+        }
+
+        try {
+            return ServiceLoader.load(JsonProvider.class, JsonProvider.class.getClassLoader()).iterator().next();
+        } catch(Exception e) {
+            // ignore
+        }
+
+        throw new JsonException("Unable to get a JsonProvider. Check your classpath or thread context classloader.", exception);
+    }
 
     /**
      * Advances the parser to the next event and checks that this even is the expected one.
