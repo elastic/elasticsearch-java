@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.experiments.inheritance;
 
 import co.elastic.clients.elasticsearch.experiments.inheritance.child.ChildClass;
 import co.elastic.clients.elasticsearch.experiments.inheritance.final_.FinalClass;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
@@ -37,7 +38,7 @@ public class InheritanceTest extends Assert {
     public void testSerialization() {
 
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        JsonProvider provider = JsonProvider.provider();
+        JsonProvider provider = JsonpUtils.provider();
 
         FinalClass fc = new FinalClass.Builder()
             // Start fields from the top of the hierarchy to test setter return values
@@ -73,7 +74,7 @@ public class InheritanceTest extends Assert {
 
     @Test
     public void testDeserialization() {
-        JsonProvider provider = JsonProvider.provider();
+        JsonProvider provider = JsonpUtils.provider();
 
         JsonParser parser = provider.createParser(new StringReader(
             "{\"baseField\":\"baseValue\",\"childField\":\"childValue\",\"finalField\":\"finalValue\"}"));
