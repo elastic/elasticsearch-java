@@ -20,6 +20,7 @@
 package co.elastic.clients.elasticsearch.experiments;
 
 import co.elastic.clients.elasticsearch.experiments.api.FooRequest;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
@@ -50,7 +51,7 @@ public class ParsingTests extends Assert {
           )
           .build();
 
-      JsonProvider provider = JsonProvider.provider();
+      JsonProvider provider = JsonpUtils.provider();
       JsonGenerator generator = provider.createGenerator(baos);
       foo.serialize(generator, new JsonbJsonpMapper());
 
