@@ -19,6 +19,7 @@
 
 package co.elastic.clients.json.jackson;
 
+import co.elastic.clients.json.JsonpUtils;
 import com.fasterxml.jackson.core.JsonFactory;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
@@ -133,7 +134,7 @@ public class JacksonJsonProvider extends JsonProvider {
          */
         @Override
         public JsonParser createParser(JsonObject obj) {
-            return JsonProvider.provider().createParserFactory(null).createParser(obj);
+            return JsonpUtils.provider().createParserFactory(null).createParser(obj);
         }
 
         /**
@@ -141,7 +142,7 @@ public class JacksonJsonProvider extends JsonProvider {
          */
         @Override
         public JsonParser createParser(JsonArray array) {
-            return JsonProvider.provider().createParserFactory(null).createParser(array);
+            return JsonpUtils.provider().createParserFactory(null).createParser(array);
         }
 
         /**

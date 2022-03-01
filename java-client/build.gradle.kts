@@ -27,6 +27,7 @@ plugins {
     checkstyle
     `maven-publish`
     id("com.github.jk1.dependency-license-report") version "1.17"
+    id("de.thetaphi.forbiddenapis") version "3.2"
 }
 
 java {
@@ -35,6 +36,15 @@ java {
 
     withJavadocJar()
     withSourcesJar()
+}
+
+forbiddenApis {
+    signaturesFiles = files(File(rootProject.projectDir, "config/forbidden-apis.txt"))
+    suppressAnnotations = setOf("co.elastic.clients.util.AllowForbiddenApis")
+}
+
+tasks.forbiddenApisMain {
+    bundledSignatures = setOf("jdk-system-out")
 }
 
 tasks.getByName<ProcessResources>("processResources") {
@@ -193,7 +203,10 @@ dependencies {
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
-    testImplementation("org.eclipse", "yasson", "2.0.2")
+    testImplementation("org.eclipse", "yasson", "2.0.2") {
+        // Exclude Glassfish as we use Parsson (basically Glassfish renamed in the Jakarta namespace).
+        exclude(group = "org.glassfish", module = "jakarta.json")
+    }
 
     // EPL-1.0
     // https://junit.org/junit4/
