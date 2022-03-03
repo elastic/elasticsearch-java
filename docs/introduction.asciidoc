@@ -28,7 +28,7 @@ initial feedback and this led to a few breaking changes in this version:
 * all API data types are now supported, and there are no more raw `JsonValue` properties.
 * the supporting JSON framework and transport classes have been refactored and improved.
   However the high level APIs used by applications haven't changed so there should be
-  no of very little impact on existing application code.
+  no or very little impact on existing application code.
 
 This version of the {java-client} supports all {es} APIs are implemented except the
 Vector tile search API and the Find structure API.
