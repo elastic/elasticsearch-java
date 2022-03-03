@@ -19,18 +19,18 @@ body:
       required: true
 
   - type: input
-    id: es_version
+    id: java_version
     attributes:
-      label: Elasticsearch Version
-      description: The version of Elasticsearch you are using
+      label: Java version
+      description: The Java version used with the Java API client
     validations:
       required: true
 
   - type: input
-    id: java_version
+    id: es_version
     attributes:
-      label: Java version
-      description: The Java version of your application that uses the Java API client
+      label: Elasticsearch Version
+      description: The version of Elasticsearch you are using with the Java API client
     validations:
       required: true
 
