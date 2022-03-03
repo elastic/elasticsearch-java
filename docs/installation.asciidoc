@@ -6,8 +6,8 @@ Requirements:
 * Java 8 or later.
 * A JSON object mapping library to allow seamless integration of
   your application classes with the Elasticsearch API. The Java client has 
-  support for https://github.com/FasterXML/jackson[Jackson] or a 
-  http://json-b.net/[JSON-B] library like 
+  support for https://github.com/FasterXML/jackson[Jackson] or a
+  https://github.com/eclipse-ee4j/jsonb-api[JSON-B] library like
   https://github.com/eclipse-ee4j/yasson[Eclipse Yasson].
 
 
