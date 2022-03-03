@@ -285,6 +285,38 @@ public class RareTermsAggregation extends BucketAggregationBase implements Aggre
 		}
 
 		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(String value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(long value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(double value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(boolean value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
 		 * API name: {@code precision}
 		 */
 		public final Builder precision(@Nullable Double value) {

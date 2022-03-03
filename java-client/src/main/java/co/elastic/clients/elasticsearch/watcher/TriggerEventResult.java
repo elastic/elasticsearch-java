@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,7 +51,7 @@ import javax.annotation.Nullable;
 public class TriggerEventResult implements JsonpSerializable {
 	private final TriggerEvent manual;
 
-	private final String triggeredTime;
+	private final DateTime triggeredTime;
 
 	private final String type;
 
@@ -78,7 +79,7 @@ public class TriggerEventResult implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code triggered_time}
 	 */
-	public final String triggeredTime() {
+	public final DateTime triggeredTime() {
 		return this.triggeredTime;
 	}
 
@@ -104,8 +105,7 @@ public class TriggerEventResult implements JsonpSerializable {
 		this.manual.serialize(generator, mapper);
 
 		generator.writeKey("triggered_time");
-		generator.write(this.triggeredTime);
-
+		this.triggeredTime.serialize(generator, mapper);
 		generator.writeKey("type");
 		generator.write(this.type);
 
@@ -120,7 +120,7 @@ public class TriggerEventResult implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TriggerEventResult> {
 		private TriggerEvent manual;
 
-		private String triggeredTime;
+		private DateTime triggeredTime;
 
 		private String type;
 
@@ -142,7 +142,7 @@ public class TriggerEventResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code triggered_time}
 		 */
-		public final Builder triggeredTime(String value) {
+		public final Builder triggeredTime(DateTime value) {
 			this.triggeredTime = value;
 			return this;
 		}
@@ -179,7 +179,7 @@ public class TriggerEventResult implements JsonpSerializable {
 	protected static void setupTriggerEventResultDeserializer(ObjectDeserializer<TriggerEventResult.Builder> op) {
 
 		op.add(Builder::manual, TriggerEvent._DESERIALIZER, "manual");
-		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");
+		op.add(Builder::triggeredTime, DateTime._DESERIALIZER, "triggered_time");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
 
 	}

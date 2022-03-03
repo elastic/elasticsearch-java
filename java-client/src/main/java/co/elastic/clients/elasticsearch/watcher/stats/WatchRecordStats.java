@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -50,7 +51,7 @@ import javax.annotation.Nullable;
 public class WatchRecordStats extends WatchRecordQueuedStats {
 	private final ExecutionPhase executionPhase;
 
-	private final String triggeredTime;
+	private final DateTime triggeredTime;
 
 	private final List<String> executedActions;
 
@@ -85,7 +86,7 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 	/**
 	 * Required - API name: {@code triggered_time}
 	 */
-	public final String triggeredTime() {
+	public final DateTime triggeredTime() {
 		return this.triggeredTime;
 	}
 
@@ -116,8 +117,7 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 		generator.writeKey("execution_phase");
 		this.executionPhase.serialize(generator, mapper);
 		generator.writeKey("triggered_time");
-		generator.write(this.triggeredTime);
-
+		this.triggeredTime.serialize(generator, mapper);
 		if (ApiTypeHelper.isDefined(this.executedActions)) {
 			generator.writeKey("executed_actions");
 			generator.writeStartArray();
@@ -147,7 +147,7 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 				ObjectBuilder<WatchRecordStats> {
 		private ExecutionPhase executionPhase;
 
-		private String triggeredTime;
+		private DateTime triggeredTime;
 
 		@Nullable
 		private List<String> executedActions;
@@ -167,7 +167,7 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 		/**
 		 * Required - API name: {@code triggered_time}
 		 */
-		public final Builder triggeredTime(String value) {
+		public final Builder triggeredTime(DateTime value) {
 			this.triggeredTime = value;
 			return this;
 		}
@@ -237,7 +237,7 @@ public class WatchRecordStats extends WatchRecordQueuedStats {
 	protected static void setupWatchRecordStatsDeserializer(ObjectDeserializer<WatchRecordStats.Builder> op) {
 		WatchRecordQueuedStats.setupWatchRecordQueuedStatsDeserializer(op);
 		op.add(Builder::executionPhase, ExecutionPhase._DESERIALIZER, "execution_phase");
-		op.add(Builder::triggeredTime, JsonpDeserializer.stringDeserializer(), "triggered_time");
+		op.add(Builder::triggeredTime, DateTime._DESERIALIZER, "triggered_time");
 		op.add(Builder::executedActions, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"executed_actions");
 		op.add(Builder::watchId, JsonpDeserializer.stringDeserializer(), "watch_id");

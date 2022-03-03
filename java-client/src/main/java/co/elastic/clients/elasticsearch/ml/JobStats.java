@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -63,7 +64,7 @@ public class JobStats implements JsonpSerializable {
 	private final DiscoveryNode node;
 
 	@Nullable
-	private final String openTime;
+	private final DateTime openTime;
 
 	private final JobState state;
 
@@ -141,7 +142,7 @@ public class JobStats implements JsonpSerializable {
 	 * API name: {@code open_time}
 	 */
 	@Nullable
-	public final String openTime() {
+	public final DateTime openTime() {
 		return this.openTime;
 	}
 
@@ -202,8 +203,7 @@ public class JobStats implements JsonpSerializable {
 		}
 		if (this.openTime != null) {
 			generator.writeKey("open_time");
-			generator.write(this.openTime);
-
+			this.openTime.serialize(generator, mapper);
 		}
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
@@ -240,7 +240,7 @@ public class JobStats implements JsonpSerializable {
 		private DiscoveryNode node;
 
 		@Nullable
-		private String openTime;
+		private DateTime openTime;
 
 		private JobState state;
 
@@ -329,7 +329,7 @@ public class JobStats implements JsonpSerializable {
 		/**
 		 * API name: {@code open_time}
 		 */
-		public final Builder openTime(@Nullable String value) {
+		public final Builder openTime(@Nullable DateTime value) {
 			this.openTime = value;
 			return this;
 		}
@@ -394,7 +394,7 @@ public class JobStats implements JsonpSerializable {
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::modelSizeStats, ModelSizeStats._DESERIALIZER, "model_size_stats");
 		op.add(Builder::node, DiscoveryNode._DESERIALIZER, "node");
-		op.add(Builder::openTime, JsonpDeserializer.stringDeserializer(), "open_time");
+		op.add(Builder::openTime, DateTime._DESERIALIZER, "open_time");
 		op.add(Builder::state, JobState._DESERIALIZER, "state");
 		op.add(Builder::timingStats, JobTimingStats._DESERIALIZER, "timing_stats");
 		op.add(Builder::deleting, JsonpDeserializer.booleanDeserializer(), "deleting");

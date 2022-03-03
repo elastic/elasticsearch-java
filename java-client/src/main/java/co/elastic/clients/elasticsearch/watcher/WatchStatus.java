@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -52,10 +53,10 @@ public class WatchStatus implements JsonpSerializable {
 	private final Map<String, ActionStatus> actions;
 
 	@Nullable
-	private final String lastChecked;
+	private final DateTime lastChecked;
 
 	@Nullable
-	private final String lastMetCondition;
+	private final DateTime lastMetCondition;
 
 	private final ActivationState state;
 
@@ -92,7 +93,7 @@ public class WatchStatus implements JsonpSerializable {
 	 * API name: {@code last_checked}
 	 */
 	@Nullable
-	public final String lastChecked() {
+	public final DateTime lastChecked() {
 		return this.lastChecked;
 	}
 
@@ -100,7 +101,7 @@ public class WatchStatus implements JsonpSerializable {
 	 * API name: {@code last_met_condition}
 	 */
 	@Nullable
-	public final String lastMetCondition() {
+	public final DateTime lastMetCondition() {
 		return this.lastMetCondition;
 	}
 
@@ -150,13 +151,11 @@ public class WatchStatus implements JsonpSerializable {
 		}
 		if (this.lastChecked != null) {
 			generator.writeKey("last_checked");
-			generator.write(this.lastChecked);
-
+			this.lastChecked.serialize(generator, mapper);
 		}
 		if (this.lastMetCondition != null) {
 			generator.writeKey("last_met_condition");
-			generator.write(this.lastMetCondition);
-
+			this.lastMetCondition.serialize(generator, mapper);
 		}
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
@@ -182,10 +181,10 @@ public class WatchStatus implements JsonpSerializable {
 		private Map<String, ActionStatus> actions;
 
 		@Nullable
-		private String lastChecked;
+		private DateTime lastChecked;
 
 		@Nullable
-		private String lastMetCondition;
+		private DateTime lastMetCondition;
 
 		private ActivationState state;
 
@@ -226,7 +225,7 @@ public class WatchStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code last_checked}
 		 */
-		public final Builder lastChecked(@Nullable String value) {
+		public final Builder lastChecked(@Nullable DateTime value) {
 			this.lastChecked = value;
 			return this;
 		}
@@ -234,7 +233,7 @@ public class WatchStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code last_met_condition}
 		 */
-		public final Builder lastMetCondition(@Nullable String value) {
+		public final Builder lastMetCondition(@Nullable DateTime value) {
 			this.lastMetCondition = value;
 			return this;
 		}
@@ -294,8 +293,8 @@ public class WatchStatus implements JsonpSerializable {
 	protected static void setupWatchStatusDeserializer(ObjectDeserializer<WatchStatus.Builder> op) {
 
 		op.add(Builder::actions, JsonpDeserializer.stringMapDeserializer(ActionStatus._DESERIALIZER), "actions");
-		op.add(Builder::lastChecked, JsonpDeserializer.stringDeserializer(), "last_checked");
-		op.add(Builder::lastMetCondition, JsonpDeserializer.stringDeserializer(), "last_met_condition");
+		op.add(Builder::lastChecked, DateTime._DESERIALIZER, "last_checked");
+		op.add(Builder::lastMetCondition, DateTime._DESERIALIZER, "last_met_condition");
 		op.add(Builder::state, ActivationState._DESERIALIZER, "state");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
 		op.add(Builder::executionState, JsonpDeserializer.stringDeserializer(), "execution_state");

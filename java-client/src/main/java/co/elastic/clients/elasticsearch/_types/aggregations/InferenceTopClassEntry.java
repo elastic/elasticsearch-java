@@ -141,6 +141,38 @@ public class InferenceTopClassEntry implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - API name: {@code class_name}
+		 */
+		public final Builder className(String value) {
+			this.className = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code class_name}
+		 */
+		public final Builder className(long value) {
+			this.className = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code class_name}
+		 */
+		public final Builder className(double value) {
+			this.className = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code class_name}
+		 */
+		public final Builder className(boolean value) {
+			this.className = FieldValue.of(value);
+			return this;
+		}
+
+		/**
 		 * Required - API name: {@code class_probability}
 		 */
 		public final Builder classProbability(double value) {

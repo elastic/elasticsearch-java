@@ -31,6 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -52,9 +53,9 @@ import javax.annotation.Nullable;
 public class NodeUsage implements JsonpSerializable {
 	private final Map<String, Integer> restActions;
 
-	private final String since;
+	private final DateTime since;
 
-	private final String timestamp;
+	private final DateTime timestamp;
 
 	private final Map<String, JsonData> aggregations;
 
@@ -83,14 +84,14 @@ public class NodeUsage implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code since}
 	 */
-	public final String since() {
+	public final DateTime since() {
 		return this.since;
 	}
 
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public final String timestamp() {
+	public final DateTime timestamp() {
 		return this.timestamp;
 	}
 
@@ -124,11 +125,9 @@ public class NodeUsage implements JsonpSerializable {
 
 		}
 		generator.writeKey("since");
-		generator.write(this.since);
-
+		this.since.serialize(generator, mapper);
 		generator.writeKey("timestamp");
-		generator.write(this.timestamp);
-
+		this.timestamp.serialize(generator, mapper);
 		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
@@ -152,9 +151,9 @@ public class NodeUsage implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeUsage> {
 		private Map<String, Integer> restActions;
 
-		private String since;
+		private DateTime since;
 
-		private String timestamp;
+		private DateTime timestamp;
 
 		private Map<String, JsonData> aggregations;
 
@@ -181,7 +180,7 @@ public class NodeUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code since}
 		 */
-		public final Builder since(String value) {
+		public final Builder since(DateTime value) {
 			this.since = value;
 			return this;
 		}
@@ -189,7 +188,7 @@ public class NodeUsage implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public final Builder timestamp(String value) {
+		public final Builder timestamp(DateTime value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -239,8 +238,8 @@ public class NodeUsage implements JsonpSerializable {
 
 		op.add(Builder::restActions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.integerDeserializer()),
 				"rest_actions");
-		op.add(Builder::since, JsonpDeserializer.stringDeserializer(), "since");
-		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp");
+		op.add(Builder::since, DateTime._DESERIALIZER, "since");
+		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp");
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "aggregations");
 
 	}

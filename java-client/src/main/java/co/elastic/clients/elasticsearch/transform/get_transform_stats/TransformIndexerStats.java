@@ -30,12 +30,12 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class TransformIndexerStats implements JsonpSerializable {
 	@Nullable
-	private final String deleteTimeInMs;
+	private final DateTime deleteTimeInMs;
 
 	private final long documentsIndexed;
 
@@ -121,7 +121,7 @@ public class TransformIndexerStats implements JsonpSerializable {
 	 * API name: {@code delete_time_in_ms}
 	 */
 	@Nullable
-	public final String deleteTimeInMs() {
+	public final DateTime deleteTimeInMs() {
 		return this.deleteTimeInMs;
 	}
 
@@ -251,8 +251,7 @@ public class TransformIndexerStats implements JsonpSerializable {
 
 		if (this.deleteTimeInMs != null) {
 			generator.writeKey("delete_time_in_ms");
-			generator.write(this.deleteTimeInMs);
-
+			this.deleteTimeInMs.serialize(generator, mapper);
 		}
 		generator.writeKey("documents_indexed");
 		generator.write(this.documentsIndexed);
@@ -314,7 +313,7 @@ public class TransformIndexerStats implements JsonpSerializable {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformIndexerStats> {
 		@Nullable
-		private String deleteTimeInMs;
+		private DateTime deleteTimeInMs;
 
 		private Long documentsIndexed;
 
@@ -352,7 +351,7 @@ public class TransformIndexerStats implements JsonpSerializable {
 		/**
 		 * API name: {@code delete_time_in_ms}
 		 */
-		public final Builder deleteTimeInMs(@Nullable String value) {
+		public final Builder deleteTimeInMs(@Nullable DateTime value) {
 			this.deleteTimeInMs = value;
 			return this;
 		}
@@ -508,7 +507,7 @@ public class TransformIndexerStats implements JsonpSerializable {
 
 	protected static void setupTransformIndexerStatsDeserializer(ObjectDeserializer<TransformIndexerStats.Builder> op) {
 
-		op.add(Builder::deleteTimeInMs, JsonpDeserializer.stringDeserializer(), "delete_time_in_ms");
+		op.add(Builder::deleteTimeInMs, DateTime._DESERIALIZER, "delete_time_in_ms");
 		op.add(Builder::documentsIndexed, JsonpDeserializer.longDeserializer(), "documents_indexed");
 		op.add(Builder::documentsDeleted, JsonpDeserializer.longDeserializer(), "documents_deleted");
 		op.add(Builder::documentsProcessed, JsonpDeserializer.longDeserializer(), "documents_processed");

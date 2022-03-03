@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -56,7 +57,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 	private final String calendarId;
 
 	@Nullable
-	private final String end;
+	private final DateTime end;
 
 	@Nullable
 	private final Integer from;
@@ -105,7 +106,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public final String end() {
+	public final DateTime end() {
 		return this.end;
 	}
 
@@ -161,7 +162,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 		private String calendarId;
 
 		@Nullable
-		private String end;
+		private DateTime end;
 
 		@Nullable
 		private Integer from;
@@ -193,7 +194,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(@Nullable String value) {
+		public final Builder end(@Nullable DateTime value) {
 			this.end = value;
 			return this;
 		}
@@ -301,7 +302,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 					params.put("start", request.start);
 				}
 				if (request.end != null) {
-					params.put("end", request.end);
+					params.put("end", request.end.toString());
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));

@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -62,21 +63,21 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
-	private final String advanceTime;
+	private final DateTime advanceTime;
 
 	@Nullable
 	private final Boolean calcInterim;
 
 	@Nullable
-	private final String end;
+	private final DateTime end;
 
 	private final String jobId;
 
 	@Nullable
-	private final String skipTime;
+	private final DateTime skipTime;
 
 	@Nullable
-	private final String start;
+	private final DateTime start;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -101,7 +102,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code advance_time}
 	 */
 	@Nullable
-	public final String advanceTime() {
+	public final DateTime advanceTime() {
 		return this.advanceTime;
 	}
 
@@ -121,7 +122,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public final String end() {
+	public final DateTime end() {
 		return this.end;
 	}
 
@@ -140,7 +141,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code skip_time}
 	 */
 	@Nullable
-	public final String skipTime() {
+	public final DateTime skipTime() {
 		return this.skipTime;
 	}
 
@@ -150,7 +151,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public final String start() {
+	public final DateTime start() {
 		return this.start;
 	}
 
@@ -167,8 +168,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 
 		if (this.advanceTime != null) {
 			generator.writeKey("advance_time");
-			generator.write(this.advanceTime);
-
+			this.advanceTime.serialize(generator, mapper);
 		}
 		if (this.calcInterim != null) {
 			generator.writeKey("calc_interim");
@@ -177,18 +177,15 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		}
 		if (this.end != null) {
 			generator.writeKey("end");
-			generator.write(this.end);
-
+			this.end.serialize(generator, mapper);
 		}
 		if (this.skipTime != null) {
 			generator.writeKey("skip_time");
-			generator.write(this.skipTime);
-
+			this.skipTime.serialize(generator, mapper);
 		}
 		if (this.start != null) {
 			generator.writeKey("start");
-			generator.write(this.start);
-
+			this.start.serialize(generator, mapper);
 		}
 
 	}
@@ -201,28 +198,28 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FlushJobRequest> {
 		@Nullable
-		private String advanceTime;
+		private DateTime advanceTime;
 
 		@Nullable
 		private Boolean calcInterim;
 
 		@Nullable
-		private String end;
+		private DateTime end;
 
 		private String jobId;
 
 		@Nullable
-		private String skipTime;
+		private DateTime skipTime;
 
 		@Nullable
-		private String start;
+		private DateTime start;
 
 		/**
 		 * Refer to the description for the <code>advance_time</code> query parameter.
 		 * <p>
 		 * API name: {@code advance_time}
 		 */
-		public final Builder advanceTime(@Nullable String value) {
+		public final Builder advanceTime(@Nullable DateTime value) {
 			this.advanceTime = value;
 			return this;
 		}
@@ -242,7 +239,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(@Nullable String value) {
+		public final Builder end(@Nullable DateTime value) {
 			this.end = value;
 			return this;
 		}
@@ -262,7 +259,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code skip_time}
 		 */
-		public final Builder skipTime(@Nullable String value) {
+		public final Builder skipTime(@Nullable DateTime value) {
 			this.skipTime = value;
 			return this;
 		}
@@ -272,7 +269,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(@Nullable String value) {
+		public final Builder start(@Nullable DateTime value) {
 			this.start = value;
 			return this;
 		}
@@ -300,11 +297,11 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupFlushJobRequestDeserializer(ObjectDeserializer<FlushJobRequest.Builder> op) {
 
-		op.add(Builder::advanceTime, JsonpDeserializer.stringDeserializer(), "advance_time");
+		op.add(Builder::advanceTime, DateTime._DESERIALIZER, "advance_time");
 		op.add(Builder::calcInterim, JsonpDeserializer.booleanDeserializer(), "calc_interim");
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
-		op.add(Builder::skipTime, JsonpDeserializer.stringDeserializer(), "skip_time");
-		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::end, DateTime._DESERIALIZER, "end");
+		op.add(Builder::skipTime, DateTime._DESERIALIZER, "skip_time");
+		op.add(Builder::start, DateTime._DESERIALIZER, "start");
 
 	}
 

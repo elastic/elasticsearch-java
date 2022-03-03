@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -68,7 +69,7 @@ public class RolloverConditions implements JsonpSerializable {
 	private final String maxPrimaryShardSizeBytes;
 
 	@Nullable
-	private final String maxAgeMillis;
+	private final DateTime maxAgeMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -140,7 +141,7 @@ public class RolloverConditions implements JsonpSerializable {
 	 * API name: {@code max_age_millis}
 	 */
 	@Nullable
-	public final String maxAgeMillis() {
+	public final DateTime maxAgeMillis() {
 		return this.maxAgeMillis;
 	}
 
@@ -187,8 +188,7 @@ public class RolloverConditions implements JsonpSerializable {
 		}
 		if (this.maxAgeMillis != null) {
 			generator.writeKey("max_age_millis");
-			generator.write(this.maxAgeMillis);
-
+			this.maxAgeMillis.serialize(generator, mapper);
 		}
 
 	}
@@ -219,7 +219,7 @@ public class RolloverConditions implements JsonpSerializable {
 		private String maxPrimaryShardSizeBytes;
 
 		@Nullable
-		private String maxAgeMillis;
+		private DateTime maxAgeMillis;
 
 		/**
 		 * API name: {@code max_age}
@@ -279,7 +279,7 @@ public class RolloverConditions implements JsonpSerializable {
 		/**
 		 * API name: {@code max_age_millis}
 		 */
-		public final Builder maxAgeMillis(@Nullable String value) {
+		public final Builder maxAgeMillis(@Nullable DateTime value) {
 			this.maxAgeMillis = value;
 			return this;
 		}
@@ -314,7 +314,7 @@ public class RolloverConditions implements JsonpSerializable {
 		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "max_primary_shard_size");
 		op.add(Builder::maxPrimaryShardSizeBytes, JsonpDeserializer.stringDeserializer(),
 				"max_primary_shard_size_bytes");
-		op.add(Builder::maxAgeMillis, JsonpDeserializer.stringDeserializer(), "max_age_millis");
+		op.add(Builder::maxAgeMillis, DateTime._DESERIALIZER, "max_age_millis");
 
 	}
 

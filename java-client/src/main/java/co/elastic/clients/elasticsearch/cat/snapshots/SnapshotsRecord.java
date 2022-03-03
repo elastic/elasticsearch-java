@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -58,16 +59,16 @@ public class SnapshotsRecord implements JsonpSerializable {
 	private final String status;
 
 	@Nullable
-	private final String startEpoch;
+	private final DateTime startEpoch;
 
 	@Nullable
-	private final String startTime;
+	private final DateTime startTime;
 
 	@Nullable
-	private final String endEpoch;
+	private final DateTime endEpoch;
 
 	@Nullable
-	private final String endTime;
+	private final DateTime endTime;
 
 	@Nullable
 	private final Time duration;
@@ -147,7 +148,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code start_epoch}
 	 */
 	@Nullable
-	public final String startEpoch() {
+	public final DateTime startEpoch() {
 		return this.startEpoch;
 	}
 
@@ -157,7 +158,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code start_time}
 	 */
 	@Nullable
-	public final String startTime() {
+	public final DateTime startTime() {
 		return this.startTime;
 	}
 
@@ -167,7 +168,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code end_epoch}
 	 */
 	@Nullable
-	public final String endEpoch() {
+	public final DateTime endEpoch() {
 		return this.endEpoch;
 	}
 
@@ -177,7 +178,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 	 * API name: {@code end_time}
 	 */
 	@Nullable
-	public final String endTime() {
+	public final DateTime endTime() {
 		return this.endTime;
 	}
 
@@ -269,23 +270,19 @@ public class SnapshotsRecord implements JsonpSerializable {
 		}
 		if (this.startEpoch != null) {
 			generator.writeKey("start_epoch");
-			generator.write(this.startEpoch);
-
+			this.startEpoch.serialize(generator, mapper);
 		}
 		if (this.startTime != null) {
 			generator.writeKey("start_time");
-			generator.write(this.startTime);
-
+			this.startTime.serialize(generator, mapper);
 		}
 		if (this.endEpoch != null) {
 			generator.writeKey("end_epoch");
-			generator.write(this.endEpoch);
-
+			this.endEpoch.serialize(generator, mapper);
 		}
 		if (this.endTime != null) {
 			generator.writeKey("end_time");
-			generator.write(this.endTime);
-
+			this.endTime.serialize(generator, mapper);
 		}
 		if (this.duration != null) {
 			generator.writeKey("duration");
@@ -337,16 +334,16 @@ public class SnapshotsRecord implements JsonpSerializable {
 		private String status;
 
 		@Nullable
-		private String startEpoch;
+		private DateTime startEpoch;
 
 		@Nullable
-		private String startTime;
+		private DateTime startTime;
 
 		@Nullable
-		private String endEpoch;
+		private DateTime endEpoch;
 
 		@Nullable
-		private String endTime;
+		private DateTime endTime;
 
 		@Nullable
 		private Time duration;
@@ -401,7 +398,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_epoch}
 		 */
-		public final Builder startEpoch(@Nullable String value) {
+		public final Builder startEpoch(@Nullable DateTime value) {
 			this.startEpoch = value;
 			return this;
 		}
@@ -411,7 +408,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time}
 		 */
-		public final Builder startTime(@Nullable String value) {
+		public final Builder startTime(@Nullable DateTime value) {
 			this.startTime = value;
 			return this;
 		}
@@ -421,7 +418,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code end_epoch}
 		 */
-		public final Builder endEpoch(@Nullable String value) {
+		public final Builder endEpoch(@Nullable DateTime value) {
 			this.endEpoch = value;
 			return this;
 		}
@@ -431,7 +428,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code end_time}
 		 */
-		public final Builder endTime(@Nullable String value) {
+		public final Builder endTime(@Nullable DateTime value) {
 			this.endTime = value;
 			return this;
 		}
@@ -531,10 +528,10 @@ public class SnapshotsRecord implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id", "snapshot");
 		op.add(Builder::repository, JsonpDeserializer.stringDeserializer(), "repository", "re", "repo");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status", "s");
-		op.add(Builder::startEpoch, JsonpDeserializer.stringDeserializer(), "start_epoch", "ste", "startEpoch");
-		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time", "sti", "startTime");
-		op.add(Builder::endEpoch, JsonpDeserializer.stringDeserializer(), "end_epoch", "ete", "endEpoch");
-		op.add(Builder::endTime, JsonpDeserializer.stringDeserializer(), "end_time", "eti", "endTime");
+		op.add(Builder::startEpoch, DateTime._DESERIALIZER, "start_epoch", "ste", "startEpoch");
+		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time", "sti", "startTime");
+		op.add(Builder::endEpoch, DateTime._DESERIALIZER, "end_epoch", "ete", "endEpoch");
+		op.add(Builder::endTime, DateTime._DESERIALIZER, "end_time", "eti", "endTime");
 		op.add(Builder::duration, Time._DESERIALIZER, "duration", "dur");
 		op.add(Builder::indices, JsonpDeserializer.stringDeserializer(), "indices", "i");
 		op.add(Builder::successfulShards, JsonpDeserializer.stringDeserializer(), "successful_shards", "ss");

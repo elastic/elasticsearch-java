@@ -257,6 +257,38 @@ public class FieldSort implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(String value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(long value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(double value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(boolean value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
 		 * API name: {@code mode}
 		 */
 		public final Builder mode(@Nullable SortMode value) {

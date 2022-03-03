@@ -34,6 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -69,7 +70,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	private final Boolean desc;
 
 	@Nullable
-	private final String end;
+	private final DateTime end;
 
 	@Nullable
 	private final Boolean excludeInterim;
@@ -92,7 +93,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	private final String sort;
 
 	@Nullable
-	private final String start;
+	private final DateTime start;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -131,7 +132,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public final String end() {
+	public final DateTime end() {
 		return this.end;
 	}
 
@@ -209,7 +210,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public final String start() {
+	public final DateTime start() {
 		return this.start;
 	}
 
@@ -231,8 +232,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		}
 		if (this.end != null) {
 			generator.writeKey("end");
-			generator.write(this.end);
-
+			this.end.serialize(generator, mapper);
 		}
 		if (this.excludeInterim != null) {
 			generator.writeKey("exclude_interim");
@@ -256,8 +256,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		}
 		if (this.start != null) {
 			generator.writeKey("start");
-			generator.write(this.start);
-
+			this.start.serialize(generator, mapper);
 		}
 
 	}
@@ -273,7 +272,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		private Boolean desc;
 
 		@Nullable
-		private String end;
+		private DateTime end;
 
 		@Nullable
 		private Boolean excludeInterim;
@@ -296,7 +295,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		private String sort;
 
 		@Nullable
-		private String start;
+		private DateTime start;
 
 		/**
 		 * Refer to the description for the <code>desc</code> query parameter.
@@ -313,7 +312,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(@Nullable String value) {
+		public final Builder end(@Nullable DateTime value) {
 			this.end = value;
 			return this;
 		}
@@ -399,7 +398,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(@Nullable String value) {
+		public final Builder start(@Nullable DateTime value) {
 			this.start = value;
 			return this;
 		}
@@ -428,12 +427,12 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	protected static void setupGetRecordsRequestDeserializer(ObjectDeserializer<GetRecordsRequest.Builder> op) {
 
 		op.add(Builder::desc, JsonpDeserializer.booleanDeserializer(), "desc");
-		op.add(Builder::end, JsonpDeserializer.stringDeserializer(), "end");
+		op.add(Builder::end, DateTime._DESERIALIZER, "end");
 		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
 		op.add(Builder::page, Page._DESERIALIZER, "page");
 		op.add(Builder::recordScore, JsonpDeserializer.doubleDeserializer(), "record_score");
 		op.add(Builder::sort, JsonpDeserializer.stringDeserializer(), "sort");
-		op.add(Builder::start, JsonpDeserializer.stringDeserializer(), "start");
+		op.add(Builder::start, DateTime._DESERIALIZER, "start");
 
 	}
 

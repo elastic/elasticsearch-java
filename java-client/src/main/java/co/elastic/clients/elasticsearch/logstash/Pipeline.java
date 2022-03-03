@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -49,7 +50,7 @@ import javax.annotation.Nullable;
 public class Pipeline implements JsonpSerializable {
 	private final String description;
 
-	private final String lastModified;
+	private final DateTime lastModified;
 
 	private final PipelineMetadata pipelineMetadata;
 
@@ -86,7 +87,7 @@ public class Pipeline implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code last_modified}
 	 */
-	public final String lastModified() {
+	public final DateTime lastModified() {
 		return this.lastModified;
 	}
 
@@ -133,8 +134,7 @@ public class Pipeline implements JsonpSerializable {
 		generator.write(this.description);
 
 		generator.writeKey("last_modified");
-		generator.write(this.lastModified);
-
+		this.lastModified.serialize(generator, mapper);
 		generator.writeKey("pipeline_metadata");
 		this.pipelineMetadata.serialize(generator, mapper);
 
@@ -158,7 +158,7 @@ public class Pipeline implements JsonpSerializable {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Pipeline> {
 		private String description;
 
-		private String lastModified;
+		private DateTime lastModified;
 
 		private PipelineMetadata pipelineMetadata;
 
@@ -179,7 +179,7 @@ public class Pipeline implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code last_modified}
 		 */
-		public final Builder lastModified(String value) {
+		public final Builder lastModified(DateTime value) {
 			this.lastModified = value;
 			return this;
 		}
@@ -254,7 +254,7 @@ public class Pipeline implements JsonpSerializable {
 	protected static void setupPipelineDeserializer(ObjectDeserializer<Pipeline.Builder> op) {
 
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::lastModified, JsonpDeserializer.stringDeserializer(), "last_modified");
+		op.add(Builder::lastModified, DateTime._DESERIALIZER, "last_modified");
 		op.add(Builder::pipelineMetadata, PipelineMetadata._DESERIALIZER, "pipeline_metadata");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 		op.add(Builder::pipeline, JsonpDeserializer.stringDeserializer(), "pipeline");

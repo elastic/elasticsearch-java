@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,10 +49,10 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class Statistics implements JsonpSerializable {
 	@Nullable
-	private final String retentionDeletionTime;
+	private final DateTime retentionDeletionTime;
 
 	@Nullable
-	private final String retentionDeletionTimeMillis;
+	private final DateTime retentionDeletionTimeMillis;
 
 	@Nullable
 	private final Long retentionFailed;
@@ -102,7 +103,7 @@ public class Statistics implements JsonpSerializable {
 	 * API name: {@code retention_deletion_time}
 	 */
 	@Nullable
-	public final String retentionDeletionTime() {
+	public final DateTime retentionDeletionTime() {
 		return this.retentionDeletionTime;
 	}
 
@@ -110,7 +111,7 @@ public class Statistics implements JsonpSerializable {
 	 * API name: {@code retention_deletion_time_millis}
 	 */
 	@Nullable
-	public final String retentionDeletionTimeMillis() {
+	public final DateTime retentionDeletionTimeMillis() {
 		return this.retentionDeletionTimeMillis;
 	}
 
@@ -191,13 +192,11 @@ public class Statistics implements JsonpSerializable {
 
 		if (this.retentionDeletionTime != null) {
 			generator.writeKey("retention_deletion_time");
-			generator.write(this.retentionDeletionTime);
-
+			this.retentionDeletionTime.serialize(generator, mapper);
 		}
 		if (this.retentionDeletionTimeMillis != null) {
 			generator.writeKey("retention_deletion_time_millis");
-			generator.write(this.retentionDeletionTimeMillis);
-
+			this.retentionDeletionTimeMillis.serialize(generator, mapper);
 		}
 		if (this.retentionFailed != null) {
 			generator.writeKey("retention_failed");
@@ -250,10 +249,10 @@ public class Statistics implements JsonpSerializable {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Statistics> {
 		@Nullable
-		private String retentionDeletionTime;
+		private DateTime retentionDeletionTime;
 
 		@Nullable
-		private String retentionDeletionTimeMillis;
+		private DateTime retentionDeletionTimeMillis;
 
 		@Nullable
 		private Long retentionFailed;
@@ -282,7 +281,7 @@ public class Statistics implements JsonpSerializable {
 		/**
 		 * API name: {@code retention_deletion_time}
 		 */
-		public final Builder retentionDeletionTime(@Nullable String value) {
+		public final Builder retentionDeletionTime(@Nullable DateTime value) {
 			this.retentionDeletionTime = value;
 			return this;
 		}
@@ -290,7 +289,7 @@ public class Statistics implements JsonpSerializable {
 		/**
 		 * API name: {@code retention_deletion_time_millis}
 		 */
-		public final Builder retentionDeletionTimeMillis(@Nullable String value) {
+		public final Builder retentionDeletionTimeMillis(@Nullable DateTime value) {
 			this.retentionDeletionTimeMillis = value;
 			return this;
 		}
@@ -382,9 +381,8 @@ public class Statistics implements JsonpSerializable {
 
 	protected static void setupStatisticsDeserializer(ObjectDeserializer<Statistics.Builder> op) {
 
-		op.add(Builder::retentionDeletionTime, JsonpDeserializer.stringDeserializer(), "retention_deletion_time");
-		op.add(Builder::retentionDeletionTimeMillis, JsonpDeserializer.stringDeserializer(),
-				"retention_deletion_time_millis");
+		op.add(Builder::retentionDeletionTime, DateTime._DESERIALIZER, "retention_deletion_time");
+		op.add(Builder::retentionDeletionTimeMillis, DateTime._DESERIALIZER, "retention_deletion_time_millis");
 		op.add(Builder::retentionFailed, JsonpDeserializer.longDeserializer(), "retention_failed");
 		op.add(Builder::retentionRuns, JsonpDeserializer.longDeserializer(), "retention_runs");
 		op.add(Builder::retentionTimedOut, JsonpDeserializer.longDeserializer(), "retention_timed_out");

@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
@@ -49,7 +50,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 	@Nullable
 	private final String keyAsString;
 
-	private final String key;
+	private final DateTime key;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +77,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 	/**
 	 * Required - API name: {@code key}
 	 */
-	public final String key() {
+	public final DateTime key() {
 		return this.key;
 	}
 
@@ -89,7 +90,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 
 		}
 		generator.writeKey("key");
-		generator.write(this.key);
+		this.key.serialize(generator, mapper);
 
 	}
 
@@ -105,7 +106,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 		@Nullable
 		private String keyAsString;
 
-		private String key;
+		private DateTime key;
 
 		/**
 		 * API name: {@code key_as_string}
@@ -118,7 +119,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 		/**
 		 * Required - API name: {@code key}
 		 */
-		public final Builder key(String value) {
+		public final Builder key(DateTime value) {
 			this.key = value;
 			return this;
 		}
@@ -152,7 +153,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 	protected static void setupDateHistogramBucketDeserializer(ObjectDeserializer<DateHistogramBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
 		op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
-		op.add(Builder::key, JsonpDeserializer.stringDeserializer(), "key");
+		op.add(Builder::key, DateTime._DESERIALIZER, "key");
 
 	}
 

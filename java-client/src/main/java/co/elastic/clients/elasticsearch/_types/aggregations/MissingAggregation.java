@@ -144,6 +144,38 @@ public class MissingAggregation extends BucketAggregationBase implements Aggrega
 			return this.missing(fn.apply(new FieldValue.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(String value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(long value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(double value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code missing}
+		 */
+		public final Builder missing(boolean value) {
+			this.missing = FieldValue.of(value);
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
