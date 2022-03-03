@@ -31,7 +31,6 @@ body:
     attributes:
       label: Java version
       description: The Java version of your application that uses the Java API client
-      value: _bundled_
     validations:
       required: true
 
