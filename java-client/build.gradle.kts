@@ -136,7 +136,7 @@ dependencies {
     api("org.eclipse.parsson:parsson:1.0.0")
 
     // EPL-2.0 OR GPL-2.0 WITH Classpath-exception-2.0
-    // http://json-b.net/
+    // https://github.com/eclipse-ee4j/jsonb-api
     compileOnly("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
     testImplementation("jakarta.json.bind", "jakarta.json.bind-api", "2.0.0")
 
