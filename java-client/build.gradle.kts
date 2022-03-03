@@ -159,7 +159,9 @@ publishing {
 }
 
 dependencies {
-    val elasticsearchVersion = "7.17.0-SNAPSHOT"
+    // Compile and test with the last 7.x version to make sure transition scenarios where
+    // the Java API client coexists with a 7.x HLRC work fine
+    val elasticsearchVersion = "7.17.1"
     val jacksonVersion = "2.13.1"
 
     // Apache 2.0
