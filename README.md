@@ -4,7 +4,7 @@
 
 The official Java client for [Elasticsearch](https://github.com/elastic/elasticsearch).
 
-The Java client for Elasticsearch provides strongly typed requests and responses for all Elasticsearch APIs. It delegates protocol handling to an http client such as the [Elasticsearch Low Level REST client](https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html) that takes care of all transport-level concerns (http connection establishment and pooling, retries, etc).
+The Java client for Elasticsearch provides strongly typed requests and responses for all Elasticsearch APIs. It delegates protocol handling to an http client such as the [Elasticsearch Low Level REST client](https://www.elastic.co/guide/en/elasticsearch/client/java-api-client/current/java-rest-low.html) that takes care of all transport-level concerns (http connection establishment and pooling, retries, etc).
 
 The `docs/design` folder contains records of the major decisions in the design of the API. Most notably:
 
