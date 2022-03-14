@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -106,7 +106,7 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	 * Builder for {@link DailySchedule}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DailySchedule> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DailySchedule> {
 		private List<TimeOfDay> at;
 
 		/**
@@ -136,6 +136,11 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 		 */
 		public final Builder at(Function<TimeOfDay.Builder, ObjectBuilder<TimeOfDay>> fn) {
 			return at(fn.apply(new TimeOfDay.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

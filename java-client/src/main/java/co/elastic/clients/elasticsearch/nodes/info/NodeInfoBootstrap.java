@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -90,7 +90,7 @@ public class NodeInfoBootstrap implements JsonpSerializable {
 	 * Builder for {@link NodeInfoBootstrap}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoBootstrap> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoBootstrap> {
 		private String memoryLock;
 
 		/**
@@ -98,6 +98,11 @@ public class NodeInfoBootstrap implements JsonpSerializable {
 		 */
 		public final Builder memoryLock(String value) {
 			this.memoryLock = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

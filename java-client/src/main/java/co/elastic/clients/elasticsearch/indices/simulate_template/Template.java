@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -159,7 +159,7 @@ public class Template implements JsonpSerializable {
 	 * Builder for {@link Template}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Template> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Template> {
 		private Map<String, Alias> aliases;
 
 		private TypeMapping mappings;
@@ -259,6 +259,11 @@ public class Template implements JsonpSerializable {
 		 */
 		public final Builder overlapping(Function<Overlapping.Builder, ObjectBuilder<Overlapping>> fn) {
 			return overlapping(fn.apply(new Overlapping.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

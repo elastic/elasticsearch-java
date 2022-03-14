@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -153,7 +153,7 @@ public class DetectionRule implements JsonpSerializable {
 	 * Builder for {@link DetectionRule}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DetectionRule> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DetectionRule> {
 		@Nullable
 		private List<RuleAction> actions;
 
@@ -275,6 +275,11 @@ public class DetectionRule implements JsonpSerializable {
 		 */
 		public final Builder scope(String key, Function<FilterRef.Builder, ObjectBuilder<FilterRef>> fn) {
 			return scope(key, fn.apply(new FilterRef.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

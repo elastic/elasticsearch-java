@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -114,7 +114,9 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 	 * Builder for {@link PreviewDataFrameAnalyticsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDataFrameAnalyticsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PreviewDataFrameAnalyticsResponse> {
 		private List<Map<String, String>> featureValues;
 
 		/**
@@ -142,6 +144,11 @@ public class PreviewDataFrameAnalyticsResponse implements JsonpSerializable {
 		 */
 		public final Builder featureValues(Map<String, String> value, Map<String, String>... values) {
 			this.featureValues = _listAdd(this.featureValues, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

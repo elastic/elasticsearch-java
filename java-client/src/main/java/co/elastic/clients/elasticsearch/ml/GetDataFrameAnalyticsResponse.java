@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.List;
@@ -117,7 +117,9 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 	 * Builder for {@link GetDataFrameAnalyticsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataFrameAnalyticsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetDataFrameAnalyticsResponse> {
 		private Integer count;
 
 		private List<DataframeAnalyticsSummary> dataFrameAnalytics;
@@ -167,6 +169,11 @@ public class GetDataFrameAnalyticsResponse implements JsonpSerializable {
 		public final Builder dataFrameAnalytics(
 				Function<DataframeAnalyticsSummary.Builder, ObjectBuilder<DataframeAnalyticsSummary>> fn) {
 			return dataFrameAnalytics(fn.apply(new DataframeAnalyticsSummary.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -180,7 +180,7 @@ public class FileSystemTotal implements JsonpSerializable {
 	 * Builder for {@link FileSystemTotal}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileSystemTotal> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FileSystemTotal> {
 		@Nullable
 		private String available;
 
@@ -244,6 +244,11 @@ public class FileSystemTotal implements JsonpSerializable {
 		 */
 		public final Builder totalInBytes(@Nullable Long value) {
 			this.totalInBytes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

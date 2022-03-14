@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -196,7 +196,7 @@ public class Filter implements JsonpSerializable {
 	 * Builder for {@link Filter}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Filter> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Filter> {
 		@Nullable
 		private Integer maxDocFreq;
 
@@ -271,6 +271,11 @@ public class Filter implements JsonpSerializable {
 		 */
 		public final Builder minWordLength(@Nullable Integer value) {
 			this.minWordLength = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

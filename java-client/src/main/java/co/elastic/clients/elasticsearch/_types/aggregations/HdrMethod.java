@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -95,7 +95,7 @@ public class HdrMethod implements JsonpSerializable {
 	 * Builder for {@link HdrMethod}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HdrMethod> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HdrMethod> {
 		@Nullable
 		private Integer numberOfSignificantValueDigits;
 
@@ -104,6 +104,11 @@ public class HdrMethod implements JsonpSerializable {
 		 */
 		public final Builder numberOfSignificantValueDigits(@Nullable Integer value) {
 			this.numberOfSignificantValueDigits = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

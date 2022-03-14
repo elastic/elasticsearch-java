@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -247,7 +247,7 @@ public class Statistics implements JsonpSerializable {
 	 * Builder for {@link Statistics}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Statistics> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Statistics> {
 		@Nullable
 		private DateTime retentionDeletionTime;
 
@@ -355,6 +355,11 @@ public class Statistics implements JsonpSerializable {
 		 */
 		public final Builder totalSnapshotsTaken(@Nullable Long value) {
 			this.totalSnapshotsTaken = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

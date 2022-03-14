@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -106,7 +106,7 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 	 * Builder for {@link ChainInput}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChainInput> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ChainInput> {
 		private List<Input> inputs;
 
 		/**
@@ -136,6 +136,11 @@ public class ChainInput implements InputVariant, JsonpSerializable {
 		 */
 		public final Builder inputs(Function<Input.Builder, ObjectBuilder<Input>> fn) {
 			return inputs(fn.apply(new Input.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

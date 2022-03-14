@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
@@ -254,10 +254,14 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldSuggester> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FieldSuggester> {
 		private Kind _kind;
 		private Object _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<FieldSuggester> completion(CompletionSuggester v) {
 			this._kind = Kind.Completion;
 			this._value = v;

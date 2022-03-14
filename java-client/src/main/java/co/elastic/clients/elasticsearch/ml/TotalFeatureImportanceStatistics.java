@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
@@ -128,7 +128,9 @@ public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 	 * Builder for {@link TotalFeatureImportanceStatistics}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TotalFeatureImportanceStatistics> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TotalFeatureImportanceStatistics> {
 		private Double meanMagnitude;
 
 		private Integer max;
@@ -166,6 +168,11 @@ public class TotalFeatureImportanceStatistics implements JsonpSerializable {
 		 */
 		public final Builder min(int value) {
 			this.min = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

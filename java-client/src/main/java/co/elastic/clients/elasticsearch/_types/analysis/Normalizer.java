@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -154,10 +154,14 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Normalizer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Normalizer> {
 		private Kind _kind;
 		private NormalizerVariant _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<Normalizer> custom(CustomNormalizer v) {
 			this._kind = Kind.Custom;
 			this._value = v;

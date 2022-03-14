@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -212,7 +212,9 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 	 * Builder for {@link MigrateToDataTiersResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MigrateToDataTiersResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<MigrateToDataTiersResponse> {
 		private Boolean dryRun;
 
 		private String removedLegacyTemplate;
@@ -343,6 +345,11 @@ public class MigrateToDataTiersResponse implements JsonpSerializable {
 		 */
 		public final Builder migratedComponentTemplates(String value, String... values) {
 			this.migratedComponentTemplates = _listAdd(this.migratedComponentTemplates, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

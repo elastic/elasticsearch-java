@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -146,7 +146,7 @@ public class Context implements JsonpSerializable {
 	 * Builder for {@link Context}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Context> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Context> {
 		@Nullable
 		private String context;
 
@@ -188,6 +188,11 @@ public class Context implements JsonpSerializable {
 		 */
 		public final Builder compilationLimitTriggered(@Nullable Long value) {
 			this.compilationLimitTriggered = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

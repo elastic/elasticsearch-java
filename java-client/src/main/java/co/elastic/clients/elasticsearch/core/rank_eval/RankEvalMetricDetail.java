@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -180,7 +180,9 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 	 * Builder for {@link RankEvalMetricDetail}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalMetricDetail> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RankEvalMetricDetail> {
 		private Double metricScore;
 
 		private List<UnratedDocument> unratedDocs;
@@ -306,6 +308,11 @@ public class RankEvalMetricDetail implements JsonpSerializable {
 		 */
 		public final Builder metricDetails(String key, Map<String, JsonData> value) {
 			this.metricDetails = _mapPut(this.metricDetails, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

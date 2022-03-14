@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -298,7 +298,9 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 	 * Builder for {@link PreviewTransformRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewTransformRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PreviewTransformRequest> {
 		@Nullable
 		private String description;
 
@@ -535,6 +537,11 @@ public class PreviewTransformRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder transformId(@Nullable String value) {
 			this.transformId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

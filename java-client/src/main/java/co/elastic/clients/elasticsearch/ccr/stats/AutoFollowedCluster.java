@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -121,7 +121,9 @@ public class AutoFollowedCluster implements JsonpSerializable {
 	 * Builder for {@link AutoFollowedCluster}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoFollowedCluster> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<AutoFollowedCluster> {
 		private String clusterName;
 
 		private Long lastSeenMetadataVersion;
@@ -149,6 +151,11 @@ public class AutoFollowedCluster implements JsonpSerializable {
 		 */
 		public final Builder timeSinceLastCheckMillis(DateTime value) {
 			this.timeSinceLastCheckMillis = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

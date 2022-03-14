@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -164,7 +164,9 @@ public class EnrollNodeResponse implements JsonpSerializable {
 	 * Builder for {@link EnrollNodeResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnrollNodeResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<EnrollNodeResponse> {
 		private String httpCaKey;
 
 		private String httpCaCert;
@@ -234,6 +236,11 @@ public class EnrollNodeResponse implements JsonpSerializable {
 		 */
 		public final Builder nodesAddresses(String value, String... values) {
 			this.nodesAddresses = _listAdd(this.nodesAddresses, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

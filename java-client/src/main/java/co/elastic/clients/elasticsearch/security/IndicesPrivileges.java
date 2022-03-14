@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -194,7 +194,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 	 * Builder for {@link IndicesPrivileges}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesPrivileges> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndicesPrivileges> {
 		@Nullable
 		private List<FieldSecurity> fieldSecurity;
 
@@ -330,6 +330,11 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 */
 		public final Builder allowRestrictedIndices(@Nullable Boolean value) {
 			this.allowRestrictedIndices = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

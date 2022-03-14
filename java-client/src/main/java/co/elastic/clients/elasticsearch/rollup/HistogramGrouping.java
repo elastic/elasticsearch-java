@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -112,7 +112,7 @@ public class HistogramGrouping implements JsonpSerializable {
 	 * Builder for {@link HistogramGrouping}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HistogramGrouping> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HistogramGrouping> {
 		private List<String> fields;
 
 		private Long interval;
@@ -142,6 +142,11 @@ public class HistogramGrouping implements JsonpSerializable {
 		 */
 		public final Builder interval(long value) {
 			this.interval = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

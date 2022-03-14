@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
@@ -222,7 +222,7 @@ public class Cpu implements JsonpSerializable {
 	 * Builder for {@link Cpu}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Cpu> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Cpu> {
 		@Nullable
 		private Integer percent;
 
@@ -320,6 +320,11 @@ public class Cpu implements JsonpSerializable {
 		 */
 		public final Builder loadAverage(String key, Double value) {
 			this.loadAverage = _mapPut(this.loadAverage, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

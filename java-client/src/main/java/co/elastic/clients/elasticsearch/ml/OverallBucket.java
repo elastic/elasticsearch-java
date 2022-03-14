@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -182,7 +182,7 @@ public class OverallBucket implements JsonpSerializable {
 	 * Builder for {@link OverallBucket}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OverallBucket> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<OverallBucket> {
 		private Long bucketSpan;
 
 		private Boolean isInterim;
@@ -291,6 +291,11 @@ public class OverallBucket implements JsonpSerializable {
 		 */
 		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timestamp(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -120,7 +120,7 @@ public class NodesCredentials implements JsonpSerializable {
 	 * Builder for {@link NodesCredentials}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodesCredentials> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodesCredentials> {
 		private NodeStatistics nodes;
 
 		private Map<String, NodesCredentialsFileToken> fileTokens;
@@ -180,6 +180,11 @@ public class NodesCredentials implements JsonpSerializable {
 		public final Builder fileTokens(String key,
 				Function<NodesCredentialsFileToken.Builder, ObjectBuilder<NodesCredentialsFileToken>> fn) {
 			return fileTokens(key, fn.apply(new NodesCredentialsFileToken.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

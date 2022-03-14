@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.List;
@@ -122,7 +122,9 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 	 * Builder for {@link GetTrainedModelsStatsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrainedModelsStatsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetTrainedModelsStatsResponse> {
 		private Integer count;
 
 		private List<TrainedModelStats> trainedModelStats;
@@ -177,6 +179,11 @@ public class GetTrainedModelsStatsResponse implements JsonpSerializable {
 		public final Builder trainedModelStats(
 				Function<TrainedModelStats.Builder, ObjectBuilder<TrainedModelStats>> fn) {
 			return trainedModelStats(fn.apply(new TrainedModelStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

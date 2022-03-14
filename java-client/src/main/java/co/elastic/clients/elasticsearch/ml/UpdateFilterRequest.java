@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -161,7 +161,9 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 	 * Builder for {@link UpdateFilterRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateFilterRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<UpdateFilterRequest> {
 		@Nullable
 		private List<String> addItems;
 
@@ -238,6 +240,11 @@ public class UpdateFilterRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder removeItems(String value, String... values) {
 			this.removeItems = _listAdd(this.removeItems, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

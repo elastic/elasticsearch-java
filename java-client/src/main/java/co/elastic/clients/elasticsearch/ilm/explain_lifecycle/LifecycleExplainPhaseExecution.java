@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -121,7 +121,9 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	 * Builder for {@link LifecycleExplainPhaseExecution}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplainPhaseExecution> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<LifecycleExplainPhaseExecution> {
 		private String policy;
 
 		private Long version;
@@ -149,6 +151,11 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		 */
 		public final Builder modifiedDateInMillis(DateTime value) {
 			this.modifiedDateInMillis = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

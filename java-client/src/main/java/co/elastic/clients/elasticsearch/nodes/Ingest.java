@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -117,7 +117,7 @@ public class Ingest implements JsonpSerializable {
 	 * Builder for {@link Ingest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ingest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Ingest> {
 		@Nullable
 		private Map<String, IngestTotal> pipelines;
 
@@ -166,6 +166,11 @@ public class Ingest implements JsonpSerializable {
 		 */
 		public final Builder total(Function<IngestTotal.Builder, ObjectBuilder<IngestTotal>> fn) {
 			return this.total(fn.apply(new IngestTotal.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

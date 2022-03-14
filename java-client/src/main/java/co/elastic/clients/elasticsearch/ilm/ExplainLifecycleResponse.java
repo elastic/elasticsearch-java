@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -101,7 +101,9 @@ public class ExplainLifecycleResponse implements JsonpSerializable {
 	 * Builder for {@link ExplainLifecycleResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainLifecycleResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ExplainLifecycleResponse> {
 		private Map<String, LifecycleExplain> indices;
 
 		/**
@@ -132,6 +134,11 @@ public class ExplainLifecycleResponse implements JsonpSerializable {
 		public final Builder indices(String key,
 				Function<LifecycleExplain.Builder, ObjectBuilder<LifecycleExplain>> fn) {
 			return indices(key, fn.apply(new LifecycleExplain.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

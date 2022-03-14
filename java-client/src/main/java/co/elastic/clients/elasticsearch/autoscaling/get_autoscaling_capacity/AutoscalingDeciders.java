@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -148,7 +148,9 @@ public class AutoscalingDeciders implements JsonpSerializable {
 	 * Builder for {@link AutoscalingDeciders}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingDeciders> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<AutoscalingDeciders> {
 		private AutoscalingCapacity requiredCapacity;
 
 		private AutoscalingCapacity currentCapacity;
@@ -246,6 +248,11 @@ public class AutoscalingDeciders implements JsonpSerializable {
 		public final Builder deciders(String key,
 				Function<AutoscalingDecider.Builder, ObjectBuilder<AutoscalingDecider>> fn) {
 			return deciders(key, fn.apply(new AutoscalingDecider.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

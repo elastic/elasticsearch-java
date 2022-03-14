@@ -29,20 +29,23 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -62,7 +65,7 @@ import javax.annotation.Nullable;
  * @see <a href="../doc-files/api-spec.html#_global.create.Request">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class CreateRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	private final String id;
 
@@ -235,7 +238,7 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 	 * Builder for {@link CreateRequest}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<CreateRequest<TDocument>> {
 		private String id;
@@ -407,6 +410,20 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 			return this;
 		}
 
+		@Override
+		public Builder<TDocument> withJson(JsonParser parser, JsonpMapper mapper) {
+			JsonpDeserializer<JsonData> tDocumentDeserializer = JsonData._DESERIALIZER;
+
+			@SuppressWarnings("unchecked")
+			TDocument value = (TDocument) tDocumentDeserializer.deserialize(parser, mapper);
+			return this.document(value);
+		}
+
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link CreateRequest}.
 		 *
@@ -419,6 +436,13 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 			return new CreateRequest<TDocument>(this);
 		}
 	}
+
+	/**
+	 * Json deserializer for {@link CreateRequest} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<CreateRequest<Object>> _DESERIALIZER = createCreateRequestDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.create.TDocument"));
 
 	public static <TDocument> JsonpDeserializer<CreateRequest<TDocument>> createCreateRequestDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

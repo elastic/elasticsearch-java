@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -198,7 +198,7 @@ public class Command implements JsonpSerializable {
 	 * Builder for {@link Command}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Command> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Command> {
 		@Nullable
 		private CommandCancelAction cancel;
 
@@ -358,6 +358,11 @@ public class Command implements JsonpSerializable {
 		public final Builder allocateEmptyPrimary(
 				Function<CommandAllocatePrimaryAction.Builder, ObjectBuilder<CommandAllocatePrimaryAction>> fn) {
 			return this.allocateEmptyPrimary(fn.apply(new CommandAllocatePrimaryAction.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

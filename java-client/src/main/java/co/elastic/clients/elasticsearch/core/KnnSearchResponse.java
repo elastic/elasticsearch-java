@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -198,7 +198,7 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	 * Builder for {@link KnnSearchResponse}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<KnnSearchResponse<TDocument>> {
 		private Long took;
@@ -324,6 +324,11 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link KnnSearchResponse}.
 		 *
@@ -352,8 +357,9 @@ public class KnnSearchResponse<TDocument> implements JsonpSerializable {
 	 * Json deserializer for {@link KnnSearchResponse} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<KnnSearchResponse<Object>> _DESERIALIZER = createKnnSearchResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.knn_search.TDocument"));
+	public static final JsonpDeserializer<KnnSearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createKnnSearchResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.knn_search.TDocument")));
 
 	protected static <TDocument> void setupKnnSearchResponseDeserializer(
 			ObjectDeserializer<KnnSearchResponse.Builder<TDocument>> op,

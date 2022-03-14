@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -97,7 +97,9 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 	 * Builder for {@link ClosePointInTimeRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClosePointInTimeRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClosePointInTimeRequest> {
 		private String id;
 
 		/**
@@ -105,6 +107,11 @@ public class ClosePointInTimeRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder id(String value) {
 			this.id = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

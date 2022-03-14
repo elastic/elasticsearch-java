@@ -97,8 +97,9 @@ public class ScrollResponse<TDocument> extends SearchResponse<TDocument> {
 	 * Json deserializer for {@link ScrollResponse} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<ScrollResponse<Object>> _DESERIALIZER = createScrollResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.scroll.TDocument"));
+	public static final JsonpDeserializer<ScrollResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createScrollResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.scroll.TDocument")));
 
 	protected static <TDocument> void setupScrollResponseDeserializer(
 			ObjectDeserializer<ScrollResponse.Builder<TDocument>> op,

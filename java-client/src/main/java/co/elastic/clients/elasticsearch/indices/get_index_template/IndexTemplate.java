@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -234,7 +234,7 @@ public class IndexTemplate implements JsonpSerializable {
 	 * Builder for {@link IndexTemplate}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexTemplate> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexTemplate> {
 		private List<String> indexPatterns;
 
 		private List<String> composedOf;
@@ -373,6 +373,11 @@ public class IndexTemplate implements JsonpSerializable {
 		 */
 		public final Builder dataStream(String key, JsonData value) {
 			this.dataStream = _mapPut(this.dataStream, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

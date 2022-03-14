@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -195,7 +195,7 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 	 * Builder for {@link IntervalsMatch}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsMatch> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IntervalsMatch> {
 		@Nullable
 		private String analyzer;
 
@@ -266,6 +266,11 @@ public class IntervalsMatch implements IntervalsQueryVariant, IntervalsVariant, 
 		 */
 		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
 			return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

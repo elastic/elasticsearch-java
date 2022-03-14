@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -102,7 +102,7 @@ public class LatLonGeoLocation implements JsonpSerializable {
 	 * Builder for {@link LatLonGeoLocation}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LatLonGeoLocation> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<LatLonGeoLocation> {
 		private Double lat;
 
 		private Double lon;
@@ -120,6 +120,11 @@ public class LatLonGeoLocation implements JsonpSerializable {
 		 */
 		public final Builder lon(double value) {
 			this.lon = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -280,7 +280,7 @@ public class BulkResponseItem implements JsonpSerializable {
 	 * Builder for {@link BulkResponseItem}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkResponseItem> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<BulkResponseItem> {
 		private OperationType operationType;
 
 		/**
@@ -430,6 +430,11 @@ public class BulkResponseItem implements JsonpSerializable {
 		public final Builder get(
 				Function<InlineGet.Builder<Map<String, JsonData>>, ObjectBuilder<InlineGet<Map<String, JsonData>>>> fn) {
 			return this.get(fn.apply(new InlineGet.Builder<Map<String, JsonData>>()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

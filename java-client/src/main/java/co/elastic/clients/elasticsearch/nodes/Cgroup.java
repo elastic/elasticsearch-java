@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -127,7 +127,7 @@ public class Cgroup implements JsonpSerializable {
 	 * Builder for {@link Cgroup}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Cgroup> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Cgroup> {
 		@Nullable
 		private CpuAcct cpuacct;
 
@@ -180,6 +180,11 @@ public class Cgroup implements JsonpSerializable {
 		 */
 		public final Builder memory(Function<CgroupMemory.Builder, ObjectBuilder<CgroupMemory>> fn) {
 			return this.memory(fn.apply(new CgroupMemory.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -32,8 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -90,7 +91,7 @@ public class FielddataResponse implements JsonpSerializable {
 	 * Builder for {@link FielddataResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FielddataResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FielddataResponse> {
 		private List<FielddataRecord> valueBody;
 
 		/**
@@ -126,6 +127,20 @@ public class FielddataResponse implements JsonpSerializable {
 		 */
 		public final Builder valueBody(Function<FielddataRecord.Builder, ObjectBuilder<FielddataRecord>> fn) {
 			return valueBody(fn.apply(new FielddataRecord.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			List<FielddataRecord> value = (List<FielddataRecord>) JsonpDeserializer
+					.arrayDeserializer(FielddataRecord._DESERIALIZER).deserialize(parser, mapper);
+			return this.valueBody(value);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

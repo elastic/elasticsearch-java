@@ -32,8 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -90,7 +91,9 @@ public class AllocationResponse implements JsonpSerializable {
 	 * Builder for {@link AllocationResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<AllocationResponse> {
 		private List<AllocationRecord> valueBody;
 
 		/**
@@ -126,6 +129,20 @@ public class AllocationResponse implements JsonpSerializable {
 		 */
 		public final Builder valueBody(Function<AllocationRecord.Builder, ObjectBuilder<AllocationRecord>> fn) {
 			return valueBody(fn.apply(new AllocationRecord.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			List<AllocationRecord> value = (List<AllocationRecord>) JsonpDeserializer
+					.arrayDeserializer(AllocationRecord._DESERIALIZER).deserialize(parser, mapper);
+			return this.valueBody(value);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
@@ -302,10 +302,14 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Schedule> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Schedule> {
 		private Kind _kind;
 		private Object _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<Schedule> cron(String v) {
 			this._kind = Kind.Cron;
 			this._value = v;

@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -209,7 +209,7 @@ public class MultisearchBody implements JsonpSerializable {
 	 * Builder for {@link MultisearchBody}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MultisearchBody> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MultisearchBody> {
 		@Nullable
 		private Map<String, Aggregation> aggregations;
 
@@ -334,6 +334,11 @@ public class MultisearchBody implements JsonpSerializable {
 		 */
 		public final Builder suggest(Function<Suggester.Builder, ObjectBuilder<Suggester>> fn) {
 			return this.suggest(fn.apply(new Suggester.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

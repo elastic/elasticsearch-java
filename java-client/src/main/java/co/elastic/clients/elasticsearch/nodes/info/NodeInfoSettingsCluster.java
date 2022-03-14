@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -157,7 +157,9 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 	 * Builder for {@link NodeInfoSettingsCluster}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsCluster> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<NodeInfoSettingsCluster> {
 		private String name;
 
 		@Nullable
@@ -232,6 +234,11 @@ public class NodeInfoSettingsCluster implements JsonpSerializable {
 		public final Builder deprecationIndexing(
 				Function<DeprecationIndexing.Builder, ObjectBuilder<DeprecationIndexing>> fn) {
 			return this.deprecationIndexing(fn.apply(new DeprecationIndexing.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

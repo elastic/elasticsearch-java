@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -91,7 +91,7 @@ public class TypeFieldMappings implements JsonpSerializable {
 	 * Builder for {@link TypeFieldMappings}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeFieldMappings> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TypeFieldMappings> {
 		private FieldMapping mappings;
 
 		/**
@@ -107,6 +107,11 @@ public class TypeFieldMappings implements JsonpSerializable {
 		 */
 		public final Builder mappings(Function<FieldMapping.Builder, ObjectBuilder<FieldMapping>> fn) {
 			return this.mappings(fn.apply(new FieldMapping.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

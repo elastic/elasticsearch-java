@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -99,7 +99,7 @@ public class FollowStats implements JsonpSerializable {
 	 * Builder for {@link FollowStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FollowStats> {
 		private List<FollowIndexStats> indices;
 
 		/**
@@ -129,6 +129,11 @@ public class FollowStats implements JsonpSerializable {
 		 */
 		public final Builder indices(Function<FollowIndexStats.Builder, ObjectBuilder<FollowIndexStats>> fn) {
 			return indices(fn.apply(new FollowIndexStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

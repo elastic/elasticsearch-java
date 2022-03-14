@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -128,7 +128,7 @@ public class Translog implements JsonpSerializable {
 	 * Builder for {@link Translog}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Translog> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Translog> {
 		@Nullable
 		private String durability;
 
@@ -167,6 +167,11 @@ public class Translog implements JsonpSerializable {
 		 */
 		public final Builder retention(Function<TranslogRetention.Builder, ObjectBuilder<TranslogRetention>> fn) {
 			return this.retention(fn.apply(new TranslogRetention.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

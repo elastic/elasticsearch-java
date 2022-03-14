@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -104,7 +104,7 @@ public class CountResponse implements JsonpSerializable {
 	 * Builder for {@link CountResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CountResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CountResponse> {
 		private Long count;
 
 		private ShardStatistics shards;
@@ -130,6 +130,11 @@ public class CountResponse implements JsonpSerializable {
 		 */
 		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

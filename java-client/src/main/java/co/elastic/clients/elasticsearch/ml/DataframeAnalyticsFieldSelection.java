@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -188,7 +188,9 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 	 * Builder for {@link DataframeAnalyticsFieldSelection}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsFieldSelection> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataframeAnalyticsFieldSelection> {
 		private Boolean isIncluded;
 
 		private Boolean isRequired;
@@ -275,6 +277,11 @@ public class DataframeAnalyticsFieldSelection implements JsonpSerializable {
 		 */
 		public final Builder reason(@Nullable String value) {
 			this.reason = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

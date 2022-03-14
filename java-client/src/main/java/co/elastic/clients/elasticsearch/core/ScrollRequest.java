@@ -36,7 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -118,7 +118,7 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 	 * Builder for {@link ScrollRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScrollRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ScrollRequest> {
 		@Nullable
 		private Time scroll;
 
@@ -150,6 +150,11 @@ public class ScrollRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder scrollId(String value) {
 			this.scrollId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

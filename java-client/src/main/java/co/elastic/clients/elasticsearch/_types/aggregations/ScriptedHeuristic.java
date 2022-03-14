@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -91,7 +91,7 @@ public class ScriptedHeuristic implements JsonpSerializable {
 	 * Builder for {@link ScriptedHeuristic}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptedHeuristic> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ScriptedHeuristic> {
 		private Script script;
 
 		/**
@@ -107,6 +107,11 @@ public class ScriptedHeuristic implements JsonpSerializable {
 		 */
 		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
 			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

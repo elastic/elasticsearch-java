@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -91,7 +91,9 @@ public class NodeInfoRepositoriesUrl implements JsonpSerializable {
 	 * Builder for {@link NodeInfoRepositoriesUrl}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoRepositoriesUrl> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<NodeInfoRepositoriesUrl> {
 		private String allowedUrls;
 
 		/**
@@ -99,6 +101,11 @@ public class NodeInfoRepositoriesUrl implements JsonpSerializable {
 		 */
 		public final Builder allowedUrls(String value) {
 			this.allowedUrls = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

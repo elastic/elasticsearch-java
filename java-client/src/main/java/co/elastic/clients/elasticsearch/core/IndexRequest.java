@@ -30,20 +30,23 @@ import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.VersionType;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
@@ -61,7 +64,7 @@ import javax.annotation.Nullable;
  * @see <a href="../doc-files/api-spec.html#_global.index.Request">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class IndexRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final String id;
@@ -296,7 +299,9 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 	 * Builder for {@link IndexRequest}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<IndexRequest<TDocument>> {
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
+			implements
+				ObjectBuilder<IndexRequest<TDocument>> {
 		@Nullable
 		private String id;
 
@@ -523,6 +528,20 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 			return this;
 		}
 
+		@Override
+		public Builder<TDocument> withJson(JsonParser parser, JsonpMapper mapper) {
+			JsonpDeserializer<JsonData> tDocumentDeserializer = JsonData._DESERIALIZER;
+
+			@SuppressWarnings("unchecked")
+			TDocument value = (TDocument) tDocumentDeserializer.deserialize(parser, mapper);
+			return this.document(value);
+		}
+
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link IndexRequest}.
 		 *
@@ -535,6 +554,13 @@ public class IndexRequest<TDocument> extends RequestBase implements JsonpSeriali
 			return new IndexRequest<TDocument>(this);
 		}
 	}
+
+	/**
+	 * Json deserializer for {@link IndexRequest} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<IndexRequest<Object>> _DESERIALIZER = createIndexRequestDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.index.TDocument"));
 
 	public static <TDocument> JsonpDeserializer<IndexRequest<TDocument>> createIndexRequestDeserializer(
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

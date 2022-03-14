@@ -32,8 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -91,7 +92,9 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 	 * Builder for {@link MlDataFrameAnalyticsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<MlDataFrameAnalyticsResponse> {
 		private List<DataFrameAnalyticsRecord> valueBody;
 
 		/**
@@ -128,6 +131,20 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 		public final Builder valueBody(
 				Function<DataFrameAnalyticsRecord.Builder, ObjectBuilder<DataFrameAnalyticsRecord>> fn) {
 			return valueBody(fn.apply(new DataFrameAnalyticsRecord.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			List<DataFrameAnalyticsRecord> value = (List<DataFrameAnalyticsRecord>) JsonpDeserializer
+					.arrayDeserializer(DataFrameAnalyticsRecord._DESERIALIZER).deserialize(parser, mapper);
+			return this.valueBody(value);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

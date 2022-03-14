@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -379,7 +379,7 @@ public class TypeMapping implements JsonpSerializable {
 	 * Builder for {@link TypeMapping}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TypeMapping> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TypeMapping> {
 		@Nullable
 		private AllField allField;
 
@@ -683,6 +683,11 @@ public class TypeMapping implements JsonpSerializable {
 		public final Builder dataStreamTimestamp(
 				Function<DataStreamTimestamp.Builder, ObjectBuilder<DataStreamTimestamp>> fn) {
 			return this.dataStreamTimestamp(fn.apply(new DataStreamTimestamp.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

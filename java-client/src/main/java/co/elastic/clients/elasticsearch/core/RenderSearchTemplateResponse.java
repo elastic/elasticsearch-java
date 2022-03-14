@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -102,7 +102,9 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 	 * Builder for {@link RenderSearchTemplateResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RenderSearchTemplateResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RenderSearchTemplateResponse> {
 		private Map<String, JsonData> templateOutput;
 
 		/**
@@ -122,6 +124,11 @@ public class RenderSearchTemplateResponse implements JsonpSerializable {
 		 */
 		public final Builder templateOutput(String key, JsonData value) {
 			this.templateOutput = _mapPut(this.templateOutput, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

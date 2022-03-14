@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -105,7 +105,7 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Builder for {@link KeywordAnalyzer}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KeywordAnalyzer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<KeywordAnalyzer> {
 		@Nullable
 		private String version;
 
@@ -114,6 +114,11 @@ public class KeywordAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		 */
 		public final Builder version(@Nullable String value) {
 			this.version = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

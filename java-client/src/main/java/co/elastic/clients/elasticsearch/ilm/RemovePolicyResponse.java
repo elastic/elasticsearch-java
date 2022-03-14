@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -112,7 +112,9 @@ public class RemovePolicyResponse implements JsonpSerializable {
 	 * Builder for {@link RemovePolicyResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RemovePolicyResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RemovePolicyResponse> {
 		private List<String> failedIndexes;
 
 		private Boolean hasFailures;
@@ -142,6 +144,11 @@ public class RemovePolicyResponse implements JsonpSerializable {
 		 */
 		public final Builder hasFailures(boolean value) {
 			this.hasFailures = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

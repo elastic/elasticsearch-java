@@ -46,7 +46,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -517,7 +517,7 @@ public class ShardStats implements JsonpSerializable {
 	 * Builder for {@link ShardStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShardStats> {
 		@Nullable
 		private ShardCommit commit;
 
@@ -967,6 +967,11 @@ public class ShardStats implements JsonpSerializable {
 		 */
 		public final Builder indices(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
 			return this.indices(fn.apply(new IndicesStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

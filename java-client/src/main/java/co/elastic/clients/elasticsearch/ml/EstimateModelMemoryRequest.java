@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -166,7 +166,9 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 	 * Builder for {@link EstimateModelMemoryRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EstimateModelMemoryRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<EstimateModelMemoryRequest> {
 		@Nullable
 		private AnalysisConfig analysisConfig;
 
@@ -264,6 +266,11 @@ public class EstimateModelMemoryRequest extends RequestBase implements JsonpSeri
 		 */
 		public final Builder overallCardinality(String key, Long value) {
 			this.overallCardinality = _mapPut(this.overallCardinality, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

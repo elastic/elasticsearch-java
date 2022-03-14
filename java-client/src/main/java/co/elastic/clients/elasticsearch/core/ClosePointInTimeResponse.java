@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -104,7 +104,9 @@ public class ClosePointInTimeResponse implements JsonpSerializable {
 	 * Builder for {@link ClosePointInTimeResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClosePointInTimeResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClosePointInTimeResponse> {
 		private Boolean succeeded;
 
 		private Integer numFreed;
@@ -122,6 +124,11 @@ public class ClosePointInTimeResponse implements JsonpSerializable {
 		 */
 		public final Builder numFreed(int value) {
 			this.numFreed = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

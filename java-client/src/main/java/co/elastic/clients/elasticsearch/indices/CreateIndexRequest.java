@@ -38,7 +38,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -204,7 +204,9 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 	 * Builder for {@link CreateIndexRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateIndexRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CreateIndexRequest> {
 		@Nullable
 		private Map<String, Alias> aliases;
 
@@ -364,6 +366,11 @@ public class CreateIndexRequest extends RequestBase implements JsonpSerializable
 		public final Builder waitForActiveShards(
 				Function<WaitForActiveShards.Builder, ObjectBuilder<WaitForActiveShards>> fn) {
 			return this.waitForActiveShards(fn.apply(new WaitForActiveShards.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

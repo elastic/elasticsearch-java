@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -111,7 +111,7 @@ public class MergeScheduler implements JsonpSerializable {
 	 * Builder for {@link MergeScheduler}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MergeScheduler> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MergeScheduler> {
 		@Nullable
 		private Integer maxThreadCount;
 
@@ -131,6 +131,11 @@ public class MergeScheduler implements JsonpSerializable {
 		 */
 		public final Builder maxMergeCount(@Nullable Integer value) {
 			this.maxMergeCount = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

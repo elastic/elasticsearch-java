@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -181,7 +181,7 @@ public class TranslogStats implements JsonpSerializable {
 	 * Builder for {@link TranslogStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslogStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TranslogStats> {
 		private Long earliestLastModifiedAge;
 
 		private Long operations;
@@ -251,6 +251,11 @@ public class TranslogStats implements JsonpSerializable {
 		 */
 		public final Builder uncommittedSizeInBytes(long value) {
 			this.uncommittedSizeInBytes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

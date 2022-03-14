@@ -32,9 +32,9 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 import java.lang.Object;
@@ -225,10 +225,14 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 		}
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SortOptions> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SortOptions> {
 		private Kind _kind;
 		private Object _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<SortOptions> score(ScoreSort v) {
 			this._kind = Kind.Score;
 			this._value = v;

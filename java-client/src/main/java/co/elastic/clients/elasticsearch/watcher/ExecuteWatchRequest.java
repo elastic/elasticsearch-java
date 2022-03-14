@@ -36,7 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -272,7 +272,9 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	 * Builder for {@link ExecuteWatchRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteWatchRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ExecuteWatchRequest> {
 		@Nullable
 		private Map<String, ActionExecutionMode> actionModes;
 
@@ -461,6 +463,11 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder watch(Function<Watch.Builder, ObjectBuilder<Watch>> fn) {
 			return this.watch(fn.apply(new Watch.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

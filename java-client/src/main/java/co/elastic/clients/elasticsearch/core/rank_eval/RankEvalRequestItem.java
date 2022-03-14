@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -180,7 +180,9 @@ public class RankEvalRequestItem implements JsonpSerializable {
 	 * Builder for {@link RankEvalRequestItem}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RankEvalRequestItem> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RankEvalRequestItem> {
 		private String id;
 
 		@Nullable
@@ -289,6 +291,11 @@ public class RankEvalRequestItem implements JsonpSerializable {
 		 */
 		public final Builder params(String key, JsonData value) {
 			this.params = _mapPut(this.params, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

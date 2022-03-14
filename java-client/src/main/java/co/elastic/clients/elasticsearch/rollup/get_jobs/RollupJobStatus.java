@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -132,7 +132,7 @@ public class RollupJobStatus implements JsonpSerializable {
 	 * Builder for {@link RollupJobStatus}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobStatus> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RollupJobStatus> {
 		@Nullable
 		private Map<String, JsonData> currentPosition;
 
@@ -174,6 +174,11 @@ public class RollupJobStatus implements JsonpSerializable {
 		 */
 		public final Builder upgradedDocId(@Nullable Boolean value) {
 			this.upgradedDocId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

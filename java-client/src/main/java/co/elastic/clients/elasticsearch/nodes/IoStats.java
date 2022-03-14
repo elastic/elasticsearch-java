@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -115,7 +115,7 @@ public class IoStats implements JsonpSerializable {
 	 * Builder for {@link IoStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IoStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IoStats> {
 		@Nullable
 		private List<IoStatDevice> devices;
 
@@ -164,6 +164,11 @@ public class IoStats implements JsonpSerializable {
 		 */
 		public final Builder total(Function<IoStatDevice.Builder, ObjectBuilder<IoStatDevice>> fn) {
 			return this.total(fn.apply(new IoStatDevice.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

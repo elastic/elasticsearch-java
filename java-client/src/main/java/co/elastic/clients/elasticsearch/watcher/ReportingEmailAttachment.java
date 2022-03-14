@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -171,7 +171,9 @@ public class ReportingEmailAttachment implements EmailAttachmentVariant, JsonpSe
 	 * Builder for {@link ReportingEmailAttachment}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReportingEmailAttachment> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ReportingEmailAttachment> {
 		private String url;
 
 		@Nullable
@@ -239,6 +241,11 @@ public class ReportingEmailAttachment implements EmailAttachmentVariant, JsonpSe
 		public final Builder request(
 				Function<HttpInputRequestDefinition.Builder, ObjectBuilder<HttpInputRequestDefinition>> fn) {
 			return this.request(fn.apply(new HttpInputRequestDefinition.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**
