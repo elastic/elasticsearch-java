@@ -19,27 +19,43 @@
 
 package co.elastic.clients.json;
 
+import jakarta.json.spi.JsonProvider;
+import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
+
 import javax.annotation.Nullable;
 
-class AttributedJsonpMapper extends DelegatingJsonpMapper {
+public class DelegatingJsonpMapper implements JsonpMapper {
 
-    private final String name;
-    private final Object value;
+    protected final JsonpMapper mapper;
 
-    AttributedJsonpMapper(JsonpMapper mapper, String name, Object value) {
-        super(mapper);
-        this.name = name;
-        this.value = value;
+    public DelegatingJsonpMapper(JsonpMapper mapper) {
+        this.mapper = mapper;
+    }
+
+    @Override
+    public JsonProvider jsonProvider() {
+        return mapper.jsonProvider();
+    }
+
+    @Override
+    public <T> T deserialize(JsonParser parser, Class<T> clazz) {
+        return mapper.deserialize(parser, clazz);
+    }
+
+    @Override
+    public <T> void serialize(T value, JsonGenerator generator) {
+        mapper.serialize(value, generator);
+    }
+
+    @Override
+    public boolean ignoreUnknownFields() {
+        return mapper.ignoreUnknownFields();
     }
 
     @Override
     @Nullable
-    @SuppressWarnings("unchecked")
     public <T> T attribute(String name) {
-        if (this.name.equals(name)) {
-            return (T)this.value;
-        } else {
-            return mapper.attribute(name);
-        }
+        return mapper.attribute(name);
     }
 }

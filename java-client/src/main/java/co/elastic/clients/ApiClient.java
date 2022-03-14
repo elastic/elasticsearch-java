@@ -19,6 +19,7 @@
 
 package co.elastic.clients;
 
+import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.Transport;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -51,11 +52,23 @@ public abstract class ApiClient<T extends Transport, Self extends ApiClient<T, S
      */
     public abstract Self withTransportOptions(@Nullable TransportOptions transportOptions);
 
+    /**
+     * Get the transport used by this client to handle communication with the server.
+     */
     public T _transport() {
         return this.transport;
     }
 
     public TransportOptions _transportOptions() {
         return this.transportOptions;
+    }
+
+    /**
+     * Get the JSON mapper used to map API objects to/from JSON.
+     * <p>
+     * Shortcut for <code>_transport().jsonpMapper()</code>
+     */
+    public JsonpMapper _jsonpMapper() {
+        return transport.jsonpMapper();
     }
 }

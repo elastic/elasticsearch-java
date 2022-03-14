@@ -35,8 +35,8 @@ import co.elastic.clients.elasticsearch.core.search.HitsMetadata;
 import co.elastic.clients.elasticsearch.core.search.TotalHits;
 import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.json.JsonData;
-import co.elastic.clients.util.MissingRequiredPropertyException;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.MissingRequiredPropertyException;
 import co.elastic.clients.util.ObjectBuilder;
 import org.junit.Test;
 
@@ -276,14 +276,14 @@ public class ClassStructureTest extends ModelTestCase {
 
     @Test
     public void testDataClassesSingleBuilderUse() {
-        // no ancestor + ObjectBuilderBase
-        checkSingleBuilderUse(1, new ErrorCause.Builder().type("foo").reason("bar"));
+        // no ancestor + WithJsonBase + ObjectBuilderBase
+        checkSingleBuilderUse(2, new ErrorCause.Builder().type("foo").reason("bar"));
 
-        // 1 ancestor + ObjectBuilderBase
-        checkSingleBuilderUse(2, new CardinalityAggregate.Builder().value(0));
+        // 1 ancestor + WithJsonBase + ObjectBuilderBase
+        checkSingleBuilderUse(3, new CardinalityAggregate.Builder().value(0));
 
-        // 3 ancestors + ObjectBuilderBase
-        checkSingleBuilderUse(4, new DateRangeAggregate.Builder().buckets(Buckets.of(b -> b.array(Collections.emptyList()))));
+        // 3 ancestors + WithJsonBase + ObjectBuilderBase
+        checkSingleBuilderUse(5, new DateRangeAggregate.Builder().buckets(Buckets.of(b -> b.array(Collections.emptyList()))));
     }
 
     @Test
@@ -291,8 +291,8 @@ public class ClassStructureTest extends ModelTestCase {
         // no ancestor + ObjectBuilderBase
         checkSingleBuilderUse(1, new Aggregate.Builder().cardinality(b -> b.value(0)));
 
-        // 1 ancestor + ObjectBuilderBase
-        checkSingleBuilderUse(2, new IntervalsQuery.Builder().field("foo").allOf(b -> b.intervals(Collections.emptyList())));
+        // 1 ancestor + WithJsonBase + ObjectBuilderBase
+        checkSingleBuilderUse(3, new IntervalsQuery.Builder().field("foo").allOf(b -> b.intervals(Collections.emptyList())));
     }
 
     @Test
