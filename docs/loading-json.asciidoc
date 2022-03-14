@@ -7,8 +7,10 @@ As translating these JSON snippets to Java code can be time-consuming and error-
 
 Under the hood, the `withJson()` methods call the object's deserializer. The JSON text's structure and value types therefore have to be correct for the target data structure. Using `withJson()` keeps the strong typing guarantees of the {java-client}.
 
+[discrete]
 === Examples
 
+[discrete]
 ==== Loading an index definition from a resource file
 
 Consider a resource file `some-index.json` containing an index definition:
@@ -33,6 +35,7 @@ include-tagged::{doc-tests}/LoadingJson.java[load-index]
 <1> the input stream for the resource file.
 <2> a {java-client} JSON mapper, used to create a JSON parser and find object deserializers. This will generally be the client's mapper.
 
+[discrete]
 ==== Ingesting documents from JSON files
 
 Similarly, you can read documents to be stored in {es} from data files:
@@ -43,6 +46,7 @@ include-tagged::{doc-tests}/LoadingJson.java[ingest-data]
 --------------------------------------------------
 <1> When calling `withJson()` on data structures that have generic type parameters, these generic types will be considered to be `JsonData`.
 
+[discrete]
 ==== Creating a search request combining JSON and programmatic construction
 
 You can combine `withJson()` with regular calls to setter methods. The example below loads the query part of a search request from a `String` and programmatically adds an aggregation.
@@ -55,6 +59,7 @@ include-tagged::{doc-tests}/LoadingJson.java[query]
 <2> adds the aggregation.
 <3> since this is an aggregation we don't care about result documents and set their target class to `Void`, meaning they will just be ignored. Note that setting `size` to zero actually prevents any document from being returned.
 
+[discrete]
 ==== Creating a search request from multiple JSON snippets
 
 The `withJson()` methods are partial deserializers: the properties loaded from the JSON will set property values or replace the previous ones, but will not reset other properties not found in the JSON input. You can use this to combine multiple JSON snippets to build complex search requests (this uses `queryJson` from the previous example):
