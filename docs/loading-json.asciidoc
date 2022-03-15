@@ -30,10 +30,10 @@ You can create an index from that definition as follows:
 
 ["source","java"]
 --------------------------------------------------
-include-tagged::{doc-tests}/LoadingJson.java[load-index]
+include-tagged::{doc-tests}/LoadingJsonTest.java[load-index]
 --------------------------------------------------
-<1> the input stream for the resource file.
-<2> a {java-client} JSON mapper, used to create a JSON parser and find object deserializers. This will generally be the client's mapper.
+<1> open an input stream for the JSON resource file.
+<2> populate the index creation request with the resource file contents.
 
 [discrete]
 ==== Ingesting documents from JSON files
@@ -42,9 +42,9 @@ Similarly, you can read documents to be stored in {es} from data files:
 
 ["source","java"]
 --------------------------------------------------
-include-tagged::{doc-tests}/LoadingJson.java[ingest-data]
+include-tagged::{doc-tests}/LoadingJsonTest.java[ingest-data]
 --------------------------------------------------
-<1> When calling `withJson()` on data structures that have generic type parameters, these generic types will be considered to be `JsonData`.
+<1> when calling `withJson()` on data structures that have generic type parameters, these generic types will be considered to be `JsonData`.
 
 [discrete]
 ==== Creating a search request combining JSON and programmatic construction
@@ -53,7 +53,7 @@ You can combine `withJson()` with regular calls to setter methods. The example b
 
 ["source","java"]
 --------------------------------------------------
-include-tagged::{doc-tests}/LoadingJson.java[query]
+include-tagged::{doc-tests}/LoadingJsonTest.java[query]
 --------------------------------------------------
 <1> loads the query from the JSON string.
 <2> adds the aggregation.
@@ -66,7 +66,7 @@ The `withJson()` methods are partial deserializers: the properties loaded from t
 
 ["source","java"]
 --------------------------------------------------
-include-tagged::{doc-tests}/LoadingJson.java[query-and-agg]
+include-tagged::{doc-tests}/LoadingJsonTest.java[query-and-agg]
 --------------------------------------------------
 <1> loads the query part of the request.
 <2> loads the aggregation part of the request.

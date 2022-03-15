@@ -24,6 +24,8 @@ import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.CalendarInterval;
 import co.elastic.clients.elasticsearch.core.IndexRequest;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
@@ -37,12 +39,29 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.Reader;
 import java.io.StringReader;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Map;
 
-public class LoadingJson extends ModelTestCase {
+public class LoadingJsonTest extends ModelTestCase {
 
     private DocTestsTransport transport = new DocTestsTransport();
     private ElasticsearchClient client = new ElasticsearchClient(transport);
+
+    private static SearchResponse<JsonData> searchResponse = SearchResponse.searchResponseOf(b -> b
+        .aggregations(new HashMap<>())
+        .took(0)
+        .timedOut(false)
+        .hits(h -> h
+            .total(t -> t.value(0).relation(TotalHitsRelation.Eq))
+            .hits(new ArrayList<>())
+        )
+        .shards(s -> s
+            .total(1)
+            .failed(0)
+            .successful(1)
+        )
+    );
 
     @Test
     public void loadIndexDefinition() throws IOException {
@@ -54,15 +73,12 @@ public class LoadingJson extends ModelTestCase {
         ));
 
         //tag::load-index
-        InputStream jsonStream = this.getClass()
-            .getResourceAsStream("some-index.json");
+        InputStream input = this.getClass()
+            .getResourceAsStream("some-index.json"); //<1>
 
         CreateIndexRequest req = CreateIndexRequest.of(b -> b
             .index("some-index")
-            .withJson(
-                jsonStream, //<1>
-                client._jsonpMapper() //<2>
-            )
+            .withJson(input) //<2>
         );
 
         boolean created = client.indices().create(req).acknowledged();
@@ -82,15 +98,17 @@ public class LoadingJson extends ModelTestCase {
 
         req = IndexRequest.of(b -> b
             .index("some-index")
-            .withJson(file, client._jsonpMapper())
+            .withJson(file)
         );
 
         client.index(req);
         //end::ingest-data
     }
 
-
+    @Test
     public void query1() throws IOException {
+        transport.setResult(searchResponse);
+
         //tag::query
         Reader queryJson = new StringReader(
             "{" +
@@ -102,9 +120,9 @@ public class LoadingJson extends ModelTestCase {
             "    }" +
             "  }" +
             "}");
-        
-        SearchRequest agg1 = SearchRequest.of(b -> b
-            .withJson(queryJson, client._jsonpMapper()) //<1>
+
+        SearchRequest aggRequest = SearchRequest.of(b -> b
+            .withJson(queryJson) //<1>
             .aggregations("max-cpu", a1 -> a1 //<2>
                 .dateHistogram(h -> h
                     .field("@timestamp")
@@ -117,38 +135,56 @@ public class LoadingJson extends ModelTestCase {
             .size(0)
         );
 
-        Map<String, Aggregate> aggs1 = client
-            .search(agg1, Void.class) //<3>
+        Map<String, Aggregate> aggs = client
+            .search(aggRequest, Void.class) //<3>
             .aggregations();
         //end::query
-        
+    }
+
+    @Test
+    public void query2() throws IOException {
+        transport.setResult(searchResponse);
+
         //tag::query-and-agg
-        Reader aggJson = new StringReader(
-            "\"size\": 0, " +
-            "\"aggs\": {" +
-            "  \"hours\": {" +
-            "    \"date_histogram\": {" +
-            "      \"field\": \"@timestamp\"," +
-            "      \"interval\": \"hour\"" +
-            "    }," +
-            "    \"aggs\": {" +
-            "      \"max-cpu\": {" +
-            "        \"max\": {" +
-            "          \"field\": \"host.cpu.usage\"" +
+        Reader queryJson = new StringReader(
+            "{" +
+            "  \"query\": {" +
+            "    \"range\": {" +
+            "      \"@timestamp\": {" +
+            "        \"gt\": \"now-1w\"" +
+            "      }" +
+            "    }" +
+            "  }" +
+            "}");
+
+        Reader aggregationJson = new StringReader(
+            "{" +
+            "  \"size\": 0, " +
+            "  \"aggregations\": {" +
+            "    \"hours\": {" +
+            "      \"date_histogram\": {" +
+            "        \"field\": \"@timestamp\"," +
+            "        \"interval\": \"hour\"" +
+            "      }," +
+            "      \"aggregations\": {" +
+            "        \"max-cpu\": {" +
+            "          \"max\": {" +
+            "            \"field\": \"host.cpu.usage\"" +
+            "          }" +
             "        }" +
             "      }" +
             "    }" +
             "  }" +
             "}");
-        
-        SearchRequest agg2 = SearchRequest.of(b -> b
-            .withJson(queryJson, client._jsonpMapper()) //<1>
-            .withJson(aggJson, client._jsonpMapper()) //<2>
+
+        SearchRequest aggRequest = SearchRequest.of(b -> b
+            .withJson(queryJson) //<1>
+            .withJson(aggregationJson) //<2>
             .ignoreUnavailable(true) //<3>
         );
 
-        Map<String, Aggregate> aggs2 = client
-            .search(agg2, Void.class)
+        Map<String, Aggregate> aggs = client
+            .search(aggRequest, Void.class)
             .aggregations();
         //end::query-and-agg
     }

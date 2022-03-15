@@ -35,37 +35,40 @@ public interface WithJson<T> {
      * This is a "partial deserialization": properties that were already set keep their value if they're not present in the JSON input,
      * and properties can also be set after having called this method, including overriding those read from the JSON input.
      *
+     * @param input the stream to read from
+     * @return this object
+     */
+    default T withJson(InputStream input) {
+        JsonpMapper mapper = SimpleJsonpMapper.INSTANCE_REJECT_UNKNOWN_FIELDS;
+        return withJson(mapper.jsonProvider().createParser(input), mapper);
+    }
+
+    /**
+     * Sets additional properties values on this object by reading from a JSON input.
+     * <p>
+     * This is a "partial deserialization": properties that were already set keep their value if they're not present in the JSON input,
+     * and properties can also be set after having called this method, including overriding those read from the JSON input.
+     *
+     * @param input the reader to read from
+     * @return this object
+     */
+    default T withJson(Reader input) {
+        JsonpMapper mapper = SimpleJsonpMapper.INSTANCE_REJECT_UNKNOWN_FIELDS;
+        return withJson(mapper.jsonProvider().createParser(input), mapper);
+    }
+
+    /**
+     * Sets additional properties values on this object by reading from a JSON input.
+     * <p>
+     * This is a "partial deserialization": properties that were already set keep their value if they're not present in the JSON input,
+     * and properties can also be set after having called this method, including overriding those read from the JSON input.
+     * <p>
+     * This low level variant of <code>withJson</code> gives full control on the json parser and object mapper. Most of the time
+     * using {@link #withJson(Reader)} and {@link #withJson(InputStream)} will be more convenient.
+     *
      * @param parser the JSONP parser
      * @param mapper the JSONP mapper used to deserialize values and nested objects
      * @return this object
      */
     T withJson(JsonParser parser, JsonpMapper mapper);
-
-    /**
-     * Sets additional properties values on this object by reading from a JSON input.
-     * <p>
-     * This is a "partial deserialization": properties that were already set keep their value if they're not present in the JSON input,
-     * and properties can also be set after having called this method, including overriding those read from the JSON input.
-     *
-     * @param input the stream to read from
-     * @param mapper the JSONP mapper used to deserialize values and nested objects
-     * @return this object
-     */
-    default T withJson(InputStream input, JsonpMapper mapper) {
-        return withJson(mapper.jsonProvider().createParser(input), mapper);
-    }
-
-    /**
-     * Sets additional properties values on this object by reading from a JSON input.
-     * <p>
-     * This is a "partial deserialization": properties that were already set keep their value if they're not present in the JSON input,
-     * and properties can also be set after having called this method, including overriding those read from the JSON input.
-     *
-     * @param input the stream to read from
-     * @param mapper the JSONP mapper used to deserialize values and nested objects
-     * @return this object
-     */
-    default T withJson(Reader input, JsonpMapper mapper) {
-        return withJson(mapper.jsonProvider().createParser(input), mapper);
-    }
 }

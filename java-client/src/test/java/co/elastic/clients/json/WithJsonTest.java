@@ -41,7 +41,7 @@ public class WithJsonTest extends ModelTestCase {
 
         IndexRequest<JsonData> req = IndexRequest.of(b -> b
             .index("index") // required path parameter (cannot be expressed in json)
-            .withJson(new StringReader(json), mapper)
+            .withJson(new StringReader(json))
         );
 
         assertEquals("index", req.index());
@@ -56,7 +56,7 @@ public class WithJsonTest extends ModelTestCase {
             "}";
 
         PutIndicesSettingsRequest req = PutIndicesSettingsRequest.of(b -> b
-            .withJson(new StringReader(json), mapper)
+            .withJson(new StringReader(json))
         );
 
         assertEquals(12, req.settings().analyzeMaxTokenCount().intValue());
@@ -67,7 +67,7 @@ public class WithJsonTest extends ModelTestCase {
         String json = "{\"field\": \"foo\", \"id\": 12}";
 
         SlicedScroll s = SlicedScroll.of(b -> b
-            .withJson(new StringReader(json), mapper)
+            .withJson(new StringReader(json))
             .max(34) // required property not present in the json
         );
 
@@ -109,7 +109,7 @@ public class WithJsonTest extends ModelTestCase {
 
         // withJson() will read values of the generic parameter type as JsonData
         SearchResponse<JsonData> r = SearchResponse.searchResponseOf(b -> b
-            .withJson(new StringReader(json), mapper)
+            .withJson(new StringReader(json))
         );
 
         assertEquals(1, r.hits().total().value());
@@ -122,7 +122,7 @@ public class WithJsonTest extends ModelTestCase {
         String json = "{\"source\": \"return doc;\"}";
 
         InlineScript is = InlineScript.of(b -> b
-            .withJson(new StringReader(json), mapper)
+            .withJson(new StringReader(json))
         );
 
         assertEquals("return doc;", is.source());
@@ -140,7 +140,7 @@ public class WithJsonTest extends ModelTestCase {
             "  }";
 
         Query q = Query.of(b -> b
-            .withJson(new StringReader(json), mapper)
+            .withJson(new StringReader(json))
         );
 
         TermQuery tq = q.term();
@@ -162,7 +162,7 @@ public class WithJsonTest extends ModelTestCase {
             "      }";
 
         Property p = Property.of(b -> b
-            .withJson(new StringReader(json), mapper)
+            .withJson(new StringReader(json))
         );
 
         TextProperty tp = p.text();
