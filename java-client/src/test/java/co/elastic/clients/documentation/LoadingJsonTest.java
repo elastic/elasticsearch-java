@@ -154,12 +154,13 @@ public class LoadingJsonTest extends ModelTestCase {
             "        \"gt\": \"now-1w\"" +
             "      }" +
             "    }" +
-            "  }" +
+            "  }," +
+            "  \"size\": 100" + //<1>
             "}");
 
         Reader aggregationJson = new StringReader(
             "{" +
-            "  \"size\": 0, " +
+            "  \"size\": 0, " + //<2>
             "  \"aggregations\": {" +
             "    \"hours\": {" +
             "      \"date_histogram\": {" +
@@ -178,9 +179,9 @@ public class LoadingJsonTest extends ModelTestCase {
             "}");
 
         SearchRequest aggRequest = SearchRequest.of(b -> b
-            .withJson(queryJson) //<1>
-            .withJson(aggregationJson) //<2>
-            .ignoreUnavailable(true) //<3>
+            .withJson(queryJson) //<3>
+            .withJson(aggregationJson) //<4>
+            .ignoreUnavailable(true) //<5>
         );
 
         Map<String, Aggregate> aggs = client

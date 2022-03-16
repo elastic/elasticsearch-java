@@ -62,12 +62,16 @@ include-tagged::{doc-tests}/LoadingJsonTest.java[query]
 [discrete]
 ==== Creating a search request from multiple JSON snippets
 
-The `withJson()` methods are partial deserializers: the properties loaded from the JSON will set property values or replace the previous ones, but will not reset other properties not found in the JSON input. You can use this to combine multiple JSON snippets to build complex search requests (this uses `queryJson` from the previous example):
+The `withJson()` methods are partial deserializers: the properties loaded from the JSON will set property values or replace the previous ones, but will not reset other properties not found in the JSON input. You can use this to combine multiple JSON snippets to build complex search requests. In the example below, we combine separate definitions of a query that selects some documents and an aggregation that is run on the results of this query.
 
 ["source","java"]
 --------------------------------------------------
 include-tagged::{doc-tests}/LoadingJsonTest.java[query-and-agg]
 --------------------------------------------------
-<1> loads the query part of the request.
-<2> loads the aggregation part of the request.
-<3> additional request properties set programmatically.
+<1> set max number of returned document to 100 for queries.
+<2> we do not want any matching document in aggregations.
+<3> loads the query part of the request.
+<4> loads the aggregation part of the request (overwrites `size` from the query).
+<5> additional request properties set programmatically.
+
+Notice that order matters when the JSON snippets have some common properties: just as when setting property values programmatically, the last value that is set for a property overwrites the previous one.
