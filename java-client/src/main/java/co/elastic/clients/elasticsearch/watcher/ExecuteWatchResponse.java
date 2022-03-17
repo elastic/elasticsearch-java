@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -104,7 +104,9 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 	 * Builder for {@link ExecuteWatchResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteWatchResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ExecuteWatchResponse> {
 		private String id;
 
 		private WatchRecord watchRecord;
@@ -130,6 +132,11 @@ public class ExecuteWatchResponse implements JsonpSerializable {
 		 */
 		public final Builder watchRecord(Function<WatchRecord.Builder, ObjectBuilder<WatchRecord>> fn) {
 			return this.watchRecord(fn.apply(new WatchRecord.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

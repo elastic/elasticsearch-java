@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -118,7 +118,7 @@ public class Latest implements JsonpSerializable {
 	 * Builder for {@link Latest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Latest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Latest> {
 		private String sort;
 
 		private List<String> uniqueKey;
@@ -157,6 +157,11 @@ public class Latest implements JsonpSerializable {
 		 */
 		public final Builder uniqueKey(String value, String... values) {
 			this.uniqueKey = _listAdd(this.uniqueKey, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -204,7 +204,7 @@ public class JobTimingStats implements JsonpSerializable {
 	 * Builder for {@link JobTimingStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JobTimingStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<JobTimingStats> {
 		@Nullable
 		private Double averageBucketProcessingTimeMs;
 
@@ -287,6 +287,11 @@ public class JobTimingStats implements JsonpSerializable {
 		 */
 		public final Builder minimumBucketProcessingTimeMs(@Nullable Double value) {
 			this.minimumBucketProcessingTimeMs = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

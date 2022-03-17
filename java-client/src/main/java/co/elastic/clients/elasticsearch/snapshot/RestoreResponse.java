@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -90,7 +90,7 @@ public class RestoreResponse implements JsonpSerializable {
 	 * Builder for {@link RestoreResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RestoreResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RestoreResponse> {
 		private SnapshotRestore snapshot;
 
 		/**
@@ -106,6 +106,11 @@ public class RestoreResponse implements JsonpSerializable {
 		 */
 		public final Builder snapshot(Function<SnapshotRestore.Builder, ObjectBuilder<SnapshotRestore>> fn) {
 			return this.snapshot(fn.apply(new SnapshotRestore.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

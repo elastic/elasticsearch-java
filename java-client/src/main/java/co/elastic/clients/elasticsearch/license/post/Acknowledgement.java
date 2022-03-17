@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -111,7 +111,7 @@ public class Acknowledgement implements JsonpSerializable {
 	 * Builder for {@link Acknowledgement}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Acknowledgement> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Acknowledgement> {
 		private List<String> license;
 
 		private String message;
@@ -141,6 +141,11 @@ public class Acknowledgement implements JsonpSerializable {
 		 */
 		public final Builder message(String value) {
 			this.message = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

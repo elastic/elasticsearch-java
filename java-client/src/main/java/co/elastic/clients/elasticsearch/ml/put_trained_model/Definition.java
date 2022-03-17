@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -115,7 +115,7 @@ public class Definition implements JsonpSerializable {
 	 * Builder for {@link Definition}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Definition> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Definition> {
 		@Nullable
 		private List<Preprocessor> preprocessors;
 
@@ -173,6 +173,11 @@ public class Definition implements JsonpSerializable {
 		 */
 		public final Builder trainedModel(Function<TrainedModel.Builder, ObjectBuilder<TrainedModel>> fn) {
 			return this.trainedModel(fn.apply(new TrainedModel.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

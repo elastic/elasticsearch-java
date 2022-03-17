@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -121,7 +121,7 @@ public class SlicedScroll implements JsonpSerializable {
 	 * Builder for {@link SlicedScroll}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlicedScroll> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SlicedScroll> {
 		@Nullable
 		private String field;
 
@@ -150,6 +150,11 @@ public class SlicedScroll implements JsonpSerializable {
 		 */
 		public final Builder max(int value) {
 			this.max = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

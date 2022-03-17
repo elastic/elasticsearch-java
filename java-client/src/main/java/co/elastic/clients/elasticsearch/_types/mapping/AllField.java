@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -211,7 +211,7 @@ public class AllField implements JsonpSerializable {
 	 * Builder for {@link AllField}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllField> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AllField> {
 		private String analyzer;
 
 		private Boolean enabled;
@@ -309,6 +309,11 @@ public class AllField implements JsonpSerializable {
 		 */
 		public final Builder storeTermVectors(boolean value) {
 			this.storeTermVectors = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

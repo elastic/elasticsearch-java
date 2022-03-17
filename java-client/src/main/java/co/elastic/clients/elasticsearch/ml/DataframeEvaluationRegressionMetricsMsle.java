@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -99,7 +99,7 @@ public class DataframeEvaluationRegressionMetricsMsle implements JsonpSerializab
 	 * Builder for {@link DataframeEvaluationRegressionMetricsMsle}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataframeEvaluationRegressionMetricsMsle> {
 		@Nullable
@@ -113,6 +113,11 @@ public class DataframeEvaluationRegressionMetricsMsle implements JsonpSerializab
 		 */
 		public final Builder offset(@Nullable Double value) {
 			this.offset = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

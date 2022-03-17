@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -159,7 +159,9 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 	 * Builder for {@link ChangePasswordRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ChangePasswordRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ChangePasswordRequest> {
 		@Nullable
 		private String password;
 
@@ -216,6 +218,11 @@ public class ChangePasswordRequest extends RequestBase implements JsonpSerializa
 		 */
 		public final Builder username(@Nullable String value) {
 			this.username = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

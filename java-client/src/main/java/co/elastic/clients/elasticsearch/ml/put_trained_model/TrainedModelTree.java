@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -157,7 +157,7 @@ public class TrainedModelTree implements JsonpSerializable {
 	 * Builder for {@link TrainedModelTree}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelTree> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TrainedModelTree> {
 		@Nullable
 		private List<String> classificationLabels;
 
@@ -244,6 +244,11 @@ public class TrainedModelTree implements JsonpSerializable {
 		public final Builder treeStructure(
 				Function<TrainedModelTreeNode.Builder, ObjectBuilder<TrainedModelTreeNode>> fn) {
 			return treeStructure(fn.apply(new TrainedModelTreeNode.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

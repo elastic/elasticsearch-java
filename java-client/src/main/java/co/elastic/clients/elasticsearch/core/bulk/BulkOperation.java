@@ -32,9 +32,9 @@ import co.elastic.clients.json.NdJsonpSerializable;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Iterator;
@@ -206,10 +206,14 @@ public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, N
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkOperation> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<BulkOperation> {
 		private Kind _kind;
 		private Object _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public <TDocument> ObjectBuilder<BulkOperation> index(IndexOperation<TDocument> v) {
 			this._kind = Kind.Index;
 			this._value = v;

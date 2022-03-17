@@ -32,8 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -90,7 +91,7 @@ public class TasksResponse implements JsonpSerializable {
 	 * Builder for {@link TasksResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TasksResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TasksResponse> {
 		private List<TasksRecord> valueBody;
 
 		/**
@@ -126,6 +127,20 @@ public class TasksResponse implements JsonpSerializable {
 		 */
 		public final Builder valueBody(Function<TasksRecord.Builder, ObjectBuilder<TasksRecord>> fn) {
 			return valueBody(fn.apply(new TasksRecord.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			List<TasksRecord> value = (List<TasksRecord>) JsonpDeserializer.arrayDeserializer(TasksRecord._DESERIALIZER)
+					.deserialize(parser, mapper);
+			return this.valueBody(value);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -211,7 +211,7 @@ public class BulkStats implements JsonpSerializable {
 	 * Builder for {@link BulkStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<BulkStats> {
 		private Long totalOperations;
 
 		@Nullable
@@ -303,6 +303,11 @@ public class BulkStats implements JsonpSerializable {
 		 */
 		public final Builder avgSizeInBytes(long value) {
 			this.avgSizeInBytes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

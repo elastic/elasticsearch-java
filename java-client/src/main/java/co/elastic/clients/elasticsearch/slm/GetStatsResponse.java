@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -223,7 +223,7 @@ public class GetStatsResponse implements JsonpSerializable {
 	 * Builder for {@link GetStatsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetStatsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetStatsResponse> {
 		private String retentionDeletionTime;
 
 		private String retentionDeletionTimeMillis;
@@ -333,6 +333,11 @@ public class GetStatsResponse implements JsonpSerializable {
 		 */
 		public final Builder policyStats(String value, String... values) {
 			this.policyStats = _listAdd(this.policyStats, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

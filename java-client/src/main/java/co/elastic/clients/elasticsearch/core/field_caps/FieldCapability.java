@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -226,7 +226,7 @@ public class FieldCapability implements JsonpSerializable {
 	 * Builder for {@link FieldCapability}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCapability> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FieldCapability> {
 		private Boolean aggregatable;
 
 		@Nullable
@@ -358,6 +358,11 @@ public class FieldCapability implements JsonpSerializable {
 		 */
 		public final Builder metadataField(@Nullable Boolean value) {
 			this.metadataField = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

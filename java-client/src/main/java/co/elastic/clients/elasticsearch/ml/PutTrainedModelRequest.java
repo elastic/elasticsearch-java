@@ -39,7 +39,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -235,7 +235,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	 * Builder for {@link PutTrainedModelRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTrainedModelRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutTrainedModelRequest> {
 		@Nullable
 		private String compressedDefinition;
 
@@ -383,6 +385,11 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 */
 		public final Builder tags(String value, String... values) {
 			this.tags = _listAdd(this.tags, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

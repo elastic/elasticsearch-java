@@ -58,17 +58,19 @@ public class NamedDeserializer<T> implements JsonpDeserializer<T> {
 
     @Override
     public T deserialize(JsonParser parser, JsonpMapper mapper) {
-        if (mapper.<JsonpDeserializer<T>>attribute(name) == null) {
-            throw new JsonParsingException("Missing deserializer", parser.getLocation());
+        JsonpDeserializer<T> deserializer = mapper.attribute(name);
+        if (deserializer == null) {
+            throw new JsonParsingException("Missing deserializer for generic type: " + name, parser.getLocation());
         }
-        return mapper.<JsonpDeserializer<T>>attribute(name).deserialize(parser, mapper);
+        return deserializer.deserialize(parser, mapper);
     }
 
     @Override
     public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
-        if (mapper.<JsonpDeserializer<T>>attribute(name) == null) {
-            throw new JsonParsingException("Missing deserializer", parser.getLocation());
+        JsonpDeserializer<T> deserializer = mapper.attribute(name);
+        if (deserializer == null) {
+            throw new JsonParsingException("Missing deserializer for generic type: " + name, parser.getLocation());
         }
-        return mapper.<JsonpDeserializer<T>>attribute(name).deserialize(parser, mapper, event);
+        return deserializer.deserialize(parser, mapper, event);
     }
 }

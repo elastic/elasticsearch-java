@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -173,7 +173,9 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 	 * Builder for {@link DataStreamsStatsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStreamsStatsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataStreamsStatsResponse> {
 		private ShardStatistics shards;
 
 		private Integer backingIndices;
@@ -262,6 +264,11 @@ public class DataStreamsStatsResponse implements JsonpSerializable {
 		public final Builder dataStreams(
 				Function<DataStreamsStatsItem.Builder, ObjectBuilder<DataStreamsStatsItem>> fn) {
 			return dataStreams(fn.apply(new DataStreamsStatsItem.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

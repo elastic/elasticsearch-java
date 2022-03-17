@@ -99,8 +99,9 @@ public class MsearchTemplateResponse<TDocument> extends MultiSearchResult<TDocum
 	 * Json deserializer for {@link MsearchTemplateResponse} based on named
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<MsearchTemplateResponse<Object>> _DESERIALIZER = createMsearchTemplateResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.msearch_template.TDocument"));
+	public static final JsonpDeserializer<MsearchTemplateResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createMsearchTemplateResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.msearch_template.TDocument")));
 
 	protected static <TDocument> void setupMsearchTemplateResponseDeserializer(
 			ObjectDeserializer<MsearchTemplateResponse.Builder<TDocument>> op,

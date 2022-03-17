@@ -38,7 +38,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -278,7 +278,9 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 	 * Builder for {@link UpdateTransformRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateTransformRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<UpdateTransformRequest> {
 		@Nullable
 		private Boolean deferValidation;
 
@@ -479,6 +481,11 @@ public class UpdateTransformRequest extends RequestBase implements JsonpSerializ
 		 */
 		public final Builder transformId(String value) {
 			this.transformId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

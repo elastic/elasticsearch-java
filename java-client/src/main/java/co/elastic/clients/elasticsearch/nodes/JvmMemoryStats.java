@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -203,7 +203,7 @@ public class JvmMemoryStats implements JsonpSerializable {
 	 * Builder for {@link JvmMemoryStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<JvmMemoryStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<JvmMemoryStats> {
 		@Nullable
 		private Long heapUsedInBytes;
 
@@ -300,6 +300,11 @@ public class JvmMemoryStats implements JsonpSerializable {
 		 */
 		public final Builder pools(String key, Function<Pool.Builder, ObjectBuilder<Pool>> fn) {
 			return pools(key, fn.apply(new Pool.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

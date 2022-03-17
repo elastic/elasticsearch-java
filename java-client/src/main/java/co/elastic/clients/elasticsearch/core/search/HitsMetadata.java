@@ -28,11 +28,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.List;
@@ -49,7 +50,7 @@ import javax.annotation.Nullable;
  *      "../../doc-files/api-spec.html#_global.search._types.HitsMetadata">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class HitsMetadata<T> implements JsonpSerializable {
 	@Nullable
 	private final TotalHits total;
@@ -143,7 +144,9 @@ public class HitsMetadata<T> implements JsonpSerializable {
 	 * Builder for {@link HitsMetadata}.
 	 */
 
-	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<HitsMetadata<T>> {
+	public static class Builder<T> extends WithJsonObjectBuilderBase<Builder<T>>
+			implements
+				ObjectBuilder<HitsMetadata<T>> {
 		@Nullable
 		private TotalHits total;
 
@@ -222,6 +225,11 @@ public class HitsMetadata<T> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<T> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link HitsMetadata}.
 		 *
@@ -245,6 +253,14 @@ public class HitsMetadata<T> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<T>>) Builder::new,
 				op -> HitsMetadata.setupHitsMetadataDeserializer(op, tDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link HitsMetadata} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<HitsMetadata<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createHitsMetadataDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search._types.T")));
 
 	protected static <T> void setupHitsMetadataDeserializer(ObjectDeserializer<HitsMetadata.Builder<T>> op,
 			JsonpDeserializer<T> tDeserializer) {

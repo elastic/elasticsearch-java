@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -103,7 +103,7 @@ public class TermsPartition implements JsonpSerializable {
 	 * Builder for {@link TermsPartition}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsPartition> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TermsPartition> {
 		private Long numPartitions;
 
 		private Long partition;
@@ -121,6 +121,11 @@ public class TermsPartition implements JsonpSerializable {
 		 */
 		public final Builder partition(long value) {
 			this.partition = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

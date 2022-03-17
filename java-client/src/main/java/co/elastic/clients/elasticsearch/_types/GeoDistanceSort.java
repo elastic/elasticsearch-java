@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -197,7 +197,7 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 	 * Builder for {@link GeoDistanceSort}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoDistanceSort> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GeoDistanceSort> {
 		private String field;
 
 		private List<GeoLocation> location;
@@ -285,6 +285,11 @@ public class GeoDistanceSort implements SortOptionsVariant, JsonpSerializable {
 		 */
 		public final Builder unit(@Nullable DistanceUnit value) {
 			this.unit = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

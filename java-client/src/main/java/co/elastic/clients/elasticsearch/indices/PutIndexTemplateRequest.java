@@ -37,7 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -232,7 +232,9 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 	 * Builder for {@link PutIndexTemplateRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndexTemplateRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutIndexTemplateRequest> {
 		@Nullable
 		private Map<String, JsonData> meta;
 
@@ -369,6 +371,11 @@ public class PutIndexTemplateRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder version(@Nullable Long value) {
 			this.version = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

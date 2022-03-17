@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -139,7 +139,7 @@ public class TimeOfYear implements JsonpSerializable {
 	 * Builder for {@link TimeOfYear}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeOfYear> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TimeOfYear> {
 		private List<String> at;
 
 		private List<Month> int_;
@@ -203,6 +203,11 @@ public class TimeOfYear implements JsonpSerializable {
 		 */
 		public final Builder on(Integer value, Integer... values) {
 			this.on = _listAdd(this.on, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

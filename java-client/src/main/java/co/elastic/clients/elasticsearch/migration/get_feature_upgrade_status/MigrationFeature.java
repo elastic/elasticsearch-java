@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -139,7 +139,7 @@ public class MigrationFeature implements JsonpSerializable {
 	 * Builder for {@link MigrationFeature}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MigrationFeature> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MigrationFeature> {
 		private String featureName;
 
 		private String minimumIndexVersion;
@@ -200,6 +200,11 @@ public class MigrationFeature implements JsonpSerializable {
 		public final Builder indices(
 				Function<MigrationFeatureIndexInfo.Builder, ObjectBuilder<MigrationFeatureIndexInfo>> fn) {
 			return indices(fn.apply(new MigrationFeatureIndexInfo.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

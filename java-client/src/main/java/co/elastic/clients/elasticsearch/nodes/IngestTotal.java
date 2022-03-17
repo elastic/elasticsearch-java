@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -177,7 +177,7 @@ public class IngestTotal implements JsonpSerializable {
 	 * Builder for {@link IngestTotal}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IngestTotal> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IngestTotal> {
 		@Nullable
 		private Long count;
 
@@ -242,6 +242,11 @@ public class IngestTotal implements JsonpSerializable {
 		 */
 		public final Builder timeInMillis(@Nullable Long value) {
 			this.timeInMillis = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

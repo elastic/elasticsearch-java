@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -112,7 +112,9 @@ public class StartDatafeedResponse implements JsonpSerializable {
 	 * Builder for {@link StartDatafeedResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartDatafeedResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<StartDatafeedResponse> {
 		private List<String> node;
 
 		private Boolean started;
@@ -142,6 +144,11 @@ public class StartDatafeedResponse implements JsonpSerializable {
 		 */
 		public final Builder started(boolean value) {
 			this.started = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

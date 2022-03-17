@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -275,7 +275,7 @@ public class SearchStats implements JsonpSerializable {
 	 * Builder for {@link SearchStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SearchStats> {
 		private Long fetchCurrent;
 
 		private Long fetchTimeInMillis;
@@ -437,6 +437,11 @@ public class SearchStats implements JsonpSerializable {
 		 */
 		public final Builder groups(String key, Function<SearchStats.Builder, ObjectBuilder<SearchStats>> fn) {
 			return groups(key, fn.apply(new SearchStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

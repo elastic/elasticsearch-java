@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -160,7 +160,7 @@ public class AnalyzeToken implements JsonpSerializable {
 	 * Builder for {@link AnalyzeToken}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeToken> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AnalyzeToken> {
 		private Long endOffset;
 
 		private Long position;
@@ -219,6 +219,11 @@ public class AnalyzeToken implements JsonpSerializable {
 		 */
 		public final Builder type(String value) {
 			this.type = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

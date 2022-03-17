@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -160,7 +160,9 @@ public class DataframePreviewConfig implements JsonpSerializable {
 	 * Builder for {@link DataframePreviewConfig}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframePreviewConfig> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataframePreviewConfig> {
 		private DataframeAnalyticsSource source;
 
 		private DataframeAnalysis analysis;
@@ -235,6 +237,11 @@ public class DataframePreviewConfig implements JsonpSerializable {
 		public final Builder analyzedFields(
 				Function<DataframeAnalysisAnalyzedFields.Builder, ObjectBuilder<DataframeAnalysisAnalyzedFields>> fn) {
 			return this.analyzedFields(fn.apply(new DataframeAnalysisAnalyzedFields.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -344,7 +344,9 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 	 * Builder for {@link LifecycleExplainManaged}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LifecycleExplainManaged> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<LifecycleExplainManaged> {
 		private String action;
 
 		private String actionTimeMillis;
@@ -553,6 +555,11 @@ public class LifecycleExplainManaged implements LifecycleExplainVariant, JsonpSe
 		 */
 		public final Builder timeSinceIndexCreation(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeSinceIndexCreation(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -186,7 +186,7 @@ public class QueryCacheStats implements JsonpSerializable {
 	 * Builder for {@link QueryCacheStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryCacheStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<QueryCacheStats> {
 		private Integer cacheCount;
 
 		private Integer cacheSize;
@@ -265,6 +265,11 @@ public class QueryCacheStats implements JsonpSerializable {
 		 */
 		public final Builder totalCount(int value) {
 			this.totalCount = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

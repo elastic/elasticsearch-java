@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -109,7 +109,7 @@ public class NodeReloadError implements JsonpSerializable {
 	 * Builder for {@link NodeReloadError}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeReloadError> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeReloadError> {
 		private String name;
 
 		@Nullable
@@ -136,6 +136,11 @@ public class NodeReloadError implements JsonpSerializable {
 		 */
 		public final Builder reloadException(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.reloadException(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

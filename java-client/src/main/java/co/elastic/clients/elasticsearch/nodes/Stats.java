@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -489,7 +489,7 @@ public class Stats implements JsonpSerializable {
 	 * Builder for {@link Stats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Stats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Stats> {
 		@Nullable
 		private Map<String, AdaptiveSelection> adaptiveSelection;
 
@@ -919,6 +919,11 @@ public class Stats implements JsonpSerializable {
 		 */
 		public final Builder indices(Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {
 			return this.indices(fn.apply(new ShardStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

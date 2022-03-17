@@ -27,6 +27,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
+/**
+ * Base class for object builders.
+ */
 public class ObjectBuilderBase {
     private boolean _used = false;
 

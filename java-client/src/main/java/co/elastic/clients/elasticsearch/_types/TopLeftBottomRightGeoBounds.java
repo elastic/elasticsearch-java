@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -103,7 +103,9 @@ public class TopLeftBottomRightGeoBounds implements JsonpSerializable {
 	 * Builder for {@link TopLeftBottomRightGeoBounds}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopLeftBottomRightGeoBounds> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TopLeftBottomRightGeoBounds> {
 		private GeoLocation topLeft;
 
 		private GeoLocation bottomRight;
@@ -136,6 +138,11 @@ public class TopLeftBottomRightGeoBounds implements JsonpSerializable {
 		 */
 		public final Builder bottomRight(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
 			return this.bottomRight(fn.apply(new GeoLocation.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

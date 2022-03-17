@@ -36,7 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -268,7 +268,9 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 	 * Builder for {@link ResumeFollowRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResumeFollowRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ResumeFollowRequest> {
 		private String index;
 
 		@Nullable
@@ -403,6 +405,11 @@ public class ResumeFollowRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

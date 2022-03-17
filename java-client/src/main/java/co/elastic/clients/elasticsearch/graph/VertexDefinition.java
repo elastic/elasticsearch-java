@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -185,7 +185,7 @@ public class VertexDefinition implements JsonpSerializable {
 	 * Builder for {@link VertexDefinition}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VertexDefinition> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<VertexDefinition> {
 		@Nullable
 		private List<String> exclude;
 
@@ -281,6 +281,11 @@ public class VertexDefinition implements JsonpSerializable {
 		 */
 		public final Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

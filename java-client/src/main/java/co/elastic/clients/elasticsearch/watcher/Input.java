@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
@@ -214,10 +214,14 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Input> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Input> {
 		private Kind _kind;
 		private Object _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<Input> chain(ChainInput v) {
 			this._kind = Kind.Chain;
 			this._value = v;

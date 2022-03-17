@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -107,7 +107,7 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	 * Builder for {@link PreviewDatafeedResponse}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<PreviewDatafeedResponse<TDocument>> {
 		private List<TDocument> data;
@@ -144,6 +144,11 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link PreviewDatafeedResponse}.
 		 *
@@ -172,8 +177,9 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 	 * Json deserializer for {@link PreviewDatafeedResponse} based on named
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<PreviewDatafeedResponse<Object>> _DESERIALIZER = createPreviewDatafeedResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:ml.preview_datafeed.TDocument"));
+	public static final JsonpDeserializer<PreviewDatafeedResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createPreviewDatafeedResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:ml.preview_datafeed.TDocument")));
 
 	protected static <TDocument> void setupPreviewDatafeedResponseDeserializer(
 			ObjectDeserializer<PreviewDatafeedResponse.Builder<TDocument>> op,

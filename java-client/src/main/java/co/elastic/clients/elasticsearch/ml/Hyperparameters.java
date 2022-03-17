@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
@@ -316,7 +316,7 @@ public class Hyperparameters implements JsonpSerializable {
 	 * Builder for {@link Hyperparameters}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Hyperparameters> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Hyperparameters> {
 		@Nullable
 		private Double alpha;
 
@@ -468,6 +468,11 @@ public class Hyperparameters implements JsonpSerializable {
 		 */
 		public final Builder softTreeDepthTolerance(@Nullable Double value) {
 			this.softTreeDepthTolerance = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

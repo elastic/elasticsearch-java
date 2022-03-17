@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Float;
@@ -168,7 +168,7 @@ public class Settings implements JsonpSerializable {
 	 * Builder for {@link Settings}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Settings> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Settings> {
 		@Nullable
 		private Boolean alignCheckpoints;
 
@@ -230,6 +230,11 @@ public class Settings implements JsonpSerializable {
 		 */
 		public final Builder maxPageSearchSize(@Nullable Integer value) {
 			this.maxPageSearchSize = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

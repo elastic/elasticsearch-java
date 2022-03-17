@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -143,7 +143,7 @@ public class ModelPlotConfig implements JsonpSerializable {
 	 * Builder for {@link ModelPlotConfig}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ModelPlotConfig> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ModelPlotConfig> {
 		@Nullable
 		private Boolean annotationsEnabled;
 
@@ -185,6 +185,11 @@ public class ModelPlotConfig implements JsonpSerializable {
 		 */
 		public final Builder terms(@Nullable String value) {
 			this.terms = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

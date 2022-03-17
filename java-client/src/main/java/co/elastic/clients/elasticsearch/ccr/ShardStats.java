@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -485,7 +485,7 @@ public class ShardStats implements JsonpSerializable {
 	 * Builder for {@link ShardStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShardStats> {
 		private Long bytesRead;
 
 		private Long failedReadRequests;
@@ -802,6 +802,11 @@ public class ShardStats implements JsonpSerializable {
 		 */
 		public final Builder writeBufferSizeInBytes(String value) {
 			this.writeBufferSizeInBytes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

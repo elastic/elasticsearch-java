@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -122,7 +122,9 @@ public class UpgradeTransformsResponse implements JsonpSerializable {
 	 * Builder for {@link UpgradeTransformsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpgradeTransformsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<UpgradeTransformsResponse> {
 		private Integer needsUpdate;
 
 		private Integer noAction;
@@ -156,6 +158,11 @@ public class UpgradeTransformsResponse implements JsonpSerializable {
 		 */
 		public final Builder updated(int value) {
 			this.updated = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

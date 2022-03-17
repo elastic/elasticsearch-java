@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -168,7 +168,9 @@ public class PipelineSimulation implements JsonpSerializable {
 	 * Builder for {@link PipelineSimulation}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PipelineSimulation> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PipelineSimulation> {
 		@Nullable
 		private DocumentSimulation doc;
 
@@ -250,6 +252,11 @@ public class PipelineSimulation implements JsonpSerializable {
 		 */
 		public final Builder status(@Nullable ActionStatusOptions value) {
 			this.status = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

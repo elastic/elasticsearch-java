@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -123,7 +123,7 @@ public class GetScriptResponse implements JsonpSerializable {
 	 * Builder for {@link GetScriptResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetScriptResponse> {
 		private String id;
 
 		private Boolean found;
@@ -160,6 +160,11 @@ public class GetScriptResponse implements JsonpSerializable {
 		 */
 		public final Builder script(Function<StoredScript.Builder, ObjectBuilder<StoredScript>> fn) {
 			return this.script(fn.apply(new StoredScript.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

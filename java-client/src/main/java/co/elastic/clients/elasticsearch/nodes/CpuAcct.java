@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -112,7 +112,7 @@ public class CpuAcct implements JsonpSerializable {
 	 * Builder for {@link CpuAcct}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CpuAcct> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CpuAcct> {
 		@Nullable
 		private String controlGroup;
 
@@ -132,6 +132,11 @@ public class CpuAcct implements JsonpSerializable {
 		 */
 		public final Builder usageNanos(@Nullable Long value) {
 			this.usageNanos = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

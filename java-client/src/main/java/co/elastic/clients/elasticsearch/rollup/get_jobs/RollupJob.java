@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -115,7 +115,7 @@ public class RollupJob implements JsonpSerializable {
 	 * Builder for {@link RollupJob}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJob> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RollupJob> {
 		private RollupJobConfiguration config;
 
 		private RollupJobStats stats;
@@ -166,6 +166,11 @@ public class RollupJob implements JsonpSerializable {
 		 */
 		public final Builder status(Function<RollupJobStatus.Builder, ObjectBuilder<RollupJobStatus>> fn) {
 			return this.status(fn.apply(new RollupJobStatus.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

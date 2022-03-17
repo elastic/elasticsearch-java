@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -220,7 +220,7 @@ public class Jvm implements JsonpSerializable {
 	 * Builder for {@link Jvm}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Jvm> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Jvm> {
 		@Nullable
 		private Map<String, NodeBufferPool> bufferPools;
 
@@ -356,6 +356,11 @@ public class Jvm implements JsonpSerializable {
 		 */
 		public final Builder uptimeInMillis(@Nullable Long value) {
 			this.uptimeInMillis = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

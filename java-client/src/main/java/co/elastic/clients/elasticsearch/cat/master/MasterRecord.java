@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -153,7 +153,7 @@ public class MasterRecord implements JsonpSerializable {
 	 * Builder for {@link MasterRecord}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MasterRecord> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MasterRecord> {
 		@Nullable
 		private String id;
 
@@ -203,6 +203,11 @@ public class MasterRecord implements JsonpSerializable {
 		 */
 		public final Builder node(@Nullable String value) {
 			this.node = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

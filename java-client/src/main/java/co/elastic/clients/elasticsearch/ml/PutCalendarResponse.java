@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -131,7 +131,9 @@ public class PutCalendarResponse implements JsonpSerializable {
 	 * Builder for {@link PutCalendarResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutCalendarResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutCalendarResponse> {
 		private String calendarId;
 
 		private String description;
@@ -179,6 +181,11 @@ public class PutCalendarResponse implements JsonpSerializable {
 		 */
 		public final Builder jobIds(String value, String... values) {
 			this.jobIds = _listAdd(this.jobIds, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

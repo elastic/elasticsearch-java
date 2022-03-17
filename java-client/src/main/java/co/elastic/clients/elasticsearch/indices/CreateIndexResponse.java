@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -122,7 +122,9 @@ public class CreateIndexResponse implements JsonpSerializable {
 	 * Builder for {@link CreateIndexResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateIndexResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CreateIndexResponse> {
 		private String index;
 
 		private Boolean shardsAcknowledged;
@@ -151,6 +153,11 @@ public class CreateIndexResponse implements JsonpSerializable {
 		 */
 		public final Builder acknowledged(@Nullable Boolean value) {
 			this.acknowledged = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

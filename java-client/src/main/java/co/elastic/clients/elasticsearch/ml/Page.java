@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -115,7 +115,7 @@ public class Page implements JsonpSerializable {
 	 * Builder for {@link Page}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Page> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Page> {
 		@Nullable
 		private Integer from;
 
@@ -139,6 +139,11 @@ public class Page implements JsonpSerializable {
 		 */
 		public final Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

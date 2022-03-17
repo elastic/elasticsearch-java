@@ -25,20 +25,23 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +58,7 @@ import javax.annotation.Nullable;
  * @see <a href="../doc-files/api-spec.html#ml.post_data.Request">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class PostDataRequest<TData> extends RequestBase implements JsonpSerializable {
 	private final String jobId;
 
@@ -144,7 +147,9 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 	 * Builder for {@link PostDataRequest}.
 	 */
 
-	public static class Builder<TData> extends ObjectBuilderBase implements ObjectBuilder<PostDataRequest<TData>> {
+	public static class Builder<TData> extends WithJsonObjectBuilderBase<Builder<TData>>
+			implements
+				ObjectBuilder<PostDataRequest<TData>> {
 		private String jobId;
 
 		@Nullable
@@ -221,6 +226,21 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 			return this;
 		}
 
+		@Override
+		public Builder<TData> withJson(JsonParser parser, JsonpMapper mapper) {
+			JsonpDeserializer<JsonData> tDataDeserializer = JsonData._DESERIALIZER;
+
+			@SuppressWarnings("unchecked")
+			List<TData> value = (List<TData>) JsonpDeserializer.arrayDeserializer(tDataDeserializer).deserialize(parser,
+					mapper);
+			return this.data(value);
+		}
+
+		@Override
+		protected Builder<TData> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link PostDataRequest}.
 		 *
@@ -233,6 +253,13 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 			return new PostDataRequest<TData>(this);
 		}
 	}
+
+	/**
+	 * Json deserializer for {@link PostDataRequest} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<PostDataRequest<Object>> _DESERIALIZER = createPostDataRequestDeserializer(
+			new NamedDeserializer<>("co.elastic.clients:Deserializer:ml.post_data.TData"));
 
 	public static <TData> JsonpDeserializer<PostDataRequest<TData>> createPostDataRequestDeserializer(
 			JsonpDeserializer<TData> tDataDeserializer) {

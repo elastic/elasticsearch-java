@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -454,7 +454,7 @@ public class SnapshotInfo implements JsonpSerializable {
 	 * Builder for {@link SnapshotInfo}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotInfo> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SnapshotInfo> {
 		private List<String> dataStreams;
 
 		@Nullable
@@ -807,6 +807,11 @@ public class SnapshotInfo implements JsonpSerializable {
 		 */
 		public final Builder featureStates(Function<InfoFeatureState.Builder, ObjectBuilder<InfoFeatureState>> fn) {
 			return featureStates(fn.apply(new InfoFeatureState.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -39,7 +39,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -199,7 +199,9 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	 * Builder for {@link CreateApiKeyRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateApiKeyRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CreateApiKeyRequest> {
 		@Nullable
 		private Time expiration;
 
@@ -340,6 +342,11 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		public final Builder roleDescriptors(String key,
 				Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
 			return roleDescriptors(key, fn.apply(new RoleDescriptor.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -186,7 +186,7 @@ public class NodeAttributes implements JsonpSerializable {
 	 * Builder for {@link NodeAttributes}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeAttributes> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeAttributes> {
 		private Map<String, String> attributes;
 
 		private String ephemeralId;
@@ -282,6 +282,11 @@ public class NodeAttributes implements JsonpSerializable {
 		 */
 		public final Builder roles(NodeRole value, NodeRole... values) {
 			this.roles = _listAdd(this.roles, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

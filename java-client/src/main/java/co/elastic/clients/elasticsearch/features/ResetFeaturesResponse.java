@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -99,7 +99,9 @@ public class ResetFeaturesResponse implements JsonpSerializable {
 	 * Builder for {@link ResetFeaturesResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResetFeaturesResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ResetFeaturesResponse> {
 		private List<Feature> features;
 
 		/**
@@ -129,6 +131,11 @@ public class ResetFeaturesResponse implements JsonpSerializable {
 		 */
 		public final Builder features(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return features(fn.apply(new Feature.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

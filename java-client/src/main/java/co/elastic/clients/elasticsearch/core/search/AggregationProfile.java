@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -170,7 +170,9 @@ public class AggregationProfile implements JsonpSerializable {
 	 * Builder for {@link AggregationProfile}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AggregationProfile> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<AggregationProfile> {
 		private AggregationBreakdown breakdown;
 
 		private String description;
@@ -267,6 +269,11 @@ public class AggregationProfile implements JsonpSerializable {
 		 */
 		public final Builder children(Function<AggregationProfile.Builder, ObjectBuilder<AggregationProfile>> fn) {
 			return children(fn.apply(new AggregationProfile.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

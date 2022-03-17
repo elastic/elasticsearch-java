@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -149,7 +149,9 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 	 * Builder for {@link TargetMeanEncodingPreprocessor}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TargetMeanEncodingPreprocessor> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TargetMeanEncodingPreprocessor> {
 		private String field;
 
 		private String featureName;
@@ -199,6 +201,11 @@ public class TargetMeanEncodingPreprocessor implements PreprocessorVariant, Json
 		 */
 		public final Builder defaultValue(double value) {
 			this.defaultValue = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

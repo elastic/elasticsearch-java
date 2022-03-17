@@ -37,8 +37,9 @@ import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
@@ -104,7 +105,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	 * Builder for {@link PutPipelineRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutPipelineRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutPipelineRequest> {
 		private String id;
 
 		private Pipeline pipeline;
@@ -136,6 +139,19 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
 			return this.pipeline(fn.apply(new Pipeline.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			Pipeline value = (Pipeline) Pipeline._DESERIALIZER.deserialize(parser, mapper);
+			return this.pipeline(value);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

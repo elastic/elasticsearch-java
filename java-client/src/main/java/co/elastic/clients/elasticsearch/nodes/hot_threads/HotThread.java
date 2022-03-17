@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -145,7 +145,7 @@ public class HotThread implements JsonpSerializable {
 	 * Builder for {@link HotThread}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HotThread> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HotThread> {
 		private List<String> hosts;
 
 		private String nodeId;
@@ -207,6 +207,11 @@ public class HotThread implements JsonpSerializable {
 		 */
 		public final Builder threads(String value, String... values) {
 			this.threads = _listAdd(this.threads, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

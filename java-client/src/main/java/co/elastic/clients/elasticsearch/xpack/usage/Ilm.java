@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.List;
@@ -112,7 +112,7 @@ public class Ilm implements JsonpSerializable {
 	 * Builder for {@link Ilm}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ilm> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Ilm> {
 		private Integer policyCount;
 
 		private List<IlmPolicyStatistics> policyStats;
@@ -152,6 +152,11 @@ public class Ilm implements JsonpSerializable {
 		 */
 		public final Builder policyStats(Function<IlmPolicyStatistics.Builder, ObjectBuilder<IlmPolicyStatistics>> fn) {
 			return policyStats(fn.apply(new IlmPolicyStatistics.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

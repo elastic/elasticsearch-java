@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -107,7 +107,9 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 	 * Builder for {@link MgetResponse}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<MgetResponse<TDocument>> {
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
+			implements
+				ObjectBuilder<MgetResponse<TDocument>> {
 		private List<MultiGetResponseItem<TDocument>> docs;
 
 		@Nullable
@@ -153,6 +155,11 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link MgetResponse}.
 		 *
@@ -181,8 +188,9 @@ public class MgetResponse<TDocument> implements JsonpSerializable {
 	 * Json deserializer for {@link MgetResponse} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<MgetResponse<Object>> _DESERIALIZER = createMgetResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.mget.TDocument"));
+	public static final JsonpDeserializer<MgetResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createMgetResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.mget.TDocument")));
 
 	protected static <TDocument> void setupMgetResponseDeserializer(
 			ObjectDeserializer<MgetResponse.Builder<TDocument>> op,

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -89,7 +89,7 @@ public class NumericFielddata implements JsonpSerializable {
 	 * Builder for {@link NumericFielddata}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NumericFielddata> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NumericFielddata> {
 		private NumericFielddataFormat format;
 
 		/**
@@ -97,6 +97,11 @@ public class NumericFielddata implements JsonpSerializable {
 		 */
 		public final Builder format(NumericFielddataFormat value) {
 			this.format = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

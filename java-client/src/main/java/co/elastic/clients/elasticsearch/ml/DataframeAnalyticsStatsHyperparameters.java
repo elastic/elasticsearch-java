@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -155,7 +155,7 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 	 * Builder for {@link DataframeAnalyticsStatsHyperparameters}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataframeAnalyticsStatsHyperparameters> {
 		private Hyperparameters hyperparameters;
@@ -229,6 +229,11 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		 */
 		public final Builder validationLoss(Function<ValidationLoss.Builder, ObjectBuilder<ValidationLoss>> fn) {
 			return this.validationLoss(fn.apply(new ValidationLoss.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

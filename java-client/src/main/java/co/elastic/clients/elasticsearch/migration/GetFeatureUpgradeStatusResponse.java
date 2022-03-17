@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -114,7 +114,9 @@ public class GetFeatureUpgradeStatusResponse implements JsonpSerializable {
 	 * Builder for {@link GetFeatureUpgradeStatusResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetFeatureUpgradeStatusResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetFeatureUpgradeStatusResponse> {
 		private List<MigrationFeature> features;
 
 		private MigrationStatus migrationStatus;
@@ -153,6 +155,11 @@ public class GetFeatureUpgradeStatusResponse implements JsonpSerializable {
 		 */
 		public final Builder migrationStatus(MigrationStatus value) {
 			this.migrationStatus = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

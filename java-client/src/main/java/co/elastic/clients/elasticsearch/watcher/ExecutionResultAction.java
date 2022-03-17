@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -235,7 +235,9 @@ public class ExecutionResultAction implements JsonpSerializable {
 	 * Builder for {@link ExecutionResultAction}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecutionResultAction> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ExecutionResultAction> {
 		@Nullable
 		private EmailResult email;
 
@@ -383,6 +385,11 @@ public class ExecutionResultAction implements JsonpSerializable {
 		 */
 		public final Builder webhook(Function<WebhookResult.Builder, ObjectBuilder<WebhookResult>> fn) {
 			return this.webhook(fn.apply(new WebhookResult.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

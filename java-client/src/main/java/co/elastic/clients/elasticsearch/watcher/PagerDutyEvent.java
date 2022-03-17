@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -189,7 +189,7 @@ public class PagerDutyEvent implements JsonpSerializable {
 	 * Builder for {@link PagerDutyEvent}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyEvent> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PagerDutyEvent> {
 		private String account;
 
 		private Boolean attachPayload;
@@ -288,6 +288,11 @@ public class PagerDutyEvent implements JsonpSerializable {
 		 */
 		public final Builder incidentKey(String value) {
 			this.incidentKey = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

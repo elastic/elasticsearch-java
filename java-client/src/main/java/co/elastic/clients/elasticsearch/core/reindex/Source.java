@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -234,7 +234,7 @@ public class Source implements JsonpSerializable {
 	 * Builder for {@link Source}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Source> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Source> {
 		private List<String> index;
 
 		@Nullable
@@ -408,6 +408,11 @@ public class Source implements JsonpSerializable {
 		public final Builder runtimeMappings(String key,
 				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
 			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

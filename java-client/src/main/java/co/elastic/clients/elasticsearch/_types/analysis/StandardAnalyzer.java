@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -128,7 +128,7 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Builder for {@link StandardAnalyzer}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StandardAnalyzer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<StandardAnalyzer> {
 		@Nullable
 		private Integer maxTokenLength;
 
@@ -160,6 +160,11 @@ public class StandardAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		 */
 		public final Builder stopwords(String value, String... values) {
 			this.stopwords = _listAdd(this.stopwords, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

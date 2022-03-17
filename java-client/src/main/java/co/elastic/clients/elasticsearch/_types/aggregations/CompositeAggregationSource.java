@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -145,7 +145,9 @@ public class CompositeAggregationSource implements JsonpSerializable {
 	 * Builder for {@link CompositeAggregationSource}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompositeAggregationSource> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CompositeAggregationSource> {
 		@Nullable
 		private TermsAggregation terms;
 
@@ -218,6 +220,11 @@ public class CompositeAggregationSource implements JsonpSerializable {
 		public final Builder geotileGrid(
 				Function<GeoTileGridAggregation.Builder, ObjectBuilder<GeoTileGridAggregation>> fn) {
 			return this.geotileGrid(fn.apply(new GeoTileGridAggregation.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

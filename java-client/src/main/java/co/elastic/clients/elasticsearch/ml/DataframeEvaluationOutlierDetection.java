@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -142,7 +142,7 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 	 * Builder for {@link DataframeEvaluationOutlierDetection}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataframeEvaluationOutlierDetection> {
 		private String actualField;
@@ -194,6 +194,11 @@ public class DataframeEvaluationOutlierDetection implements DataframeEvaluationV
 		public final Builder metrics(
 				Function<DataframeEvaluationOutlierDetectionMetrics.Builder, ObjectBuilder<DataframeEvaluationOutlierDetectionMetrics>> fn) {
 			return this.metrics(fn.apply(new DataframeEvaluationOutlierDetectionMetrics.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

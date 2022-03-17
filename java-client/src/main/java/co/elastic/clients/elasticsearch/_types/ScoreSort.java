@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -100,7 +100,7 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 	 * Builder for {@link ScoreSort}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScoreSort> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ScoreSort> {
 		@Nullable
 		private SortOrder order;
 
@@ -109,6 +109,11 @@ public class ScoreSort implements SortOptionsVariant, JsonpSerializable {
 		 */
 		public final Builder order(@Nullable SortOrder value) {
 			this.order = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -100,7 +100,7 @@ public class GeoPolygonPoints implements JsonpSerializable {
 	 * Builder for {@link GeoPolygonPoints}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoPolygonPoints> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GeoPolygonPoints> {
 		private List<GeoLocation> points;
 
 		/**
@@ -130,6 +130,11 @@ public class GeoPolygonPoints implements JsonpSerializable {
 		 */
 		public final Builder points(Function<GeoLocation.Builder, ObjectBuilder<GeoLocation>> fn) {
 			return points(fn.apply(new GeoLocation.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

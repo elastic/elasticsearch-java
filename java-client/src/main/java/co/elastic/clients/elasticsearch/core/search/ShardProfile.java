@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -150,7 +150,7 @@ public class ShardProfile implements JsonpSerializable {
 	 * Builder for {@link ShardProfile}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardProfile> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShardProfile> {
 		private List<AggregationProfile> aggregations;
 
 		private String id;
@@ -239,6 +239,11 @@ public class ShardProfile implements JsonpSerializable {
 		 */
 		public final Builder fetch(Function<FetchProfile.Builder, ObjectBuilder<FetchProfile>> fn) {
 			return this.fetch(fn.apply(new FetchProfile.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

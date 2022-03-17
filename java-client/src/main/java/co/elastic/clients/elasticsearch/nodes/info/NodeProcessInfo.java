@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -124,7 +124,7 @@ public class NodeProcessInfo implements JsonpSerializable {
 	 * Builder for {@link NodeProcessInfo}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeProcessInfo> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeProcessInfo> {
 		private Long id;
 
 		private Boolean mlockall;
@@ -159,6 +159,11 @@ public class NodeProcessInfo implements JsonpSerializable {
 		 */
 		public final Builder refreshIntervalInMillis(long value) {
 			this.refreshIntervalInMillis = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

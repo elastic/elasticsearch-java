@@ -25,6 +25,7 @@ include::installation.asciidoc[]
 include::connecting.asciidoc[]
 include::migrate.asciidoc[]
 include::api-conventions.asciidoc[]
+include::loading-json.asciidoc[]
 include::javadoc-and-source.asciidoc[]
 include::release-notes/index.asciidoc[]
 

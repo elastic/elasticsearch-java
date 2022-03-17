@@ -99,8 +99,9 @@ public class SubmitResponse<TDocument> extends AsyncSearchDocumentResponseBase<T
 	 * Json deserializer for {@link SubmitResponse} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<SubmitResponse<Object>> _DESERIALIZER = createSubmitResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.submit.TDocument"));
+	public static final JsonpDeserializer<SubmitResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createSubmitResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.submit.TDocument")));
 
 	protected static <TDocument> void setupSubmitResponseDeserializer(
 			ObjectDeserializer<SubmitResponse.Builder<TDocument>> op,

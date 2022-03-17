@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -125,7 +125,9 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 	 * Builder for {@link ClusterIndicesShardsIndex}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIndicesShardsIndex> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClusterIndicesShardsIndex> {
 		private ClusterShardMetrics primaries;
 
 		private ClusterShardMetrics replication;
@@ -193,6 +195,11 @@ public class ClusterIndicesShardsIndex implements JsonpSerializable {
 		 */
 		public final Builder shards(Function<ClusterShardMetrics.Builder, ObjectBuilder<ClusterShardMetrics>> fn) {
 			return this.shards(fn.apply(new ClusterShardMetrics.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

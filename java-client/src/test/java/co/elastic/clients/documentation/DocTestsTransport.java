@@ -23,7 +23,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
-import co.elastic.clients.transport.TransportException;
 import co.elastic.clients.transport.TransportOptions;
 
 import javax.annotation.Nullable;
@@ -36,11 +35,14 @@ import java.util.concurrent.CompletableFuture;
 import java.util.function.Function;
 
 /**
- * A transport implementation that always fails. Used for simple doc sections where we just want to check compilation.
+ * A transport implementation that always returns the same result. Used for doc snippets where we can to check
+ * compilation and do very simple tests.
  */
-public class FailingTransport implements ElasticsearchTransport {
+public class DocTestsTransport implements ElasticsearchTransport {
 
     private JsonpMapper mapper = new JsonbJsonpMapper();
+
+    private ThreadLocal<Object> result = new ThreadLocal<>();
 
     private TransportOptions options = new TransportOptions() {
         @Override
@@ -64,20 +66,26 @@ public class FailingTransport implements ElasticsearchTransport {
         }
     };
 
+    public void setResult(Object result) {
+        this.result.set(result);
+    }
+
     @Override
+    @SuppressWarnings("unchecked")
     public <RequestT, ResponseT, ErrorT> ResponseT performRequest(
         RequestT request,
         Endpoint<RequestT, ResponseT, ErrorT> endpoint,
         @Nullable TransportOptions options
     ) throws IOException {
-        throw new TransportException("Not implemented", endpoint.id());
+        return (ResponseT) result.get();
     }
 
     @Override
+    @SuppressWarnings("unchecked")
     public <RequestT, ResponseT, ErrorT> CompletableFuture<ResponseT> performRequestAsync(RequestT request, Endpoint<RequestT, ResponseT,
         ErrorT> endpoint, @Nullable TransportOptions options) {
         CompletableFuture<ResponseT> future = new CompletableFuture<>();
-        future.completeExceptionally(new TransportException("Not implemented", endpoint.id()));
+        future.complete((ResponseT) result.get());
         return future;
     }
 

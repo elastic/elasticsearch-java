@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.List;
@@ -112,7 +112,9 @@ public class QueryWatchesResponse implements JsonpSerializable {
 	 * Builder for {@link QueryWatchesResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatchesResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<QueryWatchesResponse> {
 		private Integer count;
 
 		private List<QueryWatch> watches;
@@ -152,6 +154,11 @@ public class QueryWatchesResponse implements JsonpSerializable {
 		 */
 		public final Builder watches(Function<QueryWatch.Builder, ObjectBuilder<QueryWatch>> fn) {
 			return watches(fn.apply(new QueryWatch.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

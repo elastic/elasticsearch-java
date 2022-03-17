@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -429,7 +429,7 @@ public class Highlight implements JsonpSerializable {
 	 * Builder for {@link Highlight}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Highlight> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Highlight> {
 		private Map<String, HighlightField> fields;
 
 		@Nullable
@@ -705,6 +705,11 @@ public class Highlight implements JsonpSerializable {
 		 */
 		public final Builder maxAnalyzedOffset(@Nullable String value) {
 			this.maxAnalyzedOffset = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

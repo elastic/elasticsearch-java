@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -152,7 +152,9 @@ public class SearchShardsResponse implements JsonpSerializable {
 	 * Builder for {@link SearchShardsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchShardsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<SearchShardsResponse> {
 		private Map<String, NodeAttributes> nodes;
 
 		private List<List<NodeShard>> shards;
@@ -235,6 +237,11 @@ public class SearchShardsResponse implements JsonpSerializable {
 		 */
 		public final Builder indices(String key, Function<ShardStoreIndex.Builder, ObjectBuilder<ShardStoreIndex>> fn) {
 			return indices(key, fn.apply(new ShardStoreIndex.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

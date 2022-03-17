@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.List;
@@ -164,7 +164,7 @@ public class AutoFollowStats implements JsonpSerializable {
 	 * Builder for {@link AutoFollowStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoFollowStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AutoFollowStats> {
 		private List<AutoFollowedCluster> autoFollowedClusters;
 
 		private Long numberOfFailedFollowIndices;
@@ -257,6 +257,11 @@ public class AutoFollowStats implements JsonpSerializable {
 		 */
 		public final Builder recentAutoFollowErrors(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return recentAutoFollowErrors(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

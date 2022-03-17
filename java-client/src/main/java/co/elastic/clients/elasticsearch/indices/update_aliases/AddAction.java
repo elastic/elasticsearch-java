@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -266,7 +266,7 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 	 * Builder for {@link AddAction}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AddAction> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AddAction> {
 		@Nullable
 		private String alias;
 
@@ -405,6 +405,11 @@ public class AddAction implements ActionVariant, JsonpSerializable {
 		 */
 		public final Builder searchRouting(@Nullable String value) {
 			this.searchRouting = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

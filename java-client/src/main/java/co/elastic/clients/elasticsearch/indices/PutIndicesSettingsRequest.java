@@ -37,8 +37,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
@@ -210,7 +211,9 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 	 * Builder for {@link PutIndicesSettingsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutIndicesSettingsRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutIndicesSettingsRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -388,6 +391,19 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 		 */
 		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
 			return this.settings(fn.apply(new IndexSettings.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			IndexSettings value = (IndexSettings) IndexSettings._DESERIALIZER.deserialize(parser, mapper);
+			return this.settings(value);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

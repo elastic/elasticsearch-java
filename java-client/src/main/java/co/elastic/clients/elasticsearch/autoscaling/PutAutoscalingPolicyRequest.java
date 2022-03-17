@@ -35,8 +35,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
@@ -104,7 +105,9 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 	 * Builder for {@link PutAutoscalingPolicyRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutAutoscalingPolicyRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutAutoscalingPolicyRequest> {
 		private String name;
 
 		private AutoscalingPolicy policy;
@@ -136,6 +139,19 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 		 */
 		public final Builder policy(Function<AutoscalingPolicy.Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
 			return this.policy(fn.apply(new AutoscalingPolicy.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			AutoscalingPolicy value = (AutoscalingPolicy) AutoscalingPolicy._DESERIALIZER.deserialize(parser, mapper);
+			return this.policy(value);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

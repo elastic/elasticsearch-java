@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -445,7 +445,7 @@ public class HighlightField implements JsonpSerializable {
 	 * Builder for {@link HighlightField}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HighlightField> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HighlightField> {
 		@Nullable
 		private String boundaryChars;
 
@@ -725,6 +725,11 @@ public class HighlightField implements JsonpSerializable {
 		 */
 		public final Builder type(Function<HighlighterType.Builder, ObjectBuilder<HighlighterType>> fn) {
 			return this.type(fn.apply(new HighlighterType.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

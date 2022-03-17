@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,8 +35,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -91,7 +93,7 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 	 * Builder for {@link GetSourceResponse}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<GetSourceResponse<TDocument>> {
 		private TDocument valueBody;
@@ -115,6 +117,20 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 		 */
 		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
 			this.tDocumentSerializer = value;
+			return this;
+		}
+
+		@Override
+		public Builder<TDocument> withJson(JsonParser parser, JsonpMapper mapper) {
+			JsonpDeserializer<JsonData> tDocumentDeserializer = JsonData._DESERIALIZER;
+
+			@SuppressWarnings("unchecked")
+			TDocument value = (TDocument) tDocumentDeserializer.deserialize(parser, mapper);
+			return this.valueBody(value);
+		}
+
+		@Override
+		protected Builder<TDocument> self() {
 			return this;
 		}
 

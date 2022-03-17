@@ -30,11 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -51,7 +52,7 @@ import javax.annotation.Nullable;
  * @see <a href="../doc-files/api-spec.html#eql._types.HitsEvent">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class HitsEvent<TEvent> implements JsonpSerializable {
 	private final String index;
 
@@ -162,7 +163,9 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 	 * Builder for {@link HitsEvent}.
 	 */
 
-	public static class Builder<TEvent> extends ObjectBuilderBase implements ObjectBuilder<HitsEvent<TEvent>> {
+	public static class Builder<TEvent> extends WithJsonObjectBuilderBase<Builder<TEvent>>
+			implements
+				ObjectBuilder<HitsEvent<TEvent>> {
 		private String index;
 
 		private String id;
@@ -235,6 +238,11 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<TEvent> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link HitsEvent}.
 		 *
@@ -258,6 +266,14 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TEvent>>) Builder::new,
 				op -> HitsEvent.setupHitsEventDeserializer(op, tEventDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link HitsEvent} based on named deserializers provided
+	 * by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<HitsEvent<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createHitsEventDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:eql._types.TEvent")));
 
 	protected static <TEvent> void setupHitsEventDeserializer(ObjectDeserializer<HitsEvent.Builder<TEvent>> op,
 			JsonpDeserializer<TEvent> tEventDeserializer) {

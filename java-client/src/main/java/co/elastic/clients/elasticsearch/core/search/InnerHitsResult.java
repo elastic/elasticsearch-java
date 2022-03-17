@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -91,7 +91,7 @@ public class InnerHitsResult implements JsonpSerializable {
 	 * Builder for {@link InnerHitsResult}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InnerHitsResult> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<InnerHitsResult> {
 		private HitsMetadata<JsonData> hits;
 
 		/**
@@ -107,6 +107,11 @@ public class InnerHitsResult implements JsonpSerializable {
 		 */
 		public final Builder hits(Function<HitsMetadata.Builder<JsonData>, ObjectBuilder<HitsMetadata<JsonData>>> fn) {
 			return this.hits(fn.apply(new HitsMetadata.Builder<JsonData>()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

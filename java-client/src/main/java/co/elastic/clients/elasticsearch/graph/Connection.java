@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -129,7 +129,7 @@ public class Connection implements JsonpSerializable {
 	 * Builder for {@link Connection}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Connection> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Connection> {
 		private Long docCount;
 
 		private Long source;
@@ -167,6 +167,11 @@ public class Connection implements JsonpSerializable {
 		 */
 		public final Builder weight(double value) {
 			this.weight = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

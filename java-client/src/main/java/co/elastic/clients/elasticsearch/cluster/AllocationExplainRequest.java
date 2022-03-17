@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -192,7 +192,9 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 	 * Builder for {@link AllocationExplainRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationExplainRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<AllocationExplainRequest> {
 		@Nullable
 		private String currentNode;
 
@@ -269,6 +271,11 @@ public class AllocationExplainRequest extends RequestBase implements JsonpSerial
 		 */
 		public final Builder shard(@Nullable Integer value) {
 			this.shard = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

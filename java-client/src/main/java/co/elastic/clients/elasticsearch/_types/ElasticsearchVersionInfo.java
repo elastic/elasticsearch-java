@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -197,7 +197,9 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 	 * Builder for {@link ElasticsearchVersionInfo}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ElasticsearchVersionInfo> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ElasticsearchVersionInfo> {
 		private String buildDate;
 
 		private String buildFlavor;
@@ -285,6 +287,11 @@ public class ElasticsearchVersionInfo implements JsonpSerializable {
 		 */
 		public final Builder number(String value) {
 			this.number = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

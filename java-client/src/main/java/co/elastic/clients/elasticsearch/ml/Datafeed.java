@@ -36,7 +36,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -344,7 +344,7 @@ public class Datafeed implements JsonpSerializable {
 	 * Builder for {@link Datafeed}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Datafeed> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Datafeed> {
 		@Nullable
 		private Map<String, Aggregation> aggregations;
 
@@ -620,6 +620,11 @@ public class Datafeed implements JsonpSerializable {
 		 */
 		public final Builder indicesOptions(Function<IndicesOptions.Builder, ObjectBuilder<IndicesOptions>> fn) {
 			return this.indicesOptions(fn.apply(new IndicesOptions.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

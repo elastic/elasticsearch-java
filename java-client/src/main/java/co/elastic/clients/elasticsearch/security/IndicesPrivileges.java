@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -57,7 +58,8 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	private final List<IndexPrivilege> privileges;
 
-	private final List<String> query;
+	@Nullable
+	private final Query query;
 
 	@Nullable
 	private final Boolean allowRestrictedIndices;
@@ -69,7 +71,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 		this.fieldSecurity = builder.fieldSecurity;
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
 		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
-		this.query = ApiTypeHelper.unmodifiable(builder.query);
+		this.query = builder.query;
 		this.allowRestrictedIndices = builder.allowRestrictedIndices;
 
 	}
@@ -115,7 +117,8 @@ public class IndicesPrivileges implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code query}
 	 */
-	public final List<String> query() {
+	@Nullable
+	public final Query query() {
 		return this.query;
 	}
 
@@ -169,14 +172,9 @@ public class IndicesPrivileges implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.query)) {
+		if (this.query != null) {
 			generator.writeKey("query");
-			generator.writeStartArray();
-			for (String item0 : this.query) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			this.query.serialize(generator, mapper);
 
 		}
 		if (this.allowRestrictedIndices != null) {
@@ -193,7 +191,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 	 * Builder for {@link IndicesPrivileges}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesPrivileges> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndicesPrivileges> {
 		@Nullable
 		private FieldSecurity fieldSecurity;
 
@@ -202,7 +200,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 		private List<IndexPrivilege> privileges;
 
 		@Nullable
-		private List<String> query;
+		private Query query;
 
 		@Nullable
 		private Boolean allowRestrictedIndices;
@@ -284,11 +282,9 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * it to be accessible by the owners of the role.
 		 * <p>
 		 * API name: {@code query}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>query</code>.
 		 */
-		public final Builder query(List<String> list) {
-			this.query = _listAddAll(this.query, list);
+		public final Builder query(@Nullable Query value) {
+			this.query = value;
 			return this;
 		}
 
@@ -298,12 +294,9 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * it to be accessible by the owners of the role.
 		 * <p>
 		 * API name: {@code query}
-		 * <p>
-		 * Adds one or more values to <code>query</code>.
 		 */
-		public final Builder query(String value, String... values) {
-			this.query = _listAdd(this.query, value, values);
-			return this;
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -318,6 +311,11 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 */
 		public final Builder allowRestrictedIndices(@Nullable Boolean value) {
 			this.allowRestrictedIndices = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 
@@ -347,7 +345,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 		op.add(Builder::fieldSecurity, FieldSecurity._DESERIALIZER, "field_security");
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
 		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");
-		op.add(Builder::query, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "query");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::allowRestrictedIndices, JsonpDeserializer.booleanDeserializer(), "allow_restricted_indices");
 
 	}
