@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -144,7 +144,9 @@ public class SamlAuthenticateResponse implements JsonpSerializable {
 	 * Builder for {@link SamlAuthenticateResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SamlAuthenticateResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<SamlAuthenticateResponse> {
 		private String accessToken;
 
 		private String username;
@@ -192,6 +194,11 @@ public class SamlAuthenticateResponse implements JsonpSerializable {
 		 */
 		public final Builder realm(String value) {
 			this.realm = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -128,7 +128,9 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 	 * Builder for {@link DataframeAnalysisAnalyzedFields}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalysisAnalyzedFields> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataframeAnalysisAnalyzedFields> {
 		private List<String> includes;
 
 		private List<String> excludes;
@@ -184,6 +186,11 @@ public class DataframeAnalysisAnalyzedFields implements JsonpSerializable {
 		 */
 		public final Builder excludes(String value, String... values) {
 			this.excludes = _listAdd(this.excludes, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

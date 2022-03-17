@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -121,7 +121,7 @@ public class SamlLogoutRequest extends RequestBase implements JsonpSerializable 
 	 * Builder for {@link SamlLogoutRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SamlLogoutRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SamlLogoutRequest> {
 		@Nullable
 		private String refreshToken;
 
@@ -148,6 +148,11 @@ public class SamlLogoutRequest extends RequestBase implements JsonpSerializable 
 		 */
 		public final Builder token(String value) {
 			this.token = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -102,7 +102,9 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 	 * Builder for {@link VerifyRepositoryResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VerifyRepositoryResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<VerifyRepositoryResponse> {
 		private Map<String, CompactNodeInfo> nodes;
 
 		/**
@@ -132,6 +134,11 @@ public class VerifyRepositoryResponse implements JsonpSerializable {
 		 */
 		public final Builder nodes(String key, Function<CompactNodeInfo.Builder, ObjectBuilder<CompactNodeInfo>> fn) {
 			return nodes(key, fn.apply(new CompactNodeInfo.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

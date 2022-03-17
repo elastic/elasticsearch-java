@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -384,7 +384,7 @@ public class PutJobResponse implements JsonpSerializable {
 	 * Builder for {@link PutJobResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutJobResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PutJobResponse> {
 		private Boolean allowLazyOpen;
 
 		private AnalysisConfigRead analysisConfig;
@@ -646,6 +646,11 @@ public class PutJobResponse implements JsonpSerializable {
 		 */
 		public final Builder resultsRetentionDays(@Nullable Long value) {
 			this.resultsRetentionDays = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

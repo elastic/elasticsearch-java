@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -99,7 +99,9 @@ public class FollowInfoResponse implements JsonpSerializable {
 	 * Builder for {@link FollowInfoResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowInfoResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<FollowInfoResponse> {
 		private List<FollowerIndex> followerIndices;
 
 		/**
@@ -129,6 +131,11 @@ public class FollowInfoResponse implements JsonpSerializable {
 		 */
 		public final Builder followerIndices(Function<FollowerIndex.Builder, ObjectBuilder<FollowerIndex>> fn) {
 			return followerIndices(fn.apply(new FollowerIndex.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

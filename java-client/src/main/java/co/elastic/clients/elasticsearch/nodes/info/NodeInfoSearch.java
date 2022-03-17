@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -89,7 +89,7 @@ public class NodeInfoSearch implements JsonpSerializable {
 	 * Builder for {@link NodeInfoSearch}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSearch> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoSearch> {
 		private NodeInfoSearchRemote remote;
 
 		/**
@@ -105,6 +105,11 @@ public class NodeInfoSearch implements JsonpSerializable {
 		 */
 		public final Builder remote(Function<NodeInfoSearchRemote.Builder, ObjectBuilder<NodeInfoSearchRemote>> fn) {
 			return this.remote(fn.apply(new NodeInfoSearchRemote.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

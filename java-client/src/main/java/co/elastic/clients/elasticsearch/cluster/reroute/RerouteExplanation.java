@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -125,7 +125,9 @@ public class RerouteExplanation implements JsonpSerializable {
 	 * Builder for {@link RerouteExplanation}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RerouteExplanation> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RerouteExplanation> {
 		private String command;
 
 		private List<RerouteDecision> decisions;
@@ -182,6 +184,11 @@ public class RerouteExplanation implements JsonpSerializable {
 		 */
 		public final Builder parameters(Function<RerouteParameters.Builder, ObjectBuilder<RerouteParameters>> fn) {
 			return this.parameters(fn.apply(new RerouteParameters.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

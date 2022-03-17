@@ -37,7 +37,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -177,7 +177,7 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	 * Builder for {@link RollupSearchResponse}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<RollupSearchResponse<TDocument>> {
 		private Long took;
@@ -291,6 +291,11 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link RollupSearchResponse}.
 		 *
@@ -319,8 +324,9 @@ public class RollupSearchResponse<TDocument> implements JsonpSerializable {
 	 * Json deserializer for {@link RollupSearchResponse} based on named
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<RollupSearchResponse<Object>> _DESERIALIZER = createRollupSearchResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:rollup.rollup_search.TDocument"));
+	public static final JsonpDeserializer<RollupSearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createRollupSearchResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:rollup.rollup_search.TDocument")));
 
 	protected static <TDocument> void setupRollupSearchResponseDeserializer(
 			ObjectDeserializer<RollupSearchResponse.Builder<TDocument>> op,

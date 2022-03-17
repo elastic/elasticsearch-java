@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -141,7 +141,7 @@ public class RoleDescriptor implements JsonpSerializable {
 	 * Builder for {@link RoleDescriptor}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleDescriptor> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RoleDescriptor> {
 		private List<String> cluster;
 
 		private List<IndexPrivileges> index;
@@ -226,6 +226,11 @@ public class RoleDescriptor implements JsonpSerializable {
 		public final Builder applications(
 				Function<ApplicationPrivileges.Builder, ObjectBuilder<ApplicationPrivileges>> fn) {
 			return applications(fn.apply(new ApplicationPrivileges.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

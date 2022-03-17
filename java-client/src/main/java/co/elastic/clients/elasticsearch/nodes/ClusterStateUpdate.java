@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -333,7 +333,9 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	 * Builder for {@link ClusterStateUpdate}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterStateUpdate> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClusterStateUpdate> {
 		@Nullable
 		private Long count;
 
@@ -496,6 +498,11 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		 */
 		public final Builder notificationTimeMillis(@Nullable Long value) {
 			this.notificationTimeMillis = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

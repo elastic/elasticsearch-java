@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -91,7 +91,7 @@ public class NodeInfoAction implements JsonpSerializable {
 	 * Builder for {@link NodeInfoAction}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoAction> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoAction> {
 		private String destructiveRequiresName;
 
 		/**
@@ -99,6 +99,11 @@ public class NodeInfoAction implements JsonpSerializable {
 		 */
 		public final Builder destructiveRequiresName(String value) {
 			this.destructiveRequiresName = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

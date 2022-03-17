@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -448,7 +448,7 @@ public class Features implements JsonpSerializable {
 	 * Builder for {@link Features}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Features> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Features> {
 		private Feature aggregateMetric;
 
 		private Feature analytics;
@@ -911,6 +911,11 @@ public class Features implements JsonpSerializable {
 		 */
 		public final Builder watcher(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
 			return this.watcher(fn.apply(new Feature.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

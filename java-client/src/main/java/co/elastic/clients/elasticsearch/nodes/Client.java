@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -265,7 +265,7 @@ public class Client implements JsonpSerializable {
 	 * Builder for {@link Client}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Client> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Client> {
 		@Nullable
 		private Long id;
 
@@ -384,6 +384,11 @@ public class Client implements JsonpSerializable {
 		 */
 		public final Builder xOpaqueId(@Nullable String value) {
 			this.xOpaqueId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

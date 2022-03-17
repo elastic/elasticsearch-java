@@ -30,11 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -52,7 +53,7 @@ import javax.annotation.Nullable;
  * @see <a href="../../doc-files/api-spec.html#_global.get.GetResult">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class GetResult<TDocument> implements JsonpSerializable {
 	private final String index;
 
@@ -258,7 +259,7 @@ public class GetResult<TDocument> implements JsonpSerializable {
 
 	protected abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>>
 			extends
-				ObjectBuilderBase {
+				WithJsonObjectBuilderBase<BuilderT> {
 		private String index;
 
 		@Nullable
@@ -393,6 +394,14 @@ public class GetResult<TDocument> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> GetResult.setupGetResultDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link GetResult} based on named deserializers provided
+	 * by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<GetResult<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createGetResultDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.get.TDocument")));
 
 	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupGetResultDeserializer(
 			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {

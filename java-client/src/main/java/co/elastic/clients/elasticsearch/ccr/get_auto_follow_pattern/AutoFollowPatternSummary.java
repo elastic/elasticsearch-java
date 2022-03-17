@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -193,7 +193,9 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 	 * Builder for {@link AutoFollowPatternSummary}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoFollowPatternSummary> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<AutoFollowPatternSummary> {
 		private Boolean active;
 
 		private String remoteCluster;
@@ -296,6 +298,11 @@ public class AutoFollowPatternSummary implements JsonpSerializable {
 		 */
 		public final Builder maxOutstandingReadRequests(int value) {
 			this.maxOutstandingReadRequests = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

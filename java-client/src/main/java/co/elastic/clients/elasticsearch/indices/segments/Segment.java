@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -220,7 +220,7 @@ public class Segment implements JsonpSerializable {
 	 * Builder for {@link Segment}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Segment> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Segment> {
 		private Map<String, String> attributes;
 
 		private Boolean committed;
@@ -330,6 +330,11 @@ public class Segment implements JsonpSerializable {
 		 */
 		public final Builder version(String value) {
 			this.version = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

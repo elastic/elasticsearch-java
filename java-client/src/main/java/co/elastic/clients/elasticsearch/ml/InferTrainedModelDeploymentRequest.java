@@ -36,7 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -148,7 +148,9 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 	 * Builder for {@link InferTrainedModelDeploymentRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferTrainedModelDeploymentRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<InferTrainedModelDeploymentRequest> {
 		private List<Map<String, String>> docs;
 
 		private String modelId;
@@ -213,6 +215,11 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

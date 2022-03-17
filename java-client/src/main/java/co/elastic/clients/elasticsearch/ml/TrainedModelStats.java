@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -155,7 +155,7 @@ public class TrainedModelStats implements JsonpSerializable {
 	 * Builder for {@link TrainedModelStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TrainedModelStats> {
 		private String modelId;
 
 		private Integer pipelineCount;
@@ -231,6 +231,11 @@ public class TrainedModelStats implements JsonpSerializable {
 		 */
 		public final Builder ingest(String key, JsonData value) {
 			this.ingest = _mapPut(this.ingest, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -100,7 +100,9 @@ public class GetScriptContextResponse implements JsonpSerializable {
 	 * Builder for {@link GetScriptContextResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptContextResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetScriptContextResponse> {
 		private List<Context> contexts;
 
 		/**
@@ -130,6 +132,11 @@ public class GetScriptContextResponse implements JsonpSerializable {
 		 */
 		public final Builder contexts(Function<Context.Builder, ObjectBuilder<Context>> fn) {
 			return contexts(fn.apply(new Context.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -84,7 +84,13 @@ public class LowercaseNormalizer implements NormalizerVariant, JsonpSerializable
 	 * Builder for {@link LowercaseNormalizer}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LowercaseNormalizer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<LowercaseNormalizer> {
+		@Override
+		protected Builder self() {
+			return this;
+		}
 
 		/**
 		 * Builds a {@link LowercaseNormalizer}.

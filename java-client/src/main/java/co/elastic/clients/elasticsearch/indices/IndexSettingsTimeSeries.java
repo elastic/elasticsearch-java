@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -110,7 +110,9 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 	 * Builder for {@link IndexSettingsTimeSeries}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingsTimeSeries> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<IndexSettingsTimeSeries> {
 		@Nullable
 		private DateTime endTime;
 
@@ -130,6 +132,11 @@ public class IndexSettingsTimeSeries implements JsonpSerializable {
 		 */
 		public final Builder startTime(@Nullable DateTime value) {
 			this.startTime = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

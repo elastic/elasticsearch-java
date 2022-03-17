@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -213,7 +213,7 @@ public class ErrorCause implements JsonpSerializable {
 	 * Builder for {@link ErrorCause}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ErrorCause> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ErrorCause> {
 		@Nullable
 		private Map<String, JsonData> metadata = new HashMap<>();
 
@@ -356,6 +356,11 @@ public class ErrorCause implements JsonpSerializable {
 		 */
 		public final Builder suppressed(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return suppressed(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

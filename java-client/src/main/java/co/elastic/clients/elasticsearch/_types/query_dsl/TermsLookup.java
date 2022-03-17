@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -134,7 +134,7 @@ public class TermsLookup implements JsonpSerializable {
 	 * Builder for {@link TermsLookup}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsLookup> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TermsLookup> {
 		private String index;
 
 		private String id;
@@ -173,6 +173,11 @@ public class TermsLookup implements JsonpSerializable {
 		 */
 		public final Builder routing(@Nullable String value) {
 			this.routing = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

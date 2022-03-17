@@ -37,7 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -189,7 +189,9 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 	 * Builder for {@link QueryWatchesRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryWatchesRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<QueryWatchesRequest> {
 		@Nullable
 		private Integer from;
 
@@ -301,6 +303,11 @@ public class QueryWatchesRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder sort(Function<SortOptions.Builder, ObjectBuilder<SortOptions>> fn) {
 			return sort(fn.apply(new SortOptions.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

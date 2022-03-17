@@ -33,9 +33,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.lang.String;
@@ -257,10 +257,14 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldRule> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FieldRule> {
 		private Kind _kind;
 		private Object _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<FieldRule> username(String v) {
 			this._kind = Kind.Username;
 			this._value = v;

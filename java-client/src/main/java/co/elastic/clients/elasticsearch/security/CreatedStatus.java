@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -89,7 +89,7 @@ public class CreatedStatus implements JsonpSerializable {
 	 * Builder for {@link CreatedStatus}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreatedStatus> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CreatedStatus> {
 		private Boolean created;
 
 		/**
@@ -97,6 +97,11 @@ public class CreatedStatus implements JsonpSerializable {
 		 */
 		public final Builder created(boolean value) {
 			this.created = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

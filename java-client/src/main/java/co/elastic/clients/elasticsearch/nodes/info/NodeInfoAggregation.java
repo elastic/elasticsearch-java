@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -100,7 +100,9 @@ public class NodeInfoAggregation implements JsonpSerializable {
 	 * Builder for {@link NodeInfoAggregation}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoAggregation> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<NodeInfoAggregation> {
 		private List<String> types;
 
 		/**
@@ -120,6 +122,11 @@ public class NodeInfoAggregation implements JsonpSerializable {
 		 */
 		public final Builder types(String value, String... values) {
 			this.types = _listAdd(this.types, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -130,7 +130,7 @@ public class FieldCapsResponse implements JsonpSerializable {
 	 * Builder for {@link FieldCapsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCapsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FieldCapsResponse> {
 		private List<String> indices;
 
 		private Map<String, Map<String, FieldCapability>> fields;
@@ -172,6 +172,11 @@ public class FieldCapsResponse implements JsonpSerializable {
 		 */
 		public final Builder fields(String key, Map<String, FieldCapability> value) {
 			this.fields = _mapPut(this.fields, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

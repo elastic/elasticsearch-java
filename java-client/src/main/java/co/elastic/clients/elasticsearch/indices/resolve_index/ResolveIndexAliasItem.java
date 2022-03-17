@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -113,7 +113,9 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 	 * Builder for {@link ResolveIndexAliasItem}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexAliasItem> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ResolveIndexAliasItem> {
 		private String name;
 
 		private List<String> indices;
@@ -143,6 +145,11 @@ public class ResolveIndexAliasItem implements JsonpSerializable {
 		 */
 		public final Builder indices(String value, String... values) {
 			this.indices = _listAdd(this.indices, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

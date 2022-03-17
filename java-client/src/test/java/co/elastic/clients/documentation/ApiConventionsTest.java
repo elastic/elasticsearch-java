@@ -31,7 +31,6 @@ import co.elastic.clients.elasticsearch.indices.Alias;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.transport.ElasticsearchTransport;
-import co.elastic.clients.transport.TransportException;
 import co.elastic.clients.util.ApiTypeHelper;
 import org.junit.Assert;
 import org.junit.Test;
@@ -47,10 +46,9 @@ public class ApiConventionsTest extends Assert {
 
     private static class SomeApplicationData {}
 
-    private ElasticsearchTransport transport = new FailingTransport();
+    private ElasticsearchTransport transport = new DocTestsTransport();
     Logger logger = LogManager.getLogManager().getLogger(ApiConventionsTest.class.getName());
 
-    @Test(expected = TransportException.class)
     public void blockingAndAsync() throws Exception {
 
         //tag::blocking-and-async
@@ -76,7 +74,6 @@ public class ApiConventionsTest extends Assert {
 
     }
 
-    @Test(expected = TransportException.class)
     public void builders() throws Exception {
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
@@ -92,7 +89,6 @@ public class ApiConventionsTest extends Assert {
         //end::builders
     }
 
-    @Test(expected = TransportException.class)
     public void builderLambdas() throws Exception {
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
@@ -107,7 +103,6 @@ public class ApiConventionsTest extends Assert {
         //end::builder-lambdas
     }
 
-    @Test(expected = TransportException.class)
     public void builderLambdasShort() throws Exception {
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
@@ -122,7 +117,6 @@ public class ApiConventionsTest extends Assert {
         //end::builder-lambdas-short
     }
 
-    @Test(expected = TransportException.class)
     public void builderIntervals() throws Exception {
         ElasticsearchClient client = new ElasticsearchClient(transport);
 

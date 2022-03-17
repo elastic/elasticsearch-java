@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -113,7 +113,7 @@ public class LanguageContext implements JsonpSerializable {
 	 * Builder for {@link LanguageContext}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<LanguageContext> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<LanguageContext> {
 		private List<String> contexts;
 
 		private String language;
@@ -151,6 +151,11 @@ public class LanguageContext implements JsonpSerializable {
 		 */
 		public final Builder language(ScriptLanguage value) {
 			this.language = value == null ? null : value.jsonValue();
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

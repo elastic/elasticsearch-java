@@ -27,6 +27,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -46,7 +47,7 @@ import javax.annotation.Nullable;
  *      "../../doc-files/api-spec.html#_global.search._types.CompletionSuggest">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class CompletionSuggest<TDocument> extends SuggestBase implements SuggestionVariant {
 	private final List<CompletionSuggestOption<TDocument>> options;
 
@@ -181,6 +182,14 @@ public class CompletionSuggest<TDocument> extends SuggestBase implements Suggest
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> CompletionSuggest.setupCompletionSuggestDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link CompletionSuggest} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<CompletionSuggest<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createCompletionSuggestDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search._types.TDocument")));
 
 	protected static <TDocument> void setupCompletionSuggestDeserializer(
 			ObjectDeserializer<CompletionSuggest.Builder<TDocument>> op,

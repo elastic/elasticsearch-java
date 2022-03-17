@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -117,7 +117,7 @@ public class FileDetails implements JsonpSerializable {
 	 * Builder for {@link FileDetails}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FileDetails> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FileDetails> {
 		private Long length;
 
 		private String name;
@@ -145,6 +145,11 @@ public class FileDetails implements JsonpSerializable {
 		 */
 		public final Builder recovered(long value) {
 			this.recovered = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

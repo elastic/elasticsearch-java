@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -94,7 +94,9 @@ public class BucketCorrelationFunction implements JsonpSerializable {
 	 * Builder for {@link BucketCorrelationFunction}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BucketCorrelationFunction> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<BucketCorrelationFunction> {
 		private BucketCorrelationFunctionCountCorrelation countCorrelation;
 
 		/**
@@ -119,6 +121,11 @@ public class BucketCorrelationFunction implements JsonpSerializable {
 		public final Builder countCorrelation(
 				Function<BucketCorrelationFunctionCountCorrelation.Builder, ObjectBuilder<BucketCorrelationFunctionCountCorrelation>> fn) {
 			return this.countCorrelation(fn.apply(new BucketCorrelationFunctionCountCorrelation.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

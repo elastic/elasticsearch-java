@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -129,7 +129,9 @@ public class IndexingPressureMemory implements JsonpSerializable {
 	 * Builder for {@link IndexingPressureMemory}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexingPressureMemory> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<IndexingPressureMemory> {
 		@Nullable
 		private Long limitInBytes;
 
@@ -175,6 +177,11 @@ public class IndexingPressureMemory implements JsonpSerializable {
 		 */
 		public final Builder total(Function<PressureMemory.Builder, ObjectBuilder<PressureMemory>> fn) {
 			return this.total(fn.apply(new PressureMemory.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -131,7 +131,9 @@ public class WeightedAverageValue implements JsonpSerializable {
 	 * Builder for {@link WeightedAverageValue}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WeightedAverageValue> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<WeightedAverageValue> {
 		@Nullable
 		private String field;
 
@@ -170,6 +172,11 @@ public class WeightedAverageValue implements JsonpSerializable {
 		 */
 		public final Builder script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
 			return this.script(fn.apply(new Script.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

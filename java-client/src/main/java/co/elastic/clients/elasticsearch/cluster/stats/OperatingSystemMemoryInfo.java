@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -162,7 +162,9 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 	 * Builder for {@link OperatingSystemMemoryInfo}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OperatingSystemMemoryInfo> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<OperatingSystemMemoryInfo> {
 		private Long freeInBytes;
 
 		private Integer freePercent;
@@ -221,6 +223,11 @@ public class OperatingSystemMemoryInfo implements JsonpSerializable {
 		 */
 		public final Builder adjustedTotalInBytes(@Nullable Long value) {
 			this.adjustedTotalInBytes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -103,7 +103,7 @@ public class NativeCode implements JsonpSerializable {
 	 * Builder for {@link NativeCode}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NativeCode> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NativeCode> {
 		private String buildHash;
 
 		private String version;
@@ -121,6 +121,11 @@ public class NativeCode implements JsonpSerializable {
 		 */
 		public final Builder version(String value) {
 			this.version = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

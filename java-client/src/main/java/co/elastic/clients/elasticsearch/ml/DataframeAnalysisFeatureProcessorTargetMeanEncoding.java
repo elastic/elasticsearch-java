@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -162,7 +162,7 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 * Builder for {@link DataframeAnalysisFeatureProcessorTargetMeanEncoding}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding> {
 		private Integer defaultValue;
@@ -224,6 +224,11 @@ public class DataframeAnalysisFeatureProcessorTargetMeanEncoding
 		 */
 		public final Builder targetMap(String key, JsonData value) {
 			this.targetMap = _mapPut(this.targetMap, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.String;
@@ -126,7 +126,7 @@ public class ExplanationDetail implements JsonpSerializable {
 	 * Builder for {@link ExplanationDetail}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplanationDetail> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ExplanationDetail> {
 		private String description;
 
 		@Nullable
@@ -176,6 +176,11 @@ public class ExplanationDetail implements JsonpSerializable {
 		 */
 		public final Builder value(float value) {
 			this.value = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -91,7 +91,9 @@ public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 	 * Builder for {@link ApplicationGlobalUserPrivileges}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApplicationGlobalUserPrivileges> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ApplicationGlobalUserPrivileges> {
 		private ManageUserPrivileges manage;
 
 		/**
@@ -107,6 +109,11 @@ public class ApplicationGlobalUserPrivileges implements JsonpSerializable {
 		 */
 		public final Builder manage(Function<ManageUserPrivileges.Builder, ObjectBuilder<ManageUserPrivileges>> fn) {
 			return this.manage(fn.apply(new ManageUserPrivileges.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

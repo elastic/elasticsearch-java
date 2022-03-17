@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -125,7 +125,7 @@ public class GeoLine implements JsonpSerializable {
 	 * Builder for {@link GeoLine}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLine> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GeoLine> {
 		private String type;
 
 		private List<List<Double>> coordinates;
@@ -161,6 +161,11 @@ public class GeoLine implements JsonpSerializable {
 		 */
 		public final Builder coordinates(List<Double> value, List<Double>... values) {
 			this.coordinates = _listAdd(this.coordinates, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

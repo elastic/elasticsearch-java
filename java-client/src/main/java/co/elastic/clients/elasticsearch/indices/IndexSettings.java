@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -1183,7 +1183,7 @@ public class IndexSettings implements JsonpSerializable {
 	 * Builder for {@link IndexSettings}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettings> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexSettings> {
 		@Nullable
 		private IndexSettings index;
 
@@ -2068,6 +2068,11 @@ public class IndexSettings implements JsonpSerializable {
 		 */
 		public final Builder queries(Function<Queries.Builder, ObjectBuilder<Queries>> fn) {
 			return this.queries(fn.apply(new Queries.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

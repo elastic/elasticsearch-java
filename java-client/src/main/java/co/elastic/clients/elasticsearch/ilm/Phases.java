@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -144,7 +144,7 @@ public class Phases implements JsonpSerializable {
 	 * Builder for {@link Phases}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Phases> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Phases> {
 		@Nullable
 		private Phase cold;
 
@@ -215,6 +215,11 @@ public class Phases implements JsonpSerializable {
 		 */
 		public final Builder warm(Function<Phase.Builder, ObjectBuilder<Phase>> fn) {
 			return this.warm(fn.apply(new Phase.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

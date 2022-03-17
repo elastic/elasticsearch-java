@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -117,7 +117,9 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 	 * Builder for {@link ClusterProcessOpenFileDescriptors}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterProcessOpenFileDescriptors> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClusterProcessOpenFileDescriptors> {
 		private Long avg;
 
 		private Long max;
@@ -145,6 +147,11 @@ public class ClusterProcessOpenFileDescriptors implements JsonpSerializable {
 		 */
 		public final Builder min(long value) {
 			this.min = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

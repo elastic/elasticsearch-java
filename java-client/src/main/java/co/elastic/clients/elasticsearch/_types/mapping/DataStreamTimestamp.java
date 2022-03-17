@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -90,7 +90,9 @@ public class DataStreamTimestamp implements JsonpSerializable {
 	 * Builder for {@link DataStreamTimestamp}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStreamTimestamp> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataStreamTimestamp> {
 		private Boolean enabled;
 
 		/**
@@ -98,6 +100,11 @@ public class DataStreamTimestamp implements JsonpSerializable {
 		 */
 		public final Builder enabled(boolean value) {
 			this.enabled = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

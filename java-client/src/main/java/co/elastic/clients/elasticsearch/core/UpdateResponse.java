@@ -161,8 +161,9 @@ public class UpdateResponse<TDocument> extends WriteResponseBase {
 	 * Json deserializer for {@link UpdateResponse} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<UpdateResponse<Object>> _DESERIALIZER = createUpdateResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.TDocument"));
+	public static final JsonpDeserializer<UpdateResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createUpdateResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.update.TDocument")));
 
 	protected static <TDocument> void setupUpdateResponseDeserializer(
 			ObjectDeserializer<UpdateResponse.Builder<TDocument>> op,

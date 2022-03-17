@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -125,7 +125,7 @@ public class RuleCondition implements JsonpSerializable {
 	 * Builder for {@link RuleCondition}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RuleCondition> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RuleCondition> {
 		private AppliesTo appliesTo;
 
 		private ConditionOperator operator;
@@ -164,6 +164,11 @@ public class RuleCondition implements JsonpSerializable {
 		 */
 		public final Builder value(double value) {
 			this.value = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

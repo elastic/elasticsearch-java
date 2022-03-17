@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -132,7 +132,9 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 	 * Builder for {@link PhraseSuggestCollate}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestCollate> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PhraseSuggestCollate> {
 		@Nullable
 		private Map<String, JsonData> params;
 
@@ -183,6 +185,11 @@ public class PhraseSuggestCollate implements JsonpSerializable {
 		public final Builder query(
 				Function<PhraseSuggestCollateQuery.Builder, ObjectBuilder<PhraseSuggestCollateQuery>> fn) {
 			return this.query(fn.apply(new PhraseSuggestCollateQuery.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

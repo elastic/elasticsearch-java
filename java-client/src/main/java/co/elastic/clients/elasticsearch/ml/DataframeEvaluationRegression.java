@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -140,7 +140,9 @@ public class DataframeEvaluationRegression implements DataframeEvaluationVariant
 	 * Builder for {@link DataframeEvaluationRegression}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeEvaluationRegression> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataframeEvaluationRegression> {
 		private String actualField;
 
 		private String predictedField;
@@ -192,6 +194,11 @@ public class DataframeEvaluationRegression implements DataframeEvaluationVariant
 		public final Builder metrics(
 				Function<DataframeEvaluationRegressionMetrics.Builder, ObjectBuilder<DataframeEvaluationRegressionMetrics>> fn) {
 			return this.metrics(fn.apply(new DataframeEvaluationRegressionMetrics.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

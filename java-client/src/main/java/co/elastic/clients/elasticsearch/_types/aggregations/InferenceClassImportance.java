@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -105,7 +105,9 @@ public class InferenceClassImportance implements JsonpSerializable {
 	 * Builder for {@link InferenceClassImportance}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InferenceClassImportance> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<InferenceClassImportance> {
 		private String className;
 
 		private Double importance;
@@ -123,6 +125,11 @@ public class InferenceClassImportance implements JsonpSerializable {
 		 */
 		public final Builder importance(double value) {
 			this.importance = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

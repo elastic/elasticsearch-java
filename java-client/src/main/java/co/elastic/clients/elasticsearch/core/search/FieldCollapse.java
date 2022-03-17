@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -148,7 +148,7 @@ public class FieldCollapse implements JsonpSerializable {
 	 * Builder for {@link FieldCollapse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldCollapse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FieldCollapse> {
 		private String field;
 
 		@Nullable
@@ -218,6 +218,11 @@ public class FieldCollapse implements JsonpSerializable {
 		 */
 		public final Builder collapse(Function<FieldCollapse.Builder, ObjectBuilder<FieldCollapse>> fn) {
 			return this.collapse(fn.apply(new FieldCollapse.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

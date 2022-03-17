@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -118,7 +118,9 @@ public class SlackAttachmentField implements JsonpSerializable {
 	 * Builder for {@link SlackAttachmentField}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackAttachmentField> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<SlackAttachmentField> {
 		private Boolean short_;
 
 		private String title;
@@ -146,6 +148,11 @@ public class SlackAttachmentField implements JsonpSerializable {
 		 */
 		public final Builder value(String value) {
 			this.value = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

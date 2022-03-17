@@ -36,7 +36,7 @@ import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -196,7 +196,7 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 	 * Builder for {@link FlushJobRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FlushJobRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FlushJobRequest> {
 		@Nullable
 		private DateTime advanceTime;
 
@@ -271,6 +271,11 @@ public class FlushJobRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder start(@Nullable DateTime value) {
 			this.start = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

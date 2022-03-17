@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -292,7 +292,7 @@ public class ClusterNodes implements JsonpSerializable {
 	 * Builder for {@link ClusterNodes}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterNodes> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterNodes> {
 		private ClusterNodeCount count;
 
 		private Map<String, Integer> discoveryTypes;
@@ -592,6 +592,11 @@ public class ClusterNodes implements JsonpSerializable {
 		 */
 		public final Builder indexingPressure(Function<IndexingPressure.Builder, ObjectBuilder<IndexingPressure>> fn) {
 			return this.indexingPressure(fn.apply(new IndexingPressure.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

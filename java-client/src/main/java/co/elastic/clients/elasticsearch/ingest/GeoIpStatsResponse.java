@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -119,7 +119,9 @@ public class GeoIpStatsResponse implements JsonpSerializable {
 	 * Builder for {@link GeoIpStatsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpStatsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GeoIpStatsResponse> {
 		private GeoIpDownloadStatistics stats;
 
 		private Map<String, GeoIpNodeDatabases> nodes;
@@ -178,6 +180,11 @@ public class GeoIpStatsResponse implements JsonpSerializable {
 		public final Builder nodes(String key,
 				Function<GeoIpNodeDatabases.Builder, ObjectBuilder<GeoIpNodeDatabases>> fn) {
 			return nodes(key, fn.apply(new GeoIpNodeDatabases.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

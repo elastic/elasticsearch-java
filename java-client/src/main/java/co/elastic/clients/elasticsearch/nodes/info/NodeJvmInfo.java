@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -276,7 +276,7 @@ public class NodeJvmInfo implements JsonpSerializable {
 	 * Builder for {@link NodeJvmInfo}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeJvmInfo> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeJvmInfo> {
 		private List<String> gcCollectors;
 
 		private NodeInfoJvmMemory mem;
@@ -448,6 +448,11 @@ public class NodeJvmInfo implements JsonpSerializable {
 		 */
 		public final Builder inputArguments(String value, String... values) {
 			this.inputArguments = _listAdd(this.inputArguments, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

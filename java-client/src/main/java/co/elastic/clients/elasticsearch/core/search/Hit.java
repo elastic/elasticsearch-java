@@ -31,11 +31,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -54,7 +55,7 @@ import javax.annotation.Nullable;
  * @see <a href="../../doc-files/api-spec.html#_global.search._types.Hit">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class Hit<TDocument> implements JsonpSerializable {
 	private final String index;
 
@@ -446,7 +447,9 @@ public class Hit<TDocument> implements JsonpSerializable {
 	 * Builder for {@link Hit}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<Hit<TDocument>> {
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
+			implements
+				ObjectBuilder<Hit<TDocument>> {
 		private String index;
 
 		private String id;
@@ -776,6 +779,11 @@ public class Hit<TDocument> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link Hit}.
 		 *
@@ -799,6 +807,14 @@ public class Hit<TDocument> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> Hit.setupHitDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link Hit} based on named deserializers provided by
+	 * the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<Hit<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createHitDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search._types.TDocument")));
 
 	protected static <TDocument> void setupHitDeserializer(ObjectDeserializer<Hit.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {

@@ -37,7 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -160,7 +160,9 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 	 * Builder for {@link RollupSearchRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupSearchRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RollupSearchRequest> {
 		@Nullable
 		private Map<String, Aggregation> aggregations;
 
@@ -249,6 +251,11 @@ public class RollupSearchRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder size(@Nullable Integer value) {
 			this.size = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

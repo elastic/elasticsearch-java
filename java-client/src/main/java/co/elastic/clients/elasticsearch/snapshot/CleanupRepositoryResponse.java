@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -93,7 +93,9 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 	 * Builder for {@link CleanupRepositoryResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CleanupRepositoryResponse> {
 		private CleanupRepositoryResults results;
 
 		/**
@@ -114,6 +116,11 @@ public class CleanupRepositoryResponse implements JsonpSerializable {
 		public final Builder results(
 				Function<CleanupRepositoryResults.Builder, ObjectBuilder<CleanupRepositoryResults>> fn) {
 			return this.results(fn.apply(new CleanupRepositoryResults.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -112,7 +112,7 @@ public class FollowIndexStats implements JsonpSerializable {
 	 * Builder for {@link FollowIndexStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowIndexStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FollowIndexStats> {
 		private String index;
 
 		private List<ShardStats> shards;
@@ -152,6 +152,11 @@ public class FollowIndexStats implements JsonpSerializable {
 		 */
 		public final Builder shards(Function<ShardStats.Builder, ObjectBuilder<ShardStats>> fn) {
 			return shards(fn.apply(new ShardStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

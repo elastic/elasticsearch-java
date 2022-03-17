@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -202,7 +202,7 @@ public class MatrixStatsFields implements JsonpSerializable {
 	 * Builder for {@link MatrixStatsFields}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MatrixStatsFields> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MatrixStatsFields> {
 		private String name;
 
 		private Long count;
@@ -304,6 +304,11 @@ public class MatrixStatsFields implements JsonpSerializable {
 		 */
 		public final Builder correlation(String key, Double value) {
 			this.correlation = _mapPut(this.correlation, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

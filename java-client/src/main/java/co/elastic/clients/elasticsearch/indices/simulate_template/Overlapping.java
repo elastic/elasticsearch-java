@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -113,7 +113,7 @@ public class Overlapping implements JsonpSerializable {
 	 * Builder for {@link Overlapping}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Overlapping> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Overlapping> {
 		private String name;
 
 		private List<String> indexPatterns;
@@ -143,6 +143,11 @@ public class Overlapping implements JsonpSerializable {
 		 */
 		public final Builder indexPatterns(String value, String... values) {
 			this.indexPatterns = _listAdd(this.indexPatterns, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

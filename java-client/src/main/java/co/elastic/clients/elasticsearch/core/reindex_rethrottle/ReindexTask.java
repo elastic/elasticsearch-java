@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -228,7 +228,7 @@ public class ReindexTask implements JsonpSerializable {
 	 * Builder for {@link ReindexTask}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReindexTask> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ReindexTask> {
 		private String action;
 
 		private Boolean cancellable;
@@ -345,6 +345,11 @@ public class ReindexTask implements JsonpSerializable {
 		 */
 		public final Builder headers(String key, List<String> value) {
 			this.headers = _mapPut(this.headers, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

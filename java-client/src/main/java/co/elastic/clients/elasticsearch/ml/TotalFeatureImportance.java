@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -141,7 +141,9 @@ public class TotalFeatureImportance implements JsonpSerializable {
 	 * Builder for {@link TotalFeatureImportance}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TotalFeatureImportance> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TotalFeatureImportance> {
 		private String featureName;
 
 		private List<TotalFeatureImportanceStatistics> importance;
@@ -235,6 +237,11 @@ public class TotalFeatureImportance implements JsonpSerializable {
 		public final Builder classes(
 				Function<TotalFeatureImportanceClass.Builder, ObjectBuilder<TotalFeatureImportanceClass>> fn) {
 			return classes(fn.apply(new TotalFeatureImportanceClass.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

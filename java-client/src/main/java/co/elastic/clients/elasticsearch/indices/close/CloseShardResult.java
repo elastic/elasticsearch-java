@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -100,7 +100,7 @@ public class CloseShardResult implements JsonpSerializable {
 	 * Builder for {@link CloseShardResult}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseShardResult> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CloseShardResult> {
 		private List<ShardFailure> failures;
 
 		/**
@@ -130,6 +130,11 @@ public class CloseShardResult implements JsonpSerializable {
 		 */
 		public final Builder failures(Function<ShardFailure.Builder, ObjectBuilder<ShardFailure>> fn) {
 			return failures(fn.apply(new ShardFailure.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

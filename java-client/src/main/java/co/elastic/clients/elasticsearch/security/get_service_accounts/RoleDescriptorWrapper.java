@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -90,7 +90,9 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 	 * Builder for {@link RoleDescriptorWrapper}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleDescriptorWrapper> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RoleDescriptorWrapper> {
 		private RoleDescriptor roleDescriptor;
 
 		/**
@@ -106,6 +108,11 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 		 */
 		public final Builder roleDescriptor(Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
 			return this.roleDescriptor(fn.apply(new RoleDescriptor.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

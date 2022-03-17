@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -191,7 +191,7 @@ public class AliasesRecord implements JsonpSerializable {
 	 * Builder for {@link AliasesRecord}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AliasesRecord> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AliasesRecord> {
 		@Nullable
 		private String alias;
 
@@ -267,6 +267,11 @@ public class AliasesRecord implements JsonpSerializable {
 		 */
 		public final Builder isWriteIndex(@Nullable String value) {
 			this.isWriteIndex = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

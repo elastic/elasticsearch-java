@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -173,7 +173,7 @@ public class StoreStats implements JsonpSerializable {
 	 * Builder for {@link StoreStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StoreStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<StoreStats> {
 		@Nullable
 		private String size;
 
@@ -235,6 +235,11 @@ public class StoreStats implements JsonpSerializable {
 		 */
 		public final Builder totalDataSetSizeInBytes(@Nullable Integer value) {
 			this.totalDataSetSizeInBytes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

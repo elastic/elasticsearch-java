@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -227,7 +227,7 @@ public class RoleDescriptor implements JsonpSerializable {
 	 * Builder for {@link RoleDescriptor}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleDescriptor> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RoleDescriptor> {
 		private List<String> cluster;
 
 		private List<IndicesPrivileges> indices;
@@ -412,6 +412,11 @@ public class RoleDescriptor implements JsonpSerializable {
 		 */
 		public final Builder transientMetadata(String key, JsonData value) {
 			this.transientMetadata = _mapPut(this.transientMetadata, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

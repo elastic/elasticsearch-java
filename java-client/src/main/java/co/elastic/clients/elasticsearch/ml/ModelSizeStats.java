@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -379,7 +379,7 @@ public class ModelSizeStats implements JsonpSerializable {
 	 * Builder for {@link ModelSizeStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ModelSizeStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ModelSizeStats> {
 		private Long bucketAllocationFailuresCount;
 
 		private String jobId;
@@ -599,6 +599,11 @@ public class ModelSizeStats implements JsonpSerializable {
 		 */
 		public final Builder timestamp(@Nullable Long value) {
 			this.timestamp = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

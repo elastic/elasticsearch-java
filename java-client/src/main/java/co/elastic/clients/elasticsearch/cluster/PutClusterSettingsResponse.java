@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -136,7 +136,9 @@ public class PutClusterSettingsResponse implements JsonpSerializable {
 	 * Builder for {@link PutClusterSettingsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutClusterSettingsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutClusterSettingsResponse> {
 		private Boolean acknowledged;
 
 		private Map<String, JsonData> persistent;
@@ -188,6 +190,11 @@ public class PutClusterSettingsResponse implements JsonpSerializable {
 		 */
 		public final Builder transient_(String key, JsonData value) {
 			this.transient_ = _mapPut(this.transient_, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

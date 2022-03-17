@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -228,7 +228,7 @@ public class NodeInfoJvmMemory implements JsonpSerializable {
 	 * Builder for {@link NodeInfoJvmMemory}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoJvmMemory> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoJvmMemory> {
 		@Nullable
 		private String directMax;
 
@@ -331,6 +331,11 @@ public class NodeInfoJvmMemory implements JsonpSerializable {
 		 */
 		public final Builder nonHeapMaxInBytes(long value) {
 			this.nonHeapMaxInBytes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

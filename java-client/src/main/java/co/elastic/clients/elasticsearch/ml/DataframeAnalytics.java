@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -223,7 +223,9 @@ public class DataframeAnalytics implements JsonpSerializable {
 	 * Builder for {@link DataframeAnalytics}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalytics> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataframeAnalytics> {
 		@Nullable
 		private DataframeAnalyticsStats analysisStats;
 
@@ -394,6 +396,11 @@ public class DataframeAnalytics implements JsonpSerializable {
 		 */
 		public final Builder state(DataframeState value) {
 			this.state = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

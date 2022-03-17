@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -172,7 +172,7 @@ public class PipelineSettings implements JsonpSerializable {
 	 * Builder for {@link PipelineSettings}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PipelineSettings> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PipelineSettings> {
 		private Integer pipelineWorkers;
 
 		private Integer pipelineBatchSize;
@@ -240,6 +240,11 @@ public class PipelineSettings implements JsonpSerializable {
 		 */
 		public final Builder queueCheckpointWrites(int value) {
 			this.queueCheckpointWrites = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

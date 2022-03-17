@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -209,7 +209,7 @@ public class GetAsyncResponse implements JsonpSerializable {
 	 * Builder for {@link GetAsyncResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAsyncResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetAsyncResponse> {
 		private String id;
 
 		private Boolean isRunning;
@@ -333,6 +333,11 @@ public class GetAsyncResponse implements JsonpSerializable {
 		 */
 		public final Builder rows(List<JsonData> value, List<JsonData>... values) {
 			this.rows = _listAdd(this.rows, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

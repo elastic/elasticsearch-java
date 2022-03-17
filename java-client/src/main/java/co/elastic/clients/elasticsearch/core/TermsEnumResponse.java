@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -126,7 +126,7 @@ public class TermsEnumResponse implements JsonpSerializable {
 	 * Builder for {@link TermsEnumResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsEnumResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TermsEnumResponse> {
 		private ShardStatistics shards;
 
 		private List<String> terms;
@@ -173,6 +173,11 @@ public class TermsEnumResponse implements JsonpSerializable {
 		 */
 		public final Builder complete(boolean value) {
 			this.complete = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 
