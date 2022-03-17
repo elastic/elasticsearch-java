@@ -97,8 +97,9 @@ public class EqlGetResponse<TEvent> extends EqlSearchResponseBase<TEvent> {
 	 * Json deserializer for {@link EqlGetResponse} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<EqlGetResponse<Object>> _DESERIALIZER = createEqlGetResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:eql.get.TEvent"));
+	public static final JsonpDeserializer<EqlGetResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createEqlGetResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:eql.get.TEvent")));
 
 	protected static <TEvent> void setupEqlGetResponseDeserializer(
 			ObjectDeserializer<EqlGetResponse.Builder<TEvent>> op, JsonpDeserializer<TEvent> tEventDeserializer) {

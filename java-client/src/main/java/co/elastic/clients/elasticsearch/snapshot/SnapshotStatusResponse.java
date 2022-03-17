@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -98,7 +98,9 @@ public class SnapshotStatusResponse implements JsonpSerializable {
 	 * Builder for {@link SnapshotStatusResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotStatusResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<SnapshotStatusResponse> {
 		private List<Status> snapshots;
 
 		/**
@@ -128,6 +130,11 @@ public class SnapshotStatusResponse implements JsonpSerializable {
 		 */
 		public final Builder snapshots(Function<Status.Builder, ObjectBuilder<Status>> fn) {
 			return snapshots(fn.apply(new Status.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

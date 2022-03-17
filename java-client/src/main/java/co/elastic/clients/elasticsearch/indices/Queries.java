@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -93,7 +93,7 @@ public class Queries implements JsonpSerializable {
 	 * Builder for {@link Queries}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Queries> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Queries> {
 		@Nullable
 		private CacheQueries cache;
 
@@ -110,6 +110,11 @@ public class Queries implements JsonpSerializable {
 		 */
 		public final Builder cache(Function<CacheQueries.Builder, ObjectBuilder<CacheQueries>> fn) {
 			return this.cache(fn.apply(new CacheQueries.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

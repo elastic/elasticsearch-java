@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
@@ -148,7 +148,7 @@ public class BucketCorrelationFunctionCountCorrelationIndicator implements Jsonp
 	 * Builder for {@link BucketCorrelationFunctionCountCorrelationIndicator}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<BucketCorrelationFunctionCountCorrelationIndicator> {
 		private Integer docCount;
@@ -224,6 +224,11 @@ public class BucketCorrelationFunctionCountCorrelationIndicator implements Jsonp
 		 */
 		public final Builder fractions(Double value, Double... values) {
 			this.fractions = _listAdd(this.fractions, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

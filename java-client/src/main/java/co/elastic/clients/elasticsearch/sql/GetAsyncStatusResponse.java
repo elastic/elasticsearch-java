@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Number;
@@ -184,7 +184,9 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 	 * Builder for {@link GetAsyncStatusResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAsyncStatusResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetAsyncStatusResponse> {
 		private String id;
 
 		private Boolean isRunning;
@@ -264,6 +266,11 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 		 */
 		public final Builder completionStatus(@Nullable Number value) {
 			this.completionStatus = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

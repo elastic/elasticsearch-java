@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -99,7 +99,7 @@ public class TermsGrouping implements JsonpSerializable {
 	 * Builder for {@link TermsGrouping}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermsGrouping> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TermsGrouping> {
 		private List<String> fields;
 
 		/**
@@ -119,6 +119,11 @@ public class TermsGrouping implements JsonpSerializable {
 		 */
 		public final Builder fields(String value, String... values) {
 			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

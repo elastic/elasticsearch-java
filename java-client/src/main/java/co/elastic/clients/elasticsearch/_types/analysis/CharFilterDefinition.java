@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -215,10 +215,16 @@ public class CharFilterDefinition
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilterDefinition> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CharFilterDefinition> {
 		private Kind _kind;
 		private CharFilterDefinitionVariant _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<CharFilterDefinition> htmlStrip(HtmlStripCharFilter v) {
 			this._kind = Kind.HtmlStrip;
 			this._value = v;

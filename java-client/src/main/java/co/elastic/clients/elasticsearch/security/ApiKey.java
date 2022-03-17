@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -214,7 +214,7 @@ public class ApiKey implements JsonpSerializable {
 	 * Builder for {@link ApiKey}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApiKey> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ApiKey> {
 		@Nullable
 		private Long creation;
 
@@ -310,6 +310,11 @@ public class ApiKey implements JsonpSerializable {
 		 */
 		public final Builder metadata(String key, JsonData value) {
 			this.metadata = _mapPut(this.metadata, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

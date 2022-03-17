@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -111,7 +111,7 @@ public class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Builder for {@link IcuAnalyzer}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IcuAnalyzer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IcuAnalyzer> {
 		private IcuNormalizationType method;
 
 		private IcuNormalizationMode mode;
@@ -129,6 +129,11 @@ public class IcuAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		 */
 		public final Builder mode(IcuNormalizationMode value) {
 			this.mode = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

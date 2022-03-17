@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -118,7 +118,9 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 	 * Builder for {@link DenseVectorIndexOptions}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DenseVectorIndexOptions> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DenseVectorIndexOptions> {
 		private String type;
 
 		private Integer m;
@@ -146,6 +148,11 @@ public class DenseVectorIndexOptions implements JsonpSerializable {
 		 */
 		public final Builder efConstruction(int value) {
 			this.efConstruction = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

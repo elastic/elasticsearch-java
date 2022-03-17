@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -131,7 +131,7 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 	 * Builder for {@link AggregationProfileDelegateDebugFilter}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<AggregationProfileDelegateDebugFilter> {
 		@Nullable
@@ -164,6 +164,11 @@ public class AggregationProfileDelegateDebugFilter implements JsonpSerializable 
 		 */
 		public final Builder specializedFor(@Nullable String value) {
 			this.specializedFor = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

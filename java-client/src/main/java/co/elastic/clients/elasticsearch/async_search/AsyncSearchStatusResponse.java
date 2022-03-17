@@ -178,8 +178,9 @@ public class AsyncSearchStatusResponse<TDocument> extends AsyncSearchResponseBas
 	 * Json deserializer for {@link AsyncSearchStatusResponse} based on named
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<AsyncSearchStatusResponse<Object>> _DESERIALIZER = createAsyncSearchStatusResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.status.TDocument"));
+	public static final JsonpDeserializer<AsyncSearchStatusResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createAsyncSearchStatusResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.status.TDocument")));
 
 	protected static <TDocument> void setupAsyncSearchStatusResponseDeserializer(
 			ObjectDeserializer<AsyncSearchStatusResponse.Builder<TDocument>> op,

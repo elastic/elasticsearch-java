@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -91,7 +91,9 @@ public class GetTrialStatusResponse implements JsonpSerializable {
 	 * Builder for {@link GetTrialStatusResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTrialStatusResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetTrialStatusResponse> {
 		private Boolean eligibleToStartTrial;
 
 		/**
@@ -99,6 +101,11 @@ public class GetTrialStatusResponse implements JsonpSerializable {
 		 */
 		public final Builder eligibleToStartTrial(boolean value) {
 			this.eligibleToStartTrial = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

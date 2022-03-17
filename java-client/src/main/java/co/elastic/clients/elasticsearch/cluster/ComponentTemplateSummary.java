@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -182,7 +182,9 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 	 * Builder for {@link ComponentTemplateSummary}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ComponentTemplateSummary> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ComponentTemplateSummary> {
 		@Nullable
 		private Map<String, JsonData> meta;
 
@@ -296,6 +298,11 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		 */
 		public final Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
 			return aliases(key, fn.apply(new AliasDefinition.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

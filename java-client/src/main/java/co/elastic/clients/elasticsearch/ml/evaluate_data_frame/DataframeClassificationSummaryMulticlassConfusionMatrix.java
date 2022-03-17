@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.List;
@@ -114,7 +114,7 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 	 * Builder for {@link DataframeClassificationSummaryMulticlassConfusionMatrix}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataframeClassificationSummaryMulticlassConfusionMatrix> {
 		private List<ConfusionMatrixItem> confusionMatrix;
@@ -156,6 +156,11 @@ public class DataframeClassificationSummaryMulticlassConfusionMatrix implements 
 		 */
 		public final Builder otherActualClassCount(int value) {
 			this.otherActualClassCount = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

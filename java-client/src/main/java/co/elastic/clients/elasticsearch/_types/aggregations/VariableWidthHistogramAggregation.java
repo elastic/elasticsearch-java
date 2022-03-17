@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -156,7 +156,9 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 	 * Builder for {@link VariableWidthHistogramAggregation}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<VariableWidthHistogramAggregation> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<VariableWidthHistogramAggregation> {
 		@Nullable
 		private String field;
 
@@ -198,6 +200,11 @@ public class VariableWidthHistogramAggregation implements AggregationVariant, Js
 		 */
 		public final Builder initialBuffer(@Nullable Integer value) {
 			this.initialBuffer = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

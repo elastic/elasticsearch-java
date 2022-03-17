@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -115,7 +115,7 @@ public class Jobs implements JsonpSerializable {
 	 * Builder for {@link Jobs}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Jobs> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Jobs> {
 		@Nullable
 		private Map<String, Job> jobs = new HashMap<>();
 
@@ -164,6 +164,11 @@ public class Jobs implements JsonpSerializable {
 		 */
 		public final Builder all(Function<AllJobs.Builder, ObjectBuilder<AllJobs>> fn) {
 			return this.all(fn.apply(new AllJobs.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

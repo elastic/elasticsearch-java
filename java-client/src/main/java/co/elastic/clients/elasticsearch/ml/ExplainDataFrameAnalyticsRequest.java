@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -280,7 +280,9 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 	 * Builder for {@link ExplainDataFrameAnalyticsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainDataFrameAnalyticsRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ExplainDataFrameAnalyticsRequest> {
 		@Nullable
 		private Boolean allowLazyStart;
 
@@ -461,6 +463,11 @@ public class ExplainDataFrameAnalyticsRequest extends RequestBase implements Jso
 		public final Builder source(
 				Function<DataframeAnalyticsSource.Builder, ObjectBuilder<DataframeAnalyticsSource>> fn) {
 			return this.source(fn.apply(new DataframeAnalyticsSource.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

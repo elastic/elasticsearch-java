@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -117,7 +117,7 @@ public class TopClassEntry implements JsonpSerializable {
 	 * Builder for {@link TopClassEntry}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopClassEntry> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TopClassEntry> {
 		private String className;
 
 		private Double classProbability;
@@ -145,6 +145,11 @@ public class TopClassEntry implements JsonpSerializable {
 		 */
 		public final Builder classScore(double value) {
 			this.classScore = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.List;
@@ -112,7 +112,9 @@ public class GetDatafeedStatsResponse implements JsonpSerializable {
 	 * Builder for {@link GetDatafeedStatsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDatafeedStatsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetDatafeedStatsResponse> {
 		private Long count;
 
 		private List<DatafeedStats> datafeeds;
@@ -152,6 +154,11 @@ public class GetDatafeedStatsResponse implements JsonpSerializable {
 		 */
 		public final Builder datafeeds(Function<DatafeedStats.Builder, ObjectBuilder<DatafeedStats>> fn) {
 			return datafeeds(fn.apply(new DatafeedStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

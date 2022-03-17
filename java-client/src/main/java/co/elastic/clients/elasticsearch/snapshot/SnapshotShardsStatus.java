@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -102,7 +102,9 @@ public class SnapshotShardsStatus implements JsonpSerializable {
 	 * Builder for {@link SnapshotShardsStatus}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotShardsStatus> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<SnapshotShardsStatus> {
 		private ShardsStatsStage stage;
 
 		private ShardsStatsSummary stats;
@@ -128,6 +130,11 @@ public class SnapshotShardsStatus implements JsonpSerializable {
 		 */
 		public final Builder stats(Function<ShardsStatsSummary.Builder, ObjectBuilder<ShardsStatsSummary>> fn) {
 			return this.stats(fn.apply(new ShardsStatsSummary.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

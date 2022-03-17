@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -127,7 +127,9 @@ public class RollupJobSummaryField implements JsonpSerializable {
 	 * Builder for {@link RollupJobSummaryField}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobSummaryField> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RollupJobSummaryField> {
 		private String agg;
 
 		@Nullable
@@ -165,6 +167,11 @@ public class RollupJobSummaryField implements JsonpSerializable {
 		 */
 		public final Builder calendarInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.calendarInterval(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

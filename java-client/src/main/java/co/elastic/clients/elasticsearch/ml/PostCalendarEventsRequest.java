@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -121,7 +121,9 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 	 * Builder for {@link PostCalendarEventsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostCalendarEventsRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PostCalendarEventsRequest> {
 		private String calendarId;
 
 		private List<CalendarEvent> events;
@@ -175,6 +177,11 @@ public class PostCalendarEventsRequest extends RequestBase implements JsonpSeria
 		 */
 		public final Builder events(Function<CalendarEvent.Builder, ObjectBuilder<CalendarEvent>> fn) {
 			return events(fn.apply(new CalendarEvent.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

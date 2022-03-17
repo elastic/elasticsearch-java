@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -111,7 +111,9 @@ public class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 	 * Builder for {@link DataframeAnalyticsStatsProgress}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsStatsProgress> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataframeAnalyticsStatsProgress> {
 		private String phase;
 
 		private Integer progressPercent;
@@ -134,6 +136,11 @@ public class DataframeAnalyticsStatsProgress implements JsonpSerializable {
 		 */
 		public final Builder progressPercent(int value) {
 			this.progressPercent = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -108,7 +108,9 @@ public class IndexMappingRecord implements JsonpSerializable {
 	 * Builder for {@link IndexMappingRecord}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexMappingRecord> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<IndexMappingRecord> {
 		@Nullable
 		private TypeMapping item;
 
@@ -142,6 +144,11 @@ public class IndexMappingRecord implements JsonpSerializable {
 		 */
 		public final Builder mappings(Function<TypeMapping.Builder, ObjectBuilder<TypeMapping>> fn) {
 			return this.mappings(fn.apply(new TypeMapping.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

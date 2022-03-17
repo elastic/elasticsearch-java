@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -147,7 +147,7 @@ public class RequestCacheStats implements JsonpSerializable {
 	 * Builder for {@link RequestCacheStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RequestCacheStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RequestCacheStats> {
 		private Long evictions;
 
 		private Long hitCount;
@@ -196,6 +196,11 @@ public class RequestCacheStats implements JsonpSerializable {
 		 */
 		public final Builder missCount(long value) {
 			this.missCount = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

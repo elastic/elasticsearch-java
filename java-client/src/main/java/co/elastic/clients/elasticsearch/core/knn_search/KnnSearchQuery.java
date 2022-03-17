@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -148,7 +148,7 @@ public class KnnSearchQuery implements JsonpSerializable {
 	 * Builder for {@link KnnSearchQuery}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<KnnSearchQuery> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<KnnSearchQuery> {
 		private String field;
 
 		private List<Double> queryVector;
@@ -208,6 +208,11 @@ public class KnnSearchQuery implements JsonpSerializable {
 		 */
 		public final Builder numCandidates(long value) {
 			this.numCandidates = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

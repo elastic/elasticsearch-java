@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -114,7 +114,7 @@ public class ClusterIngest implements JsonpSerializable {
 	 * Builder for {@link ClusterIngest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterIngest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterIngest> {
 		private Integer numberOfPipelines;
 
 		private Map<String, ClusterProcessor> processorStats;
@@ -155,6 +155,11 @@ public class ClusterIngest implements JsonpSerializable {
 		public final Builder processorStats(String key,
 				Function<ClusterProcessor.Builder, ObjectBuilder<ClusterProcessor>> fn) {
 			return processorStats(key, fn.apply(new ClusterProcessor.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

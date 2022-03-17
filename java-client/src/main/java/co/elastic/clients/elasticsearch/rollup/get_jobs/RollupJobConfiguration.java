@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -194,7 +194,9 @@ public class RollupJobConfiguration implements JsonpSerializable {
 	 * Builder for {@link RollupJobConfiguration}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobConfiguration> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RollupJobConfiguration> {
 		private String cron;
 
 		private Groupings groups;
@@ -308,6 +310,11 @@ public class RollupJobConfiguration implements JsonpSerializable {
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

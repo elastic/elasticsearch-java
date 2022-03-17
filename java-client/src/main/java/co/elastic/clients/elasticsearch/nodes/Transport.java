@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -257,7 +257,7 @@ public class Transport implements JsonpSerializable {
 	 * Builder for {@link Transport}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Transport> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Transport> {
 		@Nullable
 		private List<TransportHistogram> inboundHandlingTimeHistogram;
 
@@ -413,6 +413,11 @@ public class Transport implements JsonpSerializable {
 		 */
 		public final Builder totalOutboundConnections(@Nullable Long value) {
 			this.totalOutboundConnections = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

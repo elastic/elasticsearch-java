@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -89,7 +89,7 @@ public class CloseJobResponse implements JsonpSerializable {
 	 * Builder for {@link CloseJobResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CloseJobResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CloseJobResponse> {
 		private Boolean closed;
 
 		/**
@@ -97,6 +97,11 @@ public class CloseJobResponse implements JsonpSerializable {
 		 */
 		public final Builder closed(boolean value) {
 			this.closed = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

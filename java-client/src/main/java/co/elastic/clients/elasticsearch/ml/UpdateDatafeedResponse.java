@@ -37,7 +37,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -314,7 +314,9 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 	 * Builder for {@link UpdateDatafeedResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateDatafeedResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<UpdateDatafeedResponse> {
 		private Map<String, Aggregation> aggregations;
 
 		private ChunkingConfig chunkingConfig;
@@ -565,6 +567,11 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		 */
 		public final Builder scrollSize(int value) {
 			this.scrollSize = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

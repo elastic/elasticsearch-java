@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -110,7 +110,7 @@ public class HistogramOrder implements JsonpSerializable {
 	 * Builder for {@link HistogramOrder}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HistogramOrder> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HistogramOrder> {
 		@Nullable
 		private SortOrder count;
 
@@ -130,6 +130,11 @@ public class HistogramOrder implements JsonpSerializable {
 		 */
 		public final Builder key(@Nullable SortOrder value) {
 			this.key = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

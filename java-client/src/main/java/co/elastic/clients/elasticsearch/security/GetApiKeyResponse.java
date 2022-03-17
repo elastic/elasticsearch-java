@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -98,7 +98,7 @@ public class GetApiKeyResponse implements JsonpSerializable {
 	 * Builder for {@link GetApiKeyResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetApiKeyResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetApiKeyResponse> {
 		private List<ApiKey> apiKeys;
 
 		/**
@@ -128,6 +128,11 @@ public class GetApiKeyResponse implements JsonpSerializable {
 		 */
 		public final Builder apiKeys(Function<ApiKey.Builder, ObjectBuilder<ApiKey>> fn) {
 			return apiKeys(fn.apply(new ApiKey.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -105,7 +105,9 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 	 * Builder for {@link ClearScrollRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearScrollRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClearScrollRequest> {
 		@Nullable
 		private List<String> scrollId;
 
@@ -126,6 +128,11 @@ public class ClearScrollRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder scrollId(String value, String... values) {
 			this.scrollId = _listAdd(this.scrollId, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

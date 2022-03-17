@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -142,7 +142,7 @@ public class ShardsSegment implements JsonpSerializable {
 	 * Builder for {@link ShardsSegment}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardsSegment> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShardsSegment> {
 		private Integer numCommittedSegments;
 
 		private ShardSegmentRouting routing;
@@ -209,6 +209,11 @@ public class ShardsSegment implements JsonpSerializable {
 		 */
 		public final Builder segments(String key, Function<Segment.Builder, ObjectBuilder<Segment>> fn) {
 			return segments(key, fn.apply(new Segment.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

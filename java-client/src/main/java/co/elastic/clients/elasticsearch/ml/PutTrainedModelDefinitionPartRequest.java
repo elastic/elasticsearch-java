@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -163,7 +163,7 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 	 * Builder for {@link PutTrainedModelDefinitionPartRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<PutTrainedModelDefinitionPartRequest> {
 		private String definition;
@@ -229,6 +229,11 @@ public class PutTrainedModelDefinitionPartRequest extends RequestBase implements
 		 */
 		public final Builder totalParts(int value) {
 			this.totalParts = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

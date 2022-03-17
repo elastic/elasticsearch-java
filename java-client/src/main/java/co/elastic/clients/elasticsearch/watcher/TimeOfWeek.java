@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -118,7 +118,7 @@ public class TimeOfWeek implements JsonpSerializable {
 	 * Builder for {@link TimeOfWeek}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimeOfWeek> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TimeOfWeek> {
 		private List<String> at;
 
 		private List<Day> on;
@@ -160,6 +160,11 @@ public class TimeOfWeek implements JsonpSerializable {
 		 */
 		public final Builder on(Day value, Day... values) {
 			this.on = _listAdd(this.on, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

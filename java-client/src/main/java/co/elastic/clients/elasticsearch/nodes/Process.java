@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -163,7 +163,7 @@ public class Process implements JsonpSerializable {
 	 * Builder for {@link Process}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Process> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Process> {
 		@Nullable
 		private Cpu cpu;
 
@@ -230,6 +230,11 @@ public class Process implements JsonpSerializable {
 		 */
 		public final Builder timestamp(@Nullable Long value) {
 			this.timestamp = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

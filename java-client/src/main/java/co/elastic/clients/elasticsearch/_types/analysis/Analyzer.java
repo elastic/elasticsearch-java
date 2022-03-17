@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -379,10 +379,14 @@ public class Analyzer implements TaggedUnion<Analyzer.Kind, AnalyzerVariant>, Js
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Analyzer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Analyzer> {
 		private Kind _kind;
 		private AnalyzerVariant _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<Analyzer> custom(CustomAnalyzer v) {
 			this._kind = Kind.Custom;
 			this._value = v;

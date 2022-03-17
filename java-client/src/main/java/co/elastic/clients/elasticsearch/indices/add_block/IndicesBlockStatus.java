@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -105,7 +105,9 @@ public class IndicesBlockStatus implements JsonpSerializable {
 	 * Builder for {@link IndicesBlockStatus}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesBlockStatus> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<IndicesBlockStatus> {
 		private String name;
 
 		private Boolean blocked;
@@ -123,6 +125,11 @@ public class IndicesBlockStatus implements JsonpSerializable {
 		 */
 		public final Builder blocked(boolean value) {
 			this.blocked = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

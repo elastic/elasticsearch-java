@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -164,7 +164,9 @@ public class DatafeedTimingStats implements JsonpSerializable {
 	 * Builder for {@link DatafeedTimingStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DatafeedTimingStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DatafeedTimingStats> {
 		private Long bucketCount;
 
 		private Double exponentialAverageSearchTimePerHourMs;
@@ -223,6 +225,11 @@ public class DatafeedTimingStats implements JsonpSerializable {
 		 */
 		public final Builder averageSearchTimePerBucketMs(@Nullable Number value) {
 			this.averageSearchTimePerBucketMs = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

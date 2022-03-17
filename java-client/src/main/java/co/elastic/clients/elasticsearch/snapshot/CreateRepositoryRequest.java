@@ -36,7 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -184,7 +184,9 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 	 * Builder for {@link CreateRepositoryRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateRepositoryRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CreateRepositoryRequest> {
 		@Nullable
 		private Time masterTimeout;
 
@@ -296,6 +298,11 @@ public class CreateRepositoryRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder verify(@Nullable Boolean value) {
 			this.verify = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

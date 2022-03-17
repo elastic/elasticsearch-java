@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -120,7 +120,7 @@ public class SourceFilter implements JsonpSerializable {
 	 * Builder for {@link SourceFilter}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SourceFilter> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SourceFilter> {
 		@Nullable
 		private List<String> excludes;
 
@@ -164,6 +164,11 @@ public class SourceFilter implements JsonpSerializable {
 		 */
 		public final Builder includes(String value, String... values) {
 			this.includes = _listAdd(this.includes, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

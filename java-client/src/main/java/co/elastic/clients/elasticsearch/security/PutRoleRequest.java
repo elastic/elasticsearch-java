@@ -38,7 +38,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -283,7 +283,7 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 	 * Builder for {@link PutRoleRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PutRoleRequest> {
 		@Nullable
 		private List<ApplicationPrivileges> applications;
 
@@ -536,6 +536,11 @@ public class PutRoleRequest extends RequestBase implements JsonpSerializable {
 		public final Builder transientMetadata(
 				Function<TransientMetadata.Builder, ObjectBuilder<TransientMetadata>> fn) {
 			return this.transientMetadata(fn.apply(new TransientMetadata.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

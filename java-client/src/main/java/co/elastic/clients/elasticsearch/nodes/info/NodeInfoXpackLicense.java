@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -90,7 +90,9 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 	 * Builder for {@link NodeInfoXpackLicense}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackLicense> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<NodeInfoXpackLicense> {
 		private NodeInfoXpackLicenseType selfGenerated;
 
 		/**
@@ -107,6 +109,11 @@ public class NodeInfoXpackLicense implements JsonpSerializable {
 		public final Builder selfGenerated(
 				Function<NodeInfoXpackLicenseType.Builder, ObjectBuilder<NodeInfoXpackLicenseType>> fn) {
 			return this.selfGenerated(fn.apply(new NodeInfoXpackLicenseType.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

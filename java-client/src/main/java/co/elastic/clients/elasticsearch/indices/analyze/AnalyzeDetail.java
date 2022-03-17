@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.List;
@@ -167,7 +167,7 @@ public class AnalyzeDetail implements JsonpSerializable {
 	 * Builder for {@link AnalyzeDetail}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AnalyzeDetail> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AnalyzeDetail> {
 		@Nullable
 		private AnalyzerDetail analyzer;
 
@@ -276,6 +276,11 @@ public class AnalyzeDetail implements JsonpSerializable {
 		 */
 		public final Builder tokenizer(Function<TokenDetail.Builder, ObjectBuilder<TokenDetail>> fn) {
 			return this.tokenizer(fn.apply(new TokenDetail.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

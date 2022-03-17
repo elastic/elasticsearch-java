@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -162,7 +162,7 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	 * Builder for {@link ExplainResponse}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<ExplainResponse<TDocument>> {
 		private String index;
@@ -245,6 +245,11 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link ExplainResponse}.
 		 *
@@ -273,8 +278,9 @@ public class ExplainResponse<TDocument> implements JsonpSerializable {
 	 * Json deserializer for {@link ExplainResponse} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<ExplainResponse<Object>> _DESERIALIZER = createExplainResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.explain.TDocument"));
+	public static final JsonpDeserializer<ExplainResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createExplainResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.explain.TDocument")));
 
 	protected static <TDocument> void setupExplainResponseDeserializer(
 			ObjectDeserializer<ExplainResponse.Builder<TDocument>> op,

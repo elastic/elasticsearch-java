@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -132,7 +132,7 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 	 * Builder for {@link IntervalsAnyOf}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsAnyOf> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IntervalsAnyOf> {
 		private List<Intervals> intervals;
 
 		@Nullable
@@ -180,6 +180,11 @@ public class IntervalsAnyOf implements IntervalsQueryVariant, IntervalsVariant, 
 		 */
 		public final Builder filter(Function<IntervalsFilter.Builder, ObjectBuilder<IntervalsFilter>> fn) {
 			return this.filter(fn.apply(new IntervalsFilter.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

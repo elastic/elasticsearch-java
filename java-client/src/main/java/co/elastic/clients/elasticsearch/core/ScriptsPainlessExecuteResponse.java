@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -99,7 +99,7 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 	 * Builder for {@link ScriptsPainlessExecuteResponse}.
 	 */
 
-	public static class Builder<TResult> extends ObjectBuilderBase
+	public static class Builder<TResult> extends WithJsonObjectBuilderBase<Builder<TResult>>
 			implements
 				ObjectBuilder<ScriptsPainlessExecuteResponse<TResult>> {
 		private TResult result;
@@ -121,6 +121,11 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 		 */
 		public final Builder<TResult> tResultSerializer(@Nullable JsonpSerializer<TResult> value) {
 			this.tResultSerializer = value;
+			return this;
+		}
+
+		@Override
+		protected Builder<TResult> self() {
 			return this;
 		}
 
@@ -153,8 +158,9 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 	 * Json deserializer for {@link ScriptsPainlessExecuteResponse} based on named
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<ScriptsPainlessExecuteResponse<Object>> _DESERIALIZER = createScriptsPainlessExecuteResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult"));
+	public static final JsonpDeserializer<ScriptsPainlessExecuteResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createScriptsPainlessExecuteResponseDeserializer(new NamedDeserializer<>(
+					"co.elastic.clients:Deserializer:_global.scripts_painless_execute.TResult")));
 
 	protected static <TResult> void setupScriptsPainlessExecuteResponseDeserializer(
 			ObjectDeserializer<ScriptsPainlessExecuteResponse.Builder<TResult>> op,

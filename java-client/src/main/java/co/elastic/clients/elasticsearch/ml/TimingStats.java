@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -112,7 +112,7 @@ public class TimingStats implements JsonpSerializable {
 	 * Builder for {@link TimingStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TimingStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TimingStats> {
 		private Integer elapsedTime;
 
 		@Nullable
@@ -135,6 +135,11 @@ public class TimingStats implements JsonpSerializable {
 		 */
 		public final Builder iterationTime(@Nullable Integer value) {
 			this.iterationTime = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

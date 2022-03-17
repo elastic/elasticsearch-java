@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -92,7 +92,7 @@ public class SamlServiceProviderMetadataResponse implements JsonpSerializable {
 	 * Builder for {@link SamlServiceProviderMetadataResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<SamlServiceProviderMetadataResponse> {
 		private String metadata;
@@ -102,6 +102,11 @@ public class SamlServiceProviderMetadataResponse implements JsonpSerializable {
 		 */
 		public final Builder metadata(String value) {
 			this.metadata = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

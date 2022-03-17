@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -179,7 +179,7 @@ public class SlackMessage implements JsonpSerializable {
 	 * Builder for {@link SlackMessage}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SlackMessage> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SlackMessage> {
 		private List<SlackAttachment> attachments;
 
 		@Nullable
@@ -280,6 +280,11 @@ public class SlackMessage implements JsonpSerializable {
 		 */
 		public final Builder to(String value, String... values) {
 			this.to = _listAdd(this.to, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

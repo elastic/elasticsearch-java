@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -178,7 +178,7 @@ public class GetTokenResponse implements JsonpSerializable {
 	 * Builder for {@link GetTokenResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTokenResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetTokenResponse> {
 		private String accessToken;
 
 		private Long expiresIn;
@@ -256,6 +256,11 @@ public class GetTokenResponse implements JsonpSerializable {
 		 */
 		public final Builder authentication(Function<AuthenticatedUser.Builder, ObjectBuilder<AuthenticatedUser>> fn) {
 			return this.authentication(fn.apply(new AuthenticatedUser.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

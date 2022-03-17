@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -121,7 +121,9 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 	 * Builder for {@link PreviewDataFrameAnalyticsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDataFrameAnalyticsRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PreviewDataFrameAnalyticsRequest> {
 		@Nullable
 		private DataframePreviewConfig config;
 
@@ -159,6 +161,11 @@ public class PreviewDataFrameAnalyticsRequest extends RequestBase implements Jso
 		 */
 		public final Builder id(@Nullable String value) {
 			this.id = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

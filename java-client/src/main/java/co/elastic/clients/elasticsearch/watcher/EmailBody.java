@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -111,7 +111,7 @@ public class EmailBody implements JsonpSerializable {
 	 * Builder for {@link EmailBody}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EmailBody> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<EmailBody> {
 		@Nullable
 		private String html;
 
@@ -131,6 +131,11 @@ public class EmailBody implements JsonpSerializable {
 		 */
 		public final Builder text(@Nullable String value) {
 			this.text = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

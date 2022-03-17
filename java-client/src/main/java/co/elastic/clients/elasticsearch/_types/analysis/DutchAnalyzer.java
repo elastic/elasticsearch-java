@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -110,7 +110,7 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Builder for {@link DutchAnalyzer}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DutchAnalyzer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DutchAnalyzer> {
 		@Nullable
 		private List<String> stopwords;
 
@@ -131,6 +131,11 @@ public class DutchAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		 */
 		public final Builder stopwords(String value, String... values) {
 			this.stopwords = _listAdd(this.stopwords, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

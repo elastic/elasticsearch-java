@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -122,7 +122,9 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 	 * Builder for {@link OneHotEncodingPreprocessor}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OneHotEncodingPreprocessor> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<OneHotEncodingPreprocessor> {
 		private String field;
 
 		private Map<String, String> hotMap;
@@ -152,6 +154,11 @@ public class OneHotEncodingPreprocessor implements PreprocessorVariant, JsonpSer
 		 */
 		public final Builder hotMap(String key, String value) {
 			this.hotMap = _mapPut(this.hotMap, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

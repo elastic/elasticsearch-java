@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -103,7 +103,9 @@ public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 	 * Builder for {@link GetAutoscalingCapacityResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetAutoscalingCapacityResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetAutoscalingCapacityResponse> {
 		private Map<String, AutoscalingDeciders> policies;
 
 		/**
@@ -134,6 +136,11 @@ public class GetAutoscalingCapacityResponse implements JsonpSerializable {
 		public final Builder policies(String key,
 				Function<AutoscalingDeciders.Builder, ObjectBuilder<AutoscalingDeciders>> fn) {
 			return policies(key, fn.apply(new AutoscalingDeciders.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

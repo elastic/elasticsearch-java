@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -323,7 +323,7 @@ public class SnapshotsRecord implements JsonpSerializable {
 	 * Builder for {@link SnapshotsRecord}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SnapshotsRecord> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SnapshotsRecord> {
 		@Nullable
 		private String id;
 
@@ -499,6 +499,11 @@ public class SnapshotsRecord implements JsonpSerializable {
 		 */
 		public final Builder reason(@Nullable String value) {
 			this.reason = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

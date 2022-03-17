@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -123,7 +123,7 @@ public class TopMetrics implements JsonpSerializable {
 	 * Builder for {@link TopMetrics}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TopMetrics> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TopMetrics> {
 		private List<FieldValue> sort;
 
 		private Map<String, FieldValue> metrics;
@@ -184,6 +184,11 @@ public class TopMetrics implements JsonpSerializable {
 		 */
 		public final Builder metrics(String key, Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
 			return metrics(key, fn.apply(new FieldValue.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

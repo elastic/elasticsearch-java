@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -145,7 +145,9 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 	 * Builder for {@link DataframeRegressionSummary}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeRegressionSummary> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataframeRegressionSummary> {
 		@Nullable
 		private DataframeEvaluationValue huber;
 
@@ -220,6 +222,11 @@ public class DataframeRegressionSummary implements JsonpSerializable {
 		public final Builder rSquared(
 				Function<DataframeEvaluationValue.Builder, ObjectBuilder<DataframeEvaluationValue>> fn) {
 			return this.rSquared(fn.apply(new DataframeEvaluationValue.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

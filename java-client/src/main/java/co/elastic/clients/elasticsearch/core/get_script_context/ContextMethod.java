@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -126,7 +126,7 @@ public class ContextMethod implements JsonpSerializable {
 	 * Builder for {@link ContextMethod}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ContextMethod> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ContextMethod> {
 		private String name;
 
 		private String returnType;
@@ -176,6 +176,11 @@ public class ContextMethod implements JsonpSerializable {
 		 */
 		public final Builder params(Function<ContextMethodParam.Builder, ObjectBuilder<ContextMethodParam>> fn) {
 			return params(fn.apply(new ContextMethodParam.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -113,7 +113,9 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 	 * Builder for {@link ReloadSearchAnalyzersResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReloadSearchAnalyzersResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ReloadSearchAnalyzersResponse> {
 		private List<ReloadDetails> reloadDetails;
 
 		private ShardStatistics shards;
@@ -160,6 +162,11 @@ public class ReloadSearchAnalyzersResponse implements JsonpSerializable {
 		 */
 		public final Builder shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
 			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

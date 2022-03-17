@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -270,7 +270,7 @@ public class DataStream implements JsonpSerializable {
 	 * Builder for {@link DataStream}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStream> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DataStream> {
 		private String name;
 
 		private DataStreamTimestampField timestampField;
@@ -434,6 +434,11 @@ public class DataStream implements JsonpSerializable {
 		 */
 		public final Builder allowCustomRouting(@Nullable Boolean value) {
 			this.allowCustomRouting = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

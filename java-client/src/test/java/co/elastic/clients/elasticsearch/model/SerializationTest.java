@@ -74,7 +74,10 @@ public class SerializationTest extends ModelTestCase {
 //
 //        withFieldNames.removeAll(annotationNames);
 //
-//        assertFalse("Some classes with the field but not the annotation: " + withFieldNames, !withFieldNames.isEmpty());
+//        assertFalse(
+//            withFieldNames.size() + " classes with the field but not the annotation: " + withFieldNames,
+//            !withFieldNames.isEmpty()
+//        );
 
     }
 

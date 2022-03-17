@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -100,7 +100,7 @@ public class GarbageCollector implements JsonpSerializable {
 	 * Builder for {@link GarbageCollector}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GarbageCollector> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GarbageCollector> {
 		@Nullable
 		private Map<String, GarbageCollectorTotal> collectors;
 
@@ -132,6 +132,11 @@ public class GarbageCollector implements JsonpSerializable {
 		public final Builder collectors(String key,
 				Function<GarbageCollectorTotal.Builder, ObjectBuilder<GarbageCollectorTotal>> fn) {
 			return collectors(key, fn.apply(new GarbageCollectorTotal.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

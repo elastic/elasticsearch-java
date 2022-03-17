@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -99,7 +99,9 @@ public class GetDataStreamResponse implements JsonpSerializable {
 	 * Builder for {@link GetDataStreamResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetDataStreamResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetDataStreamResponse> {
 		private List<DataStream> dataStreams;
 
 		/**
@@ -129,6 +131,11 @@ public class GetDataStreamResponse implements JsonpSerializable {
 		 */
 		public final Builder dataStreams(Function<DataStream.Builder, ObjectBuilder<DataStream>> fn) {
 			return dataStreams(fn.apply(new DataStream.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

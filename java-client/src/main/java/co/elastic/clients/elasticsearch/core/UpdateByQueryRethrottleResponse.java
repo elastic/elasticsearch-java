@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -103,7 +103,9 @@ public class UpdateByQueryRethrottleResponse implements JsonpSerializable {
 	 * Builder for {@link UpdateByQueryRethrottleResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateByQueryRethrottleResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<UpdateByQueryRethrottleResponse> {
 		private Map<String, UpdateByQueryRethrottleNode> nodes;
 
 		/**
@@ -134,6 +136,11 @@ public class UpdateByQueryRethrottleResponse implements JsonpSerializable {
 		public final Builder nodes(String key,
 				Function<UpdateByQueryRethrottleNode.Builder, ObjectBuilder<UpdateByQueryRethrottleNode>> fn) {
 			return nodes(key, fn.apply(new UpdateByQueryRethrottleNode.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

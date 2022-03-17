@@ -30,11 +30,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -54,7 +55,7 @@ import javax.annotation.Nullable;
  *      "../../doc-files/api-spec.html#_global.search._types.CompletionSuggestOption">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	@Nullable
 	private final Boolean collateMatch;
@@ -247,7 +248,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	 * Builder for {@link CompletionSuggestOption}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<CompletionSuggestOption<TDocument>> {
 		@Nullable
@@ -382,6 +383,11 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link CompletionSuggestOption}.
 		 *
@@ -405,6 +411,14 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> CompletionSuggestOption.setupCompletionSuggestOptionDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link CompletionSuggestOption} based on named
+	 * deserializers provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<CompletionSuggestOption<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createCompletionSuggestOptionDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search._types.TDocument")));
 
 	protected static <TDocument> void setupCompletionSuggestOptionDeserializer(
 			ObjectDeserializer<CompletionSuggestOption.Builder<TDocument>> op,

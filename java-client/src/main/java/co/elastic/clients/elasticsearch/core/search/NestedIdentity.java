@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -123,7 +123,7 @@ public class NestedIdentity implements JsonpSerializable {
 	 * Builder for {@link NestedIdentity}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NestedIdentity> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NestedIdentity> {
 		private String field;
 
 		private Integer offset;
@@ -160,6 +160,11 @@ public class NestedIdentity implements JsonpSerializable {
 		 */
 		public final Builder nested(Function<NestedIdentity.Builder, ObjectBuilder<NestedIdentity>> fn) {
 			return this.nested(fn.apply(new NestedIdentity.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

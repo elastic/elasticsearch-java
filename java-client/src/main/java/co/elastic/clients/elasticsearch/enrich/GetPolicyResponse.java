@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -98,7 +98,7 @@ public class GetPolicyResponse implements JsonpSerializable {
 	 * Builder for {@link GetPolicyResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPolicyResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetPolicyResponse> {
 		private List<EnrichSummary> policies;
 
 		/**
@@ -128,6 +128,11 @@ public class GetPolicyResponse implements JsonpSerializable {
 		 */
 		public final Builder policies(Function<EnrichSummary.Builder, ObjectBuilder<EnrichSummary>> fn) {
 			return policies(fn.apply(new EnrichSummary.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

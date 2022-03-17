@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -90,7 +90,9 @@ public class RevertModelSnapshotResponse implements JsonpSerializable {
 	 * Builder for {@link RevertModelSnapshotResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RevertModelSnapshotResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RevertModelSnapshotResponse> {
 		private ModelSnapshot model;
 
 		/**
@@ -106,6 +108,11 @@ public class RevertModelSnapshotResponse implements JsonpSerializable {
 		 */
 		public final Builder model(Function<ModelSnapshot.Builder, ObjectBuilder<ModelSnapshot>> fn) {
 			return this.model(fn.apply(new ModelSnapshot.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

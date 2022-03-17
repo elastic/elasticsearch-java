@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -134,7 +134,7 @@ public class WarmerStats implements JsonpSerializable {
 	 * Builder for {@link WarmerStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WarmerStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<WarmerStats> {
 		private Long current;
 
 		private Long total;
@@ -173,6 +173,11 @@ public class WarmerStats implements JsonpSerializable {
 		 */
 		public final Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

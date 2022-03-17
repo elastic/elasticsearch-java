@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -317,7 +317,7 @@ public class Action implements JsonpSerializable {
 	 * Builder for {@link Action}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Action> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Action> {
 		@Nullable
 		private ActionType actionType;
 
@@ -533,6 +533,11 @@ public class Action implements JsonpSerializable {
 		 */
 		public final Builder webhook(Function<WebhookAction.Builder, ObjectBuilder<WebhookAction>> fn) {
 			return this.webhook(fn.apply(new WebhookAction.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

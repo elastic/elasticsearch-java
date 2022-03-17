@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -233,7 +233,7 @@ public class RollupJobStats implements JsonpSerializable {
 	 * Builder for {@link RollupJobStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RollupJobStats> {
 		private Long documentsProcessed;
 
 		private Long indexFailures;
@@ -351,6 +351,11 @@ public class RollupJobStats implements JsonpSerializable {
 		 */
 		public final Builder processingTotal(long value) {
 			this.processingTotal = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

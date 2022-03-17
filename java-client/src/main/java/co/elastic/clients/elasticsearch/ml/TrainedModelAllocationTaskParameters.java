@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -110,7 +110,7 @@ public class TrainedModelAllocationTaskParameters implements JsonpSerializable {
 	 * Builder for {@link TrainedModelAllocationTaskParameters}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<TrainedModelAllocationTaskParameters> {
 		private Integer modelBytes;
@@ -134,6 +134,11 @@ public class TrainedModelAllocationTaskParameters implements JsonpSerializable {
 		 */
 		public final Builder modelId(String value) {
 			this.modelId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

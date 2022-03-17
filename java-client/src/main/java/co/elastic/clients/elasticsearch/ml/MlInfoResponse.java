@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -132,7 +132,7 @@ public class MlInfoResponse implements JsonpSerializable {
 	 * Builder for {@link MlInfoResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInfoResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<MlInfoResponse> {
 		private Defaults defaults;
 
 		private Limits limits;
@@ -192,6 +192,11 @@ public class MlInfoResponse implements JsonpSerializable {
 		 */
 		public final Builder nativeCode(Function<NativeCode.Builder, ObjectBuilder<NativeCode>> fn) {
 			return this.nativeCode(fn.apply(new NativeCode.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

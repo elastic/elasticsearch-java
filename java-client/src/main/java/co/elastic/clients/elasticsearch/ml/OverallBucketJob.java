@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -104,7 +104,7 @@ public class OverallBucketJob implements JsonpSerializable {
 	 * Builder for {@link OverallBucketJob}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OverallBucketJob> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<OverallBucketJob> {
 		private String jobId;
 
 		private Double maxAnomalyScore;
@@ -122,6 +122,11 @@ public class OverallBucketJob implements JsonpSerializable {
 		 */
 		public final Builder maxAnomalyScore(double value) {
 			this.maxAnomalyScore = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

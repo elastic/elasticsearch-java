@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -109,7 +109,7 @@ public class SoftDeletes implements JsonpSerializable {
 	 * Builder for {@link SoftDeletes}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SoftDeletes> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SoftDeletes> {
 		private Boolean enabled;
 
 		@Nullable
@@ -136,6 +136,11 @@ public class SoftDeletes implements JsonpSerializable {
 		 */
 		public final Builder retentionLeasePeriod(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.retentionLeasePeriod(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

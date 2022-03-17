@@ -36,7 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -160,7 +160,9 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 	 * Builder for {@link StopDatafeedRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StopDatafeedRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<StopDatafeedRequest> {
 		@Nullable
 		private Boolean allowNoMatch;
 
@@ -222,6 +224,11 @@ public class StopDatafeedRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

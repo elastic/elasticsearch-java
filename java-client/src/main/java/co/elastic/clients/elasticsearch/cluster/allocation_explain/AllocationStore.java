@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -159,7 +159,7 @@ public class AllocationStore implements JsonpSerializable {
 	 * Builder for {@link AllocationStore}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AllocationStore> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AllocationStore> {
 		private String allocationId;
 
 		private Boolean found;
@@ -217,6 +217,11 @@ public class AllocationStore implements JsonpSerializable {
 		 */
 		public final Builder storeException(String value) {
 			this.storeException = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

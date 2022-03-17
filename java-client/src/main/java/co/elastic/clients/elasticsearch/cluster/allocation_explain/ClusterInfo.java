@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -186,7 +186,7 @@ public class ClusterInfo implements JsonpSerializable {
 	 * Builder for {@link ClusterInfo}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterInfo> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterInfo> {
 		private Map<String, NodeDiskUsage> nodes;
 
 		private Map<String, Long> shardSizes;
@@ -314,6 +314,11 @@ public class ClusterInfo implements JsonpSerializable {
 		 */
 		public final Builder reservedSizes(Function<ReservedSize.Builder, ObjectBuilder<ReservedSize>> fn) {
 			return reservedSizes(fn.apply(new ReservedSize.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**
