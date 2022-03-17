@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -141,7 +141,9 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 	 * Builder for {@link ConfusionMatrixItem}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ConfusionMatrixItem> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ConfusionMatrixItem> {
 		private String actualClass;
 
 		private Integer actualClassDocCount;
@@ -201,6 +203,11 @@ public class ConfusionMatrixItem implements JsonpSerializable {
 		 */
 		public final Builder otherPredictedClassDocCount(int value) {
 			this.otherPredictedClassDocCount = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -101,7 +101,9 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 	 * Builder for {@link NodeInfoXpackSecuritySsl}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackSecuritySsl> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<NodeInfoXpackSecuritySsl> {
 		private Map<String, String> ssl;
 
 		/**
@@ -121,6 +123,11 @@ public class NodeInfoXpackSecuritySsl implements JsonpSerializable {
 		 */
 		public final Builder ssl(String key, String value) {
 			this.ssl = _mapPut(this.ssl, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

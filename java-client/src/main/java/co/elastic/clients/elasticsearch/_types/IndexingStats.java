@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -284,7 +284,7 @@ public class IndexingStats implements JsonpSerializable {
 	 * Builder for {@link IndexingStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexingStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexingStats> {
 		private Long indexCurrent;
 
 		private Long deleteCurrent;
@@ -448,6 +448,11 @@ public class IndexingStats implements JsonpSerializable {
 		 */
 		public final Builder types(String key, Function<IndexingStats.Builder, ObjectBuilder<IndexingStats>> fn) {
 			return types(key, fn.apply(new IndexingStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

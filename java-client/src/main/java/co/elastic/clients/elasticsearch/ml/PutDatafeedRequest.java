@@ -42,7 +42,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -400,7 +400,9 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 	 * Builder for {@link PutDatafeedRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutDatafeedRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutDatafeedRequest> {
 		@Nullable
 		private Map<String, Aggregation> aggregations;
 
@@ -741,6 +743,11 @@ public class PutDatafeedRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder scrollSize(@Nullable Integer value) {
 			this.scrollSize = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

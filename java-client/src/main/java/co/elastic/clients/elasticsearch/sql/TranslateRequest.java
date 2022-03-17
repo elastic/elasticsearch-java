@@ -36,7 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -150,7 +150,7 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 	 * Builder for {@link TranslateRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TranslateRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TranslateRequest> {
 		@Nullable
 		private Integer fetchSize;
 
@@ -198,6 +198,11 @@ public class TranslateRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

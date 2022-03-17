@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -147,7 +147,7 @@ public class RollupJobSummary implements JsonpSerializable {
 	 * Builder for {@link RollupJobSummary}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupJobSummary> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RollupJobSummary> {
 		private Map<String, List<RollupJobSummaryField>> fields;
 
 		private String indexPattern;
@@ -197,6 +197,11 @@ public class RollupJobSummary implements JsonpSerializable {
 		 */
 		public final Builder rollupIndex(String value) {
 			this.rollupIndex = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

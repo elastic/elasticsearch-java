@@ -29,11 +29,12 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
  *      "../../doc-files/api-spec.html#_types.aggregations.ExtendedBounds">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class ExtendedBounds<T> implements JsonpSerializable {
 	private final T max;
 
@@ -110,7 +111,9 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 	 * Builder for {@link ExtendedBounds}.
 	 */
 
-	public static class Builder<T> extends ObjectBuilderBase implements ObjectBuilder<ExtendedBounds<T>> {
+	public static class Builder<T> extends WithJsonObjectBuilderBase<Builder<T>>
+			implements
+				ObjectBuilder<ExtendedBounds<T>> {
 		private T max;
 
 		private T min;
@@ -143,6 +146,11 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<T> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link ExtendedBounds}.
 		 *
@@ -166,6 +174,14 @@ public class ExtendedBounds<T> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<T>>) Builder::new,
 				op -> ExtendedBounds.setupExtendedBoundsDeserializer(op, tDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link ExtendedBounds} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<ExtendedBounds<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createExtendedBoundsDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_types.aggregations.T")));
 
 	protected static <T> void setupExtendedBoundsDeserializer(ObjectDeserializer<ExtendedBounds.Builder<T>> op,
 			JsonpDeserializer<T> tDeserializer) {

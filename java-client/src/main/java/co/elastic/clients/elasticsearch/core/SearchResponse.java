@@ -42,7 +42,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -365,7 +365,7 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 
 	protected abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>>
 			extends
-				ObjectBuilderBase {
+				WithJsonObjectBuilderBase<BuilderT> {
 		private Long took;
 
 		private Boolean timedOut;
@@ -644,8 +644,9 @@ public class SearchResponse<TDocument> implements JsonpSerializable {
 	 * Json deserializer for {@link SearchResponse} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<SearchResponse<Object>> _DESERIALIZER = createSearchResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search.TDocument"));
+	public static final JsonpDeserializer<SearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createSearchResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search.TDocument")));
 
 	protected static <TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>> void setupSearchResponseDeserializer(
 			ObjectDeserializer<BuilderT> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {

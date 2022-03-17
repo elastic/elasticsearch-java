@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -105,7 +105,9 @@ public class CreateServiceTokenResponse implements JsonpSerializable {
 	 * Builder for {@link CreateServiceTokenResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateServiceTokenResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CreateServiceTokenResponse> {
 		private Boolean created;
 
 		private Token token;
@@ -131,6 +133,11 @@ public class CreateServiceTokenResponse implements JsonpSerializable {
 		 */
 		public final Builder token(Function<Token.Builder, ObjectBuilder<Token>> fn) {
 			return this.token(fn.apply(new Token.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

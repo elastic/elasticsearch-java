@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -142,7 +142,9 @@ public class EnrichStatsResponse implements JsonpSerializable {
 	 * Builder for {@link EnrichStatsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnrichStatsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<EnrichStatsResponse> {
 		private List<CoordinatorStats> coordinatorStats;
 
 		private List<ExecutingPolicy> executingPolicies;
@@ -235,6 +237,11 @@ public class EnrichStatsResponse implements JsonpSerializable {
 		 */
 		public final Builder cacheStats(Function<CacheStats.Builder, ObjectBuilder<CacheStats>> fn) {
 			return cacheStats(fn.apply(new CacheStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

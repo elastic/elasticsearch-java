@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -131,7 +131,7 @@ public class CompletionStats implements JsonpSerializable {
 	 * Builder for {@link CompletionStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompletionStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CompletionStats> {
 		private Long sizeInBytes;
 
 		@Nullable
@@ -183,6 +183,11 @@ public class CompletionStats implements JsonpSerializable {
 		 */
 		public final Builder fields(String key, Function<FieldSizeUsage.Builder, ObjectBuilder<FieldSizeUsage>> fn) {
 			return fields(key, fn.apply(new FieldSizeUsage.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

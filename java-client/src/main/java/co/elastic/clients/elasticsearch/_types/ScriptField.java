@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -108,7 +108,7 @@ public class ScriptField implements JsonpSerializable {
 	 * Builder for {@link ScriptField}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ScriptField> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ScriptField> {
 		private Script script;
 
 		@Nullable
@@ -134,6 +134,11 @@ public class ScriptField implements JsonpSerializable {
 		 */
 		public final Builder ignoreFailure(@Nullable Boolean value) {
 			this.ignoreFailure = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

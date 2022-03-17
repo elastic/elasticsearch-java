@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -143,7 +143,7 @@ public class RescoreQuery implements JsonpSerializable {
 	 * Builder for {@link RescoreQuery}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RescoreQuery> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RescoreQuery> {
 		private Query query;
 
 		@Nullable
@@ -191,6 +191,11 @@ public class RescoreQuery implements JsonpSerializable {
 		 */
 		public final Builder scoreMode(@Nullable ScoreMode value) {
 			this.scoreMode = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

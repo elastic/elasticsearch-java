@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -272,7 +272,7 @@ public class Info implements JsonpSerializable {
 	 * Builder for {@link Info}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Info> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Info> {
 		private String action;
 
 		private Boolean cancellable;
@@ -434,6 +434,11 @@ public class Info implements JsonpSerializable {
 		 */
 		public final Builder parentTaskId(@Nullable String value) {
 			this.parentTaskId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

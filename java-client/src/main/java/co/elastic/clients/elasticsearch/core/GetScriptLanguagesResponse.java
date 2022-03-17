@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -121,7 +121,9 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 	 * Builder for {@link GetScriptLanguagesResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetScriptLanguagesResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetScriptLanguagesResponse> {
 		private List<LanguageContext> languageContexts;
 
 		private List<String> typesAllowed;
@@ -172,6 +174,11 @@ public class GetScriptLanguagesResponse implements JsonpSerializable {
 		 */
 		public final Builder typesAllowed(String value, String... values) {
 			this.typesAllowed = _listAdd(this.typesAllowed, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

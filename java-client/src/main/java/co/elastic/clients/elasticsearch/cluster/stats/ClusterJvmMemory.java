@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -103,7 +103,7 @@ public class ClusterJvmMemory implements JsonpSerializable {
 	 * Builder for {@link ClusterJvmMemory}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterJvmMemory> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ClusterJvmMemory> {
 		private Long heapMaxInBytes;
 
 		private Long heapUsedInBytes;
@@ -121,6 +121,11 @@ public class ClusterJvmMemory implements JsonpSerializable {
 		 */
 		public final Builder heapUsedInBytes(long value) {
 			this.heapUsedInBytes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

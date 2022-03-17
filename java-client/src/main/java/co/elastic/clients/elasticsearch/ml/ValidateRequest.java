@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -220,7 +220,7 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 	 * Builder for {@link ValidateRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ValidateRequest> {
 		@Nullable
 		private AnalysisConfig analysisConfig;
 
@@ -334,6 +334,11 @@ public class ValidateRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder resultsIndexName(@Nullable String value) {
 			this.resultsIndexName = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

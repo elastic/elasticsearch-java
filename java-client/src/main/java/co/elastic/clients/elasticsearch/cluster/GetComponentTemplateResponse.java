@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -100,7 +100,9 @@ public class GetComponentTemplateResponse implements JsonpSerializable {
 	 * Builder for {@link GetComponentTemplateResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetComponentTemplateResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetComponentTemplateResponse> {
 		private List<ComponentTemplate> componentTemplates;
 
 		/**
@@ -131,6 +133,11 @@ public class GetComponentTemplateResponse implements JsonpSerializable {
 		public final Builder componentTemplates(
 				Function<ComponentTemplate.Builder, ObjectBuilder<ComponentTemplate>> fn) {
 			return componentTemplates(fn.apply(new ComponentTemplate.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

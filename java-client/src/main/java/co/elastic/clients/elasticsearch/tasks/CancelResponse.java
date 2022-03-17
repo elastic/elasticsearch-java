@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -122,7 +122,7 @@ public class CancelResponse implements JsonpSerializable {
 	 * Builder for {@link CancelResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CancelResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CancelResponse> {
 		@Nullable
 		private List<ErrorCause> nodeFailures;
 
@@ -185,6 +185,11 @@ public class CancelResponse implements JsonpSerializable {
 		public final Builder nodes(String key,
 				Function<TaskExecutingNode.Builder, ObjectBuilder<TaskExecutingNode>> fn) {
 			return nodes(key, fn.apply(new TaskExecutingNode.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

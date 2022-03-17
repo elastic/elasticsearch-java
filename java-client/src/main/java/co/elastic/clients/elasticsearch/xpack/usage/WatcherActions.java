@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -100,7 +100,7 @@ public class WatcherActions implements JsonpSerializable {
 	 * Builder for {@link WatcherActions}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherActions> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<WatcherActions> {
 		private Map<String, WatcherActionTotals> actions;
 
 		/**
@@ -131,6 +131,11 @@ public class WatcherActions implements JsonpSerializable {
 		public final Builder actions(String key,
 				Function<WatcherActionTotals.Builder, ObjectBuilder<WatcherActionTotals>> fn) {
 			return actions(key, fn.apply(new WatcherActionTotals.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

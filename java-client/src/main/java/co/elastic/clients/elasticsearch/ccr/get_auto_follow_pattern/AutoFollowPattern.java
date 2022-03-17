@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -104,7 +104,7 @@ public class AutoFollowPattern implements JsonpSerializable {
 	 * Builder for {@link AutoFollowPattern}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoFollowPattern> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AutoFollowPattern> {
 		private String name;
 
 		private AutoFollowPatternSummary pattern;
@@ -131,6 +131,11 @@ public class AutoFollowPattern implements JsonpSerializable {
 		public final Builder pattern(
 				Function<AutoFollowPatternSummary.Builder, ObjectBuilder<AutoFollowPatternSummary>> fn) {
 			return this.pattern(fn.apply(new AutoFollowPatternSummary.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

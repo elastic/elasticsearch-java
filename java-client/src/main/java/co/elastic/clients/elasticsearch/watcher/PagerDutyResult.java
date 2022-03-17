@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -89,7 +89,7 @@ public class PagerDutyResult implements JsonpSerializable {
 	 * Builder for {@link PagerDutyResult}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PagerDutyResult> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PagerDutyResult> {
 		private PagerDutyActionEventResult sentEvent;
 
 		/**
@@ -106,6 +106,11 @@ public class PagerDutyResult implements JsonpSerializable {
 		public final Builder sentEvent(
 				Function<PagerDutyActionEventResult.Builder, ObjectBuilder<PagerDutyActionEventResult>> fn) {
 			return this.sentEvent(fn.apply(new PagerDutyActionEventResult.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

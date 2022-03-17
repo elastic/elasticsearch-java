@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
@@ -143,10 +143,14 @@ public class TriggerEvent implements TaggedUnion<TriggerEvent.Kind, Object>, Jso
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TriggerEvent> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TriggerEvent> {
 		private Kind _kind;
 		private Object _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<TriggerEvent> schedule(ScheduleTriggerEvent v) {
 			this._kind = Kind.Schedule;
 			this._value = v;

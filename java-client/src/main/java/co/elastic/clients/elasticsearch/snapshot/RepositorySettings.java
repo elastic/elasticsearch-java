@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -161,7 +161,9 @@ public class RepositorySettings implements JsonpSerializable {
 	 * Builder for {@link RepositorySettings}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RepositorySettings> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RepositorySettings> {
 		@Nullable
 		private String chunkSize;
 
@@ -213,6 +215,11 @@ public class RepositorySettings implements JsonpSerializable {
 		 */
 		public final Builder readOnly(@Nullable Boolean value) {
 			this.readOnly = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

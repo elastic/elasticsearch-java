@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -304,7 +304,7 @@ public class ShardRecovery implements JsonpSerializable {
 	 * Builder for {@link ShardRecovery}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardRecovery> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShardRecovery> {
 		private Long id;
 
 		private RecoveryIndexStatus index;
@@ -509,6 +509,11 @@ public class ShardRecovery implements JsonpSerializable {
 		 */
 		public final Builder verifyIndex(Function<VerifyIndex.Builder, ObjectBuilder<VerifyIndex>> fn) {
 			return this.verifyIndex(fn.apply(new VerifyIndex.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

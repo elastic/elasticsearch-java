@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -295,7 +295,7 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 	 * Builder for {@link GetBucketsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetBucketsRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetBucketsRequest> {
 		@Nullable
 		private Double anomalyScore;
 
@@ -455,6 +455,11 @@ public class GetBucketsRequest extends RequestBase implements JsonpSerializable 
 		 */
 		public final Builder timestamp(@Nullable String value) {
 			this.timestamp = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

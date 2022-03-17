@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -128,7 +128,9 @@ public class ClearApiKeyCacheResponse implements JsonpSerializable {
 	 * Builder for {@link ClearApiKeyCacheResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClearApiKeyCacheResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClearApiKeyCacheResponse> {
 		private NodeStatistics nodeStats;
 
 		private String clusterName;
@@ -185,6 +187,11 @@ public class ClearApiKeyCacheResponse implements JsonpSerializable {
 		 */
 		public final Builder nodes(String key, Function<ClusterNode.Builder, ObjectBuilder<ClusterNode>> fn) {
 			return nodes(key, fn.apply(new ClusterNode.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

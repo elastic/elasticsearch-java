@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -107,7 +107,7 @@ public class WebhookResult implements JsonpSerializable {
 	 * Builder for {@link WebhookResult}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WebhookResult> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<WebhookResult> {
 		private HttpInputRequestResult request;
 
 		@Nullable
@@ -143,6 +143,11 @@ public class WebhookResult implements JsonpSerializable {
 		public final Builder response(
 				Function<HttpInputResponseResult.Builder, ObjectBuilder<HttpInputResponseResult>> fn) {
 			return this.response(fn.apply(new HttpInputResponseResult.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

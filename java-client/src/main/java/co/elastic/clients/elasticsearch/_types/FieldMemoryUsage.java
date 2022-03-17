@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -108,7 +108,7 @@ public class FieldMemoryUsage implements JsonpSerializable {
 	 * Builder for {@link FieldMemoryUsage}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FieldMemoryUsage> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FieldMemoryUsage> {
 		@Nullable
 		private String memorySize;
 
@@ -127,6 +127,11 @@ public class FieldMemoryUsage implements JsonpSerializable {
 		 */
 		public final Builder memorySizeInBytes(long value) {
 			this.memorySizeInBytes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -155,7 +155,7 @@ public class Pipeline implements JsonpSerializable {
 	 * Builder for {@link Pipeline}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Pipeline> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Pipeline> {
 		private String description;
 
 		private String lastModified;
@@ -228,6 +228,11 @@ public class Pipeline implements JsonpSerializable {
 		 */
 		public final Builder pipelineSettings(Function<PipelineSettings.Builder, ObjectBuilder<PipelineSettings>> fn) {
 			return this.pipelineSettings(fn.apply(new PipelineSettings.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.List;
@@ -114,7 +114,9 @@ public class PostFeatureUpgradeResponse implements JsonpSerializable {
 	 * Builder for {@link PostFeatureUpgradeResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostFeatureUpgradeResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PostFeatureUpgradeResponse> {
 		private Boolean accepted;
 
 		private List<MigrationFeature> features;
@@ -154,6 +156,11 @@ public class PostFeatureUpgradeResponse implements JsonpSerializable {
 		 */
 		public final Builder features(Function<MigrationFeature.Builder, ObjectBuilder<MigrationFeature>> fn) {
 			return features(fn.apply(new MigrationFeature.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.util.Objects;
@@ -95,7 +95,7 @@ public class EwmaModelSettings implements JsonpSerializable {
 	 * Builder for {@link EwmaModelSettings}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EwmaModelSettings> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<EwmaModelSettings> {
 		@Nullable
 		private Float alpha;
 
@@ -104,6 +104,11 @@ public class EwmaModelSettings implements JsonpSerializable {
 		 */
 		public final Builder alpha(@Nullable Float value) {
 			this.alpha = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

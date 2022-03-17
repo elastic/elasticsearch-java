@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -167,7 +167,7 @@ public class ExploreResponse implements JsonpSerializable {
 	 * Builder for {@link ExploreResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExploreResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ExploreResponse> {
 		private List<Connection> connections;
 
 		private List<ShardFailure> failures;
@@ -279,6 +279,11 @@ public class ExploreResponse implements JsonpSerializable {
 		 */
 		public final Builder vertices(Function<Vertex.Builder, ObjectBuilder<Vertex>> fn) {
 			return vertices(fn.apply(new Vertex.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

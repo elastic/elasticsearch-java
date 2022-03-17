@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -123,7 +123,9 @@ public class MigrationFeatureIndexInfo implements JsonpSerializable {
 	 * Builder for {@link MigrationFeatureIndexInfo}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MigrationFeatureIndexInfo> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<MigrationFeatureIndexInfo> {
 		private String index;
 
 		private String version;
@@ -160,6 +162,11 @@ public class MigrationFeatureIndexInfo implements JsonpSerializable {
 		 */
 		public final Builder failureCause(Function<ErrorCause.Builder, ObjectBuilder<ErrorCause>> fn) {
 			return this.failureCause(fn.apply(new ErrorCause.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

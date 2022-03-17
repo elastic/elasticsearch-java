@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -153,7 +153,9 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 	 * Builder for {@link GeoIpDownloadStatistics}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoIpDownloadStatistics> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GeoIpDownloadStatistics> {
 		private Integer successfulDownloads;
 
 		private Integer failedDownloads;
@@ -211,6 +213,11 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 		 */
 		public final Builder skippedUpdates(int value) {
 			this.skippedUpdates = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

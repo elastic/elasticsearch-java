@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -169,7 +169,7 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 	 * Builder for {@link DataframeEvaluationRegressionMetrics}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataframeEvaluationRegressionMetrics> {
 		@Nullable
@@ -275,6 +275,11 @@ public class DataframeEvaluationRegressionMetrics implements JsonpSerializable {
 		 */
 		public final Builder rSquared(String key, JsonData value) {
 			this.rSquared = _mapPut(this.rSquared, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

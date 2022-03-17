@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -152,7 +152,9 @@ public class InvalidateTokenRequest extends RequestBase implements JsonpSerializ
 	 * Builder for {@link InvalidateTokenRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<InvalidateTokenRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<InvalidateTokenRequest> {
 		@Nullable
 		private String realmName;
 
@@ -194,6 +196,11 @@ public class InvalidateTokenRequest extends RequestBase implements JsonpSerializ
 		 */
 		public final Builder username(@Nullable String value) {
 			this.username = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

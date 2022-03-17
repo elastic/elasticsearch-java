@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -136,7 +136,7 @@ public class IndexDetails implements JsonpSerializable {
 	 * Builder for {@link IndexDetails}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexDetails> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexDetails> {
 		private Integer shardCount;
 
 		@Nullable
@@ -175,6 +175,11 @@ public class IndexDetails implements JsonpSerializable {
 		 */
 		public final Builder maxSegmentsPerShard(long value) {
 			this.maxSegmentsPerShard = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

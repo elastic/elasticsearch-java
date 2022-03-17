@@ -36,7 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -138,7 +138,9 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 	 * Builder for {@link EvaluateDataFrameRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EvaluateDataFrameRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<EvaluateDataFrameRequest> {
 		private DataframeEvaluation evaluation;
 
 		private String index;
@@ -192,6 +194,11 @@ public class EvaluateDataFrameRequest extends RequestBase implements JsonpSerial
 		 */
 		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
 			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

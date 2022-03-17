@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -154,7 +154,7 @@ public class WatcherWatch implements JsonpSerializable {
 	 * Builder for {@link WatcherWatch}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatcherWatch> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<WatcherWatch> {
 		private Map<String, Counter> input;
 
 		@Nullable
@@ -265,6 +265,11 @@ public class WatcherWatch implements JsonpSerializable {
 		 */
 		public final Builder trigger(Function<WatcherWatchTrigger.Builder, ObjectBuilder<WatcherWatchTrigger>> fn) {
 			return this.trigger(fn.apply(new WatcherWatchTrigger.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

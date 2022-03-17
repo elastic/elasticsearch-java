@@ -99,8 +99,9 @@ public class GetAsyncSearchResponse<TDocument> extends AsyncSearchDocumentRespon
 	 * Json deserializer for {@link GetAsyncSearchResponse} based on named
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<GetAsyncSearchResponse<Object>> _DESERIALIZER = createGetAsyncSearchResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.get.TDocument"));
+	public static final JsonpDeserializer<GetAsyncSearchResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createGetAsyncSearchResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.get.TDocument")));
 
 	protected static <TDocument> void setupGetAsyncSearchResponseDeserializer(
 			ObjectDeserializer<GetAsyncSearchResponse.Builder<TDocument>> op,

@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Float;
@@ -332,7 +332,7 @@ public class Status implements JsonpSerializable {
 	 * Builder for {@link Status}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Status> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Status> {
 		private Long batches;
 
 		@Nullable
@@ -539,6 +539,11 @@ public class Status implements JsonpSerializable {
 		 */
 		public final Builder versionConflicts(long value) {
 			this.versionConflicts = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -138,7 +138,7 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 	 * Builder for {@link SearchInput}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SearchInput> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SearchInput> {
 		@Nullable
 		private List<String> extract;
 
@@ -196,6 +196,11 @@ public class SearchInput implements InputVariant, JsonpSerializable {
 		 */
 		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.timeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

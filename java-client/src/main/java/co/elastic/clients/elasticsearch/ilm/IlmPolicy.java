@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -108,7 +108,7 @@ public class IlmPolicy implements JsonpSerializable {
 	 * Builder for {@link IlmPolicy}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IlmPolicy> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IlmPolicy> {
 		private Phases phases;
 
 		@Nullable
@@ -134,6 +134,11 @@ public class IlmPolicy implements JsonpSerializable {
 		 */
 		public final Builder name(@Nullable String value) {
 			this.name = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

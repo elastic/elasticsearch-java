@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -129,7 +129,9 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 	 * Builder for {@link MlInferenceIngestProcessor}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlInferenceIngestProcessor> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<MlInferenceIngestProcessor> {
 		private MlInferenceIngestProcessorCount numDocsProcessed;
 
 		private MlCounter pipelines;
@@ -199,6 +201,11 @@ public class MlInferenceIngestProcessor implements JsonpSerializable {
 		public final Builder timeMs(
 				Function<MlInferenceIngestProcessorCount.Builder, ObjectBuilder<MlInferenceIngestProcessorCount>> fn) {
 			return this.timeMs(fn.apply(new MlInferenceIngestProcessorCount.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

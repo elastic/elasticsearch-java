@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -158,7 +158,7 @@ public class DiskUsage implements JsonpSerializable {
 	 * Builder for {@link DiskUsage}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiskUsage> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DiskUsage> {
 		private String path;
 
 		private Long totalBytes;
@@ -216,6 +216,11 @@ public class DiskUsage implements JsonpSerializable {
 		 */
 		public final Builder usedDiskPercent(double value) {
 			this.usedDiskPercent = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

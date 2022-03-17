@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -144,7 +144,9 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 	 * Builder for {@link NodeInfoXpackSecurityAuthcRealms}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpackSecurityAuthcRealms> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<NodeInfoXpackSecurityAuthcRealms> {
 		@Nullable
 		private Map<String, NodeInfoXpackSecurityAuthcRealmsStatus> file;
 
@@ -242,6 +244,11 @@ public class NodeInfoXpackSecurityAuthcRealms implements JsonpSerializable {
 		public final Builder pki(String key,
 				Function<NodeInfoXpackSecurityAuthcRealmsStatus.Builder, ObjectBuilder<NodeInfoXpackSecurityAuthcRealmsStatus>> fn) {
 			return pki(key, fn.apply(new NodeInfoXpackSecurityAuthcRealmsStatus.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

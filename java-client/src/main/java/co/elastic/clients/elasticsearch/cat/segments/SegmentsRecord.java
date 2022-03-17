@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -362,7 +362,7 @@ public class SegmentsRecord implements JsonpSerializable {
 	 * Builder for {@link SegmentsRecord}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SegmentsRecord> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SegmentsRecord> {
 		@Nullable
 		private String index;
 
@@ -555,6 +555,11 @@ public class SegmentsRecord implements JsonpSerializable {
 		 */
 		public final Builder compound(@Nullable String value) {
 			this.compound = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

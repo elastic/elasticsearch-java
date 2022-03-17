@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -110,7 +110,7 @@ public class IndexRouting implements JsonpSerializable {
 	 * Builder for {@link IndexRouting}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRouting> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexRouting> {
 		@Nullable
 		private IndexRoutingAllocation allocation;
 
@@ -147,6 +147,11 @@ public class IndexRouting implements JsonpSerializable {
 		public final Builder rebalance(
 				Function<IndexRoutingRebalance.Builder, ObjectBuilder<IndexRoutingRebalance>> fn) {
 			return this.rebalance(fn.apply(new IndexRoutingRebalance.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

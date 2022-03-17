@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -128,7 +128,9 @@ public class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
 	 * Builder for {@link DataframeAnalyticsStatsDataCounts}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalyticsStatsDataCounts> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataframeAnalyticsStatsDataCounts> {
 		private Integer skippedDocsCount;
 
 		private Integer testDocsCount;
@@ -167,6 +169,11 @@ public class DataframeAnalyticsStatsDataCounts implements JsonpSerializable {
 		 */
 		public final Builder trainingDocsCount(int value) {
 			this.trainingDocsCount = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -118,7 +118,9 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 	 * Builder for {@link DelayedDataCheckConfig}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DelayedDataCheckConfig> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DelayedDataCheckConfig> {
 		@Nullable
 		private Time checkWindow;
 
@@ -159,6 +161,11 @@ public class DelayedDataCheckConfig implements JsonpSerializable {
 		 */
 		public final Builder enabled(boolean value) {
 			this.enabled = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

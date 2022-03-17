@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -129,7 +129,9 @@ public class DateRangeExpression implements JsonpSerializable {
 	 * Builder for {@link DateRangeExpression}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DateRangeExpression> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DateRangeExpression> {
 		@Nullable
 		private FieldDateMath from;
 
@@ -175,6 +177,11 @@ public class DateRangeExpression implements JsonpSerializable {
 		 */
 		public final Builder to(Function<FieldDateMath.Builder, ObjectBuilder<FieldDateMath>> fn) {
 			return this.to(fn.apply(new FieldDateMath.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

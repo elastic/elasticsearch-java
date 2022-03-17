@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -118,7 +118,9 @@ public class PhraseSuggestOption implements JsonpSerializable {
 	 * Builder for {@link PhraseSuggestOption}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestOption> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PhraseSuggestOption> {
 		private String text;
 
 		private String highlighted;
@@ -146,6 +148,11 @@ public class PhraseSuggestOption implements JsonpSerializable {
 		 */
 		public final Builder score(double value) {
 			this.score = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

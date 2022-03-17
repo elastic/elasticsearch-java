@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -171,7 +171,7 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 	 * Builder for {@link CompareCondition}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CompareCondition> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CompareCondition> {
 		@Nullable
 		private String comparison;
 
@@ -241,6 +241,11 @@ public class CompareCondition implements ConditionVariant, JsonpSerializable {
 		public final Builder ctxPayloadValue(
 				Function<CompareContextPayloadCondition.Builder, ObjectBuilder<CompareContextPayloadCondition>> fn) {
 			return this.ctxPayloadValue(fn.apply(new CompareContextPayloadCondition.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -94,7 +94,7 @@ public class DataStream implements JsonpSerializable {
 	 * Builder for {@link DataStream}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataStream> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DataStream> {
 		@Nullable
 		private Boolean hidden;
 
@@ -103,6 +103,11 @@ public class DataStream implements JsonpSerializable {
 		 */
 		public final Builder hidden(@Nullable Boolean value) {
 			this.hidden = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

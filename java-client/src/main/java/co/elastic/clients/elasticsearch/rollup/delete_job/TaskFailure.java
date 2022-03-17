@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -130,7 +130,7 @@ public class TaskFailure implements JsonpSerializable {
 	 * Builder for {@link TaskFailure}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TaskFailure> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TaskFailure> {
 		private String taskId;
 
 		private String nodeId;
@@ -176,6 +176,11 @@ public class TaskFailure implements JsonpSerializable {
 		 */
 		public final Builder reason(Function<TaskFailureReason.Builder, ObjectBuilder<TaskFailureReason>> fn) {
 			return this.reason(fn.apply(new TaskFailureReason.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -33,13 +33,14 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -62,7 +63,7 @@ import javax.annotation.Nullable;
  * @see <a href="../doc-files/api-spec.html#_global.termvectors.Request">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final TDocument doc;
@@ -350,7 +351,7 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 	 * Builder for {@link TermvectorsRequest}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<TermvectorsRequest<TDocument>> {
 		@Nullable
@@ -615,6 +616,11 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link TermvectorsRequest}.
 		 *
@@ -638,6 +644,14 @@ public class TermvectorsRequest<TDocument> extends RequestBase implements JsonpS
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> TermvectorsRequest.setupTermvectorsRequestDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link TermvectorsRequest} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<TermvectorsRequest<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createTermvectorsRequestDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.termvectors.TDocument")));
 
 	protected static <TDocument> void setupTermvectorsRequestDeserializer(
 			ObjectDeserializer<TermvectorsRequest.Builder<TDocument>> op,

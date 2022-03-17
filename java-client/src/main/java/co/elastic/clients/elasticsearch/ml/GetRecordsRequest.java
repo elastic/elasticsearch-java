@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -268,7 +268,7 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 	 * Builder for {@link GetRecordsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetRecordsRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GetRecordsRequest> {
 		@Nullable
 		private Boolean desc;
 
@@ -401,6 +401,11 @@ public class GetRecordsRequest extends RequestBase implements JsonpSerializable 
 		 */
 		public final Builder start(@Nullable String value) {
 			this.start = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

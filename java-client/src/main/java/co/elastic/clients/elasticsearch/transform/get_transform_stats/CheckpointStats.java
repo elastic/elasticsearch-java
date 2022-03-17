@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -174,7 +174,7 @@ public class CheckpointStats implements JsonpSerializable {
 	 * Builder for {@link CheckpointStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CheckpointStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CheckpointStats> {
 		private Long checkpoint;
 
 		@Nullable
@@ -244,6 +244,11 @@ public class CheckpointStats implements JsonpSerializable {
 		 */
 		public final Builder timeUpperBoundMillis(@Nullable String value) {
 			this.timeUpperBoundMillis = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

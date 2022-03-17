@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -405,7 +405,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 	 * Builder for {@link UpdateJobResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateJobResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<UpdateJobResponse> {
 		private Boolean allowLazyOpen;
 
 		private AnalysisConfigRead analysisConfig;
@@ -690,6 +690,11 @@ public class UpdateJobResponse implements JsonpSerializable {
 		 */
 		public final Builder resultsRetentionDays(@Nullable Long value) {
 			this.resultsRetentionDays = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -276,7 +276,9 @@ public class TransformIndexerStats implements JsonpSerializable {
 	 * Builder for {@link TransformIndexerStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformIndexerStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TransformIndexerStats> {
 		private Long documentsIndexed;
 
 		private Long documentsProcessed;
@@ -424,6 +426,11 @@ public class TransformIndexerStats implements JsonpSerializable {
 		 */
 		public final Builder triggerCount(long value) {
 			this.triggerCount = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

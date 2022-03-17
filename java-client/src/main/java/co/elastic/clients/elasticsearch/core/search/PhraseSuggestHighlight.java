@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -104,7 +104,9 @@ public class PhraseSuggestHighlight implements JsonpSerializable {
 	 * Builder for {@link PhraseSuggestHighlight}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PhraseSuggestHighlight> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PhraseSuggestHighlight> {
 		private String postTag;
 
 		private String preTag;
@@ -122,6 +124,11 @@ public class PhraseSuggestHighlight implements JsonpSerializable {
 		 */
 		public final Builder preTag(String value) {
 			this.preTag = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

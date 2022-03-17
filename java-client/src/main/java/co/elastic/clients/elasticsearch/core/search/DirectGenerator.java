@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Float;
 import java.lang.Integer;
@@ -264,7 +264,7 @@ public class DirectGenerator implements JsonpSerializable {
 	 * Builder for {@link DirectGenerator}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DirectGenerator> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DirectGenerator> {
 		private String field;
 
 		@Nullable
@@ -382,6 +382,11 @@ public class DirectGenerator implements JsonpSerializable {
 		 */
 		public final Builder suggestMode(@Nullable SuggestMode value) {
 			this.suggestMode = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

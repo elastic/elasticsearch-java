@@ -41,7 +41,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -322,7 +322,7 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	 * Builder for {@link SearchTemplateResponse}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
 			implements
 				ObjectBuilder<SearchTemplateResponse<TDocument>> {
 		private Long took;
@@ -563,6 +563,11 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link SearchTemplateResponse}.
 		 *
@@ -591,8 +596,9 @@ public class SearchTemplateResponse<TDocument> implements JsonpSerializable {
 	 * Json deserializer for {@link SearchTemplateResponse} based on named
 	 * deserializers provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<SearchTemplateResponse<Object>> _DESERIALIZER = createSearchTemplateResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search_template.TDocument"));
+	public static final JsonpDeserializer<SearchTemplateResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createSearchTemplateResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.search_template.TDocument")));
 
 	protected static <TDocument> void setupSearchTemplateResponseDeserializer(
 			ObjectDeserializer<SearchTemplateResponse.Builder<TDocument>> op,

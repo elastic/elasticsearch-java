@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -174,7 +174,9 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 	 * Builder for {@link TrainedModelConfigMetadata}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelConfigMetadata> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TrainedModelConfigMetadata> {
 		@Nullable
 		private List<String> modelAliases;
 
@@ -318,6 +320,11 @@ public class TrainedModelConfigMetadata implements JsonpSerializable {
 		public final Builder totalFeatureImportance(
 				Function<TotalFeatureImportance.Builder, ObjectBuilder<TotalFeatureImportance>> fn) {
 			return totalFeatureImportance(fn.apply(new TotalFeatureImportance.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -95,7 +95,9 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 	 * Builder for {@link IndexRoutingAllocationDisk}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexRoutingAllocationDisk> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<IndexRoutingAllocationDisk> {
 		@Nullable
 		private Boolean thresholdEnabled;
 
@@ -104,6 +106,11 @@ public class IndexRoutingAllocationDisk implements JsonpSerializable {
 		 */
 		public final Builder thresholdEnabled(@Nullable Boolean value) {
 			this.thresholdEnabled = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

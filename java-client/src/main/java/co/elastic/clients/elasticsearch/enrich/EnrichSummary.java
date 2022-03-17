@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -89,7 +89,7 @@ public class EnrichSummary implements JsonpSerializable {
 	 * Builder for {@link EnrichSummary}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnrichSummary> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<EnrichSummary> {
 		private EnrichConfiguration config;
 
 		/**
@@ -105,6 +105,11 @@ public class EnrichSummary implements JsonpSerializable {
 		 */
 		public final Builder config(Function<EnrichConfiguration.Builder, ObjectBuilder<EnrichConfiguration>> fn) {
 			return this.config(fn.apply(new EnrichConfiguration.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

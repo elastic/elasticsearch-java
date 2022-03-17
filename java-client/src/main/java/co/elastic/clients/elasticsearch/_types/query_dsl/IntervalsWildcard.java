@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -142,7 +142,7 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 	 * Builder for {@link IntervalsWildcard}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IntervalsWildcard> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IntervalsWildcard> {
 		@Nullable
 		private String analyzer;
 
@@ -172,6 +172,11 @@ public class IntervalsWildcard implements IntervalsQueryVariant, IntervalsVarian
 		 */
 		public final Builder useField(@Nullable String value) {
 			this.useField = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

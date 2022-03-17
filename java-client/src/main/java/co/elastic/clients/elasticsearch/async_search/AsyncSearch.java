@@ -36,11 +36,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -60,7 +61,7 @@ import javax.annotation.Nullable;
  * @see <a href="../doc-files/api-spec.html#async_search._types.AsyncSearch">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class AsyncSearch<TDocument> implements JsonpSerializable {
 	private final Map<String, Aggregate> aggregations;
 
@@ -319,7 +320,9 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 	 * Builder for {@link AsyncSearch}.
 	 */
 
-	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<AsyncSearch<TDocument>> {
+	public static class Builder<TDocument> extends WithJsonObjectBuilderBase<Builder<TDocument>>
+			implements
+				ObjectBuilder<AsyncSearch<TDocument>> {
 		@Nullable
 		private Map<String, Aggregate> aggregations;
 
@@ -558,6 +561,11 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link AsyncSearch}.
 		 *
@@ -581,6 +589,14 @@ public class AsyncSearch<TDocument> implements JsonpSerializable {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> AsyncSearch.setupAsyncSearchDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link AsyncSearch} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<AsyncSearch<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createAsyncSearchDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search._types.TDocument")));
 
 	protected static <TDocument> void setupAsyncSearchDeserializer(
 			ObjectDeserializer<AsyncSearch.Builder<TDocument>> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {

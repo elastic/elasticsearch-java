@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -139,7 +139,7 @@ public class Feature implements JsonpSerializable {
 	 * Builder for {@link Feature}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Feature> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Feature> {
 		private Boolean available;
 
 		@Nullable
@@ -188,6 +188,11 @@ public class Feature implements JsonpSerializable {
 		public final Builder nativeCodeInfo(
 				Function<NativeCodeInformation.Builder, ObjectBuilder<NativeCodeInformation>> fn) {
 			return this.nativeCodeInfo(fn.apply(new NativeCodeInformation.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

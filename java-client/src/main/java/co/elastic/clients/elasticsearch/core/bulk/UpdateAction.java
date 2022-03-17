@@ -31,10 +31,11 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
 import co.elastic.clients.json.JsonpUtils;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -49,7 +50,7 @@ import javax.annotation.Nullable;
  * @see <a href="../../doc-files/api-spec.html#_global.bulk.UpdateAction">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializable {
 	@Nullable
 	private final Boolean detectNoop;
@@ -227,7 +228,9 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 	 * Builder for {@link UpdateAction}.
 	 */
 
-	public static class Builder<TDocument, TPartialDocument> extends ObjectBuilderBase
+	public static class Builder<TDocument, TPartialDocument>
+			extends
+				WithJsonObjectBuilderBase<Builder<TDocument, TPartialDocument>>
 			implements
 				ObjectBuilder<UpdateAction<TDocument, TPartialDocument>> {
 		@Nullable
@@ -370,6 +373,11 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 			return this;
 		}
 
+		@Override
+		protected Builder<TDocument, TPartialDocument> self() {
+			return this;
+		}
+
 		/**
 		 * Builds a {@link UpdateAction}.
 		 *
@@ -395,6 +403,15 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 				op -> UpdateAction.setupUpdateActionDeserializer(op, tDocumentDeserializer,
 						tPartialDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link UpdateAction} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<UpdateAction<Object, Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createUpdateActionDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.bulk.TDocument"),
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.bulk.TPartialDocument")));
 
 	protected static <TDocument, TPartialDocument> void setupUpdateActionDeserializer(
 			ObjectDeserializer<UpdateAction.Builder<TDocument, TPartialDocument>> op,

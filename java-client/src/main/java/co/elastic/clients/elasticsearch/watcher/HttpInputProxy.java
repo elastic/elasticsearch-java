@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.lang.String;
@@ -104,7 +104,7 @@ public class HttpInputProxy implements JsonpSerializable {
 	 * Builder for {@link HttpInputProxy}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpInputProxy> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HttpInputProxy> {
 		private String host;
 
 		private Number port;
@@ -122,6 +122,11 @@ public class HttpInputProxy implements JsonpSerializable {
 		 */
 		public final Builder port(Number value) {
 			this.port = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

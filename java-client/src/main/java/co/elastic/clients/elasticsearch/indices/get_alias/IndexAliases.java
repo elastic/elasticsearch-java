@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -102,7 +102,7 @@ public class IndexAliases implements JsonpSerializable {
 	 * Builder for {@link IndexAliases}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexAliases> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexAliases> {
 		private Map<String, AliasDefinition> aliases;
 
 		/**
@@ -132,6 +132,11 @@ public class IndexAliases implements JsonpSerializable {
 		 */
 		public final Builder aliases(String key, Function<AliasDefinition.Builder, ObjectBuilder<AliasDefinition>> fn) {
 			return aliases(key, fn.apply(new AliasDefinition.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

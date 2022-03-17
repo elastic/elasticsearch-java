@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -124,7 +124,9 @@ public class PerPartitionCategorization implements JsonpSerializable {
 	 * Builder for {@link PerPartitionCategorization}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PerPartitionCategorization> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PerPartitionCategorization> {
 		@Nullable
 		private Boolean enabled;
 
@@ -156,6 +158,11 @@ public class PerPartitionCategorization implements JsonpSerializable {
 		 */
 		public final Builder stopOnWarn(@Nullable Boolean value) {
 			this.stopOnWarn = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -433,7 +433,7 @@ public class Anomaly implements JsonpSerializable {
 	 * Builder for {@link Anomaly}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Anomaly> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Anomaly> {
 		@Nullable
 		private List<Double> actual;
 
@@ -737,6 +737,11 @@ public class Anomaly implements JsonpSerializable {
 		 */
 		public final Builder typical(Double value, Double... values) {
 			this.typical = _listAdd(this.typical, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -116,7 +116,9 @@ public class ClusterShardMetrics implements JsonpSerializable {
 	 * Builder for {@link ClusterShardMetrics}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterShardMetrics> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClusterShardMetrics> {
 		private Double avg;
 
 		private Double max;
@@ -144,6 +146,11 @@ public class ClusterShardMetrics implements JsonpSerializable {
 		 */
 		public final Builder min(double value) {
 			this.min = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

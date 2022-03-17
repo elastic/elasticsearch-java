@@ -36,7 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -239,7 +239,9 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 	 * Builder for {@link GetModelSnapshotsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetModelSnapshotsRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetModelSnapshotsRequest> {
 		@Nullable
 		private Boolean desc;
 
@@ -381,6 +383,11 @@ public class GetModelSnapshotsRequest extends RequestBase implements JsonpSerial
 		 */
 		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.start(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

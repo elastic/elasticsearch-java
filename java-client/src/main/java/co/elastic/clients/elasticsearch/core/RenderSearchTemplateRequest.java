@@ -36,7 +36,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -156,7 +156,9 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 	 * Builder for {@link RenderSearchTemplateRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RenderSearchTemplateRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RenderSearchTemplateRequest> {
 		@Nullable
 		private String file;
 
@@ -212,6 +214,11 @@ public class RenderSearchTemplateRequest extends RequestBase implements JsonpSer
 		 */
 		public final Builder source(@Nullable String value) {
 			this.source = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
@@ -184,10 +184,14 @@ public class Preprocessor implements TaggedUnion<Preprocessor.Kind, Object>, Jso
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Preprocessor> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Preprocessor> {
 		private Kind _kind;
 		private Object _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<Preprocessor> frequencyEncoding(FrequencyEncodingPreprocessor v) {
 			this._kind = Kind.FrequencyEncoding;
 			this._value = v;

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -91,7 +91,7 @@ public class AutoscalingNode implements JsonpSerializable {
 	 * Builder for {@link AutoscalingNode}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AutoscalingNode> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AutoscalingNode> {
 		private String name;
 
 		/**
@@ -99,6 +99,11 @@ public class AutoscalingNode implements JsonpSerializable {
 		 */
 		public final Builder name(String value) {
 			this.name = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

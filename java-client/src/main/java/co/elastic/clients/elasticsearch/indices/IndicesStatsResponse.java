@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -127,7 +127,9 @@ public class IndicesStatsResponse implements JsonpSerializable {
 	 * Builder for {@link IndicesStatsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesStatsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<IndicesStatsResponse> {
 		@Nullable
 		private Map<String, IndicesStats> indices;
 
@@ -192,6 +194,11 @@ public class IndicesStatsResponse implements JsonpSerializable {
 		 */
 		public final Builder all(Function<IndicesStats.Builder, ObjectBuilder<IndicesStats>> fn) {
 			return this.all(fn.apply(new IndicesStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

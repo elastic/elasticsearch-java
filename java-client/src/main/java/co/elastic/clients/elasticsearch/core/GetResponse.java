@@ -98,8 +98,9 @@ public class GetResponse<TDocument> extends GetResult<TDocument> {
 	 * Json deserializer for {@link GetResponse} based on named deserializers
 	 * provided by the calling {@code JsonMapper}.
 	 */
-	public static final JsonpDeserializer<GetResponse<Object>> _DESERIALIZER = createGetResponseDeserializer(
-			new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.get.TDocument"));
+	public static final JsonpDeserializer<GetResponse<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createGetResponseDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.get.TDocument")));
 
 	protected static <TDocument> void setupGetResponseDeserializer(
 			ObjectDeserializer<GetResponse.Builder<TDocument>> op, JsonpDeserializer<TDocument> tDocumentDeserializer) {

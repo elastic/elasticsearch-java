@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -103,7 +103,7 @@ public class BuildInformation implements JsonpSerializable {
 	 * Builder for {@link BuildInformation}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BuildInformation> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<BuildInformation> {
 		private String date;
 
 		private String hash;
@@ -121,6 +121,11 @@ public class BuildInformation implements JsonpSerializable {
 		 */
 		public final Builder hash(String value) {
 			this.hash = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

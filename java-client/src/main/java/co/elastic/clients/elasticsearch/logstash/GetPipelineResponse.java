@@ -31,8 +31,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -91,7 +92,9 @@ public class GetPipelineResponse implements JsonpSerializable {
 	 * Builder for {@link GetPipelineResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetPipelineResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetPipelineResponse> {
 		private Map<String, Pipeline> valueBody;
 
 		/**
@@ -127,6 +130,20 @@ public class GetPipelineResponse implements JsonpSerializable {
 		 */
 		public final Builder valueBody(String key, Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
 			return valueBody(key, fn.apply(new Pipeline.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			Map<String, Pipeline> value = (Map<String, Pipeline>) JsonpDeserializer
+					.stringMapDeserializer(Pipeline._DESERIALIZER).deserialize(parser, mapper);
+			return this.valueBody(value);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

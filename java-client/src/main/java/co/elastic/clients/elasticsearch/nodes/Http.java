@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -134,7 +134,7 @@ public class Http implements JsonpSerializable {
 	 * Builder for {@link Http}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Http> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Http> {
 		@Nullable
 		private Integer currentOpen;
 
@@ -187,6 +187,11 @@ public class Http implements JsonpSerializable {
 		 */
 		public final Builder clients(Function<Client.Builder, ObjectBuilder<Client>> fn) {
 			return clients(fn.apply(new Client.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

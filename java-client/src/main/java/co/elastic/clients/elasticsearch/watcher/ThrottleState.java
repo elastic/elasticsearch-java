@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -103,7 +103,7 @@ public class ThrottleState implements JsonpSerializable {
 	 * Builder for {@link ThrottleState}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ThrottleState> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ThrottleState> {
 		private String reason;
 
 		private String timestamp;
@@ -121,6 +121,11 @@ public class ThrottleState implements JsonpSerializable {
 		 */
 		public final Builder timestamp(String value) {
 			this.timestamp = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

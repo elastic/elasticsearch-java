@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -150,7 +150,9 @@ public class UpdateModelSnapshotRequest extends RequestBase implements JsonpSeri
 	 * Builder for {@link UpdateModelSnapshotRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateModelSnapshotRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<UpdateModelSnapshotRequest> {
 		@Nullable
 		private String description;
 
@@ -200,6 +202,11 @@ public class UpdateModelSnapshotRequest extends RequestBase implements JsonpSeri
 		 */
 		public final Builder snapshotId(String value) {
 			this.snapshotId = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

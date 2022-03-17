@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -129,7 +129,9 @@ public class PublishedClusterStates implements JsonpSerializable {
 	 * Builder for {@link PublishedClusterStates}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PublishedClusterStates> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PublishedClusterStates> {
 		@Nullable
 		private Long fullStates;
 
@@ -160,6 +162,11 @@ public class PublishedClusterStates implements JsonpSerializable {
 		 */
 		public final Builder compatibleDiffs(@Nullable Long value) {
 			this.compatibleDiffs = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

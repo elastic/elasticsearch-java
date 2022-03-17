@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -90,7 +90,7 @@ public class Node implements JsonpSerializable {
 	 * Builder for {@link Node}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Node> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Node> {
 		private Shared sharedCache;
 
 		/**
@@ -106,6 +106,11 @@ public class Node implements JsonpSerializable {
 		 */
 		public final Builder sharedCache(Function<Shared.Builder, ObjectBuilder<Shared>> fn) {
 			return this.sharedCache(fn.apply(new Shared.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

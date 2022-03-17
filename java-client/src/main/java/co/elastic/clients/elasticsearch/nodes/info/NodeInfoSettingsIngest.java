@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -655,7 +655,9 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 	 * Builder for {@link NodeInfoSettingsIngest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoSettingsIngest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<NodeInfoSettingsIngest> {
 		@Nullable
 		private NodeInfoIngestInfo attachment;
 
@@ -1267,6 +1269,11 @@ public class NodeInfoSettingsIngest implements JsonpSerializable {
 		 */
 		public final Builder inference(Function<NodeInfoIngestInfo.Builder, ObjectBuilder<NodeInfoIngestInfo>> fn) {
 			return this.inference(fn.apply(new NodeInfoIngestInfo.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

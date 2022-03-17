@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.SimpleJsonpMapper;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;
@@ -45,22 +46,28 @@ public abstract class ModelTestCase extends Assert {
 
     private JsonpMapper setupMapper(int rand) {
         // Randomly choose json-b or jackson
-        if (rand % 2 == 0) {
-            System.out.println("Using a JsonB mapper (rand = " + rand + ").");
-            return new JsonbJsonpMapper() {
-                @Override
-                public boolean ignoreUnknownFields() {
-                    return false;
-                }
-            };
-        } else {
-            System.out.println("Using a Jackson mapper (rand = " + rand + ").");
-            return new JacksonJsonpMapper() {
-                @Override
-                public boolean ignoreUnknownFields() {
-                    return false;
-                }
-            };
+        switch(rand % 3) {
+            case 0:
+                System.out.println("Using a JsonB mapper (rand = " + rand + ").");
+                return new JsonbJsonpMapper() {
+                    @Override
+                    public boolean ignoreUnknownFields() {
+                        return false;
+                    }
+                };
+
+            case 1:
+                System.out.println("Using a Jackson mapper (rand = " + rand + ").");
+                return new JacksonJsonpMapper() {
+                    @Override
+                    public boolean ignoreUnknownFields() {
+                        return false;
+                    }
+                };
+
+            default:
+                System.out.println("Using a simple mapper (rand = " + rand + ").");
+                return SimpleJsonpMapper.INSTANCE_REJECT_UNKNOWN_FIELDS;
         }
     }
 
