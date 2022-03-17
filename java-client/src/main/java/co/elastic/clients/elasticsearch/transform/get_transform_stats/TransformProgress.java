@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Long;
@@ -143,7 +143,7 @@ public class TransformProgress implements JsonpSerializable {
 	 * Builder for {@link TransformProgress}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TransformProgress> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TransformProgress> {
 		private Long docsIndexed;
 
 		private Long docsProcessed;
@@ -191,6 +191,11 @@ public class TransformProgress implements JsonpSerializable {
 		 */
 		public final Builder totalDocs(long value) {
 			this.totalDocs = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -137,7 +137,9 @@ public class CustomCategorizeTextAnalyzer implements JsonpSerializable {
 	 * Builder for {@link CustomCategorizeTextAnalyzer}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CustomCategorizeTextAnalyzer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CustomCategorizeTextAnalyzer> {
 		@Nullable
 		private List<String> charFilter;
 
@@ -192,6 +194,11 @@ public class CustomCategorizeTextAnalyzer implements JsonpSerializable {
 		 */
 		public final Builder filter(String value, String... values) {
 			this.filter = _listAdd(this.filter, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

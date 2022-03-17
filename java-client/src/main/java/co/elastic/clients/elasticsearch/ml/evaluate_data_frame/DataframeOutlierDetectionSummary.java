@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -162,7 +162,9 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 	 * Builder for {@link DataframeOutlierDetectionSummary}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeOutlierDetectionSummary> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataframeOutlierDetectionSummary> {
 		@Nullable
 		private DataframeEvaluationSummaryAucRoc aucRoc;
 
@@ -259,6 +261,11 @@ public class DataframeOutlierDetectionSummary implements JsonpSerializable {
 		public final Builder confusionMatrix(String key,
 				Function<ConfusionMatrixThreshold.Builder, ObjectBuilder<ConfusionMatrixThreshold>> fn) {
 			return confusionMatrix(key, fn.apply(new ConfusionMatrixThreshold.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

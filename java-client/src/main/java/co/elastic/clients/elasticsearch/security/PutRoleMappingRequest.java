@@ -37,7 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -214,7 +214,9 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 	 * Builder for {@link PutRoleMappingRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutRoleMappingRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutRoleMappingRequest> {
 		@Nullable
 		private Boolean enabled;
 
@@ -338,6 +340,11 @@ public class PutRoleMappingRequest extends RequestBase implements JsonpSerializa
 		 */
 		public final Builder runAs(String value, String... values) {
 			this.runAs = _listAdd(this.runAs, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

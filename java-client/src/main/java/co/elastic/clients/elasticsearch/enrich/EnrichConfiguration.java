@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -106,7 +106,9 @@ public class EnrichConfiguration implements JsonpSerializable {
 	 * Builder for {@link EnrichConfiguration}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EnrichConfiguration> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<EnrichConfiguration> {
 		@Nullable
 		private EnrichPolicy geoMatch;
 
@@ -140,6 +142,11 @@ public class EnrichConfiguration implements JsonpSerializable {
 		 */
 		public final Builder match(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
 			return this.match(fn.apply(new EnrichPolicy.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

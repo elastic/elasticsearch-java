@@ -38,7 +38,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -249,7 +249,7 @@ public class WatchRecord implements JsonpSerializable {
 	 * Builder for {@link WatchRecord}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatchRecord> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<WatchRecord> {
 		private Condition condition;
 
 		private Input input;
@@ -419,6 +419,11 @@ public class WatchRecord implements JsonpSerializable {
 		 */
 		public final Builder status(Function<WatchStatus.Builder, ObjectBuilder<WatchStatus>> fn) {
 			return this.status(fn.apply(new WatchStatus.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

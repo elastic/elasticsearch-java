@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -102,7 +102,7 @@ public class AcknowledgeState implements JsonpSerializable {
 	 * Builder for {@link AcknowledgeState}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<AcknowledgeState> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AcknowledgeState> {
 		private AcknowledgementOptions state;
 
 		private DateTime timestamp;
@@ -120,6 +120,11 @@ public class AcknowledgeState implements JsonpSerializable {
 		 */
 		public final Builder timestamp(DateTime value) {
 			this.timestamp = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

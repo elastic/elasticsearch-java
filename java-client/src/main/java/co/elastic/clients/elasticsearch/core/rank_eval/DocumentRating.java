@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -125,7 +125,7 @@ public class DocumentRating implements JsonpSerializable {
 	 * Builder for {@link DocumentRating}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DocumentRating> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DocumentRating> {
 		private String id;
 
 		private String index;
@@ -160,6 +160,11 @@ public class DocumentRating implements JsonpSerializable {
 		 */
 		public final Builder rating(int value) {
 			this.rating = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

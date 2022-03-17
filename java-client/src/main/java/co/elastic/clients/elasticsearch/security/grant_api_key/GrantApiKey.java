@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -141,7 +141,7 @@ public class GrantApiKey implements JsonpSerializable {
 	 * Builder for {@link GrantApiKey}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GrantApiKey> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<GrantApiKey> {
 		private String name;
 
 		@Nullable
@@ -190,6 +190,11 @@ public class GrantApiKey implements JsonpSerializable {
 		 */
 		public final Builder roleDescriptors(Map<String, JsonData> value, Map<String, JsonData>... values) {
 			this.roleDescriptors = _listAdd(this.roleDescriptors, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

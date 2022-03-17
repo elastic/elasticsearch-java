@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -163,7 +163,9 @@ public class IndexSettingBlocks implements JsonpSerializable {
 	 * Builder for {@link IndexSettingBlocks}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexSettingBlocks> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<IndexSettingBlocks> {
 		@Nullable
 		private Boolean readOnly;
 
@@ -216,6 +218,11 @@ public class IndexSettingBlocks implements JsonpSerializable {
 		 */
 		public final Builder metadata(@Nullable Boolean value) {
 			this.metadata = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

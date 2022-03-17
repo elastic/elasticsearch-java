@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
@@ -132,7 +132,7 @@ public class IndicesVersions implements JsonpSerializable {
 	 * Builder for {@link IndicesVersions}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndicesVersions> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndicesVersions> {
 		private Integer indexCount;
 
 		private Integer primaryShardCount;
@@ -170,6 +170,11 @@ public class IndicesVersions implements JsonpSerializable {
 		 */
 		public final Builder version(String value) {
 			this.version = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

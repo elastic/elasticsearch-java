@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -90,7 +90,9 @@ public class GetIlmStatusResponse implements JsonpSerializable {
 	 * Builder for {@link GetIlmStatusResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetIlmStatusResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetIlmStatusResponse> {
 		private LifecycleOperationMode operationMode;
 
 		/**
@@ -98,6 +100,11 @@ public class GetIlmStatusResponse implements JsonpSerializable {
 		 */
 		public final Builder operationMode(LifecycleOperationMode value) {
 			this.operationMode = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

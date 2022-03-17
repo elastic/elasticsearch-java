@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.List;
@@ -114,7 +114,9 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 	 * Builder for {@link GetOverallBucketsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetOverallBucketsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetOverallBucketsResponse> {
 		private Long count;
 
 		private List<OverallBucket> overallBuckets;
@@ -160,6 +162,11 @@ public class GetOverallBucketsResponse implements JsonpSerializable {
 		 */
 		public final Builder overallBuckets(Function<OverallBucket.Builder, ObjectBuilder<OverallBucket>> fn) {
 			return overallBuckets(fn.apply(new OverallBucket.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

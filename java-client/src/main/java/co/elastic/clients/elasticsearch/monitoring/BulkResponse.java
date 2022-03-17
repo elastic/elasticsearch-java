@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -139,7 +139,7 @@ public class BulkResponse implements JsonpSerializable {
 	 * Builder for {@link BulkResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<BulkResponse> {
 		@Nullable
 		private ErrorCause error;
 
@@ -189,6 +189,11 @@ public class BulkResponse implements JsonpSerializable {
 		 */
 		public final Builder took(long value) {
 			this.took = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -33,7 +33,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -104,7 +104,7 @@ public class CcrStatsResponse implements JsonpSerializable {
 	 * Builder for {@link CcrStatsResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CcrStatsResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CcrStatsResponse> {
 		private AutoFollowStats autoFollowStats;
 
 		private FollowStats followStats;
@@ -137,6 +137,11 @@ public class CcrStatsResponse implements JsonpSerializable {
 		 */
 		public final Builder followStats(Function<FollowStats.Builder, ObjectBuilder<FollowStats>> fn) {
 			return this.followStats(fn.apply(new FollowStats.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

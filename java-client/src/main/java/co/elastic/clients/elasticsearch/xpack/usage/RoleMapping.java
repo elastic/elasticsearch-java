@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
@@ -102,7 +102,7 @@ public class RoleMapping implements JsonpSerializable {
 	 * Builder for {@link RoleMapping}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RoleMapping> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RoleMapping> {
 		private Integer enabled;
 
 		private Integer size;
@@ -120,6 +120,11 @@ public class RoleMapping implements JsonpSerializable {
 		 */
 		public final Builder size(int value) {
 			this.size = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

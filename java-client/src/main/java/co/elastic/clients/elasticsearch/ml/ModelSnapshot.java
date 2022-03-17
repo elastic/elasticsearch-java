@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -241,7 +241,7 @@ public class ModelSnapshot implements JsonpSerializable {
 	 * Builder for {@link ModelSnapshot}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ModelSnapshot> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ModelSnapshot> {
 		@Nullable
 		private String description;
 
@@ -374,6 +374,11 @@ public class ModelSnapshot implements JsonpSerializable {
 		 */
 		public final Builder timestamp(long value) {
 			this.timestamp = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -107,7 +107,9 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 	 * Builder for {@link CleanupRepositoryResults}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CleanupRepositoryResults> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<CleanupRepositoryResults> {
 		private Long deletedBlobs;
 
 		private Long deletedBytes;
@@ -129,6 +131,11 @@ public class CleanupRepositoryResults implements JsonpSerializable {
 		 */
 		public final Builder deletedBytes(long value) {
 			this.deletedBytes = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

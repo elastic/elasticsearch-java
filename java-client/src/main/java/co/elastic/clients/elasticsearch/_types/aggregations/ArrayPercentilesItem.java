@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -125,7 +125,9 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 	 * Builder for {@link ArrayPercentilesItem}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ArrayPercentilesItem> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ArrayPercentilesItem> {
 		private String key;
 
 		private Double value;
@@ -156,6 +158,11 @@ public class ArrayPercentilesItem implements JsonpSerializable {
 		 */
 		public final Builder valueAsString(@Nullable String value) {
 			this.valueAsString = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

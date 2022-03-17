@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Object;
@@ -279,7 +279,7 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
 	}
 
-	public static class Builder extends ObjectBuilderBase {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> {
 		private Kind _kind;
 		private Object _value;
 
@@ -312,6 +312,10 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 			return this;
 		}
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ContainerBuilder exp(DecayFunction v) {
 			this._kind = Kind.Exp;
 			this._value = v;

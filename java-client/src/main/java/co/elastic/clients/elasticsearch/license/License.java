@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -217,7 +217,7 @@ public class License implements JsonpSerializable {
 	 * Builder for {@link License}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<License> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<License> {
 		private DateTime expiryDateInMillis;
 
 		private DateTime issueDateInMillis;
@@ -318,6 +318,11 @@ public class License implements JsonpSerializable {
 		 */
 		public final Builder uid(String value) {
 			this.uid = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

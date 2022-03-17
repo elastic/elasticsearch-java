@@ -36,8 +36,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
 import java.util.Collections;
 import java.util.Objects;
@@ -115,7 +116,7 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 	 * Builder for {@link RollupRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<RollupRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RollupRequest> {
 		private String index;
 
 		private String rollupIndex;
@@ -149,6 +150,19 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder config(JsonData value) {
 			this.config = value;
+			return this;
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			JsonData value = (JsonData) JsonData._DESERIALIZER.deserialize(parser, mapper);
+			return this.config(value);
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

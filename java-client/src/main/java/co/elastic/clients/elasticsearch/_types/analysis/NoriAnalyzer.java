@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -159,7 +159,7 @@ public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 	 * Builder for {@link NoriAnalyzer}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NoriAnalyzer> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NoriAnalyzer> {
 		@Nullable
 		private String version;
 
@@ -213,6 +213,11 @@ public class NoriAnalyzer implements AnalyzerVariant, JsonpSerializable {
 		 */
 		public final Builder userDictionary(@Nullable String value) {
 			this.userDictionary = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

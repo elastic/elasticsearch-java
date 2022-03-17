@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -181,7 +181,9 @@ public class NodeShutdownStatus implements JsonpSerializable {
 	 * Builder for {@link NodeShutdownStatus}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeShutdownStatus> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<NodeShutdownStatus> {
 		private String nodeId;
 
 		private ShutdownType type;
@@ -283,6 +285,11 @@ public class NodeShutdownStatus implements JsonpSerializable {
 		 */
 		public final Builder plugins(Function<PluginsStatus.Builder, ObjectBuilder<PluginsStatus>> fn) {
 			return this.plugins(fn.apply(new PluginsStatus.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

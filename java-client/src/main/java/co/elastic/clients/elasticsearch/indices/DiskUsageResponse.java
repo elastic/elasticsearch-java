@@ -32,8 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -84,7 +85,7 @@ public class DiskUsageResponse implements JsonpSerializable {
 	 * Builder for {@link DiskUsageResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DiskUsageResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DiskUsageResponse> {
 		private JsonData valueBody;
 
 		/**
@@ -94,6 +95,19 @@ public class DiskUsageResponse implements JsonpSerializable {
 		 */
 		public final Builder valueBody(JsonData value) {
 			this.valueBody = value;
+			return this;
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			JsonData value = (JsonData) JsonData._DESERIALIZER.deserialize(parser, mapper);
+			return this.valueBody(value);
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

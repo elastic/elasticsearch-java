@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -124,7 +124,9 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 	 * Builder for {@link PutTrainedModelVocabularyRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutTrainedModelVocabularyRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutTrainedModelVocabularyRequest> {
 		private String modelId;
 
 		private List<String> vocabulary;
@@ -160,6 +162,11 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 		 */
 		public final Builder vocabulary(String value, String... values) {
 			this.vocabulary = _listAdd(this.vocabulary, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

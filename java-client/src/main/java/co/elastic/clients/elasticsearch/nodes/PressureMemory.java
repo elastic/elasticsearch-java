@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
@@ -213,7 +213,7 @@ public class PressureMemory implements JsonpSerializable {
 	 * Builder for {@link PressureMemory}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PressureMemory> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PressureMemory> {
 		@Nullable
 		private Long combinedCoordinatingAndPrimaryInBytes;
 
@@ -299,6 +299,11 @@ public class PressureMemory implements JsonpSerializable {
 		 */
 		public final Builder replicaRejections(@Nullable Long value) {
 			this.replicaRejections = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

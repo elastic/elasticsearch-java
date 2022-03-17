@@ -19,9 +19,17 @@
 
 package co.elastic.clients.elasticsearch.json;
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
+import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
+import co.elastic.clients.json.DelegatingDeserializer;
 import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpMapperBase;
+import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
@@ -29,10 +37,41 @@ import jakarta.json.stream.JsonParser;
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
 
 public class JsonDataTest extends Assert {
+
+
+    public static <T, B extends ObjectBuilder<T>> B withJson(B builder, Reader json, ElasticsearchClient client) {
+        return withJson(builder, json, client._transport().jsonpMapper());
+    }
+
+    public static <T, B extends ObjectBuilder<T>> B withJson(B builder, Reader json, JsonpMapper mapper) {
+        JsonpDeserializer<?> classDeser = JsonpMapperBase.findDeserializer(builder.getClass().getEnclosingClass());
+
+        @SuppressWarnings("unchecked")
+        ObjectDeserializer<B> builderDeser = (ObjectDeserializer<B>)DelegatingDeserializer.unwrap(classDeser);
+
+        JsonParser parser = mapper.jsonProvider().createParser(json);
+        builderDeser.deserialize(builder, parser, mapper, parser.next());
+        return builder;
+    }
+
+    @Test
+    public void testBuilderDeserializerHack() {
+
+        CreateIndexRequest.Builder b = new CreateIndexRequest.Builder();
+
+        // Required request parameter
+        b.index("foo");
+
+        // Read body from JSON
+        withJson(b, new StringReader("{\"aliases\": {\"foo\": {\"is_hidden\": true}}}"), new JacksonJsonpMapper());
+
+        CreateIndexRequest createIndexRequest = b.build();
+    }
 
     @Test
     public void testParsing() {

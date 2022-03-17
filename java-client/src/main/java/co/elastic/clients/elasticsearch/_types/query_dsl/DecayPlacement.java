@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.Objects;
@@ -147,7 +147,7 @@ public class DecayPlacement implements JsonpSerializable {
 	 * Builder for {@link DecayPlacement}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DecayPlacement> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DecayPlacement> {
 		@Nullable
 		private Double decay;
 
@@ -189,6 +189,11 @@ public class DecayPlacement implements JsonpSerializable {
 		 */
 		public final Builder origin(@Nullable JsonData value) {
 			this.origin = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

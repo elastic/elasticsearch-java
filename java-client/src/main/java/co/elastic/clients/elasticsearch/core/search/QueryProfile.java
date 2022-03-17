@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -153,7 +153,7 @@ public class QueryProfile implements JsonpSerializable {
 	 * Builder for {@link QueryProfile}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<QueryProfile> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<QueryProfile> {
 		private QueryBreakdown breakdown;
 
 		private String description;
@@ -231,6 +231,11 @@ public class QueryProfile implements JsonpSerializable {
 		 */
 		public final Builder children(Function<QueryProfile.Builder, ObjectBuilder<QueryProfile>> fn) {
 			return children(fn.apply(new QueryProfile.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

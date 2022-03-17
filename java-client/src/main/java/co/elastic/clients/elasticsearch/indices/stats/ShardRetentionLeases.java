@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.List;
@@ -126,7 +126,9 @@ public class ShardRetentionLeases implements JsonpSerializable {
 	 * Builder for {@link ShardRetentionLeases}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShardRetentionLeases> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ShardRetentionLeases> {
 		private Long primaryTerm;
 
 		private Long version;
@@ -176,6 +178,11 @@ public class ShardRetentionLeases implements JsonpSerializable {
 		 */
 		public final Builder leases(Function<ShardLease.Builder, ObjectBuilder<ShardLease>> fn) {
 			return leases(fn.apply(new ShardLease.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

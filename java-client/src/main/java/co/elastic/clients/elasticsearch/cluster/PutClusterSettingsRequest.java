@@ -37,7 +37,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -172,7 +172,9 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 	 * Builder for {@link PutClusterSettingsRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PutClusterSettingsRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PutClusterSettingsRequest> {
 		@Nullable
 		private Boolean flatSettings;
 
@@ -273,6 +275,11 @@ public class PutClusterSettingsRequest extends RequestBase implements JsonpSeria
 		 */
 		public final Builder transient_(String key, JsonData value) {
 			this.transient_ = _mapPut(this.transient_, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

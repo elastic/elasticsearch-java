@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
@@ -118,7 +118,7 @@ public class Suggester implements JsonpSerializable {
 	 * Builder for {@link Suggester}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Suggester> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Suggester> {
 		@Nullable
 		private Map<String, FieldSuggester> suggesters = new HashMap<>();
 
@@ -163,6 +163,11 @@ public class Suggester implements JsonpSerializable {
 		 */
 		public final Builder text(@Nullable String value) {
 			this.text = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -108,7 +108,7 @@ public class Ingest implements JsonpSerializable {
 	 * Builder for {@link Ingest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Ingest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Ingest> {
 		private DateTime timestamp;
 
 		@Nullable
@@ -127,6 +127,11 @@ public class Ingest implements JsonpSerializable {
 		 */
 		public final Builder pipeline(@Nullable String value) {
 			this.pipeline = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

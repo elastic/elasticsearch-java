@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -150,7 +150,9 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 	 * Builder for {@link SamlInvalidateRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SamlInvalidateRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<SamlInvalidateRequest> {
 		@Nullable
 		private String acs;
 
@@ -198,6 +200,11 @@ public class SamlInvalidateRequest extends RequestBase implements JsonpSerializa
 		 */
 		public final Builder realm(@Nullable String value) {
 			this.realm = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

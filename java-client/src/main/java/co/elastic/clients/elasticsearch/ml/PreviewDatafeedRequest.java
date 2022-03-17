@@ -34,7 +34,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Collections;
@@ -154,7 +154,9 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 	 * Builder for {@link PreviewDatafeedRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PreviewDatafeedRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PreviewDatafeedRequest> {
 		@Nullable
 		private DatafeedConfig datafeedConfig;
 
@@ -226,6 +228,11 @@ public class PreviewDatafeedRequest extends RequestBase implements JsonpSerializ
 		 */
 		public final Builder jobConfig(Function<JobConfig.Builder, ObjectBuilder<JobConfig>> fn) {
 			return this.jobConfig(fn.apply(new JobConfig.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

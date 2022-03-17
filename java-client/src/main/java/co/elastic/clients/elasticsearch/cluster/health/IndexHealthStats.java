@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -206,7 +206,7 @@ public class IndexHealthStats implements JsonpSerializable {
 	 * Builder for {@link IndexHealthStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IndexHealthStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexHealthStats> {
 		private Integer activePrimaryShards;
 
 		private Integer activeShards;
@@ -317,6 +317,11 @@ public class IndexHealthStats implements JsonpSerializable {
 		 */
 		public final Builder unassignedShards(int value) {
 			this.unassignedShards = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

@@ -23,6 +23,8 @@ import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
+import javax.annotation.Nullable;
+
 /**
  * A {@code JsonpMapper} combines a JSON-P provider and object serialization/deserialization based on JSON-P events.
  */
@@ -61,6 +63,7 @@ public interface JsonpMapper {
     /**
      * Get a named attribute associated to this mapper.
      */
+    @Nullable
     default <T> T attribute(String name) {
         return null;
     }

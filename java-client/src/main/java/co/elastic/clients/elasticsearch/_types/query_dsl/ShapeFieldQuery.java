@@ -32,7 +32,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -129,7 +129,7 @@ public class ShapeFieldQuery implements JsonpSerializable {
 	 * Builder for {@link ShapeFieldQuery}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ShapeFieldQuery> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ShapeFieldQuery> {
 		@Nullable
 		private FieldLookup indexedShape;
 
@@ -167,6 +167,11 @@ public class ShapeFieldQuery implements JsonpSerializable {
 		 */
 		public final Builder shape(@Nullable JsonData value) {
 			this.shape = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

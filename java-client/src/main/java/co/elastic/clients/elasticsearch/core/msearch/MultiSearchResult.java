@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.List;
@@ -110,7 +110,7 @@ public abstract class MultiSearchResult<TDocument> implements JsonpSerializable 
 
 	protected abstract static class AbstractBuilder<TDocument, BuilderT extends AbstractBuilder<TDocument, BuilderT>>
 			extends
-				ObjectBuilderBase {
+				WithJsonObjectBuilderBase<BuilderT> {
 		private Long took;
 
 		private List<MultiSearchResponseItem<TDocument>> responses;

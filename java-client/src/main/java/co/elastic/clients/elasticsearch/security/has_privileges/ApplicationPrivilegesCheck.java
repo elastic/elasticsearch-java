@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -142,7 +142,9 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 	 * Builder for {@link ApplicationPrivilegesCheck}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ApplicationPrivilegesCheck> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ApplicationPrivilegesCheck> {
 		private String application;
 
 		private List<String> privileges;
@@ -210,6 +212,11 @@ public class ApplicationPrivilegesCheck implements JsonpSerializable {
 		 */
 		public final Builder resources(String value, String... values) {
 			this.resources = _listAdd(this.resources, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

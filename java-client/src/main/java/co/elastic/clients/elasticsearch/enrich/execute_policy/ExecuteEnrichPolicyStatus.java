@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -90,7 +90,9 @@ public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 	 * Builder for {@link ExecuteEnrichPolicyStatus}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExecuteEnrichPolicyStatus> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ExecuteEnrichPolicyStatus> {
 		private EnrichPolicyPhase phase;
 
 		/**
@@ -98,6 +100,11 @@ public class ExecuteEnrichPolicyStatus implements JsonpSerializable {
 		 */
 		public final Builder phase(EnrichPolicyPhase value) {
 			this.phase = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

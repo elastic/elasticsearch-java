@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
@@ -158,7 +158,7 @@ public class PendingTask implements JsonpSerializable {
 	 * Builder for {@link PendingTask}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTask> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PendingTask> {
 		private Boolean executing;
 
 		private Integer insertOrder;
@@ -216,6 +216,11 @@ public class PendingTask implements JsonpSerializable {
 		 */
 		public final Builder timeInQueueMillis(int value) {
 			this.timeInQueueMillis = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

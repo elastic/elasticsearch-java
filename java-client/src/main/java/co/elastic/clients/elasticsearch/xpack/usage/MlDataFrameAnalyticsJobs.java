@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -142,7 +142,9 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 	 * Builder for {@link MlDataFrameAnalyticsJobs}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<MlDataFrameAnalyticsJobs> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<MlDataFrameAnalyticsJobs> {
 		@Nullable
 		private MlDataFrameAnalyticsJobsMemory memoryUsage;
 
@@ -216,6 +218,11 @@ public class MlDataFrameAnalyticsJobs implements JsonpSerializable {
 		public final Builder stopped(
 				Function<MlDataFrameAnalyticsJobsCount.Builder, ObjectBuilder<MlDataFrameAnalyticsJobsCount>> fn) {
 			return this.stopped(fn.apply(new MlDataFrameAnalyticsJobsCount.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

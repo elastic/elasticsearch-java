@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -45,7 +46,7 @@ import javax.annotation.Nullable;
  *      "../../doc-files/api-spec.html#_global.msearch.MultiSearchItem">API
  *      specification</a>
  */
-
+@JsonpDeserializable
 public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 	@Nullable
 	private final Integer status;
@@ -131,6 +132,14 @@ public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
 				op -> MultiSearchItem.setupMultiSearchItemDeserializer(op, tDocumentDeserializer));
 	};
+
+	/**
+	 * Json deserializer for {@link MultiSearchItem} based on named deserializers
+	 * provided by the calling {@code JsonMapper}.
+	 */
+	public static final JsonpDeserializer<MultiSearchItem<Object>> _DESERIALIZER = JsonpDeserializer
+			.lazy(() -> createMultiSearchItemDeserializer(
+					new NamedDeserializer<>("co.elastic.clients:Deserializer:_global.msearch.TDocument")));
 
 	protected static <TDocument> void setupMultiSearchItemDeserializer(
 			ObjectDeserializer<MultiSearchItem.Builder<TDocument>> op,

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -102,7 +102,7 @@ public class Defaults implements JsonpSerializable {
 	 * Builder for {@link Defaults}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Defaults> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Defaults> {
 		private AnomalyDetectors anomalyDetectors;
 
 		private Datafeeds datafeeds;
@@ -135,6 +135,11 @@ public class Defaults implements JsonpSerializable {
 		 */
 		public final Builder datafeeds(Function<Datafeeds.Builder, ObjectBuilder<Datafeeds>> fn) {
 			return this.datafeeds(fn.apply(new Datafeeds.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

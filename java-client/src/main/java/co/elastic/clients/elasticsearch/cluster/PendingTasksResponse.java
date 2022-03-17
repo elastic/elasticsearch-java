@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -99,7 +99,9 @@ public class PendingTasksResponse implements JsonpSerializable {
 	 * Builder for {@link PendingTasksResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PendingTasksResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<PendingTasksResponse> {
 		private List<PendingTask> tasks;
 
 		/**
@@ -129,6 +131,11 @@ public class PendingTasksResponse implements JsonpSerializable {
 		 */
 		public final Builder tasks(Function<PendingTask.Builder, ObjectBuilder<PendingTask>> fn) {
 			return tasks(fn.apply(new PendingTask.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

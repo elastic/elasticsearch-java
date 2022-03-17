@@ -35,7 +35,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.HashMap;
@@ -140,7 +140,7 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 	 * Builder for {@link PostRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<PostRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<PostRequest> {
 		@Nullable
 		private Boolean acknowledge;
 
@@ -210,6 +210,11 @@ public class PostRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder licenses(Function<License.Builder, ObjectBuilder<License>> fn) {
 			return licenses(fn.apply(new License.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

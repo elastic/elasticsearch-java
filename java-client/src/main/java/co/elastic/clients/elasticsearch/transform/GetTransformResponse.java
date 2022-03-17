@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.List;
@@ -114,7 +114,9 @@ public class GetTransformResponse implements JsonpSerializable {
 	 * Builder for {@link GetTransformResponse}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetTransformResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<GetTransformResponse> {
 		private Long count;
 
 		private List<TransformSummary> transforms;
@@ -154,6 +156,11 @@ public class GetTransformResponse implements JsonpSerializable {
 		 */
 		public final Builder transforms(Function<TransformSummary.Builder, ObjectBuilder<TransformSummary>> fn) {
 			return transforms(fn.apply(new TransformSummary.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

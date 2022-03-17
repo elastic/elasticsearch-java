@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -120,7 +120,7 @@ public class DataframeAnalysisFeatureProcessorOneHotEncoding
 	 * Builder for {@link DataframeAnalysisFeatureProcessorOneHotEncoding}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding> {
 		private String field;
@@ -144,6 +144,11 @@ public class DataframeAnalysisFeatureProcessorOneHotEncoding
 		 */
 		public final Builder hotMap(String value) {
 			this.hotMap = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

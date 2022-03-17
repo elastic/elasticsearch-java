@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.Integer;
@@ -144,7 +144,9 @@ public class TrainedModelEntities implements JsonpSerializable {
 	 * Builder for {@link TrainedModelEntities}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TrainedModelEntities> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TrainedModelEntities> {
 		private String className;
 
 		private Double classProbability;
@@ -192,6 +194,11 @@ public class TrainedModelEntities implements JsonpSerializable {
 		 */
 		public final Builder endPos(int value) {
 			this.endPos = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

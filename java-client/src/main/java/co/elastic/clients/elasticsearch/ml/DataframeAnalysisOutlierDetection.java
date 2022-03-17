@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
@@ -217,7 +217,9 @@ public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVaria
 	 * Builder for {@link DataframeAnalysisOutlierDetection}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DataframeAnalysisOutlierDetection> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<DataframeAnalysisOutlierDetection> {
 		@Nullable
 		private Boolean computeFeatureInfluence;
 
@@ -306,6 +308,11 @@ public class DataframeAnalysisOutlierDetection implements DataframeAnalysisVaria
 		 */
 		public final Builder standardizationEnabled(@Nullable Boolean value) {
 			this.standardizationEnabled = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

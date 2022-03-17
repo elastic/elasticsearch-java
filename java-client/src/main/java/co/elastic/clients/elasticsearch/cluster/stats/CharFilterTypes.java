@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -241,7 +241,7 @@ public class CharFilterTypes implements JsonpSerializable {
 	 * Builder for {@link CharFilterTypes}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CharFilterTypes> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<CharFilterTypes> {
 		private List<FieldTypes> charFilterTypes;
 
 		private List<FieldTypes> tokenizerTypes;
@@ -488,6 +488,11 @@ public class CharFilterTypes implements JsonpSerializable {
 		 */
 		public final Builder builtInAnalyzers(Function<FieldTypes.Builder, ObjectBuilder<FieldTypes>> fn) {
 			return builtInAnalyzers(fn.apply(new FieldTypes.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

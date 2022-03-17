@@ -32,9 +32,9 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
 import co.elastic.clients.util.TaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Object;
 import java.util.Objects;
@@ -182,10 +182,14 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
 
 	}
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SmoothingModel> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SmoothingModel> {
 		private Kind _kind;
 		private Object _value;
 
+		@Override
+		protected Builder self() {
+			return this;
+		}
 		public ObjectBuilder<SmoothingModel> laplace(LaplaceSmoothingModel v) {
 			this._kind = Kind.Laplace;
 			this._value = v;

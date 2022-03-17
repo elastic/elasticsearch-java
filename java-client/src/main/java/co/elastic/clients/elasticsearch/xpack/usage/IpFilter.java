@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
@@ -102,7 +102,7 @@ public class IpFilter implements JsonpSerializable {
 	 * Builder for {@link IpFilter}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<IpFilter> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IpFilter> {
 		private Boolean http;
 
 		private Boolean transport;
@@ -120,6 +120,11 @@ public class IpFilter implements JsonpSerializable {
 		 */
 		public final Builder transport(boolean value) {
 			this.transport = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

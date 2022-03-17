@@ -44,7 +44,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
@@ -602,7 +602,9 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 	 * Builder for {@link UpdateByQueryRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<UpdateByQueryRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<UpdateByQueryRequest> {
 		@Nullable
 		private Boolean allowNoIndices;
 
@@ -1174,6 +1176,11 @@ public class UpdateByQueryRequest extends RequestBase implements JsonpSerializab
 		 */
 		public final Builder waitForCompletion(@Nullable Boolean value) {
 			this.waitForCompletion = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

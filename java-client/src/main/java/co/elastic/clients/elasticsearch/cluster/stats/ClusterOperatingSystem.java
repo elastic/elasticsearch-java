@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.List;
@@ -181,7 +181,9 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 	 * Builder for {@link ClusterOperatingSystem}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystem> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClusterOperatingSystem> {
 		private Integer allocatedProcessors;
 
 		private Integer availableProcessors;
@@ -317,6 +319,11 @@ public class ClusterOperatingSystem implements JsonpSerializable {
 		public final Builder architectures(
 				Function<ClusterOperatingSystemArchitecture.Builder, ObjectBuilder<ClusterOperatingSystemArchitecture>> fn) {
 			return architectures(fn.apply(new ClusterOperatingSystemArchitecture.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -106,7 +106,9 @@ public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 	 * Builder for {@link ClusterOperatingSystemPrettyName}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterOperatingSystemPrettyName> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClusterOperatingSystemPrettyName> {
 		private Integer count;
 
 		private String prettyName;
@@ -124,6 +126,11 @@ public class ClusterOperatingSystemPrettyName implements JsonpSerializable {
 		 */
 		public final Builder prettyName(String value) {
 			this.prettyName = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

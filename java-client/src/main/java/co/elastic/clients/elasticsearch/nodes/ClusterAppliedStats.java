@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.List;
 import java.util.Objects;
@@ -99,7 +99,9 @@ public class ClusterAppliedStats implements JsonpSerializable {
 	 * Builder for {@link ClusterAppliedStats}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ClusterAppliedStats> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ClusterAppliedStats> {
 		@Nullable
 		private List<Recording> recordings;
 
@@ -130,6 +132,11 @@ public class ClusterAppliedStats implements JsonpSerializable {
 		 */
 		public final Builder recordings(Function<Recording.Builder, ObjectBuilder<Recording>> fn) {
 			return recordings(fn.apply(new Recording.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

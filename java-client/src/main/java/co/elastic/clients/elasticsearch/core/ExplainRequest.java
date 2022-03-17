@@ -38,7 +38,7 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -298,7 +298,7 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 	 * Builder for {@link ExplainRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ExplainRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ExplainRequest> {
 		@Nullable
 		private SourceConfigParam source;
 
@@ -550,6 +550,11 @@ public class ExplainRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder storedFields(String value, String... values) {
 			this.storedFields = _listAdd(this.storedFields, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

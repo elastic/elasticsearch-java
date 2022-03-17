@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -126,7 +126,9 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 	 * Builder for {@link ResolveIndexDataStreamsItem}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ResolveIndexDataStreamsItem> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ResolveIndexDataStreamsItem> {
 		private String name;
 
 		private String timestampField;
@@ -166,6 +168,11 @@ public class ResolveIndexDataStreamsItem implements JsonpSerializable {
 		 */
 		public final Builder backingIndices(String value, String... values) {
 			this.backingIndices = _listAdd(this.backingIndices, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

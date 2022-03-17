@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
@@ -134,7 +134,7 @@ public class ReloadDetails implements JsonpSerializable {
 	 * Builder for {@link ReloadDetails}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ReloadDetails> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ReloadDetails> {
 		private String index;
 
 		private List<String> reloadedAnalyzers;
@@ -186,6 +186,11 @@ public class ReloadDetails implements JsonpSerializable {
 		 */
 		public final Builder reloadedNodeIds(String value, String... values) {
 			this.reloadedNodeIds = _listAdd(this.reloadedNodeIds, value, values);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

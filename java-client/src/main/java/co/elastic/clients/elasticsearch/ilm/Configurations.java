@@ -31,7 +31,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -128,7 +128,7 @@ public class Configurations implements JsonpSerializable {
 	 * Builder for {@link Configurations}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Configurations> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Configurations> {
 		@Nullable
 		private RolloverConditions rollover;
 
@@ -182,6 +182,11 @@ public class Configurations implements JsonpSerializable {
 		 */
 		public final Builder shrink(Function<ShrinkConfiguration.Builder, ObjectBuilder<ShrinkConfiguration>> fn) {
 			return this.shrink(fn.apply(new ShrinkConfiguration.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

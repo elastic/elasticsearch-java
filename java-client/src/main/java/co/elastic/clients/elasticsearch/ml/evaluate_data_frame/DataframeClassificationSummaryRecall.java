@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.util.List;
@@ -113,7 +113,7 @@ public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 	 * Builder for {@link DataframeClassificationSummaryRecall}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<DataframeClassificationSummaryRecall> {
 		private List<DataframeEvaluationClass> classes;
@@ -155,6 +155,11 @@ public class DataframeClassificationSummaryRecall implements JsonpSerializable {
 		 */
 		public final Builder avgRecall(double value) {
 			this.avgRecall = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

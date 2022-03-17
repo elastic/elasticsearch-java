@@ -35,8 +35,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.util.Collections;
 import java.util.Objects;
 import java.util.function.Function;
@@ -89,7 +90,9 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 	 * Builder for {@link ValidateDetectorRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<ValidateDetectorRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<ValidateDetectorRequest> {
 		private Detector detector;
 
 		/**
@@ -109,6 +112,19 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder detector(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
 			return this.detector(fn.apply(new Detector.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			Detector value = (Detector) Detector._DESERIALIZER.deserialize(parser, mapper);
+			return this.detector(value);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

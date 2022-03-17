@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
@@ -216,7 +216,9 @@ public class FollowerIndexParameters implements JsonpSerializable {
 	 * Builder for {@link FollowerIndexParameters}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<FollowerIndexParameters> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<FollowerIndexParameters> {
 		private Integer maxOutstandingReadRequests;
 
 		private Integer maxOutstandingWriteRequests;
@@ -329,6 +331,11 @@ public class FollowerIndexParameters implements JsonpSerializable {
 		 */
 		public final Builder readPollTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.readPollTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

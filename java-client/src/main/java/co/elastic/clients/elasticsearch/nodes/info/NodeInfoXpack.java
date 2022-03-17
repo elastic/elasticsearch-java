@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -131,7 +131,7 @@ public class NodeInfoXpack implements JsonpSerializable {
 	 * Builder for {@link NodeInfoXpack}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<NodeInfoXpack> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodeInfoXpack> {
 		@Nullable
 		private NodeInfoXpackLicense license;
 
@@ -188,6 +188,11 @@ public class NodeInfoXpack implements JsonpSerializable {
 		 */
 		public final Builder notification(String key, JsonData value) {
 			this.notification = _mapPut(this.notification, key, value);
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

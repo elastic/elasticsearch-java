@@ -37,8 +37,9 @@ import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
@@ -143,7 +144,9 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 	 * Builder for {@link SimulateTemplateRequest}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<SimulateTemplateRequest> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<SimulateTemplateRequest> {
 		@Nullable
 		private Boolean create;
 
@@ -218,6 +221,19 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 		 */
 		public final Builder template(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
 			return this.template(fn.apply(new IndexTemplate.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			IndexTemplate value = (IndexTemplate) IndexTemplate._DESERIALIZER.deserialize(parser, mapper);
+			return this.template(value);
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

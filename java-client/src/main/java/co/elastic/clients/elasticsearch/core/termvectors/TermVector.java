@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Map;
@@ -114,7 +114,7 @@ public class TermVector implements JsonpSerializable {
 	 * Builder for {@link TermVector}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<TermVector> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TermVector> {
 		private FieldStatistics fieldStatistics;
 
 		private Map<String, Term> terms;
@@ -161,6 +161,11 @@ public class TermVector implements JsonpSerializable {
 		 */
 		public final Builder terms(String key, Function<Term.Builder, ObjectBuilder<Term>> fn) {
 			return terms(key, fn.apply(new Term.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**

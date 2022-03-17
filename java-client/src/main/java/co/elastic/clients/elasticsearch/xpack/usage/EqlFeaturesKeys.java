@@ -31,7 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Number;
 import java.util.Objects;
@@ -142,7 +142,7 @@ public class EqlFeaturesKeys implements JsonpSerializable {
 	 * Builder for {@link EqlFeaturesKeys}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<EqlFeaturesKeys> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<EqlFeaturesKeys> {
 		private Number joinKeysTwo;
 
 		private Number joinKeysOne;
@@ -190,6 +190,11 @@ public class EqlFeaturesKeys implements JsonpSerializable {
 		 */
 		public final Builder joinKeysFour(Number value) {
 			this.joinKeysFour = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

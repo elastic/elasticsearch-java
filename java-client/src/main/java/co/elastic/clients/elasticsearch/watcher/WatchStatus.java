@@ -32,7 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
@@ -177,7 +177,7 @@ public class WatchStatus implements JsonpSerializable {
 	 * Builder for {@link WatchStatus}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<WatchStatus> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<WatchStatus> {
 		private Map<String, ActionStatus> actions;
 
 		@Nullable
@@ -266,6 +266,11 @@ public class WatchStatus implements JsonpSerializable {
 		 */
 		public final Builder executionState(@Nullable String value) {
 			this.executionState = value;
+			return this;
+		}
+
+		@Override
+		protected Builder self() {
 			return this;
 		}
 

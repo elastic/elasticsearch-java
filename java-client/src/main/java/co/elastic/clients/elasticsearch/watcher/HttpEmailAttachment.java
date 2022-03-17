@@ -30,7 +30,7 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.ObjectBuilderBase;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -138,7 +138,9 @@ public class HttpEmailAttachment implements EmailAttachmentVariant, JsonpSeriali
 	 * Builder for {@link HttpEmailAttachment}.
 	 */
 
-	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<HttpEmailAttachment> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<HttpEmailAttachment> {
 		@Nullable
 		private String contentType;
 
@@ -178,6 +180,11 @@ public class HttpEmailAttachment implements EmailAttachmentVariant, JsonpSeriali
 		public final Builder request(
 				Function<HttpInputRequestDefinition.Builder, ObjectBuilder<HttpInputRequestDefinition>> fn) {
 			return this.request(fn.apply(new HttpInputRequestDefinition.Builder()).build());
+		}
+
+		@Override
+		protected Builder self() {
+			return this;
 		}
 
 		/**
