@@ -19,11 +19,14 @@
 
 package co.elastic.clients.json;
 
+import jakarta.json.JsonException;
 import jakarta.json.JsonValue;
+import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
+import java.io.StringWriter;
 import java.lang.reflect.Field;
 
 public abstract class JsonpMapperBase implements JsonpMapper {
@@ -74,6 +77,22 @@ public abstract class JsonpMapperBase implements JsonpMapper {
         }
 
         return null;
+    }
+
+    @Override
+    public <T> String serializeToString(T value) {
+        JsonpSerializer<T> serializer = findSerializer(value);
+
+        if (serializer != null) {
+            StringWriter writer = new StringWriter();
+            serializer.serialize(value, jsonProvider().createGenerator(writer), this);
+            return writer.toString();
+        } else {
+            throw new JsonException(
+                    "Cannot find a serializer for type " + value.getClass().getName() +
+                            ". Consider using a full-featured JsonpMapper"
+            );
+        }
     }
 
     protected static class JsonpSerializableSerializer<T extends JsonpSerializable> implements JsonpSerializer<T> {

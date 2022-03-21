@@ -19,11 +19,14 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.json.jackson.JacksonJsonProvider;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
+import java.io.StringWriter;
 
 /**
  * A {@code JsonpMapper} combines a JSON-P provider and object serialization/deserialization based on JSON-P events.
@@ -50,6 +53,11 @@ public interface JsonpMapper {
      * Serialize an object.
      */
     <T> void serialize(T value, JsonGenerator generator);
+
+    /**
+     * Serialize an object to its Json String representation
+     */
+    <T> String serializeToString(T value);
 
     /**
      * Should object parsers in the API client be lenient and silently ignore unknown fields?
