@@ -21,15 +21,19 @@ package co.elastic.clients.json;
 
 import co.elastic.clients.elasticsearch._types.Result;
 import co.elastic.clients.elasticsearch.core.IndexResponse;
+import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.Test;
 
+import java.util.Collections;
+
 public class SerializeToStringTest extends ModelTestCase {
 
     @Test
-    public void testRequestWithGenericValueBody() {
+    public void testIndexResponse() {
         IndexResponse resp = IndexResponse.of(r -> r
                 .index("foo")
                 .id("1")
@@ -42,7 +46,24 @@ public class SerializeToStringTest extends ModelTestCase {
 
         String json = mapper.serializeToString(resp);
 
-        assertEquals("foo", json);
+        assertEquals("{\"_id\":\"1\",\"_index\":\"foo\",\"_primary_term\":1,\"result\":\"created\",\"_seq_no\":1,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},\"_version\":1}", json);
+    }
+
+    @Test
+    public void testSearchResponse() {
+        SearchResponse resp = SearchResponse.searchResponseOf(r -> r
+                .took(10)
+                .shards(s -> s.successful(1).failed(0).total(1))
+                .timedOut(false)
+                .hits(h -> h
+                        .total(t -> t.value(0).relation(TotalHitsRelation.Eq))
+                        .hits(Collections.emptyList())
+                )
+        );
+
+        String json = mapper.serializeToString(resp);
+
+        assertEquals("{\"took\":10,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]}}", json);
     }
 }
 

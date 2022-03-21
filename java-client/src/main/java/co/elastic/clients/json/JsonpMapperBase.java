@@ -26,6 +26,7 @@ import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
+import java.io.IOException;
 import java.io.StringWriter;
 import java.lang.reflect.Field;
 
@@ -85,7 +86,9 @@ public abstract class JsonpMapperBase implements JsonpMapper {
 
         if (serializer != null) {
             StringWriter writer = new StringWriter();
-            serializer.serialize(value, jsonProvider().createGenerator(writer), this);
+            JsonGenerator generator = jsonProvider().createGenerator(writer);
+            serializer.serialize(value, generator, this);
+            generator.close();
             return writer.toString();
         } else {
             throw new JsonException(
