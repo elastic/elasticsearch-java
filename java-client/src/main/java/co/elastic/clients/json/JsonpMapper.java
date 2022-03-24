@@ -57,7 +57,13 @@ public interface JsonpMapper {
     /**
      * Serialize an object to its Json String representation
      */
-    <T> String serializeToString(T value);
+    default <T> String serializeToString(T value) {
+        StringWriter writer = new StringWriter();
+        try (JsonGenerator generator = jsonProvider().createGenerator(writer)) {
+            serialize(value, generator);
+        };
+        return writer.toString();
+    }
 
     /**
      * Should object parsers in the API client be lenient and silently ignore unknown fields?
