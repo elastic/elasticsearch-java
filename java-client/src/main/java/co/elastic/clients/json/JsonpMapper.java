@@ -55,7 +55,7 @@ public interface JsonpMapper {
     <T> void serialize(T value, JsonGenerator generator);
 
     /**
-     * Serialize an object to its Json String representation
+     * Serialize an object to its JSON String representation
      */
     default <T> String serializeToString(T value) {
         StringWriter writer = new StringWriter();
