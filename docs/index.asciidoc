@@ -3,6 +3,8 @@
 include::{asciidoc-dir}/../../shared/versions/stack/{source_branch}.asciidoc[]
 include::{asciidoc-dir}/../../shared/attributes.asciidoc[]
 
+include::_releases.asciidoc[]
+
 :java-client: Java API Client
 :doc-tests: {docdir}/../java-client/src/test/java/co/elastic/clients/documentation
 
@@ -25,7 +27,9 @@ include::installation.asciidoc[]
 include::connecting.asciidoc[]
 include::migrate.asciidoc[]
 include::api-conventions.asciidoc[]
+ifdef::is_main_branch,v8_1_1_released,v7_17_2_released[]
 include::loading-json.asciidoc[]
+endif::is_main_branch,v8_1_1_released,v7_17_2_released[]
 include::javadoc-and-source.asciidoc[]
 include::release-notes/index.asciidoc[]
 
