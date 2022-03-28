@@ -55,12 +55,15 @@ public class ModelSnapshot implements JsonpSerializable {
 
 	private final String jobId;
 
-	private final int latestRecordTimeStamp;
+	@Nullable
+	private final Integer latestRecordTimeStamp;
 
-	private final int latestResultTimeStamp;
+	@Nullable
+	private final Integer latestResultTimeStamp;
 
 	private final String minVersion;
 
+	@Nullable
 	private final ModelSizeStats modelSizeStats;
 
 	private final boolean retain;
@@ -77,12 +80,10 @@ public class ModelSnapshot implements JsonpSerializable {
 
 		this.description = builder.description;
 		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
-		this.latestRecordTimeStamp = ApiTypeHelper.requireNonNull(builder.latestRecordTimeStamp, this,
-				"latestRecordTimeStamp");
-		this.latestResultTimeStamp = ApiTypeHelper.requireNonNull(builder.latestResultTimeStamp, this,
-				"latestResultTimeStamp");
+		this.latestRecordTimeStamp = builder.latestRecordTimeStamp;
+		this.latestResultTimeStamp = builder.latestResultTimeStamp;
 		this.minVersion = ApiTypeHelper.requireNonNull(builder.minVersion, this, "minVersion");
-		this.modelSizeStats = ApiTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
+		this.modelSizeStats = builder.modelSizeStats;
 		this.retain = ApiTypeHelper.requireNonNull(builder.retain, this, "retain");
 		this.snapshotDocCount = ApiTypeHelper.requireNonNull(builder.snapshotDocCount, this, "snapshotDocCount");
 		this.snapshotId = ApiTypeHelper.requireNonNull(builder.snapshotId, this, "snapshotId");
@@ -115,20 +116,22 @@ public class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The timestamp of the latest processed record.
+	 * The timestamp of the latest processed record.
 	 * <p>
 	 * API name: {@code latest_record_time_stamp}
 	 */
-	public final int latestRecordTimeStamp() {
+	@Nullable
+	public final Integer latestRecordTimeStamp() {
 		return this.latestRecordTimeStamp;
 	}
 
 	/**
-	 * Required - The timestamp of the latest bucket result.
+	 * The timestamp of the latest bucket result.
 	 * <p>
 	 * API name: {@code latest_result_time_stamp}
 	 */
-	public final int latestResultTimeStamp() {
+	@Nullable
+	public final Integer latestResultTimeStamp() {
 		return this.latestResultTimeStamp;
 	}
 
@@ -143,10 +146,11 @@ public class ModelSnapshot implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Summary information describing the model.
+	 * Summary information describing the model.
 	 * <p>
 	 * API name: {@code model_size_stats}
 	 */
+	@Nullable
 	public final ModelSizeStats modelSizeStats() {
 		return this.modelSizeStats;
 	}
@@ -209,18 +213,24 @@ public class ModelSnapshot implements JsonpSerializable {
 		generator.writeKey("job_id");
 		generator.write(this.jobId);
 
-		generator.writeKey("latest_record_time_stamp");
-		generator.write(this.latestRecordTimeStamp);
+		if (this.latestRecordTimeStamp != null) {
+			generator.writeKey("latest_record_time_stamp");
+			generator.write(this.latestRecordTimeStamp);
 
-		generator.writeKey("latest_result_time_stamp");
-		generator.write(this.latestResultTimeStamp);
+		}
+		if (this.latestResultTimeStamp != null) {
+			generator.writeKey("latest_result_time_stamp");
+			generator.write(this.latestResultTimeStamp);
 
+		}
 		generator.writeKey("min_version");
 		generator.write(this.minVersion);
 
-		generator.writeKey("model_size_stats");
-		this.modelSizeStats.serialize(generator, mapper);
+		if (this.modelSizeStats != null) {
+			generator.writeKey("model_size_stats");
+			this.modelSizeStats.serialize(generator, mapper);
 
+		}
 		generator.writeKey("retain");
 		generator.write(this.retain);
 
@@ -247,12 +257,15 @@ public class ModelSnapshot implements JsonpSerializable {
 
 		private String jobId;
 
+		@Nullable
 		private Integer latestRecordTimeStamp;
 
+		@Nullable
 		private Integer latestResultTimeStamp;
 
 		private String minVersion;
 
+		@Nullable
 		private ModelSizeStats modelSizeStats;
 
 		private Boolean retain;
@@ -285,21 +298,21 @@ public class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The timestamp of the latest processed record.
+		 * The timestamp of the latest processed record.
 		 * <p>
 		 * API name: {@code latest_record_time_stamp}
 		 */
-		public final Builder latestRecordTimeStamp(int value) {
+		public final Builder latestRecordTimeStamp(@Nullable Integer value) {
 			this.latestRecordTimeStamp = value;
 			return this;
 		}
 
 		/**
-		 * Required - The timestamp of the latest bucket result.
+		 * The timestamp of the latest bucket result.
 		 * <p>
 		 * API name: {@code latest_result_time_stamp}
 		 */
-		public final Builder latestResultTimeStamp(int value) {
+		public final Builder latestResultTimeStamp(@Nullable Integer value) {
 			this.latestResultTimeStamp = value;
 			return this;
 		}
@@ -316,17 +329,17 @@ public class ModelSnapshot implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Summary information describing the model.
+		 * Summary information describing the model.
 		 * <p>
 		 * API name: {@code model_size_stats}
 		 */
-		public final Builder modelSizeStats(ModelSizeStats value) {
+		public final Builder modelSizeStats(@Nullable ModelSizeStats value) {
 			this.modelSizeStats = value;
 			return this;
 		}
 
 		/**
-		 * Required - Summary information describing the model.
+		 * Summary information describing the model.
 		 * <p>
 		 * API name: {@code model_size_stats}
 		 */

@@ -87,7 +87,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
-		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeUnmapped = builder.includeUnmapped;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
@@ -123,7 +123,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * A comma-separated list of field names
+	 * Required - A comma-separated list of field names
 	 * <p>
 	 * API name: {@code fields}
 	 */
@@ -220,7 +220,6 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
 
-		@Nullable
 		private List<String> fields;
 
 		@Nullable
@@ -277,7 +276,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of field names
+		 * Required - A comma-separated list of field names
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -289,7 +288,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * A comma-separated list of field names
+		 * Required - A comma-separated list of field names
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -478,9 +477,7 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
-				if (ApiTypeHelper.isDefined(request.fields)) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
+				params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				if (request.includeUnmapped != null) {
 					params.put("include_unmapped", String.valueOf(request.includeUnmapped));
 				}

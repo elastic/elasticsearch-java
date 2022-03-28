@@ -29,13 +29,11 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -68,7 +66,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	@Nullable
 	private final GoogleNormalizedDistanceHeuristic gnd;
 
-	private final List<String> include;
+	@Nullable
+	private final TermsInclude include;
 
 	@Nullable
 	private final Long minDocCount;
@@ -102,7 +101,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		this.executionHint = builder.executionHint;
 		this.field = builder.field;
 		this.gnd = builder.gnd;
-		this.include = ApiTypeHelper.unmodifiable(builder.include);
+		this.include = builder.include;
 		this.minDocCount = builder.minDocCount;
 		this.mutualInformation = builder.mutualInformation;
 		this.percentage = builder.percentage;
@@ -176,7 +175,8 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 	/**
 	 * API name: {@code include}
 	 */
-	public final List<String> include() {
+	@Nullable
+	public final TermsInclude include() {
 		return this.include;
 	}
 
@@ -268,14 +268,9 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 			this.gnd.serialize(generator, mapper);
 
 		}
-		if (ApiTypeHelper.isDefined(this.include)) {
+		if (this.include != null) {
 			generator.writeKey("include");
-			generator.writeStartArray();
-			for (String item0 : this.include) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+			this.include.serialize(generator, mapper);
 
 		}
 		if (this.minDocCount != null) {
@@ -344,7 +339,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		private GoogleNormalizedDistanceHeuristic gnd;
 
 		@Nullable
-		private List<String> include;
+		private TermsInclude include;
 
 		@Nullable
 		private Long minDocCount;
@@ -446,22 +441,17 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 
 		/**
 		 * API name: {@code include}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>include</code>.
 		 */
-		public final Builder include(List<String> list) {
-			this.include = _listAddAll(this.include, list);
+		public final Builder include(@Nullable TermsInclude value) {
+			this.include = value;
 			return this;
 		}
 
 		/**
 		 * API name: {@code include}
-		 * <p>
-		 * Adds one or more values to <code>include</code>.
 		 */
-		public final Builder include(String value, String... values) {
-			this.include = _listAdd(this.include, value, values);
-			return this;
+		public final Builder include(Function<TermsInclude.Builder, ObjectBuilder<TermsInclude>> fn) {
+			return this.include(fn.apply(new TermsInclude.Builder()).build());
 		}
 
 		/**
@@ -578,8 +568,7 @@ public class SignificantTermsAggregation extends BucketAggregationBase implement
 		op.add(Builder::executionHint, TermsAggregationExecutionHint._DESERIALIZER, "execution_hint");
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic._DESERIALIZER, "gnd");
-		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
-				"include");
+		op.add(Builder::include, TermsInclude._DESERIALIZER, "include");
 		op.add(Builder::minDocCount, JsonpDeserializer.longDeserializer(), "min_doc_count");
 		op.add(Builder::mutualInformation, MutualInformationHeuristic._DESERIALIZER, "mutual_information");
 		op.add(Builder::percentage, PercentageScoreHeuristic._DESERIALIZER, "percentage");

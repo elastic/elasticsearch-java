@@ -117,6 +117,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
 		LongRange("long_range"),
 
+		MatchOnlyText("match_only_text"),
+
 		Murmur3("murmur3"),
 
 		Nested("nested"),
@@ -670,6 +672,24 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 	 */
 	public LongRangeProperty longRange() {
 		return TaggedUnionUtils.get(this, Kind.LongRange);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code match_only_text}?
+	 */
+	public boolean isMatchOnlyText() {
+		return _kind == Kind.MatchOnlyText;
+	}
+
+	/**
+	 * Get the {@code match_only_text} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code match_only_text}
+	 *             kind.
+	 */
+	public MatchOnlyTextProperty matchOnlyText() {
+		return TaggedUnionUtils.get(this, Kind.MatchOnlyText);
 	}
 
 	/**
@@ -1261,6 +1281,17 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this.longRange(fn.apply(new LongRangeProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> matchOnlyText(MatchOnlyTextProperty v) {
+			this._kind = Kind.MatchOnlyText;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> matchOnlyText(
+				Function<MatchOnlyTextProperty.Builder, ObjectBuilder<MatchOnlyTextProperty>> fn) {
+			return this.matchOnlyText(fn.apply(new MatchOnlyTextProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> murmur3(Murmur3HashProperty v) {
 			this._kind = Kind.Murmur3;
 			this._value = v;
@@ -1468,6 +1499,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 		op.add(Builder::keyword, KeywordProperty._DESERIALIZER, "keyword");
 		op.add(Builder::long_, LongNumberProperty._DESERIALIZER, "long");
 		op.add(Builder::longRange, LongRangeProperty._DESERIALIZER, "long_range");
+		op.add(Builder::matchOnlyText, MatchOnlyTextProperty._DESERIALIZER, "match_only_text");
 		op.add(Builder::murmur3, Murmur3HashProperty._DESERIALIZER, "murmur3");
 		op.add(Builder::nested, NestedProperty._DESERIALIZER, "nested");
 		op.add(Builder::object, ObjectProperty._DESERIALIZER, "object");

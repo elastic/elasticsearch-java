@@ -108,7 +108,7 @@ public class WithJsonTest extends ModelTestCase {
             "}";
 
         // withJson() will read values of the generic parameter type as JsonData
-        SearchResponse<JsonData> r = SearchResponse.searchResponseOf(b -> b
+        SearchResponse<JsonData> r = SearchResponse.of(b -> b
             .withJson(new StringReader(json))
         );
 

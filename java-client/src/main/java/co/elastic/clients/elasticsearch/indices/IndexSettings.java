@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/7.8/index-modules.html#index-modules-settings">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/7.17/index-modules.html#index-modules-settings">Documentation
  *      on elastic.co</a>
  * @see <a href="../doc-files/api-spec.html#indices._types.IndexSettings">API
  *      specification</a>
@@ -201,10 +201,7 @@ public class IndexSettings implements JsonpSerializable {
 	private final Integer maxSlicesPerScroll;
 
 	@Nullable
-	private final String translogDurability;
-
-	@Nullable
-	private final String translogFlushThresholdSize;
+	private final Translog translog;
 
 	@Nullable
 	private final Boolean queryStringLenient;
@@ -220,6 +217,18 @@ public class IndexSettings implements JsonpSerializable {
 
 	@Nullable
 	private final IndexSettings settings;
+
+	@Nullable
+	private final MappingLimitSettings mappings;
+
+	@Nullable
+	private final SlowlogSettings indexingSlowlog;
+
+	@Nullable
+	private final IndexingPressure indexingPressure;
+
+	@Nullable
+	private final Storage store;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -274,13 +283,16 @@ public class IndexSettings implements JsonpSerializable {
 		this.verifiedBeforeClose = builder.verifiedBeforeClose;
 		this.format = builder.format;
 		this.maxSlicesPerScroll = builder.maxSlicesPerScroll;
-		this.translogDurability = builder.translogDurability;
-		this.translogFlushThresholdSize = builder.translogFlushThresholdSize;
+		this.translog = builder.translog;
 		this.queryStringLenient = builder.queryStringLenient;
 		this.priority = builder.priority;
 		this.topMetricsMaxSize = builder.topMetricsMaxSize;
 		this.analysis = builder.analysis;
 		this.settings = builder.settings;
+		this.mappings = builder.mappings;
+		this.indexingSlowlog = builder.indexingSlowlog;
+		this.indexingPressure = builder.indexingPressure;
+		this.store = builder.store;
 
 	}
 
@@ -680,19 +692,11 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code translog.durability}
+	 * API name: {@code translog}
 	 */
 	@Nullable
-	public final String translogDurability() {
-		return this.translogDurability;
-	}
-
-	/**
-	 * API name: {@code translog.flush_threshold_size}
-	 */
-	@Nullable
-	public final String translogFlushThresholdSize() {
-		return this.translogFlushThresholdSize;
+	public final Translog translog() {
+		return this.translog;
 	}
 
 	/**
@@ -733,6 +737,45 @@ public class IndexSettings implements JsonpSerializable {
 	@Nullable
 	public final IndexSettings settings() {
 		return this.settings;
+	}
+
+	/**
+	 * Enable or disable dynamic mapping for an index.
+	 * <p>
+	 * API name: {@code mappings}
+	 */
+	@Nullable
+	public final MappingLimitSettings mappings() {
+		return this.mappings;
+	}
+
+	/**
+	 * API name: {@code indexing.slowlog}
+	 */
+	@Nullable
+	public final SlowlogSettings indexingSlowlog() {
+		return this.indexingSlowlog;
+	}
+
+	/**
+	 * Configure indexing back pressure limits.
+	 * <p>
+	 * API name: {@code indexing_pressure}
+	 */
+	@Nullable
+	public final IndexingPressure indexingPressure() {
+		return this.indexingPressure;
+	}
+
+	/**
+	 * The store module allows you to control how index data is stored and accessed
+	 * on disk.
+	 * <p>
+	 * API name: {@code store}
+	 */
+	@Nullable
+	public final Storage store() {
+		return this.store;
 	}
 
 	/**
@@ -995,14 +1038,9 @@ public class IndexSettings implements JsonpSerializable {
 			generator.write(this.maxSlicesPerScroll);
 
 		}
-		if (this.translogDurability != null) {
-			generator.writeKey("translog.durability");
-			generator.write(this.translogDurability);
-
-		}
-		if (this.translogFlushThresholdSize != null) {
-			generator.writeKey("translog.flush_threshold_size");
-			generator.write(this.translogFlushThresholdSize);
+		if (this.translog != null) {
+			generator.writeKey("translog");
+			this.translog.serialize(generator, mapper);
 
 		}
 		if (this.queryStringLenient != null) {
@@ -1028,6 +1066,26 @@ public class IndexSettings implements JsonpSerializable {
 		if (this.settings != null) {
 			generator.writeKey("settings");
 			this.settings.serialize(generator, mapper);
+
+		}
+		if (this.mappings != null) {
+			generator.writeKey("mappings");
+			this.mappings.serialize(generator, mapper);
+
+		}
+		if (this.indexingSlowlog != null) {
+			generator.writeKey("indexing.slowlog");
+			this.indexingSlowlog.serialize(generator, mapper);
+
+		}
+		if (this.indexingPressure != null) {
+			generator.writeKey("indexing_pressure");
+			this.indexingPressure.serialize(generator, mapper);
+
+		}
+		if (this.store != null) {
+			generator.writeKey("store");
+			this.store.serialize(generator, mapper);
 
 		}
 
@@ -1188,10 +1246,7 @@ public class IndexSettings implements JsonpSerializable {
 		private Integer maxSlicesPerScroll;
 
 		@Nullable
-		private String translogDurability;
-
-		@Nullable
-		private String translogFlushThresholdSize;
+		private Translog translog;
 
 		@Nullable
 		private Boolean queryStringLenient;
@@ -1207,6 +1262,18 @@ public class IndexSettings implements JsonpSerializable {
 
 		@Nullable
 		private IndexSettings settings;
+
+		@Nullable
+		private MappingLimitSettings mappings;
+
+		@Nullable
+		private SlowlogSettings indexingSlowlog;
+
+		@Nullable
+		private IndexingPressure indexingPressure;
+
+		@Nullable
+		private Storage store;
 
 		/**
 		 * API name: {@code index}
@@ -1691,19 +1758,18 @@ public class IndexSettings implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code translog.durability}
+		 * API name: {@code translog}
 		 */
-		public final Builder translogDurability(@Nullable String value) {
-			this.translogDurability = value;
+		public final Builder translog(@Nullable Translog value) {
+			this.translog = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code translog.flush_threshold_size}
+		 * API name: {@code translog}
 		 */
-		public final Builder translogFlushThresholdSize(@Nullable String value) {
-			this.translogFlushThresholdSize = value;
-			return this;
+		public final Builder translog(Function<Translog.Builder, ObjectBuilder<Translog>> fn) {
+			return this.translog(fn.apply(new Translog.Builder()).build());
 		}
 
 		/**
@@ -1759,6 +1825,80 @@ public class IndexSettings implements JsonpSerializable {
 		 */
 		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
 			return this.settings(fn.apply(new IndexSettings.Builder()).build());
+		}
+
+		/**
+		 * Enable or disable dynamic mapping for an index.
+		 * <p>
+		 * API name: {@code mappings}
+		 */
+		public final Builder mappings(@Nullable MappingLimitSettings value) {
+			this.mappings = value;
+			return this;
+		}
+
+		/**
+		 * Enable or disable dynamic mapping for an index.
+		 * <p>
+		 * API name: {@code mappings}
+		 */
+		public final Builder mappings(Function<MappingLimitSettings.Builder, ObjectBuilder<MappingLimitSettings>> fn) {
+			return this.mappings(fn.apply(new MappingLimitSettings.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code indexing.slowlog}
+		 */
+		public final Builder indexingSlowlog(@Nullable SlowlogSettings value) {
+			this.indexingSlowlog = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code indexing.slowlog}
+		 */
+		public final Builder indexingSlowlog(Function<SlowlogSettings.Builder, ObjectBuilder<SlowlogSettings>> fn) {
+			return this.indexingSlowlog(fn.apply(new SlowlogSettings.Builder()).build());
+		}
+
+		/**
+		 * Configure indexing back pressure limits.
+		 * <p>
+		 * API name: {@code indexing_pressure}
+		 */
+		public final Builder indexingPressure(@Nullable IndexingPressure value) {
+			this.indexingPressure = value;
+			return this;
+		}
+
+		/**
+		 * Configure indexing back pressure limits.
+		 * <p>
+		 * API name: {@code indexing_pressure}
+		 */
+		public final Builder indexingPressure(Function<IndexingPressure.Builder, ObjectBuilder<IndexingPressure>> fn) {
+			return this.indexingPressure(fn.apply(new IndexingPressure.Builder()).build());
+		}
+
+		/**
+		 * The store module allows you to control how index data is stored and accessed
+		 * on disk.
+		 * <p>
+		 * API name: {@code store}
+		 */
+		public final Builder store(@Nullable Storage value) {
+			this.store = value;
+			return this;
+		}
+
+		/**
+		 * The store module allows you to control how index data is stored and accessed
+		 * on disk.
+		 * <p>
+		 * API name: {@code store}
+		 */
+		public final Builder store(Function<Storage.Builder, ObjectBuilder<Storage>> fn) {
+			return this.store(fn.apply(new Storage.Builder()).build());
 		}
 
 		@Override
@@ -1868,16 +2008,17 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format", "index.format");
 		op.add(Builder::maxSlicesPerScroll, JsonpDeserializer.integerDeserializer(), "max_slices_per_scroll",
 				"index.max_slices_per_scroll");
-		op.add(Builder::translogDurability, JsonpDeserializer.stringDeserializer(), "translog.durability",
-				"index.translog.durability");
-		op.add(Builder::translogFlushThresholdSize, JsonpDeserializer.stringDeserializer(),
-				"translog.flush_threshold_size", "index.translog.flush_threshold_size");
+		op.add(Builder::translog, Translog._DESERIALIZER, "translog");
 		op.add(Builder::queryStringLenient, JsonpDeserializer.booleanDeserializer(), "query_string.lenient",
 				"index.query_string.lenient");
 		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority", "index.priority");
 		op.add(Builder::topMetricsMaxSize, JsonpDeserializer.integerDeserializer(), "top_metrics_max_size");
 		op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis", "index.analysis");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
+		op.add(Builder::mappings, MappingLimitSettings._DESERIALIZER, "mappings");
+		op.add(Builder::indexingSlowlog, SlowlogSettings._DESERIALIZER, "indexing.slowlog");
+		op.add(Builder::indexingPressure, IndexingPressure._DESERIALIZER, "indexing_pressure");
+		op.add(Builder::store, Storage._DESERIALIZER, "store");
 
 	}
 

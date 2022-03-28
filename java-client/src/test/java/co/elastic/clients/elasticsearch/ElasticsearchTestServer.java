@@ -47,7 +47,12 @@ public class ElasticsearchTestServer implements AutoCloseable {
         if (global == null) {
             System.out.println("Starting global ES test server.");
             global = new ElasticsearchTestServer();
-            global.setup();
+            try {
+                global.setup();
+            } catch (Exception e) {
+                e.printStackTrace();
+                throw e;
+            }
             Runtime.getRuntime().addShutdownHook(new Thread(() -> {
                 System.out.println("Stopping global ES test server.");
                 global.close();
@@ -57,10 +62,10 @@ public class ElasticsearchTestServer implements AutoCloseable {
     }
 
     private synchronized void setup() {
-        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.16.2")
+        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.17.1")
             .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
             .withEnv("path.repo", "/tmp") // for snapshots
-            .withStartupTimeout(Duration.ofSeconds(30))
+            .withStartupTimeout(Duration.ofSeconds(60))
             .withPassword("changeme");
         container.start();
         port = container.getMappedPort(9200);

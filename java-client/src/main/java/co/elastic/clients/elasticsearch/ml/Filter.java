@@ -70,6 +70,8 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
+	 * A description of the filter.
+	 * <p>
 	 * API name: {@code description}
 	 */
 	@Nullable
@@ -78,14 +80,18 @@ public class Filter implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code filter_id}
+	 * Required - A string that uniquely identifies a filter.
+	 * <p>
+	 * API name: {@code filter_id}
 	 */
 	public final String filterId() {
 		return this.filterId;
 	}
 
 	/**
-	 * Required - API name: {@code items}
+	 * Required - An array of strings which is the filter item list.
+	 * <p>
+	 * API name: {@code items}
 	 */
 	public final List<String> items() {
 		return this.items;
@@ -138,6 +144,8 @@ public class Filter implements JsonpSerializable {
 		private List<String> items;
 
 		/**
+		 * A description of the filter.
+		 * <p>
 		 * API name: {@code description}
 		 */
 		public final Builder description(@Nullable String value) {
@@ -146,7 +154,9 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code filter_id}
+		 * Required - A string that uniquely identifies a filter.
+		 * <p>
+		 * API name: {@code filter_id}
 		 */
 		public final Builder filterId(String value) {
 			this.filterId = value;
@@ -154,7 +164,9 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code items}
+		 * Required - An array of strings which is the filter item list.
+		 * <p>
+		 * API name: {@code items}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>items</code>.
 		 */
@@ -164,7 +176,9 @@ public class Filter implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code items}
+		 * Required - An array of strings which is the filter item list.
+		 * <p>
+		 * API name: {@code items}
 		 * <p>
 		 * Adds one or more values to <code>items</code>.
 		 */
