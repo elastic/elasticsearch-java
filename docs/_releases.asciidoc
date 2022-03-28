@@ -1,0 +1,11 @@
+:is_main_branch:
+
+// Non man branches should include the following (8.1 exemplified below)
+// // Versions for the 8.1.x releases
+// :v8_1_0_released:
+// :v8_1_1_released:
+
+// // Handle version bump in the docs build
+// ifeval::["{version}" == "v8.1.2"]
+// :v8_1_2_released:
+// endif::[]
