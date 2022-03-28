@@ -1,0 +1,8 @@
+// Versions for the 7.1.x releases
+:v7_17_0_released:
+:v7_17_1_released:
+
+// Handle version bump in the docs build
+ifeval::["{version}" == "7.17.2"]
+:v7_17_2_released:
+endif::[]
