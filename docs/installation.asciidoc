@@ -58,7 +58,7 @@ dependencies:
       <version>2.12.3</version>
     </dependency>
 
-    <!-- Needed only if you use the spring-boot-maven-plugin -->
+    <!-- Needed only if you use the spring-boot Maven plugin -->
     <dependency> <!--1-->
       <groupId>jakarta.json</groupId>
       <artifactId>jakarta.json-api</artifactId>
