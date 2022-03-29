@@ -1,6 +1,14 @@
 [[loading-json]]
 == Creating API objects from JSON data
 
+ifeval::["{minor-version}" == "7.17"]
+NOTE: This feature was added in version 7.17.2
+endif::[]
+
+ifeval::["{minor-version}" == "8.1"]
+NOTE: This feature was added in version 8.1.1
+endif::[]
+
 A common workflow during application development with Elasticsearch is to use the Kibana Developer Console to interactively prepare and test queries, aggregations, index mappings and other complex API calls. This results in working JSON snippets that you may want to use in your application.
 
 As translating these JSON snippets to Java code can be time-consuming and error-prone, most of the data classes in the {java-client} can be loaded from JSON text: object builders have `withJson()` methods that populate the builder from raw JSON. This also allows you to combine dynamically loaded JSON with programmatic construction of objects.
