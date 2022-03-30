@@ -23,15 +23,12 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.util.AllowForbiddenApis;
 import jakarta.json.JsonException;
 import jakarta.json.spi.JsonProvider;
-import jakarta.json.stream.JsonGenerator;
 import org.junit.Assert;
 import org.junit.Test;
 
-import java.io.StringWriter;
 import java.net.URL;
 import java.util.Collections;
 import java.util.Enumeration;
-import java.util.function.Consumer;
 
 public class JsonpUtilsTest extends Assert {
 
@@ -62,53 +59,5 @@ public class JsonpUtilsTest extends Assert {
         } finally {
             Thread.currentThread().setContextClassLoader(savedLoader);
         }
-    }
-
-    @Test
-    public void testSerializeDoubleOrNull() {
-        // ---- Double values
-        assertEquals("{\"a\":null}", orNullHelper(g -> JsonpUtils.serializeDoubleOrNull(g, Double.NaN, Double.NaN)));
-        assertEquals("{\"a\":1.0}", orNullHelper(g -> JsonpUtils.serializeDoubleOrNull(g, 1.0, Double.NaN)));
-
-        assertEquals("{\"a\":null}",
-            orNullHelper(g -> JsonpUtils.serializeDoubleOrNull(g, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY)));
-        assertEquals("{\"a\":1.0}", orNullHelper(g -> JsonpUtils.serializeDoubleOrNull(g, 1.0, Double.POSITIVE_INFINITY)));
-
-        assertEquals("{\"a\":null}",
-            orNullHelper(g -> JsonpUtils.serializeDoubleOrNull(g, Double.POSITIVE_INFINITY, Double.POSITIVE_INFINITY)));
-        assertEquals("{\"a\":1.0}", orNullHelper(g -> JsonpUtils.serializeDoubleOrNull(g, 1.0, Double.NEGATIVE_INFINITY)));
-
-        assertEquals("{\"a\":null}", orNullHelper(g -> JsonpUtils.serializeDoubleOrNull(g, Double.NaN, 0.0)));
-
-        // Serialize defined default values
-        assertEquals("{\"a\":0.0}", orNullHelper(g -> JsonpUtils.serializeDoubleOrNull(g, 0.0, 0.0)));
-
-    }
-
-    @Test
-    public void testSerializeIntOrNull() {
-        assertEquals("{\"a\":null}", orNullHelper(g -> JsonpUtils.serializeIntOrNull(g, Integer.MAX_VALUE, Integer.MAX_VALUE)));
-        assertEquals("{\"a\":1}", orNullHelper(g -> JsonpUtils.serializeIntOrNull(g, 1, Integer.MAX_VALUE)));
-        assertEquals("{\"a\":1}", orNullHelper(g -> JsonpUtils.serializeIntOrNull(g, 1, 0)));
-
-        // Integer.MAX_VALUE is valid if not the default value
-        assertEquals("{\"a\":2147483647}", orNullHelper(g -> JsonpUtils.serializeIntOrNull(g, Integer.MAX_VALUE, 0)));
-        assertEquals("{\"a\":2147483647}", orNullHelper(g -> JsonpUtils.serializeIntOrNull(g, Integer.MAX_VALUE, Integer.MIN_VALUE)));
-
-        // Serialize non infinite default values
-        assertEquals("{\"a\":0}", orNullHelper(g -> JsonpUtils.serializeIntOrNull(g, 0, 0)));
-    }
-
-    private static String orNullHelper(Consumer<JsonGenerator> c) {
-        StringWriter sw = new StringWriter();
-        JsonGenerator generator = JsonpUtils.provider().createGenerator(sw);
-
-        generator.writeStartObject();
-        generator.writeKey("a");
-        c.accept(generator);
-        generator.writeEnd();
-        generator.close();
-
-        return sw.toString();
     }
 }

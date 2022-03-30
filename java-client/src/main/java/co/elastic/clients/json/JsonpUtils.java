@@ -217,7 +217,8 @@ public class JsonpUtils {
     }
 
     public static void serializeDoubleOrNull(JsonGenerator generator, double value, double defaultValue) {
-        if (!Double.isFinite(value)) {
+        // Only output null if the default value isn't finite, which cannot be represented as JSON
+        if (value == defaultValue && !Double.isFinite(defaultValue)) {
             generator.writeNull();
         } else {
             generator.write(value);
@@ -225,7 +226,8 @@ public class JsonpUtils {
     }
 
     public static void serializeIntOrNull(JsonGenerator generator, int value, int defaultValue) {
-        if (value == defaultValue && (defaultValue == Integer.MAX_VALUE || defaultValue == Integer.MIN_VALUE)) {
+        // Only output null if the default value isn't finite, which cannot be represented as JSON
+        if (value == defaultValue && defaultValue == Integer.MAX_VALUE || defaultValue == Integer.MIN_VALUE) {
             generator.writeNull();
         } else {
             generator.write(value);
