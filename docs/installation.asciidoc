@@ -58,7 +58,7 @@ dependencies:
       <version>2.12.3</version>
     </dependency>
 
-    <!-- Needed only if you use the spring-boot Maven plugin -->
+    <!-- Needed only if you use the spring-boot Maven plugin or frameworks like Helidon  -->
     <dependency> <!--1-->
       <groupId>jakarta.json</groupId>
       <artifactId>jakarta.json-api</artifactId>
@@ -84,3 +84,7 @@ The {java-client} depends on version `2.0.1` of this library, in order to use th
 This is why you have to explicitly add the `jakarta.json:jakarta.json-api:2.0.1` dependency. Otherwise, this will result in the following exception at runtime: `java.lang.ClassNotFoundException: jakarta.json.spi.JsonProvider`.
 
 If your application also requires `javax.json` you can add the `javax.json:javax.json-api:1.1.4` dependency, which is equivalent to `jakarta.json:jakarta.json-api:1.1.6`.
+
+Note:
+
+* Applications built with frameworks like https://helidon.io[Helidon] will also require the `jakarta.json:jakarta.json-api:2.0.1` dependency added explicitly to the build file. 
