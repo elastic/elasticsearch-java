@@ -10,9 +10,14 @@ Migrating from the HLRC therefore requires some code rewrite in your
 application. This transition can however happen progressively as the two client 
 libraries can coexist in a single application with no operational overhead.
 
-NOTE: The HLRC version `7.17` can be used with {es} version `8.x` by enabling
+[discrete]
+=== Compatibility mode: using a 7.17 client with {es} 8.x
+The HLRC version `7.17` can be used with {es} version `8.x` by enabling
 HLRC's compatibility mode (see code sample below). In this mode HLRC sends
 additional headers that instruct {es} `8.x` to behave like a `7.x` server.
+
+The {java-client} doesn't need this setting as compatibility mode is always
+enabled.
 
 [discrete]
 === Using the same http client with the HLRC and the Java API Client
