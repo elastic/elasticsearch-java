@@ -25,18 +25,25 @@ import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
-import org.elasticsearch.client.RestClientBuilder;
 import org.junit.Test;
 
 public class MigrateHlrcTest {
 
     // Fake HLRC -- we don't want to import it for just one example
     public static class RestHighLevelClient {
-        public RestHighLevelClient(RestClientBuilder builder) {
+    }
+
+    public static class RestHighLevelClientBuilder {
+
+        public RestHighLevelClientBuilder(RestClient restClient) {
         }
 
-        public RestClient getLowLevelClient() {
-            return null;
+        public RestHighLevelClientBuilder setApiCompatibilityMode(Boolean enabled) {
+            return this;
+        }
+
+        public RestHighLevelClient build() {
+            return new RestHighLevelClient();
         }
     }
 
@@ -44,16 +51,18 @@ public class MigrateHlrcTest {
     public void migrate() {
         //tag::migrate
         // Create the low-level client
-        RestClientBuilder httpClientBuilder = RestClient.builder(
+        RestClient httpClient = RestClient.builder(
             new HttpHost("localhost", 9200)
-        );
+        ).build();
 
         // Create the HLRC
-        RestHighLevelClient hlrc = new RestHighLevelClient(httpClientBuilder);
+        RestHighLevelClient hlrc = new RestHighLevelClientBuilder(httpClient)
+            .setApiCompatibilityMode(true) // <1>
+            .build();
 
-        // Create the new Java Client with the same low level client
+        // Create the Java API Client with the same low level client
         ElasticsearchTransport transport = new RestClientTransport(
-            hlrc.getLowLevelClient(),
+            httpClient,
             new JacksonJsonpMapper()
         );
 
