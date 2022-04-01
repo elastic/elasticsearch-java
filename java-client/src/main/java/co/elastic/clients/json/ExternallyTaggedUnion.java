@@ -22,7 +22,6 @@ package co.elastic.clients.json;
 import co.elastic.clients.util.TaggedUnion;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import jakarta.json.stream.JsonParsingException;
 
 import java.util.ArrayList;
 import java.util.EnumSet;
@@ -62,7 +61,7 @@ public interface ExternallyTaggedUnion {
         public Union deserialize(String type, JsonParser parser, JsonpMapper mapper, Event event) {
             JsonpDeserializer<? extends Member> deserializer = deserializers.get(type);
             if (deserializer == null) {
-                throw new JsonParsingException("Unknown variant type '" + type + "'", parser.getLocation());
+                throw new JsonpMappingException("Unknown variant type '" + type + "'", parser.getLocation());
             }
 
             return unionCtor.apply(type, deserializer.deserialize(parser, mapper, event));
@@ -97,7 +96,7 @@ public interface ExternallyTaggedUnion {
         public void deserializeEntry(String key, JsonParser parser, JsonpMapper mapper, Map<String, Union> targetMap) {
             int hashPos = key.indexOf('#');
             if (hashPos == -1) {
-                throw new JsonParsingException(
+                throw new JsonpMappingException(
                     "Property name '" + key + "' is not in the 'type#name' format. Make sure the request has 'typed_keys' set.",
                     parser.getLocation()
                 );
@@ -117,27 +116,36 @@ public interface ExternallyTaggedUnion {
             EnumSet.of(Event.START_OBJECT),
             (parser, mapper, event) -> {
                 Map<String, List<T>> result = new HashMap<>();
-                while ((event = parser.next()) != Event.END_OBJECT) {
-                    JsonpUtils.expectEvent(parser, event, Event.KEY_NAME);
-                    // Split key and type
-                    String key = parser.getString();
-                    int hashPos = key.indexOf('#');
-                    if (hashPos == -1) {
-                        throw new JsonParsingException(
-                            "Property name '" + key + "' is not in the 'type#name' format. Make sure the request has 'typed_keys' set.",
-                            parser.getLocation()
-                        );
-                    }
+                String key = null;
+                try {
+                    while ((event = parser.next()) != Event.END_OBJECT) {
+                        JsonpUtils.expectEvent(parser, event, Event.KEY_NAME);
+                        // Split key and type
+                        key = parser.getString();
+                        int hashPos = key.indexOf('#');
+                        if (hashPos == -1) {
+                            throw new JsonpMappingException(
+                                "Property name '" + key + "' is not in the 'type#name' format. Make sure the request has 'typed_keys' set.",
+                                parser.getLocation()
+                            ).prepend(null, key);
+                        }
 
-                    String type = key.substring(0, hashPos);
-                    String name = key.substring(hashPos + 1);
+                        String type = key.substring(0, hashPos);
+                        String name = key.substring(hashPos + 1);
 
-                    List<T> list = new ArrayList<>();
-                    JsonpUtils.expectNextEvent(parser, Event.START_ARRAY);
-                    while ((event = parser.next()) != Event.END_ARRAY) {
-                        list.add(deserializer.deserializer.deserialize(type, parser, mapper, event));
+                        List<T> list = new ArrayList<>();
+                        JsonpUtils.expectNextEvent(parser, Event.START_ARRAY);
+                        try {
+                            while ((event = parser.next()) != Event.END_ARRAY) {
+                                list.add(deserializer.deserializer.deserialize(type, parser, mapper, event));
+                            }
+                        } catch (Exception e) {
+                            throw JsonpMappingException.from(e, list.size(), parser);
+                        }
+                        result.put(name, list);
                     }
-                    result.put(name, list);
+                } catch (Exception e) {
+                    throw JsonpMappingException.from(e, null, key, parser);
                 }
                 return result;
             }
