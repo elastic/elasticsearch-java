@@ -23,7 +23,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonObject;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
-import jakarta.json.stream.JsonParsingException;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -102,7 +101,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
                     exception = ex;
                 }
             }
-            throw new JsonParsingException("Couldn't find a suitable union member deserializer", exception, parser.getLocation());
+            throw JsonpMappingException.from(exception, null, null, parser);
         }
     }
 
@@ -286,7 +285,7 @@ public class UnionDeserializer<Union, Kind, Member> implements JsonpDeserializer
         }
 
         if (member == null) {
-            throw new JsonParsingException("Cannot determine what union member to deserialize", parser.getLocation());
+            throw new JsonpMappingException("Cannot determine what union member to deserialize", parser.getLocation());
         }
 
         return member.deserialize(parser, mapper, event, buildFn);

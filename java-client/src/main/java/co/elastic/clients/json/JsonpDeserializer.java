@@ -214,6 +214,6 @@ public interface JsonpDeserializer<V> {
     static <K extends JsonEnum, V> JsonpDeserializer<Map<K, V>> enumMapDeserializer(
         JsonpDeserializer<K> keyDeserializer, JsonpDeserializer<V> valueDeserializer
     ) {
-        return new JsonpDeserializerBase.EnumMapDeserializer<K, V>(keyDeserializer, valueDeserializer);
+        return new JsonpDeserializerBase.EnumMapDeserializer<>(keyDeserializer, valueDeserializer);
     }
 }
