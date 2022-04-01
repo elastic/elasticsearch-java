@@ -21,7 +21,6 @@ package co.elastic.clients.json;
 
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
-import jakarta.json.stream.JsonParsingException;
 
 import java.util.EnumSet;
 
@@ -60,7 +59,7 @@ public class NamedDeserializer<T> implements JsonpDeserializer<T> {
     public T deserialize(JsonParser parser, JsonpMapper mapper) {
         JsonpDeserializer<T> deserializer = mapper.attribute(name);
         if (deserializer == null) {
-            throw new JsonParsingException("Missing deserializer for generic type: " + name, parser.getLocation());
+            throw new JsonpMappingException("Missing deserializer for generic type: " + name, parser.getLocation());
         }
         return deserializer.deserialize(parser, mapper);
     }
@@ -69,7 +68,7 @@ public class NamedDeserializer<T> implements JsonpDeserializer<T> {
     public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
         JsonpDeserializer<T> deserializer = mapper.attribute(name);
         if (deserializer == null) {
-            throw new JsonParsingException("Missing deserializer for generic type: " + name, parser.getLocation());
+            throw new JsonpMappingException("Missing deserializer for generic type: " + name, parser.getLocation());
         }
         return deserializer.deserialize(parser, mapper, event);
     }

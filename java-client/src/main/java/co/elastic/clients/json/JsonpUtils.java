@@ -20,13 +20,13 @@
 package co.elastic.clients.json;
 
 import co.elastic.clients.util.AllowForbiddenApis;
-import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.JsonException;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonLocation;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
@@ -130,13 +130,6 @@ public class JsonpUtils {
         }
     }
 
-    public static <T> T buildVariant(JsonParser parser, ObjectBuilder<T> builder) {
-        if (builder == null) {
-            throw new JsonParsingException("No variant found" , parser.getLocation());
-        }
-        return builder.build();
-    }
-
     public static <T> void serialize(T value, JsonGenerator generator, @Nullable JsonpSerializer<T> serializer, JsonpMapper mapper) {
         if (serializer != null) {
             serializer.serialize(value, generator, mapper);
@@ -158,7 +151,7 @@ public class JsonpUtils {
         String name, String defaultValue, JsonParser parser, JsonpMapper mapper
     ) {
         // FIXME: need a buffering parser wrapper so that we don't roundtrip through a JsonObject and a String
-        // FIXME: resulting parser should return locations that are offset with the original parser's location
+        JsonLocation location = parser.getLocation();
         JsonObject object = parser.getObject();
         String result = object.getString(name, null);
 
@@ -167,10 +160,25 @@ public class JsonpUtils {
         }
 
         if (result == null) {
-            throw new JsonParsingException("Property '" + name + "' not found", parser.getLocation());
+            throw new JsonpMappingException("Property '" + name + "' not found", location);
         }
 
-        return new AbstractMap.SimpleImmutableEntry<>(result, objectParser(object, mapper));
+        JsonParser newParser = objectParser(object, mapper);
+
+        // Pin location to the start of the look ahead, as the new parser will return locations in its own buffer
+        newParser = new DelegatingJsonParser(newParser) {
+            @Override
+            public JsonLocation getLocation() {
+                return new JsonLocationImpl(location.getLineNumber(), location.getColumnNumber(), location.getStreamOffset()) {
+                    @Override
+                    public String toString() {
+                        return "(in object at " + super.toString().substring(1);
+                    }
+                };
+            }
+        };
+
+        return new AbstractMap.SimpleImmutableEntry<>(result, newParser);
     }
 
     /**

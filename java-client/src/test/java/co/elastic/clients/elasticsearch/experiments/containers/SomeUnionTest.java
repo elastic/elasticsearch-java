@@ -79,7 +79,6 @@ public class SomeUnionTest extends ModelTestCase {
             SomeUnion c = SomeUnion._DESERIALIZER.deserialize(parser, new JsonbJsonpMapper());
         });
 
-        assertEquals("Property 'type' not found", e.getMessage());
+        assertTrue(e.getMessage().contains("Property 'type' not found"));
     }
-
 }
