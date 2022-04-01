@@ -19,43 +19,37 @@
 
 package co.elastic.clients.json;
 
-import jakarta.json.spi.JsonProvider;
-import jakarta.json.stream.JsonGenerator;
-import jakarta.json.stream.JsonParser;
+import jakarta.json.stream.JsonLocation;
 
-import javax.annotation.Nullable;
+class JsonLocationImpl implements JsonLocation {
 
-public abstract class DelegatingJsonpMapper implements JsonpMapper {
+    private final long columnNo;
+    private final long lineNo;
+    private final long offset;
 
-    protected final JsonpMapper mapper;
-
-    public DelegatingJsonpMapper(JsonpMapper mapper) {
-        this.mapper = mapper;
+    JsonLocationImpl(long lineNo, long columnNo, long streamOffset) {
+        this.lineNo = lineNo;
+        this.columnNo = columnNo;
+        this.offset = streamOffset;
     }
 
     @Override
-    public JsonProvider jsonProvider() {
-        return mapper.jsonProvider();
+    public long getLineNumber() {
+        return lineNo;
     }
 
     @Override
-    public <T> T deserialize(JsonParser parser, Class<T> clazz) {
-        return mapper.deserialize(parser, clazz);
+    public long getColumnNumber() {
+        return columnNo;
     }
 
     @Override
-    public <T> void serialize(T value, JsonGenerator generator) {
-        mapper.serialize(value, generator);
+    public long getStreamOffset() {
+        return offset;
     }
 
     @Override
-    public boolean ignoreUnknownFields() {
-        return mapper.ignoreUnknownFields();
-    }
-
-    @Override
-    @Nullable
-    public <T> T attribute(String name) {
-        return mapper.attribute(name);
+    public String toString() {
+        return "(line no=" + lineNo + ", column no=" + columnNo + ", offset=" + offset + ")";
     }
 }
