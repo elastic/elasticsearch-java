@@ -98,6 +98,13 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 	}
 
 	/**
+	 * Get an element of {@code privileges}.
+	 */
+	public final @Nullable Map<String, Actions> get(String key) {
+		return this.privileges.get(key);
+	}
+
+	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -131,7 +138,7 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Refresh refresh;
 
-		private Map<String, Map<String, Actions>> privileges;
+		private Map<String, Map<String, Actions>> privileges = new HashMap<>();
 
 		/**
 		 * If <code>true</code> (the default) then refresh the affected shards to make

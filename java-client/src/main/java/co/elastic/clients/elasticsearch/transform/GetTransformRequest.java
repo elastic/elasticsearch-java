@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,9 +39,11 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: transform.get_transform.Request
@@ -65,8 +68,7 @@ public class GetTransformRequest extends RequestBase {
 	@Nullable
 	private final Integer size;
 
-	@Nullable
-	private final String transformId;
+	private final List<String> transformId;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -76,7 +78,7 @@ public class GetTransformRequest extends RequestBase {
 		this.excludeGenerated = builder.excludeGenerated;
 		this.from = builder.from;
 		this.size = builder.size;
-		this.transformId = builder.transformId;
+		this.transformId = ApiTypeHelper.unmodifiable(builder.transformId);
 
 	}
 
@@ -144,8 +146,7 @@ public class GetTransformRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code transform_id}
 	 */
-	@Nullable
-	public final String transformId() {
+	public final List<String> transformId() {
 		return this.transformId;
 	}
 
@@ -169,7 +170,7 @@ public class GetTransformRequest extends RequestBase {
 		private Integer size;
 
 		@Nullable
-		private String transformId;
+		private List<String> transformId;
 
 		/**
 		 * Specifies what to do when the request:
@@ -230,9 +231,27 @@ public class GetTransformRequest extends RequestBase {
 		 * <code>&lt;transform_id&gt;</code>.
 		 * <p>
 		 * API name: {@code transform_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>transformId</code>.
 		 */
-		public final Builder transformId(@Nullable String value) {
-			this.transformId = value;
+		public final Builder transformId(List<String> list) {
+			this.transformId = _listAddAll(this.transformId, list);
+			return this;
+		}
+
+		/**
+		 * Identifier for the transform. It can be a transform identifier or a wildcard
+		 * expression. You can get information for all transforms by using
+		 * <code>_all</code>, by specifying <code>*</code> as the
+		 * <code>&lt;transform_id&gt;</code>, or by omitting the
+		 * <code>&lt;transform_id&gt;</code>.
+		 * <p>
+		 * API name: {@code transform_id}
+		 * <p>
+		 * Adds one or more values to <code>transformId</code>.
+		 */
+		public final Builder transformId(String value, String... values) {
+			this.transformId = _listAdd(this.transformId, value, values);
 			return this;
 		}
 
@@ -269,14 +288,15 @@ public class GetTransformRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.transformId() != null)
+				if (ApiTypeHelper.isDefined(request.transformId()))
 					propsSet |= _transformId;
 
 				if (propsSet == (_transformId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_transform");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.transformId, buf);
+					SimpleEndpoint.pathEncode(request.transformId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					return buf.toString();
 				}
 				if (propsSet == 0) {

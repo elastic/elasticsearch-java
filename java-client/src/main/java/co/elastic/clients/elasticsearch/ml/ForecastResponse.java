@@ -23,15 +23,18 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -45,14 +48,16 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ForecastResponse extends AcknowledgedResponseBase {
+public class ForecastResponse implements AcknowledgedResponse, JsonpSerializable {
+	private final boolean acknowledged;
+
 	private final String forecastId;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ForecastResponse(Builder builder) {
-		super(builder);
 
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 		this.forecastId = ApiTypeHelper.requireNonNull(builder.forecastId, this, "forecastId");
 
 	}
@@ -62,15 +67,33 @@ public class ForecastResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
+	 * Required - API name: {@code acknowledged}
+	 */
+	public final boolean acknowledged() {
+		return this.acknowledged;
+	}
+
+	/**
 	 * Required - API name: {@code forecast_id}
 	 */
 	public final String forecastId() {
 		return this.forecastId;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
+		generator.writeKey("acknowledged");
+		generator.write(this.acknowledged);
+
 		generator.writeKey("forecast_id");
 		generator.write(this.forecastId);
 
@@ -82,10 +105,18 @@ public class ForecastResponse extends AcknowledgedResponseBase {
 	 * Builder for {@link ForecastResponse}.
 	 */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<ForecastResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<ForecastResponse> {
+		private Boolean acknowledged;
+
 		private String forecastId;
+
+		/**
+		 * Required - API name: {@code acknowledged}
+		 */
+		public final Builder acknowledged(boolean value) {
+			this.acknowledged = value;
+			return this;
+		}
 
 		/**
 		 * Required - API name: {@code forecast_id}
@@ -122,7 +153,8 @@ public class ForecastResponse extends AcknowledgedResponseBase {
 			ForecastResponse::setupForecastResponseDeserializer);
 
 	protected static void setupForecastResponseDeserializer(ObjectDeserializer<ForecastResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::forecastId, JsonpDeserializer.stringDeserializer(), "forecast_id");
 
 	}

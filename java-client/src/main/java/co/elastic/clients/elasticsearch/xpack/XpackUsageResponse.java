@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.xpack;
 
 import co.elastic.clients.elasticsearch.xpack.usage.Analytics;
+import co.elastic.clients.elasticsearch.xpack.usage.Archive;
 import co.elastic.clients.elasticsearch.xpack.usage.Base;
 import co.elastic.clients.elasticsearch.xpack.usage.Ccr;
 import co.elastic.clients.elasticsearch.xpack.usage.DataStreams;
@@ -67,6 +68,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 	private final Base aggregateMetric;
 
 	private final Analytics analytics;
+
+	private final Archive archive;
 
 	private final Watcher watcher;
 
@@ -131,6 +134,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 
 		this.aggregateMetric = ApiTypeHelper.requireNonNull(builder.aggregateMetric, this, "aggregateMetric");
 		this.analytics = ApiTypeHelper.requireNonNull(builder.analytics, this, "analytics");
+		this.archive = ApiTypeHelper.requireNonNull(builder.archive, this, "archive");
 		this.watcher = ApiTypeHelper.requireNonNull(builder.watcher, this, "watcher");
 		this.ccr = ApiTypeHelper.requireNonNull(builder.ccr, this, "ccr");
 		this.dataFrame = builder.dataFrame;
@@ -176,6 +180,13 @@ public class XpackUsageResponse implements JsonpSerializable {
 	 */
 	public final Analytics analytics() {
 		return this.analytics;
+	}
+
+	/**
+	 * Required - API name: {@code archive}
+	 */
+	public final Archive archive() {
+		return this.archive;
 	}
 
 	/**
@@ -377,6 +388,9 @@ public class XpackUsageResponse implements JsonpSerializable {
 		generator.writeKey("analytics");
 		this.analytics.serialize(generator, mapper);
 
+		generator.writeKey("archive");
+		this.archive.serialize(generator, mapper);
+
 		generator.writeKey("watcher");
 		this.watcher.serialize(generator, mapper);
 
@@ -481,6 +495,8 @@ public class XpackUsageResponse implements JsonpSerializable {
 
 		private Analytics analytics;
 
+		private Archive archive;
+
 		private Watcher watcher;
 
 		private Ccr ccr;
@@ -566,6 +582,21 @@ public class XpackUsageResponse implements JsonpSerializable {
 		 */
 		public final Builder analytics(Function<Analytics.Builder, ObjectBuilder<Analytics>> fn) {
 			return this.analytics(fn.apply(new Analytics.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code archive}
+		 */
+		public final Builder archive(Archive value) {
+			this.archive = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code archive}
+		 */
+		public final Builder archive(Function<Archive.Builder, ObjectBuilder<Archive>> fn) {
+			return this.archive(fn.apply(new Archive.Builder()).build());
 		}
 
 		/**
@@ -974,6 +1005,7 @@ public class XpackUsageResponse implements JsonpSerializable {
 
 		op.add(Builder::aggregateMetric, Base._DESERIALIZER, "aggregate_metric");
 		op.add(Builder::analytics, Analytics._DESERIALIZER, "analytics");
+		op.add(Builder::archive, Archive._DESERIALIZER, "archive");
 		op.add(Builder::watcher, Watcher._DESERIALIZER, "watcher");
 		op.add(Builder::ccr, Ccr._DESERIALIZER, "ccr");
 		op.add(Builder::dataFrame, Base._DESERIALIZER, "data_frame");

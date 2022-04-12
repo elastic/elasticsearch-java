@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.license;
 
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
 import co.elastic.clients.elasticsearch.license.post.Acknowledgement;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -47,7 +48,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PostResponse implements JsonpSerializable {
+public class PostResponse implements AcknowledgedResponse, JsonpSerializable {
 	@Nullable
 	private final Acknowledgement acknowledge;
 

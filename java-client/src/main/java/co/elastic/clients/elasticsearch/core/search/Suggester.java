@@ -197,10 +197,7 @@ public class Suggester implements JsonpSerializable {
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			if (builder.suggesters == null) {
-				builder.suggesters = new HashMap<>();
-			}
-			builder.suggesters.put(name, FieldSuggester._DESERIALIZER.deserialize(parser, mapper));
+			builder.suggesters(name, FieldSuggester._DESERIALIZER.deserialize(parser, mapper));
 		});
 
 	}

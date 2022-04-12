@@ -127,7 +127,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Idetifier for the trained model.
+	 * Required - Identifier for the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -470,7 +470,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		private TrainedModelLocation location;
 
 		/**
-		 * Required - Idetifier for the trained model.
+		 * Required - Identifier for the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */

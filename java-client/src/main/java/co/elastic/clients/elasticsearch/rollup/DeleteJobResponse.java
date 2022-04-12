@@ -23,16 +23,19 @@
 
 package co.elastic.clients.elasticsearch.rollup;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
 import co.elastic.clients.elasticsearch._types.TaskFailure;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -46,14 +49,16 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DeleteJobResponse extends AcknowledgedResponseBase {
+public class DeleteJobResponse implements AcknowledgedResponse, JsonpSerializable {
+	private final boolean acknowledged;
+
 	private final List<TaskFailure> taskFailures;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteJobResponse(Builder builder) {
-		super(builder);
 
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 		this.taskFailures = ApiTypeHelper.unmodifiable(builder.taskFailures);
 
 	}
@@ -63,15 +68,33 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 	}
 
 	/**
+	 * Required - API name: {@code acknowledged}
+	 */
+	public final boolean acknowledged() {
+		return this.acknowledged;
+	}
+
+	/**
 	 * API name: {@code task_failures}
 	 */
 	public final List<TaskFailure> taskFailures() {
 		return this.taskFailures;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
+		generator.writeKey("acknowledged");
+		generator.write(this.acknowledged);
+
 		if (ApiTypeHelper.isDefined(this.taskFailures)) {
 			generator.writeKey("task_failures");
 			generator.writeStartArray();
@@ -91,11 +114,19 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 	 * Builder for {@link DeleteJobResponse}.
 	 */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<DeleteJobResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DeleteJobResponse> {
+		private Boolean acknowledged;
+
 		@Nullable
 		private List<TaskFailure> taskFailures;
+
+		/**
+		 * Required - API name: {@code acknowledged}
+		 */
+		public final Builder acknowledged(boolean value) {
+			this.acknowledged = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code task_failures}
@@ -153,7 +184,8 @@ public class DeleteJobResponse extends AcknowledgedResponseBase {
 			.lazy(Builder::new, DeleteJobResponse::setupDeleteJobResponseDeserializer);
 
 	protected static void setupDeleteJobResponseDeserializer(ObjectDeserializer<DeleteJobResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::taskFailures, JsonpDeserializer.arrayDeserializer(TaskFailure._DESERIALIZER), "task_failures");
 
 	}

@@ -36,6 +36,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: ml._types.DatafeedRunningState
 
@@ -50,12 +51,16 @@ public class DatafeedRunningState implements JsonpSerializable {
 
 	private final boolean realTimeRunning;
 
+	@Nullable
+	private final RunningStateSearchInterval searchInterval;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private DatafeedRunningState(Builder builder) {
 
 		this.realTimeConfigured = ApiTypeHelper.requireNonNull(builder.realTimeConfigured, this, "realTimeConfigured");
 		this.realTimeRunning = ApiTypeHelper.requireNonNull(builder.realTimeRunning, this, "realTimeRunning");
+		this.searchInterval = builder.searchInterval;
 
 	}
 
@@ -78,6 +83,14 @@ public class DatafeedRunningState implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code search_interval}
+	 */
+	@Nullable
+	public final RunningStateSearchInterval searchInterval() {
+		return this.searchInterval;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -94,6 +107,12 @@ public class DatafeedRunningState implements JsonpSerializable {
 		generator.writeKey("real_time_running");
 		generator.write(this.realTimeRunning);
 
+		if (this.searchInterval != null) {
+			generator.writeKey("search_interval");
+			this.searchInterval.serialize(generator, mapper);
+
+		}
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -109,6 +128,9 @@ public class DatafeedRunningState implements JsonpSerializable {
 
 		private Boolean realTimeRunning;
 
+		@Nullable
+		private RunningStateSearchInterval searchInterval;
+
 		/**
 		 * Required - API name: {@code real_time_configured}
 		 */
@@ -123,6 +145,22 @@ public class DatafeedRunningState implements JsonpSerializable {
 		public final Builder realTimeRunning(boolean value) {
 			this.realTimeRunning = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code search_interval}
+		 */
+		public final Builder searchInterval(@Nullable RunningStateSearchInterval value) {
+			this.searchInterval = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code search_interval}
+		 */
+		public final Builder searchInterval(
+				Function<RunningStateSearchInterval.Builder, ObjectBuilder<RunningStateSearchInterval>> fn) {
+			return this.searchInterval(fn.apply(new RunningStateSearchInterval.Builder()).build());
 		}
 
 		@Override
@@ -155,6 +193,7 @@ public class DatafeedRunningState implements JsonpSerializable {
 
 		op.add(Builder::realTimeConfigured, JsonpDeserializer.booleanDeserializer(), "real_time_configured");
 		op.add(Builder::realTimeRunning, JsonpDeserializer.booleanDeserializer(), "real_time_running");
+		op.add(Builder::searchInterval, RunningStateSearchInterval._DESERIALIZER, "search_interval");
 
 	}
 

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,15 +37,21 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: indices.delete_index_template.Request
 
 /**
- * Deletes an index template.
+ * The provided &lt;index-template&gt; may contain multiple template names
+ * separated by a comma. If multiple template names are specified then there is
+ * no wildcard support and the provided names should match completely with
+ * existing templates.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.delete_index_template.Request">API
@@ -52,13 +59,21 @@ import javax.annotation.Nullable;
  */
 
 public class DeleteIndexTemplateRequest extends RequestBase {
-	private final String name;
+	@Nullable
+	private final Time masterTimeout;
+
+	private final List<String> name;
+
+	@Nullable
+	private final Time timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteIndexTemplateRequest(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.masterTimeout = builder.masterTimeout;
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
+		this.timeout = builder.timeout;
 
 	}
 
@@ -67,12 +82,35 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the template
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final Time masterTimeout() {
+		return this.masterTimeout;
+	}
+
+	/**
+	 * Required - Comma-separated list of index template names used to limit the
+	 * request. Wildcard (*) expressions are supported.
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public final String name() {
+	public final List<String> name() {
 		return this.name;
+	}
+
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final Time timeout() {
+		return this.timeout;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -82,16 +120,80 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteIndexTemplateRequest> {
-		private String name;
+		@Nullable
+		private Time masterTimeout;
+
+		private List<String> name;
+
+		@Nullable
+		private Time timeout;
 
 		/**
-		 * Required - The name of the template
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable Time value) {
+			this.masterTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - Comma-separated list of index template names used to limit the
+		 * request. Wildcard (*) expressions are supported.
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
 			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list of index template names used to limit the
+		 * request. Wildcard (*) expressions are supported.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable Time value) {
+			this.timeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeout(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -133,7 +235,7 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_index_template");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
@@ -142,7 +244,14 @@ public class DeleteIndexTemplateRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout._toJsonString());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, DeleteIndexTemplateResponse._DESERIALIZER);
 }

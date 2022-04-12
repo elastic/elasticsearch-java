@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class NodesCredentials implements JsonpSerializable {
-	private final NodeStatistics nodes;
+	private final NodeStatistics nodeStats;
 
 	private final Map<String, NodesCredentialsFileToken> fileTokens;
 
@@ -58,7 +58,7 @@ public class NodesCredentials implements JsonpSerializable {
 
 	private NodesCredentials(Builder builder) {
 
-		this.nodes = ApiTypeHelper.requireNonNull(builder.nodes, this, "nodes");
+		this.nodeStats = ApiTypeHelper.requireNonNull(builder.nodeStats, this, "nodeStats");
 		this.fileTokens = ApiTypeHelper.unmodifiableRequired(builder.fileTokens, this, "fileTokens");
 
 	}
@@ -73,8 +73,8 @@ public class NodesCredentials implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code _nodes}
 	 */
-	public final NodeStatistics nodes() {
-		return this.nodes;
+	public final NodeStatistics nodeStats() {
+		return this.nodeStats;
 	}
 
 	/**
@@ -98,7 +98,7 @@ public class NodesCredentials implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("_nodes");
-		this.nodes.serialize(generator, mapper);
+		this.nodeStats.serialize(generator, mapper);
 
 		if (ApiTypeHelper.isDefined(this.fileTokens)) {
 			generator.writeKey("file_tokens");
@@ -121,7 +121,7 @@ public class NodesCredentials implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<NodesCredentials> {
-		private NodeStatistics nodes;
+		private NodeStatistics nodeStats;
 
 		private Map<String, NodesCredentialsFileToken> fileTokens;
 
@@ -131,8 +131,8 @@ public class NodesCredentials implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _nodes}
 		 */
-		public final Builder nodes(NodeStatistics value) {
-			this.nodes = value;
+		public final Builder nodeStats(NodeStatistics value) {
+			this.nodeStats = value;
 			return this;
 		}
 
@@ -142,8 +142,8 @@ public class NodesCredentials implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code _nodes}
 		 */
-		public final Builder nodes(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
-			return this.nodes(fn.apply(new NodeStatistics.Builder()).build());
+		public final Builder nodeStats(Function<NodeStatistics.Builder, ObjectBuilder<NodeStatistics>> fn) {
+			return this.nodeStats(fn.apply(new NodeStatistics.Builder()).build());
 		}
 
 		/**
@@ -210,7 +210,7 @@ public class NodesCredentials implements JsonpSerializable {
 
 	protected static void setupNodesCredentialsDeserializer(ObjectDeserializer<NodesCredentials.Builder> op) {
 
-		op.add(Builder::nodes, NodeStatistics._DESERIALIZER, "_nodes");
+		op.add(Builder::nodeStats, NodeStatistics._DESERIALIZER, "_nodes");
 		op.add(Builder::fileTokens, JsonpDeserializer.stringMapDeserializer(NodesCredentialsFileToken._DESERIALIZER),
 				"file_tokens");
 

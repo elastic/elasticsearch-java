@@ -23,15 +23,17 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
 import co.elastic.clients.elasticsearch.indices.add_block.IndicesBlockStatus;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.List;
@@ -47,7 +49,9 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class AddBlockResponse extends AcknowledgedResponseBase {
+public class AddBlockResponse implements AcknowledgedResponse, JsonpSerializable {
+	private final boolean acknowledged;
+
 	private final boolean shardsAcknowledged;
 
 	private final List<IndicesBlockStatus> indices;
@@ -55,8 +59,8 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private AddBlockResponse(Builder builder) {
-		super(builder);
 
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
 
@@ -64,6 +68,13 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 
 	public static AddBlockResponse of(Function<Builder, ObjectBuilder<AddBlockResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - API name: {@code acknowledged}
+	 */
+	public final boolean acknowledged() {
+		return this.acknowledged;
 	}
 
 	/**
@@ -80,9 +91,20 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 		return this.indices;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
+		generator.writeKey("acknowledged");
+		generator.write(this.acknowledged);
+
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
 
@@ -105,12 +127,20 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 	 * Builder for {@link AddBlockResponse}.
 	 */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<AddBlockResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AddBlockResponse> {
+		private Boolean acknowledged;
+
 		private Boolean shardsAcknowledged;
 
 		private List<IndicesBlockStatus> indices;
+
+		/**
+		 * Required - API name: {@code acknowledged}
+		 */
+		public final Builder acknowledged(boolean value) {
+			this.acknowledged = value;
+			return this;
+		}
 
 		/**
 		 * Required - API name: {@code shards_acknowledged}
@@ -176,7 +206,8 @@ public class AddBlockResponse extends AcknowledgedResponseBase {
 			AddBlockResponse::setupAddBlockResponseDeserializer);
 
 	protected static void setupAddBlockResponseDeserializer(ObjectDeserializer<AddBlockResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(IndicesBlockStatus._DESERIALIZER), "indices");
 

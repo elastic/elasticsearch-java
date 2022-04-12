@@ -23,14 +23,16 @@
 
 package co.elastic.clients.elasticsearch.license;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -49,7 +51,9 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PostStartBasicResponse extends AcknowledgedResponseBase {
+public class PostStartBasicResponse implements AcknowledgedResponse, JsonpSerializable {
+	private final boolean acknowledged;
+
 	private final boolean basicWasStarted;
 
 	@Nullable
@@ -63,8 +67,8 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private PostStartBasicResponse(Builder builder) {
-		super(builder);
 
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 		this.basicWasStarted = ApiTypeHelper.requireNonNull(builder.basicWasStarted, this, "basicWasStarted");
 		this.errorMessage = builder.errorMessage;
 		this.type = builder.type;
@@ -74,6 +78,13 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 
 	public static PostStartBasicResponse of(Function<Builder, ObjectBuilder<PostStartBasicResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - API name: {@code acknowledged}
+	 */
+	public final boolean acknowledged() {
+		return this.acknowledged;
 	}
 
 	/**
@@ -106,9 +117,20 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 		return this.acknowledge;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
+		generator.writeKey("acknowledged");
+		generator.write(this.acknowledged);
+
 		generator.writeKey("basic_was_started");
 		generator.write(this.basicWasStarted);
 
@@ -148,9 +170,11 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 	 * Builder for {@link PostStartBasicResponse}.
 	 */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<PostStartBasicResponse> {
+		private Boolean acknowledged;
+
 		private Boolean basicWasStarted;
 
 		@Nullable
@@ -161,6 +185,14 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 
 		@Nullable
 		private Map<String, List<String>> acknowledge;
+
+		/**
+		 * Required - API name: {@code acknowledged}
+		 */
+		public final Builder acknowledged(boolean value) {
+			this.acknowledged = value;
+			return this;
+		}
 
 		/**
 		 * Required - API name: {@code basic_was_started}
@@ -234,7 +266,8 @@ public class PostStartBasicResponse extends AcknowledgedResponseBase {
 
 	protected static void setupPostStartBasicResponseDeserializer(
 			ObjectDeserializer<PostStartBasicResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::basicWasStarted, JsonpDeserializer.booleanDeserializer(), "basic_was_started");
 		op.add(Builder::errorMessage, JsonpDeserializer.stringDeserializer(), "error_message");
 		op.add(Builder::type, LicenseType._DESERIALIZER, "type");

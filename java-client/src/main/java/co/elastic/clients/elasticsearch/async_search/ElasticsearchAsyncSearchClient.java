@@ -63,7 +63,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 * request will be cancelled. Otherwise, the saved search results are deleted.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.2/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -83,7 +83,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.2/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -100,7 +100,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 * its ID.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.2/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -122,7 +122,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAsyncSearchRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.2/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -139,16 +139,14 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 * ID.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.2/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public <TDocument> AsyncSearchStatusResponse<TDocument> status(AsyncSearchStatusRequest request,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
+	public AsyncSearchStatusResponse status(AsyncSearchStatusRequest request)
+			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse<TDocument>, ErrorResponse> endpoint = (JsonEndpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse<TDocument>, ErrorResponse>) AsyncSearchStatusRequest._ENDPOINT;
-		endpoint = new EndpointWithResponseMapperAttr<>(endpoint,
-				"co.elastic.clients:Deserializer:async_search.status.TDocument", getDeserializer(tDocumentClass));
+		JsonEndpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse, ErrorResponse> endpoint = (JsonEndpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse, ErrorResponse>) AsyncSearchStatusRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -161,14 +159,14 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link AsyncSearchStatusRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.2/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final <TDocument> AsyncSearchStatusResponse<TDocument> status(
-			Function<AsyncSearchStatusRequest.Builder, ObjectBuilder<AsyncSearchStatusRequest>> fn,
-			Class<TDocument> tDocumentClass) throws IOException, ElasticsearchException {
-		return status(fn.apply(new AsyncSearchStatusRequest.Builder()).build(), tDocumentClass);
+	public final AsyncSearchStatusResponse status(
+			Function<AsyncSearchStatusRequest.Builder, ObjectBuilder<AsyncSearchStatusRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return status(fn.apply(new AsyncSearchStatusRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: async_search.submit
@@ -177,7 +175,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 * Executes a search request asynchronously.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.2/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -198,7 +196,7 @@ public class ElasticsearchAsyncSearchClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link SubmitRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/async-search.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.2/async-search.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

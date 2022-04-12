@@ -35,19 +35,21 @@ import co.elastic.clients.json.JsonpDeserializer;
 @JsonpDeserializable
 public enum DeploymentState implements JsonEnum {
 	/**
-	 * The trained model is started on at least one node.
+	 * The deployment is usable; at least one node has the model allocated.
 	 */
 	Started("started"),
 
 	/**
-	 * Trained model deployment is starting but it is not yet deployed on any nodes.
+	 * The deployment has recently started but is not yet usable; the model is not
+	 * allocated on any nodes.
 	 */
 	Starting("starting"),
 
 	/**
-	 * Trained model deployment has started on all valid nodes.
+	 * The deployment is preparing to stop and deallocate the model from the
+	 * relevant nodes.
 	 */
-	FullyAllocated("fully_allocated"),
+	Stopping("stopping"),
 
 	;
 

@@ -197,10 +197,7 @@ public class Jobs implements JsonpSerializable {
 		op.add(Builder::all, AllJobs._DESERIALIZER, "_all");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			if (builder.jobs == null) {
-				builder.jobs = new HashMap<>();
-			}
-			builder.jobs.put(name, Job._DESERIALIZER.deserialize(parser, mapper));
+			builder.jobs(name, Job._DESERIALIZER.deserialize(parser, mapper));
 		});
 
 	}

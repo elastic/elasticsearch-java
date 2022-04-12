@@ -23,14 +23,12 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,17 +46,18 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SoftDeletes implements JsonpSerializable {
-	private final boolean enabled;
+	@Nullable
+	private final Boolean enabled;
 
 	@Nullable
-	private final Time retentionLeasePeriod;
+	private final RetentionLease retentionLease;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private SoftDeletes(Builder builder) {
 
-		this.enabled = ApiTypeHelper.requireNonNull(builder.enabled, this, "enabled");
-		this.retentionLeasePeriod = builder.retentionLeasePeriod;
+		this.enabled = builder.enabled;
+		this.retentionLease = builder.retentionLease;
 
 	}
 
@@ -67,18 +66,27 @@ public class SoftDeletes implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code enabled}
+	 * Indicates whether soft deletes are enabled on the index.
+	 * <p>
+	 * API name: {@code enabled}
 	 */
-	public final boolean enabled() {
+	@Nullable
+	public final Boolean enabled() {
 		return this.enabled;
 	}
 
 	/**
-	 * API name: {@code retention_lease.period}
+	 * The maximum period to retain a shard history retention lease before it is
+	 * considered expired. Shard history retention leases ensure that soft deletes
+	 * are retained during merges on the Lucene index. If a soft delete is merged
+	 * away before it can be replicated to a follower the following process will
+	 * fail due to incomplete history on the leader.
+	 * <p>
+	 * API name: {@code retention_lease}
 	 */
 	@Nullable
-	public final Time retentionLeasePeriod() {
-		return this.retentionLeasePeriod;
+	public final RetentionLease retentionLease() {
+		return this.retentionLease;
 	}
 
 	/**
@@ -92,12 +100,14 @@ public class SoftDeletes implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("enabled");
-		generator.write(this.enabled);
+		if (this.enabled != null) {
+			generator.writeKey("enabled");
+			generator.write(this.enabled);
 
-		if (this.retentionLeasePeriod != null) {
-			generator.writeKey("retention_lease.period");
-			this.retentionLeasePeriod.serialize(generator, mapper);
+		}
+		if (this.retentionLease != null) {
+			generator.writeKey("retention_lease");
+			this.retentionLease.serialize(generator, mapper);
 
 		}
 
@@ -110,32 +120,47 @@ public class SoftDeletes implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SoftDeletes> {
+		@Nullable
 		private Boolean enabled;
 
 		@Nullable
-		private Time retentionLeasePeriod;
+		private RetentionLease retentionLease;
 
 		/**
-		 * Required - API name: {@code enabled}
+		 * Indicates whether soft deletes are enabled on the index.
+		 * <p>
+		 * API name: {@code enabled}
 		 */
-		public final Builder enabled(boolean value) {
+		public final Builder enabled(@Nullable Boolean value) {
 			this.enabled = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code retention_lease.period}
+		 * The maximum period to retain a shard history retention lease before it is
+		 * considered expired. Shard history retention leases ensure that soft deletes
+		 * are retained during merges on the Lucene index. If a soft delete is merged
+		 * away before it can be replicated to a follower the following process will
+		 * fail due to incomplete history on the leader.
+		 * <p>
+		 * API name: {@code retention_lease}
 		 */
-		public final Builder retentionLeasePeriod(@Nullable Time value) {
-			this.retentionLeasePeriod = value;
+		public final Builder retentionLease(@Nullable RetentionLease value) {
+			this.retentionLease = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code retention_lease.period}
+		 * The maximum period to retain a shard history retention lease before it is
+		 * considered expired. Shard history retention leases ensure that soft deletes
+		 * are retained during merges on the Lucene index. If a soft delete is merged
+		 * away before it can be replicated to a follower the following process will
+		 * fail due to incomplete history on the leader.
+		 * <p>
+		 * API name: {@code retention_lease}
 		 */
-		public final Builder retentionLeasePeriod(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.retentionLeasePeriod(fn.apply(new Time.Builder()).build());
+		public final Builder retentionLease(Function<RetentionLease.Builder, ObjectBuilder<RetentionLease>> fn) {
+			return this.retentionLease(fn.apply(new RetentionLease.Builder()).build());
 		}
 
 		@Override
@@ -167,7 +192,7 @@ public class SoftDeletes implements JsonpSerializable {
 	protected static void setupSoftDeletesDeserializer(ObjectDeserializer<SoftDeletes.Builder> op) {
 
 		op.add(Builder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
-		op.add(Builder::retentionLeasePeriod, Time._DESERIALIZER, "retention_lease.period");
+		op.add(Builder::retentionLease, RetentionLease._DESERIALIZER, "retention_lease");
 
 	}
 

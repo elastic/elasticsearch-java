@@ -55,9 +55,7 @@ import javax.annotation.Nullable;
 // typedef: _global.msearch_template.Request
 
 /**
- * Runs multiple <a href=
- * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-template.html#run-multiple-templated-searches">templated
- * searches</a> with a single request.
+ * Runs multiple templated searches with a single request.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.msearch_template.Request">API

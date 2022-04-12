@@ -252,6 +252,14 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link MatchOnlyTextProperty match_only_text}
+	 * {@code Property} variant.
+	 */
+	public static MatchOnlyTextProperty.Builder matchOnlyText() {
+		return new MatchOnlyTextProperty.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link Murmur3HashProperty murmur3}
 	 * {@code Property} variant.
 	 */

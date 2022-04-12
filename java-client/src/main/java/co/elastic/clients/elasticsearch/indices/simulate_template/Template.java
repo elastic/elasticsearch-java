@@ -25,7 +25,7 @@ package co.elastic.clients.elasticsearch.indices.simulate_template;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
 import co.elastic.clients.elasticsearch.indices.Alias;
-import co.elastic.clients.json.JsonData;
+import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,7 +37,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -57,9 +56,7 @@ public class Template implements JsonpSerializable {
 
 	private final TypeMapping mappings;
 
-	private final Map<String, JsonData> settings;
-
-	private final List<Overlapping> overlapping;
+	private final IndexSettings settings;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -67,8 +64,7 @@ public class Template implements JsonpSerializable {
 
 		this.aliases = ApiTypeHelper.unmodifiableRequired(builder.aliases, this, "aliases");
 		this.mappings = ApiTypeHelper.requireNonNull(builder.mappings, this, "mappings");
-		this.settings = ApiTypeHelper.unmodifiableRequired(builder.settings, this, "settings");
-		this.overlapping = ApiTypeHelper.unmodifiableRequired(builder.overlapping, this, "overlapping");
+		this.settings = ApiTypeHelper.requireNonNull(builder.settings, this, "settings");
 
 	}
 
@@ -93,15 +89,8 @@ public class Template implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code settings}
 	 */
-	public final Map<String, JsonData> settings() {
+	public final IndexSettings settings() {
 		return this.settings;
-	}
-
-	/**
-	 * Required - API name: {@code overlapping}
-	 */
-	public final List<Overlapping> overlapping() {
-		return this.overlapping;
 	}
 
 	/**
@@ -129,27 +118,8 @@ public class Template implements JsonpSerializable {
 		generator.writeKey("mappings");
 		this.mappings.serialize(generator, mapper);
 
-		if (ApiTypeHelper.isDefined(this.settings)) {
-			generator.writeKey("settings");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.settings.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
-		if (ApiTypeHelper.isDefined(this.overlapping)) {
-			generator.writeKey("overlapping");
-			generator.writeStartArray();
-			for (Overlapping item0 : this.overlapping) {
-				item0.serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
+		generator.writeKey("settings");
+		this.settings.serialize(generator, mapper);
 
 	}
 
@@ -164,9 +134,7 @@ public class Template implements JsonpSerializable {
 
 		private TypeMapping mappings;
 
-		private Map<String, JsonData> settings;
-
-		private List<Overlapping> overlapping;
+		private IndexSettings settings;
 
 		/**
 		 * Required - API name: {@code aliases}
@@ -214,51 +182,17 @@ public class Template implements JsonpSerializable {
 
 		/**
 		 * Required - API name: {@code settings}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 */
-		public final Builder settings(Map<String, JsonData> map) {
-			this.settings = _mapPutAll(this.settings, map);
+		public final Builder settings(IndexSettings value) {
+			this.settings = value;
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code settings}
-		 * <p>
-		 * Adds an entry to <code>settings</code>.
 		 */
-		public final Builder settings(String key, JsonData value) {
-			this.settings = _mapPut(this.settings, key, value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code overlapping}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>overlapping</code>.
-		 */
-		public final Builder overlapping(List<Overlapping> list) {
-			this.overlapping = _listAddAll(this.overlapping, list);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code overlapping}
-		 * <p>
-		 * Adds one or more values to <code>overlapping</code>.
-		 */
-		public final Builder overlapping(Overlapping value, Overlapping... values) {
-			this.overlapping = _listAdd(this.overlapping, value, values);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code overlapping}
-		 * <p>
-		 * Adds a value to <code>overlapping</code> using a builder lambda.
-		 */
-		public final Builder overlapping(Function<Overlapping.Builder, ObjectBuilder<Overlapping>> fn) {
-			return overlapping(fn.apply(new Overlapping.Builder()).build());
+		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.settings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		@Override
@@ -291,8 +225,7 @@ public class Template implements JsonpSerializable {
 
 		op.add(Builder::aliases, JsonpDeserializer.stringMapDeserializer(Alias._DESERIALIZER), "aliases");
 		op.add(Builder::mappings, TypeMapping._DESERIALIZER, "mappings");
-		op.add(Builder::settings, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "settings");
-		op.add(Builder::overlapping, JsonpDeserializer.arrayDeserializer(Overlapping._DESERIALIZER), "overlapping");
+		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
 
 	}
 

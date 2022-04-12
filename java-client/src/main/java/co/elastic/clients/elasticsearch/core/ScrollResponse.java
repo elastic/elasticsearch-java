@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core;
 
+import co.elastic.clients.elasticsearch.core.search.ResponseBody;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.NamedDeserializer;
@@ -42,7 +43,7 @@ import java.util.function.Supplier;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ScrollResponse<TDocument> extends SearchResponse<TDocument> {
+public class ScrollResponse<TDocument> extends ResponseBody<TDocument> {
 	// ---------------------------------------------------------------------------------------------
 
 	private ScrollResponse(Builder<TDocument> builder) {
@@ -61,7 +62,7 @@ public class ScrollResponse<TDocument> extends SearchResponse<TDocument> {
 	 * Builder for {@link ScrollResponse}.
 	 */
 
-	public static class Builder<TDocument> extends SearchResponse.AbstractBuilder<TDocument, Builder<TDocument>>
+	public static class Builder<TDocument> extends ResponseBody.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<ScrollResponse<TDocument>> {
 		@Override
@@ -104,7 +105,7 @@ public class ScrollResponse<TDocument> extends SearchResponse<TDocument> {
 	protected static <TDocument> void setupScrollResponseDeserializer(
 			ObjectDeserializer<ScrollResponse.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		SearchResponse.setupSearchResponseDeserializer(op, tDocumentDeserializer);
+		ResponseBody.setupResponseBodyDeserializer(op, tDocumentDeserializer);
 
 	}
 

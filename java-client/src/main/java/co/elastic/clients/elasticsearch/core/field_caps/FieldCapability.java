@@ -171,9 +171,7 @@ public class FieldCapability implements JsonpSerializable {
 	}
 
 	/**
-	 * Whether this field is registered as a <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-fields.html">metadata
-	 * field</a>.
+	 * Whether this field is registered as a metadata field.
 	 * <p>
 	 * API name: {@code metadata_field}
 	 */
@@ -499,9 +497,7 @@ public class FieldCapability implements JsonpSerializable {
 		}
 
 		/**
-		 * Whether this field is registered as a <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/mapping-fields.html">metadata
-		 * field</a>.
+		 * Whether this field is registered as a metadata field.
 		 * <p>
 		 * API name: {@code metadata_field}
 		 */

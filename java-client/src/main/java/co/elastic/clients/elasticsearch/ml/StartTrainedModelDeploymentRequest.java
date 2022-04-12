@@ -71,7 +71,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	private final Time timeout;
 
 	@Nullable
-	private final DeploymentState waitFor;
+	private final DeploymentAllocationState waitFor;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -152,7 +152,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	 * API name: {@code wait_for}
 	 */
 	@Nullable
-	public final DeploymentState waitFor() {
+	public final DeploymentAllocationState waitFor() {
 		return this.waitFor;
 	}
 
@@ -178,7 +178,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		private Time timeout;
 
 		@Nullable
-		private DeploymentState waitFor;
+		private DeploymentAllocationState waitFor;
 
 		/**
 		 * Specifies the number of threads that are used by the inference process. If
@@ -250,7 +250,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code wait_for}
 		 */
-		public final Builder waitFor(@Nullable DeploymentState value) {
+		public final Builder waitFor(@Nullable DeploymentAllocationState value) {
 			this.waitFor = value;
 			return this;
 		}

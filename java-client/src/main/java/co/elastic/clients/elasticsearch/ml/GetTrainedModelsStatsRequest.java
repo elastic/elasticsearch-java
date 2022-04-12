@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,9 +39,11 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: ml.get_trained_models_stats.Request
@@ -62,8 +65,7 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 	@Nullable
 	private final Integer from;
 
-	@Nullable
-	private final String modelId;
+	private final List<String> modelId;
 
 	@Nullable
 	private final Integer size;
@@ -74,7 +76,7 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.from = builder.from;
-		this.modelId = builder.modelId;
+		this.modelId = ApiTypeHelper.unmodifiable(builder.modelId);
 		this.size = builder.size;
 
 	}
@@ -112,12 +114,12 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 	}
 
 	/**
-	 * The unique identifier of the trained model or a model alias.
+	 * The unique identifier of the trained model or a model alias. It can be a
+	 * comma-separated list or a wildcard expression.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
-	@Nullable
-	public final String modelId() {
+	public final List<String> modelId() {
 		return this.modelId;
 	}
 
@@ -145,7 +147,7 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 		private Integer from;
 
 		@Nullable
-		private String modelId;
+		private List<String> modelId;
 
 		@Nullable
 		private Integer size;
@@ -179,12 +181,28 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 		}
 
 		/**
-		 * The unique identifier of the trained model or a model alias.
+		 * The unique identifier of the trained model or a model alias. It can be a
+		 * comma-separated list or a wildcard expression.
 		 * <p>
 		 * API name: {@code model_id}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>modelId</code>.
 		 */
-		public final Builder modelId(@Nullable String value) {
-			this.modelId = value;
+		public final Builder modelId(List<String> list) {
+			this.modelId = _listAddAll(this.modelId, list);
+			return this;
+		}
+
+		/**
+		 * The unique identifier of the trained model or a model alias. It can be a
+		 * comma-separated list or a wildcard expression.
+		 * <p>
+		 * API name: {@code model_id}
+		 * <p>
+		 * Adds one or more values to <code>modelId</code>.
+		 */
+		public final Builder modelId(String value, String... values) {
+			this.modelId = _listAdd(this.modelId, value, values);
 			return this;
 		}
 
@@ -231,7 +249,7 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 
 				int propsSet = 0;
 
-				if (request.modelId() != null)
+				if (ApiTypeHelper.isDefined(request.modelId()))
 					propsSet |= _modelId;
 
 				if (propsSet == (_modelId)) {
@@ -239,7 +257,8 @@ public class GetTrainedModelsStatsRequest extends RequestBase {
 					buf.append("/_ml");
 					buf.append("/trained_models");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.modelId, buf);
+					SimpleEndpoint.pathEncode(request.modelId.stream().map(v -> v).collect(Collectors.joining(",")),
+							buf);
 					buf.append("/_stats");
 					return buf.toString();
 				}

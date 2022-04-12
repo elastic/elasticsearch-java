@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -47,7 +48,10 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class Translog implements JsonpSerializable {
 	@Nullable
-	private final String durability;
+	private final Time syncInterval;
+
+	@Nullable
+	private final TranslogDurability durability;
 
 	@Nullable
 	private final String flushThresholdSize;
@@ -59,6 +63,7 @@ public class Translog implements JsonpSerializable {
 
 	private Translog(Builder builder) {
 
+		this.syncInterval = builder.syncInterval;
 		this.durability = builder.durability;
 		this.flushThresholdSize = builder.flushThresholdSize;
 		this.retention = builder.retention;
@@ -70,14 +75,36 @@ public class Translog implements JsonpSerializable {
 	}
 
 	/**
+	 * How often the translog is fsynced to disk and committed, regardless of write
+	 * operations. Values less than 100ms are not allowed.
+	 * <p>
+	 * API name: {@code sync_interval}
+	 */
+	@Nullable
+	public final Time syncInterval() {
+		return this.syncInterval;
+	}
+
+	/**
+	 * Whether or not to <code>fsync</code> and commit the translog after every
+	 * index, delete, update, or bulk request.
+	 * <p>
 	 * API name: {@code durability}
 	 */
 	@Nullable
-	public final String durability() {
+	public final TranslogDurability durability() {
 		return this.durability;
 	}
 
 	/**
+	 * The translog stores all operations that are not yet safely persisted in
+	 * Lucene (i.e., are not part of a Lucene commit point). Although these
+	 * operations are available for reads, they will need to be replayed if the
+	 * shard was stopped and had to be recovered. This setting controls the maximum
+	 * total size of these operations, to prevent recoveries from taking too long.
+	 * Once the maximum size has been reached a flush will happen, generating a new
+	 * Lucene commit point.
+	 * <p>
 	 * API name: {@code flush_threshold_size}
 	 */
 	@Nullable
@@ -104,10 +131,14 @@ public class Translog implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.syncInterval != null) {
+			generator.writeKey("sync_interval");
+			this.syncInterval.serialize(generator, mapper);
+
+		}
 		if (this.durability != null) {
 			generator.writeKey("durability");
-			generator.write(this.durability);
-
+			this.durability.serialize(generator, mapper);
 		}
 		if (this.flushThresholdSize != null) {
 			generator.writeKey("flush_threshold_size");
@@ -130,7 +161,10 @@ public class Translog implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Translog> {
 		@Nullable
-		private String durability;
+		private Time syncInterval;
+
+		@Nullable
+		private TranslogDurability durability;
 
 		@Nullable
 		private String flushThresholdSize;
@@ -139,14 +173,46 @@ public class Translog implements JsonpSerializable {
 		private TranslogRetention retention;
 
 		/**
+		 * How often the translog is fsynced to disk and committed, regardless of write
+		 * operations. Values less than 100ms are not allowed.
+		 * <p>
+		 * API name: {@code sync_interval}
+		 */
+		public final Builder syncInterval(@Nullable Time value) {
+			this.syncInterval = value;
+			return this;
+		}
+
+		/**
+		 * How often the translog is fsynced to disk and committed, regardless of write
+		 * operations. Values less than 100ms are not allowed.
+		 * <p>
+		 * API name: {@code sync_interval}
+		 */
+		public final Builder syncInterval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.syncInterval(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Whether or not to <code>fsync</code> and commit the translog after every
+		 * index, delete, update, or bulk request.
+		 * <p>
 		 * API name: {@code durability}
 		 */
-		public final Builder durability(@Nullable String value) {
+		public final Builder durability(@Nullable TranslogDurability value) {
 			this.durability = value;
 			return this;
 		}
 
 		/**
+		 * The translog stores all operations that are not yet safely persisted in
+		 * Lucene (i.e., are not part of a Lucene commit point). Although these
+		 * operations are available for reads, they will need to be replayed if the
+		 * shard was stopped and had to be recovered. This setting controls the maximum
+		 * total size of these operations, to prevent recoveries from taking too long.
+		 * Once the maximum size has been reached a flush will happen, generating a new
+		 * Lucene commit point.
+		 * <p>
 		 * API name: {@code flush_threshold_size}
 		 */
 		public final Builder flushThresholdSize(@Nullable String value) {
@@ -197,7 +263,8 @@ public class Translog implements JsonpSerializable {
 
 	protected static void setupTranslogDeserializer(ObjectDeserializer<Translog.Builder> op) {
 
-		op.add(Builder::durability, JsonpDeserializer.stringDeserializer(), "durability");
+		op.add(Builder::syncInterval, Time._DESERIALIZER, "sync_interval");
+		op.add(Builder::durability, TranslogDurability._DESERIALIZER, "durability");
 		op.add(Builder::flushThresholdSize, JsonpDeserializer.stringDeserializer(), "flush_threshold_size");
 		op.add(Builder::retention, TranslogRetention._DESERIALIZER, "retention");
 

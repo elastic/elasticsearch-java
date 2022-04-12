@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch._types.EmptyObject;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -75,6 +76,9 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 	private final List<String> include;
 
 	@Nullable
+	private final EmptyObject jlh;
+
+	@Nullable
 	private final Long minDocCount;
 
 	@Nullable
@@ -110,6 +114,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		this.filterDuplicateText = builder.filterDuplicateText;
 		this.gnd = builder.gnd;
 		this.include = ApiTypeHelper.unmodifiable(builder.include);
+		this.jlh = builder.jlh;
 		this.minDocCount = builder.minDocCount;
 		this.mutualInformation = builder.mutualInformation;
 		this.percentage = builder.percentage;
@@ -194,6 +199,14 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 	 */
 	public final List<String> include() {
 		return this.include;
+	}
+
+	/**
+	 * API name: {@code jlh}
+	 */
+	@Nullable
+	public final EmptyObject jlh() {
+		return this.jlh;
 	}
 
 	/**
@@ -306,6 +319,11 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 			generator.writeEnd();
 
 		}
+		if (this.jlh != null) {
+			generator.writeKey("jlh");
+			this.jlh.serialize(generator, mapper);
+
+		}
 		if (this.minDocCount != null) {
 			generator.writeKey("min_doc_count");
 			generator.write(this.minDocCount);
@@ -386,6 +404,9 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 
 		@Nullable
 		private List<String> include;
+
+		@Nullable
+		private EmptyObject jlh;
 
 		@Nullable
 		private Long minDocCount;
@@ -514,6 +535,21 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		public final Builder include(String value, String... values) {
 			this.include = _listAdd(this.include, value, values);
 			return this;
+		}
+
+		/**
+		 * API name: {@code jlh}
+		 */
+		public final Builder jlh(@Nullable EmptyObject value) {
+			this.jlh = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code jlh}
+		 */
+		public final Builder jlh(Function<EmptyObject.Builder, ObjectBuilder<EmptyObject>> fn) {
+			return this.jlh(fn.apply(new EmptyObject.Builder()).build());
 		}
 
 		/**
@@ -653,6 +689,7 @@ public class SignificantTextAggregation extends BucketAggregationBase implements
 		op.add(Builder::gnd, GoogleNormalizedDistanceHeuristic._DESERIALIZER, "gnd");
 		op.add(Builder::include, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"include");
+		op.add(Builder::jlh, EmptyObject._DESERIALIZER, "jlh");
 		op.add(Builder::minDocCount, JsonpDeserializer.longDeserializer(), "min_doc_count");
 		op.add(Builder::mutualInformation, MutualInformationHeuristic._DESERIALIZER, "mutual_information");
 		op.add(Builder::percentage, PercentageScoreHeuristic._DESERIALIZER, "percentage");

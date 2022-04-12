@@ -38,9 +38,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cluster.delete_component_template.Request
@@ -57,7 +59,7 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 	@Nullable
 	private final Time masterTimeout;
 
-	private final String name;
+	private final List<String> name;
 
 	@Nullable
 	private final Time timeout;
@@ -67,7 +69,7 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 	private DeleteComponentTemplateRequest(Builder builder) {
 
 		this.masterTimeout = builder.masterTimeout;
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 		this.timeout = builder.timeout;
 
 	}
@@ -88,11 +90,12 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - The name of the template
+	 * Required - Comma-separated list or wildcard expression of component template
+	 * names used to limit the request.
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public final String name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -116,7 +119,7 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 		@Nullable
 		private Time masterTimeout;
 
-		private String name;
+		private List<String> name;
 
 		@Nullable
 		private Time timeout;
@@ -141,12 +144,28 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 		}
 
 		/**
-		 * Required - The name of the template
+		 * Required - Comma-separated list or wildcard expression of component template
+		 * names used to limit the request.
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * Required - Comma-separated list or wildcard expression of component template
+		 * names used to limit the request.
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -208,7 +227,7 @@ public class DeleteComponentTemplateRequest extends RequestBase {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_component_template");
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");

@@ -44,7 +44,7 @@ import java.util.Objects;
  *      specification</a>
  */
 
-public abstract class AcknowledgedResponseBase implements JsonpSerializable {
+public abstract class AcknowledgedResponseBase implements AcknowledgedResponse, JsonpSerializable {
 	private final boolean acknowledged;
 
 	// ---------------------------------------------------------------------------------------------

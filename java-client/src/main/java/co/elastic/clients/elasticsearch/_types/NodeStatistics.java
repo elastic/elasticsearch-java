@@ -42,7 +42,8 @@ import javax.annotation.Nullable;
 // typedef: _types.NodeStatistics
 
 /**
- *
+ * Contains statistics about the number of nodes selected by the request.
+ * 
  * @see <a href="../doc-files/api-spec.html#_types.NodeStatistics">API
  *      specification</a>
  */

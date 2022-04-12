@@ -37,6 +37,8 @@ import co.elastic.clients.json.JsonpDeserializer;
 public enum WaitForActiveShardOptions implements JsonEnum {
 	All("all"),
 
+	IndexSetting("index-setting"),
+
 	;
 
 	private final String jsonValue;

@@ -272,6 +272,14 @@ public class AggregationBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link GeohexGridAggregation geohex_grid}
+	 * {@code Aggregation} variant.
+	 */
+	public static GeohexGridAggregation.Builder geohexGrid() {
+		return new GeohexGridAggregation.Builder();
+	}
+
+	/**
 	 * Creates a builder for the {@link GlobalAggregation global}
 	 * {@code Aggregation} variant.
 	 */

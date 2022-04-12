@@ -23,14 +23,16 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -46,7 +48,9 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class SplitResponse extends AcknowledgedResponseBase {
+public class SplitResponse implements AcknowledgedResponse, JsonpSerializable {
+	private final boolean acknowledged;
+
 	private final boolean shardsAcknowledged;
 
 	private final String index;
@@ -54,8 +58,8 @@ public class SplitResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private SplitResponse(Builder builder) {
-		super(builder);
 
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 
@@ -63,6 +67,13 @@ public class SplitResponse extends AcknowledgedResponseBase {
 
 	public static SplitResponse of(Function<Builder, ObjectBuilder<SplitResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - API name: {@code acknowledged}
+	 */
+	public final boolean acknowledged() {
+		return this.acknowledged;
 	}
 
 	/**
@@ -79,9 +90,20 @@ public class SplitResponse extends AcknowledgedResponseBase {
 		return this.index;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
+		generator.writeKey("acknowledged");
+		generator.write(this.acknowledged);
+
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
 
@@ -96,12 +118,20 @@ public class SplitResponse extends AcknowledgedResponseBase {
 	 * Builder for {@link SplitResponse}.
 	 */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<SplitResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SplitResponse> {
+		private Boolean acknowledged;
+
 		private Boolean shardsAcknowledged;
 
 		private String index;
+
+		/**
+		 * Required - API name: {@code acknowledged}
+		 */
+		public final Builder acknowledged(boolean value) {
+			this.acknowledged = value;
+			return this;
+		}
 
 		/**
 		 * Required - API name: {@code shards_acknowledged}
@@ -146,7 +176,8 @@ public class SplitResponse extends AcknowledgedResponseBase {
 			SplitResponse::setupSplitResponseDeserializer);
 
 	protected static void setupSplitResponseDeserializer(ObjectDeserializer<SplitResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::shardsAcknowledged, JsonpDeserializer.booleanDeserializer(), "shards_acknowledged");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index");
 

@@ -25,14 +25,21 @@ package co.elastic.clients.elasticsearch.snapshot;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.endpoints.DictionaryResponse;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: snapshot.get_repository.Response
 
@@ -43,16 +50,49 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class GetRepositoryResponse extends DictionaryResponse<String, Repository> {
+public class GetRepositoryResponse implements JsonpSerializable {
+	private final Map<String, Repository> result;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetRepositoryResponse(Builder builder) {
-		super(builder);
+
+		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
 
 	}
 
 	public static GetRepositoryResponse of(Function<Builder, ObjectBuilder<GetRepositoryResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - Response value.
+	 * <p>
+	 * API name: {@code _value_body}
+	 */
+	public final Map<String, Repository> result() {
+		return this.result;
+	}
+
+	/**
+	 * Get an element of {@code result}.
+	 */
+	public final @Nullable Repository get(String key) {
+		return this.result.get(key);
+	}
+
+	/**
+	 * Serialize this value to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		for (Map.Entry<String, Repository> item0 : this.result.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
+
+		}
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -61,9 +101,55 @@ public class GetRepositoryResponse extends DictionaryResponse<String, Repository
 	 * Builder for {@link GetRepositoryResponse}.
 	 */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Repository, Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetRepositoryResponse> {
+		private Map<String, Repository> result = new HashMap<>();
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 */
+		public final Builder result(Map<String, Repository> map) {
+			this.result = _mapPutAll(this.result, map);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>result</code>.
+		 */
+		public final Builder result(String key, Repository value) {
+			this.result = _mapPut(this.result, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>result</code> using a builder lambda.
+		 */
+		public final Builder result(String key, Function<Repository.Builder, ObjectBuilder<Repository>> fn) {
+			return result(key, fn.apply(new Repository.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			Map<String, Repository> value = (Map<String, Repository>) JsonpDeserializer
+					.stringMapDeserializer(Repository._DESERIALIZER).deserialize(parser, mapper);
+			return this.result(value);
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -77,25 +163,19 @@ public class GetRepositoryResponse extends DictionaryResponse<String, Repository
 		 */
 		public GetRepositoryResponse build() {
 			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
 
 			return new GetRepositoryResponse(this);
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<GetRepositoryResponse> _DESERIALIZER = createGetRepositoryResponseDeserializer();
+	protected static JsonpDeserializer<GetRepositoryResponse> createGetRepositoryResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link GetRepositoryResponse}
-	 */
-	public static final JsonpDeserializer<GetRepositoryResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetRepositoryResponse::setupGetRepositoryResponseDeserializer);
+		JsonpDeserializer<Map<String, Repository>> valueDeserializer = JsonpDeserializer
+				.stringMapDeserializer(Repository._DESERIALIZER);
 
-	protected static void setupGetRepositoryResponseDeserializer(ObjectDeserializer<GetRepositoryResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				Repository._DESERIALIZER);
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().result(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

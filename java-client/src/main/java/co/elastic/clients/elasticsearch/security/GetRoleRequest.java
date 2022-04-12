@@ -47,10 +47,8 @@ import javax.annotation.Nullable;
 
 /**
  * The role management APIs are generally the preferred way to manage roles,
- * rather than using <a href=
- * "https://www.elastic.co/guide/en/elasticsearch/reference/current/defining-roles.html#roles-management-file">file-based
- * role management</a>. The get roles API cannot retrieve roles that are defined
- * in roles files.
+ * rather than using file-based role management. The get roles API cannot
+ * retrieve roles that are defined in roles files.
  * 
  * @see <a href="../doc-files/api-spec.html#security.get_role.Request">API
  *      specification</a>

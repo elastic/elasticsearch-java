@@ -25,14 +25,21 @@ package co.elastic.clients.elasticsearch.slm;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.endpoints.DictionaryResponse;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: slm.get_lifecycle.Response
 
@@ -42,16 +49,49 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLifecycle> {
+public class GetLifecycleResponse implements JsonpSerializable {
+	private final Map<String, SnapshotLifecycle> result;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetLifecycleResponse(Builder builder) {
-		super(builder);
+
+		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
 
 	}
 
 	public static GetLifecycleResponse of(Function<Builder, ObjectBuilder<GetLifecycleResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - Response value.
+	 * <p>
+	 * API name: {@code _value_body}
+	 */
+	public final Map<String, SnapshotLifecycle> result() {
+		return this.result;
+	}
+
+	/**
+	 * Get an element of {@code result}.
+	 */
+	public final @Nullable SnapshotLifecycle get(String key) {
+		return this.result.get(key);
+	}
+
+	/**
+	 * Serialize this value to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		for (Map.Entry<String, SnapshotLifecycle> item0 : this.result.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
+
+		}
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,9 +100,56 @@ public class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLif
 	 * Builder for {@link GetLifecycleResponse}.
 	 */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, SnapshotLifecycle, Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetLifecycleResponse> {
+		private Map<String, SnapshotLifecycle> result = new HashMap<>();
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 */
+		public final Builder result(Map<String, SnapshotLifecycle> map) {
+			this.result = _mapPutAll(this.result, map);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>result</code>.
+		 */
+		public final Builder result(String key, SnapshotLifecycle value) {
+			this.result = _mapPut(this.result, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>result</code> using a builder lambda.
+		 */
+		public final Builder result(String key,
+				Function<SnapshotLifecycle.Builder, ObjectBuilder<SnapshotLifecycle>> fn) {
+			return result(key, fn.apply(new SnapshotLifecycle.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			Map<String, SnapshotLifecycle> value = (Map<String, SnapshotLifecycle>) JsonpDeserializer
+					.stringMapDeserializer(SnapshotLifecycle._DESERIALIZER).deserialize(parser, mapper);
+			return this.result(value);
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -76,25 +163,19 @@ public class GetLifecycleResponse extends DictionaryResponse<String, SnapshotLif
 		 */
 		public GetLifecycleResponse build() {
 			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
 
 			return new GetLifecycleResponse(this);
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<GetLifecycleResponse> _DESERIALIZER = createGetLifecycleResponseDeserializer();
+	protected static JsonpDeserializer<GetLifecycleResponse> createGetLifecycleResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link GetLifecycleResponse}
-	 */
-	public static final JsonpDeserializer<GetLifecycleResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetLifecycleResponse::setupGetLifecycleResponseDeserializer);
+		JsonpDeserializer<Map<String, SnapshotLifecycle>> valueDeserializer = JsonpDeserializer
+				.stringMapDeserializer(SnapshotLifecycle._DESERIALIZER);
 
-	protected static void setupGetLifecycleResponseDeserializer(ObjectDeserializer<GetLifecycleResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				SnapshotLifecycle._DESERIALIZER);
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().result(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

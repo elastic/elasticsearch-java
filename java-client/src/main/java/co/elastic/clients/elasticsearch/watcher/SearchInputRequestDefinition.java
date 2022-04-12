@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.IndicesOptions;
 import co.elastic.clients.elasticsearch._types.SearchType;
-import co.elastic.clients.elasticsearch.core.SearchTemplateRequest;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -65,7 +64,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 	private final SearchType searchType;
 
 	@Nullable
-	private final SearchTemplateRequest template;
+	private final SearchTemplateRequestBody template;
 
 	@Nullable
 	private final Boolean restTotalHitsAsInt;
@@ -122,7 +121,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 	 * API name: {@code template}
 	 */
 	@Nullable
-	public final SearchTemplateRequest template() {
+	public final SearchTemplateRequestBody template() {
 		return this.template;
 	}
 
@@ -204,7 +203,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		private SearchType searchType;
 
 		@Nullable
-		private SearchTemplateRequest template;
+		private SearchTemplateRequestBody template;
 
 		@Nullable
 		private Boolean restTotalHitsAsInt;
@@ -270,7 +269,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		/**
 		 * API name: {@code template}
 		 */
-		public final Builder template(@Nullable SearchTemplateRequest value) {
+		public final Builder template(@Nullable SearchTemplateRequestBody value) {
 			this.template = value;
 			return this;
 		}
@@ -279,8 +278,8 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 		 * API name: {@code template}
 		 */
 		public final Builder template(
-				Function<SearchTemplateRequest.Builder, ObjectBuilder<SearchTemplateRequest>> fn) {
-			return this.template(fn.apply(new SearchTemplateRequest.Builder()).build());
+				Function<SearchTemplateRequestBody.Builder, ObjectBuilder<SearchTemplateRequestBody>> fn) {
+			return this.template(fn.apply(new SearchTemplateRequestBody.Builder()).build());
 		}
 
 		/**
@@ -325,7 +324,7 @@ public class SearchInputRequestDefinition implements JsonpSerializable {
 				"indices");
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
 		op.add(Builder::searchType, SearchType._DESERIALIZER, "search_type");
-		op.add(Builder::template, SearchTemplateRequest._DESERIALIZER, "template");
+		op.add(Builder::template, SearchTemplateRequestBody._DESERIALIZER, "template");
 		op.add(Builder::restTotalHitsAsInt, JsonpDeserializer.booleanDeserializer(), "rest_total_hits_as_int");
 
 	}

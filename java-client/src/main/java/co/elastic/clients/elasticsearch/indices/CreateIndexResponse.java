@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -47,13 +48,12 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class CreateIndexResponse implements JsonpSerializable {
+public class CreateIndexResponse implements AcknowledgedResponse, JsonpSerializable {
 	private final String index;
 
 	private final boolean shardsAcknowledged;
 
-	@Nullable
-	private final Boolean acknowledged;
+	private final boolean acknowledged;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -61,7 +61,7 @@ public class CreateIndexResponse implements JsonpSerializable {
 
 		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
 		this.shardsAcknowledged = ApiTypeHelper.requireNonNull(builder.shardsAcknowledged, this, "shardsAcknowledged");
-		this.acknowledged = builder.acknowledged;
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 
 	}
 
@@ -84,10 +84,9 @@ public class CreateIndexResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code acknowledged}
+	 * Required - API name: {@code acknowledged}
 	 */
-	@Nullable
-	public final Boolean acknowledged() {
+	public final boolean acknowledged() {
 		return this.acknowledged;
 	}
 
@@ -108,11 +107,8 @@ public class CreateIndexResponse implements JsonpSerializable {
 		generator.writeKey("shards_acknowledged");
 		generator.write(this.shardsAcknowledged);
 
-		if (this.acknowledged != null) {
-			generator.writeKey("acknowledged");
-			generator.write(this.acknowledged);
-
-		}
+		generator.writeKey("acknowledged");
+		generator.write(this.acknowledged);
 
 	}
 
@@ -129,7 +125,6 @@ public class CreateIndexResponse implements JsonpSerializable {
 
 		private Boolean shardsAcknowledged;
 
-		@Nullable
 		private Boolean acknowledged;
 
 		/**
@@ -149,9 +144,9 @@ public class CreateIndexResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code acknowledged}
+		 * Required - API name: {@code acknowledged}
 		 */
-		public final Builder acknowledged(@Nullable Boolean value) {
+		public final Builder acknowledged(boolean value) {
 			this.acknowledged = value;
 			return this;
 		}

@@ -25,14 +25,21 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.endpoints.DictionaryResponse;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: security.get_role_mapping.Response
 
@@ -43,16 +50,49 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class GetRoleMappingResponse extends DictionaryResponse<String, RoleMapping> {
+public class GetRoleMappingResponse implements JsonpSerializable {
+	private final Map<String, RoleMapping> result;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetRoleMappingResponse(Builder builder) {
-		super(builder);
+
+		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
 
 	}
 
 	public static GetRoleMappingResponse of(Function<Builder, ObjectBuilder<GetRoleMappingResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - Response value.
+	 * <p>
+	 * API name: {@code _value_body}
+	 */
+	public final Map<String, RoleMapping> result() {
+		return this.result;
+	}
+
+	/**
+	 * Get an element of {@code result}.
+	 */
+	public final @Nullable RoleMapping get(String key) {
+		return this.result.get(key);
+	}
+
+	/**
+	 * Serialize this value to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		for (Map.Entry<String, RoleMapping> item0 : this.result.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
+
+		}
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -61,9 +101,55 @@ public class GetRoleMappingResponse extends DictionaryResponse<String, RoleMappi
 	 * Builder for {@link GetRoleMappingResponse}.
 	 */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, RoleMapping, Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetRoleMappingResponse> {
+		private Map<String, RoleMapping> result = new HashMap<>();
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 */
+		public final Builder result(Map<String, RoleMapping> map) {
+			this.result = _mapPutAll(this.result, map);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>result</code>.
+		 */
+		public final Builder result(String key, RoleMapping value) {
+			this.result = _mapPut(this.result, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * API name: {@code _value_body}
+		 * <p>
+		 * Adds an entry to <code>result</code> using a builder lambda.
+		 */
+		public final Builder result(String key, Function<RoleMapping.Builder, ObjectBuilder<RoleMapping>> fn) {
+			return result(key, fn.apply(new RoleMapping.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			Map<String, RoleMapping> value = (Map<String, RoleMapping>) JsonpDeserializer
+					.stringMapDeserializer(RoleMapping._DESERIALIZER).deserialize(parser, mapper);
+			return this.result(value);
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -77,26 +163,19 @@ public class GetRoleMappingResponse extends DictionaryResponse<String, RoleMappi
 		 */
 		public GetRoleMappingResponse build() {
 			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
 
 			return new GetRoleMappingResponse(this);
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<GetRoleMappingResponse> _DESERIALIZER = createGetRoleMappingResponseDeserializer();
+	protected static JsonpDeserializer<GetRoleMappingResponse> createGetRoleMappingResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link GetRoleMappingResponse}
-	 */
-	public static final JsonpDeserializer<GetRoleMappingResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetRoleMappingResponse::setupGetRoleMappingResponseDeserializer);
+		JsonpDeserializer<Map<String, RoleMapping>> valueDeserializer = JsonpDeserializer
+				.stringMapDeserializer(RoleMapping._DESERIALIZER);
 
-	protected static void setupGetRoleMappingResponseDeserializer(
-			ObjectDeserializer<GetRoleMappingResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				RoleMapping._DESERIALIZER);
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().result(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

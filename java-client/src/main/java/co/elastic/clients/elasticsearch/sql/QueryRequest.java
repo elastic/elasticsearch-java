@@ -26,7 +26,9 @@ package co.elastic.clients.elasticsearch.sql;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.mapping.RuntimeField;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,6 +37,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -42,6 +45,7 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -57,6 +61,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class QueryRequest extends RequestBase implements JsonpSerializable {
+	@Nullable
+	private final String catalog;
+
 	@Nullable
 	private final Boolean columnar;
 
@@ -76,7 +83,18 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	private final String format;
 
 	@Nullable
+	private final Boolean indexUsingFrozen;
+
+	@Nullable
+	private final Time keepAlive;
+
+	@Nullable
+	private final Boolean keepOnCompletion;
+
+	@Nullable
 	private final Time pageTimeout;
+
+	private final Map<String, JsonData> params;
 
 	@Nullable
 	private final String query;
@@ -84,28 +102,51 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Time requestTimeout;
 
+	private final Map<String, List<RuntimeField>> runtimeMappings;
+
 	@Nullable
 	private final String timeZone;
+
+	@Nullable
+	private final Time waitForCompletionTimeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private QueryRequest(Builder builder) {
 
+		this.catalog = builder.catalog;
 		this.columnar = builder.columnar;
 		this.cursor = builder.cursor;
 		this.fetchSize = builder.fetchSize;
 		this.fieldMultiValueLeniency = builder.fieldMultiValueLeniency;
 		this.filter = builder.filter;
 		this.format = builder.format;
+		this.indexUsingFrozen = builder.indexUsingFrozen;
+		this.keepAlive = builder.keepAlive;
+		this.keepOnCompletion = builder.keepOnCompletion;
 		this.pageTimeout = builder.pageTimeout;
+		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.query = builder.query;
 		this.requestTimeout = builder.requestTimeout;
+		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
 		this.timeZone = builder.timeZone;
+		this.waitForCompletionTimeout = builder.waitForCompletionTimeout;
 
 	}
 
 	public static QueryRequest of(Function<Builder, ObjectBuilder<QueryRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Default catalog (cluster) for queries. If unspecified, the queries execute on
+	 * the data in the local cluster only.
+	 * <p>
+	 * API name: {@code catalog}
+	 */
+	@Nullable
+	public final String catalog() {
+		return this.catalog;
 	}
 
 	/**
@@ -167,6 +208,38 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * If true, the search can run on frozen indices. Defaults to false.
+	 * <p>
+	 * API name: {@code index_using_frozen}
+	 */
+	@Nullable
+	public final Boolean indexUsingFrozen() {
+		return this.indexUsingFrozen;
+	}
+
+	/**
+	 * Retention period for an async or saved synchronous search.
+	 * <p>
+	 * API name: {@code keep_alive}
+	 */
+	@Nullable
+	public final Time keepAlive() {
+		return this.keepAlive;
+	}
+
+	/**
+	 * If true, Elasticsearch stores synchronous searches if you also specify the
+	 * wait_for_completion_timeout parameter. If false, Elasticsearch only stores
+	 * async searches that don’t finish before the wait_for_completion_timeout.
+	 * <p>
+	 * API name: {@code keep_on_completion}
+	 */
+	@Nullable
+	public final Boolean keepOnCompletion() {
+		return this.keepOnCompletion;
+	}
+
+	/**
 	 * The timeout before a pagination request fails.
 	 * <p>
 	 * API name: {@code page_timeout}
@@ -174,6 +247,15 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Time pageTimeout() {
 		return this.pageTimeout;
+	}
+
+	/**
+	 * Values for parameters in the query.
+	 * <p>
+	 * API name: {@code params}
+	 */
+	public final Map<String, JsonData> params() {
+		return this.params;
 	}
 
 	/**
@@ -197,6 +279,16 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * Defines one or more runtime fields in the search request. These fields take
+	 * precedence over mapped fields with the same name.
+	 * <p>
+	 * API name: {@code runtime_mappings}
+	 */
+	public final Map<String, List<RuntimeField>> runtimeMappings() {
+		return this.runtimeMappings;
+	}
+
+	/**
 	 * Time-zone in ISO 8601 used for executing the query on the server. More
 	 * information available here.
 	 * <p>
@@ -205,6 +297,18 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final String timeZone() {
 		return this.timeZone;
+	}
+
+	/**
+	 * Period to wait for complete results. Defaults to no timeout, meaning the
+	 * request waits for complete search results. If the search doesn’t finish
+	 * within this period, the search becomes async.
+	 * <p>
+	 * API name: {@code wait_for_completion_timeout}
+	 */
+	@Nullable
+	public final Time waitForCompletionTimeout() {
+		return this.waitForCompletionTimeout;
 	}
 
 	/**
@@ -218,6 +322,11 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.catalog != null) {
+			generator.writeKey("catalog");
+			generator.write(this.catalog);
+
+		}
 		if (this.columnar != null) {
 			generator.writeKey("columnar");
 			generator.write(this.columnar);
@@ -243,9 +352,35 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			this.filter.serialize(generator, mapper);
 
 		}
+		if (this.indexUsingFrozen != null) {
+			generator.writeKey("index_using_frozen");
+			generator.write(this.indexUsingFrozen);
+
+		}
+		if (this.keepAlive != null) {
+			generator.writeKey("keep_alive");
+			this.keepAlive.serialize(generator, mapper);
+
+		}
+		if (this.keepOnCompletion != null) {
+			generator.writeKey("keep_on_completion");
+			generator.write(this.keepOnCompletion);
+
+		}
 		if (this.pageTimeout != null) {
 			generator.writeKey("page_timeout");
 			this.pageTimeout.serialize(generator, mapper);
+
+		}
+		if (ApiTypeHelper.isDefined(this.params)) {
+			generator.writeKey("params");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.params.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.query != null) {
@@ -258,9 +393,32 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 			this.requestTimeout.serialize(generator, mapper);
 
 		}
+		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
+			generator.writeKey("runtime_mappings");
+			generator.writeStartObject();
+			for (Map.Entry<String, List<RuntimeField>> item0 : this.runtimeMappings.entrySet()) {
+				generator.writeKey(item0.getKey());
+				generator.writeStartArray();
+				if (item0.getValue() != null) {
+					for (RuntimeField item1 : item0.getValue()) {
+						item1.serialize(generator, mapper);
+
+					}
+				}
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
+
+		}
 		if (this.timeZone != null) {
 			generator.writeKey("time_zone");
 			generator.write(this.timeZone);
+
+		}
+		if (this.waitForCompletionTimeout != null) {
+			generator.writeKey("wait_for_completion_timeout");
+			this.waitForCompletionTimeout.serialize(generator, mapper);
 
 		}
 
@@ -273,6 +431,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<QueryRequest> {
+		@Nullable
+		private String catalog;
+
 		@Nullable
 		private Boolean columnar;
 
@@ -292,7 +453,19 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private String format;
 
 		@Nullable
+		private Boolean indexUsingFrozen;
+
+		@Nullable
+		private Time keepAlive;
+
+		@Nullable
+		private Boolean keepOnCompletion;
+
+		@Nullable
 		private Time pageTimeout;
+
+		@Nullable
+		private Map<String, JsonData> params;
 
 		@Nullable
 		private String query;
@@ -301,7 +474,24 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private Time requestTimeout;
 
 		@Nullable
+		private Map<String, List<RuntimeField>> runtimeMappings;
+
+		@Nullable
 		private String timeZone;
+
+		@Nullable
+		private Time waitForCompletionTimeout;
+
+		/**
+		 * Default catalog (cluster) for queries. If unspecified, the queries execute on
+		 * the data in the local cluster only.
+		 * <p>
+		 * API name: {@code catalog}
+		 */
+		public final Builder catalog(@Nullable String value) {
+			this.catalog = value;
+			return this;
+		}
 
 		/**
 		 * API name: {@code columnar}
@@ -371,6 +561,47 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * If true, the search can run on frozen indices. Defaults to false.
+		 * <p>
+		 * API name: {@code index_using_frozen}
+		 */
+		public final Builder indexUsingFrozen(@Nullable Boolean value) {
+			this.indexUsingFrozen = value;
+			return this;
+		}
+
+		/**
+		 * Retention period for an async or saved synchronous search.
+		 * <p>
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(@Nullable Time value) {
+			this.keepAlive = value;
+			return this;
+		}
+
+		/**
+		 * Retention period for an async or saved synchronous search.
+		 * <p>
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * If true, Elasticsearch stores synchronous searches if you also specify the
+		 * wait_for_completion_timeout parameter. If false, Elasticsearch only stores
+		 * async searches that don’t finish before the wait_for_completion_timeout.
+		 * <p>
+		 * API name: {@code keep_on_completion}
+		 */
+		public final Builder keepOnCompletion(@Nullable Boolean value) {
+			this.keepOnCompletion = value;
+			return this;
+		}
+
+		/**
 		 * The timeout before a pagination request fails.
 		 * <p>
 		 * API name: {@code page_timeout}
@@ -387,6 +618,30 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder pageTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.pageTimeout(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Values for parameters in the query.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>params</code>.
+		 */
+		public final Builder params(Map<String, JsonData> map) {
+			this.params = _mapPutAll(this.params, map);
+			return this;
+		}
+
+		/**
+		 * Values for parameters in the query.
+		 * <p>
+		 * API name: {@code params}
+		 * <p>
+		 * Adds an entry to <code>params</code>.
+		 */
+		public final Builder params(String key, JsonData value) {
+			this.params = _mapPut(this.params, key, value);
+			return this;
 		}
 
 		/**
@@ -419,6 +674,32 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
+		 * Defines one or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(Map<String, List<RuntimeField>> map) {
+			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
+			return this;
+		}
+
+		/**
+		 * Defines one or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code>.
+		 */
+		public final Builder runtimeMappings(String key, List<RuntimeField> value) {
+			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
 		 * Time-zone in ISO 8601 used for executing the query on the server. More
 		 * information available here.
 		 * <p>
@@ -427,6 +708,29 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		public final Builder timeZone(@Nullable String value) {
 			this.timeZone = value;
 			return this;
+		}
+
+		/**
+		 * Period to wait for complete results. Defaults to no timeout, meaning the
+		 * request waits for complete search results. If the search doesn’t finish
+		 * within this period, the search becomes async.
+		 * <p>
+		 * API name: {@code wait_for_completion_timeout}
+		 */
+		public final Builder waitForCompletionTimeout(@Nullable Time value) {
+			this.waitForCompletionTimeout = value;
+			return this;
+		}
+
+		/**
+		 * Period to wait for complete results. Defaults to no timeout, meaning the
+		 * request waits for complete search results. If the search doesn’t finish
+		 * within this period, the search becomes async.
+		 * <p>
+		 * API name: {@code wait_for_completion_timeout}
+		 */
+		public final Builder waitForCompletionTimeout(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.waitForCompletionTimeout(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -457,15 +761,23 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 
 	protected static void setupQueryRequestDeserializer(ObjectDeserializer<QueryRequest.Builder> op) {
 
+		op.add(Builder::catalog, JsonpDeserializer.stringDeserializer(), "catalog");
 		op.add(Builder::columnar, JsonpDeserializer.booleanDeserializer(), "columnar");
 		op.add(Builder::cursor, JsonpDeserializer.stringDeserializer(), "cursor");
 		op.add(Builder::fetchSize, JsonpDeserializer.integerDeserializer(), "fetch_size");
 		op.add(Builder::fieldMultiValueLeniency, JsonpDeserializer.booleanDeserializer(), "field_multi_value_leniency");
 		op.add(Builder::filter, Query._DESERIALIZER, "filter");
+		op.add(Builder::indexUsingFrozen, JsonpDeserializer.booleanDeserializer(), "index_using_frozen");
+		op.add(Builder::keepAlive, Time._DESERIALIZER, "keep_alive");
+		op.add(Builder::keepOnCompletion, JsonpDeserializer.booleanDeserializer(), "keep_on_completion");
 		op.add(Builder::pageTimeout, Time._DESERIALIZER, "page_timeout");
+		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::requestTimeout, Time._DESERIALIZER, "request_timeout");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(
+				JsonpDeserializer.arrayDeserializer(RuntimeField._DESERIALIZER)), "runtime_mappings");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
+		op.add(Builder::waitForCompletionTimeout, Time._DESERIALIZER, "wait_for_completion_timeout");
 
 	}
 

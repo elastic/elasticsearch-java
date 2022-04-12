@@ -69,21 +69,12 @@ public class MlDatafeedsRequest extends CatRequestBase {
 	@Nullable
 	private final String datafeedId;
 
-	@Nullable
-	private final String format;
-
 	private final List<CatDatafeedColumn> h;
-
-	@Nullable
-	private final Boolean help;
 
 	private final List<CatDatafeedColumn> s;
 
 	@Nullable
 	private final TimeUnit time;
-
-	@Nullable
-	private final Boolean v;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -91,12 +82,9 @@ public class MlDatafeedsRequest extends CatRequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.datafeedId = builder.datafeedId;
-		this.format = builder.format;
 		this.h = ApiTypeHelper.unmodifiable(builder.h);
-		this.help = builder.help;
 		this.s = ApiTypeHelper.unmodifiable(builder.s);
 		this.time = builder.time;
-		this.v = builder.v;
 
 	}
 
@@ -136,33 +124,12 @@ public class MlDatafeedsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Short version of the HTTP accept header. Valid values include JSON, YAML, for
-	 * example.
-	 * <p>
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public final String format() {
-		return this.format;
-	}
-
-	/**
 	 * Comma-separated list of column names to display.
 	 * <p>
 	 * API name: {@code h}
 	 */
 	public final List<CatDatafeedColumn> h() {
 		return this.h;
-	}
-
-	/**
-	 * If <code>true</code>, the response includes help information.
-	 * <p>
-	 * API name: {@code help}
-	 */
-	@Nullable
-	public final Boolean help() {
-		return this.help;
 	}
 
 	/**
@@ -185,16 +152,6 @@ public class MlDatafeedsRequest extends CatRequestBase {
 		return this.time;
 	}
 
-	/**
-	 * If <code>true</code>, the response includes column headings.
-	 * <p>
-	 * API name: {@code v}
-	 */
-	@Nullable
-	public final Boolean v() {
-		return this.v;
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -209,22 +166,13 @@ public class MlDatafeedsRequest extends CatRequestBase {
 		private String datafeedId;
 
 		@Nullable
-		private String format;
-
-		@Nullable
 		private List<CatDatafeedColumn> h;
-
-		@Nullable
-		private Boolean help;
 
 		@Nullable
 		private List<CatDatafeedColumn> s;
 
 		@Nullable
 		private TimeUnit time;
-
-		@Nullable
-		private Boolean v;
 
 		/**
 		 * Specifies what to do when the request:
@@ -258,17 +206,6 @@ public class MlDatafeedsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Short version of the HTTP accept header. Valid values include JSON, YAML, for
-		 * example.
-		 * <p>
-		 * API name: {@code format}
-		 */
-		public final Builder format(@Nullable String value) {
-			this.format = value;
-			return this;
-		}
-
-		/**
 		 * Comma-separated list of column names to display.
 		 * <p>
 		 * API name: {@code h}
@@ -289,16 +226,6 @@ public class MlDatafeedsRequest extends CatRequestBase {
 		 */
 		public final Builder h(CatDatafeedColumn value, CatDatafeedColumn... values) {
 			this.h = _listAdd(this.h, value, values);
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the response includes help information.
-		 * <p>
-		 * API name: {@code help}
-		 */
-		public final Builder help(@Nullable Boolean value) {
-			this.help = value;
 			return this;
 		}
 
@@ -335,16 +262,6 @@ public class MlDatafeedsRequest extends CatRequestBase {
 		 */
 		public final Builder time(@Nullable TimeUnit value) {
 			this.time = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the response includes column headings.
-		 * <p>
-		 * API name: {@code v}
-		 */
-		public final Builder v(@Nullable Boolean value) {
-			this.v = value;
 			return this;
 		}
 
@@ -408,17 +325,8 @@ public class MlDatafeedsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
-				if (request.help != null) {
-					params.put("help", String.valueOf(request.help));
-				}
 				if (ApiTypeHelper.isDefined(request.s)) {
 					params.put("s", request.s.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
-				}
-				if (request.v != null) {
-					params.put("v", String.valueOf(request.v));
-				}
-				if (request.format != null) {
-					params.put("format", request.format);
 				}
 				if (ApiTypeHelper.isDefined(request.h)) {
 					params.put("h", request.h.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
