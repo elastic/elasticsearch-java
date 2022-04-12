@@ -60,7 +60,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
         container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.16.2")
             .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
             .withEnv("path.repo", "/tmp") // for snapshots
-            .withStartupTimeout(Duration.ofSeconds(30))
+            .withStartupTimeout(Duration.ofSeconds(120))
             .withPassword("changeme");
         container.start();
         port = container.getMappedPort(9200);
