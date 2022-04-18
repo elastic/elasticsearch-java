@@ -9,4 +9,4 @@ include::installation.asciidoc[]
 include::connecting.asciidoc[]
 include::migrate-hlrc.asciidoc[]
 
-include::{elasticsearch-root}/docs/java-rest/low-level/index.asciidoc[leveloffset=+1]
+include::low-level.asciidoc[leveloffset=+2]
