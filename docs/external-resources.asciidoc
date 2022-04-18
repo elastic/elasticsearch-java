@@ -1,0 +1,10 @@
+[[external-resources]]
+== External resources
+
+// Note: we keep the actual links in GitHub to ease maintenance and avoid publishing external
+// links on the corporate website. This is particularly important as the documentation for
+// older versions of the Elastic Stack may stop being updated on the website.
+
+There is some material related to the {java-client} available outside this website that provides additional information or different perspectives on the library.
+
+You can find a community-maintained list of external resources in the https://github.com/elastic/elasticsearch-java/tree/main/docs/external-resources.md[{java-client} GitHub repository].

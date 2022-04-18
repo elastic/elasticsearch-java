@@ -1,5 +1,5 @@
 [[migrate-hlrc]]
-== Migrating from the High Level Rest Client
+=== Migrating from the High Level Rest Client
 
 The {es} Java API Client is an entirely new client library that has no relation 
 to the older High Level Rest Client (HLRC). This was a deliberate choice to 
@@ -11,7 +11,7 @@ application. This transition can however happen progressively as the two client
 libraries can coexist in a single application with no operational overhead.
 
 [discrete]
-=== Compatibility mode: using a 7.17 client with {es} 8.x
+==== Compatibility mode: using a 7.17 client with {es} 8.x
 The HLRC version `7.17` can be used with {es} version `8.x` by enabling
 HLRC's compatibility mode (see code sample below). In this mode HLRC sends
 additional headers that instruct {es} `8.x` to behave like a `7.x` server.
@@ -20,7 +20,7 @@ The {java-client} doesn't need this setting as compatibility mode is always
 enabled.
 
 [discrete]
-=== Using the same http client with the HLRC and the Java API Client
+==== Using the same http client with the HLRC and the Java API Client
 
 To avoid any operational overhead during the transition phase where an
 application would use both the HLRC and the new Java API Client, both clients
@@ -31,12 +31,12 @@ The code below shows how to initialize both clients with the same HTTP client:
 
 ["source","java"]
 --------------------------------------------------
-include-tagged::{doc-tests}/MigrateHlrcTest.java[migrate]
+include-tagged::{doc-tests-src}/getting_started/MigrateHlrcTest.java[migrate]
 --------------------------------------------------
 <1> Enables compatibility mode that allows HLRC `7.17` to work with {es} `8.x`.
 
 [discrete]
-=== Transition strategies
+==== Transition strategies
 
 There are different ways you can start transitioning away from the HLRC in your 
 application code.

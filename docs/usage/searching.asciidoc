@@ -1,0 +1,46 @@
+[[searching]]
+=== Searching for documents
+
+Indexed documents are available for search in near real-time.
+
+NOTE: See the {es} documentation for a full explanation of search requests: {es-docs}/search-your-data.html[search your data], {es-docs}/search-your-data.html[the query DSL], and {es-docs}/search.html[search APIs].
+
+[discrete]
+==== Simple search query
+
+There are many types of search queries that can be combined. We will start with the simple text match query, searching for bikes in the `products` index.
+
+The search result has a `hits` properties that contains the documents that matched the query along with information about the total number of matches that exist in the index.
+
+The total value comes with a relation that indicates if the total is exact (`eq` -- equal) or approximate (`gte` -- greater than or equal).
+
+Each returned document comes with its relevance score and additional information about its location in the index.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/SearchingTest.java[search-simple]
+--------------------------------------------------
+<1> Name of the index we want to search.
+<2> The query part of the search request (a search request can also have other components like <<aggregations, aggregations>>).
+<3> Choose a query variant among the many available. We choose here the match query (full text search).
+<4> Configure the match query: we search for a term in the `name` field.
+<5> The target class for the matching documents. We use `Product` here, just like in <<reading, get request>> examples.
+
+Similarly to <<reading, get>> operations, you can fetch documents matching your query as raw JSON by using a corresponding target class instead of `Product`, like JSON-P's `JsonValue` or Jackson's `ObjectNode`.
+
+[discrete]
+==== Nested search queries
+
+{es} allows individual queries to be combined to build more complex search requests. In the example below we will search for bikes with a maximum price of 200.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/SearchingTest.java[search-nested]
+--------------------------------------------------
+<1> We're creating the queries for individual criteria separately.
+<2> A `MatchQuery` is a query _variant_ that we have to turn into the `Query` _union type_. See <<variant-types, variant types>> for additional details.
+<3> {es} range query accepts a large range of value types. We create here a JSON representation of the maximum price.
+<4> The search query is a boolean query that combines the text search and max price queries.
+<5> Both queries are added as `must` as we want results to match all criteria.
+
+{doc-tests-blurb}

@@ -6,7 +6,11 @@ include::{asciidoc-dir}/../../shared/attributes.asciidoc[]
 include::_releases.asciidoc[]
 
 :java-client: Java API Client
-:doc-tests: {docdir}/../java-client/src/test/java/co/elastic/clients/documentation
+:doc-tests-src: {docdir}/../java-client/src/test/java/co/elastic/clients/documentation
+:doc-tests-url: https://github.com/elastic/elasticsearch-java/tree/{branch}/java-client/src/test/java/co/elastic/clients/documentation
+:doc-tests-blurb: The source code for the examples above can be found in the {doc-tests-url}[{java-client} tests].
+
+:es-docs: https://www.elastic.co/guide/en/elasticsearch/reference/{branch}
 
 ifeval::["{release-state}"=="unreleased"]
 :java-client-javadoc: https://snapshots.elastic.co/javadoc/co/elastic/clients/elasticsearch-java/{version}-SNAPSHOT
@@ -23,14 +27,13 @@ ifeval::["{release-state}"!="unreleased"]
 endif::[]
 
 include::introduction.asciidoc[]
-include::installation.asciidoc[]
-include::connecting.asciidoc[]
-include::migrate.asciidoc[]
-include::api-conventions.asciidoc[]
-ifdef::is_main_branch,v8_1_1_released,v7_17_2_released[]
-include::loading-json.asciidoc[]
-endif::is_main_branch,v8_1_1_released,v7_17_2_released[]
+include::getting-started/index.asciidoc[]
+include::api-conventions/index.asciidoc[]
+
+include::usage/index.asciidoc[]
+
+// include::troubleshooting/index.asciidoc[]
 include::javadoc-and-source.asciidoc[]
 include::release-notes/index.asciidoc[]
-
+include::external-resources.asciidoc[]
 include::{elasticsearch-root}/docs/java-rest/low-level/index.asciidoc[]
