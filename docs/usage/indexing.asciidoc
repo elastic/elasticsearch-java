@@ -1,0 +1,61 @@
+[[indexing]]
+=== Indexing single documents
+
+The {java-client} offers several ways to index data: you can provide application objects that will be automatically mapped to JSON, or you can provide raw JSON data. Using application objects is more suited to applications with a well-defined domain model, whereas raw JSON is more suited to logging use cases with semi-structured data.
+
+In the examples below we use a `Product` domain object that has `sku`, `name` and `price` properties.
+
+NOTE: See the {es-docs}/docs-index_.html[{es} API documentation] for a full explanation of index requests.
+
+[discrete]
+==== Using the fluent DSL
+
+The most direct way to build requests is using the fluent DSL. In the example below we index a product description in the `products` index, using the product's SKU as the document identifier in the index. The `product` object will be mapped to JSON using the object mapper configured on the {es} client.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[single-doc-dsl]
+--------------------------------------------------
+
+You can also assign objects created with the DSL to variables. {java-client} classes have a static `of()` method for this, that creates an object with the DSL syntax.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[single-doc-dsl-of]
+--------------------------------------------------
+
+[discrete]
+==== Using classic builders
+
+If you're more used to the classic builder pattern, it is also available. Builder objects are used under the hood by the fluent DSL syntax.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[single-doc-builder]
+--------------------------------------------------
+
+[discrete]
+==== Using the asynchronous client
+
+The examples above used the synchronous {es} client. All {es} APIs are also available in the asynchronous client, using the same request and response types. See also <<blocking-and-async>> for additional details.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[single-doc-dsl-async]
+--------------------------------------------------
+
+[discrete]
+==== Using raw JSON data
+
+When the data you want to index comes from external sources, having to create domain objects may be cumbersome or outright impossible with semi-structured data.
+
+You can index data from an arbitrary source using `withJson()`. Using this method will read the source and use it for the index request's `document` property. See <<loading-json>> for additional details.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingTest.java[single-doc-json]
+--------------------------------------------------
+
+// TODO: Add an example with version conflict detection
+
+{doc-tests-blurb}

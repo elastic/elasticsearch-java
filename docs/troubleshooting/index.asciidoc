@@ -1,0 +1,13 @@
+== Troubleshooting
+
+=== Understanding exceptions
+
+TBD
+
+=== Debugging
+
+TBD
+
+=== Elasticsearch deprecation warnings
+
+TBD
