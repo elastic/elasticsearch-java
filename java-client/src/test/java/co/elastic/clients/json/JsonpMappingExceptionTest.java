@@ -69,7 +69,7 @@ public class JsonpMappingExceptionTest extends ModelTestCase {
 
         JsonpMappingException e = assertThrows(JsonpMappingException.class, () -> {
             // withJson() will read values of the generic parameter type as JsonData
-            SearchResponse<JsonData> r = SearchResponse.searchResponseOf(b -> b
+            SearchResponse<JsonData> r = SearchResponse.of(b -> b
                 .withJson(new StringReader(json))
             );
         });
