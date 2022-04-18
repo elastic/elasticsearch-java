@@ -20,7 +20,7 @@
 package co.elastic.clients.documentation;
 
 import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
+import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.TransportOptions;
@@ -40,11 +40,11 @@ import java.util.function.Function;
  */
 public class DocTestsTransport implements ElasticsearchTransport {
 
-    private JsonpMapper mapper = new JsonbJsonpMapper();
+    private final JsonpMapper mapper = new JacksonJsonpMapper();
 
-    private ThreadLocal<Object> result = new ThreadLocal<>();
+    private final ThreadLocal<Object> result = new ThreadLocal<>();
 
-    private TransportOptions options = new TransportOptions() {
+    private final TransportOptions options = new TransportOptions() {
         @Override
         public Collection<Map.Entry<String, String>> headers() {
             return Collections.emptyList();

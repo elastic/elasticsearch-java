@@ -1,5 +1,5 @@
 [[installation]]
-== Installation
+=== Installation
 
 Requirements:
 
@@ -19,7 +19,7 @@ available at https://snapshots.elastic.co/maven/.
 
 [discrete]
 [[gradle]]
-=== Installation in a Gradle project by using Jackson
+==== Installation in a Gradle project by using Jackson
 
 ["source","groovy",subs="attributes+"]
 --------------------------------------------------
@@ -36,7 +36,7 @@ dependencies {
 
 [discrete]
 [[maven]]
-=== Installation in a Maven project by using Jackson
+==== Installation in a Maven project by using Jackson
 
 In the `pom.xml` of your project, add the following repository definition and 
 dependencies:
@@ -73,7 +73,7 @@ dependencies:
 
 [discrete]
 [[spring-jakarta-json]]
-=== Spring Boot and jakarta.json
+==== Spring Boot and jakarta.json
 
 Spring Boot comes with Gradle and Maven plugins to ease development and dependency management. These plugins define built-in versions for a number of well-known libraries.
 

@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.documentation;
+package co.elastic.clients.documentation.getting_started;
 
+import co.elastic.clients.documentation.usage.Product;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
@@ -31,8 +32,6 @@ import org.junit.Ignore;
 import org.junit.Test;
 
 public class ConnectingTest {
-
-    private static class Product{}
 
     @Ignore // we don't have a running ES
     @Test
