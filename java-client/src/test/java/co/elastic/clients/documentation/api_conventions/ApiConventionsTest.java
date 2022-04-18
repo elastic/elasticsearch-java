@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.documentation;
+package co.elastic.clients.documentation.api_conventions;
 
+import co.elastic.clients.documentation.DocTestsTransport;
 import co.elastic.clients.elasticsearch.ElasticsearchAsyncClient;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.NodeStatistics;
@@ -34,20 +35,20 @@ import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.util.ApiTypeHelper;
 import org.junit.Assert;
 import org.junit.Test;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.logging.LogManager;
-import java.util.logging.Logger;
 
 public class ApiConventionsTest extends Assert {
 
     private static class SomeApplicationData {}
 
     private ElasticsearchTransport transport = new DocTestsTransport();
-    Logger logger = LogManager.getLogManager().getLogger(ApiConventionsTest.class.getName());
+    Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public void blockingAndAsync() throws Exception {
 
@@ -65,9 +66,11 @@ public class ApiConventionsTest extends Assert {
 
         asyncClient
             .exists(b -> b.index("products").id("foo"))
-            .thenAccept(response -> {
-                if (response.value()) {
-                    logger.info("product exists");
+            .whenComplete((response, exception) -> {
+                if (exception != null) {
+                    logger.error("Failed to index", exception);
+                } else {
+                    logger.info("Product exists");
                 }
             });
         //end::blocking-and-async
@@ -122,28 +125,28 @@ public class ApiConventionsTest extends Assert {
 
         //tag::builder-intervals
         SearchResponse<SomeApplicationData> results = client
-            .search(_0 -> _0
-                .query(_1 -> _1
-                    .intervals(_2 -> _2
+            .search(b0 -> b0
+                .query(b1 -> b1
+                    .intervals(b2 -> b2
                         .field("my_text")
-                        .allOf(_3 -> _3
+                        .allOf(b3 -> b3
                             .ordered(true)
-                            .intervals(_4 -> _4
-                                .match(_5 -> _5
+                            .intervals(b4 -> b4
+                                .match(b5 -> b5
                                     .query("my favorite food")
                                     .maxGaps(0)
                                     .ordered(true)
                                 )
                             )
-                            .intervals(_4 -> _4
-                                .anyOf(_5 -> _5
-                                    .intervals(_6 -> _6
-                                        .match(_7 -> _7
+                            .intervals(b4 -> b4
+                                .anyOf(b5 -> b5
+                                    .intervals(b6 -> b6
+                                        .match(b7 -> b7
                                             .query("hot water")
                                         )
                                     )
-                                    .intervals(_6 -> _6
-                                        .match(_7 -> _7
+                                    .intervals(b6 -> b6
+                                        .match(b7 -> b7
                                             .query("cold porridge")
                                         )
                                     )

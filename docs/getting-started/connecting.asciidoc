@@ -1,5 +1,5 @@
 [[connecting]]
-== Connecting
+=== Connecting
 
 The {java-client} is structured around three main components:
 
@@ -16,7 +16,7 @@ This code snippet creates and wires together these three components:
 
 ["source","java"]
 --------------------------------------------------
-include-tagged::{doc-tests}/ConnectingTest.java[create-client]
+include-tagged::{doc-tests-src}/getting_started/ConnectingTest.java[create-client]
 --------------------------------------------------
 
 Authentication is managed by the <<java-rest-low>>. For further details on 
@@ -24,7 +24,7 @@ configuring authentication, refer to
 {java-api-client}/_basic_authentication.html[its documentation].
 
 [discrete]
-=== Your first request
+==== Your first request
 
 The code snippet below searches all items from a “product” index whose name 
 matches “bicycle” and return them as instances of a `Product` application class.
@@ -35,5 +35,7 @@ concise DSL-like code. This pattern is explained in more detail in
 
 ["source","java"]
 --------------------------------------------------
-include-tagged::{doc-tests}/ConnectingTest.java[first-request]
+include-tagged::{doc-tests-src}/getting_started/ConnectingTest.java[first-request]
 --------------------------------------------------
+
+{doc-tests-blurb}
