@@ -17,8 +17,9 @@
  * under the License.
  */
 
-package co.elastic.clients.documentation;
+package co.elastic.clients.documentation.api_conventions;
 
+import co.elastic.clients.documentation.DocTestsTransport;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.CalendarInterval;
@@ -45,10 +46,10 @@ import java.util.Map;
 
 public class LoadingJsonTest extends ModelTestCase {
 
-    private DocTestsTransport transport = new DocTestsTransport();
-    private ElasticsearchClient client = new ElasticsearchClient(transport);
+    private final DocTestsTransport transport = new DocTestsTransport();
+    private final ElasticsearchClient client = new ElasticsearchClient(transport);
 
-    private static SearchResponse<JsonData> searchResponse = SearchResponse.searchResponseOf(b -> b
+    private static final SearchResponse<JsonData> searchResponse = SearchResponse.searchResponseOf(b -> b
         .aggregations(new HashMap<>())
         .took(0)
         .timedOut(false)

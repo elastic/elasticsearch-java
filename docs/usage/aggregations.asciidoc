@@ -1,0 +1,40 @@
+[[aggregations]]
+=== Aggregations
+
+An aggregation summarizes your data as metrics, statistics, or other analytics.
+
+NOTE: See the es-docs}/search-aggregations[{es} documentation] for a full explanation of aggregations.
+
+[discrete]
+==== A simple aggregation
+
+In the example below we run an aggregation that creates a price histogram from a product index, for the products whose name match a user-provided text. To achieve this, we use a search request that has a query (explained in <<searching>>) and an aggregation definition.
+
+This example is an analytics-type aggregation where we do not want to use the matching documents. A general pattern for search requests used for analytics is to set the result `size` to zero and the target class for search results to `Void`.
+
+If that same aggregation was used for to display products and the price histogram as drill-down facets, we would have set `size` to a non-zero value and used `Product` as the target class to process the results.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/AggregationsTest.java[price-histo-request]
+--------------------------------------------------
+<1> Set the number of matching documents to zero as we only use the price histogram.
+<2> Set the query that fill filter the products on which to run the aggregation
+<3> Create an aggregation named "price-histogram". You can add as many named aggregations as needed.
+<4> Select the `histogram` aggregation variant.
+<5> We do not care about matches (`size` is set to zero), using `Void` will ignore any document in the response.
+
+The response contains an aggregation result for each aggregation in the request.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/AggregationsTest.java[price-histo-response]
+--------------------------------------------------
+<1> Get the results for the "price-histogram" aggregation.
+<2> Cast it down to the `histogram` variant results. This has to be consistent with the aggregation definition.
+<3> Buckets can be expressed as arrays or maps. This casts down to the array variant (the default).
+
+
+// TODO: nested aggregations
+
+{doc-tests-blurb}

@@ -1,0 +1,40 @@
+[[lists-and-maps]]
+=== Lists and maps
+
+[discrete]
+==== Additive builder setters
+
+Properties of type `List` and `Map` are exposed by object builders as a set of overloaded
+additive-only methods that _update_ the property value, by appending to lists and adding
+new entries to maps (or replacing existing ones).
+
+Object builders create immutable objects, and this also applies to list and map properties
+that are made immutable at object construction time.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[collections]
+--------------------------------------------------
+
+[discrete]
+==== List and map values are never `null`
+
+The {es} API has a lot of optional properties. For single-valued properties, the {java-client}
+represents missing optional values as `null`. Applications therefore have to null-check
+optional values before using them.
+
+For lists and maps however, applications often only care about whether they're empty or not,
+or even just iterate on their content. Using `null` values is then cumbersome. To avoid this,
+{java-client} collection properties are never `null`, and missing optional collections are
+returned as an empty collection.
+
+If you ever need to distinguish between a missing (undefined) optional collection and an
+effectively-empty collection returned by {es}, the `ApiTypeHelper` class provides a utility
+method to distinguish them:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[optional-collections]
+--------------------------------------------------
+
+{doc-tests-blurb}

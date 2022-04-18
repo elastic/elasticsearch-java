@@ -1,0 +1,60 @@
+[[variant-types]]
+=== Variant types
+
+The {es} API has a lot of variant types: queries, aggregations, field mappings,
+analyzers, and so on. Finding the correct class name in such large collections
+can be challenging.
+
+The {java-client} builders make this easy: the builders for variant types, such as
+`Query`, have methods for each of the available implementations. We’ve seen this
+in action above with `intervals` (a kind of query) and `allOf`, `match` and
+`anyOf` (various kinds of intervals).
+
+This is because variant objects in the {java-client} are implementations of a
+“tagged union”: they contain the identifier (or tag) of the variant they hold
+and the value for that variant. For example, a `Query` object can contain an
+`IntervalsQuery` with tag `intervals`, a `TermQuery` with tag `term`, and so on.
+This approach allows writing fluent code where you can let the IDE completion
+features guide you to build and navigate complex nested structures:
+
+Variant builders have setter methods for every available implementation. They
+use the same conventions as regular properties and accept both a builder lambda
+expression and a ready-made object of the actual type of the variant. Here’s an
+example to build a term query:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[variant-creation]
+--------------------------------------------------
+<1> Choose the `term` variant to build a term query.
+<2> Build the terms query with a builder lambda expression.
+<3> Build the `Query` that now holds a `TermQuery` object of kind `term`.
+
+Variant objects have getter methods for every available implementation. These
+methods check that the object actually holds a variant of that kind and return
+the value downcasted to the correct type. They throw an `IllegalStateException`
+otherwise. This approach allows writing fluent code to traverse variants.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[variant-navigation]
+--------------------------------------------------
+
+Variant objects also provide information on the variant kind they currently hold:
+
+* with `is` methods for each of the variant kinds: `isTerm()`, `isIntervals()`, `isFuzzy()`, etc.
+
+* with a nested `Kind` enumeration that defines all variant kinds.
+
+This information can then be used to navigate down into specific variants after checking
+their actual kind:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[variant-kind]
+--------------------------------------------------
+<1> Test if the variant is of a specific kind.
+<2> Test a larger set of variant kinds.
+<3> Get the kind and value held by the variant object.
+
+{doc-tests-blurb}
