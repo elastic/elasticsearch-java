@@ -1,0 +1,19 @@
+[[blocking-and-async]]
+=== Blocking and asynchronous clients
+
+API clients come in two flavors: blocking and asynchronous. All methods on
+asynchronous clients return a standard `CompletableFuture`.
+
+Both flavors can be used at the same time depending on your needs, sharing the
+same transport object:
+
+["source","java"]
+--------------------------------------------------
+ElasticsearchTransport transport = ...
+
+include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[blocking-and-async]
+--------------------------------------------------
+
+Although we won't go in deeper details on asynchronous programming in Java, remember to handle failures of asynchronous tasks. It's easy to overlook them and have errors go unnoticed.
+
+{doc-tests-blurb}

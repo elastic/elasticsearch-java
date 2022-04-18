@@ -17,7 +17,7 @@
  * under the License.
  */
 
-package co.elastic.clients.documentation;
+package co.elastic.clients.documentation.getting_started;
 
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.json.jackson.JacksonJsonpMapper;
