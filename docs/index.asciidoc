@@ -28,7 +28,6 @@ endif::[]
 
 include::introduction.asciidoc[]
 include::getting-started/index.asciidoc[]
-include::{elasticsearch-root}/docs/java-rest/low-level/index.asciidoc[]
 include::api-conventions/index.asciidoc[]
 
 include::usage/index.asciidoc[]
@@ -37,3 +36,4 @@ include::usage/index.asciidoc[]
 include::javadoc-and-source.asciidoc[]
 include::release-notes.asciidoc[]
 include::external-resources.asciidoc[]
+include::{elasticsearch-root}/docs/java-rest/low-level/index.asciidoc[]
