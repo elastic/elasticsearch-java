@@ -1,0 +1,31 @@
+[[usage]]
+== Using the Java API Client
+
+The sections below provide tutorials on the most frequently used and some less obvious features of {es}.
+
+For a full reference, see the {es-docs}/[Elasticsearch documentation] and in particular the {es-docs}/rest-apis.html[REST APIs] section. The {java-client} follows closely the JSON structures described there, using the <<api-conventions,Java API conventions>>.
+
+If you're new to Elasticsearch, make sure also to read {es-docs}/getting-started.html[Elasticsearch's quick start] that provides a good introduction.
+
+* <<indexing>>
+* <<indexing-bulk>>
+* <<reading>>
+* <<searching>>
+* <<aggregations>>
+
+////
+* <<indices>>
+////
+
+NOTE: This is still a work in progress, more sections will be added in the near future.
+
+include::indexing.asciidoc[]
+include::indexing-bulk.asciidoc[]
+include::reading.asciidoc[]
+include::searching.asciidoc[]
+include::aggregations.asciidoc[]
+
+////
+include::indices.asciidoc[]
+////
+

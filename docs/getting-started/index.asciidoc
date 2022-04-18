@@ -1,0 +1,12 @@
+== Getting started
+
+* <<installation>>
+* <<connecting>>
+* <<migrate-hlrc>>
+* <<java-rest-low>>
+
+include::installation.asciidoc[]
+include::connecting.asciidoc[]
+include::migrate-hlrc.asciidoc[]
+
+// include::low-level.asciidoc[leveloffset=+2]

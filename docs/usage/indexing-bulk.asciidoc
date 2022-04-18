@@ -1,0 +1,52 @@
+[[indexing-bulk]]
+=== Bulk: indexing multiple documents
+
+Bulk requests allow sending multiple document-related operations to {es} in one request. When you have multiple documents to ingest, this is more efficient than sending each document with a separate request.
+
+A bulk request can contain several kinds of operations:
+
+* create a document, indexing it after ensuring it doesn't already exist,
+* index a document, creating it if needed and replacing it if it exists,
+* update a document that already exists in place, either with a script or a partial document,
+* delete a document.
+
+NOTE: See the {es-docs}/docs-bulk.html[{es} API documentation] for a full explanation of bulk requests.
+
+[discrete]
+==== Indexing application objects
+
+A `BulkRequest` contains a collection of operations, each operation being a <<variant-types, type with several variants>>. To create this request, it is convenient to use a builder object for the main request, and the fluent DSL for each operation.
+
+The example below shows how to index a list or application objects.
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingBulkTest.java[bulk-objects]
+--------------------------------------------------
+<1> Adds an operation (remember that <<lists-and-maps,list properties are additive>>). `op` is is a builder for `BulkOperation` which is a <<variant-types, variant type>>. This type has `index`, `create`, `update` and `delete` variants.
+<2> Selects the `index` operation variant, `idx` is a builder for `IndexOperation`.
+<3> Sets the properties for the index operation, similar to <<indexing, single document indexing>>: index name, identifier and document.
+
+[discrete]
+==== Indexing raw JSON data
+
+The `document` property of a bulk index request can be any object that can be serialized to JSON using your Elasticsearch client's JSON mapper. In the example below we will use the {java-client}'s `JsonData` object to read json files from a log directory and send them in a bulk request.
+
+Since `JsonData` doesn't allow reading directly from an input stream (this will be added in a future release), we will use the following function for that:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingBulkTest.java[read-json]
+--------------------------------------------------
+
+We can now read the contents of the log directory and send it to {es}:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/IndexingBulkTest.java[bulk-json]
+--------------------------------------------------
+
+
+
+
+{doc-tests-blurb}
