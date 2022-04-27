@@ -103,9 +103,14 @@ public class VariantsTest extends ModelTestCase {
 
     @Test
     public void testBuilders() {
-        Query q = new Query(QueryBuilders.exists().field("foo").build());
+        String json = "{\"exists\":{\"field\":\"foo\"}}";
+        Query q;
 
-        assertEquals("{\"exists\":{\"field\":\"foo\"}}", toJson(q));
+        q = new Query(QueryBuilders.exists().field("foo").build());
+        assertEquals(json, toJson(q));
+
+        q = QueryBuilders.exists(e -> e.field("foo"));
+        assertEquals(json, toJson(q));
     }
 
 
