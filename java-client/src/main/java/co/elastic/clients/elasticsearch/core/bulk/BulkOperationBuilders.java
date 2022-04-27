@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core.bulk;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link BulkOperation} variants.
  */
@@ -39,11 +42,31 @@ public class BulkOperationBuilders {
 	}
 
 	/**
+	 * Creates a BulkOperation of the {@link IndexOperation index}
+	 * {@code BulkOperation} variant.
+	 */
+	public static BulkOperation index(Function<IndexOperation.Builder, ObjectBuilder<IndexOperation>> fn) {
+		BulkOperation.Builder builder = new BulkOperation.Builder();
+		builder.index(fn.apply(new IndexOperation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link CreateOperation create}
 	 * {@code BulkOperation} variant.
 	 */
 	public static CreateOperation.Builder create() {
 		return new CreateOperation.Builder();
+	}
+
+	/**
+	 * Creates a BulkOperation of the {@link CreateOperation create}
+	 * {@code BulkOperation} variant.
+	 */
+	public static BulkOperation create(Function<CreateOperation.Builder, ObjectBuilder<CreateOperation>> fn) {
+		BulkOperation.Builder builder = new BulkOperation.Builder();
+		builder.create(fn.apply(new CreateOperation.Builder()).build());
+		return builder.build();
 	}
 
 	/**
@@ -55,11 +78,31 @@ public class BulkOperationBuilders {
 	}
 
 	/**
+	 * Creates a BulkOperation of the {@link UpdateOperation update}
+	 * {@code BulkOperation} variant.
+	 */
+	public static BulkOperation update(Function<UpdateOperation.Builder, ObjectBuilder<UpdateOperation>> fn) {
+		BulkOperation.Builder builder = new BulkOperation.Builder();
+		builder.update(fn.apply(new UpdateOperation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DeleteOperation delete}
 	 * {@code BulkOperation} variant.
 	 */
 	public static DeleteOperation.Builder delete() {
 		return new DeleteOperation.Builder();
+	}
+
+	/**
+	 * Creates a BulkOperation of the {@link DeleteOperation delete}
+	 * {@code BulkOperation} variant.
+	 */
+	public static BulkOperation delete(Function<DeleteOperation.Builder, ObjectBuilder<DeleteOperation>> fn) {
+		BulkOperation.Builder builder = new BulkOperation.Builder();
+		builder.delete(fn.apply(new DeleteOperation.Builder()).build());
+		return builder.build();
 	}
 
 }

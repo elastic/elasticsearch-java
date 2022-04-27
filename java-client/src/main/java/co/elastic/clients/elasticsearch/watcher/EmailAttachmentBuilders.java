@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link EmailAttachment} variants.
  */
@@ -39,6 +42,16 @@ public class EmailAttachmentBuilders {
 	}
 
 	/**
+	 * Creates a EmailAttachment of the {@link HttpEmailAttachment http}
+	 * {@code EmailAttachment} variant.
+	 */
+	public static EmailAttachment http(Function<HttpEmailAttachment.Builder, ObjectBuilder<HttpEmailAttachment>> fn) {
+		EmailAttachment.Builder builder = new EmailAttachment.Builder();
+		builder.http(fn.apply(new HttpEmailAttachment.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ReportingEmailAttachment reporting}
 	 * {@code EmailAttachment} variant.
 	 */
@@ -47,11 +60,32 @@ public class EmailAttachmentBuilders {
 	}
 
 	/**
+	 * Creates a EmailAttachment of the {@link ReportingEmailAttachment reporting}
+	 * {@code EmailAttachment} variant.
+	 */
+	public static EmailAttachment reporting(
+			Function<ReportingEmailAttachment.Builder, ObjectBuilder<ReportingEmailAttachment>> fn) {
+		EmailAttachment.Builder builder = new EmailAttachment.Builder();
+		builder.reporting(fn.apply(new ReportingEmailAttachment.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DataEmailAttachment data}
 	 * {@code EmailAttachment} variant.
 	 */
 	public static DataEmailAttachment.Builder data() {
 		return new DataEmailAttachment.Builder();
+	}
+
+	/**
+	 * Creates a EmailAttachment of the {@link DataEmailAttachment data}
+	 * {@code EmailAttachment} variant.
+	 */
+	public static EmailAttachment data(Function<DataEmailAttachment.Builder, ObjectBuilder<DataEmailAttachment>> fn) {
+		EmailAttachment.Builder builder = new EmailAttachment.Builder();
+		builder.data(fn.apply(new DataEmailAttachment.Builder()).build());
+		return builder.build();
 	}
 
 }

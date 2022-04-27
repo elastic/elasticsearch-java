@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link CharFilterDefinition} variants.
  */
@@ -39,11 +42,33 @@ public class CharFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a CharFilterDefinition of the {@link HtmlStripCharFilter html_strip}
+	 * {@code CharFilterDefinition} variant.
+	 */
+	public static CharFilterDefinition htmlStrip(
+			Function<HtmlStripCharFilter.Builder, ObjectBuilder<HtmlStripCharFilter>> fn) {
+		CharFilterDefinition.Builder builder = new CharFilterDefinition.Builder();
+		builder.htmlStrip(fn.apply(new HtmlStripCharFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link IcuNormalizationCharFilter icu_normalizer}
 	 * {@code CharFilterDefinition} variant.
 	 */
 	public static IcuNormalizationCharFilter.Builder icuNormalizer() {
 		return new IcuNormalizationCharFilter.Builder();
+	}
+
+	/**
+	 * Creates a CharFilterDefinition of the {@link IcuNormalizationCharFilter
+	 * icu_normalizer} {@code CharFilterDefinition} variant.
+	 */
+	public static CharFilterDefinition icuNormalizer(
+			Function<IcuNormalizationCharFilter.Builder, ObjectBuilder<IcuNormalizationCharFilter>> fn) {
+		CharFilterDefinition.Builder builder = new CharFilterDefinition.Builder();
+		builder.icuNormalizer(fn.apply(new IcuNormalizationCharFilter.Builder()).build());
+		return builder.build();
 	}
 
 	/**
@@ -55,6 +80,17 @@ public class CharFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a CharFilterDefinition of the {@link KuromojiIterationMarkCharFilter
+	 * kuromoji_iteration_mark} {@code CharFilterDefinition} variant.
+	 */
+	public static CharFilterDefinition kuromojiIterationMark(
+			Function<KuromojiIterationMarkCharFilter.Builder, ObjectBuilder<KuromojiIterationMarkCharFilter>> fn) {
+		CharFilterDefinition.Builder builder = new CharFilterDefinition.Builder();
+		builder.kuromojiIterationMark(fn.apply(new KuromojiIterationMarkCharFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link MappingCharFilter mapping}
 	 * {@code CharFilterDefinition} variant.
 	 */
@@ -63,11 +99,33 @@ public class CharFilterDefinitionBuilders {
 	}
 
 	/**
+	 * Creates a CharFilterDefinition of the {@link MappingCharFilter mapping}
+	 * {@code CharFilterDefinition} variant.
+	 */
+	public static CharFilterDefinition mapping(
+			Function<MappingCharFilter.Builder, ObjectBuilder<MappingCharFilter>> fn) {
+		CharFilterDefinition.Builder builder = new CharFilterDefinition.Builder();
+		builder.mapping(fn.apply(new MappingCharFilter.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link PatternReplaceCharFilter pattern_replace}
 	 * {@code CharFilterDefinition} variant.
 	 */
 	public static PatternReplaceCharFilter.Builder patternReplace() {
 		return new PatternReplaceCharFilter.Builder();
+	}
+
+	/**
+	 * Creates a CharFilterDefinition of the {@link PatternReplaceCharFilter
+	 * pattern_replace} {@code CharFilterDefinition} variant.
+	 */
+	public static CharFilterDefinition patternReplace(
+			Function<PatternReplaceCharFilter.Builder, ObjectBuilder<PatternReplaceCharFilter>> fn) {
+		CharFilterDefinition.Builder builder = new CharFilterDefinition.Builder();
+		builder.patternReplace(fn.apply(new PatternReplaceCharFilter.Builder()).build());
+		return builder.build();
 	}
 
 }

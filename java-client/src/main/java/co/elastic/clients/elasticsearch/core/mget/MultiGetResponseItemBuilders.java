@@ -24,6 +24,8 @@
 package co.elastic.clients.elasticsearch.core.mget;
 
 import co.elastic.clients.elasticsearch.core.get.GetResult;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 /**
  * Builders for {@link MultiGetResponseItem} variants.

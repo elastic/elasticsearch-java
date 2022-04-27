@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link TriggerEvent} variants.
  */
@@ -36,6 +39,17 @@ public class TriggerEventBuilders {
 	 */
 	public static ScheduleTriggerEvent.Builder schedule() {
 		return new ScheduleTriggerEvent.Builder();
+	}
+
+	/**
+	 * Creates a TriggerEvent of the {@link ScheduleTriggerEvent schedule}
+	 * {@code TriggerEvent} variant.
+	 */
+	public static TriggerEvent schedule(
+			Function<ScheduleTriggerEvent.Builder, ObjectBuilder<ScheduleTriggerEvent>> fn) {
+		TriggerEvent.Builder builder = new TriggerEvent.Builder();
+		builder.schedule(fn.apply(new ScheduleTriggerEvent.Builder()).build());
+		return builder.build();
 	}
 
 }

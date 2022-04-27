@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link DataframeAnalyticsStats} variants.
  */
@@ -39,6 +42,18 @@ public class DataframeAnalyticsStatsBuilders {
 	}
 
 	/**
+	 * Creates a DataframeAnalyticsStats of the
+	 * {@link DataframeAnalyticsStatsHyperparameters classification_stats}
+	 * {@code DataframeAnalyticsStats} variant.
+	 */
+	public static DataframeAnalyticsStats classificationStats(
+			Function<DataframeAnalyticsStatsHyperparameters.Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> fn) {
+		DataframeAnalyticsStats.Builder builder = new DataframeAnalyticsStats.Builder();
+		builder.classificationStats(fn.apply(new DataframeAnalyticsStatsHyperparameters.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DataframeAnalyticsStatsOutlierDetection
 	 * outlier_detection_stats} {@code DataframeAnalyticsStats} variant.
 	 */
@@ -47,11 +62,35 @@ public class DataframeAnalyticsStatsBuilders {
 	}
 
 	/**
+	 * Creates a DataframeAnalyticsStats of the
+	 * {@link DataframeAnalyticsStatsOutlierDetection outlier_detection_stats}
+	 * {@code DataframeAnalyticsStats} variant.
+	 */
+	public static DataframeAnalyticsStats outlierDetectionStats(
+			Function<DataframeAnalyticsStatsOutlierDetection.Builder, ObjectBuilder<DataframeAnalyticsStatsOutlierDetection>> fn) {
+		DataframeAnalyticsStats.Builder builder = new DataframeAnalyticsStats.Builder();
+		builder.outlierDetectionStats(fn.apply(new DataframeAnalyticsStatsOutlierDetection.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DataframeAnalyticsStatsHyperparameters
 	 * regression_stats} {@code DataframeAnalyticsStats} variant.
 	 */
 	public static DataframeAnalyticsStatsHyperparameters.Builder regressionStats() {
 		return new DataframeAnalyticsStatsHyperparameters.Builder();
+	}
+
+	/**
+	 * Creates a DataframeAnalyticsStats of the
+	 * {@link DataframeAnalyticsStatsHyperparameters regression_stats}
+	 * {@code DataframeAnalyticsStats} variant.
+	 */
+	public static DataframeAnalyticsStats regressionStats(
+			Function<DataframeAnalyticsStatsHyperparameters.Builder, ObjectBuilder<DataframeAnalyticsStatsHyperparameters>> fn) {
+		DataframeAnalyticsStats.Builder builder = new DataframeAnalyticsStats.Builder();
+		builder.regressionStats(fn.apply(new DataframeAnalyticsStatsHyperparameters.Builder()).build());
+		return builder.build();
 	}
 
 }

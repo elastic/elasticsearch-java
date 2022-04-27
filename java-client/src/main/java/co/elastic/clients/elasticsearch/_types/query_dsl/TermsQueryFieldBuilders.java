@@ -24,6 +24,8 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.FieldValue;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 /**
  * Builders for {@link TermsQueryField} variants.

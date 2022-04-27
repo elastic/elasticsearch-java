@@ -432,7 +432,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "_id");
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
-		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score");
+		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score", "score");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 

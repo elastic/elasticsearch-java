@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
 import co.elastic.clients.elasticsearch.cluster.reroute.RerouteExplanation;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -49,7 +50,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class RerouteResponse implements JsonpSerializable {
+public class RerouteResponse implements AcknowledgedResponse, JsonpSerializable {
 	private final boolean acknowledged;
 
 	private final List<RerouteExplanation> explanations;

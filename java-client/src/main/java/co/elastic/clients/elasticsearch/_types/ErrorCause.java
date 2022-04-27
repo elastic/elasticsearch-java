@@ -394,10 +394,7 @@ public class ErrorCause implements JsonpSerializable {
 		op.add(Builder::suppressed, JsonpDeserializer.arrayDeserializer(ErrorCause._DESERIALIZER), "suppressed");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			if (builder.metadata == null) {
-				builder.metadata = new HashMap<>();
-			}
-			builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+			builder.metadata(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
 		});
 		op.shortcutProperty("reason");
 

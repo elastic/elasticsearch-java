@@ -84,8 +84,6 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final AutoscalingPolicy policy() {
 		return this.policy;
@@ -124,8 +122,6 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder policy(AutoscalingPolicy value) {
 			this.policy = value;
@@ -134,8 +130,6 @@ public class PutAutoscalingPolicyRequest extends RequestBase implements JsonpSer
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder policy(Function<AutoscalingPolicy.Builder, ObjectBuilder<AutoscalingPolicy>> fn) {
 			return this.policy(fn.apply(new AutoscalingPolicy.Builder()).build());

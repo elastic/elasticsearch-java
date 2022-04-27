@@ -17,25 +17,11 @@
  * under the License.
  */
 
-//----------------------------------------------------
-// THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
-//----------------------------------------------------
-
-package co.elastic.clients.elasticsearch._types.query_dsl;
-
-import co.elastic.clients.util.ObjectBuilder;
-import java.util.function.Function;
+package co.elastic.clients.elasticsearch._types;
 
 /**
- * Builders for {@link SimpleQueryStringFlags} variants.
- * <p>
- * Variants <code>single</code>, <code>multiple</code> are not available here as
- * they don't have a dedicated class. Use {@link SimpleQueryStringFlags}'s
- * builder for these.
- * 
+ * Base interface for responses that are acknowledged by the server
  */
-public class SimpleQueryStringFlagsBuilders {
-	private SimpleQueryStringFlagsBuilders() {
-	}
-
+public interface AcknowledgedResponse {
+	boolean acknowledged();
 }

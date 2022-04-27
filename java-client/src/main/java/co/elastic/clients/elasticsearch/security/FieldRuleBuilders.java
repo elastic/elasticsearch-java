@@ -23,7 +23,9 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.util.ObjectBuilder;
 import java.lang.String;
+import java.util.function.Function;
 
 /**
  * Builders for {@link FieldRule} variants.
@@ -42,6 +44,15 @@ public class FieldRuleBuilders {
 	 */
 	public static Realm.Builder realm() {
 		return new Realm.Builder();
+	}
+
+	/**
+	 * Creates a FieldRule of the {@link Realm realm} {@code FieldRule} variant.
+	 */
+	public static FieldRule realm(Function<Realm.Builder, ObjectBuilder<Realm>> fn) {
+		FieldRule.Builder builder = new FieldRule.Builder();
+		builder.realm(fn.apply(new Realm.Builder()).build());
+		return builder.build();
 	}
 
 }

@@ -24,6 +24,8 @@
 package co.elastic.clients.elasticsearch.core.msearch;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 /**
  * Builders for {@link MultiSearchResponseItem} variants.

@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.security;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link RoleMappingRule} variants.
  * <p>
@@ -44,11 +47,31 @@ public class RoleMappingRuleBuilders {
 	}
 
 	/**
+	 * Creates a RoleMappingRule of the {@link FieldRule field}
+	 * {@code RoleMappingRule} variant.
+	 */
+	public static RoleMappingRule field(Function<FieldRule.Builder, ObjectBuilder<FieldRule>> fn) {
+		RoleMappingRule.Builder builder = new RoleMappingRule.Builder();
+		builder.field(fn.apply(new FieldRule.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link RoleMappingRule except}
 	 * {@code RoleMappingRule} variant.
 	 */
 	public static RoleMappingRule.Builder except() {
 		return new RoleMappingRule.Builder();
+	}
+
+	/**
+	 * Creates a RoleMappingRule of the {@link RoleMappingRule except}
+	 * {@code RoleMappingRule} variant.
+	 */
+	public static RoleMappingRule except(Function<RoleMappingRule.Builder, ObjectBuilder<RoleMappingRule>> fn) {
+		RoleMappingRule.Builder builder = new RoleMappingRule.Builder();
+		builder.except(fn.apply(new RoleMappingRule.Builder()).build());
+		return builder.build();
 	}
 
 }

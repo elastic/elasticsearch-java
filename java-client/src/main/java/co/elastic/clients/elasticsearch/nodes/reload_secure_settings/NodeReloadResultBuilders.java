@@ -24,6 +24,8 @@
 package co.elastic.clients.elasticsearch.nodes.reload_secure_settings;
 
 import co.elastic.clients.elasticsearch.nodes.Stats;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 /**
  * Builders for {@link NodeReloadResult} variants.

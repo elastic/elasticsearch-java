@@ -24,6 +24,8 @@
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
 import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 /**
  * Builders for {@link IntervalsFilter} variants.
@@ -41,11 +43,31 @@ public class IntervalsFilterBuilders {
 	}
 
 	/**
+	 * Creates a IntervalsFilter of the {@link Intervals after}
+	 * {@code IntervalsFilter} variant.
+	 */
+	public static IntervalsFilter after(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+		IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+		builder.after(fn.apply(new Intervals.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link Intervals before} {@code IntervalsFilter}
 	 * variant.
 	 */
 	public static Intervals.Builder before() {
 		return new Intervals.Builder();
+	}
+
+	/**
+	 * Creates a IntervalsFilter of the {@link Intervals before}
+	 * {@code IntervalsFilter} variant.
+	 */
+	public static IntervalsFilter before(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+		IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+		builder.before(fn.apply(new Intervals.Builder()).build());
+		return builder.build();
 	}
 
 	/**
@@ -57,11 +79,31 @@ public class IntervalsFilterBuilders {
 	}
 
 	/**
+	 * Creates a IntervalsFilter of the {@link Intervals contained_by}
+	 * {@code IntervalsFilter} variant.
+	 */
+	public static IntervalsFilter containedBy(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+		IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+		builder.containedBy(fn.apply(new Intervals.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link Intervals containing}
 	 * {@code IntervalsFilter} variant.
 	 */
 	public static Intervals.Builder containing() {
 		return new Intervals.Builder();
+	}
+
+	/**
+	 * Creates a IntervalsFilter of the {@link Intervals containing}
+	 * {@code IntervalsFilter} variant.
+	 */
+	public static IntervalsFilter containing(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+		IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+		builder.containing(fn.apply(new Intervals.Builder()).build());
+		return builder.build();
 	}
 
 	/**
@@ -73,11 +115,31 @@ public class IntervalsFilterBuilders {
 	}
 
 	/**
+	 * Creates a IntervalsFilter of the {@link Intervals not_contained_by}
+	 * {@code IntervalsFilter} variant.
+	 */
+	public static IntervalsFilter notContainedBy(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+		IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+		builder.notContainedBy(fn.apply(new Intervals.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link Intervals not_containing}
 	 * {@code IntervalsFilter} variant.
 	 */
 	public static Intervals.Builder notContaining() {
 		return new Intervals.Builder();
+	}
+
+	/**
+	 * Creates a IntervalsFilter of the {@link Intervals not_containing}
+	 * {@code IntervalsFilter} variant.
+	 */
+	public static IntervalsFilter notContaining(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+		IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+		builder.notContaining(fn.apply(new Intervals.Builder()).build());
+		return builder.build();
 	}
 
 	/**
@@ -89,6 +151,16 @@ public class IntervalsFilterBuilders {
 	}
 
 	/**
+	 * Creates a IntervalsFilter of the {@link Intervals not_overlapping}
+	 * {@code IntervalsFilter} variant.
+	 */
+	public static IntervalsFilter notOverlapping(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+		IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+		builder.notOverlapping(fn.apply(new Intervals.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link Intervals overlapping}
 	 * {@code IntervalsFilter} variant.
 	 */
@@ -97,11 +169,31 @@ public class IntervalsFilterBuilders {
 	}
 
 	/**
+	 * Creates a IntervalsFilter of the {@link Intervals overlapping}
+	 * {@code IntervalsFilter} variant.
+	 */
+	public static IntervalsFilter overlapping(Function<Intervals.Builder, ObjectBuilder<Intervals>> fn) {
+		IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+		builder.overlapping(fn.apply(new Intervals.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link Script script} {@code IntervalsFilter}
 	 * variant.
 	 */
 	public static Script.Builder script() {
 		return new Script.Builder();
+	}
+
+	/**
+	 * Creates a IntervalsFilter of the {@link Script script}
+	 * {@code IntervalsFilter} variant.
+	 */
+	public static IntervalsFilter script(Function<Script.Builder, ObjectBuilder<Script>> fn) {
+		IntervalsFilter.Builder builder = new IntervalsFilter.Builder();
+		builder.script(fn.apply(new Script.Builder()).build());
+		return builder.build();
 	}
 
 }

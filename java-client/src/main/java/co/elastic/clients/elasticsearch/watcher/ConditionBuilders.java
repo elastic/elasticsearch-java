@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link Condition} variants.
  */
@@ -39,11 +42,32 @@ public class ConditionBuilders {
 	}
 
 	/**
+	 * Creates a Condition of the {@link AlwaysCondition always} {@code Condition}
+	 * variant.
+	 */
+	public static Condition always(Function<AlwaysCondition.Builder, ObjectBuilder<AlwaysCondition>> fn) {
+		Condition.Builder builder = new Condition.Builder();
+		builder.always(fn.apply(new AlwaysCondition.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ArrayCompareCondition array_compare}
 	 * {@code Condition} variant.
 	 */
 	public static ArrayCompareCondition.Builder arrayCompare() {
 		return new ArrayCompareCondition.Builder();
+	}
+
+	/**
+	 * Creates a Condition of the {@link ArrayCompareCondition array_compare}
+	 * {@code Condition} variant.
+	 */
+	public static Condition arrayCompare(
+			Function<ArrayCompareCondition.Builder, ObjectBuilder<ArrayCompareCondition>> fn) {
+		Condition.Builder builder = new Condition.Builder();
+		builder.arrayCompare(fn.apply(new ArrayCompareCondition.Builder()).build());
+		return builder.build();
 	}
 
 	/**
@@ -55,6 +79,16 @@ public class ConditionBuilders {
 	}
 
 	/**
+	 * Creates a Condition of the {@link CompareCondition compare} {@code Condition}
+	 * variant.
+	 */
+	public static Condition compare(Function<CompareCondition.Builder, ObjectBuilder<CompareCondition>> fn) {
+		Condition.Builder builder = new Condition.Builder();
+		builder.compare(fn.apply(new CompareCondition.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link NeverCondition never} {@code Condition}
 	 * variant.
 	 */
@@ -63,11 +97,31 @@ public class ConditionBuilders {
 	}
 
 	/**
+	 * Creates a Condition of the {@link NeverCondition never} {@code Condition}
+	 * variant.
+	 */
+	public static Condition never(Function<NeverCondition.Builder, ObjectBuilder<NeverCondition>> fn) {
+		Condition.Builder builder = new Condition.Builder();
+		builder.never(fn.apply(new NeverCondition.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ScriptCondition script} {@code Condition}
 	 * variant.
 	 */
 	public static ScriptCondition.Builder script() {
 		return new ScriptCondition.Builder();
+	}
+
+	/**
+	 * Creates a Condition of the {@link ScriptCondition script} {@code Condition}
+	 * variant.
+	 */
+	public static Condition script(Function<ScriptCondition.Builder, ObjectBuilder<ScriptCondition>> fn) {
+		Condition.Builder builder = new Condition.Builder();
+		builder.script(fn.apply(new ScriptCondition.Builder()).build());
+		return builder.build();
 	}
 
 }

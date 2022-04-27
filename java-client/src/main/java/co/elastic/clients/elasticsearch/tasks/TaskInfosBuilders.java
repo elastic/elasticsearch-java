@@ -23,7 +23,9 @@
 
 package co.elastic.clients.elasticsearch.tasks;
 
+import co.elastic.clients.util.ObjectBuilder;
 import java.lang.String;
+import java.util.function.Function;
 
 /**
  * Builders for {@link TaskInfos} variants.

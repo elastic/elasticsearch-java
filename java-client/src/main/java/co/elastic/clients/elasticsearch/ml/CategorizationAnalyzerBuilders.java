@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link CategorizationAnalyzer} variants.
  * <p>

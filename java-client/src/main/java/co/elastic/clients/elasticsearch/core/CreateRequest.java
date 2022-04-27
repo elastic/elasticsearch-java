@@ -217,8 +217,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final TDocument document() {
 		return this.document;
@@ -393,8 +391,6 @@ public class CreateRequest<TDocument> extends RequestBase implements JsonpSerial
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder<TDocument> document(TDocument value) {
 			this.document = value;
