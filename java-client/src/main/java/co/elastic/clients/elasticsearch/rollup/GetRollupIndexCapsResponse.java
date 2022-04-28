@@ -74,6 +74,13 @@ public class GetRollupIndexCapsResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Get an element of {@code result}.
+	 */
+	public final @Nullable IndexCapabilities get(String key) {
+		return this.result.get(key);
+	}
+
+	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {

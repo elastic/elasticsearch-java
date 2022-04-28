@@ -73,6 +73,13 @@ public class GetRollupCapsResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * Get an element of {@code result}.
+	 */
+	public final @Nullable RollupCapabilities get(String key) {
+		return this.result.get(key);
+	}
+
+	/**
 	 * Serialize this value to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
