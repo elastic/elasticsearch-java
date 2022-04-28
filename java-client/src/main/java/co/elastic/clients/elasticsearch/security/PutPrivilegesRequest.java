@@ -90,11 +90,16 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final Map<String, Map<String, Actions>> privileges() {
 		return this.privileges;
+	}
+
+	/**
+	 * Get an element of {@code privileges}.
+	 */
+	public final @Nullable Map<String, Actions> get(String key) {
+		return this.privileges.get(key);
 	}
 
 	/**
@@ -131,7 +136,7 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 		@Nullable
 		private Refresh refresh;
 
-		private Map<String, Map<String, Actions>> privileges;
+		private Map<String, Map<String, Actions>> privileges = new HashMap<>();
 
 		/**
 		 * If <code>true</code> (the default) then refresh the affected shards to make
@@ -149,8 +154,6 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * Required - Request body.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all entries of <code>map</code> to <code>privileges</code>.
 		 */
 		public final Builder privileges(Map<String, Map<String, Actions>> map) {
@@ -160,8 +163,6 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds an entry to <code>privileges</code>.
 		 */

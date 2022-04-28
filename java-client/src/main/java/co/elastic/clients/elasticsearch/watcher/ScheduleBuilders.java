@@ -24,6 +24,8 @@
 package co.elastic.clients.elasticsearch.watcher;
 
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 /**
  * Builders for {@link Schedule} variants.
@@ -46,6 +48,16 @@ public class ScheduleBuilders {
 	}
 
 	/**
+	 * Creates a Schedule of the {@link DailySchedule daily} {@code Schedule}
+	 * variant.
+	 */
+	public static Schedule daily(Function<DailySchedule.Builder, ObjectBuilder<DailySchedule>> fn) {
+		Schedule.Builder builder = new Schedule.Builder();
+		builder.daily(fn.apply(new DailySchedule.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link HourlySchedule hourly} {@code Schedule}
 	 * variant.
 	 */
@@ -54,10 +66,29 @@ public class ScheduleBuilders {
 	}
 
 	/**
+	 * Creates a Schedule of the {@link HourlySchedule hourly} {@code Schedule}
+	 * variant.
+	 */
+	public static Schedule hourly(Function<HourlySchedule.Builder, ObjectBuilder<HourlySchedule>> fn) {
+		Schedule.Builder builder = new Schedule.Builder();
+		builder.hourly(fn.apply(new HourlySchedule.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link Time interval} {@code Schedule} variant.
 	 */
 	public static Time.Builder interval() {
 		return new Time.Builder();
+	}
+
+	/**
+	 * Creates a Schedule of the {@link Time interval} {@code Schedule} variant.
+	 */
+	public static Schedule interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+		Schedule.Builder builder = new Schedule.Builder();
+		builder.interval(fn.apply(new Time.Builder()).build());
+		return builder.build();
 	}
 
 }

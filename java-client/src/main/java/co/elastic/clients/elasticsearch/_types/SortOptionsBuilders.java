@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link SortOptions} variants.
  */
@@ -39,10 +42,30 @@ public class SortOptionsBuilders {
 	}
 
 	/**
+	 * Creates a SortOptions of the {@link ScoreSort _score} {@code SortOptions}
+	 * variant.
+	 */
+	public static SortOptions score(Function<ScoreSort.Builder, ObjectBuilder<ScoreSort>> fn) {
+		SortOptions.Builder builder = new SortOptions.Builder();
+		builder.score(fn.apply(new ScoreSort.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ScoreSort _doc} {@code SortOptions} variant.
 	 */
 	public static ScoreSort.Builder doc() {
 		return new ScoreSort.Builder();
+	}
+
+	/**
+	 * Creates a SortOptions of the {@link ScoreSort _doc} {@code SortOptions}
+	 * variant.
+	 */
+	public static SortOptions doc(Function<ScoreSort.Builder, ObjectBuilder<ScoreSort>> fn) {
+		SortOptions.Builder builder = new SortOptions.Builder();
+		builder.doc(fn.apply(new ScoreSort.Builder()).build());
+		return builder.build();
 	}
 
 	/**
@@ -54,6 +77,16 @@ public class SortOptionsBuilders {
 	}
 
 	/**
+	 * Creates a SortOptions of the {@link GeoDistanceSort _geo_distance}
+	 * {@code SortOptions} variant.
+	 */
+	public static SortOptions geoDistance(Function<GeoDistanceSort.Builder, ObjectBuilder<GeoDistanceSort>> fn) {
+		SortOptions.Builder builder = new SortOptions.Builder();
+		builder.geoDistance(fn.apply(new GeoDistanceSort.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ScriptSort _script} {@code SortOptions}
 	 * variant.
 	 */
@@ -62,11 +95,31 @@ public class SortOptionsBuilders {
 	}
 
 	/**
+	 * Creates a SortOptions of the {@link ScriptSort _script} {@code SortOptions}
+	 * variant.
+	 */
+	public static SortOptions script(Function<ScriptSort.Builder, ObjectBuilder<ScriptSort>> fn) {
+		SortOptions.Builder builder = new SortOptions.Builder();
+		builder.script(fn.apply(new ScriptSort.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link FieldSort field} {@code SortOptions}
 	 * variant.
 	 */
 	public static FieldSort.Builder field() {
 		return new FieldSort.Builder();
+	}
+
+	/**
+	 * Creates a SortOptions of the {@link FieldSort field} {@code SortOptions}
+	 * variant.
+	 */
+	public static SortOptions field(Function<FieldSort.Builder, ObjectBuilder<FieldSort>> fn) {
+		SortOptions.Builder builder = new SortOptions.Builder();
+		builder.field(fn.apply(new FieldSort.Builder()).build());
+		return builder.build();
 	}
 
 }

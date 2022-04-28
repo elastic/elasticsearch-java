@@ -153,8 +153,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final List<RequestItem> searchTemplates() {
 		return this.searchTemplates;
@@ -280,8 +278,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		/**
 		 * Required - Request body.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searchTemplates</code>.
 		 */
 		public final Builder searchTemplates(List<RequestItem> list) {
@@ -292,8 +288,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 		/**
 		 * Required - Request body.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds one or more values to <code>searchTemplates</code>.
 		 */
 		public final Builder searchTemplates(RequestItem value, RequestItem... values) {
@@ -303,8 +297,6 @@ public class MsearchTemplateRequest extends RequestBase implements NdJsonpSerial
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds a value to <code>searchTemplates</code> using a builder lambda.
 		 */

@@ -190,8 +190,6 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final IndexSettings settings() {
 		return this.settings;
@@ -376,8 +374,6 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder settings(IndexSettings value) {
 			this.settings = value;
@@ -386,8 +382,6 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder settings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
 			return this.settings(fn.apply(new IndexSettings.Builder()).build());

@@ -23,13 +23,11 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link FieldSuggester} variants.
- * <p>
- * Variants <code>prefix</code>, <code>regex</code>, <code>text</code> are not
- * available here as they don't have a dedicated class. Use
- * {@link FieldSuggester}'s builder for these.
- * 
  */
 public class FieldSuggesterBuilders {
 	private FieldSuggesterBuilders() {
@@ -44,6 +42,17 @@ public class FieldSuggesterBuilders {
 	}
 
 	/**
+	 * Creates a FieldSuggester of the {@link CompletionSuggester completion}
+	 * {@code FieldSuggester} variant.
+	 */
+	public static FieldSuggester completion(
+			Function<CompletionSuggester.Builder, ObjectBuilder<CompletionSuggester>> fn) {
+		FieldSuggester.Builder builder = new FieldSuggester.Builder();
+		builder.completion(fn.apply(new CompletionSuggester.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link PhraseSuggester phrase}
 	 * {@code FieldSuggester} variant.
 	 */
@@ -52,11 +61,31 @@ public class FieldSuggesterBuilders {
 	}
 
 	/**
+	 * Creates a FieldSuggester of the {@link PhraseSuggester phrase}
+	 * {@code FieldSuggester} variant.
+	 */
+	public static FieldSuggester phrase(Function<PhraseSuggester.Builder, ObjectBuilder<PhraseSuggester>> fn) {
+		FieldSuggester.Builder builder = new FieldSuggester.Builder();
+		builder.phrase(fn.apply(new PhraseSuggester.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link TermSuggester term} {@code FieldSuggester}
 	 * variant.
 	 */
 	public static TermSuggester.Builder term() {
 		return new TermSuggester.Builder();
+	}
+
+	/**
+	 * Creates a FieldSuggester of the {@link TermSuggester term}
+	 * {@code FieldSuggester} variant.
+	 */
+	public static FieldSuggester term(Function<TermSuggester.Builder, ObjectBuilder<TermSuggester>> fn) {
+		FieldSuggester.Builder builder = new FieldSuggester.Builder();
+		builder.term(fn.apply(new TermSuggester.Builder()).build());
+		return builder.build();
 	}
 
 }

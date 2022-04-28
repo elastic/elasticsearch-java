@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link HighlighterType} variants.
  * <p>

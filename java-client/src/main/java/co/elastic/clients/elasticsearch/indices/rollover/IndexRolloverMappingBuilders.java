@@ -24,7 +24,9 @@
 package co.elastic.clients.elasticsearch.indices.rollover;
 
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
+import co.elastic.clients.util.ObjectBuilder;
 import java.lang.String;
+import java.util.function.Function;
 
 /**
  * Builders for {@link IndexRolloverMapping} variants.

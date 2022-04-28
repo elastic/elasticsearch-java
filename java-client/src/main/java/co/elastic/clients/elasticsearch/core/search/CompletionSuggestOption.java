@@ -64,8 +64,10 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 
 	private final Map<String, JsonData> fields;
 
+	@Nullable
 	private final String id;
 
+	@Nullable
 	private final String index;
 
 	@Nullable
@@ -92,8 +94,8 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		this.collateMatch = builder.collateMatch;
 		this.contexts = ApiTypeHelper.unmodifiable(builder.contexts);
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
-		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
+		this.id = builder.id;
+		this.index = builder.index;
 		this.type = builder.type;
 		this.routing = builder.routing;
 		this.score = builder.score;
@@ -131,15 +133,17 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code _id}
+	 * API name: {@code _id}
 	 */
+	@Nullable
 	public final String id() {
 		return this.id;
 	}
 
 	/**
-	 * Required - API name: {@code _index}
+	 * API name: {@code _index}
 	 */
+	@Nullable
 	public final String index() {
 		return this.index;
 	}
@@ -228,12 +232,16 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("_id");
-		generator.write(this.id);
+		if (this.id != null) {
+			generator.writeKey("_id");
+			generator.write(this.id);
 
-		generator.writeKey("_index");
-		generator.write(this.index);
+		}
+		if (this.index != null) {
+			generator.writeKey("_index");
+			generator.write(this.index);
 
+		}
 		if (this.type != null) {
 			generator.writeKey("_type");
 			generator.write(this.type);
@@ -277,8 +285,10 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> fields;
 
+		@Nullable
 		private String id;
 
+		@Nullable
 		private String index;
 
 		@Nullable
@@ -347,17 +357,17 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code _id}
+		 * API name: {@code _id}
 		 */
-		public final Builder<TDocument> id(String value) {
+		public final Builder<TDocument> id(@Nullable String value) {
 			this.id = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code _index}
+		 * API name: {@code _index}
 		 */
-		public final Builder<TDocument> index(String value) {
+		public final Builder<TDocument> index(@Nullable String value) {
 			this.index = value;
 			return this;
 		}
@@ -461,7 +471,7 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "_index");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "_type");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "_routing");
-		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score");
+		op.add(Builder::score, JsonpDeserializer.doubleDeserializer(), "_score", "score");
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 

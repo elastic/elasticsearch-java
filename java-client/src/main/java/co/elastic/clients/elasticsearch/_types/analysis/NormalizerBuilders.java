@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link Normalizer} variants.
  */
@@ -39,11 +42,31 @@ public class NormalizerBuilders {
 	}
 
 	/**
+	 * Creates a Normalizer of the {@link CustomNormalizer custom}
+	 * {@code Normalizer} variant.
+	 */
+	public static Normalizer custom(Function<CustomNormalizer.Builder, ObjectBuilder<CustomNormalizer>> fn) {
+		Normalizer.Builder builder = new Normalizer.Builder();
+		builder.custom(fn.apply(new CustomNormalizer.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link LowercaseNormalizer lowercase}
 	 * {@code Normalizer} variant.
 	 */
 	public static LowercaseNormalizer.Builder lowercase() {
 		return new LowercaseNormalizer.Builder();
+	}
+
+	/**
+	 * Creates a Normalizer of the {@link LowercaseNormalizer lowercase}
+	 * {@code Normalizer} variant.
+	 */
+	public static Normalizer lowercase(Function<LowercaseNormalizer.Builder, ObjectBuilder<LowercaseNormalizer>> fn) {
+		Normalizer.Builder builder = new Normalizer.Builder();
+		builder.lowercase(fn.apply(new LowercaseNormalizer.Builder()).build());
+		return builder.build();
 	}
 
 }

@@ -245,8 +245,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final List<RequestItem> searches() {
 		return this.searches;
@@ -478,8 +476,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		/**
 		 * Required - Request body.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all elements of <code>list</code> to <code>searches</code>.
 		 */
 		public final Builder searches(List<RequestItem> list) {
@@ -490,8 +486,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		/**
 		 * Required - Request body.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds one or more values to <code>searches</code>.
 		 */
 		public final Builder searches(RequestItem value, RequestItem... values) {
@@ -501,8 +495,6 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds a value to <code>searches</code> using a builder lambda.
 		 */

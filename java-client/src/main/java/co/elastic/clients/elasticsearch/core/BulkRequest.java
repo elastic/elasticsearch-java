@@ -245,8 +245,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final List<BulkOperation> operations() {
 		return this.operations;
@@ -493,8 +491,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		/**
 		 * Required - Request body.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all elements of <code>list</code> to <code>operations</code>.
 		 */
 		public final Builder operations(List<BulkOperation> list) {
@@ -505,8 +501,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		/**
 		 * Required - Request body.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds one or more values to <code>operations</code>.
 		 */
 		public final Builder operations(BulkOperation value, BulkOperation... values) {
@@ -516,8 +510,6 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds a value to <code>operations</code> using a builder lambda.
 		 */

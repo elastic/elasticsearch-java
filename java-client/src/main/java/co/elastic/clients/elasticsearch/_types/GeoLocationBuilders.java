@@ -23,7 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.util.ObjectBuilder;
 import java.lang.Double;
+import java.util.function.Function;
 
 /**
  * Builders for {@link GeoLocation} variants.

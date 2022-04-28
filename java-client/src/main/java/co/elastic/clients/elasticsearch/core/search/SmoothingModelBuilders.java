@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link SmoothingModel} variants.
  */
@@ -39,6 +42,17 @@ public class SmoothingModelBuilders {
 	}
 
 	/**
+	 * Creates a SmoothingModel of the {@link LaplaceSmoothingModel laplace}
+	 * {@code SmoothingModel} variant.
+	 */
+	public static SmoothingModel laplace(
+			Function<LaplaceSmoothingModel.Builder, ObjectBuilder<LaplaceSmoothingModel>> fn) {
+		SmoothingModel.Builder builder = new SmoothingModel.Builder();
+		builder.laplace(fn.apply(new LaplaceSmoothingModel.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link LinearInterpolationSmoothingModel
 	 * linear_interpolation} {@code SmoothingModel} variant.
 	 */
@@ -47,11 +61,33 @@ public class SmoothingModelBuilders {
 	}
 
 	/**
+	 * Creates a SmoothingModel of the {@link LinearInterpolationSmoothingModel
+	 * linear_interpolation} {@code SmoothingModel} variant.
+	 */
+	public static SmoothingModel linearInterpolation(
+			Function<LinearInterpolationSmoothingModel.Builder, ObjectBuilder<LinearInterpolationSmoothingModel>> fn) {
+		SmoothingModel.Builder builder = new SmoothingModel.Builder();
+		builder.linearInterpolation(fn.apply(new LinearInterpolationSmoothingModel.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link StupidBackoffSmoothingModel stupid_backoff}
 	 * {@code SmoothingModel} variant.
 	 */
 	public static StupidBackoffSmoothingModel.Builder stupidBackoff() {
 		return new StupidBackoffSmoothingModel.Builder();
+	}
+
+	/**
+	 * Creates a SmoothingModel of the {@link StupidBackoffSmoothingModel
+	 * stupid_backoff} {@code SmoothingModel} variant.
+	 */
+	public static SmoothingModel stupidBackoff(
+			Function<StupidBackoffSmoothingModel.Builder, ObjectBuilder<StupidBackoffSmoothingModel>> fn) {
+		SmoothingModel.Builder builder = new SmoothingModel.Builder();
+		builder.stupidBackoff(fn.apply(new StupidBackoffSmoothingModel.Builder()).build());
+		return builder.build();
 	}
 
 }

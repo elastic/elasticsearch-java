@@ -72,8 +72,6 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 	/**
 	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final TDocument valueBody() {
 		return this.valueBody;
@@ -103,8 +101,6 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder<TDocument> valueBody(TDocument value) {
 			this.valueBody = value;

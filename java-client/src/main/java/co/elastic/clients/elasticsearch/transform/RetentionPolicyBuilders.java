@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link RetentionPolicy} variants.
  */
@@ -36,6 +39,16 @@ public class RetentionPolicyBuilders {
 	 */
 	public static TimeRetentionPolicy.Builder time() {
 		return new TimeRetentionPolicy.Builder();
+	}
+
+	/**
+	 * Creates a RetentionPolicy of the {@link TimeRetentionPolicy time}
+	 * {@code RetentionPolicy} variant.
+	 */
+	public static RetentionPolicy time(Function<TimeRetentionPolicy.Builder, ObjectBuilder<TimeRetentionPolicy>> fn) {
+		RetentionPolicy.Builder builder = new RetentionPolicy.Builder();
+		builder.time(fn.apply(new TimeRetentionPolicy.Builder()).build());
+		return builder.build();
 	}
 
 }

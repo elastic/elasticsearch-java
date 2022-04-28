@@ -65,8 +65,6 @@ public class PendingTasksResponse implements JsonpSerializable {
 
 	/**
 	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final List<PendingTasksRecord> valueBody() {
 		return this.valueBody;
@@ -99,8 +97,6 @@ public class PendingTasksResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 */
 		public final Builder valueBody(List<PendingTasksRecord> list) {
@@ -111,8 +107,6 @@ public class PendingTasksResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds one or more values to <code>valueBody</code>.
 		 */
 		public final Builder valueBody(PendingTasksRecord value, PendingTasksRecord... values) {
@@ -122,8 +116,6 @@ public class PendingTasksResponse implements JsonpSerializable {
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds a value to <code>valueBody</code> using a builder lambda.
 		 */

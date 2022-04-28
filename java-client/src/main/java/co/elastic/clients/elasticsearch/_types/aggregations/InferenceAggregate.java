@@ -362,10 +362,7 @@ public class InferenceAggregate extends AggregateBase implements AggregateVarian
 		op.add(Builder::warning, JsonpDeserializer.stringDeserializer(), "warning");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			if (builder.data == null) {
-				builder.data = new HashMap<>();
-			}
-			builder.data.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+			builder.data(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
 		});
 
 	}

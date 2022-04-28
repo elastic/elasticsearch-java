@@ -69,13 +69,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 
 		Phrase("phrase"),
 
-		Prefix("prefix"),
-
-		Regex("regex"),
-
 		Term("term"),
-
-		Text("text"),
 
 		;
 
@@ -104,10 +98,23 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 		return _value;
 	}
 
+	@Nullable
+	private final String prefix;
+
+	@Nullable
+	private final String regex;
+
+	@Nullable
+	private final String text;
+
 	public FieldSuggester(FieldSuggesterVariant value) {
 
 		this._kind = ApiTypeHelper.requireNonNull(value._fieldSuggesterKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+		this.prefix = null;
+		this.regex = null;
+		this.text = null;
 
 	}
 
@@ -116,10 +123,38 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
+		this.prefix = builder.prefix;
+		this.regex = builder.regex;
+		this.text = builder.text;
+
 	}
 
 	public static FieldSuggester of(Function<Builder, ObjectBuilder<FieldSuggester>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code prefix}
+	 */
+	@Nullable
+	public final String prefix() {
+		return this.prefix;
+	}
+
+	/**
+	 * API name: {@code regex}
+	 */
+	@Nullable
+	public final String regex() {
+		return this.regex;
+	}
+
+	/**
+	 * API name: {@code text}
+	 */
+	@Nullable
+	public final String text() {
+		return this.text;
 	}
 
 	/**
@@ -157,40 +192,6 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 	}
 
 	/**
-	 * Is this variant instance of kind {@code prefix}?
-	 */
-	public boolean isPrefix() {
-		return _kind == Kind.Prefix;
-	}
-
-	/**
-	 * Get the {@code prefix} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code prefix} kind.
-	 */
-	public String prefix() {
-		return TaggedUnionUtils.get(this, Kind.Prefix);
-	}
-
-	/**
-	 * Is this variant instance of kind {@code regex}?
-	 */
-	public boolean isRegex() {
-		return _kind == Kind.Regex;
-	}
-
-	/**
-	 * Get the {@code regex} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code regex} kind.
-	 */
-	public String regex() {
-		return TaggedUnionUtils.get(this, Kind.Regex);
-	}
-
-	/**
 	 * Is this variant instance of kind {@code term}?
 	 */
 	public boolean isTerm() {
@@ -207,125 +208,153 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 		return TaggedUnionUtils.get(this, Kind.Term);
 	}
 
-	/**
-	 * Is this variant instance of kind {@code text}?
-	 */
-	public boolean isText() {
-		return _kind == Kind.Text;
-	}
-
-	/**
-	 * Get the {@code text} variant value.
-	 *
-	 * @throws IllegalStateException
-	 *             if the current variant is not of the {@code text} kind.
-	 */
-	public String text() {
-		return TaggedUnionUtils.get(this, Kind.Text);
-	}
-
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeStartObject();
 
+		if (this.prefix != null) {
+			generator.writeKey("prefix");
+			generator.write(this.prefix);
+
+		}
+		if (this.regex != null) {
+			generator.writeKey("regex");
+			generator.write(this.regex);
+
+		}
+		if (this.text != null) {
+			generator.writeKey("text");
+			generator.write(this.text);
+
+		}
+
 		generator.writeKey(_kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
-		} else {
-			switch (_kind) {
-				case Prefix :
-					generator.write(((String) this._value));
-
-					break;
-				case Regex :
-					generator.write(((String) this._value));
-
-					break;
-				case Text :
-					generator.write(((String) this._value));
-
-					break;
-			}
 		}
 
 		generator.writeEnd();
 
 	}
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<FieldSuggester> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> {
 		private Kind _kind;
 		private Object _value;
+
+		@Nullable
+		private String prefix;
+
+		@Nullable
+		private String regex;
+
+		@Nullable
+		private String text;
+
+		/**
+		 * API name: {@code prefix}
+		 */
+		public final Builder prefix(@Nullable String value) {
+			this.prefix = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code regex}
+		 */
+		public final Builder regex(@Nullable String value) {
+			this.regex = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code text}
+		 */
+		public final Builder text(@Nullable String value) {
+			this.text = value;
+			return this;
+		}
 
 		@Override
 		protected Builder self() {
 			return this;
 		}
-		public ObjectBuilder<FieldSuggester> completion(CompletionSuggester v) {
+		public ContainerBuilder completion(CompletionSuggester v) {
 			this._kind = Kind.Completion;
 			this._value = v;
-			return this;
+			return new ContainerBuilder();
 		}
 
-		public ObjectBuilder<FieldSuggester> completion(
+		public ContainerBuilder completion(
 				Function<CompletionSuggester.Builder, ObjectBuilder<CompletionSuggester>> fn) {
 			return this.completion(fn.apply(new CompletionSuggester.Builder()).build());
 		}
 
-		public ObjectBuilder<FieldSuggester> phrase(PhraseSuggester v) {
+		public ContainerBuilder phrase(PhraseSuggester v) {
 			this._kind = Kind.Phrase;
 			this._value = v;
-			return this;
+			return new ContainerBuilder();
 		}
 
-		public ObjectBuilder<FieldSuggester> phrase(
-				Function<PhraseSuggester.Builder, ObjectBuilder<PhraseSuggester>> fn) {
+		public ContainerBuilder phrase(Function<PhraseSuggester.Builder, ObjectBuilder<PhraseSuggester>> fn) {
 			return this.phrase(fn.apply(new PhraseSuggester.Builder()).build());
 		}
 
-		public ObjectBuilder<FieldSuggester> prefix(String v) {
-			this._kind = Kind.Prefix;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<FieldSuggester> regex(String v) {
-			this._kind = Kind.Regex;
-			this._value = v;
-			return this;
-		}
-
-		public ObjectBuilder<FieldSuggester> term(TermSuggester v) {
+		public ContainerBuilder term(TermSuggester v) {
 			this._kind = Kind.Term;
 			this._value = v;
-			return this;
+			return new ContainerBuilder();
 		}
 
-		public ObjectBuilder<FieldSuggester> term(Function<TermSuggester.Builder, ObjectBuilder<TermSuggester>> fn) {
+		public ContainerBuilder term(Function<TermSuggester.Builder, ObjectBuilder<TermSuggester>> fn) {
 			return this.term(fn.apply(new TermSuggester.Builder()).build());
 		}
 
-		public ObjectBuilder<FieldSuggester> text(String v) {
-			this._kind = Kind.Text;
-			this._value = v;
-			return this;
-		}
-
-		public FieldSuggester build() {
+		protected FieldSuggester build() {
 			_checkSingleUse();
 			return new FieldSuggester(this);
 		}
 
+		public class ContainerBuilder implements ObjectBuilder<FieldSuggester> {
+
+			/**
+			 * API name: {@code prefix}
+			 */
+			public final ContainerBuilder prefix(@Nullable String value) {
+				Builder.this.prefix = value;
+				return this;
+			}
+
+			/**
+			 * API name: {@code regex}
+			 */
+			public final ContainerBuilder regex(@Nullable String value) {
+				Builder.this.regex = value;
+				return this;
+			}
+
+			/**
+			 * API name: {@code text}
+			 */
+			public final ContainerBuilder text(@Nullable String value) {
+				Builder.this.text = value;
+				return this;
+			}
+
+			public FieldSuggester build() {
+				return Builder.this.build();
+			}
+		}
 	}
 
 	protected static void setupFieldSuggesterDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::completion, CompletionSuggester._DESERIALIZER, "completion");
 		op.add(Builder::phrase, PhraseSuggester._DESERIALIZER, "phrase");
+		op.add(Builder::term, TermSuggester._DESERIALIZER, "term");
 		op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
 		op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");
-		op.add(Builder::term, TermSuggester._DESERIALIZER, "term");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
 
 	}

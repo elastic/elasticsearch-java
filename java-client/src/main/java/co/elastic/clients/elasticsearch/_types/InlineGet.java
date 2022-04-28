@@ -368,10 +368,7 @@ public class InlineGet<TDocument> implements JsonpSerializable {
 		op.add(Builder::source, tDocumentDeserializer, "_source");
 
 		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
-			if (builder.metadata == null) {
-				builder.metadata = new HashMap<>();
-			}
-			builder.metadata.put(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+			builder.metadata(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
 		});
 
 	}

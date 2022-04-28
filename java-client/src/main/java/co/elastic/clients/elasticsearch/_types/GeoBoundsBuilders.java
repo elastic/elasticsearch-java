@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link GeoBounds} variants.
  */

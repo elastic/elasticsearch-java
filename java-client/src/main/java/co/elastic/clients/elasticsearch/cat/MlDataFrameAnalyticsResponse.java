@@ -66,8 +66,6 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 
 	/**
 	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final List<DataFrameAnalyticsRecord> valueBody() {
 		return this.valueBody;
@@ -100,8 +98,6 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all elements of <code>list</code> to <code>valueBody</code>.
 		 */
 		public final Builder valueBody(List<DataFrameAnalyticsRecord> list) {
@@ -112,8 +108,6 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds one or more values to <code>valueBody</code>.
 		 */
 		public final Builder valueBody(DataFrameAnalyticsRecord value, DataFrameAnalyticsRecord... values) {
@@ -123,8 +117,6 @@ public class MlDataFrameAnalyticsResponse implements JsonpSerializable {
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds a value to <code>valueBody</code> using a builder lambda.
 		 */

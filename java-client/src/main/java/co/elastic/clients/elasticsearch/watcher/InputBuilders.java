@@ -23,7 +23,9 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.util.ObjectBuilder;
 import java.lang.String;
+import java.util.function.Function;
 
 /**
  * Builders for {@link Input} variants.
@@ -44,6 +46,15 @@ public class InputBuilders {
 	}
 
 	/**
+	 * Creates a Input of the {@link ChainInput chain} {@code Input} variant.
+	 */
+	public static Input chain(Function<ChainInput.Builder, ObjectBuilder<ChainInput>> fn) {
+		Input.Builder builder = new Input.Builder();
+		builder.chain(fn.apply(new ChainInput.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link HttpInput http} {@code Input} variant.
 	 */
 	public static HttpInput.Builder http() {
@@ -51,10 +62,28 @@ public class InputBuilders {
 	}
 
 	/**
+	 * Creates a Input of the {@link HttpInput http} {@code Input} variant.
+	 */
+	public static Input http(Function<HttpInput.Builder, ObjectBuilder<HttpInput>> fn) {
+		Input.Builder builder = new Input.Builder();
+		builder.http(fn.apply(new HttpInput.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link SearchInput search} {@code Input} variant.
 	 */
 	public static SearchInput.Builder search() {
 		return new SearchInput.Builder();
+	}
+
+	/**
+	 * Creates a Input of the {@link SearchInput search} {@code Input} variant.
+	 */
+	public static Input search(Function<SearchInput.Builder, ObjectBuilder<SearchInput>> fn) {
+		Input.Builder builder = new Input.Builder();
+		builder.search(fn.apply(new SearchInput.Builder()).build());
+		return builder.build();
 	}
 
 }

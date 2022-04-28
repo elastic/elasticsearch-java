@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml.put_trained_model;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link Preprocessor} variants.
  */
@@ -39,6 +42,17 @@ public class PreprocessorBuilders {
 	}
 
 	/**
+	 * Creates a Preprocessor of the {@link FrequencyEncodingPreprocessor
+	 * frequency_encoding} {@code Preprocessor} variant.
+	 */
+	public static Preprocessor frequencyEncoding(
+			Function<FrequencyEncodingPreprocessor.Builder, ObjectBuilder<FrequencyEncodingPreprocessor>> fn) {
+		Preprocessor.Builder builder = new Preprocessor.Builder();
+		builder.frequencyEncoding(fn.apply(new FrequencyEncodingPreprocessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link OneHotEncodingPreprocessor one_hot_encoding}
 	 * {@code Preprocessor} variant.
 	 */
@@ -47,11 +61,33 @@ public class PreprocessorBuilders {
 	}
 
 	/**
+	 * Creates a Preprocessor of the {@link OneHotEncodingPreprocessor
+	 * one_hot_encoding} {@code Preprocessor} variant.
+	 */
+	public static Preprocessor oneHotEncoding(
+			Function<OneHotEncodingPreprocessor.Builder, ObjectBuilder<OneHotEncodingPreprocessor>> fn) {
+		Preprocessor.Builder builder = new Preprocessor.Builder();
+		builder.oneHotEncoding(fn.apply(new OneHotEncodingPreprocessor.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link TargetMeanEncodingPreprocessor
 	 * target_mean_encoding} {@code Preprocessor} variant.
 	 */
 	public static TargetMeanEncodingPreprocessor.Builder targetMeanEncoding() {
 		return new TargetMeanEncodingPreprocessor.Builder();
+	}
+
+	/**
+	 * Creates a Preprocessor of the {@link TargetMeanEncodingPreprocessor
+	 * target_mean_encoding} {@code Preprocessor} variant.
+	 */
+	public static Preprocessor targetMeanEncoding(
+			Function<TargetMeanEncodingPreprocessor.Builder, ObjectBuilder<TargetMeanEncodingPreprocessor>> fn) {
+		Preprocessor.Builder builder = new Preprocessor.Builder();
+		builder.targetMeanEncoding(fn.apply(new TargetMeanEncodingPreprocessor.Builder()).build());
+		return builder.build();
 	}
 
 }

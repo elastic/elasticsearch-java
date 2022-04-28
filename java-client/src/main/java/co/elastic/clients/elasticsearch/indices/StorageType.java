@@ -27,8 +27,6 @@ import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 
-import javax.annotation.Nullable;
-
 /**
  *
  * @see <a href="../doc-files/api-spec.html#indices._types.StorageType">API
