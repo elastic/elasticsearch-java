@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.core;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.knn_search.KnnSearchQuery;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -66,6 +67,8 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 
 	private final List<String> fields;
 
+	private final List<Query> filter;
+
 	private final List<String> index;
 
 	private final KnnSearchQuery knn;
@@ -82,6 +85,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		this.source = builder.source;
 		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
 		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.filter = ApiTypeHelper.unmodifiable(builder.filter);
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.knn = ApiTypeHelper.requireNonNull(builder.knn, this, "knn");
 		this.routing = builder.routing;
@@ -122,6 +126,18 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 	 */
 	public final List<String> fields() {
 		return this.fields;
+	}
+
+	/**
+	 * Query to filter the documents that can match. The kNN search will return the
+	 * top <code>k</code> documents that also match this filter. The value can be a
+	 * single query or a list of queries. If <code>filter</code> isn't provided, all
+	 * documents are allowed to match.
+	 * <p>
+	 * API name: {@code filter}
+	 */
+	public final List<Query> filter() {
+		return this.filter;
 	}
 
 	/**
@@ -201,6 +217,16 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (ApiTypeHelper.isDefined(this.filter)) {
+			generator.writeKey("filter");
+			generator.writeStartArray();
+			for (Query item0 : this.filter) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 		generator.writeKey("knn");
 		this.knn.serialize(generator, mapper);
 
@@ -232,6 +258,9 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private List<String> fields;
+
+		@Nullable
+		private List<Query> filter;
 
 		private List<String> index;
 
@@ -326,6 +355,50 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		public final Builder fields(String value, String... values) {
 			this.fields = _listAdd(this.fields, value, values);
 			return this;
+		}
+
+		/**
+		 * Query to filter the documents that can match. The kNN search will return the
+		 * top <code>k</code> documents that also match this filter. The value can be a
+		 * single query or a list of queries. If <code>filter</code> isn't provided, all
+		 * documents are allowed to match.
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>filter</code>.
+		 */
+		public final Builder filter(List<Query> list) {
+			this.filter = _listAddAll(this.filter, list);
+			return this;
+		}
+
+		/**
+		 * Query to filter the documents that can match. The kNN search will return the
+		 * top <code>k</code> documents that also match this filter. The value can be a
+		 * single query or a list of queries. If <code>filter</code> isn't provided, all
+		 * documents are allowed to match.
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds one or more values to <code>filter</code>.
+		 */
+		public final Builder filter(Query value, Query... values) {
+			this.filter = _listAdd(this.filter, value, values);
+			return this;
+		}
+
+		/**
+		 * Query to filter the documents that can match. The kNN search will return the
+		 * top <code>k</code> documents that also match this filter. The value can be a
+		 * single query or a list of queries. If <code>filter</code> isn't provided, all
+		 * documents are allowed to match.
+		 * <p>
+		 * API name: {@code filter}
+		 * <p>
+		 * Adds a value to <code>filter</code> using a builder lambda.
+		 */
+		public final Builder filter(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return filter(fn.apply(new Query.Builder()).build());
 		}
 
 		/**
@@ -445,6 +518,7 @@ public class KnnSearchRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),
 				"docvalue_fields");
 		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "fields");
+		op.add(Builder::filter, JsonpDeserializer.arrayDeserializer(Query._DESERIALIZER), "filter");
 		op.add(Builder::knn, KnnSearchQuery._DESERIALIZER, "knn");
 		op.add(Builder::storedFields, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"stored_fields");

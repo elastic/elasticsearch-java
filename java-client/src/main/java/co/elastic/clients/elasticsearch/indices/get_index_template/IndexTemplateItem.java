@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices.get_index_template;
 
+import co.elastic.clients.elasticsearch.indices.IndexTemplate;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;

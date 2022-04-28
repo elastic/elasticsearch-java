@@ -28,11 +28,6 @@ import java.util.function.Function;
 
 /**
  * Builders for {@link FieldSuggester} variants.
- * <p>
- * Variants <code>prefix</code>, <code>regex</code>, <code>text</code> are not
- * available here as they don't have a dedicated class. Use
- * {@link FieldSuggester}'s builder for these.
- * 
  */
 public class FieldSuggesterBuilders {
 	private FieldSuggesterBuilders() {

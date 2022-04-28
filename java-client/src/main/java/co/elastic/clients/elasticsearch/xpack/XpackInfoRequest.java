@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 // typedef: xpack.info.Request
 
 /**
- * Retrieves information about the installed X-Pack features.
+ * Provides general information about the installed X-Pack features.
  * 
  * @see <a href="../doc-files/api-spec.html#xpack.info.Request">API
  *      specification</a>
@@ -60,12 +60,16 @@ public class XpackInfoRequest extends RequestBase {
 
 	private final List<String> categories;
 
+	@Nullable
+	private final Boolean human;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private XpackInfoRequest(Builder builder) {
 
 		this.acceptEnterprise = builder.acceptEnterprise;
 		this.categories = ApiTypeHelper.unmodifiable(builder.categories);
+		this.human = builder.human;
 
 	}
 
@@ -84,13 +88,24 @@ public class XpackInfoRequest extends RequestBase {
 	}
 
 	/**
-	 * Comma-separated list of info categories. Can be any of: build, license,
-	 * features
+	 * A comma-separated list of the information categories to include in the
+	 * response. For example, <code>build,license,features</code>.
 	 * <p>
 	 * API name: {@code categories}
 	 */
 	public final List<String> categories() {
 		return this.categories;
+	}
+
+	/**
+	 * Defines whether additional human-readable information is included in the
+	 * response. In particular, it adds descriptions and a tag line.
+	 * <p>
+	 * API name: {@code human}
+	 */
+	@Nullable
+	public final Boolean human() {
+		return this.human;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -106,6 +121,9 @@ public class XpackInfoRequest extends RequestBase {
 		@Nullable
 		private List<String> categories;
 
+		@Nullable
+		private Boolean human;
+
 		/**
 		 * If this param is used it must be set to true
 		 * <p>
@@ -117,8 +135,8 @@ public class XpackInfoRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of info categories. Can be any of: build, license,
-		 * features
+		 * A comma-separated list of the information categories to include in the
+		 * response. For example, <code>build,license,features</code>.
 		 * <p>
 		 * API name: {@code categories}
 		 * <p>
@@ -130,8 +148,8 @@ public class XpackInfoRequest extends RequestBase {
 		}
 
 		/**
-		 * Comma-separated list of info categories. Can be any of: build, license,
-		 * features
+		 * A comma-separated list of the information categories to include in the
+		 * response. For example, <code>build,license,features</code>.
 		 * <p>
 		 * API name: {@code categories}
 		 * <p>
@@ -139,6 +157,17 @@ public class XpackInfoRequest extends RequestBase {
 		 */
 		public final Builder categories(String value, String... values) {
 			this.categories = _listAdd(this.categories, value, values);
+			return this;
+		}
+
+		/**
+		 * Defines whether additional human-readable information is included in the
+		 * response. In particular, it adds descriptions and a tag line.
+		 * <p>
+		 * API name: {@code human}
+		 */
+		public final Builder human(@Nullable Boolean value) {
+			this.human = value;
 			return this;
 		}
 
@@ -180,6 +209,9 @@ public class XpackInfoRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (ApiTypeHelper.isDefined(request.categories)) {
 					params.put("categories", request.categories.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
+				if (request.human != null) {
+					params.put("human", String.valueOf(request.human));
 				}
 				if (request.acceptEnterprise != null) {
 					params.put("accept_enterprise", String.valueOf(request.acceptEnterprise));

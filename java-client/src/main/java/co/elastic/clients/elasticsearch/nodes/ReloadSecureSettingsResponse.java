@@ -23,20 +23,15 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
-import co.elastic.clients.elasticsearch.nodes.reload_secure_settings.NodeReloadResult;
+import co.elastic.clients.elasticsearch.nodes.reload_secure_settings.ResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.String;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
 // typedef: nodes.reload_secure_settings.Response
 
@@ -47,57 +42,16 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ReloadSecureSettingsResponse extends NodesResponseBase {
-	private final String clusterName;
-
-	private final Map<String, NodeReloadResult> nodes;
-
+public class ReloadSecureSettingsResponse extends ResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private ReloadSecureSettingsResponse(Builder builder) {
 		super(builder);
 
-		this.clusterName = ApiTypeHelper.requireNonNull(builder.clusterName, this, "clusterName");
-		this.nodes = ApiTypeHelper.unmodifiableRequired(builder.nodes, this, "nodes");
-
 	}
 
 	public static ReloadSecureSettingsResponse of(Function<Builder, ObjectBuilder<ReloadSecureSettingsResponse>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Required - API name: {@code cluster_name}
-	 */
-	public final String clusterName() {
-		return this.clusterName;
-	}
-
-	/**
-	 * Required - API name: {@code nodes}
-	 */
-	public final Map<String, NodeReloadResult> nodes() {
-		return this.nodes;
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("cluster_name");
-		generator.write(this.clusterName);
-
-		if (ApiTypeHelper.isDefined(this.nodes)) {
-			generator.writeKey("nodes");
-			generator.writeStartObject();
-			for (Map.Entry<String, NodeReloadResult> item0 : this.nodes.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
-
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -106,50 +60,9 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 	 * Builder for {@link ReloadSecureSettingsResponse}.
 	 */
 
-	public static class Builder extends NodesResponseBase.AbstractBuilder<Builder>
+	public static class Builder extends ResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ReloadSecureSettingsResponse> {
-		private String clusterName;
-
-		private Map<String, NodeReloadResult> nodes;
-
-		/**
-		 * Required - API name: {@code cluster_name}
-		 */
-		public final Builder clusterName(String value) {
-			this.clusterName = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code nodes}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>nodes</code>.
-		 */
-		public final Builder nodes(Map<String, NodeReloadResult> map) {
-			this.nodes = _mapPutAll(this.nodes, map);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code nodes}
-		 * <p>
-		 * Adds an entry to <code>nodes</code>.
-		 */
-		public final Builder nodes(String key, NodeReloadResult value) {
-			this.nodes = _mapPut(this.nodes, key, value);
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code nodes}
-		 * <p>
-		 * Adds an entry to <code>nodes</code> using a builder lambda.
-		 */
-		public final Builder nodes(String key, Function<NodeReloadResult.Builder, ObjectBuilder<NodeReloadResult>> fn) {
-			return nodes(key, fn.apply(new NodeReloadResult.Builder()).build());
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -178,9 +91,7 @@ public class ReloadSecureSettingsResponse extends NodesResponseBase {
 
 	protected static void setupReloadSecureSettingsResponseDeserializer(
 			ObjectDeserializer<ReloadSecureSettingsResponse.Builder> op) {
-		NodesResponseBase.setupNodesResponseBaseDeserializer(op);
-		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
-		op.add(Builder::nodes, JsonpDeserializer.stringMapDeserializer(NodeReloadResult._DESERIALIZER), "nodes");
+		ResponseBase.setupResponseBaseDeserializer(op);
 
 	}
 

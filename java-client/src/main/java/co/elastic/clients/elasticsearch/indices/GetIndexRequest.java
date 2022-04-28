@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch.indices.get.Feature;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -50,7 +51,8 @@ import javax.annotation.Nullable;
 // typedef: indices.get.Request
 
 /**
- * Returns information about one or more indices.
+ * Returns information about one or more indices. For data streams, the API
+ * returns information about the stream’s backing indices.
  * 
  * @see <a href="../doc-files/api-spec.html#indices.get.Request">API
  *      specification</a>
@@ -61,6 +63,8 @@ public class GetIndexRequest extends RequestBase {
 	private final Boolean allowNoIndices;
 
 	private final List<ExpandWildcard> expandWildcards;
+
+	private final List<Feature> features;
 
 	@Nullable
 	private final Boolean flatSettings;
@@ -85,6 +89,7 @@ public class GetIndexRequest extends RequestBase {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
+		this.features = ApiTypeHelper.unmodifiable(builder.features);
 		this.flatSettings = builder.flatSettings;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeDefaults = builder.includeDefaults;
@@ -99,8 +104,11 @@ public class GetIndexRequest extends RequestBase {
 	}
 
 	/**
-	 * Ignore if a wildcard expression resolves to no concrete indices (default:
-	 * false)
+	 * If false, the request returns an error if any wildcard expression, index
+	 * alias, or _all value targets only missing or closed indices. This behavior
+	 * applies even if the request targets other open indices. For example, a
+	 * request targeting foo*,bar* returns an error if an index starts with foo but
+	 * no index starts with bar.
 	 * <p>
 	 * API name: {@code allow_no_indices}
 	 */
@@ -118,6 +126,15 @@ public class GetIndexRequest extends RequestBase {
 	 */
 	public final List<ExpandWildcard> expandWildcards() {
 		return this.expandWildcards;
+	}
+
+	/**
+	 * Return only information on specified index features
+	 * <p>
+	 * API name: {@code features}
+	 */
+	public final List<Feature> features() {
+		return this.features;
 	}
 
 	/**
@@ -196,6 +213,9 @@ public class GetIndexRequest extends RequestBase {
 		private List<ExpandWildcard> expandWildcards;
 
 		@Nullable
+		private List<Feature> features;
+
+		@Nullable
 		private Boolean flatSettings;
 
 		@Nullable
@@ -213,8 +233,11 @@ public class GetIndexRequest extends RequestBase {
 		private Time masterTimeout;
 
 		/**
-		 * Ignore if a wildcard expression resolves to no concrete indices (default:
-		 * false)
+		 * If false, the request returns an error if any wildcard expression, index
+		 * alias, or _all value targets only missing or closed indices. This behavior
+		 * applies even if the request targets other open indices. For example, a
+		 * request targeting foo*,bar* returns an error if an index starts with foo but
+		 * no index starts with bar.
 		 * <p>
 		 * API name: {@code allow_no_indices}
 		 */
@@ -248,6 +271,30 @@ public class GetIndexRequest extends RequestBase {
 		 */
 		public final Builder expandWildcards(ExpandWildcard value, ExpandWildcard... values) {
 			this.expandWildcards = _listAdd(this.expandWildcards, value, values);
+			return this;
+		}
+
+		/**
+		 * Return only information on specified index features
+		 * <p>
+		 * API name: {@code features}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>features</code>.
+		 */
+		public final Builder features(List<Feature> list) {
+			this.features = _listAddAll(this.features, list);
+			return this;
+		}
+
+		/**
+		 * Return only information on specified index features
+		 * <p>
+		 * API name: {@code features}
+		 * <p>
+		 * Adds one or more values to <code>features</code>.
+		 */
+		public final Builder features(Feature value, Feature... values) {
+			this.features = _listAdd(this.features, value, values);
 			return this;
 		}
 
@@ -389,6 +436,10 @@ public class GetIndexRequest extends RequestBase {
 				Map<String, String> params = new HashMap<>();
 				if (request.masterTimeout != null) {
 					params.put("master_timeout", request.masterTimeout._toJsonString());
+				}
+				if (ApiTypeHelper.isDefined(request.features)) {
+					params.put("features",
+							request.features.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.flatSettings != null) {
 					params.put("flat_settings", String.valueOf(request.flatSettings));

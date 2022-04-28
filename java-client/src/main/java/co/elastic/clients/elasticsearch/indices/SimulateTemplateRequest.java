@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
-import co.elastic.clients.elasticsearch.indices.get_index_template.IndexTemplate;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -51,7 +50,8 @@ import javax.annotation.Nullable;
 // typedef: indices.simulate_template.Request
 
 /**
- * Simulate resolving the given template name or body
+ * Returns the index configuration that would be applied by a particular index
+ * template.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#indices.simulate_template.Request">API

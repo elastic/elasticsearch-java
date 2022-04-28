@@ -116,6 +116,7 @@ import co.elastic.clients.elasticsearch.dangling_indices.ElasticsearchDanglingIn
 import co.elastic.clients.elasticsearch.enrich.ElasticsearchEnrichClient;
 import co.elastic.clients.elasticsearch.eql.ElasticsearchEqlClient;
 import co.elastic.clients.elasticsearch.features.ElasticsearchFeaturesClient;
+import co.elastic.clients.elasticsearch.fleet.ElasticsearchFleetClient;
 import co.elastic.clients.elasticsearch.graph.ElasticsearchGraphClient;
 import co.elastic.clients.elasticsearch.ilm.ElasticsearchIlmClient;
 import co.elastic.clients.elasticsearch.indices.ElasticsearchIndicesClient;
@@ -204,6 +205,10 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 
 	public ElasticsearchFeaturesClient features() {
 		return new ElasticsearchFeaturesClient(this.transport, this.transportOptions);
+	}
+
+	public ElasticsearchFleetClient fleet() {
+		return new ElasticsearchFleetClient(this.transport, this.transportOptions);
 	}
 
 	public ElasticsearchGraphClient graph() {
@@ -301,7 +306,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -320,7 +325,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link BulkRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -334,7 +339,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * request.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-bulk.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/docs-bulk.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -349,7 +354,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Explicitly clears the search context for a scroll.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -367,7 +372,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ClearScrollRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -381,7 +386,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Explicitly clears the search context for a scroll.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/clear-scroll-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/clear-scroll-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -396,7 +401,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Close a point in time
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -415,7 +420,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link ClosePointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -788,20 +793,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public final FieldCapsResponse fieldCaps(Function<FieldCapsRequest.Builder, ObjectBuilder<FieldCapsRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return fieldCaps(fn.apply(new FieldCapsRequest.Builder()).build());
-	}
-
-	/**
-	 * Returns the information about the capabilities of fields among multiple
-	 * indices.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/search-field-caps.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public FieldCapsResponse fieldCaps() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new FieldCapsRequest.Builder().build(), FieldCapsRequest._ENDPOINT,
-				this.transportOptions);
 	}
 
 	// ----- Endpoint: get
@@ -1185,7 +1176,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 * Open a point in time that can be used in subsequent searches
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1204,7 +1195,7 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	 *            a function that initializes a builder to create the
 	 *            {@link OpenPointInTimeRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/point-in-time-api.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/point-in-time-api.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1330,21 +1321,6 @@ public class ElasticsearchClient extends ApiClient<ElasticsearchTransport, Elast
 	public final ReindexResponse reindex(Function<ReindexRequest.Builder, ObjectBuilder<ReindexRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return reindex(fn.apply(new ReindexRequest.Builder()).build());
-	}
-
-	/**
-	 * Allows to copy documents from one index to another, optionally filtering the
-	 * source documents by a query, changing the destination index settings, or
-	 * fetching the documents from a remote cluster.
-	 * 
-	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/docs-reindex.html">Documentation
-	 *      on elastic.co</a>
-	 */
-
-	public ReindexResponse reindex() throws IOException, ElasticsearchException {
-		return this.transport.performRequest(new ReindexRequest.Builder().build(), ReindexRequest._ENDPOINT,
-				this.transportOptions);
 	}
 
 	// ----- Endpoint: reindex_rethrottle

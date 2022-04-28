@@ -25,15 +25,21 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.endpoints.DictionaryResponse;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: security.put_privileges.Response
 
@@ -44,16 +50,48 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PutPrivilegesResponse extends DictionaryResponse<String, Map<String, CreatedStatus>> {
+public class PutPrivilegesResponse implements JsonpSerializable {
+	private final Map<String, Map<String, CreatedStatus>> result;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PutPrivilegesResponse(Builder builder) {
-		super(builder);
+
+		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
 
 	}
 
 	public static PutPrivilegesResponse of(Function<Builder, ObjectBuilder<PutPrivilegesResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - Response value.
+	 */
+	public final Map<String, Map<String, CreatedStatus>> result() {
+		return this.result;
+	}
+
+	/**
+	 * Serialize this value to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		for (Map.Entry<String, Map<String, CreatedStatus>> item0 : this.result.entrySet()) {
+			generator.writeKey(item0.getKey());
+			generator.writeStartObject();
+			if (item0.getValue() != null) {
+				for (Map.Entry<String, CreatedStatus> item1 : item0.getValue().entrySet()) {
+					generator.writeKey(item1.getKey());
+					item1.getValue().serialize(generator, mapper);
+
+				}
+			}
+			generator.writeEnd();
+
+		}
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -62,9 +100,41 @@ public class PutPrivilegesResponse extends DictionaryResponse<String, Map<String
 	 * Builder for {@link PutPrivilegesResponse}.
 	 */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, Map<String, CreatedStatus>, Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<PutPrivilegesResponse> {
+		private Map<String, Map<String, CreatedStatus>> result = new HashMap<>();
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 */
+		public final Builder result(Map<String, Map<String, CreatedStatus>> map) {
+			this.result = _mapPutAll(this.result, map);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * Adds an entry to <code>result</code>.
+		 */
+		public final Builder result(String key, Map<String, CreatedStatus> value) {
+			this.result = _mapPut(this.result, key, value);
+			return this;
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			Map<String, Map<String, CreatedStatus>> value = (Map<String, Map<String, CreatedStatus>>) JsonpDeserializer
+					.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(CreatedStatus._DESERIALIZER))
+					.deserialize(parser, mapper);
+			return this.result(value);
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -78,25 +148,19 @@ public class PutPrivilegesResponse extends DictionaryResponse<String, Map<String
 		 */
 		public PutPrivilegesResponse build() {
 			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
 
 			return new PutPrivilegesResponse(this);
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<PutPrivilegesResponse> _DESERIALIZER = createPutPrivilegesResponseDeserializer();
+	protected static JsonpDeserializer<PutPrivilegesResponse> createPutPrivilegesResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link PutPrivilegesResponse}
-	 */
-	public static final JsonpDeserializer<PutPrivilegesResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, PutPrivilegesResponse::setupPutPrivilegesResponseDeserializer);
+		JsonpDeserializer<Map<String, Map<String, CreatedStatus>>> valueDeserializer = JsonpDeserializer
+				.stringMapDeserializer(JsonpDeserializer.stringMapDeserializer(CreatedStatus._DESERIALIZER));
 
-	protected static void setupPutPrivilegesResponseDeserializer(ObjectDeserializer<PutPrivilegesResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				JsonpDeserializer.stringMapDeserializer(CreatedStatus._DESERIALIZER));
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().result(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

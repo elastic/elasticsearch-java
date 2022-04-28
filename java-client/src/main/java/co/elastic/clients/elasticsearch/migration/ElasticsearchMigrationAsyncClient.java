@@ -108,4 +108,32 @@ public class ElasticsearchMigrationAsyncClient
 				DeprecationsRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: migration.get_feature_upgrade_status
+
+	/**
+	 * Find out whether system features need to be upgraded or not
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-feature-upgrade.html">Documentation
+	 *      on elastic.co</a>
+	 */
+	public CompletableFuture<GetFeatureUpgradeStatusResponse> getFeatureUpgradeStatus() {
+		return this.transport.performRequestAsync(GetFeatureUpgradeStatusRequest._INSTANCE,
+				GetFeatureUpgradeStatusRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: migration.post_feature_upgrade
+
+	/**
+	 * Begin upgrades for system features
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/migration-api-feature-upgrade.html">Documentation
+	 *      on elastic.co</a>
+	 */
+	public CompletableFuture<PostFeatureUpgradeResponse> postFeatureUpgrade() {
+		return this.transport.performRequestAsync(PostFeatureUpgradeRequest._INSTANCE,
+				PostFeatureUpgradeRequest._ENDPOINT, this.transportOptions);
+	}
+
 }

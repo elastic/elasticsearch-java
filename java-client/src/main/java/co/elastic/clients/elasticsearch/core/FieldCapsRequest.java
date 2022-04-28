@@ -53,8 +53,11 @@ import javax.annotation.Nullable;
 // typedef: _global.field_caps.Request
 
 /**
- * Returns the information about the capabilities of fields among multiple
- * indices.
+ * The field capabilities API returns the information about the capabilities of
+ * fields among multiple indices. The field capabilities API returns runtime
+ * fields like any other field. For example, a runtime field with a type of
+ * keyword is returned as any other field that belongs to the
+ * <code>keyword</code> family.
  * 
  * @see <a href="../doc-files/api-spec.html#_global.field_caps.Request">API
  *      specification</a>
@@ -69,6 +72,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	private final List<String> fields;
 
 	@Nullable
+	private final String filters;
+
+	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
@@ -81,18 +87,22 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 
 	private final Map<String, List<RuntimeField>> runtimeMappings;
 
+	private final List<String> types;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private FieldCapsRequest(Builder builder) {
 
 		this.allowNoIndices = builder.allowNoIndices;
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
-		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
+		this.filters = builder.filters;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeUnmapped = builder.includeUnmapped;
 		this.index = ApiTypeHelper.unmodifiable(builder.index);
 		this.indexFilter = builder.indexFilter;
 		this.runtimeMappings = ApiTypeHelper.unmodifiable(builder.runtimeMappings);
+		this.types = ApiTypeHelper.unmodifiable(builder.types);
 
 	}
 
@@ -101,9 +111,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * If false, the request returns an error if any wildcard expression, <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/aliases.html">index
-	 * alias</a>, or <code>_all</code> value targets only missing or closed indices.
+	 * If false, the request returns an error if any wildcard expression, index
+	 * alias, or <code>_all</code> value targets only missing or closed indices.
 	 * This behavior applies even if the request targets other open indices. For
 	 * example, a request targeting <code>foo*,bar*</code> returns an error if an
 	 * index starts with foo but no index starts with bar.
@@ -128,13 +137,24 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Comma-separated list of fields to retrieve capabilities for. Wildcard
-	 * (<code>*</code>) expressions are supported.
+	 * Required - Comma-separated list of fields to retrieve capabilities for.
+	 * Wildcard (<code>*</code>) expressions are supported.
 	 * <p>
 	 * API name: {@code fields}
 	 */
 	public final List<String> fields() {
 		return this.fields;
+	}
+
+	/**
+	 * An optional set of filters: can include
+	 * +metadata,-metadata,-nested,-multifield,-parent
+	 * <p>
+	 * API name: {@code filters}
+	 */
+	@Nullable
+	public final String filters() {
+		return this.filters;
 	}
 
 	/**
@@ -181,17 +201,23 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Defines ad-hoc <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/runtime-search-request.html">runtime
-	 * fields</a> in the request similar to the way it is done in <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-api-body-runtime">search
-	 * requests</a>. These fields exist only as part of the query and take
+	 * Defines ad-hoc runtime fields in the request similar to the way it is done in
+	 * search requests. These fields exist only as part of the query and take
 	 * precedence over fields defined with the same name in the index mappings.
 	 * <p>
 	 * API name: {@code runtime_mappings}
 	 */
 	public final Map<String, List<RuntimeField>> runtimeMappings() {
 		return this.runtimeMappings;
+	}
+
+	/**
+	 * Only return results for fields that have one of the types in the list
+	 * <p>
+	 * API name: {@code types}
+	 */
+	public final List<String> types() {
+		return this.types;
 	}
 
 	/**
@@ -244,8 +270,10 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private List<ExpandWildcard> expandWildcards;
 
-		@Nullable
 		private List<String> fields;
+
+		@Nullable
+		private String filters;
 
 		@Nullable
 		private Boolean ignoreUnavailable;
@@ -262,10 +290,12 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Map<String, List<RuntimeField>> runtimeMappings;
 
+		@Nullable
+		private List<String> types;
+
 		/**
-		 * If false, the request returns an error if any wildcard expression, <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/aliases.html">index
-		 * alias</a>, or <code>_all</code> value targets only missing or closed indices.
+		 * If false, the request returns an error if any wildcard expression, index
+		 * alias, or <code>_all</code> value targets only missing or closed indices.
 		 * This behavior applies even if the request targets other open indices. For
 		 * example, a request targeting <code>foo*,bar*</code> returns an error if an
 		 * index starts with foo but no index starts with bar.
@@ -308,8 +338,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Comma-separated list of fields to retrieve capabilities for. Wildcard
-		 * (<code>*</code>) expressions are supported.
+		 * Required - Comma-separated list of fields to retrieve capabilities for.
+		 * Wildcard (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -321,8 +351,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Comma-separated list of fields to retrieve capabilities for. Wildcard
-		 * (<code>*</code>) expressions are supported.
+		 * Required - Comma-separated list of fields to retrieve capabilities for.
+		 * Wildcard (<code>*</code>) expressions are supported.
 		 * <p>
 		 * API name: {@code fields}
 		 * <p>
@@ -330,6 +360,17 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder fields(String value, String... values) {
 			this.fields = _listAdd(this.fields, value, values);
+			return this;
+		}
+
+		/**
+		 * An optional set of filters: can include
+		 * +metadata,-metadata,-nested,-multifield,-parent
+		 * <p>
+		 * API name: {@code filters}
+		 */
+		public final Builder filters(@Nullable String value) {
+			this.filters = value;
 			return this;
 		}
 
@@ -404,11 +445,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines ad-hoc <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/runtime-search-request.html">runtime
-		 * fields</a> in the request similar to the way it is done in <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-api-body-runtime">search
-		 * requests</a>. These fields exist only as part of the query and take
+		 * Defines ad-hoc runtime fields in the request similar to the way it is done in
+		 * search requests. These fields exist only as part of the query and take
 		 * precedence over fields defined with the same name in the index mappings.
 		 * <p>
 		 * API name: {@code runtime_mappings}
@@ -421,11 +459,8 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Defines ad-hoc <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/runtime-search-request.html">runtime
-		 * fields</a> in the request similar to the way it is done in <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/search-search.html#search-api-body-runtime">search
-		 * requests</a>. These fields exist only as part of the query and take
+		 * Defines ad-hoc runtime fields in the request similar to the way it is done in
+		 * search requests. These fields exist only as part of the query and take
 		 * precedence over fields defined with the same name in the index mappings.
 		 * <p>
 		 * API name: {@code runtime_mappings}
@@ -434,6 +469,30 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 		 */
 		public final Builder runtimeMappings(String key, List<RuntimeField> value) {
 			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
+			return this;
+		}
+
+		/**
+		 * Only return results for fields that have one of the types in the list
+		 * <p>
+		 * API name: {@code types}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>types</code>.
+		 */
+		public final Builder types(List<String> list) {
+			this.types = _listAddAll(this.types, list);
+			return this;
+		}
+
+		/**
+		 * Only return results for fields that have one of the types in the list
+		 * <p>
+		 * API name: {@code types}
+		 * <p>
+		 * Adds one or more values to <code>types</code>.
+		 */
+		public final Builder types(String value, String... values) {
+			this.types = _listAdd(this.types, value, values);
 			return this;
 		}
 
@@ -513,6 +572,9 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (ApiTypeHelper.isDefined(request.types)) {
+					params.put("types", request.types.stream().map(v -> v).collect(Collectors.joining(",")));
+				}
 				if (ApiTypeHelper.isDefined(request.expandWildcards)) {
 					params.put("expand_wildcards",
 							request.expandWildcards.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
@@ -523,9 +585,10 @@ public class FieldCapsRequest extends RequestBase implements JsonpSerializable {
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
-				if (ApiTypeHelper.isDefined(request.fields)) {
-					params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
+				if (request.filters != null) {
+					params.put("filters", request.filters);
 				}
+				params.put("fields", request.fields.stream().map(v -> v).collect(Collectors.joining(",")));
 				if (request.includeUnmapped != null) {
 					params.put("include_unmapped", String.valueOf(request.includeUnmapped));
 				}

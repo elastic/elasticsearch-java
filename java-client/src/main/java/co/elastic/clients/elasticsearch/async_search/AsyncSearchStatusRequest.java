@@ -112,7 +112,7 @@ public class AsyncSearchStatusRequest extends RequestBase {
 	/**
 	 * Endpoint "{@code async_search.status}".
 	 */
-	public static final SimpleEndpoint<AsyncSearchStatusRequest, ?> _ENDPOINT = new SimpleEndpoint<>(
+	public static final Endpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
 			"es/async_search.status",
 
 			// Request method
@@ -146,13 +146,4 @@ public class AsyncSearchStatusRequest extends RequestBase {
 				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), false, AsyncSearchStatusResponse._DESERIALIZER);
-
-	/**
-	 * Create an "{@code async_search.status}" endpoint.
-	 */
-	public static <TDocument> Endpoint<AsyncSearchStatusRequest, AsyncSearchStatusResponse<TDocument>, ErrorResponse> createStatusEndpoint(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return _ENDPOINT.withResponseDeserializer(
-				AsyncSearchStatusResponse.createAsyncSearchStatusResponseDeserializer(tDocumentDeserializer));
-	}
 }

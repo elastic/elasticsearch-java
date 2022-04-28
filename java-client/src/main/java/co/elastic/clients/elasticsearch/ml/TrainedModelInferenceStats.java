@@ -34,7 +34,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
+import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -49,13 +49,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TrainedModelInferenceStats implements JsonpSerializable {
-	private final long failureCount;
+	private final int cacheMissCount;
 
-	private final long inferenceCount;
+	private final int failureCount;
 
-	private final long cacheMissCount;
+	private final int inferenceCount;
 
-	private final long missingAllFieldsCount;
+	private final int missingAllFieldsCount;
 
 	private final Time timestamp;
 
@@ -63,9 +63,9 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 
 	private TrainedModelInferenceStats(Builder builder) {
 
+		this.cacheMissCount = ApiTypeHelper.requireNonNull(builder.cacheMissCount, this, "cacheMissCount");
 		this.failureCount = ApiTypeHelper.requireNonNull(builder.failureCount, this, "failureCount");
 		this.inferenceCount = ApiTypeHelper.requireNonNull(builder.inferenceCount, this, "inferenceCount");
-		this.cacheMissCount = ApiTypeHelper.requireNonNull(builder.cacheMissCount, this, "cacheMissCount");
 		this.missingAllFieldsCount = ApiTypeHelper.requireNonNull(builder.missingAllFieldsCount, this,
 				"missingAllFieldsCount");
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
@@ -77,11 +77,24 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - The number of times the model was loaded for inference and was not
+	 * retrieved from the cache. If this number is close to the
+	 * <code>inference_count</code>, the cache is not being appropriately used. This
+	 * can be solved by increasing the cache size or its time-to-live (TTL). Refer
+	 * to general machine learning settings for the appropriate settings.
+	 * <p>
+	 * API name: {@code cache_miss_count}
+	 */
+	public final int cacheMissCount() {
+		return this.cacheMissCount;
+	}
+
+	/**
 	 * Required - The number of failures when using the model for inference.
 	 * <p>
 	 * API name: {@code failure_count}
 	 */
-	public final long failureCount() {
+	public final int failureCount() {
 		return this.failureCount;
 	}
 
@@ -91,21 +104,8 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code inference_count}
 	 */
-	public final long inferenceCount() {
+	public final int inferenceCount() {
 		return this.inferenceCount;
-	}
-
-	/**
-	 * Required - The number of times the model was loaded for inference and was not
-	 * retrieved from the cache. If this number is close to the inference_count,
-	 * then the cache is not being appropriately used. This can be solved by
-	 * increasing the cache size or its time-to-live (TTL). See General machine
-	 * learning settings for the appropriate settings.
-	 * <p>
-	 * API name: {@code cache_miss_count}
-	 */
-	public final long cacheMissCount() {
-		return this.cacheMissCount;
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code missing_all_fields_count}
 	 */
-	public final long missingAllFieldsCount() {
+	public final int missingAllFieldsCount() {
 		return this.missingAllFieldsCount;
 	}
 
@@ -138,14 +138,14 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		generator.writeKey("cache_miss_count");
+		generator.write(this.cacheMissCount);
+
 		generator.writeKey("failure_count");
 		generator.write(this.failureCount);
 
 		generator.writeKey("inference_count");
 		generator.write(this.inferenceCount);
-
-		generator.writeKey("cache_miss_count");
-		generator.write(this.cacheMissCount);
 
 		generator.writeKey("missing_all_fields_count");
 		generator.write(this.missingAllFieldsCount);
@@ -164,22 +164,36 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<TrainedModelInferenceStats> {
-		private Long failureCount;
+		private Integer cacheMissCount;
 
-		private Long inferenceCount;
+		private Integer failureCount;
 
-		private Long cacheMissCount;
+		private Integer inferenceCount;
 
-		private Long missingAllFieldsCount;
+		private Integer missingAllFieldsCount;
 
 		private Time timestamp;
+
+		/**
+		 * Required - The number of times the model was loaded for inference and was not
+		 * retrieved from the cache. If this number is close to the
+		 * <code>inference_count</code>, the cache is not being appropriately used. This
+		 * can be solved by increasing the cache size or its time-to-live (TTL). Refer
+		 * to general machine learning settings for the appropriate settings.
+		 * <p>
+		 * API name: {@code cache_miss_count}
+		 */
+		public final Builder cacheMissCount(int value) {
+			this.cacheMissCount = value;
+			return this;
+		}
 
 		/**
 		 * Required - The number of failures when using the model for inference.
 		 * <p>
 		 * API name: {@code failure_count}
 		 */
-		public final Builder failureCount(long value) {
+		public final Builder failureCount(int value) {
 			this.failureCount = value;
 			return this;
 		}
@@ -190,22 +204,8 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code inference_count}
 		 */
-		public final Builder inferenceCount(long value) {
+		public final Builder inferenceCount(int value) {
 			this.inferenceCount = value;
-			return this;
-		}
-
-		/**
-		 * Required - The number of times the model was loaded for inference and was not
-		 * retrieved from the cache. If this number is close to the inference_count,
-		 * then the cache is not being appropriately used. This can be solved by
-		 * increasing the cache size or its time-to-live (TTL). See General machine
-		 * learning settings for the appropriate settings.
-		 * <p>
-		 * API name: {@code cache_miss_count}
-		 */
-		public final Builder cacheMissCount(long value) {
-			this.cacheMissCount = value;
 			return this;
 		}
 
@@ -215,7 +215,7 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code missing_all_fields_count}
 		 */
-		public final Builder missingAllFieldsCount(long value) {
+		public final Builder missingAllFieldsCount(int value) {
 			this.missingAllFieldsCount = value;
 			return this;
 		}
@@ -268,10 +268,10 @@ public class TrainedModelInferenceStats implements JsonpSerializable {
 	protected static void setupTrainedModelInferenceStatsDeserializer(
 			ObjectDeserializer<TrainedModelInferenceStats.Builder> op) {
 
-		op.add(Builder::failureCount, JsonpDeserializer.longDeserializer(), "failure_count");
-		op.add(Builder::inferenceCount, JsonpDeserializer.longDeserializer(), "inference_count");
-		op.add(Builder::cacheMissCount, JsonpDeserializer.longDeserializer(), "cache_miss_count");
-		op.add(Builder::missingAllFieldsCount, JsonpDeserializer.longDeserializer(), "missing_all_fields_count");
+		op.add(Builder::cacheMissCount, JsonpDeserializer.integerDeserializer(), "cache_miss_count");
+		op.add(Builder::failureCount, JsonpDeserializer.integerDeserializer(), "failure_count");
+		op.add(Builder::inferenceCount, JsonpDeserializer.integerDeserializer(), "inference_count");
+		op.add(Builder::missingAllFieldsCount, JsonpDeserializer.integerDeserializer(), "missing_all_fields_count");
 		op.add(Builder::timestamp, Time._DESERIALIZER, "timestamp");
 
 	}

@@ -24,7 +24,6 @@
 package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.Time;
-import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -82,7 +81,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 	@Nullable
 	private final Integer estimatedOperations;
 
-	private final InferenceConfig inferenceConfig;
+	private final InferenceConfigCreate inferenceConfig;
 
 	private final TrainedModelConfigInput input;
 
@@ -127,7 +126,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Idetifier for the trained model.
+	 * Required - Identifier for the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
@@ -234,12 +233,12 @@ public class TrainedModelConfig implements JsonpSerializable {
 
 	/**
 	 * Required - The default configuration for inference. This can be either a
-	 * regression or classification configuration. It must match the underlying
-	 * definition.trained_model's target_type.
+	 * regression, classification, or one of the many NLP focused configurations. It
+	 * must match the underlying definition.trained_model's target_type.
 	 * <p>
 	 * API name: {@code inference_config}
 	 */
-	public final InferenceConfig inferenceConfig() {
+	public final InferenceConfigCreate inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
@@ -453,7 +452,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		@Nullable
 		private Integer estimatedOperations;
 
-		private InferenceConfig inferenceConfig;
+		private InferenceConfigCreate inferenceConfig;
 
 		private TrainedModelConfigInput input;
 
@@ -470,7 +469,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		private TrainedModelLocation location;
 
 		/**
-		 * Required - Idetifier for the trained model.
+		 * Required - Identifier for the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
@@ -618,25 +617,26 @@ public class TrainedModelConfig implements JsonpSerializable {
 
 		/**
 		 * Required - The default configuration for inference. This can be either a
-		 * regression or classification configuration. It must match the underlying
-		 * definition.trained_model's target_type.
+		 * regression, classification, or one of the many NLP focused configurations. It
+		 * must match the underlying definition.trained_model's target_type.
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public final BuilderT inferenceConfig(InferenceConfig value) {
+		public final BuilderT inferenceConfig(InferenceConfigCreate value) {
 			this.inferenceConfig = value;
 			return self();
 		}
 
 		/**
 		 * Required - The default configuration for inference. This can be either a
-		 * regression or classification configuration. It must match the underlying
-		 * definition.trained_model's target_type.
+		 * regression, classification, or one of the many NLP focused configurations. It
+		 * must match the underlying definition.trained_model's target_type.
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public final BuilderT inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
-			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
+		public final BuilderT inferenceConfig(
+				Function<InferenceConfigCreate.Builder, ObjectBuilder<InferenceConfigCreate>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfigCreate.Builder()).build());
 		}
 
 		/**
@@ -743,7 +743,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		op.add(AbstractBuilder::estimatedHeapMemoryUsageBytes, JsonpDeserializer.integerDeserializer(),
 				"estimated_heap_memory_usage_bytes");
 		op.add(AbstractBuilder::estimatedOperations, JsonpDeserializer.integerDeserializer(), "estimated_operations");
-		op.add(AbstractBuilder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
+		op.add(AbstractBuilder::inferenceConfig, InferenceConfigCreate._DESERIALIZER, "inference_config");
 		op.add(AbstractBuilder::input, TrainedModelConfigInput._DESERIALIZER, "input");
 		op.add(AbstractBuilder::licenseLevel, JsonpDeserializer.stringDeserializer(), "license_level");
 		op.add(AbstractBuilder::metadata, TrainedModelConfigMetadata._DESERIALIZER, "metadata");

@@ -50,6 +50,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class Email implements JsonpSerializable {
+	@Nullable
+	private final String id;
+
 	private final List<String> bcc;
 
 	@Nullable
@@ -78,6 +81,7 @@ public class Email implements JsonpSerializable {
 
 	protected Email(AbstractBuilder<?> builder) {
 
+		this.id = builder.id;
 		this.bcc = ApiTypeHelper.unmodifiable(builder.bcc);
 		this.body = builder.body;
 		this.cc = ApiTypeHelper.unmodifiable(builder.cc);
@@ -93,6 +97,14 @@ public class Email implements JsonpSerializable {
 
 	public static Email emailOf(Function<Builder, ObjectBuilder<Email>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code id}
+	 */
+	@Nullable
+	public final String id() {
+		return this.id;
 	}
 
 	/**
@@ -180,6 +192,11 @@ public class Email implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.id != null) {
+			generator.writeKey("id");
+			generator.write(this.id);
+
+		}
 		if (ApiTypeHelper.isDefined(this.bcc)) {
 			generator.writeKey("bcc");
 			generator.writeStartArray();
@@ -284,6 +301,9 @@ public class Email implements JsonpSerializable {
 			extends
 				WithJsonObjectBuilderBase<BuilderT> {
 		@Nullable
+		private String id;
+
+		@Nullable
 		private List<String> bcc;
 
 		@Nullable
@@ -310,6 +330,14 @@ public class Email implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, EmailAttachment> attachments;
+
+		/**
+		 * API name: {@code id}
+		 */
+		public final BuilderT id(@Nullable String value) {
+			this.id = value;
+			return self();
+		}
 
 		/**
 		 * API name: {@code bcc}
@@ -483,6 +511,7 @@ public class Email implements JsonpSerializable {
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupEmailDeserializer(
 			ObjectDeserializer<BuilderT> op) {
 
+		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(AbstractBuilder::bcc, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"bcc");
 		op.add(AbstractBuilder::body, EmailBody._DESERIALIZER, "body");

@@ -116,6 +116,8 @@ public enum FieldType implements JsonEnum {
 
 	DenseVector("dense_vector"),
 
+	MatchOnlyText("match_only_text"),
+
 	;
 
 	private final String jsonValue;

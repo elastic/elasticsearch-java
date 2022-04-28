@@ -39,6 +39,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -65,7 +66,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Conflicts conflicts;
 
-	@Nullable
 	private final Destination dest;
 
 	@Nullable
@@ -92,7 +92,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Long slices;
 
-	@Nullable
 	private final Source source;
 
 	@Nullable
@@ -109,7 +108,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	private ReindexRequest(Builder builder) {
 
 		this.conflicts = builder.conflicts;
-		this.dest = builder.dest;
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.maxDocs = builder.maxDocs;
 		this.refresh = builder.refresh;
 		this.requestsPerSecond = builder.requestsPerSecond;
@@ -118,7 +117,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		this.scroll = builder.scroll;
 		this.size = builder.size;
 		this.slices = builder.slices;
-		this.source = builder.source;
+		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.timeout = builder.timeout;
 		this.waitForActiveShards = builder.waitForActiveShards;
 		this.waitForCompletion = builder.waitForCompletion;
@@ -138,9 +137,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code dest}
+	 * Required - API name: {@code dest}
 	 */
-	@Nullable
 	public final Destination dest() {
 		return this.dest;
 	}
@@ -220,9 +218,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code source}
+	 * Required - API name: {@code source}
 	 */
-	@Nullable
 	public final Source source() {
 		return this.source;
 	}
@@ -277,11 +274,9 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 			generator.writeKey("conflicts");
 			this.conflicts.serialize(generator, mapper);
 		}
-		if (this.dest != null) {
-			generator.writeKey("dest");
-			this.dest.serialize(generator, mapper);
+		generator.writeKey("dest");
+		this.dest.serialize(generator, mapper);
 
-		}
 		if (this.maxDocs != null) {
 			generator.writeKey("max_docs");
 			generator.write(this.maxDocs);
@@ -297,11 +292,8 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 			generator.write(this.size);
 
 		}
-		if (this.source != null) {
-			generator.writeKey("source");
-			this.source.serialize(generator, mapper);
-
-		}
+		generator.writeKey("source");
+		this.source.serialize(generator, mapper);
 
 	}
 
@@ -315,7 +307,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Conflicts conflicts;
 
-		@Nullable
 		private Destination dest;
 
 		@Nullable
@@ -342,7 +333,6 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private Long slices;
 
-		@Nullable
 		private Source source;
 
 		@Nullable
@@ -363,15 +353,15 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code dest}
+		 * Required - API name: {@code dest}
 		 */
-		public final Builder dest(@Nullable Destination value) {
+		public final Builder dest(Destination value) {
 			this.dest = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code dest}
+		 * Required - API name: {@code dest}
 		 */
 		public final Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
 			return this.dest(fn.apply(new Destination.Builder()).build());
@@ -468,15 +458,15 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
-		public final Builder source(@Nullable Source value) {
+		public final Builder source(Source value) {
 			this.source = value;
 			return this;
 		}
 
 		/**
-		 * API name: {@code source}
+		 * Required - API name: {@code source}
 		 */
 		public final Builder source(Function<Source.Builder, ObjectBuilder<Source>> fn) {
 			return this.source(fn.apply(new Source.Builder()).build());

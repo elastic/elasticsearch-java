@@ -23,22 +23,15 @@
 
 package co.elastic.clients.elasticsearch.async_search;
 
-import co.elastic.clients.elasticsearch._types.ShardStatistics;
+import co.elastic.clients.elasticsearch.async_search.status.StatusResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
-import co.elastic.clients.json.JsonpMapper;
-import co.elastic.clients.json.JsonpSerializer;
-import co.elastic.clients.json.NamedDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.function.Supplier;
-import javax.annotation.Nullable;
 
 // typedef: async_search.status.Response
 
@@ -48,53 +41,16 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class AsyncSearchStatusResponse<TDocument> extends AsyncSearchResponseBase {
-	private final ShardStatistics shards;
-
-	private final int completionStatus;
-
-	@Nullable
-	private final JsonpSerializer<TDocument> tDocumentSerializer;
-
+public class AsyncSearchStatusResponse extends StatusResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	private AsyncSearchStatusResponse(Builder<TDocument> builder) {
+	private AsyncSearchStatusResponse(Builder builder) {
 		super(builder);
 
-		this.shards = ApiTypeHelper.requireNonNull(builder.shards, this, "shards");
-		this.completionStatus = ApiTypeHelper.requireNonNull(builder.completionStatus, this, "completionStatus");
-		this.tDocumentSerializer = builder.tDocumentSerializer;
-
 	}
 
-	public static <TDocument> AsyncSearchStatusResponse<TDocument> of(
-			Function<Builder<TDocument>, ObjectBuilder<AsyncSearchStatusResponse<TDocument>>> fn) {
-		return fn.apply(new Builder<>()).build();
-	}
-
-	/**
-	 * Required - API name: {@code _shards}
-	 */
-	public final ShardStatistics shards() {
-		return this.shards;
-	}
-
-	/**
-	 * Required - API name: {@code completion_status}
-	 */
-	public final int completionStatus() {
-		return this.completionStatus;
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		super.serializeInternal(generator, mapper);
-		generator.writeKey("_shards");
-		this.shards.serialize(generator, mapper);
-
-		generator.writeKey("completion_status");
-		generator.write(this.completionStatus);
-
+	public static AsyncSearchStatusResponse of(Function<Builder, ObjectBuilder<AsyncSearchStatusResponse>> fn) {
+		return fn.apply(new Builder()).build();
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -103,50 +59,11 @@ public class AsyncSearchStatusResponse<TDocument> extends AsyncSearchResponseBas
 	 * Builder for {@link AsyncSearchStatusResponse}.
 	 */
 
-	public static class Builder<TDocument> extends AsyncSearchResponseBase.AbstractBuilder<Builder<TDocument>>
+	public static class Builder extends StatusResponseBase.AbstractBuilder<Builder>
 			implements
-				ObjectBuilder<AsyncSearchStatusResponse<TDocument>> {
-		private ShardStatistics shards;
-
-		private Integer completionStatus;
-
-		@Nullable
-		private JsonpSerializer<TDocument> tDocumentSerializer;
-
-		/**
-		 * Required - API name: {@code _shards}
-		 */
-		public final Builder<TDocument> shards(ShardStatistics value) {
-			this.shards = value;
-			return this;
-		}
-
-		/**
-		 * Required - API name: {@code _shards}
-		 */
-		public final Builder<TDocument> shards(Function<ShardStatistics.Builder, ObjectBuilder<ShardStatistics>> fn) {
-			return this.shards(fn.apply(new ShardStatistics.Builder()).build());
-		}
-
-		/**
-		 * Required - API name: {@code completion_status}
-		 */
-		public final Builder<TDocument> completionStatus(int value) {
-			this.completionStatus = value;
-			return this;
-		}
-
-		/**
-		 * Serializer for TDocument. If not set, an attempt will be made to find a
-		 * serializer from the JSON context.
-		 */
-		public final Builder<TDocument> tDocumentSerializer(@Nullable JsonpSerializer<TDocument> value) {
-			this.tDocumentSerializer = value;
-			return this;
-		}
-
+				ObjectBuilder<AsyncSearchStatusResponse> {
 		@Override
-		protected Builder<TDocument> self() {
+		protected Builder self() {
 			return this;
 		}
 
@@ -156,38 +73,24 @@ public class AsyncSearchStatusResponse<TDocument> extends AsyncSearchResponseBas
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public AsyncSearchStatusResponse<TDocument> build() {
+		public AsyncSearchStatusResponse build() {
 			_checkSingleUse();
 
-			return new AsyncSearchStatusResponse<TDocument>(this);
+			return new AsyncSearchStatusResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Create a JSON deserializer for AsyncSearchStatusResponse
+	 * Json deserializer for {@link AsyncSearchStatusResponse}
 	 */
-	public static <TDocument> JsonpDeserializer<AsyncSearchStatusResponse<TDocument>> createAsyncSearchStatusResponseDeserializer(
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		return ObjectBuilderDeserializer.createForObject((Supplier<Builder<TDocument>>) Builder::new,
-				op -> AsyncSearchStatusResponse.setupAsyncSearchStatusResponseDeserializer(op, tDocumentDeserializer));
-	};
+	public static final JsonpDeserializer<AsyncSearchStatusResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, AsyncSearchStatusResponse::setupAsyncSearchStatusResponseDeserializer);
 
-	/**
-	 * Json deserializer for {@link AsyncSearchStatusResponse} based on named
-	 * deserializers provided by the calling {@code JsonMapper}.
-	 */
-	public static final JsonpDeserializer<AsyncSearchStatusResponse<Object>> _DESERIALIZER = JsonpDeserializer
-			.lazy(() -> createAsyncSearchStatusResponseDeserializer(
-					new NamedDeserializer<>("co.elastic.clients:Deserializer:async_search.status.TDocument")));
-
-	protected static <TDocument> void setupAsyncSearchStatusResponseDeserializer(
-			ObjectDeserializer<AsyncSearchStatusResponse.Builder<TDocument>> op,
-			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		AsyncSearchResponseBase.setupAsyncSearchResponseBaseDeserializer(op);
-		op.add(Builder::shards, ShardStatistics._DESERIALIZER, "_shards");
-		op.add(Builder::completionStatus, JsonpDeserializer.integerDeserializer(), "completion_status");
+	protected static void setupAsyncSearchStatusResponseDeserializer(
+			ObjectDeserializer<AsyncSearchStatusResponse.Builder> op) {
+		StatusResponseBase.setupStatusResponseBaseDeserializer(op);
 
 	}
 

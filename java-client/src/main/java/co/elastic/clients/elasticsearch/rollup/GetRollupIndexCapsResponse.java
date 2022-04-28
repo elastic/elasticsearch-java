@@ -26,14 +26,21 @@ package co.elastic.clients.elasticsearch.rollup;
 import co.elastic.clients.elasticsearch.rollup.get_rollup_index_caps.IndexCapabilities;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.endpoints.DictionaryResponse;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: rollup.get_rollup_index_caps.Response
 
@@ -44,16 +51,40 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class GetRollupIndexCapsResponse extends DictionaryResponse<String, IndexCapabilities> {
+public class GetRollupIndexCapsResponse implements JsonpSerializable {
+	private final Map<String, IndexCapabilities> result;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetRollupIndexCapsResponse(Builder builder) {
-		super(builder);
+
+		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
 
 	}
 
 	public static GetRollupIndexCapsResponse of(Function<Builder, ObjectBuilder<GetRollupIndexCapsResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - Response value.
+	 */
+	public final Map<String, IndexCapabilities> result() {
+		return this.result;
+	}
+
+	/**
+	 * Serialize this value to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		for (Map.Entry<String, IndexCapabilities> item0 : this.result.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
+
+		}
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -62,9 +93,50 @@ public class GetRollupIndexCapsResponse extends DictionaryResponse<String, Index
 	 * Builder for {@link GetRollupIndexCapsResponse}.
 	 */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, IndexCapabilities, Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetRollupIndexCapsResponse> {
+		private Map<String, IndexCapabilities> result = new HashMap<>();
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 */
+		public final Builder result(Map<String, IndexCapabilities> map) {
+			this.result = _mapPutAll(this.result, map);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * Adds an entry to <code>result</code>.
+		 */
+		public final Builder result(String key, IndexCapabilities value) {
+			this.result = _mapPut(this.result, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * Adds an entry to <code>result</code> using a builder lambda.
+		 */
+		public final Builder result(String key,
+				Function<IndexCapabilities.Builder, ObjectBuilder<IndexCapabilities>> fn) {
+			return result(key, fn.apply(new IndexCapabilities.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			Map<String, IndexCapabilities> value = (Map<String, IndexCapabilities>) JsonpDeserializer
+					.stringMapDeserializer(IndexCapabilities._DESERIALIZER).deserialize(parser, mapper);
+			return this.result(value);
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -78,26 +150,19 @@ public class GetRollupIndexCapsResponse extends DictionaryResponse<String, Index
 		 */
 		public GetRollupIndexCapsResponse build() {
 			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
 
 			return new GetRollupIndexCapsResponse(this);
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<GetRollupIndexCapsResponse> _DESERIALIZER = createGetRollupIndexCapsResponseDeserializer();
+	protected static JsonpDeserializer<GetRollupIndexCapsResponse> createGetRollupIndexCapsResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link GetRollupIndexCapsResponse}
-	 */
-	public static final JsonpDeserializer<GetRollupIndexCapsResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetRollupIndexCapsResponse::setupGetRollupIndexCapsResponseDeserializer);
+		JsonpDeserializer<Map<String, IndexCapabilities>> valueDeserializer = JsonpDeserializer
+				.stringMapDeserializer(IndexCapabilities._DESERIALIZER);
 
-	protected static void setupGetRollupIndexCapsResponseDeserializer(
-			ObjectDeserializer<GetRollupIndexCapsResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				IndexCapabilities._DESERIALIZER);
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().result(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

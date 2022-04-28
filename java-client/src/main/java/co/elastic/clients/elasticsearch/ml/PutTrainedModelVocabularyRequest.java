@@ -58,6 +58,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PutTrainedModelVocabularyRequest extends RequestBase implements JsonpSerializable {
+	private final List<String> merges;
+
 	private final String modelId;
 
 	private final List<String> vocabulary;
@@ -66,6 +68,7 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 
 	private PutTrainedModelVocabularyRequest(Builder builder) {
 
+		this.merges = ApiTypeHelper.unmodifiable(builder.merges);
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.vocabulary = ApiTypeHelper.unmodifiableRequired(builder.vocabulary, this, "vocabulary");
 
@@ -74,6 +77,15 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 	public static PutTrainedModelVocabularyRequest of(
 			Function<Builder, ObjectBuilder<PutTrainedModelVocabularyRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The optional model merges if required by the tokenizer.
+	 * <p>
+	 * API name: {@code merges}
+	 */
+	public final List<String> merges() {
+		return this.merges;
 	}
 
 	/**
@@ -105,6 +117,16 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.merges)) {
+			generator.writeKey("merges");
+			generator.writeStartArray();
+			for (String item0 : this.merges) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
 		if (ApiTypeHelper.isDefined(this.vocabulary)) {
 			generator.writeKey("vocabulary");
 			generator.writeStartArray();
@@ -127,9 +149,36 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<PutTrainedModelVocabularyRequest> {
+		@Nullable
+		private List<String> merges;
+
 		private String modelId;
 
 		private List<String> vocabulary;
+
+		/**
+		 * The optional model merges if required by the tokenizer.
+		 * <p>
+		 * API name: {@code merges}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>merges</code>.
+		 */
+		public final Builder merges(List<String> list) {
+			this.merges = _listAddAll(this.merges, list);
+			return this;
+		}
+
+		/**
+		 * The optional model merges if required by the tokenizer.
+		 * <p>
+		 * API name: {@code merges}
+		 * <p>
+		 * Adds one or more values to <code>merges</code>.
+		 */
+		public final Builder merges(String value, String... values) {
+			this.merges = _listAdd(this.merges, value, values);
+			return this;
+		}
 
 		/**
 		 * Required - The unique identifier of the trained model.
@@ -194,6 +243,7 @@ public class PutTrainedModelVocabularyRequest extends RequestBase implements Jso
 	protected static void setupPutTrainedModelVocabularyRequestDeserializer(
 			ObjectDeserializer<PutTrainedModelVocabularyRequest.Builder> op) {
 
+		op.add(Builder::merges, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "merges");
 		op.add(Builder::vocabulary, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"vocabulary");
 

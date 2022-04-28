@@ -23,15 +23,22 @@
 
 package co.elastic.clients.elasticsearch._types.aggregations;
 
+import co.elastic.clients.elasticsearch.ml.ClassificationInferenceOptions;
+import co.elastic.clients.elasticsearch.ml.RegressionInferenceOptions;
+import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -45,19 +52,62 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class InferenceConfig implements JsonpSerializable {
-	@Nullable
-	private final RegressionInferenceOptions regression;
+public class InferenceConfig implements TaggedUnion<InferenceConfig.Kind, Object>, JsonpSerializable {
 
-	@Nullable
-	private final ClassificationInferenceOptions classification;
+	/**
+	 * {@link InferenceConfig} variant kinds.
+	 */
+	/**
+	 * {@link InferenceConfig} variant kinds.
+	 * 
+	 * @see <a href=
+	 *      "../../doc-files/api-spec.html#_types.aggregations.InferenceConfigContainer">API
+	 *      specification</a>
+	 */
 
-	// ---------------------------------------------------------------------------------------------
+	public enum Kind implements JsonEnum {
+		Regression("regression"),
+
+		Classification("classification"),
+
+		;
+
+		private final String jsonValue;
+
+		Kind(String jsonValue) {
+			this.jsonValue = jsonValue;
+		}
+
+		public String jsonValue() {
+			return this.jsonValue;
+		}
+
+	}
+
+	private final Kind _kind;
+	private final Object _value;
+
+	@Override
+	public final Kind _kind() {
+		return _kind;
+	}
+
+	@Override
+	public final Object _get() {
+		return _value;
+	}
+
+	public InferenceConfig(InferenceConfigVariant value) {
+
+		this._kind = ApiTypeHelper.requireNonNull(value._inferenceConfigKind(), this, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
+	}
 
 	private InferenceConfig(Builder builder) {
 
-		this.regression = builder.regression;
-		this.classification = builder.classification;
+		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
+		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
@@ -66,133 +116,98 @@ public class InferenceConfig implements JsonpSerializable {
 	}
 
 	/**
-	 * Regression configuration for inference.
-	 * <p>
-	 * API name: {@code regression}
+	 * Is this variant instance of kind {@code regression}?
 	 */
-	@Nullable
-	public final RegressionInferenceOptions regression() {
-		return this.regression;
+	public boolean isRegression() {
+		return _kind == Kind.Regression;
 	}
 
 	/**
-	 * Classification configuration for inference.
-	 * <p>
-	 * API name: {@code classification}
+	 * Get the {@code regression} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code regression} kind.
 	 */
-	@Nullable
-	public final ClassificationInferenceOptions classification() {
-		return this.classification;
+	public RegressionInferenceOptions regression() {
+		return TaggedUnionUtils.get(this, Kind.Regression);
 	}
 
 	/**
-	 * Serialize this object to JSON.
+	 * Is this variant instance of kind {@code classification}?
 	 */
+	public boolean isClassification() {
+		return _kind == Kind.Classification;
+	}
+
+	/**
+	 * Get the {@code classification} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code classification} kind.
+	 */
+	public ClassificationInferenceOptions classification() {
+		return TaggedUnionUtils.get(this, Kind.Classification);
+	}
+
+	@Override
+	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+
 		generator.writeStartObject();
-		serializeInternal(generator, mapper);
+
+		generator.writeKey(_kind.jsonValue());
+		if (_value instanceof JsonpSerializable) {
+			((JsonpSerializable) _value).serialize(generator, mapper);
+		}
+
 		generator.writeEnd();
-	}
-
-	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
-
-		if (this.regression != null) {
-			generator.writeKey("regression");
-			this.regression.serialize(generator, mapper);
-
-		}
-		if (this.classification != null) {
-			generator.writeKey("classification");
-			this.classification.serialize(generator, mapper);
-
-		}
 
 	}
-
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Builder for {@link InferenceConfig}.
-	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<InferenceConfig> {
-		@Nullable
-		private RegressionInferenceOptions regression;
-
-		@Nullable
-		private ClassificationInferenceOptions classification;
-
-		/**
-		 * Regression configuration for inference.
-		 * <p>
-		 * API name: {@code regression}
-		 */
-		public final Builder regression(@Nullable RegressionInferenceOptions value) {
-			this.regression = value;
-			return this;
-		}
-
-		/**
-		 * Regression configuration for inference.
-		 * <p>
-		 * API name: {@code regression}
-		 */
-		public final Builder regression(
-				Function<RegressionInferenceOptions.Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
-			return this.regression(fn.apply(new RegressionInferenceOptions.Builder()).build());
-		}
-
-		/**
-		 * Classification configuration for inference.
-		 * <p>
-		 * API name: {@code classification}
-		 */
-		public final Builder classification(@Nullable ClassificationInferenceOptions value) {
-			this.classification = value;
-			return this;
-		}
-
-		/**
-		 * Classification configuration for inference.
-		 * <p>
-		 * API name: {@code classification}
-		 */
-		public final Builder classification(
-				Function<ClassificationInferenceOptions.Builder, ObjectBuilder<ClassificationInferenceOptions>> fn) {
-			return this.classification(fn.apply(new ClassificationInferenceOptions.Builder()).build());
-		}
+		private Kind _kind;
+		private Object _value;
 
 		@Override
 		protected Builder self() {
 			return this;
 		}
+		public ObjectBuilder<InferenceConfig> regression(RegressionInferenceOptions v) {
+			this._kind = Kind.Regression;
+			this._value = v;
+			return this;
+		}
 
-		/**
-		 * Builds a {@link InferenceConfig}.
-		 *
-		 * @throws NullPointerException
-		 *             if some of the required fields are null.
-		 */
+		public ObjectBuilder<InferenceConfig> regression(
+				Function<RegressionInferenceOptions.Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
+			return this.regression(fn.apply(new RegressionInferenceOptions.Builder()).build());
+		}
+
+		public ObjectBuilder<InferenceConfig> classification(ClassificationInferenceOptions v) {
+			this._kind = Kind.Classification;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<InferenceConfig> classification(
+				Function<ClassificationInferenceOptions.Builder, ObjectBuilder<ClassificationInferenceOptions>> fn) {
+			return this.classification(fn.apply(new ClassificationInferenceOptions.Builder()).build());
+		}
+
 		public InferenceConfig build() {
 			_checkSingleUse();
-
 			return new InferenceConfig(this);
 		}
+
 	}
 
-	// ---------------------------------------------------------------------------------------------
-
-	/**
-	 * Json deserializer for {@link InferenceConfig}
-	 */
-	public static final JsonpDeserializer<InferenceConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			InferenceConfig::setupInferenceConfigDeserializer);
-
-	protected static void setupInferenceConfigDeserializer(ObjectDeserializer<InferenceConfig.Builder> op) {
+	protected static void setupInferenceConfigDeserializer(ObjectDeserializer<Builder> op) {
 
 		op.add(Builder::regression, RegressionInferenceOptions._DESERIALIZER, "regression");
 		op.add(Builder::classification, ClassificationInferenceOptions._DESERIALIZER, "classification");
 
 	}
 
+	public static final JsonpDeserializer<InferenceConfig> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
+			InferenceConfig::setupInferenceConfigDeserializer, Builder::build);
 }

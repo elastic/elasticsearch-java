@@ -36,6 +36,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.List;
@@ -48,7 +49,14 @@ import javax.annotation.Nullable;
 // typedef: _global.open_point_in_time.Request
 
 /**
- * Open a point in time that can be used in subsequent searches
+ * A search request by default executes against the most recent visible data of
+ * the target indices, which is called point in time. Elasticsearch pit (point
+ * in time) is a lightweight view into the state of the data as it existed when
+ * initiated. In some cases, it’s preferred to perform multiple search requests
+ * using the same point in time. For example, if refreshes happen between
+ * <code>search_after</code> requests, then the results of those requests might
+ * not be consistent as changes happening between searches are only visible to
+ * the more recent point in time.
  * 
  * @see <a href=
  *      "../doc-files/api-spec.html#_global.open_point_in_time.Request">API
@@ -56,6 +64,9 @@ import javax.annotation.Nullable;
  */
 
 public class OpenPointInTimeRequest extends RequestBase {
+	@Nullable
+	private final Boolean ignoreUnavailable;
+
 	private final List<String> index;
 
 	private final Time keepAlive;
@@ -64,6 +75,7 @@ public class OpenPointInTimeRequest extends RequestBase {
 
 	private OpenPointInTimeRequest(Builder builder) {
 
+		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.keepAlive = ApiTypeHelper.requireNonNull(builder.keepAlive, this, "keepAlive");
 
@@ -71,6 +83,17 @@ public class OpenPointInTimeRequest extends RequestBase {
 
 	public static OpenPointInTimeRequest of(Function<Builder, ObjectBuilder<OpenPointInTimeRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Whether specified concrete indices should be ignored when unavailable
+	 * (missing or closed)
+	 * <p>
+	 * API name: {@code ignore_unavailable}
+	 */
+	@Nullable
+	public final Boolean ignoreUnavailable() {
+		return this.ignoreUnavailable;
 	}
 
 	/**
@@ -99,9 +122,23 @@ public class OpenPointInTimeRequest extends RequestBase {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<OpenPointInTimeRequest> {
+		@Nullable
+		private Boolean ignoreUnavailable;
+
 		private List<String> index;
 
 		private Time keepAlive;
+
+		/**
+		 * Whether specified concrete indices should be ignored when unavailable
+		 * (missing or closed)
+		 * <p>
+		 * API name: {@code ignore_unavailable}
+		 */
+		public final Builder ignoreUnavailable(@Nullable Boolean value) {
+			this.ignoreUnavailable = value;
+			return this;
+		}
 
 		/**
 		 * Required - A comma-separated list of index names to open point in time; use
@@ -197,6 +234,9 @@ public class OpenPointInTimeRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.ignoreUnavailable != null) {
+					params.put("ignore_unavailable", String.valueOf(request.ignoreUnavailable));
+				}
 				params.put("keep_alive", request.keepAlive._toJsonString());
 				return params;
 

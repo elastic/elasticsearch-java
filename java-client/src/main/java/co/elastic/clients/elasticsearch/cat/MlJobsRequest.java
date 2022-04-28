@@ -70,24 +70,15 @@ public class MlJobsRequest extends CatRequestBase {
 	@Nullable
 	private final Bytes bytes;
 
-	@Nullable
-	private final String format;
-
-	private final List<CatAnonalyDetectorColumn> h;
-
-	@Nullable
-	private final Boolean help;
+	private final List<CatAnomalyDetectorColumn> h;
 
 	@Nullable
 	private final String jobId;
 
-	private final List<CatAnonalyDetectorColumn> s;
+	private final List<CatAnomalyDetectorColumn> s;
 
 	@Nullable
 	private final TimeUnit time;
-
-	@Nullable
-	private final Boolean v;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -95,13 +86,10 @@ public class MlJobsRequest extends CatRequestBase {
 
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
-		this.format = builder.format;
 		this.h = ApiTypeHelper.unmodifiable(builder.h);
-		this.help = builder.help;
 		this.jobId = builder.jobId;
 		this.s = ApiTypeHelper.unmodifiable(builder.s);
 		this.time = builder.time;
-		this.v = builder.v;
 
 	}
 
@@ -141,33 +129,12 @@ public class MlJobsRequest extends CatRequestBase {
 	}
 
 	/**
-	 * Short version of the HTTP accept header. Valid values include JSON, YAML, for
-	 * example.
-	 * <p>
-	 * API name: {@code format}
-	 */
-	@Nullable
-	public final String format() {
-		return this.format;
-	}
-
-	/**
 	 * Comma-separated list of column names to display.
 	 * <p>
 	 * API name: {@code h}
 	 */
-	public final List<CatAnonalyDetectorColumn> h() {
+	public final List<CatAnomalyDetectorColumn> h() {
 		return this.h;
-	}
-
-	/**
-	 * If true, the response includes help information.
-	 * <p>
-	 * API name: {@code help}
-	 */
-	@Nullable
-	public final Boolean help() {
-		return this.help;
 	}
 
 	/**
@@ -186,7 +153,7 @@ public class MlJobsRequest extends CatRequestBase {
 	 * <p>
 	 * API name: {@code s}
 	 */
-	public final List<CatAnonalyDetectorColumn> s() {
+	public final List<CatAnomalyDetectorColumn> s() {
 		return this.s;
 	}
 
@@ -198,16 +165,6 @@ public class MlJobsRequest extends CatRequestBase {
 	@Nullable
 	public final TimeUnit time() {
 		return this.time;
-	}
-
-	/**
-	 * If <code>true</code>, the response includes column headings.
-	 * <p>
-	 * API name: {@code v}
-	 */
-	@Nullable
-	public final Boolean v() {
-		return this.v;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -224,25 +181,16 @@ public class MlJobsRequest extends CatRequestBase {
 		private Bytes bytes;
 
 		@Nullable
-		private String format;
-
-		@Nullable
-		private List<CatAnonalyDetectorColumn> h;
-
-		@Nullable
-		private Boolean help;
+		private List<CatAnomalyDetectorColumn> h;
 
 		@Nullable
 		private String jobId;
 
 		@Nullable
-		private List<CatAnonalyDetectorColumn> s;
+		private List<CatAnomalyDetectorColumn> s;
 
 		@Nullable
 		private TimeUnit time;
-
-		@Nullable
-		private Boolean v;
 
 		/**
 		 * Specifies what to do when the request:
@@ -276,24 +224,13 @@ public class MlJobsRequest extends CatRequestBase {
 		}
 
 		/**
-		 * Short version of the HTTP accept header. Valid values include JSON, YAML, for
-		 * example.
-		 * <p>
-		 * API name: {@code format}
-		 */
-		public final Builder format(@Nullable String value) {
-			this.format = value;
-			return this;
-		}
-
-		/**
 		 * Comma-separated list of column names to display.
 		 * <p>
 		 * API name: {@code h}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>h</code>.
 		 */
-		public final Builder h(List<CatAnonalyDetectorColumn> list) {
+		public final Builder h(List<CatAnomalyDetectorColumn> list) {
 			this.h = _listAddAll(this.h, list);
 			return this;
 		}
@@ -305,18 +242,8 @@ public class MlJobsRequest extends CatRequestBase {
 		 * <p>
 		 * Adds one or more values to <code>h</code>.
 		 */
-		public final Builder h(CatAnonalyDetectorColumn value, CatAnonalyDetectorColumn... values) {
+		public final Builder h(CatAnomalyDetectorColumn value, CatAnomalyDetectorColumn... values) {
 			this.h = _listAdd(this.h, value, values);
-			return this;
-		}
-
-		/**
-		 * If true, the response includes help information.
-		 * <p>
-		 * API name: {@code help}
-		 */
-		public final Builder help(@Nullable Boolean value) {
-			this.help = value;
 			return this;
 		}
 
@@ -338,7 +265,7 @@ public class MlJobsRequest extends CatRequestBase {
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>s</code>.
 		 */
-		public final Builder s(List<CatAnonalyDetectorColumn> list) {
+		public final Builder s(List<CatAnomalyDetectorColumn> list) {
 			this.s = _listAddAll(this.s, list);
 			return this;
 		}
@@ -351,7 +278,7 @@ public class MlJobsRequest extends CatRequestBase {
 		 * <p>
 		 * Adds one or more values to <code>s</code>.
 		 */
-		public final Builder s(CatAnonalyDetectorColumn value, CatAnonalyDetectorColumn... values) {
+		public final Builder s(CatAnomalyDetectorColumn value, CatAnomalyDetectorColumn... values) {
 			this.s = _listAdd(this.s, value, values);
 			return this;
 		}
@@ -363,16 +290,6 @@ public class MlJobsRequest extends CatRequestBase {
 		 */
 		public final Builder time(@Nullable TimeUnit value) {
 			this.time = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code>, the response includes column headings.
-		 * <p>
-		 * API name: {@code v}
-		 */
-		public final Builder v(@Nullable Boolean value) {
-			this.v = value;
 			return this;
 		}
 
@@ -436,20 +353,11 @@ public class MlJobsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
-				if (request.help != null) {
-					params.put("help", String.valueOf(request.help));
-				}
 				if (ApiTypeHelper.isDefined(request.s)) {
 					params.put("s", request.s.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
-				}
-				if (request.v != null) {
-					params.put("v", String.valueOf(request.v));
-				}
-				if (request.format != null) {
-					params.put("format", request.format);
 				}
 				if (ApiTypeHelper.isDefined(request.h)) {
 					params.put("h", request.h.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));

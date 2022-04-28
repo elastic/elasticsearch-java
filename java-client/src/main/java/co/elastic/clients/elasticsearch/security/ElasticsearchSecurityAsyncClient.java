@@ -57,6 +57,39 @@ public class ElasticsearchSecurityAsyncClient
 		return new ElasticsearchSecurityAsyncClient(this.transport, transportOptions);
 	}
 
+	// ----- Endpoint: security.activate_user_profile
+
+	/**
+	 * Creates or updates the user profile on behalf of another user.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-activate-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ActivateUserProfileResponse> activateUserProfile(ActivateUserProfileRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ActivateUserProfileRequest, ActivateUserProfileResponse, ErrorResponse> endpoint = (JsonEndpoint<ActivateUserProfileRequest, ActivateUserProfileResponse, ErrorResponse>) ActivateUserProfileRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Creates or updates the user profile on behalf of another user.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ActivateUserProfileRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-activate-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<ActivateUserProfileResponse> activateUserProfile(
+			Function<ActivateUserProfileRequest.Builder, ObjectBuilder<ActivateUserProfileRequest>> fn) {
+		return activateUserProfile(fn.apply(new ActivateUserProfileRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: security.authenticate
 
 	/**
@@ -566,6 +599,39 @@ public class ElasticsearchSecurityAsyncClient
 		return disableUser(fn.apply(new DisableUserRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: security.disable_user_profile
+
+	/**
+	 * Disables a user profile so it's not visible in user profile searches.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-disable-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<DisableUserProfileResponse> disableUserProfile(DisableUserProfileRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<DisableUserProfileRequest, DisableUserProfileResponse, ErrorResponse> endpoint = (JsonEndpoint<DisableUserProfileRequest, DisableUserProfileResponse, ErrorResponse>) DisableUserProfileRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Disables a user profile so it's not visible in user profile searches.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link DisableUserProfileRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-disable-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<DisableUserProfileResponse> disableUserProfile(
+			Function<DisableUserProfileRequest.Builder, ObjectBuilder<DisableUserProfileRequest>> fn) {
+		return disableUserProfile(fn.apply(new DisableUserProfileRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: security.enable_user
 
 	/**
@@ -597,6 +663,39 @@ public class ElasticsearchSecurityAsyncClient
 	public final CompletableFuture<EnableUserResponse> enableUser(
 			Function<EnableUserRequest.Builder, ObjectBuilder<EnableUserRequest>> fn) {
 		return enableUser(fn.apply(new EnableUserRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.enable_user_profile
+
+	/**
+	 * Enables a user profile so it's visible in user profile searches.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-enable-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<EnableUserProfileResponse> enableUserProfile(EnableUserProfileRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<EnableUserProfileRequest, EnableUserProfileResponse, ErrorResponse> endpoint = (JsonEndpoint<EnableUserProfileRequest, EnableUserProfileResponse, ErrorResponse>) EnableUserProfileRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Enables a user profile so it's visible in user profile searches.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link EnableUserProfileRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-enable-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<EnableUserProfileResponse> enableUserProfile(
+			Function<EnableUserProfileRequest.Builder, ObjectBuilder<EnableUserProfileRequest>> fn) {
+		return enableUserProfile(fn.apply(new EnableUserProfileRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.enroll_kibana
@@ -1043,6 +1142,39 @@ public class ElasticsearchSecurityAsyncClient
 	public CompletableFuture<GetUserPrivilegesResponse> getUserPrivileges() {
 		return this.transport.performRequestAsync(new GetUserPrivilegesRequest.Builder().build(),
 				GetUserPrivilegesRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: security.get_user_profile
+
+	/**
+	 * Retrieves user profile for the given unique ID.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetUserProfileResponse> getUserProfile(GetUserProfileRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetUserProfileRequest, GetUserProfileResponse, ErrorResponse> endpoint = (JsonEndpoint<GetUserProfileRequest, GetUserProfileResponse, ErrorResponse>) GetUserProfileRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Retrieves user profile for the given unique ID.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetUserProfileRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-get-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetUserProfileResponse> getUserProfile(
+			Function<GetUserProfileRequest.Builder, ObjectBuilder<GetUserProfileRequest>> fn) {
+		return getUserProfile(fn.apply(new GetUserProfileRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: security.grant_api_key
@@ -1624,6 +1756,86 @@ public class ElasticsearchSecurityAsyncClient
 	public final CompletableFuture<SamlServiceProviderMetadataResponse> samlServiceProviderMetadata(
 			Function<SamlServiceProviderMetadataRequest.Builder, ObjectBuilder<SamlServiceProviderMetadataRequest>> fn) {
 		return samlServiceProviderMetadata(fn.apply(new SamlServiceProviderMetadataRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: security.suggest_user_profiles
+
+	/**
+	 * Get suggestions for user profiles that match specified search criteria.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-suggest-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SuggestUserProfilesResponse> suggestUserProfiles(SuggestUserProfilesRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<SuggestUserProfilesRequest, SuggestUserProfilesResponse, ErrorResponse> endpoint = (JsonEndpoint<SuggestUserProfilesRequest, SuggestUserProfilesResponse, ErrorResponse>) SuggestUserProfilesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Get suggestions for user profiles that match specified search criteria.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link SuggestUserProfilesRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-suggest-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<SuggestUserProfilesResponse> suggestUserProfiles(
+			Function<SuggestUserProfilesRequest.Builder, ObjectBuilder<SuggestUserProfilesRequest>> fn) {
+		return suggestUserProfiles(fn.apply(new SuggestUserProfilesRequest.Builder()).build());
+	}
+
+	/**
+	 * Get suggestions for user profiles that match specified search criteria.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/security-api-suggest-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<SuggestUserProfilesResponse> suggestUserProfiles() {
+		return this.transport.performRequestAsync(new SuggestUserProfilesRequest.Builder().build(),
+				SuggestUserProfilesRequest._ENDPOINT, this.transportOptions);
+	}
+
+	// ----- Endpoint: security.update_user_profile_data
+
+	/**
+	 * Update application specific data for the user profile of the given unique ID.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-user-profile-data.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<UpdateUserProfileDataResponse> updateUserProfileData(
+			UpdateUserProfileDataRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateUserProfileDataRequest, UpdateUserProfileDataResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateUserProfileDataRequest, UpdateUserProfileDataResponse, ErrorResponse>) UpdateUserProfileDataRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Update application specific data for the user profile of the given unique ID.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateUserProfileDataRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-user-profile-data.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<UpdateUserProfileDataResponse> updateUserProfileData(
+			Function<UpdateUserProfileDataRequest.Builder, ObjectBuilder<UpdateUserProfileDataRequest>> fn) {
+		return updateUserProfileData(fn.apply(new UpdateUserProfileDataRequest.Builder()).build());
 	}
 
 }

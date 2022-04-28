@@ -128,6 +128,8 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 		GeotileGrid("geotile_grid"),
 
+		GeohexGrid("geohex_grid"),
+
 		Global("global"),
 
 		Histogram("histogram"),
@@ -800,6 +802,23 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 	 */
 	public GeoTileGridAggregation geotileGrid() {
 		return TaggedUnionUtils.get(this, Kind.GeotileGrid);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code geohex_grid}?
+	 */
+	public boolean isGeohexGrid() {
+		return _kind == Kind.GeohexGrid;
+	}
+
+	/**
+	 * Get the {@code geohex_grid} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code geohex_grid} kind.
+	 */
+	public GeohexGridAggregation geohexGrid() {
+		return TaggedUnionUtils.get(this, Kind.GeohexGrid);
 	}
 
 	/**
@@ -1955,6 +1974,17 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return this.geotileGrid(fn.apply(new GeoTileGridAggregation.Builder()).build());
 		}
 
+		public ContainerBuilder geohexGrid(GeohexGridAggregation v) {
+			this._kind = Kind.GeohexGrid;
+			this._value = v;
+			return new ContainerBuilder();
+		}
+
+		public ContainerBuilder geohexGrid(
+				Function<GeohexGridAggregation.Builder, ObjectBuilder<GeohexGridAggregation>> fn) {
+			return this.geohexGrid(fn.apply(new GeohexGridAggregation.Builder()).build());
+		}
+
 		public ContainerBuilder global(GlobalAggregation v) {
 			this._kind = Kind.Global;
 			this._value = v;
@@ -2507,6 +2537,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		op.add(Builder::geohashGrid, GeoHashGridAggregation._DESERIALIZER, "geohash_grid");
 		op.add(Builder::geoLine, GeoLineAggregation._DESERIALIZER, "geo_line");
 		op.add(Builder::geotileGrid, GeoTileGridAggregation._DESERIALIZER, "geotile_grid");
+		op.add(Builder::geohexGrid, GeohexGridAggregation._DESERIALIZER, "geohex_grid");
 		op.add(Builder::global, GlobalAggregation._DESERIALIZER, "global");
 		op.add(Builder::histogram, HistogramAggregation._DESERIALIZER, "histogram");
 		op.add(Builder::ipRange, IpRangeAggregation._DESERIALIZER, "ip_range");

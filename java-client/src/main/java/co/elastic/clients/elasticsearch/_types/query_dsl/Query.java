@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/query-dsl.html">Documentation
+ *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/query-dsl.html">Documentation
  *      on elastic.co</a>
  * @see <a href=
  *      "../../doc-files/api-spec.html#_types.query_dsl.QueryContainer">API

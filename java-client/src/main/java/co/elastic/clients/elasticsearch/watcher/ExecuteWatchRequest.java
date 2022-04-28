@@ -109,9 +109,6 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 	/**
 	 * Determines how to handle the watch actions as part of the watch execution.
-	 * See <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html#watcher-api-execute-watch-action-mode">Action
-	 * execution modes</a> for more information.
 	 * <p>
 	 * API name: {@code action_modes}
 	 */
@@ -194,10 +191,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 	}
 
 	/**
-	 * When present, this <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/how-watcher-works.html#watch-definition">watch</a>
-	 * is used instead of the one specified in the request. This watch is not
-	 * persisted to the index and record_execution cannot be set.
+	 * When present, this watch is used instead of the one specified in the request.
+	 * This watch is not persisted to the index and record_execution cannot be set.
 	 * <p>
 	 * API name: {@code watch}
 	 */
@@ -304,9 +299,6 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * Determines how to handle the watch actions as part of the watch execution.
-		 * See <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html#watcher-api-execute-watch-action-mode">Action
-		 * execution modes</a> for more information.
 		 * <p>
 		 * API name: {@code action_modes}
 		 * <p>
@@ -319,9 +311,6 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 
 		/**
 		 * Determines how to handle the watch actions as part of the watch execution.
-		 * See <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/watcher-api-execute-watch.html#watcher-api-execute-watch-action-mode">Action
-		 * execution modes</a> for more information.
 		 * <p>
 		 * API name: {@code action_modes}
 		 * <p>
@@ -441,10 +430,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * When present, this <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/how-watcher-works.html#watch-definition">watch</a>
-		 * is used instead of the one specified in the request. This watch is not
-		 * persisted to the index and record_execution cannot be set.
+		 * When present, this watch is used instead of the one specified in the request.
+		 * This watch is not persisted to the index and record_execution cannot be set.
 		 * <p>
 		 * API name: {@code watch}
 		 */
@@ -454,10 +441,8 @@ public class ExecuteWatchRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * When present, this <a href=
-		 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/how-watcher-works.html#watch-definition">watch</a>
-		 * is used instead of the one specified in the request. This watch is not
-		 * persisted to the index and record_execution cannot be set.
+		 * When present, this watch is used instead of the one specified in the request.
+		 * This watch is not persisted to the index and record_execution cannot be set.
 		 * <p>
 		 * API name: {@code watch}
 		 */

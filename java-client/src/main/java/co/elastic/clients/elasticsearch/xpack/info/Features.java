@@ -105,6 +105,8 @@ public class Features implements JsonpSerializable {
 
 	private final Feature watcher;
 
+	private final Feature archive;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private Features(Builder builder) {
@@ -137,6 +139,7 @@ public class Features implements JsonpSerializable {
 		this.vectors = builder.vectors;
 		this.votingOnly = ApiTypeHelper.requireNonNull(builder.votingOnly, this, "votingOnly");
 		this.watcher = ApiTypeHelper.requireNonNull(builder.watcher, this, "watcher");
+		this.archive = ApiTypeHelper.requireNonNull(builder.archive, this, "archive");
 
 	}
 
@@ -339,6 +342,13 @@ public class Features implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code archive}
+	 */
+	public final Feature archive() {
+		return this.archive;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -440,6 +450,9 @@ public class Features implements JsonpSerializable {
 		generator.writeKey("watcher");
 		this.watcher.serialize(generator, mapper);
 
+		generator.writeKey("archive");
+		this.archive.serialize(generator, mapper);
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -507,6 +520,8 @@ public class Features implements JsonpSerializable {
 		private Feature votingOnly;
 
 		private Feature watcher;
+
+		private Feature archive;
 
 		/**
 		 * Required - API name: {@code aggregate_metric}
@@ -913,6 +928,21 @@ public class Features implements JsonpSerializable {
 			return this.watcher(fn.apply(new Feature.Builder()).build());
 		}
 
+		/**
+		 * Required - API name: {@code archive}
+		 */
+		public final Builder archive(Feature value) {
+			this.archive = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code archive}
+		 */
+		public final Builder archive(Function<Feature.Builder, ObjectBuilder<Feature>> fn) {
+			return this.archive(fn.apply(new Feature.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -968,6 +998,7 @@ public class Features implements JsonpSerializable {
 		op.add(Builder::vectors, Feature._DESERIALIZER, "vectors");
 		op.add(Builder::votingOnly, Feature._DESERIALIZER, "voting_only");
 		op.add(Builder::watcher, Feature._DESERIALIZER, "watcher");
+		op.add(Builder::archive, Feature._DESERIALIZER, "archive");
 
 	}
 

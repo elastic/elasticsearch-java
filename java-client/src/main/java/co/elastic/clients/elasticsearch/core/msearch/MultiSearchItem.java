@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.msearch;
 
-import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.search.ResponseBody;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
+public class MultiSearchItem<TDocument> extends ResponseBody<TDocument> {
 	@Nullable
 	private final Integer status;
 
@@ -90,7 +90,7 @@ public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 	 * Builder for {@link MultiSearchItem}.
 	 */
 
-	public static class Builder<TDocument> extends SearchResponse.AbstractBuilder<TDocument, Builder<TDocument>>
+	public static class Builder<TDocument> extends ResponseBody.AbstractBuilder<TDocument, Builder<TDocument>>
 			implements
 				ObjectBuilder<MultiSearchItem<TDocument>> {
 		@Nullable
@@ -144,7 +144,7 @@ public class MultiSearchItem<TDocument> extends SearchResponse<TDocument> {
 	protected static <TDocument> void setupMultiSearchItemDeserializer(
 			ObjectDeserializer<MultiSearchItem.Builder<TDocument>> op,
 			JsonpDeserializer<TDocument> tDocumentDeserializer) {
-		SearchResponse.setupSearchResponseDeserializer(op, tDocumentDeserializer);
+		ResponseBody.setupResponseBodyDeserializer(op, tDocumentDeserializer);
 		op.add(Builder::status, JsonpDeserializer.integerDeserializer(), "status");
 
 	}

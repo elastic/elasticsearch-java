@@ -705,6 +705,41 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 		return existsTemplate(fn.apply(new ExistsTemplateRequest.Builder()).build());
 	}
 
+	// ----- Endpoint: indices.field_usage_stats
+
+	/**
+	 * Returns the field usage stats for each field of an index
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/field-usage-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public FieldUsageStatsResponse fieldUsageStats(FieldUsageStatsRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<FieldUsageStatsRequest, FieldUsageStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<FieldUsageStatsRequest, FieldUsageStatsResponse, ErrorResponse>) FieldUsageStatsRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns the field usage stats for each field of an index
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link FieldUsageStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/field-usage-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final FieldUsageStatsResponse fieldUsageStats(
+			Function<FieldUsageStatsRequest.Builder, ObjectBuilder<FieldUsageStatsRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return fieldUsageStats(fn.apply(new FieldUsageStatsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: indices.flush
 
 	/**
@@ -1181,6 +1216,41 @@ public class ElasticsearchIndicesClient extends ApiClient<ElasticsearchTransport
 			Function<MigrateToDataStreamRequest.Builder, ObjectBuilder<MigrateToDataStreamRequest>> fn)
 			throws IOException, ElasticsearchException {
 		return migrateToDataStream(fn.apply(new MigrateToDataStreamRequest.Builder()).build());
+	}
+
+	// ----- Endpoint: indices.modify_data_stream
+
+	/**
+	 * Modifies a data stream
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ModifyDataStreamResponse modifyDataStream(ModifyDataStreamRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ModifyDataStreamRequest, ModifyDataStreamResponse, ErrorResponse> endpoint = (JsonEndpoint<ModifyDataStreamRequest, ModifyDataStreamResponse, ErrorResponse>) ModifyDataStreamRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Modifies a data stream
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ModifyDataStreamRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/data-streams.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ModifyDataStreamResponse modifyDataStream(
+			Function<ModifyDataStreamRequest.Builder, ObjectBuilder<ModifyDataStreamRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return modifyDataStream(fn.apply(new ModifyDataStreamRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: indices.open

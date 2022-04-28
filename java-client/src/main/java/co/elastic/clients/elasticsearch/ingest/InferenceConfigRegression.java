@@ -29,10 +29,10 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -47,14 +47,19 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class InferenceConfigRegression implements JsonpSerializable {
+public class InferenceConfigRegression implements InferenceConfigVariant, JsonpSerializable {
+	@Nullable
 	private final String resultsField;
+
+	@Nullable
+	private final Integer numTopFeatureImportanceValues;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private InferenceConfigRegression(Builder builder) {
 
-		this.resultsField = ApiTypeHelper.requireNonNull(builder.resultsField, this, "resultsField");
+		this.resultsField = builder.resultsField;
+		this.numTopFeatureImportanceValues = builder.numTopFeatureImportanceValues;
 
 	}
 
@@ -63,10 +68,27 @@ public class InferenceConfigRegression implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code results_field}
+	 * InferenceConfig variant kind.
 	 */
+	@Override
+	public InferenceConfig.Kind _inferenceConfigKind() {
+		return InferenceConfig.Kind.Regression;
+	}
+
+	/**
+	 * API name: {@code results_field}
+	 */
+	@Nullable
 	public final String resultsField() {
 		return this.resultsField;
+	}
+
+	/**
+	 * API name: {@code num_top_feature_importance_values}
+	 */
+	@Nullable
+	public final Integer numTopFeatureImportanceValues() {
+		return this.numTopFeatureImportanceValues;
 	}
 
 	/**
@@ -80,8 +102,16 @@ public class InferenceConfigRegression implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("results_field");
-		generator.write(this.resultsField);
+		if (this.resultsField != null) {
+			generator.writeKey("results_field");
+			generator.write(this.resultsField);
+
+		}
+		if (this.numTopFeatureImportanceValues != null) {
+			generator.writeKey("num_top_feature_importance_values");
+			generator.write(this.numTopFeatureImportanceValues);
+
+		}
 
 	}
 
@@ -94,13 +124,25 @@ public class InferenceConfigRegression implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<InferenceConfigRegression> {
+		@Nullable
 		private String resultsField;
 
+		@Nullable
+		private Integer numTopFeatureImportanceValues;
+
 		/**
-		 * Required - API name: {@code results_field}
+		 * API name: {@code results_field}
 		 */
-		public final Builder resultsField(String value) {
+		public final Builder resultsField(@Nullable String value) {
 			this.resultsField = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code num_top_feature_importance_values}
+		 */
+		public final Builder numTopFeatureImportanceValues(@Nullable Integer value) {
+			this.numTopFeatureImportanceValues = value;
 			return this;
 		}
 
@@ -134,6 +176,8 @@ public class InferenceConfigRegression implements JsonpSerializable {
 			ObjectDeserializer<InferenceConfigRegression.Builder> op) {
 
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
+		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.integerDeserializer(),
+				"num_top_feature_importance_values");
 
 	}
 

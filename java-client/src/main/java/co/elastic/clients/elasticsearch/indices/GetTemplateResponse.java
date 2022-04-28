@@ -25,14 +25,21 @@ package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.transport.endpoints.DictionaryResponse;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import jakarta.json.stream.JsonParser;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: indices.get_template.Response
 
@@ -42,16 +49,40 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapping> {
+public class GetTemplateResponse implements JsonpSerializable {
+	private final Map<String, TemplateMapping> result;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private GetTemplateResponse(Builder builder) {
-		super(builder);
+
+		this.result = ApiTypeHelper.unmodifiableRequired(builder.result, this, "result");
 
 	}
 
 	public static GetTemplateResponse of(Function<Builder, ObjectBuilder<GetTemplateResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - Response value.
+	 */
+	public final Map<String, TemplateMapping> result() {
+		return this.result;
+	}
+
+	/**
+	 * Serialize this value to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		for (Map.Entry<String, TemplateMapping> item0 : this.result.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
+
+		}
+		generator.writeEnd();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -60,9 +91,49 @@ public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapp
 	 * Builder for {@link GetTemplateResponse}.
 	 */
 
-	public static class Builder extends DictionaryResponse.AbstractBuilder<String, TemplateMapping, Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<GetTemplateResponse> {
+		private Map<String, TemplateMapping> result = new HashMap<>();
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>result</code>.
+		 */
+		public final Builder result(Map<String, TemplateMapping> map) {
+			this.result = _mapPutAll(this.result, map);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * Adds an entry to <code>result</code>.
+		 */
+		public final Builder result(String key, TemplateMapping value) {
+			this.result = _mapPut(this.result, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - Response value.
+		 * <p>
+		 * Adds an entry to <code>result</code> using a builder lambda.
+		 */
+		public final Builder result(String key, Function<TemplateMapping.Builder, ObjectBuilder<TemplateMapping>> fn) {
+			return result(key, fn.apply(new TemplateMapping.Builder()).build());
+		}
+
+		@Override
+		public Builder withJson(JsonParser parser, JsonpMapper mapper) {
+
+			@SuppressWarnings("unchecked")
+			Map<String, TemplateMapping> value = (Map<String, TemplateMapping>) JsonpDeserializer
+					.stringMapDeserializer(TemplateMapping._DESERIALIZER).deserialize(parser, mapper);
+			return this.result(value);
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -76,25 +147,19 @@ public class GetTemplateResponse extends DictionaryResponse<String, TemplateMapp
 		 */
 		public GetTemplateResponse build() {
 			_checkSingleUse();
-			super.tKeySerializer(null);
-			super.tValueSerializer(null);
 
 			return new GetTemplateResponse(this);
 		}
 	}
 
-	// ---------------------------------------------------------------------------------------------
+	public static final JsonpDeserializer<GetTemplateResponse> _DESERIALIZER = createGetTemplateResponseDeserializer();
+	protected static JsonpDeserializer<GetTemplateResponse> createGetTemplateResponseDeserializer() {
 
-	/**
-	 * Json deserializer for {@link GetTemplateResponse}
-	 */
-	public static final JsonpDeserializer<GetTemplateResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, GetTemplateResponse::setupGetTemplateResponseDeserializer);
+		JsonpDeserializer<Map<String, TemplateMapping>> valueDeserializer = JsonpDeserializer
+				.stringMapDeserializer(TemplateMapping._DESERIALIZER);
 
-	protected static void setupGetTemplateResponseDeserializer(ObjectDeserializer<GetTemplateResponse.Builder> op) {
-		DictionaryResponse.setupDictionaryResponseDeserializer(op, JsonpDeserializer.stringDeserializer(),
-				TemplateMapping._DESERIALIZER);
-
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper) -> new Builder().result(valueDeserializer.deserialize(parser, mapper)).build());
 	}
 
 }

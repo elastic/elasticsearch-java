@@ -50,7 +50,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TrainedModelAllocation implements JsonpSerializable {
-	private final DeploymentState allocationState;
+	private final DeploymentAllocationState allocationState;
 
 	private final Map<String, TrainedModelAllocationRoutingTable> routingTable;
 
@@ -78,7 +78,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code allocation_state}
 	 */
-	public final DeploymentState allocationState() {
+	public final DeploymentAllocationState allocationState() {
 		return this.allocationState;
 	}
 
@@ -147,7 +147,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<TrainedModelAllocation> {
-		private DeploymentState allocationState;
+		private DeploymentAllocationState allocationState;
 
 		private Map<String, TrainedModelAllocationRoutingTable> routingTable;
 
@@ -160,7 +160,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code allocation_state}
 		 */
-		public final Builder allocationState(DeploymentState value) {
+		public final Builder allocationState(DeploymentAllocationState value) {
 			this.allocationState = value;
 			return this;
 		}
@@ -256,7 +256,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 	protected static void setupTrainedModelAllocationDeserializer(
 			ObjectDeserializer<TrainedModelAllocation.Builder> op) {
 
-		op.add(Builder::allocationState, DeploymentState._DESERIALIZER, "allocation_state");
+		op.add(Builder::allocationState, DeploymentAllocationState._DESERIALIZER, "allocation_state");
 		op.add(Builder::routingTable,
 				JsonpDeserializer.stringMapDeserializer(TrainedModelAllocationRoutingTable._DESERIALIZER),
 				"routing_table");

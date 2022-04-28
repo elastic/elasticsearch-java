@@ -23,14 +23,16 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
-import co.elastic.clients.elasticsearch._types.AcknowledgedResponseBase;
+import co.elastic.clients.elasticsearch._types.AcknowledgedResponse;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.String;
@@ -47,7 +49,9 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class RolloverResponse extends AcknowledgedResponseBase {
+public class RolloverResponse implements AcknowledgedResponse, JsonpSerializable {
+	private final boolean acknowledged;
+
 	private final Map<String, Boolean> conditions;
 
 	private final boolean dryRun;
@@ -63,8 +67,8 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private RolloverResponse(Builder builder) {
-		super(builder);
 
+		this.acknowledged = ApiTypeHelper.requireNonNull(builder.acknowledged, this, "acknowledged");
 		this.conditions = ApiTypeHelper.unmodifiableRequired(builder.conditions, this, "conditions");
 		this.dryRun = ApiTypeHelper.requireNonNull(builder.dryRun, this, "dryRun");
 		this.newIndex = ApiTypeHelper.requireNonNull(builder.newIndex, this, "newIndex");
@@ -76,6 +80,13 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 
 	public static RolloverResponse of(Function<Builder, ObjectBuilder<RolloverResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Required - API name: {@code acknowledged}
+	 */
+	public final boolean acknowledged() {
+		return this.acknowledged;
 	}
 
 	/**
@@ -120,9 +131,20 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 		return this.shardsAcknowledged;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
+		generator.writeKey("acknowledged");
+		generator.write(this.acknowledged);
+
 		if (ApiTypeHelper.isDefined(this.conditions)) {
 			generator.writeKey("conditions");
 			generator.writeStartObject();
@@ -157,9 +179,9 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 	 * Builder for {@link RolloverResponse}.
 	 */
 
-	public static class Builder extends AcknowledgedResponseBase.AbstractBuilder<Builder>
-			implements
-				ObjectBuilder<RolloverResponse> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RolloverResponse> {
+		private Boolean acknowledged;
+
 		private Map<String, Boolean> conditions;
 
 		private Boolean dryRun;
@@ -171,6 +193,14 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 		private Boolean rolledOver;
 
 		private Boolean shardsAcknowledged;
+
+		/**
+		 * Required - API name: {@code acknowledged}
+		 */
+		public final Builder acknowledged(boolean value) {
+			this.acknowledged = value;
+			return this;
+		}
 
 		/**
 		 * Required - API name: {@code conditions}
@@ -259,7 +289,8 @@ public class RolloverResponse extends AcknowledgedResponseBase {
 			RolloverResponse::setupRolloverResponseDeserializer);
 
 	protected static void setupRolloverResponseDeserializer(ObjectDeserializer<RolloverResponse.Builder> op) {
-		AcknowledgedResponseBase.setupAcknowledgedResponseBaseDeserializer(op);
+
+		op.add(Builder::acknowledged, JsonpDeserializer.booleanDeserializer(), "acknowledged");
 		op.add(Builder::conditions, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.booleanDeserializer()),
 				"conditions");
 		op.add(Builder::dryRun, JsonpDeserializer.booleanDeserializer(), "dry_run");

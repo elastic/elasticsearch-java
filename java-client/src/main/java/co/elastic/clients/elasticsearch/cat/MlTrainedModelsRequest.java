@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -38,9 +39,11 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: cat.ml_trained_models.Request
@@ -66,8 +69,12 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	@Nullable
 	private final Integer from;
 
+	private final List<CatTrainedModelsColumn> h;
+
 	@Nullable
 	private final String modelId;
+
+	private final List<CatTrainedModelsColumn> s;
 
 	@Nullable
 	private final Integer size;
@@ -79,7 +86,9 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		this.allowNoMatch = builder.allowNoMatch;
 		this.bytes = builder.bytes;
 		this.from = builder.from;
+		this.h = ApiTypeHelper.unmodifiable(builder.h);
 		this.modelId = builder.modelId;
+		this.s = ApiTypeHelper.unmodifiable(builder.s);
 		this.size = builder.size;
 
 	}
@@ -121,6 +130,15 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	}
 
 	/**
+	 * Comma-separated list of column names to display
+	 * <p>
+	 * API name: {@code h}
+	 */
+	public final List<CatTrainedModelsColumn> h() {
+		return this.h;
+	}
+
+	/**
 	 * The ID of the trained models stats to fetch
 	 * <p>
 	 * API name: {@code model_id}
@@ -128,6 +146,15 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 	@Nullable
 	public final String modelId() {
 		return this.modelId;
+	}
+
+	/**
+	 * Comma-separated list of column names or column aliases to sort by
+	 * <p>
+	 * API name: {@code s}
+	 */
+	public final List<CatTrainedModelsColumn> s() {
+		return this.s;
 	}
 
 	/**
@@ -157,7 +184,13 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		private Integer from;
 
 		@Nullable
+		private List<CatTrainedModelsColumn> h;
+
+		@Nullable
 		private String modelId;
+
+		@Nullable
+		private List<CatTrainedModelsColumn> s;
 
 		@Nullable
 		private Integer size;
@@ -195,12 +228,60 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 		}
 
 		/**
+		 * Comma-separated list of column names to display
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>h</code>.
+		 */
+		public final Builder h(List<CatTrainedModelsColumn> list) {
+			this.h = _listAddAll(this.h, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names to display
+		 * <p>
+		 * API name: {@code h}
+		 * <p>
+		 * Adds one or more values to <code>h</code>.
+		 */
+		public final Builder h(CatTrainedModelsColumn value, CatTrainedModelsColumn... values) {
+			this.h = _listAdd(this.h, value, values);
+			return this;
+		}
+
+		/**
 		 * The ID of the trained models stats to fetch
 		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public final Builder modelId(@Nullable String value) {
 			this.modelId = value;
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names or column aliases to sort by
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>s</code>.
+		 */
+		public final Builder s(List<CatTrainedModelsColumn> list) {
+			this.s = _listAddAll(this.s, list);
+			return this;
+		}
+
+		/**
+		 * Comma-separated list of column names or column aliases to sort by
+		 * <p>
+		 * API name: {@code s}
+		 * <p>
+		 * Adds one or more values to <code>s</code>.
+		 */
+		public final Builder s(CatTrainedModelsColumn value, CatTrainedModelsColumn... values) {
+			this.s = _listAdd(this.s, value, values);
 			return this;
 		}
 
@@ -274,11 +355,17 @@ public class MlTrainedModelsRequest extends CatRequestBase {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
+				if (ApiTypeHelper.isDefined(request.s)) {
+					params.put("s", request.s.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
+				}
 				if (request.size != null) {
 					params.put("size", String.valueOf(request.size));
 				}
 				if (request.bytes != null) {
 					params.put("bytes", request.bytes.jsonValue());
+				}
+				if (ApiTypeHelper.isDefined(request.h)) {
+					params.put("h", request.h.stream().map(v -> v.jsonValue()).collect(Collectors.joining(",")));
 				}
 				if (request.from != null) {
 					params.put("from", String.valueOf(request.from));

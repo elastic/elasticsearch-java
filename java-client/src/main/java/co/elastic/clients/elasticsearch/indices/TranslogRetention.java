@@ -23,13 +23,13 @@
 
 package co.elastic.clients.elasticsearch.indices;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,13 +48,18 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TranslogRetention implements JsonpSerializable {
+	@Nullable
 	private final String size;
+
+	@Nullable
+	private final Time age;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TranslogRetention(Builder builder) {
 
-		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
+		this.size = builder.size;
+		this.age = builder.age;
 
 	}
 
@@ -63,10 +68,35 @@ public class TranslogRetention implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code size}
+	 * This controls the total size of translog files to keep for each shard.
+	 * Keeping more translog files increases the chance of performing an operation
+	 * based sync when recovering a replica. If the translog files are not
+	 * sufficient, replica recovery will fall back to a file based sync. This
+	 * setting is ignored, and should not be set, if soft deletes are enabled. Soft
+	 * deletes are enabled by default in indices created in Elasticsearch versions
+	 * 7.0.0 and later.
+	 * <p>
+	 * API name: {@code size}
 	 */
+	@Nullable
 	public final String size() {
 		return this.size;
+	}
+
+	/**
+	 * This controls the maximum duration for which translog files are kept by each
+	 * shard. Keeping more translog files increases the chance of performing an
+	 * operation based sync when recovering replicas. If the translog files are not
+	 * sufficient, replica recovery will fall back to a file based sync. This
+	 * setting is ignored, and should not be set, if soft deletes are enabled. Soft
+	 * deletes are enabled by default in indices created in Elasticsearch versions
+	 * 7.0.0 and later.
+	 * <p>
+	 * API name: {@code age}
+	 */
+	@Nullable
+	public final Time age() {
+		return this.age;
 	}
 
 	/**
@@ -80,8 +110,16 @@ public class TranslogRetention implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("size");
-		generator.write(this.size);
+		if (this.size != null) {
+			generator.writeKey("size");
+			generator.write(this.size);
+
+		}
+		if (this.age != null) {
+			generator.writeKey("age");
+			this.age.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -92,14 +130,57 @@ public class TranslogRetention implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TranslogRetention> {
+		@Nullable
 		private String size;
 
+		@Nullable
+		private Time age;
+
 		/**
-		 * Required - API name: {@code size}
+		 * This controls the total size of translog files to keep for each shard.
+		 * Keeping more translog files increases the chance of performing an operation
+		 * based sync when recovering a replica. If the translog files are not
+		 * sufficient, replica recovery will fall back to a file based sync. This
+		 * setting is ignored, and should not be set, if soft deletes are enabled. Soft
+		 * deletes are enabled by default in indices created in Elasticsearch versions
+		 * 7.0.0 and later.
+		 * <p>
+		 * API name: {@code size}
 		 */
-		public final Builder size(String value) {
+		public final Builder size(@Nullable String value) {
 			this.size = value;
 			return this;
+		}
+
+		/**
+		 * This controls the maximum duration for which translog files are kept by each
+		 * shard. Keeping more translog files increases the chance of performing an
+		 * operation based sync when recovering replicas. If the translog files are not
+		 * sufficient, replica recovery will fall back to a file based sync. This
+		 * setting is ignored, and should not be set, if soft deletes are enabled. Soft
+		 * deletes are enabled by default in indices created in Elasticsearch versions
+		 * 7.0.0 and later.
+		 * <p>
+		 * API name: {@code age}
+		 */
+		public final Builder age(@Nullable Time value) {
+			this.age = value;
+			return this;
+		}
+
+		/**
+		 * This controls the maximum duration for which translog files are kept by each
+		 * shard. Keeping more translog files increases the chance of performing an
+		 * operation based sync when recovering replicas. If the translog files are not
+		 * sufficient, replica recovery will fall back to a file based sync. This
+		 * setting is ignored, and should not be set, if soft deletes are enabled. Soft
+		 * deletes are enabled by default in indices created in Elasticsearch versions
+		 * 7.0.0 and later.
+		 * <p>
+		 * API name: {@code age}
+		 */
+		public final Builder age(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.age(fn.apply(new Time.Builder()).build());
 		}
 
 		@Override
@@ -131,6 +212,7 @@ public class TranslogRetention implements JsonpSerializable {
 	protected static void setupTranslogRetentionDeserializer(ObjectDeserializer<TranslogRetention.Builder> op) {
 
 		op.add(Builder::size, JsonpDeserializer.stringDeserializer(), "size");
+		op.add(Builder::age, Time._DESERIALIZER, "age");
 
 	}
 

@@ -50,23 +50,30 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TrainedModelStats implements JsonpSerializable {
-	private final String modelId;
-
-	private final int pipelineCount;
+	@Nullable
+	private final TrainedModelDeploymentStats deploymentStats;
 
 	@Nullable
 	private final TrainedModelInferenceStats inferenceStats;
 
 	private final Map<String, JsonData> ingest;
 
+	private final String modelId;
+
+	private final TrainedModelSizeStats modelSizeStats;
+
+	private final int pipelineCount;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private TrainedModelStats(Builder builder) {
 
-		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.pipelineCount = ApiTypeHelper.requireNonNull(builder.pipelineCount, this, "pipelineCount");
+		this.deploymentStats = builder.deploymentStats;
 		this.inferenceStats = builder.inferenceStats;
 		this.ingest = ApiTypeHelper.unmodifiable(builder.ingest);
+		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
+		this.modelSizeStats = ApiTypeHelper.requireNonNull(builder.modelSizeStats, this, "modelSizeStats");
+		this.pipelineCount = ApiTypeHelper.requireNonNull(builder.pipelineCount, this, "pipelineCount");
 
 	}
 
@@ -75,21 +82,14 @@ public class TrainedModelStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The unique identifier of the trained model.
+	 * A collection of deployment stats, which is present when the models are
+	 * deployed.
 	 * <p>
-	 * API name: {@code model_id}
+	 * API name: {@code deployment_stats}
 	 */
-	public final String modelId() {
-		return this.modelId;
-	}
-
-	/**
-	 * Required - The number of ingest pipelines that currently refer to the model.
-	 * <p>
-	 * API name: {@code pipeline_count}
-	 */
-	public final int pipelineCount() {
-		return this.pipelineCount;
+	@Nullable
+	public final TrainedModelDeploymentStats deploymentStats() {
+		return this.deploymentStats;
 	}
 
 	/**
@@ -105,12 +105,39 @@ public class TrainedModelStats implements JsonpSerializable {
 	/**
 	 * A collection of ingest stats for the model across all nodes. The values are
 	 * summations of the individual node statistics. The format matches the ingest
-	 * section in Nodes stats.
+	 * section in the nodes stats API.
 	 * <p>
 	 * API name: {@code ingest}
 	 */
 	public final Map<String, JsonData> ingest() {
 		return this.ingest;
+	}
+
+	/**
+	 * Required - The unique identifier of the trained model.
+	 * <p>
+	 * API name: {@code model_id}
+	 */
+	public final String modelId() {
+		return this.modelId;
+	}
+
+	/**
+	 * Required - A collection of model size stats.
+	 * <p>
+	 * API name: {@code model_size_stats}
+	 */
+	public final TrainedModelSizeStats modelSizeStats() {
+		return this.modelSizeStats;
+	}
+
+	/**
+	 * Required - The number of ingest pipelines that currently refer to the model.
+	 * <p>
+	 * API name: {@code pipeline_count}
+	 */
+	public final int pipelineCount() {
+		return this.pipelineCount;
 	}
 
 	/**
@@ -124,12 +151,11 @@ public class TrainedModelStats implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("model_id");
-		generator.write(this.modelId);
+		if (this.deploymentStats != null) {
+			generator.writeKey("deployment_stats");
+			this.deploymentStats.serialize(generator, mapper);
 
-		generator.writeKey("pipeline_count");
-		generator.write(this.pipelineCount);
-
+		}
 		if (this.inferenceStats != null) {
 			generator.writeKey("inference_stats");
 			this.inferenceStats.serialize(generator, mapper);
@@ -146,6 +172,14 @@ public class TrainedModelStats implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		generator.writeKey("model_id");
+		generator.write(this.modelId);
+
+		generator.writeKey("model_size_stats");
+		this.modelSizeStats.serialize(generator, mapper);
+
+		generator.writeKey("pipeline_count");
+		generator.write(this.pipelineCount);
 
 	}
 
@@ -156,9 +190,8 @@ public class TrainedModelStats implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TrainedModelStats> {
-		private String modelId;
-
-		private Integer pipelineCount;
+		@Nullable
+		private TrainedModelDeploymentStats deploymentStats;
 
 		@Nullable
 		private TrainedModelInferenceStats inferenceStats;
@@ -166,24 +199,32 @@ public class TrainedModelStats implements JsonpSerializable {
 		@Nullable
 		private Map<String, JsonData> ingest;
 
+		private String modelId;
+
+		private TrainedModelSizeStats modelSizeStats;
+
+		private Integer pipelineCount;
+
 		/**
-		 * Required - The unique identifier of the trained model.
+		 * A collection of deployment stats, which is present when the models are
+		 * deployed.
 		 * <p>
-		 * API name: {@code model_id}
+		 * API name: {@code deployment_stats}
 		 */
-		public final Builder modelId(String value) {
-			this.modelId = value;
+		public final Builder deploymentStats(@Nullable TrainedModelDeploymentStats value) {
+			this.deploymentStats = value;
 			return this;
 		}
 
 		/**
-		 * Required - The number of ingest pipelines that currently refer to the model.
+		 * A collection of deployment stats, which is present when the models are
+		 * deployed.
 		 * <p>
-		 * API name: {@code pipeline_count}
+		 * API name: {@code deployment_stats}
 		 */
-		public final Builder pipelineCount(int value) {
-			this.pipelineCount = value;
-			return this;
+		public final Builder deploymentStats(
+				Function<TrainedModelDeploymentStats.Builder, ObjectBuilder<TrainedModelDeploymentStats>> fn) {
+			return this.deploymentStats(fn.apply(new TrainedModelDeploymentStats.Builder()).build());
 		}
 
 		/**
@@ -209,7 +250,7 @@ public class TrainedModelStats implements JsonpSerializable {
 		/**
 		 * A collection of ingest stats for the model across all nodes. The values are
 		 * summations of the individual node statistics. The format matches the ingest
-		 * section in Nodes stats.
+		 * section in the nodes stats API.
 		 * <p>
 		 * API name: {@code ingest}
 		 * <p>
@@ -223,7 +264,7 @@ public class TrainedModelStats implements JsonpSerializable {
 		/**
 		 * A collection of ingest stats for the model across all nodes. The values are
 		 * summations of the individual node statistics. The format matches the ingest
-		 * section in Nodes stats.
+		 * section in the nodes stats API.
 		 * <p>
 		 * API name: {@code ingest}
 		 * <p>
@@ -231,6 +272,46 @@ public class TrainedModelStats implements JsonpSerializable {
 		 */
 		public final Builder ingest(String key, JsonData value) {
 			this.ingest = _mapPut(this.ingest, key, value);
+			return this;
+		}
+
+		/**
+		 * Required - The unique identifier of the trained model.
+		 * <p>
+		 * API name: {@code model_id}
+		 */
+		public final Builder modelId(String value) {
+			this.modelId = value;
+			return this;
+		}
+
+		/**
+		 * Required - A collection of model size stats.
+		 * <p>
+		 * API name: {@code model_size_stats}
+		 */
+		public final Builder modelSizeStats(TrainedModelSizeStats value) {
+			this.modelSizeStats = value;
+			return this;
+		}
+
+		/**
+		 * Required - A collection of model size stats.
+		 * <p>
+		 * API name: {@code model_size_stats}
+		 */
+		public final Builder modelSizeStats(
+				Function<TrainedModelSizeStats.Builder, ObjectBuilder<TrainedModelSizeStats>> fn) {
+			return this.modelSizeStats(fn.apply(new TrainedModelSizeStats.Builder()).build());
+		}
+
+		/**
+		 * Required - The number of ingest pipelines that currently refer to the model.
+		 * <p>
+		 * API name: {@code pipeline_count}
+		 */
+		public final Builder pipelineCount(int value) {
+			this.pipelineCount = value;
 			return this;
 		}
 
@@ -262,10 +343,12 @@ public class TrainedModelStats implements JsonpSerializable {
 
 	protected static void setupTrainedModelStatsDeserializer(ObjectDeserializer<TrainedModelStats.Builder> op) {
 
-		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::pipelineCount, JsonpDeserializer.integerDeserializer(), "pipeline_count");
+		op.add(Builder::deploymentStats, TrainedModelDeploymentStats._DESERIALIZER, "deployment_stats");
 		op.add(Builder::inferenceStats, TrainedModelInferenceStats._DESERIALIZER, "inference_stats");
 		op.add(Builder::ingest, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "ingest");
+		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
+		op.add(Builder::modelSizeStats, TrainedModelSizeStats._DESERIALIZER, "model_size_stats");
+		op.add(Builder::pipelineCount, JsonpDeserializer.integerDeserializer(), "pipeline_count");
 
 	}
 

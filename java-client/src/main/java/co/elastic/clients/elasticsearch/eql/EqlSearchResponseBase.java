@@ -46,9 +46,6 @@ import javax.annotation.Nullable;
 /**
  *
  * @see <a href=
- *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/eql-search-api.html#eql-search-api-response-body">Documentation
- *      on elastic.co</a>
- * @see <a href=
  *      "../doc-files/api-spec.html#eql._types.EqlSearchResponseBase">API
  *      specification</a>
  */

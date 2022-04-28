@@ -37,11 +37,10 @@ import co.elastic.clients.json.JsonpDeserializer;
 public enum ActionExecutionMode implements JsonEnum {
 	/**
 	 * The action execution is simulated. Each action type defines its own
-	 * simulation operation mode. For example, the <a href=
-	 * "https://www.elastic.co/guide/en/elasticsearch/reference/current/actions-email.html">email
-	 * action</a> creates the email that would have been sent but does not actually
-	 * send it. In this mode, the action might be throttled if the current state of
-	 * the watch indicates it should be.
+	 * simulation operation mode. For example, the email action creates the email
+	 * that would have been sent but does not actually send it. In this mode, the
+	 * action might be throttled if the current state of the watch indicates it
+	 * should be.
 	 */
 	Simulate("simulate"),
 

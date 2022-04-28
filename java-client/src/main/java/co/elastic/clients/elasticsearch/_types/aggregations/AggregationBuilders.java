@@ -598,6 +598,25 @@ public class AggregationBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link GeohexGridAggregation geohex_grid}
+	 * {@code Aggregation} variant.
+	 */
+	public static GeohexGridAggregation.Builder geohexGrid() {
+		return new GeohexGridAggregation.Builder();
+	}
+
+	/**
+	 * Creates a Aggregation of the {@link GeohexGridAggregation geohex_grid}
+	 * {@code Aggregation} variant.
+	 */
+	public static Aggregation geohexGrid(
+			Function<GeohexGridAggregation.Builder, ObjectBuilder<GeohexGridAggregation>> fn) {
+		Aggregation.Builder builder = new Aggregation.Builder();
+		builder.geohexGrid(fn.apply(new GeohexGridAggregation.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link GlobalAggregation global}
 	 * {@code Aggregation} variant.
 	 */

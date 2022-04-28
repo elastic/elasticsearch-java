@@ -38,9 +38,11 @@ import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
+import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.delete_privileges.Request
@@ -56,7 +58,7 @@ import javax.annotation.Nullable;
 public class DeletePrivilegesRequest extends RequestBase {
 	private final String application;
 
-	private final String name;
+	private final List<String> name;
 
 	@Nullable
 	private final Refresh refresh;
@@ -66,7 +68,7 @@ public class DeletePrivilegesRequest extends RequestBase {
 	private DeletePrivilegesRequest(Builder builder) {
 
 		this.application = ApiTypeHelper.requireNonNull(builder.application, this, "application");
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = ApiTypeHelper.unmodifiableRequired(builder.name, this, "name");
 		this.refresh = builder.refresh;
 
 	}
@@ -89,7 +91,7 @@ public class DeletePrivilegesRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code name}
 	 */
-	public final String name() {
+	public final List<String> name() {
 		return this.name;
 	}
 
@@ -115,7 +117,7 @@ public class DeletePrivilegesRequest extends RequestBase {
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeletePrivilegesRequest> {
 		private String application;
 
-		private String name;
+		private List<String> name;
 
 		@Nullable
 		private Refresh refresh;
@@ -134,9 +136,23 @@ public class DeletePrivilegesRequest extends RequestBase {
 		 * Required - Privilege name
 		 * <p>
 		 * API name: {@code name}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>name</code>.
 		 */
-		public final Builder name(String value) {
-			this.name = value;
+		public final Builder name(List<String> list) {
+			this.name = _listAddAll(this.name, list);
+			return this;
+		}
+
+		/**
+		 * Required - Privilege name
+		 * <p>
+		 * API name: {@code name}
+		 * <p>
+		 * Adds one or more values to <code>name</code>.
+		 */
+		public final Builder name(String value, String... values) {
+			this.name = _listAdd(this.name, value, values);
 			return this;
 		}
 
@@ -197,7 +213,7 @@ public class DeletePrivilegesRequest extends RequestBase {
 					buf.append("/");
 					SimpleEndpoint.pathEncode(request.application, buf);
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.name, buf);
+					SimpleEndpoint.pathEncode(request.name.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					return buf.toString();
 				}
 				throw SimpleEndpoint.noPathTemplateFound("path");
