@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -32,39 +32,57 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _types.aggregations.RegressionInferenceOptions
+// typedef: ml._types.TextEmbeddingInferenceOptions
 
 /**
- *
+ * Text embedding inference options
+ * 
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.RegressionInferenceOptions">API
+ *      "../doc-files/api-spec.html#ml._types.TextEmbeddingInferenceOptions">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RegressionInferenceOptions implements JsonpSerializable {
+public class TextEmbeddingInferenceOptions implements InferenceConfigCreateVariant, JsonpSerializable {
+	@Nullable
+	private final TokenizationConfig tokenization;
+
 	@Nullable
 	private final String resultsField;
 
-	@Nullable
-	private final Integer numTopFeatureImportanceValues;
-
 	// ---------------------------------------------------------------------------------------------
 
-	private RegressionInferenceOptions(Builder builder) {
+	private TextEmbeddingInferenceOptions(Builder builder) {
 
+		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
-		this.numTopFeatureImportanceValues = builder.numTopFeatureImportanceValues;
 
 	}
 
-	public static RegressionInferenceOptions of(Function<Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
+	public static TextEmbeddingInferenceOptions of(Function<Builder, ObjectBuilder<TextEmbeddingInferenceOptions>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * InferenceConfigCreate variant kind.
+	 */
+	@Override
+	public InferenceConfigCreate.Kind _inferenceConfigCreateKind() {
+		return InferenceConfigCreate.Kind.TextEmbedding;
+	}
+
+	/**
+	 * The tokenization options
+	 * <p>
+	 * API name: {@code tokenization}
+	 */
+	@Nullable
+	public final TokenizationConfig tokenization() {
+		return this.tokenization;
 	}
 
 	/**
@@ -79,16 +97,6 @@ public class RegressionInferenceOptions implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies the maximum number of feature importance values per document.
-	 * <p>
-	 * API name: {@code num_top_feature_importance_values}
-	 */
-	@Nullable
-	public final Integer numTopFeatureImportanceValues() {
-		return this.numTopFeatureImportanceValues;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -99,14 +107,14 @@ public class RegressionInferenceOptions implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.tokenization != null) {
+			generator.writeKey("tokenization");
+			this.tokenization.serialize(generator, mapper);
+
+		}
 		if (this.resultsField != null) {
 			generator.writeKey("results_field");
 			generator.write(this.resultsField);
-
-		}
-		if (this.numTopFeatureImportanceValues != null) {
-			generator.writeKey("num_top_feature_importance_values");
-			generator.write(this.numTopFeatureImportanceValues);
 
 		}
 
@@ -115,17 +123,36 @@ public class RegressionInferenceOptions implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RegressionInferenceOptions}.
+	 * Builder for {@link TextEmbeddingInferenceOptions}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<RegressionInferenceOptions> {
+				ObjectBuilder<TextEmbeddingInferenceOptions> {
+		@Nullable
+		private TokenizationConfig tokenization;
+
 		@Nullable
 		private String resultsField;
 
-		@Nullable
-		private Integer numTopFeatureImportanceValues;
+		/**
+		 * The tokenization options
+		 * <p>
+		 * API name: {@code tokenization}
+		 */
+		public final Builder tokenization(@Nullable TokenizationConfig value) {
+			this.tokenization = value;
+			return this;
+		}
+
+		/**
+		 * The tokenization options
+		 * <p>
+		 * API name: {@code tokenization}
+		 */
+		public final Builder tokenization(Function<TokenizationConfig.Builder, ObjectBuilder<TokenizationConfig>> fn) {
+			return this.tokenization(fn.apply(new TokenizationConfig.Builder()).build());
+		}
 
 		/**
 		 * The field that is added to incoming documents to contain the inference
@@ -138,48 +165,37 @@ public class RegressionInferenceOptions implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * Specifies the maximum number of feature importance values per document.
-		 * <p>
-		 * API name: {@code num_top_feature_importance_values}
-		 */
-		public final Builder numTopFeatureImportanceValues(@Nullable Integer value) {
-			this.numTopFeatureImportanceValues = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link RegressionInferenceOptions}.
+		 * Builds a {@link TextEmbeddingInferenceOptions}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RegressionInferenceOptions build() {
+		public TextEmbeddingInferenceOptions build() {
 			_checkSingleUse();
 
-			return new RegressionInferenceOptions(this);
+			return new TextEmbeddingInferenceOptions(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link RegressionInferenceOptions}
+	 * Json deserializer for {@link TextEmbeddingInferenceOptions}
 	 */
-	public static final JsonpDeserializer<RegressionInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, RegressionInferenceOptions::setupRegressionInferenceOptionsDeserializer);
+	public static final JsonpDeserializer<TextEmbeddingInferenceOptions> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TextEmbeddingInferenceOptions::setupTextEmbeddingInferenceOptionsDeserializer);
 
-	protected static void setupRegressionInferenceOptionsDeserializer(
-			ObjectDeserializer<RegressionInferenceOptions.Builder> op) {
+	protected static void setupTextEmbeddingInferenceOptionsDeserializer(
+			ObjectDeserializer<TextEmbeddingInferenceOptions.Builder> op) {
 
+		op.add(Builder::tokenization, TokenizationConfig._DESERIALIZER, "tokenization");
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
-		op.add(Builder::numTopFeatureImportanceValues, JsonpDeserializer.integerDeserializer(),
-				"num_top_feature_importance_values");
 
 	}
 

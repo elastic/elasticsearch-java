@@ -52,11 +52,11 @@ import javax.annotation.Nullable;
 public class UserProfile implements JsonpSerializable {
 	private final String uid;
 
-	private final User user;
+	private final UserProfileUser user;
 
 	private final Map<String, JsonData> data;
 
-	private final Map<String, JsonData> access;
+	private final Map<String, JsonData> labels;
 
 	@Nullable
 	private final Boolean enabled;
@@ -68,7 +68,7 @@ public class UserProfile implements JsonpSerializable {
 		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
 		this.user = ApiTypeHelper.requireNonNull(builder.user, this, "user");
 		this.data = ApiTypeHelper.unmodifiable(builder.data);
-		this.access = ApiTypeHelper.unmodifiable(builder.access);
+		this.labels = ApiTypeHelper.unmodifiable(builder.labels);
 		this.enabled = builder.enabled;
 
 	}
@@ -87,7 +87,7 @@ public class UserProfile implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code user}
 	 */
-	public final User user() {
+	public final UserProfileUser user() {
 		return this.user;
 	}
 
@@ -99,10 +99,10 @@ public class UserProfile implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code access}
+	 * API name: {@code labels}
 	 */
-	public final Map<String, JsonData> access() {
-		return this.access;
+	public final Map<String, JsonData> labels() {
+		return this.labels;
 	}
 
 	/**
@@ -141,10 +141,10 @@ public class UserProfile implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.access)) {
-			generator.writeKey("access");
+		if (ApiTypeHelper.isDefined(this.labels)) {
+			generator.writeKey("labels");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.access.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.labels.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -190,13 +190,13 @@ public class UserProfile implements JsonpSerializable {
 				WithJsonObjectBuilderBase<BuilderT> {
 		private String uid;
 
-		private User user;
+		private UserProfileUser user;
 
 		@Nullable
 		private Map<String, JsonData> data;
 
 		@Nullable
-		private Map<String, JsonData> access;
+		private Map<String, JsonData> labels;
 
 		@Nullable
 		private Boolean enabled;
@@ -212,7 +212,7 @@ public class UserProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code user}
 		 */
-		public final BuilderT user(User value) {
+		public final BuilderT user(UserProfileUser value) {
 			this.user = value;
 			return self();
 		}
@@ -220,8 +220,8 @@ public class UserProfile implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code user}
 		 */
-		public final BuilderT user(Function<User.Builder, ObjectBuilder<User>> fn) {
-			return this.user(fn.apply(new User.Builder()).build());
+		public final BuilderT user(Function<UserProfileUser.Builder, ObjectBuilder<UserProfileUser>> fn) {
+			return this.user(fn.apply(new UserProfileUser.Builder()).build());
 		}
 
 		/**
@@ -245,22 +245,22 @@ public class UserProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code access}
+		 * API name: {@code labels}
 		 * <p>
-		 * Adds all entries of <code>map</code> to <code>access</code>.
+		 * Adds all entries of <code>map</code> to <code>labels</code>.
 		 */
-		public final BuilderT access(Map<String, JsonData> map) {
-			this.access = _mapPutAll(this.access, map);
+		public final BuilderT labels(Map<String, JsonData> map) {
+			this.labels = _mapPutAll(this.labels, map);
 			return self();
 		}
 
 		/**
-		 * API name: {@code access}
+		 * API name: {@code labels}
 		 * <p>
-		 * Adds an entry to <code>access</code>.
+		 * Adds an entry to <code>labels</code>.
 		 */
-		public final BuilderT access(String key, JsonData value) {
-			this.access = _mapPut(this.access, key, value);
+		public final BuilderT labels(String key, JsonData value) {
+			this.labels = _mapPut(this.labels, key, value);
 			return self();
 		}
 
@@ -288,9 +288,9 @@ public class UserProfile implements JsonpSerializable {
 			ObjectDeserializer<BuilderT> op) {
 
 		op.add(AbstractBuilder::uid, JsonpDeserializer.stringDeserializer(), "uid");
-		op.add(AbstractBuilder::user, User._DESERIALIZER, "user");
+		op.add(AbstractBuilder::user, UserProfileUser._DESERIALIZER, "user");
 		op.add(AbstractBuilder::data, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "data");
-		op.add(AbstractBuilder::access, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "access");
+		op.add(AbstractBuilder::labels, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "labels");
 		op.add(AbstractBuilder::enabled, JsonpDeserializer.booleanDeserializer(), "enabled");
 
 	}

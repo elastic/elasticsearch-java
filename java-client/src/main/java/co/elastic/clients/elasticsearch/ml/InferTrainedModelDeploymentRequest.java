@@ -59,6 +59,9 @@ import javax.annotation.Nullable;
 public class InferTrainedModelDeploymentRequest extends RequestBase implements JsonpSerializable {
 	private final List<Map<String, String>> docs;
 
+	@Nullable
+	private final NlpInferenceConfigUpdate inferenceConfig;
+
 	private final String modelId;
 
 	@Nullable
@@ -69,6 +72,7 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 	private InferTrainedModelDeploymentRequest(Builder builder) {
 
 		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
+		this.inferenceConfig = builder.inferenceConfig;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.timeout = builder.timeout;
 
@@ -89,6 +93,16 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 	 */
 	public final List<Map<String, String>> docs() {
 		return this.docs;
+	}
+
+	/**
+	 * The inference configuration updates to apply on the API call
+	 * <p>
+	 * API name: {@code inference_config}
+	 */
+	@Nullable
+	public final NlpInferenceConfigUpdate inferenceConfig() {
+		return this.inferenceConfig;
 	}
 
 	/**
@@ -139,6 +153,11 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 			generator.writeEnd();
 
 		}
+		if (this.inferenceConfig != null) {
+			generator.writeKey("inference_config");
+			this.inferenceConfig.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -152,6 +171,9 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 			implements
 				ObjectBuilder<InferTrainedModelDeploymentRequest> {
 		private List<Map<String, String>> docs;
+
+		@Nullable
+		private NlpInferenceConfigUpdate inferenceConfig;
 
 		private String modelId;
 
@@ -186,6 +208,26 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 		public final Builder docs(Map<String, String> value, Map<String, String>... values) {
 			this.docs = _listAdd(this.docs, value, values);
 			return this;
+		}
+
+		/**
+		 * The inference configuration updates to apply on the API call
+		 * <p>
+		 * API name: {@code inference_config}
+		 */
+		public final Builder inferenceConfig(@Nullable NlpInferenceConfigUpdate value) {
+			this.inferenceConfig = value;
+			return this;
+		}
+
+		/**
+		 * The inference configuration updates to apply on the API call
+		 * <p>
+		 * API name: {@code inference_config}
+		 */
+		public final Builder inferenceConfig(
+				Function<NlpInferenceConfigUpdate.Builder, ObjectBuilder<NlpInferenceConfigUpdate>> fn) {
+			return this.inferenceConfig(fn.apply(new NlpInferenceConfigUpdate.Builder()).build());
 		}
 
 		/**
@@ -249,6 +291,7 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 
 		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer())), "docs");
+		op.add(Builder::inferenceConfig, NlpInferenceConfigUpdate._DESERIALIZER, "inference_config");
 
 	}
 

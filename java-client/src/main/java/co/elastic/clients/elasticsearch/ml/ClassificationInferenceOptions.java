@@ -21,8 +21,10 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
+import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfigVariant;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,16 +40,20 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _types.aggregations.ClassificationInferenceOptions
+// typedef: ml._types.ClassificationInferenceOptions
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.ClassificationInferenceOptions">API
+ *      "../doc-files/api-spec.html#ml._types.ClassificationInferenceOptions">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class ClassificationInferenceOptions implements JsonpSerializable {
+public class ClassificationInferenceOptions
+		implements
+			InferenceConfigCreateVariant,
+			InferenceConfigVariant,
+			JsonpSerializable {
 	@Nullable
 	private final Integer numTopClasses;
 
@@ -78,6 +84,22 @@ public class ClassificationInferenceOptions implements JsonpSerializable {
 	public static ClassificationInferenceOptions of(
 			Function<Builder, ObjectBuilder<ClassificationInferenceOptions>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * InferenceConfigCreate variant kind.
+	 */
+	@Override
+	public InferenceConfigCreate.Kind _inferenceConfigCreateKind() {
+		return InferenceConfigCreate.Kind.Classification;
+	}
+
+	/**
+	 * InferenceConfig variant kind.
+	 */
+	@Override
+	public InferenceConfig.Kind _inferenceConfigKind() {
+		return InferenceConfig.Kind.Classification;
 	}
 
 	/**

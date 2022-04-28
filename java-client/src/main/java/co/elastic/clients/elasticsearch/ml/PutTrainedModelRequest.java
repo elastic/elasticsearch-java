@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.aggregations.InferenceConfig;
 import co.elastic.clients.elasticsearch.ml.put_trained_model.Definition;
 import co.elastic.clients.elasticsearch.ml.put_trained_model.Input;
 import co.elastic.clients.json.JsonData;
@@ -74,7 +73,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	@Nullable
 	private final String description;
 
-	private final InferenceConfig inferenceConfig;
+	private final InferenceConfigCreate inferenceConfig;
 
 	private final Input input;
 
@@ -165,7 +164,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 	 * <p>
 	 * API name: {@code inference_config}
 	 */
-	public final InferenceConfig inferenceConfig() {
+	public final InferenceConfigCreate inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
@@ -308,7 +307,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		@Nullable
 		private String description;
 
-		private InferenceConfig inferenceConfig;
+		private InferenceConfigCreate inferenceConfig;
 
 		private Input input;
 
@@ -388,7 +387,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public final Builder inferenceConfig(InferenceConfig value) {
+		public final Builder inferenceConfig(InferenceConfigCreate value) {
 			this.inferenceConfig = value;
 			return this;
 		}
@@ -400,8 +399,9 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public final Builder inferenceConfig(Function<InferenceConfig.Builder, ObjectBuilder<InferenceConfig>> fn) {
-			return this.inferenceConfig(fn.apply(new InferenceConfig.Builder()).build());
+		public final Builder inferenceConfig(
+				Function<InferenceConfigCreate.Builder, ObjectBuilder<InferenceConfigCreate>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfigCreate.Builder()).build());
 		}
 
 		/**
@@ -521,7 +521,7 @@ public class PutTrainedModelRequest extends RequestBase implements JsonpSerializ
 		op.add(Builder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
 		op.add(Builder::definition, Definition._DESERIALIZER, "definition");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::inferenceConfig, InferenceConfig._DESERIALIZER, "inference_config");
+		op.add(Builder::inferenceConfig, InferenceConfigCreate._DESERIALIZER, "inference_config");
 		op.add(Builder::input, Input._DESERIALIZER, "input");
 		op.add(Builder::metadata, JsonData._DESERIALIZER, "metadata");
 		op.add(Builder::modelSizeBytes, JsonpDeserializer.longDeserializer(), "model_size_bytes");

@@ -32,6 +32,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -68,6 +69,9 @@ public class MappingLimitSettings implements JsonpSerializable {
 	@Nullable
 	private final MappingLimitSettingsDimensionFields dimensionFields;
 
+	@Nullable
+	private final Boolean ignoreMalformed;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MappingLimitSettings(Builder builder) {
@@ -78,6 +82,7 @@ public class MappingLimitSettings implements JsonpSerializable {
 		this.nestedObjects = builder.nestedObjects;
 		this.fieldNameLength = builder.fieldNameLength;
 		this.dimensionFields = builder.dimensionFields;
+		this.ignoreMalformed = builder.ignoreMalformed;
 
 	}
 
@@ -134,6 +139,14 @@ public class MappingLimitSettings implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code ignore_malformed}
+	 */
+	@Nullable
+	public final Boolean ignoreMalformed() {
+		return this.ignoreMalformed;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -174,6 +187,11 @@ public class MappingLimitSettings implements JsonpSerializable {
 			this.dimensionFields.serialize(generator, mapper);
 
 		}
+		if (this.ignoreMalformed != null) {
+			generator.writeKey("ignore_malformed");
+			generator.write(this.ignoreMalformed);
+
+		}
 
 	}
 
@@ -203,6 +221,9 @@ public class MappingLimitSettings implements JsonpSerializable {
 
 		@Nullable
 		private MappingLimitSettingsDimensionFields dimensionFields;
+
+		@Nullable
+		private Boolean ignoreMalformed;
 
 		/**
 		 * API name: {@code total_fields}
@@ -300,6 +321,14 @@ public class MappingLimitSettings implements JsonpSerializable {
 			return this.dimensionFields(fn.apply(new MappingLimitSettingsDimensionFields.Builder()).build());
 		}
 
+		/**
+		 * API name: {@code ignore_malformed}
+		 */
+		public final Builder ignoreMalformed(@Nullable Boolean value) {
+			this.ignoreMalformed = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -334,6 +363,7 @@ public class MappingLimitSettings implements JsonpSerializable {
 		op.add(Builder::nestedObjects, MappingLimitSettingsNestedObjects._DESERIALIZER, "nested_objects");
 		op.add(Builder::fieldNameLength, MappingLimitSettingsFieldNameLength._DESERIALIZER, "field_name_length");
 		op.add(Builder::dimensionFields, MappingLimitSettingsDimensionFields._DESERIALIZER, "dimension_fields");
+		op.add(Builder::ignoreMalformed, JsonpDeserializer.booleanDeserializer(), "ignore_malformed");
 
 	}
 
