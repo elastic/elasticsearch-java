@@ -123,8 +123,6 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final IndexTemplate template() {
 		return this.template;
@@ -206,8 +204,6 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder template(IndexTemplate value) {
 			this.template = value;
@@ -216,8 +212,6 @@ public class SimulateTemplateRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder template(Function<IndexTemplate.Builder, ObjectBuilder<IndexTemplate>> fn) {
 			return this.template(fn.apply(new IndexTemplate.Builder()).build());

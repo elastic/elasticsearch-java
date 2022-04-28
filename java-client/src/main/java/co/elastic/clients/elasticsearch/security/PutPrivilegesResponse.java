@@ -67,8 +67,6 @@ public class PutPrivilegesResponse implements JsonpSerializable {
 
 	/**
 	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final Map<String, Map<String, CreatedStatus>> result() {
 		return this.result;
@@ -117,8 +115,6 @@ public class PutPrivilegesResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all entries of <code>map</code> to <code>result</code>.
 		 */
 		public final Builder result(Map<String, Map<String, CreatedStatus>> map) {
@@ -128,8 +124,6 @@ public class PutPrivilegesResponse implements JsonpSerializable {
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds an entry to <code>result</code>.
 		 */

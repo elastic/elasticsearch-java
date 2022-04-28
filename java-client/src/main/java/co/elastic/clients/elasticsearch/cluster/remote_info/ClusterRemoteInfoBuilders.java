@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.cluster.remote_info;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link ClusterRemoteInfo} variants.
  */
@@ -39,11 +42,33 @@ public class ClusterRemoteInfoBuilders {
 	}
 
 	/**
+	 * Creates a ClusterRemoteInfo of the {@link ClusterRemoteProxyInfo proxy}
+	 * {@code ClusterRemoteInfo} variant.
+	 */
+	public static ClusterRemoteInfo proxy(
+			Function<ClusterRemoteProxyInfo.Builder, ObjectBuilder<ClusterRemoteProxyInfo>> fn) {
+		ClusterRemoteInfo.Builder builder = new ClusterRemoteInfo.Builder();
+		builder.proxy(fn.apply(new ClusterRemoteProxyInfo.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ClusterRemoteSniffInfo sniff}
 	 * {@code ClusterRemoteInfo} variant.
 	 */
 	public static ClusterRemoteSniffInfo.Builder sniff() {
 		return new ClusterRemoteSniffInfo.Builder();
+	}
+
+	/**
+	 * Creates a ClusterRemoteInfo of the {@link ClusterRemoteSniffInfo sniff}
+	 * {@code ClusterRemoteInfo} variant.
+	 */
+	public static ClusterRemoteInfo sniff(
+			Function<ClusterRemoteSniffInfo.Builder, ObjectBuilder<ClusterRemoteSniffInfo>> fn) {
+		ClusterRemoteInfo.Builder builder = new ClusterRemoteInfo.Builder();
+		builder.sniff(fn.apply(new ClusterRemoteSniffInfo.Builder()).build());
+		return builder.build();
 	}
 
 }

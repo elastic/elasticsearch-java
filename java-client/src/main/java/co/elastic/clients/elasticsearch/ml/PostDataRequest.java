@@ -131,8 +131,6 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final List<TData> data() {
 		return this.data;
@@ -207,8 +205,6 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 		/**
 		 * Required - Request body.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all elements of <code>list</code> to <code>data</code>.
 		 */
 		public final Builder<TData> data(List<TData> list) {
@@ -218,8 +214,6 @@ public class PostDataRequest<TData> extends RequestBase implements JsonpSerializ
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds one or more values to <code>data</code>.
 		 */

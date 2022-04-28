@@ -66,8 +66,6 @@ public class GetUserResponse implements JsonpSerializable {
 
 	/**
 	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final Map<String, User> result() {
 		return this.result;
@@ -106,8 +104,6 @@ public class GetUserResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all entries of <code>map</code> to <code>result</code>.
 		 */
 		public final Builder result(Map<String, User> map) {
@@ -118,8 +114,6 @@ public class GetUserResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds an entry to <code>result</code>.
 		 */
 		public final Builder result(String key, User value) {
@@ -129,8 +123,6 @@ public class GetUserResponse implements JsonpSerializable {
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds an entry to <code>result</code> using a builder lambda.
 		 */

@@ -69,8 +69,6 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final Detector detector() {
 		return this.detector;
@@ -97,8 +95,6 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder detector(Detector value) {
 			this.detector = value;
@@ -107,8 +103,6 @@ public class ValidateDetectorRequest extends RequestBase implements JsonpSeriali
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder detector(Function<Detector.Builder, ObjectBuilder<Detector>> fn) {
 			return this.detector(fn.apply(new Detector.Builder()).build());

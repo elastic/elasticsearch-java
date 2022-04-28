@@ -84,8 +84,6 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final Pipeline pipeline() {
 		return this.pipeline;
@@ -124,8 +122,6 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder pipeline(Pipeline value) {
 			this.pipeline = value;
@@ -134,8 +130,6 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder pipeline(Function<Pipeline.Builder, ObjectBuilder<Pipeline>> fn) {
 			return this.pipeline(fn.apply(new Pipeline.Builder()).build());

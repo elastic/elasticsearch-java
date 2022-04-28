@@ -67,8 +67,6 @@ public class GetMappingResponse implements JsonpSerializable {
 
 	/**
 	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final Map<String, IndexMappingRecord> result() {
 		return this.result;
@@ -109,8 +107,6 @@ public class GetMappingResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all entries of <code>map</code> to <code>result</code>.
 		 */
 		public final Builder result(Map<String, IndexMappingRecord> map) {
@@ -121,8 +117,6 @@ public class GetMappingResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds an entry to <code>result</code>.
 		 */
 		public final Builder result(String key, IndexMappingRecord value) {
@@ -132,8 +126,6 @@ public class GetMappingResponse implements JsonpSerializable {
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds an entry to <code>result</code> using a builder lambda.
 		 */

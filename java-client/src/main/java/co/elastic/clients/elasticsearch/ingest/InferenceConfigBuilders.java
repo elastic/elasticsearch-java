@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ingest;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link InferenceConfig} variants.
  */
@@ -39,11 +42,33 @@ public class InferenceConfigBuilders {
 	}
 
 	/**
+	 * Creates a InferenceConfig of the {@link InferenceConfigRegression regression}
+	 * {@code InferenceConfig} variant.
+	 */
+	public static InferenceConfig regression(
+			Function<InferenceConfigRegression.Builder, ObjectBuilder<InferenceConfigRegression>> fn) {
+		InferenceConfig.Builder builder = new InferenceConfig.Builder();
+		builder.regression(fn.apply(new InferenceConfigRegression.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link InferenceConfigClassification
 	 * classification} {@code InferenceConfig} variant.
 	 */
 	public static InferenceConfigClassification.Builder classification() {
 		return new InferenceConfigClassification.Builder();
+	}
+
+	/**
+	 * Creates a InferenceConfig of the {@link InferenceConfigClassification
+	 * classification} {@code InferenceConfig} variant.
+	 */
+	public static InferenceConfig classification(
+			Function<InferenceConfigClassification.Builder, ObjectBuilder<InferenceConfigClassification>> fn) {
+		InferenceConfig.Builder builder = new InferenceConfig.Builder();
+		builder.classification(fn.apply(new InferenceConfigClassification.Builder()).build());
+		return builder.build();
 	}
 
 }

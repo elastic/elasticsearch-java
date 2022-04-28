@@ -66,8 +66,6 @@ public class GetLifecycleResponse implements JsonpSerializable {
 
 	/**
 	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final Map<String, SnapshotLifecycle> result() {
 		return this.result;
@@ -108,8 +106,6 @@ public class GetLifecycleResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all entries of <code>map</code> to <code>result</code>.
 		 */
 		public final Builder result(Map<String, SnapshotLifecycle> map) {
@@ -120,8 +116,6 @@ public class GetLifecycleResponse implements JsonpSerializable {
 		/**
 		 * Required - Response value.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds an entry to <code>result</code>.
 		 */
 		public final Builder result(String key, SnapshotLifecycle value) {
@@ -131,8 +125,6 @@ public class GetLifecycleResponse implements JsonpSerializable {
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds an entry to <code>result</code> using a builder lambda.
 		 */

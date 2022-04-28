@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link NodeReloadResult} variants.
  */

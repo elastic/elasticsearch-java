@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types.query_dsl;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link FunctionScore} variants.
  */
@@ -39,11 +42,31 @@ public class FunctionScoreBuilders {
 	}
 
 	/**
+	 * Creates a FunctionScore of the {@link DecayFunction exp}
+	 * {@code FunctionScore} variant.
+	 */
+	public static FunctionScore exp(Function<DecayFunction.Builder, ObjectBuilder<DecayFunction>> fn) {
+		FunctionScore.Builder builder = new FunctionScore.Builder();
+		builder.exp(fn.apply(new DecayFunction.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DecayFunction gauss} {@code FunctionScore}
 	 * variant.
 	 */
 	public static DecayFunction.Builder gauss() {
 		return new DecayFunction.Builder();
+	}
+
+	/**
+	 * Creates a FunctionScore of the {@link DecayFunction gauss}
+	 * {@code FunctionScore} variant.
+	 */
+	public static FunctionScore gauss(Function<DecayFunction.Builder, ObjectBuilder<DecayFunction>> fn) {
+		FunctionScore.Builder builder = new FunctionScore.Builder();
+		builder.gauss(fn.apply(new DecayFunction.Builder()).build());
+		return builder.build();
 	}
 
 	/**
@@ -55,11 +78,32 @@ public class FunctionScoreBuilders {
 	}
 
 	/**
+	 * Creates a FunctionScore of the {@link DecayFunction linear}
+	 * {@code FunctionScore} variant.
+	 */
+	public static FunctionScore linear(Function<DecayFunction.Builder, ObjectBuilder<DecayFunction>> fn) {
+		FunctionScore.Builder builder = new FunctionScore.Builder();
+		builder.linear(fn.apply(new DecayFunction.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link FieldValueFactorScoreFunction
 	 * field_value_factor} {@code FunctionScore} variant.
 	 */
 	public static FieldValueFactorScoreFunction.Builder fieldValueFactor() {
 		return new FieldValueFactorScoreFunction.Builder();
+	}
+
+	/**
+	 * Creates a FunctionScore of the {@link FieldValueFactorScoreFunction
+	 * field_value_factor} {@code FunctionScore} variant.
+	 */
+	public static FunctionScore fieldValueFactor(
+			Function<FieldValueFactorScoreFunction.Builder, ObjectBuilder<FieldValueFactorScoreFunction>> fn) {
+		FunctionScore.Builder builder = new FunctionScore.Builder();
+		builder.fieldValueFactor(fn.apply(new FieldValueFactorScoreFunction.Builder()).build());
+		return builder.build();
 	}
 
 	/**
@@ -71,11 +115,33 @@ public class FunctionScoreBuilders {
 	}
 
 	/**
+	 * Creates a FunctionScore of the {@link RandomScoreFunction random_score}
+	 * {@code FunctionScore} variant.
+	 */
+	public static FunctionScore randomScore(
+			Function<RandomScoreFunction.Builder, ObjectBuilder<RandomScoreFunction>> fn) {
+		FunctionScore.Builder builder = new FunctionScore.Builder();
+		builder.randomScore(fn.apply(new RandomScoreFunction.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link ScriptScoreFunction script_score}
 	 * {@code FunctionScore} variant.
 	 */
 	public static ScriptScoreFunction.Builder scriptScore() {
 		return new ScriptScoreFunction.Builder();
+	}
+
+	/**
+	 * Creates a FunctionScore of the {@link ScriptScoreFunction script_score}
+	 * {@code FunctionScore} variant.
+	 */
+	public static FunctionScore scriptScore(
+			Function<ScriptScoreFunction.Builder, ObjectBuilder<ScriptScoreFunction>> fn) {
+		FunctionScore.Builder builder = new FunctionScore.Builder();
+		builder.scriptScore(fn.apply(new ScriptScoreFunction.Builder()).build());
+		return builder.build();
 	}
 
 }

@@ -64,8 +64,6 @@ public class DiskUsageResponse implements JsonpSerializable {
 
 	/**
 	 * Required - Response value.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final JsonData valueBody() {
 		return this.valueBody;
@@ -90,8 +88,6 @@ public class DiskUsageResponse implements JsonpSerializable {
 
 		/**
 		 * Required - Response value.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder valueBody(JsonData value) {
 			this.valueBody = value;

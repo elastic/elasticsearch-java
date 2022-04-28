@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.indices.modify_data_stream;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link Action} variants.
  */
@@ -39,11 +42,33 @@ public class ActionBuilders {
 	}
 
 	/**
+	 * Creates a Action of the {@link IndexAndDataStreamAction add_backing_index}
+	 * {@code Action} variant.
+	 */
+	public static Action addBackingIndex(
+			Function<IndexAndDataStreamAction.Builder, ObjectBuilder<IndexAndDataStreamAction>> fn) {
+		Action.Builder builder = new Action.Builder();
+		builder.addBackingIndex(fn.apply(new IndexAndDataStreamAction.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link IndexAndDataStreamAction
 	 * remove_backing_index} {@code Action} variant.
 	 */
 	public static IndexAndDataStreamAction.Builder removeBackingIndex() {
 		return new IndexAndDataStreamAction.Builder();
+	}
+
+	/**
+	 * Creates a Action of the {@link IndexAndDataStreamAction remove_backing_index}
+	 * {@code Action} variant.
+	 */
+	public static Action removeBackingIndex(
+			Function<IndexAndDataStreamAction.Builder, ObjectBuilder<IndexAndDataStreamAction>> fn) {
+		Action.Builder builder = new Action.Builder();
+		builder.removeBackingIndex(fn.apply(new IndexAndDataStreamAction.Builder()).build());
+		return builder.build();
 	}
 
 }

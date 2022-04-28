@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link DataframeEvaluation} variants.
  */
@@ -39,6 +42,17 @@ public class DataframeEvaluationBuilders {
 	}
 
 	/**
+	 * Creates a DataframeEvaluation of the {@link DataframeEvaluationClassification
+	 * classification} {@code DataframeEvaluation} variant.
+	 */
+	public static DataframeEvaluation classification(
+			Function<DataframeEvaluationClassification.Builder, ObjectBuilder<DataframeEvaluationClassification>> fn) {
+		DataframeEvaluation.Builder builder = new DataframeEvaluation.Builder();
+		builder.classification(fn.apply(new DataframeEvaluationClassification.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DataframeEvaluationOutlierDetection
 	 * outlier_detection} {@code DataframeEvaluation} variant.
 	 */
@@ -47,11 +61,34 @@ public class DataframeEvaluationBuilders {
 	}
 
 	/**
+	 * Creates a DataframeEvaluation of the
+	 * {@link DataframeEvaluationOutlierDetection outlier_detection}
+	 * {@code DataframeEvaluation} variant.
+	 */
+	public static DataframeEvaluation outlierDetection(
+			Function<DataframeEvaluationOutlierDetection.Builder, ObjectBuilder<DataframeEvaluationOutlierDetection>> fn) {
+		DataframeEvaluation.Builder builder = new DataframeEvaluation.Builder();
+		builder.outlierDetection(fn.apply(new DataframeEvaluationOutlierDetection.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DataframeEvaluationRegression regression}
 	 * {@code DataframeEvaluation} variant.
 	 */
 	public static DataframeEvaluationRegression.Builder regression() {
 		return new DataframeEvaluationRegression.Builder();
+	}
+
+	/**
+	 * Creates a DataframeEvaluation of the {@link DataframeEvaluationRegression
+	 * regression} {@code DataframeEvaluation} variant.
+	 */
+	public static DataframeEvaluation regression(
+			Function<DataframeEvaluationRegression.Builder, ObjectBuilder<DataframeEvaluationRegression>> fn) {
+		DataframeEvaluation.Builder builder = new DataframeEvaluation.Builder();
+		builder.regression(fn.apply(new DataframeEvaluationRegression.Builder()).build());
+		return builder.build();
 	}
 
 }

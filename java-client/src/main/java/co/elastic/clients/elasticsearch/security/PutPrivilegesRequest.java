@@ -90,8 +90,6 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final Map<String, Map<String, Actions>> privileges() {
 		return this.privileges;
@@ -156,8 +154,6 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 		/**
 		 * Required - Request body.
 		 * <p>
-		 * API name: {@code _value_body}
-		 * <p>
 		 * Adds all entries of <code>map</code> to <code>privileges</code>.
 		 */
 		public final Builder privileges(Map<String, Map<String, Actions>> map) {
@@ -167,8 +163,6 @@ public class PutPrivilegesRequest extends RequestBase implements JsonpSerializab
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 * <p>
 		 * Adds an entry to <code>privileges</code>.
 		 */

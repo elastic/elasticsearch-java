@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ilm.explain_lifecycle;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link LifecycleExplain} variants.
  */
@@ -39,11 +42,33 @@ public class LifecycleExplainBuilders {
 	}
 
 	/**
+	 * Creates a LifecycleExplain of the {@link LifecycleExplainManaged true}
+	 * {@code LifecycleExplain} variant.
+	 */
+	public static LifecycleExplain true_(
+			Function<LifecycleExplainManaged.Builder, ObjectBuilder<LifecycleExplainManaged>> fn) {
+		LifecycleExplain.Builder builder = new LifecycleExplain.Builder();
+		builder.true_(fn.apply(new LifecycleExplainManaged.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link LifecycleExplainUnmanaged false}
 	 * {@code LifecycleExplain} variant.
 	 */
 	public static LifecycleExplainUnmanaged.Builder false_() {
 		return new LifecycleExplainUnmanaged.Builder();
+	}
+
+	/**
+	 * Creates a LifecycleExplain of the {@link LifecycleExplainUnmanaged false}
+	 * {@code LifecycleExplain} variant.
+	 */
+	public static LifecycleExplain false_(
+			Function<LifecycleExplainUnmanaged.Builder, ObjectBuilder<LifecycleExplainUnmanaged>> fn) {
+		LifecycleExplain.Builder builder = new LifecycleExplain.Builder();
+		builder.false_(fn.apply(new LifecycleExplainUnmanaged.Builder()).build());
+		return builder.build();
 	}
 
 }

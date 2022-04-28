@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link DataframeAnalysisFeatureProcessor} variants.
  */
@@ -40,12 +43,36 @@ public class DataframeAnalysisFeatureProcessorBuilders {
 	}
 
 	/**
+	 * Creates a DataframeAnalysisFeatureProcessor of the
+	 * {@link DataframeAnalysisFeatureProcessorFrequencyEncoding frequency_encoding}
+	 * {@code DataframeAnalysisFeatureProcessor} variant.
+	 */
+	public static DataframeAnalysisFeatureProcessor frequencyEncoding(
+			Function<DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorFrequencyEncoding>> fn) {
+		DataframeAnalysisFeatureProcessor.Builder builder = new DataframeAnalysisFeatureProcessor.Builder();
+		builder.frequencyEncoding(fn.apply(new DataframeAnalysisFeatureProcessorFrequencyEncoding.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the
 	 * {@link DataframeAnalysisFeatureProcessorMultiEncoding multi_encoding}
 	 * {@code DataframeAnalysisFeatureProcessor} variant.
 	 */
 	public static DataframeAnalysisFeatureProcessorMultiEncoding.Builder multiEncoding() {
 		return new DataframeAnalysisFeatureProcessorMultiEncoding.Builder();
+	}
+
+	/**
+	 * Creates a DataframeAnalysisFeatureProcessor of the
+	 * {@link DataframeAnalysisFeatureProcessorMultiEncoding multi_encoding}
+	 * {@code DataframeAnalysisFeatureProcessor} variant.
+	 */
+	public static DataframeAnalysisFeatureProcessor multiEncoding(
+			Function<DataframeAnalysisFeatureProcessorMultiEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorMultiEncoding>> fn) {
+		DataframeAnalysisFeatureProcessor.Builder builder = new DataframeAnalysisFeatureProcessor.Builder();
+		builder.multiEncoding(fn.apply(new DataframeAnalysisFeatureProcessorMultiEncoding.Builder()).build());
+		return builder.build();
 	}
 
 	/**
@@ -58,6 +85,18 @@ public class DataframeAnalysisFeatureProcessorBuilders {
 	}
 
 	/**
+	 * Creates a DataframeAnalysisFeatureProcessor of the
+	 * {@link DataframeAnalysisFeatureProcessorNGramEncoding n_gram_encoding}
+	 * {@code DataframeAnalysisFeatureProcessor} variant.
+	 */
+	public static DataframeAnalysisFeatureProcessor nGramEncoding(
+			Function<DataframeAnalysisFeatureProcessorNGramEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorNGramEncoding>> fn) {
+		DataframeAnalysisFeatureProcessor.Builder builder = new DataframeAnalysisFeatureProcessor.Builder();
+		builder.nGramEncoding(fn.apply(new DataframeAnalysisFeatureProcessorNGramEncoding.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the
 	 * {@link DataframeAnalysisFeatureProcessorOneHotEncoding one_hot_encoding}
 	 * {@code DataframeAnalysisFeatureProcessor} variant.
@@ -67,12 +106,36 @@ public class DataframeAnalysisFeatureProcessorBuilders {
 	}
 
 	/**
+	 * Creates a DataframeAnalysisFeatureProcessor of the
+	 * {@link DataframeAnalysisFeatureProcessorOneHotEncoding one_hot_encoding}
+	 * {@code DataframeAnalysisFeatureProcessor} variant.
+	 */
+	public static DataframeAnalysisFeatureProcessor oneHotEncoding(
+			Function<DataframeAnalysisFeatureProcessorOneHotEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorOneHotEncoding>> fn) {
+		DataframeAnalysisFeatureProcessor.Builder builder = new DataframeAnalysisFeatureProcessor.Builder();
+		builder.oneHotEncoding(fn.apply(new DataframeAnalysisFeatureProcessorOneHotEncoding.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the
 	 * {@link DataframeAnalysisFeatureProcessorTargetMeanEncoding
 	 * target_mean_encoding} {@code DataframeAnalysisFeatureProcessor} variant.
 	 */
 	public static DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder targetMeanEncoding() {
 		return new DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder();
+	}
+
+	/**
+	 * Creates a DataframeAnalysisFeatureProcessor of the
+	 * {@link DataframeAnalysisFeatureProcessorTargetMeanEncoding
+	 * target_mean_encoding} {@code DataframeAnalysisFeatureProcessor} variant.
+	 */
+	public static DataframeAnalysisFeatureProcessor targetMeanEncoding(
+			Function<DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder, ObjectBuilder<DataframeAnalysisFeatureProcessorTargetMeanEncoding>> fn) {
+		DataframeAnalysisFeatureProcessor.Builder builder = new DataframeAnalysisFeatureProcessor.Builder();
+		builder.targetMeanEncoding(fn.apply(new DataframeAnalysisFeatureProcessorTargetMeanEncoding.Builder()).build());
+		return builder.build();
 	}
 
 }

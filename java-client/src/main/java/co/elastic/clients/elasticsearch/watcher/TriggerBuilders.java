@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link Trigger} variants.
  */
@@ -35,6 +38,15 @@ public class TriggerBuilders {
 	 */
 	public static Schedule.Builder schedule() {
 		return new Schedule.Builder();
+	}
+
+	/**
+	 * Creates a Trigger of the {@link Schedule schedule} {@code Trigger} variant.
+	 */
+	public static Trigger schedule(Function<Schedule.Builder, ObjectBuilder<Schedule>> fn) {
+		Trigger.Builder builder = new Trigger.Builder();
+		builder.schedule(fn.apply(new Schedule.Builder()).build());
+		return builder.build();
 	}
 
 }

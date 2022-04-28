@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch._types;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link Transform} variants.
  * <p>
@@ -43,11 +46,31 @@ public class TransformBuilders {
 	}
 
 	/**
+	 * Creates a Transform of the {@link ScriptTransform script} {@code Transform}
+	 * variant.
+	 */
+	public static Transform script(Function<ScriptTransform.Builder, ObjectBuilder<ScriptTransform>> fn) {
+		Transform.Builder builder = new Transform.Builder();
+		builder.script(fn.apply(new ScriptTransform.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link SearchTransform search} {@code Transform}
 	 * variant.
 	 */
 	public static SearchTransform.Builder search() {
 		return new SearchTransform.Builder();
+	}
+
+	/**
+	 * Creates a Transform of the {@link SearchTransform search} {@code Transform}
+	 * variant.
+	 */
+	public static Transform search(Function<SearchTransform.Builder, ObjectBuilder<SearchTransform>> fn) {
+		Transform.Builder builder = new Transform.Builder();
+		builder.search(fn.apply(new SearchTransform.Builder()).build());
+		return builder.build();
 	}
 
 }

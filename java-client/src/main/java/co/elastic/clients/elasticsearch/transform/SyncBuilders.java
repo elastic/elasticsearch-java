@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.transform;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link Sync} variants.
  */
@@ -35,6 +38,15 @@ public class SyncBuilders {
 	 */
 	public static TimeSync.Builder time() {
 		return new TimeSync.Builder();
+	}
+
+	/**
+	 * Creates a Sync of the {@link TimeSync time} {@code Sync} variant.
+	 */
+	public static Sync time(Function<TimeSync.Builder, ObjectBuilder<TimeSync>> fn) {
+		Sync.Builder builder = new Sync.Builder();
+		builder.time(fn.apply(new TimeSync.Builder()).build());
+		return builder.build();
 	}
 
 }

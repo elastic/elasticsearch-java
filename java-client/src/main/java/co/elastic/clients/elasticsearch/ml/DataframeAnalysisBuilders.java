@@ -23,6 +23,9 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
+
 /**
  * Builders for {@link DataframeAnalysis} variants.
  */
@@ -39,6 +42,17 @@ public class DataframeAnalysisBuilders {
 	}
 
 	/**
+	 * Creates a DataframeAnalysis of the {@link DataframeAnalysisClassification
+	 * classification} {@code DataframeAnalysis} variant.
+	 */
+	public static DataframeAnalysis classification(
+			Function<DataframeAnalysisClassification.Builder, ObjectBuilder<DataframeAnalysisClassification>> fn) {
+		DataframeAnalysis.Builder builder = new DataframeAnalysis.Builder();
+		builder.classification(fn.apply(new DataframeAnalysisClassification.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DataframeAnalysisOutlierDetection
 	 * outlier_detection} {@code DataframeAnalysis} variant.
 	 */
@@ -47,11 +61,33 @@ public class DataframeAnalysisBuilders {
 	}
 
 	/**
+	 * Creates a DataframeAnalysis of the {@link DataframeAnalysisOutlierDetection
+	 * outlier_detection} {@code DataframeAnalysis} variant.
+	 */
+	public static DataframeAnalysis outlierDetection(
+			Function<DataframeAnalysisOutlierDetection.Builder, ObjectBuilder<DataframeAnalysisOutlierDetection>> fn) {
+		DataframeAnalysis.Builder builder = new DataframeAnalysis.Builder();
+		builder.outlierDetection(fn.apply(new DataframeAnalysisOutlierDetection.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link DataframeAnalysisRegression regression}
 	 * {@code DataframeAnalysis} variant.
 	 */
 	public static DataframeAnalysisRegression.Builder regression() {
 		return new DataframeAnalysisRegression.Builder();
+	}
+
+	/**
+	 * Creates a DataframeAnalysis of the {@link DataframeAnalysisRegression
+	 * regression} {@code DataframeAnalysis} variant.
+	 */
+	public static DataframeAnalysis regression(
+			Function<DataframeAnalysisRegression.Builder, ObjectBuilder<DataframeAnalysisRegression>> fn) {
+		DataframeAnalysis.Builder builder = new DataframeAnalysis.Builder();
+		builder.regression(fn.apply(new DataframeAnalysisRegression.Builder()).build());
+		return builder.build();
 	}
 
 }

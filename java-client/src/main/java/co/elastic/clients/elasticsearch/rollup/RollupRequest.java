@@ -95,8 +95,6 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 
 	/**
 	 * Required - Request body.
-	 * <p>
-	 * API name: {@code _value_body}
 	 */
 	public final JsonData config() {
 		return this.config;
@@ -145,8 +143,6 @@ public class RollupRequest extends RequestBase implements JsonpSerializable {
 
 		/**
 		 * Required - Request body.
-		 * <p>
-		 * API name: {@code _value_body}
 		 */
 		public final Builder config(JsonData value) {
 			this.config = value;
