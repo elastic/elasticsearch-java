@@ -44,7 +44,7 @@ public class SearchingTest {
 
     private final Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    private static final SearchResponse<JsonData> searchResponse = SearchResponse.searchResponseOf(b -> b
+    private static final SearchResponse<JsonData> searchResponse = SearchResponse.of(b -> b
         .aggregations(new HashMap<>())
         .took(0)
         .timedOut(false)

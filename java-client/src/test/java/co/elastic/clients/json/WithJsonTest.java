@@ -52,14 +52,16 @@ public class WithJsonTest extends ModelTestCase {
     @Test
     public void testRequestWithValueBody() {
         String json = "{" +
-            "\"analyze.max_token_count\": 12" +
+            "\"analyze\": {" +
+            "    \"max_token_count\": 12" +
+            "  }" +
             "}";
 
         PutIndicesSettingsRequest req = PutIndicesSettingsRequest.of(b -> b
             .withJson(new StringReader(json))
         );
 
-        assertEquals(12, req.settings().analyzeMaxTokenCount().intValue());
+        assertEquals(12, req.settings().analyze().maxTokenCount().intValue());
     }
 
     @Test
@@ -108,7 +110,7 @@ public class WithJsonTest extends ModelTestCase {
             "}";
 
         // withJson() will read values of the generic parameter type as JsonData
-        SearchResponse<JsonData> r = SearchResponse.searchResponseOf(b -> b
+        SearchResponse<JsonData> r = SearchResponse.of(b -> b
             .withJson(new StringReader(json))
         );
 

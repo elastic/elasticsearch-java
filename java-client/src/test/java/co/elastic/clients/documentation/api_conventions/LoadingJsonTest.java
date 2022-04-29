@@ -49,7 +49,7 @@ public class LoadingJsonTest extends ModelTestCase {
     private final DocTestsTransport transport = new DocTestsTransport();
     private final ElasticsearchClient client = new ElasticsearchClient(transport);
 
-    private static final SearchResponse<JsonData> searchResponse = SearchResponse.searchResponseOf(b -> b
+    private static final SearchResponse<JsonData> searchResponse = SearchResponse.of(b -> b
         .aggregations(new HashMap<>())
         .took(0)
         .timedOut(false)
