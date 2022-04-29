@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
@@ -43,14 +44,13 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 
-public abstract class DecayFunctionBase extends ScoreFunctionBase {
+public abstract class DecayFunctionBase implements JsonpSerializable {
 	@Nullable
 	private final MultiValueMode multiValueMode;
 
 	// ---------------------------------------------------------------------------------------------
 
 	protected DecayFunctionBase(AbstractBuilder<?> builder) {
-		super(builder);
 
 		this.multiValueMode = builder.multiValueMode;
 
@@ -64,9 +64,17 @@ public abstract class DecayFunctionBase extends ScoreFunctionBase {
 		return this.multiValueMode;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.multiValueMode != null) {
 			generator.writeKey("multi_value_mode");
 			this.multiValueMode.serialize(generator, mapper);
@@ -76,7 +84,7 @@ public abstract class DecayFunctionBase extends ScoreFunctionBase {
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
 			extends
-				ScoreFunctionBase.AbstractBuilder<BuilderT> {
+				WithJsonObjectBuilderBase<BuilderT> {
 		@Nullable
 		private MultiValueMode multiValueMode;
 
@@ -88,12 +96,14 @@ public abstract class DecayFunctionBase extends ScoreFunctionBase {
 			return self();
 		}
 
+		protected abstract BuilderT self();
+
 	}
 
 	// ---------------------------------------------------------------------------------------------
 	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupDecayFunctionBaseDeserializer(
 			ObjectDeserializer<BuilderT> op) {
-		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
+
 		op.add(AbstractBuilder::multiValueMode, MultiValueMode._DESERIALIZER, "multi_value_mode");
 
 	}

@@ -27,10 +27,12 @@ import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -45,13 +47,12 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+public class ScriptScoreFunction implements FunctionScoreVariant, JsonpSerializable {
 	private final Script script;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ScriptScoreFunction(Builder builder) {
-		super(builder);
 
 		this.script = ApiTypeHelper.requireNonNull(builder.script, this, "script");
 
@@ -76,9 +77,17 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
 		return this.script;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		generator.writeKey("script");
 		this.script.serialize(generator, mapper);
 
@@ -90,7 +99,7 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
 	 * Builder for {@link ScriptScoreFunction}.
 	 */
 
-	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ScriptScoreFunction> {
 		private Script script;
@@ -137,7 +146,7 @@ public class ScriptScoreFunction extends ScoreFunctionBase implements FunctionSc
 			.lazy(Builder::new, ScriptScoreFunction::setupScriptScoreFunctionDeserializer);
 
 	protected static void setupScriptScoreFunctionDeserializer(ObjectDeserializer<ScriptScoreFunction.Builder> op) {
-		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
+
 		op.add(Builder::script, Script._DESERIALIZER, "script");
 
 	}
