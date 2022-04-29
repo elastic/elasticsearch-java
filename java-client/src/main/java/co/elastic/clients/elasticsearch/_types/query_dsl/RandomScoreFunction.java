@@ -26,9 +26,11 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.Objects;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class RandomScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+public class RandomScoreFunction implements FunctionScoreVariant, JsonpSerializable {
 	@Nullable
 	private final String field;
 
@@ -54,7 +56,6 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
 	// ---------------------------------------------------------------------------------------------
 
 	private RandomScoreFunction(Builder builder) {
-		super(builder);
 
 		this.field = builder.field;
 		this.seed = builder.seed;
@@ -89,9 +90,17 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
 		return this.seed;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		if (this.field != null) {
 			generator.writeKey("field");
 			generator.write(this.field);
@@ -111,7 +120,7 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
 	 * Builder for {@link RandomScoreFunction}.
 	 */
 
-	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<RandomScoreFunction> {
 		@Nullable
@@ -163,7 +172,7 @@ public class RandomScoreFunction extends ScoreFunctionBase implements FunctionSc
 			.lazy(Builder::new, RandomScoreFunction::setupRandomScoreFunctionDeserializer);
 
 	protected static void setupRandomScoreFunctionDeserializer(ObjectDeserializer<RandomScoreFunction.Builder> op) {
-		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
+
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::seed, JsonpDeserializer.stringDeserializer(), "seed");
 
