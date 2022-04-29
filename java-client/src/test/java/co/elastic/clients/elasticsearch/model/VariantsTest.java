@@ -21,6 +21,7 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.mapping.Property;
 import co.elastic.clients.elasticsearch._types.mapping.TypeMapping;
+import co.elastic.clients.elasticsearch._types.query_dsl.FunctionScore;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.QueryBuilders;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
@@ -200,5 +201,53 @@ public class VariantsTest extends ModelTestCase {
 
         assertEquals("m1 value", search.aggregations().get("agg1").meta().get("m1").to(String.class));
         assertEquals("m2 value", search.aggregations().get("agg1").meta().get("m2").to(String.class));
+    }
+
+    @Test
+    public void testContainerWithOptionalVariants() {
+        // FunctionScore is the only occurrence of this
+
+        Query q = QueryBuilders.term(t -> t.field("foo").value("bar"));
+
+        // No variant
+        {
+            Query fsq = QueryBuilders.functionScore(fs -> fs
+                .query(q)
+                .functions(f -> f.weight(1.0))
+            );
+
+            String json = "{\"function_score\":{\"functions\":[{\"weight\":1.0}]," +
+                "\"query\":{\"term\":{\"foo\":{\"value\":\"bar\"}}}}}";
+            assertEquals(json, toJson(fsq));
+
+            Query fsq2 = checkJsonRoundtrip(fsq, json);
+
+            assertNull(fsq2.functionScore().functions().get(0)._kind());
+            assertEquals(1.0, fsq2.functionScore().functions().get(0).weight(), 0.001);
+        }
+
+        // With a variant
+        {
+            Query fsq = QueryBuilders.functionScore(fs -> fs
+                .query(q)
+                .functions(f -> f
+                    .weight(1.0)
+                    .linear(l -> l
+                        .field("foo")
+                        .placement(p -> p.decay(2.0))
+                    )
+                )
+            );
+
+            String json = "{\"function_score\":{\"functions\":[{\"weight\":1.0,\"linear\":{\"foo\":{\"decay\":2.0}}}]," +
+                "\"query\":{\"term\":{\"foo\":{\"value\":\"bar\"}}}}}";
+            assertEquals(json, toJson(fsq));
+
+            Query fsq2 = checkJsonRoundtrip(fsq, json);
+
+            assertEquals(FunctionScore.Kind.Linear, fsq2.functionScore().functions().get(0)._kind());
+            assertEquals(1.0, fsq2.functionScore().functions().get(0).weight(), 0.001);
+            assertEquals(2.0, fsq2.functionScore().functions().get(0).linear().placement().decay(), 0.001);
+        }
     }
 }

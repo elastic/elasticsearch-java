@@ -26,10 +26,12 @@ package co.elastic.clients.elasticsearch._types.query_dsl;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
+import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
+import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Double;
 import java.lang.String;
@@ -46,7 +48,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements FunctionScoreVariant {
+public class FieldValueFactorScoreFunction implements FunctionScoreVariant, JsonpSerializable {
 	private final String field;
 
 	@Nullable
@@ -61,7 +63,6 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 	// ---------------------------------------------------------------------------------------------
 
 	private FieldValueFactorScoreFunction(Builder builder) {
-		super(builder);
 
 		this.field = ApiTypeHelper.requireNonNull(builder.field, this, "field");
 		this.factor = builder.factor;
@@ -113,9 +114,17 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 		return this.modifier;
 	}
 
+	/**
+	 * Serialize this object to JSON.
+	 */
+	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
+		generator.writeStartObject();
+		serializeInternal(generator, mapper);
+		generator.writeEnd();
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		super.serializeInternal(generator, mapper);
 		generator.writeKey("field");
 		generator.write(this.field);
 
@@ -142,7 +151,7 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 	 * Builder for {@link FieldValueFactorScoreFunction}.
 	 */
 
-	public static class Builder extends ScoreFunctionBase.AbstractBuilder<Builder>
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<FieldValueFactorScoreFunction> {
 		private String field;
@@ -216,7 +225,7 @@ public class FieldValueFactorScoreFunction extends ScoreFunctionBase implements 
 
 	protected static void setupFieldValueFactorScoreFunctionDeserializer(
 			ObjectDeserializer<FieldValueFactorScoreFunction.Builder> op) {
-		ScoreFunctionBase.setupScoreFunctionBaseDeserializer(op);
+
 		op.add(Builder::field, JsonpDeserializer.stringDeserializer(), "field");
 		op.add(Builder::factor, JsonpDeserializer.doubleDeserializer(), "factor");
 		op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
