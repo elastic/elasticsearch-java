@@ -19,6 +19,18 @@ additional headers that instruct {es} `8.x` to behave like a `7.x` server.
 The {java-client} doesn't need this setting as compatibility mode is always
 enabled.
 
+You can use the HLRC version `7.x` with the {java-client} version `8.x`:
+
+["source","groovy",subs="attributes+"]
+--------------------------------------------------
+dependencies {
+    implementation 'co.elastic.clients:elasticsearch-java:{version}'
+    implementation 'org.elasticsearch.client:elasticsearch-rest-high-level-client:7.17.3'
+    // other dependencies <1>
+}
+--------------------------------------------------
+<1> See <<installation>>
+
 [discrete]
 ==== Using the same http client with the HLRC and the Java API Client
 
