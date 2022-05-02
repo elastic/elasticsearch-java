@@ -26,13 +26,8 @@ available at https://snapshots.elastic.co/maven/.
 dependencies {
     implementation 'co.elastic.clients:elasticsearch-java:{version}'
     implementation 'com.fasterxml.jackson.core:jackson-databind:2.12.3'
-
-    // Needed only if you use the spring-dependency-management
-    // and spring-boot Gradle plugins
-    implementation 'jakarta.json:jakarta.json-api:2.0.1' //<1>
 }
 --------------------------------------------------
-<1> See <<spring-jakarta-json>> for additional details.
 
 [discrete]
 [[maven]]
@@ -58,8 +53,35 @@ dependencies:
       <version>2.12.3</version>
     </dependency>
 
-    <!-- Needed only if you use the spring-boot Maven plugin -->
-    <dependency> <!--1-->
+  </dependencies>
+</project>
+--------------------------------------------------
+
+
+[discrete]
+[[class-not-found-jsonprovider]]
+==== If you get ClassNotFoundException: jakarta.json.spi.JsonProvider
+
+It may happen that after setting up the dependencies, your application fails with `ClassNotFoundException: jakarta.json.spi.JsonProvider`.
+
+If this happens, you have to explicitly add the `jakarta.json:jakarta.json-api:2.0.1` dependency.
+
+.Gradle:
+["source","groovy",subs="attributes+"]
+--------------------------------------------------
+dependencies {
+    ...
+    implementation 'jakarta.json:jakarta.json-api:2.0.1'
+}
+--------------------------------------------------
+
+.Maven:
+["source","xml",subs="attributes+"]
+--------------------------------------------------
+<project>
+  <dependencies>
+    ...
+    <dependency>
       <groupId>jakarta.json</groupId>
       <artifactId>jakarta.json-api</artifactId>
       <version>2.0.1</version>
@@ -68,19 +90,15 @@ dependencies:
   </dependencies>
 </project>
 --------------------------------------------------
-<1> See <<spring-jakarta-json>> for additional details.
 
+**Why is this needed?**
 
-[discrete]
-[[spring-jakarta-json]]
-==== Spring Boot and jakarta.json
+Some frameworks like Spring Boot or Helidon come with their Gradle and Maven plugins or their Maven BOM files to ease development and dependency management. These plugins and BOM define the versions to use for a number of well-known libraries.
 
-Spring Boot comes with Gradle and Maven plugins to ease development and dependency management. These plugins define built-in versions for a number of well-known libraries.
+One these libraries can be `jakarta.json:json-api` that defines the standard Java JSON API. In version `1.x` this library used the `javax.json` package, while in version `2.x` it uses the `jakarta.json` package after https://blogs.oracle.com/javamagazine/post/transition-from-java-ee-to-jakarta-ee[the transition from JavaEE to JakartaEE].
 
-One these libraries is `jakarta.json:json-api` that defines the standard Java JSON API. In version `1.x` this library used the `javax.json` package, while in version `2.x` it uses the `jakarta.json` package after https://blogs.oracle.com/javamagazine/post/transition-from-java-ee-to-jakarta-ee[the transition from JavaEE to JakartaEE].
+The {java-client} depends on version `2.0.1` of this library, in order to use the newer and future-proof `jakarta.json` package. But some build plugins and BOMs override the {java-client}'s dependency to use version `1.x` in the older `javax.json` namespace, resulting in `ClassNotFoundException: jakarta.json.spi.JsonProvider`.
 
-The {java-client} depends on version `2.0.1` of this library, in order to use the newer and future-proof `jakarta.json` package. But Spring Boot's Gradle plugin (at least in version `2.6` and below) overrides the {java-client}'s dependency to use version `1.1.6` in the older `javax.json` namespace.
-
-This is why you have to explicitly add the `jakarta.json:jakarta.json-api:2.0.1` dependency. Otherwise, this will result in the following exception at runtime: `java.lang.ClassNotFoundException: jakarta.json.spi.JsonProvider`.
+Adding the correct version as top-level project dependency solves the problem.
 
 If your application also requires `javax.json` you can add the `javax.json:javax.json-api:1.1.4` dependency, which is equivalent to `jakarta.json:jakarta.json-api:1.1.6`.
