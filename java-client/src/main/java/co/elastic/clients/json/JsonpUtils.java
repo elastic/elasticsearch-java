@@ -32,7 +32,6 @@ import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
 
 import javax.annotation.Nullable;
-import java.io.IOException;
 import java.io.StringReader;
 import java.io.Writer;
 import java.util.AbstractMap;
@@ -242,15 +241,51 @@ public class JsonpUtils {
         }
     }
 
+    /**
+     * Renders a <code>JsonpSerializable</code> as a string by serializing it to JSON. Any object of an application-specific
+     * class in the object graph is rendered using that object's <code>toString()</code> representation as a JSON string value.
+     * <p>
+     * The size of the string is limited to {@link #MAX_TO_STRING_LENGTH}.
+     *
+     * @see #MAX_TO_STRING_LENGTH
+     */
     public static String toString(JsonpSerializable value) {
         return toString(value, ToStringMapper.INSTANCE, new StringBuilder()).toString();
     }
 
+    /**
+     * Maximum length of the <code>toString</code> representation of a <code>JsonpSerializable</code>.
+     * <p>
+     * The default is 10k characters, and can be changed globally by changing the value of this field.
+     */
+    public static int MAX_TO_STRING_LENGTH = 10000;
+
+    private static class ToStringTooLongException extends RuntimeException {
+    }
+
+    /**
+     * Renders a <code>JsonpSerializable</code> as a string in a destination <code>StringBuilder</code>by serializing it to JSON.
+     * <p>
+     * The size of the string is limited to {@link #MAX_TO_STRING_LENGTH}.
+     *
+     * @return the <code>dest</code> parameter, for chaining.
+     * @see #toString(JsonpSerializable)
+     * @see #MAX_TO_STRING_LENGTH
+     */
     public static StringBuilder toString(JsonpSerializable value, JsonpMapper mapper, StringBuilder dest) {
         Writer writer = new Writer() {
+            int length = 0;
             @Override
-            public void write(char[] cbuf, int off, int len) throws IOException {
-                dest.append(cbuf, off, len);
+            public void write(char[] cbuf, int off, int len) {
+                int max = MAX_TO_STRING_LENGTH;
+                length += len;
+                if (length > max) {
+                    dest.append(cbuf, off, len - (length - max));
+                    dest.append("...");
+                    throw new ToStringTooLongException();
+                } else {
+                    dest.append(cbuf, off, len);
+                }
             }
 
             @Override
@@ -263,11 +298,26 @@ public class JsonpUtils {
         };
 
         JsonGenerator generator = mapper.jsonProvider().createGenerator(writer);
-        value.serialize(generator, mapper);
-        generator.close();
+        try {
+            value.serialize(generator, mapper);
+            generator.close();
+        } catch (ToStringTooLongException e) {
+            // Ignore
+        }
         return dest;
     }
 
+    /**
+     * Renders a <code>JsonpSerializable</code> as a string in a destination <code>StringBuilder</code>by serializing it to JSON.
+     * Any object of an application-specific class in the object graph is rendered using that object's <code>toString()</code>
+     * representation as a JSON string value.
+     * <p>
+     * The size of the string is limited to {@link #MAX_TO_STRING_LENGTH}.
+     *
+     * @return the <code>dest</code> parameter, for chaining.
+     * @see #toString(JsonpSerializable)
+     * @see #MAX_TO_STRING_LENGTH
+     */
     public static StringBuilder toString(JsonpSerializable value, StringBuilder dest) {
         return toString(value, ToStringMapper.INSTANCE, dest);
     }
