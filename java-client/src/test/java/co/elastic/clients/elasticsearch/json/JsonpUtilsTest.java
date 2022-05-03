@@ -84,6 +84,29 @@ public class JsonpUtilsTest extends Assert {
     }
 
     @Test
+    public void testLargeObjectToString() {
+        // Build a large string
+        StringBuilder sb = new StringBuilder();
+        for (int i = 0; i < 1001; i++) {
+            sb.append("0123456789");
+        }
+
+        String text = sb.toString();
+        assertEquals(10010, text.length());
+
+        Hit<String> hit = Hit.of(h -> h
+            .source(text)
+            .index("idx")
+            .id("id1")
+        );
+
+        String toString = hit.toString();
+
+        assertEquals(10003, toString.length());
+        assertTrue(toString.endsWith("..."));
+    }
+
+    @Test
     public void testSerializeDoubleOrNull() {
         // ---- Double values
         assertEquals("{\"a\":null}", orNullHelper(g -> JsonpUtils.serializeDoubleOrNull(g, Double.NaN, Double.NaN)));
