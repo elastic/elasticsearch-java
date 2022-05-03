@@ -97,6 +97,10 @@ public class SimpleJsonpMapper extends JsonpMapperBase {
             serializer = serializer_;
         }
 
+        if (serializer == null) {
+            serializer = getDefaultSerializer(value);
+        }
+
         if (serializer != null) {
             serializer.serialize(value, generator, this);
         } else {
@@ -119,5 +123,9 @@ public class SimpleJsonpMapper extends JsonpMapperBase {
                     ". Consider using a full-featured JsonpMapper"
             );
         }
+    }
+
+    protected <T> JsonpSerializer<T> getDefaultSerializer(T value) {
+        return null;
     }
 }
