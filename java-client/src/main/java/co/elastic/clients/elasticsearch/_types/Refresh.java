@@ -26,6 +26,8 @@ package co.elastic.clients.elasticsearch._types;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpMapper;
+import jakarta.json.stream.JsonGenerator;
 
 /**
  *
@@ -52,5 +54,17 @@ public enum Refresh implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<Refresh> _DESERIALIZER = new JsonEnum.Deserializer<>(Refresh.values());
+	@Override
+	public void serialize(JsonGenerator generator, JsonpMapper params) {
+		if (this == Refresh.True) {
+			generator.write(true);
+		} else if (this == Refresh.False) {
+			generator.write(false);
+		} else {
+			generator.write(jsonValue());
+		}
+	}
+
+	public static final JsonEnum.Deserializer<Refresh> _DESERIALIZER = new JsonEnum.Deserializer.AllowingBooleans<>(
+			Refresh.values());
 }

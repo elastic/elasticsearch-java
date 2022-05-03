@@ -29,6 +29,8 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.NoSuchElementException;
 
+import static jakarta.json.stream.JsonParser.Event;
+
 /**
  * Base interface for enumerations in API types. Members have a JSON representation and also accept
  * aliases when parsed from a string value.
@@ -47,13 +49,18 @@ public interface JsonEnum extends JsonpSerializable {
     }
 
     class Deserializer<T extends JsonEnum> extends JsonpDeserializerBase<T> {
+
+        private static final EnumSet<Event> acceptedEvents = EnumSet.of(Event.VALUE_STRING, Event.KEY_NAME);
+        private static final EnumSet<Event> nativeEvents = EnumSet.of(Event.VALUE_STRING);
+
         private final Map<String, T> lookupTable;
 
         public Deserializer(T[] values) {
-            super(
-                EnumSet.of(JsonParser.Event.VALUE_STRING, JsonParser.Event.KEY_NAME),
-                EnumSet.of(JsonParser.Event.VALUE_STRING)
-            );
+            this(values, acceptedEvents);
+        }
+
+        protected Deserializer(T[] values, EnumSet<Event> acceptedEvents) {
+            super(acceptedEvents, nativeEvents);
 
             // Use the same size calculation as in java.lang.Enum.enumConstantDirectory
             this.lookupTable = new HashMap<>((int)(values.length / 0.75f) + 1);
@@ -69,7 +76,7 @@ public interface JsonEnum extends JsonpSerializable {
         }
 
         @Override
-        public T deserialize(JsonParser parser, JsonpMapper mapper, JsonParser.Event event) {
+        public T deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
             String value = parser.getString();
             return deserialize(value, parser);
         }
@@ -103,6 +110,34 @@ public interface JsonEnum extends JsonpSerializable {
                 throw new NoSuchElementException("Invalid enum '" + value + "'");
             }
             return result;
+        }
+
+        /**
+         * An enum deserializer that also accepts boolean values. Used for a few properties that started as two-state booleans
+         * and evolved into enums over time.
+         */
+        public static class AllowingBooleans<T extends JsonEnum> extends Deserializer<T> {
+
+            private static final EnumSet<Event> acceptedEventsAndBoolean =
+                EnumSet.of(Event.VALUE_STRING, Event.KEY_NAME, Event.VALUE_TRUE, Event.VALUE_FALSE);
+
+            public AllowingBooleans(T[] values) {
+                super(values, acceptedEventsAndBoolean);
+            }
+
+            @Override
+            public T deserialize(JsonParser parser, JsonpMapper mapper, Event event) {
+                String value;
+                if (event == Event.VALUE_TRUE) {
+                    value = "true";
+                } else if (event == Event.VALUE_FALSE) {
+                    value = "false";
+                } else {
+                    value = parser.getString();
+                }
+
+                return deserialize(value, parser);
+            }
         }
     }
 }
