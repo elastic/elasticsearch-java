@@ -27,6 +27,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -94,6 +95,11 @@ public class DatafeedRunningState implements JsonpSerializable {
 		generator.writeKey("real_time_running");
 		generator.write(this.realTimeRunning);
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------

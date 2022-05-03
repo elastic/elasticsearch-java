@@ -222,6 +222,11 @@ public class UpdateAction<TDocument, TPartialDocument> implements JsonpSerializa
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**

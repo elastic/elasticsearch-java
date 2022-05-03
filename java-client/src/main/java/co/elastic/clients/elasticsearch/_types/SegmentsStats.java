@@ -28,6 +28,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -445,6 +446,11 @@ public class SegmentsStats implements JsonpSerializable {
 		generator.writeKey("version_map_memory_in_bytes");
 		generator.write(this.versionMapMemoryInBytes);
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	// ---------------------------------------------------------------------------------------------

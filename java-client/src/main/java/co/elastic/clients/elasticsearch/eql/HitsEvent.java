@@ -157,6 +157,11 @@ public class HitsEvent<TEvent> implements JsonpSerializable {
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
