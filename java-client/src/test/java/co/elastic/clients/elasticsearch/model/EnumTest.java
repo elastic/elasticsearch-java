@@ -20,13 +20,13 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.Bytes;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.mapping.GeoOrientation;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Arrays;
 
-public class EnumTest extends Assert {
+public class EnumTest extends ModelTestCase {
 
     @Test
     public void testSimpleEnum() {
@@ -42,5 +42,19 @@ public class EnumTest extends Assert {
         Arrays.asList("right", "RIGHT", "counterclockwise", "ccw").forEach(alias -> {
             assertEquals(GeoOrientation.Right, GeoOrientation._DESERIALIZER.parse(alias));
         });
+    }
+
+    @Test
+    public void testBooleanEnum() {
+        // Quoted value
+        assertEquals(Refresh.WaitFor, checkJsonRoundtrip(Refresh.WaitFor, "\"wait_for\""));
+
+        // Unquoted boolean values
+        assertEquals(Refresh.True, checkJsonRoundtrip(Refresh.True, "true"));
+        assertEquals(Refresh.False, checkJsonRoundtrip(Refresh.False, "false"));
+
+        // true/false as strings
+        assertEquals(Refresh.True, fromJson("\"true\"", Refresh.class));
+        assertEquals(Refresh.False, fromJson("\"false\"", Refresh.class));
     }
 }
