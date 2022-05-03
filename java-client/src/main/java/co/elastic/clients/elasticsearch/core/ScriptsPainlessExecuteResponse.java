@@ -93,6 +93,11 @@ public class ScriptsPainlessExecuteResponse<TResult> implements JsonpSerializabl
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**

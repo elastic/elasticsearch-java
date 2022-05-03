@@ -32,7 +32,9 @@ import jakarta.json.stream.JsonParser.Event;
 import jakarta.json.stream.JsonParsingException;
 
 import javax.annotation.Nullable;
+import java.io.IOException;
 import java.io.StringReader;
+import java.io.Writer;
 import java.util.AbstractMap;
 import java.util.Map;
 import java.util.ServiceLoader;
@@ -238,5 +240,35 @@ public class JsonpUtils {
         } else {
             generator.write(value);
         }
+    }
+
+    public static String toString(JsonpSerializable value) {
+        return toString(value, ToStringMapper.INSTANCE, new StringBuilder()).toString();
+    }
+
+    public static StringBuilder toString(JsonpSerializable value, JsonpMapper mapper, StringBuilder dest) {
+        Writer writer = new Writer() {
+            @Override
+            public void write(char[] cbuf, int off, int len) throws IOException {
+                dest.append(cbuf, off, len);
+            }
+
+            @Override
+            public void flush() {
+            }
+
+            @Override
+            public void close() {
+            }
+        };
+
+        JsonGenerator generator = mapper.jsonProvider().createGenerator(writer);
+        value.serialize(generator, mapper);
+        generator.close();
+        return dest;
+    }
+
+    public static StringBuilder toString(JsonpSerializable value, StringBuilder dest) {
+        return toString(value, ToStringMapper.INSTANCE, dest);
     }
 }
