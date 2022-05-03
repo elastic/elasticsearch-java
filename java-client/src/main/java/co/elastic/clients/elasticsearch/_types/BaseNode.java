@@ -27,6 +27,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -158,6 +159,11 @@ public abstract class BaseNode implements JsonpSerializable {
 		generator.writeKey("transport_address");
 		generator.write(this.transportAddress);
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>

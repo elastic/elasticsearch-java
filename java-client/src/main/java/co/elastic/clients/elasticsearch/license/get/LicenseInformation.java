@@ -241,6 +241,11 @@ public class LicenseInformation implements JsonpSerializable {
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**

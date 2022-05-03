@@ -85,6 +85,11 @@ public abstract class DictionaryResponse<TKey, TValue> implements JsonpSerializa
         }
     }
 
+    @Override
+    public String toString() {
+        return JsonpUtils.toString(this);
+    }
+
     protected abstract static class AbstractBuilder<TKey, TValue, BuilderT extends AbstractBuilder<TKey, TValue, BuilderT>>
         extends ObjectBuilderBase {
 
