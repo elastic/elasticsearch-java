@@ -101,6 +101,11 @@ public class PreviewDatafeedResponse<TDocument> implements JsonpSerializable {
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**

@@ -20,6 +20,9 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
+import co.elastic.clients.elasticsearch.core.ExistsRequest;
+import co.elastic.clients.elasticsearch.core.InfoRequest;
+import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.indices.RefreshRequest;
 import org.junit.Assert;
 import org.junit.Test;
@@ -70,5 +73,22 @@ public class EndpointTest extends Assert {
 
         req = RefreshRequest.of(b -> b.expandWildcards(ExpandWildcard.All, ExpandWildcard.Closed));
         assertEquals("all,closed", RefreshRequest._ENDPOINT.queryParameters(req).get("expand_wildcards"));
+    }
+
+    @Test
+    public void testRequestToString() {
+        // Simple path, no parameters, no body
+        assertEquals("GET /", InfoRequest._INSTANCE.toString());
+
+        // Complex path, parameters, no body
+        assertEquals(
+            "HEAD /idx/_doc/id1?preference=foo&refresh=true",
+            ExistsRequest.of(b -> b.index("idx").id("id1").preference("foo").refresh(true)).toString()
+        );
+
+        assertEquals(
+            "POST /idx/_search?typed_keys=true {\"size\":10}",
+            SearchRequest.of(s -> s.index("idx").size(10)).toString()
+        );
     }
 }

@@ -25,11 +25,17 @@ package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
+import java.util.Map;
 import java.util.Objects;
 
 // typedef: _types.RequestBase
@@ -42,6 +48,40 @@ import java.util.Objects;
 
 public abstract class RequestBase {
 	public RequestBase() {
+	}
+
+	@Override
+	public String toString() {
+
+		StringBuilder sb = new StringBuilder();
+
+		try {
+			@SuppressWarnings("unchecked")
+			Endpoint<RequestBase, ?, ?> endpoint = (Endpoint<RequestBase, ?, ?>) this.getClass()
+					.getDeclaredField("_ENDPOINT").get(null);
+
+			sb.append(endpoint.method(this)).append(" ").append(endpoint.requestUrl(this));
+
+			Map<String, String> params = endpoint.queryParameters(this);
+			String delim = "?";
+			for (Map.Entry<String, String> param : params.entrySet()) {
+				sb.append(delim);
+				delim = "&";
+				sb.append(param.getKey()).append("=").append(URLEncoder.encode(param.getValue(), "UTF-8"));
+			}
+
+		} catch (NoSuchFieldException | IllegalAccessException e) {
+			// No endpoint, ignore
+		} catch (UnsupportedEncodingException e) {
+			// Should not happen (UTF-8 is builtin)
+		}
+
+		if (this instanceof JsonpSerializable) {
+			sb.append(' ');
+			JsonpUtils.toString((JsonpSerializable) this, sb);
+		}
+
+		return sb.toString();
 	}
 
 	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
