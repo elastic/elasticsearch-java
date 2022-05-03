@@ -52,5 +52,9 @@ public class EnumTest extends ModelTestCase {
         // Unquoted boolean values
         assertEquals(Refresh.True, checkJsonRoundtrip(Refresh.True, "true"));
         assertEquals(Refresh.False, checkJsonRoundtrip(Refresh.False, "false"));
+
+        // true/false as strings
+        assertEquals(Refresh.True, fromJson("\"true\"", Refresh.class));
+        assertEquals(Refresh.False, fromJson("\"false\"", Refresh.class));
     }
 }
