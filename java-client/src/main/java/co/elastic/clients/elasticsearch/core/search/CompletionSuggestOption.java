@@ -267,6 +267,11 @@ public class CompletionSuggestOption<TDocument> implements JsonpSerializable {
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**

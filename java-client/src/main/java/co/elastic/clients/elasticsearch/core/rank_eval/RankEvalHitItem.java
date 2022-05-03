@@ -106,6 +106,11 @@ public class RankEvalHitItem implements JsonpSerializable {
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**

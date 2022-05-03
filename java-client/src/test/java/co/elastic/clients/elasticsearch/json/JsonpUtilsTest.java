@@ -19,6 +19,7 @@
 
 package co.elastic.clients.elasticsearch.json;
 
+import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.util.AllowForbiddenApis;
 import jakarta.json.JsonException;
@@ -61,6 +62,24 @@ public class JsonpUtilsTest extends Assert {
 
         } finally {
             Thread.currentThread().setContextClassLoader(savedLoader);
+        }
+    }
+
+    @Test
+    public void testObjectToString() {
+        // Test that we call toString() on application classes.
+        Hit<SomeUserData> hit = Hit.of(h -> h
+            .source(new SomeUserData())
+            .index("idx")
+            .id("id1")
+        );
+        assertEquals("{\"_index\":\"idx\",\"_id\":\"id1\",\"_source\":\"Some user data\"}", hit.toString());
+    }
+
+    private static class SomeUserData {
+        @Override
+        public String toString() {
+            return "Some user data";
         }
     }
 
