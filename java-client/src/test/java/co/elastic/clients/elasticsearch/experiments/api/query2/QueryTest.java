@@ -19,12 +19,12 @@
 
 package co.elastic.clients.elasticsearch.experiments.api.query2;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collection;
 
-public class QueryTest extends Assert {
+public class QueryTest extends Assertions {
     @Test
     public void testQuery() {
         BoolQuery bq = new BoolQuery.Builder().build();

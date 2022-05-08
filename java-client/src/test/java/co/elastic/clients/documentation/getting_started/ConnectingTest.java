@@ -28,12 +28,12 @@ import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
 import org.elasticsearch.client.RestClient;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 public class ConnectingTest {
 
-    @Ignore // we don't have a running ES
+    @Disabled // we don't have a running ES
     @Test
     public void createClient() throws Exception {
         //tag::create-client

@@ -25,13 +25,14 @@ import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
-import org.junit.Assert;
-import org.junit.Test;
 
 import java.io.StringReader;
 import java.util.Map;
 
-public class JsonValueParserTest extends Assert {
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
+
+public class JsonValueParserTest extends Assertions {
 
     public static class Data {
         public Map<String, Object> data;

@@ -26,8 +26,8 @@ plugins {
     `java-library`
     checkstyle
     `maven-publish`
-    id("com.github.jk1.dependency-license-report") version "1.17"
-    id("de.thetaphi.forbiddenapis") version "3.2"
+    id("com.github.jk1.dependency-license-report") version "1.19"
+    id("de.thetaphi.forbiddenapis") version "3.3"
 }
 
 java {
@@ -171,8 +171,8 @@ publishing {
 dependencies {
     // Compile and test with the last 7.x version to make sure transition scenarios where
     // the Java API client coexists with a 7.x HLRC work fine
-    val elasticsearchVersion = "7.17.1"
-    val jacksonVersion = "2.13.1"
+    val elasticsearchVersion = "7.17.4"
+    val jacksonVersion = "2.13.3"
 
     // Apache 2.0
     // https://www.elastic.co/guide/en/elasticsearch/client/java-rest/current/java-rest-low.html
@@ -205,23 +205,24 @@ dependencies {
 
     // EPL-2.0 OR BSD-3-Clause
     // https://eclipse-ee4j.github.io/yasson/
-    testImplementation("org.eclipse", "yasson", "2.0.2") {
+    testImplementation("org.eclipse", "yasson", "2.0.4") {
         // Exclude Glassfish as we use Parsson (basically Glassfish renamed in the Jakarta namespace).
         exclude(group = "org.glassfish", module = "jakarta.json")
     }
 
-    // EPL-1.0
-    // https://junit.org/junit4/
-    testImplementation("junit", "junit" , "4.13.2")
+    // EPL-2.0
+    // https://junit.org/junit5/
+    testImplementation("org.junit.jupiter:junit-jupiter-api:5.8.2")
+    testRuntimeOnly("org.junit.jupiter:junit-jupiter-engine:5.8.2")
 
     // MIT
     // https://github.com/classgraph/classgraph
-    testImplementation("io.github.classgraph:classgraph:4.8.116")
+    testImplementation("io.github.classgraph:classgraph:4.8.147")
 
     // MIT
     // https://www.testcontainers.org/
-    testImplementation("org.testcontainers", "testcontainers", "1.15.3")
-    testImplementation("org.testcontainers", "elasticsearch", "1.15.3")
+    testImplementation("org.testcontainers", "testcontainers", "1.17.2")
+    testImplementation("org.testcontainers", "elasticsearch", "1.17.2")
 }
 
 
