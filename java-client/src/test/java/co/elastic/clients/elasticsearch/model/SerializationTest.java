@@ -33,7 +33,7 @@ import jakarta.json.Json;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParsingException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.StringReader;
 
@@ -50,7 +50,7 @@ public class SerializationTest extends ModelTestCase {
 
         ClassInfoList withAnnotation = scan.getClassesWithAnnotation(JsonpDeserializable.class.getName());
 
-        assertFalse("No JsonpDeserializable classes", withAnnotation.isEmpty());
+        assertFalse(withAnnotation.isEmpty(), "No JsonpDeserializable classes");
 
         for (ClassInfo info: withAnnotation) {
             Class<?> clazz = Class.forName(info.getName());
@@ -59,12 +59,12 @@ public class SerializationTest extends ModelTestCase {
 
             // Deserialize something dummy to resolve lazy deserializers
             JsonParser parser = mapper.jsonProvider().createParser(new StringReader("-"));
-            assertThrows(info.getName(), JsonParsingException.class, () -> deserializer.deserialize(parser, mapper));
+            assertThrows(JsonParsingException.class, () -> deserializer.deserialize(parser, mapper), info.getName());
         }
 
         // Check that all classes that have a _DESERIALIZER field also have the annotation
         ClassInfoList withDeserializer = scan.getAllClasses().filter((c) -> c.hasDeclaredField("_DESERIALIZER"));
-        assertFalse("No classes with a _DESERIALIZER field", withDeserializer.isEmpty());
+        assertFalse(withDeserializer.isEmpty(), "No classes with a _DESERIALIZER field");
 
 // Disabled for now, empty response classes still need a deserializer object
 // e.g. ExistsIndexTemplateResponse, PingResponse, ExistsResponse, ExistsAliasResponse

@@ -22,12 +22,12 @@ package co.elastic.clients.elasticsearch.json.jackson;
 import co.elastic.clients.json.jackson.JacksonJsonProvider;
 import jakarta.json.stream.JsonParser;
 import jakarta.json.stream.JsonParser.Event;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.StringReader;
 
-public class JacksonJsonpParserTest extends Assert {
+public class JacksonJsonpParserTest extends Assertions {
 
     private static final String json = "{ 'foo': 'fooValue', 'bar': { 'baz': 1}, 'quux': [true] }".replace('\'', '"');
 

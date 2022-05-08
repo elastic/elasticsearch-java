@@ -22,7 +22,7 @@ package co.elastic.clients.elasticsearch.model;
 import co.elastic.clients.elasticsearch._types.Bytes;
 import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.mapping.GeoOrientation;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Arrays;
 

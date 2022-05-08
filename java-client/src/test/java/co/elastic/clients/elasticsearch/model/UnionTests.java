@@ -22,7 +22,7 @@ package co.elastic.clients.elasticsearch.model;
 import co.elastic.clients.elasticsearch._types.Script;
 import co.elastic.clients.elasticsearch._types.query_dsl.SimpleQueryStringFlag;
 import co.elastic.clients.elasticsearch._types.query_dsl.SimpleQueryStringFlags;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class UnionTests extends ModelTestCase {
 

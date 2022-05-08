@@ -31,7 +31,7 @@ import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import jakarta.json.stream.JsonParser;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 
@@ -117,7 +117,7 @@ public class SpecIssuesTest extends ModelTestCase {
 
     private <T> T loadRsrc(String res, JsonpDeserializer<T> deser) {
         InputStream is = this.getClass().getResourceAsStream(res);
-        assertNotNull("Resource not found: " + res, is);
+        assertNotNull(is, "Resource not found: " + res);
         JsonParser parser = mapper.jsonProvider().createParser(is);
         return deser.deserialize(parser, mapper);
     }

@@ -28,10 +28,10 @@ import org.apache.http.NameValuePair;
 import org.apache.http.client.utils.URLEncodedUtils;
 import org.elasticsearch.client.ResponseException;
 import org.elasticsearch.client.RestClient;
-import org.junit.After;
-import org.junit.Assert;
-import org.junit.Before;
-import org.junit.Test;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -43,12 +43,12 @@ import java.util.Locale;
 import java.util.Map;
 import java.util.Properties;
 
-public class RequestOptionsTest extends Assert {
+public class RequestOptionsTest extends Assertions {
 
     private static HttpServer httpServer;
     private static RestClient restClient;
 
-    @Before
+    @BeforeEach
     public void classSetup() throws IOException {
 
         httpServer = HttpServer.create(new InetSocketAddress(InetAddress.getLoopbackAddress(), 0), 0);
@@ -86,7 +86,7 @@ public class RequestOptionsTest extends Assert {
             .build();
     }
 
-    @After
+    @AfterEach
     public void classTearDown() throws IOException {
         httpServer.stop(0);
         restClient.close();
