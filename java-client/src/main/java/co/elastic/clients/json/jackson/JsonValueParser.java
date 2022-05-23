@@ -24,6 +24,7 @@ import com.fasterxml.jackson.core.JsonParser;
 import com.fasterxml.jackson.core.JsonToken;
 import jakarta.json.JsonArray;
 import jakarta.json.JsonArrayBuilder;
+import jakarta.json.JsonNumber;
 import jakarta.json.JsonObject;
 import jakarta.json.JsonObjectBuilder;
 import jakarta.json.JsonValue;
@@ -31,6 +32,8 @@ import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonParsingException;
 
 import java.io.IOException;
+import java.math.BigDecimal;
+import java.math.BigInteger;
 
 /**
  * Reads a Jsonp value/object/array from a Jackson parser. The parser's current token should be the start of the
@@ -65,6 +68,7 @@ class JsonValueParser {
     }
 
     public JsonValue parseValue(JsonParser parser) throws IOException {
+        JsonToken jsonToken = parser.currentToken();
         switch (parser.currentToken()) {
             case START_OBJECT:
                 return parseObject(parser);
@@ -93,7 +97,8 @@ class JsonValueParser {
                         return provider.createValue(parser.getLongValue());
                     case FLOAT:
                     case DOUBLE:
-                        return provider.createValue(parser.getDoubleValue());
+                        // Use double also for floats, as JSON-P has no support for float
+                        return new DoubleNumber(parser.getDoubleValue());
                     case BIG_DECIMAL:
                         return provider.createValue(parser.getDecimalValue());
                     case BIG_INTEGER:
@@ -103,6 +108,97 @@ class JsonValueParser {
             default:
                 throw new JsonParsingException("Unexpected token '" + parser.currentToken() + "'", new JacksonJsonpLocation(parser));
 
+        }
+    }
+
+    private static class DoubleNumber implements JsonNumber {
+
+        private final double value;
+
+        DoubleNumber(double value) {
+            this.value = value;
+        }
+
+        @Override
+        public boolean isIntegral() {
+            return false;
+        }
+
+        @Override
+        public int intValue() {
+            return (int) value;
+        }
+
+        @Override
+        public int intValueExact() {
+            int result = (int) value;
+
+            if ((double)result == value) {
+                return result;
+            } else {
+                throw new ArithmeticException();
+            }
+        }
+
+        @Override
+        public long longValue() {
+            return (long) value;
+        }
+
+        @Override
+        public long longValueExact() {
+            long result = (long) value;
+
+            if ((double)result == value) {
+                return result;
+            } else {
+                throw new ArithmeticException();
+            }
+        }
+
+        @Override
+        public BigInteger bigIntegerValue() {
+            return bigDecimalValue().toBigInteger();
+        }
+
+        @Override
+        public BigInteger bigIntegerValueExact() {
+            return bigDecimalValue().toBigIntegerExact();
+        }
+
+        @Override
+        public double doubleValue() {
+            return value;
+        }
+
+        @Override
+        public BigDecimal bigDecimalValue() {
+            return new BigDecimal(value);
+        }
+
+        @Override
+        public ValueType getValueType() {
+            return ValueType.NUMBER;
+        }
+
+        @Override
+        public Number numberValue() {
+            return value;
+        }
+
+        @Override
+        public String toString() {
+            return String.valueOf(value);
+        }
+
+        @Override
+        public int hashCode() {
+            return Double.hashCode(value);
+        }
+
+        @Override
+        public boolean equals(Object obj) {
+            return obj instanceof DoubleNumber && ((DoubleNumber)obj).value == value;
         }
     }
 }
