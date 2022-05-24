@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -51,25 +50,30 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class SuggestFuzziness implements JsonpSerializable {
+	@Nullable
 	private final String fuzziness;
 
-	private final int minLength;
+	@Nullable
+	private final Integer minLength;
 
-	private final int prefixLength;
+	@Nullable
+	private final Integer prefixLength;
 
-	private final boolean transpositions;
+	@Nullable
+	private final Boolean transpositions;
 
-	private final boolean unicodeAware;
+	@Nullable
+	private final Boolean unicodeAware;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private SuggestFuzziness(Builder builder) {
 
-		this.fuzziness = ApiTypeHelper.requireNonNull(builder.fuzziness, this, "fuzziness");
-		this.minLength = ApiTypeHelper.requireNonNull(builder.minLength, this, "minLength");
-		this.prefixLength = ApiTypeHelper.requireNonNull(builder.prefixLength, this, "prefixLength");
-		this.transpositions = ApiTypeHelper.requireNonNull(builder.transpositions, this, "transpositions");
-		this.unicodeAware = ApiTypeHelper.requireNonNull(builder.unicodeAware, this, "unicodeAware");
+		this.fuzziness = builder.fuzziness;
+		this.minLength = builder.minLength;
+		this.prefixLength = builder.prefixLength;
+		this.transpositions = builder.transpositions;
+		this.unicodeAware = builder.unicodeAware;
 
 	}
 
@@ -78,37 +82,42 @@ public class SuggestFuzziness implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code fuzziness}
+	 * API name: {@code fuzziness}
 	 */
+	@Nullable
 	public final String fuzziness() {
 		return this.fuzziness;
 	}
 
 	/**
-	 * Required - API name: {@code min_length}
+	 * API name: {@code min_length}
 	 */
-	public final int minLength() {
+	@Nullable
+	public final Integer minLength() {
 		return this.minLength;
 	}
 
 	/**
-	 * Required - API name: {@code prefix_length}
+	 * API name: {@code prefix_length}
 	 */
-	public final int prefixLength() {
+	@Nullable
+	public final Integer prefixLength() {
 		return this.prefixLength;
 	}
 
 	/**
-	 * Required - API name: {@code transpositions}
+	 * API name: {@code transpositions}
 	 */
-	public final boolean transpositions() {
+	@Nullable
+	public final Boolean transpositions() {
 		return this.transpositions;
 	}
 
 	/**
-	 * Required - API name: {@code unicode_aware}
+	 * API name: {@code unicode_aware}
 	 */
-	public final boolean unicodeAware() {
+	@Nullable
+	public final Boolean unicodeAware() {
 		return this.unicodeAware;
 	}
 
@@ -123,20 +132,31 @@ public class SuggestFuzziness implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("fuzziness");
-		generator.write(this.fuzziness);
+		if (this.fuzziness != null) {
+			generator.writeKey("fuzziness");
+			generator.write(this.fuzziness);
 
-		generator.writeKey("min_length");
-		generator.write(this.minLength);
+		}
+		if (this.minLength != null) {
+			generator.writeKey("min_length");
+			generator.write(this.minLength);
 
-		generator.writeKey("prefix_length");
-		generator.write(this.prefixLength);
+		}
+		if (this.prefixLength != null) {
+			generator.writeKey("prefix_length");
+			generator.write(this.prefixLength);
 
-		generator.writeKey("transpositions");
-		generator.write(this.transpositions);
+		}
+		if (this.transpositions != null) {
+			generator.writeKey("transpositions");
+			generator.write(this.transpositions);
 
-		generator.writeKey("unicode_aware");
-		generator.write(this.unicodeAware);
+		}
+		if (this.unicodeAware != null) {
+			generator.writeKey("unicode_aware");
+			generator.write(this.unicodeAware);
+
+		}
 
 	}
 
@@ -152,52 +172,57 @@ public class SuggestFuzziness implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SuggestFuzziness> {
+		@Nullable
 		private String fuzziness;
 
+		@Nullable
 		private Integer minLength;
 
+		@Nullable
 		private Integer prefixLength;
 
+		@Nullable
 		private Boolean transpositions;
 
+		@Nullable
 		private Boolean unicodeAware;
 
 		/**
-		 * Required - API name: {@code fuzziness}
+		 * API name: {@code fuzziness}
 		 */
-		public final Builder fuzziness(String value) {
+		public final Builder fuzziness(@Nullable String value) {
 			this.fuzziness = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code min_length}
+		 * API name: {@code min_length}
 		 */
-		public final Builder minLength(int value) {
+		public final Builder minLength(@Nullable Integer value) {
 			this.minLength = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code prefix_length}
+		 * API name: {@code prefix_length}
 		 */
-		public final Builder prefixLength(int value) {
+		public final Builder prefixLength(@Nullable Integer value) {
 			this.prefixLength = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code transpositions}
+		 * API name: {@code transpositions}
 		 */
-		public final Builder transpositions(boolean value) {
+		public final Builder transpositions(@Nullable Boolean value) {
 			this.transpositions = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code unicode_aware}
+		 * API name: {@code unicode_aware}
 		 */
-		public final Builder unicodeAware(boolean value) {
+		public final Builder unicodeAware(@Nullable Boolean value) {
 			this.unicodeAware = value;
 			return this;
 		}

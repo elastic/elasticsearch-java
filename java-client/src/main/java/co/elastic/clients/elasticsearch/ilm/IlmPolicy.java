@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ilm;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,6 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,15 +52,14 @@ import javax.annotation.Nullable;
 public class IlmPolicy implements JsonpSerializable {
 	private final Phases phases;
 
-	@Nullable
-	private final String name;
+	private final Map<String, JsonData> meta;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private IlmPolicy(Builder builder) {
 
 		this.phases = ApiTypeHelper.requireNonNull(builder.phases, this, "phases");
-		this.name = builder.name;
+		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
 
@@ -74,11 +75,10 @@ public class IlmPolicy implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code name}
+	 * API name: {@code _meta}
 	 */
-	@Nullable
-	public final String name() {
-		return this.name;
+	public final Map<String, JsonData> meta() {
+		return this.meta;
 	}
 
 	/**
@@ -95,9 +95,15 @@ public class IlmPolicy implements JsonpSerializable {
 		generator.writeKey("phases");
 		this.phases.serialize(generator, mapper);
 
-		if (this.name != null) {
-			generator.writeKey("name");
-			generator.write(this.name);
+		if (ApiTypeHelper.isDefined(this.meta)) {
+			generator.writeKey("_meta");
+			generator.writeStartObject();
+			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 
@@ -118,7 +124,7 @@ public class IlmPolicy implements JsonpSerializable {
 		private Phases phases;
 
 		@Nullable
-		private String name;
+		private Map<String, JsonData> meta;
 
 		/**
 		 * Required - API name: {@code phases}
@@ -136,10 +142,22 @@ public class IlmPolicy implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code name}
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>meta</code>.
 		 */
-		public final Builder name(@Nullable String value) {
-			this.name = value;
+		public final Builder meta(Map<String, JsonData> map) {
+			this.meta = _mapPutAll(this.meta, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code _meta}
+		 * <p>
+		 * Adds an entry to <code>meta</code>.
+		 */
+		public final Builder meta(String key, JsonData value) {
+			this.meta = _mapPut(this.meta, key, value);
 			return this;
 		}
 
@@ -172,7 +190,7 @@ public class IlmPolicy implements JsonpSerializable {
 	protected static void setupIlmPolicyDeserializer(ObjectDeserializer<IlmPolicy.Builder> op) {
 
 		op.add(Builder::phases, Phases._DESERIALIZER, "phases");
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
+		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
 
