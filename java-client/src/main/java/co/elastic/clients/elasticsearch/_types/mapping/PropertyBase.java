@@ -55,9 +55,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 	private final Map<String, String> meta;
 
-	@Nullable
-	private final String name;
-
 	private final Map<String, Property> properties;
 
 	@Nullable
@@ -74,7 +71,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 		this.localMetadata = ApiTypeHelper.unmodifiable(builder.localMetadata);
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
-		this.name = builder.name;
 		this.properties = ApiTypeHelper.unmodifiable(builder.properties);
 		this.ignoreAbove = builder.ignoreAbove;
 		this.dynamic = builder.dynamic;
@@ -94,14 +90,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 	 */
 	public final Map<String, String> meta() {
 		return this.meta;
-	}
-
-	/**
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public final String name() {
-		return this.name;
 	}
 
 	/**
@@ -167,11 +155,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		if (this.name != null) {
-			generator.writeKey("name");
-			generator.write(this.name);
-
-		}
 		if (ApiTypeHelper.isDefined(this.properties)) {
 			generator.writeKey("properties");
 			generator.writeStartObject();
@@ -219,9 +202,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, String> meta;
-
-		@Nullable
-		private String name;
 
 		@Nullable
 		private Map<String, Property> properties;
@@ -272,14 +252,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 		 */
 		public final BuilderT meta(String key, String value) {
 			this.meta = _mapPut(this.meta, key, value);
-			return self();
-		}
-
-		/**
-		 * API name: {@code name}
-		 */
-		public final BuilderT name(@Nullable String value) {
-			this.name = value;
 			return self();
 		}
 
@@ -369,7 +341,6 @@ public abstract class PropertyBase implements JsonpSerializable {
 				"local_metadata");
 		op.add(AbstractBuilder::meta, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"meta");
-		op.add(AbstractBuilder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(AbstractBuilder::properties, JsonpDeserializer.stringMapDeserializer(Property._DESERIALIZER),
 				"properties");
 		op.add(AbstractBuilder::ignoreAbove, JsonpDeserializer.integerDeserializer(), "ignore_above");
