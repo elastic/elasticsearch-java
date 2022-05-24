@@ -21,9 +21,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.ilm;
+package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,50 +34,52 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Double;
 import java.lang.String;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ilm._types.Policy
+// typedef: ml._types.TrainedModelInferenceClassImportance
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#ilm._types.Policy">API
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ml._types.TrainedModelInferenceClassImportance">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class IlmPolicy implements JsonpSerializable {
-	private final Phases phases;
+public class TrainedModelInferenceClassImportance implements JsonpSerializable {
+	private final String className;
 
-	private final Map<String, JsonData> meta;
+	private final double importance;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private IlmPolicy(Builder builder) {
+	private TrainedModelInferenceClassImportance(Builder builder) {
 
-		this.phases = ApiTypeHelper.requireNonNull(builder.phases, this, "phases");
-		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
+		this.className = ApiTypeHelper.requireNonNull(builder.className, this, "className");
+		this.importance = ApiTypeHelper.requireNonNull(builder.importance, this, "importance");
 
 	}
 
-	public static IlmPolicy of(Function<Builder, ObjectBuilder<IlmPolicy>> fn) {
+	public static TrainedModelInferenceClassImportance of(
+			Function<Builder, ObjectBuilder<TrainedModelInferenceClassImportance>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - API name: {@code phases}
+	 * Required - API name: {@code class_name}
 	 */
-	public final Phases phases() {
-		return this.phases;
+	public final String className() {
+		return this.className;
 	}
 
 	/**
-	 * API name: {@code _meta}
+	 * Required - API name: {@code importance}
 	 */
-	public final Map<String, JsonData> meta() {
-		return this.meta;
+	public final double importance() {
+		return this.importance;
 	}
 
 	/**
@@ -92,20 +93,11 @@ public class IlmPolicy implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("phases");
-		this.phases.serialize(generator, mapper);
+		generator.writeKey("class_name");
+		generator.write(this.className);
 
-		if (ApiTypeHelper.isDefined(this.meta)) {
-			generator.writeKey("_meta");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.meta.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
-
-			}
-			generator.writeEnd();
-
-		}
+		generator.writeKey("importance");
+		generator.write(this.importance);
 
 	}
 
@@ -117,47 +109,29 @@ public class IlmPolicy implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link IlmPolicy}.
+	 * Builder for {@link TrainedModelInferenceClassImportance}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IlmPolicy> {
-		private Phases phases;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<TrainedModelInferenceClassImportance> {
+		private String className;
 
-		@Nullable
-		private Map<String, JsonData> meta;
+		private Double importance;
 
 		/**
-		 * Required - API name: {@code phases}
+		 * Required - API name: {@code class_name}
 		 */
-		public final Builder phases(Phases value) {
-			this.phases = value;
+		public final Builder className(String value) {
+			this.className = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code phases}
+		 * Required - API name: {@code importance}
 		 */
-		public final Builder phases(Function<Phases.Builder, ObjectBuilder<Phases>> fn) {
-			return this.phases(fn.apply(new Phases.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code _meta}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>meta</code>.
-		 */
-		public final Builder meta(Map<String, JsonData> map) {
-			this.meta = _mapPutAll(this.meta, map);
-			return this;
-		}
-
-		/**
-		 * API name: {@code _meta}
-		 * <p>
-		 * Adds an entry to <code>meta</code>.
-		 */
-		public final Builder meta(String key, JsonData value) {
-			this.meta = _mapPut(this.meta, key, value);
+		public final Builder importance(double value) {
+			this.importance = value;
 			return this;
 		}
 
@@ -167,30 +141,32 @@ public class IlmPolicy implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link IlmPolicy}.
+		 * Builds a {@link TrainedModelInferenceClassImportance}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public IlmPolicy build() {
+		public TrainedModelInferenceClassImportance build() {
 			_checkSingleUse();
 
-			return new IlmPolicy(this);
+			return new TrainedModelInferenceClassImportance(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link IlmPolicy}
+	 * Json deserializer for {@link TrainedModelInferenceClassImportance}
 	 */
-	public static final JsonpDeserializer<IlmPolicy> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			IlmPolicy::setupIlmPolicyDeserializer);
+	public static final JsonpDeserializer<TrainedModelInferenceClassImportance> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new,
+					TrainedModelInferenceClassImportance::setupTrainedModelInferenceClassImportanceDeserializer);
 
-	protected static void setupIlmPolicyDeserializer(ObjectDeserializer<IlmPolicy.Builder> op) {
+	protected static void setupTrainedModelInferenceClassImportanceDeserializer(
+			ObjectDeserializer<TrainedModelInferenceClassImportance.Builder> op) {
 
-		op.add(Builder::phases, Phases._DESERIALIZER, "phases");
-		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
+		op.add(Builder::className, JsonpDeserializer.stringDeserializer(), "class_name");
+		op.add(Builder::importance, JsonpDeserializer.doubleDeserializer(), "importance");
 
 	}
 

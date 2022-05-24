@@ -1485,20 +1485,20 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 				GetTrainedModelsStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
-	// ----- Endpoint: ml.infer_trained_model_deployment
+	// ----- Endpoint: ml.infer_trained_model
 
 	/**
 	 * Evaluate a trained model.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model-deployment.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public InferTrainedModelDeploymentResponse inferTrainedModelDeployment(InferTrainedModelDeploymentRequest request)
+	public InferTrainedModelResponse inferTrainedModel(InferTrainedModelRequest request)
 			throws IOException, ElasticsearchException {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<InferTrainedModelDeploymentRequest, InferTrainedModelDeploymentResponse, ErrorResponse> endpoint = (JsonEndpoint<InferTrainedModelDeploymentRequest, InferTrainedModelDeploymentResponse, ErrorResponse>) InferTrainedModelDeploymentRequest._ENDPOINT;
+		JsonEndpoint<InferTrainedModelRequest, InferTrainedModelResponse, ErrorResponse> endpoint = (JsonEndpoint<InferTrainedModelRequest, InferTrainedModelResponse, ErrorResponse>) InferTrainedModelRequest._ENDPOINT;
 
 		return this.transport.performRequest(request, endpoint, this.transportOptions);
 	}
@@ -1508,16 +1508,16 @@ public class ElasticsearchMlClient extends ApiClient<ElasticsearchTransport, Ela
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link InferTrainedModelDeploymentRequest}
+	 *            {@link InferTrainedModelRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model-deployment.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final InferTrainedModelDeploymentResponse inferTrainedModelDeployment(
-			Function<InferTrainedModelDeploymentRequest.Builder, ObjectBuilder<InferTrainedModelDeploymentRequest>> fn)
+	public final InferTrainedModelResponse inferTrainedModel(
+			Function<InferTrainedModelRequest.Builder, ObjectBuilder<InferTrainedModelRequest>> fn)
 			throws IOException, ElasticsearchException {
-		return inferTrainedModelDeployment(fn.apply(new InferTrainedModelDeploymentRequest.Builder()).build());
+		return inferTrainedModel(fn.apply(new InferTrainedModelRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.info

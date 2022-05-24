@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class NerInferenceUpdateOptions implements NlpInferenceConfigUpdateVariant, JsonpSerializable {
+public class NerInferenceUpdateOptions implements InferenceConfigUpdateVariant, JsonpSerializable {
 	@Nullable
 	private final NlpTokenizationUpdateOptions tokenization;
 
@@ -68,11 +68,11 @@ public class NerInferenceUpdateOptions implements NlpInferenceConfigUpdateVarian
 	}
 
 	/**
-	 * NlpInferenceConfigUpdate variant kind.
+	 * InferenceConfigUpdate variant kind.
 	 */
 	@Override
-	public NlpInferenceConfigUpdate.Kind _nlpInferenceConfigUpdateKind() {
-		return NlpInferenceConfigUpdate.Kind.Ner;
+	public InferenceConfigUpdate.Kind _inferenceConfigUpdateKind() {
+		return InferenceConfigUpdate.Kind.Ner;
 	}
 
 	/**

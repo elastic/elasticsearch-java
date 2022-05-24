@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class ClassificationInferenceOptions
 		implements
+			InferenceConfigUpdateVariant,
 			InferenceConfigCreateVariant,
 			InferenceConfigVariant,
 			JsonpSerializable {
@@ -85,6 +86,14 @@ public class ClassificationInferenceOptions
 	public static ClassificationInferenceOptions of(
 			Function<Builder, ObjectBuilder<ClassificationInferenceOptions>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * InferenceConfigUpdate variant kind.
+	 */
+	@Override
+	public InferenceConfigUpdate.Kind _inferenceConfigUpdateKind() {
+		return InferenceConfigUpdate.Kind.Classification;
 	}
 
 	/**

@@ -52,12 +52,15 @@ public class EnrichConfiguration implements JsonpSerializable {
 
 	private final EnrichPolicy match;
 
+	private final EnrichPolicy range;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private EnrichConfiguration(Builder builder) {
 
 		this.geoMatch = builder.geoMatch;
 		this.match = ApiTypeHelper.requireNonNull(builder.match, this, "match");
+		this.range = ApiTypeHelper.requireNonNull(builder.range, this, "range");
 
 	}
 
@@ -81,6 +84,13 @@ public class EnrichConfiguration implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - API name: {@code range}
+	 */
+	public final EnrichPolicy range() {
+		return this.range;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -98,6 +108,9 @@ public class EnrichConfiguration implements JsonpSerializable {
 		}
 		generator.writeKey("match");
 		this.match.serialize(generator, mapper);
+
+		generator.writeKey("range");
+		this.range.serialize(generator, mapper);
 
 	}
 
@@ -119,6 +132,8 @@ public class EnrichConfiguration implements JsonpSerializable {
 		private EnrichPolicy geoMatch;
 
 		private EnrichPolicy match;
+
+		private EnrichPolicy range;
 
 		/**
 		 * API name: {@code geo_match}
@@ -148,6 +163,21 @@ public class EnrichConfiguration implements JsonpSerializable {
 		 */
 		public final Builder match(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
 			return this.match(fn.apply(new EnrichPolicy.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code range}
+		 */
+		public final Builder range(EnrichPolicy value) {
+			this.range = value;
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code range}
+		 */
+		public final Builder range(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
+			return this.range(fn.apply(new EnrichPolicy.Builder()).build());
 		}
 
 		@Override
@@ -180,6 +210,7 @@ public class EnrichConfiguration implements JsonpSerializable {
 
 		op.add(Builder::geoMatch, EnrichPolicy._DESERIALIZER, "geo_match");
 		op.add(Builder::match, EnrichPolicy._DESERIALIZER, "match");
+		op.add(Builder::range, EnrichPolicy._DESERIALIZER, "range");
 
 	}
 

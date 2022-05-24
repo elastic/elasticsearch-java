@@ -52,6 +52,7 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class RegressionInferenceOptions
 		implements
+			InferenceConfigUpdateVariant,
 			InferenceConfigCreateVariant,
 			InferenceConfigVariant,
 			JsonpSerializable {
@@ -72,6 +73,14 @@ public class RegressionInferenceOptions
 
 	public static RegressionInferenceOptions of(Function<Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * InferenceConfigUpdate variant kind.
+	 */
+	@Override
+	public InferenceConfigUpdate.Kind _inferenceConfigUpdateKind() {
+		return InferenceConfigUpdate.Kind.Regression;
 	}
 
 	/**

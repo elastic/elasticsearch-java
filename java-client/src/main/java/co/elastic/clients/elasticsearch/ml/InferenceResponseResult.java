@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.FieldValue;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -42,22 +43,22 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml.infer_trained_model_deployment.Response
+// typedef: ml._types.InferenceResponseResult
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#ml.infer_trained_model_deployment.Response">API
+ *      "../doc-files/api-spec.html#ml._types.InferenceResponseResult">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
+public class InferenceResponseResult implements JsonpSerializable {
 	private final List<TrainedModelEntities> entities;
 
 	@Nullable
 	private final Boolean isTruncated;
 
-	private final List<String> predictedValue;
+	private final List<FieldValue> predictedValue;
 
 	@Nullable
 	private final String predictedValueSequence;
@@ -65,27 +66,33 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 	@Nullable
 	private final Double predictionProbability;
 
+	@Nullable
+	private final Double predictionScore;
+
 	private final List<TopClassEntry> topClasses;
 
 	@Nullable
 	private final String warning;
 
+	private final List<TrainedModelInferenceFeatureImportance> featureImportance;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private InferTrainedModelDeploymentResponse(Builder builder) {
+	private InferenceResponseResult(Builder builder) {
 
 		this.entities = ApiTypeHelper.unmodifiable(builder.entities);
 		this.isTruncated = builder.isTruncated;
 		this.predictedValue = ApiTypeHelper.unmodifiable(builder.predictedValue);
 		this.predictedValueSequence = builder.predictedValueSequence;
 		this.predictionProbability = builder.predictionProbability;
-		this.topClasses = ApiTypeHelper.unmodifiableRequired(builder.topClasses, this, "topClasses");
+		this.predictionScore = builder.predictionScore;
+		this.topClasses = ApiTypeHelper.unmodifiable(builder.topClasses);
 		this.warning = builder.warning;
+		this.featureImportance = ApiTypeHelper.unmodifiable(builder.featureImportance);
 
 	}
 
-	public static InferTrainedModelDeploymentResponse of(
-			Function<Builder, ObjectBuilder<InferTrainedModelDeploymentResponse>> fn) {
+	public static InferenceResponseResult of(Function<Builder, ObjectBuilder<InferenceResponseResult>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -115,17 +122,19 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 	 * task, the response is the predicted class. For named entity recognition (NER)
 	 * tasks, it contains the annotated text output. For fill mask tasks, it
 	 * contains the top prediction for replacing the mask token. For text embedding
-	 * tasks, it contains the raw numerical text embedding values.
+	 * tasks, it contains the raw numerical text embedding values. For regression
+	 * models, its a numerical value For classification models, it may be an
+	 * integer, double, boolean or string depending on prediction type
 	 * <p>
 	 * API name: {@code predicted_value}
 	 */
-	public final List<String> predictedValue() {
+	public final List<FieldValue> predictedValue() {
 		return this.predictedValue;
 	}
 
 	/**
 	 * For fill mask tasks, the response contains the input text sequence with the
-	 * mask token replaced by the predicted value.
+	 * mask token replaced by the predicted value. Additionally
 	 * <p>
 	 * API name: {@code predicted_value_sequence}
 	 */
@@ -135,7 +144,7 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Specifies a confidence score for the predicted value.
+	 * Specifies a probability for the predicted value.
 	 * <p>
 	 * API name: {@code prediction_probability}
 	 */
@@ -145,8 +154,18 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - For fill mask, text classification, and zero shot classification
-	 * tasks, the response contains a list of top class entries.
+	 * Specifies a confidence score for the predicted value.
+	 * <p>
+	 * API name: {@code prediction_score}
+	 */
+	@Nullable
+	public final Double predictionScore() {
+		return this.predictionScore;
+	}
+
+	/**
+	 * For fill mask, text classification, and zero shot classification tasks, the
+	 * response contains a list of top class entries.
 	 * <p>
 	 * API name: {@code top_classes}
 	 */
@@ -162,6 +181,16 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 	@Nullable
 	public final String warning() {
 		return this.warning;
+	}
+
+	/**
+	 * The feature importance for the inference results. Relevant only for
+	 * classification or regression models
+	 * <p>
+	 * API name: {@code feature_importance}
+	 */
+	public final List<TrainedModelInferenceFeatureImportance> featureImportance() {
+		return this.featureImportance;
 	}
 
 	/**
@@ -193,8 +222,8 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.predictedValue)) {
 			generator.writeKey("predicted_value");
 			generator.writeStartArray();
-			for (String item0 : this.predictedValue) {
-				generator.write(item0);
+			for (FieldValue item0 : this.predictedValue) {
+				item0.serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -208,6 +237,11 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		if (this.predictionProbability != null) {
 			generator.writeKey("prediction_probability");
 			generator.write(this.predictionProbability);
+
+		}
+		if (this.predictionScore != null) {
+			generator.writeKey("prediction_score");
+			generator.write(this.predictionScore);
 
 		}
 		if (ApiTypeHelper.isDefined(this.topClasses)) {
@@ -225,6 +259,16 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 			generator.write(this.warning);
 
 		}
+		if (ApiTypeHelper.isDefined(this.featureImportance)) {
+			generator.writeKey("feature_importance");
+			generator.writeStartArray();
+			for (TrainedModelInferenceFeatureImportance item0 : this.featureImportance) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -236,12 +280,12 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link InferTrainedModelDeploymentResponse}.
+	 * Builder for {@link InferenceResponseResult}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<InferTrainedModelDeploymentResponse> {
+				ObjectBuilder<InferenceResponseResult> {
 		@Nullable
 		private List<TrainedModelEntities> entities;
 
@@ -249,7 +293,7 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		private Boolean isTruncated;
 
 		@Nullable
-		private List<String> predictedValue;
+		private List<FieldValue> predictedValue;
 
 		@Nullable
 		private String predictedValueSequence;
@@ -257,10 +301,17 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		@Nullable
 		private Double predictionProbability;
 
+		@Nullable
+		private Double predictionScore;
+
+		@Nullable
 		private List<TopClassEntry> topClasses;
 
 		@Nullable
 		private String warning;
+
+		@Nullable
+		private List<TrainedModelInferenceFeatureImportance> featureImportance;
 
 		/**
 		 * If the model is trained for named entity recognition (NER) tasks, the
@@ -316,13 +367,15 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		 * task, the response is the predicted class. For named entity recognition (NER)
 		 * tasks, it contains the annotated text output. For fill mask tasks, it
 		 * contains the top prediction for replacing the mask token. For text embedding
-		 * tasks, it contains the raw numerical text embedding values.
+		 * tasks, it contains the raw numerical text embedding values. For regression
+		 * models, its a numerical value For classification models, it may be an
+		 * integer, double, boolean or string depending on prediction type
 		 * <p>
 		 * API name: {@code predicted_value}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>predictedValue</code>.
 		 */
-		public final Builder predictedValue(List<String> list) {
+		public final Builder predictedValue(List<FieldValue> list) {
 			this.predictedValue = _listAddAll(this.predictedValue, list);
 			return this;
 		}
@@ -332,20 +385,39 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		 * task, the response is the predicted class. For named entity recognition (NER)
 		 * tasks, it contains the annotated text output. For fill mask tasks, it
 		 * contains the top prediction for replacing the mask token. For text embedding
-		 * tasks, it contains the raw numerical text embedding values.
+		 * tasks, it contains the raw numerical text embedding values. For regression
+		 * models, its a numerical value For classification models, it may be an
+		 * integer, double, boolean or string depending on prediction type
 		 * <p>
 		 * API name: {@code predicted_value}
 		 * <p>
 		 * Adds one or more values to <code>predictedValue</code>.
 		 */
-		public final Builder predictedValue(String value, String... values) {
+		public final Builder predictedValue(FieldValue value, FieldValue... values) {
 			this.predictedValue = _listAdd(this.predictedValue, value, values);
 			return this;
 		}
 
 		/**
+		 * If the model is trained for a text classification or zero shot classification
+		 * task, the response is the predicted class. For named entity recognition (NER)
+		 * tasks, it contains the annotated text output. For fill mask tasks, it
+		 * contains the top prediction for replacing the mask token. For text embedding
+		 * tasks, it contains the raw numerical text embedding values. For regression
+		 * models, its a numerical value For classification models, it may be an
+		 * integer, double, boolean or string depending on prediction type
+		 * <p>
+		 * API name: {@code predicted_value}
+		 * <p>
+		 * Adds a value to <code>predictedValue</code> using a builder lambda.
+		 */
+		public final Builder predictedValue(Function<FieldValue.Builder, ObjectBuilder<FieldValue>> fn) {
+			return predictedValue(fn.apply(new FieldValue.Builder()).build());
+		}
+
+		/**
 		 * For fill mask tasks, the response contains the input text sequence with the
-		 * mask token replaced by the predicted value.
+		 * mask token replaced by the predicted value. Additionally
 		 * <p>
 		 * API name: {@code predicted_value_sequence}
 		 */
@@ -355,7 +427,7 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Specifies a confidence score for the predicted value.
+		 * Specifies a probability for the predicted value.
 		 * <p>
 		 * API name: {@code prediction_probability}
 		 */
@@ -365,8 +437,18 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - For fill mask, text classification, and zero shot classification
-		 * tasks, the response contains a list of top class entries.
+		 * Specifies a confidence score for the predicted value.
+		 * <p>
+		 * API name: {@code prediction_score}
+		 */
+		public final Builder predictionScore(@Nullable Double value) {
+			this.predictionScore = value;
+			return this;
+		}
+
+		/**
+		 * For fill mask, text classification, and zero shot classification tasks, the
+		 * response contains a list of top class entries.
 		 * <p>
 		 * API name: {@code top_classes}
 		 * <p>
@@ -378,8 +460,8 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - For fill mask, text classification, and zero shot classification
-		 * tasks, the response contains a list of top class entries.
+		 * For fill mask, text classification, and zero shot classification tasks, the
+		 * response contains a list of top class entries.
 		 * <p>
 		 * API name: {@code top_classes}
 		 * <p>
@@ -391,8 +473,8 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - For fill mask, text classification, and zero shot classification
-		 * tasks, the response contains a list of top class entries.
+		 * For fill mask, text classification, and zero shot classification tasks, the
+		 * response contains a list of top class entries.
 		 * <p>
 		 * API name: {@code top_classes}
 		 * <p>
@@ -412,44 +494,87 @@ public class InferTrainedModelDeploymentResponse implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * The feature importance for the inference results. Relevant only for
+		 * classification or regression models
+		 * <p>
+		 * API name: {@code feature_importance}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>featureImportance</code>.
+		 */
+		public final Builder featureImportance(List<TrainedModelInferenceFeatureImportance> list) {
+			this.featureImportance = _listAddAll(this.featureImportance, list);
+			return this;
+		}
+
+		/**
+		 * The feature importance for the inference results. Relevant only for
+		 * classification or regression models
+		 * <p>
+		 * API name: {@code feature_importance}
+		 * <p>
+		 * Adds one or more values to <code>featureImportance</code>.
+		 */
+		public final Builder featureImportance(TrainedModelInferenceFeatureImportance value,
+				TrainedModelInferenceFeatureImportance... values) {
+			this.featureImportance = _listAdd(this.featureImportance, value, values);
+			return this;
+		}
+
+		/**
+		 * The feature importance for the inference results. Relevant only for
+		 * classification or regression models
+		 * <p>
+		 * API name: {@code feature_importance}
+		 * <p>
+		 * Adds a value to <code>featureImportance</code> using a builder lambda.
+		 */
+		public final Builder featureImportance(
+				Function<TrainedModelInferenceFeatureImportance.Builder, ObjectBuilder<TrainedModelInferenceFeatureImportance>> fn) {
+			return featureImportance(fn.apply(new TrainedModelInferenceFeatureImportance.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link InferTrainedModelDeploymentResponse}.
+		 * Builds a {@link InferenceResponseResult}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public InferTrainedModelDeploymentResponse build() {
+		public InferenceResponseResult build() {
 			_checkSingleUse();
 
-			return new InferTrainedModelDeploymentResponse(this);
+			return new InferenceResponseResult(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link InferTrainedModelDeploymentResponse}
+	 * Json deserializer for {@link InferenceResponseResult}
 	 */
-	public static final JsonpDeserializer<InferTrainedModelDeploymentResponse> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new,
-					InferTrainedModelDeploymentResponse::setupInferTrainedModelDeploymentResponseDeserializer);
+	public static final JsonpDeserializer<InferenceResponseResult> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InferenceResponseResult::setupInferenceResponseResultDeserializer);
 
-	protected static void setupInferTrainedModelDeploymentResponseDeserializer(
-			ObjectDeserializer<InferTrainedModelDeploymentResponse.Builder> op) {
+	protected static void setupInferenceResponseResultDeserializer(
+			ObjectDeserializer<InferenceResponseResult.Builder> op) {
 
 		op.add(Builder::entities, JsonpDeserializer.arrayDeserializer(TrainedModelEntities._DESERIALIZER), "entities");
 		op.add(Builder::isTruncated, JsonpDeserializer.booleanDeserializer(), "is_truncated");
-		op.add(Builder::predictedValue, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
+		op.add(Builder::predictedValue, JsonpDeserializer.arrayDeserializer(FieldValue._DESERIALIZER),
 				"predicted_value");
 		op.add(Builder::predictedValueSequence, JsonpDeserializer.stringDeserializer(), "predicted_value_sequence");
 		op.add(Builder::predictionProbability, JsonpDeserializer.doubleDeserializer(), "prediction_probability");
+		op.add(Builder::predictionScore, JsonpDeserializer.doubleDeserializer(), "prediction_score");
 		op.add(Builder::topClasses, JsonpDeserializer.arrayDeserializer(TopClassEntry._DESERIALIZER), "top_classes");
 		op.add(Builder::warning, JsonpDeserializer.stringDeserializer(), "warning");
+		op.add(Builder::featureImportance,
+				JsonpDeserializer.arrayDeserializer(TrainedModelInferenceFeatureImportance._DESERIALIZER),
+				"feature_importance");
 
 	}
 

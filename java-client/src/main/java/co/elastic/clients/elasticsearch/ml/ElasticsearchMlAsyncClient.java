@@ -1438,20 +1438,19 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 				GetTrainedModelsStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
-	// ----- Endpoint: ml.infer_trained_model_deployment
+	// ----- Endpoint: ml.infer_trained_model
 
 	/**
 	 * Evaluate a trained model.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model-deployment.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public CompletableFuture<InferTrainedModelDeploymentResponse> inferTrainedModelDeployment(
-			InferTrainedModelDeploymentRequest request) {
+	public CompletableFuture<InferTrainedModelResponse> inferTrainedModel(InferTrainedModelRequest request) {
 		@SuppressWarnings("unchecked")
-		JsonEndpoint<InferTrainedModelDeploymentRequest, InferTrainedModelDeploymentResponse, ErrorResponse> endpoint = (JsonEndpoint<InferTrainedModelDeploymentRequest, InferTrainedModelDeploymentResponse, ErrorResponse>) InferTrainedModelDeploymentRequest._ENDPOINT;
+		JsonEndpoint<InferTrainedModelRequest, InferTrainedModelResponse, ErrorResponse> endpoint = (JsonEndpoint<InferTrainedModelRequest, InferTrainedModelResponse, ErrorResponse>) InferTrainedModelRequest._ENDPOINT;
 
 		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
 	}
@@ -1461,15 +1460,15 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * 
 	 * @param fn
 	 *            a function that initializes a builder to create the
-	 *            {@link InferTrainedModelDeploymentRequest}
+	 *            {@link InferTrainedModelRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model-deployment.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/infer-trained-model.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
-	public final CompletableFuture<InferTrainedModelDeploymentResponse> inferTrainedModelDeployment(
-			Function<InferTrainedModelDeploymentRequest.Builder, ObjectBuilder<InferTrainedModelDeploymentRequest>> fn) {
-		return inferTrainedModelDeployment(fn.apply(new InferTrainedModelDeploymentRequest.Builder()).build());
+	public final CompletableFuture<InferTrainedModelResponse> inferTrainedModel(
+			Function<InferTrainedModelRequest.Builder, ObjectBuilder<InferTrainedModelRequest>> fn) {
+		return inferTrainedModel(fn.apply(new InferTrainedModelRequest.Builder()).build());
 	}
 
 	// ----- Endpoint: ml.info

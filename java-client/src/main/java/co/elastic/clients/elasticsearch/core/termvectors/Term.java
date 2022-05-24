@@ -70,7 +70,7 @@ public class Term implements JsonpSerializable {
 		this.docFreq = builder.docFreq;
 		this.score = builder.score;
 		this.termFreq = ApiTypeHelper.requireNonNull(builder.termFreq, this, "termFreq");
-		this.tokens = ApiTypeHelper.unmodifiableRequired(builder.tokens, this, "tokens");
+		this.tokens = ApiTypeHelper.unmodifiable(builder.tokens);
 		this.ttf = builder.ttf;
 
 	}
@@ -103,7 +103,7 @@ public class Term implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code tokens}
+	 * API name: {@code tokens}
 	 */
 	public final List<Token> tokens() {
 		return this.tokens;
@@ -179,6 +179,7 @@ public class Term implements JsonpSerializable {
 
 		private Integer termFreq;
 
+		@Nullable
 		private List<Token> tokens;
 
 		@Nullable
@@ -209,7 +210,7 @@ public class Term implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code tokens}
+		 * API name: {@code tokens}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>tokens</code>.
 		 */
@@ -219,7 +220,7 @@ public class Term implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code tokens}
+		 * API name: {@code tokens}
 		 * <p>
 		 * Adds one or more values to <code>tokens</code>.
 		 */
@@ -229,7 +230,7 @@ public class Term implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code tokens}
+		 * API name: {@code tokens}
 		 * <p>
 		 * Adds a value to <code>tokens</code> using a builder lambda.
 		 */

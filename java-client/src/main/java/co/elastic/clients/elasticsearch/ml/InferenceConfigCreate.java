@@ -81,6 +81,8 @@ public class InferenceConfigCreate implements TaggedUnion<InferenceConfigCreate.
 
 		TextEmbedding("text_embedding"),
 
+		QuestionAnswering("question_answering"),
+
 		;
 
 		private final String jsonValue;
@@ -264,6 +266,24 @@ public class InferenceConfigCreate implements TaggedUnion<InferenceConfigCreate.
 		return TaggedUnionUtils.get(this, Kind.TextEmbedding);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code question_answering}?
+	 */
+	public boolean isQuestionAnswering() {
+		return _kind == Kind.QuestionAnswering;
+	}
+
+	/**
+	 * Get the {@code question_answering} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code question_answering}
+	 *             kind.
+	 */
+	public QuestionAnsweringInferenceOptions questionAnswering() {
+		return TaggedUnionUtils.get(this, Kind.QuestionAnswering);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -377,6 +397,17 @@ public class InferenceConfigCreate implements TaggedUnion<InferenceConfigCreate.
 			return this.textEmbedding(fn.apply(new TextEmbeddingInferenceOptions.Builder()).build());
 		}
 
+		public ObjectBuilder<InferenceConfigCreate> questionAnswering(QuestionAnsweringInferenceOptions v) {
+			this._kind = Kind.QuestionAnswering;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<InferenceConfigCreate> questionAnswering(
+				Function<QuestionAnsweringInferenceOptions.Builder, ObjectBuilder<QuestionAnsweringInferenceOptions>> fn) {
+			return this.questionAnswering(fn.apply(new QuestionAnsweringInferenceOptions.Builder()).build());
+		}
+
 		public InferenceConfigCreate build() {
 			_checkSingleUse();
 			return new InferenceConfigCreate(this);
@@ -395,6 +426,7 @@ public class InferenceConfigCreate implements TaggedUnion<InferenceConfigCreate.
 		op.add(Builder::ner, NerInferenceOptions._DESERIALIZER, "ner");
 		op.add(Builder::passThrough, PassThroughInferenceOptions._DESERIALIZER, "pass_through");
 		op.add(Builder::textEmbedding, TextEmbeddingInferenceOptions._DESERIALIZER, "text_embedding");
+		op.add(Builder::questionAnswering, QuestionAnsweringInferenceOptions._DESERIALIZER, "question_answering");
 
 	}
 

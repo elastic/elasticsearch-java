@@ -21,38 +21,20 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch._types;
 
-import co.elastic.clients.json.JsonEnum;
-import co.elastic.clients.json.JsonpDeserializable;
-import co.elastic.clients.json.JsonpDeserializer;
+import co.elastic.clients.util.ObjectBuilder;
+import java.util.function.Function;
 
 /**
- *
- * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.IndexCheckOnStartup">API
- *      specification</a>
+ * Builders for {@link Slices} variants.
+ * <p>
+ * Variants <code>computed</code>, <code>value</code> are not available here as
+ * they don't have a dedicated class. Use {@link Slices}'s builder for these.
+ * 
  */
-@JsonpDeserializable
-public enum IndexCheckOnStartup implements JsonEnum {
-	True("true"),
-
-	False("false"),
-
-	Checksum("checksum"),
-
-	;
-
-	private final String jsonValue;
-
-	IndexCheckOnStartup(String jsonValue) {
-		this.jsonValue = jsonValue;
+public class SlicesBuilders {
+	private SlicesBuilders() {
 	}
 
-	public String jsonValue() {
-		return this.jsonValue;
-	}
-
-	public static final JsonEnum.Deserializer<IndexCheckOnStartup> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndexCheckOnStartup.values());
 }
