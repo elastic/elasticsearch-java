@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices.analyze;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,6 +38,8 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Long;
 import java.lang.String;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,6 +54,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ExplainAnalyzeToken implements JsonpSerializable {
+	private final Map<String, JsonData> attributes;
+
 	private final String bytes;
 
 	private final long endOffset;
@@ -74,6 +79,8 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 
 	private ExplainAnalyzeToken(Builder builder) {
 
+		this.attributes = ApiTypeHelper.unmodifiable(builder.attributes);
+
 		this.bytes = ApiTypeHelper.requireNonNull(builder.bytes, this, "bytes");
 		this.endOffset = ApiTypeHelper.requireNonNull(builder.endOffset, this, "endOffset");
 		this.keyword = builder.keyword;
@@ -88,6 +95,13 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 
 	public static ExplainAnalyzeToken of(Function<Builder, ObjectBuilder<ExplainAnalyzeToken>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Additional tokenizer-specific attributes
+	 */
+	public final Map<String, JsonData> attributes() {
+		return this.attributes;
 	}
 
 	/**
@@ -165,6 +179,12 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		for (Map.Entry<String, JsonData> item0 : this.attributes.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
+
+		}
+
 		generator.writeKey("bytes");
 		generator.write(this.bytes);
 
@@ -210,6 +230,29 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ExplainAnalyzeToken> {
+		@Nullable
+		private Map<String, JsonData> attributes = new HashMap<>();
+
+		/**
+		 * Additional tokenizer-specific attributes
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>attributes</code>.
+		 */
+		public final Builder attributes(Map<String, JsonData> map) {
+			this.attributes = _mapPutAll(this.attributes, map);
+			return this;
+		}
+
+		/**
+		 * Additional tokenizer-specific attributes
+		 * <p>
+		 * Adds an entry to <code>attributes</code>.
+		 */
+		public final Builder attributes(String key, JsonData value) {
+			this.attributes = _mapPut(this.attributes, key, value);
+			return this;
+		}
+
 		private String bytes;
 
 		private Long endOffset;
@@ -338,6 +381,10 @@ public class ExplainAnalyzeToken implements JsonpSerializable {
 		op.add(Builder::termfrequency, JsonpDeserializer.longDeserializer(), "termFrequency");
 		op.add(Builder::token, JsonpDeserializer.stringDeserializer(), "token");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			builder.attributes(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

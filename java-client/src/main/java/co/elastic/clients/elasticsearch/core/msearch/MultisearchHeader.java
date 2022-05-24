@@ -77,6 +77,15 @@ public class MultisearchHeader implements JsonpSerializable {
 	@Nullable
 	private final SearchType searchType;
 
+	@Nullable
+	private final Boolean ccsMinimizeRoundtrips;
+
+	@Nullable
+	private final Boolean allowPartialSearchResults;
+
+	@Nullable
+	private final Boolean ignoreThrottled;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private MultisearchHeader(Builder builder) {
@@ -89,6 +98,9 @@ public class MultisearchHeader implements JsonpSerializable {
 		this.requestCache = builder.requestCache;
 		this.routing = builder.routing;
 		this.searchType = builder.searchType;
+		this.ccsMinimizeRoundtrips = builder.ccsMinimizeRoundtrips;
+		this.allowPartialSearchResults = builder.allowPartialSearchResults;
+		this.ignoreThrottled = builder.ignoreThrottled;
 
 	}
 
@@ -159,6 +171,30 @@ public class MultisearchHeader implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code ccs_minimize_roundtrips}
+	 */
+	@Nullable
+	public final Boolean ccsMinimizeRoundtrips() {
+		return this.ccsMinimizeRoundtrips;
+	}
+
+	/**
+	 * API name: {@code allow_partial_search_results}
+	 */
+	@Nullable
+	public final Boolean allowPartialSearchResults() {
+		return this.allowPartialSearchResults;
+	}
+
+	/**
+	 * API name: {@code ignore_throttled}
+	 */
+	@Nullable
+	public final Boolean ignoreThrottled() {
+		return this.ignoreThrottled;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -217,6 +253,21 @@ public class MultisearchHeader implements JsonpSerializable {
 			generator.writeKey("search_type");
 			this.searchType.serialize(generator, mapper);
 		}
+		if (this.ccsMinimizeRoundtrips != null) {
+			generator.writeKey("ccs_minimize_roundtrips");
+			generator.write(this.ccsMinimizeRoundtrips);
+
+		}
+		if (this.allowPartialSearchResults != null) {
+			generator.writeKey("allow_partial_search_results");
+			generator.write(this.allowPartialSearchResults);
+
+		}
+		if (this.ignoreThrottled != null) {
+			generator.writeKey("ignore_throttled");
+			generator.write(this.ignoreThrottled);
+
+		}
 
 	}
 
@@ -255,6 +306,15 @@ public class MultisearchHeader implements JsonpSerializable {
 
 		@Nullable
 		private SearchType searchType;
+
+		@Nullable
+		private Boolean ccsMinimizeRoundtrips;
+
+		@Nullable
+		private Boolean allowPartialSearchResults;
+
+		@Nullable
+		private Boolean ignoreThrottled;
 
 		/**
 		 * API name: {@code allow_no_indices}
@@ -344,6 +404,30 @@ public class MultisearchHeader implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code ccs_minimize_roundtrips}
+		 */
+		public final Builder ccsMinimizeRoundtrips(@Nullable Boolean value) {
+			this.ccsMinimizeRoundtrips = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code allow_partial_search_results}
+		 */
+		public final Builder allowPartialSearchResults(@Nullable Boolean value) {
+			this.allowPartialSearchResults = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code ignore_throttled}
+		 */
+		public final Builder ignoreThrottled(@Nullable Boolean value) {
+			this.ignoreThrottled = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -381,6 +465,10 @@ public class MultisearchHeader implements JsonpSerializable {
 		op.add(Builder::requestCache, JsonpDeserializer.booleanDeserializer(), "request_cache");
 		op.add(Builder::routing, JsonpDeserializer.stringDeserializer(), "routing");
 		op.add(Builder::searchType, SearchType._DESERIALIZER, "search_type");
+		op.add(Builder::ccsMinimizeRoundtrips, JsonpDeserializer.booleanDeserializer(), "ccs_minimize_roundtrips");
+		op.add(Builder::allowPartialSearchResults, JsonpDeserializer.booleanDeserializer(),
+				"allow_partial_search_results");
+		op.add(Builder::ignoreThrottled, JsonpDeserializer.booleanDeserializer(), "ignore_throttled");
 
 	}
 

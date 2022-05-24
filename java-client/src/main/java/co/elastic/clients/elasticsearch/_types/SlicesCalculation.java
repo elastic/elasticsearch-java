@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch._types;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -29,23 +29,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.IndexCheckOnStartup">API
+ * @see <a href="../doc-files/api-spec.html#_types.SlicesCalculation">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum IndexCheckOnStartup implements JsonEnum {
-	True("true"),
-
-	False("false"),
-
-	Checksum("checksum"),
+public enum SlicesCalculation implements JsonEnum {
+	/**
+	 * Let Elasticsearch choose a reasonable number for most data streams and
+	 * indices.
+	 */
+	Auto("auto"),
 
 	;
 
 	private final String jsonValue;
 
-	IndexCheckOnStartup(String jsonValue) {
+	SlicesCalculation(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -53,6 +52,6 @@ public enum IndexCheckOnStartup implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<IndexCheckOnStartup> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndexCheckOnStartup.values());
+	public static final JsonEnum.Deserializer<SlicesCalculation> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			SlicesCalculation.values());
 }

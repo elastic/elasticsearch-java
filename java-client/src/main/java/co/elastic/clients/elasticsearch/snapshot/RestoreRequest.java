@@ -26,7 +26,7 @@ package co.elastic.clients.elasticsearch.snapshot;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
-import co.elastic.clients.elasticsearch.indices.PutIndicesSettingsRequest;
+import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -70,7 +70,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean includeGlobalState;
 
 	@Nullable
-	private final PutIndicesSettingsRequest indexSettings;
+	private final IndexSettings indexSettings;
 
 	private final List<String> indices;
 
@@ -152,7 +152,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code index_settings}
 	 */
 	@Nullable
-	public final PutIndicesSettingsRequest indexSettings() {
+	public final IndexSettings indexSettings() {
 		return this.indexSettings;
 	}
 
@@ -314,7 +314,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		private Boolean includeGlobalState;
 
 		@Nullable
-		private PutIndicesSettingsRequest indexSettings;
+		private IndexSettings indexSettings;
 
 		@Nullable
 		private List<String> indices;
@@ -385,7 +385,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code index_settings}
 		 */
-		public final Builder indexSettings(@Nullable PutIndicesSettingsRequest value) {
+		public final Builder indexSettings(@Nullable IndexSettings value) {
 			this.indexSettings = value;
 			return this;
 		}
@@ -393,9 +393,8 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		/**
 		 * API name: {@code index_settings}
 		 */
-		public final Builder indexSettings(
-				Function<PutIndicesSettingsRequest.Builder, ObjectBuilder<PutIndicesSettingsRequest>> fn) {
-			return this.indexSettings(fn.apply(new PutIndicesSettingsRequest.Builder()).build());
+		public final Builder indexSettings(Function<IndexSettings.Builder, ObjectBuilder<IndexSettings>> fn) {
+			return this.indexSettings(fn.apply(new IndexSettings.Builder()).build());
 		}
 
 		/**
@@ -524,7 +523,7 @@ public class RestoreRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::ignoreUnavailable, JsonpDeserializer.booleanDeserializer(), "ignore_unavailable");
 		op.add(Builder::includeAliases, JsonpDeserializer.booleanDeserializer(), "include_aliases");
 		op.add(Builder::includeGlobalState, JsonpDeserializer.booleanDeserializer(), "include_global_state");
-		op.add(Builder::indexSettings, PutIndicesSettingsRequest._DESERIALIZER, "index_settings");
+		op.add(Builder::indexSettings, IndexSettings._DESERIALIZER, "index_settings");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
 		op.add(Builder::partial, JsonpDeserializer.booleanDeserializer(), "partial");

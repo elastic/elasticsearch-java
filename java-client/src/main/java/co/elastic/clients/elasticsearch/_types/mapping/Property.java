@@ -85,6 +85,8 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 
 		DoubleRange("double_range"),
 
+		DynamicProperty("{dynamic_property}"),
+
 		Alias("alias"),
 
 		Flattened("flattened"),
@@ -400,6 +402,24 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 	 */
 	public DoubleRangeProperty doubleRange() {
 		return TaggedUnionUtils.get(this, Kind.DoubleRange);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code {dynamic_property}}?
+	 */
+	public boolean isDynamicProperty() {
+		return _kind == Kind.DynamicProperty;
+	}
+
+	/**
+	 * Get the {@code {dynamic_property}} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code {dynamic_property}}
+	 *             kind.
+	 */
+	public DynamicProperty dynamicProperty() {
+		return TaggedUnionUtils.get(this, Kind.DynamicProperty);
 	}
 
 	/**
@@ -1109,6 +1129,17 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 			return this.doubleRange(fn.apply(new DoubleRangeProperty.Builder()).build());
 		}
 
+		public ObjectBuilder<Property> dynamicProperty(DynamicProperty v) {
+			this._kind = Kind.DynamicProperty;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<Property> dynamicProperty(
+				Function<DynamicProperty.Builder, ObjectBuilder<DynamicProperty>> fn) {
+			return this.dynamicProperty(fn.apply(new DynamicProperty.Builder()).build());
+		}
+
 		public ObjectBuilder<Property> alias(FieldAliasProperty v) {
 			this._kind = Kind.Alias;
 			this._value = v;
@@ -1483,6 +1514,7 @@ public class Property implements TaggedUnion<Property.Kind, PropertyVariant>, Js
 		op.add(Builder::denseVector, DenseVectorProperty._DESERIALIZER, "dense_vector");
 		op.add(Builder::double_, DoubleNumberProperty._DESERIALIZER, "double");
 		op.add(Builder::doubleRange, DoubleRangeProperty._DESERIALIZER, "double_range");
+		op.add(Builder::dynamicProperty, DynamicProperty._DESERIALIZER, "{dynamic_property}");
 		op.add(Builder::alias, FieldAliasProperty._DESERIALIZER, "alias");
 		op.add(Builder::flattened, FlattenedProperty._DESERIALIZER, "flattened");
 		op.add(Builder::float_, FloatNumberProperty._DESERIALIZER, "float");

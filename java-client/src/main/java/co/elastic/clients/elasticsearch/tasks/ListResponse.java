@@ -28,7 +28,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.util.Objects;
 import java.util.function.Function;
@@ -44,12 +43,12 @@ import java.util.function.Function;
 public class ListResponse extends TaskListResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
-	protected ListResponse(AbstractBuilder<?> builder) {
+	private ListResponse(Builder builder) {
 		super(builder);
 
 	}
 
-	public static ListResponse listResponseOf(Function<Builder, ObjectBuilder<ListResponse>> fn) {
+	public static ListResponse of(Function<Builder, ObjectBuilder<ListResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -59,7 +58,9 @@ public class ListResponse extends TaskListResponseBase {
 	 * Builder for {@link ListResponse}.
 	 */
 
-	public static class Builder extends ListResponse.AbstractBuilder<Builder> implements ObjectBuilder<ListResponse> {
+	public static class Builder extends TaskListResponseBase.AbstractBuilder<Builder>
+			implements
+				ObjectBuilder<ListResponse> {
 		@Override
 		protected Builder self() {
 			return this;
@@ -78,11 +79,6 @@ public class ListResponse extends TaskListResponseBase {
 		}
 	}
 
-	protected abstract static class AbstractBuilder<BuilderT extends AbstractBuilder<BuilderT>>
-			extends
-				TaskListResponseBase.AbstractBuilder<BuilderT> {
-	}
-
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -91,8 +87,7 @@ public class ListResponse extends TaskListResponseBase {
 	public static final JsonpDeserializer<ListResponse> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
 			ListResponse::setupListResponseDeserializer);
 
-	protected static <BuilderT extends AbstractBuilder<BuilderT>> void setupListResponseDeserializer(
-			ObjectDeserializer<BuilderT> op) {
+	protected static void setupListResponseDeserializer(ObjectDeserializer<ListResponse.Builder> op) {
 		TaskListResponseBase.setupTaskListResponseBaseDeserializer(op);
 
 	}

@@ -29,6 +29,7 @@ import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.SearchType;
 import co.elastic.clients.elasticsearch._types.SlicedScroll;
+import co.elastic.clients.elasticsearch._types.Slices;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.elasticsearch._types.query_dsl.Operator;
@@ -137,7 +138,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	private final SlicedScroll slice;
 
 	@Nullable
-	private final Long slices;
+	private final Slices slices;
 
 	private final List<String> sort;
 
@@ -452,7 +453,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code slices}
 	 */
 	@Nullable
-	public final Long slices() {
+	public final Slices slices() {
 		return this.slices;
 	}
 
@@ -640,7 +641,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		private SlicedScroll slice;
 
 		@Nullable
-		private Long slices;
+		private Slices slices;
 
 		@Nullable
 		private List<String> sort;
@@ -978,9 +979,19 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code slices}
 		 */
-		public final Builder slices(@Nullable Long value) {
+		public final Builder slices(@Nullable Slices value) {
 			this.slices = value;
 			return this;
+		}
+
+		/**
+		 * The number of slices this task should be divided into. Defaults to 1, meaning
+		 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+		 * <p>
+		 * API name: {@code slices}
+		 */
+		public final Builder slices(Function<Slices.Builder, ObjectBuilder<Slices>> fn) {
+			return this.slices(fn.apply(new Slices.Builder()).build());
 		}
 
 		/**
@@ -1182,7 +1193,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.slices != null) {
-					params.put("slices", String.valueOf(request.slices));
+					params.put("slices", request.slices._toJsonString());
 				}
 				if (request.df != null) {
 					params.put("df", request.df);

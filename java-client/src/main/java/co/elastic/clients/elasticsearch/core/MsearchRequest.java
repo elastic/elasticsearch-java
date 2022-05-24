@@ -89,6 +89,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	private final Long preFilterShardSize;
 
 	@Nullable
+	private final String routing;
+
+	@Nullable
 	private final SearchType searchType;
 
 	private final List<RequestItem> searches;
@@ -106,6 +109,7 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		this.maxConcurrentSearches = builder.maxConcurrentSearches;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.preFilterShardSize = builder.preFilterShardSize;
+		this.routing = builder.routing;
 		this.searchType = builder.searchType;
 		this.searches = ApiTypeHelper.unmodifiableRequired(builder.searches, this, "searches");
 
@@ -221,6 +225,16 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 	}
 
 	/**
+	 * Custom routing value used to route search operations to a specific shard.
+	 * <p>
+	 * API name: {@code routing}
+	 */
+	@Nullable
+	public final String routing() {
+		return this.routing;
+	}
+
+	/**
 	 * Indicates whether global term and document frequencies should be used when
 	 * scoring returned documents.
 	 * <p>
@@ -284,6 +298,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 
 		@Nullable
 		private Long preFilterShardSize;
+
+		@Nullable
+		private String routing;
 
 		@Nullable
 		private SearchType searchType;
@@ -424,6 +441,16 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 		}
 
 		/**
+		 * Custom routing value used to route search operations to a specific shard.
+		 * <p>
+		 * API name: {@code routing}
+		 */
+		public final Builder routing(@Nullable String value) {
+			this.routing = value;
+			return this;
+		}
+
+		/**
 		 * Indicates whether global term and document frequencies should be used when
 		 * scoring returned documents.
 		 * <p>
@@ -518,6 +545,9 @@ public class MsearchRequest extends RequestBase implements NdJsonpSerializable, 
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				params.put("typed_keys", "true");
+				if (request.routing != null) {
+					params.put("routing", request.routing);
+				}
 				if (request.preFilterShardSize != null) {
 					params.put("pre_filter_shard_size", String.valueOf(request.preFilterShardSize));
 				}
