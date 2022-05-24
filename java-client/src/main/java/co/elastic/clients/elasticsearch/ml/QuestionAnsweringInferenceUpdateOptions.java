@@ -36,21 +36,22 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.lang.String;
-import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml._types.TextClassificationInferenceUpdateOptions
+// typedef: ml._types.QuestionAnsweringInferenceUpdateOptions
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#ml._types.TextClassificationInferenceUpdateOptions">API
+ *      "../doc-files/api-spec.html#ml._types.QuestionAnsweringInferenceUpdateOptions">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TextClassificationInferenceUpdateOptions implements InferenceConfigUpdateVariant, JsonpSerializable {
+public class QuestionAnsweringInferenceUpdateOptions implements InferenceConfigUpdateVariant, JsonpSerializable {
+	private final String question;
+
 	@Nullable
 	private final Integer numTopClasses;
 
@@ -60,21 +61,23 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 	@Nullable
 	private final String resultsField;
 
-	private final List<String> classificationLabels;
+	@Nullable
+	private final Integer maxAnswerLength;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TextClassificationInferenceUpdateOptions(Builder builder) {
+	private QuestionAnsweringInferenceUpdateOptions(Builder builder) {
 
+		this.question = ApiTypeHelper.requireNonNull(builder.question, this, "question");
 		this.numTopClasses = builder.numTopClasses;
 		this.tokenization = builder.tokenization;
 		this.resultsField = builder.resultsField;
-		this.classificationLabels = ApiTypeHelper.unmodifiable(builder.classificationLabels);
+		this.maxAnswerLength = builder.maxAnswerLength;
 
 	}
 
-	public static TextClassificationInferenceUpdateOptions of(
-			Function<Builder, ObjectBuilder<TextClassificationInferenceUpdateOptions>> fn) {
+	public static QuestionAnsweringInferenceUpdateOptions of(
+			Function<Builder, ObjectBuilder<QuestionAnsweringInferenceUpdateOptions>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -83,7 +86,16 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 	 */
 	@Override
 	public InferenceConfigUpdate.Kind _inferenceConfigUpdateKind() {
-		return InferenceConfigUpdate.Kind.TextClassification;
+		return InferenceConfigUpdate.Kind.QuestionAnswering;
+	}
+
+	/**
+	 * Required - The question to answer given the inference context
+	 * <p>
+	 * API name: {@code question}
+	 */
+	public final String question() {
+		return this.question;
 	}
 
 	/**
@@ -118,13 +130,13 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 	}
 
 	/**
-	 * Classification labels to apply other than the stored labels. Must have the
-	 * same deminsions as the default configured labels
+	 * The maximum answer length to consider for extraction
 	 * <p>
-	 * API name: {@code classification_labels}
+	 * API name: {@code max_answer_length}
 	 */
-	public final List<String> classificationLabels() {
-		return this.classificationLabels;
+	@Nullable
+	public final Integer maxAnswerLength() {
+		return this.maxAnswerLength;
 	}
 
 	/**
@@ -137,6 +149,9 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		generator.writeKey("question");
+		generator.write(this.question);
 
 		if (this.numTopClasses != null) {
 			generator.writeKey("num_top_classes");
@@ -153,14 +168,9 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 			generator.write(this.resultsField);
 
 		}
-		if (ApiTypeHelper.isDefined(this.classificationLabels)) {
-			generator.writeKey("classification_labels");
-			generator.writeStartArray();
-			for (String item0 : this.classificationLabels) {
-				generator.write(item0);
-
-			}
-			generator.writeEnd();
+		if (this.maxAnswerLength != null) {
+			generator.writeKey("max_answer_length");
+			generator.write(this.maxAnswerLength);
 
 		}
 
@@ -174,12 +184,14 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TextClassificationInferenceUpdateOptions}.
+	 * Builder for {@link QuestionAnsweringInferenceUpdateOptions}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<TextClassificationInferenceUpdateOptions> {
+				ObjectBuilder<QuestionAnsweringInferenceUpdateOptions> {
+		private String question;
+
 		@Nullable
 		private Integer numTopClasses;
 
@@ -190,7 +202,17 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 		private String resultsField;
 
 		@Nullable
-		private List<String> classificationLabels;
+		private Integer maxAnswerLength;
+
+		/**
+		 * Required - The question to answer given the inference context
+		 * <p>
+		 * API name: {@code question}
+		 */
+		public final Builder question(String value) {
+			this.question = value;
+			return this;
+		}
 
 		/**
 		 * Specifies the number of top class predictions to return. Defaults to 0.
@@ -234,28 +256,12 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 		}
 
 		/**
-		 * Classification labels to apply other than the stored labels. Must have the
-		 * same deminsions as the default configured labels
+		 * The maximum answer length to consider for extraction
 		 * <p>
-		 * API name: {@code classification_labels}
-		 * <p>
-		 * Adds all elements of <code>list</code> to <code>classificationLabels</code>.
+		 * API name: {@code max_answer_length}
 		 */
-		public final Builder classificationLabels(List<String> list) {
-			this.classificationLabels = _listAddAll(this.classificationLabels, list);
-			return this;
-		}
-
-		/**
-		 * Classification labels to apply other than the stored labels. Must have the
-		 * same deminsions as the default configured labels
-		 * <p>
-		 * API name: {@code classification_labels}
-		 * <p>
-		 * Adds one or more values to <code>classificationLabels</code>.
-		 */
-		public final Builder classificationLabels(String value, String... values) {
-			this.classificationLabels = _listAdd(this.classificationLabels, value, values);
+		public final Builder maxAnswerLength(@Nullable Integer value) {
+			this.maxAnswerLength = value;
 			return this;
 		}
 
@@ -265,35 +271,35 @@ public class TextClassificationInferenceUpdateOptions implements InferenceConfig
 		}
 
 		/**
-		 * Builds a {@link TextClassificationInferenceUpdateOptions}.
+		 * Builds a {@link QuestionAnsweringInferenceUpdateOptions}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TextClassificationInferenceUpdateOptions build() {
+		public QuestionAnsweringInferenceUpdateOptions build() {
 			_checkSingleUse();
 
-			return new TextClassificationInferenceUpdateOptions(this);
+			return new QuestionAnsweringInferenceUpdateOptions(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TextClassificationInferenceUpdateOptions}
+	 * Json deserializer for {@link QuestionAnsweringInferenceUpdateOptions}
 	 */
-	public static final JsonpDeserializer<TextClassificationInferenceUpdateOptions> _DESERIALIZER = ObjectBuilderDeserializer
+	public static final JsonpDeserializer<QuestionAnsweringInferenceUpdateOptions> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					TextClassificationInferenceUpdateOptions::setupTextClassificationInferenceUpdateOptionsDeserializer);
+					QuestionAnsweringInferenceUpdateOptions::setupQuestionAnsweringInferenceUpdateOptionsDeserializer);
 
-	protected static void setupTextClassificationInferenceUpdateOptionsDeserializer(
-			ObjectDeserializer<TextClassificationInferenceUpdateOptions.Builder> op) {
+	protected static void setupQuestionAnsweringInferenceUpdateOptionsDeserializer(
+			ObjectDeserializer<QuestionAnsweringInferenceUpdateOptions.Builder> op) {
 
+		op.add(Builder::question, JsonpDeserializer.stringDeserializer(), "question");
 		op.add(Builder::numTopClasses, JsonpDeserializer.integerDeserializer(), "num_top_classes");
 		op.add(Builder::tokenization, NlpTokenizationUpdateOptions._DESERIALIZER, "tokenization");
 		op.add(Builder::resultsField, JsonpDeserializer.stringDeserializer(), "results_field");
-		op.add(Builder::classificationLabels,
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "classification_labels");
+		op.add(Builder::maxAnswerLength, JsonpDeserializer.integerDeserializer(), "max_answer_length");
 
 	}
 

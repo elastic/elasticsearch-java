@@ -61,6 +61,9 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 
 	private final String name;
 
+	@Nullable
+	private final EnrichPolicy range;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private PutPolicyRequest(Builder builder) {
@@ -68,6 +71,7 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		this.geoMatch = builder.geoMatch;
 		this.match = builder.match;
 		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.range = builder.range;
 
 	}
 
@@ -101,6 +105,14 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code range}
+	 */
+	@Nullable
+	public final EnrichPolicy range() {
+		return this.range;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -121,6 +133,11 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 			this.match.serialize(generator, mapper);
 
 		}
+		if (this.range != null) {
+			generator.writeKey("range");
+			this.range.serialize(generator, mapper);
+
+		}
 
 	}
 
@@ -138,6 +155,9 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 		private EnrichPolicy match;
 
 		private String name;
+
+		@Nullable
+		private EnrichPolicy range;
 
 		/**
 		 * API name: {@code geo_match}
@@ -179,6 +199,21 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * API name: {@code range}
+		 */
+		public final Builder range(@Nullable EnrichPolicy value) {
+			this.range = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code range}
+		 */
+		public final Builder range(Function<EnrichPolicy.Builder, ObjectBuilder<EnrichPolicy>> fn) {
+			return this.range(fn.apply(new EnrichPolicy.Builder()).build());
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
@@ -209,6 +244,7 @@ public class PutPolicyRequest extends RequestBase implements JsonpSerializable {
 
 		op.add(Builder::geoMatch, EnrichPolicy._DESERIALIZER, "geo_match");
 		op.add(Builder::match, EnrichPolicy._DESERIALIZER, "match");
+		op.add(Builder::range, EnrichPolicy._DESERIALIZER, "range");
 
 	}
 

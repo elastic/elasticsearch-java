@@ -151,6 +151,52 @@ public class ElasticsearchCatAsyncClient extends ApiClient<ElasticsearchTranspor
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: cat.component_templates
+
+	/**
+	 * Returns information about existing component_templates templates.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ComponentTemplatesResponse> componentTemplates(ComponentTemplatesRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ComponentTemplatesRequest, ComponentTemplatesResponse, ErrorResponse> endpoint = (JsonEndpoint<ComponentTemplatesRequest, ComponentTemplatesResponse, ErrorResponse>) ComponentTemplatesRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about existing component_templates templates.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ComponentTemplatesRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<ComponentTemplatesResponse> componentTemplates(
+			Function<ComponentTemplatesRequest.Builder, ObjectBuilder<ComponentTemplatesRequest>> fn) {
+		return componentTemplates(fn.apply(new ComponentTemplatesRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about existing component_templates templates.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<ComponentTemplatesResponse> componentTemplates() {
+		return this.transport.performRequestAsync(new ComponentTemplatesRequest.Builder().build(),
+				ComponentTemplatesRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: cat.count
 
 	/**

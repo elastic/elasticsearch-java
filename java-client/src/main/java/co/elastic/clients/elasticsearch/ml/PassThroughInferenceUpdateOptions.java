@@ -47,7 +47,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class PassThroughInferenceUpdateOptions implements NlpInferenceConfigUpdateVariant, JsonpSerializable {
+public class PassThroughInferenceUpdateOptions implements InferenceConfigUpdateVariant, JsonpSerializable {
 	@Nullable
 	private final NlpTokenizationUpdateOptions tokenization;
 
@@ -69,11 +69,11 @@ public class PassThroughInferenceUpdateOptions implements NlpInferenceConfigUpda
 	}
 
 	/**
-	 * NlpInferenceConfigUpdate variant kind.
+	 * InferenceConfigUpdate variant kind.
 	 */
 	@Override
-	public NlpInferenceConfigUpdate.Kind _nlpInferenceConfigUpdateKind() {
-		return NlpInferenceConfigUpdate.Kind.PassThrough;
+	public InferenceConfigUpdate.Kind _inferenceConfigUpdateKind() {
+		return InferenceConfigUpdate.Kind.PassThrough;
 	}
 
 	/**

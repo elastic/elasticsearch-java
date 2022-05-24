@@ -24,14 +24,14 @@
 package co.elastic.clients.elasticsearch.ml;
 
 /**
- * Base interface for {@link NlpInferenceConfigUpdate} variants.
+ * Base interface for {@link InferenceConfigUpdate} variants.
  */
-public interface NlpInferenceConfigUpdateVariant {
+public interface InferenceConfigUpdateVariant {
 
-	NlpInferenceConfigUpdate.Kind _nlpInferenceConfigUpdateKind();
+	InferenceConfigUpdate.Kind _inferenceConfigUpdateKind();
 
-	default NlpInferenceConfigUpdate _toNlpInferenceConfigUpdate() {
-		return new NlpInferenceConfigUpdate(this);
+	default InferenceConfigUpdate _toInferenceConfigUpdate() {
+		return new InferenceConfigUpdate(this);
 	}
 
 }

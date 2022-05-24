@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.ml;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -46,21 +47,20 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml.infer_trained_model_deployment.Request
+// typedef: ml.infer_trained_model.Request
 
 /**
  * Evaluates a trained model.
  * 
- * @see <a href=
- *      "../doc-files/api-spec.html#ml.infer_trained_model_deployment.Request">API
+ * @see <a href="../doc-files/api-spec.html#ml.infer_trained_model.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class InferTrainedModelDeploymentRequest extends RequestBase implements JsonpSerializable {
-	private final List<Map<String, String>> docs;
+public class InferTrainedModelRequest extends RequestBase implements JsonpSerializable {
+	private final List<Map<String, JsonData>> docs;
 
 	@Nullable
-	private final NlpInferenceConfigUpdate inferenceConfig;
+	private final InferenceConfigUpdate inferenceConfig;
 
 	private final String modelId;
 
@@ -69,7 +69,7 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 
 	// ---------------------------------------------------------------------------------------------
 
-	private InferTrainedModelDeploymentRequest(Builder builder) {
+	private InferTrainedModelRequest(Builder builder) {
 
 		this.docs = ApiTypeHelper.unmodifiableRequired(builder.docs, this, "docs");
 		this.inferenceConfig = builder.inferenceConfig;
@@ -78,20 +78,19 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 
 	}
 
-	public static InferTrainedModelDeploymentRequest of(
-			Function<Builder, ObjectBuilder<InferTrainedModelDeploymentRequest>> fn) {
+	public static InferTrainedModelRequest of(Function<Builder, ObjectBuilder<InferTrainedModelRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
 	 * Required - An array of objects to pass to the model for inference. The
-	 * objects should contain a field matching your configured trained model input.
-	 * Typically, the field name is <code>text_field</code>. Currently, only a
-	 * single value is allowed.
+	 * objects should contain a fields matching your configured trained model input.
+	 * Typically, for NLP models, the field name is <code>text_field</code>.
+	 * Currently, for NLP models, only a single value is allowed.
 	 * <p>
 	 * API name: {@code docs}
 	 */
-	public final List<Map<String, String>> docs() {
+	public final List<Map<String, JsonData>> docs() {
 		return this.docs;
 	}
 
@@ -101,7 +100,7 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 	 * API name: {@code inference_config}
 	 */
 	@Nullable
-	public final NlpInferenceConfigUpdate inferenceConfig() {
+	public final InferenceConfigUpdate inferenceConfig() {
 		return this.inferenceConfig;
 	}
 
@@ -138,12 +137,12 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 		if (ApiTypeHelper.isDefined(this.docs)) {
 			generator.writeKey("docs");
 			generator.writeStartArray();
-			for (Map<String, String> item0 : this.docs) {
+			for (Map<String, JsonData> item0 : this.docs) {
 				generator.writeStartObject();
 				if (item0 != null) {
-					for (Map.Entry<String, String> item1 : item0.entrySet()) {
+					for (Map.Entry<String, JsonData> item1 : item0.entrySet()) {
 						generator.writeKey(item1.getKey());
-						generator.write(item1.getValue());
+						item1.getValue().serialize(generator, mapper);
 
 					}
 				}
@@ -164,16 +163,16 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link InferTrainedModelDeploymentRequest}.
+	 * Builder for {@link InferTrainedModelRequest}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<InferTrainedModelDeploymentRequest> {
-		private List<Map<String, String>> docs;
+				ObjectBuilder<InferTrainedModelRequest> {
+		private List<Map<String, JsonData>> docs;
 
 		@Nullable
-		private NlpInferenceConfigUpdate inferenceConfig;
+		private InferenceConfigUpdate inferenceConfig;
 
 		private String modelId;
 
@@ -182,30 +181,30 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 
 		/**
 		 * Required - An array of objects to pass to the model for inference. The
-		 * objects should contain a field matching your configured trained model input.
-		 * Typically, the field name is <code>text_field</code>. Currently, only a
-		 * single value is allowed.
+		 * objects should contain a fields matching your configured trained model input.
+		 * Typically, for NLP models, the field name is <code>text_field</code>.
+		 * Currently, for NLP models, only a single value is allowed.
 		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>docs</code>.
 		 */
-		public final Builder docs(List<Map<String, String>> list) {
+		public final Builder docs(List<Map<String, JsonData>> list) {
 			this.docs = _listAddAll(this.docs, list);
 			return this;
 		}
 
 		/**
 		 * Required - An array of objects to pass to the model for inference. The
-		 * objects should contain a field matching your configured trained model input.
-		 * Typically, the field name is <code>text_field</code>. Currently, only a
-		 * single value is allowed.
+		 * objects should contain a fields matching your configured trained model input.
+		 * Typically, for NLP models, the field name is <code>text_field</code>.
+		 * Currently, for NLP models, only a single value is allowed.
 		 * <p>
 		 * API name: {@code docs}
 		 * <p>
 		 * Adds one or more values to <code>docs</code>.
 		 */
-		public final Builder docs(Map<String, String> value, Map<String, String>... values) {
+		public final Builder docs(Map<String, JsonData> value, Map<String, JsonData>... values) {
 			this.docs = _listAdd(this.docs, value, values);
 			return this;
 		}
@@ -215,7 +214,7 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 		 * <p>
 		 * API name: {@code inference_config}
 		 */
-		public final Builder inferenceConfig(@Nullable NlpInferenceConfigUpdate value) {
+		public final Builder inferenceConfig(@Nullable InferenceConfigUpdate value) {
 			this.inferenceConfig = value;
 			return this;
 		}
@@ -226,8 +225,8 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 		 * API name: {@code inference_config}
 		 */
 		public final Builder inferenceConfig(
-				Function<NlpInferenceConfigUpdate.Builder, ObjectBuilder<NlpInferenceConfigUpdate>> fn) {
-			return this.inferenceConfig(fn.apply(new NlpInferenceConfigUpdate.Builder()).build());
+				Function<InferenceConfigUpdate.Builder, ObjectBuilder<InferenceConfigUpdate>> fn) {
+			return this.inferenceConfig(fn.apply(new InferenceConfigUpdate.Builder()).build());
 		}
 
 		/**
@@ -265,43 +264,43 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 		}
 
 		/**
-		 * Builds a {@link InferTrainedModelDeploymentRequest}.
+		 * Builds a {@link InferTrainedModelRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public InferTrainedModelDeploymentRequest build() {
+		public InferTrainedModelRequest build() {
 			_checkSingleUse();
 
-			return new InferTrainedModelDeploymentRequest(this);
+			return new InferTrainedModelRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link InferTrainedModelDeploymentRequest}
+	 * Json deserializer for {@link InferTrainedModelRequest}
 	 */
-	public static final JsonpDeserializer<InferTrainedModelDeploymentRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new,
-					InferTrainedModelDeploymentRequest::setupInferTrainedModelDeploymentRequestDeserializer);
+	public static final JsonpDeserializer<InferTrainedModelRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InferTrainedModelRequest::setupInferTrainedModelRequestDeserializer);
 
-	protected static void setupInferTrainedModelDeploymentRequestDeserializer(
-			ObjectDeserializer<InferTrainedModelDeploymentRequest.Builder> op) {
+	protected static void setupInferTrainedModelRequestDeserializer(
+			ObjectDeserializer<InferTrainedModelRequest.Builder> op) {
 
-		op.add(Builder::docs, JsonpDeserializer.arrayDeserializer(
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer())), "docs");
-		op.add(Builder::inferenceConfig, NlpInferenceConfigUpdate._DESERIALIZER, "inference_config");
+		op.add(Builder::docs,
+				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER)),
+				"docs");
+		op.add(Builder::inferenceConfig, InferenceConfigUpdate._DESERIALIZER, "inference_config");
 
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code ml.infer_trained_model_deployment}".
+	 * Endpoint "{@code ml.infer_trained_model}".
 	 */
-	public static final Endpoint<InferTrainedModelDeploymentRequest, InferTrainedModelDeploymentResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/ml.infer_trained_model_deployment",
+	public static final Endpoint<InferTrainedModelRequest, InferTrainedModelResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/ml.infer_trained_model",
 
 			// Request method
 			request -> {
@@ -317,6 +316,15 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 
 				propsSet |= _modelId;
 
+				if (propsSet == (_modelId)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_ml");
+					buf.append("/trained_models");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.modelId, buf);
+					buf.append("/_infer");
+					return buf.toString();
+				}
 				if (propsSet == (_modelId)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/_ml");
@@ -339,5 +347,5 @@ public class InferTrainedModelDeploymentRequest extends RequestBase implements J
 				}
 				return params;
 
-			}, SimpleEndpoint.emptyMap(), true, InferTrainedModelDeploymentResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, InferTrainedModelResponse._DESERIALIZER);
 }

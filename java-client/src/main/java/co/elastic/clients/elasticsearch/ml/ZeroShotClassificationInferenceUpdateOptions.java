@@ -50,10 +50,7 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class ZeroShotClassificationInferenceUpdateOptions
-		implements
-			NlpInferenceConfigUpdateVariant,
-			JsonpSerializable {
+public class ZeroShotClassificationInferenceUpdateOptions implements InferenceConfigUpdateVariant, JsonpSerializable {
 	@Nullable
 	private final NlpTokenizationUpdateOptions tokenization;
 
@@ -82,11 +79,11 @@ public class ZeroShotClassificationInferenceUpdateOptions
 	}
 
 	/**
-	 * NlpInferenceConfigUpdate variant kind.
+	 * InferenceConfigUpdate variant kind.
 	 */
 	@Override
-	public NlpInferenceConfigUpdate.Kind _nlpInferenceConfigUpdateKind() {
-		return NlpInferenceConfigUpdate.Kind.ZeroShotClassification;
+	public InferenceConfigUpdate.Kind _inferenceConfigUpdateKind() {
+		return InferenceConfigUpdate.Kind.ZeroShotClassification;
 	}
 
 	/**

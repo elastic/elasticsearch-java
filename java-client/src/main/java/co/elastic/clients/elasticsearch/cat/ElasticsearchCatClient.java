@@ -152,6 +152,54 @@ public class ElasticsearchCatClient extends ApiClient<ElasticsearchTransport, El
 				this.transportOptions);
 	}
 
+	// ----- Endpoint: cat.component_templates
+
+	/**
+	 * Returns information about existing component_templates templates.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ComponentTemplatesResponse componentTemplates(ComponentTemplatesRequest request)
+			throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<ComponentTemplatesRequest, ComponentTemplatesResponse, ErrorResponse> endpoint = (JsonEndpoint<ComponentTemplatesRequest, ComponentTemplatesResponse, ErrorResponse>) ComponentTemplatesRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Returns information about existing component_templates templates.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link ComponentTemplatesRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final ComponentTemplatesResponse componentTemplates(
+			Function<ComponentTemplatesRequest.Builder, ObjectBuilder<ComponentTemplatesRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return componentTemplates(fn.apply(new ComponentTemplatesRequest.Builder()).build());
+	}
+
+	/**
+	 * Returns information about existing component_templates templates.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/master/cat-compoentn-templates.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public ComponentTemplatesResponse componentTemplates() throws IOException, ElasticsearchException {
+		return this.transport.performRequest(new ComponentTemplatesRequest.Builder().build(),
+				ComponentTemplatesRequest._ENDPOINT, this.transportOptions);
+	}
+
 	// ----- Endpoint: cat.count
 
 	/**

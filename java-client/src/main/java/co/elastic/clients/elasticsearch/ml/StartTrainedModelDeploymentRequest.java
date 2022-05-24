@@ -56,16 +56,16 @@ import javax.annotation.Nullable;
  */
 
 public class StartTrainedModelDeploymentRequest extends RequestBase {
-	@Nullable
-	private final Integer inferenceThreads;
-
 	private final String modelId;
 
 	@Nullable
-	private final Integer modelThreads;
+	private final Integer numberOfAllocations;
 
 	@Nullable
 	private final Integer queueCapacity;
+
+	@Nullable
+	private final Integer threadsPerAllocation;
 
 	@Nullable
 	private final Time timeout;
@@ -77,10 +77,10 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 
 	private StartTrainedModelDeploymentRequest(Builder builder) {
 
-		this.inferenceThreads = builder.inferenceThreads;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.modelThreads = builder.modelThreads;
+		this.numberOfAllocations = builder.numberOfAllocations;
 		this.queueCapacity = builder.queueCapacity;
+		this.threadsPerAllocation = builder.threadsPerAllocation;
 		this.timeout = builder.timeout;
 		this.waitFor = builder.waitFor;
 
@@ -89,18 +89,6 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	public static StartTrainedModelDeploymentRequest of(
 			Function<Builder, ObjectBuilder<StartTrainedModelDeploymentRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Specifies the number of threads that are used by the inference process. If
-	 * you increase this value, inference speed generally increases. However, the
-	 * actual number of threads is limited by the number of available CPU cores.
-	 * <p>
-	 * API name: {@code inference_threads}
-	 */
-	@Nullable
-	public final Integer inferenceThreads() {
-		return this.inferenceThreads;
 	}
 
 	/**
@@ -114,14 +102,18 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	}
 
 	/**
-	 * Specifies the number of threads that are used when sending inference requests
-	 * to the model. If you increase this value, throughput generally increases.
+	 * The number of model allocations on each node where the model is deployed. All
+	 * allocations on a node share the same copy of the model in memory but use a
+	 * separate set of threads to evaluate the model. Increasing this value
+	 * generally increases the throughput. If this setting is greater than the
+	 * number of hardware threads it will automatically be changed to a value less
+	 * than the number of hardware threads.
 	 * <p>
-	 * API name: {@code model_threads}
+	 * API name: {@code number_of_allocations}
 	 */
 	@Nullable
-	public final Integer modelThreads() {
-		return this.modelThreads;
+	public final Integer numberOfAllocations() {
+		return this.numberOfAllocations;
 	}
 
 	/**
@@ -134,6 +126,21 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	@Nullable
 	public final Integer queueCapacity() {
 		return this.queueCapacity;
+	}
+
+	/**
+	 * Sets the number of threads used by each model allocation during inference.
+	 * This generally increases the inference speed. The inference process is a
+	 * compute-bound process; any number greater than the number of available
+	 * hardware threads on the machine does not increase the inference speed. If
+	 * this setting is greater than the number of hardware threads it will
+	 * automatically be changed to a value less than the number of hardware threads.
+	 * <p>
+	 * API name: {@code threads_per_allocation}
+	 */
+	@Nullable
+	public final Integer threadsPerAllocation() {
+		return this.threadsPerAllocation;
 	}
 
 	/**
@@ -163,34 +170,22 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartTrainedModelDeploymentRequest> {
-		@Nullable
-		private Integer inferenceThreads;
-
 		private String modelId;
 
 		@Nullable
-		private Integer modelThreads;
+		private Integer numberOfAllocations;
 
 		@Nullable
 		private Integer queueCapacity;
+
+		@Nullable
+		private Integer threadsPerAllocation;
 
 		@Nullable
 		private Time timeout;
 
 		@Nullable
 		private DeploymentAllocationState waitFor;
-
-		/**
-		 * Specifies the number of threads that are used by the inference process. If
-		 * you increase this value, inference speed generally increases. However, the
-		 * actual number of threads is limited by the number of available CPU cores.
-		 * <p>
-		 * API name: {@code inference_threads}
-		 */
-		public final Builder inferenceThreads(@Nullable Integer value) {
-			this.inferenceThreads = value;
-			return this;
-		}
 
 		/**
 		 * Required - The unique identifier of the trained model. Currently, only
@@ -204,13 +199,17 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		}
 
 		/**
-		 * Specifies the number of threads that are used when sending inference requests
-		 * to the model. If you increase this value, throughput generally increases.
+		 * The number of model allocations on each node where the model is deployed. All
+		 * allocations on a node share the same copy of the model in memory but use a
+		 * separate set of threads to evaluate the model. Increasing this value
+		 * generally increases the throughput. If this setting is greater than the
+		 * number of hardware threads it will automatically be changed to a value less
+		 * than the number of hardware threads.
 		 * <p>
-		 * API name: {@code model_threads}
+		 * API name: {@code number_of_allocations}
 		 */
-		public final Builder modelThreads(@Nullable Integer value) {
-			this.modelThreads = value;
+		public final Builder numberOfAllocations(@Nullable Integer value) {
+			this.numberOfAllocations = value;
 			return this;
 		}
 
@@ -223,6 +222,21 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 		 */
 		public final Builder queueCapacity(@Nullable Integer value) {
 			this.queueCapacity = value;
+			return this;
+		}
+
+		/**
+		 * Sets the number of threads used by each model allocation during inference.
+		 * This generally increases the inference speed. The inference process is a
+		 * compute-bound process; any number greater than the number of available
+		 * hardware threads on the machine does not increase the inference speed. If
+		 * this setting is greater than the number of hardware threads it will
+		 * automatically be changed to a value less than the number of hardware threads.
+		 * <p>
+		 * API name: {@code threads_per_allocation}
+		 */
+		public final Builder threadsPerAllocation(@Nullable Integer value) {
+			this.threadsPerAllocation = value;
 			return this;
 		}
 
@@ -307,14 +321,14 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.inferenceThreads != null) {
-					params.put("inference_threads", String.valueOf(request.inferenceThreads));
+				if (request.threadsPerAllocation != null) {
+					params.put("threads_per_allocation", String.valueOf(request.threadsPerAllocation));
 				}
 				if (request.waitFor != null) {
 					params.put("wait_for", request.waitFor.jsonValue());
 				}
-				if (request.modelThreads != null) {
-					params.put("model_threads", String.valueOf(request.modelThreads));
+				if (request.numberOfAllocations != null) {
+					params.put("number_of_allocations", String.valueOf(request.numberOfAllocations));
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());

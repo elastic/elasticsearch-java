@@ -57,13 +57,11 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 
 	private final int inferenceCount;
 
-	private final int inferenceThreads;
-
 	private final long lastAccess;
 
-	private final int modelThreads;
-
 	private final DiscoveryNode node;
+
+	private final int numberOfAllocations;
 
 	private final int numberOfPendingRequests;
 
@@ -72,6 +70,8 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 	private final TrainedModelAllocationRoutingTable routingState;
 
 	private final long startTime;
+
+	private final int threadsPerAllocation;
 
 	private final int timeoutCount;
 
@@ -83,16 +83,18 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 				"averageInferenceTimeMs");
 		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
 		this.inferenceCount = ApiTypeHelper.requireNonNull(builder.inferenceCount, this, "inferenceCount");
-		this.inferenceThreads = ApiTypeHelper.requireNonNull(builder.inferenceThreads, this, "inferenceThreads");
 		this.lastAccess = ApiTypeHelper.requireNonNull(builder.lastAccess, this, "lastAccess");
-		this.modelThreads = ApiTypeHelper.requireNonNull(builder.modelThreads, this, "modelThreads");
 		this.node = ApiTypeHelper.requireNonNull(builder.node, this, "node");
+		this.numberOfAllocations = ApiTypeHelper.requireNonNull(builder.numberOfAllocations, this,
+				"numberOfAllocations");
 		this.numberOfPendingRequests = ApiTypeHelper.requireNonNull(builder.numberOfPendingRequests, this,
 				"numberOfPendingRequests");
 		this.rejectionExecutionCount = ApiTypeHelper.requireNonNull(builder.rejectionExecutionCount, this,
 				"rejectionExecutionCount");
 		this.routingState = ApiTypeHelper.requireNonNull(builder.routingState, this, "routingState");
 		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime");
+		this.threadsPerAllocation = ApiTypeHelper.requireNonNull(builder.threadsPerAllocation, this,
+				"threadsPerAllocation");
 		this.timeoutCount = ApiTypeHelper.requireNonNull(builder.timeoutCount, this, "timeoutCount");
 
 	}
@@ -131,18 +133,6 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The number of threads used by the inference process. This value is
-	 * limited by the number of hardware threads on the node; it might therefore
-	 * differ from the <code>inference_threads</code> value in the start trained
-	 * model deployment API.
-	 * <p>
-	 * API name: {@code inference_threads}
-	 */
-	public final int inferenceThreads() {
-		return this.inferenceThreads;
-	}
-
-	/**
 	 * Required - The epoch time stamp of the last inference call for the model on
 	 * this node.
 	 * <p>
@@ -153,24 +143,21 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The number of threads used when sending inference requests to the
-	 * model. This value is limited by the number of hardware threads on the node;
-	 * it might therefore differ from the <code>model_threads</code> value in the
-	 * start trained model deployment API.
-	 * <p>
-	 * API name: {@code model_threads}
-	 */
-	public final int modelThreads() {
-		return this.modelThreads;
-	}
-
-	/**
 	 * Required - Information pertaining to the node.
 	 * <p>
 	 * API name: {@code node}
 	 */
 	public final DiscoveryNode node() {
 		return this.node;
+	}
+
+	/**
+	 * Required - The number of allocations assigned to this node.
+	 * <p>
+	 * API name: {@code number_of_allocations}
+	 */
+	public final int numberOfAllocations() {
+		return this.numberOfAllocations;
 	}
 
 	/**
@@ -212,6 +199,15 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - The number of threads used by each allocation during inference.
+	 * <p>
+	 * API name: {@code threads_per_allocation}
+	 */
+	public final int threadsPerAllocation() {
+		return this.threadsPerAllocation;
+	}
+
+	/**
 	 * Required - The number of inference requests that timed out before being
 	 * processed.
 	 * <p>
@@ -241,17 +237,14 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		generator.writeKey("inference_count");
 		generator.write(this.inferenceCount);
 
-		generator.writeKey("inference_threads");
-		generator.write(this.inferenceThreads);
-
 		generator.writeKey("last_access");
 		generator.write(this.lastAccess);
 
-		generator.writeKey("model_threads");
-		generator.write(this.modelThreads);
-
 		generator.writeKey("node");
 		this.node.serialize(generator, mapper);
+
+		generator.writeKey("number_of_allocations");
+		generator.write(this.numberOfAllocations);
 
 		generator.writeKey("number_of_pending_requests");
 		generator.write(this.numberOfPendingRequests);
@@ -264,6 +257,9 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 
 		generator.writeKey("start_time");
 		generator.write(this.startTime);
+
+		generator.writeKey("threads_per_allocation");
+		generator.write(this.threadsPerAllocation);
 
 		generator.writeKey("timeout_count");
 		generator.write(this.timeoutCount);
@@ -290,13 +286,11 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 
 		private Integer inferenceCount;
 
-		private Integer inferenceThreads;
-
 		private Long lastAccess;
 
-		private Integer modelThreads;
-
 		private DiscoveryNode node;
+
+		private Integer numberOfAllocations;
 
 		private Integer numberOfPendingRequests;
 
@@ -305,6 +299,8 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		private TrainedModelAllocationRoutingTable routingState;
 
 		private Long startTime;
+
+		private Integer threadsPerAllocation;
 
 		private Integer timeoutCount;
 
@@ -340,19 +336,6 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The number of threads used by the inference process. This value is
-		 * limited by the number of hardware threads on the node; it might therefore
-		 * differ from the <code>inference_threads</code> value in the start trained
-		 * model deployment API.
-		 * <p>
-		 * API name: {@code inference_threads}
-		 */
-		public final Builder inferenceThreads(int value) {
-			this.inferenceThreads = value;
-			return this;
-		}
-
-		/**
 		 * Required - The epoch time stamp of the last inference call for the model on
 		 * this node.
 		 * <p>
@@ -360,19 +343,6 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		 */
 		public final Builder lastAccess(long value) {
 			this.lastAccess = value;
-			return this;
-		}
-
-		/**
-		 * Required - The number of threads used when sending inference requests to the
-		 * model. This value is limited by the number of hardware threads on the node;
-		 * it might therefore differ from the <code>model_threads</code> value in the
-		 * start trained model deployment API.
-		 * <p>
-		 * API name: {@code model_threads}
-		 */
-		public final Builder modelThreads(int value) {
-			this.modelThreads = value;
 			return this;
 		}
 
@@ -393,6 +363,16 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		 */
 		public final Builder node(Function<DiscoveryNode.Builder, ObjectBuilder<DiscoveryNode>> fn) {
 			return this.node(fn.apply(new DiscoveryNode.Builder()).build());
+		}
+
+		/**
+		 * Required - The number of allocations assigned to this node.
+		 * <p>
+		 * API name: {@code number_of_allocations}
+		 */
+		public final Builder numberOfAllocations(int value) {
+			this.numberOfAllocations = value;
+			return this;
 		}
 
 		/**
@@ -449,6 +429,16 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - The number of threads used by each allocation during inference.
+		 * <p>
+		 * API name: {@code threads_per_allocation}
+		 */
+		public final Builder threadsPerAllocation(int value) {
+			this.threadsPerAllocation = value;
+			return this;
+		}
+
+		/**
 		 * Required - The number of inference requests that timed out before being
 		 * processed.
 		 * <p>
@@ -491,14 +481,14 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		op.add(Builder::averageInferenceTimeMs, JsonpDeserializer.doubleDeserializer(), "average_inference_time_ms");
 		op.add(Builder::errorCount, JsonpDeserializer.integerDeserializer(), "error_count");
 		op.add(Builder::inferenceCount, JsonpDeserializer.integerDeserializer(), "inference_count");
-		op.add(Builder::inferenceThreads, JsonpDeserializer.integerDeserializer(), "inference_threads");
 		op.add(Builder::lastAccess, JsonpDeserializer.longDeserializer(), "last_access");
-		op.add(Builder::modelThreads, JsonpDeserializer.integerDeserializer(), "model_threads");
 		op.add(Builder::node, DiscoveryNode._DESERIALIZER, "node");
+		op.add(Builder::numberOfAllocations, JsonpDeserializer.integerDeserializer(), "number_of_allocations");
 		op.add(Builder::numberOfPendingRequests, JsonpDeserializer.integerDeserializer(), "number_of_pending_requests");
 		op.add(Builder::rejectionExecutionCount, JsonpDeserializer.integerDeserializer(), "rejection_execution_count");
 		op.add(Builder::routingState, TrainedModelAllocationRoutingTable._DESERIALIZER, "routing_state");
 		op.add(Builder::startTime, JsonpDeserializer.longDeserializer(), "start_time");
+		op.add(Builder::threadsPerAllocation, JsonpDeserializer.integerDeserializer(), "threads_per_allocation");
 		op.add(Builder::timeoutCount, JsonpDeserializer.integerDeserializer(), "timeout_count");
 
 	}

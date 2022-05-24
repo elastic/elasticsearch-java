@@ -57,13 +57,11 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 
 	private final int inferenceCount;
 
-	private final int inferenceThreads;
-
 	private final String modelId;
 
-	private final int modelThreads;
-
 	private final TrainedModelDeploymentNodesStats nodes;
+
+	private final int numberOfAllocations;
 
 	private final int queueCapacity;
 
@@ -75,6 +73,8 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 
 	private final DeploymentState state;
 
+	private final int threadsPerAllocation;
+
 	private final int timeoutCount;
 
 	// ---------------------------------------------------------------------------------------------
@@ -84,16 +84,18 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		this.allocationStatus = ApiTypeHelper.requireNonNull(builder.allocationStatus, this, "allocationStatus");
 		this.errorCount = ApiTypeHelper.requireNonNull(builder.errorCount, this, "errorCount");
 		this.inferenceCount = ApiTypeHelper.requireNonNull(builder.inferenceCount, this, "inferenceCount");
-		this.inferenceThreads = ApiTypeHelper.requireNonNull(builder.inferenceThreads, this, "inferenceThreads");
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
-		this.modelThreads = ApiTypeHelper.requireNonNull(builder.modelThreads, this, "modelThreads");
 		this.nodes = ApiTypeHelper.requireNonNull(builder.nodes, this, "nodes");
+		this.numberOfAllocations = ApiTypeHelper.requireNonNull(builder.numberOfAllocations, this,
+				"numberOfAllocations");
 		this.queueCapacity = ApiTypeHelper.requireNonNull(builder.queueCapacity, this, "queueCapacity");
 		this.rejectedExecutionCount = ApiTypeHelper.requireNonNull(builder.rejectedExecutionCount, this,
 				"rejectedExecutionCount");
 		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime");
 		this.state = ApiTypeHelper.requireNonNull(builder.state, this, "state");
+		this.threadsPerAllocation = ApiTypeHelper.requireNonNull(builder.threadsPerAllocation, this,
+				"threadsPerAllocation");
 		this.timeoutCount = ApiTypeHelper.requireNonNull(builder.timeoutCount, this, "timeoutCount");
 
 	}
@@ -132,31 +134,12 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The number of threads used by the inference process.
-	 * <p>
-	 * API name: {@code inference_threads}
-	 */
-	public final int inferenceThreads() {
-		return this.inferenceThreads;
-	}
-
-	/**
 	 * Required - The unique identifier for the trained model.
 	 * <p>
 	 * API name: {@code model_id}
 	 */
 	public final String modelId() {
 		return this.modelId;
-	}
-
-	/**
-	 * Required - The number of threads used when sending inference requests to the
-	 * model.
-	 * <p>
-	 * API name: {@code model_threads}
-	 */
-	public final int modelThreads() {
-		return this.modelThreads;
 	}
 
 	/**
@@ -167,6 +150,15 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 	 */
 	public final TrainedModelDeploymentNodesStats nodes() {
 		return this.nodes;
+	}
+
+	/**
+	 * Required - The number of allocations requested.
+	 * <p>
+	 * API name: {@code number_of_allocations}
+	 */
+	public final int numberOfAllocations() {
+		return this.numberOfAllocations;
 	}
 
 	/**
@@ -221,6 +213,15 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - The number of threads used be each allocation during inference.
+	 * <p>
+	 * API name: {@code threads_per_allocation}
+	 */
+	public final int threadsPerAllocation() {
+		return this.threadsPerAllocation;
+	}
+
+	/**
 	 * Required - The sum of <code>timeout_count</code> for all nodes in the
 	 * deployment.
 	 * <p>
@@ -250,17 +251,14 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		generator.writeKey("inference_count");
 		generator.write(this.inferenceCount);
 
-		generator.writeKey("inference_threads");
-		generator.write(this.inferenceThreads);
-
 		generator.writeKey("model_id");
 		generator.write(this.modelId);
 
-		generator.writeKey("model_threads");
-		generator.write(this.modelThreads);
-
 		generator.writeKey("nodes");
 		this.nodes.serialize(generator, mapper);
+
+		generator.writeKey("number_of_allocations");
+		generator.write(this.numberOfAllocations);
 
 		generator.writeKey("queue_capacity");
 		generator.write(this.queueCapacity);
@@ -276,6 +274,9 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 
 		generator.writeKey("state");
 		this.state.serialize(generator, mapper);
+		generator.writeKey("threads_per_allocation");
+		generator.write(this.threadsPerAllocation);
+
 		generator.writeKey("timeout_count");
 		generator.write(this.timeoutCount);
 
@@ -301,13 +302,11 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 
 		private Integer inferenceCount;
 
-		private Integer inferenceThreads;
-
 		private String modelId;
 
-		private Integer modelThreads;
-
 		private TrainedModelDeploymentNodesStats nodes;
+
+		private Integer numberOfAllocations;
 
 		private Integer queueCapacity;
 
@@ -318,6 +317,8 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		private Long startTime;
 
 		private DeploymentState state;
+
+		private Integer threadsPerAllocation;
 
 		private Integer timeoutCount;
 
@@ -364,33 +365,12 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - The number of threads used by the inference process.
-		 * <p>
-		 * API name: {@code inference_threads}
-		 */
-		public final Builder inferenceThreads(int value) {
-			this.inferenceThreads = value;
-			return this;
-		}
-
-		/**
 		 * Required - The unique identifier for the trained model.
 		 * <p>
 		 * API name: {@code model_id}
 		 */
 		public final Builder modelId(String value) {
 			this.modelId = value;
-			return this;
-		}
-
-		/**
-		 * Required - The number of threads used when sending inference requests to the
-		 * model.
-		 * <p>
-		 * API name: {@code model_threads}
-		 */
-		public final Builder modelThreads(int value) {
-			this.modelThreads = value;
 			return this;
 		}
 
@@ -414,6 +394,16 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		public final Builder nodes(
 				Function<TrainedModelDeploymentNodesStats.Builder, ObjectBuilder<TrainedModelDeploymentNodesStats>> fn) {
 			return this.nodes(fn.apply(new TrainedModelDeploymentNodesStats.Builder()).build());
+		}
+
+		/**
+		 * Required - The number of allocations requested.
+		 * <p>
+		 * API name: {@code number_of_allocations}
+		 */
+		public final Builder numberOfAllocations(int value) {
+			this.numberOfAllocations = value;
+			return this;
 		}
 
 		/**
@@ -473,6 +463,16 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		}
 
 		/**
+		 * Required - The number of threads used be each allocation during inference.
+		 * <p>
+		 * API name: {@code threads_per_allocation}
+		 */
+		public final Builder threadsPerAllocation(int value) {
+			this.threadsPerAllocation = value;
+			return this;
+		}
+
+		/**
 		 * Required - The sum of <code>timeout_count</code> for all nodes in the
 		 * deployment.
 		 * <p>
@@ -515,15 +515,15 @@ public class TrainedModelDeploymentStats implements JsonpSerializable {
 		op.add(Builder::allocationStatus, TrainedModelDeploymentAllocationStatus._DESERIALIZER, "allocation_status");
 		op.add(Builder::errorCount, JsonpDeserializer.integerDeserializer(), "error_count");
 		op.add(Builder::inferenceCount, JsonpDeserializer.integerDeserializer(), "inference_count");
-		op.add(Builder::inferenceThreads, JsonpDeserializer.integerDeserializer(), "inference_threads");
 		op.add(Builder::modelId, JsonpDeserializer.stringDeserializer(), "model_id");
-		op.add(Builder::modelThreads, JsonpDeserializer.integerDeserializer(), "model_threads");
 		op.add(Builder::nodes, TrainedModelDeploymentNodesStats._DESERIALIZER, "nodes");
+		op.add(Builder::numberOfAllocations, JsonpDeserializer.integerDeserializer(), "number_of_allocations");
 		op.add(Builder::queueCapacity, JsonpDeserializer.integerDeserializer(), "queue_capacity");
 		op.add(Builder::rejectedExecutionCount, JsonpDeserializer.integerDeserializer(), "rejected_execution_count");
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 		op.add(Builder::startTime, JsonpDeserializer.longDeserializer(), "start_time");
 		op.add(Builder::state, DeploymentState._DESERIALIZER, "state");
+		op.add(Builder::threadsPerAllocation, JsonpDeserializer.integerDeserializer(), "threads_per_allocation");
 		op.add(Builder::timeoutCount, JsonpDeserializer.integerDeserializer(), "timeout_count");
 
 	}

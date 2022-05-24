@@ -187,4 +187,24 @@ public class InferenceConfigCreateBuilders {
 		return builder.build();
 	}
 
+	/**
+	 * Creates a builder for the {@link QuestionAnsweringInferenceOptions
+	 * question_answering} {@code InferenceConfigCreate} variant.
+	 */
+	public static QuestionAnsweringInferenceOptions.Builder questionAnswering() {
+		return new QuestionAnsweringInferenceOptions.Builder();
+	}
+
+	/**
+	 * Creates a InferenceConfigCreate of the
+	 * {@link QuestionAnsweringInferenceOptions question_answering}
+	 * {@code InferenceConfigCreate} variant.
+	 */
+	public static InferenceConfigCreate questionAnswering(
+			Function<QuestionAnsweringInferenceOptions.Builder, ObjectBuilder<QuestionAnsweringInferenceOptions>> fn) {
+		InferenceConfigCreate.Builder builder = new InferenceConfigCreate.Builder();
+		builder.questionAnswering(fn.apply(new QuestionAnsweringInferenceOptions.Builder()).build());
+		return builder.build();
+	}
+
 }

@@ -41,29 +41,33 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml._types.NlpInferenceConfigUpdateContainer
+// typedef: ml._types.InferenceConfigUpdateContainer
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#ml._types.NlpInferenceConfigUpdateContainer">API
+ *      "../doc-files/api-spec.html#ml._types.InferenceConfigUpdateContainer">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class NlpInferenceConfigUpdate implements TaggedUnion<NlpInferenceConfigUpdate.Kind, Object>, JsonpSerializable {
+public class InferenceConfigUpdate implements TaggedUnion<InferenceConfigUpdate.Kind, Object>, JsonpSerializable {
 
 	/**
-	 * {@link NlpInferenceConfigUpdate} variant kinds.
+	 * {@link InferenceConfigUpdate} variant kinds.
 	 */
 	/**
-	 * {@link NlpInferenceConfigUpdate} variant kinds.
+	 * {@link InferenceConfigUpdate} variant kinds.
 	 * 
 	 * @see <a href=
-	 *      "../doc-files/api-spec.html#ml._types.NlpInferenceConfigUpdateContainer">API
+	 *      "../doc-files/api-spec.html#ml._types.InferenceConfigUpdateContainer">API
 	 *      specification</a>
 	 */
 
 	public enum Kind implements JsonEnum {
+		Regression("regression"),
+
+		Classification("classification"),
+
 		TextClassification("text_classification"),
 
 		ZeroShotClassification("zero_shot_classification"),
@@ -75,6 +79,8 @@ public class NlpInferenceConfigUpdate implements TaggedUnion<NlpInferenceConfigU
 		PassThrough("pass_through"),
 
 		TextEmbedding("text_embedding"),
+
+		QuestionAnswering("question_answering"),
 
 		;
 
@@ -103,22 +109,56 @@ public class NlpInferenceConfigUpdate implements TaggedUnion<NlpInferenceConfigU
 		return _value;
 	}
 
-	public NlpInferenceConfigUpdate(NlpInferenceConfigUpdateVariant value) {
+	public InferenceConfigUpdate(InferenceConfigUpdateVariant value) {
 
-		this._kind = ApiTypeHelper.requireNonNull(value._nlpInferenceConfigUpdateKind(), this, "<variant kind>");
+		this._kind = ApiTypeHelper.requireNonNull(value._inferenceConfigUpdateKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
 
 	}
 
-	private NlpInferenceConfigUpdate(Builder builder) {
+	private InferenceConfigUpdate(Builder builder) {
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
 
 	}
 
-	public static NlpInferenceConfigUpdate of(Function<Builder, ObjectBuilder<NlpInferenceConfigUpdate>> fn) {
+	public static InferenceConfigUpdate of(Function<Builder, ObjectBuilder<InferenceConfigUpdate>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Is this variant instance of kind {@code regression}?
+	 */
+	public boolean isRegression() {
+		return _kind == Kind.Regression;
+	}
+
+	/**
+	 * Get the {@code regression} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code regression} kind.
+	 */
+	public RegressionInferenceOptions regression() {
+		return TaggedUnionUtils.get(this, Kind.Regression);
+	}
+
+	/**
+	 * Is this variant instance of kind {@code classification}?
+	 */
+	public boolean isClassification() {
+		return _kind == Kind.Classification;
+	}
+
+	/**
+	 * Get the {@code classification} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code classification} kind.
+	 */
+	public ClassificationInferenceOptions classification() {
+		return TaggedUnionUtils.get(this, Kind.Classification);
 	}
 
 	/**
@@ -225,6 +265,24 @@ public class NlpInferenceConfigUpdate implements TaggedUnion<NlpInferenceConfigU
 		return TaggedUnionUtils.get(this, Kind.TextEmbedding);
 	}
 
+	/**
+	 * Is this variant instance of kind {@code question_answering}?
+	 */
+	public boolean isQuestionAnswering() {
+		return _kind == Kind.QuestionAnswering;
+	}
+
+	/**
+	 * Get the {@code question_answering} variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not of the {@code question_answering}
+	 *             kind.
+	 */
+	public QuestionAnsweringInferenceUpdateOptions questionAnswering() {
+		return TaggedUnionUtils.get(this, Kind.QuestionAnswering);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -242,7 +300,7 @@ public class NlpInferenceConfigUpdate implements TaggedUnion<NlpInferenceConfigU
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<NlpInferenceConfigUpdate> {
+				ObjectBuilder<InferenceConfigUpdate> {
 		private Kind _kind;
 		private Object _value;
 
@@ -250,83 +308,118 @@ public class NlpInferenceConfigUpdate implements TaggedUnion<NlpInferenceConfigU
 		protected Builder self() {
 			return this;
 		}
-		public ObjectBuilder<NlpInferenceConfigUpdate> textClassification(TextClassificationInferenceUpdateOptions v) {
+		public ObjectBuilder<InferenceConfigUpdate> regression(RegressionInferenceOptions v) {
+			this._kind = Kind.Regression;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<InferenceConfigUpdate> regression(
+				Function<RegressionInferenceOptions.Builder, ObjectBuilder<RegressionInferenceOptions>> fn) {
+			return this.regression(fn.apply(new RegressionInferenceOptions.Builder()).build());
+		}
+
+		public ObjectBuilder<InferenceConfigUpdate> classification(ClassificationInferenceOptions v) {
+			this._kind = Kind.Classification;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<InferenceConfigUpdate> classification(
+				Function<ClassificationInferenceOptions.Builder, ObjectBuilder<ClassificationInferenceOptions>> fn) {
+			return this.classification(fn.apply(new ClassificationInferenceOptions.Builder()).build());
+		}
+
+		public ObjectBuilder<InferenceConfigUpdate> textClassification(TextClassificationInferenceUpdateOptions v) {
 			this._kind = Kind.TextClassification;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> textClassification(
+		public ObjectBuilder<InferenceConfigUpdate> textClassification(
 				Function<TextClassificationInferenceUpdateOptions.Builder, ObjectBuilder<TextClassificationInferenceUpdateOptions>> fn) {
 			return this.textClassification(fn.apply(new TextClassificationInferenceUpdateOptions.Builder()).build());
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> zeroShotClassification(
+		public ObjectBuilder<InferenceConfigUpdate> zeroShotClassification(
 				ZeroShotClassificationInferenceUpdateOptions v) {
 			this._kind = Kind.ZeroShotClassification;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> zeroShotClassification(
+		public ObjectBuilder<InferenceConfigUpdate> zeroShotClassification(
 				Function<ZeroShotClassificationInferenceUpdateOptions.Builder, ObjectBuilder<ZeroShotClassificationInferenceUpdateOptions>> fn) {
 			return this.zeroShotClassification(
 					fn.apply(new ZeroShotClassificationInferenceUpdateOptions.Builder()).build());
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> fillMask(FillMaskInferenceUpdateOptions v) {
+		public ObjectBuilder<InferenceConfigUpdate> fillMask(FillMaskInferenceUpdateOptions v) {
 			this._kind = Kind.FillMask;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> fillMask(
+		public ObjectBuilder<InferenceConfigUpdate> fillMask(
 				Function<FillMaskInferenceUpdateOptions.Builder, ObjectBuilder<FillMaskInferenceUpdateOptions>> fn) {
 			return this.fillMask(fn.apply(new FillMaskInferenceUpdateOptions.Builder()).build());
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> ner(NerInferenceUpdateOptions v) {
+		public ObjectBuilder<InferenceConfigUpdate> ner(NerInferenceUpdateOptions v) {
 			this._kind = Kind.Ner;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> ner(
+		public ObjectBuilder<InferenceConfigUpdate> ner(
 				Function<NerInferenceUpdateOptions.Builder, ObjectBuilder<NerInferenceUpdateOptions>> fn) {
 			return this.ner(fn.apply(new NerInferenceUpdateOptions.Builder()).build());
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> passThrough(PassThroughInferenceUpdateOptions v) {
+		public ObjectBuilder<InferenceConfigUpdate> passThrough(PassThroughInferenceUpdateOptions v) {
 			this._kind = Kind.PassThrough;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> passThrough(
+		public ObjectBuilder<InferenceConfigUpdate> passThrough(
 				Function<PassThroughInferenceUpdateOptions.Builder, ObjectBuilder<PassThroughInferenceUpdateOptions>> fn) {
 			return this.passThrough(fn.apply(new PassThroughInferenceUpdateOptions.Builder()).build());
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> textEmbedding(TextEmbeddingInferenceUpdateOptions v) {
+		public ObjectBuilder<InferenceConfigUpdate> textEmbedding(TextEmbeddingInferenceUpdateOptions v) {
 			this._kind = Kind.TextEmbedding;
 			this._value = v;
 			return this;
 		}
 
-		public ObjectBuilder<NlpInferenceConfigUpdate> textEmbedding(
+		public ObjectBuilder<InferenceConfigUpdate> textEmbedding(
 				Function<TextEmbeddingInferenceUpdateOptions.Builder, ObjectBuilder<TextEmbeddingInferenceUpdateOptions>> fn) {
 			return this.textEmbedding(fn.apply(new TextEmbeddingInferenceUpdateOptions.Builder()).build());
 		}
 
-		public NlpInferenceConfigUpdate build() {
+		public ObjectBuilder<InferenceConfigUpdate> questionAnswering(QuestionAnsweringInferenceUpdateOptions v) {
+			this._kind = Kind.QuestionAnswering;
+			this._value = v;
+			return this;
+		}
+
+		public ObjectBuilder<InferenceConfigUpdate> questionAnswering(
+				Function<QuestionAnsweringInferenceUpdateOptions.Builder, ObjectBuilder<QuestionAnsweringInferenceUpdateOptions>> fn) {
+			return this.questionAnswering(fn.apply(new QuestionAnsweringInferenceUpdateOptions.Builder()).build());
+		}
+
+		public InferenceConfigUpdate build() {
 			_checkSingleUse();
-			return new NlpInferenceConfigUpdate(this);
+			return new InferenceConfigUpdate(this);
 		}
 
 	}
 
-	protected static void setupNlpInferenceConfigUpdateDeserializer(ObjectDeserializer<Builder> op) {
+	protected static void setupInferenceConfigUpdateDeserializer(ObjectDeserializer<Builder> op) {
 
+		op.add(Builder::regression, RegressionInferenceOptions._DESERIALIZER, "regression");
+		op.add(Builder::classification, ClassificationInferenceOptions._DESERIALIZER, "classification");
 		op.add(Builder::textClassification, TextClassificationInferenceUpdateOptions._DESERIALIZER,
 				"text_classification");
 		op.add(Builder::zeroShotClassification, ZeroShotClassificationInferenceUpdateOptions._DESERIALIZER,
@@ -335,9 +428,10 @@ public class NlpInferenceConfigUpdate implements TaggedUnion<NlpInferenceConfigU
 		op.add(Builder::ner, NerInferenceUpdateOptions._DESERIALIZER, "ner");
 		op.add(Builder::passThrough, PassThroughInferenceUpdateOptions._DESERIALIZER, "pass_through");
 		op.add(Builder::textEmbedding, TextEmbeddingInferenceUpdateOptions._DESERIALIZER, "text_embedding");
+		op.add(Builder::questionAnswering, QuestionAnsweringInferenceUpdateOptions._DESERIALIZER, "question_answering");
 
 	}
 
-	public static final JsonpDeserializer<NlpInferenceConfigUpdate> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, NlpInferenceConfigUpdate::setupNlpInferenceConfigUpdateDeserializer, Builder::build);
+	public static final JsonpDeserializer<InferenceConfigUpdate> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, InferenceConfigUpdate::setupInferenceConfigUpdateDeserializer, Builder::build);
 }
