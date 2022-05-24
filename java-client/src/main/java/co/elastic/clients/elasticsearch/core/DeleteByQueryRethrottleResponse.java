@@ -23,7 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core;
 
-import co.elastic.clients.elasticsearch.tasks.ListResponse;
+import co.elastic.clients.elasticsearch.tasks.TaskListResponseBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -42,7 +42,7 @@ import java.util.function.Function;
  *      specification</a>
  */
 @JsonpDeserializable
-public class DeleteByQueryRethrottleResponse extends ListResponse {
+public class DeleteByQueryRethrottleResponse extends TaskListResponseBase {
 	// ---------------------------------------------------------------------------------------------
 
 	private DeleteByQueryRethrottleResponse(Builder builder) {
@@ -61,7 +61,7 @@ public class DeleteByQueryRethrottleResponse extends ListResponse {
 	 * Builder for {@link DeleteByQueryRethrottleResponse}.
 	 */
 
-	public static class Builder extends ListResponse.AbstractBuilder<Builder>
+	public static class Builder extends TaskListResponseBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<DeleteByQueryRethrottleResponse> {
 		@Override
@@ -92,7 +92,7 @@ public class DeleteByQueryRethrottleResponse extends ListResponse {
 
 	protected static void setupDeleteByQueryRethrottleResponseDeserializer(
 			ObjectDeserializer<DeleteByQueryRethrottleResponse.Builder> op) {
-		ListResponse.setupListResponseDeserializer(op);
+		TaskListResponseBase.setupTaskListResponseBaseDeserializer(op);
 
 	}
 

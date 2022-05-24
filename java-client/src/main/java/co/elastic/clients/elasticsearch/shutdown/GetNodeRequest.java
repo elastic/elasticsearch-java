@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -36,8 +37,9 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import java.util.stream.Collectors;
@@ -55,18 +57,37 @@ import javax.annotation.Nullable;
  */
 
 public class GetNodeRequest extends RequestBase {
+	@Nullable
+	private final TimeUnit masterTimeout;
+
 	private final List<String> nodeId;
+
+	@Nullable
+	private final TimeUnit timeout;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private GetNodeRequest(Builder builder) {
 
+		this.masterTimeout = builder.masterTimeout;
 		this.nodeId = ApiTypeHelper.unmodifiable(builder.nodeId);
+		this.timeout = builder.timeout;
 
 	}
 
 	public static GetNodeRequest of(Function<Builder, ObjectBuilder<GetNodeRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Period to wait for a connection to the master node. If no response is
+	 * received before the timeout expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code master_timeout}
+	 */
+	@Nullable
+	public final TimeUnit masterTimeout() {
+		return this.masterTimeout;
 	}
 
 	/**
@@ -78,6 +99,17 @@ public class GetNodeRequest extends RequestBase {
 		return this.nodeId;
 	}
 
+	/**
+	 * Period to wait for a response. If no response is received before the timeout
+	 * expires, the request fails and returns an error.
+	 * <p>
+	 * API name: {@code timeout}
+	 */
+	@Nullable
+	public final TimeUnit timeout() {
+		return this.timeout;
+	}
+
 	// ---------------------------------------------------------------------------------------------
 
 	/**
@@ -86,7 +118,24 @@ public class GetNodeRequest extends RequestBase {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GetNodeRequest> {
 		@Nullable
+		private TimeUnit masterTimeout;
+
+		@Nullable
 		private List<String> nodeId;
+
+		@Nullable
+		private TimeUnit timeout;
+
+		/**
+		 * Period to wait for a connection to the master node. If no response is
+		 * received before the timeout expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code master_timeout}
+		 */
+		public final Builder masterTimeout(@Nullable TimeUnit value) {
+			this.masterTimeout = value;
+			return this;
+		}
 
 		/**
 		 * Which node for which to retrieve the shutdown status
@@ -109,6 +158,17 @@ public class GetNodeRequest extends RequestBase {
 		 */
 		public final Builder nodeId(String value, String... values) {
 			this.nodeId = _listAdd(this.nodeId, value, values);
+			return this;
+		}
+
+		/**
+		 * Period to wait for a response. If no response is received before the timeout
+		 * expires, the request fails and returns an error.
+		 * <p>
+		 * API name: {@code timeout}
+		 */
+		public final Builder timeout(@Nullable TimeUnit value) {
+			this.timeout = value;
 			return this;
 		}
 
@@ -169,7 +229,14 @@ public class GetNodeRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.masterTimeout != null) {
+					params.put("master_timeout", request.masterTimeout.jsonValue());
+				}
+				if (request.timeout != null) {
+					params.put("timeout", request.timeout.jsonValue());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, GetNodeResponse._DESERIALIZER);
 }

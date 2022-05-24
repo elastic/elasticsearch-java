@@ -27,6 +27,7 @@ import co.elastic.clients.elasticsearch._types.Conflicts;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.elasticsearch._types.Slices;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.WaitForActiveShards;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
@@ -90,7 +91,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	private final Long size;
 
 	@Nullable
-	private final Long slices;
+	private final Slices slices;
 
 	private final Source source;
 
@@ -213,7 +214,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 	 * API name: {@code slices}
 	 */
 	@Nullable
-	public final Long slices() {
+	public final Slices slices() {
 		return this.slices;
 	}
 
@@ -331,7 +332,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		private Long size;
 
 		@Nullable
-		private Long slices;
+		private Slices slices;
 
 		private Source source;
 
@@ -452,9 +453,19 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code slices}
 		 */
-		public final Builder slices(@Nullable Long value) {
+		public final Builder slices(@Nullable Slices value) {
 			this.slices = value;
 			return this;
+		}
+
+		/**
+		 * The number of slices this task should be divided into. Defaults to 1, meaning
+		 * the task isn't sliced into subtasks. Can be set to <code>auto</code>.
+		 * <p>
+		 * API name: {@code slices}
+		 */
+		public final Builder slices(Function<Slices.Builder, ObjectBuilder<Slices>> fn) {
+			return this.slices(fn.apply(new Slices.Builder()).build());
 		}
 
 		/**
@@ -592,7 +603,7 @@ public class ReindexRequest extends RequestBase implements JsonpSerializable {
 			request -> {
 				Map<String, String> params = new HashMap<>();
 				if (request.slices != null) {
-					params.put("slices", String.valueOf(request.slices));
+					params.put("slices", request.slices._toJsonString());
 				}
 				if (request.requestsPerSecond != null) {
 					params.put("requests_per_second", String.valueOf(request.requestsPerSecond));

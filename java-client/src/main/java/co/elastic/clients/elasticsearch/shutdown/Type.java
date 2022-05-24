@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.indices;
+package co.elastic.clients.elasticsearch.shutdown;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -29,23 +29,22 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href=
- *      "../doc-files/api-spec.html#indices._types.IndexCheckOnStartup">API
+ * @see <a href="../doc-files/api-spec.html#shutdown._types.Type">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum IndexCheckOnStartup implements JsonEnum {
-	True("true"),
+public enum Type implements JsonEnum {
+	Restart("restart"),
 
-	False("false"),
+	Remove("remove"),
 
-	Checksum("checksum"),
+	Replace("replace"),
 
 	;
 
 	private final String jsonValue;
 
-	IndexCheckOnStartup(String jsonValue) {
+	Type(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -53,6 +52,5 @@ public enum IndexCheckOnStartup implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<IndexCheckOnStartup> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndexCheckOnStartup.values());
+	public static final JsonEnum.Deserializer<Type> _DESERIALIZER = new JsonEnum.Deserializer<>(Type.values());
 }

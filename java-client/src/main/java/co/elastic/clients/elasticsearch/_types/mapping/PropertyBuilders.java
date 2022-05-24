@@ -250,6 +250,24 @@ public class PropertyBuilders {
 	}
 
 	/**
+	 * Creates a builder for the {@link DynamicProperty {dynamic_property}}
+	 * {@code Property} variant.
+	 */
+	public static DynamicProperty.Builder dynamicProperty() {
+		return new DynamicProperty.Builder();
+	}
+
+	/**
+	 * Creates a Property of the {@link DynamicProperty {dynamic_property}}
+	 * {@code Property} variant.
+	 */
+	public static Property dynamicProperty(Function<DynamicProperty.Builder, ObjectBuilder<DynamicProperty>> fn) {
+		Property.Builder builder = new Property.Builder();
+		builder.dynamicProperty(fn.apply(new DynamicProperty.Builder()).build());
+		return builder.build();
+	}
+
+	/**
 	 * Creates a builder for the {@link FieldAliasProperty alias} {@code Property}
 	 * variant.
 	 */
