@@ -1,13 +1,20 @@
+[[troubleshooting]]
 == Troubleshooting
 
+* <<exceptions>>
+// * <<debugging>>
+// * <<deprecation-warnings>>
+
+[[exceptions]]
 === Understanding exceptions
 
-TBD
+* <<missing-required-property>>
 
-=== Debugging
 
-TBD
+// [[debugging]]
+// === Debugging
 
-=== Elasticsearch deprecation warnings
+//[[deprecation-warnings]]
+// === Elasticsearch deprecation warnings
 
-TBD
+include::missing-required-property.asciidoc[]
