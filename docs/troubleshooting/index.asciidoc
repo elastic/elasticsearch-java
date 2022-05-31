@@ -1,12 +1,10 @@
 [[troubleshooting]]
 == Troubleshooting
 
-* <<exceptions>>
 // * <<debugging>>
 // * <<deprecation-warnings>>
 
-[[exceptions]]
-=== Understanding exceptions
+.Exceptions
 
 * <<missing-required-property>>
 

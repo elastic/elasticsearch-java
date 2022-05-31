@@ -1,5 +1,5 @@
 [[missing-required-property]]
-==== I'm getting a `MissingRequiredPropertyException` in a response
+=== `MissingRequiredPropertyException` in a response
 
 The {java-client} distinguishes optional and required properties. Optional properties are marked with the `@Nullable` annotation.
 
