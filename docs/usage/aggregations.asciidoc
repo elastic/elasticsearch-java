@@ -3,7 +3,7 @@
 
 An aggregation summarizes your data as metrics, statistics, or other analytics.
 
-NOTE: See the es-docs}/search-aggregations[{es} documentation] for a full explanation of aggregations.
+NOTE: See the {es-docs}/search-aggregations[{es} documentation] for a full explanation of aggregations.
 
 [discrete]
 ==== A simple aggregation
