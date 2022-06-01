@@ -32,7 +32,7 @@ include::api-conventions/index.asciidoc[]
 
 include::usage/index.asciidoc[]
 
-// include::troubleshooting/index.asciidoc[]
+include::troubleshooting/index.asciidoc[]
 include::javadoc-and-source.asciidoc[]
 include::release-notes.asciidoc[]
 include::external-resources.asciidoc[]
