@@ -15,7 +15,7 @@ to process. The sections below explain these in details.
 ifdef::is_main_branch,v8_1_1_released,v7_17_2_released[]
 * <<loading-json>>
 endif::is_main_branch,v8_1_1_released,v7_17_2_released[]
-* <<exceptions>>
+* <<exception-conventions>>
 
 include::package-structure.asciidoc[]
 include::method-naming.asciidoc[]
