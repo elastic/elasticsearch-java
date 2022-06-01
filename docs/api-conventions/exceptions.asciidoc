@@ -1,4 +1,4 @@
-[[exceptions]]
+[[exception-conventions]]
 === Exceptions
 
 Client methods can throw two kinds of exceptions:
