@@ -57,7 +57,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
     }
 
     private synchronized void setup() {
-        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.17.3")
+        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.17.4")
             .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
             .withEnv("path.repo", "/tmp") // for snapshots
             .withStartupTimeout(Duration.ofSeconds(30))
