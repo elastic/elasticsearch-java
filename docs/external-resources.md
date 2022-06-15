@@ -16,3 +16,6 @@ This page aggregates links to material related to the Java API client that provi
 
 * The new Elasticsearch Java Client: getting started and behind the scenes - [Video](https://www.youtube.com/watch?v=61MQoSFt2j0&list=PL_mJOmq4zsHbigQnsjEcWed6N7Do5kss_&index=12), [Slides](https://docs.google.com/presentation/d/1R9pLrRdIPQplNr23TTqST-892Un9g_3AmrLjG5lNM74/present)  
   *Presentation at the Elastic Community Conference, Feb 2022*
+
+
+* [GitHub Code Sample Repo](https://github.com/spinscale/elasticsearch-rest-client-samples) on how to use and test the new Elasticsearch Java Client
