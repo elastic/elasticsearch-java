@@ -1,0 +1,24 @@
+[[serialize-without-typed-keys]]
+=== Serializing aggregations and suggestions without typed keys
+
+{es} search requests accept a `typed_key` parameter that allow returning type information along with the name in aggregation and suggestion results (see the {es-docs}/search-aggregations.html#return-agg-type[aggregations documentation] for additional details).
+
+The {java-client} always adds this parameter to search requests, as type information is needed to know the concrete class that should be used to deserialize aggregation and suggestion results.
+
+Symmetrically, the {java-client} also serializes aggregation and suggestion results using this `typed_keys` format, so that it can correctly deserialize the results of its own serialization.
+
+["source","java"]
+--------------------------------------------------
+ElasticsearchClient esClient = ...
+include-tagged::{doc-tests-src}/troubleshooting/TroubleShootingTests.java[aggregation-typed-keys]
+--------------------------------------------------
+
+However, in some use cases serializing objects in the `typed_keys` format may not be desirable, for example when the {java-client} is used in an application that acts as a front-end to other services that expect the default format for aggregations and suggestions.
+
+You can disable `typed_keys` serialization by setting the `JsonpMapperFeatures.SERIALIZE_TYPED_KEYS` attribute to `false` on your mapper object:
+
+["source","java"]
+--------------------------------------------------
+ElasticsearchClient esClient = ...
+include-tagged::{doc-tests-src}/troubleshooting/TroubleShootingTests.java[aggregation-no-typed-keys]
+--------------------------------------------------

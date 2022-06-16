@@ -78,6 +78,11 @@ public class SimpleJsonpMapper extends JsonpMapperBase {
     }
 
     @Override
+    public <T> JsonpMapper withAttribute(String name, T value) {
+        return new SimpleJsonpMapper(this.ignoreUnknownFields).addAttribute(name, value);
+    }
+
+    @Override
     public boolean ignoreUnknownFields() {
         return ignoreUnknownFields;
     }

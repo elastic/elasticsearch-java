@@ -39,16 +39,28 @@ public class JacksonJsonpMapper extends JsonpMapperBase {
     private final JacksonJsonProvider provider;
     private final ObjectMapper objectMapper;
 
+    private JacksonJsonpMapper(ObjectMapper objectMapper, JacksonJsonProvider provider) {
+        this.objectMapper = objectMapper;
+        this.provider = provider;
+    }
+
     public JacksonJsonpMapper(ObjectMapper objectMapper) {
-        this.objectMapper = objectMapper
-            .configure(SerializationFeature.INDENT_OUTPUT, false)
-            .setSerializationInclusion(JsonInclude.Include.NON_NULL);
-        // Creating the json factory from the mapper ensures it will be returned by JsonParser.getCodec()
-        this.provider = new JacksonJsonProvider(this.objectMapper.getFactory());
+        this(
+            objectMapper
+                .configure(SerializationFeature.INDENT_OUTPUT, false)
+                .setSerializationInclusion(JsonInclude.Include.NON_NULL),
+            // Creating the json factory from the mapper ensures it will be returned by JsonParser.getCodec()
+            new JacksonJsonProvider(objectMapper.getFactory())
+        );
     }
 
     public JacksonJsonpMapper() {
         this(new ObjectMapper());
+    }
+
+    @Override
+    public <T> JsonpMapper withAttribute(String name, T value) {
+        return new JacksonJsonpMapper(this.objectMapper, this.provider).addAttribute(name, value);
     }
 
     /**

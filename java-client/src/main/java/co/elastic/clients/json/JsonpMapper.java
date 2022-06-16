@@ -77,9 +77,12 @@ public interface JsonpMapper {
     }
 
     /**
-     * Create a new mapper with a named attribute that delegates to this one.
+     * Create a new mapper with an additional attribute.
+     * <p>
+     * The {@link JsonpMapperFeatures} class contains the names of attributes that all implementations of
+     * <code>JsonpMapper</code> must implement.
+     *
+     * @see JsonpMapperFeatures
      */
-    default <T> JsonpMapper withAttribute(String name, T value) {
-        return new AttributedJsonpMapper(this, name, value);
-    }
+    <T> JsonpMapper withAttribute(String name, T value);
 }
