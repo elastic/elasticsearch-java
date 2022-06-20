@@ -49,6 +49,8 @@ public enum ClusterPrivilege implements JsonEnum {
 
 	ManageCcr("manage_ccr"),
 
+	ManageEnrich("manage_enrich"),
+
 	ManageIlm("manage_ilm"),
 
 	ManageIndexTemplates("manage_index_templates"),

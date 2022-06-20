@@ -68,8 +68,8 @@ public class UserProfile implements JsonpSerializable {
 
 		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
 		this.user = ApiTypeHelper.requireNonNull(builder.user, this, "user");
-		this.data = ApiTypeHelper.unmodifiable(builder.data);
-		this.labels = ApiTypeHelper.unmodifiable(builder.labels);
+		this.data = ApiTypeHelper.unmodifiableRequired(builder.data, this, "data");
+		this.labels = ApiTypeHelper.unmodifiableRequired(builder.labels, this, "labels");
 		this.enabled = builder.enabled;
 
 	}
@@ -93,14 +93,14 @@ public class UserProfile implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code data}
+	 * Required - API name: {@code data}
 	 */
 	public final Map<String, JsonData> data() {
 		return this.data;
 	}
 
 	/**
-	 * API name: {@code labels}
+	 * Required - API name: {@code labels}
 	 */
 	public final Map<String, JsonData> labels() {
 		return this.labels;
@@ -198,10 +198,8 @@ public class UserProfile implements JsonpSerializable {
 
 		private UserProfileUser user;
 
-		@Nullable
 		private Map<String, JsonData> data;
 
-		@Nullable
 		private Map<String, JsonData> labels;
 
 		@Nullable
@@ -231,7 +229,7 @@ public class UserProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data}
+		 * Required - API name: {@code data}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>data</code>.
 		 */
@@ -241,7 +239,7 @@ public class UserProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code data}
+		 * Required - API name: {@code data}
 		 * <p>
 		 * Adds an entry to <code>data</code>.
 		 */
@@ -251,7 +249,7 @@ public class UserProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code labels}
+		 * Required - API name: {@code labels}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>labels</code>.
 		 */
@@ -261,7 +259,7 @@ public class UserProfile implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code labels}
+		 * Required - API name: {@code labels}
 		 * <p>
 		 * Adds an entry to <code>labels</code>.
 		 */
