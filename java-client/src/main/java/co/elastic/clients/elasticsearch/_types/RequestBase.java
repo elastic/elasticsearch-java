@@ -53,7 +53,7 @@ public abstract class RequestBase {
 	@Override
 	public String toString() {
 
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(this.getClass().getSimpleName()).append(": ");
 
 		try {
 			@SuppressWarnings("unchecked")

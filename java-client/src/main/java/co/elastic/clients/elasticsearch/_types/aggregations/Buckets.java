@@ -158,6 +158,11 @@ public class Buckets<TBucket> implements TaggedUnion<Buckets.Kind, Object>, Json
 
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	public static class Builder<TBucket> extends ObjectBuilderBase implements ObjectBuilder<Buckets<TBucket>> {
 		private Kind _kind;
 		private Object _value;

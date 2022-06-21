@@ -19,11 +19,14 @@
 
 package co.elastic.clients.elasticsearch.spec_issues;
 
+import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch.cluster.ClusterStatsResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.indices.GetFieldMappingRequest;
+import co.elastic.clients.elasticsearch.indices.GetFieldMappingResponse;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -38,6 +41,17 @@ import java.io.InputStream;
  * Depending on the feedback provided, this may involve either loading a JSON file or sending requests to an ES server.
  */
 public class SpecIssuesTest extends ModelTestCase {
+
+    @Test
+    public void i066_multiFieldMapping() throws Exception {
+        ElasticsearchClient client = ElasticsearchTestServer.global().client();
+
+        GetFieldMappingRequest gfmRequest =  new GetFieldMappingRequest.Builder()
+            .index("*")
+            .fields("*")
+            .build();
+        GetFieldMappingResponse gfmResponse = client.indices().getFieldMapping(gfmRequest);
+    }
 
     @Test
     public void i0107_rangeBucketKey() {

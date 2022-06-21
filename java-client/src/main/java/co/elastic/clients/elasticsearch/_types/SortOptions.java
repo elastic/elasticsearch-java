@@ -225,6 +225,11 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 		}
 	}
 
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
+	}
+
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SortOptions> {
 		private Kind _kind;
 		private Object _value;
