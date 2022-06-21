@@ -22,18 +22,22 @@ package co.elastic.clients.elasticsearch.spec_issues;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.analysis.LimitTokenCountTokenFilter;
 import co.elastic.clients.elasticsearch.cluster.ClusterStatsResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.elasticsearch.indices.GetFieldMappingRequest;
 import co.elastic.clients.elasticsearch.indices.GetFieldMappingResponse;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
+import co.elastic.clients.elasticsearch.snapshot.RestoreResponse;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import jakarta.json.stream.JsonParser;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
+import java.io.StringReader;
 
 /**
  * Test issues related to the API specifications.
@@ -43,14 +47,87 @@ import java.io.InputStream;
 public class SpecIssuesTest extends ModelTestCase {
 
     @Test
-    public void i066_multiFieldMapping() throws Exception {
+    public void i0201_restoreResponse() throws Exception {
+        RestoreResponse restoreResponse = fromJson("{\"acknowledged\":true}", RestoreResponse.class);
+    }
+
+    @Test
+    public void i0297_mappingSettings() {
+
+        CreateIndexRequest request = CreateIndexRequest.of(r -> r
+            .index("name")
+            .settings(s -> s
+                // This is "mapping" and not "mappings"
+                .mapping(m -> m.totalFields(totalFields -> totalFields.limit(1001)))
+                .otherSettings("foo", JsonData.of("bar"))
+            )
+        );
+
+        assertEquals("{\"settings\":{\"foo\":\"bar\",\"mapping\":{\"total_fields\":{\"limit\":1001}}}}", toJson(request));
+    }
+
+    @Test
+    public void i0295_mappingSettings() {
+        String json = "{\n" +
+            "  \"mappings\": {\n" +
+            "    \"properties\": {\n" +
+            "      \"myfield\": {\n" +
+            "        \"type\": \"text\"\n" +
+            "      }\n" +
+            "    }\n" +
+            "  },\n" +
+            "  \"settings\": {\n" +
+            "    \"index\": {\n" +
+            "      \"max_result_window\": 1000000,\n" +
+            "      \"mapping\": {\n" +
+            "        \"nested_objects\": {\n" +
+            "          \"limit\": 10000\n" +
+            "        }\n" +
+            "      },\n" +
+            "      \"requests\": {\n" +
+            "        \"cache\": {\n" +
+            "          \"enable\": true\n" +
+            "        }\n" +
+            "      }\n" +
+            "    }\n" +
+            "  }\n" +
+            "}";
+
+        CreateIndexRequest request = CreateIndexRequest.of(r -> r
+            .index("name")
+            .withJson(new StringReader(json))
+        );
+    }
+
+    @Test
+    public void i0199_consumeAllTokensOptional() {
+        // https://github.com/elastic/elasticsearch-java/issues/199
+        // Most filter properties are optional
+        LimitTokenCountTokenFilter filter = LimitTokenCountTokenFilter.of(b -> b);
+    }
+
+    @Test
+    public void i0166_multiFieldMapping() throws Exception {
+        // https://github.com/elastic/elasticsearch-java/issues/166
         ElasticsearchClient client = ElasticsearchTestServer.global().client();
 
-        GetFieldMappingRequest gfmRequest =  new GetFieldMappingRequest.Builder()
-            .index("*")
-            .fields("*")
-            .build();
+        String indexName = "i0166_multi_field_mapping";
+
+        client.index(r -> r
+            .index(indexName)
+            .withJson(new StringReader("{\"a\":1,\"b\":2}"))
+        );
+
+        GetFieldMappingRequest gfmRequest =  GetFieldMappingRequest.of (b -> b
+            .index(indexName)
+            .fields("a", "b")
+        );
+
         GetFieldMappingResponse gfmResponse = client.indices().getFieldMapping(gfmRequest);
+
+        assertEquals(2, gfmResponse.get(indexName).mappings().size());
+        assertEquals("a", gfmResponse.get(indexName).mappings().get("a").fullName());
+        assertEquals("b", gfmResponse.get(indexName).mappings().get("b").fullName());
     }
 
     @Test

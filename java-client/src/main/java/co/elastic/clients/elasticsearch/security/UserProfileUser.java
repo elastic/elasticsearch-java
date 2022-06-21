@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,7 +36,6 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -57,7 +55,10 @@ public class UserProfileUser implements JsonpSerializable {
 	@Nullable
 	private final String fullName;
 
-	private final Map<String, JsonData> metadata;
+	private final String realmName;
+
+	@Nullable
+	private final String realmDomain;
 
 	private final List<String> roles;
 
@@ -69,7 +70,8 @@ public class UserProfileUser implements JsonpSerializable {
 
 		this.email = builder.email;
 		this.fullName = builder.fullName;
-		this.metadata = ApiTypeHelper.unmodifiableRequired(builder.metadata, this, "metadata");
+		this.realmName = ApiTypeHelper.requireNonNull(builder.realmName, this, "realmName");
+		this.realmDomain = builder.realmDomain;
 		this.roles = ApiTypeHelper.unmodifiableRequired(builder.roles, this, "roles");
 		this.username = ApiTypeHelper.requireNonNull(builder.username, this, "username");
 
@@ -96,10 +98,18 @@ public class UserProfileUser implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code metadata}
+	 * Required - API name: {@code realm_name}
 	 */
-	public final Map<String, JsonData> metadata() {
-		return this.metadata;
+	public final String realmName() {
+		return this.realmName;
+	}
+
+	/**
+	 * API name: {@code realm_domain}
+	 */
+	@Nullable
+	public final String realmDomain() {
+		return this.realmDomain;
 	}
 
 	/**
@@ -137,15 +147,12 @@ public class UserProfileUser implements JsonpSerializable {
 			generator.write(this.fullName);
 
 		}
-		if (ApiTypeHelper.isDefined(this.metadata)) {
-			generator.writeKey("metadata");
-			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.metadata.entrySet()) {
-				generator.writeKey(item0.getKey());
-				item0.getValue().serialize(generator, mapper);
+		generator.writeKey("realm_name");
+		generator.write(this.realmName);
 
-			}
-			generator.writeEnd();
+		if (this.realmDomain != null) {
+			generator.writeKey("realm_domain");
+			generator.write(this.realmDomain);
 
 		}
 		if (ApiTypeHelper.isDefined(this.roles)) {
@@ -181,7 +188,10 @@ public class UserProfileUser implements JsonpSerializable {
 		@Nullable
 		private String fullName;
 
-		private Map<String, JsonData> metadata;
+		private String realmName;
+
+		@Nullable
+		private String realmDomain;
 
 		private List<String> roles;
 
@@ -204,22 +214,18 @@ public class UserProfileUser implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code metadata}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>metadata</code>.
+		 * Required - API name: {@code realm_name}
 		 */
-		public final Builder metadata(Map<String, JsonData> map) {
-			this.metadata = _mapPutAll(this.metadata, map);
+		public final Builder realmName(String value) {
+			this.realmName = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code metadata}
-		 * <p>
-		 * Adds an entry to <code>metadata</code>.
+		 * API name: {@code realm_domain}
 		 */
-		public final Builder metadata(String key, JsonData value) {
-			this.metadata = _mapPut(this.metadata, key, value);
+		public final Builder realmDomain(@Nullable String value) {
+			this.realmDomain = value;
 			return this;
 		}
 
@@ -281,7 +287,8 @@ public class UserProfileUser implements JsonpSerializable {
 
 		op.add(Builder::email, JsonpDeserializer.stringDeserializer(), "email");
 		op.add(Builder::fullName, JsonpDeserializer.stringDeserializer(), "full_name");
-		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
+		op.add(Builder::realmName, JsonpDeserializer.stringDeserializer(), "realm_name");
+		op.add(Builder::realmDomain, JsonpDeserializer.stringDeserializer(), "realm_domain");
 		op.add(Builder::roles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "roles");
 		op.add(Builder::username, JsonpDeserializer.stringDeserializer(), "username");
 

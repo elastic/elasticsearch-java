@@ -35,6 +35,9 @@ import org.junit.jupiter.api.Test;
 
 public class BehaviorsTest extends ModelTestCase {
 
+    /**
+     * Test for SingleKeyDictionary transformed to a behavior. For regular fields, see NamedValue tests in {@link ClassStructureTest}
+     */
     @Test
     public void testSingleKeyDictionary() {
         TermQuery q = new TermQuery.Builder()

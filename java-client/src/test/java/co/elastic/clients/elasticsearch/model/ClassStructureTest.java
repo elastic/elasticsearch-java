@@ -20,12 +20,15 @@
 package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.Buckets;
 import co.elastic.clients.elasticsearch._types.aggregations.CardinalityAggregate;
 import co.elastic.clients.elasticsearch._types.aggregations.DateRangeAggregate;
+import co.elastic.clients.elasticsearch._types.aggregations.HistogramAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.RangeBucket;
+import co.elastic.clients.elasticsearch._types.aggregations.TermsAggregation;
 import co.elastic.clients.elasticsearch._types.aggregations.ValueCountAggregation;
 import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
 import co.elastic.clients.elasticsearch._types.query_dsl.IntervalsQuery;
@@ -37,6 +40,7 @@ import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.MissingRequiredPropertyException;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import org.junit.jupiter.api.Test;
 
@@ -317,6 +321,19 @@ public class ClassStructureTest extends ModelTestCase {
             GetRequest r1 = GetRequest.of(b -> b.index("foo"));
         });
         assertEquals("id", ex.getPropertyName());
+    }
+
+    /**
+     * Tests SingleKeyDictionary fields that are not transformed into a behavior.
+     */
+    @Test
+    public void testNamedValue() {
+        TermsAggregation termsAgg = TermsAggregation.of(ta -> ta
+            .order(NamedValue.of("a", SortOrder.Asc))
+            .order(NamedValue.of("b", SortOrder.Desc))
+        );
+
+        checkJsonRoundtrip(termsAgg, "{\"order\":[{\"a\":\"asc\"},{\"b\":\"desc\"}]}");
     }
 
     private void assertAncestorCount(int count, Object obj) {

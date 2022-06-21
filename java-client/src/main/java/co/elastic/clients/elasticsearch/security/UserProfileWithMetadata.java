@@ -49,7 +49,6 @@ import javax.annotation.Nullable;
 public class UserProfileWithMetadata extends UserProfile {
 	private final long lastSynchronized;
 
-	@Nullable
 	private final UserProfileHitMetadata doc;
 
 	// ---------------------------------------------------------------------------------------------
@@ -58,7 +57,7 @@ public class UserProfileWithMetadata extends UserProfile {
 		super(builder);
 
 		this.lastSynchronized = ApiTypeHelper.requireNonNull(builder.lastSynchronized, this, "lastSynchronized");
-		this.doc = builder.doc;
+		this.doc = ApiTypeHelper.requireNonNull(builder.doc, this, "doc");
 
 	}
 
@@ -75,9 +74,8 @@ public class UserProfileWithMetadata extends UserProfile {
 	}
 
 	/**
-	 * API name: {@code _doc}
+	 * Required - API name: {@code _doc}
 	 */
-	@Nullable
 	public final UserProfileHitMetadata doc() {
 		return this.doc;
 	}
@@ -88,11 +86,8 @@ public class UserProfileWithMetadata extends UserProfile {
 		generator.writeKey("last_synchronized");
 		generator.write(this.lastSynchronized);
 
-		if (this.doc != null) {
-			generator.writeKey("_doc");
-			this.doc.serialize(generator, mapper);
-
-		}
+		generator.writeKey("_doc");
+		this.doc.serialize(generator, mapper);
 
 	}
 
@@ -128,7 +123,6 @@ public class UserProfileWithMetadata extends UserProfile {
 				UserProfile.AbstractBuilder<BuilderT> {
 		private Long lastSynchronized;
 
-		@Nullable
 		private UserProfileHitMetadata doc;
 
 		/**
@@ -140,15 +134,15 @@ public class UserProfileWithMetadata extends UserProfile {
 		}
 
 		/**
-		 * API name: {@code _doc}
+		 * Required - API name: {@code _doc}
 		 */
-		public final BuilderT doc(@Nullable UserProfileHitMetadata value) {
+		public final BuilderT doc(UserProfileHitMetadata value) {
 			this.doc = value;
 			return self();
 		}
 
 		/**
-		 * API name: {@code _doc}
+		 * Required - API name: {@code _doc}
 		 */
 		public final BuilderT doc(Function<UserProfileHitMetadata.Builder, ObjectBuilder<UserProfileHitMetadata>> fn) {
 			return this.doc(fn.apply(new UserProfileHitMetadata.Builder()).build());

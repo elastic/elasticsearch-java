@@ -1244,6 +1244,42 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 				GetMemoryStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: ml.get_model_snapshot_upgrade_stats
+
+	/**
+	 * Gets stats for anomaly detection job model snapshot upgrades that are in
+	 * progress.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-model-snapshot-upgrade-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetModelSnapshotUpgradeStatsResponse> getModelSnapshotUpgradeStats(
+			GetModelSnapshotUpgradeStatsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetModelSnapshotUpgradeStatsRequest, GetModelSnapshotUpgradeStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetModelSnapshotUpgradeStatsRequest, GetModelSnapshotUpgradeStatsResponse, ErrorResponse>) GetModelSnapshotUpgradeStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Gets stats for anomaly detection job model snapshot upgrades that are in
+	 * progress.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetModelSnapshotUpgradeStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-model-snapshot-upgrade-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetModelSnapshotUpgradeStatsResponse> getModelSnapshotUpgradeStats(
+			Function<GetModelSnapshotUpgradeStatsRequest.Builder, ObjectBuilder<GetModelSnapshotUpgradeStatsRequest>> fn) {
+		return getModelSnapshotUpgradeStats(fn.apply(new GetModelSnapshotUpgradeStatsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ml.get_model_snapshots
 
 	/**
