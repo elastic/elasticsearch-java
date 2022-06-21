@@ -78,16 +78,16 @@ public class EndpointTest extends Assertions {
     @Test
     public void testRequestToString() {
         // Simple path, no parameters, no body
-        assertEquals("GET /", InfoRequest._INSTANCE.toString());
+        assertEquals("InfoRequest: GET /", InfoRequest._INSTANCE.toString());
 
         // Complex path, parameters, no body
         assertEquals(
-            "HEAD /idx/_doc/id1?preference=foo&refresh=true",
+            "ExistsRequest: HEAD /idx/_doc/id1?preference=foo&refresh=true",
             ExistsRequest.of(b -> b.index("idx").id("id1").preference("foo").refresh(true)).toString()
         );
 
         assertEquals(
-            "POST /idx/_search?typed_keys=true {\"size\":10}",
+            "SearchRequest: POST /idx/_search?typed_keys=true {\"size\":10}",
             SearchRequest.of(s -> s.index("idx").size(10)).toString()
         );
     }
