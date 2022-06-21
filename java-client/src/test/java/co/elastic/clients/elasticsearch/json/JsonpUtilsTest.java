@@ -25,8 +25,8 @@ import co.elastic.clients.util.AllowForbiddenApis;
 import jakarta.json.JsonException;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.StringWriter;
 import java.net.URL;
@@ -34,7 +34,7 @@ import java.util.Collections;
 import java.util.Enumeration;
 import java.util.function.Consumer;
 
-public class JsonpUtilsTest extends Assert {
+public class JsonpUtilsTest extends Assertions {
 
     @Test
     @AllowForbiddenApis("Testing JsonpUtil.provider()")

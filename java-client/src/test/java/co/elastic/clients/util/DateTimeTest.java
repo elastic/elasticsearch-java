@@ -20,7 +20,7 @@
 package co.elastic.clients.util;
 
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.time.Instant;
 import java.time.ZonedDateTime;

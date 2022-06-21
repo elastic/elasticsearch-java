@@ -34,14 +34,14 @@ import jakarta.json.JsonString;
 import jakarta.json.JsonValue;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.Reader;
 import java.io.StringReader;
 import java.io.StringWriter;
 
-public class JsonDataTest extends Assert {
+public class JsonDataTest extends Assertions {
 
 
     public static <T, B extends ObjectBuilder<T>> B withJson(B builder, Reader json, ElasticsearchClient client) {
