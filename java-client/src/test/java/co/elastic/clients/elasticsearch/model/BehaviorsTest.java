@@ -31,7 +31,7 @@ import co.elastic.clients.elasticsearch._types.query_dsl.ShapeQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.TermQuery;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.util.MapBuilder;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class BehaviorsTest extends ModelTestCase {
 

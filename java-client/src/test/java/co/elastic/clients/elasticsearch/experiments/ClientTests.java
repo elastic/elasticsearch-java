@@ -26,7 +26,7 @@ import co.elastic.clients.elasticsearch.experiments.api.query2.Query;
 import co.elastic.clients.elasticsearch.experiments.api.query2.TermsQuery;
 import co.elastic.clients.elasticsearch.experiments.base.Client;
 import co.elastic.clients.transport.Endpoint;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.util.Collections;

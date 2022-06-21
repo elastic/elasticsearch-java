@@ -26,13 +26,13 @@ import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.StringReader;
 
-public class InheritanceTest extends Assert {
+public class InheritanceTest extends Assertions {
 
     @Test
     public void testSerialization() {
