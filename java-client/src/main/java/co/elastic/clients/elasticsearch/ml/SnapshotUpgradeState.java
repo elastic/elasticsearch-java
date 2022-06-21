@@ -21,7 +21,7 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.security;
+package co.elastic.clients.elasticsearch.ml;
 
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -29,54 +29,24 @@ import co.elastic.clients.json.JsonpDeserializer;
 
 /**
  *
- * @see <a href="../doc-files/api-spec.html#security._types.IndexPrivilege">API
+ * @see <a href="../doc-files/api-spec.html#ml._types.SnapshotUpgradeState">API
  *      specification</a>
  */
 @JsonpDeserializable
-public enum IndexPrivilege implements JsonEnum {
-	None("none"),
+public enum SnapshotUpgradeState implements JsonEnum {
+	LoadingOldState("loading_old_state"),
 
-	All("all"),
+	SavingNewState("saving_new_state"),
 
-	AutoConfigure("auto_configure"),
+	Stopped("stopped"),
 
-	Create("create"),
-
-	CreateDoc("create_doc"),
-
-	CreateIndex("create_index"),
-
-	Delete("delete"),
-
-	DeleteIndex("delete_index"),
-
-	Index("index"),
-
-	Maintenance("maintenance"),
-
-	Manage("manage"),
-
-	ManageFollowIndex("manage_follow_index"),
-
-	ManageIlm("manage_ilm"),
-
-	ManageLeaderIndex("manage_leader_index"),
-
-	Monitor("monitor"),
-
-	Read("read"),
-
-	ReadCrossCluster("read_cross_cluster"),
-
-	ViewIndexMetadata("view_index_metadata"),
-
-	Write("write"),
+	Failed("failed"),
 
 	;
 
 	private final String jsonValue;
 
-	IndexPrivilege(String jsonValue) {
+	SnapshotUpgradeState(String jsonValue) {
 		this.jsonValue = jsonValue;
 	}
 
@@ -84,6 +54,6 @@ public enum IndexPrivilege implements JsonEnum {
 		return this.jsonValue;
 	}
 
-	public static final JsonEnum.Deserializer<IndexPrivilege> _DESERIALIZER = new JsonEnum.Deserializer<>(
-			IndexPrivilege.values());
+	public static final JsonEnum.Deserializer<SnapshotUpgradeState> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			SnapshotUpgradeState.values());
 }

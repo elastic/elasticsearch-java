@@ -1478,7 +1478,7 @@
 'ml._types.CalendarEvent': 'ml/_types/CalendarEvent.ts#L23-L33',
 'ml._types.CategorizationAnalyzer': 'ml/_types/Analysis.ts#L123-L124',
 'ml._types.CategorizationAnalyzerDefinition': 'ml/_types/Analysis.ts#L126-L139',
-'ml._types.CategorizationStatus': 'ml/_types/Model.ts#L71-L74',
+'ml._types.CategorizationStatus': 'ml/_types/Model.ts#L80-L83',
 'ml._types.Category': 'ml/_types/Category.ts#L23-L49',
 'ml._types.ChunkingConfig': 'ml/_types/Datafeed.ts#L156-L166',
 'ml._types.ChunkingMode': 'ml/_types/Datafeed.ts#L150-L154',
@@ -1550,10 +1550,11 @@
 'ml._types.JobStatistics': 'ml/_types/Job.ts#L39-L44',
 'ml._types.JobStats': 'ml/_types/Job.ts#L91-L102',
 'ml._types.JobTimingStats': 'ml/_types/Job.ts#L104-L113',
-'ml._types.MemoryStatus': 'ml/_types/Model.ts#L76-L80',
+'ml._types.MemoryStatus': 'ml/_types/Model.ts#L85-L89',
 'ml._types.ModelPlotConfig': 'ml/_types/ModelPlot.ts#L23-L44',
-'ml._types.ModelSizeStats': 'ml/_types/Model.ts#L47-L69',
-'ml._types.ModelSnapshot': 'ml/_types/Model.ts#L24-L45',
+'ml._types.ModelSizeStats': 'ml/_types/Model.ts#L56-L78',
+'ml._types.ModelSnapshot': 'ml/_types/Model.ts#L25-L46',
+'ml._types.ModelSnapshotUpgrade': 'ml/_types/Model.ts#L48-L54',
 'ml._types.OutlierDetectionParameters': 'ml/_types/DataframeAnalytics.ts#L407-L414',
 'ml._types.OverallBucket': 'ml/_types/Bucket.ts#L114-L127',
 'ml._types.OverallBucketJob': 'ml/_types/Bucket.ts#L128-L131',
@@ -1561,6 +1562,7 @@
 'ml._types.PerPartitionCategorization': 'ml/_types/Analysis.ts#L92-L101',
 'ml._types.RuleAction': 'ml/_types/Rule.ts#L41-L50',
 'ml._types.RuleCondition': 'ml/_types/Rule.ts#L52-L65',
+'ml._types.SnapshotUpgradeState': 'ml/_types/Model.ts#L91-L96',
 'ml._types.TimingStats': 'ml/_types/DataframeAnalytics.ts#L416-L421',
 'ml._types.TotalFeatureImportance': 'ml/_types/TrainedModel.ts#L118-L125',
 'ml._types.TotalFeatureImportanceClass': 'ml/_types/TrainedModel.ts#L127-L132',
@@ -1646,6 +1648,8 @@
 'ml.get_job_stats.Response': 'ml/get_job_stats/MlGetJobStatsResponse.ts#L23-L28',
 'ml.get_jobs.Request': 'ml/get_jobs/MlGetJobsRequest.ts#L23-L70',
 'ml.get_jobs.Response': 'ml/get_jobs/MlGetJobsResponse.ts#L23-L28',
+'ml.get_model_snapshot_upgrade_stats.Request': 'ml/get_model_snapshot_upgrade_stats/MlGetModelSnapshotUpgradeStatsRequest.ts#L23-L57',
+'ml.get_model_snapshot_upgrade_stats.Response': 'ml/get_model_snapshot_upgrade_stats/MlGetModelSnapshotUpgradeStatsResponse.ts#L23-L28',
 'ml.get_model_snapshots.Request': 'ml/get_model_snapshots/MlGetModelSnapshotsRequest.ts#L26-L96',
 'ml.get_model_snapshots.Response': 'ml/get_model_snapshots/MlGetModelSnapshotsResponse.ts#L23-L28',
 'ml.get_overall_buckets.Request': 'ml/get_overall_buckets/MlGetOverallBucketsRequest.ts#L25-L147',
@@ -1901,17 +1905,17 @@
 'searchable_snapshots.mount.Response': 'searchable_snapshots/mount/SearchableSnapshotsMountResponse.ts#L22-L26',
 'searchable_snapshots.stats.Request': 'searchable_snapshots/stats/SearchableSnapshotsStatsRequest.ts#L24-L36',
 'searchable_snapshots.stats.Response': 'searchable_snapshots/stats/SearchableSnapshotsStatsResponse.ts#L22-L27',
-'security._types.ApplicationGlobalUserPrivileges': 'security/_types/Privileges.ts#L127-L129',
-'security._types.ApplicationPrivileges': 'security/_types/Privileges.ts#L24-L37',
+'security._types.ApplicationGlobalUserPrivileges': 'security/_types/Privileges.ts#L163-L165',
+'security._types.ApplicationPrivileges': 'security/_types/Privileges.ts#L26-L39',
 'security._types.ClusterNode': 'security/_types/ClusterNode.ts#L22-L24',
-'security._types.ClusterPrivilege': 'security/_types/Privileges.ts#L39-L75',
+'security._types.ClusterPrivilege': 'security/_types/Privileges.ts#L41-L78',
 'security._types.CreatedStatus': 'security/_types/CreatedStatus.ts#L20-L22',
 'security._types.FieldRule': 'security/_types/RoleMappingRule.ts#L33-L42',
 'security._types.FieldSecurity': 'security/_types/FieldSecurity.ts#L22-L25',
-'security._types.GlobalPrivilege': 'security/_types/Privileges.ts#L123-L125',
-'security._types.IndexPrivilege': 'security/_types/Privileges.ts#L102-L121',
-'security._types.IndicesPrivileges': 'security/_types/Privileges.ts#L77-L100',
-'security._types.ManageUserPrivileges': 'security/_types/Privileges.ts#L131-L133',
+'security._types.GlobalPrivilege': 'security/_types/Privileges.ts#L159-L161',
+'security._types.IndexPrivilege': 'security/_types/Privileges.ts#L137-L157',
+'security._types.IndicesPrivileges': 'security/_types/Privileges.ts#L80-L103',
+'security._types.ManageUserPrivileges': 'security/_types/Privileges.ts#L167-L169',
 'security._types.Realm': 'security/_types/RoleMappingRule.ts#L44-L46',
 'security._types.RealmInfo': 'security/_types/RealmInfo.ts#L22-L25',
 'security._types.RoleMapping': 'security/_types/RoleMapping.ts#L25-L31',
@@ -1985,7 +1989,7 @@
 'security.get_user.Request': 'security/get_user/SecurityGetUserRequest.ts#L23-L33',
 'security.get_user.Response': 'security/get_user/SecurityGetUserResponse.ts#L23-L23',
 'security.get_user_privileges.Request': 'security/get_user_privileges/SecurityGetUserPrivilegesRequest.ts#L23-L35',
-'security.get_user_privileges.Response': 'security/get_user_privileges/SecurityGetUserPrivilegesResponse.ts#L26-L34',
+'security.get_user_privileges.Response': 'security/get_user_privileges/SecurityGetUserPrivilegesResponse.ts#L26-L37',
 'security.grant_api_key.ApiKey': 'security/grant_api_key/types.ts#L25-L29',
 'security.grant_api_key.ApiKeyGrantType': 'security/grant_api_key/types.ts#L31-L34',
 'security.grant_api_key.Request': 'security/grant_api_key/SecurityGrantApiKeyRequest.ts#L24-L37',
@@ -2320,10 +2324,10 @@
         if (hash.length > 1) {
             hash = hash.substring(1);
         }
-        window.location = "https://github.com/elastic/elasticsearch-specification/tree/d57a08796e1b844c6361ae90cf50fb4956d473d6/specification/" + (paths[hash] || "");
+        window.location = "https://github.com/elastic/elasticsearch-specification/tree/d4e6f15987391750eafc747b997b776e70bc85a7/specification/" + (paths[hash] || "");
     </script>
 </head>
 <body>
-    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/d57a08796e1b844c6361ae90cf50fb4956d473d6/specification/">Elasticsearch API specification</a>.
+    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/d4e6f15987391750eafc747b997b776e70bc85a7/specification/">Elasticsearch API specification</a>.
 </body>
 </html>

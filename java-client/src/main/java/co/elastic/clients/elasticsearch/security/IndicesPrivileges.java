@@ -52,8 +52,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class IndicesPrivileges implements JsonpSerializable {
-	@Nullable
-	private final FieldSecurity fieldSecurity;
+	private final List<FieldSecurity> fieldSecurity;
 
 	private final List<String> names;
 
@@ -69,7 +68,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	private IndicesPrivileges(Builder builder) {
 
-		this.fieldSecurity = builder.fieldSecurity;
+		this.fieldSecurity = ApiTypeHelper.unmodifiable(builder.fieldSecurity);
 		this.names = ApiTypeHelper.unmodifiableRequired(builder.names, this, "names");
 		this.privileges = ApiTypeHelper.unmodifiableRequired(builder.privileges, this, "privileges");
 		this.query = builder.query;
@@ -86,8 +85,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code field_security}
 	 */
-	@Nullable
-	public final FieldSecurity fieldSecurity() {
+	public final List<FieldSecurity> fieldSecurity() {
 		return this.fieldSecurity;
 	}
 
@@ -149,9 +147,14 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.fieldSecurity != null) {
+		if (ApiTypeHelper.isDefined(this.fieldSecurity)) {
 			generator.writeKey("field_security");
-			this.fieldSecurity.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (FieldSecurity item0 : this.fieldSecurity) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
 
 		}
 		if (ApiTypeHelper.isDefined(this.names)) {
@@ -199,7 +202,7 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndicesPrivileges> {
 		@Nullable
-		private FieldSecurity fieldSecurity;
+		private List<FieldSecurity> fieldSecurity;
 
 		private List<String> names;
 
@@ -215,9 +218,11 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * The document fields that the owners of the role have read access to.
 		 * <p>
 		 * API name: {@code field_security}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>fieldSecurity</code>.
 		 */
-		public final Builder fieldSecurity(@Nullable FieldSecurity value) {
-			this.fieldSecurity = value;
+		public final Builder fieldSecurity(List<FieldSecurity> list) {
+			this.fieldSecurity = _listAddAll(this.fieldSecurity, list);
 			return this;
 		}
 
@@ -225,9 +230,23 @@ public class IndicesPrivileges implements JsonpSerializable {
 		 * The document fields that the owners of the role have read access to.
 		 * <p>
 		 * API name: {@code field_security}
+		 * <p>
+		 * Adds one or more values to <code>fieldSecurity</code>.
+		 */
+		public final Builder fieldSecurity(FieldSecurity value, FieldSecurity... values) {
+			this.fieldSecurity = _listAdd(this.fieldSecurity, value, values);
+			return this;
+		}
+
+		/**
+		 * The document fields that the owners of the role have read access to.
+		 * <p>
+		 * API name: {@code field_security}
+		 * <p>
+		 * Adds a value to <code>fieldSecurity</code> using a builder lambda.
 		 */
 		public final Builder fieldSecurity(Function<FieldSecurity.Builder, ObjectBuilder<FieldSecurity>> fn) {
-			return this.fieldSecurity(fn.apply(new FieldSecurity.Builder()).build());
+			return fieldSecurity(fn.apply(new FieldSecurity.Builder()).build());
 		}
 
 		/**
@@ -348,7 +367,8 @@ public class IndicesPrivileges implements JsonpSerializable {
 
 	protected static void setupIndicesPrivilegesDeserializer(ObjectDeserializer<IndicesPrivileges.Builder> op) {
 
-		op.add(Builder::fieldSecurity, FieldSecurity._DESERIALIZER, "field_security");
+		op.add(Builder::fieldSecurity, JsonpDeserializer.arrayDeserializer(FieldSecurity._DESERIALIZER),
+				"field_security");
 		op.add(Builder::names, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "names");
 		op.add(Builder::privileges, JsonpDeserializer.arrayDeserializer(IndexPrivilege._DESERIALIZER), "privileges");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
