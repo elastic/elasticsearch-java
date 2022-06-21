@@ -19,13 +19,12 @@
 
 package co.elastic.clients.json;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.util.concurrent.CompletableFuture;
 
-public class LazyDeserializerTest extends Assert {
-
+public class LazyDeserializerTest extends Assertions {
 
     @Test
     public void testConcurrentInit() throws Exception {

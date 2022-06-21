@@ -21,7 +21,7 @@ package co.elastic.clients.elasticsearch.model;
 
 import co.elastic.clients.elasticsearch.core.SearchRequest;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class RequestEncodingTest extends ModelTestCase {
 
