@@ -73,7 +73,7 @@ public class JsonpUtilsTest extends Assert {
             .index("idx")
             .id("id1")
         );
-        assertEquals("{\"_index\":\"idx\",\"_id\":\"id1\",\"_source\":\"Some user data\"}", hit.toString());
+        assertEquals("Hit: {\"_index\":\"idx\",\"_id\":\"id1\",\"_source\":\"Some user data\"}", hit.toString());
     }
 
     private static class SomeUserData {
@@ -102,7 +102,8 @@ public class JsonpUtilsTest extends Assert {
 
         String toString = hit.toString();
 
-        assertEquals(10003, toString.length());
+        assertEquals(10000 + "Hit: ".length() + "...".length(), toString.length());
+        assertTrue(toString.startsWith("Hit: "));
         assertTrue(toString.endsWith("..."));
     }
 
