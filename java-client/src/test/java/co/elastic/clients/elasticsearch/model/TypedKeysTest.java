@@ -28,7 +28,7 @@ import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.util.ListBuilder;
 import co.elastic.clients.util.MapBuilder;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import java.util.Collections;
 

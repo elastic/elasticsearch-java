@@ -27,7 +27,7 @@ import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import jakarta.json.spi.JsonProvider;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 import java.io.StringReader;
 import java.io.StringWriter;
@@ -37,7 +37,7 @@ import java.util.Random;
 /**
  * Base class for tests that encode/decode json
  */
-public abstract class ModelTestCase extends Assert {
+public abstract class ModelTestCase extends Assertions {
 
     // Same value for all tests in a test run
     private static final int RAND = new Random().nextInt(100);
@@ -122,10 +122,10 @@ public abstract class ModelTestCase extends Assert {
         try {
             method = clazz.getMethod(name);
         } catch (NoSuchMethodException e) {
-            Assert.fail("Getter '" + clazz.getName() + "." + name + "' doesn't exist");
+            fail("Getter '" + clazz.getName() + "." + name + "' doesn't exist");
             return;
         }
 
-        Assert.assertSame(expected, method.getReturnType());
+        assertSame(expected, method.getReturnType());
     }
 }
