@@ -239,6 +239,7 @@ class SpdxReporter(val dest: File) : ReportRenderer {
         "BSD Zero Clause License" to "0BSD",
         "Eclipse Public License 2.0" to "EPL-2.0",
         "Eclipse Public License v. 2.0" to "EPL-2.0",
+        "Eclipse Public License - v 2.0" to "EPL-2.0",
         "GNU General Public License, version 2 with the GNU Classpath Exception" to "GPL-2.0 WITH Classpath-exception-2.0",
         "COMMON DEVELOPMENT AND DISTRIBUTION LICENSE (CDDL) Version 1.0" to "CDDL-1.0"
     )
