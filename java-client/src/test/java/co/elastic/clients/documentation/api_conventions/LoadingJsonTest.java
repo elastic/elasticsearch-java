@@ -31,8 +31,8 @@ import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.json.JsonData;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import java.io.File;
 import java.io.FileReader;
@@ -86,8 +86,8 @@ public class LoadingJsonTest extends ModelTestCase {
         //end::load-index
     }
 
+    @Disabled
     @Test
-    @Ignore
     public void ingestDocument() throws IOException {
         
         File dataDir = null;

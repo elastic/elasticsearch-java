@@ -38,7 +38,7 @@ import co.elastic.clients.json.JsonData;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.MissingRequiredPropertyException;
 import co.elastic.clients.util.ObjectBuilder;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Method;

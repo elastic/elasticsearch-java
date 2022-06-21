@@ -45,9 +45,9 @@ import co.elastic.clients.elasticsearch.indices.IndexState;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.transport.endpoints.BooleanResponse;
 import co.elastic.clients.util.DateTime;
-import org.junit.Assert;
-import org.junit.BeforeClass;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.Test;
 
 import java.io.IOException;
 import java.time.Instant;
@@ -58,11 +58,11 @@ import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.TimeUnit;
 
-public class RequestTest extends Assert {
+public class RequestTest extends Assertions {
 
     static ElasticsearchClient client;
 
-    @BeforeClass
+    @BeforeAll
     public static void setup() {
         client = ElasticsearchTestServer.global().client();
     }
