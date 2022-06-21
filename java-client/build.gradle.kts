@@ -55,6 +55,10 @@ tasks.getByName<ProcessResources>("processResources") {
     )
 }
 
+tasks.withType<Test> {
+    useJUnitPlatform()
+}
+
 tasks.withType<Jar> {
     doFirst {
         if (rootProject.extra.has("gitHashFull")) {
