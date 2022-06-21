@@ -27,6 +27,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.json.UnionDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
@@ -186,6 +187,11 @@ public class GeoLocation implements TaggedUnion<GeoLocation.Kind, Object>, Jsonp
 			}
 		}
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<GeoLocation> {

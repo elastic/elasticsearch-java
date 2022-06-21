@@ -29,6 +29,7 @@ import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -1383,6 +1384,11 @@ public class Aggregate implements TaggedUnion<Aggregate.Kind, AggregateVariant>,
 
 		mapper.serialize(_value, generator);
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<Aggregate> {
