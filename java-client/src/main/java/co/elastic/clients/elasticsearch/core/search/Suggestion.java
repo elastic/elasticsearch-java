@@ -30,6 +30,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpSerializer;
+import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
@@ -176,6 +177,11 @@ public class Suggestion<TDocument> implements TaggedUnion<Suggestion.Kind, Sugge
 
 		mapper.serialize(_value, generator);
 
+	}
+
+	@Override
+	public String toString() {
+		return JsonpUtils.toString(this);
 	}
 
 	public static class Builder<TDocument> extends ObjectBuilderBase implements ObjectBuilder<Suggestion<TDocument>> {
