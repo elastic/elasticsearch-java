@@ -182,7 +182,7 @@ public class JacksonJsonpGenerator implements JsonGenerator {
     public JsonGenerator write(String name, boolean value) {
         try {
             generator.writeFieldName(name);
-            generator.writeBooleanField(name, value);
+            generator.writeBoolean(value);
         } catch (IOException e) {
             throw JacksonUtils.convertException(e);
         }
