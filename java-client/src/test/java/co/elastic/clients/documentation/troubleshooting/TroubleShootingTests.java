@@ -26,13 +26,13 @@ import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.JsonpMapperFeatures;
 import jakarta.json.stream.JsonGenerator;
-import org.junit.Assert;
-import org.junit.Test;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Test;
 
 import java.io.StringWriter;
 import java.util.Collections;
 
-public class TroubleShootingTests extends Assert {
+public class TroubleShootingTests extends Assertions {
 
     @Test
     public void testMapProperty() {
