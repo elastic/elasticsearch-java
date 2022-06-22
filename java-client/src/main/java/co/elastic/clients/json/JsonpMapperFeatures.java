@@ -19,27 +19,11 @@
 
 package co.elastic.clients.json;
 
-import javax.annotation.Nullable;
+/**
+ * Defines attribute names for {@link JsonpMapper} features.
+ */
+public class JsonpMapperFeatures {
 
-class AttributedJsonpMapper extends DelegatingJsonpMapper {
+    public static final String SERIALIZE_TYPED_KEYS = JsonpMapperFeatures.class.getName() + ":SERIALIZE_TYPED_KEYS";
 
-    private final String name;
-    private final Object value;
-
-    AttributedJsonpMapper(JsonpMapper mapper, String name, Object value) {
-        super(mapper);
-        this.name = name;
-        this.value = value;
-    }
-
-    @Override
-    @Nullable
-    @SuppressWarnings("unchecked")
-    public <T> T attribute(String name) {
-        if (this.name.equals(name)) {
-            return (T)this.value;
-        } else {
-            return mapper.attribute(name);
-        }
-    }
 }
