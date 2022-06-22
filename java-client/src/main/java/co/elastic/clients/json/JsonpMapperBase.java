@@ -25,11 +25,40 @@ import jakarta.json.stream.JsonParser;
 
 import javax.annotation.Nullable;
 import java.lang.reflect.Field;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 
 public abstract class JsonpMapperBase implements JsonpMapper {
 
     /** Get a serializer when none of the builtin ones are applicable */
     protected abstract <T> JsonpDeserializer<T> getDefaultDeserializer(Class<T> clazz);
+
+    private Map<String, Object> attributes;
+
+    @Nullable
+    @Override
+    @SuppressWarnings("unchecked")
+    public <T> T attribute(String name) {
+        return attributes == null ? null : (T)attributes.get(name);
+    }
+
+    /**
+     * Updates attributes to a copy of the current ones with an additional key/value pair.
+     *
+     * Mutates the current mapper, intended to be used in implementations of {@link #withAttribute(String, Object)}
+     */
+    protected JsonpMapperBase addAttribute(String name, Object value) {
+        if (attributes == null) {
+            this.attributes = Collections.singletonMap(name, value);
+        } else {
+            Map<String, Object> newAttrs = new HashMap<>(attributes.size() + 1);
+            newAttrs.putAll(attributes);
+            newAttrs.put(name, value);
+            this.attributes = newAttrs;
+        }
+        return this;
+    }
 
     @Override
     public <T> T deserialize(JsonParser parser, Class<T> clazz) {

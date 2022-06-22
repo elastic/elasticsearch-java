@@ -47,22 +47,33 @@ public abstract class WithJsonObjectBuilderBase<B> extends ObjectBuilderBase imp
         }
 
         // Generic parameters are always deserialized to JsonData unless the parent mapper can provide a deserializer
-        mapper = new DelegatingJsonpMapper(mapper) {
-            @Override
-            public <T> T attribute(String name) {
-                T attr = mapper.attribute(name);
-                if (attr == null && name.startsWith("co.elastic.clients:Deserializer")) {
-                    @SuppressWarnings("unchecked")
-                    T result = (T)JsonData._DESERIALIZER;
-                    return result;
-                } else {
-                    return attr;
-                }
-            }
-        };
+        mapper = new WithJsonMapper(mapper);
 
         @SuppressWarnings("unchecked")
         ObjectDeserializer<B> builderDeser = (ObjectDeserializer<B>) DelegatingDeserializer.unwrap(classDeser);
         return builderDeser.deserialize(self(), parser, mapper, parser.next());
+    }
+
+    private static class WithJsonMapper extends DelegatingJsonpMapper {
+        WithJsonMapper(JsonpMapper parent) {
+            super(parent);
+        }
+
+        @Override
+        public <T> T attribute(String name) {
+            T attr = mapper.attribute(name);
+            if (attr == null && name.startsWith("co.elastic.clients:Deserializer")) {
+                @SuppressWarnings("unchecked")
+                T result = (T)JsonData._DESERIALIZER;
+                return result;
+            } else {
+                return attr;
+            }
+        }
+
+        @Override
+        public <T> JsonpMapper withAttribute(String name, T value) {
+            return new WithJsonMapper(this.mapper.withAttribute(name, value));
+        }
     }
 }
