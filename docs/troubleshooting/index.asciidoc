@@ -7,6 +7,7 @@
 .Exceptions
 
 * <<missing-required-property>>
+* <<serialize-without-typed-keys>>
 
 
 // [[debugging]]
@@ -16,3 +17,4 @@
 // === Elasticsearch deprecation warnings
 
 include::missing-required-property.asciidoc[]
+include::serialize-without-typed-keys.asciidoc[]

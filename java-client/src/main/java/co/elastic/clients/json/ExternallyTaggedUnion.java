@@ -153,7 +153,10 @@ public interface ExternallyTaggedUnion {
     }
 
     /**
-     * Serialize an externally tagged union using the typed keys encoding.
+     * Serialize a map of externally tagged union objects.
+     * <p>
+     * If {@link JsonpMapperFeatures#SERIALIZE_TYPED_KEYS} is <code>true</code> (the default), the typed keys encoding
+     * (<code>type#name</code>) is used.
      */
     static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeys(
         Map<String, T> map, JsonGenerator generator, JsonpMapper mapper
@@ -163,36 +166,65 @@ public interface ExternallyTaggedUnion {
         generator.writeEnd();
     }
 
+    /**
+     * Serialize a map of externally tagged union object arrays.
+     * <p>
+     * If {@link JsonpMapperFeatures#SERIALIZE_TYPED_KEYS} is <code>true</code> (the default), the typed keys encoding
+     * (<code>type#name</code>) is used.
+     */
     static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysArray(
         Map<String, List<T>> map, JsonGenerator generator, JsonpMapper mapper
     ) {
         generator.writeStartObject();
-        for (Map.Entry<String, List<T>> entry: map.entrySet()) {
-            List<T> list = entry.getValue();
-            if (list.isEmpty()) {
-                continue; // We can't know the kind, skip this entry
-            }
 
-            generator.writeKey(list.get(0)._kind().jsonValue() + "#" + entry.getKey());
-            generator.writeStartArray();
-            for (T value: list) {
-                value.serialize(generator, mapper);
+        if (mapper.attribute(JsonpMapperFeatures.SERIALIZE_TYPED_KEYS, true)) {
+            for (Map.Entry<String, List<T>> entry: map.entrySet()) {
+                List<T> list = entry.getValue();
+                if (list.isEmpty()) {
+                    continue; // We can't know the kind, skip this entry
+                }
+
+                generator.writeKey(list.get(0)._kind().jsonValue() + "#" + entry.getKey());
+                generator.writeStartArray();
+                for (T value: list) {
+                    value.serialize(generator, mapper);
+                }
+                generator.writeEnd();
             }
-            generator.writeEnd();
+        } else {
+            for (Map.Entry<String, List<T>> entry: map.entrySet()) {
+                generator.writeKey(entry.getKey());
+                generator.writeStartArray();
+                for (T value: entry.getValue()) {
+                    value.serialize(generator, mapper);
+                }
+                generator.writeEnd();
+            }
         }
+
         generator.writeEnd();
     }
 
     /**
-     * Serialize an externally tagged union using the typed keys encoding, without the enclosing start/end object.
+     * Serialize a map of externally tagged union objects, without the enclosing start/end object.
+     * <p>
+     * If {@link JsonpMapperFeatures#SERIALIZE_TYPED_KEYS} is <code>true</code> (the default), the typed keys encoding
+     * (<code>type#name</code>) is used.
      */
     static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysInner(
         Map<String, T> map, JsonGenerator generator, JsonpMapper mapper
     ) {
-        for (Map.Entry<String, T> entry: map.entrySet()) {
-            T value = entry.getValue();
-            generator.writeKey(value._kind().jsonValue() + "#" + entry.getKey());
-            value.serialize(generator, mapper);
+        if (mapper.attribute(JsonpMapperFeatures.SERIALIZE_TYPED_KEYS, true)) {
+            for (Map.Entry<String, T> entry: map.entrySet()) {
+                T value = entry.getValue();
+                generator.writeKey(value._kind().jsonValue() + "#" + entry.getKey());
+                value.serialize(generator, mapper);
+            }
+        } else {
+            for (Map.Entry<String, T> entry: map.entrySet()) {
+                generator.writeKey(entry.getKey());
+                entry.getValue().serialize(generator, mapper);
+            }
         }
     }
 }
