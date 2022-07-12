@@ -31,7 +31,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -55,6 +54,9 @@ public class RolloverConditions implements JsonpSerializable {
 	private final Time maxAge;
 
 	@Nullable
+	private final Long maxAgeMillis;
+
+	@Nullable
 	private final Long maxDocs;
 
 	@Nullable
@@ -69,20 +71,17 @@ public class RolloverConditions implements JsonpSerializable {
 	@Nullable
 	private final String maxPrimaryShardSizeBytes;
 
-	@Nullable
-	private final DateTime maxAgeMillis;
-
 	// ---------------------------------------------------------------------------------------------
 
 	private RolloverConditions(Builder builder) {
 
 		this.maxAge = builder.maxAge;
+		this.maxAgeMillis = builder.maxAgeMillis;
 		this.maxDocs = builder.maxDocs;
 		this.maxSize = builder.maxSize;
 		this.maxSizeBytes = builder.maxSizeBytes;
 		this.maxPrimaryShardSize = builder.maxPrimaryShardSize;
 		this.maxPrimaryShardSizeBytes = builder.maxPrimaryShardSizeBytes;
-		this.maxAgeMillis = builder.maxAgeMillis;
 
 	}
 
@@ -96,6 +95,14 @@ public class RolloverConditions implements JsonpSerializable {
 	@Nullable
 	public final Time maxAge() {
 		return this.maxAge;
+	}
+
+	/**
+	 * API name: {@code max_age_millis}
+	 */
+	@Nullable
+	public final Long maxAgeMillis() {
+		return this.maxAgeMillis;
 	}
 
 	/**
@@ -139,14 +146,6 @@ public class RolloverConditions implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code max_age_millis}
-	 */
-	@Nullable
-	public final DateTime maxAgeMillis() {
-		return this.maxAgeMillis;
-	}
-
-	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -160,6 +159,11 @@ public class RolloverConditions implements JsonpSerializable {
 		if (this.maxAge != null) {
 			generator.writeKey("max_age");
 			this.maxAge.serialize(generator, mapper);
+
+		}
+		if (this.maxAgeMillis != null) {
+			generator.writeKey("max_age_millis");
+			generator.write(this.maxAgeMillis);
 
 		}
 		if (this.maxDocs != null) {
@@ -187,10 +191,6 @@ public class RolloverConditions implements JsonpSerializable {
 			generator.write(this.maxPrimaryShardSizeBytes);
 
 		}
-		if (this.maxAgeMillis != null) {
-			generator.writeKey("max_age_millis");
-			this.maxAgeMillis.serialize(generator, mapper);
-		}
 
 	}
 
@@ -212,6 +212,9 @@ public class RolloverConditions implements JsonpSerializable {
 		private Time maxAge;
 
 		@Nullable
+		private Long maxAgeMillis;
+
+		@Nullable
 		private Long maxDocs;
 
 		@Nullable
@@ -226,9 +229,6 @@ public class RolloverConditions implements JsonpSerializable {
 		@Nullable
 		private String maxPrimaryShardSizeBytes;
 
-		@Nullable
-		private DateTime maxAgeMillis;
-
 		/**
 		 * API name: {@code max_age}
 		 */
@@ -242,6 +242,14 @@ public class RolloverConditions implements JsonpSerializable {
 		 */
 		public final Builder maxAge(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.maxAge(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code max_age_millis}
+		 */
+		public final Builder maxAgeMillis(@Nullable Long value) {
+			this.maxAgeMillis = value;
+			return this;
 		}
 
 		/**
@@ -284,14 +292,6 @@ public class RolloverConditions implements JsonpSerializable {
 			return this;
 		}
 
-		/**
-		 * API name: {@code max_age_millis}
-		 */
-		public final Builder maxAgeMillis(@Nullable DateTime value) {
-			this.maxAgeMillis = value;
-			return this;
-		}
-
 		@Override
 		protected Builder self() {
 			return this;
@@ -321,13 +321,13 @@ public class RolloverConditions implements JsonpSerializable {
 	protected static void setupRolloverConditionsDeserializer(ObjectDeserializer<RolloverConditions.Builder> op) {
 
 		op.add(Builder::maxAge, Time._DESERIALIZER, "max_age");
+		op.add(Builder::maxAgeMillis, JsonpDeserializer.longDeserializer(), "max_age_millis");
 		op.add(Builder::maxDocs, JsonpDeserializer.longDeserializer(), "max_docs");
 		op.add(Builder::maxSize, JsonpDeserializer.stringDeserializer(), "max_size");
 		op.add(Builder::maxSizeBytes, JsonpDeserializer.stringDeserializer(), "max_size_bytes");
 		op.add(Builder::maxPrimaryShardSize, JsonpDeserializer.stringDeserializer(), "max_primary_shard_size");
 		op.add(Builder::maxPrimaryShardSizeBytes, JsonpDeserializer.stringDeserializer(),
 				"max_primary_shard_size_bytes");
-		op.add(Builder::maxAgeMillis, DateTime._DESERIALIZER, "max_age_millis");
 
 	}
 

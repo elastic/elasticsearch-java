@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.core.reindex_rethrottle;
 
 import co.elastic.clients.elasticsearch._types.Retries;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -63,7 +64,13 @@ public class ReindexStatus implements JsonpSerializable {
 
 	private final Retries retries;
 
+	@Nullable
+	private final Time throttled;
+
 	private final long throttledMillis;
+
+	@Nullable
+	private final Time throttledUntil;
 
 	private final long throttledUntilMillis;
 
@@ -83,7 +90,9 @@ public class ReindexStatus implements JsonpSerializable {
 		this.noops = ApiTypeHelper.requireNonNull(builder.noops, this, "noops");
 		this.requestsPerSecond = ApiTypeHelper.requireNonNull(builder.requestsPerSecond, this, "requestsPerSecond");
 		this.retries = ApiTypeHelper.requireNonNull(builder.retries, this, "retries");
+		this.throttled = builder.throttled;
 		this.throttledMillis = ApiTypeHelper.requireNonNull(builder.throttledMillis, this, "throttledMillis");
+		this.throttledUntil = builder.throttledUntil;
 		this.throttledUntilMillis = ApiTypeHelper.requireNonNull(builder.throttledUntilMillis, this,
 				"throttledUntilMillis");
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
@@ -139,10 +148,26 @@ public class ReindexStatus implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code throttled}
+	 */
+	@Nullable
+	public final Time throttled() {
+		return this.throttled;
+	}
+
+	/**
 	 * Required - API name: {@code throttled_millis}
 	 */
 	public final long throttledMillis() {
 		return this.throttledMillis;
+	}
+
+	/**
+	 * API name: {@code throttled_until}
+	 */
+	@Nullable
+	public final Time throttledUntil() {
+		return this.throttledUntil;
 	}
 
 	/**
@@ -202,9 +227,19 @@ public class ReindexStatus implements JsonpSerializable {
 		generator.writeKey("retries");
 		this.retries.serialize(generator, mapper);
 
+		if (this.throttled != null) {
+			generator.writeKey("throttled");
+			this.throttled.serialize(generator, mapper);
+
+		}
 		generator.writeKey("throttled_millis");
 		generator.write(this.throttledMillis);
 
+		if (this.throttledUntil != null) {
+			generator.writeKey("throttled_until");
+			this.throttledUntil.serialize(generator, mapper);
+
+		}
 		generator.writeKey("throttled_until_millis");
 		generator.write(this.throttledUntilMillis);
 
@@ -243,7 +278,13 @@ public class ReindexStatus implements JsonpSerializable {
 
 		private Retries retries;
 
+		@Nullable
+		private Time throttled;
+
 		private Long throttledMillis;
+
+		@Nullable
+		private Time throttledUntil;
 
 		private Long throttledUntilMillis;
 
@@ -309,11 +350,41 @@ public class ReindexStatus implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code throttled}
+		 */
+		public final Builder throttled(@Nullable Time value) {
+			this.throttled = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code throttled}
+		 */
+		public final Builder throttled(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttled(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code throttled_millis}
 		 */
 		public final Builder throttledMillis(long value) {
 			this.throttledMillis = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code throttled_until}
+		 */
+		public final Builder throttledUntil(@Nullable Time value) {
+			this.throttledUntil = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code throttled_until}
+		 */
+		public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttledUntil(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -382,7 +453,9 @@ public class ReindexStatus implements JsonpSerializable {
 		op.add(Builder::noops, JsonpDeserializer.longDeserializer(), "noops");
 		op.add(Builder::requestsPerSecond, JsonpDeserializer.floatDeserializer(), "requests_per_second");
 		op.add(Builder::retries, Retries._DESERIALIZER, "retries");
+		op.add(Builder::throttled, Time._DESERIALIZER, "throttled");
 		op.add(Builder::throttledMillis, JsonpDeserializer.longDeserializer(), "throttled_millis");
+		op.add(Builder::throttledUntil, Time._DESERIALIZER, "throttled_until");
 		op.add(Builder::throttledUntilMillis, JsonpDeserializer.longDeserializer(), "throttled_until_millis");
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::updated, JsonpDeserializer.longDeserializer(), "updated");

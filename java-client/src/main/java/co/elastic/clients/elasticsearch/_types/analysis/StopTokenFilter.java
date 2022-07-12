@@ -66,7 +66,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 
 		this.ignoreCase = builder.ignoreCase;
 		this.removeTrailing = builder.removeTrailing;
-		this.stopwords = ApiTypeHelper.unmodifiableRequired(builder.stopwords, this, "stopwords");
+		this.stopwords = ApiTypeHelper.unmodifiable(builder.stopwords);
 		this.stopwordsPath = builder.stopwordsPath;
 
 	}
@@ -100,7 +100,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 	}
 
 	/**
-	 * Required - API name: {@code stopwords}
+	 * API name: {@code stopwords}
 	 */
 	public final List<String> stopwords() {
 		return this.stopwords;
@@ -161,6 +161,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		@Nullable
 		private Boolean removeTrailing;
 
+		@Nullable
 		private List<String> stopwords;
 
 		@Nullable
@@ -183,7 +184,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stopwords</code>.
 		 */
@@ -193,7 +194,7 @@ public class StopTokenFilter extends TokenFilterBase implements TokenFilterDefin
 		}
 
 		/**
-		 * Required - API name: {@code stopwords}
+		 * API name: {@code stopwords}
 		 * <p>
 		 * Adds one or more values to <code>stopwords</code>.
 		 */

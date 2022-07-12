@@ -30,10 +30,10 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -49,10 +49,10 @@ import javax.annotation.Nullable;
 @JsonpDeserializable
 public class HealthRecord implements JsonpSerializable {
 	@Nullable
-	private final DateTime epoch;
+	private final Long epoch;
 
 	@Nullable
-	private final DateTime timestamp;
+	private final String timestamp;
 
 	@Nullable
 	private final String cluster;
@@ -116,12 +116,12 @@ public class HealthRecord implements JsonpSerializable {
 	}
 
 	/**
-	 * seconds since 1969-01-01 00:00:00
+	 * seconds since 1970-01-01 00:00:00
 	 * <p>
 	 * API name: {@code epoch}
 	 */
 	@Nullable
-	public final DateTime epoch() {
+	public final Long epoch() {
 		return this.epoch;
 	}
 
@@ -131,7 +131,7 @@ public class HealthRecord implements JsonpSerializable {
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
-	public final DateTime timestamp() {
+	public final String timestamp() {
 		return this.timestamp;
 	}
 
@@ -268,11 +268,13 @@ public class HealthRecord implements JsonpSerializable {
 
 		if (this.epoch != null) {
 			generator.writeKey("epoch");
-			this.epoch.serialize(generator, mapper);
+			generator.write(this.epoch);
+
 		}
 		if (this.timestamp != null) {
 			generator.writeKey("timestamp");
-			this.timestamp.serialize(generator, mapper);
+			generator.write(this.timestamp);
+
 		}
 		if (this.cluster != null) {
 			generator.writeKey("cluster");
@@ -350,10 +352,10 @@ public class HealthRecord implements JsonpSerializable {
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HealthRecord> {
 		@Nullable
-		private DateTime epoch;
+		private Long epoch;
 
 		@Nullable
-		private DateTime timestamp;
+		private String timestamp;
 
 		@Nullable
 		private String cluster;
@@ -392,11 +394,11 @@ public class HealthRecord implements JsonpSerializable {
 		private String activeShardsPercent;
 
 		/**
-		 * seconds since 1969-01-01 00:00:00
+		 * seconds since 1970-01-01 00:00:00
 		 * <p>
 		 * API name: {@code epoch}
 		 */
-		public final Builder epoch(@Nullable DateTime value) {
+		public final Builder epoch(@Nullable Long value) {
 			this.epoch = value;
 			return this;
 		}
@@ -406,7 +408,7 @@ public class HealthRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(@Nullable DateTime value) {
+		public final Builder timestamp(@Nullable String value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -559,8 +561,8 @@ public class HealthRecord implements JsonpSerializable {
 
 	protected static void setupHealthRecordDeserializer(ObjectDeserializer<HealthRecord.Builder> op) {
 
-		op.add(Builder::epoch, DateTime._DESERIALIZER, "epoch", "time");
-		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp", "ts", "hms", "hhmmss");
+		op.add(Builder::epoch, JsonpDeserializer.longDeserializer(), "epoch", "time");
+		op.add(Builder::timestamp, JsonpDeserializer.stringDeserializer(), "timestamp", "ts", "hms", "hhmmss");
 		op.add(Builder::cluster, JsonpDeserializer.stringDeserializer(), "cluster", "cl");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status", "st");
 		op.add(Builder::nodeTotal, JsonpDeserializer.stringDeserializer(), "node.total", "nt", "nodeTotal");

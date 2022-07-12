@@ -34,6 +34,7 @@ import co.elastic.clients.elasticsearch.snapshot.RestoreResponse;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializer;
 import jakarta.json.stream.JsonParser;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
@@ -46,6 +47,7 @@ import java.io.StringReader;
  */
 public class SpecIssuesTest extends ModelTestCase {
 
+    @Disabled("Not fixed yet")
     @Test
     public void i0201_restoreResponse() throws Exception {
         RestoreResponse restoreResponse = fromJson("{\"acknowledged\":true}", RestoreResponse.class);

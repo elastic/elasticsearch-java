@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -55,6 +56,9 @@ public class ShardsStatsSummary implements JsonpSerializable {
 
 	private final long startTimeInMillis;
 
+	@Nullable
+	private final Time time;
+
 	private final long timeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
@@ -64,6 +68,7 @@ public class ShardsStatsSummary implements JsonpSerializable {
 		this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.time = builder.time;
 		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
 
 	}
@@ -94,6 +99,14 @@ public class ShardsStatsSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final Time time() {
+		return this.time;
+	}
+
+	/**
 	 * Required - API name: {@code time_in_millis}
 	 */
 	public final long timeInMillis() {
@@ -120,6 +133,11 @@ public class ShardsStatsSummary implements JsonpSerializable {
 		generator.writeKey("start_time_in_millis");
 		generator.write(this.startTimeInMillis);
 
+		if (this.time != null) {
+			generator.writeKey("time");
+			this.time.serialize(generator, mapper);
+
+		}
 		generator.writeKey("time_in_millis");
 		generator.write(this.timeInMillis);
 
@@ -144,6 +162,9 @@ public class ShardsStatsSummary implements JsonpSerializable {
 		private ShardsStatsSummaryItem total;
 
 		private Long startTimeInMillis;
+
+		@Nullable
+		private Time time;
 
 		private Long timeInMillis;
 
@@ -187,6 +208,21 @@ public class ShardsStatsSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable Time value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code time}
+		 */
+		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.time(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code time_in_millis}
 		 */
 		public final Builder timeInMillis(long value) {
@@ -225,6 +261,7 @@ public class ShardsStatsSummary implements JsonpSerializable {
 		op.add(Builder::incremental, ShardsStatsSummaryItem._DESERIALIZER, "incremental");
 		op.add(Builder::total, ShardsStatsSummaryItem._DESERIALIZER, "total");
 		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(Builder::time, Time._DESERIALIZER, "time");
 		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
 
 	}

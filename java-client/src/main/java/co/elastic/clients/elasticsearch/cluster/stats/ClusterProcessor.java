@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster.stats;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,6 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: cluster.stats.ClusterProcessor
 
@@ -54,6 +56,9 @@ public class ClusterProcessor implements JsonpSerializable {
 
 	private final long failed;
 
+	@Nullable
+	private final Time time;
+
 	private final long timeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
@@ -63,6 +68,7 @@ public class ClusterProcessor implements JsonpSerializable {
 		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 		this.current = ApiTypeHelper.requireNonNull(builder.current, this, "current");
 		this.failed = ApiTypeHelper.requireNonNull(builder.failed, this, "failed");
+		this.time = builder.time;
 		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
 
 	}
@@ -93,6 +99,14 @@ public class ClusterProcessor implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final Time time() {
+		return this.time;
+	}
+
+	/**
 	 * Required - API name: {@code time_in_millis}
 	 */
 	public final long timeInMillis() {
@@ -119,6 +133,11 @@ public class ClusterProcessor implements JsonpSerializable {
 		generator.writeKey("failed");
 		generator.write(this.failed);
 
+		if (this.time != null) {
+			generator.writeKey("time");
+			this.time.serialize(generator, mapper);
+
+		}
 		generator.writeKey("time_in_millis");
 		generator.write(this.timeInMillis);
 
@@ -141,6 +160,9 @@ public class ClusterProcessor implements JsonpSerializable {
 		private Long current;
 
 		private Long failed;
+
+		@Nullable
+		private Time time;
 
 		private Long timeInMillis;
 
@@ -166,6 +188,21 @@ public class ClusterProcessor implements JsonpSerializable {
 		public final Builder failed(long value) {
 			this.failed = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable Time value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code time}
+		 */
+		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.time(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -207,6 +244,7 @@ public class ClusterProcessor implements JsonpSerializable {
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
 		op.add(Builder::current, JsonpDeserializer.longDeserializer(), "current");
 		op.add(Builder::failed, JsonpDeserializer.longDeserializer(), "failed");
+		op.add(Builder::time, Time._DESERIALIZER, "time");
 		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
 
 	}

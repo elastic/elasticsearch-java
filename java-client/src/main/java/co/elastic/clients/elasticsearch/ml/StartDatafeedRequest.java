@@ -35,6 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -73,10 +74,10 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	private final String datafeedId;
 
 	@Nullable
-	private final Time end;
+	private final DateTime end;
 
 	@Nullable
-	private final Time start;
+	private final DateTime start;
 
 	@Nullable
 	private final Time timeout;
@@ -114,7 +115,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public final Time end() {
+	public final DateTime end() {
 		return this.end;
 	}
 
@@ -124,7 +125,7 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public final Time start() {
+	public final DateTime start() {
 		return this.start;
 	}
 
@@ -152,12 +153,10 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		if (this.end != null) {
 			generator.writeKey("end");
 			this.end.serialize(generator, mapper);
-
 		}
 		if (this.start != null) {
 			generator.writeKey("start");
 			this.start.serialize(generator, mapper);
-
 		}
 		if (this.timeout != null) {
 			generator.writeKey("timeout");
@@ -179,10 +178,10 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		private String datafeedId;
 
 		@Nullable
-		private Time end;
+		private DateTime end;
 
 		@Nullable
-		private Time start;
+		private DateTime start;
 
 		@Nullable
 		private Time timeout;
@@ -205,37 +204,19 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(@Nullable Time value) {
+		public final Builder end(@Nullable DateTime value) {
 			this.end = value;
 			return this;
 		}
 
 		/**
-		 * Refer to the description for the <code>end</code> query parameter.
-		 * <p>
-		 * API name: {@code end}
-		 */
-		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.end(fn.apply(new Time.Builder()).build());
-		}
-
-		/**
 		 * Refer to the description for the <code>start</code> query parameter.
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(@Nullable Time value) {
+		public final Builder start(@Nullable DateTime value) {
 			this.start = value;
 			return this;
-		}
-
-		/**
-		 * Refer to the description for the <code>start</code> query parameter.
-		 * <p>
-		 * API name: {@code start}
-		 */
-		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -285,8 +266,8 @@ public class StartDatafeedRequest extends RequestBase implements JsonpSerializab
 
 	protected static void setupStartDatafeedRequestDeserializer(ObjectDeserializer<StartDatafeedRequest.Builder> op) {
 
-		op.add(Builder::end, Time._DESERIALIZER, "end");
-		op.add(Builder::start, Time._DESERIALIZER, "start");
+		op.add(Builder::end, DateTime._DESERIALIZER, "end");
+		op.add(Builder::start, DateTime._DESERIALIZER, "start");
 		op.add(Builder::timeout, Time._DESERIALIZER, "timeout");
 
 	}

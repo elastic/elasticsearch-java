@@ -50,15 +50,20 @@ import javax.annotation.Nullable;
 public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> articles;
 
-	private final boolean articlesCase;
+	@Nullable
+	private final String articlesPath;
+
+	@Nullable
+	private final Boolean articlesCase;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private ElisionTokenFilter(Builder builder) {
 		super(builder);
 
-		this.articles = ApiTypeHelper.unmodifiableRequired(builder.articles, this, "articles");
-		this.articlesCase = ApiTypeHelper.requireNonNull(builder.articlesCase, this, "articlesCase");
+		this.articles = ApiTypeHelper.unmodifiable(builder.articles);
+		this.articlesPath = builder.articlesPath;
+		this.articlesCase = builder.articlesCase;
 
 	}
 
@@ -75,16 +80,25 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 	}
 
 	/**
-	 * Required - API name: {@code articles}
+	 * API name: {@code articles}
 	 */
 	public final List<String> articles() {
 		return this.articles;
 	}
 
 	/**
-	 * Required - API name: {@code articles_case}
+	 * API name: {@code articles_path}
 	 */
-	public final boolean articlesCase() {
+	@Nullable
+	public final String articlesPath() {
+		return this.articlesPath;
+	}
+
+	/**
+	 * API name: {@code articles_case}
+	 */
+	@Nullable
+	public final Boolean articlesCase() {
 		return this.articlesCase;
 	}
 
@@ -102,8 +116,16 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 			generator.writeEnd();
 
 		}
-		generator.writeKey("articles_case");
-		generator.write(this.articlesCase);
+		if (this.articlesPath != null) {
+			generator.writeKey("articles_path");
+			generator.write(this.articlesPath);
+
+		}
+		if (this.articlesCase != null) {
+			generator.writeKey("articles_case");
+			generator.write(this.articlesCase);
+
+		}
 
 	}
 
@@ -116,12 +138,17 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<ElisionTokenFilter> {
+		@Nullable
 		private List<String> articles;
 
+		@Nullable
+		private String articlesPath;
+
+		@Nullable
 		private Boolean articlesCase;
 
 		/**
-		 * Required - API name: {@code articles}
+		 * API name: {@code articles}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>articles</code>.
 		 */
@@ -131,7 +158,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 
 		/**
-		 * Required - API name: {@code articles}
+		 * API name: {@code articles}
 		 * <p>
 		 * Adds one or more values to <code>articles</code>.
 		 */
@@ -141,9 +168,17 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		}
 
 		/**
-		 * Required - API name: {@code articles_case}
+		 * API name: {@code articles_path}
 		 */
-		public final Builder articlesCase(boolean value) {
+		public final Builder articlesPath(@Nullable String value) {
+			this.articlesPath = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code articles_case}
+		 */
+		public final Builder articlesCase(@Nullable Boolean value) {
 			this.articlesCase = value;
 			return this;
 		}
@@ -178,6 +213,7 @@ public class ElisionTokenFilter extends TokenFilterBase implements TokenFilterDe
 		TokenFilterBase.setupTokenFilterBaseDeserializer(op);
 		op.add(Builder::articles, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"articles");
+		op.add(Builder::articlesPath, JsonpDeserializer.stringDeserializer(), "articles_path");
 		op.add(Builder::articlesCase, JsonpDeserializer.booleanDeserializer(), "articles_case");
 
 		op.ignore("type");

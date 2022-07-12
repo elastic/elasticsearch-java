@@ -29,9 +29,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -50,7 +50,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 	@Nullable
 	private final String keyAsString;
 
-	private final DateTime key;
+	private final long key;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -77,7 +77,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 	/**
 	 * Required - API name: {@code key}
 	 */
-	public final DateTime key() {
+	public final long key() {
 		return this.key;
 	}
 
@@ -90,7 +90,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 
 		}
 		generator.writeKey("key");
-		this.key.serialize(generator, mapper);
+		generator.write(this.key);
 
 	}
 
@@ -106,7 +106,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 		@Nullable
 		private String keyAsString;
 
-		private DateTime key;
+		private Long key;
 
 		/**
 		 * API name: {@code key_as_string}
@@ -119,7 +119,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 		/**
 		 * Required - API name: {@code key}
 		 */
-		public final Builder key(DateTime value) {
+		public final Builder key(long value) {
 			this.key = value;
 			return this;
 		}
@@ -153,7 +153,7 @@ public class DateHistogramBucket extends MultiBucketBase {
 	protected static void setupDateHistogramBucketDeserializer(ObjectDeserializer<DateHistogramBucket.Builder> op) {
 		MultiBucketBase.setupMultiBucketBaseDeserializer(op);
 		op.add(Builder::keyAsString, JsonpDeserializer.stringDeserializer(), "key_as_string");
-		op.add(Builder::key, DateTime._DESERIALIZER, "key");
+		op.add(Builder::key, JsonpDeserializer.longDeserializer(), "key");
 
 	}
 

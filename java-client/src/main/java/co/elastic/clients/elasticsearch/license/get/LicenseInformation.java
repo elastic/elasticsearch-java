@@ -58,11 +58,11 @@ public class LicenseInformation implements JsonpSerializable {
 	private final DateTime expiryDate;
 
 	@Nullable
-	private final DateTime expiryDateInMillis;
+	private final Long expiryDateInMillis;
 
 	private final DateTime issueDate;
 
-	private final DateTime issueDateInMillis;
+	private final long issueDateInMillis;
 
 	private final String issuedTo;
 
@@ -79,7 +79,7 @@ public class LicenseInformation implements JsonpSerializable {
 
 	private final String uid;
 
-	private final DateTime startDateInMillis;
+	private final long startDateInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -116,7 +116,7 @@ public class LicenseInformation implements JsonpSerializable {
 	 * API name: {@code expiry_date_in_millis}
 	 */
 	@Nullable
-	public final DateTime expiryDateInMillis() {
+	public final Long expiryDateInMillis() {
 		return this.expiryDateInMillis;
 	}
 
@@ -130,7 +130,7 @@ public class LicenseInformation implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code issue_date_in_millis}
 	 */
-	public final DateTime issueDateInMillis() {
+	public final long issueDateInMillis() {
 		return this.issueDateInMillis;
 	}
 
@@ -189,7 +189,7 @@ public class LicenseInformation implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code start_date_in_millis}
 	 */
-	public final DateTime startDateInMillis() {
+	public final long startDateInMillis() {
 		return this.startDateInMillis;
 	}
 
@@ -210,12 +210,14 @@ public class LicenseInformation implements JsonpSerializable {
 		}
 		if (this.expiryDateInMillis != null) {
 			generator.writeKey("expiry_date_in_millis");
-			this.expiryDateInMillis.serialize(generator, mapper);
+			generator.write(this.expiryDateInMillis);
+
 		}
 		generator.writeKey("issue_date");
 		this.issueDate.serialize(generator, mapper);
 		generator.writeKey("issue_date_in_millis");
-		this.issueDateInMillis.serialize(generator, mapper);
+		generator.write(this.issueDateInMillis);
+
 		generator.writeKey("issued_to");
 		generator.write(this.issuedTo);
 
@@ -237,7 +239,7 @@ public class LicenseInformation implements JsonpSerializable {
 		generator.write(this.uid);
 
 		generator.writeKey("start_date_in_millis");
-		this.startDateInMillis.serialize(generator, mapper);
+		generator.write(this.startDateInMillis);
 
 	}
 
@@ -259,11 +261,11 @@ public class LicenseInformation implements JsonpSerializable {
 		private DateTime expiryDate;
 
 		@Nullable
-		private DateTime expiryDateInMillis;
+		private Long expiryDateInMillis;
 
 		private DateTime issueDate;
 
-		private DateTime issueDateInMillis;
+		private Long issueDateInMillis;
 
 		private String issuedTo;
 
@@ -280,7 +282,7 @@ public class LicenseInformation implements JsonpSerializable {
 
 		private String uid;
 
-		private DateTime startDateInMillis;
+		private Long startDateInMillis;
 
 		/**
 		 * API name: {@code expiry_date}
@@ -293,7 +295,7 @@ public class LicenseInformation implements JsonpSerializable {
 		/**
 		 * API name: {@code expiry_date_in_millis}
 		 */
-		public final Builder expiryDateInMillis(@Nullable DateTime value) {
+		public final Builder expiryDateInMillis(@Nullable Long value) {
 			this.expiryDateInMillis = value;
 			return this;
 		}
@@ -309,7 +311,7 @@ public class LicenseInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code issue_date_in_millis}
 		 */
-		public final Builder issueDateInMillis(DateTime value) {
+		public final Builder issueDateInMillis(long value) {
 			this.issueDateInMillis = value;
 			return this;
 		}
@@ -375,7 +377,7 @@ public class LicenseInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code start_date_in_millis}
 		 */
-		public final Builder startDateInMillis(DateTime value) {
+		public final Builder startDateInMillis(long value) {
 			this.startDateInMillis = value;
 			return this;
 		}
@@ -409,9 +411,9 @@ public class LicenseInformation implements JsonpSerializable {
 	protected static void setupLicenseInformationDeserializer(ObjectDeserializer<LicenseInformation.Builder> op) {
 
 		op.add(Builder::expiryDate, DateTime._DESERIALIZER, "expiry_date");
-		op.add(Builder::expiryDateInMillis, DateTime._DESERIALIZER, "expiry_date_in_millis");
+		op.add(Builder::expiryDateInMillis, JsonpDeserializer.longDeserializer(), "expiry_date_in_millis");
 		op.add(Builder::issueDate, DateTime._DESERIALIZER, "issue_date");
-		op.add(Builder::issueDateInMillis, DateTime._DESERIALIZER, "issue_date_in_millis");
+		op.add(Builder::issueDateInMillis, JsonpDeserializer.longDeserializer(), "issue_date_in_millis");
 		op.add(Builder::issuedTo, JsonpDeserializer.stringDeserializer(), "issued_to");
 		op.add(Builder::issuer, JsonpDeserializer.stringDeserializer(), "issuer");
 		op.add(Builder::maxNodes, JsonpDeserializer.longDeserializer(), "max_nodes");
@@ -419,7 +421,7 @@ public class LicenseInformation implements JsonpSerializable {
 		op.add(Builder::status, LicenseStatus._DESERIALIZER, "status");
 		op.add(Builder::type, LicenseType._DESERIALIZER, "type");
 		op.add(Builder::uid, JsonpDeserializer.stringDeserializer(), "uid");
-		op.add(Builder::startDateInMillis, DateTime._DESERIALIZER, "start_date_in_millis");
+		op.add(Builder::startDateInMillis, JsonpDeserializer.longDeserializer(), "start_date_in_millis");
 
 	}
 

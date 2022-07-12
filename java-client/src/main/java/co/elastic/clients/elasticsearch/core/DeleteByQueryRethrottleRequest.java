@@ -35,7 +35,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Long;
+import java.lang.Float;
 import java.lang.String;
 import java.util.HashMap;
 import java.util.Map;
@@ -56,7 +56,7 @@ import javax.annotation.Nullable;
 
 public class DeleteByQueryRethrottleRequest extends RequestBase {
 	@Nullable
-	private final Long requestsPerSecond;
+	private final Float requestsPerSecond;
 
 	private final String taskId;
 
@@ -81,7 +81,7 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
-	public final Long requestsPerSecond() {
+	public final Float requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -102,7 +102,7 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<DeleteByQueryRethrottleRequest> {
 		@Nullable
-		private Long requestsPerSecond;
+		private Float requestsPerSecond;
 
 		private String taskId;
 
@@ -112,7 +112,7 @@ public class DeleteByQueryRethrottleRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
-		public final Builder requestsPerSecond(@Nullable Long value) {
+		public final Builder requestsPerSecond(@Nullable Float value) {
 			this.requestsPerSecond = value;
 			return this;
 		}

@@ -36,6 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import javax.annotation.Nullable;
@@ -57,9 +58,15 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 
 	private final boolean isRunning;
 
-	private final DateTime expirationTimeInMillis;
+	@Nullable
+	private final DateTime expirationTime;
 
-	private final DateTime startTimeInMillis;
+	private final long expirationTimeInMillis;
+
+	@Nullable
+	private final DateTime startTime;
+
+	private final long startTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -68,8 +75,10 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		this.id = builder.id;
 		this.isPartial = ApiTypeHelper.requireNonNull(builder.isPartial, this, "isPartial");
 		this.isRunning = ApiTypeHelper.requireNonNull(builder.isRunning, this, "isRunning");
+		this.expirationTime = builder.expirationTime;
 		this.expirationTimeInMillis = ApiTypeHelper.requireNonNull(builder.expirationTimeInMillis, this,
 				"expirationTimeInMillis");
+		this.startTime = builder.startTime;
 		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
 
 	}
@@ -97,16 +106,32 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code expiration_time}
+	 */
+	@Nullable
+	public final DateTime expirationTime() {
+		return this.expirationTime;
+	}
+
+	/**
 	 * Required - API name: {@code expiration_time_in_millis}
 	 */
-	public final DateTime expirationTimeInMillis() {
+	public final long expirationTimeInMillis() {
 		return this.expirationTimeInMillis;
+	}
+
+	/**
+	 * API name: {@code start_time}
+	 */
+	@Nullable
+	public final DateTime startTime() {
+		return this.startTime;
 	}
 
 	/**
 	 * Required - API name: {@code start_time_in_millis}
 	 */
-	public final DateTime startTimeInMillis() {
+	public final long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -132,10 +157,19 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		generator.writeKey("is_running");
 		generator.write(this.isRunning);
 
+		if (this.expirationTime != null) {
+			generator.writeKey("expiration_time");
+			this.expirationTime.serialize(generator, mapper);
+		}
 		generator.writeKey("expiration_time_in_millis");
-		this.expirationTimeInMillis.serialize(generator, mapper);
+		generator.write(this.expirationTimeInMillis);
+
+		if (this.startTime != null) {
+			generator.writeKey("start_time");
+			this.startTime.serialize(generator, mapper);
+		}
 		generator.writeKey("start_time_in_millis");
-		this.startTimeInMillis.serialize(generator, mapper);
+		generator.write(this.startTimeInMillis);
 
 	}
 
@@ -154,9 +188,15 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 
 		private Boolean isRunning;
 
-		private DateTime expirationTimeInMillis;
+		@Nullable
+		private DateTime expirationTime;
 
-		private DateTime startTimeInMillis;
+		private Long expirationTimeInMillis;
+
+		@Nullable
+		private DateTime startTime;
+
+		private Long startTimeInMillis;
 
 		/**
 		 * API name: {@code id}
@@ -183,17 +223,33 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code expiration_time}
+		 */
+		public final BuilderT expirationTime(@Nullable DateTime value) {
+			this.expirationTime = value;
+			return self();
+		}
+
+		/**
 		 * Required - API name: {@code expiration_time_in_millis}
 		 */
-		public final BuilderT expirationTimeInMillis(DateTime value) {
+		public final BuilderT expirationTimeInMillis(long value) {
 			this.expirationTimeInMillis = value;
+			return self();
+		}
+
+		/**
+		 * API name: {@code start_time}
+		 */
+		public final BuilderT startTime(@Nullable DateTime value) {
+			this.startTime = value;
 			return self();
 		}
 
 		/**
 		 * Required - API name: {@code start_time_in_millis}
 		 */
-		public final BuilderT startTimeInMillis(DateTime value) {
+		public final BuilderT startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return self();
 		}
@@ -209,8 +265,11 @@ public abstract class AsyncSearchResponseBase implements JsonpSerializable {
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(AbstractBuilder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
 		op.add(AbstractBuilder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
-		op.add(AbstractBuilder::expirationTimeInMillis, DateTime._DESERIALIZER, "expiration_time_in_millis");
-		op.add(AbstractBuilder::startTimeInMillis, DateTime._DESERIALIZER, "start_time_in_millis");
+		op.add(AbstractBuilder::expirationTime, DateTime._DESERIALIZER, "expiration_time");
+		op.add(AbstractBuilder::expirationTimeInMillis, JsonpDeserializer.longDeserializer(),
+				"expiration_time_in_millis");
+		op.add(AbstractBuilder::startTime, DateTime._DESERIALIZER, "start_time");
+		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
 
 	}
 

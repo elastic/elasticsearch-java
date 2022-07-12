@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class AnalysisConfig implements JsonpSerializable {
-	private final String bucketSpan;
+	private final Time bucketSpan;
 
 	@Nullable
 	private final CategorizationAnalyzer categorizationAnalyzer;
@@ -115,7 +115,7 @@ public class AnalysisConfig implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
-	public final String bucketSpan() {
+	public final Time bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -282,7 +282,7 @@ public class AnalysisConfig implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("bucket_span");
-		generator.write(this.bucketSpan);
+		this.bucketSpan.serialize(generator, mapper);
 
 		if (this.categorizationAnalyzer != null) {
 			generator.writeKey("categorization_analyzer");
@@ -364,7 +364,7 @@ public class AnalysisConfig implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<AnalysisConfig> {
-		private String bucketSpan;
+		private Time bucketSpan;
 
 		@Nullable
 		private CategorizationAnalyzer categorizationAnalyzer;
@@ -408,9 +408,26 @@ public class AnalysisConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(String value) {
+		public final Builder bucketSpan(Time value) {
 			this.bucketSpan = value;
 			return this;
+		}
+
+		/**
+		 * Required - The size of the interval that the analysis is aggregated into,
+		 * typically between <code>5m</code> and <code>1h</code>. This value should be
+		 * either a whole number of days or equate to a whole number of buckets in one
+		 * day. If the anomaly detection job uses a datafeed with aggregations, this
+		 * value must also be divisible by the interval of the date histogram
+		 * aggregation.
+		 * <ul>
+		 * <li>@server_default 5m</li>
+		 * </ul>
+		 * <p>
+		 * API name: {@code bucket_span}
+		 */
+		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.bucketSpan(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -723,7 +740,7 @@ public class AnalysisConfig implements JsonpSerializable {
 
 	protected static void setupAnalysisConfigDeserializer(ObjectDeserializer<AnalysisConfig.Builder> op) {
 
-		op.add(Builder::bucketSpan, JsonpDeserializer.stringDeserializer(), "bucket_span");
+		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
 		op.add(Builder::categorizationAnalyzer, CategorizationAnalyzer._DESERIALIZER, "categorization_analyzer");
 		op.add(Builder::categorizationFieldName, JsonpDeserializer.stringDeserializer(), "categorization_field_name");
 		op.add(Builder::categorizationFilters,

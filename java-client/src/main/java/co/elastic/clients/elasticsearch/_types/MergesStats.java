@@ -73,17 +73,17 @@ public class MergesStats implements JsonpSerializable {
 	private final long totalSizeInBytes;
 
 	@Nullable
-	private final String totalStoppedTime;
+	private final Time totalStoppedTime;
 
 	private final long totalStoppedTimeInMillis;
 
 	@Nullable
-	private final String totalThrottledTime;
+	private final Time totalThrottledTime;
 
 	private final long totalThrottledTimeInMillis;
 
 	@Nullable
-	private final String totalTime;
+	private final Time totalTime;
 
 	private final long totalTimeInMillis;
 
@@ -194,7 +194,7 @@ public class MergesStats implements JsonpSerializable {
 	 * API name: {@code total_stopped_time}
 	 */
 	@Nullable
-	public final String totalStoppedTime() {
+	public final Time totalStoppedTime() {
 		return this.totalStoppedTime;
 	}
 
@@ -209,7 +209,7 @@ public class MergesStats implements JsonpSerializable {
 	 * API name: {@code total_throttled_time}
 	 */
 	@Nullable
-	public final String totalThrottledTime() {
+	public final Time totalThrottledTime() {
 		return this.totalThrottledTime;
 	}
 
@@ -224,7 +224,7 @@ public class MergesStats implements JsonpSerializable {
 	 * API name: {@code total_time}
 	 */
 	@Nullable
-	public final String totalTime() {
+	public final Time totalTime() {
 		return this.totalTime;
 	}
 
@@ -284,7 +284,7 @@ public class MergesStats implements JsonpSerializable {
 
 		if (this.totalStoppedTime != null) {
 			generator.writeKey("total_stopped_time");
-			generator.write(this.totalStoppedTime);
+			this.totalStoppedTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("total_stopped_time_in_millis");
@@ -292,7 +292,7 @@ public class MergesStats implements JsonpSerializable {
 
 		if (this.totalThrottledTime != null) {
 			generator.writeKey("total_throttled_time");
-			generator.write(this.totalThrottledTime);
+			this.totalThrottledTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("total_throttled_time_in_millis");
@@ -300,7 +300,7 @@ public class MergesStats implements JsonpSerializable {
 
 		if (this.totalTime != null) {
 			generator.writeKey("total_time");
-			generator.write(this.totalTime);
+			this.totalTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("total_time_in_millis");
@@ -344,17 +344,17 @@ public class MergesStats implements JsonpSerializable {
 		private Long totalSizeInBytes;
 
 		@Nullable
-		private String totalStoppedTime;
+		private Time totalStoppedTime;
 
 		private Long totalStoppedTimeInMillis;
 
 		@Nullable
-		private String totalThrottledTime;
+		private Time totalThrottledTime;
 
 		private Long totalThrottledTimeInMillis;
 
 		@Nullable
-		private String totalTime;
+		private Time totalTime;
 
 		private Long totalTimeInMillis;
 
@@ -441,9 +441,16 @@ public class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_stopped_time}
 		 */
-		public final Builder totalStoppedTime(@Nullable String value) {
+		public final Builder totalStoppedTime(@Nullable Time value) {
 			this.totalStoppedTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code total_stopped_time}
+		 */
+		public final Builder totalStoppedTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalStoppedTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -457,9 +464,16 @@ public class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_throttled_time}
 		 */
-		public final Builder totalThrottledTime(@Nullable String value) {
+		public final Builder totalThrottledTime(@Nullable Time value) {
 			this.totalThrottledTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code total_throttled_time}
+		 */
+		public final Builder totalThrottledTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalThrottledTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -473,9 +487,16 @@ public class MergesStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public final Builder totalTime(@Nullable String value) {
+		public final Builder totalTime(@Nullable Time value) {
 			this.totalTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code total_time}
+		 */
+		public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -524,12 +545,12 @@ public class MergesStats implements JsonpSerializable {
 		op.add(Builder::totalDocs, JsonpDeserializer.longDeserializer(), "total_docs");
 		op.add(Builder::totalSize, JsonpDeserializer.stringDeserializer(), "total_size");
 		op.add(Builder::totalSizeInBytes, JsonpDeserializer.longDeserializer(), "total_size_in_bytes");
-		op.add(Builder::totalStoppedTime, JsonpDeserializer.stringDeserializer(), "total_stopped_time");
+		op.add(Builder::totalStoppedTime, Time._DESERIALIZER, "total_stopped_time");
 		op.add(Builder::totalStoppedTimeInMillis, JsonpDeserializer.longDeserializer(), "total_stopped_time_in_millis");
-		op.add(Builder::totalThrottledTime, JsonpDeserializer.stringDeserializer(), "total_throttled_time");
+		op.add(Builder::totalThrottledTime, Time._DESERIALIZER, "total_throttled_time");
 		op.add(Builder::totalThrottledTimeInMillis, JsonpDeserializer.longDeserializer(),
 				"total_throttled_time_in_millis");
-		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTime, Time._DESERIALIZER, "total_time");
 		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
 
 	}

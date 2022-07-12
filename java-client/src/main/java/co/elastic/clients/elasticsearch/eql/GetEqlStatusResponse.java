@@ -31,12 +31,12 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -58,10 +58,10 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 	private final boolean isRunning;
 
 	@Nullable
-	private final DateTime startTimeInMillis;
+	private final Long startTimeInMillis;
 
 	@Nullable
-	private final DateTime expirationTimeInMillis;
+	private final Long expirationTimeInMillis;
 
 	@Nullable
 	private final Integer completionStatus;
@@ -121,7 +121,7 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 	 * API name: {@code start_time_in_millis}
 	 */
 	@Nullable
-	public final DateTime startTimeInMillis() {
+	public final Long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -133,7 +133,7 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 	 * API name: {@code expiration_time_in_millis}
 	 */
 	@Nullable
-	public final DateTime expirationTimeInMillis() {
+	public final Long expirationTimeInMillis() {
 		return this.expirationTimeInMillis;
 	}
 
@@ -169,11 +169,13 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 
 		if (this.startTimeInMillis != null) {
 			generator.writeKey("start_time_in_millis");
-			this.startTimeInMillis.serialize(generator, mapper);
+			generator.write(this.startTimeInMillis);
+
 		}
 		if (this.expirationTimeInMillis != null) {
 			generator.writeKey("expiration_time_in_millis");
-			this.expirationTimeInMillis.serialize(generator, mapper);
+			generator.write(this.expirationTimeInMillis);
+
 		}
 		if (this.completionStatus != null) {
 			generator.writeKey("completion_status");
@@ -204,10 +206,10 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 		private Boolean isRunning;
 
 		@Nullable
-		private DateTime startTimeInMillis;
+		private Long startTimeInMillis;
 
 		@Nullable
-		private DateTime expirationTimeInMillis;
+		private Long expirationTimeInMillis;
 
 		@Nullable
 		private Integer completionStatus;
@@ -252,7 +254,7 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time_in_millis}
 		 */
-		public final Builder startTimeInMillis(@Nullable DateTime value) {
+		public final Builder startTimeInMillis(@Nullable Long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -264,7 +266,7 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expiration_time_in_millis}
 		 */
-		public final Builder expirationTimeInMillis(@Nullable DateTime value) {
+		public final Builder expirationTimeInMillis(@Nullable Long value) {
 			this.expirationTimeInMillis = value;
 			return this;
 		}
@@ -310,8 +312,8 @@ public class GetEqlStatusResponse implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
 		op.add(Builder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
-		op.add(Builder::startTimeInMillis, DateTime._DESERIALIZER, "start_time_in_millis");
-		op.add(Builder::expirationTimeInMillis, DateTime._DESERIALIZER, "expiration_time_in_millis");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(Builder::expirationTimeInMillis, JsonpDeserializer.longDeserializer(), "expiration_time_in_millis");
 		op.add(Builder::completionStatus, JsonpDeserializer.integerDeserializer(), "completion_status");
 
 	}

@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.cluster;
 
 import co.elastic.clients.elasticsearch._types.HealthStatus;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.cluster.health.IndexHealthStats;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,12 +34,12 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -80,7 +81,10 @@ public class HealthResponse implements JsonpSerializable {
 
 	private final HealthStatus status;
 
-	private final DateTime taskMaxWaitingInQueueMillis;
+	@Nullable
+	private final Time taskMaxWaitingInQueue;
+
+	private final long taskMaxWaitingInQueueMillis;
 
 	private final boolean timedOut;
 
@@ -108,6 +112,7 @@ public class HealthResponse implements JsonpSerializable {
 				"numberOfPendingTasks");
 		this.relocatingShards = ApiTypeHelper.requireNonNull(builder.relocatingShards, this, "relocatingShards");
 		this.status = ApiTypeHelper.requireNonNull(builder.status, this, "status");
+		this.taskMaxWaitingInQueue = builder.taskMaxWaitingInQueue;
 		this.taskMaxWaitingInQueueMillis = ApiTypeHelper.requireNonNull(builder.taskMaxWaitingInQueueMillis, this,
 				"taskMaxWaitingInQueueMillis");
 		this.timedOut = ApiTypeHelper.requireNonNull(builder.timedOut, this, "timedOut");
@@ -236,12 +241,22 @@ public class HealthResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * The time since the earliest initiated task is waiting for being performed.
+	 * <p>
+	 * API name: {@code task_max_waiting_in_queue}
+	 */
+	@Nullable
+	public final Time taskMaxWaitingInQueue() {
+		return this.taskMaxWaitingInQueue;
+	}
+
+	/**
 	 * Required - The time expressed in milliseconds since the earliest initiated
 	 * task is waiting for being performed.
 	 * <p>
 	 * API name: {@code task_max_waiting_in_queue_millis}
 	 */
-	public final DateTime taskMaxWaitingInQueueMillis() {
+	public final long taskMaxWaitingInQueueMillis() {
 		return this.taskMaxWaitingInQueueMillis;
 	}
 
@@ -321,8 +336,14 @@ public class HealthResponse implements JsonpSerializable {
 
 		generator.writeKey("status");
 		this.status.serialize(generator, mapper);
+		if (this.taskMaxWaitingInQueue != null) {
+			generator.writeKey("task_max_waiting_in_queue");
+			this.taskMaxWaitingInQueue.serialize(generator, mapper);
+
+		}
 		generator.writeKey("task_max_waiting_in_queue_millis");
-		this.taskMaxWaitingInQueueMillis.serialize(generator, mapper);
+		generator.write(this.taskMaxWaitingInQueueMillis);
+
 		generator.writeKey("timed_out");
 		generator.write(this.timedOut);
 
@@ -370,7 +391,10 @@ public class HealthResponse implements JsonpSerializable {
 
 		private HealthStatus status;
 
-		private DateTime taskMaxWaitingInQueueMillis;
+		@Nullable
+		private Time taskMaxWaitingInQueue;
+
+		private Long taskMaxWaitingInQueueMillis;
 
 		private Boolean timedOut;
 
@@ -528,12 +552,31 @@ public class HealthResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * The time since the earliest initiated task is waiting for being performed.
+		 * <p>
+		 * API name: {@code task_max_waiting_in_queue}
+		 */
+		public final Builder taskMaxWaitingInQueue(@Nullable Time value) {
+			this.taskMaxWaitingInQueue = value;
+			return this;
+		}
+
+		/**
+		 * The time since the earliest initiated task is waiting for being performed.
+		 * <p>
+		 * API name: {@code task_max_waiting_in_queue}
+		 */
+		public final Builder taskMaxWaitingInQueue(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.taskMaxWaitingInQueue(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - The time expressed in milliseconds since the earliest initiated
 		 * task is waiting for being performed.
 		 * <p>
 		 * API name: {@code task_max_waiting_in_queue_millis}
 		 */
-		public final Builder taskMaxWaitingInQueueMillis(DateTime value) {
+		public final Builder taskMaxWaitingInQueueMillis(long value) {
 			this.taskMaxWaitingInQueueMillis = value;
 			return this;
 		}
@@ -601,7 +644,9 @@ public class HealthResponse implements JsonpSerializable {
 		op.add(Builder::numberOfPendingTasks, JsonpDeserializer.integerDeserializer(), "number_of_pending_tasks");
 		op.add(Builder::relocatingShards, JsonpDeserializer.integerDeserializer(), "relocating_shards");
 		op.add(Builder::status, HealthStatus._DESERIALIZER, "status");
-		op.add(Builder::taskMaxWaitingInQueueMillis, DateTime._DESERIALIZER, "task_max_waiting_in_queue_millis");
+		op.add(Builder::taskMaxWaitingInQueue, Time._DESERIALIZER, "task_max_waiting_in_queue");
+		op.add(Builder::taskMaxWaitingInQueueMillis, JsonpDeserializer.longDeserializer(),
+				"task_max_waiting_in_queue_millis");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(Builder::unassignedShards, JsonpDeserializer.integerDeserializer(), "unassigned_shards");
 

@@ -31,10 +31,10 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -55,7 +55,7 @@ public class DanglingIndex implements JsonpSerializable {
 
 	private final String indexUuid;
 
-	private final DateTime creationDateMillis;
+	private final long creationDateMillis;
 
 	private final List<String> nodeIds;
 
@@ -91,7 +91,7 @@ public class DanglingIndex implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code creation_date_millis}
 	 */
-	public final DateTime creationDateMillis() {
+	public final long creationDateMillis() {
 		return this.creationDateMillis;
 	}
 
@@ -120,7 +120,8 @@ public class DanglingIndex implements JsonpSerializable {
 		generator.write(this.indexUuid);
 
 		generator.writeKey("creation_date_millis");
-		this.creationDateMillis.serialize(generator, mapper);
+		generator.write(this.creationDateMillis);
+
 		if (ApiTypeHelper.isDefined(this.nodeIds)) {
 			generator.writeKey("node_ids");
 			generator.writeStartArray();
@@ -150,7 +151,7 @@ public class DanglingIndex implements JsonpSerializable {
 
 		private String indexUuid;
 
-		private DateTime creationDateMillis;
+		private Long creationDateMillis;
 
 		private List<String> nodeIds;
 
@@ -173,7 +174,7 @@ public class DanglingIndex implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code creation_date_millis}
 		 */
-		public final Builder creationDateMillis(DateTime value) {
+		public final Builder creationDateMillis(long value) {
 			this.creationDateMillis = value;
 			return this;
 		}
@@ -228,7 +229,7 @@ public class DanglingIndex implements JsonpSerializable {
 
 		op.add(Builder::indexName, JsonpDeserializer.stringDeserializer(), "index_name");
 		op.add(Builder::indexUuid, JsonpDeserializer.stringDeserializer(), "index_uuid");
-		op.add(Builder::creationDateMillis, DateTime._DESERIALIZER, "creation_date_millis");
+		op.add(Builder::creationDateMillis, JsonpDeserializer.longDeserializer(), "creation_date_millis");
 		op.add(Builder::nodeIds, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"node_ids");
 

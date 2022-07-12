@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -54,7 +53,7 @@ public class RecoveryStats implements JsonpSerializable {
 	private final long currentAsTarget;
 
 	@Nullable
-	private final String throttleTime;
+	private final Time throttleTime;
 
 	private final long throttleTimeInMillis;
 
@@ -92,7 +91,7 @@ public class RecoveryStats implements JsonpSerializable {
 	 * API name: {@code throttle_time}
 	 */
 	@Nullable
-	public final String throttleTime() {
+	public final Time throttleTime() {
 		return this.throttleTime;
 	}
 
@@ -122,7 +121,7 @@ public class RecoveryStats implements JsonpSerializable {
 
 		if (this.throttleTime != null) {
 			generator.writeKey("throttle_time");
-			generator.write(this.throttleTime);
+			this.throttleTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("throttle_time_in_millis");
@@ -147,7 +146,7 @@ public class RecoveryStats implements JsonpSerializable {
 		private Long currentAsTarget;
 
 		@Nullable
-		private String throttleTime;
+		private Time throttleTime;
 
 		private Long throttleTimeInMillis;
 
@@ -170,9 +169,16 @@ public class RecoveryStats implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_time}
 		 */
-		public final Builder throttleTime(@Nullable String value) {
+		public final Builder throttleTime(@Nullable Time value) {
 			this.throttleTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code throttle_time}
+		 */
+		public final Builder throttleTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttleTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -213,7 +219,7 @@ public class RecoveryStats implements JsonpSerializable {
 
 		op.add(Builder::currentAsSource, JsonpDeserializer.longDeserializer(), "current_as_source");
 		op.add(Builder::currentAsTarget, JsonpDeserializer.longDeserializer(), "current_as_target");
-		op.add(Builder::throttleTime, JsonpDeserializer.stringDeserializer(), "throttle_time");
+		op.add(Builder::throttleTime, Time._DESERIALIZER, "throttle_time");
 		op.add(Builder::throttleTimeInMillis, JsonpDeserializer.longDeserializer(), "throttle_time_in_millis");
 
 	}

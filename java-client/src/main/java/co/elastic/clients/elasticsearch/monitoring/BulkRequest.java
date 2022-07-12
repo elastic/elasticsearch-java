@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.monitoring;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.core.bulk.BulkOperation;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -58,7 +59,7 @@ import javax.annotation.Nullable;
  */
 
 public class BulkRequest extends RequestBase implements NdJsonpSerializable, JsonpSerializable {
-	private final String interval;
+	private final Time interval;
 
 	private final String systemApiVersion;
 
@@ -94,7 +95,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 * <p>
 	 * API name: {@code interval}
 	 */
-	public final String interval() {
+	public final Time interval() {
 		return this.interval;
 	}
 
@@ -156,7 +157,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<BulkRequest> {
-		private String interval;
+		private Time interval;
 
 		private String systemApiVersion;
 
@@ -172,9 +173,18 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 		 * <p>
 		 * API name: {@code interval}
 		 */
-		public final Builder interval(String value) {
+		public final Builder interval(Time value) {
 			this.interval = value;
 			return this;
+		}
+
+		/**
+		 * Required - Collection interval (e.g., '10s' or '10000ms') of the payload
+		 * <p>
+		 * API name: {@code interval}
+		 */
+		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.interval(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -298,7 +308,7 @@ public class BulkRequest extends RequestBase implements NdJsonpSerializable, Jso
 				Map<String, String> params = new HashMap<>();
 				params.put("system_id", request.systemId);
 				params.put("system_api_version", request.systemApiVersion);
-				params.put("interval", request.interval);
+				params.put("interval", request.interval._toJsonString());
 				return params;
 
 			}, SimpleEndpoint.emptyMap(), true, BulkResponse._DESERIALIZER);

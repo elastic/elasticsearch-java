@@ -35,6 +35,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.endpoints.SimpleEndpoint;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -79,7 +80,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	private final Time bucketSpan;
 
 	@Nullable
-	private final Time end;
+	private final DateTime end;
 
 	@Nullable
 	private final Boolean excludeInterim;
@@ -90,7 +91,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	private final String overallScore;
 
 	@Nullable
-	private final Time start;
+	private final DateTime start;
 
 	@Nullable
 	private final Integer topN;
@@ -140,7 +141,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code end}
 	 */
 	@Nullable
-	public final Time end() {
+	public final DateTime end() {
 		return this.end;
 	}
 
@@ -186,7 +187,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public final Time start() {
+	public final DateTime start() {
 		return this.start;
 	}
 
@@ -224,7 +225,6 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		if (this.end != null) {
 			generator.writeKey("end");
 			this.end.serialize(generator, mapper);
-
 		}
 		if (this.excludeInterim != null) {
 			generator.writeKey("exclude_interim");
@@ -239,7 +239,6 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		if (this.start != null) {
 			generator.writeKey("start");
 			this.start.serialize(generator, mapper);
-
 		}
 		if (this.topN != null) {
 			generator.writeKey("top_n");
@@ -265,7 +264,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		private Time bucketSpan;
 
 		@Nullable
-		private Time end;
+		private DateTime end;
 
 		@Nullable
 		private Boolean excludeInterim;
@@ -276,7 +275,7 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		private String overallScore;
 
 		@Nullable
-		private Time start;
+		private DateTime start;
 
 		@Nullable
 		private Integer topN;
@@ -315,18 +314,9 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code end}
 		 */
-		public final Builder end(@Nullable Time value) {
+		public final Builder end(@Nullable DateTime value) {
 			this.end = value;
 			return this;
-		}
-
-		/**
-		 * Refer to the description for the <code>end</code> query parameter.
-		 * <p>
-		 * API name: {@code end}
-		 */
-		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.end(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -371,18 +361,9 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(@Nullable Time value) {
+		public final Builder start(@Nullable DateTime value) {
 			this.start = value;
 			return this;
-		}
-
-		/**
-		 * Refer to the description for the <code>start</code> query parameter.
-		 * <p>
-		 * API name: {@code start}
-		 */
-		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -426,10 +407,10 @@ public class GetOverallBucketsRequest extends RequestBase implements JsonpSerial
 
 		op.add(Builder::allowNoMatch, JsonpDeserializer.booleanDeserializer(), "allow_no_match");
 		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
-		op.add(Builder::end, Time._DESERIALIZER, "end");
+		op.add(Builder::end, DateTime._DESERIALIZER, "end");
 		op.add(Builder::excludeInterim, JsonpDeserializer.booleanDeserializer(), "exclude_interim");
 		op.add(Builder::overallScore, JsonpDeserializer.stringDeserializer(), "overall_score");
-		op.add(Builder::start, Time._DESERIALIZER, "start");
+		op.add(Builder::start, DateTime._DESERIALIZER, "start");
 		op.add(Builder::topN, JsonpDeserializer.integerDeserializer(), "top_n");
 
 	}

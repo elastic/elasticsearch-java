@@ -28,13 +28,13 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LimitTokenCountTokenFilter
 
@@ -46,17 +46,19 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class LimitTokenCountTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final boolean consumeAllTokens;
+	@Nullable
+	private final Boolean consumeAllTokens;
 
-	private final int maxTokenCount;
+	@Nullable
+	private final Integer maxTokenCount;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private LimitTokenCountTokenFilter(Builder builder) {
 		super(builder);
 
-		this.consumeAllTokens = ApiTypeHelper.requireNonNull(builder.consumeAllTokens, this, "consumeAllTokens");
-		this.maxTokenCount = ApiTypeHelper.requireNonNull(builder.maxTokenCount, this, "maxTokenCount");
+		this.consumeAllTokens = builder.consumeAllTokens;
+		this.maxTokenCount = builder.maxTokenCount;
 
 	}
 
@@ -73,16 +75,18 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 	}
 
 	/**
-	 * Required - API name: {@code consume_all_tokens}
+	 * API name: {@code consume_all_tokens}
 	 */
-	public final boolean consumeAllTokens() {
+	@Nullable
+	public final Boolean consumeAllTokens() {
 		return this.consumeAllTokens;
 	}
 
 	/**
-	 * Required - API name: {@code max_token_count}
+	 * API name: {@code max_token_count}
 	 */
-	public final int maxTokenCount() {
+	@Nullable
+	public final Integer maxTokenCount() {
 		return this.maxTokenCount;
 	}
 
@@ -90,11 +94,16 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 
 		generator.write("type", "limit");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("consume_all_tokens");
-		generator.write(this.consumeAllTokens);
+		if (this.consumeAllTokens != null) {
+			generator.writeKey("consume_all_tokens");
+			generator.write(this.consumeAllTokens);
 
-		generator.writeKey("max_token_count");
-		generator.write(this.maxTokenCount);
+		}
+		if (this.maxTokenCount != null) {
+			generator.writeKey("max_token_count");
+			generator.write(this.maxTokenCount);
+
+		}
 
 	}
 
@@ -107,22 +116,24 @@ public class LimitTokenCountTokenFilter extends TokenFilterBase implements Token
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LimitTokenCountTokenFilter> {
+		@Nullable
 		private Boolean consumeAllTokens;
 
+		@Nullable
 		private Integer maxTokenCount;
 
 		/**
-		 * Required - API name: {@code consume_all_tokens}
+		 * API name: {@code consume_all_tokens}
 		 */
-		public final Builder consumeAllTokens(boolean value) {
+		public final Builder consumeAllTokens(@Nullable Boolean value) {
 			this.consumeAllTokens = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code max_token_count}
+		 * API name: {@code max_token_count}
 		 */
-		public final Builder maxTokenCount(int value) {
+		public final Builder maxTokenCount(@Nullable Integer value) {
 			this.maxTokenCount = value;
 			return this;
 		}

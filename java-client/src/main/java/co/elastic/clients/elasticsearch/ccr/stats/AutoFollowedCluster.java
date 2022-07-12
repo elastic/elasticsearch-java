@@ -31,7 +31,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -55,7 +54,7 @@ public class AutoFollowedCluster implements JsonpSerializable {
 
 	private final long lastSeenMetadataVersion;
 
-	private final DateTime timeSinceLastCheckMillis;
+	private final long timeSinceLastCheckMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -90,7 +89,7 @@ public class AutoFollowedCluster implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code time_since_last_check_millis}
 	 */
-	public final DateTime timeSinceLastCheckMillis() {
+	public final long timeSinceLastCheckMillis() {
 		return this.timeSinceLastCheckMillis;
 	}
 
@@ -112,7 +111,7 @@ public class AutoFollowedCluster implements JsonpSerializable {
 		generator.write(this.lastSeenMetadataVersion);
 
 		generator.writeKey("time_since_last_check_millis");
-		this.timeSinceLastCheckMillis.serialize(generator, mapper);
+		generator.write(this.timeSinceLastCheckMillis);
 
 	}
 
@@ -134,7 +133,7 @@ public class AutoFollowedCluster implements JsonpSerializable {
 
 		private Long lastSeenMetadataVersion;
 
-		private DateTime timeSinceLastCheckMillis;
+		private Long timeSinceLastCheckMillis;
 
 		/**
 		 * Required - API name: {@code cluster_name}
@@ -155,7 +154,7 @@ public class AutoFollowedCluster implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code time_since_last_check_millis}
 		 */
-		public final Builder timeSinceLastCheckMillis(DateTime value) {
+		public final Builder timeSinceLastCheckMillis(long value) {
 			this.timeSinceLastCheckMillis = value;
 			return this;
 		}
@@ -190,7 +189,7 @@ public class AutoFollowedCluster implements JsonpSerializable {
 
 		op.add(Builder::clusterName, JsonpDeserializer.stringDeserializer(), "cluster_name");
 		op.add(Builder::lastSeenMetadataVersion, JsonpDeserializer.longDeserializer(), "last_seen_metadata_version");
-		op.add(Builder::timeSinceLastCheckMillis, DateTime._DESERIALIZER, "time_since_last_check_millis");
+		op.add(Builder::timeSinceLastCheckMillis, JsonpDeserializer.longDeserializer(), "time_since_last_check_millis");
 
 	}
 

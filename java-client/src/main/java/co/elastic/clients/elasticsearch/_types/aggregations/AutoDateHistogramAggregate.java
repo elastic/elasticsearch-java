@@ -29,9 +29,9 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
 public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHistogramBucket>
 		implements
 			AggregateVariant {
-	private final DateTime interval;
+	private final String interval;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -74,7 +74,7 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
 	/**
 	 * Required - API name: {@code interval}
 	 */
-	public final DateTime interval() {
+	public final String interval() {
 		return this.interval;
 	}
 
@@ -82,7 +82,7 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
 
 		super.serializeInternal(generator, mapper);
 		generator.writeKey("interval");
-		this.interval.serialize(generator, mapper);
+		generator.write(this.interval);
 
 	}
 
@@ -95,12 +95,12 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
 	public static class Builder extends MultiBucketAggregateBase.AbstractBuilder<DateHistogramBucket, Builder>
 			implements
 				ObjectBuilder<AutoDateHistogramAggregate> {
-		private DateTime interval;
+		private String interval;
 
 		/**
 		 * Required - API name: {@code interval}
 		 */
-		public final Builder interval(DateTime value) {
+		public final Builder interval(String value) {
 			this.interval = value;
 			return this;
 		}
@@ -135,7 +135,7 @@ public class AutoDateHistogramAggregate extends MultiBucketAggregateBase<DateHis
 	protected static void setupAutoDateHistogramAggregateDeserializer(
 			ObjectDeserializer<AutoDateHistogramAggregate.Builder> op) {
 		MultiBucketAggregateBase.setupMultiBucketAggregateBaseDeserializer(op, DateHistogramBucket._DESERIALIZER);
-		op.add(Builder::interval, DateTime._DESERIALIZER, "interval");
+		op.add(Builder::interval, JsonpDeserializer.stringDeserializer(), "interval");
 
 	}
 

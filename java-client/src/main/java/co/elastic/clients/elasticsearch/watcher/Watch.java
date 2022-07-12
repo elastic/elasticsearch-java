@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.watcher;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch._types.Transform;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -64,15 +65,15 @@ public class Watch implements JsonpSerializable {
 	private final WatchStatus status;
 
 	@Nullable
-	private final String throttlePeriod;
+	private final Time throttlePeriod;
+
+	@Nullable
+	private final Long throttlePeriodInMillis;
 
 	@Nullable
 	private final Transform transform;
 
 	private final Trigger trigger;
-
-	@Nullable
-	private final Long throttlePeriodInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -84,9 +85,9 @@ public class Watch implements JsonpSerializable {
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.status = builder.status;
 		this.throttlePeriod = builder.throttlePeriod;
+		this.throttlePeriodInMillis = builder.throttlePeriodInMillis;
 		this.transform = builder.transform;
 		this.trigger = ApiTypeHelper.requireNonNull(builder.trigger, this, "trigger");
-		this.throttlePeriodInMillis = builder.throttlePeriodInMillis;
 
 	}
 
@@ -134,8 +135,16 @@ public class Watch implements JsonpSerializable {
 	 * API name: {@code throttle_period}
 	 */
 	@Nullable
-	public final String throttlePeriod() {
+	public final Time throttlePeriod() {
 		return this.throttlePeriod;
+	}
+
+	/**
+	 * API name: {@code throttle_period_in_millis}
+	 */
+	@Nullable
+	public final Long throttlePeriodInMillis() {
+		return this.throttlePeriodInMillis;
 	}
 
 	/**
@@ -151,14 +160,6 @@ public class Watch implements JsonpSerializable {
 	 */
 	public final Trigger trigger() {
 		return this.trigger;
-	}
-
-	/**
-	 * API name: {@code throttle_period_in_millis}
-	 */
-	@Nullable
-	public final Long throttlePeriodInMillis() {
-		return this.throttlePeriodInMillis;
 	}
 
 	/**
@@ -207,7 +208,12 @@ public class Watch implements JsonpSerializable {
 		}
 		if (this.throttlePeriod != null) {
 			generator.writeKey("throttle_period");
-			generator.write(this.throttlePeriod);
+			this.throttlePeriod.serialize(generator, mapper);
+
+		}
+		if (this.throttlePeriodInMillis != null) {
+			generator.writeKey("throttle_period_in_millis");
+			generator.write(this.throttlePeriodInMillis);
 
 		}
 		if (this.transform != null) {
@@ -217,12 +223,6 @@ public class Watch implements JsonpSerializable {
 		}
 		generator.writeKey("trigger");
 		this.trigger.serialize(generator, mapper);
-
-		if (this.throttlePeriodInMillis != null) {
-			generator.writeKey("throttle_period_in_millis");
-			generator.write(this.throttlePeriodInMillis);
-
-		}
 
 	}
 
@@ -251,15 +251,15 @@ public class Watch implements JsonpSerializable {
 		private WatchStatus status;
 
 		@Nullable
-		private String throttlePeriod;
+		private Time throttlePeriod;
+
+		@Nullable
+		private Long throttlePeriodInMillis;
 
 		@Nullable
 		private Transform transform;
 
 		private Trigger trigger;
-
-		@Nullable
-		private Long throttlePeriodInMillis;
 
 		/**
 		 * Required - API name: {@code actions}
@@ -358,8 +358,23 @@ public class Watch implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_period}
 		 */
-		public final Builder throttlePeriod(@Nullable String value) {
+		public final Builder throttlePeriod(@Nullable Time value) {
 			this.throttlePeriod = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code throttle_period}
+		 */
+		public final Builder throttlePeriod(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttlePeriod(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code throttle_period_in_millis}
+		 */
+		public final Builder throttlePeriodInMillis(@Nullable Long value) {
+			this.throttlePeriodInMillis = value;
 			return this;
 		}
 
@@ -391,14 +406,6 @@ public class Watch implements JsonpSerializable {
 		 */
 		public final Builder trigger(Function<Trigger.Builder, ObjectBuilder<Trigger>> fn) {
 			return this.trigger(fn.apply(new Trigger.Builder()).build());
-		}
-
-		/**
-		 * API name: {@code throttle_period_in_millis}
-		 */
-		public final Builder throttlePeriodInMillis(@Nullable Long value) {
-			this.throttlePeriodInMillis = value;
-			return this;
 		}
 
 		@Override
@@ -434,10 +441,10 @@ public class Watch implements JsonpSerializable {
 		op.add(Builder::input, Input._DESERIALIZER, "input");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
 		op.add(Builder::status, WatchStatus._DESERIALIZER, "status");
-		op.add(Builder::throttlePeriod, JsonpDeserializer.stringDeserializer(), "throttle_period");
+		op.add(Builder::throttlePeriod, Time._DESERIALIZER, "throttle_period");
+		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.longDeserializer(), "throttle_period_in_millis");
 		op.add(Builder::transform, Transform._DESERIALIZER, "transform");
 		op.add(Builder::trigger, Trigger._DESERIALIZER, "trigger");
-		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.longDeserializer(), "throttle_period_in_millis");
 
 	}
 

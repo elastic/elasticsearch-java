@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.AllocationDecision;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.ClusterInfo;
 import co.elastic.clients.elasticsearch.cluster.allocation_explain.CurrentNode;
@@ -63,7 +64,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 	private final String allocateExplanation;
 
 	@Nullable
-	private final String allocationDelay;
+	private final Time allocationDelay;
 
 	@Nullable
 	private final Long allocationDelayInMillis;
@@ -91,7 +92,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 	private final ClusterInfo clusterInfo;
 
 	@Nullable
-	private final String configuredDelay;
+	private final Time configuredDelay;
 
 	@Nullable
 	private final Long configuredDelayInMillis;
@@ -114,7 +115,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 	private final String rebalanceExplanation;
 
 	@Nullable
-	private final String remainingDelay;
+	private final Time remainingDelay;
 
 	@Nullable
 	private final Long remainingDelayInMillis;
@@ -175,7 +176,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code allocation_delay}
 	 */
 	@Nullable
-	public final String allocationDelay() {
+	public final Time allocationDelay() {
 		return this.allocationDelay;
 	}
 
@@ -253,7 +254,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code configured_delay}
 	 */
 	@Nullable
-	public final String configuredDelay() {
+	public final Time configuredDelay() {
 		return this.configuredDelay;
 	}
 
@@ -321,7 +322,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 	 * API name: {@code remaining_delay}
 	 */
 	@Nullable
-	public final String remainingDelay() {
+	public final Time remainingDelay() {
 		return this.remainingDelay;
 	}
 
@@ -374,7 +375,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		}
 		if (this.allocationDelay != null) {
 			generator.writeKey("allocation_delay");
-			generator.write(this.allocationDelay);
+			this.allocationDelay.serialize(generator, mapper);
 
 		}
 		if (this.allocationDelayInMillis != null) {
@@ -429,7 +430,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		}
 		if (this.configuredDelay != null) {
 			generator.writeKey("configured_delay");
-			generator.write(this.configuredDelay);
+			this.configuredDelay.serialize(generator, mapper);
 
 		}
 		if (this.configuredDelayInMillis != null) {
@@ -473,7 +474,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		}
 		if (this.remainingDelay != null) {
 			generator.writeKey("remaining_delay");
-			generator.write(this.remainingDelay);
+			this.remainingDelay.serialize(generator, mapper);
 
 		}
 		if (this.remainingDelayInMillis != null) {
@@ -515,7 +516,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		private String allocateExplanation;
 
 		@Nullable
-		private String allocationDelay;
+		private Time allocationDelay;
 
 		@Nullable
 		private Long allocationDelayInMillis;
@@ -545,7 +546,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		private ClusterInfo clusterInfo;
 
 		@Nullable
-		private String configuredDelay;
+		private Time configuredDelay;
 
 		@Nullable
 		private Long configuredDelayInMillis;
@@ -569,7 +570,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		private String rebalanceExplanation;
 
 		@Nullable
-		private String remainingDelay;
+		private Time remainingDelay;
 
 		@Nullable
 		private Long remainingDelayInMillis;
@@ -593,9 +594,16 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code allocation_delay}
 		 */
-		public final Builder allocationDelay(@Nullable String value) {
+		public final Builder allocationDelay(@Nullable Time value) {
 			this.allocationDelay = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code allocation_delay}
+		 */
+		public final Builder allocationDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.allocationDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -726,9 +734,16 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code configured_delay}
 		 */
-		public final Builder configuredDelay(@Nullable String value) {
+		public final Builder configuredDelay(@Nullable Time value) {
 			this.configuredDelay = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code configured_delay}
+		 */
+		public final Builder configuredDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.configuredDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -829,9 +844,16 @@ public class AllocationExplainResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code remaining_delay}
 		 */
-		public final Builder remainingDelay(@Nullable String value) {
+		public final Builder remainingDelay(@Nullable Time value) {
 			this.remainingDelay = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code remaining_delay}
+		 */
+		public final Builder remainingDelay(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.remainingDelay(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -904,7 +926,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 			ObjectDeserializer<AllocationExplainResponse.Builder> op) {
 
 		op.add(Builder::allocateExplanation, JsonpDeserializer.stringDeserializer(), "allocate_explanation");
-		op.add(Builder::allocationDelay, JsonpDeserializer.stringDeserializer(), "allocation_delay");
+		op.add(Builder::allocationDelay, Time._DESERIALIZER, "allocation_delay");
 		op.add(Builder::allocationDelayInMillis, JsonpDeserializer.longDeserializer(), "allocation_delay_in_millis");
 		op.add(Builder::canAllocate, Decision._DESERIALIZER, "can_allocate");
 		op.add(Builder::canMoveToOtherNode, Decision._DESERIALIZER, "can_move_to_other_node");
@@ -917,7 +939,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 				"can_remain_decisions");
 		op.add(Builder::canRemainOnCurrentNode, Decision._DESERIALIZER, "can_remain_on_current_node");
 		op.add(Builder::clusterInfo, ClusterInfo._DESERIALIZER, "cluster_info");
-		op.add(Builder::configuredDelay, JsonpDeserializer.stringDeserializer(), "configured_delay");
+		op.add(Builder::configuredDelay, Time._DESERIALIZER, "configured_delay");
 		op.add(Builder::configuredDelayInMillis, JsonpDeserializer.longDeserializer(), "configured_delay_in_millis");
 		op.add(Builder::currentNode, CurrentNode._DESERIALIZER, "current_node");
 		op.add(Builder::currentState, JsonpDeserializer.stringDeserializer(), "current_state");
@@ -928,7 +950,7 @@ public class AllocationExplainResponse implements JsonpSerializable {
 				"node_allocation_decisions");
 		op.add(Builder::primary, JsonpDeserializer.booleanDeserializer(), "primary");
 		op.add(Builder::rebalanceExplanation, JsonpDeserializer.stringDeserializer(), "rebalance_explanation");
-		op.add(Builder::remainingDelay, JsonpDeserializer.stringDeserializer(), "remaining_delay");
+		op.add(Builder::remainingDelay, Time._DESERIALIZER, "remaining_delay");
 		op.add(Builder::remainingDelayInMillis, JsonpDeserializer.longDeserializer(), "remaining_delay_in_millis");
 		op.add(Builder::shard, JsonpDeserializer.integerDeserializer(), "shard");
 		op.add(Builder::unassignedInfo, UnassignedInformation._DESERIALIZER, "unassigned_info");

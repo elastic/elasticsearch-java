@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.tasks;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -65,7 +66,7 @@ public class TaskInfo implements JsonpSerializable {
 	private final String node;
 
 	@Nullable
-	private final String runningTime;
+	private final Time runningTime;
 
 	private final long runningTimeInNanos;
 
@@ -149,7 +150,7 @@ public class TaskInfo implements JsonpSerializable {
 	 * API name: {@code running_time}
 	 */
 	@Nullable
-	public final String runningTime() {
+	public final Time runningTime() {
 		return this.runningTime;
 	}
 
@@ -231,7 +232,7 @@ public class TaskInfo implements JsonpSerializable {
 
 		if (this.runningTime != null) {
 			generator.writeKey("running_time");
-			generator.write(this.runningTime);
+			this.runningTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("running_time_in_nanos");
@@ -303,7 +304,7 @@ public class TaskInfo implements JsonpSerializable {
 		private String node;
 
 		@Nullable
-		private String runningTime;
+		private Time runningTime;
 
 		private Long runningTimeInNanos;
 
@@ -380,9 +381,16 @@ public class TaskInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code running_time}
 		 */
-		public final BuilderT runningTime(@Nullable String value) {
+		public final BuilderT runningTime(@Nullable Time value) {
 			this.runningTime = value;
 			return self();
+		}
+
+		/**
+		 * API name: {@code running_time}
+		 */
+		public final BuilderT runningTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.runningTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -454,7 +462,7 @@ public class TaskInfo implements JsonpSerializable {
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "headers");
 		op.add(AbstractBuilder::id, JsonpDeserializer.longDeserializer(), "id");
 		op.add(AbstractBuilder::node, JsonpDeserializer.stringDeserializer(), "node");
-		op.add(AbstractBuilder::runningTime, JsonpDeserializer.stringDeserializer(), "running_time");
+		op.add(AbstractBuilder::runningTime, Time._DESERIALIZER, "running_time");
 		op.add(AbstractBuilder::runningTimeInNanos, JsonpDeserializer.longDeserializer(), "running_time_in_nanos");
 		op.add(AbstractBuilder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
 		op.add(AbstractBuilder::status, TaskStatus._DESERIALIZER, "status");

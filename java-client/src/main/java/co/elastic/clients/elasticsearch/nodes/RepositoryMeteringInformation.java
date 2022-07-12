@@ -31,7 +31,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -60,10 +59,10 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 
 	private final String repositoryEphemeralId;
 
-	private final DateTime repositoryStartedAt;
+	private final long repositoryStartedAt;
 
 	@Nullable
-	private final DateTime repositoryStoppedAt;
+	private final Long repositoryStoppedAt;
 
 	private final boolean archived;
 
@@ -136,7 +135,7 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code repository_started_at}
 	 */
-	public final DateTime repositoryStartedAt() {
+	public final long repositoryStartedAt() {
 		return this.repositoryStartedAt;
 	}
 
@@ -147,7 +146,7 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 	 * API name: {@code repository_stopped_at}
 	 */
 	@Nullable
-	public final DateTime repositoryStoppedAt() {
+	public final Long repositoryStoppedAt() {
 		return this.repositoryStoppedAt;
 	}
 
@@ -212,10 +211,12 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 		generator.write(this.repositoryEphemeralId);
 
 		generator.writeKey("repository_started_at");
-		this.repositoryStartedAt.serialize(generator, mapper);
+		generator.write(this.repositoryStartedAt);
+
 		if (this.repositoryStoppedAt != null) {
 			generator.writeKey("repository_stopped_at");
-			this.repositoryStoppedAt.serialize(generator, mapper);
+			generator.write(this.repositoryStoppedAt);
+
 		}
 		generator.writeKey("archived");
 		generator.write(this.archived);
@@ -252,10 +253,10 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 
 		private String repositoryEphemeralId;
 
-		private DateTime repositoryStartedAt;
+		private Long repositoryStartedAt;
 
 		@Nullable
-		private DateTime repositoryStoppedAt;
+		private Long repositoryStoppedAt;
 
 		private Boolean archived;
 
@@ -320,7 +321,7 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code repository_started_at}
 		 */
-		public final Builder repositoryStartedAt(DateTime value) {
+		public final Builder repositoryStartedAt(long value) {
 			this.repositoryStartedAt = value;
 			return this;
 		}
@@ -331,7 +332,7 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code repository_stopped_at}
 		 */
-		public final Builder repositoryStoppedAt(@Nullable DateTime value) {
+		public final Builder repositoryStoppedAt(@Nullable Long value) {
 			this.repositoryStoppedAt = value;
 			return this;
 		}
@@ -418,8 +419,8 @@ public class RepositoryMeteringInformation implements JsonpSerializable {
 		op.add(Builder::repositoryType, JsonpDeserializer.stringDeserializer(), "repository_type");
 		op.add(Builder::repositoryLocation, RepositoryLocation._DESERIALIZER, "repository_location");
 		op.add(Builder::repositoryEphemeralId, JsonpDeserializer.stringDeserializer(), "repository_ephemeral_id");
-		op.add(Builder::repositoryStartedAt, DateTime._DESERIALIZER, "repository_started_at");
-		op.add(Builder::repositoryStoppedAt, DateTime._DESERIALIZER, "repository_stopped_at");
+		op.add(Builder::repositoryStartedAt, JsonpDeserializer.longDeserializer(), "repository_started_at");
+		op.add(Builder::repositoryStoppedAt, JsonpDeserializer.longDeserializer(), "repository_stopped_at");
 		op.add(Builder::archived, JsonpDeserializer.booleanDeserializer(), "archived");
 		op.add(Builder::clusterVersion, JsonpDeserializer.longDeserializer(), "cluster_version");
 		op.add(Builder::requestCounts, RequestCounts._DESERIALIZER, "request_counts");

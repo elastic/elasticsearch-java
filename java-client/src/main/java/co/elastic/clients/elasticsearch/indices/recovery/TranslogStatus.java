@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,7 +32,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -60,9 +60,9 @@ public class TranslogStatus implements JsonpSerializable {
 	private final long totalOnStart;
 
 	@Nullable
-	private final String totalTime;
+	private final Time totalTime;
 
-	private final DateTime totalTimeInMillis;
+	private final long totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -113,14 +113,14 @@ public class TranslogStatus implements JsonpSerializable {
 	 * API name: {@code total_time}
 	 */
 	@Nullable
-	public final String totalTime() {
+	public final Time totalTime() {
 		return this.totalTime;
 	}
 
 	/**
 	 * Required - API name: {@code total_time_in_millis}
 	 */
-	public final DateTime totalTimeInMillis() {
+	public final long totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -149,11 +149,11 @@ public class TranslogStatus implements JsonpSerializable {
 
 		if (this.totalTime != null) {
 			generator.writeKey("total_time");
-			generator.write(this.totalTime);
+			this.totalTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("total_time_in_millis");
-		this.totalTimeInMillis.serialize(generator, mapper);
+		generator.write(this.totalTimeInMillis);
 
 	}
 
@@ -178,9 +178,9 @@ public class TranslogStatus implements JsonpSerializable {
 		private Long totalOnStart;
 
 		@Nullable
-		private String totalTime;
+		private Time totalTime;
 
-		private DateTime totalTimeInMillis;
+		private Long totalTimeInMillis;
 
 		/**
 		 * Required - API name: {@code percent}
@@ -217,15 +217,22 @@ public class TranslogStatus implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public final Builder totalTime(@Nullable String value) {
+		public final Builder totalTime(@Nullable Time value) {
 			this.totalTime = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code total_time}
+		 */
+		public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code total_time_in_millis}
 		 */
-		public final Builder totalTimeInMillis(DateTime value) {
+		public final Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -262,8 +269,8 @@ public class TranslogStatus implements JsonpSerializable {
 		op.add(Builder::recovered, JsonpDeserializer.longDeserializer(), "recovered");
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::totalOnStart, JsonpDeserializer.longDeserializer(), "total_on_start");
-		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
-		op.add(Builder::totalTimeInMillis, DateTime._DESERIALIZER, "total_time_in_millis");
+		op.add(Builder::totalTime, Time._DESERIALIZER, "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
 
 	}
 

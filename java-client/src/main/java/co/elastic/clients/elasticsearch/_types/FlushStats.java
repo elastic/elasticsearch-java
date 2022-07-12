@@ -35,7 +35,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -54,7 +53,7 @@ public class FlushStats implements JsonpSerializable {
 	private final long total;
 
 	@Nullable
-	private final String totalTime;
+	private final Time totalTime;
 
 	private final long totalTimeInMillis;
 
@@ -91,7 +90,7 @@ public class FlushStats implements JsonpSerializable {
 	 * API name: {@code total_time}
 	 */
 	@Nullable
-	public final String totalTime() {
+	public final Time totalTime() {
 		return this.totalTime;
 	}
 
@@ -121,7 +120,7 @@ public class FlushStats implements JsonpSerializable {
 
 		if (this.totalTime != null) {
 			generator.writeKey("total_time");
-			generator.write(this.totalTime);
+			this.totalTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("total_time_in_millis");
@@ -146,7 +145,7 @@ public class FlushStats implements JsonpSerializable {
 		private Long total;
 
 		@Nullable
-		private String totalTime;
+		private Time totalTime;
 
 		private Long totalTimeInMillis;
 
@@ -169,9 +168,16 @@ public class FlushStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public final Builder totalTime(@Nullable String value) {
+		public final Builder totalTime(@Nullable Time value) {
 			this.totalTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code total_time}
+		 */
+		public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -212,7 +218,7 @@ public class FlushStats implements JsonpSerializable {
 
 		op.add(Builder::periodic, JsonpDeserializer.longDeserializer(), "periodic");
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
-		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTime, Time._DESERIALIZER, "total_time");
 		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
 
 	}

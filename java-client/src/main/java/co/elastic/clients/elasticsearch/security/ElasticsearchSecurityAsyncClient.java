@@ -1256,6 +1256,42 @@ public class ElasticsearchSecurityAsyncClient
 				HasPrivilegesRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: security.has_privileges_user_profile
+
+	/**
+	 * Determines whether the users associated with the specified profile IDs have
+	 * all the requested privileges.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<HasPrivilegesUserProfileResponse> hasPrivilegesUserProfile(
+			HasPrivilegesUserProfileRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<HasPrivilegesUserProfileRequest, HasPrivilegesUserProfileResponse, ErrorResponse> endpoint = (JsonEndpoint<HasPrivilegesUserProfileRequest, HasPrivilegesUserProfileResponse, ErrorResponse>) HasPrivilegesUserProfileRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Determines whether the users associated with the specified profile IDs have
+	 * all the requested privileges.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link HasPrivilegesUserProfileRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-has-privileges-user-profile.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<HasPrivilegesUserProfileResponse> hasPrivilegesUserProfile(
+			Function<HasPrivilegesUserProfileRequest.Builder, ObjectBuilder<HasPrivilegesUserProfileRequest>> fn) {
+		return hasPrivilegesUserProfile(fn.apply(new HasPrivilegesUserProfileRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: security.invalidate_api_key
 
 	/**

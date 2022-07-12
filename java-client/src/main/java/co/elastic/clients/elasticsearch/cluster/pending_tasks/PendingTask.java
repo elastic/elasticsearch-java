@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cluster.pending_tasks;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -36,6 +37,7 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -59,9 +61,10 @@ public class PendingTask implements JsonpSerializable {
 
 	private final String source;
 
-	private final String timeInQueue;
+	@Nullable
+	private final Time timeInQueue;
 
-	private final int timeInQueueMillis;
+	private final long timeInQueueMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,7 +74,7 @@ public class PendingTask implements JsonpSerializable {
 		this.insertOrder = ApiTypeHelper.requireNonNull(builder.insertOrder, this, "insertOrder");
 		this.priority = ApiTypeHelper.requireNonNull(builder.priority, this, "priority");
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
-		this.timeInQueue = ApiTypeHelper.requireNonNull(builder.timeInQueue, this, "timeInQueue");
+		this.timeInQueue = builder.timeInQueue;
 		this.timeInQueueMillis = ApiTypeHelper.requireNonNull(builder.timeInQueueMillis, this, "timeInQueueMillis");
 
 	}
@@ -109,16 +112,17 @@ public class PendingTask implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code time_in_queue}
+	 * API name: {@code time_in_queue}
 	 */
-	public final String timeInQueue() {
+	@Nullable
+	public final Time timeInQueue() {
 		return this.timeInQueue;
 	}
 
 	/**
 	 * Required - API name: {@code time_in_queue_millis}
 	 */
-	public final int timeInQueueMillis() {
+	public final long timeInQueueMillis() {
 		return this.timeInQueueMillis;
 	}
 
@@ -145,9 +149,11 @@ public class PendingTask implements JsonpSerializable {
 		generator.writeKey("source");
 		generator.write(this.source);
 
-		generator.writeKey("time_in_queue");
-		generator.write(this.timeInQueue);
+		if (this.timeInQueue != null) {
+			generator.writeKey("time_in_queue");
+			this.timeInQueue.serialize(generator, mapper);
 
+		}
 		generator.writeKey("time_in_queue_millis");
 		generator.write(this.timeInQueueMillis);
 
@@ -173,9 +179,10 @@ public class PendingTask implements JsonpSerializable {
 
 		private String source;
 
-		private String timeInQueue;
+		@Nullable
+		private Time timeInQueue;
 
-		private Integer timeInQueueMillis;
+		private Long timeInQueueMillis;
 
 		/**
 		 * Required - API name: {@code executing}
@@ -210,17 +217,24 @@ public class PendingTask implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code time_in_queue}
+		 * API name: {@code time_in_queue}
 		 */
-		public final Builder timeInQueue(String value) {
+		public final Builder timeInQueue(@Nullable Time value) {
 			this.timeInQueue = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code time_in_queue}
+		 */
+		public final Builder timeInQueue(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeInQueue(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code time_in_queue_millis}
 		 */
-		public final Builder timeInQueueMillis(int value) {
+		public final Builder timeInQueueMillis(long value) {
 			this.timeInQueueMillis = value;
 			return this;
 		}
@@ -257,8 +271,8 @@ public class PendingTask implements JsonpSerializable {
 		op.add(Builder::insertOrder, JsonpDeserializer.integerDeserializer(), "insert_order");
 		op.add(Builder::priority, JsonpDeserializer.stringDeserializer(), "priority");
 		op.add(Builder::source, JsonpDeserializer.stringDeserializer(), "source");
-		op.add(Builder::timeInQueue, JsonpDeserializer.stringDeserializer(), "time_in_queue");
-		op.add(Builder::timeInQueueMillis, JsonpDeserializer.integerDeserializer(), "time_in_queue_millis");
+		op.add(Builder::timeInQueue, Time._DESERIALIZER, "time_in_queue");
+		op.add(Builder::timeInQueueMillis, JsonpDeserializer.longDeserializer(), "time_in_queue_millis");
 
 	}
 

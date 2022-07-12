@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ccr;
 
 import co.elastic.clients.elasticsearch._types.ErrorCause;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,7 +33,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -100,13 +100,25 @@ public class ShardStats implements JsonpSerializable {
 
 	private final long successfulWriteRequests;
 
-	private final DateTime timeSinceLastReadMillis;
+	@Nullable
+	private final Time timeSinceLastRead;
 
-	private final DateTime totalReadRemoteExecTimeMillis;
+	private final long timeSinceLastReadMillis;
 
-	private final DateTime totalReadTimeMillis;
+	@Nullable
+	private final Time totalReadRemoteExecTime;
 
-	private final DateTime totalWriteTimeMillis;
+	private final long totalReadRemoteExecTimeMillis;
+
+	@Nullable
+	private final Time totalReadTime;
+
+	private final long totalReadTimeMillis;
+
+	@Nullable
+	private final Time totalWriteTime;
+
+	private final long totalWriteTimeMillis;
 
 	private final long writeBufferOperationCount;
 
@@ -149,12 +161,16 @@ public class ShardStats implements JsonpSerializable {
 				"successfulReadRequests");
 		this.successfulWriteRequests = ApiTypeHelper.requireNonNull(builder.successfulWriteRequests, this,
 				"successfulWriteRequests");
+		this.timeSinceLastRead = builder.timeSinceLastRead;
 		this.timeSinceLastReadMillis = ApiTypeHelper.requireNonNull(builder.timeSinceLastReadMillis, this,
 				"timeSinceLastReadMillis");
+		this.totalReadRemoteExecTime = builder.totalReadRemoteExecTime;
 		this.totalReadRemoteExecTimeMillis = ApiTypeHelper.requireNonNull(builder.totalReadRemoteExecTimeMillis, this,
 				"totalReadRemoteExecTimeMillis");
+		this.totalReadTime = builder.totalReadTime;
 		this.totalReadTimeMillis = ApiTypeHelper.requireNonNull(builder.totalReadTimeMillis, this,
 				"totalReadTimeMillis");
+		this.totalWriteTime = builder.totalWriteTime;
 		this.totalWriteTimeMillis = ApiTypeHelper.requireNonNull(builder.totalWriteTimeMillis, this,
 				"totalWriteTimeMillis");
 		this.writeBufferOperationCount = ApiTypeHelper.requireNonNull(builder.writeBufferOperationCount, this,
@@ -331,30 +347,62 @@ public class ShardStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code time_since_last_read}
+	 */
+	@Nullable
+	public final Time timeSinceLastRead() {
+		return this.timeSinceLastRead;
+	}
+
+	/**
 	 * Required - API name: {@code time_since_last_read_millis}
 	 */
-	public final DateTime timeSinceLastReadMillis() {
+	public final long timeSinceLastReadMillis() {
 		return this.timeSinceLastReadMillis;
+	}
+
+	/**
+	 * API name: {@code total_read_remote_exec_time}
+	 */
+	@Nullable
+	public final Time totalReadRemoteExecTime() {
+		return this.totalReadRemoteExecTime;
 	}
 
 	/**
 	 * Required - API name: {@code total_read_remote_exec_time_millis}
 	 */
-	public final DateTime totalReadRemoteExecTimeMillis() {
+	public final long totalReadRemoteExecTimeMillis() {
 		return this.totalReadRemoteExecTimeMillis;
+	}
+
+	/**
+	 * API name: {@code total_read_time}
+	 */
+	@Nullable
+	public final Time totalReadTime() {
+		return this.totalReadTime;
 	}
 
 	/**
 	 * Required - API name: {@code total_read_time_millis}
 	 */
-	public final DateTime totalReadTimeMillis() {
+	public final long totalReadTimeMillis() {
 		return this.totalReadTimeMillis;
+	}
+
+	/**
+	 * API name: {@code total_write_time}
+	 */
+	@Nullable
+	public final Time totalWriteTime() {
+		return this.totalWriteTime;
 	}
 
 	/**
 	 * Required - API name: {@code total_write_time_millis}
 	 */
-	public final DateTime totalWriteTimeMillis() {
+	public final long totalWriteTimeMillis() {
 		return this.totalWriteTimeMillis;
 	}
 
@@ -461,14 +509,38 @@ public class ShardStats implements JsonpSerializable {
 		generator.writeKey("successful_write_requests");
 		generator.write(this.successfulWriteRequests);
 
+		if (this.timeSinceLastRead != null) {
+			generator.writeKey("time_since_last_read");
+			this.timeSinceLastRead.serialize(generator, mapper);
+
+		}
 		generator.writeKey("time_since_last_read_millis");
-		this.timeSinceLastReadMillis.serialize(generator, mapper);
+		generator.write(this.timeSinceLastReadMillis);
+
+		if (this.totalReadRemoteExecTime != null) {
+			generator.writeKey("total_read_remote_exec_time");
+			this.totalReadRemoteExecTime.serialize(generator, mapper);
+
+		}
 		generator.writeKey("total_read_remote_exec_time_millis");
-		this.totalReadRemoteExecTimeMillis.serialize(generator, mapper);
+		generator.write(this.totalReadRemoteExecTimeMillis);
+
+		if (this.totalReadTime != null) {
+			generator.writeKey("total_read_time");
+			this.totalReadTime.serialize(generator, mapper);
+
+		}
 		generator.writeKey("total_read_time_millis");
-		this.totalReadTimeMillis.serialize(generator, mapper);
+		generator.write(this.totalReadTimeMillis);
+
+		if (this.totalWriteTime != null) {
+			generator.writeKey("total_write_time");
+			this.totalWriteTime.serialize(generator, mapper);
+
+		}
 		generator.writeKey("total_write_time_millis");
-		this.totalWriteTimeMillis.serialize(generator, mapper);
+		generator.write(this.totalWriteTimeMillis);
+
 		generator.writeKey("write_buffer_operation_count");
 		generator.write(this.writeBufferOperationCount);
 
@@ -536,13 +608,25 @@ public class ShardStats implements JsonpSerializable {
 
 		private Long successfulWriteRequests;
 
-		private DateTime timeSinceLastReadMillis;
+		@Nullable
+		private Time timeSinceLastRead;
 
-		private DateTime totalReadRemoteExecTimeMillis;
+		private Long timeSinceLastReadMillis;
 
-		private DateTime totalReadTimeMillis;
+		@Nullable
+		private Time totalReadRemoteExecTime;
 
-		private DateTime totalWriteTimeMillis;
+		private Long totalReadRemoteExecTimeMillis;
+
+		@Nullable
+		private Time totalReadTime;
+
+		private Long totalReadTimeMillis;
+
+		@Nullable
+		private Time totalWriteTime;
+
+		private Long totalWriteTimeMillis;
 
 		private Long writeBufferOperationCount;
 
@@ -761,33 +845,93 @@ public class ShardStats implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code time_since_last_read}
+		 */
+		public final Builder timeSinceLastRead(@Nullable Time value) {
+			this.timeSinceLastRead = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code time_since_last_read}
+		 */
+		public final Builder timeSinceLastRead(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.timeSinceLastRead(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code time_since_last_read_millis}
 		 */
-		public final Builder timeSinceLastReadMillis(DateTime value) {
+		public final Builder timeSinceLastReadMillis(long value) {
 			this.timeSinceLastReadMillis = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code total_read_remote_exec_time}
+		 */
+		public final Builder totalReadRemoteExecTime(@Nullable Time value) {
+			this.totalReadRemoteExecTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_read_remote_exec_time}
+		 */
+		public final Builder totalReadRemoteExecTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalReadRemoteExecTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code total_read_remote_exec_time_millis}
 		 */
-		public final Builder totalReadRemoteExecTimeMillis(DateTime value) {
+		public final Builder totalReadRemoteExecTimeMillis(long value) {
 			this.totalReadRemoteExecTimeMillis = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code total_read_time}
+		 */
+		public final Builder totalReadTime(@Nullable Time value) {
+			this.totalReadTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_read_time}
+		 */
+		public final Builder totalReadTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalReadTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code total_read_time_millis}
 		 */
-		public final Builder totalReadTimeMillis(DateTime value) {
+		public final Builder totalReadTimeMillis(long value) {
 			this.totalReadTimeMillis = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code total_write_time}
+		 */
+		public final Builder totalWriteTime(@Nullable Time value) {
+			this.totalWriteTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_write_time}
+		 */
+		public final Builder totalWriteTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalWriteTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code total_write_time_millis}
 		 */
-		public final Builder totalWriteTimeMillis(DateTime value) {
+		public final Builder totalWriteTimeMillis(long value) {
 			this.totalWriteTimeMillis = value;
 			return this;
 		}
@@ -861,10 +1005,15 @@ public class ShardStats implements JsonpSerializable {
 		op.add(Builder::shardId, JsonpDeserializer.integerDeserializer(), "shard_id");
 		op.add(Builder::successfulReadRequests, JsonpDeserializer.longDeserializer(), "successful_read_requests");
 		op.add(Builder::successfulWriteRequests, JsonpDeserializer.longDeserializer(), "successful_write_requests");
-		op.add(Builder::timeSinceLastReadMillis, DateTime._DESERIALIZER, "time_since_last_read_millis");
-		op.add(Builder::totalReadRemoteExecTimeMillis, DateTime._DESERIALIZER, "total_read_remote_exec_time_millis");
-		op.add(Builder::totalReadTimeMillis, DateTime._DESERIALIZER, "total_read_time_millis");
-		op.add(Builder::totalWriteTimeMillis, DateTime._DESERIALIZER, "total_write_time_millis");
+		op.add(Builder::timeSinceLastRead, Time._DESERIALIZER, "time_since_last_read");
+		op.add(Builder::timeSinceLastReadMillis, JsonpDeserializer.longDeserializer(), "time_since_last_read_millis");
+		op.add(Builder::totalReadRemoteExecTime, Time._DESERIALIZER, "total_read_remote_exec_time");
+		op.add(Builder::totalReadRemoteExecTimeMillis, JsonpDeserializer.longDeserializer(),
+				"total_read_remote_exec_time_millis");
+		op.add(Builder::totalReadTime, Time._DESERIALIZER, "total_read_time");
+		op.add(Builder::totalReadTimeMillis, JsonpDeserializer.longDeserializer(), "total_read_time_millis");
+		op.add(Builder::totalWriteTime, Time._DESERIALIZER, "total_write_time");
+		op.add(Builder::totalWriteTimeMillis, JsonpDeserializer.longDeserializer(), "total_write_time_millis");
 		op.add(Builder::writeBufferOperationCount, JsonpDeserializer.longDeserializer(),
 				"write_buffer_operation_count");
 		op.add(Builder::writeBufferSizeInBytes, JsonpDeserializer.stringDeserializer(), "write_buffer_size_in_bytes");

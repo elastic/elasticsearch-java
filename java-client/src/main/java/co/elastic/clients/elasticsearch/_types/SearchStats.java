@@ -52,6 +52,9 @@ import javax.annotation.Nullable;
 public class SearchStats implements JsonpSerializable {
 	private final long fetchCurrent;
 
+	@Nullable
+	private final Time fetchTime;
+
 	private final long fetchTimeInMillis;
 
 	private final long fetchTotal;
@@ -61,17 +64,26 @@ public class SearchStats implements JsonpSerializable {
 
 	private final long queryCurrent;
 
+	@Nullable
+	private final Time queryTime;
+
 	private final long queryTimeInMillis;
 
 	private final long queryTotal;
 
 	private final long scrollCurrent;
 
+	@Nullable
+	private final Time scrollTime;
+
 	private final long scrollTimeInMillis;
 
 	private final long scrollTotal;
 
 	private final long suggestCurrent;
+
+	@Nullable
+	private final Time suggestTime;
 
 	private final long suggestTimeInMillis;
 
@@ -84,16 +96,20 @@ public class SearchStats implements JsonpSerializable {
 	private SearchStats(Builder builder) {
 
 		this.fetchCurrent = ApiTypeHelper.requireNonNull(builder.fetchCurrent, this, "fetchCurrent");
+		this.fetchTime = builder.fetchTime;
 		this.fetchTimeInMillis = ApiTypeHelper.requireNonNull(builder.fetchTimeInMillis, this, "fetchTimeInMillis");
 		this.fetchTotal = ApiTypeHelper.requireNonNull(builder.fetchTotal, this, "fetchTotal");
 		this.openContexts = builder.openContexts;
 		this.queryCurrent = ApiTypeHelper.requireNonNull(builder.queryCurrent, this, "queryCurrent");
+		this.queryTime = builder.queryTime;
 		this.queryTimeInMillis = ApiTypeHelper.requireNonNull(builder.queryTimeInMillis, this, "queryTimeInMillis");
 		this.queryTotal = ApiTypeHelper.requireNonNull(builder.queryTotal, this, "queryTotal");
 		this.scrollCurrent = ApiTypeHelper.requireNonNull(builder.scrollCurrent, this, "scrollCurrent");
+		this.scrollTime = builder.scrollTime;
 		this.scrollTimeInMillis = ApiTypeHelper.requireNonNull(builder.scrollTimeInMillis, this, "scrollTimeInMillis");
 		this.scrollTotal = ApiTypeHelper.requireNonNull(builder.scrollTotal, this, "scrollTotal");
 		this.suggestCurrent = ApiTypeHelper.requireNonNull(builder.suggestCurrent, this, "suggestCurrent");
+		this.suggestTime = builder.suggestTime;
 		this.suggestTimeInMillis = ApiTypeHelper.requireNonNull(builder.suggestTimeInMillis, this,
 				"suggestTimeInMillis");
 		this.suggestTotal = ApiTypeHelper.requireNonNull(builder.suggestTotal, this, "suggestTotal");
@@ -110,6 +126,14 @@ public class SearchStats implements JsonpSerializable {
 	 */
 	public final long fetchCurrent() {
 		return this.fetchCurrent;
+	}
+
+	/**
+	 * API name: {@code fetch_time}
+	 */
+	@Nullable
+	public final Time fetchTime() {
+		return this.fetchTime;
 	}
 
 	/**
@@ -142,6 +166,14 @@ public class SearchStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code query_time}
+	 */
+	@Nullable
+	public final Time queryTime() {
+		return this.queryTime;
+	}
+
+	/**
 	 * Required - API name: {@code query_time_in_millis}
 	 */
 	public final long queryTimeInMillis() {
@@ -163,6 +195,14 @@ public class SearchStats implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code scroll_time}
+	 */
+	@Nullable
+	public final Time scrollTime() {
+		return this.scrollTime;
+	}
+
+	/**
 	 * Required - API name: {@code scroll_time_in_millis}
 	 */
 	public final long scrollTimeInMillis() {
@@ -181,6 +221,14 @@ public class SearchStats implements JsonpSerializable {
 	 */
 	public final long suggestCurrent() {
 		return this.suggestCurrent;
+	}
+
+	/**
+	 * API name: {@code suggest_time}
+	 */
+	@Nullable
+	public final Time suggestTime() {
+		return this.suggestTime;
 	}
 
 	/**
@@ -218,6 +266,11 @@ public class SearchStats implements JsonpSerializable {
 		generator.writeKey("fetch_current");
 		generator.write(this.fetchCurrent);
 
+		if (this.fetchTime != null) {
+			generator.writeKey("fetch_time");
+			this.fetchTime.serialize(generator, mapper);
+
+		}
 		generator.writeKey("fetch_time_in_millis");
 		generator.write(this.fetchTimeInMillis);
 
@@ -232,6 +285,11 @@ public class SearchStats implements JsonpSerializable {
 		generator.writeKey("query_current");
 		generator.write(this.queryCurrent);
 
+		if (this.queryTime != null) {
+			generator.writeKey("query_time");
+			this.queryTime.serialize(generator, mapper);
+
+		}
 		generator.writeKey("query_time_in_millis");
 		generator.write(this.queryTimeInMillis);
 
@@ -241,6 +299,11 @@ public class SearchStats implements JsonpSerializable {
 		generator.writeKey("scroll_current");
 		generator.write(this.scrollCurrent);
 
+		if (this.scrollTime != null) {
+			generator.writeKey("scroll_time");
+			this.scrollTime.serialize(generator, mapper);
+
+		}
 		generator.writeKey("scroll_time_in_millis");
 		generator.write(this.scrollTimeInMillis);
 
@@ -250,6 +313,11 @@ public class SearchStats implements JsonpSerializable {
 		generator.writeKey("suggest_current");
 		generator.write(this.suggestCurrent);
 
+		if (this.suggestTime != null) {
+			generator.writeKey("suggest_time");
+			this.suggestTime.serialize(generator, mapper);
+
+		}
 		generator.writeKey("suggest_time_in_millis");
 		generator.write(this.suggestTimeInMillis);
 
@@ -284,6 +352,9 @@ public class SearchStats implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<SearchStats> {
 		private Long fetchCurrent;
 
+		@Nullable
+		private Time fetchTime;
+
 		private Long fetchTimeInMillis;
 
 		private Long fetchTotal;
@@ -293,17 +364,26 @@ public class SearchStats implements JsonpSerializable {
 
 		private Long queryCurrent;
 
+		@Nullable
+		private Time queryTime;
+
 		private Long queryTimeInMillis;
 
 		private Long queryTotal;
 
 		private Long scrollCurrent;
 
+		@Nullable
+		private Time scrollTime;
+
 		private Long scrollTimeInMillis;
 
 		private Long scrollTotal;
 
 		private Long suggestCurrent;
+
+		@Nullable
+		private Time suggestTime;
 
 		private Long suggestTimeInMillis;
 
@@ -318,6 +398,21 @@ public class SearchStats implements JsonpSerializable {
 		public final Builder fetchCurrent(long value) {
 			this.fetchCurrent = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code fetch_time}
+		 */
+		public final Builder fetchTime(@Nullable Time value) {
+			this.fetchTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code fetch_time}
+		 */
+		public final Builder fetchTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.fetchTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -353,6 +448,21 @@ public class SearchStats implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code query_time}
+		 */
+		public final Builder queryTime(@Nullable Time value) {
+			this.queryTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query_time}
+		 */
+		public final Builder queryTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.queryTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code query_time_in_millis}
 		 */
 		public final Builder queryTimeInMillis(long value) {
@@ -377,6 +487,21 @@ public class SearchStats implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code scroll_time}
+		 */
+		public final Builder scrollTime(@Nullable Time value) {
+			this.scrollTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code scroll_time}
+		 */
+		public final Builder scrollTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.scrollTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code scroll_time_in_millis}
 		 */
 		public final Builder scrollTimeInMillis(long value) {
@@ -398,6 +523,21 @@ public class SearchStats implements JsonpSerializable {
 		public final Builder suggestCurrent(long value) {
 			this.suggestCurrent = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code suggest_time}
+		 */
+		public final Builder suggestTime(@Nullable Time value) {
+			this.suggestTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code suggest_time}
+		 */
+		public final Builder suggestTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.suggestTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -474,16 +614,20 @@ public class SearchStats implements JsonpSerializable {
 	protected static void setupSearchStatsDeserializer(ObjectDeserializer<SearchStats.Builder> op) {
 
 		op.add(Builder::fetchCurrent, JsonpDeserializer.longDeserializer(), "fetch_current");
+		op.add(Builder::fetchTime, Time._DESERIALIZER, "fetch_time");
 		op.add(Builder::fetchTimeInMillis, JsonpDeserializer.longDeserializer(), "fetch_time_in_millis");
 		op.add(Builder::fetchTotal, JsonpDeserializer.longDeserializer(), "fetch_total");
 		op.add(Builder::openContexts, JsonpDeserializer.longDeserializer(), "open_contexts");
 		op.add(Builder::queryCurrent, JsonpDeserializer.longDeserializer(), "query_current");
+		op.add(Builder::queryTime, Time._DESERIALIZER, "query_time");
 		op.add(Builder::queryTimeInMillis, JsonpDeserializer.longDeserializer(), "query_time_in_millis");
 		op.add(Builder::queryTotal, JsonpDeserializer.longDeserializer(), "query_total");
 		op.add(Builder::scrollCurrent, JsonpDeserializer.longDeserializer(), "scroll_current");
+		op.add(Builder::scrollTime, Time._DESERIALIZER, "scroll_time");
 		op.add(Builder::scrollTimeInMillis, JsonpDeserializer.longDeserializer(), "scroll_time_in_millis");
 		op.add(Builder::scrollTotal, JsonpDeserializer.longDeserializer(), "scroll_total");
 		op.add(Builder::suggestCurrent, JsonpDeserializer.longDeserializer(), "suggest_current");
+		op.add(Builder::suggestTime, Time._DESERIALIZER, "suggest_time");
 		op.add(Builder::suggestTimeInMillis, JsonpDeserializer.longDeserializer(), "suggest_time_in_millis");
 		op.add(Builder::suggestTotal, JsonpDeserializer.longDeserializer(), "suggest_total");
 		op.add(Builder::groups, JsonpDeserializer.stringMapDeserializer(SearchStats._DESERIALIZER), "groups");

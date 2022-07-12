@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,6 +31,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -57,7 +57,7 @@ public class BucketSummary implements JsonpSerializable {
 
 	private final List<BucketInfluencer> bucketInfluencers;
 
-	private final Time bucketSpan;
+	private final long bucketSpan;
 
 	private final long eventCount;
 
@@ -67,11 +67,14 @@ public class BucketSummary implements JsonpSerializable {
 
 	private final String jobId;
 
-	private final double processingTimeMs;
+	private final long processingTimeMs;
 
 	private final String resultType;
 
-	private final Time timestamp;
+	private final long timestamp;
+
+	@Nullable
+	private final DateTime timestampString;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -89,6 +92,7 @@ public class BucketSummary implements JsonpSerializable {
 		this.processingTimeMs = ApiTypeHelper.requireNonNull(builder.processingTimeMs, this, "processingTimeMs");
 		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestampString = builder.timestampString;
 
 	}
 
@@ -121,7 +125,7 @@ public class BucketSummary implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code bucket_span}
 	 */
-	public final Time bucketSpan() {
+	public final long bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -170,7 +174,7 @@ public class BucketSummary implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code processing_time_ms}
 	 */
-	public final double processingTimeMs() {
+	public final long processingTimeMs() {
 		return this.processingTimeMs;
 	}
 
@@ -190,8 +194,20 @@ public class BucketSummary implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public final Time timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
+	}
+
+	/**
+	 * The start time of the bucket. This timestamp uniquely identifies the bucket.
+	 * Events that occur exactly at the timestamp of the bucket are included in the
+	 * results for the bucket.
+	 * <p>
+	 * API name: {@code timestamp_string}
+	 */
+	@Nullable
+	public final DateTime timestampString() {
+		return this.timestampString;
 	}
 
 	/**
@@ -219,7 +235,7 @@ public class BucketSummary implements JsonpSerializable {
 
 		}
 		generator.writeKey("bucket_span");
-		this.bucketSpan.serialize(generator, mapper);
+		generator.write(this.bucketSpan);
 
 		generator.writeKey("event_count");
 		generator.write(this.eventCount);
@@ -240,7 +256,12 @@ public class BucketSummary implements JsonpSerializable {
 		generator.write(this.resultType);
 
 		generator.writeKey("timestamp");
-		this.timestamp.serialize(generator, mapper);
+		generator.write(this.timestamp);
+
+		if (this.timestampString != null) {
+			generator.writeKey("timestamp_string");
+			this.timestampString.serialize(generator, mapper);
+		}
 
 	}
 
@@ -260,7 +281,7 @@ public class BucketSummary implements JsonpSerializable {
 
 		private List<BucketInfluencer> bucketInfluencers;
 
-		private Time bucketSpan;
+		private Long bucketSpan;
 
 		private Long eventCount;
 
@@ -270,11 +291,14 @@ public class BucketSummary implements JsonpSerializable {
 
 		private String jobId;
 
-		private Double processingTimeMs;
+		private Long processingTimeMs;
 
 		private String resultType;
 
-		private Time timestamp;
+		private Long timestamp;
+
+		@Nullable
+		private DateTime timestampString;
 
 		/**
 		 * Required - The maximum anomaly score, between 0-100, for any of the bucket
@@ -324,19 +348,9 @@ public class BucketSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(Time value) {
+		public final Builder bucketSpan(long value) {
 			this.bucketSpan = value;
 			return this;
-		}
-
-		/**
-		 * Required - The length of the bucket in seconds. This value matches the bucket
-		 * span that is specified in the job.
-		 * <p>
-		 * API name: {@code bucket_span}
-		 */
-		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.bucketSpan(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -388,7 +402,7 @@ public class BucketSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code processing_time_ms}
 		 */
-		public final Builder processingTimeMs(double value) {
+		public final Builder processingTimeMs(long value) {
 			this.processingTimeMs = value;
 			return this;
 		}
@@ -410,20 +424,21 @@ public class BucketSummary implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(Time value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
 
 		/**
-		 * Required - The start time of the bucket. This timestamp uniquely identifies
-		 * the bucket. Events that occur exactly at the timestamp of the bucket are
-		 * included in the results for the bucket.
+		 * The start time of the bucket. This timestamp uniquely identifies the bucket.
+		 * Events that occur exactly at the timestamp of the bucket are included in the
+		 * results for the bucket.
 		 * <p>
-		 * API name: {@code timestamp}
+		 * API name: {@code timestamp_string}
 		 */
-		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timestamp(fn.apply(new Time.Builder()).build());
+		public final Builder timestampString(@Nullable DateTime value) {
+			this.timestampString = value;
+			return this;
 		}
 
 		@Override
@@ -457,14 +472,15 @@ public class BucketSummary implements JsonpSerializable {
 		op.add(Builder::anomalyScore, JsonpDeserializer.doubleDeserializer(), "anomaly_score");
 		op.add(Builder::bucketInfluencers, JsonpDeserializer.arrayDeserializer(BucketInfluencer._DESERIALIZER),
 				"bucket_influencers");
-		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
+		op.add(Builder::bucketSpan, JsonpDeserializer.longDeserializer(), "bucket_span");
 		op.add(Builder::eventCount, JsonpDeserializer.longDeserializer(), "event_count");
 		op.add(Builder::initialAnomalyScore, JsonpDeserializer.doubleDeserializer(), "initial_anomaly_score");
 		op.add(Builder::isInterim, JsonpDeserializer.booleanDeserializer(), "is_interim");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::processingTimeMs, JsonpDeserializer.doubleDeserializer(), "processing_time_ms");
+		op.add(Builder::processingTimeMs, JsonpDeserializer.longDeserializer(), "processing_time_ms");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, Time._DESERIALIZER, "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
+		op.add(Builder::timestampString, DateTime._DESERIALIZER, "timestamp_string");
 
 	}
 

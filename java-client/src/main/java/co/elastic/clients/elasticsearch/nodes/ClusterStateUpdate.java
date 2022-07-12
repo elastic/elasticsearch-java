@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,11 +31,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -48,47 +49,46 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class ClusterStateUpdate implements JsonpSerializable {
-	@Nullable
-	private final Long count;
+	private final long count;
 
 	@Nullable
-	private final String computationTime;
+	private final Time computationTime;
 
 	@Nullable
 	private final Long computationTimeMillis;
 
 	@Nullable
-	private final String publicationTime;
+	private final Time publicationTime;
 
 	@Nullable
 	private final Long publicationTimeMillis;
 
 	@Nullable
-	private final String contextConstructionTime;
+	private final Time contextConstructionTime;
 
 	@Nullable
 	private final Long contextConstructionTimeMillis;
 
 	@Nullable
-	private final String commitTime;
+	private final Time commitTime;
 
 	@Nullable
 	private final Long commitTimeMillis;
 
 	@Nullable
-	private final String completionTime;
+	private final Time completionTime;
 
 	@Nullable
 	private final Long completionTimeMillis;
 
 	@Nullable
-	private final String masterApplyTime;
+	private final Time masterApplyTime;
 
 	@Nullable
 	private final Long masterApplyTimeMillis;
 
 	@Nullable
-	private final String notificationTime;
+	private final Time notificationTime;
 
 	@Nullable
 	private final Long notificationTimeMillis;
@@ -97,7 +97,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 
 	private ClusterStateUpdate(Builder builder) {
 
-		this.count = builder.count;
+		this.count = ApiTypeHelper.requireNonNull(builder.count, this, "count");
 		this.computationTime = builder.computationTime;
 		this.computationTimeMillis = builder.computationTimeMillis;
 		this.publicationTime = builder.publicationTime;
@@ -120,10 +120,9 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code count}
+	 * Required - API name: {@code count}
 	 */
-	@Nullable
-	public final Long count() {
+	public final long count() {
 		return this.count;
 	}
 
@@ -131,7 +130,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	 * API name: {@code computation_time}
 	 */
 	@Nullable
-	public final String computationTime() {
+	public final Time computationTime() {
 		return this.computationTime;
 	}
 
@@ -147,7 +146,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	 * API name: {@code publication_time}
 	 */
 	@Nullable
-	public final String publicationTime() {
+	public final Time publicationTime() {
 		return this.publicationTime;
 	}
 
@@ -163,7 +162,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	 * API name: {@code context_construction_time}
 	 */
 	@Nullable
-	public final String contextConstructionTime() {
+	public final Time contextConstructionTime() {
 		return this.contextConstructionTime;
 	}
 
@@ -179,7 +178,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	 * API name: {@code commit_time}
 	 */
 	@Nullable
-	public final String commitTime() {
+	public final Time commitTime() {
 		return this.commitTime;
 	}
 
@@ -195,7 +194,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	 * API name: {@code completion_time}
 	 */
 	@Nullable
-	public final String completionTime() {
+	public final Time completionTime() {
 		return this.completionTime;
 	}
 
@@ -211,7 +210,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	 * API name: {@code master_apply_time}
 	 */
 	@Nullable
-	public final String masterApplyTime() {
+	public final Time masterApplyTime() {
 		return this.masterApplyTime;
 	}
 
@@ -227,7 +226,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	 * API name: {@code notification_time}
 	 */
 	@Nullable
-	public final String notificationTime() {
+	public final Time notificationTime() {
 		return this.notificationTime;
 	}
 
@@ -250,14 +249,12 @@ public class ClusterStateUpdate implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.count != null) {
-			generator.writeKey("count");
-			generator.write(this.count);
+		generator.writeKey("count");
+		generator.write(this.count);
 
-		}
 		if (this.computationTime != null) {
 			generator.writeKey("computation_time");
-			generator.write(this.computationTime);
+			this.computationTime.serialize(generator, mapper);
 
 		}
 		if (this.computationTimeMillis != null) {
@@ -267,7 +264,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		}
 		if (this.publicationTime != null) {
 			generator.writeKey("publication_time");
-			generator.write(this.publicationTime);
+			this.publicationTime.serialize(generator, mapper);
 
 		}
 		if (this.publicationTimeMillis != null) {
@@ -277,7 +274,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		}
 		if (this.contextConstructionTime != null) {
 			generator.writeKey("context_construction_time");
-			generator.write(this.contextConstructionTime);
+			this.contextConstructionTime.serialize(generator, mapper);
 
 		}
 		if (this.contextConstructionTimeMillis != null) {
@@ -287,7 +284,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		}
 		if (this.commitTime != null) {
 			generator.writeKey("commit_time");
-			generator.write(this.commitTime);
+			this.commitTime.serialize(generator, mapper);
 
 		}
 		if (this.commitTimeMillis != null) {
@@ -297,7 +294,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		}
 		if (this.completionTime != null) {
 			generator.writeKey("completion_time");
-			generator.write(this.completionTime);
+			this.completionTime.serialize(generator, mapper);
 
 		}
 		if (this.completionTimeMillis != null) {
@@ -307,7 +304,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		}
 		if (this.masterApplyTime != null) {
 			generator.writeKey("master_apply_time");
-			generator.write(this.masterApplyTime);
+			this.masterApplyTime.serialize(generator, mapper);
 
 		}
 		if (this.masterApplyTimeMillis != null) {
@@ -317,7 +314,7 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		}
 		if (this.notificationTime != null) {
 			generator.writeKey("notification_time");
-			generator.write(this.notificationTime);
+			this.notificationTime.serialize(generator, mapper);
 
 		}
 		if (this.notificationTimeMillis != null) {
@@ -342,55 +339,54 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<ClusterStateUpdate> {
-		@Nullable
 		private Long count;
 
 		@Nullable
-		private String computationTime;
+		private Time computationTime;
 
 		@Nullable
 		private Long computationTimeMillis;
 
 		@Nullable
-		private String publicationTime;
+		private Time publicationTime;
 
 		@Nullable
 		private Long publicationTimeMillis;
 
 		@Nullable
-		private String contextConstructionTime;
+		private Time contextConstructionTime;
 
 		@Nullable
 		private Long contextConstructionTimeMillis;
 
 		@Nullable
-		private String commitTime;
+		private Time commitTime;
 
 		@Nullable
 		private Long commitTimeMillis;
 
 		@Nullable
-		private String completionTime;
+		private Time completionTime;
 
 		@Nullable
 		private Long completionTimeMillis;
 
 		@Nullable
-		private String masterApplyTime;
+		private Time masterApplyTime;
 
 		@Nullable
 		private Long masterApplyTimeMillis;
 
 		@Nullable
-		private String notificationTime;
+		private Time notificationTime;
 
 		@Nullable
 		private Long notificationTimeMillis;
 
 		/**
-		 * API name: {@code count}
+		 * Required - API name: {@code count}
 		 */
-		public final Builder count(@Nullable Long value) {
+		public final Builder count(long value) {
 			this.count = value;
 			return this;
 		}
@@ -398,9 +394,16 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		/**
 		 * API name: {@code computation_time}
 		 */
-		public final Builder computationTime(@Nullable String value) {
+		public final Builder computationTime(@Nullable Time value) {
 			this.computationTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code computation_time}
+		 */
+		public final Builder computationTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.computationTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -414,9 +417,16 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		/**
 		 * API name: {@code publication_time}
 		 */
-		public final Builder publicationTime(@Nullable String value) {
+		public final Builder publicationTime(@Nullable Time value) {
 			this.publicationTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code publication_time}
+		 */
+		public final Builder publicationTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.publicationTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -430,9 +440,16 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		/**
 		 * API name: {@code context_construction_time}
 		 */
-		public final Builder contextConstructionTime(@Nullable String value) {
+		public final Builder contextConstructionTime(@Nullable Time value) {
 			this.contextConstructionTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code context_construction_time}
+		 */
+		public final Builder contextConstructionTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.contextConstructionTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -446,9 +463,16 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		/**
 		 * API name: {@code commit_time}
 		 */
-		public final Builder commitTime(@Nullable String value) {
+		public final Builder commitTime(@Nullable Time value) {
 			this.commitTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code commit_time}
+		 */
+		public final Builder commitTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.commitTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -462,9 +486,16 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		/**
 		 * API name: {@code completion_time}
 		 */
-		public final Builder completionTime(@Nullable String value) {
+		public final Builder completionTime(@Nullable Time value) {
 			this.completionTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code completion_time}
+		 */
+		public final Builder completionTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.completionTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -478,9 +509,16 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		/**
 		 * API name: {@code master_apply_time}
 		 */
-		public final Builder masterApplyTime(@Nullable String value) {
+		public final Builder masterApplyTime(@Nullable Time value) {
 			this.masterApplyTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code master_apply_time}
+		 */
+		public final Builder masterApplyTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.masterApplyTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -494,9 +532,16 @@ public class ClusterStateUpdate implements JsonpSerializable {
 		/**
 		 * API name: {@code notification_time}
 		 */
-		public final Builder notificationTime(@Nullable String value) {
+		public final Builder notificationTime(@Nullable Time value) {
 			this.notificationTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code notification_time}
+		 */
+		public final Builder notificationTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.notificationTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -536,20 +581,20 @@ public class ClusterStateUpdate implements JsonpSerializable {
 	protected static void setupClusterStateUpdateDeserializer(ObjectDeserializer<ClusterStateUpdate.Builder> op) {
 
 		op.add(Builder::count, JsonpDeserializer.longDeserializer(), "count");
-		op.add(Builder::computationTime, JsonpDeserializer.stringDeserializer(), "computation_time");
+		op.add(Builder::computationTime, Time._DESERIALIZER, "computation_time");
 		op.add(Builder::computationTimeMillis, JsonpDeserializer.longDeserializer(), "computation_time_millis");
-		op.add(Builder::publicationTime, JsonpDeserializer.stringDeserializer(), "publication_time");
+		op.add(Builder::publicationTime, Time._DESERIALIZER, "publication_time");
 		op.add(Builder::publicationTimeMillis, JsonpDeserializer.longDeserializer(), "publication_time_millis");
-		op.add(Builder::contextConstructionTime, JsonpDeserializer.stringDeserializer(), "context_construction_time");
+		op.add(Builder::contextConstructionTime, Time._DESERIALIZER, "context_construction_time");
 		op.add(Builder::contextConstructionTimeMillis, JsonpDeserializer.longDeserializer(),
 				"context_construction_time_millis");
-		op.add(Builder::commitTime, JsonpDeserializer.stringDeserializer(), "commit_time");
+		op.add(Builder::commitTime, Time._DESERIALIZER, "commit_time");
 		op.add(Builder::commitTimeMillis, JsonpDeserializer.longDeserializer(), "commit_time_millis");
-		op.add(Builder::completionTime, JsonpDeserializer.stringDeserializer(), "completion_time");
+		op.add(Builder::completionTime, Time._DESERIALIZER, "completion_time");
 		op.add(Builder::completionTimeMillis, JsonpDeserializer.longDeserializer(), "completion_time_millis");
-		op.add(Builder::masterApplyTime, JsonpDeserializer.stringDeserializer(), "master_apply_time");
+		op.add(Builder::masterApplyTime, Time._DESERIALIZER, "master_apply_time");
 		op.add(Builder::masterApplyTimeMillis, JsonpDeserializer.longDeserializer(), "master_apply_time_millis");
-		op.add(Builder::notificationTime, JsonpDeserializer.stringDeserializer(), "notification_time");
+		op.add(Builder::notificationTime, Time._DESERIALIZER, "notification_time");
 		op.add(Builder::notificationTimeMillis, JsonpDeserializer.longDeserializer(), "notification_time_millis");
 
 	}

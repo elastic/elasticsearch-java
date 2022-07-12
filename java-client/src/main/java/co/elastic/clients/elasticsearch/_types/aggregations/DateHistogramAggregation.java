@@ -194,7 +194,11 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 	/**
 	 * API name: {@code interval}
+	 * 
+	 * @deprecated 7.2.0 use <code>fixed_interval</code> or
+	 *             <code>calendar_interval</code>
 	 */
+	@Deprecated
 	@Nullable
 	public final Time interval() {
 		return this.interval;
@@ -482,7 +486,11 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 		/**
 		 * API name: {@code interval}
+		 * 
+		 * @deprecated 7.2.0 use <code>fixed_interval</code> or
+		 *             <code>calendar_interval</code>
 		 */
+		@Deprecated
 		public final Builder interval(@Nullable Time value) {
 			this.interval = value;
 			return this;
@@ -490,7 +498,11 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 		/**
 		 * API name: {@code interval}
+		 * 
+		 * @deprecated 7.2.0 use <code>fixed_interval</code> or
+		 *             <code>calendar_interval</code>
 		 */
+		@Deprecated
 		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.interval(fn.apply(new Time.Builder()).build());
 		}

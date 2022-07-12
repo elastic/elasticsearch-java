@@ -32,10 +32,10 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -57,7 +57,7 @@ public class UsageStatsShards implements JsonpSerializable {
 
 	private final String trackingId;
 
-	private final DateTime trackingStartedAtMillis;
+	private final long trackingStartedAtMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -99,7 +99,7 @@ public class UsageStatsShards implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code tracking_started_at_millis}
 	 */
-	public final DateTime trackingStartedAtMillis() {
+	public final long trackingStartedAtMillis() {
 		return this.trackingStartedAtMillis;
 	}
 
@@ -124,7 +124,7 @@ public class UsageStatsShards implements JsonpSerializable {
 		generator.write(this.trackingId);
 
 		generator.writeKey("tracking_started_at_millis");
-		this.trackingStartedAtMillis.serialize(generator, mapper);
+		generator.write(this.trackingStartedAtMillis);
 
 	}
 
@@ -146,7 +146,7 @@ public class UsageStatsShards implements JsonpSerializable {
 
 		private String trackingId;
 
-		private DateTime trackingStartedAtMillis;
+		private Long trackingStartedAtMillis;
 
 		/**
 		 * Required - API name: {@code routing}
@@ -189,7 +189,7 @@ public class UsageStatsShards implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code tracking_started_at_millis}
 		 */
-		public final Builder trackingStartedAtMillis(DateTime value) {
+		public final Builder trackingStartedAtMillis(long value) {
 			this.trackingStartedAtMillis = value;
 			return this;
 		}
@@ -225,7 +225,7 @@ public class UsageStatsShards implements JsonpSerializable {
 		op.add(Builder::routing, ShardRouting._DESERIALIZER, "routing");
 		op.add(Builder::stats, ShardsStats._DESERIALIZER, "stats");
 		op.add(Builder::trackingId, JsonpDeserializer.stringDeserializer(), "tracking_id");
-		op.add(Builder::trackingStartedAtMillis, DateTime._DESERIALIZER, "tracking_started_at_millis");
+		op.add(Builder::trackingStartedAtMillis, JsonpDeserializer.longDeserializer(), "tracking_started_at_millis");
 
 	}
 

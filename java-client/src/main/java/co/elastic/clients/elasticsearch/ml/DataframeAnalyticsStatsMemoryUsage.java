@@ -31,7 +31,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -59,7 +58,7 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 	private final String status;
 
 	@Nullable
-	private final DateTime timestamp;
+	private final Long timestamp;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -112,7 +111,7 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 	 * API name: {@code timestamp}
 	 */
 	@Nullable
-	public final DateTime timestamp() {
+	public final Long timestamp() {
 		return this.timestamp;
 	}
 
@@ -140,7 +139,8 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 
 		if (this.timestamp != null) {
 			generator.writeKey("timestamp");
-			this.timestamp.serialize(generator, mapper);
+			generator.write(this.timestamp);
+
 		}
 
 	}
@@ -167,7 +167,7 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 		private String status;
 
 		@Nullable
-		private DateTime timestamp;
+		private Long timestamp;
 
 		/**
 		 * This value is present when the status is hard_limit and it is a new estimate
@@ -205,7 +205,7 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(@Nullable DateTime value) {
+		public final Builder timestamp(@Nullable Long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -243,7 +243,7 @@ public class DataframeAnalyticsStatsMemoryUsage implements JsonpSerializable {
 		op.add(Builder::memoryReestimateBytes, JsonpDeserializer.longDeserializer(), "memory_reestimate_bytes");
 		op.add(Builder::peakUsageBytes, JsonpDeserializer.longDeserializer(), "peak_usage_bytes");
 		op.add(Builder::status, JsonpDeserializer.stringDeserializer(), "status");
-		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 
 	}
 

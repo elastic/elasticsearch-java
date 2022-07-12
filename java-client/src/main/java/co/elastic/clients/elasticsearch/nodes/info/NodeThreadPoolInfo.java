@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.nodes.info;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -54,7 +55,7 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 	private final Integer core;
 
 	@Nullable
-	private final String keepAlive;
+	private final Time keepAlive;
 
 	@Nullable
 	private final Integer max;
@@ -95,7 +96,7 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 	 * API name: {@code keep_alive}
 	 */
 	@Nullable
-	public final String keepAlive() {
+	public final Time keepAlive() {
 		return this.keepAlive;
 	}
 
@@ -147,7 +148,7 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 		}
 		if (this.keepAlive != null) {
 			generator.writeKey("keep_alive");
-			generator.write(this.keepAlive);
+			this.keepAlive.serialize(generator, mapper);
 
 		}
 		if (this.max != null) {
@@ -186,7 +187,7 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 		private Integer core;
 
 		@Nullable
-		private String keepAlive;
+		private Time keepAlive;
 
 		@Nullable
 		private Integer max;
@@ -209,9 +210,16 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 		/**
 		 * API name: {@code keep_alive}
 		 */
-		public final Builder keepAlive(@Nullable String value) {
+		public final Builder keepAlive(@Nullable Time value) {
 			this.keepAlive = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code keep_alive}
+		 */
+		public final Builder keepAlive(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.keepAlive(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -275,7 +283,7 @@ public class NodeThreadPoolInfo implements JsonpSerializable {
 	protected static void setupNodeThreadPoolInfoDeserializer(ObjectDeserializer<NodeThreadPoolInfo.Builder> op) {
 
 		op.add(Builder::core, JsonpDeserializer.integerDeserializer(), "core");
-		op.add(Builder::keepAlive, JsonpDeserializer.stringDeserializer(), "keep_alive");
+		op.add(Builder::keepAlive, Time._DESERIALIZER, "keep_alive");
 		op.add(Builder::max, JsonpDeserializer.integerDeserializer(), "max");
 		op.add(Builder::queueSize, JsonpDeserializer.integerDeserializer(), "queue_size");
 		op.add(Builder::size, JsonpDeserializer.integerDeserializer(), "size");

@@ -68,6 +68,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final AnalysisLimits analysisLimits;
 
+	@Nullable
 	private final Time backgroundPersistInterval;
 
 	@Nullable
@@ -110,8 +111,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		this.allowLazyOpen = builder.allowLazyOpen;
 		this.analysisConfig = ApiTypeHelper.requireNonNull(builder.analysisConfig, this, "analysisConfig");
 		this.analysisLimits = builder.analysisLimits;
-		this.backgroundPersistInterval = ApiTypeHelper.requireNonNull(builder.backgroundPersistInterval, this,
-				"backgroundPersistInterval");
+		this.backgroundPersistInterval = builder.backgroundPersistInterval;
 		this.customSettings = builder.customSettings;
 		this.dailyModelSnapshotRetentionAfterDays = builder.dailyModelSnapshotRetentionAfterDays;
 		this.dataDescription = ApiTypeHelper.requireNonNull(builder.dataDescription, this, "dataDescription");
@@ -174,15 +174,16 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - Advanced configuration option. The time between each periodic
-	 * persistence of the model. The default value is a randomized value between 3
-	 * to 4 hours, which avoids all jobs persisting at exactly the same time. The
-	 * smallest allowed value is 1 hour. For very large models (several GB),
-	 * persistence could take 10-20 minutes, so do not set the
+	 * Advanced configuration option. The time between each periodic persistence of
+	 * the model. The default value is a randomized value between 3 to 4 hours,
+	 * which avoids all jobs persisting at exactly the same time. The smallest
+	 * allowed value is 1 hour. For very large models (several GB), persistence
+	 * could take 10-20 minutes, so do not set the
 	 * <code>background_persist_interval</code> value too low.
 	 * <p>
 	 * API name: {@code background_persist_interval}
 	 */
+	@Nullable
 	public final Time backgroundPersistInterval() {
 		return this.backgroundPersistInterval;
 	}
@@ -364,9 +365,11 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 			this.analysisLimits.serialize(generator, mapper);
 
 		}
-		generator.writeKey("background_persist_interval");
-		this.backgroundPersistInterval.serialize(generator, mapper);
+		if (this.backgroundPersistInterval != null) {
+			generator.writeKey("background_persist_interval");
+			this.backgroundPersistInterval.serialize(generator, mapper);
 
+		}
 		if (this.customSettings != null) {
 			generator.writeKey("custom_settings");
 			this.customSettings.serialize(generator, mapper);
@@ -443,6 +446,7 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		@Nullable
 		private AnalysisLimits analysisLimits;
 
+		@Nullable
 		private Time backgroundPersistInterval;
 
 		@Nullable
@@ -546,26 +550,26 @@ public class PutJobRequest extends RequestBase implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - Advanced configuration option. The time between each periodic
-		 * persistence of the model. The default value is a randomized value between 3
-		 * to 4 hours, which avoids all jobs persisting at exactly the same time. The
-		 * smallest allowed value is 1 hour. For very large models (several GB),
-		 * persistence could take 10-20 minutes, so do not set the
+		 * Advanced configuration option. The time between each periodic persistence of
+		 * the model. The default value is a randomized value between 3 to 4 hours,
+		 * which avoids all jobs persisting at exactly the same time. The smallest
+		 * allowed value is 1 hour. For very large models (several GB), persistence
+		 * could take 10-20 minutes, so do not set the
 		 * <code>background_persist_interval</code> value too low.
 		 * <p>
 		 * API name: {@code background_persist_interval}
 		 */
-		public final Builder backgroundPersistInterval(Time value) {
+		public final Builder backgroundPersistInterval(@Nullable Time value) {
 			this.backgroundPersistInterval = value;
 			return this;
 		}
 
 		/**
-		 * Required - Advanced configuration option. The time between each periodic
-		 * persistence of the model. The default value is a randomized value between 3
-		 * to 4 hours, which avoids all jobs persisting at exactly the same time. The
-		 * smallest allowed value is 1 hour. For very large models (several GB),
-		 * persistence could take 10-20 minutes, so do not set the
+		 * Advanced configuration option. The time between each periodic persistence of
+		 * the model. The default value is a randomized value between 3 to 4 hours,
+		 * which avoids all jobs persisting at exactly the same time. The smallest
+		 * allowed value is 1 hour. For very large models (several GB), persistence
+		 * could take 10-20 minutes, so do not set the
 		 * <code>background_persist_interval</code> value too low.
 		 * <p>
 		 * API name: {@code background_persist_interval}

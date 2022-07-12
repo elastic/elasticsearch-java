@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,6 +31,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -69,7 +69,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 	private final String createdBy;
 
 	@Nullable
-	private final Time createTime;
+	private final DateTime createTime;
 
 	private final Map<String, String> defaultFieldMap;
 
@@ -189,7 +189,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public final Time createTime() {
+	public final DateTime createTime() {
 		return this.createTime;
 	}
 
@@ -335,7 +335,6 @@ public class TrainedModelConfig implements JsonpSerializable {
 		if (this.createTime != null) {
 			generator.writeKey("create_time");
 			this.createTime.serialize(generator, mapper);
-
 		}
 		if (ApiTypeHelper.isDefined(this.defaultFieldMap)) {
 			generator.writeKey("default_field_map");
@@ -444,7 +443,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		private String createdBy;
 
 		@Nullable
-		private Time createTime;
+		private DateTime createTime;
 
 		@Nullable
 		private Map<String, String> defaultFieldMap;
@@ -553,18 +552,9 @@ public class TrainedModelConfig implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code create_time}
 		 */
-		public final BuilderT createTime(@Nullable Time value) {
+		public final BuilderT createTime(@Nullable DateTime value) {
 			this.createTime = value;
 			return self();
-		}
-
-		/**
-		 * The time when the trained model was created.
-		 * <p>
-		 * API name: {@code create_time}
-		 */
-		public final BuilderT createTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.createTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -742,7 +732,7 @@ public class TrainedModelConfig implements JsonpSerializable {
 		op.add(AbstractBuilder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(AbstractBuilder::compressedDefinition, JsonpDeserializer.stringDeserializer(), "compressed_definition");
 		op.add(AbstractBuilder::createdBy, JsonpDeserializer.stringDeserializer(), "created_by");
-		op.add(AbstractBuilder::createTime, Time._DESERIALIZER, "create_time");
+		op.add(AbstractBuilder::createTime, DateTime._DESERIALIZER, "create_time");
 		op.add(AbstractBuilder::defaultFieldMap,
 				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()), "default_field_map");
 		op.add(AbstractBuilder::description, JsonpDeserializer.stringDeserializer(), "description");
