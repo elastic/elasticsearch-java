@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.indices;
 
 import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -38,7 +39,9 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -55,6 +58,8 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class IndexSettings implements JsonpSerializable {
+	private final Map<String, JsonData> otherSettings;
+
 	@Nullable
 	private final IndexSettings index;
 
@@ -220,7 +225,7 @@ public class IndexSettings implements JsonpSerializable {
 	private final IndexSettings settings;
 
 	@Nullable
-	private final MappingLimitSettings mappings;
+	private final MappingLimitSettings mapping;
 
 	@Nullable
 	private final SlowlogSettings indexingSlowlog;
@@ -234,6 +239,8 @@ public class IndexSettings implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexSettings(Builder builder) {
+
+		this.otherSettings = ApiTypeHelper.unmodifiable(builder.otherSettings);
 
 		this.index = builder.index;
 		this.mode = builder.mode;
@@ -290,7 +297,7 @@ public class IndexSettings implements JsonpSerializable {
 		this.topMetricsMaxSize = builder.topMetricsMaxSize;
 		this.analysis = builder.analysis;
 		this.settings = builder.settings;
-		this.mappings = builder.mappings;
+		this.mapping = builder.mapping;
 		this.indexingSlowlog = builder.indexingSlowlog;
 		this.indexingPressure = builder.indexingPressure;
 		this.store = builder.store;
@@ -299,6 +306,16 @@ public class IndexSettings implements JsonpSerializable {
 
 	public static IndexSettings of(Function<Builder, ObjectBuilder<IndexSettings>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Additional settings not covered in this type. Unless these settings are
+	 * defined by a plugin, please open an issue on the <a href=
+	 * "https://github.com/elastic/elasticsearch-specification">Elasticsearch API
+	 * specification</a> so that they can be added in a future release.
+	 */
+	public final Map<String, JsonData> otherSettings() {
+		return this.otherSettings;
 	}
 
 	/**
@@ -743,11 +760,11 @@ public class IndexSettings implements JsonpSerializable {
 	/**
 	 * Enable or disable dynamic mapping for an index.
 	 * <p>
-	 * API name: {@code mappings}
+	 * API name: {@code mapping}
 	 */
 	@Nullable
-	public final MappingLimitSettings mappings() {
-		return this.mappings;
+	public final MappingLimitSettings mapping() {
+		return this.mapping;
 	}
 
 	/**
@@ -789,6 +806,12 @@ public class IndexSettings implements JsonpSerializable {
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
+
+		for (Map.Entry<String, JsonData> item0 : this.otherSettings.entrySet()) {
+			generator.writeKey(item0.getKey());
+			item0.getValue().serialize(generator, mapper);
+
+		}
 
 		if (this.index != null) {
 			generator.writeKey("index");
@@ -1069,9 +1092,9 @@ public class IndexSettings implements JsonpSerializable {
 			this.settings.serialize(generator, mapper);
 
 		}
-		if (this.mappings != null) {
-			generator.writeKey("mappings");
-			this.mappings.serialize(generator, mapper);
+		if (this.mapping != null) {
+			generator.writeKey("mapping");
+			this.mapping.serialize(generator, mapper);
 
 		}
 		if (this.indexingSlowlog != null) {
@@ -1104,6 +1127,35 @@ public class IndexSettings implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexSettings> {
+		@Nullable
+		private Map<String, JsonData> otherSettings = new HashMap<>();
+
+		/**
+		 * Additional settings not covered in this type. Unless these settings are
+		 * defined by a plugin, please open an issue on the <a href=
+		 * "https://github.com/elastic/elasticsearch-specification">Elasticsearch API
+		 * specification</a> so that they can be added in a future release.
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>otherSettings</code>.
+		 */
+		public final Builder otherSettings(Map<String, JsonData> map) {
+			this.otherSettings = _mapPutAll(this.otherSettings, map);
+			return this;
+		}
+
+		/**
+		 * Additional settings not covered in this type. Unless these settings are
+		 * defined by a plugin, please open an issue on the <a href=
+		 * "https://github.com/elastic/elasticsearch-specification">Elasticsearch API
+		 * specification</a> so that they can be added in a future release.
+		 * <p>
+		 * Adds an entry to <code>otherSettings</code>.
+		 */
+		public final Builder otherSettings(String key, JsonData value) {
+			this.otherSettings = _mapPut(this.otherSettings, key, value);
+			return this;
+		}
+
 		@Nullable
 		private IndexSettings index;
 
@@ -1270,7 +1322,7 @@ public class IndexSettings implements JsonpSerializable {
 		private IndexSettings settings;
 
 		@Nullable
-		private MappingLimitSettings mappings;
+		private MappingLimitSettings mapping;
 
 		@Nullable
 		private SlowlogSettings indexingSlowlog;
@@ -1836,20 +1888,20 @@ public class IndexSettings implements JsonpSerializable {
 		/**
 		 * Enable or disable dynamic mapping for an index.
 		 * <p>
-		 * API name: {@code mappings}
+		 * API name: {@code mapping}
 		 */
-		public final Builder mappings(@Nullable MappingLimitSettings value) {
-			this.mappings = value;
+		public final Builder mapping(@Nullable MappingLimitSettings value) {
+			this.mapping = value;
 			return this;
 		}
 
 		/**
 		 * Enable or disable dynamic mapping for an index.
 		 * <p>
-		 * API name: {@code mappings}
+		 * API name: {@code mapping}
 		 */
-		public final Builder mappings(Function<MappingLimitSettings.Builder, ObjectBuilder<MappingLimitSettings>> fn) {
-			return this.mappings(fn.apply(new MappingLimitSettings.Builder()).build());
+		public final Builder mapping(Function<MappingLimitSettings.Builder, ObjectBuilder<MappingLimitSettings>> fn) {
+			return this.mapping(fn.apply(new MappingLimitSettings.Builder()).build());
 		}
 
 		/**
@@ -2021,10 +2073,14 @@ public class IndexSettings implements JsonpSerializable {
 		op.add(Builder::topMetricsMaxSize, JsonpDeserializer.integerDeserializer(), "top_metrics_max_size");
 		op.add(Builder::analysis, IndexSettingsAnalysis._DESERIALIZER, "analysis", "index.analysis");
 		op.add(Builder::settings, IndexSettings._DESERIALIZER, "settings");
-		op.add(Builder::mappings, MappingLimitSettings._DESERIALIZER, "mappings");
+		op.add(Builder::mapping, MappingLimitSettings._DESERIALIZER, "mapping");
 		op.add(Builder::indexingSlowlog, SlowlogSettings._DESERIALIZER, "indexing.slowlog");
 		op.add(Builder::indexingPressure, IndexingPressure._DESERIALIZER, "indexing_pressure");
 		op.add(Builder::store, Storage._DESERIALIZER, "store");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			builder.otherSettings(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

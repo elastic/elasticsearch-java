@@ -19,9 +19,14 @@
 
 package co.elastic.clients.elasticsearch;
 
+import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.json.JsonData;
+import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.endpoints.DelegatingJsonEndpoint;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
 import org.apache.http.auth.AuthScope;
@@ -30,6 +35,7 @@ import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
 
+import java.io.IOException;
 import java.time.Duration;
 
 public class ElasticsearchTestServer implements AutoCloseable {
@@ -79,6 +85,33 @@ public class ElasticsearchTestServer implements AutoCloseable {
             .build();
         transport = new RestClientTransport(restClient, mapper);
         client = new ElasticsearchClient(transport);
+    }
+
+    /**
+     * Send a request to a server and return the response as JSON. Useful to debug response format issues.
+     */
+    public static <Req> JsonData getJsonResponse(ElasticsearchClient client, Req request) throws IOException {
+
+        JsonEndpoint<Req, JsonData, ErrorResponse> endpoint;
+
+        try {
+            @SuppressWarnings("unchecked")
+            JsonEndpoint<Req, JsonData, ErrorResponse> endpoint0 = (JsonEndpoint<Req, JsonData, ErrorResponse>) request.getClass()
+                .getDeclaredField("_ENDPOINT").get(null);
+            endpoint = endpoint0;
+        } catch (IllegalAccessException|NoSuchFieldException e) {
+            throw new RuntimeException(e);
+        }
+
+        DelegatingJsonEndpoint<Req, JsonData, ErrorResponse> jsonEndpoint =
+            new DelegatingJsonEndpoint<Req, JsonData, ErrorResponse>(endpoint) {
+                @Override
+                public JsonpDeserializer<JsonData> responseDeserializer() {
+                    return JsonData._DESERIALIZER;
+                }
+            };
+
+        return client._transport().performRequest(request, jsonEndpoint, client._transportOptions());
     }
 
     @Override

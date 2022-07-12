@@ -28,12 +28,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.analysis.LengthTokenFilter
 
@@ -45,17 +45,19 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final int max;
+	@Nullable
+	private final Integer max;
 
-	private final int min;
+	@Nullable
+	private final Integer min;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private LengthTokenFilter(Builder builder) {
 		super(builder);
 
-		this.max = ApiTypeHelper.requireNonNull(builder.max, this, "max");
-		this.min = ApiTypeHelper.requireNonNull(builder.min, this, "min");
+		this.max = builder.max;
+		this.min = builder.min;
 
 	}
 
@@ -72,16 +74,18 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 	}
 
 	/**
-	 * Required - API name: {@code max}
+	 * API name: {@code max}
 	 */
-	public final int max() {
+	@Nullable
+	public final Integer max() {
 		return this.max;
 	}
 
 	/**
-	 * Required - API name: {@code min}
+	 * API name: {@code min}
 	 */
-	public final int min() {
+	@Nullable
+	public final Integer min() {
 		return this.min;
 	}
 
@@ -89,11 +93,16 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 
 		generator.write("type", "length");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("max");
-		generator.write(this.max);
+		if (this.max != null) {
+			generator.writeKey("max");
+			generator.write(this.max);
 
-		generator.writeKey("min");
-		generator.write(this.min);
+		}
+		if (this.min != null) {
+			generator.writeKey("min");
+			generator.write(this.min);
+
+		}
 
 	}
 
@@ -106,22 +115,24 @@ public class LengthTokenFilter extends TokenFilterBase implements TokenFilterDef
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<LengthTokenFilter> {
+		@Nullable
 		private Integer max;
 
+		@Nullable
 		private Integer min;
 
 		/**
-		 * Required - API name: {@code max}
+		 * API name: {@code max}
 		 */
-		public final Builder max(int value) {
+		public final Builder max(@Nullable Integer value) {
 			this.max = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code min}
+		 * API name: {@code min}
 		 */
-		public final Builder min(int value) {
+		public final Builder min(@Nullable Integer value) {
 			this.min = value;
 			return this;
 		}

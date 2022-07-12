@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
 import co.elastic.clients.json.JsonpDeserializable;
@@ -31,12 +32,15 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -72,8 +76,7 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	@Nullable
 	private final Double offset;
 
-	@Nullable
-	private final HistogramOrder order;
+	private final List<NamedValue<SortOrder>> order;
 
 	@Nullable
 	private final Script script;
@@ -96,7 +99,7 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		this.minDocCount = builder.minDocCount;
 		this.missing = builder.missing;
 		this.offset = builder.offset;
-		this.order = builder.order;
+		this.order = ApiTypeHelper.unmodifiable(builder.order);
 		this.script = builder.script;
 		this.format = builder.format;
 		this.keyed = builder.keyed;
@@ -182,8 +185,7 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 	/**
 	 * API name: {@code order}
 	 */
-	@Nullable
-	public final HistogramOrder order() {
+	public final List<NamedValue<SortOrder>> order() {
 		return this.order;
 	}
 
@@ -249,9 +251,17 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 			generator.write(this.offset);
 
 		}
-		if (this.order != null) {
+		if (ApiTypeHelper.isDefined(this.order)) {
 			generator.writeKey("order");
-			this.order.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (NamedValue<SortOrder> item0 : this.order) {
+				generator.writeStartObject();
+				generator.writeKey(item0.name());
+				item0.value().serialize(generator, mapper);
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
 
 		}
 		if (this.script != null) {
@@ -303,7 +313,7 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		private Double offset;
 
 		@Nullable
-		private HistogramOrder order;
+		private List<NamedValue<SortOrder>> order;
 
 		@Nullable
 		private Script script;
@@ -388,17 +398,22 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 
 		/**
 		 * API name: {@code order}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>order</code>.
 		 */
-		public final Builder order(@Nullable HistogramOrder value) {
-			this.order = value;
+		public final Builder order(List<NamedValue<SortOrder>> list) {
+			this.order = _listAddAll(this.order, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code order}
+		 * <p>
+		 * Adds one or more values to <code>order</code>.
 		 */
-		public final Builder order(Function<HistogramOrder.Builder, ObjectBuilder<HistogramOrder>> fn) {
-			return this.order(fn.apply(new HistogramOrder.Builder()).build());
+		public final Builder order(NamedValue<SortOrder> value, NamedValue<SortOrder>... values) {
+			this.order = _listAdd(this.order, value, values);
+			return this;
 		}
 
 		/**
@@ -470,7 +485,8 @@ public class HistogramAggregation extends BucketAggregationBase implements Aggre
 		op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
 		op.add(Builder::missing, JsonpDeserializer.doubleDeserializer(), "missing");
 		op.add(Builder::offset, JsonpDeserializer.doubleDeserializer(), "offset");
-		op.add(Builder::order, HistogramOrder._DESERIALIZER, "order");
+		op.add(Builder::order,
+				JsonpDeserializer.arrayDeserializer(NamedValue.deserializer(() -> SortOrder._DESERIALIZER)), "order");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::format, JsonpDeserializer.stringDeserializer(), "format");
 		op.add(Builder::keyed, JsonpDeserializer.booleanDeserializer(), "keyed");

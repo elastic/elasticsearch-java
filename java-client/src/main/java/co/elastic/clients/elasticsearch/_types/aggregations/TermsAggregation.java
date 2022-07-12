@@ -34,13 +34,13 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -85,7 +85,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	@Nullable
 	private final String valueType;
 
-	private final List<Map<String, SortOrder>> order;
+	private final List<NamedValue<SortOrder>> order;
 
 	@Nullable
 	private final Script script;
@@ -225,7 +225,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 	/**
 	 * API name: {@code order}
 	 */
-	public final List<Map<String, SortOrder>> order() {
+	public final List<NamedValue<SortOrder>> order() {
 		return this.order;
 	}
 
@@ -314,14 +314,10 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		if (ApiTypeHelper.isDefined(this.order)) {
 			generator.writeKey("order");
 			generator.writeStartArray();
-			for (Map<String, SortOrder> item0 : this.order) {
+			for (NamedValue<SortOrder> item0 : this.order) {
 				generator.writeStartObject();
-				if (item0 != null) {
-					for (Map.Entry<String, SortOrder> item1 : item0.entrySet()) {
-						generator.writeKey(item1.getKey());
-						item1.getValue().serialize(generator, mapper);
-					}
-				}
+				generator.writeKey(item0.name());
+				item0.value().serialize(generator, mapper);
 				generator.writeEnd();
 
 			}
@@ -391,7 +387,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		private String valueType;
 
 		@Nullable
-		private List<Map<String, SortOrder>> order;
+		private List<NamedValue<SortOrder>> order;
 
 		@Nullable
 		private Script script;
@@ -543,7 +539,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>order</code>.
 		 */
-		public final Builder order(List<Map<String, SortOrder>> list) {
+		public final Builder order(List<NamedValue<SortOrder>> list) {
 			this.order = _listAddAll(this.order, list);
 			return this;
 		}
@@ -553,7 +549,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		 * <p>
 		 * Adds one or more values to <code>order</code>.
 		 */
-		public final Builder order(Map<String, SortOrder> value, Map<String, SortOrder>... values) {
+		public final Builder order(NamedValue<SortOrder> value, NamedValue<SortOrder>... values) {
 			this.order = _listAdd(this.order, value, values);
 			return this;
 		}
@@ -636,8 +632,7 @@ public class TermsAggregation extends BucketAggregationBase implements Aggregati
 		op.add(Builder::missingBucket, JsonpDeserializer.booleanDeserializer(), "missing_bucket");
 		op.add(Builder::valueType, JsonpDeserializer.stringDeserializer(), "value_type");
 		op.add(Builder::order,
-				JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringMapDeserializer(SortOrder._DESERIALIZER)),
-				"order");
+				JsonpDeserializer.arrayDeserializer(NamedValue.deserializer(() -> SortOrder._DESERIALIZER)), "order");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::shardSize, JsonpDeserializer.integerDeserializer(), "shard_size");
 		op.add(Builder::showTermDocCountError, JsonpDeserializer.booleanDeserializer(), "show_term_doc_count_error");

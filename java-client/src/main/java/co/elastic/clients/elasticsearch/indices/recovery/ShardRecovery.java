@@ -72,6 +72,7 @@ public class ShardRecovery implements JsonpSerializable {
 	@Nullable
 	private final String stopTime;
 
+	@Nullable
 	private final String stopTimeInMillis;
 
 	private final RecoveryOrigin target;
@@ -100,7 +101,7 @@ public class ShardRecovery implements JsonpSerializable {
 		this.startTime = builder.startTime;
 		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
 		this.stopTime = builder.stopTime;
-		this.stopTimeInMillis = ApiTypeHelper.requireNonNull(builder.stopTimeInMillis, this, "stopTimeInMillis");
+		this.stopTimeInMillis = builder.stopTimeInMillis;
 		this.target = ApiTypeHelper.requireNonNull(builder.target, this, "target");
 		this.totalTime = builder.totalTime;
 		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
@@ -181,8 +182,9 @@ public class ShardRecovery implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code stop_time_in_millis}
+	 * API name: {@code stop_time_in_millis}
 	 */
+	@Nullable
 	public final String stopTimeInMillis() {
 		return this.stopTimeInMillis;
 	}
@@ -274,9 +276,11 @@ public class ShardRecovery implements JsonpSerializable {
 			generator.write(this.stopTime);
 
 		}
-		generator.writeKey("stop_time_in_millis");
-		generator.write(this.stopTimeInMillis);
+		if (this.stopTimeInMillis != null) {
+			generator.writeKey("stop_time_in_millis");
+			generator.write(this.stopTimeInMillis);
 
+		}
 		generator.writeKey("target");
 		this.target.serialize(generator, mapper);
 
@@ -332,6 +336,7 @@ public class ShardRecovery implements JsonpSerializable {
 		@Nullable
 		private String stopTime;
 
+		@Nullable
 		private String stopTimeInMillis;
 
 		private RecoveryOrigin target;
@@ -441,9 +446,9 @@ public class ShardRecovery implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code stop_time_in_millis}
+		 * API name: {@code stop_time_in_millis}
 		 */
-		public final Builder stopTimeInMillis(String value) {
+		public final Builder stopTimeInMillis(@Nullable String value) {
 			this.stopTimeInMillis = value;
 			return this;
 		}
