@@ -54,7 +54,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	private NoriPartOfSpeechTokenFilter(Builder builder) {
 		super(builder);
 
-		this.stoptags = ApiTypeHelper.unmodifiableRequired(builder.stoptags, this, "stoptags");
+		this.stoptags = ApiTypeHelper.unmodifiable(builder.stoptags);
 
 	}
 
@@ -71,7 +71,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	}
 
 	/**
-	 * Required - API name: {@code stoptags}
+	 * API name: {@code stoptags}
 	 */
 	public final List<String> stoptags() {
 		return this.stoptags;
@@ -103,10 +103,11 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<NoriPartOfSpeechTokenFilter> {
+		@Nullable
 		private List<String> stoptags;
 
 		/**
-		 * Required - API name: {@code stoptags}
+		 * API name: {@code stoptags}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>stoptags</code>.
 		 */
@@ -116,7 +117,7 @@ public class NoriPartOfSpeechTokenFilter extends TokenFilterBase implements Toke
 		}
 
 		/**
-		 * Required - API name: {@code stoptags}
+		 * API name: {@code stoptags}
 		 * <p>
 		 * Adds one or more values to <code>stoptags</code>.
 		 */

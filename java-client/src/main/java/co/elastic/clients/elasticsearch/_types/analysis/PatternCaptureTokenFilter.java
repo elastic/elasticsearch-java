@@ -50,7 +50,8 @@ import javax.annotation.Nullable;
 public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
 	private final List<String> patterns;
 
-	private final boolean preserveOriginal;
+	@Nullable
+	private final Boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -58,7 +59,7 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		super(builder);
 
 		this.patterns = ApiTypeHelper.unmodifiableRequired(builder.patterns, this, "patterns");
-		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+		this.preserveOriginal = builder.preserveOriginal;
 
 	}
 
@@ -82,9 +83,10 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 	}
 
 	/**
-	 * Required - API name: {@code preserve_original}
+	 * API name: {@code preserve_original}
 	 */
-	public final boolean preserveOriginal() {
+	@Nullable
+	public final Boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
@@ -102,8 +104,11 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 			generator.writeEnd();
 
 		}
-		generator.writeKey("preserve_original");
-		generator.write(this.preserveOriginal);
+		if (this.preserveOriginal != null) {
+			generator.writeKey("preserve_original");
+			generator.write(this.preserveOriginal);
+
+		}
 
 	}
 
@@ -118,6 +123,7 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 				ObjectBuilder<PatternCaptureTokenFilter> {
 		private List<String> patterns;
 
+		@Nullable
 		private Boolean preserveOriginal;
 
 		/**
@@ -141,9 +147,9 @@ public class PatternCaptureTokenFilter extends TokenFilterBase implements TokenF
 		}
 
 		/**
-		 * Required - API name: {@code preserve_original}
+		 * API name: {@code preserve_original}
 		 */
-		public final Builder preserveOriginal(boolean value) {
+		public final Builder preserveOriginal(@Nullable Boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}

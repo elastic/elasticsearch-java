@@ -47,23 +47,26 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final boolean dedup;
+	@Nullable
+	private final Boolean dedup;
 
+	@Nullable
 	private final String dictionary;
 
 	private final String locale;
 
-	private final boolean longestOnly;
+	@Nullable
+	private final Boolean longestOnly;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private HunspellTokenFilter(Builder builder) {
 		super(builder);
 
-		this.dedup = ApiTypeHelper.requireNonNull(builder.dedup, this, "dedup");
-		this.dictionary = ApiTypeHelper.requireNonNull(builder.dictionary, this, "dictionary");
+		this.dedup = builder.dedup;
+		this.dictionary = builder.dictionary;
 		this.locale = ApiTypeHelper.requireNonNull(builder.locale, this, "locale");
-		this.longestOnly = ApiTypeHelper.requireNonNull(builder.longestOnly, this, "longestOnly");
+		this.longestOnly = builder.longestOnly;
 
 	}
 
@@ -80,15 +83,17 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
-	 * Required - API name: {@code dedup}
+	 * API name: {@code dedup}
 	 */
-	public final boolean dedup() {
+	@Nullable
+	public final Boolean dedup() {
 		return this.dedup;
 	}
 
 	/**
-	 * Required - API name: {@code dictionary}
+	 * API name: {@code dictionary}
 	 */
+	@Nullable
 	public final String dictionary() {
 		return this.dictionary;
 	}
@@ -101,9 +106,10 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
-	 * Required - API name: {@code longest_only}
+	 * API name: {@code longest_only}
 	 */
-	public final boolean longestOnly() {
+	@Nullable
+	public final Boolean longestOnly() {
 		return this.longestOnly;
 	}
 
@@ -111,17 +117,24 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 
 		generator.write("type", "hunspell");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("dedup");
-		generator.write(this.dedup);
+		if (this.dedup != null) {
+			generator.writeKey("dedup");
+			generator.write(this.dedup);
 
-		generator.writeKey("dictionary");
-		generator.write(this.dictionary);
+		}
+		if (this.dictionary != null) {
+			generator.writeKey("dictionary");
+			generator.write(this.dictionary);
 
+		}
 		generator.writeKey("locale");
 		generator.write(this.locale);
 
-		generator.writeKey("longest_only");
-		generator.write(this.longestOnly);
+		if (this.longestOnly != null) {
+			generator.writeKey("longest_only");
+			generator.write(this.longestOnly);
+
+		}
 
 	}
 
@@ -134,26 +147,29 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<HunspellTokenFilter> {
+		@Nullable
 		private Boolean dedup;
 
+		@Nullable
 		private String dictionary;
 
 		private String locale;
 
+		@Nullable
 		private Boolean longestOnly;
 
 		/**
-		 * Required - API name: {@code dedup}
+		 * API name: {@code dedup}
 		 */
-		public final Builder dedup(boolean value) {
+		public final Builder dedup(@Nullable Boolean value) {
 			this.dedup = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code dictionary}
+		 * API name: {@code dictionary}
 		 */
-		public final Builder dictionary(String value) {
+		public final Builder dictionary(@Nullable String value) {
 			this.dictionary = value;
 			return this;
 		}
@@ -167,9 +183,9 @@ public class HunspellTokenFilter extends TokenFilterBase implements TokenFilterD
 		}
 
 		/**
-		 * Required - API name: {@code longest_only}
+		 * API name: {@code longest_only}
 		 */
-		public final Builder longestOnly(boolean value) {
+		public final Builder longestOnly(@Nullable Boolean value) {
 			this.longestOnly = value;
 			return this;
 		}

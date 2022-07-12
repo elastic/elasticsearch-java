@@ -43,7 +43,7 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: _types.Time
+// typedef: _types.Duration
 
 /**
  * Whenever durations need to be specified, e.g. for a timeout parameter, the
@@ -52,7 +52,8 @@ import javax.annotation.Nullable;
  * @see <a href=
  *      "https://github.com/elastic/elasticsearch/blob/master/libs/core/src/main/java/org/elasticsearch/core/TimeValue.java">Documentation
  *      on elastic.co</a>
- * @see <a href="../doc-files/api-spec.html#_types.Time">API specification</a>
+ * @see <a href="../doc-files/api-spec.html#_types.Duration">API
+ *      specification</a>
  */
 @JsonpDeserializable
 public class Time implements TaggedUnion<Time.Kind, Object>, JsonpSerializable {

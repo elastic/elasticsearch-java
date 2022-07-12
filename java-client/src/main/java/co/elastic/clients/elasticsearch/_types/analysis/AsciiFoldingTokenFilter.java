@@ -28,12 +28,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.analysis.AsciiFoldingTokenFilter
 
@@ -45,14 +45,15 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final boolean preserveOriginal;
+	@Nullable
+	private final Boolean preserveOriginal;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private AsciiFoldingTokenFilter(Builder builder) {
 		super(builder);
 
-		this.preserveOriginal = ApiTypeHelper.requireNonNull(builder.preserveOriginal, this, "preserveOriginal");
+		this.preserveOriginal = builder.preserveOriginal;
 
 	}
 
@@ -69,9 +70,10 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 	}
 
 	/**
-	 * Required - API name: {@code preserve_original}
+	 * API name: {@code preserve_original}
 	 */
-	public final boolean preserveOriginal() {
+	@Nullable
+	public final Boolean preserveOriginal() {
 		return this.preserveOriginal;
 	}
 
@@ -79,8 +81,11 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 
 		generator.write("type", "asciifolding");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("preserve_original");
-		generator.write(this.preserveOriginal);
+		if (this.preserveOriginal != null) {
+			generator.writeKey("preserve_original");
+			generator.write(this.preserveOriginal);
+
+		}
 
 	}
 
@@ -93,12 +98,13 @@ public class AsciiFoldingTokenFilter extends TokenFilterBase implements TokenFil
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<AsciiFoldingTokenFilter> {
+		@Nullable
 		private Boolean preserveOriginal;
 
 		/**
-		 * Required - API name: {@code preserve_original}
+		 * API name: {@code preserve_original}
 		 */
-		public final Builder preserveOriginal(boolean value) {
+		public final Builder preserveOriginal(@Nullable Boolean value) {
 			this.preserveOriginal = value;
 			return this;
 		}
