@@ -59,6 +59,9 @@ import javax.annotation.Nullable;
 public class PutDatafeedResponse implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;
 
+	@Nullable
+	private final DatafeedAuthorization authorization;
+
 	private final ChunkingConfig chunkingConfig;
 
 	@Nullable
@@ -92,6 +95,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 	private PutDatafeedResponse(Builder builder) {
 
 		this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
+		this.authorization = builder.authorization;
 		this.chunkingConfig = ApiTypeHelper.requireNonNull(builder.chunkingConfig, this, "chunkingConfig");
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
@@ -117,6 +121,14 @@ public class PutDatafeedResponse implements JsonpSerializable {
 	 */
 	public final Map<String, Aggregation> aggregations() {
 		return this.aggregations;
+	}
+
+	/**
+	 * API name: {@code authorization}
+	 */
+	@Nullable
+	public final DatafeedAuthorization authorization() {
+		return this.authorization;
 	}
 
 	/**
@@ -234,6 +246,11 @@ public class PutDatafeedResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.authorization != null) {
+			generator.writeKey("authorization");
+			this.authorization.serialize(generator, mapper);
+
+		}
 		generator.writeKey("chunking_config");
 		this.chunkingConfig.serialize(generator, mapper);
 
@@ -325,6 +342,9 @@ public class PutDatafeedResponse implements JsonpSerializable {
 				ObjectBuilder<PutDatafeedResponse> {
 		private Map<String, Aggregation> aggregations;
 
+		@Nullable
+		private DatafeedAuthorization authorization;
+
 		private ChunkingConfig chunkingConfig;
 
 		@Nullable
@@ -382,6 +402,22 @@ public class PutDatafeedResponse implements JsonpSerializable {
 		 */
 		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
 			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code authorization}
+		 */
+		public final Builder authorization(@Nullable DatafeedAuthorization value) {
+			this.authorization = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code authorization}
+		 */
+		public final Builder authorization(
+				Function<DatafeedAuthorization.Builder, ObjectBuilder<DatafeedAuthorization>> fn) {
+			return this.authorization(fn.apply(new DatafeedAuthorization.Builder()).build());
 		}
 
 		/**
@@ -606,6 +642,7 @@ public class PutDatafeedResponse implements JsonpSerializable {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations");
+		op.add(Builder::authorization, DatafeedAuthorization._DESERIALIZER, "authorization");
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::delayedDataCheckConfig, DelayedDataCheckConfig._DESERIALIZER, "delayed_data_check_config");
 		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");

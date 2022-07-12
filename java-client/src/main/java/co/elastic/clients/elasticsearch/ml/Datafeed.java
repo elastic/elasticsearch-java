@@ -60,6 +60,9 @@ public class Datafeed implements JsonpSerializable {
 	private final Map<String, Aggregation> aggregations;
 
 	@Nullable
+	private final DatafeedAuthorization authorization;
+
+	@Nullable
 	private final ChunkingConfig chunkingConfig;
 
 	private final String datafeedId;
@@ -98,6 +101,7 @@ public class Datafeed implements JsonpSerializable {
 	private Datafeed(Builder builder) {
 
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
+		this.authorization = builder.authorization;
 		this.chunkingConfig = builder.chunkingConfig;
 		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.frequency = builder.frequency;
@@ -125,6 +129,18 @@ public class Datafeed implements JsonpSerializable {
 	 */
 	public final Map<String, Aggregation> aggregations() {
 		return this.aggregations;
+	}
+
+	/**
+	 * The security privileges that the datafeed uses to run its queries. If Elastic
+	 * Stack security features were disabled at the time of the most recent update
+	 * to the datafeed, this property is omitted.
+	 * <p>
+	 * API name: {@code authorization}
+	 */
+	@Nullable
+	public final DatafeedAuthorization authorization() {
+		return this.authorization;
 	}
 
 	/**
@@ -253,6 +269,11 @@ public class Datafeed implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.authorization != null) {
+			generator.writeKey("authorization");
+			this.authorization.serialize(generator, mapper);
+
+		}
 		if (this.chunkingConfig != null) {
 			generator.writeKey("chunking_config");
 			this.chunkingConfig.serialize(generator, mapper);
@@ -363,6 +384,9 @@ public class Datafeed implements JsonpSerializable {
 		private Map<String, Aggregation> aggregations;
 
 		@Nullable
+		private DatafeedAuthorization authorization;
+
+		@Nullable
 		private ChunkingConfig chunkingConfig;
 
 		private String datafeedId;
@@ -426,6 +450,30 @@ public class Datafeed implements JsonpSerializable {
 		 */
 		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
 			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
+		}
+
+		/**
+		 * The security privileges that the datafeed uses to run its queries. If Elastic
+		 * Stack security features were disabled at the time of the most recent update
+		 * to the datafeed, this property is omitted.
+		 * <p>
+		 * API name: {@code authorization}
+		 */
+		public final Builder authorization(@Nullable DatafeedAuthorization value) {
+			this.authorization = value;
+			return this;
+		}
+
+		/**
+		 * The security privileges that the datafeed uses to run its queries. If Elastic
+		 * Stack security features were disabled at the time of the most recent update
+		 * to the datafeed, this property is omitted.
+		 * <p>
+		 * API name: {@code authorization}
+		 */
+		public final Builder authorization(
+				Function<DatafeedAuthorization.Builder, ObjectBuilder<DatafeedAuthorization>> fn) {
+			return this.authorization(fn.apply(new DatafeedAuthorization.Builder()).build());
 		}
 
 		/**
@@ -670,6 +718,7 @@ public class Datafeed implements JsonpSerializable {
 
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations", "aggs");
+		op.add(Builder::authorization, DatafeedAuthorization._DESERIALIZER, "authorization");
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
 		op.add(Builder::datafeedId, JsonpDeserializer.stringDeserializer(), "datafeed_id");
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");

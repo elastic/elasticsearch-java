@@ -26,6 +26,7 @@ package co.elastic.clients.elasticsearch.transform;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
 import co.elastic.clients.elasticsearch.core.reindex.Source;
+import co.elastic.clients.elasticsearch.ml.TransformAuthorization;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -55,6 +56,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class UpdateTransformResponse implements JsonpSerializable {
+	@Nullable
+	private final TransformAuthorization authorization;
+
 	private final long createTime;
 
 	private final String description;
@@ -90,6 +94,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 	private UpdateTransformResponse(Builder builder) {
 
+		this.authorization = builder.authorization;
 		this.createTime = ApiTypeHelper.requireNonNull(builder.createTime, this, "createTime");
 		this.description = ApiTypeHelper.requireNonNull(builder.description, this, "description");
 		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
@@ -108,6 +113,14 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 	public static UpdateTransformResponse of(Function<Builder, ObjectBuilder<UpdateTransformResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code authorization}
+	 */
+	@Nullable
+	public final TransformAuthorization authorization() {
+		return this.authorization;
 	}
 
 	/**
@@ -217,6 +230,11 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.authorization != null) {
+			generator.writeKey("authorization");
+			this.authorization.serialize(generator, mapper);
+
+		}
 		generator.writeKey("create_time");
 		generator.write(this.createTime);
 
@@ -291,6 +309,9 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<UpdateTransformResponse> {
+		@Nullable
+		private TransformAuthorization authorization;
+
 		private Long createTime;
 
 		private String description;
@@ -322,6 +343,22 @@ public class UpdateTransformResponse implements JsonpSerializable {
 
 		@Nullable
 		private Map<String, JsonData> meta;
+
+		/**
+		 * API name: {@code authorization}
+		 */
+		public final Builder authorization(@Nullable TransformAuthorization value) {
+			this.authorization = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code authorization}
+		 */
+		public final Builder authorization(
+				Function<TransformAuthorization.Builder, ObjectBuilder<TransformAuthorization>> fn) {
+			return this.authorization(fn.apply(new TransformAuthorization.Builder()).build());
+		}
 
 		/**
 		 * Required - API name: {@code create_time}
@@ -524,6 +561,7 @@ public class UpdateTransformResponse implements JsonpSerializable {
 	protected static void setupUpdateTransformResponseDeserializer(
 			ObjectDeserializer<UpdateTransformResponse.Builder> op) {
 
+		op.add(Builder::authorization, TransformAuthorization._DESERIALIZER, "authorization");
 		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
 		op.add(Builder::dest, Destination._DESERIALIZER, "dest");

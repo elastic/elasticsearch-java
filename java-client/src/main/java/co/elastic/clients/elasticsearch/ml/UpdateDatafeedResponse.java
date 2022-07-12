@@ -57,6 +57,9 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class UpdateDatafeedResponse implements JsonpSerializable {
+	@Nullable
+	private final DatafeedAuthorization authorization;
+
 	private final Map<String, Aggregation> aggregations;
 
 	private final ChunkingConfig chunkingConfig;
@@ -70,10 +73,10 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 
 	private final List<String> indices;
 
-	private final String jobId;
-
 	@Nullable
 	private final IndicesOptions indicesOptions;
+
+	private final String jobId;
 
 	private final int maxEmptySearches;
 
@@ -91,14 +94,15 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 
 	private UpdateDatafeedResponse(Builder builder) {
 
+		this.authorization = builder.authorization;
 		this.aggregations = ApiTypeHelper.unmodifiableRequired(builder.aggregations, this, "aggregations");
 		this.chunkingConfig = ApiTypeHelper.requireNonNull(builder.chunkingConfig, this, "chunkingConfig");
 		this.delayedDataCheckConfig = builder.delayedDataCheckConfig;
 		this.datafeedId = ApiTypeHelper.requireNonNull(builder.datafeedId, this, "datafeedId");
 		this.frequency = ApiTypeHelper.requireNonNull(builder.frequency, this, "frequency");
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
-		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.indicesOptions = builder.indicesOptions;
+		this.jobId = ApiTypeHelper.requireNonNull(builder.jobId, this, "jobId");
 		this.maxEmptySearches = ApiTypeHelper.requireNonNull(builder.maxEmptySearches, this, "maxEmptySearches");
 		this.query = ApiTypeHelper.requireNonNull(builder.query, this, "query");
 		this.queryDelay = ApiTypeHelper.requireNonNull(builder.queryDelay, this, "queryDelay");
@@ -110,6 +114,14 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 
 	public static UpdateDatafeedResponse of(Function<Builder, ObjectBuilder<UpdateDatafeedResponse>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * API name: {@code authorization}
+	 */
+	@Nullable
+	public final DatafeedAuthorization authorization() {
+		return this.authorization;
 	}
 
 	/**
@@ -156,18 +168,18 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code job_id}
-	 */
-	public final String jobId() {
-		return this.jobId;
-	}
-
-	/**
 	 * API name: {@code indices_options}
 	 */
 	@Nullable
 	public final IndicesOptions indicesOptions() {
 		return this.indicesOptions;
+	}
+
+	/**
+	 * Required - API name: {@code job_id}
+	 */
+	public final String jobId() {
+		return this.jobId;
 	}
 
 	/**
@@ -223,6 +235,11 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.authorization != null) {
+			generator.writeKey("authorization");
+			this.authorization.serialize(generator, mapper);
+
+		}
 		if (ApiTypeHelper.isDefined(this.aggregations)) {
 			generator.writeKey("aggregations");
 			generator.writeStartObject();
@@ -258,14 +275,14 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
-		generator.writeKey("job_id");
-		generator.write(this.jobId);
-
 		if (this.indicesOptions != null) {
 			generator.writeKey("indices_options");
 			this.indicesOptions.serialize(generator, mapper);
 
 		}
+		generator.writeKey("job_id");
+		generator.write(this.jobId);
+
 		generator.writeKey("max_empty_searches");
 		generator.write(this.maxEmptySearches);
 
@@ -323,6 +340,9 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<UpdateDatafeedResponse> {
+		@Nullable
+		private DatafeedAuthorization authorization;
+
 		private Map<String, Aggregation> aggregations;
 
 		private ChunkingConfig chunkingConfig;
@@ -336,10 +356,10 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 
 		private List<String> indices;
 
-		private String jobId;
-
 		@Nullable
 		private IndicesOptions indicesOptions;
+
+		private String jobId;
 
 		private Integer maxEmptySearches;
 
@@ -354,6 +374,22 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		private Map<String, ScriptField> scriptFields;
 
 		private Integer scrollSize;
+
+		/**
+		 * API name: {@code authorization}
+		 */
+		public final Builder authorization(@Nullable DatafeedAuthorization value) {
+			this.authorization = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code authorization}
+		 */
+		public final Builder authorization(
+				Function<DatafeedAuthorization.Builder, ObjectBuilder<DatafeedAuthorization>> fn) {
+			return this.authorization(fn.apply(new DatafeedAuthorization.Builder()).build());
+		}
 
 		/**
 		 * Required - API name: {@code aggregations}
@@ -459,14 +495,6 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code job_id}
-		 */
-		public final Builder jobId(String value) {
-			this.jobId = value;
-			return this;
-		}
-
-		/**
 		 * API name: {@code indices_options}
 		 */
 		public final Builder indicesOptions(@Nullable IndicesOptions value) {
@@ -479,6 +507,14 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		 */
 		public final Builder indicesOptions(Function<IndicesOptions.Builder, ObjectBuilder<IndicesOptions>> fn) {
 			return this.indicesOptions(fn.apply(new IndicesOptions.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code job_id}
+		 */
+		public final Builder jobId(String value) {
+			this.jobId = value;
+			return this;
 		}
 
 		/**
@@ -605,6 +641,7 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 	protected static void setupUpdateDatafeedResponseDeserializer(
 			ObjectDeserializer<UpdateDatafeedResponse.Builder> op) {
 
+		op.add(Builder::authorization, DatafeedAuthorization._DESERIALIZER, "authorization");
 		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
 				"aggregations");
 		op.add(Builder::chunkingConfig, ChunkingConfig._DESERIALIZER, "chunking_config");
@@ -613,8 +650,8 @@ public class UpdateDatafeedResponse implements JsonpSerializable {
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
 		op.add(Builder::indices, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"indices");
-		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::indicesOptions, IndicesOptions._DESERIALIZER, "indices_options");
+		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::maxEmptySearches, JsonpDeserializer.integerDeserializer(), "max_empty_searches");
 		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::queryDelay, Time._DESERIALIZER, "query_delay");

@@ -25,8 +25,10 @@ package co.elastic.clients.elasticsearch.transform.get_transform;
 
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.core.reindex.Destination;
+import co.elastic.clients.elasticsearch.ml.TransformAuthorization;
 import co.elastic.clients.elasticsearch.transform.Latest;
 import co.elastic.clients.elasticsearch.transform.Pivot;
+import co.elastic.clients.elasticsearch.transform.RetentionPolicy;
 import co.elastic.clients.elasticsearch.transform.Settings;
 import co.elastic.clients.elasticsearch.transform.Source;
 import co.elastic.clients.elasticsearch.transform.Sync;
@@ -59,10 +61,16 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TransformSummary implements JsonpSerializable {
-	private final Destination dest;
+	@Nullable
+	private final TransformAuthorization authorization;
+
+	@Nullable
+	private final Long createTime;
 
 	@Nullable
 	private final String description;
+
+	private final Destination dest;
 
 	@Nullable
 	private final Time frequency;
@@ -70,7 +78,13 @@ public class TransformSummary implements JsonpSerializable {
 	private final String id;
 
 	@Nullable
+	private final Latest latest;
+
+	@Nullable
 	private final Pivot pivot;
+
+	@Nullable
+	private final RetentionPolicy retentionPolicy;
 
 	@Nullable
 	private final Settings settings;
@@ -81,13 +95,7 @@ public class TransformSummary implements JsonpSerializable {
 	private final Sync sync;
 
 	@Nullable
-	private final Long createTime;
-
-	@Nullable
 	private final String version;
-
-	@Nullable
-	private final Latest latest;
 
 	private final Map<String, JsonData> meta;
 
@@ -95,17 +103,19 @@ public class TransformSummary implements JsonpSerializable {
 
 	private TransformSummary(Builder builder) {
 
-		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
+		this.authorization = builder.authorization;
+		this.createTime = builder.createTime;
 		this.description = builder.description;
+		this.dest = ApiTypeHelper.requireNonNull(builder.dest, this, "dest");
 		this.frequency = builder.frequency;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.latest = builder.latest;
 		this.pivot = builder.pivot;
+		this.retentionPolicy = builder.retentionPolicy;
 		this.settings = builder.settings;
 		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
 		this.sync = builder.sync;
-		this.createTime = builder.createTime;
 		this.version = builder.version;
-		this.latest = builder.latest;
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 
 	}
@@ -115,12 +125,25 @@ public class TransformSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - The destination for the transform.
+	 * The security privileges that the transform uses to run its queries. If
+	 * Elastic Stack security features were disabled at the time of the most recent
+	 * update to the transform, this property is omitted.
 	 * <p>
-	 * API name: {@code dest}
+	 * API name: {@code authorization}
 	 */
-	public final Destination dest() {
-		return this.dest;
+	@Nullable
+	public final TransformAuthorization authorization() {
+		return this.authorization;
+	}
+
+	/**
+	 * The time the transform was created.
+	 * <p>
+	 * API name: {@code create_time}
+	 */
+	@Nullable
+	public final Long createTime() {
+		return this.createTime;
 	}
 
 	/**
@@ -131,6 +154,15 @@ public class TransformSummary implements JsonpSerializable {
 	@Nullable
 	public final String description() {
 		return this.description;
+	}
+
+	/**
+	 * Required - The destination for the transform.
+	 * <p>
+	 * API name: {@code dest}
+	 */
+	public final Destination dest() {
+		return this.dest;
 	}
 
 	/**
@@ -149,6 +181,14 @@ public class TransformSummary implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code latest}
+	 */
+	@Nullable
+	public final Latest latest() {
+		return this.latest;
+	}
+
+	/**
 	 * The pivot method transforms the data by aggregating and grouping it.
 	 * <p>
 	 * API name: {@code pivot}
@@ -156,6 +196,14 @@ public class TransformSummary implements JsonpSerializable {
 	@Nullable
 	public final Pivot pivot() {
 		return this.pivot;
+	}
+
+	/**
+	 * API name: {@code retention_policy}
+	 */
+	@Nullable
+	public final RetentionPolicy retentionPolicy() {
+		return this.retentionPolicy;
 	}
 
 	/**
@@ -188,27 +236,14 @@ public class TransformSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * API name: {@code create_time}
-	 */
-	@Nullable
-	public final Long createTime() {
-		return this.createTime;
-	}
-
-	/**
+	 * The version of Elasticsearch that existed on the node when the transform was
+	 * created.
+	 * <p>
 	 * API name: {@code version}
 	 */
 	@Nullable
 	public final String version() {
 		return this.version;
-	}
-
-	/**
-	 * API name: {@code latest}
-	 */
-	@Nullable
-	public final Latest latest() {
-		return this.latest;
 	}
 
 	/**
@@ -229,14 +264,24 @@ public class TransformSummary implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("dest");
-		this.dest.serialize(generator, mapper);
+		if (this.authorization != null) {
+			generator.writeKey("authorization");
+			this.authorization.serialize(generator, mapper);
 
+		}
+		if (this.createTime != null) {
+			generator.writeKey("create_time");
+			generator.write(this.createTime);
+
+		}
 		if (this.description != null) {
 			generator.writeKey("description");
 			generator.write(this.description);
 
 		}
+		generator.writeKey("dest");
+		this.dest.serialize(generator, mapper);
+
 		if (this.frequency != null) {
 			generator.writeKey("frequency");
 			this.frequency.serialize(generator, mapper);
@@ -245,9 +290,19 @@ public class TransformSummary implements JsonpSerializable {
 		generator.writeKey("id");
 		generator.write(this.id);
 
+		if (this.latest != null) {
+			generator.writeKey("latest");
+			this.latest.serialize(generator, mapper);
+
+		}
 		if (this.pivot != null) {
 			generator.writeKey("pivot");
 			this.pivot.serialize(generator, mapper);
+
+		}
+		if (this.retentionPolicy != null) {
+			generator.writeKey("retention_policy");
+			this.retentionPolicy.serialize(generator, mapper);
 
 		}
 		if (this.settings != null) {
@@ -263,19 +318,9 @@ public class TransformSummary implements JsonpSerializable {
 			this.sync.serialize(generator, mapper);
 
 		}
-		if (this.createTime != null) {
-			generator.writeKey("create_time");
-			generator.write(this.createTime);
-
-		}
 		if (this.version != null) {
 			generator.writeKey("version");
 			generator.write(this.version);
-
-		}
-		if (this.latest != null) {
-			generator.writeKey("latest");
-			this.latest.serialize(generator, mapper);
 
 		}
 		if (ApiTypeHelper.isDefined(this.meta)) {
@@ -304,10 +349,16 @@ public class TransformSummary implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TransformSummary> {
-		private Destination dest;
+		@Nullable
+		private TransformAuthorization authorization;
+
+		@Nullable
+		private Long createTime;
 
 		@Nullable
 		private String description;
+
+		private Destination dest;
 
 		@Nullable
 		private Time frequency;
@@ -315,7 +366,13 @@ public class TransformSummary implements JsonpSerializable {
 		private String id;
 
 		@Nullable
+		private Latest latest;
+
+		@Nullable
 		private Pivot pivot;
+
+		@Nullable
+		private RetentionPolicy retentionPolicy;
 
 		@Nullable
 		private Settings settings;
@@ -326,16 +383,54 @@ public class TransformSummary implements JsonpSerializable {
 		private Sync sync;
 
 		@Nullable
-		private Long createTime;
-
-		@Nullable
 		private String version;
 
 		@Nullable
-		private Latest latest;
-
-		@Nullable
 		private Map<String, JsonData> meta;
+
+		/**
+		 * The security privileges that the transform uses to run its queries. If
+		 * Elastic Stack security features were disabled at the time of the most recent
+		 * update to the transform, this property is omitted.
+		 * <p>
+		 * API name: {@code authorization}
+		 */
+		public final Builder authorization(@Nullable TransformAuthorization value) {
+			this.authorization = value;
+			return this;
+		}
+
+		/**
+		 * The security privileges that the transform uses to run its queries. If
+		 * Elastic Stack security features were disabled at the time of the most recent
+		 * update to the transform, this property is omitted.
+		 * <p>
+		 * API name: {@code authorization}
+		 */
+		public final Builder authorization(
+				Function<TransformAuthorization.Builder, ObjectBuilder<TransformAuthorization>> fn) {
+			return this.authorization(fn.apply(new TransformAuthorization.Builder()).build());
+		}
+
+		/**
+		 * The time the transform was created.
+		 * <p>
+		 * API name: {@code create_time}
+		 */
+		public final Builder createTime(@Nullable Long value) {
+			this.createTime = value;
+			return this;
+		}
+
+		/**
+		 * Free text description of the transform.
+		 * <p>
+		 * API name: {@code description}
+		 */
+		public final Builder description(@Nullable String value) {
+			this.description = value;
+			return this;
+		}
 
 		/**
 		 * Required - The destination for the transform.
@@ -354,16 +449,6 @@ public class TransformSummary implements JsonpSerializable {
 		 */
 		public final Builder dest(Function<Destination.Builder, ObjectBuilder<Destination>> fn) {
 			return this.dest(fn.apply(new Destination.Builder()).build());
-		}
-
-		/**
-		 * Free text description of the transform.
-		 * <p>
-		 * API name: {@code description}
-		 */
-		public final Builder description(@Nullable String value) {
-			this.description = value;
-			return this;
 		}
 
 		/**
@@ -390,6 +475,21 @@ public class TransformSummary implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code latest}
+		 */
+		public final Builder latest(@Nullable Latest value) {
+			this.latest = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code latest}
+		 */
+		public final Builder latest(Function<Latest.Builder, ObjectBuilder<Latest>> fn) {
+			return this.latest(fn.apply(new Latest.Builder()).build());
+		}
+
+		/**
 		 * The pivot method transforms the data by aggregating and grouping it.
 		 * <p>
 		 * API name: {@code pivot}
@@ -406,6 +506,21 @@ public class TransformSummary implements JsonpSerializable {
 		 */
 		public final Builder pivot(Function<Pivot.Builder, ObjectBuilder<Pivot>> fn) {
 			return this.pivot(fn.apply(new Pivot.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code retention_policy}
+		 */
+		public final Builder retentionPolicy(@Nullable RetentionPolicy value) {
+			this.retentionPolicy = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code retention_policy}
+		 */
+		public final Builder retentionPolicy(Function<RetentionPolicy.Builder, ObjectBuilder<RetentionPolicy>> fn) {
+			return this.retentionPolicy(fn.apply(new RetentionPolicy.Builder()).build());
 		}
 
 		/**
@@ -466,34 +581,14 @@ public class TransformSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * API name: {@code create_time}
-		 */
-		public final Builder createTime(@Nullable Long value) {
-			this.createTime = value;
-			return this;
-		}
-
-		/**
+		 * The version of Elasticsearch that existed on the node when the transform was
+		 * created.
+		 * <p>
 		 * API name: {@code version}
 		 */
 		public final Builder version(@Nullable String value) {
 			this.version = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code latest}
-		 */
-		public final Builder latest(@Nullable Latest value) {
-			this.latest = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code latest}
-		 */
-		public final Builder latest(Function<Latest.Builder, ObjectBuilder<Latest>> fn) {
-			return this.latest(fn.apply(new Latest.Builder()).build());
 		}
 
 		/**
@@ -544,17 +639,19 @@ public class TransformSummary implements JsonpSerializable {
 
 	protected static void setupTransformSummaryDeserializer(ObjectDeserializer<TransformSummary.Builder> op) {
 
-		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
+		op.add(Builder::authorization, TransformAuthorization._DESERIALIZER, "authorization");
+		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
+		op.add(Builder::dest, Destination._DESERIALIZER, "dest");
 		op.add(Builder::frequency, Time._DESERIALIZER, "frequency");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
+		op.add(Builder::latest, Latest._DESERIALIZER, "latest");
 		op.add(Builder::pivot, Pivot._DESERIALIZER, "pivot");
+		op.add(Builder::retentionPolicy, RetentionPolicy._DESERIALIZER, "retention_policy");
 		op.add(Builder::settings, Settings._DESERIALIZER, "settings");
 		op.add(Builder::source, Source._DESERIALIZER, "source");
 		op.add(Builder::sync, Sync._DESERIALIZER, "sync");
-		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
-		op.add(Builder::latest, Latest._DESERIALIZER, "latest");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");
 
 	}
