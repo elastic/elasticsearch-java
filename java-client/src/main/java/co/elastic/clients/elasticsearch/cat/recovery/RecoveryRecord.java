@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.cat.recovery;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -30,9 +31,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -54,19 +57,19 @@ public class RecoveryRecord implements JsonpSerializable {
 	private final String shard;
 
 	@Nullable
-	private final String startTime;
+	private final DateTime startTime;
 
 	@Nullable
-	private final String startTimeMillis;
+	private final Long startTimeMillis;
 
 	@Nullable
-	private final String stopTime;
+	private final DateTime stopTime;
 
 	@Nullable
-	private final String stopTimeMillis;
+	private final Long stopTimeMillis;
 
 	@Nullable
-	private final String time;
+	private final Time time;
 
 	@Nullable
 	private final String type;
@@ -188,7 +191,7 @@ public class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code start_time}
 	 */
 	@Nullable
-	public final String startTime() {
+	public final DateTime startTime() {
 		return this.startTime;
 	}
 
@@ -198,7 +201,7 @@ public class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code start_time_millis}
 	 */
 	@Nullable
-	public final String startTimeMillis() {
+	public final Long startTimeMillis() {
 		return this.startTimeMillis;
 	}
 
@@ -208,7 +211,7 @@ public class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code stop_time}
 	 */
 	@Nullable
-	public final String stopTime() {
+	public final DateTime stopTime() {
 		return this.stopTime;
 	}
 
@@ -218,7 +221,7 @@ public class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code stop_time_millis}
 	 */
 	@Nullable
-	public final String stopTimeMillis() {
+	public final Long stopTimeMillis() {
 		return this.stopTimeMillis;
 	}
 
@@ -228,7 +231,7 @@ public class RecoveryRecord implements JsonpSerializable {
 	 * API name: {@code time}
 	 */
 	@Nullable
-	public final String time() {
+	public final Time time() {
 		return this.time;
 	}
 
@@ -445,8 +448,7 @@ public class RecoveryRecord implements JsonpSerializable {
 		}
 		if (this.startTime != null) {
 			generator.writeKey("start_time");
-			generator.write(this.startTime);
-
+			this.startTime.serialize(generator, mapper);
 		}
 		if (this.startTimeMillis != null) {
 			generator.writeKey("start_time_millis");
@@ -455,8 +457,7 @@ public class RecoveryRecord implements JsonpSerializable {
 		}
 		if (this.stopTime != null) {
 			generator.writeKey("stop_time");
-			generator.write(this.stopTime);
-
+			this.stopTime.serialize(generator, mapper);
 		}
 		if (this.stopTimeMillis != null) {
 			generator.writeKey("stop_time_millis");
@@ -465,7 +466,7 @@ public class RecoveryRecord implements JsonpSerializable {
 		}
 		if (this.time != null) {
 			generator.writeKey("time");
-			generator.write(this.time);
+			this.time.serialize(generator, mapper);
 
 		}
 		if (this.type != null) {
@@ -585,19 +586,19 @@ public class RecoveryRecord implements JsonpSerializable {
 		private String shard;
 
 		@Nullable
-		private String startTime;
+		private DateTime startTime;
 
 		@Nullable
-		private String startTimeMillis;
+		private Long startTimeMillis;
 
 		@Nullable
-		private String stopTime;
+		private DateTime stopTime;
 
 		@Nullable
-		private String stopTimeMillis;
+		private Long stopTimeMillis;
 
 		@Nullable
-		private String time;
+		private Time time;
 
 		@Nullable
 		private String type;
@@ -681,7 +682,7 @@ public class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time}
 		 */
-		public final Builder startTime(@Nullable String value) {
+		public final Builder startTime(@Nullable DateTime value) {
 			this.startTime = value;
 			return this;
 		}
@@ -691,7 +692,7 @@ public class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time_millis}
 		 */
-		public final Builder startTimeMillis(@Nullable String value) {
+		public final Builder startTimeMillis(@Nullable Long value) {
 			this.startTimeMillis = value;
 			return this;
 		}
@@ -701,7 +702,7 @@ public class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stop_time}
 		 */
-		public final Builder stopTime(@Nullable String value) {
+		public final Builder stopTime(@Nullable DateTime value) {
 			this.stopTime = value;
 			return this;
 		}
@@ -711,7 +712,7 @@ public class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code stop_time_millis}
 		 */
-		public final Builder stopTimeMillis(@Nullable String value) {
+		public final Builder stopTimeMillis(@Nullable Long value) {
 			this.stopTimeMillis = value;
 			return this;
 		}
@@ -721,9 +722,18 @@ public class RecoveryRecord implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code time}
 		 */
-		public final Builder time(@Nullable String value) {
+		public final Builder time(@Nullable Time value) {
 			this.time = value;
 			return this;
+		}
+
+		/**
+		 * recovery time
+		 * <p>
+		 * API name: {@code time}
+		 */
+		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.time(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -946,11 +956,11 @@ public class RecoveryRecord implements JsonpSerializable {
 
 		op.add(Builder::index, JsonpDeserializer.stringDeserializer(), "index", "i", "idx");
 		op.add(Builder::shard, JsonpDeserializer.stringDeserializer(), "shard", "s", "sh");
-		op.add(Builder::startTime, JsonpDeserializer.stringDeserializer(), "start_time", "start");
-		op.add(Builder::startTimeMillis, JsonpDeserializer.stringDeserializer(), "start_time_millis", "start_millis");
-		op.add(Builder::stopTime, JsonpDeserializer.stringDeserializer(), "stop_time", "stop");
-		op.add(Builder::stopTimeMillis, JsonpDeserializer.stringDeserializer(), "stop_time_millis", "stop_millis");
-		op.add(Builder::time, JsonpDeserializer.stringDeserializer(), "time", "t", "ti");
+		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time", "start");
+		op.add(Builder::startTimeMillis, JsonpDeserializer.longDeserializer(), "start_time_millis", "start_millis");
+		op.add(Builder::stopTime, DateTime._DESERIALIZER, "stop_time", "stop");
+		op.add(Builder::stopTimeMillis, JsonpDeserializer.longDeserializer(), "stop_time_millis", "stop_millis");
+		op.add(Builder::time, Time._DESERIALIZER, "time", "t", "ti");
 		op.add(Builder::type, JsonpDeserializer.stringDeserializer(), "type", "ty");
 		op.add(Builder::stage, JsonpDeserializer.stringDeserializer(), "stage", "st");
 		op.add(Builder::sourceHost, JsonpDeserializer.stringDeserializer(), "source_host", "shost");

@@ -26,7 +26,6 @@ package co.elastic.clients.elasticsearch.indices;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -68,19 +67,10 @@ public class DiskUsageRequest extends RequestBase {
 	@Nullable
 	private final Boolean ignoreUnavailable;
 
-	private final String index;
-
-	@Nullable
-	private final TimeUnit masterTimeout;
+	private final List<String> index;
 
 	@Nullable
 	private final Boolean runExpensiveTasks;
-
-	@Nullable
-	private final TimeUnit timeout;
-
-	@Nullable
-	private final String waitForActiveShards;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -90,11 +80,8 @@ public class DiskUsageRequest extends RequestBase {
 		this.expandWildcards = ApiTypeHelper.unmodifiable(builder.expandWildcards);
 		this.flush = builder.flush;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
-		this.index = ApiTypeHelper.requireNonNull(builder.index, this, "index");
-		this.masterTimeout = builder.masterTimeout;
+		this.index = ApiTypeHelper.unmodifiableRequired(builder.index, this, "index");
 		this.runExpensiveTasks = builder.runExpensiveTasks;
-		this.timeout = builder.timeout;
-		this.waitForActiveShards = builder.waitForActiveShards;
 
 	}
 
@@ -156,19 +143,8 @@ public class DiskUsageRequest extends RequestBase {
 	 * <p>
 	 * API name: {@code index}
 	 */
-	public final String index() {
+	public final List<String> index() {
 		return this.index;
-	}
-
-	/**
-	 * Period to wait for a connection to the master node. If no response is
-	 * received before the timeout expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code master_timeout}
-	 */
-	@Nullable
-	public final TimeUnit masterTimeout() {
-		return this.masterTimeout;
 	}
 
 	/**
@@ -180,29 +156,6 @@ public class DiskUsageRequest extends RequestBase {
 	@Nullable
 	public final Boolean runExpensiveTasks() {
 		return this.runExpensiveTasks;
-	}
-
-	/**
-	 * Period to wait for a response. If no response is received before the timeout
-	 * expires, the request fails and returns an error.
-	 * <p>
-	 * API name: {@code timeout}
-	 */
-	@Nullable
-	public final TimeUnit timeout() {
-		return this.timeout;
-	}
-
-	/**
-	 * The number of shard copies that must be active before proceeding with the
-	 * operation. Set to all or any positive integer up to the total number of
-	 * shards in the index (number_of_replicas+1). Default: 1, the primary shard.
-	 * <p>
-	 * API name: {@code wait_for_active_shards}
-	 */
-	@Nullable
-	public final String waitForActiveShards() {
-		return this.waitForActiveShards;
 	}
 
 	// ---------------------------------------------------------------------------------------------
@@ -224,19 +177,10 @@ public class DiskUsageRequest extends RequestBase {
 		@Nullable
 		private Boolean ignoreUnavailable;
 
-		private String index;
-
-		@Nullable
-		private TimeUnit masterTimeout;
+		private List<String> index;
 
 		@Nullable
 		private Boolean runExpensiveTasks;
-
-		@Nullable
-		private TimeUnit timeout;
-
-		@Nullable
-		private String waitForActiveShards;
 
 		/**
 		 * If false, the request returns an error if any wildcard expression, index
@@ -308,20 +252,26 @@ public class DiskUsageRequest extends RequestBase {
 		 * significantly.
 		 * <p>
 		 * API name: {@code index}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>index</code>.
 		 */
-		public final Builder index(String value) {
-			this.index = value;
+		public final Builder index(List<String> list) {
+			this.index = _listAddAll(this.index, list);
 			return this;
 		}
 
 		/**
-		 * Period to wait for a connection to the master node. If no response is
-		 * received before the timeout expires, the request fails and returns an error.
+		 * Required - Comma-separated list of data streams, indices, and aliases used to
+		 * limit the request. It’s recommended to execute this API with a single index
+		 * (or the latest backing index of a data stream) as the API consumes resources
+		 * significantly.
 		 * <p>
-		 * API name: {@code master_timeout}
+		 * API name: {@code index}
+		 * <p>
+		 * Adds one or more values to <code>index</code>.
 		 */
-		public final Builder masterTimeout(@Nullable TimeUnit value) {
-			this.masterTimeout = value;
+		public final Builder index(String value, String... values) {
+			this.index = _listAdd(this.index, value, values);
 			return this;
 		}
 
@@ -333,29 +283,6 @@ public class DiskUsageRequest extends RequestBase {
 		 */
 		public final Builder runExpensiveTasks(@Nullable Boolean value) {
 			this.runExpensiveTasks = value;
-			return this;
-		}
-
-		/**
-		 * Period to wait for a response. If no response is received before the timeout
-		 * expires, the request fails and returns an error.
-		 * <p>
-		 * API name: {@code timeout}
-		 */
-		public final Builder timeout(@Nullable TimeUnit value) {
-			this.timeout = value;
-			return this;
-		}
-
-		/**
-		 * The number of shard copies that must be active before proceeding with the
-		 * operation. Set to all or any positive integer up to the total number of
-		 * shards in the index (number_of_replicas+1). Default: 1, the primary shard.
-		 * <p>
-		 * API name: {@code wait_for_active_shards}
-		 */
-		public final Builder waitForActiveShards(@Nullable String value) {
-			this.waitForActiveShards = value;
 			return this;
 		}
 
@@ -397,7 +324,7 @@ public class DiskUsageRequest extends RequestBase {
 				if (propsSet == (_index)) {
 					StringBuilder buf = new StringBuilder();
 					buf.append("/");
-					SimpleEndpoint.pathEncode(request.index, buf);
+					SimpleEndpoint.pathEncode(request.index.stream().map(v -> v).collect(Collectors.joining(",")), buf);
 					buf.append("/_disk_usage");
 					return buf.toString();
 				}
@@ -408,9 +335,6 @@ public class DiskUsageRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
-				if (request.masterTimeout != null) {
-					params.put("master_timeout", request.masterTimeout.jsonValue());
-				}
 				if (request.flush != null) {
 					params.put("flush", String.valueOf(request.flush));
 				}
@@ -424,14 +348,8 @@ public class DiskUsageRequest extends RequestBase {
 				if (request.allowNoIndices != null) {
 					params.put("allow_no_indices", String.valueOf(request.allowNoIndices));
 				}
-				if (request.waitForActiveShards != null) {
-					params.put("wait_for_active_shards", request.waitForActiveShards);
-				}
 				if (request.runExpensiveTasks != null) {
 					params.put("run_expensive_tasks", String.valueOf(request.runExpensiveTasks));
-				}
-				if (request.timeout != null) {
-					params.put("timeout", request.timeout.jsonValue());
 				}
 				return params;
 

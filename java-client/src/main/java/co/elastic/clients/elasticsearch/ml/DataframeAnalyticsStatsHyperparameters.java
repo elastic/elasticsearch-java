@@ -31,11 +31,11 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -54,7 +54,7 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 
 	private final int iteration;
 
-	private final DateTime timestamp;
+	private final long timestamp;
 
 	private final TimingStats timingStats;
 
@@ -104,7 +104,7 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public final DateTime timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
 	}
 
@@ -140,7 +140,8 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		generator.write(this.iteration);
 
 		generator.writeKey("timestamp");
-		this.timestamp.serialize(generator, mapper);
+		generator.write(this.timestamp);
+
 		generator.writeKey("timing_stats");
 		this.timingStats.serialize(generator, mapper);
 
@@ -167,7 +168,7 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 
 		private Integer iteration;
 
-		private DateTime timestamp;
+		private Long timestamp;
 
 		private TimingStats timingStats;
 
@@ -201,7 +202,7 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public final Builder timestamp(DateTime value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -268,7 +269,7 @@ public class DataframeAnalyticsStatsHyperparameters implements DataframeAnalytic
 
 		op.add(Builder::hyperparameters, Hyperparameters._DESERIALIZER, "hyperparameters");
 		op.add(Builder::iteration, JsonpDeserializer.integerDeserializer(), "iteration");
-		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 		op.add(Builder::timingStats, TimingStats._DESERIALIZER, "timing_stats");
 		op.add(Builder::validationLoss, ValidationLoss._DESERIALIZER, "validation_loss");
 

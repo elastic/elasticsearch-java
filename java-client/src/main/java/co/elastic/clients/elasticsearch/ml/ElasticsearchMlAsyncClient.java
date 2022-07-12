@@ -61,7 +61,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * multiple times throughout its lifecycle.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/ml-close-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/ml-close-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -80,7 +80,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link CloseJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/ml-close-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/ml-close-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -95,7 +95,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Deletes a calendar.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/ml-delete-calendar.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/ml-delete-calendar.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -113,7 +113,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteCalendarRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/ml-delete-calendar.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/ml-delete-calendar.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -128,7 +128,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Deletes scheduled events from a calendar.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/ml-delete-calendar-event.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/ml-delete-calendar-event.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -146,7 +146,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteCalendarEventRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/ml-delete-calendar-event.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/ml-delete-calendar-event.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -161,7 +161,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Deletes anomaly detection jobs from a calendar.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/ml-delete-calendar-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/ml-delete-calendar-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -179,7 +179,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteCalendarJobRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/ml-delete-calendar-job.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/ml-delete-calendar-job.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -194,7 +194,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Deletes an existing data frame analytics job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/delete-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/delete-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -213,7 +213,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/delete-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/delete-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -228,7 +228,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Deletes an existing datafeed.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/ml-delete-datafeed.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/ml-delete-datafeed.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -246,7 +246,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteDatafeedRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/ml-delete-datafeed.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/ml-delete-datafeed.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1244,6 +1244,42 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 				GetMemoryStatsRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: ml.get_model_snapshot_upgrade_stats
+
+	/**
+	 * Gets stats for anomaly detection job model snapshot upgrades that are in
+	 * progress.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-model-snapshot-upgrade-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public CompletableFuture<GetModelSnapshotUpgradeStatsResponse> getModelSnapshotUpgradeStats(
+			GetModelSnapshotUpgradeStatsRequest request) {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<GetModelSnapshotUpgradeStatsRequest, GetModelSnapshotUpgradeStatsResponse, ErrorResponse> endpoint = (JsonEndpoint<GetModelSnapshotUpgradeStatsRequest, GetModelSnapshotUpgradeStatsResponse, ErrorResponse>) GetModelSnapshotUpgradeStatsRequest._ENDPOINT;
+
+		return this.transport.performRequestAsync(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Gets stats for anomaly detection job model snapshot upgrades that are in
+	 * progress.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link GetModelSnapshotUpgradeStatsRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/ml-get-job-model-snapshot-upgrade-stats.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final CompletableFuture<GetModelSnapshotUpgradeStatsResponse> getModelSnapshotUpgradeStats(
+			Function<GetModelSnapshotUpgradeStatsRequest.Builder, ObjectBuilder<GetModelSnapshotUpgradeStatsRequest>> fn) {
+		return getModelSnapshotUpgradeStats(fn.apply(new GetModelSnapshotUpgradeStatsRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: ml.get_model_snapshots
 
 	/**
@@ -1740,7 +1776,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 * Instantiates a data frame analytics job.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/put-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/put-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -1759,7 +1795,7 @@ public class ElasticsearchMlAsyncClient extends ApiClient<ElasticsearchTransport
 	 *            a function that initializes a builder to create the
 	 *            {@link PutDataFrameAnalyticsRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.3/put-dfanalytics.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/put-dfanalytics.html">Documentation
 	 *      on elastic.co</a>
 	 */
 

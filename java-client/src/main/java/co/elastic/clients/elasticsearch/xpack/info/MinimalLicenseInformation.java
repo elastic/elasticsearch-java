@@ -33,10 +33,10 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -52,7 +52,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class MinimalLicenseInformation implements JsonpSerializable {
-	private final DateTime expiryDateInMillis;
+	private final long expiryDateInMillis;
 
 	private final LicenseType mode;
 
@@ -81,7 +81,7 @@ public class MinimalLicenseInformation implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code expiry_date_in_millis}
 	 */
-	public final DateTime expiryDateInMillis() {
+	public final long expiryDateInMillis() {
 		return this.expiryDateInMillis;
 	}
 
@@ -125,7 +125,8 @@ public class MinimalLicenseInformation implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("expiry_date_in_millis");
-		this.expiryDateInMillis.serialize(generator, mapper);
+		generator.write(this.expiryDateInMillis);
+
 		generator.writeKey("mode");
 		this.mode.serialize(generator, mapper);
 		generator.writeKey("status");
@@ -151,7 +152,7 @@ public class MinimalLicenseInformation implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<MinimalLicenseInformation> {
-		private DateTime expiryDateInMillis;
+		private Long expiryDateInMillis;
 
 		private LicenseType mode;
 
@@ -164,7 +165,7 @@ public class MinimalLicenseInformation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code expiry_date_in_millis}
 		 */
-		public final Builder expiryDateInMillis(DateTime value) {
+		public final Builder expiryDateInMillis(long value) {
 			this.expiryDateInMillis = value;
 			return this;
 		}
@@ -230,7 +231,7 @@ public class MinimalLicenseInformation implements JsonpSerializable {
 	protected static void setupMinimalLicenseInformationDeserializer(
 			ObjectDeserializer<MinimalLicenseInformation.Builder> op) {
 
-		op.add(Builder::expiryDateInMillis, DateTime._DESERIALIZER, "expiry_date_in_millis");
+		op.add(Builder::expiryDateInMillis, JsonpDeserializer.longDeserializer(), "expiry_date_in_millis");
 		op.add(Builder::mode, LicenseType._DESERIALIZER, "mode");
 		op.add(Builder::status, LicenseStatus._DESERIALIZER, "status");
 		op.add(Builder::type, LicenseType._DESERIALIZER, "type");

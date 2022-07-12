@@ -59,13 +59,13 @@ public class CheckpointStats implements JsonpSerializable {
 	private final DateTime timestamp;
 
 	@Nullable
-	private final DateTime timestampMillis;
+	private final Long timestampMillis;
 
 	@Nullable
 	private final DateTime timeUpperBound;
 
 	@Nullable
-	private final DateTime timeUpperBoundMillis;
+	private final Long timeUpperBoundMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -111,7 +111,7 @@ public class CheckpointStats implements JsonpSerializable {
 	 * API name: {@code timestamp_millis}
 	 */
 	@Nullable
-	public final DateTime timestampMillis() {
+	public final Long timestampMillis() {
 		return this.timestampMillis;
 	}
 
@@ -127,7 +127,7 @@ public class CheckpointStats implements JsonpSerializable {
 	 * API name: {@code time_upper_bound_millis}
 	 */
 	@Nullable
-	public final DateTime timeUpperBoundMillis() {
+	public final Long timeUpperBoundMillis() {
 		return this.timeUpperBoundMillis;
 	}
 
@@ -156,7 +156,8 @@ public class CheckpointStats implements JsonpSerializable {
 		}
 		if (this.timestampMillis != null) {
 			generator.writeKey("timestamp_millis");
-			this.timestampMillis.serialize(generator, mapper);
+			generator.write(this.timestampMillis);
+
 		}
 		if (this.timeUpperBound != null) {
 			generator.writeKey("time_upper_bound");
@@ -164,7 +165,8 @@ public class CheckpointStats implements JsonpSerializable {
 		}
 		if (this.timeUpperBoundMillis != null) {
 			generator.writeKey("time_upper_bound_millis");
-			this.timeUpperBoundMillis.serialize(generator, mapper);
+			generator.write(this.timeUpperBoundMillis);
+
 		}
 
 	}
@@ -190,13 +192,13 @@ public class CheckpointStats implements JsonpSerializable {
 		private DateTime timestamp;
 
 		@Nullable
-		private DateTime timestampMillis;
+		private Long timestampMillis;
 
 		@Nullable
 		private DateTime timeUpperBound;
 
 		@Nullable
-		private DateTime timeUpperBoundMillis;
+		private Long timeUpperBoundMillis;
 
 		/**
 		 * Required - API name: {@code checkpoint}
@@ -233,7 +235,7 @@ public class CheckpointStats implements JsonpSerializable {
 		/**
 		 * API name: {@code timestamp_millis}
 		 */
-		public final Builder timestampMillis(@Nullable DateTime value) {
+		public final Builder timestampMillis(@Nullable Long value) {
 			this.timestampMillis = value;
 			return this;
 		}
@@ -249,7 +251,7 @@ public class CheckpointStats implements JsonpSerializable {
 		/**
 		 * API name: {@code time_upper_bound_millis}
 		 */
-		public final Builder timeUpperBoundMillis(@Nullable DateTime value) {
+		public final Builder timeUpperBoundMillis(@Nullable Long value) {
 			this.timeUpperBoundMillis = value;
 			return this;
 		}
@@ -285,9 +287,9 @@ public class CheckpointStats implements JsonpSerializable {
 		op.add(Builder::checkpoint, JsonpDeserializer.longDeserializer(), "checkpoint");
 		op.add(Builder::checkpointProgress, TransformProgress._DESERIALIZER, "checkpoint_progress");
 		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp");
-		op.add(Builder::timestampMillis, DateTime._DESERIALIZER, "timestamp_millis");
+		op.add(Builder::timestampMillis, JsonpDeserializer.longDeserializer(), "timestamp_millis");
 		op.add(Builder::timeUpperBound, DateTime._DESERIALIZER, "time_upper_bound");
-		op.add(Builder::timeUpperBoundMillis, DateTime._DESERIALIZER, "time_upper_bound_millis");
+		op.add(Builder::timeUpperBoundMillis, JsonpDeserializer.longDeserializer(), "time_upper_bound_millis");
 
 	}
 

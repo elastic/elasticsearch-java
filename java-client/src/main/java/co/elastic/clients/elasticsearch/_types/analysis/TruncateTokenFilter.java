@@ -28,12 +28,12 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: _types.analysis.TruncateTokenFilter
 
@@ -45,14 +45,15 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final int length;
+	@Nullable
+	private final Integer length;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private TruncateTokenFilter(Builder builder) {
 		super(builder);
 
-		this.length = ApiTypeHelper.requireNonNull(builder.length, this, "length");
+		this.length = builder.length;
 
 	}
 
@@ -69,9 +70,10 @@ public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterD
 	}
 
 	/**
-	 * Required - API name: {@code length}
+	 * API name: {@code length}
 	 */
-	public final int length() {
+	@Nullable
+	public final Integer length() {
 		return this.length;
 	}
 
@@ -79,8 +81,11 @@ public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterD
 
 		generator.write("type", "truncate");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("length");
-		generator.write(this.length);
+		if (this.length != null) {
+			generator.writeKey("length");
+			generator.write(this.length);
+
+		}
 
 	}
 
@@ -93,12 +98,13 @@ public class TruncateTokenFilter extends TokenFilterBase implements TokenFilterD
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<TruncateTokenFilter> {
+		@Nullable
 		private Integer length;
 
 		/**
-		 * Required - API name: {@code length}
+		 * API name: {@code length}
 		 */
-		public final Builder length(int value) {
+		public final Builder length(@Nullable Integer value) {
 			this.length = value;
 			return this;
 		}

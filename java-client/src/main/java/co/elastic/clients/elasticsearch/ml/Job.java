@@ -33,11 +33,11 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
 import java.util.List;
@@ -67,7 +67,7 @@ public class Job implements JsonpSerializable {
 	private final JobBlocked blocked;
 
 	@Nullable
-	private final Integer createTime;
+	private final DateTime createTime;
 
 	@Nullable
 	private final JsonData customSettings;
@@ -87,7 +87,7 @@ public class Job implements JsonpSerializable {
 	private final String description;
 
 	@Nullable
-	private final Integer finishedTime;
+	private final DateTime finishedTime;
 
 	private final List<String> groups;
 
@@ -192,7 +192,7 @@ public class Job implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public final Integer createTime() {
+	public final DateTime createTime() {
 		return this.createTime;
 	}
 
@@ -247,7 +247,7 @@ public class Job implements JsonpSerializable {
 	 * API name: {@code finished_time}
 	 */
 	@Nullable
-	public final Integer finishedTime() {
+	public final DateTime finishedTime() {
 		return this.finishedTime;
 	}
 
@@ -361,8 +361,7 @@ public class Job implements JsonpSerializable {
 		}
 		if (this.createTime != null) {
 			generator.writeKey("create_time");
-			generator.write(this.createTime);
-
+			this.createTime.serialize(generator, mapper);
 		}
 		if (this.customSettings != null) {
 			generator.writeKey("custom_settings");
@@ -394,8 +393,7 @@ public class Job implements JsonpSerializable {
 		}
 		if (this.finishedTime != null) {
 			generator.writeKey("finished_time");
-			generator.write(this.finishedTime);
-
+			this.finishedTime.serialize(generator, mapper);
 		}
 		if (ApiTypeHelper.isDefined(this.groups)) {
 			generator.writeKey("groups");
@@ -475,7 +473,7 @@ public class Job implements JsonpSerializable {
 		private JobBlocked blocked;
 
 		@Nullable
-		private Integer createTime;
+		private DateTime createTime;
 
 		@Nullable
 		private JsonData customSettings;
@@ -495,7 +493,7 @@ public class Job implements JsonpSerializable {
 		private String description;
 
 		@Nullable
-		private Integer finishedTime;
+		private DateTime finishedTime;
 
 		@Nullable
 		private List<String> groups;
@@ -595,7 +593,7 @@ public class Job implements JsonpSerializable {
 		/**
 		 * API name: {@code create_time}
 		 */
-		public final Builder createTime(@Nullable Integer value) {
+		public final Builder createTime(@Nullable DateTime value) {
 			this.createTime = value;
 			return this;
 		}
@@ -665,7 +663,7 @@ public class Job implements JsonpSerializable {
 		/**
 		 * API name: {@code finished_time}
 		 */
-		public final Builder finishedTime(@Nullable Integer value) {
+		public final Builder finishedTime(@Nullable DateTime value) {
 			this.finishedTime = value;
 			return this;
 		}
@@ -802,7 +800,7 @@ public class Job implements JsonpSerializable {
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
 		op.add(Builder::backgroundPersistInterval, Time._DESERIALIZER, "background_persist_interval");
 		op.add(Builder::blocked, JobBlocked._DESERIALIZER, "blocked");
-		op.add(Builder::createTime, JsonpDeserializer.integerDeserializer(), "create_time");
+		op.add(Builder::createTime, DateTime._DESERIALIZER, "create_time");
 		op.add(Builder::customSettings, JsonData._DESERIALIZER, "custom_settings");
 		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.longDeserializer(),
 				"daily_model_snapshot_retention_after_days");
@@ -810,7 +808,7 @@ public class Job implements JsonpSerializable {
 		op.add(Builder::datafeedConfig, Datafeed._DESERIALIZER, "datafeed_config");
 		op.add(Builder::deleting, JsonpDeserializer.booleanDeserializer(), "deleting");
 		op.add(Builder::description, JsonpDeserializer.stringDeserializer(), "description");
-		op.add(Builder::finishedTime, JsonpDeserializer.integerDeserializer(), "finished_time");
+		op.add(Builder::finishedTime, DateTime._DESERIALIZER, "finished_time");
 		op.add(Builder::groups, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "groups");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::jobType, JsonpDeserializer.stringDeserializer(), "job_type");

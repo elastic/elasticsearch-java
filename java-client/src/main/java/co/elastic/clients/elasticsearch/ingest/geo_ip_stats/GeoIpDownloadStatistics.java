@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 
@@ -52,7 +53,7 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 
 	private final int failedDownloads;
 
-	private final int totalDownloadTime;
+	private final long totalDownloadTime;
 
 	private final int databaseCount;
 
@@ -98,7 +99,7 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code total_download_time}
 	 */
-	public final int totalDownloadTime() {
+	public final long totalDownloadTime() {
 		return this.totalDownloadTime;
 	}
 
@@ -166,7 +167,7 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 
 		private Integer failedDownloads;
 
-		private Integer totalDownloadTime;
+		private Long totalDownloadTime;
 
 		private Integer databaseCount;
 
@@ -197,7 +198,7 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code total_download_time}
 		 */
-		public final Builder totalDownloadTime(int value) {
+		public final Builder totalDownloadTime(long value) {
 			this.totalDownloadTime = value;
 			return this;
 		}
@@ -253,7 +254,7 @@ public class GeoIpDownloadStatistics implements JsonpSerializable {
 
 		op.add(Builder::successfulDownloads, JsonpDeserializer.integerDeserializer(), "successful_downloads");
 		op.add(Builder::failedDownloads, JsonpDeserializer.integerDeserializer(), "failed_downloads");
-		op.add(Builder::totalDownloadTime, JsonpDeserializer.integerDeserializer(), "total_download_time");
+		op.add(Builder::totalDownloadTime, JsonpDeserializer.longDeserializer(), "total_download_time");
 		op.add(Builder::databaseCount, JsonpDeserializer.integerDeserializer(), "database_count");
 		op.add(Builder::skippedUpdates, JsonpDeserializer.integerDeserializer(), "skipped_updates");
 

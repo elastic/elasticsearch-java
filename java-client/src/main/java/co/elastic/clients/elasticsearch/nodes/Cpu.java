@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -56,19 +57,19 @@ public class Cpu implements JsonpSerializable {
 	private final Integer percent;
 
 	@Nullable
-	private final String sys;
+	private final Time sys;
 
 	@Nullable
 	private final Long sysInMillis;
 
 	@Nullable
-	private final String total;
+	private final Time total;
 
 	@Nullable
 	private final Long totalInMillis;
 
 	@Nullable
-	private final String user;
+	private final Time user;
 
 	@Nullable
 	private final Long userInMillis;
@@ -106,7 +107,7 @@ public class Cpu implements JsonpSerializable {
 	 * API name: {@code sys}
 	 */
 	@Nullable
-	public final String sys() {
+	public final Time sys() {
 		return this.sys;
 	}
 
@@ -122,7 +123,7 @@ public class Cpu implements JsonpSerializable {
 	 * API name: {@code total}
 	 */
 	@Nullable
-	public final String total() {
+	public final Time total() {
 		return this.total;
 	}
 
@@ -138,7 +139,7 @@ public class Cpu implements JsonpSerializable {
 	 * API name: {@code user}
 	 */
 	@Nullable
-	public final String user() {
+	public final Time user() {
 		return this.user;
 	}
 
@@ -175,7 +176,7 @@ public class Cpu implements JsonpSerializable {
 		}
 		if (this.sys != null) {
 			generator.writeKey("sys");
-			generator.write(this.sys);
+			this.sys.serialize(generator, mapper);
 
 		}
 		if (this.sysInMillis != null) {
@@ -185,7 +186,7 @@ public class Cpu implements JsonpSerializable {
 		}
 		if (this.total != null) {
 			generator.writeKey("total");
-			generator.write(this.total);
+			this.total.serialize(generator, mapper);
 
 		}
 		if (this.totalInMillis != null) {
@@ -195,7 +196,7 @@ public class Cpu implements JsonpSerializable {
 		}
 		if (this.user != null) {
 			generator.writeKey("user");
-			generator.write(this.user);
+			this.user.serialize(generator, mapper);
 
 		}
 		if (this.userInMillis != null) {
@@ -233,19 +234,19 @@ public class Cpu implements JsonpSerializable {
 		private Integer percent;
 
 		@Nullable
-		private String sys;
+		private Time sys;
 
 		@Nullable
 		private Long sysInMillis;
 
 		@Nullable
-		private String total;
+		private Time total;
 
 		@Nullable
 		private Long totalInMillis;
 
 		@Nullable
-		private String user;
+		private Time user;
 
 		@Nullable
 		private Long userInMillis;
@@ -264,9 +265,16 @@ public class Cpu implements JsonpSerializable {
 		/**
 		 * API name: {@code sys}
 		 */
-		public final Builder sys(@Nullable String value) {
+		public final Builder sys(@Nullable Time value) {
 			this.sys = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code sys}
+		 */
+		public final Builder sys(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.sys(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -280,9 +288,16 @@ public class Cpu implements JsonpSerializable {
 		/**
 		 * API name: {@code total}
 		 */
-		public final Builder total(@Nullable String value) {
+		public final Builder total(@Nullable Time value) {
 			this.total = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code total}
+		 */
+		public final Builder total(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.total(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -296,9 +311,16 @@ public class Cpu implements JsonpSerializable {
 		/**
 		 * API name: {@code user}
 		 */
-		public final Builder user(@Nullable String value) {
+		public final Builder user(@Nullable Time value) {
 			this.user = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code user}
+		 */
+		public final Builder user(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.user(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -358,11 +380,11 @@ public class Cpu implements JsonpSerializable {
 	protected static void setupCpuDeserializer(ObjectDeserializer<Cpu.Builder> op) {
 
 		op.add(Builder::percent, JsonpDeserializer.integerDeserializer(), "percent");
-		op.add(Builder::sys, JsonpDeserializer.stringDeserializer(), "sys");
+		op.add(Builder::sys, Time._DESERIALIZER, "sys");
 		op.add(Builder::sysInMillis, JsonpDeserializer.longDeserializer(), "sys_in_millis");
-		op.add(Builder::total, JsonpDeserializer.stringDeserializer(), "total");
+		op.add(Builder::total, Time._DESERIALIZER, "total");
 		op.add(Builder::totalInMillis, JsonpDeserializer.longDeserializer(), "total_in_millis");
-		op.add(Builder::user, JsonpDeserializer.stringDeserializer(), "user");
+		op.add(Builder::user, Time._DESERIALIZER, "user");
 		op.add(Builder::userInMillis, JsonpDeserializer.longDeserializer(), "user_in_millis");
 		op.add(Builder::loadAverage, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"load_average");

@@ -35,7 +35,7 @@ import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.Long;
 import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
@@ -54,7 +54,7 @@ public class ExecutionResult implements JsonpSerializable {
 
 	private final ExecutionResultCondition condition;
 
-	private final int executionDuration;
+	private final long executionDuration;
 
 	private final DateTime executionTime;
 
@@ -93,7 +93,7 @@ public class ExecutionResult implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code execution_duration}
 	 */
-	public final int executionDuration() {
+	public final long executionDuration() {
 		return this.executionDuration;
 	}
 
@@ -161,7 +161,7 @@ public class ExecutionResult implements JsonpSerializable {
 
 		private ExecutionResultCondition condition;
 
-		private Integer executionDuration;
+		private Long executionDuration;
 
 		private DateTime executionTime;
 
@@ -215,7 +215,7 @@ public class ExecutionResult implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code execution_duration}
 		 */
-		public final Builder executionDuration(int value) {
+		public final Builder executionDuration(long value) {
 			this.executionDuration = value;
 			return this;
 		}
@@ -273,7 +273,7 @@ public class ExecutionResult implements JsonpSerializable {
 
 		op.add(Builder::actions, JsonpDeserializer.arrayDeserializer(ExecutionResultAction._DESERIALIZER), "actions");
 		op.add(Builder::condition, ExecutionResultCondition._DESERIALIZER, "condition");
-		op.add(Builder::executionDuration, JsonpDeserializer.integerDeserializer(), "execution_duration");
+		op.add(Builder::executionDuration, JsonpDeserializer.longDeserializer(), "execution_duration");
 		op.add(Builder::executionTime, DateTime._DESERIALIZER, "execution_time");
 		op.add(Builder::input, ExecutionResultInput._DESERIALIZER, "input");
 

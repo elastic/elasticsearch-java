@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -70,7 +69,7 @@ public class Influencer implements JsonpSerializable {
 
 	private final String resultType;
 
-	private final Time timestamp;
+	private final long timestamp;
 
 	@Nullable
 	private final String foo;
@@ -198,7 +197,7 @@ public class Influencer implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public final Time timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
 	}
 
@@ -254,7 +253,7 @@ public class Influencer implements JsonpSerializable {
 		generator.write(this.resultType);
 
 		generator.writeKey("timestamp");
-		this.timestamp.serialize(generator, mapper);
+		generator.write(this.timestamp);
 
 		if (this.foo != null) {
 			generator.writeKey("foo");
@@ -294,7 +293,7 @@ public class Influencer implements JsonpSerializable {
 
 		private String resultType;
 
-		private Time timestamp;
+		private Long timestamp;
 
 		@Nullable
 		private String foo;
@@ -406,19 +405,9 @@ public class Influencer implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(Time value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
-		}
-
-		/**
-		 * Required - The start time of the bucket for which these results were
-		 * calculated.
-		 * <p>
-		 * API name: {@code timestamp}
-		 */
-		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timestamp(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -471,7 +460,7 @@ public class Influencer implements JsonpSerializable {
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
 		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, Time._DESERIALIZER, "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 		op.add(Builder::foo, JsonpDeserializer.stringDeserializer(), "foo");
 
 	}

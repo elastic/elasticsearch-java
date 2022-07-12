@@ -31,10 +31,10 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -90,7 +90,7 @@ public class SlackAttachment implements JsonpSerializable {
 	private final String titleLink;
 
 	@Nullable
-	private final DateTime ts;
+	private final Long ts;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -231,7 +231,7 @@ public class SlackAttachment implements JsonpSerializable {
 	 * API name: {@code ts}
 	 */
 	@Nullable
-	public final DateTime ts() {
+	public final Long ts() {
 		return this.ts;
 	}
 
@@ -319,7 +319,8 @@ public class SlackAttachment implements JsonpSerializable {
 		}
 		if (this.ts != null) {
 			generator.writeKey("ts");
-			this.ts.serialize(generator, mapper);
+			generator.write(this.ts);
+
 		}
 
 	}
@@ -377,7 +378,7 @@ public class SlackAttachment implements JsonpSerializable {
 		private String titleLink;
 
 		@Nullable
-		private DateTime ts;
+		private Long ts;
 
 		/**
 		 * API name: {@code author_icon}
@@ -515,7 +516,7 @@ public class SlackAttachment implements JsonpSerializable {
 		/**
 		 * API name: {@code ts}
 		 */
-		public final Builder ts(@Nullable DateTime value) {
+		public final Builder ts(@Nullable Long value) {
 			this.ts = value;
 			return this;
 		}
@@ -562,7 +563,7 @@ public class SlackAttachment implements JsonpSerializable {
 		op.add(Builder::thumbUrl, JsonpDeserializer.stringDeserializer(), "thumb_url");
 		op.add(Builder::title, JsonpDeserializer.stringDeserializer(), "title");
 		op.add(Builder::titleLink, JsonpDeserializer.stringDeserializer(), "title_link");
-		op.add(Builder::ts, DateTime._DESERIALIZER, "ts");
+		op.add(Builder::ts, JsonpDeserializer.longDeserializer(), "ts");
 
 	}
 

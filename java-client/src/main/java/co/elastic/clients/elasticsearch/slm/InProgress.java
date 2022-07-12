@@ -31,10 +31,10 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
 public class InProgress implements JsonpSerializable {
 	private final String name;
 
-	private final DateTime startTimeMillis;
+	private final long startTimeMillis;
 
 	private final String state;
 
@@ -82,7 +82,7 @@ public class InProgress implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code start_time_millis}
 	 */
-	public final DateTime startTimeMillis() {
+	public final long startTimeMillis() {
 		return this.startTimeMillis;
 	}
 
@@ -115,7 +115,8 @@ public class InProgress implements JsonpSerializable {
 		generator.write(this.name);
 
 		generator.writeKey("start_time_millis");
-		this.startTimeMillis.serialize(generator, mapper);
+		generator.write(this.startTimeMillis);
+
 		generator.writeKey("state");
 		generator.write(this.state);
 
@@ -138,7 +139,7 @@ public class InProgress implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<InProgress> {
 		private String name;
 
-		private DateTime startTimeMillis;
+		private Long startTimeMillis;
 
 		private String state;
 
@@ -155,7 +156,7 @@ public class InProgress implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code start_time_millis}
 		 */
-		public final Builder startTimeMillis(DateTime value) {
+		public final Builder startTimeMillis(long value) {
 			this.startTimeMillis = value;
 			return this;
 		}
@@ -205,7 +206,7 @@ public class InProgress implements JsonpSerializable {
 	protected static void setupInProgressDeserializer(ObjectDeserializer<InProgress.Builder> op) {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::startTimeMillis, DateTime._DESERIALIZER, "start_time_millis");
+		op.add(Builder::startTimeMillis, JsonpDeserializer.longDeserializer(), "start_time_millis");
 		op.add(Builder::state, JsonpDeserializer.stringDeserializer(), "state");
 		op.add(Builder::uuid, JsonpDeserializer.stringDeserializer(), "uuid");
 

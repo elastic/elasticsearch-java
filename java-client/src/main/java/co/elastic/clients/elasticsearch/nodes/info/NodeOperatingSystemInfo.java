@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -61,7 +62,7 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 
 	private final String prettyName;
 
-	private final int refreshIntervalInMillis;
+	private final long refreshIntervalInMillis;
 
 	private final String version;
 
@@ -148,7 +149,7 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code refresh_interval_in_millis}
 	 */
-	public final int refreshIntervalInMillis() {
+	public final long refreshIntervalInMillis() {
 		return this.refreshIntervalInMillis;
 	}
 
@@ -262,7 +263,7 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 
 		private String prettyName;
 
-		private Integer refreshIntervalInMillis;
+		private Long refreshIntervalInMillis;
 
 		private String version;
 
@@ -330,7 +331,7 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code refresh_interval_in_millis}
 		 */
-		public final Builder refreshIntervalInMillis(int value) {
+		public final Builder refreshIntervalInMillis(long value) {
 			this.refreshIntervalInMillis = value;
 			return this;
 		}
@@ -424,7 +425,7 @@ public class NodeOperatingSystemInfo implements JsonpSerializable {
 		op.add(Builder::allocatedProcessors, JsonpDeserializer.integerDeserializer(), "allocated_processors");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::prettyName, JsonpDeserializer.stringDeserializer(), "pretty_name");
-		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.integerDeserializer(), "refresh_interval_in_millis");
+		op.add(Builder::refreshIntervalInMillis, JsonpDeserializer.longDeserializer(), "refresh_interval_in_millis");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::cpu, NodeInfoOSCPU._DESERIALIZER, "cpu");
 		op.add(Builder::mem, NodeInfoMemory._DESERIALIZER, "mem");

@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.BulkIndexByScrollFailure;
 import co.elastic.clients.elasticsearch._types.Retries;
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,7 +40,6 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Float;
 import java.lang.Long;
-import java.lang.Number;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -92,10 +92,16 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	private final Long versionConflicts;
 
 	@Nullable
-	private final Number throttledMillis;
+	private final Time throttled;
 
 	@Nullable
-	private final Number throttledUntilMillis;
+	private final Long throttledMillis;
+
+	@Nullable
+	private final Time throttledUntil;
+
+	@Nullable
+	private final Long throttledUntilMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -113,7 +119,9 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		this.total = builder.total;
 		this.updated = builder.updated;
 		this.versionConflicts = builder.versionConflicts;
+		this.throttled = builder.throttled;
 		this.throttledMillis = builder.throttledMillis;
+		this.throttledUntil = builder.throttledUntil;
 		this.throttledUntilMillis = builder.throttledUntilMillis;
 
 	}
@@ -218,18 +226,34 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code throttled}
+	 */
+	@Nullable
+	public final Time throttled() {
+		return this.throttled;
+	}
+
+	/**
 	 * API name: {@code throttled_millis}
 	 */
 	@Nullable
-	public final Number throttledMillis() {
+	public final Long throttledMillis() {
 		return this.throttledMillis;
+	}
+
+	/**
+	 * API name: {@code throttled_until}
+	 */
+	@Nullable
+	public final Time throttledUntil() {
+		return this.throttledUntil;
 	}
 
 	/**
 	 * API name: {@code throttled_until_millis}
 	 */
 	@Nullable
-	public final Number throttledUntilMillis() {
+	public final Long throttledUntilMillis() {
 		return this.throttledUntilMillis;
 	}
 
@@ -309,14 +333,24 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 			generator.write(this.versionConflicts);
 
 		}
+		if (this.throttled != null) {
+			generator.writeKey("throttled");
+			this.throttled.serialize(generator, mapper);
+
+		}
 		if (this.throttledMillis != null) {
 			generator.writeKey("throttled_millis");
-			generator.write(this.throttledMillis.doubleValue());
+			generator.write(this.throttledMillis);
+
+		}
+		if (this.throttledUntil != null) {
+			generator.writeKey("throttled_until");
+			this.throttledUntil.serialize(generator, mapper);
 
 		}
 		if (this.throttledUntilMillis != null) {
 			generator.writeKey("throttled_until_millis");
-			generator.write(this.throttledUntilMillis.doubleValue());
+			generator.write(this.throttledUntilMillis);
 
 		}
 
@@ -373,10 +407,16 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		private Long versionConflicts;
 
 		@Nullable
-		private Number throttledMillis;
+		private Time throttled;
 
 		@Nullable
-		private Number throttledUntilMillis;
+		private Long throttledMillis;
+
+		@Nullable
+		private Time throttledUntil;
+
+		@Nullable
+		private Long throttledUntilMillis;
 
 		/**
 		 * API name: {@code batches}
@@ -504,17 +544,47 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		}
 
 		/**
+		 * API name: {@code throttled}
+		 */
+		public final Builder throttled(@Nullable Time value) {
+			this.throttled = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code throttled}
+		 */
+		public final Builder throttled(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttled(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code throttled_millis}
 		 */
-		public final Builder throttledMillis(@Nullable Number value) {
+		public final Builder throttledMillis(@Nullable Long value) {
 			this.throttledMillis = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code throttled_until}
+		 */
+		public final Builder throttledUntil(@Nullable Time value) {
+			this.throttledUntil = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code throttled_until}
+		 */
+		public final Builder throttledUntil(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttledUntil(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * API name: {@code throttled_until_millis}
 		 */
-		public final Builder throttledUntilMillis(@Nullable Number value) {
+		public final Builder throttledUntilMillis(@Nullable Long value) {
 			this.throttledUntilMillis = value;
 			return this;
 		}
@@ -560,8 +630,10 @@ public class UpdateByQueryResponse implements JsonpSerializable {
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::updated, JsonpDeserializer.longDeserializer(), "updated");
 		op.add(Builder::versionConflicts, JsonpDeserializer.longDeserializer(), "version_conflicts");
-		op.add(Builder::throttledMillis, JsonpDeserializer.numberDeserializer(), "throttled_millis");
-		op.add(Builder::throttledUntilMillis, JsonpDeserializer.numberDeserializer(), "throttled_until_millis");
+		op.add(Builder::throttled, Time._DESERIALIZER, "throttled");
+		op.add(Builder::throttledMillis, JsonpDeserializer.longDeserializer(), "throttled_millis");
+		op.add(Builder::throttledUntil, Time._DESERIALIZER, "throttled_until");
+		op.add(Builder::throttledUntilMillis, JsonpDeserializer.longDeserializer(), "throttled_until_millis");
 
 	}
 

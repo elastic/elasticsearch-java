@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.snapshot;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -52,6 +53,9 @@ public class SnapshotStats implements JsonpSerializable {
 
 	private final long startTimeInMillis;
 
+	@Nullable
+	private final Time time;
+
 	private final long timeInMillis;
 
 	private final FileCountSnapshotStats total;
@@ -62,6 +66,7 @@ public class SnapshotStats implements JsonpSerializable {
 
 		this.incremental = ApiTypeHelper.requireNonNull(builder.incremental, this, "incremental");
 		this.startTimeInMillis = ApiTypeHelper.requireNonNull(builder.startTimeInMillis, this, "startTimeInMillis");
+		this.time = builder.time;
 		this.timeInMillis = ApiTypeHelper.requireNonNull(builder.timeInMillis, this, "timeInMillis");
 		this.total = ApiTypeHelper.requireNonNull(builder.total, this, "total");
 
@@ -83,6 +88,14 @@ public class SnapshotStats implements JsonpSerializable {
 	 */
 	public final long startTimeInMillis() {
 		return this.startTimeInMillis;
+	}
+
+	/**
+	 * API name: {@code time}
+	 */
+	@Nullable
+	public final Time time() {
+		return this.time;
 	}
 
 	/**
@@ -116,6 +129,11 @@ public class SnapshotStats implements JsonpSerializable {
 		generator.writeKey("start_time_in_millis");
 		generator.write(this.startTimeInMillis);
 
+		if (this.time != null) {
+			generator.writeKey("time");
+			this.time.serialize(generator, mapper);
+
+		}
 		generator.writeKey("time_in_millis");
 		generator.write(this.timeInMillis);
 
@@ -139,6 +157,9 @@ public class SnapshotStats implements JsonpSerializable {
 		private FileCountSnapshotStats incremental;
 
 		private Long startTimeInMillis;
+
+		@Nullable
+		private Time time;
 
 		private Long timeInMillis;
 
@@ -166,6 +187,21 @@ public class SnapshotStats implements JsonpSerializable {
 		public final Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code time}
+		 */
+		public final Builder time(@Nullable Time value) {
+			this.time = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code time}
+		 */
+		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.time(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -221,6 +257,7 @@ public class SnapshotStats implements JsonpSerializable {
 
 		op.add(Builder::incremental, FileCountSnapshotStats._DESERIALIZER, "incremental");
 		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(Builder::time, Time._DESERIALIZER, "time");
 		op.add(Builder::timeInMillis, JsonpDeserializer.longDeserializer(), "time_in_millis");
 		op.add(Builder::total, FileCountSnapshotStats._DESERIALIZER, "total");
 

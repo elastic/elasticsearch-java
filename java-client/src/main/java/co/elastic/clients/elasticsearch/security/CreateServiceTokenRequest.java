@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -36,7 +37,8 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.ObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -44,7 +46,7 @@ import javax.annotation.Nullable;
 // typedef: security.create_service_token.Request
 
 /**
- * Creates a service account token for access without requiring basic
+ * Creates a service accounts token for access without requiring basic
  * authentication.
  * 
  * @see <a href=
@@ -53,9 +55,13 @@ import javax.annotation.Nullable;
  */
 
 public class CreateServiceTokenRequest extends RequestBase {
+	@Nullable
 	private final String name;
 
 	private final String namespace;
+
+	@Nullable
+	private final Refresh refresh;
 
 	private final String service;
 
@@ -63,8 +69,9 @@ public class CreateServiceTokenRequest extends RequestBase {
 
 	private CreateServiceTokenRequest(Builder builder) {
 
-		this.name = ApiTypeHelper.requireNonNull(builder.name, this, "name");
+		this.name = builder.name;
 		this.namespace = ApiTypeHelper.requireNonNull(builder.namespace, this, "namespace");
+		this.refresh = builder.refresh;
 		this.service = ApiTypeHelper.requireNonNull(builder.service, this, "service");
 
 	}
@@ -74,10 +81,11 @@ public class CreateServiceTokenRequest extends RequestBase {
 	}
 
 	/**
-	 * Required - An identifier for the token name
+	 * An identifier for the token name
 	 * <p>
 	 * API name: {@code name}
 	 */
+	@Nullable
 	public final String name() {
 		return this.name;
 	}
@@ -89,6 +97,19 @@ public class CreateServiceTokenRequest extends RequestBase {
 	 */
 	public final String namespace() {
 		return this.namespace;
+	}
+
+	/**
+	 * If <code>true</code> then refresh the affected shards to make this operation
+	 * visible to search, if <code>wait_for</code> (the default) then wait for a
+	 * refresh to make this operation visible to search, if <code>false</code> then
+	 * do nothing with refreshes.
+	 * <p>
+	 * API name: {@code refresh}
+	 */
+	@Nullable
+	public final Refresh refresh() {
+		return this.refresh;
 	}
 
 	/**
@@ -107,18 +128,22 @@ public class CreateServiceTokenRequest extends RequestBase {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<CreateServiceTokenRequest> {
+		@Nullable
 		private String name;
 
 		private String namespace;
 
+		@Nullable
+		private Refresh refresh;
+
 		private String service;
 
 		/**
-		 * Required - An identifier for the token name
+		 * An identifier for the token name
 		 * <p>
 		 * API name: {@code name}
 		 */
-		public final Builder name(String value) {
+		public final Builder name(@Nullable String value) {
 			this.name = value;
 			return this;
 		}
@@ -130,6 +155,19 @@ public class CreateServiceTokenRequest extends RequestBase {
 		 */
 		public final Builder namespace(String value) {
 			this.namespace = value;
+			return this;
+		}
+
+		/**
+		 * If <code>true</code> then refresh the affected shards to make this operation
+		 * visible to search, if <code>wait_for</code> (the default) then wait for a
+		 * refresh to make this operation visible to search, if <code>false</code> then
+		 * do nothing with refreshes.
+		 * <p>
+		 * API name: {@code refresh}
+		 */
+		public final Builder refresh(@Nullable Refresh value) {
+			this.refresh = value;
 			return this;
 		}
 
@@ -174,7 +212,8 @@ public class CreateServiceTokenRequest extends RequestBase {
 
 				propsSet |= _service;
 				propsSet |= _namespace;
-				propsSet |= _name;
+				if (request.name() != null)
+					propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name))
 					return "PUT";
@@ -194,7 +233,8 @@ public class CreateServiceTokenRequest extends RequestBase {
 
 				propsSet |= _service;
 				propsSet |= _namespace;
-				propsSet |= _name;
+				if (request.name() != null)
+					propsSet |= _name;
 
 				if (propsSet == (_namespace | _service | _name)) {
 					StringBuilder buf = new StringBuilder();
@@ -228,7 +268,11 @@ public class CreateServiceTokenRequest extends RequestBase {
 
 			// Request parameters
 			request -> {
-				return Collections.emptyMap();
+				Map<String, String> params = new HashMap<>();
+				if (request.refresh != null) {
+					params.put("refresh", request.refresh.jsonValue());
+				}
+				return params;
 
 			}, SimpleEndpoint.emptyMap(), false, CreateServiceTokenResponse._DESERIALIZER);
 }

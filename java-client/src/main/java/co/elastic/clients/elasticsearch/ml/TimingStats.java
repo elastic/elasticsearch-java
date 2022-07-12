@@ -34,7 +34,7 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
-import java.lang.Integer;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -48,10 +48,10 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TimingStats implements JsonpSerializable {
-	private final int elapsedTime;
+	private final long elapsedTime;
 
 	@Nullable
-	private final Integer iterationTime;
+	private final Long iterationTime;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -71,7 +71,7 @@ public class TimingStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code elapsed_time}
 	 */
-	public final int elapsedTime() {
+	public final long elapsedTime() {
 		return this.elapsedTime;
 	}
 
@@ -81,7 +81,7 @@ public class TimingStats implements JsonpSerializable {
 	 * API name: {@code iteration_time}
 	 */
 	@Nullable
-	public final Integer iterationTime() {
+	public final Long iterationTime() {
 		return this.iterationTime;
 	}
 
@@ -119,17 +119,17 @@ public class TimingStats implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TimingStats> {
-		private Integer elapsedTime;
+		private Long elapsedTime;
 
 		@Nullable
-		private Integer iterationTime;
+		private Long iterationTime;
 
 		/**
 		 * Required - Runtime of the analysis in milliseconds.
 		 * <p>
 		 * API name: {@code elapsed_time}
 		 */
-		public final Builder elapsedTime(int value) {
+		public final Builder elapsedTime(long value) {
 			this.elapsedTime = value;
 			return this;
 		}
@@ -139,7 +139,7 @@ public class TimingStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code iteration_time}
 		 */
-		public final Builder iterationTime(@Nullable Integer value) {
+		public final Builder iterationTime(@Nullable Long value) {
 			this.iterationTime = value;
 			return this;
 		}
@@ -172,8 +172,8 @@ public class TimingStats implements JsonpSerializable {
 
 	protected static void setupTimingStatsDeserializer(ObjectDeserializer<TimingStats.Builder> op) {
 
-		op.add(Builder::elapsedTime, JsonpDeserializer.integerDeserializer(), "elapsed_time");
-		op.add(Builder::iterationTime, JsonpDeserializer.integerDeserializer(), "iteration_time");
+		op.add(Builder::elapsedTime, JsonpDeserializer.longDeserializer(), "elapsed_time");
+		op.add(Builder::iterationTime, JsonpDeserializer.longDeserializer(), "iteration_time");
 
 	}
 

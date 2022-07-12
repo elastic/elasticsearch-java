@@ -28,7 +28,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
@@ -47,8 +46,10 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final int maxOutputSize;
+	@Nullable
+	private final Integer maxOutputSize;
 
+	@Nullable
 	private final String separator;
 
 	// ---------------------------------------------------------------------------------------------
@@ -56,8 +57,8 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 	private FingerprintTokenFilter(Builder builder) {
 		super(builder);
 
-		this.maxOutputSize = ApiTypeHelper.requireNonNull(builder.maxOutputSize, this, "maxOutputSize");
-		this.separator = ApiTypeHelper.requireNonNull(builder.separator, this, "separator");
+		this.maxOutputSize = builder.maxOutputSize;
+		this.separator = builder.separator;
 
 	}
 
@@ -74,15 +75,17 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 	}
 
 	/**
-	 * Required - API name: {@code max_output_size}
+	 * API name: {@code max_output_size}
 	 */
-	public final int maxOutputSize() {
+	@Nullable
+	public final Integer maxOutputSize() {
 		return this.maxOutputSize;
 	}
 
 	/**
-	 * Required - API name: {@code separator}
+	 * API name: {@code separator}
 	 */
+	@Nullable
 	public final String separator() {
 		return this.separator;
 	}
@@ -91,11 +94,16 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 
 		generator.write("type", "fingerprint");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("max_output_size");
-		generator.write(this.maxOutputSize);
+		if (this.maxOutputSize != null) {
+			generator.writeKey("max_output_size");
+			generator.write(this.maxOutputSize);
 
-		generator.writeKey("separator");
-		generator.write(this.separator);
+		}
+		if (this.separator != null) {
+			generator.writeKey("separator");
+			generator.write(this.separator);
+
+		}
 
 	}
 
@@ -108,22 +116,24 @@ public class FingerprintTokenFilter extends TokenFilterBase implements TokenFilt
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<FingerprintTokenFilter> {
+		@Nullable
 		private Integer maxOutputSize;
 
+		@Nullable
 		private String separator;
 
 		/**
-		 * Required - API name: {@code max_output_size}
+		 * API name: {@code max_output_size}
 		 */
-		public final Builder maxOutputSize(int value) {
+		public final Builder maxOutputSize(@Nullable Integer value) {
 			this.maxOutputSize = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code separator}
+		 * API name: {@code separator}
 		 */
-		public final Builder separator(String value) {
+		public final Builder separator(@Nullable String value) {
 			this.separator = value;
 			return this;
 		}

@@ -28,7 +28,6 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
@@ -47,9 +46,11 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilterDefinitionVariant {
-	private final int maxGram;
+	@Nullable
+	private final Integer maxGram;
 
-	private final int minGram;
+	@Nullable
+	private final Integer minGram;
 
 	@Nullable
 	private final EdgeNGramSide side;
@@ -62,8 +63,8 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 	private EdgeNGramTokenFilter(Builder builder) {
 		super(builder);
 
-		this.maxGram = ApiTypeHelper.requireNonNull(builder.maxGram, this, "maxGram");
-		this.minGram = ApiTypeHelper.requireNonNull(builder.minGram, this, "minGram");
+		this.maxGram = builder.maxGram;
+		this.minGram = builder.minGram;
 		this.side = builder.side;
 		this.preserveOriginal = builder.preserveOriginal;
 
@@ -82,16 +83,18 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 	}
 
 	/**
-	 * Required - API name: {@code max_gram}
+	 * API name: {@code max_gram}
 	 */
-	public final int maxGram() {
+	@Nullable
+	public final Integer maxGram() {
 		return this.maxGram;
 	}
 
 	/**
-	 * Required - API name: {@code min_gram}
+	 * API name: {@code min_gram}
 	 */
-	public final int minGram() {
+	@Nullable
+	public final Integer minGram() {
 		return this.minGram;
 	}
 
@@ -115,12 +118,16 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 
 		generator.write("type", "edge_ngram");
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("max_gram");
-		generator.write(this.maxGram);
+		if (this.maxGram != null) {
+			generator.writeKey("max_gram");
+			generator.write(this.maxGram);
 
-		generator.writeKey("min_gram");
-		generator.write(this.minGram);
+		}
+		if (this.minGram != null) {
+			generator.writeKey("min_gram");
+			generator.write(this.minGram);
 
+		}
 		if (this.side != null) {
 			generator.writeKey("side");
 			this.side.serialize(generator, mapper);
@@ -142,8 +149,10 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 	public static class Builder extends TokenFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<EdgeNGramTokenFilter> {
+		@Nullable
 		private Integer maxGram;
 
+		@Nullable
 		private Integer minGram;
 
 		@Nullable
@@ -153,17 +162,17 @@ public class EdgeNGramTokenFilter extends TokenFilterBase implements TokenFilter
 		private Boolean preserveOriginal;
 
 		/**
-		 * Required - API name: {@code max_gram}
+		 * API name: {@code max_gram}
 		 */
-		public final Builder maxGram(int value) {
+		public final Builder maxGram(@Nullable Integer value) {
 			this.maxGram = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code min_gram}
+		 * API name: {@code min_gram}
 		 */
-		public final Builder minGram(int value) {
+		public final Builder minGram(@Nullable Integer value) {
 			this.minGram = value;
 			return this;
 		}

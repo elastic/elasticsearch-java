@@ -39,10 +39,10 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Map;
 import java.util.Objects;
@@ -81,7 +81,7 @@ public class TransformSummary implements JsonpSerializable {
 	private final Sync sync;
 
 	@Nullable
-	private final DateTime createTime;
+	private final Long createTime;
 
 	@Nullable
 	private final String version;
@@ -191,7 +191,7 @@ public class TransformSummary implements JsonpSerializable {
 	 * API name: {@code create_time}
 	 */
 	@Nullable
-	public final DateTime createTime() {
+	public final Long createTime() {
 		return this.createTime;
 	}
 
@@ -265,7 +265,8 @@ public class TransformSummary implements JsonpSerializable {
 		}
 		if (this.createTime != null) {
 			generator.writeKey("create_time");
-			this.createTime.serialize(generator, mapper);
+			generator.write(this.createTime);
+
 		}
 		if (this.version != null) {
 			generator.writeKey("version");
@@ -325,7 +326,7 @@ public class TransformSummary implements JsonpSerializable {
 		private Sync sync;
 
 		@Nullable
-		private DateTime createTime;
+		private Long createTime;
 
 		@Nullable
 		private String version;
@@ -467,7 +468,7 @@ public class TransformSummary implements JsonpSerializable {
 		/**
 		 * API name: {@code create_time}
 		 */
-		public final Builder createTime(@Nullable DateTime value) {
+		public final Builder createTime(@Nullable Long value) {
 			this.createTime = value;
 			return this;
 		}
@@ -551,7 +552,7 @@ public class TransformSummary implements JsonpSerializable {
 		op.add(Builder::settings, Settings._DESERIALIZER, "settings");
 		op.add(Builder::source, Source._DESERIALIZER, "source");
 		op.add(Builder::sync, Sync._DESERIALIZER, "sync");
-		op.add(Builder::createTime, DateTime._DESERIALIZER, "create_time");
+		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
 		op.add(Builder::version, JsonpDeserializer.stringDeserializer(), "version");
 		op.add(Builder::latest, Latest._DESERIALIZER, "latest");
 		op.add(Builder::meta, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "_meta");

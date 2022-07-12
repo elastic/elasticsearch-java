@@ -36,7 +36,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
-import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -62,7 +62,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	private final Boolean isRunning;
 
 	@Nullable
-	private final Integer took;
+	private final Long took;
 
 	@Nullable
 	private final Boolean timedOut;
@@ -122,7 +122,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 	 * API name: {@code took}
 	 */
 	@Nullable
-	public final Integer took() {
+	public final Long took() {
 		return this.took;
 	}
 
@@ -205,7 +205,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		private Boolean isRunning;
 
 		@Nullable
-		private Integer took;
+		private Long took;
 
 		@Nullable
 		private Boolean timedOut;
@@ -250,7 +250,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		 * <p>
 		 * API name: {@code took}
 		 */
-		public final BuilderT took(@Nullable Integer value) {
+		public final BuilderT took(@Nullable Long value) {
 			this.took = value;
 			return self();
 		}
@@ -306,7 +306,7 @@ public abstract class EqlSearchResponseBase<TEvent> implements JsonpSerializable
 		op.add(AbstractBuilder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(AbstractBuilder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
 		op.add(AbstractBuilder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
-		op.add(AbstractBuilder::took, JsonpDeserializer.integerDeserializer(), "took");
+		op.add(AbstractBuilder::took, JsonpDeserializer.longDeserializer(), "took");
 		op.add(AbstractBuilder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
 		op.add(AbstractBuilder::hits, EqlHits.createEqlHitsDeserializer(tEventDeserializer), "hits");
 

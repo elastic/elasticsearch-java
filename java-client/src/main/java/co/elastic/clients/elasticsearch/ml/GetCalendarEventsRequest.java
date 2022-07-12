@@ -69,7 +69,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 	private final Integer size;
 
 	@Nullable
-	private final String start;
+	private final DateTime start;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -148,7 +148,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 	 * API name: {@code start}
 	 */
 	@Nullable
-	public final String start() {
+	public final DateTime start() {
 		return this.start;
 	}
 
@@ -174,7 +174,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 		private Integer size;
 
 		@Nullable
-		private String start;
+		private DateTime start;
 
 		/**
 		 * Required - A string that uniquely identifies a calendar. You can get
@@ -236,7 +236,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 		 * <p>
 		 * API name: {@code start}
 		 */
-		public final Builder start(@Nullable String value) {
+		public final Builder start(@Nullable DateTime value) {
 			this.start = value;
 			return this;
 		}
@@ -299,7 +299,7 @@ public class GetCalendarEventsRequest extends RequestBase {
 					params.put("job_id", request.jobId);
 				}
 				if (request.start != null) {
-					params.put("start", request.start);
+					params.put("start", request.start.toString());
 				}
 				if (request.end != null) {
 					params.put("end", request.end.toString());

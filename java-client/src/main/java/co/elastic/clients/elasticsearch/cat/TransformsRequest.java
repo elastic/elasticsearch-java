@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -74,7 +74,7 @@ public class TransformsRequest extends CatRequestBase {
 	private final Integer size;
 
 	@Nullable
-	private final Time time;
+	private final TimeUnit time;
 
 	@Nullable
 	private final String transformId;
@@ -153,7 +153,7 @@ public class TransformsRequest extends CatRequestBase {
 	 * API name: {@code time}
 	 */
 	@Nullable
-	public final Time time() {
+	public final TimeUnit time() {
 		return this.time;
 	}
 
@@ -191,7 +191,7 @@ public class TransformsRequest extends CatRequestBase {
 		private Integer size;
 
 		@Nullable
-		private Time time;
+		private TimeUnit time;
 
 		@Nullable
 		private String transformId;
@@ -282,18 +282,9 @@ public class TransformsRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code time}
 		 */
-		public final Builder time(@Nullable Time value) {
+		public final Builder time(@Nullable TimeUnit value) {
 			this.time = value;
 			return this;
-		}
-
-		/**
-		 * Unit used to display time values.
-		 * <p>
-		 * API name: {@code time}
-		 */
-		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.time(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -378,7 +369,7 @@ public class TransformsRequest extends CatRequestBase {
 					params.put("from", String.valueOf(request.from));
 				}
 				if (request.time != null) {
-					params.put("time", request.time._toJsonString());
+					params.put("time", request.time.jsonValue());
 				}
 				if (request.allowNoMatch != null) {
 					params.put("allow_no_match", String.valueOf(request.allowNoMatch));

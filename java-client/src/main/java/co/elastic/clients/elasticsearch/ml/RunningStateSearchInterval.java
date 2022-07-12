@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -37,6 +38,7 @@ import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
+import javax.annotation.Nullable;
 
 // typedef: ml._types.RunningStateSearchInterval
 
@@ -48,7 +50,13 @@ import java.util.function.Function;
  */
 @JsonpDeserializable
 public class RunningStateSearchInterval implements JsonpSerializable {
+	@Nullable
+	private final Time end;
+
 	private final long endMs;
+
+	@Nullable
+	private final Time start;
 
 	private final long startMs;
 
@@ -56,7 +64,9 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 
 	private RunningStateSearchInterval(Builder builder) {
 
+		this.end = builder.end;
 		this.endMs = ApiTypeHelper.requireNonNull(builder.endMs, this, "endMs");
+		this.start = builder.start;
 		this.startMs = ApiTypeHelper.requireNonNull(builder.startMs, this, "startMs");
 
 	}
@@ -66,10 +76,26 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 	}
 
 	/**
+	 * API name: {@code end}
+	 */
+	@Nullable
+	public final Time end() {
+		return this.end;
+	}
+
+	/**
 	 * Required - API name: {@code end_ms}
 	 */
 	public final long endMs() {
 		return this.endMs;
+	}
+
+	/**
+	 * API name: {@code start}
+	 */
+	@Nullable
+	public final Time start() {
+		return this.start;
 	}
 
 	/**
@@ -90,9 +116,19 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (this.end != null) {
+			generator.writeKey("end");
+			this.end.serialize(generator, mapper);
+
+		}
 		generator.writeKey("end_ms");
 		generator.write(this.endMs);
 
+		if (this.start != null) {
+			generator.writeKey("start");
+			this.start.serialize(generator, mapper);
+
+		}
 		generator.writeKey("start_ms");
 		generator.write(this.startMs);
 
@@ -112,9 +148,30 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<RunningStateSearchInterval> {
+		@Nullable
+		private Time end;
+
 		private Long endMs;
 
+		@Nullable
+		private Time start;
+
 		private Long startMs;
+
+		/**
+		 * API name: {@code end}
+		 */
+		public final Builder end(@Nullable Time value) {
+			this.end = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code end}
+		 */
+		public final Builder end(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.end(fn.apply(new Time.Builder()).build());
+		}
 
 		/**
 		 * Required - API name: {@code end_ms}
@@ -122,6 +179,21 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 		public final Builder endMs(long value) {
 			this.endMs = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code start}
+		 */
+		public final Builder start(@Nullable Time value) {
+			this.start = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code start}
+		 */
+		public final Builder start(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.start(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -161,7 +233,9 @@ public class RunningStateSearchInterval implements JsonpSerializable {
 	protected static void setupRunningStateSearchIntervalDeserializer(
 			ObjectDeserializer<RunningStateSearchInterval.Builder> op) {
 
+		op.add(Builder::end, Time._DESERIALIZER, "end");
 		op.add(Builder::endMs, JsonpDeserializer.longDeserializer(), "end_ms");
+		op.add(Builder::start, Time._DESERIALIZER, "start");
 		op.add(Builder::startMs, JsonpDeserializer.longDeserializer(), "start_ms");
 
 	}

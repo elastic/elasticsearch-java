@@ -31,7 +31,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -50,12 +49,12 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class License implements JsonpSerializable {
-	private final DateTime expiryDateInMillis;
+	private final long expiryDateInMillis;
 
-	private final DateTime issueDateInMillis;
+	private final long issueDateInMillis;
 
 	@Nullable
-	private final DateTime startDateInMillis;
+	private final Long startDateInMillis;
 
 	private final String issuedTo;
 
@@ -97,14 +96,14 @@ public class License implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code expiry_date_in_millis}
 	 */
-	public final DateTime expiryDateInMillis() {
+	public final long expiryDateInMillis() {
 		return this.expiryDateInMillis;
 	}
 
 	/**
 	 * Required - API name: {@code issue_date_in_millis}
 	 */
-	public final DateTime issueDateInMillis() {
+	public final long issueDateInMillis() {
 		return this.issueDateInMillis;
 	}
 
@@ -112,7 +111,7 @@ public class License implements JsonpSerializable {
 	 * API name: {@code start_date_in_millis}
 	 */
 	@Nullable
-	public final DateTime startDateInMillis() {
+	public final Long startDateInMillis() {
 		return this.startDateInMillis;
 	}
 
@@ -179,12 +178,15 @@ public class License implements JsonpSerializable {
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeKey("expiry_date_in_millis");
-		this.expiryDateInMillis.serialize(generator, mapper);
+		generator.write(this.expiryDateInMillis);
+
 		generator.writeKey("issue_date_in_millis");
-		this.issueDateInMillis.serialize(generator, mapper);
+		generator.write(this.issueDateInMillis);
+
 		if (this.startDateInMillis != null) {
 			generator.writeKey("start_date_in_millis");
-			this.startDateInMillis.serialize(generator, mapper);
+			generator.write(this.startDateInMillis);
+
 		}
 		generator.writeKey("issued_to");
 		generator.write(this.issuedTo);
@@ -224,12 +226,12 @@ public class License implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<License> {
-		private DateTime expiryDateInMillis;
+		private Long expiryDateInMillis;
 
-		private DateTime issueDateInMillis;
+		private Long issueDateInMillis;
 
 		@Nullable
-		private DateTime startDateInMillis;
+		private Long startDateInMillis;
 
 		private String issuedTo;
 
@@ -250,7 +252,7 @@ public class License implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code expiry_date_in_millis}
 		 */
-		public final Builder expiryDateInMillis(DateTime value) {
+		public final Builder expiryDateInMillis(long value) {
 			this.expiryDateInMillis = value;
 			return this;
 		}
@@ -258,7 +260,7 @@ public class License implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code issue_date_in_millis}
 		 */
-		public final Builder issueDateInMillis(DateTime value) {
+		public final Builder issueDateInMillis(long value) {
 			this.issueDateInMillis = value;
 			return this;
 		}
@@ -266,7 +268,7 @@ public class License implements JsonpSerializable {
 		/**
 		 * API name: {@code start_date_in_millis}
 		 */
-		public final Builder startDateInMillis(@Nullable DateTime value) {
+		public final Builder startDateInMillis(@Nullable Long value) {
 			this.startDateInMillis = value;
 			return this;
 		}
@@ -355,9 +357,9 @@ public class License implements JsonpSerializable {
 
 	protected static void setupLicenseDeserializer(ObjectDeserializer<License.Builder> op) {
 
-		op.add(Builder::expiryDateInMillis, DateTime._DESERIALIZER, "expiry_date_in_millis");
-		op.add(Builder::issueDateInMillis, DateTime._DESERIALIZER, "issue_date_in_millis");
-		op.add(Builder::startDateInMillis, DateTime._DESERIALIZER, "start_date_in_millis");
+		op.add(Builder::expiryDateInMillis, JsonpDeserializer.longDeserializer(), "expiry_date_in_millis");
+		op.add(Builder::issueDateInMillis, JsonpDeserializer.longDeserializer(), "issue_date_in_millis");
+		op.add(Builder::startDateInMillis, JsonpDeserializer.longDeserializer(), "start_date_in_millis");
 		op.add(Builder::issuedTo, JsonpDeserializer.stringDeserializer(), "issued_to");
 		op.add(Builder::issuer, JsonpDeserializer.stringDeserializer(), "issuer");
 		op.add(Builder::maxNodes, JsonpDeserializer.longDeserializer(), "max_nodes");

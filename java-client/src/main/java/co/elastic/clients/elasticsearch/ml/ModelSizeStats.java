@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,6 +31,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -55,7 +55,7 @@ public class ModelSizeStats implements JsonpSerializable {
 
 	private final String jobId;
 
-	private final Time logTime;
+	private final DateTime logTime;
 
 	private final MemoryStatus memoryStatus;
 
@@ -154,7 +154,7 @@ public class ModelSizeStats implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code log_time}
 	 */
-	public final Time logTime() {
+	public final DateTime logTime() {
 		return this.logTime;
 	}
 
@@ -308,7 +308,6 @@ public class ModelSizeStats implements JsonpSerializable {
 
 		generator.writeKey("log_time");
 		this.logTime.serialize(generator, mapper);
-
 		generator.writeKey("memory_status");
 		this.memoryStatus.serialize(generator, mapper);
 		generator.writeKey("model_bytes");
@@ -390,7 +389,7 @@ public class ModelSizeStats implements JsonpSerializable {
 
 		private String jobId;
 
-		private Time logTime;
+		private DateTime logTime;
 
 		private MemoryStatus memoryStatus;
 
@@ -452,16 +451,9 @@ public class ModelSizeStats implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code log_time}
 		 */
-		public final Builder logTime(Time value) {
+		public final Builder logTime(DateTime value) {
 			this.logTime = value;
 			return this;
-		}
-
-		/**
-		 * Required - API name: {@code log_time}
-		 */
-		public final Builder logTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.logTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -639,7 +631,7 @@ public class ModelSizeStats implements JsonpSerializable {
 		op.add(Builder::bucketAllocationFailuresCount, JsonpDeserializer.longDeserializer(),
 				"bucket_allocation_failures_count");
 		op.add(Builder::jobId, JsonpDeserializer.stringDeserializer(), "job_id");
-		op.add(Builder::logTime, Time._DESERIALIZER, "log_time");
+		op.add(Builder::logTime, DateTime._DESERIALIZER, "log_time");
 		op.add(Builder::memoryStatus, MemoryStatus._DESERIALIZER, "memory_status");
 		op.add(Builder::modelBytes, JsonpDeserializer.stringDeserializer(), "model_bytes");
 		op.add(Builder::modelBytesExceeded, JsonpDeserializer.stringDeserializer(), "model_bytes_exceeded");

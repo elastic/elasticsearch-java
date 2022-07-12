@@ -48,7 +48,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class DailySchedule implements ScheduleVariant, JsonpSerializable {
-	private final List<TimeOfDay> at;
+	private final List<ScheduleTimeOfDay> at;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -73,7 +73,7 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	/**
 	 * Required - API name: {@code at}
 	 */
-	public final List<TimeOfDay> at() {
+	public final List<ScheduleTimeOfDay> at() {
 		return this.at;
 	}
 
@@ -91,7 +91,7 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.at)) {
 			generator.writeKey("at");
 			generator.writeStartArray();
-			for (TimeOfDay item0 : this.at) {
+			for (ScheduleTimeOfDay item0 : this.at) {
 				item0.serialize(generator, mapper);
 
 			}
@@ -113,14 +113,14 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<DailySchedule> {
-		private List<TimeOfDay> at;
+		private List<ScheduleTimeOfDay> at;
 
 		/**
 		 * Required - API name: {@code at}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>at</code>.
 		 */
-		public final Builder at(List<TimeOfDay> list) {
+		public final Builder at(List<ScheduleTimeOfDay> list) {
 			this.at = _listAddAll(this.at, list);
 			return this;
 		}
@@ -130,7 +130,7 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 		 * <p>
 		 * Adds one or more values to <code>at</code>.
 		 */
-		public final Builder at(TimeOfDay value, TimeOfDay... values) {
+		public final Builder at(ScheduleTimeOfDay value, ScheduleTimeOfDay... values) {
 			this.at = _listAdd(this.at, value, values);
 			return this;
 		}
@@ -140,8 +140,8 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 		 * <p>
 		 * Adds a value to <code>at</code> using a builder lambda.
 		 */
-		public final Builder at(Function<TimeOfDay.Builder, ObjectBuilder<TimeOfDay>> fn) {
-			return at(fn.apply(new TimeOfDay.Builder()).build());
+		public final Builder at(Function<ScheduleTimeOfDay.Builder, ObjectBuilder<ScheduleTimeOfDay>> fn) {
+			return at(fn.apply(new ScheduleTimeOfDay.Builder()).build());
 		}
 
 		@Override
@@ -172,7 +172,7 @@ public class DailySchedule implements ScheduleVariant, JsonpSerializable {
 
 	protected static void setupDailyScheduleDeserializer(ObjectDeserializer<DailySchedule.Builder> op) {
 
-		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(TimeOfDay._DESERIALIZER), "at");
+		op.add(Builder::at, JsonpDeserializer.arrayDeserializer(ScheduleTimeOfDay._DESERIALIZER), "at");
 
 	}
 

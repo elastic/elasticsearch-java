@@ -59,8 +59,6 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSerializable {
-	private final Map<String, JsonData> access;
-
 	private final Map<String, JsonData> data;
 
 	@Nullable
@@ -68,6 +66,8 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 	@Nullable
 	private final Long ifSeqNo;
+
+	private final Map<String, JsonData> labels;
 
 	@Nullable
 	private final Refresh refresh;
@@ -78,10 +78,10 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 	private UpdateUserProfileDataRequest(Builder builder) {
 
-		this.access = ApiTypeHelper.unmodifiable(builder.access);
 		this.data = ApiTypeHelper.unmodifiable(builder.data);
 		this.ifPrimaryTerm = builder.ifPrimaryTerm;
 		this.ifSeqNo = builder.ifSeqNo;
+		this.labels = ApiTypeHelper.unmodifiable(builder.labels);
 		this.refresh = builder.refresh;
 		this.uid = ApiTypeHelper.requireNonNull(builder.uid, this, "uid");
 
@@ -89,16 +89,6 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 	public static UpdateUserProfileDataRequest of(Function<Builder, ObjectBuilder<UpdateUserProfileDataRequest>> fn) {
 		return fn.apply(new Builder()).build();
-	}
-
-	/**
-	 * Searchable data that you want to associate with the user profile. This field
-	 * supports a nested data structure.
-	 * <p>
-	 * API name: {@code access}
-	 */
-	public final Map<String, JsonData> access() {
-		return this.access;
 	}
 
 	/**
@@ -129,6 +119,16 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 	@Nullable
 	public final Long ifSeqNo() {
 		return this.ifSeqNo;
+	}
+
+	/**
+	 * Searchable data that you want to associate with the user profile. This field
+	 * supports a nested data structure.
+	 * <p>
+	 * API name: {@code labels}
+	 */
+	public final Map<String, JsonData> labels() {
+		return this.labels;
 	}
 
 	/**
@@ -163,10 +163,10 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (ApiTypeHelper.isDefined(this.access)) {
-			generator.writeKey("access");
+		if (ApiTypeHelper.isDefined(this.data)) {
+			generator.writeKey("data");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.access.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.data.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -174,10 +174,10 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 			generator.writeEnd();
 
 		}
-		if (ApiTypeHelper.isDefined(this.data)) {
-			generator.writeKey("data");
+		if (ApiTypeHelper.isDefined(this.labels)) {
+			generator.writeKey("labels");
 			generator.writeStartObject();
-			for (Map.Entry<String, JsonData> item0 : this.data.entrySet()) {
+			for (Map.Entry<String, JsonData> item0 : this.labels.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -198,9 +198,6 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 			implements
 				ObjectBuilder<UpdateUserProfileDataRequest> {
 		@Nullable
-		private Map<String, JsonData> access;
-
-		@Nullable
 		private Map<String, JsonData> data;
 
 		@Nullable
@@ -210,35 +207,12 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 		private Long ifSeqNo;
 
 		@Nullable
+		private Map<String, JsonData> labels;
+
+		@Nullable
 		private Refresh refresh;
 
 		private String uid;
-
-		/**
-		 * Searchable data that you want to associate with the user profile. This field
-		 * supports a nested data structure.
-		 * <p>
-		 * API name: {@code access}
-		 * <p>
-		 * Adds all entries of <code>map</code> to <code>access</code>.
-		 */
-		public final Builder access(Map<String, JsonData> map) {
-			this.access = _mapPutAll(this.access, map);
-			return this;
-		}
-
-		/**
-		 * Searchable data that you want to associate with the user profile. This field
-		 * supports a nested data structure.
-		 * <p>
-		 * API name: {@code access}
-		 * <p>
-		 * Adds an entry to <code>access</code>.
-		 */
-		public final Builder access(String key, JsonData value) {
-			this.access = _mapPut(this.access, key, value);
-			return this;
-		}
 
 		/**
 		 * Non-searchable data that you want to associate with the user profile. This
@@ -283,6 +257,32 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 		 */
 		public final Builder ifSeqNo(@Nullable Long value) {
 			this.ifSeqNo = value;
+			return this;
+		}
+
+		/**
+		 * Searchable data that you want to associate with the user profile. This field
+		 * supports a nested data structure.
+		 * <p>
+		 * API name: {@code labels}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>labels</code>.
+		 */
+		public final Builder labels(Map<String, JsonData> map) {
+			this.labels = _mapPutAll(this.labels, map);
+			return this;
+		}
+
+		/**
+		 * Searchable data that you want to associate with the user profile. This field
+		 * supports a nested data structure.
+		 * <p>
+		 * API name: {@code labels}
+		 * <p>
+		 * Adds an entry to <code>labels</code>.
+		 */
+		public final Builder labels(String key, JsonData value) {
+			this.labels = _mapPut(this.labels, key, value);
 			return this;
 		}
 
@@ -337,8 +337,8 @@ public class UpdateUserProfileDataRequest extends RequestBase implements JsonpSe
 	protected static void setupUpdateUserProfileDataRequestDeserializer(
 			ObjectDeserializer<UpdateUserProfileDataRequest.Builder> op) {
 
-		op.add(Builder::access, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "access");
 		op.add(Builder::data, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "data");
+		op.add(Builder::labels, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "labels");
 
 	}
 

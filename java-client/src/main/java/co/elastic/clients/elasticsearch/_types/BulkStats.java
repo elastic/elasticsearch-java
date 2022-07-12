@@ -52,7 +52,7 @@ public class BulkStats implements JsonpSerializable {
 	private final long totalOperations;
 
 	@Nullable
-	private final String totalTime;
+	private final Time totalTime;
 
 	private final long totalTimeInMillis;
 
@@ -62,7 +62,7 @@ public class BulkStats implements JsonpSerializable {
 	private final long totalSizeInBytes;
 
 	@Nullable
-	private final String avgTime;
+	private final Time avgTime;
 
 	private final long avgTimeInMillis;
 
@@ -102,7 +102,7 @@ public class BulkStats implements JsonpSerializable {
 	 * API name: {@code total_time}
 	 */
 	@Nullable
-	public final String totalTime() {
+	public final Time totalTime() {
 		return this.totalTime;
 	}
 
@@ -132,7 +132,7 @@ public class BulkStats implements JsonpSerializable {
 	 * API name: {@code avg_time}
 	 */
 	@Nullable
-	public final String avgTime() {
+	public final Time avgTime() {
 		return this.avgTime;
 	}
 
@@ -174,7 +174,7 @@ public class BulkStats implements JsonpSerializable {
 
 		if (this.totalTime != null) {
 			generator.writeKey("total_time");
-			generator.write(this.totalTime);
+			this.totalTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("total_time_in_millis");
@@ -190,7 +190,7 @@ public class BulkStats implements JsonpSerializable {
 
 		if (this.avgTime != null) {
 			generator.writeKey("avg_time");
-			generator.write(this.avgTime);
+			this.avgTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("avg_time_in_millis");
@@ -221,7 +221,7 @@ public class BulkStats implements JsonpSerializable {
 		private Long totalOperations;
 
 		@Nullable
-		private String totalTime;
+		private Time totalTime;
 
 		private Long totalTimeInMillis;
 
@@ -231,7 +231,7 @@ public class BulkStats implements JsonpSerializable {
 		private Long totalSizeInBytes;
 
 		@Nullable
-		private String avgTime;
+		private Time avgTime;
 
 		private Long avgTimeInMillis;
 
@@ -251,9 +251,16 @@ public class BulkStats implements JsonpSerializable {
 		/**
 		 * API name: {@code total_time}
 		 */
-		public final Builder totalTime(@Nullable String value) {
+		public final Builder totalTime(@Nullable Time value) {
 			this.totalTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code total_time}
+		 */
+		public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -283,9 +290,16 @@ public class BulkStats implements JsonpSerializable {
 		/**
 		 * API name: {@code avg_time}
 		 */
-		public final Builder avgTime(@Nullable String value) {
+		public final Builder avgTime(@Nullable Time value) {
 			this.avgTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code avg_time}
+		 */
+		public final Builder avgTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.avgTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -341,11 +355,11 @@ public class BulkStats implements JsonpSerializable {
 	protected static void setupBulkStatsDeserializer(ObjectDeserializer<BulkStats.Builder> op) {
 
 		op.add(Builder::totalOperations, JsonpDeserializer.longDeserializer(), "total_operations");
-		op.add(Builder::totalTime, JsonpDeserializer.stringDeserializer(), "total_time");
+		op.add(Builder::totalTime, Time._DESERIALIZER, "total_time");
 		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
 		op.add(Builder::totalSize, JsonpDeserializer.stringDeserializer(), "total_size");
 		op.add(Builder::totalSizeInBytes, JsonpDeserializer.longDeserializer(), "total_size_in_bytes");
-		op.add(Builder::avgTime, JsonpDeserializer.stringDeserializer(), "avg_time");
+		op.add(Builder::avgTime, Time._DESERIALIZER, "avg_time");
 		op.add(Builder::avgTimeInMillis, JsonpDeserializer.longDeserializer(), "avg_time_in_millis");
 		op.add(Builder::avgSize, JsonpDeserializer.stringDeserializer(), "avg_size");
 		op.add(Builder::avgSizeInBytes, JsonpDeserializer.longDeserializer(), "avg_size_in_bytes");

@@ -24,6 +24,9 @@
 package co.elastic.clients.elasticsearch.sql;
 
 import co.elastic.clients.elasticsearch._types.SortOptions;
+import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
+import co.elastic.clients.elasticsearch._types.query_dsl.FieldAndFormat;
+import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch.core.search.SourceConfig;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -53,11 +56,18 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class TranslateResponse implements JsonpSerializable {
-	private final long size;
+	private final Map<String, Aggregation> aggregations;
 
+	@Nullable
+	private final Long size;
+
+	@Nullable
 	private final SourceConfig source;
 
-	private final List<Map<String, String>> fields;
+	private final List<FieldAndFormat> fields;
+
+	@Nullable
+	private final Query query;
 
 	private final List<SortOptions> sort;
 
@@ -65,10 +75,12 @@ public class TranslateResponse implements JsonpSerializable {
 
 	private TranslateResponse(Builder builder) {
 
-		this.size = ApiTypeHelper.requireNonNull(builder.size, this, "size");
-		this.source = ApiTypeHelper.requireNonNull(builder.source, this, "source");
-		this.fields = ApiTypeHelper.unmodifiableRequired(builder.fields, this, "fields");
-		this.sort = ApiTypeHelper.unmodifiableRequired(builder.sort, this, "sort");
+		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
+		this.size = builder.size;
+		this.source = builder.source;
+		this.fields = ApiTypeHelper.unmodifiable(builder.fields);
+		this.query = builder.query;
+		this.sort = ApiTypeHelper.unmodifiable(builder.sort);
 
 	}
 
@@ -77,28 +89,45 @@ public class TranslateResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code size}
+	 * API name: {@code aggregations}
 	 */
-	public final long size() {
+	public final Map<String, Aggregation> aggregations() {
+		return this.aggregations;
+	}
+
+	/**
+	 * API name: {@code size}
+	 */
+	@Nullable
+	public final Long size() {
 		return this.size;
 	}
 
 	/**
-	 * Required - API name: {@code _source}
+	 * API name: {@code _source}
 	 */
+	@Nullable
 	public final SourceConfig source() {
 		return this.source;
 	}
 
 	/**
-	 * Required - API name: {@code fields}
+	 * API name: {@code fields}
 	 */
-	public final List<Map<String, String>> fields() {
+	public final List<FieldAndFormat> fields() {
 		return this.fields;
 	}
 
 	/**
-	 * Required - API name: {@code sort}
+	 * API name: {@code query}
+	 */
+	@Nullable
+	public final Query query() {
+		return this.query;
+	}
+
+	/**
+	 * API name: {@code sort}
 	 */
 	public final List<SortOptions> sort() {
 		return this.sort;
@@ -115,28 +144,40 @@ public class TranslateResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("size");
-		generator.write(this.size);
-
-		generator.writeKey("_source");
-		this.source.serialize(generator, mapper);
-
-		if (ApiTypeHelper.isDefined(this.fields)) {
-			generator.writeKey("fields");
-			generator.writeStartArray();
-			for (Map<String, String> item0 : this.fields) {
-				generator.writeStartObject();
-				if (item0 != null) {
-					for (Map.Entry<String, String> item1 : item0.entrySet()) {
-						generator.writeKey(item1.getKey());
-						generator.write(item1.getValue());
-
-					}
-				}
-				generator.writeEnd();
+		if (ApiTypeHelper.isDefined(this.aggregations)) {
+			generator.writeKey("aggregations");
+			generator.writeStartObject();
+			for (Map.Entry<String, Aggregation> item0 : this.aggregations.entrySet()) {
+				generator.writeKey(item0.getKey());
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
+
+		}
+		if (this.size != null) {
+			generator.writeKey("size");
+			generator.write(this.size);
+
+		}
+		if (this.source != null) {
+			generator.writeKey("_source");
+			this.source.serialize(generator, mapper);
+
+		}
+		if (ApiTypeHelper.isDefined(this.fields)) {
+			generator.writeKey("fields");
+			generator.writeStartArray();
+			for (FieldAndFormat item0 : this.fields) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.query != null) {
+			generator.writeKey("query");
+			this.query.serialize(generator, mapper);
 
 		}
 		if (ApiTypeHelper.isDefined(this.sort)) {
@@ -164,59 +205,122 @@ public class TranslateResponse implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<TranslateResponse> {
+		@Nullable
+		private Map<String, Aggregation> aggregations;
+
+		@Nullable
 		private Long size;
 
+		@Nullable
 		private SourceConfig source;
 
-		private List<Map<String, String>> fields;
+		@Nullable
+		private List<FieldAndFormat> fields;
 
+		@Nullable
+		private Query query;
+
+		@Nullable
 		private List<SortOptions> sort;
 
 		/**
-		 * Required - API name: {@code size}
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds all entries of <code>map</code> to <code>aggregations</code>.
 		 */
-		public final Builder size(long value) {
+		public final Builder aggregations(Map<String, Aggregation> map) {
+			this.aggregations = _mapPutAll(this.aggregations, map);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code>.
+		 */
+		public final Builder aggregations(String key, Aggregation value) {
+			this.aggregations = _mapPut(this.aggregations, key, value);
+			return this;
+		}
+
+		/**
+		 * API name: {@code aggregations}
+		 * <p>
+		 * Adds an entry to <code>aggregations</code> using a builder lambda.
+		 */
+		public final Builder aggregations(String key, Function<Aggregation.Builder, ObjectBuilder<Aggregation>> fn) {
+			return aggregations(key, fn.apply(new Aggregation.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code size}
+		 */
+		public final Builder size(@Nullable Long value) {
 			this.size = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code _source}
+		 * API name: {@code _source}
 		 */
-		public final Builder source(SourceConfig value) {
+		public final Builder source(@Nullable SourceConfig value) {
 			this.source = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code _source}
+		 * API name: {@code _source}
 		 */
 		public final Builder source(Function<SourceConfig.Builder, ObjectBuilder<SourceConfig>> fn) {
 			return this.source(fn.apply(new SourceConfig.Builder()).build());
 		}
 
 		/**
-		 * Required - API name: {@code fields}
+		 * API name: {@code fields}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>fields</code>.
 		 */
-		public final Builder fields(List<Map<String, String>> list) {
+		public final Builder fields(List<FieldAndFormat> list) {
 			this.fields = _listAddAll(this.fields, list);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code fields}
+		 * API name: {@code fields}
 		 * <p>
 		 * Adds one or more values to <code>fields</code>.
 		 */
-		public final Builder fields(Map<String, String> value, Map<String, String>... values) {
+		public final Builder fields(FieldAndFormat value, FieldAndFormat... values) {
 			this.fields = _listAdd(this.fields, value, values);
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code sort}
+		 * API name: {@code fields}
+		 * <p>
+		 * Adds a value to <code>fields</code> using a builder lambda.
+		 */
+		public final Builder fields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
+			return fields(fn.apply(new FieldAndFormat.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public final Builder query(@Nullable Query value) {
+			this.query = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code query}
+		 */
+		public final Builder query(Function<Query.Builder, ObjectBuilder<Query>> fn) {
+			return this.query(fn.apply(new Query.Builder()).build());
+		}
+
+		/**
+		 * API name: {@code sort}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>sort</code>.
 		 */
@@ -226,7 +330,7 @@ public class TranslateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code sort}
+		 * API name: {@code sort}
 		 * <p>
 		 * Adds one or more values to <code>sort</code>.
 		 */
@@ -236,7 +340,7 @@ public class TranslateResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code sort}
+		 * API name: {@code sort}
 		 * <p>
 		 * Adds a value to <code>sort</code> using a builder lambda.
 		 */
@@ -272,10 +376,12 @@ public class TranslateResponse implements JsonpSerializable {
 
 	protected static void setupTranslateResponseDeserializer(ObjectDeserializer<TranslateResponse.Builder> op) {
 
+		op.add(Builder::aggregations, JsonpDeserializer.stringMapDeserializer(Aggregation._DESERIALIZER),
+				"aggregations");
 		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
 		op.add(Builder::source, SourceConfig._DESERIALIZER, "_source");
-		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(
-				JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer())), "fields");
+		op.add(Builder::fields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER), "fields");
+		op.add(Builder::query, Query._DESERIALIZER, "query");
 		op.add(Builder::sort, JsonpDeserializer.arrayDeserializer(SortOptions._DESERIALIZER), "sort");
 
 	}

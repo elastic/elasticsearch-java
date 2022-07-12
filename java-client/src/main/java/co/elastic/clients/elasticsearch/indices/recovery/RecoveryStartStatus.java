@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.indices.recovery;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -35,7 +36,6 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
-import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,15 +50,24 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RecoveryStartStatus implements JsonpSerializable {
-	private final long checkIndexTime;
+	@Nullable
+	private final Time checkIndexTime;
 
-	private final String totalTimeInMillis;
+	private final long checkIndexTimeInMillis;
+
+	@Nullable
+	private final Time totalTime;
+
+	private final long totalTimeInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private RecoveryStartStatus(Builder builder) {
 
-		this.checkIndexTime = ApiTypeHelper.requireNonNull(builder.checkIndexTime, this, "checkIndexTime");
+		this.checkIndexTime = builder.checkIndexTime;
+		this.checkIndexTimeInMillis = ApiTypeHelper.requireNonNull(builder.checkIndexTimeInMillis, this,
+				"checkIndexTimeInMillis");
+		this.totalTime = builder.totalTime;
 		this.totalTimeInMillis = ApiTypeHelper.requireNonNull(builder.totalTimeInMillis, this, "totalTimeInMillis");
 
 	}
@@ -68,16 +77,32 @@ public class RecoveryStartStatus implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code check_index_time}
+	 * API name: {@code check_index_time}
 	 */
-	public final long checkIndexTime() {
+	@Nullable
+	public final Time checkIndexTime() {
 		return this.checkIndexTime;
+	}
+
+	/**
+	 * Required - API name: {@code check_index_time_in_millis}
+	 */
+	public final long checkIndexTimeInMillis() {
+		return this.checkIndexTimeInMillis;
+	}
+
+	/**
+	 * API name: {@code total_time}
+	 */
+	@Nullable
+	public final Time totalTime() {
+		return this.totalTime;
 	}
 
 	/**
 	 * Required - API name: {@code total_time_in_millis}
 	 */
-	public final String totalTimeInMillis() {
+	public final long totalTimeInMillis() {
 		return this.totalTimeInMillis;
 	}
 
@@ -92,9 +117,19 @@ public class RecoveryStartStatus implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("check_index_time");
-		generator.write(this.checkIndexTime);
+		if (this.checkIndexTime != null) {
+			generator.writeKey("check_index_time");
+			this.checkIndexTime.serialize(generator, mapper);
 
+		}
+		generator.writeKey("check_index_time_in_millis");
+		generator.write(this.checkIndexTimeInMillis);
+
+		if (this.totalTime != null) {
+			generator.writeKey("total_time");
+			this.totalTime.serialize(generator, mapper);
+
+		}
 		generator.writeKey("total_time_in_millis");
 		generator.write(this.totalTimeInMillis);
 
@@ -114,22 +149,58 @@ public class RecoveryStartStatus implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<RecoveryStartStatus> {
-		private Long checkIndexTime;
+		@Nullable
+		private Time checkIndexTime;
 
-		private String totalTimeInMillis;
+		private Long checkIndexTimeInMillis;
+
+		@Nullable
+		private Time totalTime;
+
+		private Long totalTimeInMillis;
 
 		/**
-		 * Required - API name: {@code check_index_time}
+		 * API name: {@code check_index_time}
 		 */
-		public final Builder checkIndexTime(long value) {
+		public final Builder checkIndexTime(@Nullable Time value) {
 			this.checkIndexTime = value;
 			return this;
 		}
 
 		/**
+		 * API name: {@code check_index_time}
+		 */
+		public final Builder checkIndexTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.checkIndexTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
+		 * Required - API name: {@code check_index_time_in_millis}
+		 */
+		public final Builder checkIndexTimeInMillis(long value) {
+			this.checkIndexTimeInMillis = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_time}
+		 */
+		public final Builder totalTime(@Nullable Time value) {
+			this.totalTime = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code total_time}
+		 */
+		public final Builder totalTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.totalTime(fn.apply(new Time.Builder()).build());
+		}
+
+		/**
 		 * Required - API name: {@code total_time_in_millis}
 		 */
-		public final Builder totalTimeInMillis(String value) {
+		public final Builder totalTimeInMillis(long value) {
 			this.totalTimeInMillis = value;
 			return this;
 		}
@@ -162,8 +233,10 @@ public class RecoveryStartStatus implements JsonpSerializable {
 
 	protected static void setupRecoveryStartStatusDeserializer(ObjectDeserializer<RecoveryStartStatus.Builder> op) {
 
-		op.add(Builder::checkIndexTime, JsonpDeserializer.longDeserializer(), "check_index_time");
-		op.add(Builder::totalTimeInMillis, JsonpDeserializer.stringDeserializer(), "total_time_in_millis");
+		op.add(Builder::checkIndexTime, Time._DESERIALIZER, "check_index_time");
+		op.add(Builder::checkIndexTimeInMillis, JsonpDeserializer.longDeserializer(), "check_index_time_in_millis");
+		op.add(Builder::totalTime, Time._DESERIALIZER, "total_time");
+		op.add(Builder::totalTimeInMillis, JsonpDeserializer.longDeserializer(), "total_time_in_millis");
 
 	}
 

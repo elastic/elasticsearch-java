@@ -25,7 +25,6 @@ package co.elastic.clients.elasticsearch.core;
 
 import co.elastic.clients.elasticsearch._types.BulkIndexByScrollFailure;
 import co.elastic.clients.elasticsearch._types.Retries;
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -34,11 +33,11 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Float;
 import java.lang.Integer;
 import java.lang.Long;
 import java.lang.String;
@@ -74,7 +73,7 @@ public class ReindexResponse implements JsonpSerializable {
 	private final Retries retries;
 
 	@Nullable
-	private final Long requestsPerSecond;
+	private final Float requestsPerSecond;
 
 	@Nullable
 	private final Integer sliceId;
@@ -83,16 +82,16 @@ public class ReindexResponse implements JsonpSerializable {
 	private final String task;
 
 	@Nullable
-	private final DateTime throttledMillis;
+	private final Long throttledMillis;
 
 	@Nullable
-	private final DateTime throttledUntilMillis;
+	private final Long throttledUntilMillis;
 
 	@Nullable
 	private final Boolean timedOut;
 
 	@Nullable
-	private final Time took;
+	private final Long took;
 
 	@Nullable
 	private final Long total;
@@ -181,7 +180,7 @@ public class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
-	public final Long requestsPerSecond() {
+	public final Float requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -205,7 +204,7 @@ public class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code throttled_millis}
 	 */
 	@Nullable
-	public final DateTime throttledMillis() {
+	public final Long throttledMillis() {
 		return this.throttledMillis;
 	}
 
@@ -213,7 +212,7 @@ public class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code throttled_until_millis}
 	 */
 	@Nullable
-	public final DateTime throttledUntilMillis() {
+	public final Long throttledUntilMillis() {
 		return this.throttledUntilMillis;
 	}
 
@@ -229,7 +228,7 @@ public class ReindexResponse implements JsonpSerializable {
 	 * API name: {@code took}
 	 */
 	@Nullable
-	public final Time took() {
+	public final Long took() {
 		return this.took;
 	}
 
@@ -320,11 +319,13 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 		if (this.throttledMillis != null) {
 			generator.writeKey("throttled_millis");
-			this.throttledMillis.serialize(generator, mapper);
+			generator.write(this.throttledMillis);
+
 		}
 		if (this.throttledUntilMillis != null) {
 			generator.writeKey("throttled_until_millis");
-			this.throttledUntilMillis.serialize(generator, mapper);
+			generator.write(this.throttledUntilMillis);
+
 		}
 		if (this.timedOut != null) {
 			generator.writeKey("timed_out");
@@ -333,7 +334,7 @@ public class ReindexResponse implements JsonpSerializable {
 		}
 		if (this.took != null) {
 			generator.writeKey("took");
-			this.took.serialize(generator, mapper);
+			generator.write(this.took);
 
 		}
 		if (this.total != null) {
@@ -385,7 +386,7 @@ public class ReindexResponse implements JsonpSerializable {
 		private Retries retries;
 
 		@Nullable
-		private Long requestsPerSecond;
+		private Float requestsPerSecond;
 
 		@Nullable
 		private Integer sliceId;
@@ -394,16 +395,16 @@ public class ReindexResponse implements JsonpSerializable {
 		private String task;
 
 		@Nullable
-		private DateTime throttledMillis;
+		private Long throttledMillis;
 
 		@Nullable
-		private DateTime throttledUntilMillis;
+		private Long throttledUntilMillis;
 
 		@Nullable
 		private Boolean timedOut;
 
 		@Nullable
-		private Time took;
+		private Long took;
 
 		@Nullable
 		private Long total;
@@ -494,7 +495,7 @@ public class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code requests_per_second}
 		 */
-		public final Builder requestsPerSecond(@Nullable Long value) {
+		public final Builder requestsPerSecond(@Nullable Float value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
@@ -518,7 +519,7 @@ public class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_millis}
 		 */
-		public final Builder throttledMillis(@Nullable DateTime value) {
+		public final Builder throttledMillis(@Nullable Long value) {
 			this.throttledMillis = value;
 			return this;
 		}
@@ -526,7 +527,7 @@ public class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code throttled_until_millis}
 		 */
-		public final Builder throttledUntilMillis(@Nullable DateTime value) {
+		public final Builder throttledUntilMillis(@Nullable Long value) {
 			this.throttledUntilMillis = value;
 			return this;
 		}
@@ -542,16 +543,9 @@ public class ReindexResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code took}
 		 */
-		public final Builder took(@Nullable Time value) {
+		public final Builder took(@Nullable Long value) {
 			this.took = value;
 			return this;
-		}
-
-		/**
-		 * API name: {@code took}
-		 */
-		public final Builder took(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.took(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -613,13 +607,13 @@ public class ReindexResponse implements JsonpSerializable {
 				"failures");
 		op.add(Builder::noops, JsonpDeserializer.longDeserializer(), "noops");
 		op.add(Builder::retries, Retries._DESERIALIZER, "retries");
-		op.add(Builder::requestsPerSecond, JsonpDeserializer.longDeserializer(), "requests_per_second");
+		op.add(Builder::requestsPerSecond, JsonpDeserializer.floatDeserializer(), "requests_per_second");
 		op.add(Builder::sliceId, JsonpDeserializer.integerDeserializer(), "slice_id");
 		op.add(Builder::task, JsonpDeserializer.stringDeserializer(), "task");
-		op.add(Builder::throttledMillis, DateTime._DESERIALIZER, "throttled_millis");
-		op.add(Builder::throttledUntilMillis, DateTime._DESERIALIZER, "throttled_until_millis");
+		op.add(Builder::throttledMillis, JsonpDeserializer.longDeserializer(), "throttled_millis");
+		op.add(Builder::throttledUntilMillis, JsonpDeserializer.longDeserializer(), "throttled_until_millis");
 		op.add(Builder::timedOut, JsonpDeserializer.booleanDeserializer(), "timed_out");
-		op.add(Builder::took, Time._DESERIALIZER, "took");
+		op.add(Builder::took, JsonpDeserializer.longDeserializer(), "took");
 		op.add(Builder::total, JsonpDeserializer.longDeserializer(), "total");
 		op.add(Builder::updated, JsonpDeserializer.longDeserializer(), "updated");
 		op.add(Builder::versionConflicts, JsonpDeserializer.longDeserializer(), "version_conflicts");

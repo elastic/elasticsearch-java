@@ -31,10 +31,10 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -56,7 +56,7 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 	private final String name;
 
 	@Nullable
-	private final DateTime expiration;
+	private final Long expiration;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -98,7 +98,7 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 	 * API name: {@code expiration}
 	 */
 	@Nullable
-	public final DateTime expiration() {
+	public final Long expiration() {
 		return this.expiration;
 	}
 
@@ -124,7 +124,8 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 
 		if (this.expiration != null) {
 			generator.writeKey("expiration");
-			this.expiration.serialize(generator, mapper);
+			generator.write(this.expiration);
+
 		}
 
 	}
@@ -150,7 +151,7 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 		private String name;
 
 		@Nullable
-		private DateTime expiration;
+		private Long expiration;
 
 		/**
 		 * Required - API name: {@code api_key}
@@ -179,7 +180,7 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code expiration}
 		 */
-		public final Builder expiration(@Nullable DateTime value) {
+		public final Builder expiration(@Nullable Long value) {
 			this.expiration = value;
 			return this;
 		}
@@ -215,7 +216,7 @@ public class GrantApiKeyResponse implements JsonpSerializable {
 		op.add(Builder::apiKey, JsonpDeserializer.stringDeserializer(), "api_key");
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
-		op.add(Builder::expiration, DateTime._DESERIALIZER, "expiration");
+		op.add(Builder::expiration, JsonpDeserializer.longDeserializer(), "expiration");
 
 	}
 

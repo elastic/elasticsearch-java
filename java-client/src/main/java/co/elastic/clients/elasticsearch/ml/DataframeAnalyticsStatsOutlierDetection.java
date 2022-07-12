@@ -31,10 +31,10 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Long;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -51,7 +51,7 @@ import javax.annotation.Nullable;
 public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyticsStatsVariant, JsonpSerializable {
 	private final OutlierDetectionParameters parameters;
 
-	private final DateTime timestamp;
+	private final long timestamp;
 
 	private final TimingStats timingStats;
 
@@ -88,7 +88,7 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public final DateTime timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
 	}
 
@@ -114,7 +114,8 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		this.parameters.serialize(generator, mapper);
 
 		generator.writeKey("timestamp");
-		this.timestamp.serialize(generator, mapper);
+		generator.write(this.timestamp);
+
 		generator.writeKey("timing_stats");
 		this.timingStats.serialize(generator, mapper);
 
@@ -136,7 +137,7 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 				ObjectBuilder<DataframeAnalyticsStatsOutlierDetection> {
 		private OutlierDetectionParameters parameters;
 
-		private DateTime timestamp;
+		private Long timestamp;
 
 		private TimingStats timingStats;
 
@@ -159,7 +160,7 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public final Builder timestamp(DateTime value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -210,7 +211,7 @@ public class DataframeAnalyticsStatsOutlierDetection implements DataframeAnalyti
 			ObjectDeserializer<DataframeAnalyticsStatsOutlierDetection.Builder> op) {
 
 		op.add(Builder::parameters, OutlierDetectionParameters._DESERIALIZER, "parameters");
-		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 		op.add(Builder::timingStats, TimingStats._DESERIALIZER, "timing_stats");
 
 	}

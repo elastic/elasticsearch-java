@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,6 +31,7 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
+import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -63,7 +63,9 @@ public class OverallBucket implements JsonpSerializable {
 
 	private final String resultType;
 
-	private final Time timestamp;
+	private final long timestamp;
+
+	private final DateTime timestampString;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -75,6 +77,7 @@ public class OverallBucket implements JsonpSerializable {
 		this.overallScore = ApiTypeHelper.requireNonNull(builder.overallScore, this, "overallScore");
 		this.resultType = ApiTypeHelper.requireNonNull(builder.resultType, this, "resultType");
 		this.timestamp = ApiTypeHelper.requireNonNull(builder.timestamp, this, "timestamp");
+		this.timestampString = ApiTypeHelper.requireNonNull(builder.timestampString, this, "timestampString");
 
 	}
 
@@ -135,8 +138,18 @@ public class OverallBucket implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code timestamp}
 	 */
-	public final Time timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
+	}
+
+	/**
+	 * Required - The start time of the bucket for which these results were
+	 * calculated.
+	 * <p>
+	 * API name: {@code timestamp_string}
+	 */
+	public final DateTime timestampString() {
+		return this.timestampString;
 	}
 
 	/**
@@ -173,7 +186,10 @@ public class OverallBucket implements JsonpSerializable {
 		generator.write(this.resultType);
 
 		generator.writeKey("timestamp");
-		this.timestamp.serialize(generator, mapper);
+		generator.write(this.timestamp);
+
+		generator.writeKey("timestamp_string");
+		this.timestampString.serialize(generator, mapper);
 
 	}
 
@@ -199,7 +215,9 @@ public class OverallBucket implements JsonpSerializable {
 
 		private String resultType;
 
-		private Time timestamp;
+		private Long timestamp;
+
+		private DateTime timestampString;
 
 		/**
 		 * Required - The length of the bucket in seconds. Matches the job with the
@@ -284,7 +302,7 @@ public class OverallBucket implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code timestamp}
 		 */
-		public final Builder timestamp(Time value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -293,10 +311,11 @@ public class OverallBucket implements JsonpSerializable {
 		 * Required - The start time of the bucket for which these results were
 		 * calculated.
 		 * <p>
-		 * API name: {@code timestamp}
+		 * API name: {@code timestamp_string}
 		 */
-		public final Builder timestamp(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.timestamp(fn.apply(new Time.Builder()).build());
+		public final Builder timestampString(DateTime value) {
+			this.timestampString = value;
+			return this;
 		}
 
 		@Override
@@ -332,7 +351,8 @@ public class OverallBucket implements JsonpSerializable {
 		op.add(Builder::jobs, JsonpDeserializer.arrayDeserializer(OverallBucketJob._DESERIALIZER), "jobs");
 		op.add(Builder::overallScore, JsonpDeserializer.doubleDeserializer(), "overall_score");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, Time._DESERIALIZER, "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
+		op.add(Builder::timestampString, DateTime._DESERIALIZER, "timestamp_string");
 
 	}
 

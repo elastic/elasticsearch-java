@@ -35,6 +35,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Long;
 import java.lang.Number;
 import java.lang.String;
 import java.util.Objects;
@@ -56,9 +57,9 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 
 	private final boolean isPartial;
 
-	private final Number startTimeInMillis;
+	private final long startTimeInMillis;
 
-	private final Number expirationTimeInMillis;
+	private final long expirationTimeInMillis;
 
 	@Nullable
 	private final Number completionStatus;
@@ -119,7 +120,7 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code start_time_in_millis}
 	 */
-	public final Number startTimeInMillis() {
+	public final long startTimeInMillis() {
 		return this.startTimeInMillis;
 	}
 
@@ -130,7 +131,7 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code expiration_time_in_millis}
 	 */
-	public final Number expirationTimeInMillis() {
+	public final long expirationTimeInMillis() {
 		return this.expirationTimeInMillis;
 	}
 
@@ -166,10 +167,10 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 		generator.write(this.isPartial);
 
 		generator.writeKey("start_time_in_millis");
-		generator.write(this.startTimeInMillis.doubleValue());
+		generator.write(this.startTimeInMillis);
 
 		generator.writeKey("expiration_time_in_millis");
-		generator.write(this.expirationTimeInMillis.doubleValue());
+		generator.write(this.expirationTimeInMillis);
 
 		if (this.completionStatus != null) {
 			generator.writeKey("completion_status");
@@ -199,9 +200,9 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 
 		private Boolean isPartial;
 
-		private Number startTimeInMillis;
+		private Long startTimeInMillis;
 
-		private Number expirationTimeInMillis;
+		private Long expirationTimeInMillis;
 
 		@Nullable
 		private Number completionStatus;
@@ -247,7 +248,7 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code start_time_in_millis}
 		 */
-		public final Builder startTimeInMillis(Number value) {
+		public final Builder startTimeInMillis(long value) {
 			this.startTimeInMillis = value;
 			return this;
 		}
@@ -259,7 +260,7 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code expiration_time_in_millis}
 		 */
-		public final Builder expirationTimeInMillis(Number value) {
+		public final Builder expirationTimeInMillis(long value) {
 			this.expirationTimeInMillis = value;
 			return this;
 		}
@@ -307,8 +308,8 @@ public class GetAsyncStatusResponse implements JsonpSerializable {
 		op.add(Builder::id, JsonpDeserializer.stringDeserializer(), "id");
 		op.add(Builder::isRunning, JsonpDeserializer.booleanDeserializer(), "is_running");
 		op.add(Builder::isPartial, JsonpDeserializer.booleanDeserializer(), "is_partial");
-		op.add(Builder::startTimeInMillis, JsonpDeserializer.numberDeserializer(), "start_time_in_millis");
-		op.add(Builder::expirationTimeInMillis, JsonpDeserializer.numberDeserializer(), "expiration_time_in_millis");
+		op.add(Builder::startTimeInMillis, JsonpDeserializer.longDeserializer(), "start_time_in_millis");
+		op.add(Builder::expirationTimeInMillis, JsonpDeserializer.longDeserializer(), "expiration_time_in_millis");
 		op.add(Builder::completionStatus, JsonpDeserializer.numberDeserializer(), "completion_status");
 
 	}

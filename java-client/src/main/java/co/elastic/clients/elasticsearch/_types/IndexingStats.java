@@ -56,7 +56,7 @@ public class IndexingStats implements JsonpSerializable {
 	private final long deleteCurrent;
 
 	@Nullable
-	private final String deleteTime;
+	private final Time deleteTime;
 
 	private final long deleteTimeInMillis;
 
@@ -67,12 +67,12 @@ public class IndexingStats implements JsonpSerializable {
 	private final long noopUpdateTotal;
 
 	@Nullable
-	private final String throttleTime;
+	private final Time throttleTime;
 
 	private final long throttleTimeInMillis;
 
 	@Nullable
-	private final String indexTime;
+	private final Time indexTime;
 
 	private final long indexTimeInMillis;
 
@@ -126,7 +126,7 @@ public class IndexingStats implements JsonpSerializable {
 	 * API name: {@code delete_time}
 	 */
 	@Nullable
-	public final String deleteTime() {
+	public final Time deleteTime() {
 		return this.deleteTime;
 	}
 
@@ -162,7 +162,7 @@ public class IndexingStats implements JsonpSerializable {
 	 * API name: {@code throttle_time}
 	 */
 	@Nullable
-	public final String throttleTime() {
+	public final Time throttleTime() {
 		return this.throttleTime;
 	}
 
@@ -177,7 +177,7 @@ public class IndexingStats implements JsonpSerializable {
 	 * API name: {@code index_time}
 	 */
 	@Nullable
-	public final String indexTime() {
+	public final Time indexTime() {
 		return this.indexTime;
 	}
 
@@ -228,7 +228,7 @@ public class IndexingStats implements JsonpSerializable {
 
 		if (this.deleteTime != null) {
 			generator.writeKey("delete_time");
-			generator.write(this.deleteTime);
+			this.deleteTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("delete_time_in_millis");
@@ -245,7 +245,7 @@ public class IndexingStats implements JsonpSerializable {
 
 		if (this.throttleTime != null) {
 			generator.writeKey("throttle_time");
-			generator.write(this.throttleTime);
+			this.throttleTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("throttle_time_in_millis");
@@ -253,7 +253,7 @@ public class IndexingStats implements JsonpSerializable {
 
 		if (this.indexTime != null) {
 			generator.writeKey("index_time");
-			generator.write(this.indexTime);
+			this.indexTime.serialize(generator, mapper);
 
 		}
 		generator.writeKey("index_time_in_millis");
@@ -296,7 +296,7 @@ public class IndexingStats implements JsonpSerializable {
 		private Long deleteCurrent;
 
 		@Nullable
-		private String deleteTime;
+		private Time deleteTime;
 
 		private Long deleteTimeInMillis;
 
@@ -307,12 +307,12 @@ public class IndexingStats implements JsonpSerializable {
 		private Long noopUpdateTotal;
 
 		@Nullable
-		private String throttleTime;
+		private Time throttleTime;
 
 		private Long throttleTimeInMillis;
 
 		@Nullable
-		private String indexTime;
+		private Time indexTime;
 
 		private Long indexTimeInMillis;
 
@@ -342,9 +342,16 @@ public class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code delete_time}
 		 */
-		public final Builder deleteTime(@Nullable String value) {
+		public final Builder deleteTime(@Nullable Time value) {
 			this.deleteTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code delete_time}
+		 */
+		public final Builder deleteTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.deleteTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -382,9 +389,16 @@ public class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_time}
 		 */
-		public final Builder throttleTime(@Nullable String value) {
+		public final Builder throttleTime(@Nullable Time value) {
 			this.throttleTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code throttle_time}
+		 */
+		public final Builder throttleTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.throttleTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -398,9 +412,16 @@ public class IndexingStats implements JsonpSerializable {
 		/**
 		 * API name: {@code index_time}
 		 */
-		public final Builder indexTime(@Nullable String value) {
+		public final Builder indexTime(@Nullable Time value) {
 			this.indexTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code index_time}
+		 */
+		public final Builder indexTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.indexTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -486,14 +507,14 @@ public class IndexingStats implements JsonpSerializable {
 
 		op.add(Builder::indexCurrent, JsonpDeserializer.longDeserializer(), "index_current");
 		op.add(Builder::deleteCurrent, JsonpDeserializer.longDeserializer(), "delete_current");
-		op.add(Builder::deleteTime, JsonpDeserializer.stringDeserializer(), "delete_time");
+		op.add(Builder::deleteTime, Time._DESERIALIZER, "delete_time");
 		op.add(Builder::deleteTimeInMillis, JsonpDeserializer.longDeserializer(), "delete_time_in_millis");
 		op.add(Builder::deleteTotal, JsonpDeserializer.longDeserializer(), "delete_total");
 		op.add(Builder::isThrottled, JsonpDeserializer.booleanDeserializer(), "is_throttled");
 		op.add(Builder::noopUpdateTotal, JsonpDeserializer.longDeserializer(), "noop_update_total");
-		op.add(Builder::throttleTime, JsonpDeserializer.stringDeserializer(), "throttle_time");
+		op.add(Builder::throttleTime, Time._DESERIALIZER, "throttle_time");
 		op.add(Builder::throttleTimeInMillis, JsonpDeserializer.longDeserializer(), "throttle_time_in_millis");
-		op.add(Builder::indexTime, JsonpDeserializer.stringDeserializer(), "index_time");
+		op.add(Builder::indexTime, Time._DESERIALIZER, "index_time");
 		op.add(Builder::indexTimeInMillis, JsonpDeserializer.longDeserializer(), "index_time_in_millis");
 		op.add(Builder::indexTotal, JsonpDeserializer.longDeserializer(), "index_total");
 		op.add(Builder::indexFailed, JsonpDeserializer.longDeserializer(), "index_failed");

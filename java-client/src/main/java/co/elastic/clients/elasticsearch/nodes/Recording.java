@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.nodes;
 
+import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -55,7 +56,7 @@ public class Recording implements JsonpSerializable {
 	private final Long cumulativeExecutionCount;
 
 	@Nullable
-	private final String cumulativeExecutionTime;
+	private final Time cumulativeExecutionTime;
 
 	@Nullable
 	private final Long cumulativeExecutionTimeMillis;
@@ -95,7 +96,7 @@ public class Recording implements JsonpSerializable {
 	 * API name: {@code cumulative_execution_time}
 	 */
 	@Nullable
-	public final String cumulativeExecutionTime() {
+	public final Time cumulativeExecutionTime() {
 		return this.cumulativeExecutionTime;
 	}
 
@@ -130,7 +131,7 @@ public class Recording implements JsonpSerializable {
 		}
 		if (this.cumulativeExecutionTime != null) {
 			generator.writeKey("cumulative_execution_time");
-			generator.write(this.cumulativeExecutionTime);
+			this.cumulativeExecutionTime.serialize(generator, mapper);
 
 		}
 		if (this.cumulativeExecutionTimeMillis != null) {
@@ -160,7 +161,7 @@ public class Recording implements JsonpSerializable {
 		private Long cumulativeExecutionCount;
 
 		@Nullable
-		private String cumulativeExecutionTime;
+		private Time cumulativeExecutionTime;
 
 		@Nullable
 		private Long cumulativeExecutionTimeMillis;
@@ -184,9 +185,16 @@ public class Recording implements JsonpSerializable {
 		/**
 		 * API name: {@code cumulative_execution_time}
 		 */
-		public final Builder cumulativeExecutionTime(@Nullable String value) {
+		public final Builder cumulativeExecutionTime(@Nullable Time value) {
 			this.cumulativeExecutionTime = value;
 			return this;
+		}
+
+		/**
+		 * API name: {@code cumulative_execution_time}
+		 */
+		public final Builder cumulativeExecutionTime(Function<Time.Builder, ObjectBuilder<Time>> fn) {
+			return this.cumulativeExecutionTime(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -227,7 +235,7 @@ public class Recording implements JsonpSerializable {
 
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::cumulativeExecutionCount, JsonpDeserializer.longDeserializer(), "cumulative_execution_count");
-		op.add(Builder::cumulativeExecutionTime, JsonpDeserializer.stringDeserializer(), "cumulative_execution_time");
+		op.add(Builder::cumulativeExecutionTime, Time._DESERIALIZER, "cumulative_execution_time");
 		op.add(Builder::cumulativeExecutionTimeMillis, JsonpDeserializer.longDeserializer(),
 				"cumulative_execution_time_millis");
 

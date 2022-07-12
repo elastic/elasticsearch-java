@@ -23,7 +23,6 @@
 
 package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -32,13 +31,13 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Double;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.List;
 import java.util.Objects;
@@ -56,7 +55,7 @@ import javax.annotation.Nullable;
 public class Anomaly implements JsonpSerializable {
 	private final List<Double> actual;
 
-	private final Time bucketSpan;
+	private final long bucketSpan;
 
 	@Nullable
 	private final String byFieldName;
@@ -103,7 +102,7 @@ public class Anomaly implements JsonpSerializable {
 
 	private final String resultType;
 
-	private final DateTime timestamp;
+	private final long timestamp;
 
 	private final List<Double> typical;
 
@@ -150,7 +149,7 @@ public class Anomaly implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code bucket_span}
 	 */
-	public final Time bucketSpan() {
+	public final long bucketSpan() {
 		return this.bucketSpan;
 	}
 
@@ -292,7 +291,7 @@ public class Anomaly implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code timestamp}
 	 */
-	public final DateTime timestamp() {
+	public final long timestamp() {
 		return this.timestamp;
 	}
 
@@ -325,7 +324,7 @@ public class Anomaly implements JsonpSerializable {
 
 		}
 		generator.writeKey("bucket_span");
-		this.bucketSpan.serialize(generator, mapper);
+		generator.write(this.bucketSpan);
 
 		if (this.byFieldName != null) {
 			generator.writeKey("by_field_name");
@@ -414,7 +413,8 @@ public class Anomaly implements JsonpSerializable {
 		generator.write(this.resultType);
 
 		generator.writeKey("timestamp");
-		this.timestamp.serialize(generator, mapper);
+		generator.write(this.timestamp);
+
 		if (ApiTypeHelper.isDefined(this.typical)) {
 			generator.writeKey("typical");
 			generator.writeStartArray();
@@ -443,7 +443,7 @@ public class Anomaly implements JsonpSerializable {
 		@Nullable
 		private List<Double> actual;
 
-		private Time bucketSpan;
+		private Long bucketSpan;
 
 		@Nullable
 		private String byFieldName;
@@ -492,7 +492,7 @@ public class Anomaly implements JsonpSerializable {
 
 		private String resultType;
 
-		private DateTime timestamp;
+		private Long timestamp;
 
 		@Nullable
 		private List<Double> typical;
@@ -520,16 +520,9 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code bucket_span}
 		 */
-		public final Builder bucketSpan(Time value) {
+		public final Builder bucketSpan(long value) {
 			this.bucketSpan = value;
 			return this;
-		}
-
-		/**
-		 * Required - API name: {@code bucket_span}
-		 */
-		public final Builder bucketSpan(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.bucketSpan(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -721,7 +714,7 @@ public class Anomaly implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code timestamp}
 		 */
-		public final Builder timestamp(DateTime value) {
+		public final Builder timestamp(long value) {
 			this.timestamp = value;
 			return this;
 		}
@@ -775,7 +768,7 @@ public class Anomaly implements JsonpSerializable {
 	protected static void setupAnomalyDeserializer(ObjectDeserializer<Anomaly.Builder> op) {
 
 		op.add(Builder::actual, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()), "actual");
-		op.add(Builder::bucketSpan, Time._DESERIALIZER, "bucket_span");
+		op.add(Builder::bucketSpan, JsonpDeserializer.longDeserializer(), "bucket_span");
 		op.add(Builder::byFieldName, JsonpDeserializer.stringDeserializer(), "by_field_name");
 		op.add(Builder::byFieldValue, JsonpDeserializer.stringDeserializer(), "by_field_value");
 		op.add(Builder::causes, JsonpDeserializer.arrayDeserializer(AnomalyCause._DESERIALIZER), "causes");
@@ -794,7 +787,7 @@ public class Anomaly implements JsonpSerializable {
 		op.add(Builder::probability, JsonpDeserializer.doubleDeserializer(), "probability");
 		op.add(Builder::recordScore, JsonpDeserializer.doubleDeserializer(), "record_score");
 		op.add(Builder::resultType, JsonpDeserializer.stringDeserializer(), "result_type");
-		op.add(Builder::timestamp, DateTime._DESERIALIZER, "timestamp");
+		op.add(Builder::timestamp, JsonpDeserializer.longDeserializer(), "timestamp");
 		op.add(Builder::typical, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.doubleDeserializer()),
 				"typical");
 

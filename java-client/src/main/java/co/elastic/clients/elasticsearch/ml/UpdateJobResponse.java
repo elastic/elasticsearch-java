@@ -32,7 +32,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -63,10 +62,10 @@ public class UpdateJobResponse implements JsonpSerializable {
 	@Nullable
 	private final Time backgroundPersistInterval;
 
-	private final DateTime createTime;
+	private final long createTime;
 
 	@Nullable
-	private final DateTime finishedTime;
+	private final Long finishedTime;
 
 	private final Map<String, String> customSettings;
 
@@ -170,7 +169,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code create_time}
 	 */
-	public final DateTime createTime() {
+	public final long createTime() {
 		return this.createTime;
 	}
 
@@ -178,7 +177,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 	 * API name: {@code finished_time}
 	 */
 	@Nullable
-	public final DateTime finishedTime() {
+	public final Long finishedTime() {
 		return this.finishedTime;
 	}
 
@@ -319,10 +318,12 @@ public class UpdateJobResponse implements JsonpSerializable {
 
 		}
 		generator.writeKey("create_time");
-		this.createTime.serialize(generator, mapper);
+		generator.write(this.createTime);
+
 		if (this.finishedTime != null) {
 			generator.writeKey("finished_time");
-			this.finishedTime.serialize(generator, mapper);
+			generator.write(this.finishedTime);
+
 		}
 		if (ApiTypeHelper.isDefined(this.customSettings)) {
 			generator.writeKey("custom_settings");
@@ -420,10 +421,10 @@ public class UpdateJobResponse implements JsonpSerializable {
 		@Nullable
 		private Time backgroundPersistInterval;
 
-		private DateTime createTime;
+		private Long createTime;
 
 		@Nullable
-		private DateTime finishedTime;
+		private Long finishedTime;
 
 		@Nullable
 		private Map<String, String> customSettings;
@@ -520,7 +521,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code create_time}
 		 */
-		public final Builder createTime(DateTime value) {
+		public final Builder createTime(long value) {
 			this.createTime = value;
 			return this;
 		}
@@ -528,7 +529,7 @@ public class UpdateJobResponse implements JsonpSerializable {
 		/**
 		 * API name: {@code finished_time}
 		 */
-		public final Builder finishedTime(@Nullable DateTime value) {
+		public final Builder finishedTime(@Nullable Long value) {
 			this.finishedTime = value;
 			return this;
 		}
@@ -730,8 +731,8 @@ public class UpdateJobResponse implements JsonpSerializable {
 		op.add(Builder::analysisConfig, AnalysisConfigRead._DESERIALIZER, "analysis_config");
 		op.add(Builder::analysisLimits, AnalysisLimits._DESERIALIZER, "analysis_limits");
 		op.add(Builder::backgroundPersistInterval, Time._DESERIALIZER, "background_persist_interval");
-		op.add(Builder::createTime, DateTime._DESERIALIZER, "create_time");
-		op.add(Builder::finishedTime, DateTime._DESERIALIZER, "finished_time");
+		op.add(Builder::createTime, JsonpDeserializer.longDeserializer(), "create_time");
+		op.add(Builder::finishedTime, JsonpDeserializer.longDeserializer(), "finished_time");
 		op.add(Builder::customSettings, JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.stringDeserializer()),
 				"custom_settings");
 		op.add(Builder::dailyModelSnapshotRetentionAfterDays, JsonpDeserializer.longDeserializer(),

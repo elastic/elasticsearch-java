@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch._types.aggregations;
 
 import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.elasticsearch.transform.PivotGroupBy;
 import co.elastic.clients.elasticsearch.transform.PivotGroupByVariant;
@@ -35,11 +36,13 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.DateTime;
+import co.elastic.clients.util.NamedValue;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -85,8 +88,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	@Nullable
 	private final Time offset;
 
-	@Nullable
-	private final HistogramOrder order;
+	private final List<NamedValue<SortOrder>> order;
 
 	private final Map<String, JsonData> params;
 
@@ -114,7 +116,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		this.minDocCount = builder.minDocCount;
 		this.missing = builder.missing;
 		this.offset = builder.offset;
-		this.order = builder.order;
+		this.order = ApiTypeHelper.unmodifiable(builder.order);
 		this.params = ApiTypeHelper.unmodifiable(builder.params);
 		this.script = builder.script;
 		this.timeZone = builder.timeZone;
@@ -192,7 +194,11 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 	/**
 	 * API name: {@code interval}
+	 * 
+	 * @deprecated 7.2.0 use <code>fixed_interval</code> or
+	 *             <code>calendar_interval</code>
 	 */
+	@Deprecated
 	@Nullable
 	public final Time interval() {
 		return this.interval;
@@ -225,8 +231,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 	/**
 	 * API name: {@code order}
 	 */
-	@Nullable
-	public final HistogramOrder order() {
+	public final List<NamedValue<SortOrder>> order() {
 		return this.order;
 	}
 
@@ -312,9 +317,17 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 			this.offset.serialize(generator, mapper);
 
 		}
-		if (this.order != null) {
+		if (ApiTypeHelper.isDefined(this.order)) {
 			generator.writeKey("order");
-			this.order.serialize(generator, mapper);
+			generator.writeStartArray();
+			for (NamedValue<SortOrder> item0 : this.order) {
+				generator.writeStartObject();
+				generator.writeKey(item0.name());
+				item0.value().serialize(generator, mapper);
+				generator.writeEnd();
+
+			}
+			generator.writeEnd();
 
 		}
 		if (ApiTypeHelper.isDefined(this.params)) {
@@ -386,7 +399,7 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		private Time offset;
 
 		@Nullable
-		private HistogramOrder order;
+		private List<NamedValue<SortOrder>> order;
 
 		@Nullable
 		private Map<String, JsonData> params;
@@ -473,7 +486,11 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 		/**
 		 * API name: {@code interval}
+		 * 
+		 * @deprecated 7.2.0 use <code>fixed_interval</code> or
+		 *             <code>calendar_interval</code>
 		 */
+		@Deprecated
 		public final Builder interval(@Nullable Time value) {
 			this.interval = value;
 			return this;
@@ -481,7 +498,11 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 		/**
 		 * API name: {@code interval}
+		 * 
+		 * @deprecated 7.2.0 use <code>fixed_interval</code> or
+		 *             <code>calendar_interval</code>
 		 */
+		@Deprecated
 		public final Builder interval(Function<Time.Builder, ObjectBuilder<Time>> fn) {
 			return this.interval(fn.apply(new Time.Builder()).build());
 		}
@@ -519,17 +540,22 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 
 		/**
 		 * API name: {@code order}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>order</code>.
 		 */
-		public final Builder order(@Nullable HistogramOrder value) {
-			this.order = value;
+		public final Builder order(List<NamedValue<SortOrder>> list) {
+			this.order = _listAddAll(this.order, list);
 			return this;
 		}
 
 		/**
 		 * API name: {@code order}
+		 * <p>
+		 * Adds one or more values to <code>order</code>.
 		 */
-		public final Builder order(Function<HistogramOrder.Builder, ObjectBuilder<HistogramOrder>> fn) {
-			return this.order(fn.apply(new HistogramOrder.Builder()).build());
+		public final Builder order(NamedValue<SortOrder> value, NamedValue<SortOrder>... values) {
+			this.order = _listAdd(this.order, value, values);
+			return this;
 		}
 
 		/**
@@ -624,7 +650,8 @@ public class DateHistogramAggregation extends BucketAggregationBase implements A
 		op.add(Builder::minDocCount, JsonpDeserializer.integerDeserializer(), "min_doc_count");
 		op.add(Builder::missing, DateTime._DESERIALIZER, "missing");
 		op.add(Builder::offset, Time._DESERIALIZER, "offset");
-		op.add(Builder::order, HistogramOrder._DESERIALIZER, "order");
+		op.add(Builder::order,
+				JsonpDeserializer.arrayDeserializer(NamedValue.deserializer(() -> SortOrder._DESERIALIZER)), "order");
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::script, Script._DESERIALIZER, "script");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");

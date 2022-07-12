@@ -31,7 +31,6 @@ import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -55,7 +54,7 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 
 	private final long version;
 
-	private final DateTime modifiedDateInMillis;
+	private final long modifiedDateInMillis;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -90,7 +89,7 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code modified_date_in_millis}
 	 */
-	public final DateTime modifiedDateInMillis() {
+	public final long modifiedDateInMillis() {
 		return this.modifiedDateInMillis;
 	}
 
@@ -112,7 +111,7 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		generator.write(this.version);
 
 		generator.writeKey("modified_date_in_millis");
-		this.modifiedDateInMillis.serialize(generator, mapper);
+		generator.write(this.modifiedDateInMillis);
 
 	}
 
@@ -134,7 +133,7 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 
 		private Long version;
 
-		private DateTime modifiedDateInMillis;
+		private Long modifiedDateInMillis;
 
 		/**
 		 * Required - API name: {@code policy}
@@ -155,7 +154,7 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code modified_date_in_millis}
 		 */
-		public final Builder modifiedDateInMillis(DateTime value) {
+		public final Builder modifiedDateInMillis(long value) {
 			this.modifiedDateInMillis = value;
 			return this;
 		}
@@ -191,7 +190,7 @@ public class LifecycleExplainPhaseExecution implements JsonpSerializable {
 
 		op.add(Builder::policy, JsonpDeserializer.stringDeserializer(), "policy");
 		op.add(Builder::version, JsonpDeserializer.longDeserializer(), "version");
-		op.add(Builder::modifiedDateInMillis, DateTime._DESERIALIZER, "modified_date_in_millis");
+		op.add(Builder::modifiedDateInMillis, JsonpDeserializer.longDeserializer(), "modified_date_in_millis");
 
 	}
 

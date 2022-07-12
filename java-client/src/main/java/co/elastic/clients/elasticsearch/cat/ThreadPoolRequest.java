@@ -24,7 +24,7 @@
 package co.elastic.clients.elasticsearch.cat;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.Time;
+import co.elastic.clients.elasticsearch._types.TimeUnit;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
@@ -58,7 +58,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	private final List<String> threadPoolPatterns;
 
 	@Nullable
-	private final Time time;
+	private final TimeUnit time;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -89,7 +89,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 	 * API name: {@code time}
 	 */
 	@Nullable
-	public final Time time() {
+	public final TimeUnit time() {
 		return this.time;
 	}
 
@@ -104,7 +104,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 		private List<String> threadPoolPatterns;
 
 		@Nullable
-		private Time time;
+		private TimeUnit time;
 
 		/**
 		 * List of thread pool names used to limit the request. Accepts wildcard
@@ -137,18 +137,9 @@ public class ThreadPoolRequest extends CatRequestBase {
 		 * <p>
 		 * API name: {@code time}
 		 */
-		public final Builder time(@Nullable Time value) {
+		public final Builder time(@Nullable TimeUnit value) {
 			this.time = value;
 			return this;
-		}
-
-		/**
-		 * Unit used to display time values.
-		 * <p>
-		 * API name: {@code time}
-		 */
-		public final Builder time(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.time(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -211,7 +202,7 @@ public class ThreadPoolRequest extends CatRequestBase {
 				Map<String, String> params = new HashMap<>();
 				params.put("format", "json");
 				if (request.time != null) {
-					params.put("time", request.time._toJsonString());
+					params.put("time", request.time.jsonValue());
 				}
 				return params;
 

@@ -66,6 +66,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	private final String id;
 
 	@Nullable
+	private final Long ifVersion;
+
+	@Nullable
 	private final Time masterTimeout;
 
 	private final List<Processor> onFailure;
@@ -85,6 +88,7 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.description = builder.description;
 		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
+		this.ifVersion = builder.ifVersion;
 		this.masterTimeout = builder.masterTimeout;
 		this.onFailure = ApiTypeHelper.unmodifiable(builder.onFailure);
 		this.processors = ApiTypeHelper.unmodifiable(builder.processors);
@@ -124,6 +128,16 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 	 */
 	public final String id() {
 		return this.id;
+	}
+
+	/**
+	 * Required version for optimistic concurrency control for pipeline updates
+	 * <p>
+	 * API name: {@code if_version}
+	 */
+	@Nullable
+	public final Long ifVersion() {
+		return this.ifVersion;
 	}
 
 	/**
@@ -257,6 +271,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		private String id;
 
 		@Nullable
+		private Long ifVersion;
+
+		@Nullable
 		private Time masterTimeout;
 
 		@Nullable
@@ -314,6 +331,16 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 		 */
 		public final Builder id(String value) {
 			this.id = value;
+			return this;
+		}
+
+		/**
+		 * Required version for optimistic concurrency control for pipeline updates
+		 * <p>
+		 * API name: {@code if_version}
+		 */
+		public final Builder ifVersion(@Nullable Long value) {
+			this.ifVersion = value;
 			return this;
 		}
 
@@ -537,6 +564,9 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 				}
 				if (request.timeout != null) {
 					params.put("timeout", request.timeout._toJsonString());
+				}
+				if (request.ifVersion != null) {
+					params.put("if_version", String.valueOf(request.ifVersion));
 				}
 				return params;
 

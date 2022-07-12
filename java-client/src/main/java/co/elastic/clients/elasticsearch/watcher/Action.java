@@ -32,11 +32,11 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.DateTime;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Integer;
+import java.lang.Long;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
@@ -70,7 +70,7 @@ public class Action implements JsonpSerializable {
 	private final Time throttlePeriod;
 
 	@Nullable
-	private final DateTime throttlePeriodInMillis;
+	private final Long throttlePeriodInMillis;
 
 	@Nullable
 	private final Transform transform;
@@ -170,7 +170,7 @@ public class Action implements JsonpSerializable {
 	 * API name: {@code throttle_period_in_millis}
 	 */
 	@Nullable
-	public final DateTime throttlePeriodInMillis() {
+	public final Long throttlePeriodInMillis() {
 		return this.throttlePeriodInMillis;
 	}
 
@@ -272,7 +272,8 @@ public class Action implements JsonpSerializable {
 		}
 		if (this.throttlePeriodInMillis != null) {
 			generator.writeKey("throttle_period_in_millis");
-			this.throttlePeriodInMillis.serialize(generator, mapper);
+			generator.write(this.throttlePeriodInMillis);
+
 		}
 		if (this.transform != null) {
 			generator.writeKey("transform");
@@ -343,7 +344,7 @@ public class Action implements JsonpSerializable {
 		private Time throttlePeriod;
 
 		@Nullable
-		private DateTime throttlePeriodInMillis;
+		private Long throttlePeriodInMillis;
 
 		@Nullable
 		private Transform transform;
@@ -431,7 +432,7 @@ public class Action implements JsonpSerializable {
 		/**
 		 * API name: {@code throttle_period_in_millis}
 		 */
-		public final Builder throttlePeriodInMillis(@Nullable DateTime value) {
+		public final Builder throttlePeriodInMillis(@Nullable Long value) {
 			this.throttlePeriodInMillis = value;
 			return this;
 		}
@@ -575,7 +576,7 @@ public class Action implements JsonpSerializable {
 		op.add(Builder::maxIterations, JsonpDeserializer.integerDeserializer(), "max_iterations");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::throttlePeriod, Time._DESERIALIZER, "throttle_period");
-		op.add(Builder::throttlePeriodInMillis, DateTime._DESERIALIZER, "throttle_period_in_millis");
+		op.add(Builder::throttlePeriodInMillis, JsonpDeserializer.longDeserializer(), "throttle_period_in_millis");
 		op.add(Builder::transform, Transform._DESERIALIZER, "transform");
 		op.add(Builder::index, IndexAction._DESERIALIZER, "index");
 		op.add(Builder::logging, LoggingAction._DESERIALIZER, "logging");

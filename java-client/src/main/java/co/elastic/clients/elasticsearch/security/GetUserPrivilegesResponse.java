@@ -98,7 +98,11 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code indices}
+	 * Required - In this context <code>IndicesPrivileges.query</code> property can
+	 * only be a string, see <code>IndicesPrivileges</code> documentation for
+	 * detail.
+	 * <p>
+	 * API name: {@code indices}
 	 */
 	public final List<IndicesPrivileges> indices() {
 		return this.indices;
@@ -279,7 +283,11 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - In this context <code>IndicesPrivileges.query</code> property can
+		 * only be a string, see <code>IndicesPrivileges</code> documentation for
+		 * detail.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
@@ -289,7 +297,11 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - In this context <code>IndicesPrivileges.query</code> property can
+		 * only be a string, see <code>IndicesPrivileges</code> documentation for
+		 * detail.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
 		 */
@@ -299,7 +311,11 @@ public class GetUserPrivilegesResponse implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * Required - In this context <code>IndicesPrivileges.query</code> property can
+		 * only be a string, see <code>IndicesPrivileges</code> documentation for
+		 * detail.
+		 * <p>
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */

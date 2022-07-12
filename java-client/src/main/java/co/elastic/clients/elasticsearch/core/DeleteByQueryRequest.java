@@ -47,6 +47,7 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Boolean;
+import java.lang.Float;
 import java.lang.Long;
 import java.lang.String;
 import java.util.HashMap;
@@ -117,7 +118,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	private final Boolean requestCache;
 
 	@Nullable
-	private final Long requestsPerSecond;
+	private final Float requestsPerSecond;
 
 	@Nullable
 	private final String routing;
@@ -383,7 +384,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 	 * API name: {@code requests_per_second}
 	 */
 	@Nullable
-	public final Long requestsPerSecond() {
+	public final Float requestsPerSecond() {
 		return this.requestsPerSecond;
 	}
 
@@ -620,7 +621,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		private Boolean requestCache;
 
 		@Nullable
-		private Long requestsPerSecond;
+		private Float requestsPerSecond;
 
 		@Nullable
 		private String routing;
@@ -883,7 +884,7 @@ public class DeleteByQueryRequest extends RequestBase implements JsonpSerializab
 		 * <p>
 		 * API name: {@code requests_per_second}
 		 */
-		public final Builder requestsPerSecond(@Nullable Long value) {
+		public final Builder requestsPerSecond(@Nullable Float value) {
 			this.requestsPerSecond = value;
 			return this;
 		}
