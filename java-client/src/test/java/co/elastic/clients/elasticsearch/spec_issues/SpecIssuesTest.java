@@ -22,6 +22,7 @@ package co.elastic.clients.elasticsearch.spec_issues;
 import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch.ElasticsearchTestServer;
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
+import co.elastic.clients.elasticsearch._types.analysis.CharFilterDefinition;
 import co.elastic.clients.elasticsearch._types.analysis.LimitTokenCountTokenFilter;
 import co.elastic.clients.elasticsearch.cluster.ClusterStatsResponse;
 import co.elastic.clients.elasticsearch.core.SearchRequest;
@@ -29,6 +30,7 @@ import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.elasticsearch.indices.GetFieldMappingRequest;
 import co.elastic.clients.elasticsearch.indices.GetFieldMappingResponse;
+import co.elastic.clients.elasticsearch.indices.IndexSettings;
 import co.elastic.clients.elasticsearch.model.ModelTestCase;
 import co.elastic.clients.elasticsearch.snapshot.RestoreResponse;
 import co.elastic.clients.json.JsonData;
@@ -46,6 +48,27 @@ import java.io.StringReader;
  * Depending on the feedback provided, this may involve either loading a JSON file or sending requests to an ES server.
  */
 public class SpecIssuesTest extends ModelTestCase {
+
+    @Test
+    public void i0328_charFilter() throws Exception {
+        // Both mappings and mappings_path are optional
+        String json =
+            "{\n" +
+                "    \"analysis\": { \n" +
+                "        \"char_filter\": {\n" +
+                "            \"multi_char_filter\": {\n" +
+                "                \"type\": \"mapping\",\n" +
+//                "                \"mappings\": [\n" +
+//                "                    \"xyz => xyz\"\n" +
+//                "                ],\n" +
+                "                \"mappings_path\": \"analysis/multi-char-replacement.txt\"\n" +
+                "            }\n" +
+                "        }\n" +
+                "    }\n" +
+                "}";
+
+        IndexSettings.of(b -> b.withJson(new StringReader(json)));
+    }
 
     @Disabled("Not fixed yet")
     @Test
