@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.RequestBase;
+import co.elastic.clients.elasticsearch.security.suggest_user_profiles.Hint;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -39,12 +40,10 @@ import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.Long;
 import java.lang.String;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
-import java.util.stream.Collectors;
 import javax.annotation.Nullable;
 
 // typedef: security.suggest_user_profiles.Request
@@ -61,6 +60,9 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 	private final List<String> data;
 
 	@Nullable
+	private final Hint hint;
+
+	@Nullable
 	private final String name;
 
 	@Nullable
@@ -71,6 +73,7 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 	private SuggestUserProfilesRequest(Builder builder) {
 
 		this.data = ApiTypeHelper.unmodifiable(builder.data);
+		this.hint = builder.hint;
 		this.name = builder.name;
 		this.size = builder.size;
 
@@ -90,6 +93,19 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 	 */
 	public final List<String> data() {
 		return this.data;
+	}
+
+	/**
+	 * Extra search criteria to improve relevance of the suggestion result. Profiles
+	 * matching the spcified hint are ranked higher in the response. Profiles not
+	 * matching the hint don't exclude the profile from the response as long as the
+	 * profile matches the <code>name</code> field query.
+	 * <p>
+	 * API name: {@code hint}
+	 */
+	@Nullable
+	public final Hint hint() {
+		return this.hint;
 	}
 
 	/**
@@ -125,6 +141,21 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
+		if (ApiTypeHelper.isDefined(this.data)) {
+			generator.writeKey("data");
+			generator.writeStartArray();
+			for (String item0 : this.data) {
+				generator.write(item0);
+
+			}
+			generator.writeEnd();
+
+		}
+		if (this.hint != null) {
+			generator.writeKey("hint");
+			this.hint.serialize(generator, mapper);
+
+		}
 		if (this.name != null) {
 			generator.writeKey("name");
 			generator.write(this.name);
@@ -149,6 +180,9 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 				ObjectBuilder<SuggestUserProfilesRequest> {
 		@Nullable
 		private List<String> data;
+
+		@Nullable
+		private Hint hint;
 
 		@Nullable
 		private String name;
@@ -184,6 +218,31 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 		public final Builder data(String value, String... values) {
 			this.data = _listAdd(this.data, value, values);
 			return this;
+		}
+
+		/**
+		 * Extra search criteria to improve relevance of the suggestion result. Profiles
+		 * matching the spcified hint are ranked higher in the response. Profiles not
+		 * matching the hint don't exclude the profile from the response as long as the
+		 * profile matches the <code>name</code> field query.
+		 * <p>
+		 * API name: {@code hint}
+		 */
+		public final Builder hint(@Nullable Hint value) {
+			this.hint = value;
+			return this;
+		}
+
+		/**
+		 * Extra search criteria to improve relevance of the suggestion result. Profiles
+		 * matching the spcified hint are ranked higher in the response. Profiles not
+		 * matching the hint don't exclude the profile from the response as long as the
+		 * profile matches the <code>name</code> field query.
+		 * <p>
+		 * API name: {@code hint}
+		 */
+		public final Builder hint(Function<Hint.Builder, ObjectBuilder<Hint>> fn) {
+			return this.hint(fn.apply(new Hint.Builder()).build());
 		}
 
 		/**
@@ -237,6 +296,8 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 	protected static void setupSuggestUserProfilesRequestDeserializer(
 			ObjectDeserializer<SuggestUserProfilesRequest.Builder> op) {
 
+		op.add(Builder::data, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()), "data");
+		op.add(Builder::hint, Hint._DESERIALIZER, "hint");
 		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::size, JsonpDeserializer.longDeserializer(), "size");
 
@@ -264,11 +325,7 @@ public class SuggestUserProfilesRequest extends RequestBase implements JsonpSeri
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (ApiTypeHelper.isDefined(request.data)) {
-					params.put("data", request.data.stream().map(v -> v).collect(Collectors.joining(",")));
-				}
-				return params;
+				return Collections.emptyMap();
 
 			}, SimpleEndpoint.emptyMap(), true, SuggestUserProfilesResponse._DESERIALIZER);
 }

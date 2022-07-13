@@ -81,6 +81,8 @@ public enum ClusterPrivilege implements JsonEnum {
 
 	ManageTransform("manage_transform"),
 
+	ManageUserProfile("manage_user_profile"),
+
 	ManageWatcher("manage_watcher"),
 
 	Monitor("monitor"),
