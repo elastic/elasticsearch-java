@@ -31,6 +31,7 @@ import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import jakarta.json.stream.JsonGenerator;
+import java.util.List;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -45,14 +46,14 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class PhraseSuggest extends SuggestBase implements SuggestionVariant {
-	private final PhraseSuggestOption options;
+	private final List<PhraseSuggestOption> options;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private PhraseSuggest(Builder builder) {
 		super(builder);
 
-		this.options = ApiTypeHelper.requireNonNull(builder.options, this, "options");
+		this.options = ApiTypeHelper.unmodifiableRequired(builder.options, this, "options");
 
 	}
 
@@ -71,15 +72,23 @@ public class PhraseSuggest extends SuggestBase implements SuggestionVariant {
 	/**
 	 * Required - API name: {@code options}
 	 */
-	public final PhraseSuggestOption options() {
+	public final List<PhraseSuggestOption> options() {
 		return this.options;
 	}
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
-		generator.writeKey("options");
-		this.options.serialize(generator, mapper);
+		if (ApiTypeHelper.isDefined(this.options)) {
+			generator.writeKey("options");
+			generator.writeStartArray();
+			for (PhraseSuggestOption item0 : this.options) {
+				item0.serialize(generator, mapper);
+
+			}
+			generator.writeEnd();
+
+		}
 
 	}
 
@@ -90,21 +99,35 @@ public class PhraseSuggest extends SuggestBase implements SuggestionVariant {
 	 */
 
 	public static class Builder extends SuggestBase.AbstractBuilder<Builder> implements ObjectBuilder<PhraseSuggest> {
-		private PhraseSuggestOption options;
+		private List<PhraseSuggestOption> options;
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds all elements of <code>list</code> to <code>options</code>.
 		 */
-		public final Builder options(PhraseSuggestOption value) {
-			this.options = value;
+		public final Builder options(List<PhraseSuggestOption> list) {
+			this.options = _listAddAll(this.options, list);
 			return this;
 		}
 
 		/**
 		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds one or more values to <code>options</code>.
+		 */
+		public final Builder options(PhraseSuggestOption value, PhraseSuggestOption... values) {
+			this.options = _listAdd(this.options, value, values);
+			return this;
+		}
+
+		/**
+		 * Required - API name: {@code options}
+		 * <p>
+		 * Adds a value to <code>options</code> using a builder lambda.
 		 */
 		public final Builder options(Function<PhraseSuggestOption.Builder, ObjectBuilder<PhraseSuggestOption>> fn) {
-			return this.options(fn.apply(new PhraseSuggestOption.Builder()).build());
+			return options(fn.apply(new PhraseSuggestOption.Builder()).build());
 		}
 
 		@Override
@@ -135,7 +158,7 @@ public class PhraseSuggest extends SuggestBase implements SuggestionVariant {
 
 	protected static void setupPhraseSuggestDeserializer(ObjectDeserializer<PhraseSuggest.Builder> op) {
 		SuggestBase.setupSuggestBaseDeserializer(op);
-		op.add(Builder::options, PhraseSuggestOption._DESERIALIZER, "options");
+		op.add(Builder::options, JsonpDeserializer.arrayDeserializer(PhraseSuggestOption._DESERIALIZER), "options");
 
 	}
 
