@@ -57,7 +57,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 	private MappingCharFilter(Builder builder) {
 		super(builder);
 
-		this.mappings = ApiTypeHelper.unmodifiableRequired(builder.mappings, this, "mappings");
+		this.mappings = ApiTypeHelper.unmodifiable(builder.mappings);
 		this.mappingsPath = builder.mappingsPath;
 
 	}
@@ -75,7 +75,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 	}
 
 	/**
-	 * Required - API name: {@code mappings}
+	 * API name: {@code mappings}
 	 */
 	public final List<String> mappings() {
 		return this.mappings;
@@ -120,13 +120,14 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 	public static class Builder extends CharFilterBase.AbstractBuilder<Builder>
 			implements
 				ObjectBuilder<MappingCharFilter> {
+		@Nullable
 		private List<String> mappings;
 
 		@Nullable
 		private String mappingsPath;
 
 		/**
-		 * Required - API name: {@code mappings}
+		 * API name: {@code mappings}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>mappings</code>.
 		 */
@@ -136,7 +137,7 @@ public class MappingCharFilter extends CharFilterBase implements CharFilterDefin
 		}
 
 		/**
-		 * Required - API name: {@code mappings}
+		 * API name: {@code mappings}
 		 * <p>
 		 * Adds one or more values to <code>mappings</code>.
 		 */
