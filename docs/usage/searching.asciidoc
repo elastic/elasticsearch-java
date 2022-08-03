@@ -43,4 +43,29 @@ include-tagged::{doc-tests-src}/usage/SearchingTest.java[search-nested]
 <4> The search query is a boolean query that combines the text search and max price queries.
 <5> Both queries are added as `must` as we want results to match all criteria.
 
+[discrete]
+==== Templated search
+
+A search template is a stored search that you can run with different variables. Search templates let you change your searches without modifying your application code.
+
+Before running a template search, you first have to create the template. This is a stored script that returns the search request body, and is usually defined as a Mustache template. This stored script can be created outside the application, and also with the {java-client}:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/SearchingTest.java[search-template-script]
+--------------------------------------------------
+<1> Identifier of the template script to create.
+
+To use the search template, use the `searchTemplate` method to refer to the script and provide values for its parameters:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/usage/SearchingTest.java[search-template-query]
+--------------------------------------------------
+<1> Identifier of the template script to use.
+<2> Template parameter values.
+
+For more in-depth information, see the {es-docs}/search-template.html[{es} search template documentation].
+
+
 {doc-tests-blurb}
