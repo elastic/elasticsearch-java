@@ -24,7 +24,9 @@ import co.elastic.clients.elasticsearch.ElasticsearchClient;
 import co.elastic.clients.elasticsearch._types.query_dsl.MatchQuery;
 import co.elastic.clients.elasticsearch._types.query_dsl.Query;
 import co.elastic.clients.elasticsearch._types.query_dsl.RangeQuery;
+import co.elastic.clients.elasticsearch.core.PutScriptResponse;
 import co.elastic.clients.elasticsearch.core.SearchResponse;
+import co.elastic.clients.elasticsearch.core.SearchTemplateResponse;
 import co.elastic.clients.elasticsearch.core.search.Hit;
 import co.elastic.clients.elasticsearch.core.search.TotalHits;
 import co.elastic.clients.elasticsearch.core.search.TotalHitsRelation;
@@ -132,5 +134,44 @@ public class SearchingTest {
             logger.info("Found product " + product.getSku() + ", score " + hit.score());
         }
         //end::search-nested
+    }
+
+    @Test
+    public void searchTemplate() throws Exception {
+
+        transport.setResult(PutScriptResponse.of(r -> r.acknowledged(true)));
+
+        //tag::search-template-script
+        // Create a script
+        esClient.putScript(r -> r
+            .id("query-script") // <1>
+            .script(s -> s
+                .lang("mustache")
+                .source("{\"query\":{\"match\":{\"{{field}}\":\"{{value}}\"}}}")
+            ));
+        //end::search-template-script
+
+        transport.setResult(SearchTemplateResponse.<JsonData>of(r -> r
+            .hits(searchResponse.hits())
+            .took(searchResponse.took())
+            .timedOut(false)
+            .shards(searchResponse.shards())
+        ));
+
+        //tag::search-template-query
+        SearchTemplateResponse<Product> response = esClient.searchTemplate(r -> r
+                .index("some-index")
+                .id("query-script") // <1>
+                .params("field", JsonData.of("some-field")) // <2>
+                .params("value", JsonData.of("some-data")),
+            Product.class
+        );
+
+        List<Hit<Product>> hits = response.hits().hits();
+        for (Hit<Product> hit: hits) {
+            Product product = hit.source();
+            logger.info("Found product " + product.getSku() + ", score " + hit.score());
+        }
+        //end::search-template-query
     }
 }
