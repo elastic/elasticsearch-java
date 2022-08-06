@@ -26,7 +26,7 @@ configuring authentication, refer to
 [discrete]
 ==== Your first request
 
-The code snippet below searches all items from a “product” index whose name 
+The code snippet below searches all items from a “products” index whose name 
 matches “bicycle” and return them as instances of a `Product` application class.
 
 It illustrates the use of fluent functional builders to write search queries as 
