@@ -62,7 +62,7 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTrans
 	 * Direct use is not supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/autoscaling-delete-autoscaling-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.5/autoscaling-delete-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -82,7 +82,7 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link DeleteAutoscalingPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/autoscaling-delete-autoscaling-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.5/autoscaling-delete-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -100,7 +100,7 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTrans
 	 * supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.5/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
 	public GetAutoscalingCapacityResponse getAutoscalingCapacity() throws IOException, ElasticsearchException {
@@ -115,7 +115,7 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTrans
 	 * ECK. Direct use is not supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.5/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -135,7 +135,7 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link GetAutoscalingPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/autoscaling-get-autoscaling-capacity.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.5/autoscaling-get-autoscaling-capacity.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -152,7 +152,7 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTrans
 	 * ECK. Direct use is not supported.
 	 * 
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/autoscaling-put-autoscaling-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.5/autoscaling-put-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
@@ -172,7 +172,7 @@ public class ElasticsearchAutoscalingClient extends ApiClient<ElasticsearchTrans
 	 *            a function that initializes a builder to create the
 	 *            {@link PutAutoscalingPolicyRequest}
 	 * @see <a href=
-	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.4/autoscaling-put-autoscaling-policy.html">Documentation
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/8.5/autoscaling-put-autoscaling-policy.html">Documentation
 	 *      on elastic.co</a>
 	 */
 
