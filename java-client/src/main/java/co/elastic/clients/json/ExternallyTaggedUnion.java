@@ -19,16 +19,19 @@
 
 package co.elastic.clients.json;
 
+import co.elastic.clients.util.OpenTaggedUnion;
 import co.elastic.clients.util.TaggedUnion;
 import jakarta.json.stream.JsonGenerator;
 import jakarta.json.stream.JsonParser;
 
+import javax.annotation.Nullable;
 import java.util.ArrayList;
 import java.util.EnumSet;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.function.BiFunction;
+import java.util.function.Function;
 
 import static jakarta.json.stream.JsonParser.Event;
 
@@ -40,19 +43,34 @@ import static jakarta.json.stream.JsonParser.Event;
  * @see <a href="https://www.elastic.co/guide/en/elasticsearch/reference/current/search-aggregations.html#return-agg-type">
  *      Documentation of the <code>typed_keys</code> parameter.</a>
  */
-public interface ExternallyTaggedUnion {
+public class ExternallyTaggedUnion {
+
+    private ExternallyTaggedUnion() {}
 
     /**
      * A deserializer for externally-tagged unions. Since the union variant discriminant is provided externally, this cannot be a
      * regular {@link JsonpDeserializer} as the caller has to provide the discriminant value.
      */
-    class Deserializer<Union extends TaggedUnion<?, Member>, Member> {
+    public static class Deserializer<Union extends TaggedUnion<?, ?>, Member> {
         private final Map<String, JsonpDeserializer<? extends Member>> deserializers;
-        private final BiFunction<String, Member, Union> unionCtor;
+        private final Function<Member, Union> unionCtor;
+        @Nullable
+        private final BiFunction<String, JsonData, Union> unknownVariantCtor;
 
-        public Deserializer(Map<String, JsonpDeserializer<? extends Member>> deserializers, BiFunction<String, Member, Union> unionCtor) {
+        public Deserializer(Map<String, JsonpDeserializer<? extends Member>> deserializers, Function<Member, Union> unionCtor) {
             this.deserializers = deserializers;
             this.unionCtor = unionCtor;
+            this.unknownVariantCtor = null;
+        }
+
+        public Deserializer(
+            Map<String, JsonpDeserializer<? extends Member>> deserializers,
+            Function<Member, Union> unionCtor,
+            BiFunction<String, JsonData, Union> unknownVariantCtor
+        ) {
+            this.deserializers = deserializers;
+            this.unionCtor = unionCtor;
+            this.unknownVariantCtor = unknownVariantCtor;
         }
 
         /**
@@ -61,10 +79,14 @@ public interface ExternallyTaggedUnion {
         public Union deserialize(String type, JsonParser parser, JsonpMapper mapper, Event event) {
             JsonpDeserializer<? extends Member> deserializer = deserializers.get(type);
             if (deserializer == null) {
-                throw new JsonpMappingException("Unknown variant type '" + type + "'", parser.getLocation());
+                if (unknownVariantCtor == null) {
+                    throw new JsonpMappingException("Unknown variant type '" + type + "'", parser.getLocation());
+                } else {
+                    return unknownVariantCtor.apply(type, JsonData._DESERIALIZER.deserialize(parser, mapper, event));
+                }
             }
 
-            return unionCtor.apply(type, deserializer.deserialize(parser, mapper, event));
+            return unionCtor.apply(deserializer.deserialize(parser, mapper, event));
         }
 
         /**
@@ -76,7 +98,7 @@ public interface ExternallyTaggedUnion {
         }
     }
 
-    class TypedKeysDeserializer<Union extends TaggedUnion<?, ?>> extends JsonpDeserializerBase<Map<String, Union>> {
+    public static class TypedKeysDeserializer<Union extends TaggedUnion<?, ?>> extends JsonpDeserializerBase<Map<String, Union>> {
         Deserializer<Union, ?> deserializer;
         protected TypedKeysDeserializer(Deserializer<Union, ?> deser) {
             super(EnumSet.of(Event.START_OBJECT));
@@ -109,7 +131,7 @@ public interface ExternallyTaggedUnion {
         }
     }
 
-    static <T extends TaggedUnion<?, ?>> JsonpDeserializer<Map<String, List<T>>> arrayMapDeserializer(
+    public static <T extends TaggedUnion<?, ?>> JsonpDeserializer<Map<String, List<T>>> arrayMapDeserializer(
         TypedKeysDeserializer<T> deserializer
     ) {
         return JsonpDeserializer.of(
@@ -158,7 +180,7 @@ public interface ExternallyTaggedUnion {
      * If {@link JsonpMapperFeatures#SERIALIZE_TYPED_KEYS} is <code>true</code> (the default), the typed keys encoding
      * (<code>type#name</code>) is used.
      */
-    static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeys(
+    public static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeys(
         Map<String, T> map, JsonGenerator generator, JsonpMapper mapper
     ) {
         generator.writeStartObject();
@@ -172,7 +194,7 @@ public interface ExternallyTaggedUnion {
      * If {@link JsonpMapperFeatures#SERIALIZE_TYPED_KEYS} is <code>true</code> (the default), the typed keys encoding
      * (<code>type#name</code>) is used.
      */
-    static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysArray(
+    public static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysArray(
         Map<String, List<T>> map, JsonGenerator generator, JsonpMapper mapper
     ) {
         generator.writeStartObject();
@@ -184,7 +206,7 @@ public interface ExternallyTaggedUnion {
                     continue; // We can't know the kind, skip this entry
                 }
 
-                generator.writeKey(list.get(0)._kind().jsonValue() + "#" + entry.getKey());
+                generator.writeKey(getKind(list.get(0)) + "#" + entry.getKey());
                 generator.writeStartArray();
                 for (T value: list) {
                     value.serialize(generator, mapper);
@@ -211,13 +233,13 @@ public interface ExternallyTaggedUnion {
      * If {@link JsonpMapperFeatures#SERIALIZE_TYPED_KEYS} is <code>true</code> (the default), the typed keys encoding
      * (<code>type#name</code>) is used.
      */
-    static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysInner(
+    public static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> void serializeTypedKeysInner(
         Map<String, T> map, JsonGenerator generator, JsonpMapper mapper
     ) {
         if (mapper.attribute(JsonpMapperFeatures.SERIALIZE_TYPED_KEYS, true)) {
             for (Map.Entry<String, T> entry: map.entrySet()) {
                 T value = entry.getValue();
-                generator.writeKey(value._kind().jsonValue() + "#" + entry.getKey());
+                generator.writeKey(getKind(value) + "#" + entry.getKey());
                 value.serialize(generator, mapper);
             }
         } else {
@@ -226,5 +248,19 @@ public interface ExternallyTaggedUnion {
                 entry.getValue().serialize(generator, mapper);
             }
         }
+    }
+
+    private static <T extends JsonpSerializable & TaggedUnion<? extends JsonEnum, ?>> String getKind(T value) {
+        String kind;
+        if (value instanceof OpenTaggedUnion) {
+            // Use custom kind if defined, and fall back to regular kind
+            kind = ((OpenTaggedUnion<?,?>)value)._customKind();
+            if (kind == null) {
+                kind = value._kind().jsonValue();
+            }
+        } else {
+            kind = value._kind().jsonValue();
+        }
+        return kind;
     }
 }

@@ -162,8 +162,8 @@ public class TransformsResponse implements JsonpSerializable {
 		JsonpDeserializer<List<TransformsRecord>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(TransformsRecord._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

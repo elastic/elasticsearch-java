@@ -418,8 +418,8 @@ public class PutIndicesSettingsRequest extends RequestBase implements JsonpSeria
 
 		JsonpDeserializer<IndexSettings> valueDeserializer = IndexSettings._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().settings(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.settings(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------

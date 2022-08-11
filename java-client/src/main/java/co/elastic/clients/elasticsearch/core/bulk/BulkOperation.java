@@ -56,9 +56,6 @@ public class BulkOperation implements TaggedUnion<BulkOperation.Kind, Object>, N
 
 	/**
 	 * {@link BulkOperation} variant kinds.
-	 */
-	/**
-	 * {@link BulkOperation} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#_global.bulk.OperationContainer">API

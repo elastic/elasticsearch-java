@@ -131,8 +131,8 @@ public class StateResponse implements JsonpSerializable {
 
 		JsonpDeserializer<JsonData> valueDeserializer = JsonData._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

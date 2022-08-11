@@ -54,9 +54,6 @@ public class Trigger implements TaggedUnion<Trigger.Kind, Object>, JsonpSerializ
 
 	/**
 	 * {@link Trigger} variant kinds.
-	 */
-	/**
-	 * {@link Trigger} variant kinds.
 	 * 
 	 * @see <a href="../doc-files/api-spec.html#watcher._types.TriggerContainer">API
 	 *      specification</a>

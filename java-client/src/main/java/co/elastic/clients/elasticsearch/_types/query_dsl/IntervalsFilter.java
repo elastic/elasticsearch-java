@@ -56,9 +56,6 @@ public class IntervalsFilter implements TaggedUnion<IntervalsFilter.Kind, Object
 
 	/**
 	 * {@link IntervalsFilter} variant kinds.
-	 */
-	/**
-	 * {@link IntervalsFilter} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#_types.query_dsl.IntervalsFilter">API

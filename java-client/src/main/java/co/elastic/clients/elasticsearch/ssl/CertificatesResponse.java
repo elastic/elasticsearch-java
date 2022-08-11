@@ -163,8 +163,8 @@ public class CertificatesResponse implements JsonpSerializable {
 		JsonpDeserializer<List<CertificateInformation>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(CertificateInformation._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

@@ -57,9 +57,6 @@ public class ClusterRemoteInfo
 
 	/**
 	 * {@link ClusterRemoteInfo} variant kinds.
-	 */
-	/**
-	 * {@link ClusterRemoteInfo} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#cluster.remote_info.ClusterRemoteInfo">API

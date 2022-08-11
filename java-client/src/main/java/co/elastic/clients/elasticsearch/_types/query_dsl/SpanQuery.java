@@ -54,9 +54,6 @@ public class SpanQuery implements TaggedUnion<SpanQuery.Kind, Object>, JsonpSeri
 
 	/**
 	 * {@link SpanQuery} variant kinds.
-	 */
-	/**
-	 * {@link SpanQuery} variant kinds.
 	 * 
 	 * @see <a href="../../doc-files/api-spec.html#_types.query_dsl.SpanQuery">API
 	 *      specification</a>

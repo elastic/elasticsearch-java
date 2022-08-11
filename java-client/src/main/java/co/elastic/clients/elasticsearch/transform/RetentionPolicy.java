@@ -55,9 +55,6 @@ public class RetentionPolicy implements TaggedUnion<RetentionPolicy.Kind, Object
 
 	/**
 	 * {@link RetentionPolicy} variant kinds.
-	 */
-	/**
-	 * {@link RetentionPolicy} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#transform._types.RetentionPolicyContainer">API

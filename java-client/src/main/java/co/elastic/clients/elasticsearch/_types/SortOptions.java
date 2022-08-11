@@ -58,9 +58,6 @@ public class SortOptions implements TaggedUnion<SortOptions.Kind, Object>, Jsonp
 
 	/**
 	 * {@link SortOptions} variant kinds.
-	 */
-	/**
-	 * {@link SortOptions} variant kinds.
 	 * 
 	 * @see <a href="../doc-files/api-spec.html#_types.SortOptions">API
 	 *      specification</a>

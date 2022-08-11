@@ -55,9 +55,6 @@ public class SmoothingModel implements TaggedUnion<SmoothingModel.Kind, Object>,
 
 	/**
 	 * {@link SmoothingModel} variant kinds.
-	 */
-	/**
-	 * {@link SmoothingModel} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#_global.search._types.SmoothingModelContainer">API
