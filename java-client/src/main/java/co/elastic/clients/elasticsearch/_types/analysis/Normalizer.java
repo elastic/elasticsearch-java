@@ -56,9 +56,6 @@ public class Normalizer implements TaggedUnion<Normalizer.Kind, NormalizerVarian
 
 	/**
 	 * {@link Normalizer} variant kinds.
-	 */
-	/**
-	 * {@link Normalizer} variant kinds.
 	 * 
 	 * @see <a href="../../doc-files/api-spec.html#_types.analysis.Normalizer">API
 	 *      specification</a>

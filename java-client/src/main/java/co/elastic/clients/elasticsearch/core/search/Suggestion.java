@@ -57,9 +57,6 @@ public class Suggestion<TDocument> implements TaggedUnion<Suggestion.Kind, Sugge
 
 	/**
 	 * {@link Suggestion} variant kinds.
-	 */
-	/**
-	 * {@link Suggestion} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#_global.search._types.Suggest">API
@@ -238,7 +235,7 @@ public class Suggestion<TDocument> implements TaggedUnion<Suggestion.Kind, Sugge
 		deserializers.put("term", TermSuggest._DESERIALIZER);
 
 		return new ExternallyTaggedUnion.Deserializer<Suggestion<TDocument>, SuggestionVariant>(deserializers,
-				(name, value) -> new Suggestion<>(value)).typedKeys();
+				Suggestion::new).typedKeys();
 	};
 
 }

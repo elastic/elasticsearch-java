@@ -55,9 +55,6 @@ public class Condition implements TaggedUnion<Condition.Kind, Object>, JsonpSeri
 
 	/**
 	 * {@link Condition} variant kinds.
-	 */
-	/**
-	 * {@link Condition} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#watcher._types.ConditionContainer">API

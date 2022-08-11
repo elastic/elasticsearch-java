@@ -55,9 +55,6 @@ public class Preprocessor implements TaggedUnion<Preprocessor.Kind, Object>, Jso
 
 	/**
 	 * {@link Preprocessor} variant kinds.
-	 */
-	/**
-	 * {@link Preprocessor} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#ml.put_trained_model.Preprocessor">API

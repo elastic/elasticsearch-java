@@ -59,9 +59,6 @@ public class PivotGroupBy implements TaggedUnion<PivotGroupBy.Kind, Object>, Jso
 
 	/**
 	 * {@link PivotGroupBy} variant kinds.
-	 */
-	/**
-	 * {@link PivotGroupBy} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#transform._types.PivotGroupByContainer">API

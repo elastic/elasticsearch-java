@@ -57,9 +57,6 @@ public class InferenceConfig implements TaggedUnion<InferenceConfig.Kind, Object
 
 	/**
 	 * {@link InferenceConfig} variant kinds.
-	 */
-	/**
-	 * {@link InferenceConfig} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#_types.aggregations.InferenceConfigContainer">API

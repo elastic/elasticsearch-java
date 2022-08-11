@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.search;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,7 +34,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.OpenTaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -52,11 +53,8 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>, JsonpSerializable {
+public class FieldSuggester implements OpenTaggedUnion<FieldSuggester.Kind, Object>, JsonpSerializable {
 
-	/**
-	 * {@link FieldSuggester} variant kinds.
-	 */
 	/**
 	 * {@link FieldSuggester} variant kinds.
 	 * 
@@ -71,6 +69,9 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 		Phrase("phrase"),
 
 		Term("term"),
+
+		/** A custom {@code FieldSuggester} defined by a plugin */
+		_Custom(null)
 
 		;
 
@@ -112,6 +113,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 
 		this._kind = ApiTypeHelper.requireNonNull(value._fieldSuggesterKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._customKind = null;
 
 		this.prefix = null;
 		this.regex = null;
@@ -123,6 +125,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._customKind = builder._customKind;
 
 		this.prefix = builder.prefix;
 		this.regex = builder.regex;
@@ -209,6 +212,35 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 		return TaggedUnionUtils.get(this, Kind.Term);
 	}
 
+	@Nullable
+	private final String _customKind;
+
+	/**
+	 * Is this a custom {@code FieldSuggester} defined by a plugin?
+	 */
+	public boolean _isCustom() {
+		return _kind == Kind._Custom;
+	}
+
+	/**
+	 * Get the actual kind when {@code _kind()} equals {@link Kind#_Custom}
+	 * (plugin-defined variant).
+	 */
+	@Nullable
+	public final String _customKind() {
+		return _customKind;
+	}
+
+	/**
+	 * Get the custom plugin-defined variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not {@link Kind#_Custom}.
+	 */
+	public JsonData _custom() {
+		return TaggedUnionUtils.get(this, Kind._Custom);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -231,7 +263,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 
 		}
 
-		generator.writeKey(_kind.jsonValue());
+		generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -248,6 +280,7 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> {
 		private Kind _kind;
 		private Object _value;
+		private String _customKind;
 
 		@Nullable
 		private String prefix;
@@ -317,6 +350,22 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 			return this.term(fn.apply(new TermSuggester.Builder()).build());
 		}
 
+		/**
+		 * Define this {@code FieldSuggester} as a plugin-defined variant.
+		 *
+		 * @param name
+		 *            the plugin-defined identifier
+		 * @param data
+		 *            the data for this custom {@code FieldSuggester}. It is converted
+		 *            internally to {@link JsonData}.
+		 */
+		public ContainerBuilder _custom(String name, Object data) {
+			this._kind = Kind._Custom;
+			this._customKind = name;
+			this._value = JsonData.of(data);
+			return new ContainerBuilder();
+		}
+
 		protected FieldSuggester build() {
 			_checkSingleUse();
 			return new FieldSuggester(this);
@@ -362,6 +411,11 @@ public class FieldSuggester implements TaggedUnion<FieldSuggester.Kind, Object>,
 		op.add(Builder::prefix, JsonpDeserializer.stringDeserializer(), "prefix");
 		op.add(Builder::regex, JsonpDeserializer.stringDeserializer(), "regex");
 		op.add(Builder::text, JsonpDeserializer.stringDeserializer(), "text");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			JsonpUtils.ensureCustomVariantsAllowed(parser, mapper);
+			builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

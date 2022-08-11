@@ -56,9 +56,6 @@ public class InferenceConfigCreate implements TaggedUnion<InferenceConfigCreate.
 
 	/**
 	 * {@link InferenceConfigCreate} variant kinds.
-	 */
-	/**
-	 * {@link InferenceConfigCreate} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#ml._types.InferenceConfigCreateContainer">API

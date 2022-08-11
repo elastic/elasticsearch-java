@@ -57,9 +57,6 @@ public class FieldRule implements TaggedUnion<FieldRule.Kind, Object>, RoleMappi
 
 	/**
 	 * {@link FieldRule} variant kinds.
-	 */
-	/**
-	 * {@link FieldRule} variant kinds.
 	 * 
 	 * @see <a href="../doc-files/api-spec.html#security._types.FieldRule">API
 	 *      specification</a>

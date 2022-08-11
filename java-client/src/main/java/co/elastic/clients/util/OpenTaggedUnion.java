@@ -19,24 +19,18 @@
 
 package co.elastic.clients.util;
 
+import javax.annotation.Nullable;
+
 /**
- * Base interface for tagged union types (also known as sum types or variants).
- * <p>
- * It provides access to the current variant kind and its value.
+ * A union that is open, i.e. non-exhaustive, where new variants can be defined on the server using extension plugins.
  *
- * @param <Tag> the tag type that defines the possible variants (an enum).
- * @param <BaseType> the closest common ancestor type to all variant values.
- *
- * @see <a href="https://en.wikipedia.org/wiki/Tagged_union">Tagged Union on Wikipedia</a>
+ * @see TaggedUnion
  */
-public interface TaggedUnion<Tag extends Enum<?>, BaseType> {
+public interface OpenTaggedUnion<Tag extends Enum<?>, BaseType> extends TaggedUnion<Tag, BaseType> {
 
     /**
-     * Get the of the kind of variant held by this object.
-     *
-     * @return the variant kind
+     * Get the actual kind when {@code _kind()} equals {@code _Custom} (plugin-defined variant).
      */
-    Tag _kind();
-
-    BaseType _get();
+    @Nullable
+    String _customKind();
 }
