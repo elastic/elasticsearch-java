@@ -105,6 +105,12 @@ public class JsonpUtils {
         }
     }
 
+    public static void ensureCustomVariantsAllowed(JsonParser parser, JsonpMapper mapper) {
+        if (mapper.attribute(JsonpMapperFeatures.FORBID_CUSTOM_VARIANTS, false)) {
+            throw new JsonpMappingException("Json mapper configuration forbids custom variants", parser.getLocation());
+        }
+    }
+
     /**
      * Skip the value at the next position of the parser.
      */

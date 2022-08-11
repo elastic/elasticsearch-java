@@ -56,9 +56,6 @@ public class TokenizationConfig implements TaggedUnion<TokenizationConfig.Kind, 
 
 	/**
 	 * {@link TokenizationConfig} variant kinds.
-	 */
-	/**
-	 * {@link TokenizationConfig} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#ml._types.TokenizationConfigContainer">API

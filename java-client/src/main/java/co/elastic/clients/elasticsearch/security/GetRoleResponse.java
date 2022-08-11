@@ -170,8 +170,8 @@ public class GetRoleResponse implements JsonpSerializable {
 		JsonpDeserializer<Map<String, Role>> valueDeserializer = JsonpDeserializer
 				.stringMapDeserializer(Role._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().result(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

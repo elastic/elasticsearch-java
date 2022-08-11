@@ -59,9 +59,6 @@ public class PinnedQuery extends QueryBase
 
 	/**
 	 * {@link PinnedQuery} variant kinds.
-	 */
-	/**
-	 * {@link PinnedQuery} variant kinds.
 	 * 
 	 * @see <a href="../../doc-files/api-spec.html#_types.query_dsl.PinnedQuery">API
 	 *      specification</a>

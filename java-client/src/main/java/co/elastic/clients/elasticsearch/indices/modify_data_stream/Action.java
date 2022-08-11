@@ -55,9 +55,6 @@ public class Action implements TaggedUnion<Action.Kind, Object>, JsonpSerializab
 
 	/**
 	 * {@link Action} variant kinds.
-	 */
-	/**
-	 * {@link Action} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#indices.modify_data_stream.Action">API

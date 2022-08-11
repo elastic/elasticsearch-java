@@ -55,9 +55,6 @@ public class Transform implements TaggedUnion<Transform.Kind, Object>, JsonpSeri
 
 	/**
 	 * {@link Transform} variant kinds.
-	 */
-	/**
-	 * {@link Transform} variant kinds.
 	 * 
 	 * @see <a href="../doc-files/api-spec.html#_types.TransformContainer">API
 	 *      specification</a>

@@ -55,9 +55,6 @@ public class DataframeEvaluation implements TaggedUnion<DataframeEvaluation.Kind
 
 	/**
 	 * {@link DataframeEvaluation} variant kinds.
-	 */
-	/**
-	 * {@link DataframeEvaluation} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#ml._types.DataframeEvaluationContainer">API
