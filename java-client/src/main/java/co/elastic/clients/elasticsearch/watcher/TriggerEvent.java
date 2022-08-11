@@ -55,9 +55,6 @@ public class TriggerEvent implements TaggedUnion<TriggerEvent.Kind, Object>, Jso
 
 	/**
 	 * {@link TriggerEvent} variant kinds.
-	 */
-	/**
-	 * {@link TriggerEvent} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#watcher._types.TriggerEventContainer">API

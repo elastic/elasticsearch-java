@@ -192,7 +192,7 @@ public class ObjectDeserializer<ObjectType> implements JsonpDeserializer<ObjectT
 
                 FieldDeserializer<ObjectType> fieldDeserializer = fieldDeserializers.get(variant);
                 if (fieldDeserializer == null) {
-                    parseUnknownField(parser, mapper, variant, value);
+                    parseUnknownField(innerParser, mapper, variant, value);
                 } else {
                     fieldDeserializer.deserialize(innerParser, mapper, variant, value);
                 }

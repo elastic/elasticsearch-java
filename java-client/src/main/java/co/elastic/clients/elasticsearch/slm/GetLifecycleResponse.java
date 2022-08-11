@@ -172,8 +172,8 @@ public class GetLifecycleResponse implements JsonpSerializable {
 		JsonpDeserializer<Map<String, SnapshotLifecycle>> valueDeserializer = JsonpDeserializer
 				.stringMapDeserializer(SnapshotLifecycle._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().result(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

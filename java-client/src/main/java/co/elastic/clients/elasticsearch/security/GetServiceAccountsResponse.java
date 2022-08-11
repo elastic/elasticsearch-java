@@ -174,8 +174,8 @@ public class GetServiceAccountsResponse implements JsonpSerializable {
 		JsonpDeserializer<Map<String, RoleDescriptorWrapper>> valueDeserializer = JsonpDeserializer
 				.stringMapDeserializer(RoleDescriptorWrapper._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().result(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

@@ -58,9 +58,6 @@ public class Schedule implements TaggedUnion<Schedule.Kind, Object>, TriggerVari
 
 	/**
 	 * {@link Schedule} variant kinds.
-	 */
-	/**
-	 * {@link Schedule} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#watcher._types.ScheduleContainer">API

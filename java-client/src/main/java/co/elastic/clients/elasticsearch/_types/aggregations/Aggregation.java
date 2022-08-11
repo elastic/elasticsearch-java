@@ -35,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.OpenTaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -55,11 +55,8 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, JsonpSerializable {
+public class Aggregation implements OpenTaggedUnion<Aggregation.Kind, Object>, JsonpSerializable {
 
-	/**
-	 * {@link Aggregation} variant kinds.
-	 */
 	/**
 	 * {@link Aggregation} variant kinds.
 	 * 
@@ -215,6 +212,9 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 		VariableWidthHistogram("variable_width_histogram"),
 
+		/** A custom {@code Aggregation} defined by a plugin */
+		_Custom(null)
+
 		;
 
 		private final String jsonValue;
@@ -250,6 +250,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 		this._kind = ApiTypeHelper.requireNonNull(value._aggregationKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._customKind = null;
 
 		this.aggregations = null;
 		this.meta = null;
@@ -260,6 +261,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._customKind = builder._customKind;
 
 		this.aggregations = ApiTypeHelper.unmodifiable(builder.aggregations);
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
@@ -1544,6 +1546,35 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		return TaggedUnionUtils.get(this, Kind.VariableWidthHistogram);
 	}
 
+	@Nullable
+	private final String _customKind;
+
+	/**
+	 * Is this a custom {@code Aggregation} defined by a plugin?
+	 */
+	public boolean _isCustom() {
+		return _kind == Kind._Custom;
+	}
+
+	/**
+	 * Get the actual kind when {@code _kind()} equals {@link Kind#_Custom}
+	 * (plugin-defined variant).
+	 */
+	@Nullable
+	public final String _customKind() {
+		return _customKind;
+	}
+
+	/**
+	 * Get the custom plugin-defined variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not {@link Kind#_Custom}.
+	 */
+	public JsonData _custom() {
+		return TaggedUnionUtils.get(this, Kind._Custom);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -1573,7 +1604,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 
 		}
 
-		generator.writeKey(_kind.jsonValue());
+		generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -1590,6 +1621,7 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> {
 		private Kind _kind;
 		private Object _value;
+		private String _customKind;
 
 		@Nullable
 		private Map<String, Aggregation> aggregations;
@@ -2438,6 +2470,22 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 			return this.variableWidthHistogram(fn.apply(new VariableWidthHistogramAggregation.Builder()).build());
 		}
 
+		/**
+		 * Define this {@code Aggregation} as a plugin-defined variant.
+		 *
+		 * @param name
+		 *            the plugin-defined identifier
+		 * @param data
+		 *            the data for this custom {@code Aggregation}. It is converted
+		 *            internally to {@link JsonData}.
+		 */
+		public ContainerBuilder _custom(String name, Object data) {
+			this._kind = Kind._Custom;
+			this._customKind = name;
+			this._value = JsonData.of(data);
+			return new ContainerBuilder();
+		}
+
 		protected Aggregation build() {
 			_checkSingleUse();
 			return new Aggregation(this);
@@ -2588,6 +2636,11 @@ public class Aggregation implements TaggedUnion<Aggregation.Kind, Object>, Jsonp
 		op.add(Builder::weightedAvg, WeightedAverageAggregation._DESERIALIZER, "weighted_avg");
 		op.add(Builder::variableWidthHistogram, VariableWidthHistogramAggregation._DESERIALIZER,
 				"variable_width_histogram");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			JsonpUtils.ensureCustomVariantsAllowed(parser, mapper);
+			builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

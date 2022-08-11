@@ -58,9 +58,6 @@ public class DataframeAnalysisFeatureProcessor
 
 	/**
 	 * {@link DataframeAnalysisFeatureProcessor} variant kinds.
-	 */
-	/**
-	 * {@link DataframeAnalysisFeatureProcessor} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#ml._types.DataframeAnalysisFeatureProcessor">API
