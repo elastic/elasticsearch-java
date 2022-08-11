@@ -31,13 +31,21 @@ import co.elastic.clients.elasticsearch.core.SearchResponse;
 import co.elastic.clients.elasticsearch.indices.Alias;
 import co.elastic.clients.elasticsearch.indices.CreateIndexRequest;
 import co.elastic.clients.elasticsearch.indices.CreateIndexResponse;
-import co.elastic.clients.transport.ElasticsearchTransport;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.util.ApiTypeHelper;
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.PropertyNamingStrategies;
+import jakarta.json.JsonArray;
+import jakarta.json.JsonObject;
+import jakarta.json.JsonValue;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.io.StringReader;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +55,7 @@ public class ApiConventionsTest extends Assertions {
 
     private static class SomeApplicationData {}
 
-    private ElasticsearchTransport transport = new DocTestsTransport();
+    private DocTestsTransport transport = new DocTestsTransport();
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
     public void blockingAndAsync() throws Exception {
@@ -121,6 +129,8 @@ public class ApiConventionsTest extends Assertions {
     }
 
     public void builderIntervals() throws Exception {
+        ObjectMapper mapper = new ObjectMapper();
+        mapper.setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE);
         ElasticsearchClient client = new ElasticsearchClient(transport);
 
         //tag::builder-intervals
@@ -191,6 +201,104 @@ public class ApiConventionsTest extends Assertions {
                 doSomething(query._kind(), query._get()); // <3>
         }
         //end::variant-kind
+    }
+
+    //tag::custom-variant-types
+    public static class SphereDistanceAggregate {
+        private final List<Bucket> buckets;
+        @JsonCreator
+        public SphereDistanceAggregate(
+            @JsonProperty("buckets") List<Bucket> buckets
+        ) {
+            this.buckets = buckets;
+        }
+        public List<Bucket> buckets() {
+            return buckets;
+        };
+    }
+
+    public static class Bucket {
+        private final double key;
+        private final double docCount;
+        @JsonCreator
+        public Bucket(
+            @JsonProperty("key") double key,
+            @JsonProperty("doc_count") double docCount) {
+            this.key = key;
+            this.docCount = docCount;
+        }
+        public double key() {
+            return key;
+        }
+        public double docCount() {
+            return docCount;
+        }
+    }
+    //end::custom-variant-types
+
+    @Test
+    public void customVariants() throws Exception {
+
+        ElasticsearchClient esClient = new ElasticsearchClient(transport);
+
+        String json = "{\"took\":1,\"timed_out\":false,\"_shards\":{\"failed\":0.0,\"successful\":1.0,\"total\":1.0},\n" +
+            "\"hits\":{\"total\":{\"relation\":\"eq\",\"value\":0},\"hits\":[]},\n" +
+            "\"aggregations\":{\"sphere-distance#neighbors\":{\"buckets\":[{\"key\": 1.0,\"doc_count\":1}]}}}";
+
+        transport.setResult(SearchResponse.of(b -> b.withJson(
+            transport.jsonpMapper().jsonProvider().createParser(new StringReader(json)),
+            transport.jsonpMapper())
+        ));
+
+        //tag::custom-variant-creation
+        Map<String, Object> params = new HashMap<>(); // <1>
+        params.put("interval", 10);
+        params.put("scale", "log");
+        params.put("origin", new Double[]{145.0, 12.5, 1649.0});
+
+        SearchRequest request = SearchRequest.of(r -> r
+            .index("stars")
+            .aggregations("neighbors", agg -> agg
+                ._custom("sphere-distance", params) // <2>
+            )
+        );
+        //end::custom-variant-creation
+
+        {
+            //tag::custom-variant-navigation-json
+            SearchResponse<Void> response = esClient.search(request, Void.class); // <1>
+
+            JsonData neighbors = response
+                .aggregations().get("neighbors")
+                ._custom(); // <2>
+
+            JsonArray buckets = neighbors.toJson() // <3>
+                .asJsonObject()
+                .getJsonArray("buckets");
+
+            for (JsonValue item : buckets) {
+                JsonObject bucket = item.asJsonObject();
+                double key = bucket.getJsonNumber("key").doubleValue();
+                double docCount = bucket.getJsonNumber("doc_count").longValue();
+                doSomething(key, docCount);
+            }
+            //end::custom-variant-navigation-json
+        }
+
+        {
+            //tag::custom-variant-navigation-typed
+            SearchResponse<Void> response = esClient.search(request, Void.class);
+
+            SphereDistanceAggregate neighbors = response
+                .aggregations().get("neighbors")
+                ._custom()
+                .to(SphereDistanceAggregate.class); // <1>
+
+            for (Bucket bucket : neighbors.buckets()) {
+                doSomething(bucket.key(), bucket.docCount());
+            }
+            //end::custom-variant-navigation-typed
+        }
     }
 
     @Test
