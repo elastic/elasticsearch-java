@@ -57,4 +57,50 @@ include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[variant-
 <2> Test a larger set of variant kinds.
 <3> Get the kind and value held by the variant object.
 
+[discrete]
+[[variant-types-custom]]
+==== Custom extensions provided by {es} plugins
+
+{es} accepts plugins that can extend the available variants for a number of types. This includes queries, aggregations, text analyzers and tokenizers, ingest processors, etc.
+
+The {java-client} classes for these types accept a `_custom` variant in addition to the builtin ones. This allows you to use these plugin-defined extensions by providing arbitrary JSON in requests, and also receive arbitrary JSON produced by the plugins in responses.
+
+In the examples below we use a hypothetical plugin that adds a `sphere-distance` aggregation that groups documents containing 3D coordinates according to their distance to a reference location.
+
+To create a custom aggregation, use the `_custom()` aggregation type and provide its identifier, defined by the plugin, and parameters. The parameters can be any object or value that can be serialized to JSON. In the example below we use a simple map:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[custom-variant-creation]
+--------------------------------------------------
+<1> Parameters for the custom aggregation.
+<2> Create a custom aggregation named `neighbors` of kind `sphere-distance` with its parameters.
+
+The results of custom variants are returned as raw JSON represented by a `JsonData` object. You can then traverse the JSON tree to get the data. Since this is not always convenient, you can also define classes that represent that JSON data and deserialize them from the raw JSON.
+
+Traversing the JSON tree:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[custom-variant-navigation-json]
+--------------------------------------------------
+<1> Use `Void` if you're only interested in aggregation results, not search hits (see also <<aggregations>>).
+<2> Get the `neighbors` aggregation result as custom JSON result.
+<3> Traverse the JSON tree to extract the result data.
+
+Using a class that represents the custom aggregation results:
+
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[custom-variant-navigation-typed]
+--------------------------------------------------
+<1> Deserialize the custom JSON to a dedicated `SphereDistanceAggregate` class.
+
+Where `SphereDistanceAggregate` can be defined as follows:
+["source","java"]
+--------------------------------------------------
+include-tagged::{doc-tests-src}/api_conventions/ApiConventionsTest.java[custom-variant-types]
+--------------------------------------------------
+
+
 {doc-tests-blurb}
