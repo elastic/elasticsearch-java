@@ -57,9 +57,6 @@ public class Input implements TaggedUnion<Input.Kind, Object>, JsonpSerializable
 
 	/**
 	 * {@link Input} variant kinds.
-	 */
-	/**
-	 * {@link Input} variant kinds.
 	 * 
 	 * @see <a href="../doc-files/api-spec.html#watcher._types.InputContainer">API
 	 *      specification</a>

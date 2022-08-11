@@ -59,9 +59,6 @@ public class RoleMappingRule
 
 	/**
 	 * {@link RoleMappingRule} variant kinds.
-	 */
-	/**
-	 * {@link RoleMappingRule} variant kinds.
 	 * 
 	 * @see <a href="../doc-files/api-spec.html#security._types.RoleMappingRule">API
 	 *      specification</a>

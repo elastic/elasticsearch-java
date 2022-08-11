@@ -166,8 +166,8 @@ public class PutPipelineRequest extends RequestBase implements JsonpSerializable
 
 		JsonpDeserializer<Pipeline> valueDeserializer = Pipeline._DESERIALIZER;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().pipeline(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.pipeline(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 	// ---------------------------------------------------------------------------------------------

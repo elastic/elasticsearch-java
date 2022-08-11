@@ -160,8 +160,8 @@ public class TemplatesResponse implements JsonpSerializable {
 		JsonpDeserializer<List<TemplatesRecord>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(TemplatesRecord._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

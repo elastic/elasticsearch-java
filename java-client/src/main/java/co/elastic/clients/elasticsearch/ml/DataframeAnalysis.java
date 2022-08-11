@@ -55,9 +55,6 @@ public class DataframeAnalysis implements TaggedUnion<DataframeAnalysis.Kind, Ob
 
 	/**
 	 * {@link DataframeAnalysis} variant kinds.
-	 */
-	/**
-	 * {@link DataframeAnalysis} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#ml._types.DataframeAnalysisContainer">API

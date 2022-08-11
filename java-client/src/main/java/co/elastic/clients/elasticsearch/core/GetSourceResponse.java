@@ -160,8 +160,9 @@ public class GetSourceResponse<TDocument> implements JsonpSerializable {
 
 		JsonpDeserializer<TDocument> valueDeserializer = tDocumentDeserializer;
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper) -> new Builder<TDocument>()
-				.valueBody(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
+				(parser, mapper, event) -> new Builder<TDocument>()
+						.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

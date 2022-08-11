@@ -24,6 +24,7 @@
 package co.elastic.clients.elasticsearch.ingest;
 
 import co.elastic.clients.elasticsearch._types.Script;
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -34,7 +35,7 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.OpenTaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -52,11 +53,8 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSerializable {
+public class Processor implements OpenTaggedUnion<Processor.Kind, Object>, JsonpSerializable {
 
-	/**
-	 * {@link Processor} variant kinds.
-	 */
 	/**
 	 * {@link Processor} variant kinds.
 	 * 
@@ -134,6 +132,9 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 
 		Inference("inference"),
 
+		/** A custom {@code Processor} defined by a plugin */
+		_Custom(null)
+
 		;
 
 		private final String jsonValue;
@@ -165,6 +166,7 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 
 		this._kind = ApiTypeHelper.requireNonNull(value._processorKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._customKind = null;
 
 	}
 
@@ -172,6 +174,7 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._customKind = builder._customKind;
 
 	}
 
@@ -759,13 +762,42 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 		return TaggedUnionUtils.get(this, Kind.Inference);
 	}
 
+	@Nullable
+	private final String _customKind;
+
+	/**
+	 * Is this a custom {@code Processor} defined by a plugin?
+	 */
+	public boolean _isCustom() {
+		return _kind == Kind._Custom;
+	}
+
+	/**
+	 * Get the actual kind when {@code _kind()} equals {@link Kind#_Custom}
+	 * (plugin-defined variant).
+	 */
+	@Nullable
+	public final String _customKind() {
+		return _customKind;
+	}
+
+	/**
+	 * Get the custom plugin-defined variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not {@link Kind#_Custom}.
+	 */
+	public JsonData _custom() {
+		return TaggedUnionUtils.get(this, Kind._Custom);
+	}
+
 	@Override
 	@SuppressWarnings("unchecked")
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
 		generator.writeStartObject();
 
-		generator.writeKey(_kind.jsonValue());
+		generator.writeKey(_kind == Kind._Custom ? _customKind : _kind.jsonValue());
 		if (_value instanceof JsonpSerializable) {
 			((JsonpSerializable) _value).serialize(generator, mapper);
 		}
@@ -782,6 +814,7 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<Processor> {
 		private Kind _kind;
 		private Object _value;
+		private String _customKind;
 
 		@Override
 		protected Builder self() {
@@ -1140,6 +1173,22 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 			return this.inference(fn.apply(new InferenceProcessor.Builder()).build());
 		}
 
+		/**
+		 * Define this {@code Processor} as a plugin-defined variant.
+		 *
+		 * @param name
+		 *            the plugin-defined identifier
+		 * @param data
+		 *            the data for this custom {@code Processor}. It is converted
+		 *            internally to {@link JsonData}.
+		 */
+		public ObjectBuilder<Processor> _custom(String name, Object data) {
+			this._kind = Kind._Custom;
+			this._customKind = name;
+			this._value = JsonData.of(data);
+			return this;
+		}
+
 		public Processor build() {
 			_checkSingleUse();
 			return new Processor(this);
@@ -1183,6 +1232,11 @@ public class Processor implements TaggedUnion<Processor.Kind, Object>, JsonpSeri
 		op.add(Builder::drop, DropProcessor._DESERIALIZER, "drop");
 		op.add(Builder::circle, CircleProcessor._DESERIALIZER, "circle");
 		op.add(Builder::inference, InferenceProcessor._DESERIALIZER, "inference");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			JsonpUtils.ensureCustomVariantsAllowed(parser, mapper);
+			builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 	}
 

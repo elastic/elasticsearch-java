@@ -55,9 +55,6 @@ public class Intervals implements TaggedUnion<Intervals.Kind, Object>, Intervals
 
 	/**
 	 * {@link Intervals} variant kinds.
-	 */
-	/**
-	 * {@link Intervals} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#_types.query_dsl.IntervalsContainer">API
