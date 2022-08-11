@@ -59,9 +59,6 @@ public class IntervalsQuery extends QueryBase
 
 	/**
 	 * {@link IntervalsQuery} variant kinds.
-	 */
-	/**
-	 * {@link IntervalsQuery} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#_types.query_dsl.IntervalsQuery">API

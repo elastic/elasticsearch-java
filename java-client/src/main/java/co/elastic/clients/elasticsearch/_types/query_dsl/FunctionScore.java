@@ -56,9 +56,6 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 
 	/**
 	 * {@link FunctionScore} variant kinds.
-	 */
-	/**
-	 * {@link FunctionScore} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#_types.query_dsl.FunctionScoreContainer">API
@@ -120,6 +117,7 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 		if (value != null) {
 			this._kind = ApiTypeHelper.requireNonNull(value._functionScoreKind(), this, "<variant kind>");
 			this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+
 		} else {
 			this._kind = null;
 			this._value = null;
@@ -135,6 +133,7 @@ public class FunctionScore implements TaggedUnion<FunctionScore.Kind, Object>, J
 		if (builder._value != null) {
 			this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 			this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+
 		} else {
 			this._kind = null;
 			this._value = null;

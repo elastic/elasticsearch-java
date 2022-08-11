@@ -54,9 +54,6 @@ public class Sync implements TaggedUnion<Sync.Kind, Object>, JsonpSerializable {
 
 	/**
 	 * {@link Sync} variant kinds.
-	 */
-	/**
-	 * {@link Sync} variant kinds.
 	 * 
 	 * @see <a href="../doc-files/api-spec.html#transform._types.SyncContainer">API
 	 *      specification</a>

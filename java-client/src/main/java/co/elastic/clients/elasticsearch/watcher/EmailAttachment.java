@@ -55,9 +55,6 @@ public class EmailAttachment implements TaggedUnion<EmailAttachment.Kind, Object
 
 	/**
 	 * {@link EmailAttachment} variant kinds.
-	 */
-	/**
-	 * {@link EmailAttachment} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#watcher._types.EmailAttachmentContainer">API

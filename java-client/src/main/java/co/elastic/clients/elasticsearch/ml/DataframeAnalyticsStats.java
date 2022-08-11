@@ -55,9 +55,6 @@ public class DataframeAnalyticsStats implements TaggedUnion<DataframeAnalyticsSt
 
 	/**
 	 * {@link DataframeAnalyticsStats} variant kinds.
-	 */
-	/**
-	 * {@link DataframeAnalyticsStats} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#ml._types.DataframeAnalyticsStatsContainer">API

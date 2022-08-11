@@ -160,8 +160,8 @@ public class ShardsResponse implements JsonpSerializable {
 		JsonpDeserializer<List<ShardsRecord>> valueDeserializer = JsonpDeserializer
 				.arrayDeserializer(ShardsRecord._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().valueBody(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.valueBody(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

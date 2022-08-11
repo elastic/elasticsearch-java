@@ -57,9 +57,6 @@ public class LifecycleExplain
 
 	/**
 	 * {@link LifecycleExplain} variant kinds.
-	 */
-	/**
-	 * {@link LifecycleExplain} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#ilm.explain_lifecycle.LifecycleExplain">API

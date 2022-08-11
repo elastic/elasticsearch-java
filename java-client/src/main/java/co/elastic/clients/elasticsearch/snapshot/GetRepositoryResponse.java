@@ -172,8 +172,8 @@ public class GetRepositoryResponse implements JsonpSerializable {
 		JsonpDeserializer<Map<String, Repository>> valueDeserializer = JsonpDeserializer
 				.stringMapDeserializer(Repository._DESERIALIZER);
 
-		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(),
-				(parser, mapper) -> new Builder().result(valueDeserializer.deserialize(parser, mapper)).build());
+		return JsonpDeserializer.of(valueDeserializer.acceptedEvents(), (parser, mapper, event) -> new Builder()
+				.result(valueDeserializer.deserialize(parser, mapper, event)).build());
 	}
 
 }

@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch._types.analysis;
 
+import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonEnum;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -33,10 +34,11 @@ import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
 import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
-import co.elastic.clients.util.TaggedUnion;
+import co.elastic.clients.util.OpenTaggedUnion;
 import co.elastic.clients.util.TaggedUnionUtils;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Object;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
@@ -50,14 +52,8 @@ import javax.annotation.Nullable;
  *      specification</a>
  */
 @JsonpDeserializable
-public class TokenFilterDefinition
-		implements
-			TaggedUnion<TokenFilterDefinition.Kind, TokenFilterDefinitionVariant>,
-			JsonpSerializable {
+public class TokenFilterDefinition implements OpenTaggedUnion<TokenFilterDefinition.Kind, Object>, JsonpSerializable {
 
-	/**
-	 * {@link TokenFilterDefinition} variant kinds.
-	 */
 	/**
 	 * {@link TokenFilterDefinition} variant kinds.
 	 * 
@@ -163,6 +159,9 @@ public class TokenFilterDefinition
 
 		WordDelimiter("word_delimiter"),
 
+		/** A custom {@code TokenFilterDefinition} defined by a plugin */
+		_Custom(null)
+
 		;
 
 		private final String jsonValue;
@@ -178,7 +177,7 @@ public class TokenFilterDefinition
 	}
 
 	private final Kind _kind;
-	private final TokenFilterDefinitionVariant _value;
+	private final Object _value;
 
 	@Override
 	public final Kind _kind() {
@@ -186,7 +185,7 @@ public class TokenFilterDefinition
 	}
 
 	@Override
-	public final TokenFilterDefinitionVariant _get() {
+	public final Object _get() {
 		return _value;
 	}
 
@@ -194,6 +193,7 @@ public class TokenFilterDefinition
 
 		this._kind = ApiTypeHelper.requireNonNull(value._tokenFilterDefinitionKind(), this, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(value, this, "<variant value>");
+		this._customKind = null;
 
 	}
 
@@ -201,11 +201,22 @@ public class TokenFilterDefinition
 
 		this._kind = ApiTypeHelper.requireNonNull(builder._kind, builder, "<variant kind>");
 		this._value = ApiTypeHelper.requireNonNull(builder._value, builder, "<variant value>");
+		this._customKind = builder._customKind;
 
 	}
 
 	public static TokenFilterDefinition of(Function<Builder, ObjectBuilder<TokenFilterDefinition>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * Build a custom plugin-defined {@code TokenFilterDefinition}, given its kind
+	 * and some JSON data
+	 */
+	public TokenFilterDefinition(String kind, JsonData value) {
+		this._kind = Kind._Custom;
+		this._value = value;
+		this._customKind = kind;
 	}
 
 	/**
@@ -1037,6 +1048,35 @@ public class TokenFilterDefinition
 		return TaggedUnionUtils.get(this, Kind.WordDelimiter);
 	}
 
+	@Nullable
+	private final String _customKind;
+
+	/**
+	 * Is this a custom {@code TokenFilterDefinition} defined by a plugin?
+	 */
+	public boolean _isCustom() {
+		return _kind == Kind._Custom;
+	}
+
+	/**
+	 * Get the actual kind when {@code _kind()} equals {@link Kind#_Custom}
+	 * (plugin-defined variant).
+	 */
+	@Nullable
+	public final String _customKind() {
+		return _customKind;
+	}
+
+	/**
+	 * Get the custom plugin-defined variant value.
+	 *
+	 * @throws IllegalStateException
+	 *             if the current variant is not {@link Kind#_Custom}.
+	 */
+	public JsonData _custom() {
+		return TaggedUnionUtils.get(this, Kind._Custom);
+	}
+
 	@Override
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
 
@@ -1053,7 +1093,8 @@ public class TokenFilterDefinition
 			implements
 				ObjectBuilder<TokenFilterDefinition> {
 		private Kind _kind;
-		private TokenFilterDefinitionVariant _value;
+		private Object _value;
+		private String _customKind;
 
 		@Override
 		protected Builder self() {
@@ -1587,6 +1628,22 @@ public class TokenFilterDefinition
 			return this.wordDelimiter(fn.apply(new WordDelimiterTokenFilter.Builder()).build());
 		}
 
+		/**
+		 * Define this {@code TokenFilterDefinition} as a plugin-defined variant.
+		 *
+		 * @param name
+		 *            the plugin-defined identifier
+		 * @param data
+		 *            the data for this custom {@code TokenFilterDefinition}. It is
+		 *            converted internally to {@link JsonData}.
+		 */
+		public ObjectBuilder<TokenFilterDefinition> _custom(String name, Object data) {
+			this._kind = Kind._Custom;
+			this._customKind = name;
+			this._value = JsonData.of(data);
+			return this;
+		}
+
 		public TokenFilterDefinition build() {
 			_checkSingleUse();
 			return new TokenFilterDefinition(this);
@@ -1646,6 +1703,11 @@ public class TokenFilterDefinition
 		op.add(Builder::uppercase, UppercaseTokenFilter._DESERIALIZER, "uppercase");
 		op.add(Builder::wordDelimiterGraph, WordDelimiterGraphTokenFilter._DESERIALIZER, "word_delimiter_graph");
 		op.add(Builder::wordDelimiter, WordDelimiterTokenFilter._DESERIALIZER, "word_delimiter");
+
+		op.setUnknownFieldHandler((builder, name, parser, mapper) -> {
+			JsonpUtils.ensureCustomVariantsAllowed(parser, mapper);
+			builder._custom(name, JsonData._DESERIALIZER.deserialize(parser, mapper));
+		});
 
 		op.setTypeProperty("type", null);
 

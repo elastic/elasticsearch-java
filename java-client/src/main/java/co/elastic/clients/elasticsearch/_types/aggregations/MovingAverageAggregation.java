@@ -57,9 +57,6 @@ public class MovingAverageAggregation
 
 	/**
 	 * {@link MovingAverageAggregation} variant kinds.
-	 */
-	/**
-	 * {@link MovingAverageAggregation} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../../doc-files/api-spec.html#_types.aggregations.MovingAverageAggregation">API

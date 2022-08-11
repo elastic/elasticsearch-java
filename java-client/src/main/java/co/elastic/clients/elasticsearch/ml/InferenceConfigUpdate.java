@@ -55,9 +55,6 @@ public class InferenceConfigUpdate implements TaggedUnion<InferenceConfigUpdate.
 
 	/**
 	 * {@link InferenceConfigUpdate} variant kinds.
-	 */
-	/**
-	 * {@link InferenceConfigUpdate} variant kinds.
 	 * 
 	 * @see <a href=
 	 *      "../doc-files/api-spec.html#ml._types.InferenceConfigUpdateContainer">API

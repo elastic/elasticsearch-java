@@ -24,6 +24,15 @@ package co.elastic.clients.json;
  */
 public class JsonpMapperFeatures {
 
+    /**
+     *
+     */
     public static final String SERIALIZE_TYPED_KEYS = JsonpMapperFeatures.class.getName() + ":SERIALIZE_TYPED_KEYS";
+
+    /**
+     * Disables custom variants in union types (false by default). Used in tests to avoid interpreting wrong variant kinds as a custom
+     * extension.
+     */
+    public static final String FORBID_CUSTOM_VARIANTS = JsonpMapperFeatures.class.getName() + ":FORBID_CUSTOM_VARIANTS";
 
 }

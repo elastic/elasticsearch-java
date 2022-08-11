@@ -65,7 +65,10 @@ public interface JsonEnum extends JsonpSerializable {
             // Use the same size calculation as in java.lang.Enum.enumConstantDirectory
             this.lookupTable = new HashMap<>((int)(values.length / 0.75f) + 1);
             for (T member : values) {
-                this.lookupTable.put(member.jsonValue(), member);
+                String jsonValue = member.jsonValue();
+                if (jsonValue != null) { // _Custom enum members have a null jsonValue
+                    this.lookupTable.put(jsonValue, member);
+                }
                 String[] aliases = member.aliases();
                 if (aliases != null) {
                     for (String alias: aliases) {
