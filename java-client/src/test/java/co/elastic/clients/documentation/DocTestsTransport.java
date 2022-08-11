@@ -24,8 +24,6 @@ import co.elastic.clients.json.jackson.JacksonJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.Endpoint;
 import co.elastic.clients.transport.TransportOptions;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.PropertyNamingStrategies;
 
 import javax.annotation.Nullable;
 import java.io.IOException;
@@ -42,9 +40,7 @@ import java.util.function.Function;
  */
 public class DocTestsTransport implements ElasticsearchTransport {
 
-    private final JsonpMapper mapper = new JacksonJsonpMapper(
-        new ObjectMapper().setPropertyNamingStrategy(PropertyNamingStrategies.SNAKE_CASE)
-    );
+    private final JsonpMapper mapper = new JacksonJsonpMapper();
 
     private final ThreadLocal<Object> result = new ThreadLocal<>();
 
