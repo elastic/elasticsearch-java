@@ -122,7 +122,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		this.endTimeInMillis = builder.endTimeInMillis;
 		this.failures = ApiTypeHelper.unmodifiable(builder.failures);
 		this.includeGlobalState = builder.includeGlobalState;
-		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.indexDetails = ApiTypeHelper.unmodifiable(builder.indexDetails);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
 		this.reason = builder.reason;
@@ -198,7 +198,7 @@ public class SnapshotInfo implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code indices}
+	 * API name: {@code indices}
 	 */
 	public final List<String> indices() {
 		return this.indices;
@@ -480,6 +480,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		@Nullable
 		private Boolean includeGlobalState;
 
+		@Nullable
 		private List<String> indices;
 
 		@Nullable
@@ -616,7 +617,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
@@ -626,7 +627,7 @@ public class SnapshotInfo implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
 		 */

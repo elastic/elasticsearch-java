@@ -34,36 +34,43 @@ import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Integer;
 import java.lang.String;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml._types.TrainedModelAllocationRoutingTable
+// typedef: ml._types.TrainedModelAssignmentRoutingTable
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#ml._types.TrainedModelAllocationRoutingTable">API
+ *      "../doc-files/api-spec.html#ml._types.TrainedModelAssignmentRoutingTable">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelAllocationRoutingTable implements JsonpSerializable {
+public class TrainedModelAssignmentRoutingTable implements JsonpSerializable {
 	private final String reason;
 
 	private final RoutingState routingState;
 
+	private final int currentAllocations;
+
+	private final int targetAllocations;
+
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelAllocationRoutingTable(Builder builder) {
+	private TrainedModelAssignmentRoutingTable(Builder builder) {
 
 		this.reason = ApiTypeHelper.requireNonNull(builder.reason, this, "reason");
 		this.routingState = ApiTypeHelper.requireNonNull(builder.routingState, this, "routingState");
+		this.currentAllocations = ApiTypeHelper.requireNonNull(builder.currentAllocations, this, "currentAllocations");
+		this.targetAllocations = ApiTypeHelper.requireNonNull(builder.targetAllocations, this, "targetAllocations");
 
 	}
 
-	public static TrainedModelAllocationRoutingTable of(
-			Function<Builder, ObjectBuilder<TrainedModelAllocationRoutingTable>> fn) {
+	public static TrainedModelAssignmentRoutingTable of(
+			Function<Builder, ObjectBuilder<TrainedModelAssignmentRoutingTable>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -87,6 +94,24 @@ public class TrainedModelAllocationRoutingTable implements JsonpSerializable {
 	}
 
 	/**
+	 * Required - Current number of allocations.
+	 * <p>
+	 * API name: {@code current_allocations}
+	 */
+	public final int currentAllocations() {
+		return this.currentAllocations;
+	}
+
+	/**
+	 * Required - Target number of allocations.
+	 * <p>
+	 * API name: {@code target_allocations}
+	 */
+	public final int targetAllocations() {
+		return this.targetAllocations;
+	}
+
+	/**
 	 * Serialize this object to JSON.
 	 */
 	public void serialize(JsonGenerator generator, JsonpMapper mapper) {
@@ -102,6 +127,11 @@ public class TrainedModelAllocationRoutingTable implements JsonpSerializable {
 
 		generator.writeKey("routing_state");
 		this.routingState.serialize(generator, mapper);
+		generator.writeKey("current_allocations");
+		generator.write(this.currentAllocations);
+
+		generator.writeKey("target_allocations");
+		generator.write(this.targetAllocations);
 
 	}
 
@@ -113,15 +143,19 @@ public class TrainedModelAllocationRoutingTable implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelAllocationRoutingTable}.
+	 * Builder for {@link TrainedModelAssignmentRoutingTable}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<TrainedModelAllocationRoutingTable> {
+				ObjectBuilder<TrainedModelAssignmentRoutingTable> {
 		private String reason;
 
 		private RoutingState routingState;
+
+		private Integer currentAllocations;
+
+		private Integer targetAllocations;
 
 		/**
 		 * Required - The reason for the current state. It is usually populated only
@@ -144,38 +178,60 @@ public class TrainedModelAllocationRoutingTable implements JsonpSerializable {
 			return this;
 		}
 
+		/**
+		 * Required - Current number of allocations.
+		 * <p>
+		 * API name: {@code current_allocations}
+		 */
+		public final Builder currentAllocations(int value) {
+			this.currentAllocations = value;
+			return this;
+		}
+
+		/**
+		 * Required - Target number of allocations.
+		 * <p>
+		 * API name: {@code target_allocations}
+		 */
+		public final Builder targetAllocations(int value) {
+			this.targetAllocations = value;
+			return this;
+		}
+
 		@Override
 		protected Builder self() {
 			return this;
 		}
 
 		/**
-		 * Builds a {@link TrainedModelAllocationRoutingTable}.
+		 * Builds a {@link TrainedModelAssignmentRoutingTable}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelAllocationRoutingTable build() {
+		public TrainedModelAssignmentRoutingTable build() {
 			_checkSingleUse();
 
-			return new TrainedModelAllocationRoutingTable(this);
+			return new TrainedModelAssignmentRoutingTable(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelAllocationRoutingTable}
+	 * Json deserializer for {@link TrainedModelAssignmentRoutingTable}
 	 */
-	public static final JsonpDeserializer<TrainedModelAllocationRoutingTable> _DESERIALIZER = ObjectBuilderDeserializer
+	public static final JsonpDeserializer<TrainedModelAssignmentRoutingTable> _DESERIALIZER = ObjectBuilderDeserializer
 			.lazy(Builder::new,
-					TrainedModelAllocationRoutingTable::setupTrainedModelAllocationRoutingTableDeserializer);
+					TrainedModelAssignmentRoutingTable::setupTrainedModelAssignmentRoutingTableDeserializer);
 
-	protected static void setupTrainedModelAllocationRoutingTableDeserializer(
-			ObjectDeserializer<TrainedModelAllocationRoutingTable.Builder> op) {
+	protected static void setupTrainedModelAssignmentRoutingTableDeserializer(
+			ObjectDeserializer<TrainedModelAssignmentRoutingTable.Builder> op) {
 
 		op.add(Builder::reason, JsonpDeserializer.stringDeserializer(), "reason");
 		op.add(Builder::routingState, RoutingState._DESERIALIZER, "routing_state");
+		op.add(Builder::currentAllocations, JsonpDeserializer.integerDeserializer(), "current_allocations");
+		op.add(Builder::targetAllocations, JsonpDeserializer.integerDeserializer(), "target_allocations");
 
 	}
 

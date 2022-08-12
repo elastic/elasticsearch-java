@@ -52,6 +52,9 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 	@Nullable
 	private final Boolean rehash;
 
+	@Nullable
+	private final CardinalityExecutionMode executionHint;
+
 	// ---------------------------------------------------------------------------------------------
 
 	private CardinalityAggregation(Builder builder) {
@@ -59,6 +62,7 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 
 		this.precisionThreshold = builder.precisionThreshold;
 		this.rehash = builder.rehash;
+		this.executionHint = builder.executionHint;
 
 	}
 
@@ -90,6 +94,14 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 		return this.rehash;
 	}
 
+	/**
+	 * API name: {@code execution_hint}
+	 */
+	@Nullable
+	public final CardinalityExecutionMode executionHint() {
+		return this.executionHint;
+	}
+
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
 		super.serializeInternal(generator, mapper);
@@ -102,6 +114,10 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 			generator.writeKey("rehash");
 			generator.write(this.rehash);
 
+		}
+		if (this.executionHint != null) {
+			generator.writeKey("execution_hint");
+			this.executionHint.serialize(generator, mapper);
 		}
 
 	}
@@ -121,6 +137,9 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 		@Nullable
 		private Boolean rehash;
 
+		@Nullable
+		private CardinalityExecutionMode executionHint;
+
 		/**
 		 * API name: {@code precision_threshold}
 		 */
@@ -134,6 +153,14 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 		 */
 		public final Builder rehash(@Nullable Boolean value) {
 			this.rehash = value;
+			return this;
+		}
+
+		/**
+		 * API name: {@code execution_hint}
+		 */
+		public final Builder executionHint(@Nullable CardinalityExecutionMode value) {
+			this.executionHint = value;
 			return this;
 		}
 
@@ -168,6 +195,7 @@ public class CardinalityAggregation extends MetricAggregationBase implements Agg
 		MetricAggregationBase.setupMetricAggregationBaseDeserializer(op);
 		op.add(Builder::precisionThreshold, JsonpDeserializer.integerDeserializer(), "precision_threshold");
 		op.add(Builder::rehash, JsonpDeserializer.booleanDeserializer(), "rehash");
+		op.add(Builder::executionHint, CardinalityExecutionMode._DESERIALIZER, "execution_hint");
 
 	}
 

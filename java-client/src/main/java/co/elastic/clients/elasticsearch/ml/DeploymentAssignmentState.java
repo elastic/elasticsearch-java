@@ -21,28 +21,40 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.watcher;
+package co.elastic.clients.elasticsearch.ml;
 
-import co.elastic.clients.util.ObjectBuilder;
-import java.util.function.Function;
+import co.elastic.clients.json.JsonEnum;
+import co.elastic.clients.json.JsonpDeserializable;
+import co.elastic.clients.json.JsonpDeserializer;
 
 /**
- * Builders for {@link TimeOfDay} variants.
- * <p>
- * Variants <code>text</code> are not available here as they don't have a
- * dedicated class. Use {@link TimeOfDay}'s builder for these.
- * 
+ *
+ * @see <a href=
+ *      "../doc-files/api-spec.html#ml._types.DeploymentAssignmentState">API
+ *      specification</a>
  */
-public class TimeOfDayBuilders {
-	private TimeOfDayBuilders() {
+@JsonpDeserializable
+public enum DeploymentAssignmentState implements JsonEnum {
+	Starting("starting"),
+
+	Started("started"),
+
+	Stopping("stopping"),
+
+	Failed("failed"),
+
+	;
+
+	private final String jsonValue;
+
+	DeploymentAssignmentState(String jsonValue) {
+		this.jsonValue = jsonValue;
 	}
 
-	/**
-	 * Creates a builder for the {@link HourAndMinute hour_minute} {@code TimeOfDay}
-	 * variant.
-	 */
-	public static HourAndMinute.Builder hourMinute() {
-		return new HourAndMinute.Builder();
+	public String jsonValue() {
+		return this.jsonValue;
 	}
 
+	public static final JsonEnum.Deserializer<DeploymentAssignmentState> _DESERIALIZER = new JsonEnum.Deserializer<>(
+			DeploymentAssignmentState.values());
 }

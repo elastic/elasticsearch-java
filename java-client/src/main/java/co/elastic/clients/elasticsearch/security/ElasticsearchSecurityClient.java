@@ -1898,6 +1898,40 @@ public class ElasticsearchSecurityClient extends ApiClient<ElasticsearchTranspor
 				SuggestUserProfilesRequest._ENDPOINT, this.transportOptions);
 	}
 
+	// ----- Endpoint: security.update_api_key
+
+	/**
+	 * Updates attributes of an existing API key.
+	 * 
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public UpdateApiKeyResponse updateApiKey(UpdateApiKeyRequest request) throws IOException, ElasticsearchException {
+		@SuppressWarnings("unchecked")
+		JsonEndpoint<UpdateApiKeyRequest, UpdateApiKeyResponse, ErrorResponse> endpoint = (JsonEndpoint<UpdateApiKeyRequest, UpdateApiKeyResponse, ErrorResponse>) UpdateApiKeyRequest._ENDPOINT;
+
+		return this.transport.performRequest(request, endpoint, this.transportOptions);
+	}
+
+	/**
+	 * Updates attributes of an existing API key.
+	 * 
+	 * @param fn
+	 *            a function that initializes a builder to create the
+	 *            {@link UpdateApiKeyRequest}
+	 * @see <a href=
+	 *      "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-update-api-key.html">Documentation
+	 *      on elastic.co</a>
+	 */
+
+	public final UpdateApiKeyResponse updateApiKey(
+			Function<UpdateApiKeyRequest.Builder, ObjectBuilder<UpdateApiKeyRequest>> fn)
+			throws IOException, ElasticsearchException {
+		return updateApiKey(fn.apply(new UpdateApiKeyRequest.Builder()).build());
+	}
+
 	// ----- Endpoint: security.update_user_profile_data
 
 	/**

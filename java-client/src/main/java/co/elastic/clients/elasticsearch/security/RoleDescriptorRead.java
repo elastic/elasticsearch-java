@@ -21,12 +21,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.security.get_service_accounts;
+package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
-import co.elastic.clients.elasticsearch.security.GlobalPrivilege;
-import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
-import co.elastic.clients.elasticsearch.security.TransientMetadataConfig;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -46,16 +42,16 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: security.get_service_accounts.RoleDescriptor
+// typedef: security._types.RoleDescriptorRead
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#security.get_service_accounts.RoleDescriptor">API
+ *      "../doc-files/api-spec.html#security._types.RoleDescriptorRead">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class RoleDescriptor implements JsonpSerializable {
+public class RoleDescriptorRead implements JsonpSerializable {
 	private final List<String> cluster;
 
 	private final List<IndicesPrivileges> indices;
@@ -73,7 +69,7 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	// ---------------------------------------------------------------------------------------------
 
-	private RoleDescriptor(Builder builder) {
+	private RoleDescriptorRead(Builder builder) {
 
 		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
 		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
@@ -85,7 +81,7 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	}
 
-	public static RoleDescriptor of(Function<Builder, ObjectBuilder<RoleDescriptor>> fn) {
+	public static RoleDescriptorRead of(Function<Builder, ObjectBuilder<RoleDescriptorRead>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
@@ -227,10 +223,12 @@ public class RoleDescriptor implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link RoleDescriptor}.
+	 * Builder for {@link RoleDescriptorRead}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RoleDescriptor> {
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<RoleDescriptorRead> {
 		private List<String> cluster;
 
 		private List<IndicesPrivileges> indices;
@@ -420,27 +418,27 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link RoleDescriptor}.
+		 * Builds a {@link RoleDescriptorRead}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public RoleDescriptor build() {
+		public RoleDescriptorRead build() {
 			_checkSingleUse();
 
-			return new RoleDescriptor(this);
+			return new RoleDescriptorRead(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link RoleDescriptor}
+	 * Json deserializer for {@link RoleDescriptorRead}
 	 */
-	public static final JsonpDeserializer<RoleDescriptor> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			RoleDescriptor::setupRoleDescriptorDeserializer);
+	public static final JsonpDeserializer<RoleDescriptorRead> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, RoleDescriptorRead::setupRoleDescriptorReadDeserializer);
 
-	protected static void setupRoleDescriptorDeserializer(ObjectDeserializer<RoleDescriptor.Builder> op) {
+	protected static void setupRoleDescriptorReadDeserializer(ObjectDeserializer<RoleDescriptorRead.Builder> op) {
 
 		op.add(Builder::cluster, JsonpDeserializer.arrayDeserializer(JsonpDeserializer.stringDeserializer()),
 				"cluster");

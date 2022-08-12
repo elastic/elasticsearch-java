@@ -41,46 +41,46 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: ml._types.TrainedModelAllocation
+// typedef: ml._types.TrainedModelAssignment
 
 /**
  *
  * @see <a href=
- *      "../doc-files/api-spec.html#ml._types.TrainedModelAllocation">API
+ *      "../doc-files/api-spec.html#ml._types.TrainedModelAssignment">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class TrainedModelAllocation implements JsonpSerializable {
-	private final DeploymentAllocationState allocationState;
+public class TrainedModelAssignment implements JsonpSerializable {
+	private final DeploymentAssignmentState assignmentState;
 
-	private final Map<String, TrainedModelAllocationRoutingTable> routingTable;
+	private final Map<String, TrainedModelAssignmentRoutingTable> routingTable;
 
 	private final DateTime startTime;
 
-	private final TrainedModelAllocationTaskParameters taskParameters;
+	private final TrainedModelAssignmentTaskParameters taskParameters;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private TrainedModelAllocation(Builder builder) {
+	private TrainedModelAssignment(Builder builder) {
 
-		this.allocationState = ApiTypeHelper.requireNonNull(builder.allocationState, this, "allocationState");
+		this.assignmentState = ApiTypeHelper.requireNonNull(builder.assignmentState, this, "assignmentState");
 		this.routingTable = ApiTypeHelper.unmodifiableRequired(builder.routingTable, this, "routingTable");
 		this.startTime = ApiTypeHelper.requireNonNull(builder.startTime, this, "startTime");
 		this.taskParameters = ApiTypeHelper.requireNonNull(builder.taskParameters, this, "taskParameters");
 
 	}
 
-	public static TrainedModelAllocation of(Function<Builder, ObjectBuilder<TrainedModelAllocation>> fn) {
+	public static TrainedModelAssignment of(Function<Builder, ObjectBuilder<TrainedModelAssignment>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Required - The overall allocation state.
+	 * Required - The overall assignment state.
 	 * <p>
-	 * API name: {@code allocation_state}
+	 * API name: {@code assignment_state}
 	 */
-	public final DeploymentAllocationState allocationState() {
-		return this.allocationState;
+	public final DeploymentAssignmentState assignmentState() {
+		return this.assignmentState;
 	}
 
 	/**
@@ -88,7 +88,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing_table}
 	 */
-	public final Map<String, TrainedModelAllocationRoutingTable> routingTable() {
+	public final Map<String, TrainedModelAssignmentRoutingTable> routingTable() {
 		return this.routingTable;
 	}
 
@@ -104,7 +104,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code task_parameters}
 	 */
-	public final TrainedModelAllocationTaskParameters taskParameters() {
+	public final TrainedModelAssignmentTaskParameters taskParameters() {
 		return this.taskParameters;
 	}
 
@@ -119,12 +119,12 @@ public class TrainedModelAllocation implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("allocation_state");
-		this.allocationState.serialize(generator, mapper);
+		generator.writeKey("assignment_state");
+		this.assignmentState.serialize(generator, mapper);
 		if (ApiTypeHelper.isDefined(this.routingTable)) {
 			generator.writeKey("routing_table");
 			generator.writeStartObject();
-			for (Map.Entry<String, TrainedModelAllocationRoutingTable> item0 : this.routingTable.entrySet()) {
+			for (Map.Entry<String, TrainedModelAssignmentRoutingTable> item0 : this.routingTable.entrySet()) {
 				generator.writeKey(item0.getKey());
 				item0.getValue().serialize(generator, mapper);
 
@@ -147,27 +147,27 @@ public class TrainedModelAllocation implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link TrainedModelAllocation}.
+	 * Builder for {@link TrainedModelAssignment}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<TrainedModelAllocation> {
-		private DeploymentAllocationState allocationState;
+				ObjectBuilder<TrainedModelAssignment> {
+		private DeploymentAssignmentState assignmentState;
 
-		private Map<String, TrainedModelAllocationRoutingTable> routingTable;
+		private Map<String, TrainedModelAssignmentRoutingTable> routingTable;
 
 		private DateTime startTime;
 
-		private TrainedModelAllocationTaskParameters taskParameters;
+		private TrainedModelAssignmentTaskParameters taskParameters;
 
 		/**
-		 * Required - The overall allocation state.
+		 * Required - The overall assignment state.
 		 * <p>
-		 * API name: {@code allocation_state}
+		 * API name: {@code assignment_state}
 		 */
-		public final Builder allocationState(DeploymentAllocationState value) {
-			this.allocationState = value;
+		public final Builder assignmentState(DeploymentAssignmentState value) {
+			this.assignmentState = value;
 			return this;
 		}
 
@@ -178,7 +178,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>routingTable</code>.
 		 */
-		public final Builder routingTable(Map<String, TrainedModelAllocationRoutingTable> map) {
+		public final Builder routingTable(Map<String, TrainedModelAssignmentRoutingTable> map) {
 			this.routingTable = _mapPutAll(this.routingTable, map);
 			return this;
 		}
@@ -190,7 +190,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>routingTable</code>.
 		 */
-		public final Builder routingTable(String key, TrainedModelAllocationRoutingTable value) {
+		public final Builder routingTable(String key, TrainedModelAssignmentRoutingTable value) {
 			this.routingTable = _mapPut(this.routingTable, key, value);
 			return this;
 		}
@@ -203,8 +203,8 @@ public class TrainedModelAllocation implements JsonpSerializable {
 		 * Adds an entry to <code>routingTable</code> using a builder lambda.
 		 */
 		public final Builder routingTable(String key,
-				Function<TrainedModelAllocationRoutingTable.Builder, ObjectBuilder<TrainedModelAllocationRoutingTable>> fn) {
-			return routingTable(key, fn.apply(new TrainedModelAllocationRoutingTable.Builder()).build());
+				Function<TrainedModelAssignmentRoutingTable.Builder, ObjectBuilder<TrainedModelAssignmentRoutingTable>> fn) {
+			return routingTable(key, fn.apply(new TrainedModelAssignmentRoutingTable.Builder()).build());
 		}
 
 		/**
@@ -220,7 +220,7 @@ public class TrainedModelAllocation implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code task_parameters}
 		 */
-		public final Builder taskParameters(TrainedModelAllocationTaskParameters value) {
+		public final Builder taskParameters(TrainedModelAssignmentTaskParameters value) {
 			this.taskParameters = value;
 			return this;
 		}
@@ -229,8 +229,8 @@ public class TrainedModelAllocation implements JsonpSerializable {
 		 * Required - API name: {@code task_parameters}
 		 */
 		public final Builder taskParameters(
-				Function<TrainedModelAllocationTaskParameters.Builder, ObjectBuilder<TrainedModelAllocationTaskParameters>> fn) {
-			return this.taskParameters(fn.apply(new TrainedModelAllocationTaskParameters.Builder()).build());
+				Function<TrainedModelAssignmentTaskParameters.Builder, ObjectBuilder<TrainedModelAssignmentTaskParameters>> fn) {
+			return this.taskParameters(fn.apply(new TrainedModelAssignmentTaskParameters.Builder()).build());
 		}
 
 		@Override
@@ -239,35 +239,35 @@ public class TrainedModelAllocation implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link TrainedModelAllocation}.
+		 * Builds a {@link TrainedModelAssignment}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public TrainedModelAllocation build() {
+		public TrainedModelAssignment build() {
 			_checkSingleUse();
 
-			return new TrainedModelAllocation(this);
+			return new TrainedModelAssignment(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link TrainedModelAllocation}
+	 * Json deserializer for {@link TrainedModelAssignment}
 	 */
-	public static final JsonpDeserializer<TrainedModelAllocation> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, TrainedModelAllocation::setupTrainedModelAllocationDeserializer);
+	public static final JsonpDeserializer<TrainedModelAssignment> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, TrainedModelAssignment::setupTrainedModelAssignmentDeserializer);
 
-	protected static void setupTrainedModelAllocationDeserializer(
-			ObjectDeserializer<TrainedModelAllocation.Builder> op) {
+	protected static void setupTrainedModelAssignmentDeserializer(
+			ObjectDeserializer<TrainedModelAssignment.Builder> op) {
 
-		op.add(Builder::allocationState, DeploymentAllocationState._DESERIALIZER, "allocation_state");
+		op.add(Builder::assignmentState, DeploymentAssignmentState._DESERIALIZER, "assignment_state");
 		op.add(Builder::routingTable,
-				JsonpDeserializer.stringMapDeserializer(TrainedModelAllocationRoutingTable._DESERIALIZER),
+				JsonpDeserializer.stringMapDeserializer(TrainedModelAssignmentRoutingTable._DESERIALIZER),
 				"routing_table");
 		op.add(Builder::startTime, DateTime._DESERIALIZER, "start_time");
-		op.add(Builder::taskParameters, TrainedModelAllocationTaskParameters._DESERIALIZER, "task_parameters");
+		op.add(Builder::taskParameters, TrainedModelAssignmentTaskParameters._DESERIALIZER, "task_parameters");
 
 	}
 

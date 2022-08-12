@@ -56,6 +56,9 @@ import javax.annotation.Nullable;
  */
 
 public class StartTrainedModelDeploymentRequest extends RequestBase {
+	@Nullable
+	private final String cacheSize;
+
 	private final String modelId;
 
 	@Nullable
@@ -77,6 +80,7 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 
 	private StartTrainedModelDeploymentRequest(Builder builder) {
 
+		this.cacheSize = builder.cacheSize;
 		this.modelId = ApiTypeHelper.requireNonNull(builder.modelId, this, "modelId");
 		this.numberOfAllocations = builder.numberOfAllocations;
 		this.queueCapacity = builder.queueCapacity;
@@ -89,6 +93,19 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	public static StartTrainedModelDeploymentRequest of(
 			Function<Builder, ObjectBuilder<StartTrainedModelDeploymentRequest>> fn) {
 		return fn.apply(new Builder()).build();
+	}
+
+	/**
+	 * The inference cache size (in memory outside the JVM heap) per node for the
+	 * model. The default value is the same size as the
+	 * <code>model_size_bytes</code>. To disable the cache, <code>0b</code> can be
+	 * provided.
+	 * <p>
+	 * API name: {@code cache_size}
+	 */
+	@Nullable
+	public final String cacheSize() {
+		return this.cacheSize;
 	}
 
 	/**
@@ -170,6 +187,9 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 	 */
 
 	public static class Builder extends ObjectBuilderBase implements ObjectBuilder<StartTrainedModelDeploymentRequest> {
+		@Nullable
+		private String cacheSize;
+
 		private String modelId;
 
 		@Nullable
@@ -186,6 +206,19 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 
 		@Nullable
 		private DeploymentAllocationState waitFor;
+
+		/**
+		 * The inference cache size (in memory outside the JVM heap) per node for the
+		 * model. The default value is the same size as the
+		 * <code>model_size_bytes</code>. To disable the cache, <code>0b</code> can be
+		 * provided.
+		 * <p>
+		 * API name: {@code cache_size}
+		 */
+		public final Builder cacheSize(@Nullable String value) {
+			this.cacheSize = value;
+			return this;
+		}
 
 		/**
 		 * Required - The unique identifier of the trained model. Currently, only
@@ -321,6 +354,9 @@ public class StartTrainedModelDeploymentRequest extends RequestBase {
 			// Request parameters
 			request -> {
 				Map<String, String> params = new HashMap<>();
+				if (request.cacheSize != null) {
+					params.put("cache_size", request.cacheSize);
+				}
 				if (request.threadsPerAllocation != null) {
 					params.put("threads_per_allocation", String.valueOf(request.threadsPerAllocation));
 				}

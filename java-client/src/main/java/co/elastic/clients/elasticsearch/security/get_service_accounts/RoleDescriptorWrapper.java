@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.security.get_service_accounts;
 
+import co.elastic.clients.elasticsearch.security.RoleDescriptorRead;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -48,7 +49,7 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class RoleDescriptorWrapper implements JsonpSerializable {
-	private final RoleDescriptor roleDescriptor;
+	private final RoleDescriptorRead roleDescriptor;
 
 	// ---------------------------------------------------------------------------------------------
 
@@ -65,7 +66,7 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 	/**
 	 * Required - API name: {@code role_descriptor}
 	 */
-	public final RoleDescriptor roleDescriptor() {
+	public final RoleDescriptorRead roleDescriptor() {
 		return this.roleDescriptor;
 	}
 
@@ -99,12 +100,12 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<RoleDescriptorWrapper> {
-		private RoleDescriptor roleDescriptor;
+		private RoleDescriptorRead roleDescriptor;
 
 		/**
 		 * Required - API name: {@code role_descriptor}
 		 */
-		public final Builder roleDescriptor(RoleDescriptor value) {
+		public final Builder roleDescriptor(RoleDescriptorRead value) {
 			this.roleDescriptor = value;
 			return this;
 		}
@@ -112,8 +113,9 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 		/**
 		 * Required - API name: {@code role_descriptor}
 		 */
-		public final Builder roleDescriptor(Function<RoleDescriptor.Builder, ObjectBuilder<RoleDescriptor>> fn) {
-			return this.roleDescriptor(fn.apply(new RoleDescriptor.Builder()).build());
+		public final Builder roleDescriptor(
+				Function<RoleDescriptorRead.Builder, ObjectBuilder<RoleDescriptorRead>> fn) {
+			return this.roleDescriptor(fn.apply(new RoleDescriptorRead.Builder()).build());
 		}
 
 		@Override
@@ -144,7 +146,7 @@ public class RoleDescriptorWrapper implements JsonpSerializable {
 
 	protected static void setupRoleDescriptorWrapperDeserializer(ObjectDeserializer<RoleDescriptorWrapper.Builder> op) {
 
-		op.add(Builder::roleDescriptor, RoleDescriptor._DESERIALIZER, "role_descriptor");
+		op.add(Builder::roleDescriptor, RoleDescriptorRead._DESERIALIZER, "role_descriptor");
 
 	}
 

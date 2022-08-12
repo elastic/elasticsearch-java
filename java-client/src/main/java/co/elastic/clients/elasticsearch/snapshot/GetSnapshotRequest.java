@@ -65,9 +65,6 @@ public class GetSnapshotRequest extends RequestBase {
 	private final String fromSortValue;
 
 	@Nullable
-	private final Boolean human;
-
-	@Nullable
 	private final Boolean ignoreUnavailable;
 
 	@Nullable
@@ -75,6 +72,9 @@ public class GetSnapshotRequest extends RequestBase {
 
 	@Nullable
 	private final Boolean indexDetails;
+
+	@Nullable
+	private final Boolean indexNames;
 
 	@Nullable
 	private final Time masterTimeout;
@@ -107,10 +107,10 @@ public class GetSnapshotRequest extends RequestBase {
 
 		this.after = builder.after;
 		this.fromSortValue = builder.fromSortValue;
-		this.human = builder.human;
 		this.ignoreUnavailable = builder.ignoreUnavailable;
 		this.includeRepository = builder.includeRepository;
 		this.indexDetails = builder.indexDetails;
+		this.indexNames = builder.indexNames;
 		this.masterTimeout = builder.masterTimeout;
 		this.offset = builder.offset;
 		this.order = builder.order;
@@ -152,14 +152,6 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * API name: {@code human}
-	 */
-	@Nullable
-	public final Boolean human() {
-		return this.human;
-	}
-
-	/**
 	 * If false, the request returns an error for any snapshots that are
 	 * unavailable.
 	 * <p>
@@ -171,8 +163,7 @@ public class GetSnapshotRequest extends RequestBase {
 	}
 
 	/**
-	 * Whether to include the repository name in the snapshot info. Defaults to
-	 * true.
+	 * If true, returns the repository name in each snapshot.
 	 * <p>
 	 * API name: {@code include_repository}
 	 */
@@ -192,6 +183,16 @@ public class GetSnapshotRequest extends RequestBase {
 	@Nullable
 	public final Boolean indexDetails() {
 		return this.indexDetails;
+	}
+
+	/**
+	 * If true, returns the name of each index in each snapshot.
+	 * <p>
+	 * API name: {@code index_names}
+	 */
+	@Nullable
+	public final Boolean indexNames() {
+		return this.indexNames;
 	}
 
 	/**
@@ -316,9 +317,6 @@ public class GetSnapshotRequest extends RequestBase {
 		private String fromSortValue;
 
 		@Nullable
-		private Boolean human;
-
-		@Nullable
 		private Boolean ignoreUnavailable;
 
 		@Nullable
@@ -326,6 +324,9 @@ public class GetSnapshotRequest extends RequestBase {
 
 		@Nullable
 		private Boolean indexDetails;
+
+		@Nullable
+		private Boolean indexNames;
 
 		@Nullable
 		private Time masterTimeout;
@@ -377,14 +378,6 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * API name: {@code human}
-		 */
-		public final Builder human(@Nullable Boolean value) {
-			this.human = value;
-			return this;
-		}
-
-		/**
 		 * If false, the request returns an error for any snapshots that are
 		 * unavailable.
 		 * <p>
@@ -396,8 +389,7 @@ public class GetSnapshotRequest extends RequestBase {
 		}
 
 		/**
-		 * Whether to include the repository name in the snapshot info. Defaults to
-		 * true.
+		 * If true, returns the repository name in each snapshot.
 		 * <p>
 		 * API name: {@code include_repository}
 		 */
@@ -416,6 +408,16 @@ public class GetSnapshotRequest extends RequestBase {
 		 */
 		public final Builder indexDetails(@Nullable Boolean value) {
 			this.indexDetails = value;
+			return this;
+		}
+
+		/**
+		 * If true, returns the name of each index in each snapshot.
+		 * <p>
+		 * API name: {@code index_names}
+		 */
+		public final Builder indexNames(@Nullable Boolean value) {
+			this.indexNames = value;
 			return this;
 		}
 
@@ -620,6 +622,9 @@ public class GetSnapshotRequest extends RequestBase {
 				if (request.fromSortValue != null) {
 					params.put("from_sort_value", request.fromSortValue);
 				}
+				if (request.indexNames != null) {
+					params.put("index_names", String.valueOf(request.indexNames));
+				}
 				if (request.indexDetails != null) {
 					params.put("index_details", String.valueOf(request.indexDetails));
 				}
@@ -643,9 +648,6 @@ public class GetSnapshotRequest extends RequestBase {
 				}
 				if (request.after != null) {
 					params.put("after", request.after);
-				}
-				if (request.human != null) {
-					params.put("human", String.valueOf(request.human));
 				}
 				if (request.slmPolicyFilter != null) {
 					params.put("slm_policy_filter", request.slmPolicyFilter);
