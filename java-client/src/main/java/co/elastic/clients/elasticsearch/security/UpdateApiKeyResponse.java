@@ -21,9 +21,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch._types.aggregations;
+package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.elasticsearch._types.SortOrder;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapper;
@@ -31,56 +30,43 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
+import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
+import java.lang.Boolean;
 import java.util.Objects;
 import java.util.function.Function;
-import javax.annotation.Nullable;
 
-// typedef: _types.aggregations.HistogramOrder
+// typedef: security.update_api_key.Response
 
 /**
  *
  * @see <a href=
- *      "../../doc-files/api-spec.html#_types.aggregations.HistogramOrder">API
+ *      "../doc-files/api-spec.html#security.update_api_key.Response">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class HistogramOrder implements JsonpSerializable {
-	@Nullable
-	private final SortOrder count;
-
-	@Nullable
-	private final SortOrder key;
+public class UpdateApiKeyResponse implements JsonpSerializable {
+	private final boolean updated;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private HistogramOrder(Builder builder) {
+	private UpdateApiKeyResponse(Builder builder) {
 
-		this.count = builder.count;
-		this.key = builder.key;
+		this.updated = ApiTypeHelper.requireNonNull(builder.updated, this, "updated");
 
 	}
 
-	public static HistogramOrder of(Function<Builder, ObjectBuilder<HistogramOrder>> fn) {
+	public static UpdateApiKeyResponse of(Function<Builder, ObjectBuilder<UpdateApiKeyResponse>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * API name: {@code _count}
+	 * Required - API name: {@code updated}
 	 */
-	@Nullable
-	public final SortOrder count() {
-		return this.count;
-	}
-
-	/**
-	 * API name: {@code _key}
-	 */
-	@Nullable
-	public final SortOrder key() {
-		return this.key;
+	public final boolean updated() {
+		return this.updated;
 	}
 
 	/**
@@ -94,14 +80,8 @@ public class HistogramOrder implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.count != null) {
-			generator.writeKey("_count");
-			this.count.serialize(generator, mapper);
-		}
-		if (this.key != null) {
-			generator.writeKey("_key");
-			this.key.serialize(generator, mapper);
-		}
+		generator.writeKey("updated");
+		generator.write(this.updated);
 
 	}
 
@@ -113,29 +93,19 @@ public class HistogramOrder implements JsonpSerializable {
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link HistogramOrder}.
+	 * Builder for {@link UpdateApiKeyResponse}.
 	 */
 
-	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<HistogramOrder> {
-		@Nullable
-		private SortOrder count;
-
-		@Nullable
-		private SortOrder key;
+	public static class Builder extends WithJsonObjectBuilderBase<Builder>
+			implements
+				ObjectBuilder<UpdateApiKeyResponse> {
+		private Boolean updated;
 
 		/**
-		 * API name: {@code _count}
+		 * Required - API name: {@code updated}
 		 */
-		public final Builder count(@Nullable SortOrder value) {
-			this.count = value;
-			return this;
-		}
-
-		/**
-		 * API name: {@code _key}
-		 */
-		public final Builder key(@Nullable SortOrder value) {
-			this.key = value;
+		public final Builder updated(boolean value) {
+			this.updated = value;
 			return this;
 		}
 
@@ -145,30 +115,29 @@ public class HistogramOrder implements JsonpSerializable {
 		}
 
 		/**
-		 * Builds a {@link HistogramOrder}.
+		 * Builds a {@link UpdateApiKeyResponse}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public HistogramOrder build() {
+		public UpdateApiKeyResponse build() {
 			_checkSingleUse();
 
-			return new HistogramOrder(this);
+			return new UpdateApiKeyResponse(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link HistogramOrder}
+	 * Json deserializer for {@link UpdateApiKeyResponse}
 	 */
-	public static final JsonpDeserializer<HistogramOrder> _DESERIALIZER = ObjectBuilderDeserializer.lazy(Builder::new,
-			HistogramOrder::setupHistogramOrderDeserializer);
+	public static final JsonpDeserializer<UpdateApiKeyResponse> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateApiKeyResponse::setupUpdateApiKeyResponseDeserializer);
 
-	protected static void setupHistogramOrderDeserializer(ObjectDeserializer<HistogramOrder.Builder> op) {
+	protected static void setupUpdateApiKeyResponseDeserializer(ObjectDeserializer<UpdateApiKeyResponse.Builder> op) {
 
-		op.add(Builder::count, SortOrder._DESERIALIZER, "_count");
-		op.add(Builder::key, SortOrder._DESERIALIZER, "_key");
+		op.add(Builder::updated, JsonpDeserializer.booleanDeserializer(), "updated");
 
 	}
 

@@ -21,12 +21,8 @@
 // THIS CODE IS GENERATED. MANUAL EDITS WILL BE LOST.
 //----------------------------------------------------
 
-package co.elastic.clients.elasticsearch.security.create_api_key;
+package co.elastic.clients.elasticsearch.security;
 
-import co.elastic.clients.elasticsearch.security.ApplicationPrivileges;
-import co.elastic.clients.elasticsearch.security.GlobalPrivilege;
-import co.elastic.clients.elasticsearch.security.IndicesPrivileges;
-import co.elastic.clients.elasticsearch.security.TransientMetadataConfig;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -46,12 +42,11 @@ import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: security.create_api_key.RoleDescriptor
+// typedef: security._types.RoleDescriptor
 
 /**
  *
- * @see <a href=
- *      "../../doc-files/api-spec.html#security.create_api_key.RoleDescriptor">API
+ * @see <a href="../doc-files/api-spec.html#security._types.RoleDescriptor">API
  *      specification</a>
  */
 @JsonpDeserializable
@@ -75,8 +70,8 @@ public class RoleDescriptor implements JsonpSerializable {
 
 	private RoleDescriptor(Builder builder) {
 
-		this.cluster = ApiTypeHelper.unmodifiableRequired(builder.cluster, this, "cluster");
-		this.indices = ApiTypeHelper.unmodifiableRequired(builder.indices, this, "indices");
+		this.cluster = ApiTypeHelper.unmodifiable(builder.cluster);
+		this.indices = ApiTypeHelper.unmodifiable(builder.indices);
 		this.global = ApiTypeHelper.unmodifiable(builder.global);
 		this.applications = ApiTypeHelper.unmodifiable(builder.applications);
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
@@ -90,14 +85,14 @@ public class RoleDescriptor implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code cluster}
+	 * API name: {@code cluster}
 	 */
 	public final List<String> cluster() {
 		return this.cluster;
 	}
 
 	/**
-	 * Required - API name: {@code indices}
+	 * API name: {@code indices}
 	 */
 	public final List<IndicesPrivileges> indices() {
 		return this.indices;
@@ -231,8 +226,10 @@ public class RoleDescriptor implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<RoleDescriptor> {
+		@Nullable
 		private List<String> cluster;
 
+		@Nullable
 		private List<IndicesPrivileges> indices;
 
 		@Nullable
@@ -251,7 +248,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		private TransientMetadataConfig transientMetadata;
 
 		/**
-		 * Required - API name: {@code cluster}
+		 * API name: {@code cluster}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>cluster</code>.
 		 */
@@ -261,7 +258,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code cluster}
+		 * API name: {@code cluster}
 		 * <p>
 		 * Adds one or more values to <code>cluster</code>.
 		 */
@@ -271,7 +268,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds all elements of <code>list</code> to <code>indices</code>.
 		 */
@@ -281,7 +278,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds one or more values to <code>indices</code>.
 		 */
@@ -291,7 +288,7 @@ public class RoleDescriptor implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code indices}
+		 * API name: {@code indices}
 		 * <p>
 		 * Adds a value to <code>indices</code> using a builder lambda.
 		 */

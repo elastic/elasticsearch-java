@@ -48,13 +48,13 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class StartTrainedModelDeploymentResponse implements JsonpSerializable {
-	private final TrainedModelAllocation allocation;
+	private final TrainedModelAssignment assignment;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private StartTrainedModelDeploymentResponse(Builder builder) {
 
-		this.allocation = ApiTypeHelper.requireNonNull(builder.allocation, this, "allocation");
+		this.assignment = ApiTypeHelper.requireNonNull(builder.assignment, this, "assignment");
 
 	}
 
@@ -64,10 +64,10 @@ public class StartTrainedModelDeploymentResponse implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code allocation}
+	 * Required - API name: {@code assignment}
 	 */
-	public final TrainedModelAllocation allocation() {
-		return this.allocation;
+	public final TrainedModelAssignment assignment() {
+		return this.assignment;
 	}
 
 	/**
@@ -81,8 +81,8 @@ public class StartTrainedModelDeploymentResponse implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("allocation");
-		this.allocation.serialize(generator, mapper);
+		generator.writeKey("assignment");
+		this.assignment.serialize(generator, mapper);
 
 	}
 
@@ -100,22 +100,22 @@ public class StartTrainedModelDeploymentResponse implements JsonpSerializable {
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
 				ObjectBuilder<StartTrainedModelDeploymentResponse> {
-		private TrainedModelAllocation allocation;
+		private TrainedModelAssignment assignment;
 
 		/**
-		 * Required - API name: {@code allocation}
+		 * Required - API name: {@code assignment}
 		 */
-		public final Builder allocation(TrainedModelAllocation value) {
-			this.allocation = value;
+		public final Builder assignment(TrainedModelAssignment value) {
+			this.assignment = value;
 			return this;
 		}
 
 		/**
-		 * Required - API name: {@code allocation}
+		 * Required - API name: {@code assignment}
 		 */
-		public final Builder allocation(
-				Function<TrainedModelAllocation.Builder, ObjectBuilder<TrainedModelAllocation>> fn) {
-			return this.allocation(fn.apply(new TrainedModelAllocation.Builder()).build());
+		public final Builder assignment(
+				Function<TrainedModelAssignment.Builder, ObjectBuilder<TrainedModelAssignment>> fn) {
+			return this.assignment(fn.apply(new TrainedModelAssignment.Builder()).build());
 		}
 
 		@Override
@@ -148,7 +148,7 @@ public class StartTrainedModelDeploymentResponse implements JsonpSerializable {
 	protected static void setupStartTrainedModelDeploymentResponseDeserializer(
 			ObjectDeserializer<StartTrainedModelDeploymentResponse.Builder> op) {
 
-		op.add(Builder::allocation, TrainedModelAllocation._DESERIALIZER, "allocation");
+		op.add(Builder::assignment, TrainedModelAssignment._DESERIALIZER, "assignment");
 
 	}
 

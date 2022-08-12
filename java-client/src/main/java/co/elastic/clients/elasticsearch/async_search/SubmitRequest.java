@@ -25,6 +25,7 @@ package co.elastic.clients.elasticsearch.async_search;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
 import co.elastic.clients.elasticsearch._types.ExpandWildcard;
+import co.elastic.clients.elasticsearch._types.KnnQuery;
 import co.elastic.clients.elasticsearch._types.RequestBase;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SearchType;
@@ -142,6 +143,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	private final Boolean keepOnCompletion;
 
 	@Nullable
+	private final KnnQuery knn;
+
+	@Nullable
 	private final Boolean lenient;
 
 	@Nullable
@@ -257,6 +261,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
 		this.keepAlive = builder.keepAlive;
 		this.keepOnCompletion = builder.keepOnCompletion;
+		this.knn = builder.knn;
 		this.lenient = builder.lenient;
 		this.maxConcurrentShardRequests = builder.maxConcurrentShardRequests;
 		this.minCompatibleShardNode = builder.minCompatibleShardNode;
@@ -529,6 +534,16 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	public final Boolean keepOnCompletion() {
 		return this.keepOnCompletion;
+	}
+
+	/**
+	 * Defines the approximate kNN search to run.
+	 * <p>
+	 * API name: {@code knn}
+	 */
+	@Nullable
+	public final KnnQuery knn() {
+		return this.knn;
 	}
 
 	/**
@@ -934,6 +949,11 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.knn != null) {
+			generator.writeKey("knn");
+			this.knn.serialize(generator, mapper);
+
+		}
 		if (this.minScore != null) {
 			generator.writeKey("min_score");
 			generator.write(this.minScore);
@@ -1161,6 +1181,9 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 
 		@Nullable
 		private Boolean keepOnCompletion;
+
+		@Nullable
+		private KnnQuery knn;
 
 		@Nullable
 		private Boolean lenient;
@@ -1650,6 +1673,25 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 		public final Builder keepOnCompletion(@Nullable Boolean value) {
 			this.keepOnCompletion = value;
 			return this;
+		}
+
+		/**
+		 * Defines the approximate kNN search to run.
+		 * <p>
+		 * API name: {@code knn}
+		 */
+		public final Builder knn(@Nullable KnnQuery value) {
+			this.knn = value;
+			return this;
+		}
+
+		/**
+		 * Defines the approximate kNN search to run.
+		 * <p>
+		 * API name: {@code knn}
+		 */
+		public final Builder knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
+			return this.knn(fn.apply(new KnnQuery.Builder()).build());
 		}
 
 		/**
@@ -2214,6 +2256,7 @@ public class SubmitRequest extends RequestBase implements JsonpSerializable {
 				JsonpDeserializer.arrayDeserializer(
 						JsonpDeserializer.stringMapDeserializer(JsonpDeserializer.doubleDeserializer())),
 				"indices_boost");
+		op.add(Builder::knn, KnnQuery._DESERIALIZER, "knn");
 		op.add(Builder::minScore, JsonpDeserializer.doubleDeserializer(), "min_score");
 		op.add(Builder::pit, PointInTimeReference._DESERIALIZER, "pit");
 		op.add(Builder::postFilter, Query._DESERIALIZER, "post_filter");

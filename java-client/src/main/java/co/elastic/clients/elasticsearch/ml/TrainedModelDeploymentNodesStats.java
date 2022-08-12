@@ -67,7 +67,7 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 
 	private final int rejectionExecutionCount;
 
-	private final TrainedModelAllocationRoutingTable routingState;
+	private final TrainedModelAssignmentRoutingTable routingState;
 
 	private final long startTime;
 
@@ -185,7 +185,7 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code routing_state}
 	 */
-	public final TrainedModelAllocationRoutingTable routingState() {
+	public final TrainedModelAssignmentRoutingTable routingState() {
 		return this.routingState;
 	}
 
@@ -296,7 +296,7 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 
 		private Integer rejectionExecutionCount;
 
-		private TrainedModelAllocationRoutingTable routingState;
+		private TrainedModelAssignmentRoutingTable routingState;
 
 		private Long startTime;
 
@@ -402,7 +402,7 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		 * <p>
 		 * API name: {@code routing_state}
 		 */
-		public final Builder routingState(TrainedModelAllocationRoutingTable value) {
+		public final Builder routingState(TrainedModelAssignmentRoutingTable value) {
 			this.routingState = value;
 			return this;
 		}
@@ -414,8 +414,8 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		 * API name: {@code routing_state}
 		 */
 		public final Builder routingState(
-				Function<TrainedModelAllocationRoutingTable.Builder, ObjectBuilder<TrainedModelAllocationRoutingTable>> fn) {
-			return this.routingState(fn.apply(new TrainedModelAllocationRoutingTable.Builder()).build());
+				Function<TrainedModelAssignmentRoutingTable.Builder, ObjectBuilder<TrainedModelAssignmentRoutingTable>> fn) {
+			return this.routingState(fn.apply(new TrainedModelAssignmentRoutingTable.Builder()).build());
 		}
 
 		/**
@@ -486,7 +486,7 @@ public class TrainedModelDeploymentNodesStats implements JsonpSerializable {
 		op.add(Builder::numberOfAllocations, JsonpDeserializer.integerDeserializer(), "number_of_allocations");
 		op.add(Builder::numberOfPendingRequests, JsonpDeserializer.integerDeserializer(), "number_of_pending_requests");
 		op.add(Builder::rejectionExecutionCount, JsonpDeserializer.integerDeserializer(), "rejection_execution_count");
-		op.add(Builder::routingState, TrainedModelAllocationRoutingTable._DESERIALIZER, "routing_state");
+		op.add(Builder::routingState, TrainedModelAssignmentRoutingTable._DESERIALIZER, "routing_state");
 		op.add(Builder::startTime, JsonpDeserializer.longDeserializer(), "start_time");
 		op.add(Builder::threadsPerAllocation, JsonpDeserializer.integerDeserializer(), "threads_per_allocation");
 		op.add(Builder::timeoutCount, JsonpDeserializer.integerDeserializer(), "timeout_count");

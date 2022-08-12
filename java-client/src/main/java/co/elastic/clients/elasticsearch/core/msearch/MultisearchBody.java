@@ -23,6 +23,7 @@
 
 package co.elastic.clients.elasticsearch.core.msearch;
 
+import co.elastic.clients.elasticsearch._types.KnnQuery;
 import co.elastic.clients.elasticsearch._types.ScriptField;
 import co.elastic.clients.elasticsearch._types.SortOptions;
 import co.elastic.clients.elasticsearch._types.aggregations.Aggregation;
@@ -82,6 +83,9 @@ public class MultisearchBody implements JsonpSerializable {
 	private final List<String> storedFields;
 
 	private final List<FieldAndFormat> docvalueFields;
+
+	@Nullable
+	private final KnnQuery knn;
 
 	@Nullable
 	private final Integer from;
@@ -154,6 +158,7 @@ public class MultisearchBody implements JsonpSerializable {
 		this.explain = builder.explain;
 		this.storedFields = ApiTypeHelper.unmodifiable(builder.storedFields);
 		this.docvalueFields = ApiTypeHelper.unmodifiable(builder.docvalueFields);
+		this.knn = builder.knn;
 		this.from = builder.from;
 		this.highlight = builder.highlight;
 		this.indicesBoost = ApiTypeHelper.unmodifiable(builder.indicesBoost);
@@ -240,6 +245,16 @@ public class MultisearchBody implements JsonpSerializable {
 	 */
 	public final List<FieldAndFormat> docvalueFields() {
 		return this.docvalueFields;
+	}
+
+	/**
+	 * Defines the approximate kNN search to run.
+	 * <p>
+	 * API name: {@code knn}
+	 */
+	@Nullable
+	public final KnnQuery knn() {
+		return this.knn;
 	}
 
 	/**
@@ -528,6 +543,11 @@ public class MultisearchBody implements JsonpSerializable {
 			generator.writeEnd();
 
 		}
+		if (this.knn != null) {
+			generator.writeKey("knn");
+			this.knn.serialize(generator, mapper);
+
+		}
 		if (this.from != null) {
 			generator.writeKey("from");
 			generator.write(this.from);
@@ -732,6 +752,9 @@ public class MultisearchBody implements JsonpSerializable {
 
 		@Nullable
 		private List<FieldAndFormat> docvalueFields;
+
+		@Nullable
+		private KnnQuery knn;
 
 		@Nullable
 		private Integer from;
@@ -942,6 +965,25 @@ public class MultisearchBody implements JsonpSerializable {
 		 */
 		public final Builder docvalueFields(Function<FieldAndFormat.Builder, ObjectBuilder<FieldAndFormat>> fn) {
 			return docvalueFields(fn.apply(new FieldAndFormat.Builder()).build());
+		}
+
+		/**
+		 * Defines the approximate kNN search to run.
+		 * <p>
+		 * API name: {@code knn}
+		 */
+		public final Builder knn(@Nullable KnnQuery value) {
+			this.knn = value;
+			return this;
+		}
+
+		/**
+		 * Defines the approximate kNN search to run.
+		 * <p>
+		 * API name: {@code knn}
+		 */
+		public final Builder knn(Function<KnnQuery.Builder, ObjectBuilder<KnnQuery>> fn) {
+			return this.knn(fn.apply(new KnnQuery.Builder()).build());
 		}
 
 		/**
@@ -1422,6 +1464,7 @@ public class MultisearchBody implements JsonpSerializable {
 				"stored_fields");
 		op.add(Builder::docvalueFields, JsonpDeserializer.arrayDeserializer(FieldAndFormat._DESERIALIZER),
 				"docvalue_fields");
+		op.add(Builder::knn, KnnQuery._DESERIALIZER, "knn");
 		op.add(Builder::from, JsonpDeserializer.integerDeserializer(), "from");
 		op.add(Builder::highlight, Highlight._DESERIALIZER, "highlight");
 		op.add(Builder::indicesBoost,

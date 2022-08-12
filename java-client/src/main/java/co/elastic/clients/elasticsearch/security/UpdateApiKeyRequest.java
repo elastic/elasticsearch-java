@@ -24,9 +24,7 @@
 package co.elastic.clients.elasticsearch.security;
 
 import co.elastic.clients.elasticsearch._types.ErrorResponse;
-import co.elastic.clients.elasticsearch._types.Refresh;
 import co.elastic.clients.elasticsearch._types.RequestBase;
-import co.elastic.clients.elasticsearch._types.Time;
 import co.elastic.clients.json.JsonData;
 import co.elastic.clients.json.JsonpDeserializable;
 import co.elastic.clients.json.JsonpDeserializer;
@@ -41,59 +39,49 @@ import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
 import java.lang.String;
-import java.util.HashMap;
+import java.util.Collections;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
 import javax.annotation.Nullable;
 
-// typedef: security.create_api_key.Request
+// typedef: security.update_api_key.Request
 
 /**
- * Creates an API key for access without requiring basic authentication.
+ * Updates attributes of an existing API key.
  * 
- * @see <a href="../doc-files/api-spec.html#security.create_api_key.Request">API
+ * @see <a href="../doc-files/api-spec.html#security.update_api_key.Request">API
  *      specification</a>
  */
 @JsonpDeserializable
-public class CreateApiKeyRequest extends RequestBase implements JsonpSerializable {
-	@Nullable
-	private final Time expiration;
+public class UpdateApiKeyRequest extends RequestBase implements JsonpSerializable {
+	private final String id;
 
 	private final Map<String, JsonData> metadata;
-
-	@Nullable
-	private final String name;
-
-	@Nullable
-	private final Refresh refresh;
 
 	private final Map<String, RoleDescriptor> roleDescriptors;
 
 	// ---------------------------------------------------------------------------------------------
 
-	private CreateApiKeyRequest(Builder builder) {
+	private UpdateApiKeyRequest(Builder builder) {
 
-		this.expiration = builder.expiration;
+		this.id = ApiTypeHelper.requireNonNull(builder.id, this, "id");
 		this.metadata = ApiTypeHelper.unmodifiable(builder.metadata);
-		this.name = builder.name;
-		this.refresh = builder.refresh;
 		this.roleDescriptors = ApiTypeHelper.unmodifiable(builder.roleDescriptors);
 
 	}
 
-	public static CreateApiKeyRequest of(Function<Builder, ObjectBuilder<CreateApiKeyRequest>> fn) {
+	public static UpdateApiKeyRequest of(Function<Builder, ObjectBuilder<UpdateApiKeyRequest>> fn) {
 		return fn.apply(new Builder()).build();
 	}
 
 	/**
-	 * Expiration time for the API key. By default, API keys never expire.
+	 * Required - The ID of the API key to update.
 	 * <p>
-	 * API name: {@code expiration}
+	 * API name: {@code id}
 	 */
-	@Nullable
-	public final Time expiration() {
-		return this.expiration;
+	public final String id() {
+		return this.id;
 	}
 
 	/**
@@ -105,29 +93,6 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	 */
 	public final Map<String, JsonData> metadata() {
 		return this.metadata;
-	}
-
-	/**
-	 * Specifies the name for this API key.
-	 * <p>
-	 * API name: {@code name}
-	 */
-	@Nullable
-	public final String name() {
-		return this.name;
-	}
-
-	/**
-	 * If <code>true</code> (the default) then refresh the affected shards to make
-	 * this operation visible to search, if <code>wait_for</code> then wait for a
-	 * refresh to make this operation visible to search, if <code>false</code> then
-	 * do nothing with refreshes.
-	 * <p>
-	 * API name: {@code refresh}
-	 */
-	@Nullable
-	public final Refresh refresh() {
-		return this.refresh;
 	}
 
 	/**
@@ -157,11 +122,6 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		if (this.expiration != null) {
-			generator.writeKey("expiration");
-			this.expiration.serialize(generator, mapper);
-
-		}
 		if (ApiTypeHelper.isDefined(this.metadata)) {
 			generator.writeKey("metadata");
 			generator.writeStartObject();
@@ -171,11 +131,6 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 			}
 			generator.writeEnd();
-
-		}
-		if (this.name != null) {
-			generator.writeKey("name");
-			generator.write(this.name);
 
 		}
 		if (ApiTypeHelper.isDefined(this.roleDescriptors)) {
@@ -195,44 +150,28 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Builder for {@link CreateApiKeyRequest}.
+	 * Builder for {@link UpdateApiKeyRequest}.
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder>
 			implements
-				ObjectBuilder<CreateApiKeyRequest> {
-		@Nullable
-		private Time expiration;
+				ObjectBuilder<UpdateApiKeyRequest> {
+		private String id;
 
 		@Nullable
 		private Map<String, JsonData> metadata;
 
 		@Nullable
-		private String name;
-
-		@Nullable
-		private Refresh refresh;
-
-		@Nullable
 		private Map<String, RoleDescriptor> roleDescriptors;
 
 		/**
-		 * Expiration time for the API key. By default, API keys never expire.
+		 * Required - The ID of the API key to update.
 		 * <p>
-		 * API name: {@code expiration}
+		 * API name: {@code id}
 		 */
-		public final Builder expiration(@Nullable Time value) {
-			this.expiration = value;
+		public final Builder id(String value) {
+			this.id = value;
 			return this;
-		}
-
-		/**
-		 * Expiration time for the API key. By default, API keys never expire.
-		 * <p>
-		 * API name: {@code expiration}
-		 */
-		public final Builder expiration(Function<Time.Builder, ObjectBuilder<Time>> fn) {
-			return this.expiration(fn.apply(new Time.Builder()).build());
 		}
 
 		/**
@@ -260,29 +199,6 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		 */
 		public final Builder metadata(String key, JsonData value) {
 			this.metadata = _mapPut(this.metadata, key, value);
-			return this;
-		}
-
-		/**
-		 * Specifies the name for this API key.
-		 * <p>
-		 * API name: {@code name}
-		 */
-		public final Builder name(@Nullable String value) {
-			this.name = value;
-			return this;
-		}
-
-		/**
-		 * If <code>true</code> (the default) then refresh the affected shards to make
-		 * this operation visible to search, if <code>wait_for</code> then wait for a
-		 * refresh to make this operation visible to search, if <code>false</code> then
-		 * do nothing with refreshes.
-		 * <p>
-		 * API name: {@code refresh}
-		 */
-		public final Builder refresh(@Nullable Refresh value) {
-			this.refresh = value;
 			return this;
 		}
 
@@ -349,31 +265,29 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 		}
 
 		/**
-		 * Builds a {@link CreateApiKeyRequest}.
+		 * Builds a {@link UpdateApiKeyRequest}.
 		 *
 		 * @throws NullPointerException
 		 *             if some of the required fields are null.
 		 */
-		public CreateApiKeyRequest build() {
+		public UpdateApiKeyRequest build() {
 			_checkSingleUse();
 
-			return new CreateApiKeyRequest(this);
+			return new UpdateApiKeyRequest(this);
 		}
 	}
 
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Json deserializer for {@link CreateApiKeyRequest}
+	 * Json deserializer for {@link UpdateApiKeyRequest}
 	 */
-	public static final JsonpDeserializer<CreateApiKeyRequest> _DESERIALIZER = ObjectBuilderDeserializer
-			.lazy(Builder::new, CreateApiKeyRequest::setupCreateApiKeyRequestDeserializer);
+	public static final JsonpDeserializer<UpdateApiKeyRequest> _DESERIALIZER = ObjectBuilderDeserializer
+			.lazy(Builder::new, UpdateApiKeyRequest::setupUpdateApiKeyRequestDeserializer);
 
-	protected static void setupCreateApiKeyRequestDeserializer(ObjectDeserializer<CreateApiKeyRequest.Builder> op) {
+	protected static void setupUpdateApiKeyRequestDeserializer(ObjectDeserializer<UpdateApiKeyRequest.Builder> op) {
 
-		op.add(Builder::expiration, Time._DESERIALIZER, "expiration");
 		op.add(Builder::metadata, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "metadata");
-		op.add(Builder::name, JsonpDeserializer.stringDeserializer(), "name");
 		op.add(Builder::roleDescriptors, JsonpDeserializer.stringMapDeserializer(RoleDescriptor._DESERIALIZER),
 				"role_descriptors");
 
@@ -382,10 +296,10 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 	// ---------------------------------------------------------------------------------------------
 
 	/**
-	 * Endpoint "{@code security.create_api_key}".
+	 * Endpoint "{@code security.update_api_key}".
 	 */
-	public static final Endpoint<CreateApiKeyRequest, CreateApiKeyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
-			"es/security.create_api_key",
+	public static final Endpoint<UpdateApiKeyRequest, UpdateApiKeyResponse, ErrorResponse> _ENDPOINT = new SimpleEndpoint<>(
+			"es/security.update_api_key",
 
 			// Request method
 			request -> {
@@ -395,17 +309,27 @@ public class CreateApiKeyRequest extends RequestBase implements JsonpSerializabl
 
 			// Request path
 			request -> {
-				return "/_security/api_key";
+				final int _id = 1 << 0;
+
+				int propsSet = 0;
+
+				propsSet |= _id;
+
+				if (propsSet == (_id)) {
+					StringBuilder buf = new StringBuilder();
+					buf.append("/_security");
+					buf.append("/api_key");
+					buf.append("/");
+					SimpleEndpoint.pathEncode(request.id, buf);
+					return buf.toString();
+				}
+				throw SimpleEndpoint.noPathTemplateFound("path");
 
 			},
 
 			// Request parameters
 			request -> {
-				Map<String, String> params = new HashMap<>();
-				if (request.refresh != null) {
-					params.put("refresh", request.refresh.jsonValue());
-				}
-				return params;
+				return Collections.emptyMap();
 
-			}, SimpleEndpoint.emptyMap(), true, CreateApiKeyResponse._DESERIALIZER);
+			}, SimpleEndpoint.emptyMap(), true, UpdateApiKeyResponse._DESERIALIZER);
 }
