@@ -21,6 +21,7 @@ package co.elastic.clients.transport.rest_client;
 
 import co.elastic.clients.transport.TransportOptions;
 import co.elastic.clients.transport.Version;
+import co.elastic.clients.util.VisibleForTesting;
 import org.apache.http.impl.nio.client.HttpAsyncClientBuilder;
 import org.apache.http.util.VersionInfo;
 import org.elasticsearch.client.RequestOptions;
@@ -38,6 +39,14 @@ public class RestClientOptions implements TransportOptions {
 
     private final RequestOptions options;
 
+    private static final String CLIENT_META_HEADER = "X-Elastic-Client-Meta";
+    private static final String USER_AGENT_HEADER = "User-Agent";
+
+    @VisibleForTesting
+    static final String CLIENT_META_VALUE = getClientMeta();
+    @VisibleForTesting
+    static final String USER_AGENT_VALUE = getUserAgent();
+
     static RestClientOptions of(TransportOptions options) {
         if (options instanceof RestClientOptions) {
             return (RestClientOptions)options;
@@ -52,7 +61,7 @@ public class RestClientOptions implements TransportOptions {
     }
 
     public RestClientOptions(RequestOptions options) {
-        this.options = options;
+        this.options = addBuiltinHeaders(options.toBuilder()).build();
     }
 
     /**
@@ -109,23 +118,13 @@ public class RestClientOptions implements TransportOptions {
 
         @Override
         public TransportOptions.Builder addHeader(String name, String value) {
-            if (name.equalsIgnoreCase(CLIENT_META)) {
+            if (name.equalsIgnoreCase(CLIENT_META_HEADER)) {
+                // Not overridable
                 return this;
             }
-            if (name.equalsIgnoreCase(USER_AGENT)) {
-                // We must filter out our own user-agent from the options or they'll end up as multiple values for the header
-                RequestOptions options = builder.build();
-                builder = RequestOptions.DEFAULT.toBuilder();
-                options.getParameters().forEach((k, v) -> builder.addParameter(k, v));
-                options.getHeaders().forEach(h -> {
-                    if (!h.getName().equalsIgnoreCase(USER_AGENT)) {
-                        builder.addHeader(h.getName(), h.getValue());
-                    }
-                });
-                builder.setWarningsHandler(options.getWarningsHandler());
-                if (options.getHttpAsyncResponseConsumerFactory() != null) {
-                    builder.setHttpAsyncResponseConsumerFactory(options.getHttpAsyncResponseConsumerFactory());
-                }
+            if (name.equalsIgnoreCase(USER_AGENT_HEADER)) {
+                // We must remove our own user-agent from the options, or we'll end up with multiple values for the header
+                builder.removeHeader(USER_AGENT_HEADER);
             }
             builder.addHeader(name, value);
             return this;
@@ -159,32 +158,37 @@ public class RestClientOptions implements TransportOptions {
 
         @Override
         public RestClientOptions build() {
-            return new RestClientOptions(builder.build());
+            return new RestClientOptions(addBuiltinHeaders(builder).build());
         }
     }
 
-    private static final String USER_AGENT = "User-Agent";
-    private static final String CLIENT_META = "X-Elastic-Client-Meta";
-
     static RestClientOptions initialOptions() {
-        String ua = String.format(
+        return new RestClientOptions(RequestOptions.DEFAULT);
+    }
+
+    private static RequestOptions.Builder addBuiltinHeaders(RequestOptions.Builder builder) {
+        builder.removeHeader(CLIENT_META_HEADER);
+        builder.addHeader(CLIENT_META_HEADER, CLIENT_META_VALUE);
+        if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase(USER_AGENT_HEADER))) {
+            builder.addHeader(USER_AGENT_HEADER, USER_AGENT_VALUE);
+        }
+        if (builder.getHeaders().stream().noneMatch(h -> h.getName().equalsIgnoreCase("Accept"))) {
+            builder.addHeader("Accept", RestClientTransport.JsonContentType.toString());
+        }
+
+        return builder;
+    }
+
+    private static String getUserAgent() {
+        return String.format(
             Locale.ROOT,
             "elastic-java/%s (Java/%s)",
             Version.VERSION == null ? "Unknown" : Version.VERSION.toString(),
             System.getProperty("java.version")
         );
-
-        return new RestClientOptions(
-            RequestOptions.DEFAULT.toBuilder()
-                .addHeader(USER_AGENT, ua)
-                .addHeader(CLIENT_META, getClientMeta())
-                .addHeader("Accept", RestClientTransport.JsonContentType.toString())
-                .build()
-        );
     }
 
     private static String getClientMeta() {
-
         VersionInfo httpClientVersion = null;
         try {
             httpClientVersion = VersionInfo.loadVersionInfo(
