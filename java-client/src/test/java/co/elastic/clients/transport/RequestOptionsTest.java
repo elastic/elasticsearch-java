@@ -101,6 +101,15 @@ public class RequestOptionsTest extends Assertions {
     }
 
     @Test
+    public void testNonNullClientOptions() {
+        final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
+        final ElasticsearchClient client = new ElasticsearchClient(trsp);
+
+        assertNotNull(client._transportOptions());
+        assertSame(trsp.options(), client._transportOptions());
+    }
+
+    @Test
     public void testDefaultHeaders() throws IOException {
         final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
         final ElasticsearchClient client = new ElasticsearchClient(trsp);
@@ -111,7 +120,7 @@ public class RequestOptionsTest extends Assertions {
         assertTrue(props.getProperty("header-x-elastic-client-meta").contains("es="));
         assertTrue(props.getProperty("header-x-elastic-client-meta").contains("hl=2"));
         assertEquals(
-            "application/vnd.elasticsearch+json; compatible-with=" + String.valueOf(Version.VERSION.major()),
+            "application/vnd.elasticsearch+json; compatible-with=" + Version.VERSION.major(),
             props.getProperty("header-accept")
         );
     }
@@ -120,10 +129,9 @@ public class RequestOptionsTest extends Assertions {
     public void testClientHeader() throws IOException {
         final RestClientTransport trsp = new RestClientTransport(restClient, new JsonbJsonpMapper());
         final ElasticsearchClient client = new ElasticsearchClient(trsp)
-            .withTransportOptions(trsp.options().with(
-                b -> b.addHeader("X-Foo", "Bar")
-                    .addHeader("uSer-agEnt", "MegaClient/1.2.3")
-                )
+            .withTransportOptions(b -> b
+                .addHeader("X-Foo", "Bar")
+                .addHeader("uSer-agEnt", "MegaClient/1.2.3")
             );
 
         Properties props = getProps(client);
