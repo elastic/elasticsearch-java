@@ -26,6 +26,7 @@ import co.elastic.clients.json.JsonpDeserializer;
 import co.elastic.clients.json.JsonpMapperBase;
 
 import javax.annotation.Nullable;
+import java.util.function.Function;
 
 public abstract class ApiClient<T extends Transport, Self extends ApiClient<T, Self>> {
 
@@ -53,14 +54,26 @@ public abstract class ApiClient<T extends Transport, Self extends ApiClient<T, S
     public abstract Self withTransportOptions(@Nullable TransportOptions transportOptions);
 
     /**
+     * Creates a new client with additional request options
+     *
+     * @param fn a lambda expression that takes the current options as input
+     */
+    public Self withTransportOptions(Function<TransportOptions.Builder, TransportOptions.Builder> fn) {
+        return withTransportOptions(fn.apply(_transportOptions().toBuilder()).build());
+    }
+
+    /**
      * Get the transport used by this client to handle communication with the server.
      */
     public T _transport() {
         return this.transport;
     }
 
+    /**
+     * Get the transport options used for this client. If the client has no custom options, falls back to the transport's options.
+     */
     public TransportOptions _transportOptions() {
-        return this.transportOptions;
+        return this.transportOptions == null ? transport.options() : transportOptions;
     }
 
     /**
