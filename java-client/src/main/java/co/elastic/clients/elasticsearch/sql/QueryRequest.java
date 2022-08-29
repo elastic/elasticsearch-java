@@ -45,7 +45,6 @@ import java.lang.Boolean;
 import java.lang.Integer;
 import java.lang.String;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 import java.util.function.Function;
@@ -102,7 +101,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	@Nullable
 	private final Time requestTimeout;
 
-	private final Map<String, List<RuntimeField>> runtimeMappings;
+	private final Map<String, RuntimeField> runtimeMappings;
 
 	@Nullable
 	private final String timeZone;
@@ -284,7 +283,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 	 * <p>
 	 * API name: {@code runtime_mappings}
 	 */
-	public final Map<String, List<RuntimeField>> runtimeMappings() {
+	public final Map<String, RuntimeField> runtimeMappings() {
 		return this.runtimeMappings;
 	}
 
@@ -396,16 +395,9 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		if (ApiTypeHelper.isDefined(this.runtimeMappings)) {
 			generator.writeKey("runtime_mappings");
 			generator.writeStartObject();
-			for (Map.Entry<String, List<RuntimeField>> item0 : this.runtimeMappings.entrySet()) {
+			for (Map.Entry<String, RuntimeField> item0 : this.runtimeMappings.entrySet()) {
 				generator.writeKey(item0.getKey());
-				generator.writeStartArray();
-				if (item0.getValue() != null) {
-					for (RuntimeField item1 : item0.getValue()) {
-						item1.serialize(generator, mapper);
-
-					}
-				}
-				generator.writeEnd();
+				item0.getValue().serialize(generator, mapper);
 
 			}
 			generator.writeEnd();
@@ -474,7 +466,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		private Time requestTimeout;
 
 		@Nullable
-		private Map<String, List<RuntimeField>> runtimeMappings;
+		private Map<String, RuntimeField> runtimeMappings;
 
 		@Nullable
 		private String timeZone;
@@ -681,7 +673,7 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(Map<String, List<RuntimeField>> map) {
+		public final Builder runtimeMappings(Map<String, RuntimeField> map) {
 			this.runtimeMappings = _mapPutAll(this.runtimeMappings, map);
 			return this;
 		}
@@ -694,9 +686,22 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		 * <p>
 		 * Adds an entry to <code>runtimeMappings</code>.
 		 */
-		public final Builder runtimeMappings(String key, List<RuntimeField> value) {
+		public final Builder runtimeMappings(String key, RuntimeField value) {
 			this.runtimeMappings = _mapPut(this.runtimeMappings, key, value);
 			return this;
+		}
+
+		/**
+		 * Defines one or more runtime fields in the search request. These fields take
+		 * precedence over mapped fields with the same name.
+		 * <p>
+		 * API name: {@code runtime_mappings}
+		 * <p>
+		 * Adds an entry to <code>runtimeMappings</code> using a builder lambda.
+		 */
+		public final Builder runtimeMappings(String key,
+				Function<RuntimeField.Builder, ObjectBuilder<RuntimeField>> fn) {
+			return runtimeMappings(key, fn.apply(new RuntimeField.Builder()).build());
 		}
 
 		/**
@@ -774,8 +779,8 @@ public class QueryRequest extends RequestBase implements JsonpSerializable {
 		op.add(Builder::params, JsonpDeserializer.stringMapDeserializer(JsonData._DESERIALIZER), "params");
 		op.add(Builder::query, JsonpDeserializer.stringDeserializer(), "query");
 		op.add(Builder::requestTimeout, Time._DESERIALIZER, "request_timeout");
-		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(
-				JsonpDeserializer.arrayDeserializer(RuntimeField._DESERIALIZER)), "runtime_mappings");
+		op.add(Builder::runtimeMappings, JsonpDeserializer.stringMapDeserializer(RuntimeField._DESERIALIZER),
+				"runtime_mappings");
 		op.add(Builder::timeZone, JsonpDeserializer.stringDeserializer(), "time_zone");
 		op.add(Builder::waitForCompletionTimeout, Time._DESERIALIZER, "wait_for_completion_timeout");
 
