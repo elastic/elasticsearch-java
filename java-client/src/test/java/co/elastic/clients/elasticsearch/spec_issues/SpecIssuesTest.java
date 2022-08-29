@@ -85,7 +85,7 @@ public class SpecIssuesTest extends ModelTestCase {
     public void i0298_runtimeMappings() throws Exception {
         ElasticsearchClient client = ElasticsearchTestServer.global().client();
 
-        String index = "testindex";
+        String index = "i0298";
 
         Product p = new Product("p1", "p2", 42.0);
 
@@ -114,7 +114,7 @@ public class SpecIssuesTest extends ModelTestCase {
     public void i0297_mappingSettings() {
 
         CreateIndexRequest request = CreateIndexRequest.of(r -> r
-            .index("name")
+            .index("i0297")
             .settings(s -> s
                 // This is "mapping" and not "mappings"
                 .mapping(m -> m.totalFields(totalFields -> totalFields.limit(1001)))
@@ -153,7 +153,7 @@ public class SpecIssuesTest extends ModelTestCase {
             "}";
 
         CreateIndexRequest request = CreateIndexRequest.of(r -> r
-            .index("name")
+            .index("i0295")
             .withJson(new StringReader(json))
         );
     }
