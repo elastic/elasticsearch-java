@@ -26,7 +26,6 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.JsonEndpoint;
-import co.elastic.clients.transport.TransportUtils;
 import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.DelegatingJsonEndpoint;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
@@ -40,8 +39,6 @@ import org.testcontainers.images.builder.ImageFromDockerfile;
 import org.testcontainers.utility.DockerImageName;
 
 import javax.net.ssl.SSLContext;
-import javax.print.Doc;
-import java.io.ByteArrayInputStream;
 import java.io.IOException;
 import java.time.Duration;
 

@@ -46,7 +46,6 @@ import org.junit.jupiter.api.Test;
 
 import java.io.InputStream;
 import java.io.StringReader;
-import java.util.Collections;
 
 /**
  * Test issues related to the API specifications.
