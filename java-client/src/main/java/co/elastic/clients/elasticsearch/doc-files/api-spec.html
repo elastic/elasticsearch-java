@@ -67,13 +67,13 @@
 '_global.mget.Request': '_global/mget/MultiGetRequest.ts#L25-L92',
 '_global.mget.Response': '_global/mget/MultiGetResponse.ts#L22-L26',
 '_global.mget.ResponseItem': '_global/mget/types.ts#L59-L62',
-'_global.msearch.MultiSearchItem': '_global/msearch/types.ts#L202-L205',
-'_global.msearch.MultiSearchResult': '_global/msearch/types.ts#L192-L195',
-'_global.msearch.MultisearchBody': '_global/msearch/types.ts#L69-L190',
-'_global.msearch.MultisearchHeader': '_global/msearch/types.ts#L51-L66',
+'_global.msearch.MultiSearchItem': '_global/msearch/types.ts#L207-L210',
+'_global.msearch.MultiSearchResult': '_global/msearch/types.ts#L197-L200',
+'_global.msearch.MultisearchBody': '_global/msearch/types.ts#L70-L195',
+'_global.msearch.MultisearchHeader': '_global/msearch/types.ts#L52-L67',
 '_global.msearch.Request': '_global/msearch/MultiSearchRequest.ts#L31-L103',
 '_global.msearch.Response': '_global/msearch/MultiSearchResponse.ts#L22-L24',
-'_global.msearch.ResponseItem': '_global/msearch/types.ts#L197-L200',
+'_global.msearch.ResponseItem': '_global/msearch/types.ts#L202-L205',
 '_global.msearch_template.Request': '_global/msearch_template/MultiSearchTemplateRequest.ts#L25-L46',
 '_global.msearch_template.Response': '_global/msearch_template/MultiSearchTemplateResponse.ts#L22-L24',
 '_global.msearch_template.TemplateConfig': '_global/msearch_template/types.ts#L28-L45',
@@ -121,7 +121,7 @@
 '_global.scripts_painless_execute.Response': '_global/scripts_painless_execute/ExecutePainlessScriptResponse.ts#L20-L24',
 '_global.scroll.Request': '_global/scroll/ScrollRequest.ts#L24-L59',
 '_global.scroll.Response': '_global/scroll/ScrollResponse.ts#L22-L24',
-'_global.search.Request': '_global/search/SearchRequest.ts#L51-L236',
+'_global.search.Request': '_global/search/SearchRequest.ts#L51-L240',
 '_global.search.Response': '_global/search/SearchResponse.ts#L34-L36',
 '_global.search.ResponseBody': '_global/search/SearchResponse.ts#L38-L54',
 '_global.search._types.AggregationBreakdown': '_global/search/_types/profile.ts#L22-L35',
@@ -558,19 +558,19 @@
 '_types.analysis.HtmlStripCharFilter': '_types/analysis/char_filters.ts#L43-L45',
 '_types.analysis.HunspellTokenFilter': '_types/analysis/token_filters.ts#L199-L205',
 '_types.analysis.HyphenationDecompounderTokenFilter': '_types/analysis/token_filters.ts#L57-L59',
-'_types.analysis.IcuAnalyzer': '_types/analysis/icu-plugin.ts#L66-L70',
-'_types.analysis.IcuCollationAlternate': '_types/analysis/icu-plugin.ts#L88-L91',
-'_types.analysis.IcuCollationCaseFirst': '_types/analysis/icu-plugin.ts#L93-L96',
-'_types.analysis.IcuCollationDecomposition': '_types/analysis/icu-plugin.ts#L98-L101',
-'_types.analysis.IcuCollationStrength': '_types/analysis/icu-plugin.ts#L103-L109',
-'_types.analysis.IcuCollationTokenFilter': '_types/analysis/icu-plugin.ts#L51-L64',
+'_types.analysis.IcuAnalyzer': '_types/analysis/icu-plugin.ts#L67-L71',
+'_types.analysis.IcuCollationAlternate': '_types/analysis/icu-plugin.ts#L89-L92',
+'_types.analysis.IcuCollationCaseFirst': '_types/analysis/icu-plugin.ts#L94-L97',
+'_types.analysis.IcuCollationDecomposition': '_types/analysis/icu-plugin.ts#L99-L102',
+'_types.analysis.IcuCollationStrength': '_types/analysis/icu-plugin.ts#L104-L110',
+'_types.analysis.IcuCollationTokenFilter': '_types/analysis/icu-plugin.ts#L51-L65',
 '_types.analysis.IcuFoldingTokenFilter': '_types/analysis/icu-plugin.ts#L46-L49',
 '_types.analysis.IcuNormalizationCharFilter': '_types/analysis/icu-plugin.ts#L40-L44',
-'_types.analysis.IcuNormalizationMode': '_types/analysis/icu-plugin.ts#L77-L80',
+'_types.analysis.IcuNormalizationMode': '_types/analysis/icu-plugin.ts#L78-L81',
 '_types.analysis.IcuNormalizationTokenFilter': '_types/analysis/icu-plugin.ts#L35-L38',
-'_types.analysis.IcuNormalizationType': '_types/analysis/icu-plugin.ts#L82-L86',
+'_types.analysis.IcuNormalizationType': '_types/analysis/icu-plugin.ts#L83-L87',
 '_types.analysis.IcuTokenizer': '_types/analysis/icu-plugin.ts#L30-L33',
-'_types.analysis.IcuTransformDirection': '_types/analysis/icu-plugin.ts#L72-L75',
+'_types.analysis.IcuTransformDirection': '_types/analysis/icu-plugin.ts#L73-L76',
 '_types.analysis.IcuTransformTokenFilter': '_types/analysis/icu-plugin.ts#L24-L28',
 '_types.analysis.KStemTokenFilter': '_types/analysis/token_filters.ts#L238-L240',
 '_types.analysis.KeepTypesMode': '_types/analysis/token_filters.ts#L212-L215',
@@ -835,7 +835,7 @@
 'async_search.get.Response': 'async_search/get/AsyncSearchGetResponse.ts#L22-L24',
 'async_search.status.Request': 'async_search/status/AsyncSearchStatusRequest.ts#L23-L32',
 'async_search.status.Response': 'async_search/status/AsyncSearchStatusResponse.ts#L24-L29',
-'async_search.submit.Request': 'async_search/submit/AsyncSearchSubmitRequest.ts#L53-L243',
+'async_search.submit.Request': 'async_search/submit/AsyncSearchSubmitRequest.ts#L53-L247',
 'async_search.submit.Response': 'async_search/submit/AsyncSearchSubmitResponse.ts#L22-L24',
 'autoscaling._types.AutoscalingPolicy': 'autoscaling/_types/AutoscalingPolicy.ts#L23-L27',
 'autoscaling.delete_autoscaling_policy.Request': 'autoscaling/delete_autoscaling_policy/DeleteAutoscalingPolicyRequest.ts#L23-L32',
@@ -2323,10 +2323,10 @@
         if (hash.length > 1) {
             hash = hash.substring(1);
         }
-        window.location = "https://github.com/elastic/elasticsearch-specification/tree/984c21945c71f1a658355803d43a7add2dac7265/specification/" + (paths[hash] || "");
+        window.location = "https://github.com/elastic/elasticsearch-specification/tree/85133bd6101deda7a4ec9b29714e979c11a547c0/specification/" + (paths[hash] || "");
     </script>
 </head>
 <body>
-    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/984c21945c71f1a658355803d43a7add2dac7265/specification/">Elasticsearch API specification</a>.
+    Please see the <a href="https://github.com/elastic/elasticsearch-specification/tree/85133bd6101deda7a4ec9b29714e979c11a547c0/specification/">Elasticsearch API specification</a>.
 </body>
 </html>

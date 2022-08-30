@@ -73,7 +73,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 
 		this.meta = ApiTypeHelper.unmodifiable(builder.meta);
 		this.version = builder.version;
-		this.settings = ApiTypeHelper.unmodifiableRequired(builder.settings, this, "settings");
+		this.settings = ApiTypeHelper.unmodifiable(builder.settings);
 		this.mappings = builder.mappings;
 		this.aliases = ApiTypeHelper.unmodifiable(builder.aliases);
 
@@ -99,7 +99,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code settings}
+	 * API name: {@code settings}
 	 */
 	public final Map<String, IndexSettings> settings() {
 		return this.settings;
@@ -197,6 +197,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		@Nullable
 		private Long version;
 
+		@Nullable
 		private Map<String, IndexSettings> settings;
 
 		@Nullable
@@ -234,7 +235,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code settings}
+		 * API name: {@code settings}
 		 * <p>
 		 * Adds all entries of <code>map</code> to <code>settings</code>.
 		 */
@@ -244,7 +245,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code settings}
+		 * API name: {@code settings}
 		 * <p>
 		 * Adds an entry to <code>settings</code>.
 		 */
@@ -254,7 +255,7 @@ public class ComponentTemplateSummary implements JsonpSerializable {
 		}
 
 		/**
-		 * Required - API name: {@code settings}
+		 * API name: {@code settings}
 		 * <p>
 		 * Adds an entry to <code>settings</code> using a builder lambda.
 		 */

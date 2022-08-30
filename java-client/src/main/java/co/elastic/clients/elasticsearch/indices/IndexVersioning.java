@@ -30,7 +30,6 @@ import co.elastic.clients.json.JsonpSerializable;
 import co.elastic.clients.json.JsonpUtils;
 import co.elastic.clients.json.ObjectBuilderDeserializer;
 import co.elastic.clients.json.ObjectDeserializer;
-import co.elastic.clients.util.ApiTypeHelper;
 import co.elastic.clients.util.ObjectBuilder;
 import co.elastic.clients.util.WithJsonObjectBuilderBase;
 import jakarta.json.stream.JsonGenerator;
@@ -48,13 +47,14 @@ import javax.annotation.Nullable;
  */
 @JsonpDeserializable
 public class IndexVersioning implements JsonpSerializable {
+	@Nullable
 	private final String created;
 
 	// ---------------------------------------------------------------------------------------------
 
 	private IndexVersioning(Builder builder) {
 
-		this.created = ApiTypeHelper.requireNonNull(builder.created, this, "created");
+		this.created = builder.created;
 
 	}
 
@@ -63,8 +63,9 @@ public class IndexVersioning implements JsonpSerializable {
 	}
 
 	/**
-	 * Required - API name: {@code created}
+	 * API name: {@code created}
 	 */
+	@Nullable
 	public final String created() {
 		return this.created;
 	}
@@ -80,8 +81,11 @@ public class IndexVersioning implements JsonpSerializable {
 
 	protected void serializeInternal(JsonGenerator generator, JsonpMapper mapper) {
 
-		generator.writeKey("created");
-		generator.write(this.created);
+		if (this.created != null) {
+			generator.writeKey("created");
+			generator.write(this.created);
+
+		}
 
 	}
 
@@ -97,12 +101,13 @@ public class IndexVersioning implements JsonpSerializable {
 	 */
 
 	public static class Builder extends WithJsonObjectBuilderBase<Builder> implements ObjectBuilder<IndexVersioning> {
+		@Nullable
 		private String created;
 
 		/**
-		 * Required - API name: {@code created}
+		 * API name: {@code created}
 		 */
-		public final Builder created(String value) {
+		public final Builder created(@Nullable String value) {
 			this.created = value;
 			return this;
 		}
