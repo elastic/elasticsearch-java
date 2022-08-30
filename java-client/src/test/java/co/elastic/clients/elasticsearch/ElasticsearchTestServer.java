@@ -26,6 +26,7 @@ import co.elastic.clients.json.JsonpMapper;
 import co.elastic.clients.json.jsonb.JsonbJsonpMapper;
 import co.elastic.clients.transport.ElasticsearchTransport;
 import co.elastic.clients.transport.JsonEndpoint;
+import co.elastic.clients.transport.Version;
 import co.elastic.clients.transport.endpoints.DelegatingJsonEndpoint;
 import co.elastic.clients.transport.rest_client.RestClientTransport;
 import org.apache.http.HttpHost;
@@ -34,12 +35,16 @@ import org.apache.http.auth.UsernamePasswordCredentials;
 import org.apache.http.impl.client.BasicCredentialsProvider;
 import org.elasticsearch.client.RestClient;
 import org.testcontainers.elasticsearch.ElasticsearchContainer;
+import org.testcontainers.images.builder.ImageFromDockerfile;
+import org.testcontainers.utility.DockerImageName;
 
+import javax.net.ssl.SSLContext;
 import java.io.IOException;
 import java.time.Duration;
 
 public class ElasticsearchTestServer implements AutoCloseable {
 
+    private final String[] plugins;
     private volatile ElasticsearchContainer container;
     private int port;
     private final JsonpMapper mapper = new JsonbJsonpMapper();
@@ -54,7 +59,7 @@ public class ElasticsearchTestServer implements AutoCloseable {
             System.out.println("Starting global ES test server.");
             global = new ElasticsearchTestServer();
             try {
-                global.setup();
+                global.start();
             } catch (Exception e) {
                 e.printStackTrace();
                 throw e;
@@ -67,24 +72,62 @@ public class ElasticsearchTestServer implements AutoCloseable {
         return global;
     }
 
-    private synchronized void setup() {
-        container = new ElasticsearchContainer("docker.elastic.co/elasticsearch/elasticsearch:7.17.4")
+    public ElasticsearchTestServer(String... plugins) {
+        this.plugins = plugins;
+    }
+
+    public synchronized ElasticsearchTestServer start() {
+        Version version = Version.VERSION.major() < 8 ? new Version(7,17,5,false) : new Version(8,3,3,false);
+
+        // Note we could use version.major() + "." + version.minor() + "-SNAPSHOT" but plugins won't install on a snapshot version
+        String esImage = "docker.elastic.co/elasticsearch/elasticsearch:" + version;
+
+        DockerImageName image;
+        if (plugins.length == 0) {
+            image = DockerImageName.parse(esImage);
+        } else {
+            String esWithPluginsImage = new ImageFromDockerfile()
+                .withDockerfileFromBuilder(b -> {
+                        b.from(esImage);
+                        for (String plugin : plugins) {
+                            b.run("/usr/share/elasticsearch/bin/elasticsearch-plugin", "install", plugin);
+                        }
+                    }
+                ).get();
+
+            image = DockerImageName
+                .parse(esWithPluginsImage)
+                .asCompatibleSubstituteFor("docker.elastic.co/elasticsearch/elasticsearch");
+        }
+
+        container = new ElasticsearchContainer(image)
             .withEnv("ES_JAVA_OPTS", "-Xms256m -Xmx256m")
             .withEnv("path.repo", "/tmp") // for snapshots
             .withStartupTimeout(Duration.ofSeconds(60))
             .withPassword("changeme");
         container.start();
+
         port = container.getMappedPort(9200);
+
+        boolean useTLS = version.major() >= 8;
+        HttpHost host = new HttpHost("localhost", port, useTLS ? "https": "http");
+
+        SSLContext sslContext = useTLS ? container.createSslContextFromCa() : null;
 
         BasicCredentialsProvider credsProv = new BasicCredentialsProvider();
         credsProv.setCredentials(
             AuthScope.ANY, new UsernamePasswordCredentials("elastic", "changeme")
         );
-        restClient = RestClient.builder(new HttpHost("localhost", port))
-            .setHttpClientConfigCallback(hc -> hc.setDefaultCredentialsProvider(credsProv))
+        restClient = RestClient.builder(host)
+            .setHttpClientConfigCallback(hc -> hc
+                .setDefaultCredentialsProvider(credsProv)
+                .setSSLContext(sslContext)
+            )
             .build();
         transport = new RestClientTransport(restClient, mapper);
         client = new ElasticsearchClient(transport);
+
+        return this;
     }
 
     /**
